@@ -302,7 +302,7 @@ export default class Comment extends React.Component {
             <div className="a4-comments__box--user">
               <div className="row">
 
-                <div className={this.props.is_deleted ? 'd-none' : 'col-2 col-md-1'}>
+                <div className={this.props.is_deleted ? 'd-none' : 'col-2 col-lg-1'}>
                   {userImage}
                 </div>
                 <div className="col-7 col-md-8">

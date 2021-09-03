@@ -511,10 +511,10 @@ export default class CommentBox extends React.Component {
           />
         </div>
 
-        <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'container a4-comments__filters__parent'}>
+        <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'a4-comments__filters__parent'}>
 
           {this.state.showFilters &&
-            <nav className="a4-comments__filters row flex-md-nowrap">
+            <nav className="a4-comments__filters">
               <div className="input-group a4-comments__filters__search">
                 <input className="form-control a4-comments__filters__search-input mb-0" type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('Search contributions')} />
 
@@ -524,18 +524,22 @@ export default class CommentBox extends React.Component {
               </div>
 
               {this.props.withCategories
-                ? <div className="a4-comments__filters__dropdown me-md-3">
+                ? <div className="a4-comments__filters__dropdown me-sm-2">
                   <div className="dropdown">
                     <button
-                      className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn" type="button"
-                      id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                      className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn"
+                      type="button"
+                      id="categoryDropdownBtn"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
                     >
                       <span className={this.state.filter === 'all' ? 'a4-comments__filters__btn-text' : 'd-none'}>{django.gettext('display: ')}{this.state.filterDisplay}</span>
                       <span className={this.state.filter !== 'all' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{this.state.filterDisplay}</span>
 
                       <i className={this.state.filter === 'all' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
                     </button>
-                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <div className="dropdown-menu dropdown-menu-end" aria-labelledby="categoryDropdownBtn">
                       {this.state.filter !== 'all' &&
                         <button className="dropdown-item" onClick={this.handleClickFilter} id="all" key="all" href="#">
                           {django.gettext('all')}
@@ -548,42 +552,22 @@ export default class CommentBox extends React.Component {
                     </div>
                   </div>
                 </div> // eslint-disable-line react/jsx-closing-tag-location
-                : <div className="col-sm-3" />}
+                : <div className="col-lg-3" />}
               <div className="a4-comments__filters__dropdown">
                 <div className="dropdown">
                   <button
-                    className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn" type="button"
-                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  >
-                    <span className={this.state.filter === 'all' ? 'a4-comments__filters__btn-text' : 'd-none'}>{django.gettext('display: ')}{this.state.filterDisplay}</span>
-                    <span className={this.state.filter !== 'all' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{this.state.filterDisplay}</span>
-
-                    <i className={this.state.filter === 'all' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
-                  </button>
-                  <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    {Object.keys(sorts).map(objectKey => {
-                      const name = sorts[objectKey]
-                      return (objectKey !== this.state.sort) &&
-                        <button
-                          className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
-                          key={objectKey} href="#"
-                        >{name}
-                        </button>
-                    })}
-                  </div>
-                </div>
-              </div>
-              <div className="a4-comments__filters__dropdown">
-                <div className="dropdown">
-                  <button
-                    className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn" type="button"
-                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn"
+                    type="button"
+                    id="sortDropdownBtn"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                   >
                     <span className={this.state.sort === 'new' ? 'a4-comments__filters__btn-text' : 'd-none'}>{django.gettext('sorted by: ')}{sorts[this.state.sort]}</span>
                     <span className={this.state.sort !== 'new' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{sorts[this.state.sort]}</span>
                     <i className={this.state.sort === 'new' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
                   </button>
-                  <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                  <div className="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdownBtn">
                     {Object.keys(sorts).map(objectKey => {
                       const name = sorts[objectKey]
                       return (objectKey !== this.state.sort) &&
@@ -598,7 +582,7 @@ export default class CommentBox extends React.Component {
               </div>
             </nav>}
 
-          <div className="row justify-content-between">
+          <div className="a4-comments__filters__parent--closed">
             <div className={this.state.search === '' ? 'a4-comments__filters__text' : 'd-none'}>
               {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
             </div>

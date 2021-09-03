@@ -12,7 +12,7 @@ const CommentManageDropdown = (props) => {
         >
           <i className="fas fa-ellipsis-v" aria-hidden="true" />
         </button>
-        <ul className="dropdown-menu dropdown-menu-right">
+        <ul className="dropdown-menu dropdown-menu-end">
           {(props.renderOwnerOptions || props.renderModeratorOptions) && [
             <li key="1">
               <button className="dropdown-item" type="button" onClick={props.handleToggleEdit}>{django.gettext('Edit')}</button>
