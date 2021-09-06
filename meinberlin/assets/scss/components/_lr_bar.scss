@@ -50,13 +50,9 @@
         margin: 0.5*$spacer 0;
     }
 
-    @media (min-width: 30em) {
-        justify-content: flex-end;
-        flex-direction: row;
-
-        & > a {
-            margin: 0.5*$spacer 0;
-            margin-left: 0.5*$spacer;
-        }
+    @media screen and (min-width: $breakpoint) {
+        display: inline-block;
+        float: right;
+        min-width: auto;
     }
 }
