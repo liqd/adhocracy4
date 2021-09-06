@@ -40,8 +40,15 @@
 
             <li class="progress-line__entry">
                 <span class="progress-line__line--top"></span>
+                <span class="progress-line__line--bottom"></span>
                     <i class="fas fa-circle progress-line__icon" title="{% trans 'Plan not ready for publication' %}" aria-label="{% trans 'Plan not ready for publication' %}"></i>
                 <span>{% trans 'Fill in plan details' %}</span>
+            </li>
+
+            <li class="progress-line__entry">
+                <span class="progress-line__line--top"></span>
+                <i class="far fa-circle progress-line__icon" title="{% trans 'Plan not ready for publication' %}" aria-label="{% trans 'Plan not ready for publication' %}"></i>
+                <span>{% trans 'Publish plan' %}</span>
             </li>
         </ul>
         <button disabled class="btn btn--light btn--full u-spacer-bottom">

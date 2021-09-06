@@ -40,11 +40,19 @@
 
                 <li class="progress-line__entry">
                     <span class="progress-line__line--top"></span>
+                    <span class="progress-line__line--bottom"></span>
                         <i class="fas fa-check-circle u-success progress-line__icon--active" title="{% trans 'Plan not ready for publication' %}" aria-label="{% trans 'Plan not ready for publication' %}"></i>
                     <span class="progress-line__entry--active">
                         <span>{% trans 'Fill in plan details' %}</span>
                     </span>
                 </li>
+
+                <li class="progress-line__entry">
+                    <span class="progress-line__line--top"></span>
+                    <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Plan ready for publication' %}" aria-label="{% trans 'Plan ready for publication' %}"></i>
+                    <span>{% trans 'Publish plan' %}</span>
+                </li>
+
             </ul>
             {% else %}
             <li class="progress-line__entry--published">
