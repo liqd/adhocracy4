@@ -269,7 +269,7 @@ class PollQuestions extends React.Component {
             />
           ))}
           <div className="poll">
-            {this.hasAnyVotes() ? this.linkChangeVote : this.linkToPoll}
+            {this.state.hasVotes ? this.linkChangeVote : this.linkToPoll}
           </div>
         </div>
         )
