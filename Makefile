@@ -2,7 +2,6 @@ VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = meinberlin tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
-DATABASE ?= sqlite
 
 # for mac os gsed is needed (brew install gnu-sed)
 SED = sed
@@ -42,18 +41,11 @@ help:
 
 .PHONY: install
 install:
-ifeq ($(DATABASE), postgresql)
-	if [ ! -d pgqsl/data ]; then initdb pgsql/data;	pg_ctl start -D pgsql/data;sleep 10; createuser -s django; createdb -O django django; echo "ok"; else pg_ctl start -D pgsql/data; fi
-endif
 	npm install --no-save
 	npm run build
 	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
-
 
 .PHONY: clean
 clean:
@@ -63,9 +55,6 @@ clean:
 
 .PHONY: fixtures
 fixtures:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/map-preset.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/site-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/users-dev.json
@@ -74,111 +63,53 @@ endif
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/module-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/phase-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/admin-distr.json
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
 
 .PHONY: server
 server:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
 
 .PHONY: watch
 watch:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	trap 'kill %1' KILL; \
 	npm run watch & \
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
-
 
 .PHONY: background
 background:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	$(VIRTUAL_ENV)/bin/python3 manage.py process_tasks
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
 
 .PHONY: test
 test:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
 
 .PHONY: test-lastfailed
 test-lastfailed:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db --last-failed
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
 
 .PHONY: test-clean
 test-clean:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
 	$(VIRTUAL_ENV)/bin/py.test
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
 
 .PHONY: coverage
 coverage:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db --cov --cov-report=html
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
 
 .PHONY: lint
 lint:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	EXIT_STATUS=0; \
 	$(VIRTUAL_ENV)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
 	npm run lint ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
 
 .PHONY: lint-quick
 lint-quick:
-ifeq ($(DATABASE),postgresql)
-	pg_ctl start -D pgsql/data
-endif
 	EXIT_STATUS=0; \
 	npm run lint-staged ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
-ifeq ($(DATABASE),postgresql)
-	pg_ctl stop -D pgsql/data
-endif
 
 .PHONY: lint-fix
 lint-fix:
