@@ -19,6 +19,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import ProjectMixin
+from adhocracy4.rules.mixins import PermissionRequiredMixin
 from meinberlin.apps.dashboard.forms import DashboardProjectCreateForm
 from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
 
@@ -112,6 +113,7 @@ class ModuleCreateView(ProjectMixin,
 
 
 class ModulePublishView(SingleObjectMixin,
+                        PermissionRequiredMixin,
                         generic.View):
     permission_required = 'a4projects.change_project'
     model = module_models.Module
@@ -138,7 +140,7 @@ class ModulePublishView(SingleObjectMixin,
             return self.request.META['HTTP_REFERER']
 
         return reverse('a4dashboard:project-edit', kwargs={
-            'project_slug': self.project.slug
+            'project_slug': self.get_object().project.slug
         })
 
     def publish_module(self):
@@ -185,7 +187,8 @@ class ModulePublishView(SingleObjectMixin,
                            ))
 
 
-class ModuleDeleteView(generic.DeleteView):
+class ModuleDeleteView(PermissionRequiredMixin,
+                       generic.DeleteView):
     permission_required = 'a4projects.change_project'
     model = module_models.Module
     success_message = _('The module has been deleted')
