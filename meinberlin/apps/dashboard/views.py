@@ -11,6 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
 
+from adhocracy4.dashboard import get_project_dashboard
 from adhocracy4.dashboard import mixins
 from adhocracy4.dashboard import signals
 from adhocracy4.dashboard import views as a4dashboard_views
@@ -147,6 +148,16 @@ class ModulePublishView(SingleObjectMixin,
         module = self.get_object()
         if not module.is_draft:
             messages.info(self.request, _('Module is already added'))
+            return
+
+        dashboard = get_project_dashboard(module.project)
+        num_valid, num_required = dashboard.get_module_progress(module)
+        is_complete = (num_valid == num_required)
+
+        if not is_complete:
+            messages.error(self.request,
+                           _('Module cannot be added. '
+                             'Required fields are missing.'))
             return
 
         module.is_draft = False
