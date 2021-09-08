@@ -205,6 +205,23 @@ class ModuleDeleteView(PermissionRequiredMixin,
     success_message = _('The module has been deleted')
 
     def delete(self, request, *args, **kwargs):
+        module = self.get_object()
+        # only unpublished modules can be deleted
+        if not module.is_draft:
+            messages.error(request,
+                           _('Module added to a project cannot be '
+                             'deleted.'))
+            # try to stay on same page
+            if 'referrer' in request.POST:
+                redirect = request.POST['referrer']
+            elif 'HTTP_REFERER' in self.request.META:
+                redirect = request.META['HTTP_REFERER']
+            else:
+                redirect = reverse('a4dashboard:project-edit', kwargs={
+                    'project_slug': module.project.slug
+                })
+            return HttpResponseRedirect(redirect)
+
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)
 
