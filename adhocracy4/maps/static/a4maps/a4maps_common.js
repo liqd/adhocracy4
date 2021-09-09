@@ -1,5 +1,5 @@
 import 'leaflet'
-import 'mapbox-gl-leaflet'
+import 'maplibre-gl-leaflet'
 
 export function createMap (L, e, {
   dragging = undefined,
