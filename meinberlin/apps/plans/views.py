@@ -214,6 +214,7 @@ class DashboardPlanDeleteView(a4dashboard_mixins.DashboardBaseMixin,
 
 
 class PlanPublishView(SingleObjectMixin,
+                      rules_mixins.PermissionRequiredMixin,
                       generic.View):
     permission_required = 'meinberlin_plans.change_plan'
     model = Plan
