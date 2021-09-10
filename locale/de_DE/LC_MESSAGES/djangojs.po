@@ -1200,31 +1200,3 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
-
-#~ msgid "Add a new question"
-#~ msgstr "Neue Frage"
-
-#~ msgid "Vote counted"
-#~ msgstr "Ihre Stimme wurde gezählt."
-
-#~ msgid "Vote has not been counted due to a server error."
-#~ msgstr ""
-#~ "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
-
-#~ msgid "Vote"
-#~ msgstr "Stimme abgeben"
-
-#~ msgid "Please login to vote"
-#~ msgstr "Bitte melden Sie sich zum Abstimmen an."
-
-#~ msgid "Change vote"
-#~ msgstr "Stimme ändern"
-
-#~ msgid "Users can select more than one answer."
-#~ msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
-
-#~ msgid "Choice"
-#~ msgstr "Auswahl"
-
-#~ msgid "Add a new choice"
-#~ msgstr "Neue Antwort"

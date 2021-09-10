@@ -2422,6 +2422,7 @@ msgstr "Modul ist bereits hinzugefügt"
 #: meinberlin/apps/dashboard/views.py:159
 msgid "Module cannot be added. Required fields are missing."
 msgstr ""
+"Das Modul kann nicht hinzu gefügt werden. Es fehlen benötigte Felder."
 
 #: meinberlin/apps/dashboard/views.py:171
 msgid "The module is displayed in the project."
@@ -2453,6 +2454,7 @@ msgstr "Das Modul wurde gelöscht"
 #: meinberlin/apps/dashboard/views.py:212
 msgid "Module added to a project cannot be deleted."
 msgstr ""
+"Module, die einem Projekt hinzu gefügt sind, können nicht gelöscht werden"
 
 #: meinberlin/apps/documents/dashboard.py:15
 msgid "Document"
@@ -3538,23 +3540,23 @@ msgstr "Alle Vorhaben"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:37
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:38
 msgid "Create plan"
-msgstr ""
+msgstr "Vorhaben anlegen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_create_dashboard.html:44
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_create_dashboard.html:50
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:44
 msgid "Plan not ready for publication"
-msgstr ""
+msgstr "Vorhaben noch nicht bereit zur Veröffentlichung"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_create_dashboard.html:45
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:46
 msgid "Fill in plan details"
-msgstr ""
+msgstr "Vorhabendetails ausfüllen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_create_dashboard.html:51
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:53
 msgid "Publish plan"
-msgstr ""
+msgstr "Vorhaben veröffentlichen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:14
 msgid "Download list"
@@ -3573,7 +3575,7 @@ msgstr "mehr"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:25
 msgid "This plan is in not published yet."
-msgstr ""
+msgstr "Dieses Vorhaben ist noch nicht veröffentlicht."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:39
 msgid "back to overview of projects"
@@ -3618,23 +3620,23 @@ msgstr "Vorhaben bearbeiten"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:37
 msgid "Create plan, step completed"
-msgstr ""
+msgstr "Vorhaben anlegen, Schritt abgeschlossen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:52
 msgid "Plan ready for publication"
-msgstr ""
+msgstr "Vorhaben bereit zur Veröffentlichung"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:59
 msgid "The plan has been published"
-msgstr ""
+msgstr "Vorhaben wurde veröffentlicht"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:60
 msgid "The plan has been published."
-msgstr ""
+msgstr "Vorhaben wurde veröffentlicht."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:96
 msgid "Are you sure you want to publish your plan?"
-msgstr ""
+msgstr "Möchten Sie Ihr Vorhaben veröffentlichen?"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:97
 #: meinberlin/templates/a4dashboard/includes/nav_modules.html:30
@@ -3668,31 +3670,31 @@ msgstr ""
 
 #: meinberlin/apps/plans/views.py:164
 msgid "The plan was created"
-msgstr ""
+msgstr "Das Vorhaben wurde angelegt"
 
 #: meinberlin/apps/plans/views.py:189
 msgid "The plan has been updated"
-msgstr ""
+msgstr "Das Vorhaben wurde aktualisiert"
 
 #: meinberlin/apps/plans/views.py:198
 msgid "The plan has been deleted"
-msgstr "Vorhaben wurde gelöscht"
+msgstr "Das Vorhaben wurde gelöscht"
 
 #: meinberlin/apps/plans/views.py:242
 msgid "The plan is already published"
-msgstr ""
+msgstr "Das Vorhaben wurde bereits veröffentlicht"
 
 #: meinberlin/apps/plans/views.py:249
 msgid "The plan is published."
-msgstr ""
+msgstr "Das Vorhaben wurde veröffentlicht."
 
 #: meinberlin/apps/plans/views.py:254
 msgid "The plan is already unpublished"
-msgstr ""
+msgstr "Das Vorhaben wurde bereits depubliziert."
 
 #: meinberlin/apps/plans/views.py:261
 msgid "The plan is unpublished."
-msgstr ""
+msgstr "Das Vorhaben wurde depubliziert."
 
 #: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:4
 #: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:8
@@ -5018,71 +5020,3 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
-
-#~ msgid "Address"
-#~ msgstr "Adresse"
-
-#~ msgid "Empty choices detected."
-#~ msgstr "Leere choices erkannt."
-
-#~ msgid "Contact for queries"
-#~ msgstr "Kontakt für Rückfragen"
-
-#~ msgid ""
-#~ "Describe the cornerstones of your plan. You can upload PDFs and images, "
-#~ "embed videos and link to external URLs."
-#~ msgstr ""
-#~ "Beschreiben Sie die wesentlichen Eckpunkte Ihres Vorhabens. Sie können u."
-#~ "a. PDFs und Bilder hochladen, Videos einbinden und auf externe URLs "
-#~ "verlinken."
-
-#~ msgid "Visualize your plan."
-#~ msgstr "Visualisieren Sie das Vorhaben."
-
-#~ msgid "Image copyright"
-#~ msgstr "Urheber*in des Bildes"
-
-#~ msgid ""
-#~ "Enter the district in which the plan is located or whether it is a city-"
-#~ "wide plan. In the project overview projects can be filtered by district. "
-#~ msgstr ""
-#~ "Tragen Sie ein, in welchem Bezirk das Vorhaben räumlich verortet wird "
-#~ "bzw. ob es ein gesamtstädtisches Vorhaben ist. In der Projektübersicht "
-#~ "können Projekte nach Bezirk gefiltert werden. "
-
-#~ msgid ""
-#~ "In the project overview projects can be filtered according to "
-#~ "participation status. "
-#~ msgstr ""
-#~ "In der Projektübersicht können Projekte nach Beteiligungsstatus gefiltert "
-#~ "werden."
-
-#~ msgid ""
-#~ "Enter a meaningful title with a maximum length of 255 characters. The "
-#~ "title will appear in the project tile and on top of the plan detail page."
-#~ msgstr ""
-#~ "Geben Sie einen aussagekräftigen Titel mit einer Länge von max. 255 "
-#~ "Zeichen ein. Der Titel erscheint in der Projektkachel und oben auf der "
-#~ "Detailseite des Vorhabens."
-
-#~ msgid "Where can the plan be located on a map?"
-#~ msgstr "Wo kann das Vorhaben auf der Karte verortet werden?"
-
-#~ msgid "Label of the location"
-#~ msgstr "Name des Ortes"
-
-#~ msgid ""
-#~ "The label of the location is displayed in the detail view of the plan"
-#~ msgstr ""
-#~ "Die Ortsbezeichnung erscheint im Steckbrief der Detailansicht zu Ihrem "
-#~ "Vorhaben."
-
-#~ msgid ""
-#~ "Please enter the district, in which your project is located, or whether "
-#~ "your project is citywide."
-#~ msgstr ""
-#~ "Tragen Sie ein, in welchem Bezirk das Vorhaben räumlich verortet wird "
-#~ "bzw. ob es ein gesamtstädtisches Projekt ist."
-
-#~ msgid "Only one vote per question is allowed per user."
-#~ msgstr "Jeder Nutzer darf pro Frage nur eine Stimme abgeben."
