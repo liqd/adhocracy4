@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-10 11:28+0200\n"
+"POT-Creation-Date: 2021-09-10 11:55+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2421,8 +2421,7 @@ msgstr "Modul ist bereits hinzugefügt"
 
 #: meinberlin/apps/dashboard/views.py:159
 msgid "Module cannot be added. Required fields are missing."
-msgstr ""
-"Das Modul kann nicht hinzu gefügt werden. Es fehlen benötigte Felder."
+msgstr "Das Modul kann nicht hinzu gefügt werden. Es fehlen benötigte Felder."
 
 #: meinberlin/apps/dashboard/views.py:171
 msgid "The module is displayed in the project."
@@ -3574,7 +3573,7 @@ msgid "more"
 msgstr "mehr"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:25
-msgid "This plan is in not published yet."
+msgid "This plan is not published yet."
 msgstr "Dieses Vorhaben ist noch nicht veröffentlicht."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:39
@@ -3627,9 +3626,6 @@ msgid "Plan ready for publication"
 msgstr "Vorhaben bereit zur Veröffentlichung"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:59
-msgid "The plan has been published"
-msgstr "Vorhaben wurde veröffentlicht"
-
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:60
 msgid "The plan has been published."
 msgstr "Vorhaben wurde veröffentlicht."
@@ -4089,7 +4085,7 @@ msgstr ""
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:23
 #: meinberlin/templates/a4modules/module_detail.html:24
-msgid "This project is in not published yet."
+msgid "This project is not published yet."
 msgstr "Dieses Projekt ist noch nicht veröffentlicht."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:43

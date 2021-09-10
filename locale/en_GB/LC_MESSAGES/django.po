@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-10 11:28+0200\n"
+"POT-Creation-Date: 2021-09-10 11:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3432,8 +3432,8 @@ msgid "more"
 msgstr "more"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:25
-msgid "This plan is in not published yet."
-msgstr "This plan is in not published yet."
+msgid "This plan is not published yet."
+msgstr "This plan is not published yet."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:39
 msgid "back to overview of projects"
@@ -3485,9 +3485,6 @@ msgid "Plan ready for publication"
 msgstr "Plan ready for publication"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:59
-msgid "The plan has been published"
-msgstr "The plan has been published"
-
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:60
 msgid "The plan has been published."
 msgstr "The plan has been published."
@@ -3945,8 +3942,8 @@ msgstr ""
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:23
 #: meinberlin/templates/a4modules/module_detail.html:24
-msgid "This project is in not published yet."
-msgstr "This project is in not published yet."
+msgid "This project is not published yet."
+msgstr "This project is not published yet."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:43
 #, python-format
@@ -4871,6 +4868,15 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "This project is in not published yet."
+#~ msgstr "This project is in not published yet."
+
+#~ msgid "This plan is in not published yet."
+#~ msgstr "This plan is in not published yet."
+
+#~ msgid "The plan has been published"
+#~ msgstr "The plan has been published"
 
 #~ msgid "Address"
 #~ msgstr "Address"
