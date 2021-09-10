@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-26 10:59+0200\n"
+"POT-Creation-Date: 2021-09-10 11:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,7 +230,7 @@ msgstr "Last discussed"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:541
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:545
 #: meinberlin/apps/livequestions/assets/Filters.jsx:20
 #: meinberlin/apps/plans/assets/FilterNav.jsx:95
 #: meinberlin/apps/plans/assets/FilterNav.jsx:102
@@ -255,40 +255,39 @@ msgstr "Search contributions"
 msgid "Clear search"
 msgstr "Clear search"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:533
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:558
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:537
 msgid "display: "
 msgstr "display: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:582
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:566
 msgid "sorted by: "
 msgstr "sorted by: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:603
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:587
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
 msgstr[1] "entries"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:607
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:591
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
 msgstr[1] "entries found for "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:611
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
 msgid "Filters"
 msgstr "Filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:611
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
 msgid "Show filters"
 msgstr "Show filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:614
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
 msgid "Hide Filters"
 msgstr "Hide Filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:614
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
 msgid "Hide filters"
 msgstr "Hide filters"
 
@@ -473,23 +472,23 @@ msgstr "To poll"
 msgid "Change answer"
 msgstr "Change answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:126
+#: adhocracy4/polls/assets/PollQuestions.jsx:122
 msgid "Submit answer"
 msgstr "Submit answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:132
+#: adhocracy4/polls/assets/PollQuestions.jsx:128
 msgid "Please login to answer"
 msgstr "Please login to answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:142
+#: adhocracy4/polls/assets/PollQuestions.jsx:138
 msgid "Show results"
 msgstr "Show results"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:148
+#: adhocracy4/polls/assets/PollQuestions.jsx:144
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:169
+#: adhocracy4/polls/assets/PollQuestions.jsx:165
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 
@@ -957,16 +956,16 @@ msgstr "remaining"
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:210
+#: meinberlin/apps/plans/assets/PlansList.jsx:217
 #: meinberlin/apps/plans/assets/PopUp.jsx:88
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:219
+#: meinberlin/apps/plans/assets/PlansList.jsx:226
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:250
+#: meinberlin/apps/plans/assets/PlansList.jsx:258
 #: meinberlin/apps/plans/assets/PlansMap.jsx:293
 msgid "Nothing to show"
 msgstr "Nothing to show"

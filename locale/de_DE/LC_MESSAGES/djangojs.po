@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-26 10:59+0200\n"
+"POT-Creation-Date: 2021-09-10 11:28+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -293,10 +293,10 @@ msgstr "Zuletzt diskutiert"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:541
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:545
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:541
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:545
 #: meinberlin/apps/livequestions/assets/Filters.jsx:20
 #: meinberlin/apps/plans/assets/FilterNav.jsx:95
 #: meinberlin/apps/plans/assets/FilterNav.jsx:102
@@ -328,49 +328,47 @@ msgstr "Beiträge durchsuchen"
 msgid "Clear search"
 msgstr "Suche aufheben"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:533
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:558
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:533
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:558
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:537
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:537
 msgid "display: "
 msgstr "anzeigen: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:582
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:582
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:566
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:566
 msgid "sorted by: "
 msgstr "sortiert nach: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:603
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:603
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:587
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:587
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "Beitrag"
 msgstr[1] "Beiträge"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:607
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:607
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:591
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:591
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "Beitrag"
 msgstr[1] "Beiträge"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:611
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:611
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
 msgid "Filters"
 msgstr "Filter"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:611
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:611
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
 msgid "Show filters"
 msgstr "Filter ausblenden"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:614
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:614
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
 msgid "Hide Filters"
 msgstr "Filter ausblenden"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:614
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:614
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
 msgid "Hide filters"
 msgstr "Filter ausblenden"
 
@@ -572,23 +570,23 @@ msgstr "Zur Umfrage"
 msgid "Change answer"
 msgstr "Antwort ändern"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:126
+#: adhocracy4/polls/assets/PollQuestions.jsx:122
 msgid "Submit answer"
 msgstr "Antwort senden"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:132
+#: adhocracy4/polls/assets/PollQuestions.jsx:128
 msgid "Please login to answer"
 msgstr "Bitte melden Sie sich zum Antworten an."
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:142
+#: adhocracy4/polls/assets/PollQuestions.jsx:138
 msgid "Show results"
 msgstr "Ergebnis zeigen"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:148
+#: adhocracy4/polls/assets/PollQuestions.jsx:144
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:169
+#: adhocracy4/polls/assets/PollQuestions.jsx:165
 msgid "Please enter your answer in this field."
 msgstr "Bitte geben Sie hier Ihre Antwort ein."
 
@@ -1066,16 +1064,16 @@ msgstr "noch"
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:210
+#: meinberlin/apps/plans/assets/PlansList.jsx:217
 #: meinberlin/apps/plans/assets/PopUp.jsx:88
 msgid "Participation projects: "
 msgstr "Beteiligungsprojekte: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:219
+#: meinberlin/apps/plans/assets/PlansList.jsx:226
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:250
+#: meinberlin/apps/plans/assets/PlansList.jsx:258
 #: meinberlin/apps/plans/assets/PlansMap.jsx:293
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
