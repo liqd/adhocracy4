@@ -1,6 +1,7 @@
 import pytest
 
 from adhocracy4.dashboard import components
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 
 component = components.modules.get('module_basic')
@@ -14,7 +15,7 @@ def test_edit_view(client, project, module_factory,
     url = component.get_base_url(module)
     client.login(username=admin.username, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(response, 'a4dashboard/base_form_module.html')
 
     data = {
         'name': 'name',
