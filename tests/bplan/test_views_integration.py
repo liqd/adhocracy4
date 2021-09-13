@@ -1,10 +1,10 @@
 import pytest
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import freeze_post_phase
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.bplan import phases
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db

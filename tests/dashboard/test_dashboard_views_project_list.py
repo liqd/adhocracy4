@@ -1,6 +1,8 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
+
 
 @pytest.mark.django_db
 def test_dashboard_project_list_view(
@@ -16,7 +18,9 @@ def test_dashboard_project_list_view(
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=initiator.email, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response,
+        'a4dashboard/project_list.html')
     assert project_1 in response.context_data['project_list']
     assert project_2 in response.context_data['project_list']
     assert project_3 not in response.context_data['project_list']
@@ -55,7 +59,9 @@ def test_dashboard_project_list_view_group_member(
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=group_member.email, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response,
+        'a4dashboard/project_list.html')
     assert project_1 in response.context_data['project_list']
     assert project_2 not in response.context_data['project_list']
     assert project_3 not in response.context_data['project_list']

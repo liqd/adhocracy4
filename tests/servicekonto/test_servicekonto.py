@@ -10,6 +10,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.test import RequestFactory
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from meinberlin.apps.servicekonto.provider import ServiceKontoProvider
 from meinberlin.apps.servicekonto.views import ServiceKontoApiError
 
@@ -219,7 +220,8 @@ def test_error_on_login_with_existing_username(monkeypatch,
                             'username': 'first_last',
                             'terms_of_use': 'on'})
     # return to the form with an error message
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'socialaccount/signup.html')
 
     assert not User.objects.filter(email=service_konto.hhgw['email']).exists()
 
@@ -248,7 +250,8 @@ def test_error_on_login_with_existing_email(monkeypatch,
                             'username': 'username',
                             'terms_of_use': 'on'})
     # return to the form with an error message
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'socialaccount/signup.html')
 
     with pytest.raises(ObjectDoesNotExist):
         SocialAccount.objects.get(
@@ -279,7 +282,8 @@ def test_on_on_login_no_terms_of_use(monkeypatch,
                            {'email': service_konto.hhgw['email'],
                             'username': 'username'})
     # return to the form with an error message
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'socialaccount/signup.html')
 
     assert not User.objects.filter(email=service_konto.hhgw['email']).exists()
 

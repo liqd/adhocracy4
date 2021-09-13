@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 from django.utils.translation import ngettext
 
+from adhocracy4.test.helpers import assert_template_response
 from meinberlin.apps.users.models import User
 
 
@@ -26,7 +27,9 @@ def test_user_admin_form(client,
         args=(user.id,))
 
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response,
+        'admin/meinberlin_users/user/change_form.html')
 
     data = {'username': user.username,
             'email': user.email,
@@ -50,7 +53,8 @@ def test_user_admin_form(client,
                    1) % {'duplicates': organisation.name}
 
     assert msg in response.context['errors'][0]
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'admin/meinberlin_users/user/change_form.html')
 
     group1.organisation_set.remove(organisation)
 

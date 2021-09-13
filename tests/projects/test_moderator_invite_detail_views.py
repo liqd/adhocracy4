@@ -2,6 +2,7 @@ import pytest
 from django.core import mail
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.projects.models import ModeratorInvite
 
@@ -10,9 +11,8 @@ from meinberlin.apps.projects.models import ModeratorInvite
 def test_user_can_accept(client, moderator_invite, user):
     url = moderator_invite.get_absolute_url()
     response = client.get(url)
-    assert response.status_code == 200
-    assert response.template_name[0] == \
-        'meinberlin_projects/moderatorinvite_detail.html'
+    assert_template_response(
+        response, 'meinberlin_projects/moderatorinvite_detail.html')
 
     client.login(username=user.email, password='password')
     response = client.get(url)

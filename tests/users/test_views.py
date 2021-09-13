@@ -7,6 +7,7 @@ from django.core import mail
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.users import models
 
@@ -16,7 +17,8 @@ User = auth.get_user_model()
 @pytest.mark.django_db
 def test_login(client, user, login_url):
     response = client.get(login_url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'account/login.html')
 
     response = client.post(
         login_url, {'login': user.email, 'password': 'password'})
@@ -28,14 +30,16 @@ def test_login(client, user, login_url):
 def test_login_wrong_password(client, user, login_url):
     response = client.post(
         login_url, {'login': user.email, 'password': 'wrong_password'})
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'account/login.html')
 
 
 @pytest.mark.django_db
 def test_login_no_password(client, user, login_url):
     response = client.post(
         login_url, {'login': user.email})
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'account/login.html')
 
 
 @pytest.mark.django_db
@@ -83,7 +87,8 @@ def test_register(client, signup_url):
     ).group(0)
 
     confirm_email_response = client.get(confirmation_url)
-    assert confirm_email_response.status_code == 200
+    assert_template_response(
+        confirm_email_response, 'account/email_confirm.html')
     assert EmailAddress.objects.filter(
         email=email, verified=False
     ).count() == 1

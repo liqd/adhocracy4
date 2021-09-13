@@ -1,12 +1,12 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.maptopicprio import models
 from meinberlin.apps.maptopicprio import phases
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
@@ -52,7 +52,6 @@ def test_admin_can_create_maptopic(client, phase_factory,
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_maptopicprio/maptopic_create_form.html')
-        assert response.status_code == 200
         maptopic = {
             'name': 'MapTopic',
             'description': 'description',
@@ -84,7 +83,6 @@ def test_moderator_can_create_maptopic_before_phase(client, phase_factory,
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_maptopicprio/maptopic_create_form.html')
-        assert response.status_code == 200
         maptopic = {
             'name': 'MapTopic',
             'description': 'description',
@@ -115,7 +113,6 @@ def test_initiator_can_always_create_maptopic(client, phase_factory,
     response = client.get(url)
     assert_template_response(
         response, 'meinberlin_maptopicprio/maptopic_create_form.html')
-    assert response.status_code == 200
     maptopic = {
         'name': 'MapTopic',
         'description': 'description',

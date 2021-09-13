@@ -6,8 +6,8 @@ from django.urls import reverse
 
 from adhocracy4.comments import models as comments_models
 from adhocracy4.ratings import models as rating_models
+from adhocracy4.test.helpers import create_thumbnail
 from meinberlin.apps.topicprio import models as idea_models
-from meinberlin.test.helpers import createThumbnail
 
 
 @pytest.mark.django_db
@@ -38,7 +38,7 @@ def test_project(topic):
 def test_delete_idea(topic_factory, comment_factory, rating_factory, ImagePNG):
     idea = topic_factory(image=ImagePNG)
     image_path = os.path.join(settings.MEDIA_ROOT, idea.image.path)
-    thumbnail_path = createThumbnail(idea.image)
+    thumbnail_path = create_thumbnail(idea.image)
 
     for i in range(5):
         comment_factory(content_object=idea)
@@ -69,7 +69,7 @@ def test_delete_idea(topic_factory, comment_factory, rating_factory, ImagePNG):
 def test_image_deleted_after_update(topic_factory, ImagePNG):
     idea = topic_factory(image=ImagePNG)
     image_path = os.path.join(settings.MEDIA_ROOT, idea.image.path)
-    thumbnail_path = createThumbnail(idea.image)
+    thumbnail_path = create_thumbnail(idea.image)
 
     assert os.path.isfile(image_path)
     assert os.path.isfile(thumbnail_path)

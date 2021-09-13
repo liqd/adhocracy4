@@ -2,9 +2,9 @@ import pytest
 from django.conf import settings
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.plans.models import Plan
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db

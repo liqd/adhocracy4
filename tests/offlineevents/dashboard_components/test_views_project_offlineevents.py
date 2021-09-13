@@ -3,11 +3,11 @@ from dateutil.parser import parse
 from django.urls import reverse
 
 from adhocracy4.dashboard import components
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.ideas.phases import CollectFeedbackPhase
 from meinberlin.apps.offlineevents.models import OfflineEvent
-from meinberlin.test.helpers import assert_template_response
 
 component = components.projects.get('offlineevents')
 

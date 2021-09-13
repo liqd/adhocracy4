@@ -4,11 +4,11 @@ from django.core import mail
 from django.utils import translation
 
 from adhocracy4.dashboard import components
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.ideas.phases import CollectFeedbackPhase
 from meinberlin.apps.projects.models import ModeratorInvite
-from meinberlin.test.helpers import assert_template_response
 
 component = components.projects.get('moderators')
 

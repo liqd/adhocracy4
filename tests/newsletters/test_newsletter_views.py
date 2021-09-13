@@ -5,6 +5,7 @@ from django.core import mail
 from django.urls import reverse
 
 from adhocracy4.follows import models as follow_models
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.newsletters import models as newsletter_models
 
@@ -299,11 +300,13 @@ def test_access_dashboard_newsletter(client, project, admin, user):
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_newsletters/newsletter_dashboard_form.html')
 
     client.login(username=initiator.email, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_newsletters/newsletter_dashboard_form.html')
 
     client.login(username=user.email, password='password')
     response = client.get(url)

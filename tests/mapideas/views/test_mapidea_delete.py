@@ -1,12 +1,12 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.mapideas import models
 from meinberlin.apps.mapideas import phases
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
@@ -63,7 +63,8 @@ def test_moderator_can_delete(client, map_idea_factory):
             'year': mapidea.created.year
         })
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_mapideas/mapidea_confirm_delete.html')
 
 
 @pytest.mark.django_db
@@ -78,7 +79,8 @@ def test_initator_can_delete(client, map_idea_factory):
             'year': mapidea.created.year
         })
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_mapideas/mapidea_confirm_delete.html')
 
 
 @pytest.mark.django_db
@@ -92,7 +94,8 @@ def test_admin_can_delete(client, map_idea_factory, admin):
             'year': mapidea.created.year
         })
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_mapideas/mapidea_confirm_delete.html')
 
 
 @pytest.mark.django_db
@@ -112,7 +115,6 @@ def test_creator_can_delete_in_active_phase(client,
         assert count == 1
         client.login(username=mapidea.creator.email, password='password')
         response = client.get(url)
-        assert response.status_code == 200
         assert_template_response(
             response, 'meinberlin_mapideas/mapidea_confirm_delete.html')
         response = client.post(url)
@@ -161,7 +163,6 @@ def test_moderator_can_delete_in_active_phase(client,
         moderator = mapidea.module.project.moderators.first()
         client.login(username=moderator.email, password='password')
         response = client.get(url)
-        assert response.status_code == 200
         assert_template_response(
             response, 'meinberlin_mapideas/mapidea_confirm_delete.html')
         response = client.post(url)
@@ -189,7 +190,6 @@ def test_moderator_can_delete_in_wrong_phase(client,
         moderator = mapidea.module.project.moderators.first()
         client.login(username=moderator.email, password='password')
         response = client.get(url)
-        assert response.status_code == 200
         assert_template_response(
             response, 'meinberlin_mapideas/mapidea_confirm_delete.html')
         response = client.post(url)

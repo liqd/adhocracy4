@@ -1,9 +1,9 @@
 import pytest
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.topicprio import phases
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
@@ -18,7 +18,6 @@ def test_list_view(client, phase_factory, topic_factory):
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_topicprio/topic_list.html')
-        assert response.status_code == 200
         assert topic in response.context_data['topic_list']
         assert topic_2 not in response.context_data['topic_list']
         assert response.context_data['topic_list'][0].comment_count == 0

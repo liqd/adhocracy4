@@ -1,12 +1,12 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.topicprio import models
 from meinberlin.apps.topicprio import phases
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
@@ -50,7 +50,6 @@ def test_admin_can_create_topic(client, phase_factory,
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_topicprio/topic_create_form.html')
-        assert response.status_code == 200
         topic = {
             'name': 'Topic',
             'description': 'description',
@@ -78,7 +77,6 @@ def test_moderator_can_create_topic_before_phase(client, phase_factory,
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_topicprio/topic_create_form.html')
-        assert response.status_code == 200
         topic = {
             'name': 'Topic',
             'description': 'description',
@@ -106,7 +104,6 @@ def test_initiator_can_create_topic_before_phase(client, phase_factory,
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_topicprio/topic_create_form.html')
-        assert response.status_code == 200
         topic = {
             'name': 'Topic',
             'description': 'description',

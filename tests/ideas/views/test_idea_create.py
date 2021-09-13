@@ -1,11 +1,11 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.ideas import models
 from meinberlin.apps.ideas import phases
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
@@ -38,7 +38,6 @@ def test_user_can_create_idea_during_active_phase(client, phase_factory, user,
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_ideas/idea_create_form.html')
-        assert response.status_code == 200
         idea = {
             'name': 'Idea',
             'description': 'description',
@@ -78,7 +77,6 @@ def test_admin_can_create_idea_in_wrong_phase(client, phase_factory,
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_ideas/idea_create_form.html')
-        assert response.status_code == 200
         idea = {
             'name': 'Idea',
             'description': 'description',

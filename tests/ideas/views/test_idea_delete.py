@@ -1,12 +1,12 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.ideas import models
 from meinberlin.apps.ideas import phases
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
@@ -112,7 +112,6 @@ def test_creator_can_delete_in_active_phase(client,
         assert count == 1
         client.login(username=idea.creator.email, password='password')
         response = client.get(url)
-        assert response.status_code == 200
         assert_template_response(
             response, 'meinberlin_ideas/idea_confirm_delete.html')
         response = client.post(url)
@@ -161,7 +160,6 @@ def test_moderator_can_delete_in_active_phase(client,
         moderator = idea.module.project.moderators.first()
         client.login(username=moderator.email, password='password')
         response = client.get(url)
-        assert response.status_code == 200
         assert_template_response(
             response, 'meinberlin_ideas/idea_confirm_delete.html')
         response = client.post(url)
@@ -189,7 +187,6 @@ def test_moderator_can_delete_in_wrong_phase(client,
         moderator = idea.module.project.moderators.first()
         client.login(username=moderator.email, password='password')
         response = client.get(url)
-        assert response.status_code == 200
         assert_template_response(
             response, 'meinberlin_ideas/idea_confirm_delete.html')
         response = client.post(url)

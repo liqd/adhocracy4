@@ -6,8 +6,8 @@ from freezegun import freeze_time
 
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
+from adhocracy4.test.helpers import assert_template_response
 from meinberlin.apps.plans.models import Plan
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db

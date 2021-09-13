@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils.translation import ngettext
 
 from adhocracy4.projects.models import Project
+from adhocracy4.test.helpers import assert_template_response
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans.models import Plan
 
@@ -24,7 +25,9 @@ def test_organisation_admin_form(client, user_factory, group_factory):
 
     url = reverse('admin:meinberlin_organisations_organisation_add')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response,
+        'admin/meinberlin_organisations/organisation/change_form.html')
 
     data = {'name': 'My Organisation'}
     response = client.post(url, data)
@@ -39,7 +42,9 @@ def test_organisation_admin_form(client, user_factory, group_factory):
         args=(organisation.id,))
 
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response,
+        'admin/meinberlin_organisations/organisation/change_form.html')
 
     data = {'name': organisation.name,
             'groups': group1.id}
@@ -58,7 +63,9 @@ def test_organisation_admin_form(client, user_factory, group_factory):
     msg = ngettext('%(duplicates)s is member of several groups in '
                    'that organisation.', '', 1) % {'duplicates': user.email}
     assert msg in response.context['errors'][0]
-    assert response.status_code == 200
+    assert_template_response(
+        response,
+        'admin/meinberlin_organisations/organisation/change_form.html')
 
     group1.user_set.remove(user)
 

@@ -2,12 +2,12 @@ import pytest
 from django.urls import reverse
 
 from adhocracy4.test.factories import PhaseFactory
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.mapideas import phases
 from meinberlin.test.factories.mapideas import MapIdeaFactory
-from meinberlin.test.helpers import assert_template_response
 
 
 def setup_mapidea_moderation():

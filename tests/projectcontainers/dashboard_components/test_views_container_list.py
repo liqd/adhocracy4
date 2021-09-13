@@ -1,6 +1,8 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
+
 
 @pytest.mark.django_db
 def test_dashboard_container_list_view(
@@ -17,7 +19,8 @@ def test_dashboard_container_list_view(
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=initiator.email, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_projectcontainers/container_list_dashboard.html')
     assert container_1 in response.context_data['projectcontainer_list']
     assert container_2 in response.context_data['projectcontainer_list']
     assert container_3 not in response.context_data['projectcontainer_list']
@@ -56,7 +59,8 @@ def test_dashboard_container_list_view_group_member(
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=group_member.email, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_projectcontainers/container_list_dashboard.html')
     assert container_1 in response.context_data['projectcontainer_list']
     assert container_2 not in response.context_data['projectcontainer_list']
     assert container_3 not in response.context_data['projectcontainer_list']

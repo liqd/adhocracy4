@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.core import mail
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.platformemails import models as platformemail_models
 
@@ -61,7 +62,8 @@ def test_access_admin_platform_email(client, project, admin, user_factory):
 
     client.login(username=admin.email, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_platformemails/platformemail_form.html')
 
     client.login(username=initiator.email, password='password')
     response = client.get(url)

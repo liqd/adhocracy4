@@ -3,11 +3,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 
 from adhocracy4.projects.enums import Access
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.ideas import phases
-from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
@@ -19,7 +19,6 @@ def test_detail_view(client, phase_factory, idea_factory):
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_ideas/idea_detail.html')
-        assert response.status_code == 200
 
 
 @pytest.mark.django_db
@@ -68,7 +67,8 @@ def test_detail_view_private_visible_to_participant(client,
     client.login(username=user.email,
                  password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_ideas/idea_detail.html')
 
 
 @pytest.mark.django_db
@@ -84,7 +84,8 @@ def test_detail_view_private_visible_to_moderator(client,
     client.login(username=user.email,
                  password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_ideas/idea_detail.html')
 
 
 @pytest.mark.django_db
@@ -100,7 +101,8 @@ def test_detail_view_private_visible_to_initiator(client,
     client.login(username=user.email,
                  password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response, 'meinberlin_ideas/idea_detail.html')
 
 
 @pytest.mark.django_db
@@ -124,7 +126,6 @@ def test_detail_view_semipublic_participation_only_participant(
 
     with freeze_phase(phase):
         response = client.get(url)
-        assert response.status_code == 200
         assert_template_response(response, 'meinberlin_ideas/idea_detail.html')
         response = client.post(api_url, comment_data, format='json')
 
@@ -133,7 +134,6 @@ def test_detail_view_semipublic_participation_only_participant(
         client.login(username=user.email, password='password')
 
         response = client.get(url)
-        assert response.status_code == 200
         assert_template_response(response, 'meinberlin_ideas/idea_detail.html')
         response = client.post(api_url, comment_data, format='json')
         assert response.status_code == 403
@@ -141,7 +141,6 @@ def test_detail_view_semipublic_participation_only_participant(
         idea.module.project.participants.add(user)
 
         response = client.get(url)
-        assert response.status_code == 200
         assert_template_response(response, 'meinberlin_ideas/idea_detail.html')
         response = client.post(api_url, comment_data, format='json')
         assert response.status_code == 201

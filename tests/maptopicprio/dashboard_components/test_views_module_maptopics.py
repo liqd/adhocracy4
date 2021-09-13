@@ -4,11 +4,11 @@ import pytest
 from django.urls import reverse
 
 from adhocracy4.dashboard import components
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.maptopicprio.models import MapTopic
 from meinberlin.apps.maptopicprio.phases import PrioritizePhase
-from meinberlin.test.helpers import assert_template_response
 
 component = components.modules.get('map_topic_edit')
 

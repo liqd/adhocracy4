@@ -1,6 +1,8 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import assert_template_response
+
 
 @pytest.mark.django_db
 def test_chapter_detail_view_redirect_first_chapter(client, chapter_factory,
@@ -14,4 +16,6 @@ def test_chapter_detail_view_redirect_first_chapter(client, chapter_factory,
     )
 
     response = client.get(url)
-    assert response.status_code == 200
+    assert_template_response(
+        response,
+        'meinberlin_documents/chapter_detail.html')
