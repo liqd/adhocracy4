@@ -1,6 +1,7 @@
 import pytest
 
 from adhocracy4.polls import phases
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 
@@ -15,5 +16,5 @@ def test_detail_view(client, phase_factory, poll_factory, question_factory,
     url = project.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
-        assert response.status_code == 200
+        assert_template_response(response, 'a4polls/poll_detail.html')
         assert response.template_name[0] == 'a4polls/poll_detail.html'

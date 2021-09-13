@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 
 from adhocracy4.projects.models import Project
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 
 
@@ -24,7 +25,7 @@ def test_project_list(client, organisation,
 
     client.login(username=another_user, password='password')
     response = client.get(project_list_url)
-    assert response.status_code == 200
+    assert_template_response(response, 'a4dashboard/project_list.html')
 
     project_list = response.context_data['project_list']
     assert list(project_list) == [project1, project0]
@@ -45,7 +46,7 @@ def test_blueprint_list(client, organisation, user, another_user):
     organisation.initiators.add(another_user)
     client.login(username=another_user, password='password')
     response = client.get(blueprint_list_url)
-    assert response.status_code == 200
+    assert_template_response(response, 'a4dashboard/blueprint_list.html')
 
     view = response.context_data['view']
     assert 1 == len(view.blueprints)

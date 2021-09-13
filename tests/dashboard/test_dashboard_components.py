@@ -4,6 +4,7 @@ import pytest
 
 from adhocracy4.dashboard import components
 from adhocracy4.dashboard.dashboard import ModuleAreaSettingsComponent
+from adhocracy4.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
@@ -34,7 +35,7 @@ def test_module_area_settings_view(client, area_settings, phase_factory,
 
     client.login(username=user.username, password='password')
     response = client.get(component_url)
-    assert response.status_code == 200
+    assert_template_response(response, 'a4dashboard/base_form_module.html')
 
     data = {
         'polygon': '{"type":"FeatureCollection", "features":[{"type":'

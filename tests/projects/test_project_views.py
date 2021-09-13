@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 
 from adhocracy4.projects.enums import Access
+from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 
 
@@ -9,7 +10,7 @@ from adhocracy4.test.helpers import redirect_target
 def test_detail_view(client, project):
     project_url = reverse('project-detail', args=[project.slug])
     response = client.get(project_url)
-    assert response.status_code == 200
+    assert_template_response(response, 'a4projects/project_detail.html')
     assert response.context_data['view'].project == project
 
 
@@ -27,7 +28,7 @@ def test_detail_private_project(client, project, user):
 
     project.participants.add(user)
     response = client.get(project_url)
-    assert response.status_code == 200
+    assert_template_response(response, 'a4projects/project_detail.html')
     assert response.context_data['view'].project == project
 
 
@@ -47,5 +48,5 @@ def test_detail_draft_project(client, project, user, another_user):
 
     client.login(username=another_user, password='password')
     response = client.get(project_url)
-    assert response.status_code == 200
+    assert_template_response(response, 'a4projects/project_detail.html')
     assert response.context_data['view'].project == project
