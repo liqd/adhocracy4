@@ -205,23 +205,12 @@ class ModuleDeleteView(PermissionRequiredMixin,
     success_message = _('The module has been deleted')
 
     def delete(self, request, *args, **kwargs):
-        module = self.get_object()
-        # only unpublished modules can be deleted
-        if not module.is_draft:
-            messages.error(request,
+        if not self.get_object().is_draft:
+            messages.error(self.request,
                            _('Module added to a project cannot be '
                              'deleted.'))
-            # try to stay on same page
-            if 'referrer' in request.POST:
-                redirect = request.POST['referrer']
-            elif 'HTTP_REFERER' in self.request.META:
-                redirect = request.META['HTTP_REFERER']
-            else:
-                redirect = reverse('a4dashboard:project-edit', kwargs={
-                    'project_slug': module.project.slug
-                })
-            return HttpResponseRedirect(redirect)
-
+            failure_url = self.get_failure_url()
+            return HttpResponseRedirect(failure_url)
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)
 
@@ -229,16 +218,26 @@ class ModuleDeleteView(PermissionRequiredMixin,
         return self.get_object().project
 
     def get_success_url(self):
-        referrer = self.request.POST.get('referrer', None) \
-            or self.request.META.get('HTTP_REFERER', None)
+        referrer = self.request.POST.get('referrer', None) or \
+            self.request.META.get('HTTP_REFERER', None)
         if referrer:
             view, args, kwargs = resolve(referrer)
-            if 'module_slug' not in kwargs \
-                    or not kwargs['module_slug'] == self.get_object().slug:
+            if 'module_slug' not in kwargs or not \
+                    kwargs['module_slug'] == self.get_object().slug:
                 return referrer
 
         return reverse('a4dashboard:project-edit', kwargs={
-            'project_slug': self.get_object().project.slug
+            'project_slug': self.get_object().project.slug,
+        })
+
+    def get_failure_url(self):
+        if 'referrer' in self.request.POST:
+            return self.request.POST['referrer']
+        elif 'HTTP_REFERER' in self.request.META:
+            return self.request.META['HTTP_REFERER']
+
+        return reverse('a4dashboard:project-edit', kwargs={
+            'project_slug': self.get_object().project.slug,
         })
 
 
