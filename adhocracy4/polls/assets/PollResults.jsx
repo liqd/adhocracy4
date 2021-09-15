@@ -132,7 +132,7 @@ export default class PollResult extends React.Component {
                 {chosen ? <i className="poll-row__chosen fas fa-check-circle" aria-label={django.gettext('Your choice')} /> : ''}
                 <div className="poll-row poll-row--answered">
                   <div className="poll-row__number">{percent}%</div>
-                  <div className="poll-row__label">{choice.label}</div>
+                  <div className="poll-row__label">{choice.is_other_choice ? django.gettext('other') : choice.label}</div>
                   <div
                     className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
                     style={{ width: percent + '%' }}
