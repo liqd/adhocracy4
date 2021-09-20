@@ -119,10 +119,23 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 class PollSerializer(serializers.ModelSerializer):
     questions = QuestionSerializer(many=True, source='annotated_questions')
+    has_user_vote = serializers.SerializerMethodField('get_has_user_vote')
 
     class Meta:
         model = models.Poll
-        fields = ('id', 'questions')
+        fields = ('id', 'questions', 'has_user_vote')
+
+    def get_has_user_vote(self, poll):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            if user.is_authenticated:
+                return (models.Vote.objects.
+                        filter(choice__question__poll=poll,
+                               creator=user).count() +
+                        models.Answer.objects.
+                        filter(question__poll=poll,
+                               creator=user).count()) > 0
+        return False
 
     def update(self, instance, data):
         # Delete removed questions from the database
