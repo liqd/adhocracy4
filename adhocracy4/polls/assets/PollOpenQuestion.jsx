@@ -8,9 +8,12 @@ export const PollOpenQuestion = (props) => {
   const getUserOpenAnswer = () => {
     const userAnswerId = props.question.userAnswer
     const userAnswer = props.question.answers.find(oa => oa.id === userAnswerId)
-    return (userAnswerId && userAnswer)
-      ? userAnswer.answer
-      : ''
+    return props.question.open_answer
+      ? props.question.open_answer
+      : ((userAnswerId && userAnswer)
+          ? userAnswer.answer
+          : ''
+        )
   }
 
   const [userAnswer, setUserAnswer] = useState(getUserOpenAnswer())

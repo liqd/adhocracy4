@@ -7,9 +7,12 @@ export const PollQuestion = (props) => {
   const getUserAnswer = () => {
     const userAnswerId = props.question.other_choice_user_answer
     const userAnswer = props.question.other_choice_answers.find(oc => oc.vote_id === userAnswerId)
-    return (userAnswerId && userAnswer)
-      ? userAnswer.answer
-      : ''
+    return props.question.other_choice_answer
+      ? props.question.other_choice_answer
+      : ((userAnswerId && userAnswer)
+          ? userAnswer.answer
+          : ''
+        )
   }
 
   const multiHelpText = props.question.multiple_choice ? <div className="poll__help-text">{django.gettext('Multiple answers are possible.')}</div> : null
