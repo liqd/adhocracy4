@@ -214,7 +214,8 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
                                    year=self.created.year))
 
     def save(self, *args, **kwargs):
-        self.description = transforms.clean_html_field(self.description)
+        self.description = transforms.clean_html_field(
+            self.description, 'collapsible-image-editor')
         super().save(*args, **kwargs)
 
     def _get_group(self, user, organisation):
