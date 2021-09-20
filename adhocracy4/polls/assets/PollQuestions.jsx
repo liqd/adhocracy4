@@ -119,7 +119,7 @@ class PollQuestions extends React.Component {
           onClick={(e) => this.handleSubmit(e)}
           disabled={!this.state.hasVotes}
         >
-          {django.gettext('Submit answer')}
+          {this.state.hasUserVote ? django.gettext('Change answer') : django.gettext('Submit answer')}
         </button>
       )
     } else {
@@ -183,23 +183,13 @@ class PollQuestions extends React.Component {
 
   sendRequest (datalist) {
     api.poll.batchvote(datalist)
-      .then(respondedQuestions => {
-        respondedQuestions.forEach(rq => {
-          this.setModified(rq.question.id, false)
-          this.setState(prevState => {
-            const questionsCopy = prevState.questions
-            const newQuestions =
-              questionsCopy.map(q => {
-                return rq.question.id === q.id
-                  ? rq.question
-                  : q
-              })
-            return {
-              loading: false,
-              questions: newQuestions,
-              alert: ALERT_SUCCESS
-            }
-          })
+      .then(() => {
+        this.getPollData()
+        this.setState(prevState => {
+          return {
+            loading: false,
+            alert: ALERT_SUCCESS
+          }
         })
       })
       .catch(() => {
@@ -249,12 +239,18 @@ class PollQuestions extends React.Component {
         : this.setState({ loading: false, alert: ALERT_INVALID })
   }
 
-  componentDidMount () {
+  getPollData () {
     api.poll.get(this.props.pollId)
-      .done(r => this.setState({
-        questions: r.questions,
-        showResults: (r.questions.length > 0 && r.questions[0].isReadOnly)
+      .done(poll => this.setState({
+        result: JSON.parse(JSON.stringify(poll.questions)),
+        questions: poll.questions,
+        showResults: (poll.questions.length > 0 && poll.questions[0].isReadOnly) || poll.has_user_vote,
+        hasUserVote: poll.has_user_vote
       }))
+  }
+
+  componentDidMount () {
+    this.getPollData()
   }
 
   render () {
@@ -262,14 +258,14 @@ class PollQuestions extends React.Component {
     return this.state.showResults
       ? (
         <div className="pollquestionlist-container">
-          {this.state.questions.map((q, idx) => (
+          {this.state.result.map((q, idx) => (
             <PollResults
               key={idx}
               question={q}
             />
           ))}
           <div className="poll">
-            {this.state.hasVotes ? this.linkChangeVote : this.linkToPoll}
+            {this.state.hasUserVote ? this.linkChangeVote : this.linkToPoll}
           </div>
         </div>
         )
