@@ -312,7 +312,6 @@ CKEDITOR_CONFIGS = {
             ['Bold', 'Italic', 'Underline'],
             ['NumberedList', 'BulletedList'],
             ['Link', 'Unlink'],
-            ['Embed', 'EmbedBase']
         ],
         'removePlugins': 'stylesheetparser',
         'extraAllowedContent': 'iframe[*]',
