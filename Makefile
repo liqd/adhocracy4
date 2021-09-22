@@ -53,3 +53,19 @@ lint-python-files:
 .PHONY: test
 test:
 	$(VIRTUAL_ENV)/bin/pytest --reuse-db
+
+.PHONY: jest
+jest:
+	npm run test
+
+.PHONY: jest-nocov
+jest-nocov:
+	npm run testNoCov
+
+.PHONY: jest-debug
+jest-debug:
+	npm run testDebug
+
+.PHONY: jest-updateSnapshots
+jest-updateSnapshots:
+	npm run updateSnapshots

@@ -23,6 +23,7 @@ package-lock.json
 /media
 /.cache
 .pytest_cache
+coverage/
 
 # SQlite DBs
 *.sqlite3*
