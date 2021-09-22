@@ -3514,7 +3514,7 @@ msgid ""
 "general project overview."
 msgstr ""
 "Die folgenden Angaben haben Einfluss auf die Darstellung des Vorhabens in "
-"der allgemeine Projektübersicht."
+"der allgemeinen Projektübersicht."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:4
 msgid "Confirm Plan Deletion"
