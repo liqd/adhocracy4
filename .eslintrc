@@ -10,5 +10,16 @@
     "standard-jsx"],
   "rules": {
     "jsx-quotes": [2, "prefer-double"]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.jest.js",
+        "**/*.jest.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
