@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.views import generic
 
+from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.projects.mixins import ProjectMixin
 
 from .mixins import VirtualFieldMixin
@@ -105,3 +106,13 @@ class BaseItemExportView(BaseExport,
     def get_base_filename(self):
         return '%s_%s' % (self.project.slug,
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
+
+
+class DashboardExportView(ProjectMixin,
+                          dashboard_mixins.DashboardBaseMixin,
+                          dashboard_mixins.DashboardComponentMixin,
+                          generic.TemplateView):
+    permission_required = 'a4projects.change_project'
+
+    def get_permission_object(self):
+        return self.project
