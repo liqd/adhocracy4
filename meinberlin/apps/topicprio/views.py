@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.dashboard import mixins
+from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
@@ -10,7 +11,6 @@ from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.exports.views import DashboardExportView
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
@@ -165,7 +165,7 @@ class TopicDeleteView(mixins.DashboardBaseMixin,
 
 
 class TopicDashboardExportView(DashboardExportView):
-    template_name = 'meinberlin_exports/export_dashboard.html'
+    template_name = 'a4exports/export_dashboard.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

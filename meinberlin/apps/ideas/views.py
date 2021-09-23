@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.categories import filters as category_filters
+from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
@@ -15,7 +16,6 @@ from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
-from meinberlin.apps.exports.views import DashboardExportView
 from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
 from meinberlin.apps.notifications.emails import \
@@ -217,7 +217,7 @@ class IdeaModerateView(AbstractIdeaModerateView):
 
 
 class IdeaDashboardExportView(DashboardExportView):
-    template_name = 'meinberlin_exports/export_dashboard.html'
+    template_name = 'a4exports/export_dashboard.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
