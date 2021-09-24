@@ -14,3 +14,14 @@ class CommentFactory(factory.django.DjangoModelFactory):
     comment = factory.Faker('text')
     content_object = factory.SubFactory(factories.QuestionFactory)
     creator = factory.SubFactory(UserFactory)
+
+
+@factory.django.mute_signals(signals.post_save)
+class ChildCommentFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'a4comments.Comment'
+
+    comment = factory.Faker('text')
+    content_object = factory.SubFactory(CommentFactory)
+    creator = factory.SubFactory(UserFactory)

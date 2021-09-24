@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'adhocracy4.phases',
     'adhocracy4.reports',
     'adhocracy4.comments',
+    'adhocracy4.comments_async',
     'adhocracy4.maps',
     'adhocracy4.actions',
     'adhocracy4.follows',
@@ -225,6 +226,11 @@ A4_PROJECT_TOPICS = (
     ('ANT', 'Anti-discrimination'),
     ('WOR', 'Work & economy'),
     ('BUI', 'Building & living'),
+)
+
+A4_COMMENT_CATEGORIES = (
+    ('QUE', 'Question'),
+    ('REM', 'Remark'),
 )
 
 LOGIN_URL = "/accounts/login"
