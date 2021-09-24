@@ -26,4 +26,10 @@ class Question(Item):
                               object_id_field='object_pk')
     category = CategoryField()
 
+    last_discussed = models.DateTimeField(
+        blank=True,
+        null=True,
+        editable=False
+    )
+
     objects = QuestionQuerySet.as_manager()
