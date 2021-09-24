@@ -2,6 +2,7 @@ import random
 
 from django.db import models
 from django.db.models import Q
+from django.utils import timezone
 from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -17,6 +18,16 @@ from adhocracy4.projects.models import Project
 from meinberlin.apps.plans.models import Plan
 
 
+def project_choice_limit():
+    now = timezone.now()
+    limit_ids = Project.objects.filter(
+        is_draft=False,
+        is_archived=False,
+        module__phase__end_date__gte=now).values_list('id', flat=True)
+    limit = {'id__in': limit_ids}
+    return limit
+
+
 class StorefrontItem(models.Model):
     district = models.ForeignKey(
         'a4administrative_districts.AdministrativeDistrict',
@@ -30,7 +41,8 @@ class StorefrontItem(models.Model):
         related_name='+',
         null=True,
         blank=True,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        limit_choices_to=project_choice_limit
     )
     quote = models.TextField(
         blank=True,
