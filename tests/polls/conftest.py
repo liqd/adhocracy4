@@ -2,6 +2,8 @@ import pytest
 from pytest_factoryboy import register
 
 from adhocracy4.test.factories import polls as poll_factories
+from tests.comments.factories import CommentFactory
+from tests.ratings.factories import RatingFactory
 
 register(poll_factories.PollFactory)
 register(poll_factories.QuestionFactory)
@@ -12,6 +14,8 @@ register(poll_factories.OtherChoiceFactory, 'other_choice')
 register(poll_factories.VoteFactory)
 register(poll_factories.VoteOnOtherChoiceFactory, 'vote_on_other')
 register(poll_factories.OtherVoteFactory)
+register(CommentFactory)
+register(RatingFactory)
 
 
 @pytest.fixture
