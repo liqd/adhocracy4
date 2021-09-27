@@ -23,7 +23,7 @@ class CommentSerializer(serializers.ModelSerializer):
                             'user_name', 'user_pk', 'user_image',
                             'user_image_fallback', 'ratings',
                             'content_type', 'object_pk')
-        exclude = ('creator', 'is_censored', 'is_removed')
+        exclude = ('creator',)
 
     def to_representation(self, instance):
         """
@@ -143,15 +143,6 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class CommentListSerializer(CommentSerializer):
     """Serializer for the comments to be used when viewed as list."""
-
-    comment = serializers.SerializerMethodField()
-
-    def get_comment(self, obj):
-        if obj.is_removed:
-            return _('deleted by creator')
-        if obj.is_censored:
-            return _('deleted by moderator')
-        return obj.comment
 
 
 class ThreadSerializer(CommentSerializer):
