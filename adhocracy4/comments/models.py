@@ -70,11 +70,8 @@ class Comment(base.UserGeneratedContentModel):
         self.comment = transforms.clean_html_all(
             self.comment)
 
-        if self.is_removed:
-            self.comment = _('deleted by creator')
-            self.comment_categories = ''
-        if self.is_censored:
-            self.comment = _('deleted by moderator')
+        if self.is_removed or self.is_censored:
+            self.comment = ''
             self.comment_categories = ''
         return super(Comment, self).save(*args, **kwargs)
 
