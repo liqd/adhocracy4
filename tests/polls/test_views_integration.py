@@ -18,3 +18,4 @@ def test_detail_view(client, phase_factory, poll_factory, question_factory,
         response = client.get(url)
         assert_template_response(response, 'a4polls/poll_detail.html')
         assert response.template_name[0] == 'a4polls/poll_detail.html'
+        assert response.context_data.get('view').phase == phase
