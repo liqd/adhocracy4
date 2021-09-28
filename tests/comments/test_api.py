@@ -197,7 +197,7 @@ def test_creater_of_comment_can_set_removed_flag(comment, user, apiclient):
 
     assert response.status_code == status.HTTP_200_OK
     assert response.data['is_deleted'] is True
-    assert response.data['comment'] == 'deleted by creator'
+    assert response.data['comment'] == ''
 
 
 @pytest.mark.django_db
@@ -213,7 +213,7 @@ def test_admin_of_comment_can_set_censored_flag(comment, admin, apiclient):
     response = apiclient.delete(url)
     assert response.status_code == status.HTTP_200_OK
     assert response.data['is_deleted'] is True
-    assert response.data['comment'] == 'deleted by moderator'
+    assert response.data['comment'] == ''
 
 
 @pytest.mark.django_db
