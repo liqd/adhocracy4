@@ -159,7 +159,7 @@ class ProjectPublishView(ProjectMixin,
         if 'referrer' in self.request.POST:
             return self.request.POST['referrer']
         elif 'HTTP_REFERER' in self.request.META:
-            return self.request.META['HTTP_REFERER']
+            return self.request.headers['Referer']
 
         return reverse('a4dashboard:project-edit', kwargs={
             'project_slug': self.project.slug

@@ -1,7 +1,7 @@
-from django.conf.urls import include
-from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth import views
+from django.urls import include
+from django.urls import path
 from rest_framework import routers
 
 from adhocracy4.api import routers as a4routers
@@ -32,12 +32,12 @@ ct_router.register(r'comments_async', CommentViewSetAsync,
 ct_router.register(r'ratings', RatingViewSet, basename='ratings')
 
 urlpatterns = [
-    url(r'^api/', include(ct_router.urls)),
-    url(r'^api/', include(router.urls)),
-    url(r'^api/', include(question_router.urls)),
-    url(r'^admin/', admin.site.urls),
-    url(r'^projects/', include(prj_urls)),
-    url(r'^modules/', include(mod_urls)),
-    url(r'^accounts/login', views.LoginView, name='account_login'),
-    url(r'^dashboard/', include(dashboard_urls))
+    path('api/', include(ct_router.urls)),
+    path('api/', include(router.urls)),
+    path('api/', include(question_router.urls)),
+    path('admin/', admin.site.urls),
+    path('projects/', include(prj_urls)),
+    path('modules/', include(mod_urls)),
+    path('accounts/login', views.LoginView, name='account_login'),
+    path('dashboard/', include(dashboard_urls))
 ]
