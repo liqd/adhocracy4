@@ -17,7 +17,29 @@ def test_progress(module, dashboard_test_component_factory):
     project_dashboard.get_module_components = \
         mock.MagicMock(return_value=module_components)
 
+    assert project_dashboard.get_project_progress() == (2, 3)
+    assert project_dashboard.get_module_progress(module) == (1, 1)
     assert project_dashboard.get_progress() == (3, 4)
+
+
+@pytest.mark.django_db
+def test_progress_multi(module, dashboard_test_component_factory):
+    project_components = [dashboard_test_component_factory(progress=(2, 3)),
+                          dashboard_test_component_factory(progress=(0, 1))]
+    module_components = [dashboard_test_component_factory(progress=(1, 1)),
+                         dashboard_test_component_factory(progress=(0, 1)),
+                         dashboard_test_component_factory(progress=(1, 1))]
+
+    project = module.project
+    project_dashboard = ProjectDashboard(project)
+    project_dashboard.get_project_components = \
+        mock.MagicMock(return_value=project_components)
+    project_dashboard.get_module_components = \
+        mock.MagicMock(return_value=module_components)
+
+    assert project_dashboard.get_project_progress() == (2, 4)
+    assert project_dashboard.get_module_progress(module) == (2, 3)
+    assert project_dashboard.get_progress() == (4, 7)
 
 
 @pytest.mark.django_db
