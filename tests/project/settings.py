@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
 
 SECRET_KEY = 'not_so_secret_secret_key'
 SITE_ID = 1
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DEBUG = True
 
 ALLOWED_HOSTS = []
