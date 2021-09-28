@@ -1,5 +1,5 @@
 import django_filters
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
@@ -31,7 +31,7 @@ class CategoryChoiceField(ModelChoiceField):
             icon_url = get_category_icon_url(icon_name)
             icon_label += \
                 '<img alt="" class="dropdown-item__icon" src="{icon_src}">' \
-                .format(icon_src=force_text(icon_url))
+                .format(icon_src=force_str(icon_url))
 
         icon_label += \
             '<span class="dropdown-item__label">{label}</span>' \
