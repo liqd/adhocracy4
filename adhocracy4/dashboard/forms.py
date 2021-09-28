@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.forms import RadioSelect
 from django.forms import inlineformset_factory
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.forms.fields import DateTimeField
 from adhocracy4.maps import models as map_models

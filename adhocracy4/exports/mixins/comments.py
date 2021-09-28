@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.exports import unescape_and_strip_html

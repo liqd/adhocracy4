@@ -2,7 +2,7 @@ import django_filters
 from django.utils.encoding import force_text
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django_filters.fields import ModelChoiceField
 
 from adhocracy4.filters.widgets import DropdownLinkWidget

@@ -6,7 +6,7 @@ from django.db import models
 from django.db.models import F
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.modules import models as modules_models
 

@@ -1,5 +1,5 @@
 import django_filters
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import DefaultsFilterSet

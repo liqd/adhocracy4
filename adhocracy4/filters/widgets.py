@@ -5,7 +5,7 @@ from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms import TextInput
 from django.forms.utils import flatatt
 from django.template.loader import render_to_string
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 
 class DropdownLinkWidget(django_filters.widgets.LinkWidget):
