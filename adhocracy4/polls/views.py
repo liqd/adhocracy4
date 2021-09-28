@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
 
@@ -29,7 +29,8 @@ class PollDetailView(ProjectMixin,
         except Http404:
             self.object = None
             context = self.get_context_data(object=None, request=self.request,)
-            return render_to_response(
+            return render(
+                request,
                 'a4polls/poll_404.html',
                 context=context,
                 status=404
