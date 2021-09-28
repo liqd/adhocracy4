@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import NoReverseMatch
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import base
 from django.views.generic import edit
 

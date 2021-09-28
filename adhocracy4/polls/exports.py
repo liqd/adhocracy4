@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext as _
 from django.utils.translation import pgettext
-from django.utils.translation import ugettext as _
 from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.comments.models import Comment

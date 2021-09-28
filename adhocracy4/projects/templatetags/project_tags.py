@@ -1,6 +1,6 @@
 from django import template
-from django.utils.translation import ugettext as _
-from django.utils.translation import ungettext
+from django.utils.translation import gettext as _
+from django.utils.translation import ngettext
 
 register = template.Library()
 
@@ -8,7 +8,7 @@ register = template.Library()
 @register.simple_tag
 def get_days(number):
     if number and number >= 1 and number <= 5:
-        text = ungettext(
+        text = ngettext(
             '%(number)d day left',
             '%(number)d days left',
             number) % {

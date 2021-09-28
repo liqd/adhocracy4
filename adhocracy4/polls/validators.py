@@ -1,5 +1,5 @@
 from django.core import exceptions as django_exceptions
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from rest_framework import exceptions as rest_exceptions
 
 

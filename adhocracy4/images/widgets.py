@@ -3,7 +3,7 @@ from os.path import basename
 from django.forms import widgets
 from django.template import loader
 from django.utils.html import conditional_escape
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 
 class ImageInputWidget(widgets.ClearableFileInput):
@@ -22,7 +22,7 @@ class ImageInputWidget(widgets.ClearableFileInput):
         has_image_set = self.is_initial(value)
         is_required = self.is_required
 
-        file_placeholder = ugettext('Select a picture from your local folder.')
+        file_placeholder = gettext('Select a picture from your local folder.')
         file_input = super().render(name, None, {
             'id': html_id,
             'class': 'form-control form-control-file'
