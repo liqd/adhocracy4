@@ -43,8 +43,8 @@ def test_save(comment_factory):
     comment_censored.save()
     comment_censored.refresh_from_db()
 
-    assert comment_removed.comment == 'deleted by creator'
-    assert comment_censored.comment == 'deleted by moderator'
+    assert comment_removed.comment == ''
+    assert comment_censored.comment == ''
 
 
 @pytest.mark.django_db
