@@ -13,6 +13,8 @@
     "adhocracy4"
   ],
   "dependencies": {
+    "@popperjs/core": "2.10.1",
+    "assert": "^2.0.0",
     "axios": "0.21.4",
     "classnames": "2.3.1",
     "immutability-helper": "3.1.1",
@@ -21,7 +23,6 @@
     "leaflet": "1.7.1",
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "1.5.1",
-    "@popperjs/core": "2.10.1",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
