@@ -19,7 +19,7 @@ class CommentSerializer(serializers.ModelSerializer):
                             'user_name', 'ratings', 'content_type',
                             'object_pk', 'last_discussed',
                             'is_moderator_marked')
-        exclude = ('creator', 'is_censored', 'is_removed')
+        exclude = ('creator',)
 
     def to_representation(self, instance):
         """

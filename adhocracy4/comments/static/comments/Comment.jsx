@@ -104,8 +104,12 @@ class Comment extends React.Component {
   renderLastDate () {
     const lastEditText = django.gettext('Latest edit on')
     let lastDate
-    if (this.props.modified === null || this.props.is_deleted) {
+    if (this.props.modified === null) {
       lastDate = localeDate(this.props.created)
+    } else if (this.props.is_removed) {
+      lastDate = django.gettext('Deleted by creator on') + ' ' + localeDate(this.props.modified)
+    } else if (this.props.is_censored) {
+      lastDate = django.gettext('Deleted by moderator on') + ' ' + localeDate(this.props.modified)
     } else {
       lastDate = lastEditText + ' ' + localeDate(this.props.modified)
     }

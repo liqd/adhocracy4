@@ -20,6 +20,8 @@ const CommentList = (props) => {
               content_type={comment.content_type}
               object_pk={comment.object_pk}
               is_deleted={comment.is_deleted}
+              is_removed={comment.is_removed}
+              is_censored={comment.is_censored}
               index={index}
               parentIndex={props.parentIndex}
               onCommentDelete={props.onCommentDelete}
