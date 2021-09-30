@@ -14,7 +14,6 @@
   ],
   "dependencies": {
     "@popperjs/core": "2.10.1",
-    "assert": "^2.0.0",
     "axios": "0.21.4",
     "classnames": "2.3.1",
     "immutability-helper": "3.1.1",
@@ -26,10 +25,10 @@
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-markdown": "7.0.1",
+    "react-markdown": "6.0.3",
     "react-popper": "2.2.5",
     "react-slick": "0.28.1",
-    "remark-gfm": "2.0.0",
+    "remark-gfm": "1.0.0",
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
   "devDependencies": {
