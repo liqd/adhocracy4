@@ -74,7 +74,7 @@ export const EditPollQuestion = (props) => {
                 ? (
                   <div key={key}>
                     <EditPollChoice
-                      id={key}
+                      id={'id_questions-poll' + props.id + '-multiple_choice'}
                       index={index + 1}
                       label={label}
                       choice={choice}
@@ -89,7 +89,7 @@ export const EditPollQuestion = (props) => {
                 : (
                   <div key={key}>
                     <EditPollChoice
-                      id={key}
+                      id={'id_questions-poll' + props.id + '-is_other_choice'}
                       index={index + 1}
                       label={django.gettext('Other')}
                       choice={{ label: django.gettext('Other') }}
