@@ -32,10 +32,10 @@ export const EditPollQuestions = (props) => {
   |--------------------------------------------------------------------------
   */
 
-  const getNewQuestion = (label = '', help_text = '') => {
+  const getNewQuestion = (label = '', helptext = '') => {
     return {
       label: label,
-      help_text: help_text,
+      help_text: helptext,
       multiple_choice: false,
       key: getNextLocalKey(),
       is_open: false,
