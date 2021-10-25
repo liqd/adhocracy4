@@ -41,8 +41,8 @@ class CategorySelectWidget(widgets.Select):
     def create_option(self, name, value, label, selected, index, **kwargs):
         option = super().create_option(name, value, label, selected, index,
                                        **kwargs)
-        if value and value in self.icons:
-            icon_url = get_category_icon_url(self.icons[value])
+        if value.value and value.value in self.icons:
+            icon_url = get_category_icon_url(self.icons[value.value])
             option['attrs']['data-icon-src'] = icon_url
 
         return option
