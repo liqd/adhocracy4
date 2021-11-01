@@ -1,5 +1,5 @@
 bleach==4.1.0
-Django==3.2.7
+Django==3.2.9
 django-allauth==0.45.0
 django-autoslug==1.9.8
 django-background-tasks==1.2.5
