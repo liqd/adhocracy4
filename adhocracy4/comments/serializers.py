@@ -1,3 +1,5 @@
+import warnings
+
 from django.conf import settings
 from django.utils.translation import gettext as _
 from rest_framework import serializers
@@ -7,6 +9,11 @@ from .models import Comment
 
 
 class CommentSerializer(serializers.ModelSerializer):
+
+    """Attention: This class is deprecated, use
+    comments_async.serializers.CommentSerializer instead
+    """
+
     user_name = serializers.SerializerMethodField()
     user_profile_url = serializers.SerializerMethodField()
     is_deleted = serializers.SerializerMethodField()
@@ -26,6 +33,13 @@ class CommentSerializer(serializers.ModelSerializer):
         Gets the categories and adds them along with their values
         to a dictionary
         """
+
+        warnings.warn(
+            "comments.serializers.CommentSerializer is deprecated, "
+            "use comments_async.serializers.CommentSerializer instead",
+            DeprecationWarning
+        )
+
         ret = super().to_representation(instance)
         categories = {}
         if ret['comment_categories']:
@@ -44,6 +58,13 @@ class CommentSerializer(serializers.ModelSerializer):
         return ret
 
     def to_internal_value(self, data):
+
+        warnings.warn(
+            "comments.serializers.CommentSerializer is deprecated, "
+            "use comments_async.serializers.CommentSerializer instead",
+            DeprecationWarning
+        )
+
         data = super().to_internal_value(data)
         if 'comment_categories' in data:
             value = data.get('comment_categories')
@@ -112,6 +133,9 @@ class CommentSerializer(serializers.ModelSerializer):
 class ThreadSerializer(CommentSerializer):
     """
     Serializes a comment including child comment (replies).
+
+    Attention: This class is deprecated, use
+    comments_async.serializers.ThreadSerializer instead
     """
     child_comments = CommentSerializer(many=True, read_only=True)
 

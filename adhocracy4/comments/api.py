@@ -1,3 +1,5 @@
+import warnings
+
 from django.conf import settings
 from django_filters import rest_framework as filters
 from rest_framework import mixins
@@ -20,6 +22,10 @@ class CommentViewSet(mixins.CreateModelMixin,
                      ContentTypeMixin,
                      viewsets.GenericViewSet):
 
+    """Attention: This class is deprecated, use comments_async.api.CommentViewSet
+    instead
+    """
+
     queryset = Comment.objects.all().order_by('-created')
     serializer_class = ThreadSerializer
     permission_classes = (ViewSetRulesPermission,)
@@ -28,6 +34,13 @@ class CommentViewSet(mixins.CreateModelMixin,
     content_type_filter = settings.A4_COMMENTABLES
 
     def perform_create(self, serializer):
+
+        warnings.warn(
+            "comments.api.CommentViewSet is deprecated, "
+            "use comments_async.api.CommentViewSet",
+            DeprecationWarning
+        )
+
         serializer.save(
             content_object=self.content_object,
             creator=self.request.user
