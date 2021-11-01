@@ -6,6 +6,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import post_delete
 from django.db.models.signals import post_save
 
+from adhocracy4.comments.models import Comment
+from adhocracy4.comments.signals import comment_removed
+
 from .models import Action
 from .verbs import Verbs
 
@@ -65,3 +68,7 @@ def _delete_action(sender, instance, **kwargs):
 
 for app, model in chain(SYSTEM_ACTIONABLES, settings.A4_ACTIONABLES):
     post_delete.connect(_delete_action, apps.get_model(app, model))
+
+# comments are not removed from db when deleted, so post_delete is
+# not sent and we need to use another signal to delete actions
+comment_removed.connect(_delete_action, Comment)

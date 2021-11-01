@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from adhocracy4.api.mixins import ContentTypeMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
 from adhocracy4.comments.models import Comment
+from adhocracy4.comments.signals import comment_removed
 
 from .filters import CommentCategoryFilterBackend
 from .filters import CommentOrderingFilterBackend
@@ -109,5 +110,7 @@ class CommentViewSet(mixins.CreateModelMixin,
         else:
             comment.is_censored = True
         comment.save()
+        comment_removed.send(sender=type(comment),
+                             instance=comment)
         serializer = self.get_serializer(comment)
         return Response(serializer.data)
