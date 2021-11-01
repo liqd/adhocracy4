@@ -10,6 +10,7 @@ from adhocracy4.api.permissions import ViewSetRulesPermission
 from .models import Comment
 from .serializers import CommentModerateSerializer
 from .serializers import ThreadSerializer
+from .signals import comment_removed
 
 
 class CommentViewSet(mixins.CreateModelMixin,
@@ -51,7 +52,10 @@ class CommentViewSet(mixins.CreateModelMixin,
         else:
             comment.is_censored = True
         comment.save()
+        comment_removed.send(sender=type(comment),
+                             instance=comment)
         serializer = self.get_serializer(comment)
+
         return Response(serializer.data)
 
 
