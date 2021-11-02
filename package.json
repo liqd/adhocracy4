@@ -32,8 +32,8 @@
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
   "devDependencies": {
-    "@babel/preset-env": "7.15.8",
-    "@babel/preset-react": "7.14.5",
+    "@babel/preset-env": "7.16.0",
+    "@babel/preset-react": "7.16.0",
     "@testing-library/react": "12.1.2",
     "babel-preset-react": "6.24.1",
     "eslint": "8.1.0",
