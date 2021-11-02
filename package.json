@@ -58,7 +58,7 @@
     "style-loader": "3.3.1",
     "tether": "2.0.0",
     "timeago.js": "4.0.2",
-    "webpack": "5.60.0",
+    "webpack": "5.61.0",
     "webpack-merge": "5.8.0",
     "whatwg-fetch": "3.6.2"
   },
