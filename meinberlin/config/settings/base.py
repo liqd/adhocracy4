@@ -246,6 +246,9 @@ THUMBNAIL_ALIASES = {
 
 ALLOWED_UPLOAD_IMAGES = ('png', 'jpeg', 'gif')
 
+# default primary field for models without that field set
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Wagtail settings
 
