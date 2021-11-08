@@ -26,6 +26,7 @@ class Comment(base.UserGeneratedContentModel):
     comment = models.TextField(max_length=4000)
     is_removed = models.BooleanField(default=False)
     is_censored = models.BooleanField(default=False)
+    is_blocked = models.BooleanField(default=False)
     ratings = GenericRelation(
         rating_models.Rating,
         related_query_name='comment',
