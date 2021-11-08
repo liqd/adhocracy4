@@ -248,6 +248,21 @@ export default class Comment extends React.Component {
     }
   }
 
+  renderBlockModal () {
+    if (this.context.isModerator) {
+      return (
+        <Modal
+          name={`comment_block_${this.props.id}`}
+          partials={{ title: django.gettext('Do you really want to block this comment?') }}
+          handleSubmit={() => this.props.onCommentBlock(this.props.index, this.props.parentIndex)}
+          action={django.gettext('Block')}
+          abort={django.gettext('Abort')}
+          btnStyle="cta"
+        />
+      )
+    }
+  }
+
   getCommentUrl () {
     return window.location.href.split('?')[0].split('#')[0] + '?comment=' + `${this.props.id}`
   }
@@ -377,7 +392,7 @@ export default class Comment extends React.Component {
                     ><i className="fas fa-share" /> {share}
                     </a>}
 
-                  {!this.props.is_deleted && this.context.isAuthenticated && !this.isOwner() &&
+                  {!this.props.is_deleted && this.context.isAuthenticated && !this.isOwner() && !this.context.isModerator &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`#report_comment_${this.props.id}`}
                       data-bs-toggle="modal"
