@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard.forms import ProjectDashboardForm
 from adhocracy4.maps import widgets as maps_widgets

@@ -4,7 +4,7 @@ from autoslug import AutoSlugField
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4 import transforms
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField

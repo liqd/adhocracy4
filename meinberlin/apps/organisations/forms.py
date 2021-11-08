@@ -4,8 +4,8 @@ from django import forms
 from django.contrib.admin import widgets
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
-from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.projects.models import Project
 from meinberlin.apps.plans.models import Plan

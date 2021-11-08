@@ -1,7 +1,7 @@
 from functools import lru_cache
 
 from django.utils import timezone
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 

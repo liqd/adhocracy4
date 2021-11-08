@@ -1,7 +1,7 @@
 import pytest
 from dateutil.parser import parse
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from freezegun import freeze_time
 
 from adhocracy4.projects.models import Project

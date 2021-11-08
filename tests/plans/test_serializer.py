@@ -1,6 +1,6 @@
 import pytest
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from freezegun import freeze_time
 
 from meinberlin.apps.plans.models import Plan

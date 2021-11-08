@@ -1,7 +1,7 @@
 from django import forms
 from django.apps import apps
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.projects.models import Project
 

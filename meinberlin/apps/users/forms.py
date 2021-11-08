@@ -5,8 +5,8 @@ from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
 from django.contrib.auth import forms as auth_forms
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
-from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.captcha.fields import CaptcheckCaptchaField
 from meinberlin.apps.organisations.models import Organisation

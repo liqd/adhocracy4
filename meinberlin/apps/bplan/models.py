@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AnonymousUser
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.models.base import TimeStampedModel
 from adhocracy4.modules import models as module_models

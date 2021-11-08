@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins

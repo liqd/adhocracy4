@@ -1,5 +1,5 @@
 from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 RIGHT_OF_USE_LABEL = _('I hereby confirm that the copyrights for this '
                        'photo are with me or that I have received '

@@ -1,6 +1,6 @@
 from functools import lru_cache
 
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 from meinberlin.apps.projectcontainers.models import ProjectContainer
 from meinberlin.apps.projects.serializers import ProjectSerializer

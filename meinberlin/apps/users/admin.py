@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib import auth
 from django.contrib.auth.models import Group
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from . import models
 from .forms import AddUserAdminForm

@@ -1,6 +1,6 @@
 from django.utils import timezone
-from django.utils.translation import ugettext
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.exports import mixins
@@ -48,10 +48,10 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
 
     def get_virtual_fields(self, virtual):
         virtual = super().get_virtual_fields(virtual)
-        virtual['projects'] = ugettext('Projects')
-        virtual['projects_links'] = ugettext('Project Links')
-        virtual['created'] = ugettext('Created')
-        virtual['modified'] = ugettext('Modified')
+        virtual['projects'] = gettext('Projects')
+        virtual['projects_links'] = gettext('Project Links')
+        virtual['created'] = gettext('Created')
+        virtual['modified'] = gettext('Modified')
         return virtual
 
     def get_description_data(self, item):
