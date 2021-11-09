@@ -47,7 +47,7 @@
     flex-direction: column;
 
     & > a {
-        margin: 0.5*$spacer 0;
+        margin: 0.5 * $spacer 0;
     }
 
     @media screen and (min-width: $breakpoint) {

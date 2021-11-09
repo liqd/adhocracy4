@@ -29,7 +29,7 @@ html {
 
 body {
     margin: 0;
-    overflow-x: hidden; //stops horizontal scrolling with timeline
+    overflow-x: hidden; // stops horizontal scrolling with timeline
 }
 
 h1,
@@ -70,12 +70,12 @@ h6 {
 
 @media screen and (max-width: $breakpoint-xs-down) {
     h1 {
-        font-size: $mobile-headline-size*$font-size-xxl;
+        font-size: $mobile-headline-size * $font-size-xxl;
     }
 
     h2,
     h3 {
-        font-size: $mobile-headline-size*$font-size-xl;
+        font-size: $mobile-headline-size * $font-size-xl;
     }
 }
 

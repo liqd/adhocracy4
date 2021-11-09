@@ -103,8 +103,7 @@
 }
 
 .btn--link {
-    // horizontal paddings would make the button look off on mobile
-    padding-left: 0;
+    padding-left: 0; // horizontal paddings would make the button look off on mobile
     padding-right: 0;
     border-color: transparent;
     background-color: transparent;
@@ -158,6 +157,7 @@
 .btn--full {
     display: block;
     width: 100%;
+
     // margin-bottom: $spacer;
 }
 

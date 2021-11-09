@@ -1,11 +1,11 @@
 .progress-line {
     list-style: none;
-    padding: $padding 0 $padding 2*$padding;
+    padding: $padding 0 $padding 2 * $padding;
 
     &__entry {
         display: flex;
         color: $text-color-gray;
-        margin-top: 4*$padding;
+        margin-top: 4 * $padding;
         position: relative;
 
         &:first-child {
@@ -46,11 +46,11 @@
 }
 
 .progress-line__line--top {
-    top: -(3.5*$padding);
-    height: 3*$padding;
+    top: -(3.5 * $padding);
+    height: 3 * $padding;
 }
 
 .progress-line__line--bottom {
-    top: 1.5*$padding;
+    top: 1.5 * $padding;
     bottom: -$padding;
 }

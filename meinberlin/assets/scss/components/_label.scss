@@ -30,17 +30,17 @@
     font-weight: bold;
 }
 
-.label--CONSIDERATION {
+.label--consideration {
     background-color: $feedback-color-consideration;
     color: contrast-color($feedback-color-consideration);
 }
 
-.label--REJECTED {
+.label--rejected {
     background-color: $feedback-color-rejected;
     color: contrast-color($feedback-color-rejected);
 }
 
-.label--ACCEPTED {
+.label--accepted {
     background-color: $feedback-color-accepted;
     color: contrast-color($feedback-color-accepted);
 }

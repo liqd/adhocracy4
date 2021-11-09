@@ -1,5 +1,5 @@
 .participation-tile__list {
-    max-width: calc(100% + 2rem); //this is all to fit within the frame to be inline with above items
+    max-width: calc(100% + 2rem); // this is all to fit within the frame to be inline with above items
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -29,7 +29,7 @@
 
 .maplist-item__label {
     font-size: $font-size-sm;
-    margin-right: 0.5*$spacer;
+    margin-right: 0.5 * $spacer;
 }
 
 .maplist-item__roofline {
@@ -62,18 +62,18 @@
 }
 
 .maplist-item__corner-badge--external {
-    background-image: url('/static/images/badge_external_link.png');
+    background-image: url("/static/images/badge_external_link.png");
 }
 
 .maplist-item__corner-badge--private {
-    background-image: url('/static/images/badge_priva_projekt.png');
+    background-image: url("/static/images/badge_priva_projekt.png");
 }
 
 .maplist-item__corner-badge--semi-public {
-    background-image: url('/static/images/badge_semi_public_projekt.png');
+    background-image: url("/static/images/badge_semi_public_projekt.png");
 }
 
-//popup specific styling
+// popup specific styling
 .maplist-popup-item__roofline {
     font-size: $font-size-sm;
 }
@@ -84,19 +84,19 @@
     font-size: $font-size-xs;
 
     i {
-        padding-right: 0.5*$padding;
+        padding-right: 0.5 * $padding;
         color: $brand-secondary;
     }
 }
 
 .maplist-item-popup__status.status-bar__past {
-    padding: 0.25*$padding;
+    padding: 0.25 * $padding;
 }
 
 .maplist-item-popup__proj-plan {
     background-color: $bg-secondary;
-    padding: 0.5*$padding $padding;
-    margin: 0.5*$padding (-$padding) auto;
+    padding: 0.5 * $padding $padding;
+    margin: 0.5 * $padding (-$padding) auto;
 }
 
 // vertical tile structure
@@ -105,7 +105,7 @@
         flex-direction: column;
     }
 
-    //to make whole tile clickable even when empty
+    // to make whole tile clickable even when empty
     .maplist-item__link {
         position: absolute;
         top: 0;

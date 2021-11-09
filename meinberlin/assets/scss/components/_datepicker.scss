@@ -26,7 +26,7 @@
 
         &:before {
             font-family: "Font Awesome 5 Free", sans-serif;
-            font-weight: 300; //to use the light version (formerly calendar-o)
+            font-weight: 300; // to use the light version (formerly calendar-o)
             content: "\f133"; // calendar
         }
     }
@@ -80,19 +80,19 @@
     }
 
     .prev-but:before {
-        content: '\f104'; // angle-left
+        content: "\f104"; // angle-left
     }
 
     .prev-year:before {
-        content: '\f100'; // angle-double-left
+        content: "\f100"; // angle-double-left
     }
 
     .next-but:before {
-        content: '\f105'; // angle-right
+        content: "\f105"; // angle-right
     }
 
     .next-year:before {
-        content: '\f101'; // angle-double-right
+        content: "\f101"; // angle-double-right
     }
 
     .date-picker-hover {

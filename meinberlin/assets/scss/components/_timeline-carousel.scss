@@ -1,6 +1,6 @@
 $timeline-carousel__top-space: 11px;
 
-.timeline-carousel__item { //to stop items displaying as a list before js is initialized
+.timeline-carousel__item { // to stop items displaying as a list before js is initialized
     visibility: hidden;
 
     &.slick-initialized {
@@ -23,7 +23,7 @@ $timeline-carousel__top-space: 11px;
 
 .timeline-carousel__label {
     padding: $padding;
-    margin-top: 2*$em-spacer;
+    margin-top: 2 * $em-spacer;
     color: $brand-secondary;
     background-color: $blue-light;
     text-align: left;
@@ -60,9 +60,9 @@ $timeline-carousel__top-space: 11px;
     text-align: center;
     margin: $em-spacer 0;
 
-    //slick overwrites - nested for specificity
+    // slick overwrites - nested for specificity
     .slick-slide {
-        margin: 0 3*$em-spacer;
+        margin: 0 3 * $em-spacer;
         min-width: 275px;
     }
 
@@ -75,7 +75,7 @@ $timeline-carousel__top-space: 11px;
         border-radius: 100%;
         border: 1px solid $border-color;
         background-color: $body-bg;
-        z-index: 1; //for when tile links overlap
+        z-index: 1; // for when tile links overlap
 
         &:hover,
         &:focus,
@@ -94,15 +94,15 @@ $timeline-carousel__top-space: 11px;
     }
 
     .slick-prev:before {
-        content: '\f104'; // angle-left
+        content: "\f104"; //  angle-left
     }
 
     .slick-next:before {
-        content: '\f105'; // angle-right
+        content: "\f105"; //  angle-right
     }
 }
 
-//mobile slick overwrites
+// mobile slick overwrites
 @media screen and (max-width: $breakpoint-lg-down) {
     .slick-next {
         right: 0 !important;
@@ -118,7 +118,7 @@ $timeline-carousel__top-space: 11px;
     color: $text-color-inverted;
 
     &.timeline-carousel__label {
-        padding: 1.5*$padding;
+        padding: 1.5 * $padding;
 
         .timeline-carousel__title {
             font-weight: bold;
@@ -138,6 +138,6 @@ $timeline-carousel__top-space: 11px;
 
 @media screen and (min-width: $breakpoint-md) {
     .timeline-carousel__wrapper {
-        margin-bottom: 3*$spacer;
+        margin-bottom: 3 * $spacer;
     }
 }

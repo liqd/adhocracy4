@@ -59,10 +59,10 @@
     text-align: left;
 }
 
-//FIXME this should be refactored - ensure tabs remain on single line mobile
+// FIXME this should be refactored - ensure tabs remain on single line mobile
 @media (max-width: $breakpoint-md-down) {
     .tablist--left > .l-wrapper {
-        padding: 0 0.5*$spacer;
+        padding: 0 0.5 * $spacer;
     }
 }
 

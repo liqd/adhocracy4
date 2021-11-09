@@ -8,7 +8,7 @@
 
     @supports (display: grid) {
         display: grid;
-        grid-column-gap: _grid-get('gutter', $settings);
+        grid-column-gap: _grid-get("gutter", $settings);
         grid-template-columns: repeat($n, 1fr);
 
         > * {

@@ -1,8 +1,8 @@
 .status-item {
     position: absolute;
     bottom: $padding;
-    right: 1.5*$padding;
-    left: 1.5*$padding;
+    right: 1.5 * $padding;
+    left: 1.5 * $padding;
     text-align: left;
 }
 
@@ -13,14 +13,14 @@
 }
 
 .status-item_spacer {
-    height: 3*$spacer;
+    height: 3 * $spacer;
 }
 
 .status-bar__active {
     position: relative;
     height: 5px;
     background-color: $bg-tertiary;
-    margin-bottom: 0.5*$spacer;
+    margin-bottom: 0.5 * $spacer;
 }
 
 .status-bar__active-fill {
@@ -42,14 +42,14 @@
 }
 
 .status-bar__past--sm {
-    padding: 0.5*$padding;
+    padding: 0.5 * $padding;
 }
 
 .status-bar__status {
     color: $text-color;
 
     i {
-        padding-right: 0.5*$padding;
+        padding-right: 0.5 * $padding;
         color: $brand-secondary;
     }
 }

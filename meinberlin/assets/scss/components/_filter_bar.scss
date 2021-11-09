@@ -1,9 +1,9 @@
-//divider margin needs to be half the line-height
+// divider margin needs to be half the line-height
 $line-height: 2.5;
 $divider-margin: 1.25rem;
 
 .filter-bar-container {
-    margin-bottom: 2*$spacer;
+    margin-bottom: 2 * $spacer;
 }
 
 .filter-bar {
@@ -19,7 +19,7 @@ $divider-margin: 1.25rem;
     flex-direction: row;
     justify-content: center;
 
-    padding: 1.5*$padding 2*$padding;
+    padding: 1.5 * $padding 2 * $padding;
 }
 
 .filter-bar--stacked {
@@ -150,15 +150,15 @@ $divider-margin: 1.25rem;
     }
 
     .form-group {
-        margin-bottom: 2*$spacer;
+        margin-bottom: 2 * $spacer;
     }
 
     @media screen and (min-width: $breakpoint-xs) {
-        padding: 2*$padding;
+        padding: 2 * $padding;
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        padding: 0.5*$padding 4*$padding 2*$padding 4*$padding;
+        padding: 0.5 * $padding 4 * $padding 2 * $padding 4 * $padding;
     }
 }
 
@@ -231,19 +231,19 @@ $divider-margin: 1.25rem;
     }
 }
 
-//secondary search
+// secondary search
 
 .filter-bar__search {
     display: inline;
     width: calc(100% - 63px);
-    margin-bottom: 2*$spacer;
+    margin-bottom: 2 * $spacer;
 
     @media screen and (min-width: $breakpoint-xs) {
         width: calc(100% - 51px);
     }
 }
 
-//secondary radio group
+// secondary radio group
 .filter-bar__menu-radio-group {
     display: flex;
     flex-wrap: wrap;
@@ -253,7 +253,7 @@ $divider-margin: 1.25rem;
 .filter-bar__menu-radio-part,
 .filter-bar__menu-radio-proj {
     width: 100%;
-    margin-bottom: 2*$spacer;
+    margin-bottom: 2 * $spacer;
 
     .btn-group {
         margin-top: $spacer;
@@ -264,8 +264,8 @@ $divider-margin: 1.25rem;
 
     .switch--btn {
         font-weight: normal;
-        padding-left: 0.5*$padding;
-        padding-right: 0.5*$padding;
+        padding-left: 0.5 * $padding;
+        padding-right: 0.5 * $padding;
     }
 }
 
@@ -277,7 +277,7 @@ $divider-margin: 1.25rem;
 }
 
 .filter-bar__menu-radio-proj {
-    margin-bottom: 2*$spacer;
+    margin-bottom: 2 * $spacer;
 
     .switch--btn {
         min-width: 20%;
@@ -296,11 +296,11 @@ $divider-margin: 1.25rem;
 
     .filter-bar__menu-radio-proj {
         width: 39%;
-        margin-left: 2*$spacer;
+        margin-left: 2 * $spacer;
     }
 }
 
-//modal for mobile secondary filters
+// modal for mobile secondary filters
 .filter-secondary__modal {
     display: block;
 }
@@ -316,11 +316,11 @@ $divider-margin: 1.25rem;
 
     .filter-secondary__btn {
         width: 100%;
-        margin: 2*$spacer 0 $spacer 0;
+        margin: 2 * $spacer 0 $spacer 0;
     }
 }
 
-//to close primary filter on click away
+// to close primary filter on click away
 .outer-handler {
     position: fixed;
     top: 0;
@@ -331,13 +331,13 @@ $divider-margin: 1.25rem;
     display: none;
 }
 
-//for large screen (general sibling selector)
+// for large screen (general sibling selector)
 .filter-bar--open ~ .outer-handler {
     z-index: 1;
     display: block;
 }
 
-//for smaller screens
+// for smaller screens
 .filter-bar--open.filter-bar--stacked {
     position: relative;
 }

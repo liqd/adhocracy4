@@ -1,5 +1,7 @@
 // See https://csswizardry.com/2013/04/shame-css/ about this file
 
+/* stylelint-disable property-no-vendor-prefix */
+
 // CKEditor applies `box-sizing: content-box` everywhere. The outer element has
 // a 1px border, so if set to `width: 100%` it will take up an additional 2px.
 .cke_chrome {
@@ -52,7 +54,7 @@ input[type="search"] {
     min-height: 500px;
 }
 
-//add underline to links within paragraphs added by wagtail or ckeditor
+// add underline to links within paragraphs added by wagtail or ckeditor
 .rich-text {
     p {
         a {

@@ -41,8 +41,8 @@
 
 .switch__toggle:before,
 .switch__toggle:after {
-    content: '';
-    margin-left: 0.5*$spacer;
+    content: "";
+    margin-left: 0.5 * $spacer;
     display: inline-block;
     border-radius: 16px;
 }
@@ -116,9 +116,9 @@
 
 .switch-filter__label {
     width: 100%;
-    padding-bottom: 0.5*$padding;
+    padding-bottom: 0.5 * $padding;
 }
 
 .switch-filter__btn-group {
-    min-width: 1px; //stop mapswitch swapping sides
+    min-width: 1px; // stop mapswitch swapping sides
 }

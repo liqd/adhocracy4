@@ -1,6 +1,6 @@
 // stylelint-disable selector-max-specificity
 
-@import '~select2/src/scss/core';
+@import "~select2/src/scss/core";
 
 .select2-container--default {
     .select2-selection--single {
@@ -37,13 +37,13 @@
         width: 40px;
 
         b {
-            border-width: 7px 7px 0 7px;
+            border-width: 7px 7px 0;
         }
     }
 
     &.select2-container--open {
         .select2-selection--single > .select2-selection__arrow > b {
-            border-width: 0 7px 7px 7px;
+            border-width: 0 7px 7px;
         }
     }
 

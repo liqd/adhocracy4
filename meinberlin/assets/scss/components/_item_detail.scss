@@ -61,7 +61,7 @@
     padding-top: 60%; // this creates an aspect ratio in css, 100% = 1:1 ratio
 
     @media screen and (min-width: $breakpoint-xs) {
-        margin: 3*$spacer 0 2*$spacer;
+        margin: 3 * $spacer 0 2 * $spacer;
     }
 }
 

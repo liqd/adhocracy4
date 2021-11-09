@@ -10,7 +10,7 @@
 .accordion__title {
     display: block;
     position: relative;
-    padding: 0.5*$padding 1.7*$padding 0.5*$padding $padding;
+    padding: 0.5 * $padding 1.7 * $padding 0.5 * $padding $padding;
     text-decoration: none;
     color: inherit;
     border-bottom: solid 1px $border-color;
@@ -48,7 +48,7 @@
     a[href^="/documents"]:before {
         font-family: "Font Awesome 5 Free", sans-serif;
         font-weight: 900;
-        content: '\f15b'; // file
+        content: "\f15b"; // file
         margin-right: 0.3em;
     }
 }

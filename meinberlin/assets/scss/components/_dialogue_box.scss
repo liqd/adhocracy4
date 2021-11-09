@@ -6,7 +6,7 @@
 .dialogue-box__background-right {
     position: absolute;
     height: 94px;
-    background-image: url('/static/images/dialoguebox_border.png');
+    background-image: url("/static/images/dialoguebox_border.png");
     background-repeat: repeat-x;
     bottom: 0;
     z-index: 1;
@@ -41,9 +41,9 @@
 
 .dialogue-box__left,
 .dialogue-box__right {
-    background-image: url('/static/images/dialoguebox_border.png');
+    background-image: url("/static/images/dialoguebox_border.png");
     background-repeat: repeat-x;
-    margin: 1px -1px -1px 0; //fix for gop in chrome, safari zoom
+    margin: 1px -1px -1px 0; // fix for gop in chrome, safari zoom
 }
 
 .dialogue-box__left {
@@ -65,6 +65,6 @@
 .dialogue-box__right {
     margin: 1px -1px -1px 0;
     flex: 0 1 15.8rem;
-    background-image: url('/static/images/dialoguebox.png');
+    background-image: url("/static/images/dialoguebox.png");
     background-repeat: no-repeat;
 }

@@ -97,6 +97,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+
     // max-height: 80vh;
 
     @media (min-width: $breakpoint) {
@@ -114,7 +115,7 @@
     z-index: 1;
 }
 
-//chrome bug workaround
+// chrome bug workaround
 .leaflet-control-zoom,
 .leaflet-control-attribution,
 .map-list-combined__map__search,
@@ -154,11 +155,11 @@
         font-size: $font-size-base;
         width: 90%;
         position: absolute;
-        left: 1*$em-spacer;
-        top: 4.5*$em-spacer;
+        left: 1 * $em-spacer;
+        top: 4.5 * $em-spacer;
         z-index: 1000;
         background-color: $body-bg;
-        padding: $padding $padding $padding 3*$padding;
+        padding: $padding $padding $padding 3 * $padding;
 
         @media (min-width: $breakpoint-xs) {
             width: 50%;
@@ -173,7 +174,7 @@
 
         .infobox__close {
             position: absolute;
-            padding: 0.25*$padding 0.5*$padding;
+            padding: 0.25 * $padding 0.5 * $padding;
             right: 0;
             top: 0;
         }

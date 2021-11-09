@@ -126,14 +126,14 @@ div.cke_focus {
     }
 
     label {
-        padding-bottom: 0.5*$padding;
-        padding-left: 1.25*$padding;
+        padding-bottom: 0.5 * $padding;
+        padding-left: 1.25 * $padding;
 
         @extend .form-check__label;
     }
 
     input[type="checkbox"] {
         transform: scale(1.5);
-        margin-right: 0.5*$em-spacer;
+        margin-right: 0.5 * $em-spacer;
     }
 }

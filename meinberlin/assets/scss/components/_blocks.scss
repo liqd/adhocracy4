@@ -89,11 +89,9 @@
     color: $body-bg;
 
     padding-top: $padding;
-    //padding-bottom: $padding;
 
     @media screen and (min-width: $breakpoint-xs) {
         padding-top: 2 * $padding;
-        //padding-bottom: 2 * $padding;
     }
 
     @media print {
@@ -181,8 +179,8 @@
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        padding-right: 3*$padding;
-        padding-left: 3*$padding;
+        padding-right: 3 * $padding;
+        padding-left: 3 * $padding;
         padding-top: 0;
         width: 13rem;
     }
@@ -204,10 +202,10 @@
     background-repeat: no-repeat;
     max-width: $wrapper-width;
     margin: auto;
-    margin-top: (-15*$spacer);
+    margin-top: (-15 * $spacer);
     margin-bottom: (-$spacer);
-    padding-top: 25*$padding;
-    padding-bottom: 16*$padding;
+    padding-top: 25 * $padding;
+    padding-bottom: 16 * $padding;
 }
 
 .block--map-teaser_background {
@@ -216,14 +214,14 @@
     text-align: center;
 }
 
-//as filter is different on homepage styling must be nested
+// as filter is different on homepage styling must be nested
 .block--map-teaser__filter {
     .filter-bar-container {
-        margin: 2*$spacer 0 0 0;
+        margin: 2 * $spacer 0 0 0;
     }
 
     .filter-bar {
-        margin-top: 3*$spacer;
+        margin-top: 3 * $spacer;
         box-shadow: 0 0 20px 0 $shadow;
         background-color: $body-bg;
         color: $text-color;
@@ -255,8 +253,8 @@
         right: 1rem;
         margin-left: 0;
         margin-right: 0;
-        margin-top: 1.5*$spacer;
-        padding-top: 2*$padding;
+        margin-top: 1.5 * $spacer;
+        padding-top: 2 * $padding;
         border-top: 2px solid $white;
         z-index: 3;
     }
@@ -264,8 +262,8 @@
 
 @media screen and (max-width: $breakpoint-md-down) {
     .block--map-teaser {
-        padding-top: 15*$padding;
-        padding-bottom: 11*$padding;
+        padding-top: 15 * $padding;
+        padding-bottom: 11 * $padding;
 
         .filter-bar__dropdown {
             width: 30%;

@@ -5,12 +5,12 @@ $checkbox-size: 20px;
     border: 1px solid $border-color;
 
     .alert--success {
-        margin: 0 1.5*$spacer;
+        margin: 0 1.5 * $spacer;
     }
 }
 
 .poll {
-    padding: 1.5*$spacer;
+    padding: 1.5 * $spacer;
 
     background-color: $body-bg;
 
@@ -19,23 +19,24 @@ $checkbox-size: 20px;
     }
 }
 
-//PollQuestion/s
+// PollQuestion/s
 .poll-row {
     display: flex;
     position: relative;
     z-index: 1;
-    padding: 0.2*$spacer 0;
-    margin-bottom: 0.5*$spacer;
+    padding: 0.2 * $spacer 0;
+    margin-bottom: 0.5 * $spacer;
 
     @include clearfix;
 
     &--answered {
-        left: 2*$spacer;
+        left: 2 * $spacer;
     }
-    //FIXME
+
+    // FIXME
     .form-control {
         margin-left: $checkbox-size + 7px !important;
-        margin-top: 0.5*$spacer;
+        margin-top: 0.5 * $spacer;
         width: auto;
     }
 }
@@ -58,7 +59,7 @@ $checkbox-size: 20px;
 }
 
 .poll__actions > :last-child {
-    margin-top: 0.5*$spacer;
+    margin-top: 0.5 * $spacer;
     display: block;
 
     @media (min-width: $breakpoint) {
@@ -71,7 +72,7 @@ $checkbox-size: 20px;
 .poll-row__radio {
     display: inline-block;
     margin: 0;
-    margin-right: 0.2*$spacer;
+    margin-right: 0.2 * $spacer;
 }
 
 .poll-row__radio {
@@ -86,7 +87,7 @@ $checkbox-size: 20px;
     position: relative;
 
     .poll__btn--link {
-        margin: 0.1*$spacer 0 0.6*$spacer 0; //corrects spaceing for other answers
+        margin: 0.1 * $spacer 0 0.6 * $spacer 0; // corrects spaceing for other answers
     }
 }
 
@@ -121,11 +122,11 @@ $checkbox-size: 20px;
 .poll-row__chosen {
     color: $gray-lighter;
     position: absolute;
-    top: 0.5*$spacer;
+    top: 0.5 * $spacer;
 }
 
 .poll-row__number {
-    padding-left: 0.5*$spacer;
+    padding-left: 0.5 * $spacer;
     min-width: 5em;
     font-weight: bold;
 }
@@ -137,7 +138,7 @@ $checkbox-size: 20px;
 }
 
 .editpoll__btn--question {
-    margin: 0.5*$spacer 0;
+    margin: 0.5 * $spacer 0;
 }
 
 .poll__btn--dark {
@@ -149,12 +150,12 @@ $checkbox-size: 20px;
     align-items: center;
 }
 
-//EditPollQuestions/EditPollOpenQuestions
+// EditPollQuestions/EditPollOpenQuestions
 .editpoll__help-text,
 .poll__help-text {
     color: $gray-lighter;
-    margin-top: -0.7*$spacer;
-    margin-bottom: 0.8*$spacer;
+    margin-top: -0.7 * $spacer;
+    margin-bottom: 0.8 * $spacer;
 }
 
 .editpoll__help-text {
@@ -169,7 +170,7 @@ $checkbox-size: 20px;
 }
 
 .editpoll__menu-container {
-    margin: 0.25*$spacer 0;
+    margin: 0.25 * $spacer 0;
 
     & > * {
         width: 100%;
@@ -178,8 +179,7 @@ $checkbox-size: 20px;
 
 .editpoll__btns--question {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
 }
 
 .editpoll__questions {
@@ -234,18 +234,18 @@ $checkbox-size: 20px;
 
     .editpoll__btn--question {
         margin: 0;
-        margin-right: 0.5*$spacer;
+        margin-right: 0.5 * $spacer;
     }
 }
 
-//Open/Other answers
+// Open/Other answers
 
 .poll-slider__item {
     padding: $spacer;
 }
 
 .poll-slider__answer {
-    padding-bottom: 1.75*$spacer;
+    padding-bottom: 1.75 * $spacer;
 
     i {
         color: $gray-lighter;
@@ -264,16 +264,16 @@ $checkbox-size: 20px;
     position: relative;
     background-color: $bg-secondary;
     margin-bottom: $spacer;
-    border-radius: 0.3*$spacer;
+    border-radius: 0.3 * $spacer;
 
-    //slick overwrites - nested for specificity
+    // slick overwrites - nested for specificity
     .slick-prev {
         left: revert !important;
-        right: 4*$spacer !important;
+        right: 4 * $spacer !important;
     }
 
     .slick-next {
-        right: 1.5*$spacer !important;
+        right: 1.5 * $spacer !important;
     }
 
     .slick-prev,
@@ -286,7 +286,7 @@ $checkbox-size: 20px;
         width: 30px;
         height: 30px;
         border-radius: 100%;
-        z-index: 1; //for when tile links overlap
+        z-index: 1; // for when tile links overlap
 
         &:before {
             color: $body-bg;
@@ -299,11 +299,11 @@ $checkbox-size: 20px;
     }
 
     .slick-prev:before {
-        content: '\f104'; // angle-left
+        content: "\f104"; // angle-left
     }
 
     .slick-next:before {
-        content: '\f105'; // angle-right
+        content: "\f105"; // angle-right
     }
 
     // Ensure centermode works
@@ -314,8 +314,7 @@ $checkbox-size: 20px;
 
     .slick-track {
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        flex-flow: row nowrap;
         align-items: stretch;
     }
 }
@@ -323,6 +322,6 @@ $checkbox-size: 20px;
 @media (min-width: $breakpoint) {
     .poll-slider__count {
         left: revert;
-        right: 6.5*$spacer;
+        right: 6.5 * $spacer;
     }
 }

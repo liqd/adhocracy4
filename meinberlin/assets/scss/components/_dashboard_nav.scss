@@ -49,16 +49,16 @@ input:checked ~ .dashboard-nav__dropdown {
 }
 
 .dashboard-nav__breadcrumb {
-    padding-top: 1.5*$padding;
-    padding-bottom: 1.5*$padding;
+    padding-top: 1.5 * $padding;
+    padding-bottom: 1.5 * $padding;
 }
 
 .dashboard-nav__icon {
-    margin-right: 1.9*$em-spacer;
+    margin-right: 1.9 * $em-spacer;
 }
 
 .dashboard-nav__dropdown-icon {
-    margin-right: 0.5*$em-spacer;
+    margin-right: 0.5 * $em-spacer;
     vertical-align: super;
 }
 

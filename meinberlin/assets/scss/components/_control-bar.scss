@@ -48,7 +48,7 @@
             // push to the right
             // NOTE: needs to overwrite grid-tiles
 
-            @include grid-cell();
+            @include grid-cell;
             @include grid-position(6);
         }
 
