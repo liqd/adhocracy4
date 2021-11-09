@@ -137,8 +137,8 @@ class ModulePublishView(SingleObjectMixin,
     def get_next(self):
         if 'referrer' in self.request.POST:
             return self.request.POST['referrer']
-        elif 'HTTP_REFERER' in self.request.META:
-            return self.request.META['HTTP_REFERER']
+        elif 'Referer' in self.request.headers:
+            return self.request.headers['Referer']
 
         return reverse('a4dashboard:project-edit', kwargs={
             'project_slug': self.get_object().project.slug
@@ -219,7 +219,7 @@ class ModuleDeleteView(PermissionRequiredMixin,
 
     def get_success_url(self):
         referrer = self.request.POST.get('referrer', None) or \
-            self.request.META.get('HTTP_REFERER', None)
+            self.request.headers.get('Referer', None)
         if referrer:
             view, args, kwargs = resolve(referrer)
             if 'module_slug' not in kwargs or not \
@@ -233,8 +233,8 @@ class ModuleDeleteView(PermissionRequiredMixin,
     def get_failure_url(self):
         if 'referrer' in self.request.POST:
             return self.request.POST['referrer']
-        elif 'HTTP_REFERER' in self.request.META:
-            return self.request.META['HTTP_REFERER']
+        elif 'Referer' in self.request.headers:
+            return self.request.headers['Referer']
 
         return reverse('a4dashboard:project-edit', kwargs={
             'project_slug': self.get_object().project.slug,
