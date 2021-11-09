@@ -8,7 +8,7 @@ from django.forms.utils import flatatt
 from django.template import defaultfilters
 from django.template.loader import render_to_string
 from django.utils import timezone
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.safestring import mark_safe
 
 register = template.Library()
@@ -72,7 +72,7 @@ def classify(value):
     if value is None:
         return 'NONE'
 
-    value = force_text(value)
+    value = force_str(value)
     value = unicodedata.normalize('NFKD', value) \
         .encode('ascii', 'ignore').decode('ascii')
     value = re.sub(r'[^\w\s-]', '', value).strip()

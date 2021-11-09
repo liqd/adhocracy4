@@ -1,6 +1,6 @@
 import factory
 from django.db.models.signals import post_save
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_str
 
 from adhocracy4.test.helpers import redirect_target
 
@@ -27,7 +27,7 @@ def setup_group_member(organisation, project, group_factory,
 def assert_dashboard_form_component_response(
         response, component, status_code=200):
     assert response.status_code == status_code
-    assert str(component.form_title) in smart_text(response.content)
+    assert str(component.form_title) in smart_str(response.content)
 
 
 def assert_dashboard_form_component_edited(

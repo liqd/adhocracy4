@@ -5,7 +5,7 @@ from django.db import transaction
 from django.forms import models as model_forms
 from django.forms.formsets import all_valid
 from django.http import HttpResponseRedirect
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.views import generic
 
 
@@ -93,7 +93,7 @@ class MultiFormMixin(generic.base.ContextMixin):
         """
         if self.success_url:
             # Forcing possible reverse_lazy evaluation
-            url = force_text(self.success_url)
+            url = force_str(self.success_url)
         else:
             raise ImproperlyConfigured(
                 "No URL to redirect to. Provide a success_url.")

@@ -1,5 +1,6 @@
+from urllib.parse import quote
+
 from django.utils.deprecation import MiddlewareMixin
-from django.utils.http import urlquote
 
 
 class AjaxPathMiddleware(MiddlewareMixin):
@@ -11,5 +12,5 @@ class AjaxPathMiddleware(MiddlewareMixin):
     """
 
     def process_response(self, request, response):
-        response['x-ajax-path'] = urlquote(request.path)
+        response['x-ajax-path'] = quote(request.path)
         return response
