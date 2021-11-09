@@ -134,6 +134,6 @@ def test_export_view(client, proposal_factory, module_factory):
                   kwargs={'module_slug': proposal.module.slug})
     response = client.get(url)
     assert response.status_code == 200
-    assert (response._headers['content-type'] ==
-            ('Content-Type', 'application/vnd.openxmlformats-officedocument.'
-            'spreadsheetml.sheet'))
+    assert (response['Content-Type'] ==
+            'application/vnd.openxmlformats-officedocument.'
+            'spreadsheetml.sheet')

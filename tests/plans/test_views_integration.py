@@ -222,6 +222,6 @@ def test_export_view(client, plan_factory, project_factory):
                   kwargs={'organisation_slug': organisation.slug})
     response = client.get(url)
     assert response.status_code == 200
-    assert (response._headers['content-type'] ==
-            ('Content-Type', 'application/vnd.openxmlformats-officedocument.'
-            'spreadsheetml.sheet'))
+    assert (response['Content-Type'] ==
+            'application/vnd.openxmlformats-officedocument.'
+            'spreadsheetml.sheet')
