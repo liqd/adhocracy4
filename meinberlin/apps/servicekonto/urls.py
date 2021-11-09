@@ -1,15 +1,15 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    url('^servicekonto/login/$',
-        views.login,
-        name='servicekonto_login'),
-    url('^servicekonto/login/redirect/$',
-        views.login_redirect,
-        name='servicekonto_login_redirect'),
-    url('^servicekonto/callback/$',
-        views.callback,
-        name='servicekonto_callback'),
+    path('servicekonto/login/',
+         views.login,
+         name='servicekonto_login'),
+    path('servicekonto/login/redirect/',
+         views.login_redirect,
+         name='servicekonto_login_redirect'),
+    path('servicekonto/callback/',
+         views.callback,
+         name='servicekonto_callback'),
 ]

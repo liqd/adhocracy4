@@ -1,14 +1,14 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
 
 urlpatterns = [
-    url(
+    re_path(
         r'^chapters/(?P<pk>\d+)/$',
         views.ChapterDetailView.as_view(),
         name='chapter-detail'
     ),
-    url(
+    re_path(
         r'^paragraphs/(?P<pk>\d+)/$',
         views.ParagraphDetailView.as_view(),
         name='paragraph-detail'

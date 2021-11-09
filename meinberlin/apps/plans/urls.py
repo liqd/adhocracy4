@@ -1,10 +1,11 @@
-from django.conf.urls import url
+from django.urls import path
+from django.urls import re_path
 
 from . import views
 
 urlpatterns = [
-    url(r'^vorhaben/(?P<year>\d{4})-(?P<pk>\d+)/$',
-        views.PlanDetailView.as_view(), name='plan-detail'),
-    url('^projekte/$',
-        views.PlanListView.as_view(), name='plan-list'),
+    re_path(r'^vorhaben/(?P<year>\d{4})-(?P<pk>\d+)/$',
+            views.PlanDetailView.as_view(), name='plan-detail'),
+    path('projekte/',
+         views.PlanListView.as_view(), name='plan-list'),
 ]

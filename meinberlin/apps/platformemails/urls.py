@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    url(r'^create/$',
-        views.PlatformEmailCreateView.as_view(), name='create'),
+    path('create/',
+         views.PlatformEmailCreateView.as_view(), name='create'),
 ]

@@ -1,10 +1,10 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    url(r'^sent/$', views.BplanStatementSentView.as_view(),
-        name='statement-sent'),
-    url(r'^finished/$', views.BplanFinishedView.as_view(),
-        name='finished'),
+    path('sent/', views.BplanStatementSentView.as_view(),
+         name='statement-sent'),
+    path('finished/', views.BplanFinishedView.as_view(),
+         name='finished'),
 ]
