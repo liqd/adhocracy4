@@ -76,7 +76,7 @@
     "husky": "7.0.4",
     "lint-staged": "11.2.6",
     "markdownlint-cli": "0.29.0",
-    "stylelint": "13.13.1",
+    "stylelint": "14.0.1",
     "stylelint-config-standard": "23.0.0",
     "stylelint-declaration-strict-value": "1.8.0",
     "webpack-cli": "4.9.1"
@@ -85,7 +85,7 @@
     "build:prod": "webpack --config webpack.prod.js --mode production",
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development",
-    "lint": "eslint meinberlin/apps meinberlin/assets --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss' --syntax scss",
+    "lint": "eslint meinberlin/apps meinberlin/assets --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss'",
     "lint-staged": "lint-staged",
     "lint-fix": "eslint --fix --ext .js,.jsx .",
     "postinstall": "husky install"
