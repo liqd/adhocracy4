@@ -23,6 +23,7 @@ from adhocracy4.polls.routers import QuestionDefaultRouter
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from meinberlin.apps.bplan.api import BplanViewSet
+from meinberlin.apps.budgeting.api import ProposalViewSet
 from meinberlin.apps.contrib import views as contrib_views
 from meinberlin.apps.contrib.sitemaps.adhocracy4_sitemap import \
     Adhocracy4Sitemap
@@ -60,6 +61,7 @@ module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
 module_router.register(r'documents', DocumentViewSet, basename='chapters')
 module_router.register(r'questions', LiveQuestionViewSet, basename='questions')
+module_router.register(r'proposals', ProposalViewSet, basename='proposals')
 
 likes_router = LikesDefaultRouter()
 likes_router.register(r'likes', LikesViewSet, basename='likes')
