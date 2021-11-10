@@ -1,7 +1,11 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 6,
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    },
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
     }
@@ -22,6 +26,6 @@
     "jsx-a11y/no-onchange": "off",
   },
   "plugins": [
-    "jsx-a11y"
+    "jsx-a11y",
   ]
 }
