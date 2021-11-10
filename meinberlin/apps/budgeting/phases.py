@@ -55,6 +55,22 @@ class RatingPhase(phases.PhaseContent):
     }
 
 
+class VotingPhase(phases.PhaseContent):
+    app = apps.Config.label
+    phase = 'voting'
+    view = views.ProposalListView
+
+    name = _('How do you like the submitted proposals?')
+    description = _('Vote for up to 5 proposals for the participatory '
+                    'budget.')
+    module_name = _('participatory budgeting 3 phases')
+
+    features = {
+        'vote': (models.Proposal,)
+    }
+
+
 phases.content.register(RequestPhase())
 phases.content.register(CollectPhase())
 phases.content.register(RatingPhase())
+phases.content.register(VotingPhase())
