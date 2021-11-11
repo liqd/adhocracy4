@@ -15,7 +15,7 @@
         outline: none;
     }
 
-    &:hover {
+    &:hover:not(.no-hover) {
         background-color: mix($body-bg, $bg-secondary);
     }
 }
@@ -94,6 +94,12 @@
 
 .list-item__action {
     display: inline;
+}
+
+.list-item__vote {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .list-item .is-read-only {
