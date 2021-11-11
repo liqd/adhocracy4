@@ -19,4 +19,4 @@ EOF
     chmod 600 ~/id_rsa
 fi
 
-ssh ${SSH_ID_ARG} -oIPQoS=throughput -oStrictHostKeyChecking=no build@build.liqd.net deploy meinberlin main
+ssh ${SSH_ID_ARG} -oServerAliveInterval=15 -oServerAliveCountMax=2 -oStrictHostKeyChecking=no build@build.liqd.net deploy meinberlin main
