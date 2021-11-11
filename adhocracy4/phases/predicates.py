@@ -38,3 +38,10 @@ def phase_allows_rate(user, item):
     if item:
         return has_feature_active(item.module, item.__class__, 'rate')
     return False
+
+
+@rules.predicate
+def phase_allows_vote(user, item):
+    if item:
+        return has_feature_active(item.module, item.__class__, 'vote')
+    return False
