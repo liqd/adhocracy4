@@ -82,7 +82,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.COV }}
         run: |
           coveralls
-              - name: Run Frontend Tests
+            - name: Run Frontend Tests
         run: |
           npm test
       - name: Frontend Coverage
