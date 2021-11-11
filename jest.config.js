@@ -6,7 +6,8 @@ const config = {
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
     '\\.(gif|ttf|eot|svg)$': '<rootDir>/__mocks__/fileMock.js',
-    '(django)': '<rootDir>/__mocks__/djangoMock.js'
+    '(django)': '<rootDir>/__mocks__/djangoMock.js',
+    'react-flip-move': '<rootDir>/__mocks__/flipmoveMock.js'
   },
   testMatch: [
     '**/*.jest.js',

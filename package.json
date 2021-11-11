@@ -14,6 +14,7 @@
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.4",
+    "@testing-library/react-native": "^8.0.0",
     "acorn": "8.5.0",
     "adhocracy4": "liqd/adhocracy4#9f13ad262c2286db31c6ec095a49ee3a819fd1c7",
     "autoprefixer": "10.4.0",
@@ -45,6 +46,7 @@
     "react-cookie": "4.1.1",
     "react-flip-move": "3.0.4",
     "react-sticky-box": "0.9.3",
+    "react-test-renderer": "^17.0.2",
     "sass-loader": "12.3.0",
     "sass-planifolia": "0.6.0",
     "select2": "4.0.13",
