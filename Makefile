@@ -21,22 +21,26 @@ help:
 	@echo
 	@echo usage:
 	@echo
-	@echo "  make install         -- install dev setup"
-	@echo "  make clean           -- delete node modules and venv"
-	@echo "  make fixtures        -- install regions"
-	@echo "  make server          -- start a dev server"
-	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
-	@echo "  make background      -- start background processes"
-	@echo "  make test            -- run all test cases with pytest"
-	@echo "  make test-lastfailed -- run test that failed last"
-	@echo "  make test-clean      -- test on new database"
-	@echo "  make coverage        -- write coverage report to dir htmlcov"
-	@echo "  make lint            -- lint all project files"
-	@echo "  make lint-quick      -- lint all files staged in git"
-	@echo "  make lint-python-files	-- lint all python files staged in git"
-	@echo "  make po              -- create new po files from the source"
-	@echo "  make compilemessages -- create new mo files from the translated po files"
-	@echo "  make release         -- build everything required for a release"
+	@echo "  make install         				-- install dev setup"
+	@echo "  make clean           				-- delete node modules and venv"
+	@echo "  make fixtures        				-- install regions"
+	@echo "  make server          				-- start a dev server"
+	@echo "  make watch           				-- start a dev server and rebuild js and css files on changes"
+	@echo "  make background      				-- start background processes"
+	@echo "  make test            				-- run all test cases with pytest"
+	@echo "  make test-lastfailed 				-- run test that failed last"
+	@echo "  make test-clean      				-- test on new database"
+	@echo "  make jest            				-- run js tests with coverage"
+	@echo "  make jest-nocov      				-- run js tests without coverage"
+	@echo "  make jest-debug      				-- run changed tests only, no coverage"
+	@echo "  make jest-updateSnapshots    -- update jest snapshots"
+	@echo "  make coverage        				-- write coverage report to dir htmlcov"
+	@echo "  make lint            				-- lint all project files"
+	@echo "  make lint-quick      				-- lint all files staged in git"
+	@echo "  make lint-python-files				-- lint all python files staged in git"
+	@echo "  make po              				-- create new po files from the source"
+	@echo "  make compilemessages 				-- create new mo files from the translated po files"
+	@echo "  make release         				-- build everything required for a release"
 	@echo
 
 .PHONY: install
@@ -90,6 +94,22 @@ test-lastfailed:
 test-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
 	$(VIRTUAL_ENV)/bin/py.test
+
+.PHONY: jest
+jest:
+	npm run test
+
+.PHONY: jest-nocov
+jest-nocov:
+	npm run testNoCov
+
+.PHONY: jest-debug
+jest-debug:
+	npm run testDebug
+
+.PHONY: jest-updateSnapshots
+jest-updateSnapshots:
+	npm run updateSnapshots
 
 .PHONY: coverage
 coverage:

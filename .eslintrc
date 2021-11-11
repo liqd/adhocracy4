@@ -27,5 +27,16 @@
   },
   "plugins": [
     "jsx-a11y",
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.jest.js",
+        "**/*.jest.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
   ]
 }

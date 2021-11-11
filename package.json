@@ -13,12 +13,6 @@
   ],
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
-    "@babel/core": "7.16.0",
-    "@babel/eslint-parser": "7.16.3",
-    "@babel/plugin-transform-modules-commonjs": "7.16.0",
-    "@babel/plugin-transform-runtime": "7.16.4",
-    "@babel/preset-env": "7.16.4",
-    "@babel/preset-react": "7.16.0",
     "@fortawesome/fontawesome-free": "5.15.4",
     "acorn": "8.5.0",
     "adhocracy4": "liqd/adhocracy4#9f13ad262c2286db31c6ec095a49ee3a819fd1c7",
@@ -34,6 +28,7 @@
     "feature-detect": "1.0.0",
     "file-saver": "2.0.5",
     "immutability-helper": "3.1.1",
+    "jest": "^27.3.1",
     "jquery": "3.6.0",
     "leaflet": "1.7.1",
     "leaflet-draw": "1.0.4",
@@ -64,7 +59,15 @@
     "whatwg-fetch": "3.6.2"
   },
   "devDependencies": {
+    "@babel/core": "7.16.0",
+    "@babel/eslint-parser": "7.16.3",
     "@babel/eslint-plugin": "7.14.5",
+    "@babel/plugin-transform-modules-commonjs": "7.16.0",
+    "@babel/plugin-transform-runtime": "7.16.0",
+    "@babel/preset-env": "7.16.0",
+    "@babel/preset-react": "7.16.0",
+    "@testing-library/react": "12.1.0",
+    "@testing-library/react-native": "8.0.0",
     "eslint": "8.2.0",
     "eslint-config-standard": "16.0.3",
     "eslint-config-standard-jsx": "10.0.0",
@@ -90,7 +93,11 @@
     "lint": "eslint meinberlin/apps meinberlin/assets --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss'",
     "lint-staged": "lint-staged",
     "lint-fix": "eslint --fix --ext .js,.jsx .",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "test": "jest",
+    "testDebug": "jest -o --coverage=false",
+    "testNoCov": "jest --coverage=false",
+    "updateSnapshots": "jest -u --coverage=false"
   },
   "browserslist": "last 3 versions, ie >= 11",
   "lint-staged": {
