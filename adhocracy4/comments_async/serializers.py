@@ -27,10 +27,12 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         """
-        Create a dictionary form categories.
+        Create a dictionary form categories and don't show blocked comments.
 
         Gets the categories and adds them along with their values
         to a dictionary.
+        Also gets the comments and blocks their content
+        from being shown if they are set to blocked.
         """
         ret = super().to_representation(instance)
         categories = {}
@@ -47,6 +49,9 @@ class CommentSerializer(serializers.ModelSerializer):
                 else:
                     categories[category] = category
         ret['comment_categories'] = categories
+        is_blocked = ret.get('is_blocked')
+        if is_blocked:
+            ret['comment'] = ''
         return ret
 
     def to_internal_value(self, data):
