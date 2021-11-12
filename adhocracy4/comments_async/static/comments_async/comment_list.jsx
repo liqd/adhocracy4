@@ -25,6 +25,7 @@ export default function (props) {
               is_deleted={comment.is_deleted}
               is_removed={comment.is_removed}
               is_censored={comment.is_censored}
+              is_blocked={comment.is_blocked}
               is_moderator_marked={comment.is_moderator_marked}
               index={index}
               parentIndex={props.parentIndex}

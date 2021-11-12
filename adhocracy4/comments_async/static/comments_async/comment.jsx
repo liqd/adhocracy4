@@ -260,6 +260,8 @@ export default class Comment extends React.Component {
       lastDate = django.gettext('Deleted by creator on') + ' ' + localeDate(this.props.modified)
     } else if (this.props.is_censored) {
       lastDate = django.gettext('Deleted by moderator on') + ' ' + localeDate(this.props.modified)
+    } else if (this.props.is_blocked) {
+      lastDate = django.gettext('Blocked by moderator on') + ' ' + localeDate(this.props.modified)
     } else {
       lastDate = django.gettext('Latest edit on') + ' ' + localeDate(this.props.modified)
     }
