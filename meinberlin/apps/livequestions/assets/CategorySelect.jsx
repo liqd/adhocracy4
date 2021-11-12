@@ -1,5 +1,6 @@
 import django from 'django'
 import React from 'react'
+import $ from 'jquery' // FIXME needed to run test but file should be refactored to not include jquery
 
 export default class SelectCategory extends React.Component {
   componentDidMount () {

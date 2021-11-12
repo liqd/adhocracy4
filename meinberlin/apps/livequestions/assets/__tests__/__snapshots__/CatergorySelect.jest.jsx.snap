@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectCategory renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="live_questions__select u-spacer-bottom"
+    >
+      <label
+        for="categorySelect"
+      >
+        mock text*
+      </label>
+      <div
+        class="form-hint"
+      >
+        mock text
+      </div>
+      <select
+        class="js-select2"
+        data-minimum-results-for-search="Infinity"
+        id="categorySelect"
+        name="categorySelect"
+        required=""
+      >
+        <option
+          value=""
+        >
+          --------
+        </option>
+        <option
+          value="124"
+        >
+          category2
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;
