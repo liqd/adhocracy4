@@ -1,5 +1,7 @@
 import React from 'react'
+import django from 'django'
 import { toDate } from './helpers'
+import SwitchButton from '../../contrib/assets/SwitchButton'
 
 export const BudgetingProposalListItem = (props) => {
   const { proposal } = props
@@ -27,9 +29,13 @@ export const BudgetingProposalListItem = (props) => {
           </span>
           {toDate(proposal.created)}
         </div>
-        <button className="btn btn--light">
-          meine Stimme abgeben
-        </button>
+        <SwitchButton
+          onText={django.gettext('Voted')}
+          offText={django.gettext('Give my vote')}
+          onClass="btn"
+          offClass="btn btn--light"
+          uniqueID={proposal.pk}
+        />
       </div>
     </li>
   )
