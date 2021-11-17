@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags static maps_tags %}
+{% load i18n discovery_tags static maps_tags react_proposals %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
@@ -40,6 +40,7 @@
         </div>
     {% else %}
         <div class="module-content--light">
+            {% react_proposals view.module %}
             <div class="l-wrapper">
                 <div class="l-center-8">
                     {% if object_list.count > 0 %}

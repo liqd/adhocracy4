@@ -539,3 +539,4 @@ A4_DASHBOARD = {
     'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'}
 
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
+

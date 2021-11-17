@@ -10,7 +10,8 @@
     float: left;
     display: inline-block;
 
-    a {
+    a,
+    button {
         display: inline-block;
         min-width: 1.4em + 2 * 0.5em;
         margin-right: -1px;
@@ -25,7 +26,8 @@
         }
     }
 
-    &.active a {
+    &.active a,
+    &.active button {
         background-color: $link-color;
         color: contrast-color($link-color);
         border-color: $link-color;
