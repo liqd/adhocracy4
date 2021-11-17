@@ -76,7 +76,6 @@ jobs:
           isort --diff -c meinberlin tests
           python manage.py makemigrations --dry-run --check --noinput
           flake8 meinberlin tests --exclude migrations,settings
-          npm run lint
       - name: Coveralls
         env:
           GITHUB_TOKEN: ${{ secrets.COV }}
@@ -85,6 +84,7 @@ jobs:
       - name: Run Frontend Tests
         run: |
           npm test
+          npm run lint
       - name: Frontend Coverage
         uses: artiomtr/jest-coverage-report-action@v2.0-rc.1
         with:

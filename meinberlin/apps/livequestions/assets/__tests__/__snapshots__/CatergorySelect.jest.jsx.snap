@@ -29,6 +29,11 @@ exports[`SelectCategory renders correctly 1`] = `
           --------
         </option>
         <option
+          value="123"
+        >
+          category1
+        </option>
+        <option
           value="124"
         >
           category2
