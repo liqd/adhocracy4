@@ -14,7 +14,12 @@ const months = [
   django.gettext('November'),
   django.gettext('December')
 ]
+
 export const toDate = (isodate) => {
   const d = new Date(isodate)
   return `${d.getDate()}. ${months[d.getMonth()]} ${d.getFullYear()}`
+}
+
+export const intComma = (number) => {
+  return Number(number).toLocaleString()
 }
