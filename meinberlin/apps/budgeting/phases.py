@@ -60,9 +60,9 @@ class VotingPhase(phases.PhaseContent):
     phase = 'voting'
     view = views.ProposalListView
 
-    name = _('How do you like the submitted proposals?')
-    description = _('Vote for up to 5 proposals for the participatory '
-                    'budget.')
+    name = _('Which of the proposals do you think should be implemented?')
+    description = _('You can vote for up to 5 proposals. '
+                    'To do so, please enter the voting code.')
     module_name = _('participatory budgeting 3 phases')
 
     features = {

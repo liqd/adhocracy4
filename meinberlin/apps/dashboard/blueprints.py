@@ -101,7 +101,7 @@ blueprints = [
              'In a first phase, participants can submit their own proposals, '
              'mark them on a map, and add a budget. The proposals of others '
              'can be discussed and in a second phase rated (pro/contra). In '
-             'a third phase citizens can vote for up to 5 proposals.'
+             'the third phase, participants vote on the shortlisted proposals.'
          ),
          content=[
              budgeting_phases.CollectPhase(),
@@ -109,7 +109,7 @@ blueprints = [
              budgeting_phases.VotingPhase(),
          ],
          # The icon has to be updated:
-         image='images/participatory-budgeting-2.svg',
+         image='images/participatory-budgeting-3.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('kiezkasse',
