@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.notifications',
     'meinberlin.apps.organisations',
     'meinberlin.apps.users',
+    'meinberlin.apps.votes',
 
     # General apps containing views
     'meinberlin.apps.account',
