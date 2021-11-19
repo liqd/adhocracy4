@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-10 11:55+0200\n"
+"POT-Creation-Date: 2021-11-19 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,6 +246,36 @@ msgstr "Duplicate"
 msgid "We could not find any projects."
 msgstr "We could not find any projects."
 
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:5
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:23
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:35
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:47
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:59
+msgid "Export"
+msgstr "Export"
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:7
+msgid ""
+"You can export the results of your participation project as an excel file."
+msgstr ""
+"You can export the results of your participation project as an excel file."
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:19
+msgid "here you can export all ideas"
+msgstr "here you can export all ideas"
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
+msgid "here you can export all subjects"
+msgstr "here you can export all subjects"
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
+msgid "here you can export all answers"
+msgstr "here you can export all answers"
+
+#: adhocracy4/exports/templates/a4exports/export_dashboard.html:55
+msgid "here you can export all comments"
+msgstr "here you can export all comments"
+
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11 meinberlin/apps/bplan/views.py:21
 #: meinberlin/apps/extprojects/views.py:21 meinberlin/apps/ideas/views.py:29
@@ -349,12 +379,12 @@ msgstr "Category name"
 msgid "Category icon"
 msgstr "Category icon"
 
-#: adhocracy4/comments/models.py:53
+#: adhocracy4/comments/models.py:54 adhocracy4/polls/exports.py:41
 msgctxt "noun"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments/models.py:54 adhocracy4/exports/mixins/comments.py:46
+#: adhocracy4/comments/models.py:55 adhocracy4/exports/mixins/comments.py:46
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:16
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:17
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:18
@@ -368,21 +398,11 @@ msgstr "Comment"
 msgid "Comments"
 msgstr "Comments"
 
-#: adhocracy4/comments/models.py:74
-#: adhocracy4/comments_async/serializers.py:151
-msgid "deleted by creator"
-msgstr "deleted by creator"
-
-#: adhocracy4/comments/models.py:77
-#: adhocracy4/comments_async/serializers.py:153
-msgid "deleted by moderator"
-msgstr "deleted by moderator"
-
-#: adhocracy4/comments/serializers.py:52 adhocracy4/comments/serializers.py:151
+#: adhocracy4/comments/serializers.py:73 adhocracy4/comments/serializers.py:175
 msgid "Please choose a category"
 msgstr "Please choose a category"
 
-#: adhocracy4/comments/serializers.py:61
+#: adhocracy4/comments/serializers.py:82
 #: adhocracy4/comments_async/serializers.py:79
 msgid "unknown user"
 msgstr "unknown user"
@@ -586,14 +606,13 @@ msgstr "Reply to Reference"
 msgid "Creator"
 msgstr "Creator"
 
-#: adhocracy4/exports/mixins/general.py:16
+#: adhocracy4/exports/mixins/general.py:16 adhocracy4/polls/exports.py:42
 #: meinberlin/apps/budgeting/exports.py:81
 #: meinberlin/apps/documents/exports.py:40 meinberlin/apps/ideas/exports.py:72
 #: meinberlin/apps/kiezkasse/exports.py:74
 #: meinberlin/apps/mapideas/exports.py:72
 #: meinberlin/apps/maptopicprio/exports.py:70
-#: meinberlin/apps/plans/exports.py:53 meinberlin/apps/polls/exports.py:38
-#: meinberlin/apps/topicprio/exports.py:69
+#: meinberlin/apps/plans/exports.py:53 meinberlin/apps/topicprio/exports.py:69
 msgid "Created"
 msgstr "Created"
 
@@ -677,26 +696,26 @@ msgstr "{image_name} copyright"
 msgid "Copyright shown in the {image_name}."
 msgstr "Copyright shown in the {image_name}."
 
-#: adhocracy4/images/validators.py:20
+#: adhocracy4/images/validators.py:21
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Unsupported file format. Supported formats are {}."
 
-#: adhocracy4/images/validators.py:27
+#: adhocracy4/images/validators.py:28
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
 msgstr "Image should be at most {max_size} MB"
 
-#: adhocracy4/images/validators.py:30
+#: adhocracy4/images/validators.py:36
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
 msgstr "Image must be at least {min_width} pixels wide"
 
-#: adhocracy4/images/validators.py:33
+#: adhocracy4/images/validators.py:44
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
 msgstr "Image must be at least {min_height} pixels high"
 
-#: adhocracy4/images/validators.py:43
+#: adhocracy4/images/validators.py:54
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
 msgstr "Image aspect ratio should be {aspect_width}:{aspect_height}"
@@ -854,9 +873,28 @@ msgstr "Duplicate choices detected."
 msgid "Multiple choice disabled for question."
 msgstr "Multiple choice disabled for question."
 
-#: adhocracy4/polls/dashboard.py:14 meinberlin/apps/dashboard/blueprints.py:154
+#: adhocracy4/polls/dashboard.py:15 meinberlin/apps/dashboard/blueprints.py:172
 msgid "Poll"
 msgstr "Poll"
+
+#: adhocracy4/polls/dashboard.py:42 meinberlin/apps/budgeting/dashboard.py:14
+#: meinberlin/apps/documents/dashboard.py:45
+#: meinberlin/apps/ideas/dashboard.py:14
+#: meinberlin/apps/kiezkasse/dashboard.py:14
+#: meinberlin/apps/mapideas/dashboard.py:14
+#: meinberlin/apps/maptopicprio/dashboard.py:59
+#: meinberlin/apps/topicprio/dashboard.py:54
+msgid "Export Excel"
+msgstr "Export Excel"
+
+#: adhocracy4/polls/exports.py:40 meinberlin/apps/budgeting/exports.py:79
+#: meinberlin/apps/documents/exports.py:38 meinberlin/apps/ideas/exports.py:70
+#: meinberlin/apps/kiezkasse/exports.py:72
+#: meinberlin/apps/mapideas/exports.py:70
+#: meinberlin/apps/maptopicprio/exports.py:68
+#: meinberlin/apps/topicprio/exports.py:67
+msgid "ID"
+msgstr "ID"
 
 #: adhocracy4/polls/models.py:53
 msgid "Explanation"
@@ -1561,7 +1599,7 @@ msgstr ""
 "Thanks! Your statement has been sent! An answer will be send to your email "
 "address."
 
-#: meinberlin/apps/bplan/views.py:52 meinberlin/apps/dashboard/views.py:263
+#: meinberlin/apps/bplan/views.py:52 meinberlin/apps/dashboard/views.py:262
 #: meinberlin/apps/extprojects/views.py:44
 msgid "Project was created."
 msgstr "Project was created."
@@ -1578,17 +1616,6 @@ msgstr ""
 "Create a statement formular for development plans to be embedded on external "
 "sites."
 
-#: meinberlin/apps/budgeting/dashboard.py:14
-#: meinberlin/apps/documents/dashboard.py:45
-#: meinberlin/apps/ideas/dashboard.py:14
-#: meinberlin/apps/kiezkasse/dashboard.py:14
-#: meinberlin/apps/mapideas/dashboard.py:14
-#: meinberlin/apps/maptopicprio/dashboard.py:59
-#: meinberlin/apps/polls/dashboard.py:14
-#: meinberlin/apps/topicprio/dashboard.py:54
-msgid "Export Excel"
-msgstr "Export Excel"
-
 #: meinberlin/apps/budgeting/exports.py:42
 msgid "Contact E-Mail"
 msgstr "Contact E-Mail"
@@ -1597,21 +1624,12 @@ msgstr "Contact E-Mail"
 msgid "Contact Phone"
 msgstr "Contact Phone"
 
-#: meinberlin/apps/budgeting/exports.py:79
-#: meinberlin/apps/documents/exports.py:38 meinberlin/apps/ideas/exports.py:70
-#: meinberlin/apps/kiezkasse/exports.py:72
-#: meinberlin/apps/mapideas/exports.py:70
-#: meinberlin/apps/maptopicprio/exports.py:68
-#: meinberlin/apps/polls/exports.py:36 meinberlin/apps/topicprio/exports.py:67
-msgid "ID"
-msgstr "ID"
-
 #: meinberlin/apps/budgeting/exports.py:80
 #: meinberlin/apps/documents/exports.py:39 meinberlin/apps/ideas/exports.py:71
 #: meinberlin/apps/kiezkasse/exports.py:73
 #: meinberlin/apps/mapideas/exports.py:71
 #: meinberlin/apps/maptopicprio/exports.py:69
-#: meinberlin/apps/polls/exports.py:37 meinberlin/apps/topicprio/exports.py:68
+#: meinberlin/apps/topicprio/exports.py:68
 msgid "Comment"
 msgstr "Comment"
 
@@ -1703,6 +1721,20 @@ msgid ""
 "Rate the submitted proposals for the participatory budget (for/against)."
 msgstr ""
 "Rate the submitted proposals for the participatory budget (for/against)."
+
+#: meinberlin/apps/budgeting/phases.py:63
+msgid "Which of the proposals do you think should be implemented?"
+msgstr "Which of the proposals do you think should be implemented?"
+
+#: meinberlin/apps/budgeting/phases.py:64
+msgid ""
+"You can vote for up to 5 proposals. To do so, please enter the voting code."
+msgstr ""
+"You can vote for up to 5 proposals. To do so, please enter the voting code."
+
+#: meinberlin/apps/budgeting/phases.py:66
+msgid "participatory budgeting 3 phases"
+msgstr "participatory budgeting 3 phases"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:28
 msgid "Contact Information"
@@ -2182,11 +2214,27 @@ msgstr ""
 "second phase rated (pro/contra)."
 
 #: meinberlin/apps/dashboard/blueprints.py:99
-msgid "Kiezkasse"
-msgstr "Kiezkasse"
+msgid "Participatory budgeting (3 phase)"
+msgstr "Participatory budgeting (3 phase)"
 
 #: meinberlin/apps/dashboard/blueprints.py:101
 msgid ""
+"In a first phase, participants can submit their own proposals, mark them on "
+"a map, and add a budget. The proposals of others can be discussed and in a "
+"second phase rated (pro/contra). In the third phase, participants vote on "
+"the shortlisted proposals."
+msgstr ""
+"In a first phase, participants can submit their own proposals, mark them on "
+"a map, and add a budget. The proposals of others can be discussed and in a "
+"second phase rated (pro/contra). In the third phase, participants vote on "
+"the shortlisted proposals."
+
+#: meinberlin/apps/dashboard/blueprints.py:117
+msgid "Kiezkasse"
+msgstr "Kiezkasse"
+
+#: meinberlin/apps/dashboard/blueprints.py:119
+msgid ""
 "Participants can submit their own proposals, mark them on a map, and add a "
 "budget. They can express their interest in participating in the proposals’s "
 "implementation. The proposals of others can be discussed and rated (pro/"
@@ -2197,11 +2245,11 @@ msgstr ""
 "implementation. The proposals of others can be discussed and rated (pro/"
 "contra)."
 
-#: meinberlin/apps/dashboard/blueprints.py:114
+#: meinberlin/apps/dashboard/blueprints.py:132
 msgid "Prioritization"
 msgstr "Prioritization"
 
-#: meinberlin/apps/dashboard/blueprints.py:116
+#: meinberlin/apps/dashboard/blueprints.py:134
 msgid ""
 "Participants can discuss and rate (pro/contra) previously added ideas and "
 "topics. Participants cannot add ideas or topics."
@@ -2209,11 +2257,11 @@ msgstr ""
 "Participants can discuss and rate (pro/contra) previously added ideas and "
 "topics. Participants cannot add ideas or topics."
 
-#: meinberlin/apps/dashboard/blueprints.py:127
+#: meinberlin/apps/dashboard/blueprints.py:145
 msgid "Spatial Prioritization"
 msgstr "Spatial Prioritization"
 
-#: meinberlin/apps/dashboard/blueprints.py:129
+#: meinberlin/apps/dashboard/blueprints.py:147
 msgid ""
 "Participants can discuss and rate (pro/contra) ideas and topics previously "
 "added to a map. Participants cannot add ideas or topics."
@@ -2221,17 +2269,17 @@ msgstr ""
 "Participants can discuss and rate (pro/contra) ideas and topics previously "
 "added to a map. Participants cannot add ideas or topics."
 
-#: meinberlin/apps/dashboard/blueprints.py:141
+#: meinberlin/apps/dashboard/blueprints.py:159
 msgid "Text Review"
 msgstr "Text Review"
 
-#: meinberlin/apps/dashboard/blueprints.py:143
+#: meinberlin/apps/dashboard/blueprints.py:161
 msgid ""
 "Participants can discuss the paragraphs of a text that you added beforehand."
 msgstr ""
 "Participants can discuss the paragraphs of a text that you added beforehand."
 
-#: meinberlin/apps/dashboard/blueprints.py:156
+#: meinberlin/apps/dashboard/blueprints.py:174
 msgid ""
 "Participants can answer open and multiple choice questions and can comment "
 "on the poll"
@@ -2239,12 +2287,12 @@ msgstr ""
 "Participants can answer open and multiple choice questions and can comment "
 "on the poll"
 
-#: meinberlin/apps/dashboard/blueprints.py:167
+#: meinberlin/apps/dashboard/blueprints.py:185
 #: meinberlin/apps/livequestions/phases.py:20
 msgid "Interactive Event"
 msgstr "Interactive Event"
 
-#: meinberlin/apps/dashboard/blueprints.py:169
+#: meinberlin/apps/dashboard/blueprints.py:187
 msgid ""
 "The participants of an event can ask their questions online. Other "
 "participants can support the question. The moderator can sort the questions "
@@ -2328,7 +2376,7 @@ msgstr "The module is no longer displayed in the project."
 msgid "The module has been deleted"
 msgstr "The module has been deleted"
 
-#: meinberlin/apps/dashboard/views.py:212
+#: meinberlin/apps/dashboard/views.py:210
 msgid "Module added to a project cannot be deleted."
 msgstr "Module added to a project cannot be deleted."
 
@@ -2421,31 +2469,6 @@ msgstr ""
 #: meinberlin/apps/embed/templates/meinberlin_embed/includes/project_embed_code.html:4
 msgid "Embed Code"
 msgstr "Embed Code"
-
-#: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:5
-#: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:23
-#: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:35
-#: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:47
-msgid "Export"
-msgstr "Export"
-
-#: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:7
-msgid ""
-"You can export the results of your participation project as an excel file."
-msgstr ""
-"You can export the results of your participation project as an excel file."
-
-#: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:19
-msgid "here you can export all ideas"
-msgstr "here you can export all ideas"
-
-#: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:31
-msgid "here you can export all answers"
-msgstr "here you can export all answers"
-
-#: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:43
-msgid "here you can export all comments"
-msgstr "here you can export all comments"
 
 #: meinberlin/apps/extprojects/dashboard.py:14
 msgid "External project settings"
@@ -4204,122 +4227,122 @@ msgstr "Account Settings"
 msgid "Platform Email"
 msgstr "Platform Email"
 
-#: meinberlin/config/settings/base.py:309
-#: meinberlin/config/settings/base.py:323
-#: meinberlin/config/settings/base.py:334
-#: meinberlin/config/settings/base.py:349
+#: meinberlin/config/settings/base.py:312
+#: meinberlin/config/settings/base.py:325
+#: meinberlin/config/settings/base.py:336
+#: meinberlin/config/settings/base.py:351
 msgid "Rich text editor"
 msgstr "Rich text editor"
 
-#: meinberlin/config/settings/base.py:493
+#: meinberlin/config/settings/base.py:495
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: meinberlin/config/settings/base.py:494
+#: meinberlin/config/settings/base.py:496
 msgid "Diamond"
 msgstr "Diamond"
 
-#: meinberlin/config/settings/base.py:495
+#: meinberlin/config/settings/base.py:497
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: meinberlin/config/settings/base.py:496
+#: meinberlin/config/settings/base.py:498
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: meinberlin/config/settings/base.py:497
+#: meinberlin/config/settings/base.py:499
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:498
+#: meinberlin/config/settings/base.py:500
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: meinberlin/config/settings/base.py:499
+#: meinberlin/config/settings/base.py:501
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: meinberlin/config/settings/base.py:500
+#: meinberlin/config/settings/base.py:502
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: meinberlin/config/settings/base.py:501
+#: meinberlin/config/settings/base.py:503
 msgid "Star"
 msgstr "Star"
 
-#: meinberlin/config/settings/base.py:502
+#: meinberlin/config/settings/base.py:504
 msgid "Square"
 msgstr "Square"
 
-#: meinberlin/config/settings/base.py:503
+#: meinberlin/config/settings/base.py:505
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: meinberlin/config/settings/base.py:504
+#: meinberlin/config/settings/base.py:506
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: meinberlin/config/settings/base.py:505
+#: meinberlin/config/settings/base.py:507
 msgid "Circle"
 msgstr "Circle"
 
-#: meinberlin/config/settings/base.py:506
+#: meinberlin/config/settings/base.py:508
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: meinberlin/config/settings/base.py:507
+#: meinberlin/config/settings/base.py:509
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: meinberlin/config/settings/base.py:516
+#: meinberlin/config/settings/base.py:518
 msgid "Anti-discrimination"
 msgstr "Anti-discrimination"
 
-#: meinberlin/config/settings/base.py:517
+#: meinberlin/config/settings/base.py:519
 msgid "Work & economy"
 msgstr "Work & economy"
 
-#: meinberlin/config/settings/base.py:518
+#: meinberlin/config/settings/base.py:520
 msgid "Building & living"
 msgstr "Building & living"
 
-#: meinberlin/config/settings/base.py:519
+#: meinberlin/config/settings/base.py:521
 msgid "Education & research"
 msgstr "Education & research"
 
-#: meinberlin/config/settings/base.py:520
+#: meinberlin/config/settings/base.py:522
 msgid "Children, youth & family"
 msgstr "Children, youth & family"
 
-#: meinberlin/config/settings/base.py:521
+#: meinberlin/config/settings/base.py:523
 msgid "Finances"
 msgstr "Finances"
 
-#: meinberlin/config/settings/base.py:522
+#: meinberlin/config/settings/base.py:524
 msgid "Health & sports"
 msgstr "Health & sports"
 
-#: meinberlin/config/settings/base.py:523
+#: meinberlin/config/settings/base.py:525
 msgid "Integration"
 msgstr "Integration"
 
-#: meinberlin/config/settings/base.py:524
+#: meinberlin/config/settings/base.py:526
 msgid "Culture & leisure"
 msgstr "Culture & leisure"
 
-#: meinberlin/config/settings/base.py:525
+#: meinberlin/config/settings/base.py:527
 msgid "Neighborhood & participation"
 msgstr "Neighborhood & participation"
 
-#: meinberlin/config/settings/base.py:526
+#: meinberlin/config/settings/base.py:528
 msgid "Urban development"
 msgstr "Urban development"
 
-#: meinberlin/config/settings/base.py:527
+#: meinberlin/config/settings/base.py:529
 msgid "Environment & public green space"
 msgstr "Environment & public green space"
 
-#: meinberlin/config/settings/base.py:528
+#: meinberlin/config/settings/base.py:530
 msgid "Traffic"
 msgstr "Traffic"
 
@@ -4868,6 +4891,12 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "deleted by creator"
+#~ msgstr "deleted by creator"
+
+#~ msgid "deleted by moderator"
+#~ msgstr "deleted by moderator"
 
 #~ msgid "This project is in not published yet."
 #~ msgstr "This project is in not published yet."

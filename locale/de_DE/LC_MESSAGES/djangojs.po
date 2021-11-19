@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-10 11:28+0200\n"
+"POT-Creation-Date: 2021-11-19 11:50+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,17 +60,17 @@ msgid "Answer"
 msgstr "Antworten"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:414
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:418
 #: adhocracy4/comments/static/comments/Comment.jsx:31
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:414
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:418
 msgid "Your reply here"
 msgstr "Ihre Antwort hier"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:288
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:292
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 #: adhocracy4/comments/static/comments/Comment.jsx:32
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:288
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:292
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -82,27 +82,41 @@ msgstr ""
 "er nicht unseren Diskussionsregeln (Netiquette) entspricht."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:265
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:269
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:265
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:269
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:264
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:264
 msgid "Latest edit on"
 msgstr "Letzte Änderung am"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:147
+#: adhocracy4/comments/static/comments/Comment.jsx:110
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
+#: adhocracy4/comments/static/comments/Comment.jsx:110
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
+msgid "Deleted by creator on"
+msgstr ""
+
+#: adhocracy4/comments/static/comments/Comment.jsx:112
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:262
+#: adhocracy4/comments/static/comments/Comment.jsx:112
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:262
+msgid "Deleted by moderator on"
+msgstr ""
+
+#: adhocracy4/comments/static/comments/Comment.jsx:151
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:241
-#: adhocracy4/comments/static/comments/Comment.jsx:147
+#: adhocracy4/comments/static/comments/Comment.jsx:151
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:241
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:148
+#: adhocracy4/comments/static/comments/Comment.jsx:152
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:243
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
@@ -110,7 +124,7 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:73
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:152
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:157
-#: adhocracy4/comments/static/comments/Comment.jsx:148
+#: adhocracy4/comments/static/comments/Comment.jsx:152
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:243
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
@@ -121,12 +135,12 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 msgid "Delete"
 msgstr "Löschen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments/static/comments/Comment.jsx:153
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:244
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
-#: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments/static/comments/Comment.jsx:153
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:244
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
@@ -256,13 +270,13 @@ msgctxt "verb"
 msgid "Comment"
 msgstr "Kommentieren"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:295
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:295
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:299
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:299
 msgid "Share link"
 msgstr "Link teilen"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:335
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:335
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:339
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:339
 msgid "Categories: "
 msgstr "Kategorien: "
 
@@ -538,12 +552,13 @@ msgstr "Offene Frage"
 msgid "Save"
 msgstr "Speichern"
 
-#: adhocracy4/polls/assets/PollQuestion.jsx:15
+#: adhocracy4/polls/assets/PollQuestion.jsx:18
 msgid "Multiple answers are possible."
 msgstr "Mehrfachantworten sind möglich."
 
-#: adhocracy4/polls/assets/PollQuestion.jsx:81
-#: adhocracy4/polls/assets/PollQuestion.jsx:120
+#: adhocracy4/polls/assets/PollQuestion.jsx:84
+#: adhocracy4/polls/assets/PollQuestion.jsx:123
+#: adhocracy4/polls/assets/PollResults.jsx:135
 msgid "other"
 msgstr "sonstige"
 
@@ -567,6 +582,7 @@ msgid "To poll"
 msgstr "Zur Umfrage"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:47
+#: adhocracy4/polls/assets/PollQuestions.jsx:122
 msgid "Change answer"
 msgstr "Antwort ändern"
 
@@ -649,6 +665,54 @@ msgstr "Vielen Dank! Wir werden uns darum kümmern."
 msgid "Close"
 msgstr "Schließen"
 
+#: meinberlin/apps/budgeting/assets/helpers.js:4
+msgid "January"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:5
+msgid "February"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:6
+msgid "March"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:7
+msgid "April"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:8
+msgid "May"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:9
+msgid "June"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:10
+msgid "July"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:11
+msgid "August"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:12
+msgid "September"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:13
+msgid "October"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:14
+msgid "November"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/helpers.js:15
+msgid "December"
+msgstr ""
+
 #: meinberlin/apps/captcha/assets/captcheck.js:30
 msgid "Image mode"
 msgstr "Bild-Modus"
@@ -729,11 +793,11 @@ msgstr ""
 "Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
 "zwar anschauen, werden sich aber nicht anmelden können."
 
-#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:15
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:16
 msgid "Affiliation"
 msgstr "Zugehörigkeit"
 
-#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:17
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:18
 msgid ""
 "Answered questions will be displayed in the statistics according to the "
 "chosen affiliation."
