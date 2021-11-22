@@ -13,7 +13,13 @@ export const BudgetingProposalList = (props) => {
       .then(resp => resp.json())
       .then(json => {
         setData(json.results)
-        setMeta(json.meta)
+        setMeta({
+          current_page: pageNumber,
+          page_count: json.page_count,
+          is_paginated: json.page_count > 1,
+          previous: json.previous,
+          next: json.next
+        })
       })
       .catch(error => console.log(error))
   }
