@@ -1,7 +1,7 @@
 -r base.txt
 django-debug-toolbar==3.2.2
 factory-boy==3.2.1
-Faker==9.8.1
+Faker==9.8.2
 flake8-docstrings==1.6.0
 flake8==4.0.1
 freezegun==1.1.0
