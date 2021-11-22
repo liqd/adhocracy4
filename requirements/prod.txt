@@ -1,4 +1,4 @@
 -r base.txt
 django-redis==5.0.0
-hiredis==0.1.5
+hiredis==2.0.0
 gunicorn==20.1.0
