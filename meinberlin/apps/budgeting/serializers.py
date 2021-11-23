@@ -30,11 +30,11 @@ class ProposalSerializer(serializers.ModelSerializer):
         model = Proposal
         fields = ('budget', 'category', 'comment_count', 'created', 'creator',
                   'is_archived', 'name', 'negative_rating_count',
-                  'positive_rating_count', 'url')
+                  'positive_rating_count', 'url', 'pk')
         read_only_fields = ('budget', 'category', 'comment_count', 'created',
                             'creator', 'is_archived', 'name',
                             'negative_rating_count', 'positive_rating_count',
-                            'url')
+                            'url', 'pk')
 
     def get_creator(self, proposal):
         return proposal.creator.username
