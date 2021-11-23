@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
-import MapListSwitch from '../../contrib/assets/MapListSwitch'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
@@ -34,7 +33,6 @@ export const BudgetingProposalList = (props) => {
   return (
     <div className="l-wrapper">
       <div className="l-center-8">
-        <MapListSwitch />
         <ul className="u-list-reset">
           {data.map((proposal, idx) =>
             <BudgetingProposalListItem

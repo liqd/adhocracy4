@@ -1,5 +1,6 @@
-/* global django */
-const React = require('react')
+import React from 'react'
+import django from 'django'
+import { IconSwitch } from '../../contrib/assets/IconSwitch'
 
 class Toggles extends React.Component {
   clickStatusButton () {
@@ -122,28 +123,21 @@ class Toggles extends React.Component {
                 >{this.titleSearchButtonString()} <i className="fa fa-times" />
                 </button>}
             </div>
-            <div className="switch-btn-group-container">
-              <div className="btn-group switch-btn-group" role="group">
-                <switch
-                  className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light'}
-                  onClick={this.props.showList} // eslint-disable-line react/jsx-handler-names
-                  htmlFor="show_list"
-                >
-                  <input className="radio__input" type="radio" value="list" id="show_list" aria-label={django.gettext('show list')} />
-                  <i className="fa fa-list" />
-                  <span> {django.gettext('List')}</span>
-                </switch>
-                <switch
-                  className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light'}
-                  onClick={this.props.showMap} // eslint-disable-line react/jsx-handler-names
-                  htmlFor="show_map"
-                >
-                  <input className="radio__input" type="radio" value="map" id="show_map" aria-label={django.gettext('show map')} />
-                  <i className="fa fa-map" />
-                  <span> {django.gettext('Map')}</span>
-                </switch>
-              </div>
-            </div>
+            <IconSwitch
+              activeClass="btn btn--icon btn--light switch--btn active"
+              inactiveClass="btn btn--icon btn--light"
+              startText={django.gettext('List')}
+              endText={django.gettext('Map')}
+              startAria={django.gettext('show list')}
+              endAria={django.gettext('show map')}
+              startIconClass="fa fa-list"
+              endIconClass="fa fa-map"
+              startID="show_list"
+              endID="show_map"
+              displayStartObject={this.props.displayMap}
+              showStartObject={this.props.showList}
+              showEndObject={this.props.showMap}
+            />
           </div>
         </div>
       )
