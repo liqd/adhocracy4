@@ -15,8 +15,8 @@ export const ListItemBadges = (props) => {
           {props.category.name}
         </span>}
       {props.pointLabel &&
-        <span class="label label--big">
-          <i class="fas fa-map-marker-alt" aria-hidden="true" />
+        <span className="label label--big">
+          <i className="fas fa-map-marker-alt" aria-hidden="true" />
           {props.pointLabel}
         </span>}
       {props.budget > 0 &&
