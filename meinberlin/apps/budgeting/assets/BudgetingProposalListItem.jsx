@@ -1,7 +1,7 @@
 import React from 'react'
 import django from 'django'
 import { toDate } from './helpers'
-import SwitchButton from '../../contrib/assets/SwitchButton'
+import CheckboxButton from '../../contrib/assets/CheckboxButton'
 import { ListItemBadges } from './ListItemBadges'
 import { ListItemStats } from './ListItemStats'
 
@@ -33,7 +33,7 @@ export const BudgetingProposalListItem = (props) => {
           </span>
           {toDate(proposal.created)}
         </div>
-        <SwitchButton
+        <CheckboxButton
           onText={django.gettext('Voted')}
           offText={django.gettext('Give my vote')}
           onClass="btn"
