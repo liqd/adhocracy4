@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
-import { Pagination } from './Pagination'
+import { Pagination } from '../Pagination'
 
 test('clicking on page 2 returns value of 2', () => {
   const onPageChangedFn = jest.fn()
