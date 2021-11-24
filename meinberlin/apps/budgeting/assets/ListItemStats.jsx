@@ -1,5 +1,6 @@
 import React from 'react'
 import django from 'django'
+import { wrapSpaces } from './helpers'
 
 export const ListItemStats = (props) => {
   return (
@@ -13,7 +14,7 @@ export const ListItemStats = (props) => {
             className="fa fa-chevron-up"
             aria-label={django.gettext('Positive Ratings')}
           />
-          {props.positiveCount}
+          {wrapSpaces(props.positiveCount)}
         </span>
         <span
           className="rating-button rating-down is-read-only"
@@ -23,7 +24,7 @@ export const ListItemStats = (props) => {
             className="fa fa-chevron-down"
             aria-label={django.gettext('Negative Ratings')}
           />
-          {props.negativeCount}
+          {wrapSpaces(props.negativeCount)}
         </span>
       </span>
       <span
@@ -34,7 +35,7 @@ export const ListItemStats = (props) => {
           className="far fa-comment"
           aria-label={django.gettext('Comments')}
         />
-        {props.commentCount}
+        {wrapSpaces(props.commentCount)}
       </span>
     </div>
   )

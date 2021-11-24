@@ -1,5 +1,6 @@
 import React from 'react'
 import { intComma } from './helpers'
+import { SpacedSpan } from './SpacedSpan'
 
 export const ListItemBadges = (props) => {
   const getModeratorChoice = () => {
@@ -11,29 +12,29 @@ export const ListItemBadges = (props) => {
   return (
     <div className="list-item__labels">
       {props.category &&
-        <span className="label label--big">
+        <SpacedSpan className="label label--big">
           {props.category.name}
-        </span>}
+        </SpacedSpan>}
       {props.pointLabel &&
-        <span className="label label--big">
+        <SpacedSpan className="label label--big">
           <i className="fas fa-map-marker-alt" aria-hidden="true" />
           {props.pointLabel}
-        </span>}
+        </SpacedSpan>}
       {props.budget > 0 &&
-        <span className="label label--big">
+        <SpacedSpan className="label label--big">
           {intComma(props.budget)}€
-        </span>}
+        </SpacedSpan>}
       {props.moderatorFeedback &&
-        <span
+        <SpacedSpan
           className={
-          'label' +
-          ' label--big' +
-          ' label--' + props.moderatorFeedback.toLowerCase() +
-          ' list-item__label--moderator-feedback'
-          }
+            'label' +
+            ' label--big' +
+            ' label--' + props.moderatorFeedback.toLowerCase() +
+            ' list-item__label--moderator-feedback'
+            }
         >
           {getModeratorChoice()[1]}
-        </span>}
+        </SpacedSpan>}
     </div>
   )
 }
