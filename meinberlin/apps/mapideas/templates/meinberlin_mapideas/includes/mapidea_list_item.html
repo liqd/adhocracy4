@@ -34,7 +34,7 @@
             <span class="label label--big"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> {{ object.point_label }}</span>
         {% endif %}
         {% if object.moderator_feedback %}
-            <span class="label label--big label--{{ object.moderator_feedback|classify }} list-item__label--moderator-feedback">
+            <span class="label label--big label--{{ object.moderator_feedback|classify|lower }} list-item__label--moderator-feedback">
                 {{ object.get_moderator_feedback_display }}
             </span>
         {% endif %}

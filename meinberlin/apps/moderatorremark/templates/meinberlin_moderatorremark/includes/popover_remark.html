@@ -12,7 +12,7 @@
         data-attributes="{{ attributes }}"
         id="idea-remark__dropdown"
     >
-        <i class="fa fa-comment" aria-label="{% trans 'Moderator remark' %}"></i>
+        <i class="fa fa-comment idea-remark__btn__comment" aria-label="{% trans 'Moderator remark' %}"></i>
         <i class="fa fa-check-circle idea-remark__btn__notify {% if not remark or not remark.content %} d-none {% endif %}" aria-hidden="true"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-right idea-remark" id="remark__dropdown-menu" aria-labelledby="id_remark_dropdown">
@@ -28,7 +28,3 @@
         </form>
     </div>
 </div>
-
-
-
-

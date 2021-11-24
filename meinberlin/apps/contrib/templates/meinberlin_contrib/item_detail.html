@@ -23,7 +23,7 @@
 
             <div class="item-detail__labels">
                 {% if object.moderator_feedback %}
-                    <span class="label label--big label--{{ object.moderator_feedback|classify }}">
+                    <span class="label label--big label--{{ object.moderator_feedback|classify|lower }}">
                         {{ object.get_moderator_feedback_display }}
                     </span>
                 {% endif %}
