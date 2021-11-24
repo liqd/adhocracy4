@@ -34,4 +34,10 @@
     background-color: $white;
     top: -8px;
     right: -5px;
+    z-index: 1;
+}
+
+.idea-remark__btn__comment {
+    position: relative;
+    z-index: 2;
 }
