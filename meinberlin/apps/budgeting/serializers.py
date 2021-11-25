@@ -1,3 +1,4 @@
+from django.utils import translation
 from rest_framework import serializers
 
 from adhocracy4.categories.models import Category
@@ -25,18 +26,19 @@ class ProposalSerializer(serializers.ModelSerializer):
     negative_rating_count = serializers.SerializerMethodField()
     category = CategoryField()
     url = serializers.SerializerMethodField()
+    locale = serializers.SerializerMethodField()
 
     class Meta:
         model = Proposal
         fields = ('budget', 'category', 'comment_count', 'created', 'creator',
                   'is_archived', 'name', 'negative_rating_count',
                   'positive_rating_count', 'url', 'pk', 'moderator_feedback',
-                  'moderator_feedback_choices')
+                  'moderator_feedback_choices', 'locale')
         read_only_fields = ('budget', 'category', 'comment_count', 'created',
                             'creator', 'is_archived', 'name',
                             'negative_rating_count', 'positive_rating_count',
                             'url', 'pk', 'moderator_feedback',
-                            'moderator_feedback_choices')
+                            'moderator_feedback_choices', 'locale')
 
     def get_creator(self, proposal):
         return proposal.creator.username
@@ -73,3 +75,6 @@ class ProposalSerializer(serializers.ModelSerializer):
             return proposal.moderator_feedback_choices
         else:
             return None
+
+    def get_locale(self, proposal):
+        return translation.get_language()

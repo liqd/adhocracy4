@@ -1,26 +1,13 @@
-import django from 'django'
+// Helper functions, used in apps/budgeting/assets
 
-const months = [
-  django.gettext('January'),
-  django.gettext('February'),
-  django.gettext('March'),
-  django.gettext('April'),
-  django.gettext('May'),
-  django.gettext('June'),
-  django.gettext('July'),
-  django.gettext('August'),
-  django.gettext('September'),
-  django.gettext('October'),
-  django.gettext('November'),
-  django.gettext('December')
-]
-
-// toDate returns a formatted date string
+// toLocaleDate returns a formatted and internationalized
+// date string. Fallback formatting is the German variant.
 // input: 2021-11-11T15:37:19.490201+01:00
-// output: 11. November 2021
-export const toDate = (isodate) => {
-  const d = new Date(isodate)
-  return `${d.getDate()}. ${months[d.getMonth()]} ${d.getFullYear()}`
+// output: 11. November 2021 (depending on locale)
+export const toLocaleDate = (isodate, locale = 'de-DE') => {
+  const date = new Date(isodate)
+  const formatStyle = { dateStyle: 'long' }
+  return new Intl.DateTimeFormat(locale, formatStyle).format(date)
 }
 
 // intComma returns a number separated by

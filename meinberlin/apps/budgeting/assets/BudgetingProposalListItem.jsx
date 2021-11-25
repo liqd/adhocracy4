@@ -1,12 +1,13 @@
 import React from 'react'
 import django from 'django'
-import { toDate } from './helpers'
+import { toLocaleDate } from './helpers'
 import CheckboxButton from '../../contrib/assets/CheckboxButton'
 import { ListItemBadges } from './ListItemBadges'
 import { ListItemStats } from './ListItemStats'
 
 export const BudgetingProposalListItem = (props) => {
   const { proposal, isVotingPhase } = props
+  const safeLocale = proposal.locale ? proposal.locale : undefined
   return (
     <li className="list-item no-hover">
       {!isVotingPhase &&
@@ -32,7 +33,7 @@ export const BudgetingProposalListItem = (props) => {
           <span className="list-item__author">
             {proposal.creator}
           </span>
-          {toDate(proposal.created)}
+          {toLocaleDate(proposal.created, safeLocale)}
         </div>
         {isVotingPhase &&
           <CheckboxButton
