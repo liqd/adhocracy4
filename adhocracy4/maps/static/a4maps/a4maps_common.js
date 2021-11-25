@@ -1,5 +1,5 @@
 import 'leaflet'
-import 'maplibre-gl-leaflet'
+import '@maplibre/maplibre-gl-leaflet'
 
 export function createMap (L, e, {
   dragging = undefined,
@@ -24,13 +24,13 @@ export function createMap (L, e, {
 
   if (useVectorMap === '1') {
     if (mapboxToken !== '') {
-      L.mapboxGL({
+      L.maplibreGL({
         accessToken: mapboxToken,
         style: baseUrl
       }).addTo(map)
     } else {
       if (omtToken !== '') {
-        L.mapboxGL({
+        L.maplibreGL({
           style: baseUrl,
           transformRequest: function (url, resourceType) {
             if (resourceType === 'Tile' && url.indexOf('https://') === 0) {
@@ -41,7 +41,7 @@ export function createMap (L, e, {
           }
         }).addTo(map)
       } else {
-        L.mapboxGL({
+        L.maplibreGL({
           style: baseUrl
         }).addTo(map)
       }
