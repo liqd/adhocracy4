@@ -16,6 +16,11 @@
         </nav>
 
         <h1>{% trans 'Submit a new idea for this project'%}</h1>
+
+        {% if form.errors %}
+            <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+        {% endif %}
+
         <div class="u-bottom-divider">
             <h3>{{ module.name }}</h3>
             {% if module.description %}

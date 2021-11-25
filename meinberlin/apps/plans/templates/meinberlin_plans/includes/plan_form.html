@@ -3,6 +3,10 @@
     {% csrf_token %}
     {{ form.media }}
 
+    {% if form.errors %}
+        <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+    {% endif %}
+
     <h2 class="form__subheading"> {% trans 'Description of the plan' %}</h2>
     <p class="form-hint form-hint--margin">
         {% trans 'The description of the plan is divided into title, profile, header image and description text.' %}

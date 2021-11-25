@@ -6,6 +6,10 @@
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{{ view.title }}</h1>
 
+    {% if form.errors %}
+        <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+    {% endif %}
+
     {% for error in form.non_field_errors %}
         <span>{{ error }}</span>
     {% endfor %}

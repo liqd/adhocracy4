@@ -23,6 +23,10 @@
 
         <h1>{% trans 'Edit proposal' %}</h1>
 
+        {% if form.errors %}
+            <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+        {% endif %}
+
         {% include "meinberlin_kiezkasse/includes/proposal_form.html" with proposal=proposal cancel=object.get_absolute_url %}
     </div>
 </div>

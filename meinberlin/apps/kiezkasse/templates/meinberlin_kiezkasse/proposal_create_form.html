@@ -17,6 +17,10 @@
 
         <h1>{% trans 'Submit a new proposal for this project'%}</h1>
 
+        {% if form.errors %}
+            <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+        {% endif %}
+
         {% include "meinberlin_kiezkasse/includes/proposal_form.html" with proposal=proposal cancel=module.get_detail_url %}
     </div>
 </div>

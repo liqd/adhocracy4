@@ -7,6 +7,10 @@
 <div class="l-wrapper">
     <h1 class="u-first-heading">{% trans 'Add a new place'%}</h1>
 
+    {% if form.errors %}
+        <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+    {% endif %}
+
     {% url 'a4dashboard:maptopic-list' module_slug=module.slug as cancel %}
     {% include "meinberlin_maptopicprio/includes/maptopic_form.html" with cancel=cancel %}
 </div>
