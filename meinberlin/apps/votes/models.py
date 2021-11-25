@@ -17,10 +17,8 @@ def get_token():
 
 
 class VotingToken(models.Model):
-
     token = models.CharField(
         max_length=40,
-        primary_key=True,
         default=get_token,
         editable=False
     )
@@ -36,6 +34,9 @@ class VotingToken(models.Model):
         help_text=_('Designates whether this token should be treated as '
                     'active. Unselect this instead of deleting tokens.')
     )
+
+    class Meta:
+        unique_together = ['token', 'module']
 
     # if token already exists, try to generate another one
     def save(self, *args, **kwargs):
@@ -79,7 +80,6 @@ class VotingToken(models.Model):
 
 
 class TokenVote(base.TimeStampedModel):
-
     token = models.ForeignKey(
         VotingToken,
         on_delete=models.CASCADE
