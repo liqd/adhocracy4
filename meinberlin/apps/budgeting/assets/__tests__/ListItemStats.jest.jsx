@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { ListItemStats } from './ListItemStats'
+import { ListItemStats } from '../ListItemStats'
 
 test('displaying all 3 stats', () => {
   render(

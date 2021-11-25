@@ -6,14 +6,15 @@ import { ListItemBadges } from './ListItemBadges'
 import { ListItemStats } from './ListItemStats'
 
 export const BudgetingProposalListItem = (props) => {
-  const { proposal } = props
+  const { proposal, isVotingPhase } = props
   return (
     <li className="list-item no-hover">
-      <ListItemStats
-        positiveCount={proposal.positive_rating_count}
-        negativeCount={proposal.negative_rating_count}
-        commentCount={proposal.comment_count}
-      />
+      {!isVotingPhase &&
+        <ListItemStats
+          positiveCount={proposal.positive_rating_count}
+          negativeCount={proposal.negative_rating_count}
+          commentCount={proposal.comment_count}
+        />}
       <h3 className="list-item__title">
         <a href={proposal.url}>
           {proposal.name}
@@ -33,13 +34,14 @@ export const BudgetingProposalListItem = (props) => {
           </span>
           {toDate(proposal.created)}
         </div>
-        <CheckboxButton
-          onText={django.gettext('Voted')}
-          offText={django.gettext('Give my vote')}
-          onClass="btn"
-          offClass="btn btn--light"
-          uniqueID={proposal.pk}
-        />
+        {isVotingPhase &&
+          <CheckboxButton
+            onText={django.gettext('Voted')}
+            offText={django.gettext('Give my vote')}
+            onClass="btn"
+            offClass="btn btn--light"
+            uniqueID={proposal.pk}
+          />}
       </div>
     </li>
   )

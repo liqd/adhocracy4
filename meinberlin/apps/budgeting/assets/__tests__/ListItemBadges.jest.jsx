@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { ListItemBadges } from './ListItemBadges'
+import { ListItemBadges } from '../ListItemBadges'
 
 test('displaying category badge', () => {
   render(<ListItemBadges category={{ name: 'Renovation' }} />)

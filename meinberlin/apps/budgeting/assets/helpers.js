@@ -17,7 +17,7 @@ const months = [
 
 // toDate returns a formatted date string
 // input: 2021-11-11T15:37:19.490201+01:00
-// output: 15. November 2021
+// output: 11. November 2021
 export const toDate = (isodate) => {
   const d = new Date(isodate)
   return `${d.getDate()}. ${months[d.getMonth()]} ${d.getFullYear()}`
