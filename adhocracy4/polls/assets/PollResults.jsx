@@ -170,8 +170,8 @@ export default class PollResult extends React.Component {
           }
           )}
           {this.state.question.is_open &&
-            <div className="poll-slider__container">
-              <Slider {...settings} id={this.state.question.id}>
+            <div className="poll-slider__container" id={this.state.question.id}>
+              <Slider {...settings}>
                 {this.props.question.answers.map((slide, index) => (
                   <div
                     className="poll-slider__item"
@@ -184,7 +184,7 @@ export default class PollResult extends React.Component {
                     <div className="poll-slider__count">
                       {index + 1}/{this.props.question.answers.length}
                     </div>
-                    {this.props.question.other_choice_answers.length === 1 &&
+                    {this.props.question.answers.length === 1 &&
                       disabledArrows}
                   </div>
                 ))}
