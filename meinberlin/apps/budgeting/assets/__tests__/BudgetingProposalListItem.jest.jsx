@@ -12,7 +12,9 @@ test('render list item with vote button', () => {
   render(<BudgetingProposalListItem proposal={proposal} isVotingPhase />)
   expect(screen.getByText('myProposal')).toBeTruthy()
   expect(screen.getByText('creator')).toBeTruthy()
-  expect(screen.getByText('11. mock text 2021')).toBeTruthy()
+  const resolvedDate = screen
+    .queryByText('11. November 2021') || screen.queryByText('11 November 2021')
+  expect(resolvedDate).toBeTruthy()
 })
 
 test('render list item with stats', () => {
@@ -25,5 +27,7 @@ test('render list item with stats', () => {
   render(<BudgetingProposalListItem proposal={proposal} isVotingPhase={false} />)
   expect(screen.getByText('myProposal')).toBeTruthy()
   expect(screen.getByText('creator')).toBeTruthy()
-  expect(screen.getByText('11. mock text 2021')).toBeTruthy()
+  const resolvedDate = screen
+    .queryByText('11. November 2021') || screen.queryByText('11 November 2021')
+  expect(resolvedDate).toBeTruthy()
 })
