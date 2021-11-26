@@ -112,7 +112,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_is_deleted(self, obj):
         """Return true if one of the flags is set."""
-        return (obj.is_censored or obj.is_removed)
+        return obj.is_censored or obj.is_removed or obj.is_blocked
 
     def get_ratings(self, comment):
         """
