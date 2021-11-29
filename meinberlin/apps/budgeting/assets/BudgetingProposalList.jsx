@@ -3,14 +3,16 @@ import django from 'django'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
 import { CountDown } from '../../contrib/assets/CountDown'
+import { FilterBar } from './FilterBar'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
   const [meta, setMeta] = useState()
+  const [queryString, setQueryString] = useState('')
 
   const fetchProposals = (newIndex) => {
     const pageNumber = newIndex || 1
-    const url = `${props.proposals_api_url}?page=${pageNumber}`
+    const url = `${props.proposals_api_url}?page=${pageNumber}${queryString}`
     fetch(url)
       .then(resp => resp.json())
       .then(json => {
@@ -20,7 +22,8 @@ export const BudgetingProposalList = (props) => {
           page_count: json.page_count,
           is_paginated: json.page_count > 1,
           previous: json.previous,
-          next: json.next
+          next: json.next,
+          filters: json.filters
         })
       })
       .catch(error => console.log(error))
@@ -30,7 +33,11 @@ export const BudgetingProposalList = (props) => {
     fetchProposals(selectedPage)
   }
 
-  useEffect(fetchProposals, [])
+  const onChangeFilters = (filterString) => {
+    setQueryString(filterString)
+  }
+
+  useEffect(fetchProposals, [queryString])
 
   const renderList = (data) => {
     let list
@@ -70,21 +77,31 @@ export const BudgetingProposalList = (props) => {
   }
 
   return (
-    <div className="module-content--light">
-      <div className="l-wrapper">
-        {props.is_voting_phase &&
-          <div className="l-center-6">
-            <CountDown
-              countText={getVoteCountText(voteCount)}
-              activeClass="btn btn--transparent btn--full u-spacer-bottom btn--huge u-primary"
-              inactiveClass="btn btn--full btn--light u-spacer-bottom btn--huge"
-              counter={voteCount}
-            />
-          </div>}
-        <div className="l-center-8">
-          {renderList(data)}
+    <>
+      {props.is_voting_phase &&
+        <div className="module-content--light">
+          <div className="l-wrapper">
+            <div className="l-center-6">
+              <CountDown
+                countText={getVoteCountText(voteCount)}
+                activeClass="btn btn--transparent btn--full u-spacer-bottom btn--huge u-primary"
+                inactiveClass="btn btn--full btn--light u-spacer-bottom btn--huge"
+                counter={voteCount}
+              />
+            </div>
+          </div>
+        </div>}
+      <FilterBar
+        filters={meta?.filters}
+        onChangeFilters={filterString => onChangeFilters(filterString)}
+      />
+      <div className="module-content--light">
+        <div className="l-wrapper">
+          <div className="l-center-8">
+            {renderList(data)}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

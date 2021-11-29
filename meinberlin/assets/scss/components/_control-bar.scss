@@ -61,6 +61,16 @@
     .input-group__input {
         min-width: 0;
     }
+
+    .control-bar-item {
+        margin-right: $spacer * 0.25;
+        display: inline-block;
+
+        &__right {
+            margin-right: 0;
+            float: right;
+        }
+    }
 }
 
 .control-bar__bottom-overlap {
