@@ -28,7 +28,8 @@ class BplanProjectForm(ExternalProjectForm):
                   'tile_image_copyright', 'is_archived', 'office_worker_email',
                   'start_date', 'end_date']
         required_for_project_publish = ['name', 'url', 'description',
-                                        'office_worker_email']
+                                        'office_worker_email',
+                                        'start_date', 'end_date']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
