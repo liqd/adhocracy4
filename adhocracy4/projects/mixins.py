@@ -200,6 +200,7 @@ class ProjectModuleDispatchMixin(generic.DetailView):
     def dispatch(self, request, *args, **kwargs):
         kwargs['project'] = self.project
         kwargs['module'] = self.module
+        self.request.module = self.module
 
         return self._view_by_phase()(request, *args, **kwargs)
 

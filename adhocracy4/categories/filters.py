@@ -53,7 +53,7 @@ class CategoryFilter(django_filters.ModelChoiceFilter):
     def get_queryset(self, request):
         if self.queryset is None:
             return models.Category.objects.filter(
-                module=self.view.module
+                module=request.module
             )
         else:
             return super().get_queryset(request)

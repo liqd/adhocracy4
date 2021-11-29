@@ -10,21 +10,7 @@ from django.db.models import Q
 from django.db.models import When
 
 
-class ClassBasedViewFilterSet(django_filters.FilterSet):
-    """Passes the view instance through to the filters of the set."""
-
-    class_based_filterset = True
-
-    def __init__(self, *args, view, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.view = view
-
-        # analogous to what happens with model and parent in standard filterset
-        for filter_ in self.filters.values():
-            filter_.view = view
-
-
-class PagedFilterSet(ClassBasedViewFilterSet):
+class PagedFilterSet(django_filters.FilterSet):
     """Removes page parameters from the query when applying filters."""
 
     page_kwarg = 'page'
