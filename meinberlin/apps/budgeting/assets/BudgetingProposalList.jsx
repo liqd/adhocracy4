@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import django from 'django'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
 
@@ -30,10 +31,11 @@ export const BudgetingProposalList = (props) => {
 
   useEffect(fetchProposals, [])
 
-  return (
-    <div className="module-content--light">
-      <div className="l-wrapper">
-        <div className="l-center-8">
+  const renderList = (data) => {
+    let list
+    if (data.length > 0) {
+      list = (
+        <>
           <ul className="u-list-reset">
             {data.map((proposal, idx) =>
               <BudgetingProposalListItem
@@ -48,6 +50,21 @@ export const BudgetingProposalList = (props) => {
               pageCount={meta.page_count}
               onPaginate={newUrl => onPaginate(newUrl)}
             />}
+        </>
+      )
+    } else {
+      list = (
+        <span>{django.gettext('Nothing to show')}</span>
+      )
+    }
+    return list
+  }
+
+  return (
+    <div className="module-content--light">
+      <div className="l-wrapper">
+        <div className="l-center-8">
+          {renderList(data)}
         </div>
       </div>
     </div>
