@@ -89,7 +89,7 @@
 
                         <dl>
                             <dt>{% trans 'Reference No.' %}</dt>
-                            <dd>{{ object.reference_number }}, {% trans 'updated on ' %}{% if object.modified %}{{ object.modified|date }}{% else %}{{ object.created|date }}{% endif %}</dd>
+                            <dd>{{ object.reference_number }}, {% if object.modified %}{% trans 'updated on ' %}{{ object.modified|date }}{% else %}{% trans 'created on ' %}{{ object.created|date }}{% endif %}</dd>
                         </dl>
                     </ul>
                     {% if object.description_image %}

@@ -40,5 +40,5 @@
     <span class="list-item__author">
         {{ object.creator.username }}
     </span>
-    {% trans 'updated on ' %}{% if object.modified %}{{ object.modified|date }}{% else %}{{ object.created|date }}{% endif %}
+    {% if object.modified %}{% trans 'updated on ' %}{{ object.modified|date }}{% else %}{% trans 'created on ' %}{{ object.created|date }}{% endif %}
 </li>

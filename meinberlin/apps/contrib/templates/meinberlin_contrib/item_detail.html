@@ -50,7 +50,7 @@
             <div class="item-detail__meta lr-bar">
                 <div class="lr-bar__left">
                     <strong class="item-detail__creator">{{ object.creator.username }}</strong>
-                    {% trans 'updated on ' %}{% if object.modified %}{{ object.modified|date }}{% else %}{{ object.created|date }}{% endif %}
+                    {% if object.modified %}{% trans 'updated on ' %}{{ object.modified|date }}{% else %}{% trans 'created on ' %}{{ object.created|date }}{% endif %}
                 </div>
                 <div class="lr-bar__right">
                     <strong>{% trans 'Reference No.' %}:</strong>
