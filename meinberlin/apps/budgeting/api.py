@@ -1,5 +1,7 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
+from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
 
 from adhocracy4.api.mixins import ModuleMixin
@@ -29,6 +31,12 @@ class ProposalViewSet(ModuleMixin,
     pagination_class = BudgetPagination
     serializer_class = ProposalSerializer
     permission_classes = (ViewSetRulesPermission,)
+    filter_backends = (DjangoFilterBackend,
+                       OrderingFilter,)
+    # filter_fields = ('is_archived',)
+    ordering_fields = ('created',
+                       'comment_count',
+                       'positive_rating_count',)
 
     def get_permission_object(self):
         return self.module
