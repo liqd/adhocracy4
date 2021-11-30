@@ -40,8 +40,10 @@ def phase_allows_rate(user, item):
     return False
 
 
-@rules.predicate
-def phase_allows_vote(user, item):
-    if item:
-        return has_feature_active(item.module, item.__class__, 'vote')
-    return False
+def phase_allows_vote(item_class):
+    @rules.predicate
+    def _vote_predicate(user, module):
+        if module:
+            return has_feature_active(module, item_class, 'vote')
+        return False
+    return _vote_predicate
