@@ -6,6 +6,7 @@ from rest_framework.pagination import PageNumberPagination
 
 from adhocracy4.api.mixins import ModuleMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
+from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 
 from .models import Proposal
 from .serializers import ProposalSerializer
@@ -32,8 +33,9 @@ class ProposalViewSet(ModuleMixin,
     serializer_class = ProposalSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (DjangoFilterBackend,
-                       OrderingFilter,)
-    # filter_fields = ('is_archived',)
+                       OrderingFilter,
+                       IdeaCategoryFilterBackend,)
+    filter_fields = ('is_archived', 'category',)
     ordering_fields = ('created',
                        'comment_count',
                        'positive_rating_count',)
