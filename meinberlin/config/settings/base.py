@@ -52,18 +52,19 @@ INSTALLED_APPS = (
     'wagtail.core',
     'wagtail.contrib.styleguide',
 
-    'taggit',  # wagtail dependency
-    'widget_tweaks',
-    'rest_framework',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rules.apps.AutodiscoverRulesConfig',
-    'easy_thumbnails',
+    'background_task',
+    'capture_tag',
     'ckeditor',
     'ckeditor_uploader',
-    'capture_tag',
-    'background_task',
+    'django_filters',
+    'easy_thumbnails',
+    'rest_framework',
+    'rules.apps.AutodiscoverRulesConfig',
+    'taggit',  # wagtail dependency
+    'widget_tweaks',
 
     'adhocracy4.actions',
     'adhocracy4.administrative_districts',
