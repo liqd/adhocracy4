@@ -20,7 +20,6 @@ import {
   widget as ReactWidget
 } from 'adhocracy4'
 
-import * as ReactDocuments from '../../apps/documents/assets/react_documents.jsx'
 import * as ReactMapTeaser from '../../apps/plans/assets/react_map_teaser.jsx'
 import * as ReactQuestions from '../../apps/livequestions/assets/react_questions.jsx'
 import * as ReactQuestionsPresent from '../../apps/livequestions/assets/react_questions_present.jsx'
@@ -47,7 +46,6 @@ function init () {
   ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 
-  ReactWidget.initialise('mb', 'document-management', ReactDocuments.renderDocumentManagement)
   ReactWidget.initialise('mb', 'mapTeaser', ReactMapTeaser.renderFilter)
   ReactWidget.initialise('mb', 'proposals', ReactBudget.renderProposals)
 

@@ -17,12 +17,6 @@ module.exports = {
       './meinberlin/assets/scss/style.scss',
       './meinberlin/assets/js/app.js'
     ],
-    blueprint_picker: {
-      import: [
-        './meinberlin/assets/js/blueprint-picker.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
     captcheck: {
       import: [
         './meinberlin/apps/captcha/assets/captcheck.js'
@@ -43,18 +37,23 @@ module.exports = {
       ],
       dependOn: 'adhocracy4'
     },
-    unload_warning: {
-      import: [
-        './meinberlin/assets/js/unload_warning.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
     dsgvo_video_embed: {
       import: [
         'dsgvo-video-embed/dist/dsgvo-video-embed.min.css',
         'dsgvo-video-embed/dist/dsgvo-video-embed.min.js'
       ],
       dependOn: 'adhocracy4'
+    },
+    // these do not rely on adhocracy and adding the depend causes console error
+    // error possibly due to needing to be loaded at specific time
+    blueprint_picker: {
+      import: './meinberlin/assets/js/blueprint-picker.js'
+    },
+    documents: {
+      import: './meinberlin/apps/documents/assets/react_documents_init.js'
+    },
+    unload_warning: {
+      import: './meinberlin/assets/js/unload_warning.js'
     },
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: {

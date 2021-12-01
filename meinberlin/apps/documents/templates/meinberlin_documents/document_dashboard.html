@@ -1,9 +1,14 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
-{% load i18n react_documents %}
+{% load i18n static react_documents %}
 
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{% trans 'Edit document' %}</h1>
 
     {% react_documents module True %}
 
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'documents.js' %}"></script>
 {% endblock %}
