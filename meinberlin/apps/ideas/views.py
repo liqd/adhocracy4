@@ -13,7 +13,6 @@ from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
@@ -42,7 +41,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
         'ordering': '-created'
     }
     category = category_filters.CategoryFilter()
-    ordering = filters.OrderingFilter(
+    ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=get_ordering_choices
     )
     search = FreeTextFilter(
@@ -68,10 +67,7 @@ class IdeaListView(AbstractIdeaListView,
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.module) \
-            .annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
-            .annotate_comment_count()
+            .filter(module=self.module)
 
 
 class AbstractIdeaDetailView(ProjectMixin,

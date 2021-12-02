@@ -10,7 +10,6 @@ from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
-from meinberlin.apps.contrib import filters
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
@@ -26,7 +25,7 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
         'ordering': 'name'
     }
     category = category_filters.CategoryFilter()
-    ordering = filters.OrderingFilter(
+    ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=(
             ('name', _('Alphabetical')),
             ('-positive_rating_count', _('Most popular')),
@@ -50,10 +49,7 @@ class TopicListView(idea_views.AbstractIdeaListView,
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.module) \
-            .annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
-            .annotate_comment_count()
+            .filter(module=self.module)
 
 
 class TopicDetailView(idea_views.AbstractIdeaDetailView):
@@ -71,7 +67,7 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
 
     category = category_filters.CategoryFilter()
 
-    ordering = filters.OrderingFilter(
+    ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=(
             ('name', _('Alphabetical')),
         )
@@ -93,10 +89,7 @@ class TopicListDashboardView(ProjectMixin,
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.module) \
-            .annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
-            .annotate_comment_count()
+            .filter(module=self.module)
 
     def get_permission_object(self):
         return self.project

@@ -5,7 +5,6 @@ from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
-from meinberlin.apps.contrib import filters
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
@@ -25,7 +24,7 @@ class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
         'ordering': '-created'
     }
     category = category_filters.CategoryFilter()
-    ordering = filters.OrderingFilter(
+    ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=get_ordering_choices
     )
 
@@ -47,10 +46,7 @@ class MapIdeaListView(idea_views.AbstractIdeaListView,
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.module) \
-            .annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
-            .annotate_comment_count()
+            .filter(module=self.module)
 
 
 class MapIdeaDetailView(idea_views.AbstractIdeaDetailView):

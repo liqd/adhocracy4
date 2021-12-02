@@ -6,7 +6,6 @@ from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
-from meinberlin.apps.contrib import filters
 from meinberlin.apps.ideas import views as idea_views
 from meinberlin.apps.projects.views import ArchivedWidget
 from meinberlin.apps.votes.forms import TokenForm
@@ -29,7 +28,7 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
         'is_archived': 'false'
     }
     category = category_filters.CategoryFilter()
-    ordering = filters.OrderingFilter(
+    ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=get_ordering_choices
     )
     is_archived = django_filters.BooleanFilter(
@@ -54,10 +53,7 @@ class ProposalListView(idea_views.AbstractIdeaListView,
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.module) \
-            .annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
-            .annotate_comment_count()
+            .filter(module=self.module)
 
     def get_context_data(self, **kwargs):
         if 'token_form' not in kwargs:
