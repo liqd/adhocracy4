@@ -9,6 +9,9 @@ from django.db.models import Case
 from django.db.models import Q
 from django.db.models import When
 
+from adhocracy4.filters.mixins import DynamicChoicesMixin
+from adhocracy4.filters.widgets import OrderingWidget
+
 
 class ClassBasedViewFilterSet(django_filters.FilterSet):
     """Passes the view instance through to the filters of the set."""
@@ -73,6 +76,31 @@ class DistinctOrderingFilter(django_filters.OrderingFilter):
 
         ordering = [self.get_ordering_value(param) for param in value] + ['pk']
         return qs.order_by(*ordering)
+
+
+class DynamicChoicesOrderingFilter(DynamicChoicesMixin,
+                                   DistinctOrderingFilter):
+    """Used for ordering filters with dynamic choices based on view properties.
+
+    For example dynamically add the rating ordering based on the module.
+    """
+
+    def __init__(self, *args, **kwargs):
+        if 'widget' not in kwargs:
+            kwargs['widget'] = OrderingWidget
+        kwargs['empty_label'] = None
+        super().__init__(*args, **kwargs)
+
+    def filter(self, qs, value):
+        qs = qs.annotate_positive_rating_count() \
+            .annotate_negative_rating_count() \
+            .annotate_comment_count()
+        if value == ['-comment_count']:
+            return qs.order_by('-comment_count')
+        elif value == ['-positive_rating_count']:
+            return qs.order_by('-positive_rating_count')
+
+        return super().filter(qs, value)
 
 
 class DistinctOrderingWithDailyRandomFilter(DistinctOrderingFilter):

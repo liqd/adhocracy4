@@ -61,6 +61,12 @@ class DropdownLinkWidget(django_filters.widgets.LinkWidget):
         })
 
 
+class OrderingWidget(DropdownLinkWidget):
+    """Used in .filters.DynamicChoicesOrderingFilter"""
+    label = _('Ordering')
+    right = True
+
+
 class FreeTextFilterWidget(TextInput):
     """This widget renders a complete element. It automatically
     creates hidden fields for all other filters so they are
