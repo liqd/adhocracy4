@@ -1,6 +1,7 @@
 import rules
 
 from adhocracy4.modules import predicates as module_predicates
+from adhocracy4.phases import predicates as phase_predicates
 
 from . import models
 
@@ -37,4 +38,9 @@ rules.add_perm(
     'meinberlin_budgeting.moderate_proposal',
     module_predicates.is_context_moderator |
     module_predicates.is_context_initiator
+)
+
+rules.add_perm(
+    'meinberlin_budgeting.vote_proposal',
+    phase_predicates.phase_allows_vote(models.Proposal)
 )

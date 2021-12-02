@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags static maps_tags react_proposals %}
+{% load i18n discovery_tags static maps_tags react_proposals widget_tweaks rules %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
@@ -17,6 +17,23 @@
         <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="btn btn--full u-spacer-bottom btn--huge">
             {% trans 'Submit proposal' %}
         </a>
+    {% endif %}
+    {% has_perm 'meinberlin_budgeting.vote_proposal' request.user module as vote_allowed %}
+    {% if vote_allowed %}
+        {% if request.session.voting_token %}
+            You are using token {{ request.session.voting_token }}
+        {% else %}
+            <form class="" action="{{ request.path }}" method="post">
+                <div class="form-group">
+                    {% csrf_token %}
+                    <div class="widget widget--{{ form.token|widget_type }}">
+                        {{ token_form.token }}
+                    </div>
+                    {{ token_form.token.errors }}
+                    <button type="submit" class="btn btn--full u-spacer-bottom btn--huge">{% trans 'Enter code' %}</button>
+                </div>
+            </form>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
