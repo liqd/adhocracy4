@@ -1,4 +1,5 @@
 import secrets
+import string
 
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
@@ -13,7 +14,8 @@ from adhocracy4.phases.predicates import has_feature_active
 
 
 def get_token():
-    return secrets.token_urlsafe(16)
+    alphabet = string.ascii_letters + string.digits
+    return ''.join(secrets.choice(alphabet) for i in range(12))
 
 
 class VotingToken(models.Model):
@@ -77,6 +79,11 @@ class VotingToken(models.Model):
 
     def is_valid_for_item(self, item):
         return item.module == self.module and self.is_valid(item.__class__)
+
+    def __str__(self):
+        return '{}-{}-{}'.format(self.token[0:4],
+                                 self.token[4:8],
+                                 self.token[8:12])
 
 
 class TokenVote(base.TimeStampedModel):
