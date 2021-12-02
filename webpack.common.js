@@ -99,7 +99,7 @@ module.exports = {
         'leaflet/dist/leaflet.css',
         'mapbox-gl/dist/mapbox-gl.css',
         'leaflet-draw/dist/leaflet.draw.css',
-        './meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js'
+        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js'
       ],
       dependOn: 'adhocracy4'
     },
