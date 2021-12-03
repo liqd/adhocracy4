@@ -1942,6 +1942,8 @@ msgid ""
 "An error occurred while evaluating your data. Please check the data you "
 "entered again."
 msgstr ""
+"Bei der Validierung Ihrer Daten ist ein Fehler aufgetreten. "
+"Bitte überprüfen Sie Ihre Eingabe."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:18
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:18
@@ -4333,7 +4335,8 @@ msgstr "Wichtige Daten"
 
 #: meinberlin/apps/users/fields.py:12
 msgid "Please enter correct email addresses, separated by commas."
-msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse ein. "
+"Unterschiedliche E-Mail-Adressen werden durch ein Komma getrennt."
 
 #: meinberlin/apps/users/forms.py:30
 #, python-format
