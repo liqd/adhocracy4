@@ -47,7 +47,10 @@ module.exports = {
     // these do not rely on adhocracy and adding the depend causes console error
     // error possibly due to needing to be loaded at specific time
     blueprint_picker: {
-      import: './meinberlin/assets/js/blueprint-picker.js'
+      import: [
+        './meinberlin/assets/js/blueprint-picker.js'
+      ],
+      dependOn: 'adhocracy4'
     },
     documents: {
       import: './meinberlin/apps/documents/assets/react_documents_init.js'
