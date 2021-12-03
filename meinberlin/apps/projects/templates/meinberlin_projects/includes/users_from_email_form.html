@@ -2,12 +2,8 @@
 
 <form method="POST">
     {% csrf_token %}
-    {% if form.non_field_errors %}
-    <div class="form-errors">
-        {% for error in form.non_field_errors %}
-        <p class="alert alert--danger">{{ error }}</p>
-        {% endfor %}
-    </div>
+    {% if form.errors %}
+        <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
     {% endif %}
 
     <div class="form-group">
@@ -48,6 +44,13 @@
                 </span>
             </div>
         </div>
+        {% if form.non_field_errors %}
+        <ul class="errorlist">
+            {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         {{ form.add_users_upload.errors }}
     </div>
 </form>
