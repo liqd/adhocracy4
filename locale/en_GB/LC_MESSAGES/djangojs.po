@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-19 11:50+0100\n"
+"POT-Creation-Date: 2021-12-03 14:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,12 +53,12 @@ msgid "Answer"
 msgstr "Answer"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:418
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:420
 msgid "Your reply here"
 msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:292
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:294
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -70,12 +70,12 @@ msgstr ""
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:269
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:271
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:264
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:266
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
@@ -210,11 +210,15 @@ msgctxt "verb"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:299
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:264
+msgid "Blocked by moderator on"
+msgstr "Blocked by moderator on"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:301
 msgid "Share link"
 msgstr "Share link"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:339
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:341
 msgid "Categories: "
 msgstr "Categories: "
 
@@ -560,53 +564,38 @@ msgstr "Thank you! We are taking care of it."
 msgid "Close"
 msgstr "Close"
 
-#: meinberlin/apps/budgeting/assets/helpers.js:4
-msgid "January"
-msgstr "January"
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:57
+#: meinberlin/apps/plans/assets/PlansList.jsx:258
+#: meinberlin/apps/plans/assets/PlansMap.jsx:293
+msgid "Nothing to show"
+msgstr "Nothing to show"
 
-#: meinberlin/apps/budgeting/assets/helpers.js:5
-msgid "February"
-msgstr "February"
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:40
+msgid "Voted"
+msgstr "Voted"
 
-#: meinberlin/apps/budgeting/assets/helpers.js:6
-msgid "March"
-msgstr "March"
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:41
+msgid "Give my vote"
+msgstr "Give my vote"
 
-#: meinberlin/apps/budgeting/assets/helpers.js:7
-msgid "April"
-msgstr "April"
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:11
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:15
+msgid "Positive Ratings"
+msgstr "Positive Ratings"
 
-#: meinberlin/apps/budgeting/assets/helpers.js:8
-msgid "May"
-msgstr "May"
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:21
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:25
+msgid "Negative Ratings"
+msgstr "Negative Ratings"
 
-#: meinberlin/apps/budgeting/assets/helpers.js:9
-msgid "June"
-msgstr "June"
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:31
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:36
+msgid "Comments"
+msgstr "Comments"
 
-#: meinberlin/apps/budgeting/assets/helpers.js:10
-msgid "July"
-msgstr "July"
-
-#: meinberlin/apps/budgeting/assets/helpers.js:11
-msgid "August"
-msgstr "August"
-
-#: meinberlin/apps/budgeting/assets/helpers.js:12
-msgid "September"
-msgstr "September"
-
-#: meinberlin/apps/budgeting/assets/helpers.js:13
-msgid "October"
-msgstr "October"
-
-#: meinberlin/apps/budgeting/assets/helpers.js:14
-msgid "November"
-msgstr "November"
-
-#: meinberlin/apps/budgeting/assets/helpers.js:15
-msgid "December"
-msgstr "December"
+#: meinberlin/apps/budgeting/assets/Pagination.jsx:15
+msgid "Page navigation"
+msgstr "Page navigation"
 
 #: meinberlin/apps/captcha/assets/captcheck.js:30
 msgid "Image mode"
@@ -1025,11 +1014,6 @@ msgstr "Participation projects: "
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:258
-#: meinberlin/apps/plans/assets/PlansMap.jsx:293
-msgid "Nothing to show"
-msgstr "Nothing to show"
-
 #: meinberlin/apps/plans/assets/PlansMap.jsx:267
 msgid "Address Search"
 msgstr "Address Search"
@@ -1063,34 +1047,34 @@ msgstr "Superordinate project: "
 msgid "Participation: "
 msgstr "Participation: "
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:40
-#: meinberlin/apps/plans/assets/Toggles.jsx:94
+#: meinberlin/apps/plans/assets/Toggles.jsx:41
+#: meinberlin/apps/plans/assets/Toggles.jsx:95
 msgid " search results"
 msgstr " search results"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:74
+#: meinberlin/apps/plans/assets/Toggles.jsx:75
 msgid "Show map"
 msgstr "Show map"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:81
+#: meinberlin/apps/plans/assets/Toggles.jsx:82
 msgid "hide map"
 msgstr "hide map"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:132
-msgid "show list"
-msgstr "show list"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:134
+#: meinberlin/apps/plans/assets/Toggles.jsx:129
 msgid "List"
 msgstr "List"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:141
-msgid "show map"
-msgstr "show map"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:143
+#: meinberlin/apps/plans/assets/Toggles.jsx:130
 msgid "Map"
 msgstr "Map"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:131
+msgid "show list"
+msgstr "show list"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:132
+msgid "show map"
+msgstr "show map"
 
 #: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
@@ -1145,6 +1129,42 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#~ msgid "January"
+#~ msgstr "January"
+
+#~ msgid "February"
+#~ msgstr "February"
+
+#~ msgid "March"
+#~ msgstr "March"
+
+#~ msgid "April"
+#~ msgstr "April"
+
+#~ msgid "May"
+#~ msgstr "May"
+
+#~ msgid "June"
+#~ msgstr "June"
+
+#~ msgid "July"
+#~ msgstr "July"
+
+#~ msgid "August"
+#~ msgstr "August"
+
+#~ msgid "September"
+#~ msgstr "September"
+
+#~ msgid "October"
+#~ msgstr "October"
+
+#~ msgid "November"
+#~ msgstr "November"
+
+#~ msgid "December"
+#~ msgstr "December"
 
 #~ msgid "Helptext"
 #~ msgstr "Helptext"
