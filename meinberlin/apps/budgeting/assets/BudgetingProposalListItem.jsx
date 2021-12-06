@@ -43,8 +43,8 @@ export const BudgetingProposalListItem = (props) => {
           <CheckboxButton
             onText={django.gettext('Voted')}
             offText={django.gettext('Give my vote')}
-            onClass="btn"
-            offClass="btn btn--light"
+            onClass="btn btn--full"
+            offClass="btn btn--full btn--light"
             uniqueID={proposal.pk}
           />}
       </div>

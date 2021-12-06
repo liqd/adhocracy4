@@ -97,9 +97,11 @@
 }
 
 .list-item__vote {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @media screen and (min-width: $breakpoint-xs) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
 .list-item .is-read-only {
