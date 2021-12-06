@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
+import { CountComponent } from '../../contrib/assets/CountComponent'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
@@ -60,9 +61,26 @@ export const BudgetingProposalList = (props) => {
     return list
   }
 
+  // this is just a placeholder until we have the votes
+  const voteCount = 1
+
+  const getVoteCountText = (votes) => {
+    const countText = django.ngettext('you have 1 vote left', 'you have %s votes left', votes)
+    return django.interpolate(countText, [votes])
+  }
+
   return (
     <div className="module-content--light">
       <div className="l-wrapper">
+        {props.is_voting_phase &&
+          <div className="l-center-6">
+            <CountComponent
+              countText={getVoteCountText(voteCount)}
+              activeClass="btn btn--transparent btn--full u-spacer-bottom btn--huge u-primary"
+              inactiveClass="btn btn--full btn--light u-spacer-bottom btn--huge"
+              counter={voteCount}
+            />
+          </div>}
         <div className="l-center-8">
           {renderList(data)}
         </div>
