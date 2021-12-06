@@ -43,7 +43,10 @@
 
     {% elif item.item_type != 'external' and item.project.future_modules %}
     <div class="status-item status-item__position-storefront status__future">
-      <span class="status-bar__status"><i class="fas fa-clock" ></i>{% blocktrans with date=item.project.future_modules.first.module_start|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
+      <span class="status-bar__status"><i class="fas fa-clock" ></i>
+          {% trans 'Participation: from ' %}
+          {% html_date item.project.future_modules.first.module_start class='list-item__date' %}
+      </span>
     </div>
 
     {% elif item.project.has_finished %}

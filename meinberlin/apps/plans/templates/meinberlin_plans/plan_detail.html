@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static rules wagtailcore_tags maps_tags thumbnail ckeditor_tags %}
+{% load i18n static rules wagtailcore_tags maps_tags thumbnail ckeditor_tags contrib_tags %}
 
 {% block title %}{{ object.title }} &mdash; {{ block.super }}{% endblock %}
 
@@ -89,7 +89,13 @@
 
                         <dl>
                             <dt>{% trans 'Reference No.' %}</dt>
-                            <dd>{{ object.reference_number }}, {% if object.modified %}{% trans 'updated on ' %}{{ object.modified|date }}{% else %}{% trans 'created on ' %}{{ object.created|date }}{% endif %}</dd>
+                            <dd>{{ object.reference_number }},
+                                {% if object.modified %}
+                                    {% trans 'updated on ' %}{% html_date object.modified class='list-item__date' %}
+                                {% else %}
+                                    {% trans 'created on ' %}{% html_date object.created class='list-item__date' %}
+                                {% endif %}
+                            </dd>
                         </dl>
                     </ul>
                     {% if object.description_image %}

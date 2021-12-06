@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n contrib_tags %}
 
 {% if invites|length %}
     <table>
@@ -13,7 +13,7 @@
         {% for invite in invites %}
             <tr>
                 <td>{{ invite.email }}</td>
-                <td>{{ invite.created }}</td>
+                <td>{% html_date invite.created class='list-item__date' %}</td>
                 <td class="td--action">
                     <form method="post">
                         {% csrf_token %}
