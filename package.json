@@ -14,7 +14,7 @@
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.4",
-    "@testing-library/react-native": "^8.0.0",
+    "@testing-library/react-native": "9.0.0",
     "acorn": "8.6.0",
     "adhocracy4": "liqd/adhocracy4#e03fe5a065c08d29b075f004b58f713e61557169",
     "autoprefixer": "10.4.0",
@@ -67,7 +67,7 @@
     "@babel/preset-env": "7.16.5",
     "@babel/preset-react": "7.16.5",
     "@testing-library/react": "12.1.2",
-    "@testing-library/react-native": "8.0.0",
+    "@testing-library/react-native": "9.0.0",
     "eslint": "8.4.1",
     "eslint-config-standard": "16.0.3",
     "eslint-config-standard-jsx": "10.0.0",
