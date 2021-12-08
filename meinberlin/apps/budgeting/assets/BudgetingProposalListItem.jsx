@@ -6,34 +6,38 @@ import { ListItemBadges } from './ListItemBadges'
 import { ListItemStats } from './ListItemStats'
 
 export const BudgetingProposalListItem = (props) => {
-  const { proposal, isVotingPhase } = props
-  const safeLocale = proposal.locale ? proposal.locale : undefined
+  const { proposal: p, isVotingPhase } = props
+  const safeLocale = p.locale ? p.locale : undefined
+  const date = p.modified
+    ? `${django.gettext('modified on')} ${toLocaleDate(p.modified, safeLocale)}`
+    : `${django.gettext('created on')} ${toLocaleDate(p.created, safeLocale)}`
+
   return (
     <li className="list-item no-hover">
       {!isVotingPhase &&
         <ListItemStats
-          positiveCount={proposal.positive_rating_count}
-          negativeCount={proposal.negative_rating_count}
-          commentCount={proposal.comment_count}
+          positiveCount={p.positive_rating_count}
+          negativeCount={p.negative_rating_count}
+          commentCount={p.comment_count}
         />}
       <h3 className="list-item__title">
-        <a href={proposal.url}>
-          {proposal.name}
+        <a href={p.url}>
+          {p.name}
         </a>
       </h3>
       <ListItemBadges
-        category={proposal.category}
-        budget={proposal.budget}
-        pointLabel={proposal.point_label}
-        moderatorFeedback={proposal.moderator_feedback}
-        moderatorChoices={proposal.moderator_feedback_choices}
+        category={p.category}
+        budget={p.budget}
+        pointLabel={p.point_label}
+        moderatorFeedback={p.moderator_feedback}
+        moderatorChoices={p.moderator_feedback_choices}
       />
       <div className="list-item__vote">
         <div>
           <span className="list-item__author">
-            {proposal.creator}
+            {p.creator}
           </span>
-          {toLocaleDate(proposal.created, safeLocale)}
+          {date}
         </div>
         {isVotingPhase &&
           <CheckboxButton
@@ -41,7 +45,7 @@ export const BudgetingProposalListItem = (props) => {
             offText={django.gettext('Give my vote')}
             onClass="btn"
             offClass="btn btn--light"
-            uniqueID={proposal.pk}
+            uniqueID={p.pk}
           />}
       </div>
     </li>

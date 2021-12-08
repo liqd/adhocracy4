@@ -30,12 +30,12 @@ class ProposalSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Proposal
-        fields = ('budget', 'category', 'comment_count', 'created', 'creator',
-                  'is_archived', 'name', 'negative_rating_count',
+        fields = ('budget', 'category', 'comment_count', 'created', 'modified',
+                  'creator', 'is_archived', 'name', 'negative_rating_count',
                   'positive_rating_count', 'url', 'pk', 'moderator_feedback',
                   'moderator_feedback_choices', 'locale')
         read_only_fields = ('budget', 'category', 'comment_count', 'created',
-                            'creator', 'is_archived', 'name',
+                            'modified', 'creator', 'is_archived', 'name',
                             'negative_rating_count', 'positive_rating_count',
                             'url', 'pk', 'moderator_feedback',
                             'moderator_feedback_choices', 'locale')
