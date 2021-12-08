@@ -62,7 +62,12 @@
 
                         {% if object.topic_names %}
                         <dl>
-                            <dt>{% trans 'Topic' %}</dt><dd>{{ object.topic_names.0 }}{% if object.topic_names.1 %}, {{ object.topic_names.1 }}{% endif %}</dd>
+                            <dt>{% trans 'Topic' %}</dt>
+                            <dd>{{ object.topic_names.0 }}
+                                {% if object.topic_names.1 %}
+                                    ,{{ object.topic_names.1 }}
+                                {% endif %}
+                            </dd>
                         </dl>
                         {% endif %}
 
@@ -81,8 +86,11 @@
                         <dl>
                             <dt>{% trans 'Participation' %}</dt>
                             <dd>
-                                    {{ object.get_participation_display }}{% if object.participation == object.PARTICIPATION_YES and object.published_projects.count %},
-                                    <a href='#participation-plans'>{% trans 'see participation plans' %}</a>
+                                {{ object.get_participation_display }}
+                                {% if object.participation == object.PARTICIPATION_YES and object.published_projects.count %},
+                                    <a href='#participation-plans'>
+                                        {% trans 'see participation plans' %}
+                                    </a>
                                 {% endif%}
                             </dd>
                         </dl>
@@ -101,7 +109,9 @@
                     {% if object.description_image %}
                         <div class="item-detail__background-image" style="background-image: url({% thumbnail object.description_image 'item_image' %})">
                         {% if object.description_image_copyright %}
-                            <span class="item-detail__copyright copyright">© {{ object.description_image_copyright }}</span>
+                            <span class="item-detail__copyright copyright">
+                                © {{ object.description_image_copyright }}
+                            </span>
                         {% endif %}
                         </div>
                     {% endif %}
@@ -114,29 +124,39 @@
                         {% endif %}
                     </div>
                 </div>
-                {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url or object.organisation.address or object.organisation.url %}
+                {% if object.contact_name or
+                    object.contact_address_text or
+                    object.contact_email or
+                    object.contact_phone or
+                    object.contact_url or
+                    object.organisation.address or
+                    object.organisation.url %}
                     <div class="l-tiles-2 u-spacer-bottom">
-                    {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url %}
+                    {% if object.contact_name or
+                        object.contact_address_text or
+                        object.contact_email or
+                        object.contact_phone or
+                        object.contact_url %}
                         <div>
                             <h3>{% trans 'Contact for questions' %}</h3>
                             {% if object.contact_name %}
-                            <p>{{ object.contact_name }}</p>
+                                <p>{{ object.contact_name }}</p>
                             {% endif %}
                             {% if object.contact_address_text %}
-                            <p>{{ object.contact_address_text|linebreaks }}</p>
+                                <p>{{ object.contact_address_text|linebreaks }}</p>
                             {% endif %}
                             {% if object.contact_phone %}
-                            <p><strong>{% trans 'Telephone' %}: </strong>{{ object.contact_phone }}</p>
+                                <p><strong>{% trans 'Telephone' %}: </strong>{{ object.contact_phone }}</p>
                             {% endif %}
                             {% if object.contact_email %}
-                            <a class="btn btn--secondary" href="mailto:{{ object.contact_email }}">
-                                {% trans 'Email' %}
-                            </a>
+                                <a class="btn btn--secondary" href="mailto:{{ object.contact_email }}">
+                                    {% trans 'Email' %}
+                                </a>
                             {% endif %}
                             {% if object.contact_url %}
-                            <a class="btn btn--secondary" target="_blank" href="{{ object.contact_url }}">
-                                {% trans 'Website' %}
-                            </a>
+                                <a class="btn btn--secondary" target="_blank" href="{{ object.contact_url }}">
+                                    {% trans 'Website' %}
+                                </a>
                             {% endif %}
                         </div>
                     {% endif %}
@@ -145,13 +165,13 @@
                         <div>
                             <h3>{% trans 'Responsible body' %}</h3>
                             {% if object.organisation.address %}
-                            <p>{{ object.organisation.name }}</p>
-                            <p>{{ object.organisation.address|linebreaks }}</p>
+                                <p>{{ object.organisation.name }}</p>
+                                <p>{{ object.organisation.address|linebreaks }}</p>
                             {% endif %}
                             {% if object.organisation.url %}
-                            <a class="btn btn--secondary" target="_blank" href="{{ object.organisation.url }}">
-                                {% trans 'Website' %}
-                            </a>
+                                <a class="btn btn--secondary" target="_blank" href="{{ object.organisation.url }}">
+                                    {% trans 'Website' %}
+                                </a>
                             {% endif %}
                         </div>
                     {% endif %}
@@ -181,7 +201,9 @@
                                         href="{% url 'a4dashboard:plan-update' organisation_slug=object.organisation.slug pk=object.pk %}"
                                         class="dropdown-item"
                                         data-embed-target="external"
-                                    >{% trans 'Edit' %}</a>
+                                    >
+                                        {% trans 'Edit' %}
+                                    </a>
                                 </li>
                             </div>
                         </div>
@@ -196,11 +218,12 @@
     {% if object.published_projects %}
     <div class="item-detail-2__project-list">
         <div class="l-wrapper">
-            <h3 class="item-detail-2__project-title" id="participation-plans">{% trans "Participation projects" %}</h3>
+            <h3 class="item-detail-2__project-title" id="participation-plans">
+                {% trans "Participation projects" %}
+            </h3>
             <ul class="u-list-reset participation-tile__list">
             {% for project in object.published_projects %}
-
-                    {% include "meinberlin_projects/includes/project_tile.html" with project=project %}
+                {% include "meinberlin_projects/includes/project_tile.html" with project=project %}
             {% endfor %}
             </ul>
         </div>

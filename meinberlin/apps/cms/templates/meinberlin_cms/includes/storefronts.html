@@ -2,14 +2,30 @@
 {% load static contrib_tags %}
 
 {% if item.district %}
-<a href="{% url 'meinberlin_plans:plan-list' %}?district={{ item.district.name }}" class="storefront__item storefront__district tile__md">
-    <h2 class="storefront__district-text">{% blocktrans with district=item.district %}What is happening in <strong>{{ district }}</strong>?{% endblocktrans %}</h2>
+<a
+    href="{% url 'meinberlin_plans:plan-list' %}?district={{ item.district.name }}"
+    class="storefront__item storefront__district tile__md"
+>
+    <h2 class="storefront__district-text">
+        {% blocktrans with district=item.district %}
+            What is happening in <strong>{{ district }}</strong>?
+        {% endblocktrans %}
+    </h2>
+    <h2 class="storefront__district-text">
+        {% blocktrans with district=item.district %}
+            What is happening in <strong>{{ district }}</strong>?
+        {% endblocktrans %}
+    </h2>
     <button class="btn btn-primary">
-        {% blocktrans count counter=item.district_project_count %}display {{ counter }} project{% plural %}display {{ counter }} projects{% endblocktrans %}
+        {% blocktrans count counter=item.district_project_count %}
+            display {{ counter }} project{% plural %}display {{ counter }} projects
+        {% endblocktrans %}
     </button>
 </a>
 {% elif item.project and not item.quote %}
-<a href="{{ item.project_url }}" {% if item.item_type == 'external' %}target="_blank"{% endif %} class="storefront__item storefront__proj tile__md">
+<a href="{{ item.project_url }}"
+   {% if item.item_type == 'external' %}target="_blank"{% endif %}
+    class="storefront__item storefront__proj tile__md">
     {% if item.project.module_running_days_left < 3 %}
     <div>
       <div class="storefront__ending-icon">
@@ -25,8 +41,16 @@
         {% endif %}
     </div>
     {% endif %}
-    <p class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% else %}{% trans 'City wide' %}{% endif %}</p>
-    <h2 class="storefront__proj-text {% if item.project.name|length > 95 %} storefront__proj-text-wide {% endif %}">{{ item.project.name }}</h2>
+    <p class="storefront__sm-text">
+        {% if item.project.administrative_district %}
+            {{ item.project.administrative_district }}
+        {% else %}
+            {% trans 'City wide' %}
+        {% endif %}
+    </p>
+    <h2 class="storefront__proj-text {% if item.project.name|length > 95 %} storefront__proj-text-wide {% endif %}">
+        {{ item.project.name }}
+    </h2>
     {% if item.project.running_modules %}
     <div class="status-item status-item__position-storefront status__active">
         <div class="status-bar__active">
@@ -34,7 +58,9 @@
         </div>
         <span class="status-bar__status"><i class="fas fa-clock"></i>
           {% if item.project.module_running_days_left < 365 %}
-          {% blocktrans with time_left=item.project.module_running_time_left %} {{ time_left }} remaining {% endblocktrans %}
+            {% blocktrans with time_left=item.project.module_running_time_left %}
+                {{ time_left }} remaining
+            {% endblocktrans %}
           {% else %}
           <span>{% trans 'more than 1 year remaining' %}</span>
           {% endif %}
@@ -56,11 +82,18 @@
     {% endif %}
 </a>
 {% elif item.project and item.quote %}
-<a href="{{ item.project_url }}" {% if item.item_type == 'external' %}target="_blank"{% endif %} class="storefront__item storefront__proj-quote tile__md">
+<a href="{{ item.project_url }}"
+   {% if item.item_type == 'external' %}target="_blank"{% endif %}
+    class="storefront__item storefront__proj-quote tile__md"
+>
     <blockquote class="storefront__quote-text">
         „{{ item.quote|truncatechars:150 }}“
     </blockquote>
-    <div class="storefront__opinion-text">{% blocktrans with name=item.project.name|truncatechars:60 %} What is your opinion on this: {{ name }}?{% endblocktrans %}</div>
+    <div class="storefront__opinion-text">
+        {% blocktrans with name=item.project.name|truncatechars:60 %}
+            What is your opinion on this: {{ name }}?
+        {% endblocktrans %}
+    </div>
 </a>
 {% elif not item.project and item.quote %}
 <div class="storefront__item storefront__quote tile__md">

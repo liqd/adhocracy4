@@ -31,7 +31,12 @@
             <span class="label label--big">{{ object.category }}</span>
         {% endif %}
         {% if object.moderator_feedback %}
-            <span class="label label--big label--{{ object.moderator_feedback|classify|lower }} list-item__label--moderator-feedback">
+            <span class=
+                      "label
+                      label--big
+                      label--{{ object.moderator_feedback|classify|lower }}
+                      list-item__label--moderator-feedback"
+            >
                 {{ object.get_moderator_feedback_display }}
             </span>
         {% endif %}
