@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-03 14:13+0100\n"
+"POT-Creation-Date: 2021-12-08 13:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -278,9 +278,9 @@ msgstr "here you can export all comments"
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11 meinberlin/apps/bplan/views.py:21
-#: meinberlin/apps/extprojects/views.py:21 meinberlin/apps/ideas/views.py:29
+#: meinberlin/apps/extprojects/views.py:21 meinberlin/apps/ideas/views.py:28
 #: meinberlin/apps/plans/views.py:33 meinberlin/apps/projects/views.py:53
-#: meinberlin/apps/topicprio/views.py:21
+#: meinberlin/apps/topicprio/views.py:20
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:4
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:10
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:11
@@ -669,6 +669,10 @@ msgstr "Positive ratings"
 #: adhocracy4/exports/mixins/rates.py:17
 msgid "Negative ratings"
 msgstr "Negative ratings"
+
+#: adhocracy4/filters/widgets.py:66 meinberlin/apps/projects/views.py:40
+msgid "Ordering"
+msgstr "Ordering"
 
 #: adhocracy4/forms/fields.py:18
 #, python-format
@@ -1889,28 +1893,28 @@ msgstr "Edit %(title)s"
 msgid "Edit proposal"
 msgstr "Edit proposal"
 
-#: meinberlin/apps/budgeting/views.py:19 meinberlin/apps/ideas/views.py:33
-#: meinberlin/apps/kiezkasse/views.py:16 meinberlin/apps/mapideas/views.py:16
-#: meinberlin/apps/maptopicprio/views.py:19
+#: meinberlin/apps/budgeting/views.py:18 meinberlin/apps/ideas/views.py:32
+#: meinberlin/apps/kiezkasse/views.py:15 meinberlin/apps/mapideas/views.py:15
+#: meinberlin/apps/maptopicprio/views.py:18
 #: meinberlin/apps/projects/views.py:92
 msgid "Most recent"
 msgstr "Most recent"
+
+#: meinberlin/apps/budgeting/views.py:20 meinberlin/apps/ideas/views.py:34
+#: meinberlin/apps/kiezkasse/views.py:17 meinberlin/apps/mapideas/views.py:17
+#: meinberlin/apps/maptopicprio/views.py:20
+#: meinberlin/apps/topicprio/views.py:31
+msgid "Most popular"
+msgstr "Most popular"
 
 #: meinberlin/apps/budgeting/views.py:21 meinberlin/apps/ideas/views.py:35
 #: meinberlin/apps/kiezkasse/views.py:18 meinberlin/apps/mapideas/views.py:18
 #: meinberlin/apps/maptopicprio/views.py:21
 #: meinberlin/apps/topicprio/views.py:32
-msgid "Most popular"
-msgstr "Most popular"
-
-#: meinberlin/apps/budgeting/views.py:22 meinberlin/apps/ideas/views.py:36
-#: meinberlin/apps/kiezkasse/views.py:19 meinberlin/apps/mapideas/views.py:19
-#: meinberlin/apps/maptopicprio/views.py:22
-#: meinberlin/apps/topicprio/views.py:33
 msgid "Most commented"
 msgstr "Most commented"
 
-#: meinberlin/apps/budgeting/views.py:111 meinberlin/apps/kiezkasse/views.py:80
+#: meinberlin/apps/budgeting/views.py:107 meinberlin/apps/kiezkasse/views.py:76
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
@@ -2063,10 +2067,6 @@ msgstr "You must select a maximum of  %(limit_value)d choices."
 msgid "Enter a valid email address."
 msgstr "Enter a valid email address."
 
-#: meinberlin/apps/contrib/filters.py:11 meinberlin/apps/projects/views.py:40
-msgid "Ordering"
-msgstr "Ordering"
-
 #: meinberlin/apps/contrib/mixins.py:4
 msgid ""
 "I hereby confirm that the copyrights for this photo are with me or that I "
@@ -2077,7 +2077,7 @@ msgstr ""
 "have received rights of use from the author. I also confirm that the privacy "
 "rights of depicted third persons are not violated. "
 
-#: meinberlin/apps/contrib/mixins.py:58
+#: meinberlin/apps/contrib/mixins.py:25
 msgid ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
@@ -2085,11 +2085,11 @@ msgstr ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
 
-#: meinberlin/apps/contrib/mixins.py:67
+#: meinberlin/apps/contrib/mixins.py:34
 msgid "contact storage consent"
 msgstr "contact storage consent"
 
-#: meinberlin/apps/contrib/mixins.py:82
+#: meinberlin/apps/contrib/mixins.py:49
 msgid "Please consent to the storage of your contact information."
 msgstr "Please consent to the storage of your contact information."
 
@@ -2667,7 +2667,7 @@ msgstr "Feedback on this idea"
 msgid "Edit idea"
 msgstr "Edit idea"
 
-#: meinberlin/apps/ideas/views.py:157 meinberlin/apps/mapideas/views.py:79
+#: meinberlin/apps/ideas/views.py:153 meinberlin/apps/mapideas/views.py:75
 msgid "Your Idea has been deleted"
 msgstr "Your Idea has been deleted"
 
@@ -2963,12 +2963,12 @@ msgstr "Add Place"
 msgid "Edit place"
 msgstr "Edit place"
 
-#: meinberlin/apps/maptopicprio/views.py:50
-#: meinberlin/apps/topicprio/views.py:31 meinberlin/apps/topicprio/views.py:76
+#: meinberlin/apps/maptopicprio/views.py:49
+#: meinberlin/apps/topicprio/views.py:30 meinberlin/apps/topicprio/views.py:72
 msgid "Alphabetical"
 msgstr "Alphabetical"
 
-#: meinberlin/apps/maptopicprio/views.py:150
+#: meinberlin/apps/maptopicprio/views.py:143
 msgid "The place has been deleted"
 msgstr "The place has been deleted"
 
@@ -4157,7 +4157,7 @@ msgstr "Add Topic"
 msgid "Edit topic"
 msgstr "Edit topic"
 
-#: meinberlin/apps/topicprio/views.py:150
+#: meinberlin/apps/topicprio/views.py:143
 msgid "The topic has been deleted"
 msgstr "The topic has been deleted"
 

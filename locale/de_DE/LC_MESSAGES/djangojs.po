@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-03 14:13+0100\n"
+"POT-Creation-Date: 2021-12-08 13:47+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -670,11 +670,18 @@ msgstr "Vielen Dank! Wir werden uns darum kümmern."
 msgid "Close"
 msgstr "Schließen"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:57
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:58
 #: meinberlin/apps/plans/assets/PlansList.jsx:258
 #: meinberlin/apps/plans/assets/PlansMap.jsx:293
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:68
+#, javascript-format
+msgid "you have 1 vote left"
+msgid_plural "you have %s votes left"
+msgstr[0] ""
+msgstr[1] ""
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:40
 msgid "Voted"
