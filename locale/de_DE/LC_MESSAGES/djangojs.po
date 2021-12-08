@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-08 13:47+0100\n"
+"POT-Creation-Date: 2021-12-08 13:56+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr ""
 #: adhocracy4/comments/static/comments/Comment.jsx:96
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:271
 msgid "Moderator"
-msgstr "Moderator"
+msgstr "Moderation"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:266
@@ -100,14 +100,14 @@ msgstr "Letzte Änderung am"
 #: adhocracy4/comments/static/comments/Comment.jsx:110
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:260
 msgid "Deleted by creator on"
-msgstr ""
+msgstr "Von Ersteller*in gelöscht"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:262
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:262
 msgid "Deleted by moderator on"
-msgstr ""
+msgstr "Von Moderation gelöscht"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:151
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:241
@@ -273,7 +273,7 @@ msgstr "Kommentieren"
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:264
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:264
 msgid "Blocked by moderator on"
-msgstr ""
+msgstr "Von Moderation gesperrt"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:301
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:301
