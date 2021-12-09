@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BudgetingProposalListItem } from '../BudgetingProposalListItem'
+import django from '../../../../../__mocks__/djangoMock'
 
 test('render list item with vote button', () => {
   const proposal = {
@@ -12,8 +13,9 @@ test('render list item with vote button', () => {
   render(<BudgetingProposalListItem proposal={proposal} isVotingPhase />)
   expect(screen.getByText('myProposal')).toBeTruthy()
   expect(screen.getByText('creator')).toBeTruthy()
-  const resolvedDate = screen
-    .queryByText('11. November 2021') || screen.queryByText('11 November 2021')
+  const resolvedDate =
+    screen.queryByText(`${django.gettext()} 11. November 2021`) ||
+    screen.queryByText(`${django.gettext()} 11 November 2021`)
   expect(resolvedDate).toBeTruthy()
 })
 
@@ -27,7 +29,8 @@ test('render list item with stats', () => {
   render(<BudgetingProposalListItem proposal={proposal} isVotingPhase={false} />)
   expect(screen.getByText('myProposal')).toBeTruthy()
   expect(screen.getByText('creator')).toBeTruthy()
-  const resolvedDate = screen
-    .queryByText('11. November 2021') || screen.queryByText('11 November 2021')
+  const resolvedDate =
+    screen.queryByText(`${django.gettext()} 11. November 2021`) ||
+    screen.queryByText(`${django.gettext()} 11 November 2021`)
   expect(resolvedDate).toBeTruthy()
 })
