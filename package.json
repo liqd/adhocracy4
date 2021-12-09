@@ -28,7 +28,7 @@
     "react-markdown": "6.0.3",
     "react-popper": "2.2.5",
     "react-slick": "0.28.1",
-    "remark-gfm": "1.0.0",
+    "remark-gfm": "3.0.1",
     "shpjs": "4.0.2",
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
