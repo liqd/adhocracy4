@@ -1,7 +1,18 @@
 {% extends "meinberlin_mapideas/mapidea_detail.html" %}
-{% load rules i18n humanize contrib_tags %}
+{% load rules i18n humanize contrib_tags react_proposals_vote static %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'vote_button.js' %}"></script>
+    {{ block.super }}
+{% endblock %}
 
 {% block additional_labels %}
     {{ block.super }}
-    <span class="label label--big">{{ proposal.budget|intcomma }}€</span>
+    <span class="label label--big test">{{ proposal.budget|intcomma }}€</span>
+{% endblock %}
+
+{% block vote_button %}
+<div class="l-center-6 u-bottom-divider">
+    {% react_proposals_vote view.module %}
+</div>
 {% endblock %}

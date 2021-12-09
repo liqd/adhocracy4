@@ -1,7 +1,6 @@
 import React from 'react'
-import django from 'django'
 import { toLocaleDate } from './helpers'
-import CheckboxButton from '../../contrib/assets/CheckboxButton'
+import { VoteButton } from './VoteButton.jsx'
 import { ListItemBadges } from './ListItemBadges'
 import { ListItemStats } from './ListItemStats'
 
@@ -40,11 +39,9 @@ export const BudgetingProposalListItem = (props) => {
           {date}
         </div>
         {isVotingPhase &&
-          <CheckboxButton
-            onText={django.gettext('Voted')}
-            offText={django.gettext('Give my vote')}
-            onClass="btn btn--full"
-            offClass="btn btn--full btn--light"
+          <VoteButton
+            onClass="btn"
+            offClass="btn btn--light"
             uniqueID={proposal.pk}
           />}
       </div>

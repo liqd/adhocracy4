@@ -61,6 +61,12 @@ module.exports = {
     unload_warning: {
       import: './meinberlin/assets/js/unload_warning.js'
     },
+    budgeting_disable_contact: {
+      import: './meinberlin/apps/budgeting/assets/disable_contact.js'
+    },
+    vote_button: {
+      import: './meinberlin/apps/budgeting/assets/react_vote_button_init.jsx'
+    },
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: {
       import: [
@@ -123,11 +129,6 @@ module.exports = {
         'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
       ],
       dependOn: 'adhocracy4'
-    },
-    budgeting_disable_contact: {
-      import: [
-        './meinberlin/apps/budgeting/assets/disable_contact.js'
-      ]
     }
   },
   output: {
