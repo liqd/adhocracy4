@@ -16,7 +16,7 @@
     "@fortawesome/fontawesome-free": "5.15.4",
     "@testing-library/react-native": "^8.0.0",
     "acorn": "8.6.0",
-    "adhocracy4": "liqd/adhocracy4#83a7756ffbec42b5afac595073816aeaf0d930bf",
+    "adhocracy4": "liqd/adhocracy4#e03fe5a065c08d29b075f004b58f713e61557169",
     "autoprefixer": "10.4.0",
     "axios": "0.24.0",
     "babel-loader": "8.2.3",
