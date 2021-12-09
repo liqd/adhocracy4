@@ -124,19 +124,9 @@
                         {% endif %}
                     </div>
                 </div>
-                {% if object.contact_name or
-                    object.contact_address_text or
-                    object.contact_email or
-                    object.contact_phone or
-                    object.contact_url or
-                    object.organisation.address or
-                    object.organisation.url %}
+                {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url or object.organisation.address or object.organisation.url %}
                     <div class="l-tiles-2 u-spacer-bottom">
-                    {% if object.contact_name or
-                        object.contact_address_text or
-                        object.contact_email or
-                        object.contact_phone or
-                        object.contact_url %}
+                    {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url %}
                         <div>
                             <h3>{% trans 'Contact for questions' %}</h3>
                             {% if object.contact_name %}
