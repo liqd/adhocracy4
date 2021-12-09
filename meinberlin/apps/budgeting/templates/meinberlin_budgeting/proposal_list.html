@@ -32,11 +32,11 @@
                 <form class="" action="{{ request.path }}" method="post">
                     <div class="form-group">
                         {% csrf_token %}
-                        <div class="widget widget--{{ form.token|widget_type }}">
+                        <div class="widget--{{ token_form.token|widget_type }}">
                             {{ token_form.token }}
+                            <button type="submit" class="btn">{% trans 'Enter code' %}</button>
                         </div>
                         {{ token_form.token.errors }}
-                        <button type="submit" class="btn btn--full u-spacer-bottom btn--huge">{% trans 'Enter code' %}</button>
                     </div>
                 </form>
             {% endif %}

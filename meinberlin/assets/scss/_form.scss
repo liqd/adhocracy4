@@ -137,3 +137,17 @@ div.cke_focus {
         margin-right: 0.5 * $em-spacer;
     }
 }
+
+.widget--votingtokenwidget {
+    input {
+        margin-bottom: $spacer;
+    }
+
+    @media screen and (min-width: $breakpoint-xs) {
+        display: flex;
+
+        input {
+            margin-right: $spacer;
+        }
+    }
+}
