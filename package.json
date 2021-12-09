@@ -47,7 +47,7 @@
     "react-flip-move": "3.0.4",
     "react-sticky-box": "0.9.3",
     "react-test-renderer": "^17.0.2",
-    "sass-loader": "12.3.0",
+    "sass-loader": "12.4.0",
     "sass-planifolia": "0.6.0",
     "select2": "4.0.13",
     "shariff": "3.2.1",
