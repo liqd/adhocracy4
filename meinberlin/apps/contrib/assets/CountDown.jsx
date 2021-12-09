@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CountComponent = (props) => {
+export const CountDown = (props) => {
   const {
     activeClass,
     inactiveClass,

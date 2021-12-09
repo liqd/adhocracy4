@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
-import { CountComponent } from '../../contrib/assets/CountComponent'
+import { CountDown } from '../../contrib/assets/CountDown'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
@@ -74,7 +74,7 @@ export const BudgetingProposalList = (props) => {
       <div className="l-wrapper">
         {props.is_voting_phase &&
           <div className="l-center-6">
-            <CountComponent
+            <CountDown
               countText={getVoteCountText(voteCount)}
               activeClass="btn btn--transparent btn--full u-spacer-bottom btn--huge u-primary"
               inactiveClass="btn btn--full btn--light u-spacer-bottom btn--huge"
