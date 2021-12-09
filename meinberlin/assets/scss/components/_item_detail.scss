@@ -16,13 +16,13 @@
 }
 
 .item-detail__meta {
-    padding-bottom: 0.6em;
+    padding-bottom: 0.5 * $padding;
     font-size: $font-size-sm;
 }
 
 .item-detail__actions {
-    padding-top: 0.6em;
-    border-top: 2px solid $border-color;
+    padding-top: $padding;
+    border-top: 1px solid $border-color;
 }
 
 .item-detail__creator {

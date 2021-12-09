@@ -142,12 +142,13 @@
 
 .u-top-divider {
     padding-top: $padding;
-    border-top: 2px solid $border-color;
+    border-top: 1px solid $border-color;
 }
 
 .u-bottom-divider {
-    margin-bottom: $em-spacer * 2;
-    border-bottom: 2px solid $border-color;
+    padding-bottom: $padding * 2;
+    margin-bottom: $spacer * 2;
+    border-bottom: 1px solid $border-color;
 }
 
 .u-border {
