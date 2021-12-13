@@ -310,7 +310,7 @@ msgstr "hier können Sie alle Ideen exportieren"
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:31
 msgid "here you can export all subjects"
-msgstr ""
+msgstr "hier können Sie alle Themen exportieren"
 
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
 #: adhocracy4/exports/templates/a4exports/export_dashboard.html:43
@@ -1955,7 +1955,7 @@ msgstr "Vorschlag anlegen"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:40
 msgid "Enter code"
-msgstr ""
+msgstr "Schlüssel eingeben"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:59
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:34
@@ -2116,7 +2116,7 @@ msgstr "Gesamtstädtisch"
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:55
 #, python-format
 msgid "%(time_left)s remaining"
-msgstr ""
+msgstr "noch %(time_left)s"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:57
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:67
@@ -2126,7 +2126,7 @@ msgstr "noch länger als 1 Jahr"
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:64
 #, python-format
 msgid "Participation: from %(date)s"
-msgstr ""
+msgstr "Beteiligung: ab %(date)s"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:69
 msgid "Participation ended. Read result."
@@ -2135,7 +2135,7 @@ msgstr "Beteiligung beendet. Ergebnis lesen."
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:82
 #, python-format
 msgid "What is your opinion on this: %(name)s?"
-msgstr ""
+msgstr "Was ist Ihre Meinung zum Projekt: %(name)s?"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
@@ -2937,6 +2937,9 @@ msgid ""
 "accordingly. The questions can be filtered by affiliation and evaluated in "
 "the statistics."
 msgstr ""
+"Hier können Sie Zugehörigkeiten vorgeben. Nutzer*innen müssen Fragen "
+"entsprechend einordnen. Die Fragen können nach Zugehörigkeiten gefiltert "
+"und in der Statistik ausgewertet werden."
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/includes/module_affiliations_form.html:20
 msgid "Add affiliation"
@@ -3721,6 +3724,8 @@ msgid ""
 "Please select the plan your project belongs to. Your project will be shown "
 "in the list of plans accordingly."
 msgstr ""
+"Bitte geben Sie an, zu welchem Vorhaben das Projekt gehört. Das Projekt "
+"wird entsprechend in der Vorhabenliste angezeigt."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:10
 #, python-format
@@ -3728,6 +3733,8 @@ msgid ""
 "No plan has been created yet. You can do that <a href=\"%(plan_create_url)s"
 "\">here</a>."
 msgstr ""
+"Es wurde noch kein Vorhaben angelegt, dies können Sie <a href="
+"\"%(plan_create_url)s\">hier</a> tun."
 
 #: meinberlin/apps/plans/views.py:164
 msgid "The plan was created"
@@ -3976,7 +3983,7 @@ msgstr "Beteiligungsprojekte: "
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:65
 #, python-format
 msgid "%(time_left)s remaining "
-msgstr ""
+msgstr "noch %(time_left)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"
@@ -4143,6 +4150,10 @@ msgid ""
 "and follow the invitation link again. If you decline the invitation the link "
 "is not valid anymore."
 msgstr ""
+"Wenn Sie akzeptieren, treten Sie dem Projekt mit Ihrem Nutzernamen "
+"\"%(user)s\" bei. Wenn Sie dem Projekt mit einem anderen Profil "
+"beitreten möchten, melden Sie sich ab und folgen Sie dem Einladungslink
+"erneut. Wenn Sie die Einladung ablehnen, verliert der Link seine Gültigkeit."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:23
 #: meinberlin/templates/a4modules/module_detail.html:24
@@ -4244,6 +4255,11 @@ msgid ""
 "find the Service <strong>mein.Berlin</strong> and finally click on "
 "<strong>Hier starten</strong> to return to the meinBerlin platform.</p>"
 msgstr ""
+"<p>Um sich mit dem Service-Konto bei meinBerlin anzumelden, werden Sie "
+"auf die Service-Konto Seite weitergeleitet.</p><p>Dort müssen Sie sich "
+"anmelden, den Dienst <strong>mein.Berlin</strong> auswählen und auf "
+"<strong>Hier starten</strong> klicken um zur meinBerlin-Platform "
+"zurückzukehren.</p>"
 
 #: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:13
 msgid "Service-Konto Login"
@@ -4402,18 +4418,22 @@ msgstr "Plattform-Mail"
 
 #: meinberlin/apps/votes/forms.py:23
 msgid "This token is not valid"
-msgstr ""
+msgstr "Dieser Abstimmungsschlüssel ist ungültig"
 
 #: meinberlin/apps/votes/models.py:36
 msgid ""
 "Designates whether this token should be treated as active. Unselect this "
 "instead of deleting tokens."
 msgstr ""
+"Legt fest, ob dieser Schlüssel aktiviert ist. Entfernen Sie "
+"die Auswahl, anstatt den Schlüssel zu löschen."
 
 #: meinberlin/apps/votes/models.py:112
 msgid ""
 "This token is not valid. It might be expired or not valid for this project."
 msgstr ""
+"Dieser Schlüssel ist ungültig. Er ist entweder abgelaufen oder nicht "
+"gültig für dieses Projekt."
 
 #: meinberlin/config/settings/base.py:314
 #: meinberlin/config/settings/base.py:327
@@ -4568,6 +4588,8 @@ msgid ""
 "contribution has to be assigned to one of them. This way, content can be "
 "classified."
 msgstr ""
+"Hier können Sie Kategorien anlegen. Dadurch können alle Beiträge einer "
+"Kategorie zugeordnet und entsprechend gefiltert werden."
 
 #: meinberlin/templates/a4dashboard/base_dashboard.html:16
 msgid "Organisations"
@@ -4584,6 +4606,9 @@ msgid ""
 "phases. The name and description of the phase(s) should encourage the users "
 "to participate and let them know how they can participate."
 msgstr ""
+"Je nach ausgewähltem Modul hat der Beteiligungsprozess eine oder zwei "
+"Phasen. Name und Beschreibung der Phase(n) sollten die Nutzer*innen zur "
+"Teilnahme anregen und sie wissen lassen, wie sie sich beteiligen können."
 
 #: meinberlin/templates/a4dashboard/includes/nav_modules.html:4
 msgid "Participation Module"
@@ -4606,7 +4631,7 @@ msgstr "Beteiligungsmodul wählen"
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:6
 #: meinberlin/templates/a4dashboard/includes/nav_project.html:6
 msgid "Toggle menu"
-msgstr ""
+msgstr "Toggle Menü"
 
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:13
 msgid "Module ready for addition"
@@ -4779,6 +4804,8 @@ msgid ""
 "In this section, you can create labels. If you create any, each contribution "
 "can be assigned to one or more of them. This way, content can be classified."
 msgstr ""
+"Hier können Sie Kategorien anlegen. Dadurch können alle Beiträge einer "
+"Kategorie zugeordnet und entsprechend gefiltert werden."
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase.html:50
 msgid ""
@@ -4859,6 +4886,8 @@ msgid ""
 "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
 "address for user %(user_display)s."
 msgstr ""
+"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> "
+"eine E-Mail Adresse der Nutzer*in %(user_display)s ist."
 
 #: meinberlin/templates/account/email_confirm.html:15
 msgid "Confirm"
@@ -4870,6 +4899,8 @@ msgid ""
 "This email confirmation link expired or is invalid. Please <a href="
 "\"%(email_url)s\">issue a new email confirmation request</a>."
 msgstr ""
+"Der Link zur E-Mail Bestätigung ist abgelaufen oder ist ungültig. Bitte "
+"<a href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
 
 #: meinberlin/templates/account/login.html:9
 #, python-format
@@ -4963,6 +4994,8 @@ msgstr "Ihr Passwort wurde geändert."
 msgid ""
 "Already have an account? Then please <a href=\"%(login_url)s\">login</a>."
 msgstr ""
+"Haben Sie schon ein Nutzerkonto? Dann <a href=\"%(login_url)s\">melden "
+"Sie sich bitte an</a>."
 
 #: meinberlin/templates/account/signup.html:11
 msgid ""
@@ -4984,6 +5017,13 @@ msgid ""
 "target=\"_blank\">terms of use</a> and the <a href=\"%(privacy_policy)s\" "
 "target=\"_blank\">privacy policy</a>."
 msgstr ""
+"Hiermit willige ich ausdrücklich in die Erhebung und Verarbeitung "
+"(Speicherung) meiner Daten und willige ausdrücklich in die Verarbeitung "
+"und Veröffentlichung meiner Ideen, Kommentare und Beiträge, wie in der "
+"Datenschutzerklärung beschrieben, ein. Zudem bestätige ich, dass ich die "
+"<a href=\"%(terms_of_use_url)s\" target=\"_blank\">Nutzungsbedingungen</"
+"a> und die <a href=\"%(privacy_policy)s\" target=\"_blank\"> "
+"Datenschutzerklärung</a> gelesen habe und akzeptiere."
 
 #: meinberlin/templates/base_errors.html:4
 msgid "Error"
@@ -5071,6 +5111,9 @@ msgid ""
 "You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
+"Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
+"anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt "
+"aus:"
 
 #~ msgid " %(time_left)s remaining "
 #~ msgstr " noch %(time_left)s"

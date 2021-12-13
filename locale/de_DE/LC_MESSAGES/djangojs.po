@@ -684,38 +684,38 @@ msgstr[1] ""
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:12
 msgid "modified on"
-msgstr ""
+msgstr "geändert am"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:13
 msgid "created on"
-msgstr ""
+msgstr "erstellt am"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:44
 msgid "Voted"
-msgstr ""
+msgstr "Gewählt"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:45
 msgid "Give my vote"
-msgstr ""
+msgstr "Meine Stimme geben"
 
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:11
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:15
 msgid "Positive Ratings"
-msgstr ""
+msgstr "Positive Bewertungen"
 
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:21
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:25
 msgid "Negative Ratings"
-msgstr ""
+msgstr "Negative Bewertungen"
 
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:31
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:36
 msgid "Comments"
-msgstr ""
+msgstr "Kommentare"
 
 #: meinberlin/apps/budgeting/assets/Pagination.jsx:15
 msgid "Page navigation"
-msgstr ""
+msgstr "Seitennummerierung"
 
 #: meinberlin/apps/captcha/assets/captcheck.js:30
 msgid "Image mode"
