@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { CountComponent } from '../CountComponent'
+import { CountDown } from '../CountDown'
 
 test('CountComponent is showing inactive', () => {
   render(
-    <CountComponent
+    <CountDown
       activeClass="active-class"
       inactiveClass="inactive-class"
       countText="votes"
@@ -17,7 +17,7 @@ test('CountComponent is showing inactive', () => {
 
 test('CountComponent is showing active', () => {
   render(
-    <CountComponent
+    <CountDown
       activeClass="active-class"
       inactiveClass="inactive-class"
       countText="votes"
