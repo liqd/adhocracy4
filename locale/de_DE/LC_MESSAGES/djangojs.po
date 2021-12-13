@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-08 13:56+0100\n"
+"POT-Creation-Date: 2021-12-13 14:40+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -665,7 +665,6 @@ msgstr "Vielen Dank! Wir werden uns darum kümmern."
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/embed/assets/embed.js:59
 #: meinberlin/apps/embed/assets/embed.js:60
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:85
 #: meinberlin/apps/plans/assets/FilterNav.jsx:213
 msgid "Close"
 msgstr "Schließen"
@@ -683,11 +682,19 @@ msgid_plural "you have %s votes left"
 msgstr[0] ""
 msgstr[1] ""
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:40
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:12
+msgid "modified on"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:13
+msgid "created on"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:44
 msgid "Voted"
 msgstr ""
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:41
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:45
 msgid "Give my vote"
 msgstr ""
 
@@ -932,75 +939,6 @@ msgstr "Beantwortete Fragen"
 #: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:45
 msgid "Affiliation Of Answered Questions"
 msgstr "Zugehörigkeit der beantworteten Fragen"
-
-#: meinberlin/apps/maps/assets/map-address.js:87
-msgid "No matches found within the project area"
-msgstr "Keine Treffer im Bereich des Projekts gefunden"
-
-#: meinberlin/apps/maps/assets/map-address.js:90
-msgid "Did you mean:"
-msgstr "Meinten Sie:"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:67
-msgid "Export polygon as GeoJSON"
-msgstr "Polygon als GeoJSON exportierten"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:68
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:78
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:90
-msgid "Import polygon via file upload"
-msgstr "Polygon aus Datei importieren"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:92
-msgid ""
-"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
-msgstr ""
-"Laden Sie eine GeoJSON Datei (.geojson) oder ein gepacktes Shapefile (.zip) "
-"hoch."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:93
-msgid ""
-"Note that uploading Shapefiles is not supported with Internet Explorer 10"
-msgstr ""
-"Beachten Sie, dass der Import von Shapefiles mit dem Internet Explorer 10 "
-"nicht unterstützt wird"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:94
-msgid "Attention importing a file will delete the existing polygons."
-msgstr ""
-"Achtung der Import einer Datei wird alle vorher ausgewählten Polygone "
-"entfernen."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:99
-msgid "Upload"
-msgstr "Hochladen"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:106
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:140
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:142
-msgid "The uploaded file is not a valid shapefile."
-msgstr "Die hochgeladene Datei ist kein gültiges Shapefile."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:144
-msgid "The uploaded file could not be imported."
-msgstr "Die hochgeladene Datei kann nicht importiert werden."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:158
-msgid "The uploaded file is not a valid geojson file."
-msgstr "Die hochgeladene Datei ist keine gültiges GeoJSON Datei."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:163
-msgid "Invalid file format."
-msgstr "Ungültiges Dateiformat."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:280
-msgid "Do you want to load this preset and delete all the existing polygons?"
-msgstr ""
-"Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
-"entfernen?"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:126
 #: meinberlin/apps/plans/assets/FilterNav.jsx:242
@@ -1256,3 +1194,56 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
+
+#~ msgid "No matches found within the project area"
+#~ msgstr "Keine Treffer im Bereich des Projekts gefunden"
+
+#~ msgid "Did you mean:"
+#~ msgstr "Meinten Sie:"
+
+#~ msgid "Export polygon as GeoJSON"
+#~ msgstr "Polygon als GeoJSON exportierten"
+
+#~ msgid "Import polygon via file upload"
+#~ msgstr "Polygon aus Datei importieren"
+
+#~ msgid ""
+#~ "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
+#~ msgstr ""
+#~ "Laden Sie eine GeoJSON Datei (.geojson) oder ein gepacktes Shapefile (."
+#~ "zip) hoch."
+
+#~ msgid ""
+#~ "Note that uploading Shapefiles is not supported with Internet Explorer 10"
+#~ msgstr ""
+#~ "Beachten Sie, dass der Import von Shapefiles mit dem Internet Explorer 10 "
+#~ "nicht unterstützt wird"
+
+#~ msgid "Attention importing a file will delete the existing polygons."
+#~ msgstr ""
+#~ "Achtung der Import einer Datei wird alle vorher ausgewählten Polygone "
+#~ "entfernen."
+
+#~ msgid "Upload"
+#~ msgstr "Hochladen"
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgid "The uploaded file is not a valid shapefile."
+#~ msgstr "Die hochgeladene Datei ist kein gültiges Shapefile."
+
+#~ msgid "The uploaded file could not be imported."
+#~ msgstr "Die hochgeladene Datei kann nicht importiert werden."
+
+#~ msgid "The uploaded file is not a valid geojson file."
+#~ msgstr "Die hochgeladene Datei ist keine gültiges GeoJSON Datei."
+
+#~ msgid "Invalid file format."
+#~ msgstr "Ungültiges Dateiformat."
+
+#~ msgid ""
+#~ "Do you want to load this preset and delete all the existing polygons?"
+#~ msgstr ""
+#~ "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher "
+#~ "ausgewählten entfernen?"

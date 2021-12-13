@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-08 13:56+0100\n"
+"POT-Creation-Date: 2021-12-13 14:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
-#: meinberlin/templates/a4categories/includes/module_categories_form.html:3
 msgid ""
 "In this section, you can create\n"
 "categories. If you create any, each contribution has to be assigned\n"
@@ -30,7 +29,7 @@ msgstr ""
 "to one of them. This way, content can be classified."
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
-#: meinberlin/templates/a4categories/includes/module_categories_form.html:21
+#: meinberlin/templates/a4categories/includes/module_categories_form.html:19
 msgid "Add category"
 msgstr "Add category"
 
@@ -227,7 +226,7 @@ msgstr "private"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:52
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:178
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:195
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:73
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
@@ -327,7 +326,6 @@ msgstr ""
 "            "
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
-#: meinberlin/templates/a4labels/includes/module_labels_form.html:3
 msgid ""
 "In this section, you can create\n"
 "labels. If you create any, each contribution can be assigned\n"
@@ -338,7 +336,7 @@ msgstr ""
 "to one or more of them. This way, content can be classified."
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
-#: meinberlin/templates/a4labels/includes/module_labels_form.html:21
+#: meinberlin/templates/a4labels/includes/module_labels_form.html:19
 msgid "Add label"
 msgstr "Add label"
 
@@ -510,7 +508,7 @@ msgstr "Only invited users can participate (private)."
 
 #: adhocracy4/dashboard/forms.py:86
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:32
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:115
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:131
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:126
 msgid "Contact for questions"
 msgstr "Contact for questions"
@@ -639,9 +637,9 @@ msgid "Labels"
 msgstr "Labels"
 
 #: adhocracy4/exports/mixins/items.py:46
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:56
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:60
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:61
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:91
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:99
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:45
 msgid "Reference No."
 msgstr "Reference No."
@@ -651,7 +649,7 @@ msgid "Moderator feedback"
 msgstr "Moderator feedback"
 
 #: adhocracy4/exports/mixins/items.py:67
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:122
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:126
 msgid "Official Statement"
 msgstr "Official Statement"
 
@@ -1017,7 +1015,7 @@ msgid "Postal address"
 msgstr "Postal address"
 
 #: adhocracy4/projects/models.py:54
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:127
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:143
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:138
 msgid "Email"
@@ -1032,8 +1030,8 @@ msgid "Phone"
 msgstr "Phone"
 
 #: adhocracy4/projects/models.py:72
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:132
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:147
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:148
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:163
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:143
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:158
 msgid "Website"
@@ -1824,30 +1822,30 @@ msgstr ""
 "An error occurred while evaluating your data. Please check the data you "
 "entered again."
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:18
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:19
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:18
 msgid "Submit proposal"
 msgstr "Submit proposal"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:33
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:40
 msgid "Enter code"
 msgstr "Enter code"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:51
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:59
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:34
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:34
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:25
 msgid "Zoom in"
 msgstr "Zoom in"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:52
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:60
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:35
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:35
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:26
 msgid "Zoom out"
 msgstr "Zoom out"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:77
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:85
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_list.html:29
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:52
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:60
@@ -1966,19 +1964,20 @@ msgstr[1] "projects you can participate in!"
 msgid "Scroll down"
 msgstr "Scroll down"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:6
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:10
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:13
 #, python-format
 msgid "What is happening in <strong>%(district)s</strong>?"
 msgstr "What is happening in <strong>%(district)s</strong>?"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:8
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:16
 #, python-format
 msgid "display %(counter)s project"
 msgid_plural "display %(counter)s projects"
 msgstr[0] "display %(counter)s project"
 msgstr[1] "display %(counter)s projects"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:28
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:42
 #: meinberlin/apps/plans/exports.py:64 meinberlin/apps/plans/forms.py:50
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
 #: meinberlin/apps/plans/views.py:87 meinberlin/apps/projects/admin.py:65
@@ -1988,30 +1987,29 @@ msgstr[1] "display %(counter)s projects"
 msgid "City wide"
 msgstr "City wide"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:37
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:65
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:55
 #, python-format
-msgid " %(time_left)s remaining "
-msgstr " %(time_left)s remaining "
+msgid "%(time_left)s remaining"
+msgstr "%(time_left)s remaining"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:57
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:67
 msgid "more than 1 year remaining"
 msgstr "more than 1 year remaining"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:46
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:64
 #, python-format
-msgid " Participation: from %(date)s"
-msgstr " Participation: from %(date)s"
+msgid "Participation: from %(date)s"
+msgstr "Participation: from %(date)s"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:51
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:69
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:60
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:82
 #, python-format
-msgid " What is your opinion on this: %(name)s?"
-msgstr " What is your opinion on this: %(name)s?"
+msgid "What is your opinion on this: %(name)s?"
+msgstr "What is your opinion on this: %(name)s?"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
@@ -2147,42 +2145,42 @@ msgstr "Positive Ratings"
 msgid "Negative Ratings"
 msgstr "Negative Ratings"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:46
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:53
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:43
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:45
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:92
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:50
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:54
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:44
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:49
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:102
 msgid "updated on "
 msgstr "updated on "
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:46
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:53
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:43
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:45
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:92
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:52
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:56
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:46
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:51
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:104
 msgid "created on "
 msgstr "created on "
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:82
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:91
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:161
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:170
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:86
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:95
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:177
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:186
 msgid "Actions"
 msgstr "Actions"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:96
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:100
 msgid "edit"
 msgstr "edit"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:98
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:102
 msgid "delete"
 msgstr "delete"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:102
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:106
 msgid "give feedback"
 msgstr "give feedback"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:107
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:111
 msgid "report"
 msgstr "report"
 
@@ -2786,17 +2784,15 @@ msgstr ""
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/includes/module_affiliations_form.html:3
 msgid ""
-"Here you can specify affiliations. Users must classify\n"
-"    questions accordingly. The questions can be filtered by affiliation and "
-"evaluated in the\n"
-"    statistics."
+"Here you can specify affiliations. Users must classify questions "
+"accordingly. The questions can be filtered by affiliation and evaluated in "
+"the statistics."
 msgstr ""
-"Here you can specify affiliations. Users must classify\n"
-"    questions accordingly. The questions can be filtered by affiliation and "
-"evaluated in the\n"
-"    statistics."
+"Here you can specify affiliations. Users must classify questions "
+"accordingly. The questions can be filtered by affiliation and evaluated in "
+"the statistics."
 
-#: meinberlin/apps/livequestions/templates/meinberlin_livequestions/includes/module_affiliations_form.html:22
+#: meinberlin/apps/livequestions/templates/meinberlin_livequestions/includes/module_affiliations_form.html:20
 msgid "Add affiliation"
 msgstr "Add affiliation"
 
@@ -3311,7 +3307,7 @@ msgstr ""
 "plan. In the project overview projects can be filtered by district."
 
 #: meinberlin/apps/plans/models.py:94
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:77
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:82
 msgid "Cost"
 msgstr "Cost"
 
@@ -3379,7 +3375,7 @@ msgid "In the project overview projects can be filtered by status."
 msgstr "In the project overview projects can be filtered by status."
 
 #: meinberlin/apps/plans/models.py:148
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:82
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:87
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:97
 msgid "Participation"
@@ -3394,7 +3390,7 @@ msgstr ""
 "status."
 
 #: meinberlin/apps/plans/models.py:158
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:71
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:76
 msgid "Duration"
 msgstr "Duration"
 
@@ -3515,21 +3511,21 @@ msgstr "Location"
 msgid "Topic"
 msgstr "Topic"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:85
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:92
 msgid "see participation plans"
 msgstr "see participation plans"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:123
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:139
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:134
 msgid "Telephone"
 msgstr "Telephone"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:140
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:156
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:151
 msgid "Responsible body"
 msgstr "Responsible body"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:193
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:212
 #: meinberlin/templates/a4dashboard/base_project_list.html:7
 #: meinberlin/templates/a4dashboard/base_project_list.html:16
 #: meinberlin/templates/a4dashboard/project_list.html:9
@@ -3566,26 +3562,20 @@ msgstr "Close"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:3
 msgid ""
-"\n"
 "Please select the plan your project belongs to. Your project will be shown "
-"in the list of plans accordingly.\n"
+"in the list of plans accordingly."
 msgstr ""
-"\n"
 "Please select the plan your project belongs to. Your project will be shown "
-"in the list of plans accordingly.\n"
+"in the list of plans accordingly."
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:12
+#: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:10
 #, python-format
 msgid ""
-"\n"
-"    No plan has been created yet. You can do that <a href="
-"\"%(plan_create_url)s\">here</a>.\n"
-"    "
+"No plan has been created yet. You can do that <a href=\"%(plan_create_url)s"
+"\">here</a>."
 msgstr ""
-"\n"
-"    No plan has been created yet. You can do that <a href="
-"\"%(plan_create_url)s\">here</a>.\n"
-"    "
+"No plan has been created yet. You can do that <a href=\"%(plan_create_url)s"
+"\">here</a>."
 
 #: meinberlin/apps/plans/views.py:164
 msgid "The plan was created"
@@ -3828,6 +3818,11 @@ msgstr "Read now"
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:65
+#, python-format
+msgid "%(time_left)s remaining "
+msgstr "%(time_left)s remaining "
+
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"
 msgstr "Timeline item"
@@ -3938,8 +3933,8 @@ msgstr "Proceed to login"
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:55
 #: meinberlin/templates/account/signup.html:4
 #: meinberlin/templates/account/signup.html:7
-#: meinberlin/templates/account/signup.html:45
-#: meinberlin/templates/socialaccount/signup.html:38
+#: meinberlin/templates/account/signup.html:42
+#: meinberlin/templates/socialaccount/signup.html:35
 msgid "Register"
 msgstr "Register"
 
@@ -3952,12 +3947,12 @@ msgstr ""
 "able to moderate the project."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/moderatorinvite_form.html:15
-#: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:18
+#: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:15
 msgid "Accept"
 msgstr "Accept"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/moderatorinvite_form.html:16
-#: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:19
+#: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:16
 msgid "Decline"
 msgstr "Decline"
 
@@ -3986,23 +3981,17 @@ msgstr "Do you want to join %(project)s?"
 #: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:11
 #, python-format
 msgid ""
-"\n"
-"                You were invited by the initiator of the project. If you "
-"accept you will be able to participate in the project with your username "
-"\"%(user)s\".\n"
-"                If you want to join with a different profile please login "
-"with your other profile and follow the invitation link again. If you decline "
-"the invitation the link is not valid anymore.\n"
-"                "
+"You were invited by the initiator of the project. If you accept you will be "
+"able to participate in the project with your username \"%(user)s\". If you "
+"want to join with a different profile please login with your other profile "
+"and follow the invitation link again. If you decline the invitation the link "
+"is not valid anymore."
 msgstr ""
-"\n"
-"                You were invited by the initiator of the project. If you "
-"accept you will be able to participate in the project with your username "
-"\"%(user)s\".\n"
-"                If you want to join with a different profile please login "
-"with your other profile and follow the invitation link again. If you decline "
-"the invitation the link is not valid anymore.\n"
-"                "
+"You were invited by the initiator of the project. If you accept you will be "
+"able to participate in the project with your username \"%(user)s\". If you "
+"want to join with a different profile please login with your other profile "
+"and follow the invitation link again. If you decline the invitation the link "
+"is not valid anymore."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:23
 #: meinberlin/templates/a4modules/module_detail.html:24
@@ -4098,29 +4087,17 @@ msgstr "Login via Service-Konto"
 
 #: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:10
 msgid ""
-"\n"
-"            <p>To sign in via Service-Konto on meinBerlin you will be "
-"redirected to the Service-Konto.</p>\n"
-"            <p>\n"
-"                There you have to sign in with your credentials first, find "
-"the Service <strong>mein.Berlin</strong> and\n"
-"                finally click on <strong>Hier starten</strong> to return to "
-"the meinBerlin platform.\n"
-"            </p>\n"
-"        "
+"<p>To sign in via Service-Konto on meinBerlin you will be redirected to the "
+"Service-Konto.</p><p>There you have to sign in with your credentials first, "
+"find the Service <strong>mein.Berlin</strong> and finally click on "
+"<strong>Hier starten</strong> to return to the meinBerlin platform.</p>"
 msgstr ""
-"\n"
-"            <p>To sign in via Service-Konto on meinBerlin you will be "
-"redirected to the Service-Konto.</p>\n"
-"            <p>\n"
-"                There you have to sign in with your credentials first, find "
-"the Service <strong>mein.Berlin</strong> and\n"
-"                finally click on <strong>Hier starten</strong> to return to "
-"the meinBerlin platform.\n"
-"            </p>\n"
-"        "
+"<p>To sign in via Service-Konto on meinBerlin you will be redirected to the "
+"Service-Konto.</p><p>There you have to sign in with your credentials first, "
+"find the Service <strong>mein.Berlin</strong> and finally click on "
+"<strong>Hier starten</strong> to return to the meinBerlin platform.</p>"
 
-#: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:19
+#: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:13
 msgid "Service-Konto Login"
 msgstr "Service-Konto Login"
 
@@ -4433,6 +4410,16 @@ msgstr "Internal server error."
 msgid "Back to meinBerlin."
 msgstr "Back to meinBerlin."
 
+#: meinberlin/templates/a4categories/includes/module_categories_form.html:3
+msgid ""
+"In this section, you can create categories. If you create any, each "
+"contribution has to be assigned to one of them. This way, content can be "
+"classified."
+msgstr ""
+"In this section, you can create categories. If you create any, each "
+"contribution has to be assigned to one of them. This way, content can be "
+"classified."
+
 #: meinberlin/templates/a4dashboard/base_dashboard.html:16
 msgid "Organisations"
 msgstr "Organisations"
@@ -4444,15 +4431,13 @@ msgstr "All participation projects"
 
 #: meinberlin/templates/a4dashboard/includes/module_phases_form.html:6
 msgid ""
-"Depending on the selected module, the participation\n"
-"    process has one or two phases. The name and description of the phase(s)\n"
-"    should encourage the users to participate and let them know how\n"
-"    they can participate."
+"Depending on the selected module, the participation process has one or two "
+"phases. The name and description of the phase(s) should encourage the users "
+"to participate and let them know how they can participate."
 msgstr ""
-"Depending on the selected module, the participation\n"
-"    process has one or two phases. The name and description of the phase(s)\n"
-"    should encourage the users to participate and let them know how\n"
-"    they can participate."
+"Depending on the selected module, the participation process has one or two "
+"phases. The name and description of the phase(s) should encourage the users "
+"to participate and let them know how they can participate."
 
 #: meinberlin/templates/a4dashboard/includes/nav_modules.html:4
 msgid "Participation Module"
@@ -4641,6 +4626,14 @@ msgstr ""
 "Your image will be uploaded/removed once you save your changes at the end of "
 "this page."
 
+#: meinberlin/templates/a4labels/includes/module_labels_form.html:3
+msgid ""
+"In this section, you can create labels. If you create any, each contribution "
+"can be assigned to one or more of them. This way, content can be classified."
+msgstr ""
+"In this section, you can create labels. If you create any, each contribution "
+"can be assigned to one or more of them. This way, content can be classified."
+
 #: meinberlin/templates/a4modules/includes/module_detail_phase.html:50
 msgid ""
 "This project is not publicly visible. Only invited users can see content and "
@@ -4716,28 +4709,24 @@ msgstr "Confirm Email Address"
 #: meinberlin/templates/account/email_confirm.html:11
 #, python-format
 msgid ""
-"Please\n"
-"            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an\n"
-"            email address for user %(user_display)s."
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
+"address for user %(user_display)s."
 msgstr ""
-"Please\n"
-"            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an\n"
-"            email address for user %(user_display)s."
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
+"address for user %(user_display)s."
 
-#: meinberlin/templates/account/email_confirm.html:17
+#: meinberlin/templates/account/email_confirm.html:15
 msgid "Confirm"
 msgstr "Confirm"
 
-#: meinberlin/templates/account/email_confirm.html:21
+#: meinberlin/templates/account/email_confirm.html:19
 #, python-format
 msgid ""
-"This email confirmation link expired or is invalid.\n"
-"            Please <a href=\"%(email_url)s\">issue a new email confirmation\n"
-"                request</a>."
+"This email confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new email confirmation request</a>."
 msgstr ""
-"This email confirmation link expired or is invalid.\n"
-"            Please <a href=\"%(email_url)s\">issue a new email confirmation\n"
-"                request</a>."
+"This email confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new email confirmation request</a>."
 
 #: meinberlin/templates/account/login.html:9
 #, python-format
@@ -4827,13 +4816,11 @@ msgstr "Your password is now changed."
 #: meinberlin/templates/account/signup.html:9
 #, python-format
 msgid ""
-"Already have an account? Then please\n"
-"        <a href=\"%(login_url)s\">login</a>."
+"Already have an account? Then please <a href=\"%(login_url)s\">login</a>."
 msgstr ""
-"Already have an account? Then please\n"
-"        <a href=\"%(login_url)s\">login</a>."
+"Already have an account? Then please <a href=\"%(login_url)s\">login</a>."
 
-#: meinberlin/templates/account/signup.html:12
+#: meinberlin/templates/account/signup.html:11
 msgid ""
 "If you register on mein.berlin.de, you can write ideas and comments for "
 "ongoing participation processes and rate the contributors of other users."
@@ -4841,27 +4828,23 @@ msgstr ""
 "If you register on mein.berlin.de, you can write ideas and comments for "
 "ongoing participation processes and rate the contributors of other users."
 
-#: meinberlin/templates/account/signup.html:31
-#: meinberlin/templates/socialaccount/signup.html:28
+#: meinberlin/templates/account/signup.html:30
+#: meinberlin/templates/socialaccount/signup.html:27
 #, python-format
 msgid ""
-"\n"
-"                 I hereby expressly consent to the collection and processing "
-"(storage) of my data and expressly consent to the processing and publication "
-"of my ideas, comments and contributions as described in the privacy policy. "
-"I also confirm that I have read and accept the <a href=\"%(terms_of_use_url)s"
-"\" target=\"_blank\">terms of use</a> and the <a href=\"%(privacy_policy)s\" "
-"target=\"_blank\">privacy policy</a>.\n"
-"                "
+"I hereby expressly consent to the collection and processing (storage) of my "
+"data and expressly consent to the processing and publication of my ideas, "
+"comments and contributions as described in the privacy policy. I also "
+"confirm that I have read and accept the <a href=\"%(terms_of_use_url)s\" "
+"target=\"_blank\">terms of use</a> and the <a href=\"%(privacy_policy)s\" "
+"target=\"_blank\">privacy policy</a>."
 msgstr ""
-"\n"
-"                 I hereby expressly consent to the collection and processing "
-"(storage) of my data and expressly consent to the processing and publication "
-"of my ideas, comments and contributions as described in the privacy policy. "
-"I also confirm that I have read and accept the <a href=\"%(terms_of_use_url)s"
-"\" target=\"_blank\">terms of use</a> and the <a href=\"%(privacy_policy)s\" "
-"target=\"_blank\">privacy policy</a>.\n"
-"                "
+"I hereby expressly consent to the collection and processing (storage) of my "
+"data and expressly consent to the processing and publication of my ideas, "
+"comments and contributions as described in the privacy policy. I also "
+"confirm that I have read and accept the <a href=\"%(terms_of_use_url)s\" "
+"target=\"_blank\">terms of use</a> and the <a href=\"%(privacy_policy)s\" "
+"target=\"_blank\">privacy policy</a>."
 
 #: meinberlin/templates/base_errors.html:4
 msgid "Error"
@@ -4945,11 +4928,161 @@ msgstr "Sign Up"
 #: meinberlin/templates/socialaccount/signup.html:10
 #, python-format
 msgid ""
-"You are about to use your %(provider_name)s account to login to\n"
+"You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
-"You are about to use your %(provider_name)s account to login to\n"
+"You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid " %(time_left)s remaining "
+#~ msgstr " %(time_left)s remaining "
+
+#~ msgid " Participation: from %(date)s"
+#~ msgstr " Participation: from %(date)s"
+
+#~ msgid " What is your opinion on this: %(name)s?"
+#~ msgstr " What is your opinion on this: %(name)s?"
+
+#~ msgid ""
+#~ "Here you can specify affiliations. Users must classify\n"
+#~ "    questions accordingly. The questions can be filtered by affiliation "
+#~ "and evaluated in the\n"
+#~ "    statistics."
+#~ msgstr ""
+#~ "Here you can specify affiliations. Users must classify\n"
+#~ "    questions accordingly. The questions can be filtered by affiliation "
+#~ "and evaluated in the\n"
+#~ "    statistics."
+
+#~ msgid ""
+#~ "\n"
+#~ "Please select the plan your project belongs to. Your project will be "
+#~ "shown in the list of plans accordingly.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Please select the plan your project belongs to. Your project will be "
+#~ "shown in the list of plans accordingly.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "    No plan has been created yet. You can do that <a href="
+#~ "\"%(plan_create_url)s\">here</a>.\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    No plan has been created yet. You can do that <a href="
+#~ "\"%(plan_create_url)s\">here</a>.\n"
+#~ "    "
+
+#~ msgid ""
+#~ "\n"
+#~ "                You were invited by the initiator of the project. If you "
+#~ "accept you will be able to participate in the project with your username "
+#~ "\"%(user)s\".\n"
+#~ "                If you want to join with a different profile please login "
+#~ "with your other profile and follow the invitation link again. If you "
+#~ "decline the invitation the link is not valid anymore.\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "                You were invited by the initiator of the project. If you "
+#~ "accept you will be able to participate in the project with your username "
+#~ "\"%(user)s\".\n"
+#~ "                If you want to join with a different profile please login "
+#~ "with your other profile and follow the invitation link again. If you "
+#~ "decline the invitation the link is not valid anymore.\n"
+#~ "                "
+
+#~ msgid ""
+#~ "\n"
+#~ "            <p>To sign in via Service-Konto on meinBerlin you will be "
+#~ "redirected to the Service-Konto.</p>\n"
+#~ "            <p>\n"
+#~ "                There you have to sign in with your credentials first, "
+#~ "find the Service <strong>mein.Berlin</strong> and\n"
+#~ "                finally click on <strong>Hier starten</strong> to return "
+#~ "to the meinBerlin platform.\n"
+#~ "            </p>\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "            <p>To sign in via Service-Konto on meinBerlin you will be "
+#~ "redirected to the Service-Konto.</p>\n"
+#~ "            <p>\n"
+#~ "                There you have to sign in with your credentials first, "
+#~ "find the Service <strong>mein.Berlin</strong> and\n"
+#~ "                finally click on <strong>Hier starten</strong> to return "
+#~ "to the meinBerlin platform.\n"
+#~ "            </p>\n"
+#~ "        "
+
+#~ msgid ""
+#~ "Depending on the selected module, the participation\n"
+#~ "    process has one or two phases. The name and description of the "
+#~ "phase(s)\n"
+#~ "    should encourage the users to participate and let them know how\n"
+#~ "    they can participate."
+#~ msgstr ""
+#~ "Depending on the selected module, the participation\n"
+#~ "    process has one or two phases. The name and description of the "
+#~ "phase(s)\n"
+#~ "    should encourage the users to participate and let them know how\n"
+#~ "    they can participate."
+
+#~ msgid ""
+#~ "Please\n"
+#~ "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is "
+#~ "an\n"
+#~ "            email address for user %(user_display)s."
+#~ msgstr ""
+#~ "Please\n"
+#~ "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is "
+#~ "an\n"
+#~ "            email address for user %(user_display)s."
+
+#~ msgid ""
+#~ "This email confirmation link expired or is invalid.\n"
+#~ "            Please <a href=\"%(email_url)s\">issue a new email "
+#~ "confirmation\n"
+#~ "                request</a>."
+#~ msgstr ""
+#~ "This email confirmation link expired or is invalid.\n"
+#~ "            Please <a href=\"%(email_url)s\">issue a new email "
+#~ "confirmation\n"
+#~ "                request</a>."
+
+#~ msgid ""
+#~ "Already have an account? Then please\n"
+#~ "        <a href=\"%(login_url)s\">login</a>."
+#~ msgstr ""
+#~ "Already have an account? Then please\n"
+#~ "        <a href=\"%(login_url)s\">login</a>."
+
+#~ msgid ""
+#~ "\n"
+#~ "                 I hereby expressly consent to the collection and "
+#~ "processing (storage) of my data and expressly consent to the processing "
+#~ "and publication of my ideas, comments and contributions as described in "
+#~ "the privacy policy. I also confirm that I have read and accept the <a "
+#~ "href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the "
+#~ "<a href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>.\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "                 I hereby expressly consent to the collection and "
+#~ "processing (storage) of my data and expressly consent to the processing "
+#~ "and publication of my ideas, comments and contributions as described in "
+#~ "the privacy policy. I also confirm that I have read and accept the <a "
+#~ "href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the "
+#~ "<a href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>.\n"
+#~ "                "
+
+#~ msgid ""
+#~ "You are about to use your %(provider_name)s account to login to\n"
+#~ "%(site_name)s. As a final step, please complete the following form:"
+#~ msgstr ""
+#~ "You are about to use your %(provider_name)s account to login to\n"
+#~ "%(site_name)s. As a final step, please complete the following form:"
 
 #~ msgid "deleted by creator"
 #~ msgstr "deleted by creator"

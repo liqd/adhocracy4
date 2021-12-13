@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-08 13:56+0100\n"
+"POT-Creation-Date: 2021-12-13 14:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -559,7 +559,6 @@ msgstr "Thank you! We are taking care of it."
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/embed/assets/embed.js:59
 #: meinberlin/apps/embed/assets/embed.js:60
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:85
 #: meinberlin/apps/plans/assets/FilterNav.jsx:213
 msgid "Close"
 msgstr "Close"
@@ -577,11 +576,19 @@ msgid_plural "you have %s votes left"
 msgstr[0] "you have 1 vote left"
 msgstr[1] "you have %s votes left"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:40
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:12
+msgid "modified on"
+msgstr "modified on"
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:13
+msgid "created on"
+msgstr "created on"
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:44
 msgid "Voted"
 msgstr "Voted"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:41
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:45
 msgid "Give my vote"
 msgstr "Give my vote"
 
@@ -825,69 +832,6 @@ msgstr "Questions Answered"
 #: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:45
 msgid "Affiliation Of Answered Questions"
 msgstr "Affiliation Of Answered Questions"
-
-#: meinberlin/apps/maps/assets/map-address.js:87
-msgid "No matches found within the project area"
-msgstr "No matches found within the project area"
-
-#: meinberlin/apps/maps/assets/map-address.js:90
-msgid "Did you mean:"
-msgstr "Did you mean:"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:67
-msgid "Export polygon as GeoJSON"
-msgstr "Export polygon as GeoJSON"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:68
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:78
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:90
-msgid "Import polygon via file upload"
-msgstr "Import polygon via file upload"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:92
-msgid ""
-"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
-msgstr ""
-"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:93
-msgid ""
-"Note that uploading Shapefiles is not supported with Internet Explorer 10"
-msgstr ""
-"Note that uploading Shapefiles is not supported with Internet Explorer 10"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:94
-msgid "Attention importing a file will delete the existing polygons."
-msgstr "Attention importing a file will delete the existing polygons."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:99
-msgid "Upload"
-msgstr "Upload"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:106
-msgid "Cancel"
-msgstr "Cancel"
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:140
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:142
-msgid "The uploaded file is not a valid shapefile."
-msgstr "The uploaded file is not a valid shapefile."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:144
-msgid "The uploaded file could not be imported."
-msgstr "The uploaded file could not be imported."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:158
-msgid "The uploaded file is not a valid geojson file."
-msgstr "The uploaded file is not a valid geojson file."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:163
-msgid "Invalid file format."
-msgstr "Invalid file format."
-
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:280
-msgid "Do you want to load this preset and delete all the existing polygons?"
-msgstr "Do you want to load this preset and delete all the existing polygons?"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:126
 #: meinberlin/apps/plans/assets/FilterNav.jsx:242
@@ -1136,6 +1080,54 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#~ msgid "No matches found within the project area"
+#~ msgstr "No matches found within the project area"
+
+#~ msgid "Did you mean:"
+#~ msgstr "Did you mean:"
+
+#~ msgid "Export polygon as GeoJSON"
+#~ msgstr "Export polygon as GeoJSON"
+
+#~ msgid "Import polygon via file upload"
+#~ msgstr "Import polygon via file upload"
+
+#~ msgid ""
+#~ "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
+#~ msgstr ""
+#~ "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
+
+#~ msgid ""
+#~ "Note that uploading Shapefiles is not supported with Internet Explorer 10"
+#~ msgstr ""
+#~ "Note that uploading Shapefiles is not supported with Internet Explorer 10"
+
+#~ msgid "Attention importing a file will delete the existing polygons."
+#~ msgstr "Attention importing a file will delete the existing polygons."
+
+#~ msgid "Upload"
+#~ msgstr "Upload"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancel"
+
+#~ msgid "The uploaded file is not a valid shapefile."
+#~ msgstr "The uploaded file is not a valid shapefile."
+
+#~ msgid "The uploaded file could not be imported."
+#~ msgstr "The uploaded file could not be imported."
+
+#~ msgid "The uploaded file is not a valid geojson file."
+#~ msgstr "The uploaded file is not a valid geojson file."
+
+#~ msgid "Invalid file format."
+#~ msgstr "Invalid file format."
+
+#~ msgid ""
+#~ "Do you want to load this preset and delete all the existing polygons?"
+#~ msgstr ""
+#~ "Do you want to load this preset and delete all the existing polygons?"
 
 #~ msgid "January"
 #~ msgstr "January"
