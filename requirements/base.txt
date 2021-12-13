@@ -17,7 +17,7 @@ zeep==4.1.0
 # Inherited a4-core requirements
 bleach==4.1.0
 Django==3.2.10 # pyup: <3.3
-django-allauth==0.46.0
+django-allauth==0.47.0
 django-autoslug==1.9.8
 django-background-tasks==1.2.5
 django-ckeditor==6.2.0
