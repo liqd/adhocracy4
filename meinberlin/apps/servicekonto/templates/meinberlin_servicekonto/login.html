@@ -7,13 +7,7 @@
 <div class="l-wrapper">
     <div class="l-center-6">
         <h1>{% trans 'Login via Service-Konto' %}</h1>
-        {% blocktrans %}
-            <p>To sign in via Service-Konto on meinBerlin you will be redirected to the Service-Konto.</p>
-            <p>
-                There you have to sign in with your credentials first, find the Service <strong>mein.Berlin</strong> and
-                finally click on <strong>Hier starten</strong> to return to the meinBerlin platform.
-            </p>
-        {% endblocktrans %}
+        {% blocktrans %}<p>To sign in via Service-Konto on meinBerlin you will be redirected to the Service-Konto.</p><p>There you have to sign in with your credentials first, find the Service <strong>mein.Berlin</strong> and finally click on <strong>Hier starten</strong> to return to the meinBerlin platform.</p>{% endblocktrans %}
 
         <a class="btn btn--primary" href="{{ login_redirect_url }}">
             {% trans 'Service-Konto Login' %}

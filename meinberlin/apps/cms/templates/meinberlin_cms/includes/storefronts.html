@@ -7,19 +7,13 @@
     class="storefront__item storefront__district tile__md"
 >
     <h2 class="storefront__district-text">
-        {% blocktrans with district=item.district %}
-            What is happening in <strong>{{ district }}</strong>?
-        {% endblocktrans %}
+        {% blocktrans with district=item.district %}What is happening in <strong>{{ district }}</strong>?{% endblocktrans %}
     </h2>
     <h2 class="storefront__district-text">
-        {% blocktrans with district=item.district %}
-            What is happening in <strong>{{ district }}</strong>?
-        {% endblocktrans %}
+        {% blocktrans with district=item.district %}What is happening in <strong>{{ district }}</strong>?{% endblocktrans %}
     </h2>
     <button class="btn btn-primary">
-        {% blocktrans count counter=item.district_project_count %}
-            display {{ counter }} project{% plural %}display {{ counter }} projects
-        {% endblocktrans %}
+        {% blocktrans count counter=item.district_project_count %}display {{ counter }} project{% plural %}display {{ counter }} projects{% endblocktrans %}
     </button>
 </a>
 {% elif item.project and not item.quote %}
@@ -58,9 +52,7 @@
         </div>
         <span class="status-bar__status"><i class="fas fa-clock"></i>
           {% if item.project.module_running_days_left < 365 %}
-            {% blocktrans with time_left=item.project.module_running_time_left %}
-                {{ time_left }} remaining
-            {% endblocktrans %}
+            {% blocktrans with time_left=item.project.module_running_time_left %}{{ time_left }} remaining{% endblocktrans %}
           {% else %}
           <span>{% trans 'more than 1 year remaining' %}</span>
           {% endif %}
@@ -69,10 +61,7 @@
 
     {% elif item.item_type != 'external' and item.project.future_modules %}
     <div class="status-item status-item__position-storefront status__future">
-      <span class="status-bar__status"><i class="fas fa-clock" ></i>
-          {% trans 'Participation: from ' %}
-          {% html_date item.project.future_modules.first.module_start class='list-item__date' %}
-      </span>
+      <span class="status-bar__status"><i class="fas fa-clock" ></i>{% blocktrans with date=item.project.future_modules.first.module_start|date:"d.m.Y" %}Participation: from {{ date }}{% endblocktrans %}</span>
     </div>
 
     {% elif item.project.has_finished %}
@@ -90,9 +79,7 @@
         „{{ item.quote|truncatechars:150 }}“
     </blockquote>
     <div class="storefront__opinion-text">
-        {% blocktrans with name=item.project.name|truncatechars:60 %}
-            What is your opinion on this: {{ name }}?
-        {% endblocktrans %}
+        {% blocktrans with name=item.project.name|truncatechars:60 %}What is your opinion on this: {{ name }}?{% endblocktrans %}
     </div>
 </a>
 {% elif not item.project and item.quote %}

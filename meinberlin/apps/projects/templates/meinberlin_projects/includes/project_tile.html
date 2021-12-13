@@ -62,7 +62,7 @@
                         <span class="participation-tile__status">
                             <i class="fas fa-clock" aria-hidden="true"></i>
                             {% if project.module_running_days_left < 365 %}
-                            {% blocktrans with time_left=project.module_running_time_left %} {{ time_left }} remaining {% endblocktrans %}
+                            {% blocktrans with time_left=project.module_running_time_left %}{{ time_left }} remaining {% endblocktrans %}
                             {% else %}
                             <span>{% trans 'more than 1 year remaining' %}</span>
                             {% endif %}

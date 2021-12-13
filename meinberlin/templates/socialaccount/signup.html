@@ -7,8 +7,7 @@
 {% block content %}
     <h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
-{{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
+<p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to {{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
 
 <form id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
         {{ form.non_field_errors }}
@@ -25,9 +24,7 @@
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.terms_of_use }}
-                {% blocktrans with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}
-                 I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.
-                {% endblocktrans %}
+                {% blocktrans with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.{% endblocktrans %}
             </label>
             {{ form.terms_of_use.errors }}
         </div>
