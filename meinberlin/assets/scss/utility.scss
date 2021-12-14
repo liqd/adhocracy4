@@ -83,6 +83,7 @@
 
 .u-align-center {
     text-align: center;
+    margin: auto;
 }
 
 .u-first-heading {
@@ -212,4 +213,10 @@
 .u-icon-spacing {
     margin-right: ($em-spacer / 2);
     margin-top: ($em-spacer / 4);
+}
+
+.u-spinner__container {
+    width: 100%;
+    justify-content: center;
+    display: flex;
 }
