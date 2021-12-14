@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
@@ -6,6 +7,7 @@ from rest_framework.pagination import PageNumberPagination
 
 from adhocracy4.api.mixins import ModuleMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
+from adhocracy4.categories.models import Category
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 
 from .models import Proposal
@@ -24,7 +26,55 @@ class BudgetPagination(PageNumberPagination):
         return response
 
 
-class ProposalViewSet(ModuleMixin,
+class BudgetFilterInfoMixin(ModuleMixin):
+    def list(self, request, *args, **kwargs):
+        """Add the filter information to the data of the Proposal API.
+
+        Needs to be used with rest_framework.mixins.ListModelMixin
+        """
+        filters = {}
+
+        ordering_choices = [('-created', _('Most recent')), ]
+        if self.module.has_feature('rate', Proposal):
+            ordering_choices += ('-positive_rating_count', _('Most popular')),
+        ordering_choices += ('-comment_count', _('Most commented')),
+
+        filters['ordering'] = {
+            'label': _('Ordering'),
+            'choices': ordering_choices
+        }
+
+        filters['is_archived'] = {
+            'label': _('Archived'),
+            'choices': [
+                ('', _('All')),
+                ('false', _('No')),
+                ('true', _('Yes')),
+            ]
+        }
+
+        categories = Category.objects.filter(
+            module=self.module
+        )
+        if categories:
+            category_choices = [('', _('All')), ]
+            category_icons = []
+            for category in categories:
+                category_choices += (str(category.pk), category.name),
+                category_icons += (str(category.pk), category.icon),
+
+            filters['category'] = {
+                'label': _('Category'),
+                'choices': category_choices,
+                'icons': category_icons,
+            }
+
+        response = super().list(request, args, kwargs)
+        response.data['filters'] = filters
+        return response
+
+
+class ProposalViewSet(BudgetFilterInfoMixin,
                       mixins.ListModelMixin,
                       viewsets.GenericViewSet,
                       ):
