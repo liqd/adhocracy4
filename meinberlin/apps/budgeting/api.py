@@ -41,7 +41,8 @@ class BudgetFilterInfoMixin(ModuleMixin):
 
         filters['ordering'] = {
             'label': _('Ordering'),
-            'choices': ordering_choices
+            'choices': ordering_choices,
+            'default': '-created',
         }
 
         filters['is_archived'] = {
@@ -50,7 +51,8 @@ class BudgetFilterInfoMixin(ModuleMixin):
                 ('', _('All')),
                 ('false', _('No')),
                 ('true', _('Yes')),
-            ]
+            ],
+            'default': 'false',
         }
 
         categories = Category.objects.filter(
