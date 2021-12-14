@@ -1,4 +1,5 @@
 import React from 'react'
+import django from 'django'
 import { toLocaleDate } from './helpers'
 import { VoteButton } from './VoteButton.jsx'
 import { ListItemBadges } from './ListItemBadges'
