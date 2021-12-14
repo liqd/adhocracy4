@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 14:40+0100\n"
+"POT-Creation-Date: 2021-12-14 11:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -368,6 +368,78 @@ msgstr "Follow"
 msgid "Following"
 msgstr "Following"
 
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:87
+msgid "No matches found within the project area"
+msgstr "No matches found within the project area"
+
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:90
+msgid "Did you mean:"
+msgstr "Did you mean:"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:70
+msgid "Export polygon as GeoJSON"
+msgstr "Export polygon as GeoJSON"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:71
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:81
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:93
+msgid "Import polygon via file upload"
+msgstr "Import polygon via file upload"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
+#: adhocracy4/static/Alert.jsx:5 meinberlin/apps/contrib/assets/Alert.jsx:10
+#: meinberlin/apps/contrib/assets/Alert.jsx:11
+#: meinberlin/apps/embed/assets/embed.js:59
+#: meinberlin/apps/embed/assets/embed.js:60
+#: meinberlin/apps/plans/assets/FilterNav.jsx:213
+msgid "Close"
+msgstr "Close"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:95
+msgid ""
+"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
+msgstr ""
+"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:96
+msgid ""
+"Note that uploading Shapefiles is not supported with Internet Explorer 10"
+msgstr ""
+"Note that uploading Shapefiles is not supported with Internet Explorer 10"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:97
+msgid "Attention importing a file will delete the existing polygons."
+msgstr "Attention importing a file will delete the existing polygons."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:102
+msgid "Upload"
+msgstr "Upload"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:109
+msgid "Cancel"
+msgstr "Cancel"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:143
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
+msgid "The uploaded file is not a valid shapefile."
+msgstr "The uploaded file is not a valid shapefile."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:147
+msgid "The uploaded file could not be imported."
+msgstr "The uploaded file could not be imported."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:161
+msgid "The uploaded file is not a valid geojson file."
+msgstr "The uploaded file is not a valid geojson file."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:166
+msgid "Invalid file format."
+msgstr "Invalid file format."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:283
+msgid "Do you want to load this preset and delete all the existing polygons?"
+msgstr "Do you want to load this preset and delete all the existing polygons?"
+
 #: adhocracy4/polls/assets/EditPollChoice.jsx:9
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:69
 msgctxt "noun"
@@ -554,14 +626,6 @@ msgstr "Your choice"
 #: adhocracy4/reports/static/reports/ReportModal.jsx:60
 msgid "Thank you! We are taking care of it."
 msgstr "Thank you! We are taking care of it."
-
-#: adhocracy4/static/Alert.jsx:5 meinberlin/apps/contrib/assets/Alert.jsx:10
-#: meinberlin/apps/contrib/assets/Alert.jsx:11
-#: meinberlin/apps/embed/assets/embed.js:59
-#: meinberlin/apps/embed/assets/embed.js:60
-#: meinberlin/apps/plans/assets/FilterNav.jsx:213
-msgid "Close"
-msgstr "Close"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:58
 #: meinberlin/apps/plans/assets/PlansList.jsx:258
@@ -1080,54 +1144,6 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
-
-#~ msgid "No matches found within the project area"
-#~ msgstr "No matches found within the project area"
-
-#~ msgid "Did you mean:"
-#~ msgstr "Did you mean:"
-
-#~ msgid "Export polygon as GeoJSON"
-#~ msgstr "Export polygon as GeoJSON"
-
-#~ msgid "Import polygon via file upload"
-#~ msgstr "Import polygon via file upload"
-
-#~ msgid ""
-#~ "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
-#~ msgstr ""
-#~ "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
-
-#~ msgid ""
-#~ "Note that uploading Shapefiles is not supported with Internet Explorer 10"
-#~ msgstr ""
-#~ "Note that uploading Shapefiles is not supported with Internet Explorer 10"
-
-#~ msgid "Attention importing a file will delete the existing polygons."
-#~ msgstr "Attention importing a file will delete the existing polygons."
-
-#~ msgid "Upload"
-#~ msgstr "Upload"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancel"
-
-#~ msgid "The uploaded file is not a valid shapefile."
-#~ msgstr "The uploaded file is not a valid shapefile."
-
-#~ msgid "The uploaded file could not be imported."
-#~ msgstr "The uploaded file could not be imported."
-
-#~ msgid "The uploaded file is not a valid geojson file."
-#~ msgstr "The uploaded file is not a valid geojson file."
-
-#~ msgid "Invalid file format."
-#~ msgstr "Invalid file format."
-
-#~ msgid ""
-#~ "Do you want to load this preset and delete all the existing polygons?"
-#~ msgstr ""
-#~ "Do you want to load this preset and delete all the existing polygons?"
 
 #~ msgid "January"
 #~ msgstr "January"

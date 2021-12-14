@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 14:40+0100\n"
+"POT-Creation-Date: 2021-12-14 11:16+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -470,6 +470,103 @@ msgstr "Folgen"
 msgid "Following"
 msgstr "Folge ich"
 
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:87
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:87
+msgid "No matches found within the project area"
+msgstr "Keine Treffer im Bereich des Projekts gefunden"
+
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:90
+#: adhocracy4/maps/static/a4maps/a4maps_address.js:90
+msgid "Did you mean:"
+msgstr "Meinten Sie:"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:70
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:70
+msgid "Export polygon as GeoJSON"
+msgstr "Polygon als GeoJSON exportierten"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:71
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:81
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:93
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:71
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:81
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:93
+msgid "Import polygon via file upload"
+msgstr "Polygon aus Datei importieren"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
+#: adhocracy4/static/Alert.jsx:5
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
+#: meinberlin/apps/contrib/assets/Alert.jsx:10
+#: meinberlin/apps/contrib/assets/Alert.jsx:11
+#: meinberlin/apps/embed/assets/embed.js:59
+#: meinberlin/apps/embed/assets/embed.js:60
+#: meinberlin/apps/plans/assets/FilterNav.jsx:213
+msgid "Close"
+msgstr "Schließen"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:95
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:95
+msgid ""
+"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
+msgstr ""
+"Laden Sie eine GeoJSON Datei (.geojson) oder ein gepacktes Shapefile (.zip) "
+"hoch."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:96
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:96
+msgid ""
+"Note that uploading Shapefiles is not supported with Internet Explorer 10"
+msgstr ""
+"Beachten Sie, dass der Import von Shapefiles mit dem Internet Explorer 10 "
+"nicht unterstützt wird"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:97
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:97
+msgid "Attention importing a file will delete the existing polygons."
+msgstr ""
+"Achtung der Import einer Datei wird alle vorher ausgewählten Polygone "
+"entfernen."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:102
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:102
+msgid "Upload"
+msgstr "Hochladen"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:109
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:109
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:143
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:143
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
+msgid "The uploaded file is not a valid shapefile."
+msgstr "Die hochgeladene Datei ist kein gültiges Shapefile."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:147
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:147
+msgid "The uploaded file could not be imported."
+msgstr "Die hochgeladene Datei kann nicht importiert werden."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:161
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:161
+msgid "The uploaded file is not a valid geojson file."
+msgstr "Die hochgeladene Datei ist keine gültiges GeoJSON Datei."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:166
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:166
+msgid "Invalid file format."
+msgstr "Ungültiges Dateiformat."
+
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:283
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:283
+msgid "Do you want to load this preset and delete all the existing polygons?"
+msgstr ""
+"Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
+"entfernen?"
+
 #: adhocracy4/polls/assets/EditPollChoice.jsx:9
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:69
 msgctxt "noun"
@@ -659,15 +756,6 @@ msgstr "Ihre Wahl"
 #: adhocracy4/reports/static/reports/ReportModal.jsx:60
 msgid "Thank you! We are taking care of it."
 msgstr "Vielen Dank! Wir werden uns darum kümmern."
-
-#: adhocracy4/static/Alert.jsx:5
-#: meinberlin/apps/contrib/assets/Alert.jsx:10
-#: meinberlin/apps/contrib/assets/Alert.jsx:11
-#: meinberlin/apps/embed/assets/embed.js:59
-#: meinberlin/apps/embed/assets/embed.js:60
-#: meinberlin/apps/plans/assets/FilterNav.jsx:213
-msgid "Close"
-msgstr "Schließen"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:58
 #: meinberlin/apps/plans/assets/PlansList.jsx:258
@@ -1194,56 +1282,3 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
-
-#~ msgid "No matches found within the project area"
-#~ msgstr "Keine Treffer im Bereich des Projekts gefunden"
-
-#~ msgid "Did you mean:"
-#~ msgstr "Meinten Sie:"
-
-#~ msgid "Export polygon as GeoJSON"
-#~ msgstr "Polygon als GeoJSON exportierten"
-
-#~ msgid "Import polygon via file upload"
-#~ msgstr "Polygon aus Datei importieren"
-
-#~ msgid ""
-#~ "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
-#~ msgstr ""
-#~ "Laden Sie eine GeoJSON Datei (.geojson) oder ein gepacktes Shapefile (."
-#~ "zip) hoch."
-
-#~ msgid ""
-#~ "Note that uploading Shapefiles is not supported with Internet Explorer 10"
-#~ msgstr ""
-#~ "Beachten Sie, dass der Import von Shapefiles mit dem Internet Explorer 10 "
-#~ "nicht unterstützt wird"
-
-#~ msgid "Attention importing a file will delete the existing polygons."
-#~ msgstr ""
-#~ "Achtung der Import einer Datei wird alle vorher ausgewählten Polygone "
-#~ "entfernen."
-
-#~ msgid "Upload"
-#~ msgstr "Hochladen"
-
-#~ msgid "Cancel"
-#~ msgstr "Abbrechen"
-
-#~ msgid "The uploaded file is not a valid shapefile."
-#~ msgstr "Die hochgeladene Datei ist kein gültiges Shapefile."
-
-#~ msgid "The uploaded file could not be imported."
-#~ msgstr "Die hochgeladene Datei kann nicht importiert werden."
-
-#~ msgid "The uploaded file is not a valid geojson file."
-#~ msgstr "Die hochgeladene Datei ist keine gültiges GeoJSON Datei."
-
-#~ msgid "Invalid file format."
-#~ msgstr "Ungültiges Dateiformat."
-
-#~ msgid ""
-#~ "Do you want to load this preset and delete all the existing polygons?"
-#~ msgstr ""
-#~ "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher "
-#~ "ausgewählten entfernen?"
