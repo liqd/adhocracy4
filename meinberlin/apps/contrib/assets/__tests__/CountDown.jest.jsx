@@ -1,9 +1,9 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { CountDown } from '../CountDown'
 
 test('CountComponent is showing inactive', () => {
-  render(
+  const tree = render(
     <CountDown
       activeClass="active-class"
       inactiveClass="inactive-class"
@@ -11,19 +11,19 @@ test('CountComponent is showing inactive', () => {
       counter={0}
     />
   )
-  const countComponent = screen.getByText('votes')
-  expect(countComponent.innerHTML).toBe('votes')
+  const buttonInactive = tree.container.querySelector('.inactive-class')
+  expect(buttonInactive).toBeTruthy()
 })
 
 test('CountComponent is showing active', () => {
-  render(
+  const tree = render(
     <CountDown
       activeClass="active-class"
       inactiveClass="inactive-class"
       countText="votes"
-      counter={2}
+      counter={1}
     />
   )
-  const countComponent = screen.getByText('votes')
-  expect(countComponent.innerHTML).toBe('votes')
+  const buttonActive = tree.container.querySelector('.active-class')
+  expect(buttonActive).toBeTruthy()
 })
