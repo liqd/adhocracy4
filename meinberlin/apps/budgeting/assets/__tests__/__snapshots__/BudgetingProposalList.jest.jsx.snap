@@ -12,116 +12,48 @@ exports[`Budgeting Proposal List component renders a list when there are no item
         class="control-bar"
       >
         <div
-          class="dropdown control-bar__right"
+          class="control-bar-item"
         >
-          <button
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="dropdown-toggle btn btn--light btn--select"
-            data-bs-toggle="dropdown"
-            data-flip="false"
-            id="id_category"
-            type="button"
+          <div
+            class="btn-group__container"
           >
-            mock text
-            <i
-              aria-hidden="true"
-              class="fa fa-caret-down"
-            />
-          </button>
-          <ul
-            aria-labelledby="id_category"
-            class="dropdown-menu"
-          >
-            <li>
-              <button>
-                mock text
-              </button>
-            </li>
-            <li>
-              <button>
-                mock text
-              </button>
-            </li>
-            <li>
-              <button>
-                mock text
-              </button>
-            </li>
-          </ul>
-        </div>
-        <div
-          class="dropdown"
-        >
-          <button
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="dropdown-toggle btn btn--light btn--select"
-            data-bs-toggle="dropdown"
-            data-flip="false"
-            id="id_category"
-            type="button"
-          >
-            Archived
-            <i
-              aria-hidden="true"
-              class="fa fa-caret-down"
-            />
-          </button>
-          <ul
-            aria-labelledby="id_category"
-            class="dropdown-menu"
-          >
-            <li>
-              <button>
-                All
-              </button>
-            </li>
-            <li>
-              <button>
-                Nein
-              </button>
-            </li>
-            <li>
-              <button>
-                Ja
-              </button>
-            </li>
-          </ul>
-        </div>
-        <div
-          class="dropdown"
-        >
-          <button
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="dropdown-toggle btn btn--light btn--select"
-            data-bs-toggle="dropdown"
-            data-flip="false"
-            id="id_category"
-            type="button"
-          >
-            Category
-            <i
-              aria-hidden="true"
-              class="fa fa-caret-down"
-            />
-          </button>
-          <ul
-            aria-labelledby="id_category"
-            class="dropdown-menu"
-          >
-            <li>
-              <button>
-                Any
-              </button>
-            </li>
-            <li>
-              <button>
-                candalf
-              </button>
-            </li>
-          </ul>
+            <div
+              class="btn-group"
+              role="group"
+            >
+              <div
+                aria-label="mock text"
+                class="btn btn--light switch--btn active"
+              >
+                <i
+                  aria-hidden="true"
+                  class="fa fa-list"
+                />
+                <span>
+                   
+                </span>
+                <span>
+                  mock text
+                </span>
+              </div>
+              <a
+                aria-label="mock text"
+                class="btn btn--light"
+                href="?mode=map"
+              >
+                <i
+                  aria-hidden="true"
+                  class="fa fa-map"
+                />
+                <span>
+                   
+                </span>
+                <span>
+                  mock text
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
