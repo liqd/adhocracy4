@@ -2,26 +2,6 @@ import React from 'react'
 import Slider from 'react-slick'
 import django from 'django'
 
-function NextArrow (props) {
-  const { onClick } = props
-  return (
-    <button className="slick-next" onClick={onClick} aria-label={django.ngettext('Next answer')}><i className="fa fa-chevron-right" /></button>
-  )
-}
-
-function PrevArrow (props) {
-  const { onClick } = props
-  return (
-    <button className="slick-prev" onClick={onClick} aria-label={django.ngettext('Previous answer')}><i className="fa fa-chevron-left" /></button>
-  )
-}
-
-const disabledArrows = (
-  <><button className="slick-next disabled" aria-label={django.ngettext('Next answer')}><i className="fa fa-chevron-right" /></button>
-    <button className="slick-prev disabled" aria-label={django.ngettext('Previous answer')}><i className="fa fa-chevron-left" /></button>
-  </>
-)
-
 export default class PollResult extends React.Component {
   constructor (props) {
     super(props)
@@ -114,9 +94,7 @@ export default class PollResult extends React.Component {
       className: 'poll-slider',
       infinite: false,
       centerMode: true,
-      centerPadding: '0px',
-      prevArrow: <PrevArrow />,
-      nextArrow: <NextArrow />
+      centerPadding: '0px'
     }
 
     return (
@@ -156,11 +134,9 @@ export default class PollResult extends React.Component {
                               <div className="poll-slider__answer">
                                 {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
                               </div>
-                              <div className="poll-slider__count">
+                              <div className={this.props.question.other_choice_answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
                                 {index + 1}/{this.props.question.other_choice_answers.length}
                               </div>
-                              {this.props.question.other_choice_answers.length === 1 &&
-                                disabledArrows}
                             </div>
                           ))}
                         </Slider>
@@ -171,7 +147,7 @@ export default class PollResult extends React.Component {
           )}
           {this.state.question.is_open &&
             <div className="poll-slider__container">
-              <Slider {...settings} id={this.state.question.id}>
+              <Slider {...settings}>
                 {this.props.question.answers.map((slide, index) => (
                   <div
                     className="poll-slider__item"
@@ -181,11 +157,9 @@ export default class PollResult extends React.Component {
                     <div className="poll-slider__answer">
                       {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
                     </div>
-                    <div className="poll-slider__count">
+                    <div className={this.props.question.answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
                       {index + 1}/{this.props.question.answers.length}
                     </div>
-                    {this.props.question.other_choice_answers.length === 1 &&
-                      disabledArrows}
                   </div>
                 ))}
               </Slider>
