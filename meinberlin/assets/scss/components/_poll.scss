@@ -252,11 +252,12 @@ $checkbox-size: 20px;
     }
 }
 
-.poll-slider__count {
+.poll-slider__count,
+.poll-slider__count--spaced {
     font-size: $font-size-xs;
     color: $gray-lighter;
     position: absolute;
-    bottom: $spacer;
+    bottom: 1.25 * $spacer; // to allign with arrows
     left: $spacer;
 }
 
@@ -287,6 +288,12 @@ $checkbox-size: 20px;
         height: 30px;
         border-radius: 100%;
         z-index: 1; // for when tile links overlap
+
+        &.slick-disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
 
         &:before {
             color: $body-bg;
@@ -320,8 +327,13 @@ $checkbox-size: 20px;
 }
 
 @media (min-width: $breakpoint) {
-    .poll-slider__count {
+    .poll-slider__count--spaced {
         left: revert;
         right: 6.5 * $spacer;
+    }
+
+    .poll-slider__count {
+        left: revert;
+        right: 2 * $spacer;
     }
 }
