@@ -17,7 +17,7 @@ test('Budgeting Proposal List without list item (empty)', async () => {
   // waiting for async fetching ends --> without this, the
   // act(...) console.error will appear
   await act(() => mockedFetchEmpty)
-  const emptyList = screen.queryByText('mock text')
+  const emptyList = screen.queryAllByText('mock text')
   expect(emptyList).toBeTruthy()
 
   // reverse overwrite of global.fetch
@@ -72,7 +72,7 @@ test('Budgeting Proposal List with fetch error', async () => {
 
   render(<BudgetingProposalList />)
   expect(global.fetch).toHaveBeenCalledTimes(1)
-  const emptyList = screen.queryByText('mock text')
+  const emptyList = screen.queryAllByText('mock text')
   expect(emptyList).toBeTruthy()
 
   // reverse overwrite of global.fetch
