@@ -88,6 +88,7 @@ background:
 .PHONY: test
 test:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db
+	npm run testNoCov
 
 .PHONY: test-lastfailed
 test-lastfailed:
