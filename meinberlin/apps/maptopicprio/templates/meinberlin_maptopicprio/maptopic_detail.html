@@ -1,5 +1,5 @@
 {% extends "meinberlin_contrib/item_detail.html" %}
-{% load i18n rules react_comments module_tags react_ratings wagtailcore_tags maps_tags categories_tags static thumbnail %}
+{% load i18n rules react_comments_async module_tags react_ratings wagtailcore_tags maps_tags categories_tags static thumbnail %}
 
 {% block extra_js %}
     {{ block.super }}
@@ -70,7 +70,7 @@
                     </div>
                 {% endif %}
             </div>
-            {% react_comments object %}
+            {% react_comments_async object %}
         </div>
     </div>
 </div>

@@ -70,7 +70,8 @@ INSTALLED_APPS = (
     'adhocracy4.administrative_districts',
     'adhocracy4.categories',
     'adhocracy4.ckeditor',
-    'adhocracy4.comments',
+    'adhocracy4.comments',  # needed for comment model
+    'adhocracy4.comments_async',
     'adhocracy4.dashboard',
     'adhocracy4.exports',
     'adhocracy4.filters',

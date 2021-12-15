@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n react_comments wagtailcore_tags %}
+{% load i18n react_comments_async wagtailcore_tags %}
 
 {% block phase_content %}
 
@@ -84,7 +84,7 @@
     <div class="l-wrapper">
         <div class="l-center-8">
             {% if object %}
-            {% react_comments object %}
+            {% react_comments_async object %}
             {% endif %}
         </div>
     </div>

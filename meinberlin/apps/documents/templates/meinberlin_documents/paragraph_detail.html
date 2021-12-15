@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n react_comments react_ratings wagtailcore_tags %}
+{% load i18n react_comments_async react_ratings wagtailcore_tags %}
 
 {% block title %}{{ paragraph.name }} &mdash; {{ paragraph.chapter.project.name }} &mdash; {{ block.super }}{% endblock %}
 
@@ -27,7 +27,7 @@
     </div>
 
     <div class="l-center-6">
-        {% react_comments paragraph %}
+        {% react_comments_async paragraph %}
     </div>
 </div>
 {% endblock %}

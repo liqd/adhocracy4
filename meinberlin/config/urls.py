@@ -15,7 +15,7 @@ from wagtail.contrib.sitemaps.sitemap_generator import \
     Sitemap as WagtailSitemap
 
 from adhocracy4.api import routers as a4routers
-from adhocracy4.comments.api import CommentViewSet
+from adhocracy4.comments_async.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.polls.api import PollViewSet
 from adhocracy4.polls.api import VoteViewSet
@@ -159,7 +159,8 @@ urlpatterns = [
     re_path(r'^sitemap-(?P<section>.+)\.xml$', wagtail_sitemap_views.sitemap,
             {'sitemaps': sitemaps}, name='sitemaps'),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt',
-         content_type="text/plain"), name="robots_file"),
+                                            content_type="text/plain"),
+         name="robots_file"),
 
     path('components/', contrib_views.ComponentLibraryView.as_view()),
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
