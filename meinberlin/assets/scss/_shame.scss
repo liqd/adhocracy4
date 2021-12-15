@@ -55,6 +55,7 @@ input[type="search"] {
 }
 
 // add underline to links within paragraphs added by wagtail or ckeditor
+.block,
 .rich-text {
     p {
         a {

@@ -11,7 +11,7 @@
     color: contrast-color($brand-secondary);
     text-align: center;
 
-    .rich-text > :first-child {
+    .l-center-6 > :first-child {
         margin-top: 0;
     }
 
@@ -63,7 +63,7 @@
     right: 0;
 }
 
-.block__homepage .rich-text {
+.block__homepage .block--richtext {
     p,
     h2 {
         text-align: center;
@@ -75,12 +75,6 @@
         margin-top: $spacer;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-    }
-}
-
-.accordion__body .rich-text {
-    p, {
-        text-align: left;
     }
 }
 
