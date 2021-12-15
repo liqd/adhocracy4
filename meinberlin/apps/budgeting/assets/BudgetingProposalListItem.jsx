@@ -13,7 +13,7 @@ export const BudgetingProposalListItem = (props) => {
     : `${django.gettext('created on')} ${toLocaleDate(proposal.created, safeLocale)}`
 
   return (
-    <li className="list-item no-hover">
+    <li className="list-item">
       {!isVotingPhase &&
         <ListItemStats
           positiveCount={proposal.positive_rating_count}
