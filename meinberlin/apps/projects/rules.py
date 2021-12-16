@@ -9,11 +9,6 @@ from adhocracy4.projects.predicates import is_project_member
 from adhocracy4.projects.predicates import is_public
 from adhocracy4.projects.predicates import is_semipublic
 
-rules.remove_perm('a4projects.change_project')
-rules.add_perm('a4projects.change_project',
-               is_superuser | is_initiator |
-               is_moderator | is_prj_group_member)
-
 rules.remove_perm('a4projects.view_project')
 rules.add_perm('a4projects.view_project',
                is_superuser | is_initiator |

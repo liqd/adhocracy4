@@ -37,7 +37,7 @@ def test_poll_export_view(client, phase_factory, user_factory, group_factory,
 
     client.login(username=moderator, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert response.status_code == 403
 
     client.login(username=initiator, password='password')
     response = client.get(url)
@@ -82,7 +82,7 @@ def test_poll_comment_export_view(client, phase_factory, user_factory,
 
     client.login(username=moderator, password='password')
     response = client.get(url)
-    assert response.status_code == 200
+    assert response.status_code == 403
 
     client.login(username=initiator, password='password')
     response = client.get(url)

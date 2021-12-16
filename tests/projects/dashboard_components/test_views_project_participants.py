@@ -138,26 +138,14 @@ def test_participant_can_only_be_invited_once(
 
 
 @pytest.mark.django_db
-def test_moderator_can_edit(client, phase_factory):
+def test_moderator_cannot_edit(client, phase_factory):
     phase, module, project, idea = setup_phase(
         phase_factory, None, CollectFeedbackPhase)
     url = component.get_base_url(project)
     moderator = project.moderators.first()
     client.login(username=moderator.email, password='password')
     response = client.get(url)
-    response = client.get(url)
-    assert_template_response(
-        response, 'meinberlin_projects/project_participants.html')
-
-    data = {
-        'add_users': 'test1@foo.bar,test2@foo.bar',
-    }
-    response = client.post(url, data)
-    assert redirect_target(response) == \
-        'dashboard-{}-edit'.format(component.identifier)
-    assert ParticipantInvite.objects.get(email='test1@foo.bar')
-    assert ParticipantInvite.objects.get(email='test2@foo.bar')
-    assert len(mail.outbox) == 2
+    assert response.status_code == 403
 
 
 @pytest.mark.django_db
