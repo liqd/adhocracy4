@@ -39,6 +39,8 @@ from meinberlin.apps.projectcontainers.api import ProjectContainerListViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
 from meinberlin.apps.users.decorators import user_is_project_admin
+from meinberlin.apps.votes.api import TokenVoteViewSet
+from meinberlin.apps.votes.routers import TokenVoteDefaultRouter
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -77,6 +79,10 @@ ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
 
 question_router = QuestionDefaultRouter()
 question_router.register(r'vote', VoteViewSet, basename='vote')
+
+tokenvote_router = TokenVoteDefaultRouter()
+tokenvote_router.register(r'tokenvotes', TokenVoteViewSet,
+                          basename='tokenvotes')
 
 sitemaps = {
     'adhocracy4': Adhocracy4Sitemap,
@@ -140,6 +146,7 @@ urlpatterns = [
     path('api/', include(module_router.urls)),
     path('api/', include(orga_router.urls)),
     path('api/', include(question_router.urls)),
+    path('api/', include(tokenvote_router.urls)),
     path('api/', include(router.urls)),
 
     path('upload/',
