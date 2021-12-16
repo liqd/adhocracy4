@@ -38,6 +38,10 @@ export const BudgetingProposalList = (props) => {
     setQueryString(filterString)
   }
 
+  const onVoteChange = (selectedPage) => {
+    fetchProposals(selectedPage)
+  }
+
   useEffect(fetchProposals, [queryString])
 
   const renderList = (data) => {
@@ -52,6 +56,9 @@ export const BudgetingProposalList = (props) => {
                 proposal={proposal}
                 locale={meta?.locale}
                 isVotingPhase={props.is_voting_phase}
+                tokenvoteApiUrl={props.tokenvote_api_url}
+                onVoteChange={onVoteChange}
+                currentPage={meta?.current_page}
               />)}
           </ul>
           {meta?.is_paginated &&

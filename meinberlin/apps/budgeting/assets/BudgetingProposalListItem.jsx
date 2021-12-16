@@ -1,12 +1,12 @@
 import React from 'react'
 import django from 'django'
 import { toLocaleDate } from './helpers'
-import { VoteButton } from './VoteButton.jsx'
+import VoteButton from './VoteButton'
 import { ListItemBadges } from './ListItemBadges'
 import { ListItemStats } from './ListItemStats'
 
-export const BudgetingProposalListItem = props => {
-  const { proposal, isVotingPhase } = props
+export const BudgetingProposalListItem = (props) => {
+  const { proposal, isVotingPhase, tokenvoteApiUrl } = props
   const safeLocale = props.locale ? props.locale : undefined
   const date = proposal.modified
     ? `${django.gettext('modified on')} ${toLocaleDate(
@@ -45,7 +45,11 @@ export const BudgetingProposalListItem = props => {
           <VoteButton
             onClass="btn"
             offClass="btn btn--light"
-            uniqueID={proposal.pk}
+            objectID={proposal.pk}
+            tokenvoteApiUrl={tokenvoteApiUrl}
+            isChecked={proposal.session_token_voted}
+            onVoteChange={props.onVoteChange}
+            currentPage={props.currentPage}
           />
         )}
       </div>
