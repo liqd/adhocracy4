@@ -8,7 +8,8 @@ test('render list item with vote button', () => {
     name: 'myProposal',
     url: 'www',
     creator: 'creator',
-    created: '2021-11-11T15:37:19.490201+01:00'
+    created: '2021-11-11T15:37:19.490201+01:00',
+    moderator_feedback: ['CONSIDERATION', 'wird ueberprueft']
   }
   render(<BudgetingProposalListItem proposal={proposal} isVotingPhase />)
   expect(screen.getByText('myProposal')).toBeTruthy()
@@ -24,9 +25,12 @@ test('render list item with stats', () => {
     name: 'myProposal',
     url: 'www',
     creator: 'creator',
-    created: '2021-11-11T15:37:19.490201+01:00'
+    created: '2021-11-11T15:37:19.490201+01:00',
+    moderator_feedback: ['CONSIDERATION', 'wird ueberprueft']
   }
-  render(<BudgetingProposalListItem proposal={proposal} isVotingPhase={false} />)
+  render(
+    <BudgetingProposalListItem proposal={proposal} isVotingPhase={false} />
+  )
   expect(screen.getByText('myProposal')).toBeTruthy()
   expect(screen.getByText('creator')).toBeTruthy()
   const resolvedDate =

@@ -34,14 +34,12 @@ test('Budgeting Proposal List with one list item', async () => {
       created: '2021-11-11T15:36:57.941072+01:00',
       creator: 'admin',
       is_archived: false,
-      locale: 'de-DE',
-      moderator_feedback: null,
-      moderator_feedback_choices: [],
       name: 'erster vorschlag',
       negative_rating_count: 0,
       pk: 7,
       positive_rating_count: 0,
-      url: '/budgeting/2021-00007/'
+      url: '/budgeting/2021-00007/',
+      moderator_feedback: ['CONSIDERATION', 'wird ueberprueft']
     }
   ]
 
