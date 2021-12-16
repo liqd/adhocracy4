@@ -7,6 +7,8 @@ from rest_framework.pagination import PageNumberPagination
 
 from adhocracy4.api.mixins import ModuleMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
+from adhocracy4.categories import get_category_icon_url
+from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 
@@ -60,16 +62,21 @@ class BudgetFilterInfoMixin(ModuleMixin):
         )
         if categories:
             category_choices = [('', _('All')), ]
-            category_icons = []
+            if has_icons(self.module):
+                category_icons = []
             for category in categories:
                 category_choices += (str(category.pk), category.name),
-                category_icons += (str(category.pk), category.icon),
+                if has_icons(self.module):
+                    icon_name = getattr(category, 'icon', None)
+                    icon_url = get_category_icon_url(icon_name)
+                    category_icons += (str(category.pk), icon_url),
 
             filters['category'] = {
                 'label': _('Category'),
                 'choices': category_choices,
-                'icons': category_icons,
             }
+            if has_icons(self.module):
+                filters['category']['icons'] = category_icons
 
         response = super().list(request, args, kwargs)
         response.data['filters'] = filters
