@@ -1,6 +1,8 @@
+from django.contrib.contenttypes.models import ContentType
 from rest_framework import serializers
 
 from adhocracy4.categories.models import Category
+from meinberlin.apps.votes.models import TokenVote
 
 from .models import Proposal
 
@@ -26,16 +28,19 @@ class ProposalSerializer(serializers.ModelSerializer):
     category = CategoryField()
     url = serializers.SerializerMethodField()
     moderator_feedback = serializers.SerializerMethodField()
+    session_token_voted = serializers.SerializerMethodField()
 
     class Meta:
         model = Proposal
         fields = ('budget', 'category', 'comment_count', 'created', 'modified',
                   'creator', 'is_archived', 'name', 'negative_rating_count',
-                  'positive_rating_count', 'url', 'pk', 'moderator_feedback')
+                  'positive_rating_count', 'url', 'pk', 'moderator_feedback',
+                  'session_token_voted')
         read_only_fields = ('budget', 'category', 'comment_count', 'created',
                             'modified', 'creator', 'is_archived', 'name',
                             'negative_rating_count', 'positive_rating_count',
-                            'url', 'pk', 'moderator_feedback')
+                            'url', 'pk', 'moderator_feedback',
+                            'session_token_voted')
 
     def get_creator(self, proposal):
         return proposal.creator.username
@@ -67,3 +72,22 @@ class ProposalSerializer(serializers.ModelSerializer):
                     proposal.get_moderator_feedback_display())
         else:
             return None
+
+    def get_session_token_voted(self, proposal):
+        """Serialize if proposal has been voted.
+
+        Returns bool that indicates whether the proposal has
+        been voted with the token in the current session
+        """
+        if 'request' in self.context:
+            if 'voting_token' in self.context['request'].session:
+                vote = TokenVote.objects.filter(
+                    token__pk=self.context['request'].session['voting_token'],
+                    content_type=ContentType.objects.get_for_model(
+                        proposal.__class__),
+                    object_pk=proposal.pk
+                )
+                if vote.exists():
+                    return True
+
+        return False
