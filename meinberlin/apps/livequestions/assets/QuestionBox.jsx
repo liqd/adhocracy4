@@ -1,5 +1,5 @@
 import django from 'django'
-import { updateItem } from './helpers.js'
+import { updateItem } from '../../contrib/assets/helpers.js'
 import React from 'react'
 import QuestionForm from './QuestionForm'
 import QuestionList from './QuestionList'

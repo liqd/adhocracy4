@@ -1,19 +1,8 @@
 import React from 'react'
 import django from 'django'
-import { updateItem } from '../../livequestions/assets/helpers.js'
+import { updateItem } from '../../contrib/assets/helpers.js'
 
 export default class VoteButton extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      voted: props.isChecked
-    }
-  }
-
-  componentDidMount () {
-    this.setState({ voted: this.props.isChecked })
-  }
-
   async addVote () {
     const data = {
       object_id: this.props.objectID
@@ -27,13 +16,12 @@ export default class VoteButton extends React.Component {
   }
 
   handleOnChange () {
-    if (this.state.voted) {
+    if (this.props.isChecked) {
       this.deleteVote()
     } else {
       this.addVote()
     }
     this.props.onVoteChange(this.props.currentPage)
-    // this.setState({ voted: !this.state.voted })
   }
 
   render () {
@@ -46,16 +34,16 @@ export default class VoteButton extends React.Component {
       <div>
         <label
           htmlFor={this.props.objectID}
-          className={this.state.voted ? checkedClass : uncheckedClass}
+          className={this.props.isChecked ? checkedClass : uncheckedClass}
         >
           <input
             id={this.props.objectID}
             className="checkbox-btn__input"
             type="checkbox"
-            checked={this.state.voted}
-            onChange={(e) => this.handleOnChange(e)}
+            checked={this.props.isChecked}
+            onChange={e => this.handleOnChange(e)}
           />
-          <span>{this.state.voted ? checkedText : uncheckedText}</span>
+          <span>{this.props.isChecked ? checkedText : uncheckedText}</span>
         </label>
       </div>
     )

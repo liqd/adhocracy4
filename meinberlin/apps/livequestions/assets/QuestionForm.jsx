@@ -1,6 +1,6 @@
 import django from 'django'
 import React from 'react'
-import { updateItem } from './helpers.js'
+import { updateItem } from '../../contrib/assets/helpers.js'
 import CategorySelect from './CategorySelect'
 
 export default class QuestionForm extends React.Component {
