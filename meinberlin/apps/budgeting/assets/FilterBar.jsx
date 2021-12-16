@@ -36,6 +36,29 @@ export const FilterBar = props => {
     encodeFilterString(filterObject)
   }
 
+  const prepareFilter = (filter, filterType) => {
+    const defaultFilter = getDefaultFilter(filter)
+    filterType === 'ordering' && (filter.position = 'right')
+    filter.current = selectedFilter(filterType) || defaultFilter
+    return filter
+  }
+
+  const selectedFilter = filterType =>
+    filterObject && filterObject[filterType] && filterObject[filterType][1]
+
+  const getDefaultFilter = filter => {
+    // Return Early, if no default, take "All"-choice
+    if (!filter.default) return filter.choices[0][1]
+    // Get name of default filter
+    return filter.choices
+      .map(f => f[0] === filter.default && f[1])
+      .filter(f => !!f)
+  }
+
+  const getClassName = position => {
+    return position ? `control-bar-item__${position}` : 'control-bar-item'
+  }
+
   useEffect(() => {
     props.onChangeFilters(filterString)
   }, [filterObject, filterString])
@@ -48,30 +71,17 @@ export const FilterBar = props => {
             <FilterBarListMapSwitch query={filterString} />
           </div>
           {props.filters &&
-            Object.keys(props.filters).map((filterType, idx) => {
-              const filter = props.filters[filterType]
-              // adding position to ordering dropdown
-              filterType === 'ordering' && (filter.position = 'right')
-              const selectedFilter =
-                filterObject &&
-                filterObject[filterType] &&
-                filterObject[filterType][1]
+            Object.keys(props.filters).map((type, idx) => {
+              const filterCopy = props.filters[type]
+              const filter = prepareFilter(filterCopy, type)
               return (
                 <div
-                  className={
-                    filter.position
-                      ? `control-bar-item__${filter.position}`
-                      : 'control-bar-item'
-                  }
+                  className={getClassName(filter.position)}
                   key={`filter_${idx}`}
                 >
                   <FilterBarDropdown
-                    filterName={filter.label}
-                    selectedFilter={selectedFilter}
-                    filterChoices={filter.choices}
-                    onSelectFilter={
-                      filterChoice => applyFilter(filterType, filterChoice)
-                    }
+                    filter={filter}
+                    onSelectFilter={choice => applyFilter(type, choice)}
                   />
                 </div>
               )

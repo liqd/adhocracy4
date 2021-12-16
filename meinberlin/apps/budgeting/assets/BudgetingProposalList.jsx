@@ -23,7 +23,8 @@ export const BudgetingProposalList = (props) => {
           is_paginated: json.page_count > 1,
           previous: json.previous,
           next: json.next,
-          filters: json.filters
+          filters: json.filters,
+          locale: json.locale
         })
       })
       .catch(error => console.log(error))
@@ -49,6 +50,7 @@ export const BudgetingProposalList = (props) => {
               <BudgetingProposalListItem
                 key={`budgeting-proposal-${idx}`}
                 proposal={proposal}
+                locale={meta?.locale}
                 isVotingPhase={props.is_voting_phase}
               />)}
           </ul>
