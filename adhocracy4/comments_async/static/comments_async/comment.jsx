@@ -308,20 +308,20 @@ export default class Comment extends React.Component {
             <div className="a4-comments__box--user">
               <div className="row">
 
-                <div className={this.props.is_deleted ? 'd-none' : 'col-2 col-lg-1'}>
+                <div className={this.props.is_deleted ? 'd-none' : 'col-2 col-lg-1 a4-comments__user-img'}>
                   {userImage}
                 </div>
-                <div className="col-7 col-md-8">
-                  <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
+                <div className="col-7 col-md-8 a4-comments__author-container">
+                  <div className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
                     {userProfile === ''
                       ? this.props.user_name
                       : <a href={userProfile}>{this.props.user_name}</a>}
-                  </h5>
+                  </div>
                   {moderatorLabel}
                   <div className="a4-comments__submission-date">{lastDate}</div>
                 </div>
 
-                <div className="col-1 col-md-1 ms-auto">
+                <div className="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
                   {this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) &&
                     <CommentManageDropdown
                       id={this.props.id}
@@ -351,22 +351,22 @@ export default class Comment extends React.Component {
             </div>
 
             <div className="row">
-              <div className="col-6 col-md-4">
-                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--none text-muted px-0" onClick={this.showMore.bind(this)}>{readMore}</button>}
-                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0" onClick={this.showLess.bind(this)}>{readLess}</button>}
+              <div className="col-6 col-md-4 a4-comments__read-btn-container">
+                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showMore.bind(this)}>{readMore}</button>}
+                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showLess.bind(this)}>{readLess}</button>}
               </div>
 
             </div>
 
             <div className="row">
-              <nav className="col-12 navbar navbar-default navbar-static">
+              <div className="col-12 a4-comments__action-bar-container">
                 {this.renderRatingBox()}
 
                 <div className="a4-comments__action-bar">
                   {((this.allowForm() && !this.props.is_deleted) || (this.props.child_comments && this.props.child_comments.length > 0)) &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
                       <a href="#child-comment-form">
-                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
+                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
                       </a>
                     </button>}
 
@@ -385,7 +385,7 @@ export default class Comment extends React.Component {
                     </a>}
 
                 </div>
-              </nav>
+              </div>
             </div>
 
           </div>

@@ -4,28 +4,25 @@ import django from 'django'
 
 const CommentManageDropdown = (props) => {
   return (
-    <ul className="nav navbar-nav a4-comments__dropdown">
-      <li className="dropdown">
-        <button
-          type="button" className="dropdown-toggle btn btn--link" aria-haspopup="true"
-          aria-expanded="false" data-bs-toggle="dropdown"
-        >
-          <i className="fas fa-ellipsis-v" aria-hidden="true" />
-        </button>
-        <ul className="dropdown-menu dropdown-menu-end">
-          {(props.renderOwnerOptions || props.renderModeratorOptions) && [
-            <li key="1">
-              <button className="dropdown-item" type="button" onClick={props.handleToggleEdit}>{django.gettext('Edit')}</button>
-            </li>,
-            <li className="divider" key="2" />,
-            <li key="3">
-              <a className="dropdown-item" href={`#comment_delete_${props.id}`} data-bs-toggle="modal">{django.gettext('Delete')}</a>
-            </li>,
-            <li className="divider" key="4" />
-          ]}
-        </ul>
-      </li>
-    </ul>
+    <div className="dropdown a4-comments__dropdown">
+      <button
+        type="button"
+        className="dropdown-toggle btn btn--link"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+      >
+        <i className="fas fa-ellipsis-h" aria-hidden="true" />
+      </button>
+      <div className="dropdown-menu dropdown-menu-end">
+        {(props.renderOwnerOptions || props.renderModeratorOptions) && [
+          <button key="1" className="dropdown-item" type="button" onClick={props.handleToggleEdit}>{django.gettext('Edit')}</button>,
+          <div className="divider" key="2" />,
+          <a key="3" className="dropdown-item" href={`#comment_delete_${props.id}`} data-bs-toggle="modal">{django.gettext('Delete')}</a>,
+          <div className="divider" key="4" />
+        ]}
+      </div>
+    </div>
   )
 }
 

@@ -512,22 +512,63 @@ export default class CommentBox extends React.Component {
         </div>
 
         <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'a4-comments__filters__parent'}>
+          <div className="a4-comments__filters__parent--closed">
+            <div className={this.state.search === '' ? 'a4-comments__filters__text' : 'd-none'}>
+              {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
+            </div>
+
+            <div className={this.state.search !== '' ? 'a4-comments__filters__text' : 'd-none'}>
+              <span className="a4-comments__filters__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)}{this.state.search}</span>
+            </div>
+
+            {!this.state.showFilters && this.state.commentCount > 0 &&
+              <button className="btn a4-comments__filters__show-btn pe-0" type="button" onClick={this.handleToggleFilters}>
+                <i className="fas fa-sliders-h ms-2" aria-label={django.gettext('Show filters')} />
+                {django.gettext('Filters')}
+              </button>}
+            {this.state.showFilters && this.state.commentCount > 0 &&
+              <button className="btn a4-comments__filters__show-btn pe-0" type="button" onClick={this.handleToggleFilters}>
+                <i className="fas fa-times ms-2" aria-label={django.gettext('Hide filters')} />
+                {django.gettext('Hide Filters')}
+              </button>}
+          </div>
 
           {this.state.showFilters &&
-            <nav className="a4-comments__filters">
-              <div className="input-group a4-comments__filters__search">
-                <input className="form-control a4-comments__filters__search-input mb-0" type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('Search contributions')} />
+            <div className="a4-comments__filters">
+              <div className="a4-comments__filters__search">
+                <input
+                  className="form-control a4-comments__filters__search-input mb-0"
+                  type="search"
+                  id="search-input"
+                  onKeyPress={this.handleEnterSearch}
+                  placeholder={django.gettext('Search contributions')}
+                />
 
-                <button className={this.state.search !== '' ? 'a4-comments__filters__search-result text-muted' : 'd-none'} type="button" onClick={this.handleClickResult}><span className="fa-stack fa-2x"><i className="far fa-circle fa-stack-2x" /><i className="fas fa-times fa-stack-1x" aria-label={django.gettext('Clear search')} /></span></button>
+                <button
+                  className={this.state.search !== '' ? 'a4-comments__filters__search-result text-muted' : 'd-none'}
+                  type="button"
+                  onClick={this.handleClickResult}
+                >
+                  <span className="fa-stack fa-2x">
+                    <i className="far fa-circle fa-stack-2x" />
+                    <i className="fas fa-times fa-stack-1x" aria-label={django.gettext('Clear search')} />
+                  </span>
+                </button>
 
-                <button className="input-group-append a4-comments__filters__search-btn btn btn--transparent" type="button" onClick={this.handleClickSearch}><i className="fas fa-search" aria-label={django.gettext('Search contributions')} /></button>
+                <button
+                  className="input-group-append a4-comments__filters__search-btn btn btn--transparent"
+                  type="button"
+                  onClick={this.handleClickSearch}
+                >
+                  <i className="fas fa-search" aria-label={django.gettext('Search contributions')} />
+                </button>
               </div>
 
               {this.props.withCategories
                 ? <div className="a4-comments__filters__dropdown me-sm-2">
                   <div className="dropdown">
                     <button
-                      className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn"
+                      className="btn btn--select dropdown-toggle a4-comments__filters__btn"
                       type="button"
                       id="categoryDropdownBtn"
                       data-bs-toggle="dropdown"
@@ -539,7 +580,7 @@ export default class CommentBox extends React.Component {
 
                       <i className={this.state.filter === 'all' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
                     </button>
-                    <div className="dropdown-menu dropdown-menu-end" aria-labelledby="categoryDropdownBtn">
+                    <div className="dropdown-menu dropend" aria-labelledby="categoryDropdownBtn">
                       {this.state.filter !== 'all' &&
                         <button className="dropdown-item" onClick={this.handleClickFilter} id="all" key="all" href="#">
                           {django.gettext('all')}
@@ -556,7 +597,7 @@ export default class CommentBox extends React.Component {
               <div className="a4-comments__filters__dropdown">
                 <div className="dropdown">
                   <button
-                    className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn"
+                    className="btn btn--select dropdown-toggle a4-comments__filters__btn"
                     type="button"
                     id="sortDropdownBtn"
                     data-bs-toggle="dropdown"
@@ -580,24 +621,7 @@ export default class CommentBox extends React.Component {
                   </div>
                 </div>
               </div>
-            </nav>}
-
-          <div className="a4-comments__filters__parent--closed">
-            <div className={this.state.search === '' ? 'a4-comments__filters__text' : 'd-none'}>
-              {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
-            </div>
-
-            <div className={this.state.search !== '' ? 'a4-comments__filters__text' : 'd-none'}>
-              <span className="a4-comments__filters__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)}{this.state.search}</span>
-            </div>
-
-            {!this.state.showFilters && this.state.commentCount > 0 &&
-              <button className="btn btn--none text-muted a4-comments__filters__show-btn pe-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Filters')}<i className="fas fa-sliders-h ms-2" aria-label={django.gettext('Show filters')} />
-              </button>}
-            {this.state.showFilters && this.state.commentCount > 0 &&
-              <button className="btn btn--none text-muted a4-comments__filters__show-btn pe-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Hide Filters')}<i className="fas fa-times ms-2" aria-label={django.gettext('Hide filters')} />
-              </button>}
-          </div>
+            </div>}
 
           <div className={this.state.loadingFilter ? 'a4-comments__loading' : 'd-none'}>
             <i className="fa fa-spinner fa-pulse" />
