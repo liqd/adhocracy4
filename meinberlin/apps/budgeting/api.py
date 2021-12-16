@@ -18,17 +18,17 @@ from .serializers import ProposalSerializer
 
 # To be changed to a more general IdeaPagination, when using
 # pagination via rest api for more idea lists
-class BudgetPagination(PageNumberPagination):
+class ProposalPagination(PageNumberPagination):
     page_size = 15
 
     def get_paginated_response(self, data):
-        response = super(BudgetPagination, self).get_paginated_response(data)
+        response = super(ProposalPagination, self).get_paginated_response(data)
         response.data['page_size'] = self.page_size
         response.data['page_count'] = self.page.paginator.num_pages
         return response
 
 
-class BudgetFilterInfoMixin(ModuleMixin):
+class ProposalFilterInfoMixin(ModuleMixin):
     def list(self, request, *args, **kwargs):
         """Add the filter information to the data of the Proposal API.
 
@@ -83,12 +83,12 @@ class BudgetFilterInfoMixin(ModuleMixin):
         return response
 
 
-class ProposalViewSet(BudgetFilterInfoMixin,
+class ProposalViewSet(ProposalFilterInfoMixin,
                       mixins.ListModelMixin,
                       viewsets.GenericViewSet,
                       ):
 
-    pagination_class = BudgetPagination
+    pagination_class = ProposalPagination
     serializer_class = ProposalSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (DjangoFilterBackend,
