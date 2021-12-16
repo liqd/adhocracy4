@@ -1,3 +1,4 @@
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
@@ -25,6 +26,13 @@ class ProposalPagination(PageNumberPagination):
         response = super(ProposalPagination, self).get_paginated_response(data)
         response.data['page_size'] = self.page_size
         response.data['page_count'] = self.page.paginator.num_pages
+        return response
+
+
+class LocaleInfoMixin:
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, args, kwargs)
+        response.data['locale'] = get_language()
         return response
 
 
@@ -84,6 +92,7 @@ class ProposalFilterInfoMixin(ModuleMixin):
 
 
 class ProposalViewSet(ProposalFilterInfoMixin,
+                      LocaleInfoMixin,
                       mixins.ListModelMixin,
                       viewsets.GenericViewSet,
                       ):
