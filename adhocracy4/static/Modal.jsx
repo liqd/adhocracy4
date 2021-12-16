@@ -23,7 +23,7 @@ export const Modal = (props) => {
           <div
             className={'modal-body ' + props.partials.bodyClass}
           >
-            <h3 className="modal-title">{props.partials.title}</h3>
+            <h3 className="modal-title u-first-heading">{props.partials.title}</h3>
             {props.partials.body}
           </div>
           {!props.partials.hideFooter &&

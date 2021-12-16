@@ -13,7 +13,7 @@ const Modal = (props) => {
         <div className="modal-content">
           <span className="modal--close pt-3 pe-3">
             <button
-              className="close" aria-label={props.abort}
+              className="close btn--close" aria-label={props.abort}
               data-bs-dismiss="modal" onClick={props.handleClose}
             >
               <i className="fas fa-times" />
@@ -21,7 +21,7 @@ const Modal = (props) => {
           </span>
           {!props.partials.hideHeader &&
             <div className="modal-header">
-              <h4 className="modal-title mt-0">{props.partials.title}</h4>
+              <h4 className="modal-title u-first-heading mt-0">{props.partials.title}</h4>
             </div>}
           {props.partials.body &&
             <div
