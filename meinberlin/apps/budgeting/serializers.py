@@ -25,18 +25,17 @@ class ProposalSerializer(serializers.ModelSerializer):
     negative_rating_count = serializers.SerializerMethodField()
     category = CategoryField()
     url = serializers.SerializerMethodField()
+    moderator_feedback = serializers.SerializerMethodField()
 
     class Meta:
         model = Proposal
         fields = ('budget', 'category', 'comment_count', 'created', 'modified',
                   'creator', 'is_archived', 'name', 'negative_rating_count',
-                  'positive_rating_count', 'url', 'pk', 'moderator_feedback',
-                  'moderator_feedback_choices')
+                  'positive_rating_count', 'url', 'pk', 'moderator_feedback')
         read_only_fields = ('budget', 'category', 'comment_count', 'created',
                             'modified', 'creator', 'is_archived', 'name',
                             'negative_rating_count', 'positive_rating_count',
-                            'url', 'pk', 'moderator_feedback',
-                            'moderator_feedback_choices')
+                            'url', 'pk', 'moderator_feedback')
 
     def get_creator(self, proposal):
         return proposal.creator.username
@@ -64,12 +63,7 @@ class ProposalSerializer(serializers.ModelSerializer):
 
     def get_moderator_feedback(self, proposal):
         if hasattr(proposal, 'moderator_feedback'):
-            return proposal.moderator_feedback
-        else:
-            return None
-
-    def get_moderator_feedback_choices(self, proposal):
-        if hasattr(proposal, 'moderator_feedback_choices'):
-            return proposal.moderator_feedback_choices
+            return (proposal.moderator_feedback,
+                    proposal.get_moderator_feedback_display())
         else:
             return None
