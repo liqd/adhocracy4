@@ -43,5 +43,7 @@ class TokenForm(forms.Form):
             )
             if not token_queryset:
                 self.add_error('token', _('This token is not valid'))
+            else:
+                cleaned_data['token'] = token_queryset.first().id
 
         return cleaned_data
