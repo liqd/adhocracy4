@@ -89,7 +89,10 @@ class Module(models.Model):
         ordering = ['weight']
 
     def __str__(self):
-        return "{} ({})".format(self.project, self.weight)
+        return "{} - {:.20} ({})".format(self.name,
+                                         str(self.project),
+                                         self.weight
+                                         )
 
     def get_absolute_url(self):
         return reverse('module-detail', kwargs=dict(module_slug=self.slug))
@@ -97,7 +100,9 @@ class Module(models.Model):
     @cached_property
     def get_detail_url(self):
         """
-        Return either project or module detail url, depending on cluster
+        Return detail url.
+
+        Returns either project or module detail url depending on cluster
         and timeline logic.
         """
         if self.is_in_module_cluster:
@@ -124,68 +129,68 @@ class Module(models.Model):
     # Phase properties to access the modules phases
     @cached_property
     def phases(self):
-        '''Return all phases for this module, ordered by weight.'''
+        """Return all phases for this module, ordered by weight."""
         return self.phase_set.all()
 
     @cached_property
     def active_phase(self):
-        '''
+        """
         Return the currently active phase of the module.
 
         Even though this is not enforced, there should only be one phase
         active at any given time.
-        '''
+        """
         return self.phase_set \
             .active_phases() \
             .first()
 
     @cached_property
     def future_phases(self):
-        '''Return all future phases for this module, ordered by start.'''
+        """Return all future phases for this module, ordered by start."""
         return self.phase_set.future_phases()
 
     @cached_property
     def past_phases(self):
-        '''Return all past phases for this module, ordered by start.'''
+        """Return all past phases for this module, ordered by start."""
         return self.phase_set.past_phases()
 
     @cached_property
     def last_active_phase(self):
-        '''
-        Return the phase that is currently still active or the past phase
-        that started last.
+        """
+        Return currently active or last active phase.
 
-        The past phase that started last should also have ended last,
-        because there should only be one phase running at any time.
+        The last active phase is the past phase that started last
+        and should also have ended last, because there should only
+        be one phase running at any time.
         This is the phase that's content is shown in the module view.
-        '''
+        """
         return self.active_phase or self.past_phases.last()
 
     # module properties combining all phases of self
     @cached_property
     def module_start(self):
-        '''Return the start date of the module.'''
+        """Return the start date of the module."""
         return self.phase_set.order_by('start_date').first().start_date
 
     @cached_property
     def module_end(self):
-        '''Return the end date of the module.'''
+        """Return the end date of the module."""
         return self.phase_set.order_by('-end_date').first().end_date
 
     @cached_property
     def module_has_started(self):
-        '''Test if the module has already started.'''
+        """Test if the module has already started."""
         now = timezone.now()
         return now >= self.module_start
 
     @cached_property
     def module_has_finished(self):
-        '''Test if the module has already finished.'''
+        """Test if the module has already finished."""
         now = timezone.now()
         return now > self.module_end
 
     def seconds_in_units(self, seconds):
-        '''Returns time and unit.'''
+        """Return time and unit."""
         unit_totals = []
 
         unit_limits = [
@@ -209,10 +214,7 @@ class Module(models.Model):
 
     @cached_property
     def module_starting_time_left(self):
-        """
-        Return the time left until the module starts.
-        """
-
+        """Return the time left until the module starts."""
         if not self.module_has_started:
             now = timezone.now()
             time_delta = self.module_start - now
@@ -227,10 +229,7 @@ class Module(models.Model):
 
     @cached_property
     def module_running_time_left(self):
-        """
-        Return the time left of the module if it is currently running.
-        """
-
+        """Return the time left of the module if it is currently running."""
         if self.module_has_started and not self.module_has_finished:
             now = timezone.now()
             time_delta = self.module_end - now
@@ -245,10 +244,7 @@ class Module(models.Model):
 
     @cached_property
     def module_running_progress(self):
-        """
-        Return the progress of the module in percent
-        if it is currently running.
-        """
+        """Return progress of module in percent if it is currently running."""
         if self.module_has_started and not self.module_has_finished:
             time_gone = timezone.now() - self.module_start
             total_time = self.module_end - self.module_start
@@ -259,8 +255,7 @@ class Module(models.Model):
     # modules in one project
     @cached_property
     def project_modules(self):
-        """
-        Return published modules of project.
+        """Return published modules of project.
 
         Used in timeline/cluster logic, so needs to be filtered for
         unpublished modules.
@@ -269,9 +264,7 @@ class Module(models.Model):
 
     @cached_property
     def other_modules(self):
-        """
-        Return all other published modules of project.
-        """
+        """Return all other published modules of project."""
         return self.project_modules.exclude(id=self.id)
 
     @cached_property
@@ -329,12 +322,12 @@ class Module(models.Model):
     # Deprecated properties
     @cached_property
     def first_phase_start_date(self):
-        '''
+        """
         Return the start date of the first phase in the module.
 
         Attention: This method is _deprecated_. The property module_start
         should be used instead.
-        '''
+        """
         warnings.warn(
             "first_phase_start_date is deprecated; use module_start.",
             DeprecationWarning
