@@ -50,6 +50,7 @@ export const BudgetingProposalListItem = (props) => {
             isChecked={proposal.session_token_voted}
             onVoteChange={props.onVoteChange}
             currentPage={props.currentPage}
+            disabled={!props.votesLeft && !proposal.session_token_voted}
           />
         )}
       </div>

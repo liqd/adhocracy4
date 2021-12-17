@@ -24,7 +24,8 @@ export const BudgetingProposalList = (props) => {
           previous: json.previous,
           next: json.next,
           filters: json.filters,
-          locale: json.locale
+          locale: json.locale,
+          token_info: json.token_info
         })
       })
       .catch(error => console.log(error))
@@ -59,6 +60,7 @@ export const BudgetingProposalList = (props) => {
                 tokenvoteApiUrl={props.tokenvote_api_url}
                 onVoteChange={onVoteChange}
                 currentPage={meta?.current_page}
+                votesLeft={meta?.token_info ? meta?.token_info.votes_left : false}
               />)}
           </ul>
           {meta?.is_paginated &&
@@ -77,9 +79,6 @@ export const BudgetingProposalList = (props) => {
     return list
   }
 
-  // this is just a placeholder until we have the votes
-  const voteCount = 1
-
   const getVoteCountText = (votes) => {
     const countText = django.ngettext('you have 1 vote left', 'you have %s votes left', votes)
     return django.interpolate(countText, [votes])
@@ -87,15 +86,15 @@ export const BudgetingProposalList = (props) => {
 
   return (
     <>
-      {props.is_voting_phase &&
+      {(props.is_voting_phase && meta?.token_info) &&
         <div className="module-content--light">
           <div className="l-wrapper">
             <div className="l-center-6">
               <CountDown
-                countText={getVoteCountText(voteCount)}
+                countText={getVoteCountText(meta?.token_info.num_votes_left)}
                 activeClass="btn btn--transparent btn--full u-spacer-bottom btn--huge u-primary"
                 inactiveClass="btn btn--full btn--light u-spacer-bottom btn--huge"
-                counter={voteCount}
+                counter={meta?.token_info.num_votes_left}
               />
             </div>
           </div>
