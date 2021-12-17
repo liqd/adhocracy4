@@ -10,7 +10,8 @@ class VotingTokenAdmin(admin.ModelAdmin):
         'token', 'module', 'is_active', 'allowed_votes'
     )
     readonly_fields = ('token',)
-    list_display = ('token', 'project', 'module', 'module_name', 'is_active')
+    list_display = ('__str__', 'project', 'module', 'module_name',
+                    'is_active')
     list_filter = ('module__project',)
 
     def module_name(self, token):
