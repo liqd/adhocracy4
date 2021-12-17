@@ -13,6 +13,30 @@ from adhocracy4.api.permissions import ViewSetRulesPermission
 from .models import TokenVote
 from .models import VotingToken
 from .serializers import TokenVoteSerializer
+from .serializers import VotingTokenSerializer
+
+
+class VotingTokenInfoMixin:
+    """Adds token info to response data of an api list view.
+
+    Needs to be used with rest_framework.mixins.ListModelMixin
+    """
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, args, kwargs)
+        token_info = None
+        if 'voting_token' in request.session:
+            try:
+                token = VotingToken.objects.get(
+                    pk=request.session['voting_token']
+                )
+            except VotingToken.DoesNotExist:
+                pass
+            serializer = VotingTokenSerializer(token)
+            token_info = serializer.data
+
+        response.data['token_info'] = token_info
+        return response
 
 
 class TokenVoteMixin:

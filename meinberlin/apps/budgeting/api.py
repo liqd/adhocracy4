@@ -12,6 +12,7 @@ from adhocracy4.categories import get_category_icon_url
 from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
+from meinberlin.apps.votes.api import VotingTokenInfoMixin
 
 from .models import Proposal
 from .serializers import ProposalSerializer
@@ -93,6 +94,7 @@ class ProposalFilterInfoMixin(ModuleMixin):
 
 class ProposalViewSet(ProposalFilterInfoMixin,
                       LocaleInfoMixin,
+                      VotingTokenInfoMixin,
                       mixins.ListModelMixin,
                       viewsets.GenericViewSet,
                       ):
