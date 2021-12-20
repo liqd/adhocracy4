@@ -8,7 +8,10 @@ from freezegun import freeze_time
 @pytest.mark.django_db
 def test_str(module):
     assert str(module) == \
-        "{} ({})".format(module.project, module.weight)
+        '{} - {:.20} ({})'.format(module.name,
+                                  str(module.project),
+                                  module.weight
+                                  )
 
 
 @pytest.mark.django_db
