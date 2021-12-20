@@ -284,9 +284,11 @@ ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_USERNAME_REQUIRED = True
 SOCIALACCOUNT_AUTO_SIGNUP = False
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
-SOCIALACCOUNT_FORMS = {'signup': 'meinberlin.apps.users.forms.SocialTermsSignupForm'}
+SOCIALACCOUNT_FORMS = {
+    'signup': 'meinberlin.apps.users.forms.SocialTermsSignupForm'}
 SOCIALACCOUNT_QUERY_EMAIL = True
-SESSION_COOKIE_SAMESITE = None # This is currently needed for servicekonto account connection
+# This is currently needed for servicekonto account connection
+SESSION_COOKIE_SAMESITE = None
 
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = '/'
@@ -321,6 +323,8 @@ CKEDITOR_CONFIGS = {
         'removePlugins': 'stylesheetparser',
         'extraAllowedContent': 'iframe[*]',
         'extraPlugins': ','.join(['embed', 'embedbase']),
+        'embed_provider':
+            '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
     },
     'image-editor': {
         'width': '100%',
@@ -540,4 +544,3 @@ A4_DASHBOARD = {
     'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'}
 
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
-
