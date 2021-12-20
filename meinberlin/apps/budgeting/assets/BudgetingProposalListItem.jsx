@@ -43,8 +43,6 @@ export const BudgetingProposalListItem = (props) => {
         </div>
         {isVotingPhase && (
           <VoteButton
-            onClass="btn"
-            offClass="btn btn--light"
             objectID={proposal.pk}
             tokenvoteApiUrl={tokenvoteApiUrl}
             isChecked={proposal.session_token_voted}
