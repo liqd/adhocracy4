@@ -10,9 +10,8 @@ export const FilterBarDropdown = props => {
     props.onSelectFilter(filter)
   }
 
-  const hasIcon = (icons, choice) => {
-    if (!icons) return false
-    return choice[0] === icons[0][0]
+  const getIcon = choiceIndex => {
+    return icons.find(icon => icon[0] === choiceIndex)
   }
 
   return (
@@ -30,16 +29,19 @@ export const FilterBarDropdown = props => {
         <i className="fa fa-caret-down" aria-hidden />
       </button>
       <ul aria-labelledby="id_category" className="dropdown-menu">
-        {choices.map((choice, idx) => (
-          <li key={`filter-choice_${idx}`}>
-            <button onClick={() => onSelectFilter(choice)}>
-              {hasIcon(icons, choice) && (
-                <img className="dropdown-item__icon" src={icons[0][1]} alt="" />
-              )}
-              {choice[1]}
-            </button>
-          </li>
-        ))}
+        {choices.map((choice, idx) => {
+          const icon = icons && getIcon(choice[0])
+          return (
+            <li key={`filter-choice_${idx}`}>
+              <button onClick={() => onSelectFilter(choice)}>
+                {icon && (
+                  <img className="dropdown-item__icon" src={icon[1]} alt="" />
+                )}
+                {choice[1]}
+              </button>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
