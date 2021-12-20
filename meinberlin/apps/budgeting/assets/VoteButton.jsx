@@ -15,13 +15,25 @@ export default class VoteButton extends React.Component {
     await updateItem({}, url, 'DELETE')
   }
 
+  triggerRender = () => {
+    // FIXME: this distuingishes between if
+    // it has a parent that handles onVoteChange
+    // or if it is used as widget, and therefore page
+    // has to be reloaded --> fix would be one asynchronous way
+    if (this.props.asWidget) {
+      window.location.reload()
+    } else {
+      this.props.onVoteChange(this.props.currentPage)
+    }
+  }
+
   async handleOnChange () {
     if (this.props.isChecked) {
       await this.deleteVote()
     } else {
       await this.addVote()
     }
-    this.props.onVoteChange(this.props.currentPage)
+    this.triggerRender()
   }
 
   render () {
