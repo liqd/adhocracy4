@@ -79,3 +79,8 @@ input[type="search"] {
         max-width: 100% !important;
     }
 }
+
+// stops modal moveing site content when opened
+.modal-open {
+    padding-right: 0 !important;
+}
