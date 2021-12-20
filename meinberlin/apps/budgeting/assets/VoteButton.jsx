@@ -15,11 +15,11 @@ export default class VoteButton extends React.Component {
     await updateItem({}, url, 'DELETE')
   }
 
-  handleOnChange () {
+  async handleOnChange () {
     if (this.props.isChecked) {
-      this.deleteVote()
+      await this.deleteVote()
     } else {
-      this.addVote()
+      await this.addVote()
     }
     this.props.onVoteChange(this.props.currentPage)
   }
