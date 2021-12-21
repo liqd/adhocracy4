@@ -56,16 +56,6 @@ class ProposalFilterInfoMixin(ModuleMixin):
             'default': '-created',
         }
 
-        filters['is_archived'] = {
-            'label': _('Archived'),
-            'choices': [
-                ('', _('All')),
-                ('false', _('No')),
-                ('true', _('Yes')),
-            ],
-            'default': 'false',
-        }
-
         categories = Category.objects.filter(
             module=self.module
         )
@@ -86,6 +76,16 @@ class ProposalFilterInfoMixin(ModuleMixin):
             }
             if has_icons(self.module):
                 filters['category']['icons'] = category_icons
+
+        filters['is_archived'] = {
+            'label': _('Archived'),
+            'choices': [
+                ('', _('All')),
+                ('false', _('No')),
+                ('true', _('Yes')),
+            ],
+            'default': 'false',
+        }
 
         response = super().list(request, args, kwargs)
         response.data['filters'] = filters
