@@ -41,7 +41,7 @@ export const BudgetingProposalListItem = (props) => {
           <span className="list-item__author">{proposal.creator}</span>
           {date}
         </div>
-        {isVotingPhase && (
+        {proposal.vote_allowed && (
           <VoteButton
             objectID={proposal.pk}
             tokenvoteApiUrl={tokenvoteApiUrl}

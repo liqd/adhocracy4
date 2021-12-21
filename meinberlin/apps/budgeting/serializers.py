@@ -29,18 +29,20 @@ class ProposalSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     moderator_feedback = serializers.SerializerMethodField()
     session_token_voted = serializers.SerializerMethodField()
+    vote_allowed = serializers.SerializerMethodField()
 
     class Meta:
         model = Proposal
         fields = ('budget', 'category', 'comment_count', 'created', 'modified',
                   'creator', 'is_archived', 'name', 'negative_rating_count',
                   'positive_rating_count', 'url', 'pk', 'moderator_feedback',
-                  'point_label', 'session_token_voted')
+                  'point_label', 'session_token_voted', 'vote_allowed')
         read_only_fields = ('budget', 'category', 'comment_count', 'created',
                             'modified', 'creator', 'is_archived', 'name',
                             'negative_rating_count', 'positive_rating_count',
                             'url', 'pk', 'moderator_feedback',
-                            'point_label', 'session_token_voted')
+                            'point_label', 'session_token_voted',
+                            'vote_allowed')
 
     def get_creator(self, proposal):
         return proposal.creator.username
@@ -95,5 +97,19 @@ class ProposalSerializer(serializers.ModelSerializer):
                 )
                 if vote.exists():
                     return True
+
+        return False
+
+    def get_vote_allowed(self, proposal):
+
+        if 'request' in self.context:
+            user = self.context['request'].user
+            has_voting_permission = user.has_perm(
+                'meinberlin_budgeting.vote_proposal', proposal
+            )
+            # FIXME: This should be done differently once a module knows
+            #  its type
+            is_three_phase_budgeting = (proposal.module.phases.count() == 3)
+            return has_voting_permission and is_three_phase_budgeting
 
         return False
