@@ -3,12 +3,14 @@ from django.contrib.sessions.models import Session
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from rest_framework import mixins
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
+from adhocracy4.modules.models import Module
 
 from .models import TokenVote
 from .models import VotingToken
@@ -42,10 +44,11 @@ class VotingTokenInfoMixin:
 class TokenVoteMixin:
     """Should be used in combination with TokenVoteRouter.
 
-    Adds content_type_id and token to api view
+    Adds module, content_type_id and token to api view
     """
 
     def dispatch(self, request, *args, **kwargs):
+        self.module_pk = kwargs.get('module_pk', '')
         content_type = kwargs.get('content_type', '')
         if not content_type.isdigit():
             raise Http404
@@ -59,7 +62,17 @@ class TokenVoteMixin:
         except ObjectDoesNotExist:
             raise PermissionDenied('No Token given')
 
+        if not self.token.module == self.module:
+            raise PermissionDenied('Token not valid for module')
+
         return super().dispatch(request, *args, **kwargs)
+
+    @property
+    def module(self):
+        return get_object_or_404(
+            Module,
+            pk=self.module_pk
+        )
 
     @property
     def content_type(self):
@@ -87,9 +100,8 @@ class TokenVoteViewSet(mixins.CreateModelMixin,
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
-            POST='{app_label}.vote_{model}'.format(
+            POST='{app_label}.add_vote'.format(
                 app_label=self.content_type.app_label,
-                model=self.content_type.model
             )
         )
 

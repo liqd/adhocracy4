@@ -21,7 +21,10 @@ def react_proposals_vote(context, module, proposal):
     proposal_ct = ContentType.objects.get(app_label='meinberlin_budgeting',
                                           model='proposal')
     tokenvote_api_url = reverse('tokenvotes-list',
-                                kwargs={'content_type': proposal_ct.id})
+                                kwargs={
+                                    'module_pk': module.pk,
+                                    'content_type': proposal_ct.id
+                                })
 
     request = context['request']
     session_token_voted = False
