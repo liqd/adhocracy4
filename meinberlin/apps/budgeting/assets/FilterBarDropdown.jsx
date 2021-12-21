@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export const FilterBarDropdown = props => {
   const { filter: { position, label, choices, current, icons } } = props
@@ -9,6 +9,20 @@ export const FilterBarDropdown = props => {
   const onSelectFilter = filter => {
     props.onSelectFilter(filter)
   }
+
+  const getFilterByValue = filterval => {
+    return choices.find(choice => choice[0] === filterval)
+  }
+
+  useEffect(() => {
+    if (!current) {
+      if (props.filter.default) {
+        onSelectFilter(getFilterByValue(props.filter.default))
+      } else {
+        onSelectFilter(choices[0])
+      }
+    }
+  })
 
   const getIcon = choiceIndex => {
     return icons.find(icon => icon[0] === choiceIndex)

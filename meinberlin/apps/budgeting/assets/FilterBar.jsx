@@ -37,23 +37,13 @@ export const FilterBar = props => {
   }
 
   const prepareFilter = (filter, filterType) => {
-    const defaultFilter = getDefaultFilter(filter)
     filterType === 'ordering' && (filter.position = 'right')
-    filter.current = selectedFilter(filterType) || defaultFilter
+    filter.current = selectedFilter(filterType)
     return filter
   }
 
   const selectedFilter = filterType =>
     filterObject && filterObject[filterType] && filterObject[filterType][1]
-
-  const getDefaultFilter = filter => {
-    // Return Early, if no default, take "All"-choice
-    if (!filter.default) return filter.choices[0][1]
-    // Get name of default filter
-    return filter.choices
-      .map(f => f[0] === filter.default && f[1])
-      .filter(f => !!f)
-  }
 
   const getClassName = position => {
     return position ? `control-bar-item__${position}` : 'control-bar-item'
