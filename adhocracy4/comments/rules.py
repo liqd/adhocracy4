@@ -18,7 +18,7 @@ def content_object_allows_comment(user, comment):
 
 rules.add_perm(
     'a4comments.view_comment',
-    module_predicates.is_project_admin |
+    module_predicates.is_allowed_moderate_project |
     module_predicates.is_public_context |
     module_predicates.is_context_member
 )
@@ -26,7 +26,7 @@ rules.add_perm(
 
 rules.add_perm(
     'a4comments.rate_comment',
-    module_predicates.is_project_admin |
+    module_predicates.is_allowed_moderate_project |
     (
         module_predicates.is_context_member &
         content_object_allows_comment
@@ -36,7 +36,7 @@ rules.add_perm(
 
 rules.add_perm(
     'a4comments.comment_comment',
-    module_predicates.is_project_admin |
+    module_predicates.is_allowed_moderate_project |
     (
         module_predicates.is_context_member &
         content_object_allows_comment
@@ -46,7 +46,7 @@ rules.add_perm(
 
 rules.add_perm(
     'a4comments.change_comment',
-    module_predicates.is_project_admin |
+    module_predicates.is_allowed_moderate_project |
     (
         module_predicates.is_context_member &
         content_object_allows_comment &
@@ -57,7 +57,7 @@ rules.add_perm(
 
 rules.add_perm(
     'a4comments.delete_comment',
-    module_predicates.is_project_admin |
+    module_predicates.is_allowed_moderate_project |
     (
         content_object_allows_comment &
         module_predicates.is_context_member &
@@ -67,5 +67,5 @@ rules.add_perm(
 
 rules.add_perm(
     'a4comments.moderate_comment',
-    module_predicates.is_project_admin
+    module_predicates.is_allowed_moderate_project
 )
