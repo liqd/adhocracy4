@@ -24,7 +24,7 @@
                should be changed once we have module types
     {% endcomment %}
     {% if module.phases.count == 3 %}
-        {% has_perm 'meinberlin_budgeting.vote_proposal' request.user module as vote_allowed %}
+        {% has_perm 'meinberlin_budgeting.add_vote' request.user module as vote_allowed %}
         {% if vote_allowed %}
             {% if request.session.voting_token %}
                 You are using token {{ request.session.voting_token }}

@@ -12,7 +12,16 @@
 {% endblock %}
 
 {% block vote_button %}
-<div class="l-center-6 u-bottom-divider">
-    {% react_proposals_vote view.module proposal %}
-</div>
+{% comment %}
+    FIXME: differentiating 2 and 3 phase buergerhaushalt by just counting the phases
+           should be changed once we have module types
+{% endcomment %}
+{% if module.phases.count == 3 %}
+    {% has_perm 'meinberlin_budgeting.vote_proposal' request.user proposal as vote_allowed %}
+    {% if vote_allowed %}
+    <div class="l-center-6 u-bottom-divider">
+        {% react_proposals_vote view.module proposal %}
+    </div>
+    {% endif %}
+{% endif %}
 {% endblock %}
