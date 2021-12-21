@@ -40,7 +40,24 @@ def phase_allows_rate(user, item):
     return False
 
 
-def phase_allows_vote(item_class):
+@rules.predicate
+def phase_allows_vote(user, item):
+    """Given an item, return if its module has voting phase active.
+
+    Used in meinberlin_budgeting.vote_proposal rule to decide
+    if a given proposal can be voted on.
+    """
+    if item:
+        return has_feature_active(item.module, item.__class__, 'vote')
+    return False
+
+
+def phase_allows_add_vote(item_class):
+    """Return if module has voting phase active.
+
+    Used in meinberlin_budgeting.add_vote rule to decide if token
+    voting is allowed.
+    """
     @rules.predicate
     def _vote_predicate(user, module):
         if module:
