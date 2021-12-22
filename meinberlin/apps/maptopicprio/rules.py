@@ -4,17 +4,17 @@ from adhocracy4.modules import predicates as module_predicates
 
 rules.add_perm(
     'meinberlin_maptopicprio.add_maptopic',
-    module_predicates.is_project_admin
+    module_predicates.is_allowed_moderate_project
 )
 
 rules.add_perm(
     'meinberlin_maptopicprio.change_maptopic',
-    module_predicates.is_project_admin
+    module_predicates.is_allowed_moderate_project
 )
 
 rules.add_perm(
     'meinberlin_maptopicprio.view_maptopic',
-    (module_predicates.is_project_admin |
+    (module_predicates.is_allowed_moderate_project |
      module_predicates.is_allowed_view_item)
 )
 
