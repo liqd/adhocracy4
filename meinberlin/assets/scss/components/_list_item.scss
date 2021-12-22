@@ -85,6 +85,12 @@
 
 .list-item__author {
     margin-right: 0.3em;
+    font-weight: bold;
+    display: block;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        display: inline-block;
+    }
 }
 
 .list-item__stats {
