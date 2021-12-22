@@ -34,7 +34,7 @@ def test_user_cannot_delete(client, topic_factory, user):
 
 
 @pytest.mark.django_db
-def test_moderator_can_delete(client, topic_factory):
+def test_moderator_cannot_delete(client, topic_factory):
     topic = topic_factory()
     moderator = topic.module.project.moderators.first()
     client.login(username=moderator.email, password='password')
@@ -45,10 +45,7 @@ def test_moderator_can_delete(client, topic_factory):
             'year': topic.created.year
         })
     response = client.post(url)
-    assert response.status_code == 302
-    assert redirect_target(response) == 'topic-list'
-    count = models.Topic.objects.all().count()
-    assert count == 0
+    assert response.status_code == 403
 
 
 @pytest.mark.django_db

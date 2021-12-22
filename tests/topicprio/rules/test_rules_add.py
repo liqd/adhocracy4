@@ -26,7 +26,7 @@ def test_pre_phase(phase_factory, user):
     with freeze_pre_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
-        assert rules.has_perm(perm_name, moderator, module)
+        assert not rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)
 
 
@@ -40,7 +40,7 @@ def test_phase_active(phase_factory, user):
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
-        assert rules.has_perm(perm_name, moderator, module)
+        assert not rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)
 
 
@@ -59,7 +59,7 @@ def test_phase_active_project_private(phase_factory, user, user2):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
         assert not rules.has_perm(perm_name, participant, module)
-        assert rules.has_perm(perm_name, moderator, module)
+        assert not rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)
 
 
@@ -78,7 +78,7 @@ def test_phase_active_project_semipublic(phase_factory, user, user2):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
         assert not rules.has_perm(perm_name, participant, module)
-        assert rules.has_perm(perm_name, moderator, module)
+        assert not rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)
 
 
@@ -93,7 +93,7 @@ def test_phase_active_project_draft(phase_factory, user):
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
-        assert rules.has_perm(perm_name, moderator, module)
+        assert not rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)
 
 
@@ -108,5 +108,5 @@ def test_post_phase_project_archived(phase_factory, user):
     with freeze_post_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
-        assert rules.has_perm(perm_name, moderator, module)
+        assert not rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)

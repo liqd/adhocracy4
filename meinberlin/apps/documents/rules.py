@@ -16,12 +16,12 @@ rules.add_perm(
 
 rules.add_perm(
     'meinberlin_documents.add_chapter',
-    module_predicates.is_allowed_moderate_project
+    module_predicates.is_allowed_crud_project
 )
 
 rules.add_perm(
     'meinberlin_documents.change_chapter',
-    module_predicates.is_allowed_moderate_project
+    module_predicates.is_allowed_crud_project
 )
 
 rules.add_perm(

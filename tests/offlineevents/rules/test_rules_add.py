@@ -17,5 +17,5 @@ def test_rule(offline_event, user):
 
     assert not rules.has_perm(perm_name, anonymous, project)
     assert not rules.has_perm(perm_name, user, project)
-    assert rules.has_perm(perm_name, moderator, project)
+    assert not rules.has_perm(perm_name, moderator, project)
     assert rules.has_perm(perm_name, initiator, project)

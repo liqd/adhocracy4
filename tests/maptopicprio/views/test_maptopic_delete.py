@@ -34,7 +34,7 @@ def test_user_cannot_delete(client, maptopic_factory, user):
 
 
 @pytest.mark.django_db
-def test_moderator_can_delete(client, maptopic_factory):
+def test_moderator_cannot_delete(client, maptopic_factory):
     maptopic = maptopic_factory()
     moderator = maptopic.module.project.moderators.first()
     client.login(username=moderator.email, password='password')
@@ -45,10 +45,7 @@ def test_moderator_can_delete(client, maptopic_factory):
             'year': maptopic.created.year
         })
     response = client.post(url)
-    assert response.status_code == 302
-    assert redirect_target(response) == 'maptopic-list'
-    count = models.MapTopic.objects.all().count()
-    assert count == 0
+    assert response.status_code == 403
 
 
 @pytest.mark.django_db

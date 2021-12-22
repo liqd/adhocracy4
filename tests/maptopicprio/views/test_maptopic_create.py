@@ -67,34 +67,18 @@ def test_admin_can_create_maptopic(client, phase_factory,
 
 
 @pytest.mark.django_db
-def test_moderator_can_create_maptopic_before_phase(client, phase_factory,
-                                                    category_factory, admin,
-                                                    area_settings_factory):
+def test_moderator_cannot_create_maptopic_before_phase(
+        client, phase_factory, category_factory, admin, area_settings_factory):
     phase = phase_factory(phase_content=phases.PrioritizePhase())
     module = phase.module
     project = module.project
-    area_settings_factory(module=module)
-    category = category_factory(module=module)
     moderator = project.moderators.first()
     url = reverse('a4dashboard:maptopic-create',
                   kwargs={'module_slug': module.slug})
     with freeze_pre_phase(phase):
         client.login(username=moderator.email, password='password')
         response = client.get(url)
-        assert_template_response(
-            response, 'meinberlin_maptopicprio/maptopic_create_form.html')
-        maptopic = {
-            'name': 'MapTopic',
-            'description': 'description',
-            'category': category.pk,
-            'point': (0, 0),
-            'point_label': 'somewhere'
-        }
-        response = client.post(url, maptopic)
-        assert response.status_code == 302
-        assert redirect_target(response) == 'maptopic-list'
-        count = models.MapTopic.objects.all().count()
-        assert count == 1
+        assert response.status_code == 403
 
 
 @pytest.mark.django_db

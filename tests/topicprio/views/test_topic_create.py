@@ -63,30 +63,18 @@ def test_admin_can_create_topic(client, phase_factory,
 
 
 @pytest.mark.django_db
-def test_moderator_can_create_topic_before_phase(client, phase_factory,
-                                                 category_factory, admin):
+def test_moderator_cannot_create_topic_before_phase(client, phase_factory,
+                                                    category_factory, admin):
     phase = phase_factory(phase_content=phases.PrioritizePhase())
     module = phase.module
     project = module.project
-    category = category_factory(module=module)
     moderator = project.moderators.first()
     url = reverse('a4dashboard:topic-create',
                   kwargs={'module_slug': module.slug})
     with freeze_pre_phase(phase):
         client.login(username=moderator.email, password='password')
         response = client.get(url)
-        assert_template_response(
-            response, 'meinberlin_topicprio/topic_create_form.html')
-        topic = {
-            'name': 'Topic',
-            'description': 'description',
-            'category': category.pk,
-        }
-        response = client.post(url, topic)
-        assert response.status_code == 302
-        assert redirect_target(response) == 'topic-list'
-        count = models.Topic.objects.all().count()
-        assert count == 1
+        assert response.status_code == 403
 
 
 @pytest.mark.django_db
