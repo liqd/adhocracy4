@@ -1,7 +1,11 @@
 import { createMap } from './a4maps_common'
-import 'leaflet.markercluster'
+
+function loadMarkerCluster () {
+  require('leaflet.markercluster')
+}
 
 function init () {
+  loadMarkerCluster()
   const L = window.L
 
   const escapeHtml = function (unsafe) {
