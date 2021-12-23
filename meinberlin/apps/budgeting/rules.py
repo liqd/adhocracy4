@@ -50,3 +50,8 @@ rules.add_perm(
     'meinberlin_budgeting.add_vote',
     phase_predicates.phase_allows_add_vote(models.Proposal)
 )
+
+rules.add_perm(
+    'meinberlin_budgeting.delete_vote',
+    phase_predicates.phase_allows_delete_vote
+)
