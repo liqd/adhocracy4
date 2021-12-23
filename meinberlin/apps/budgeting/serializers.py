@@ -35,12 +35,12 @@ class ProposalSerializer(serializers.ModelSerializer):
         fields = ('budget', 'category', 'comment_count', 'created', 'modified',
                   'creator', 'is_archived', 'name', 'negative_rating_count',
                   'positive_rating_count', 'url', 'pk', 'moderator_feedback',
-                  'session_token_voted')
+                  'point_label', 'session_token_voted')
         read_only_fields = ('budget', 'category', 'comment_count', 'created',
                             'modified', 'creator', 'is_archived', 'name',
                             'negative_rating_count', 'positive_rating_count',
                             'url', 'pk', 'moderator_feedback',
-                            'session_token_voted')
+                            'point_label', 'session_token_voted')
 
     def get_creator(self, proposal):
         return proposal.creator.username
@@ -70,6 +70,12 @@ class ProposalSerializer(serializers.ModelSerializer):
         if hasattr(proposal, 'moderator_feedback'):
             return (proposal.moderator_feedback,
                     proposal.get_moderator_feedback_display())
+        else:
+            return None
+
+    def get_point_label(self, proposal):
+        if hasattr(proposal, 'point_label'):
+            return (proposal.point_label)
         else:
             return None
 

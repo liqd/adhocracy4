@@ -13,7 +13,7 @@ export const ListItemBadges = props => {
       {props.pointLabel && (
         <SpacedSpan className="label label--big">
           <i className="fas fa-map-marker-alt" aria-hidden="true" />
-          {props.pointLabel}
+          <SpacedSpan>{props.pointLabel}</SpacedSpan>
         </SpacedSpan>
       )}
       {props.budget > 0 && (
