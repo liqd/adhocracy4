@@ -9,7 +9,7 @@ from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.budgeting import phases
 
-perm_name = 'meinberlin_budgeting.vote_proposal'
+perm_name = 'meinberlin_budgeting.add_vote'
 
 
 def test_perm_exists():
