@@ -1,12 +1,13 @@
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sessions.models import Session
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django.utils.translation import gettext_lazy as _
 from rest_framework import mixins
 from rest_framework import status
 from rest_framework import viewsets
+from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
@@ -44,26 +45,18 @@ class VotingTokenInfoMixin:
 class TokenVoteMixin:
     """Should be used in combination with TokenVoteRouter.
 
-    Adds module, content_type_id and token to api view
+    Adds module, content_type_id and token to api view.
     """
 
     def dispatch(self, request, *args, **kwargs):
         self.module_pk = kwargs.get('module_pk', '')
-        content_type = kwargs.get('content_type', '')
-        if not content_type.isdigit():
-            raise Http404
-        else:
-            self.content_type_id = int(content_type)
-
+        self.content_type_id = kwargs.get('content_type', '')
         try:
             session = Session.objects.get(pk=request.session.session_key)
             token_id = session.get_decoded()['voting_token']
             self.token = VotingToken.objects.get(pk=token_id)
         except ObjectDoesNotExist:
-            raise PermissionDenied('No Token given')
-
-        if not self.token.module == self.module:
-            raise PermissionDenied('Token not valid for module')
+            pass
 
         return super().dispatch(request, *args, **kwargs)
 
@@ -81,14 +74,64 @@ class TokenVoteMixin:
         except ContentType.DoesNotExist:
             raise Http404
 
+    def check_permissions(self, request):
+        """Check if valid token is there before checking other permissions."""
+        if not hasattr(self, 'token'):
+            self.permission_denied(
+                request,
+                message=_('No token given.'),
+                code=401
+            )
+        elif not self.token.is_active:
+            self.permission_denied(
+                request,
+                message=_('Token is inactive.'),
+                code=403
+            )
+        elif not self.token.module == self.module:
+            self.permission_denied(
+                request,
+                message=_('Token not valid for module.'),
+                code=403
+            )
+
+        super().check_permissions(request)
+
+
+class TokenVotePermission(BasePermission):
+    """Needs to be used in combination with TokenVoteMixin."""
+
+    def has_permission(self, request, view):
+        if view.action == 'create':
+            return view.token.has_votes_left
+        elif view.action == 'destroy':
+            vote = view.get_object()
+            return vote.token == view.token
+        else:
+            return False
+
 
 class TokenVoteViewSet(mixins.CreateModelMixin,
                        mixins.DestroyModelMixin,
                        TokenVoteMixin,
                        viewsets.GenericViewSet):
+    """Api view to create or delete token votes.
+
+    Uses 2 permission classes:
+        - ViewSetRulesPermission: create  -> {app_label}.add_vote
+                                  destroy -> {app_label}.delete_vote
+
+                                  both of these permissions need to be
+                                  implemented in the app that it is
+                                  used with (see e.g. meinberlin_budgeting)
+
+        - TokenVotePermission: does not use user based rules, but
+                               instead checks that token is valid
+                               for respective action
+    """
 
     serializer_class = TokenVoteSerializer
-    permission_classes = (ViewSetRulesPermission,)
+    permission_classes = (ViewSetRulesPermission, TokenVotePermission)
     lookup_field = 'object_pk'
 
     def get_queryset(self):
@@ -101,8 +144,9 @@ class TokenVoteViewSet(mixins.CreateModelMixin,
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
             POST='{app_label}.add_vote'.format(
-                app_label=self.content_type.app_label,
-            )
+                app_label=self.content_type.app_label),
+            DELETE='{app_label}.delete_vote'.format(
+                app_label=self.content_type.app_label)
         )
 
     def create(self, request, *args, **kwargs):
