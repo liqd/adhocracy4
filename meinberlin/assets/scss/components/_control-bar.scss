@@ -9,6 +9,14 @@
         margin-bottom: 0;
     }
 
+    @media (min-width: $breakpoint) {
+        select,
+        .dropdown,
+        .btn-group__container {
+            margin-right: 0.25 * $spacer;
+        }
+    }
+
     @media (max-width: $breakpoint) {
         > * {
             @include grid-same-width(2);
@@ -77,4 +85,11 @@
     position: relative;
     z-index: 1;
     top: -1em;
+}
+
+.control-bar--list {
+    > :last-child {
+        float: right;
+        margin-right: 0;
+    }
 }

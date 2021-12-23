@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react'
 
 export const FilterBarDropdown = props => {
-  const { filter: { position, label, choices, current, icons } } = props
-
-  const dropdownClass =
-    position === 'right' ? 'dropdown control-bar__right' : 'dropdown'
+  const { filter: { label, choices, current, icons } } = props
 
   const onSelectFilter = filter => {
     props.onSelectFilter(filter)
@@ -29,7 +26,7 @@ export const FilterBarDropdown = props => {
   }
 
   return (
-    <div className={dropdownClass}>
+    <div className="dropdown">
       <button
         type="button"
         className="dropdown-toggle btn btn--light btn--select"

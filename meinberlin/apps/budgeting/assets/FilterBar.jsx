@@ -37,17 +37,12 @@ export const FilterBar = props => {
   }
 
   const prepareFilter = (filter, filterType) => {
-    filterType === 'ordering' && (filter.position = 'right')
     filter.current = selectedFilter(filterType)
     return filter
   }
 
   const selectedFilter = filterType =>
     filterObject && filterObject[filterType] && filterObject[filterType][1]
-
-  const getClassName = position => {
-    return position ? `control-bar-item__${position}` : 'control-bar-item'
-  }
 
   useEffect(() => {
     props.onChangeFilters(filterString)
@@ -56,24 +51,18 @@ export const FilterBar = props => {
   return (
     <div className="l-wrapper u-spacer-bottom u-spacer-top-double">
       <div className="l-center-8">
-        <div className="control-bar">
-          <div className="control-bar-item">
-            <FilterBarListMapSwitch query={filterString} />
-          </div>
+        <div className="control-bar control-bar--list">
+          <FilterBarListMapSwitch query={filterString} />
           {props.filters &&
             Object.keys(props.filters).map((type, idx) => {
               const filterCopy = props.filters[type]
               const filter = prepareFilter(filterCopy, type)
               return (
-                <div
-                  className={getClassName(filter.position)}
+                <FilterBarDropdown
                   key={`filter_${idx}`}
-                >
-                  <FilterBarDropdown
-                    filter={filter}
-                    onSelectFilter={choice => applyFilter(type, choice)}
-                  />
-                </div>
+                  filter={filter}
+                  onSelectFilter={choice => applyFilter(type, choice)}
+                />
               )
             })}
         </div>

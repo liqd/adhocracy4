@@ -45,17 +45,6 @@ class ProposalFilterInfoMixin(ModuleMixin):
         """
         filters = {}
 
-        ordering_choices = [('-created', _('Most recent')), ]
-        if self.module.has_feature('rate', Proposal):
-            ordering_choices += ('-positive_rating_count', _('Most popular')),
-        ordering_choices += ('-comment_count', _('Most commented')),
-
-        filters['ordering'] = {
-            'label': _('Ordering'),
-            'choices': ordering_choices,
-            'default': '-created',
-        }
-
         categories = Category.objects.filter(
             module=self.module
         )
@@ -85,6 +74,17 @@ class ProposalFilterInfoMixin(ModuleMixin):
                 ('true', _('Yes')),
             ],
             'default': 'false',
+        }
+
+        ordering_choices = [('-created', _('Most recent')), ]
+        if self.module.has_feature('rate', Proposal):
+            ordering_choices += ('-positive_rating_count', _('Most popular')),
+        ordering_choices += ('-comment_count', _('Most commented')),
+
+        filters['ordering'] = {
+            'label': _('Ordering'),
+            'choices': ordering_choices,
+            'default': '-created',
         }
 
         response = super().list(request, args, kwargs)
