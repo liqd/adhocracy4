@@ -6,18 +6,6 @@
     background-color: $body-bg;
     margin-bottom: $em-spacer;
     page-break-inside: avoid;
-
-    &.selected {
-        background-color: $bg-secondary;
-    }
-
-    &.selected:focus {
-        outline: none;
-    }
-
-    // &:hover:not(.no-hover) {
-    //     background-color: mix($body-bg, $bg-secondary);
-    // }
 }
 
 .list-item--squashed {

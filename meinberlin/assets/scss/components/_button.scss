@@ -68,12 +68,15 @@
     @include button-color($body-bg, $bg-secondary);
 
     &,
-    &:focus,
-    &:hover,
-    &:active,
     &:disabled,
     &.is-disabled {
         border-color: $border-color;
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+        border-color: $idea-remark-color;
     }
 }
 
@@ -109,19 +112,21 @@
     background-color: transparent;
 
     color: $link-color;
-    text-decoration: underline;
+    text-decoration: underline !important;
     font-weight: normal;
+    cursor: pointer;
 
     &:hover,
     &:focus {
-        color: $link-hover-color;
+        color: $link-hover-color !important;
         border-color: transparent;
         background-color: transparent;
     }
 
-    &.is-disabled,
-    &:disabled {
-        color: $text-color;
+    &.is-disabled {
+        color: $text-color !important;
+        border-color: transparent;
+        background-color: transparent;
         cursor: not-allowed;
     }
 }
