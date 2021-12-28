@@ -37,7 +37,7 @@
     "mapbox-gl-leaflet": "0.0.15",
     "mini-css-extract-plugin": "2.4.5",
     "moment": "2.29.1",
-    "node-sass": "7.0.0",
+    "node-sass": "7.0.1",
     "path-browserify": "1.0.1",
     "postcss": "8.4.5",
     "postcss-loader": "6.2.1",
