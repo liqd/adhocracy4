@@ -41,12 +41,13 @@ export default class VoteButton extends React.Component {
     const uncheckedText = django.gettext('Give my vote')
     const checkedClass = 'btn btn--full'
     const uncheckedClass = 'btn btn--full btn--light'
+    const disabledClass = ' is-disabled'
 
     return (
       <div>
         <label
           htmlFor={this.props.objectID}
-          className={this.props.isChecked ? checkedClass : uncheckedClass}
+          className={this.props.isChecked ? checkedClass : uncheckedClass + (this.props.disabled ? disabledClass : '')}
         >
           <input
             id={this.props.objectID}
