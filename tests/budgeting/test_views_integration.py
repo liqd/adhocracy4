@@ -21,6 +21,59 @@ def test_list_view(client, phase_factory, proposal_factory):
 
 
 @pytest.mark.django_db
+def test_list_view_token_form(client, user, phase_factory, proposal_factory,
+                              voting_token_factory, module_factory):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase)
+    url = project.get_absolute_url()
+    token = voting_token_factory(module=module)
+    token_split = token.__str__().split('-')
+
+    data = {
+        'token_0': token_split[0],
+        'token_1': token_split[1],
+        'token_2': token_split[2],
+    }
+
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert 'token_form' in response.context
+        assert_template_response(
+            response, 'meinberlin_budgeting/proposal_list.html')
+
+        response = client.post(url, data)
+        assert response.status_code == 200
+        assert 'voting_token' in client.session
+        assert 'token_form' in response.context
+
+    other_module = module_factory()
+    other_token = voting_token_factory(module=other_module)
+
+    other_token_split = other_token.__str__().split('-')
+
+    # remove token from session
+    client.login(username=user.email, password='password')
+    client.logout()
+
+    data = {
+        'token_0': other_token_split[0],
+        'token_1': other_token_split[1],
+        'token_2': other_token_split[2],
+    }
+
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert_template_response(
+            response, 'meinberlin_budgeting/proposal_list.html')
+
+        response = client.post(url, data)
+        assert 'token' in response.context_data['token_form'].errors
+        assert response.context_data['token_form'].errors['token'] == \
+               ['This token is not valid']
+        assert 'voting_token' not in client.session
+
+
+@pytest.mark.django_db
 def test_detail_view(client, phase_factory, proposal_factory):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.RequestPhase)

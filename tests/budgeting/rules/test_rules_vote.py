@@ -9,7 +9,7 @@ from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.budgeting import phases
 
-perm_name = 'meinberlin_budgeting.add_vote'
+perm_name = 'meinberlin_budgeting.vote_proposal'
 
 
 def test_perm_exists():
@@ -21,93 +21,93 @@ def test_perm_exists():
 # b/c the existing rule only checks for the phase being active...
 @pytest.mark.django_db
 def test_pre_phase(user_factory, phase_factory, proposal_factory, user):
-    phase, module, project, _ = setup_phase(phase_factory, proposal_factory,
-                                            phases.RequestPhase)
+    phase, _, project, proposal = setup_phase(phase_factory, proposal_factory,
+                                              phases.RequestPhase)
     anonymous, moderator, initiator = setup_users(project)
     admin = user_factory(is_superuser=True)
 
     assert project.is_public
     with freeze_pre_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, module)
-        assert not rules.has_perm(perm_name, user, module)
-        assert not rules.has_perm(perm_name, moderator, module)
-        assert not rules.has_perm(perm_name, initiator, module)
-        assert not rules.has_perm(perm_name, admin, module)
+        assert not rules.has_perm(perm_name, anonymous, proposal)
+        assert not rules.has_perm(perm_name, user, proposal)
+        assert not rules.has_perm(perm_name, moderator, proposal)
+        assert not rules.has_perm(perm_name, initiator, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
 
 
 @pytest.mark.django_db
 def test_request_phase_active(user_factory, phase_factory, proposal_factory,
                               user):
-    phase, module, project, _ = setup_phase(phase_factory, proposal_factory,
-                                            phases.RequestPhase)
+    phase, _, project, proposal = setup_phase(phase_factory, proposal_factory,
+                                              phases.RequestPhase)
     anonymous, moderator, initiator = setup_users(project)
     admin = user_factory(is_superuser=True)
 
     assert project.is_public
     with freeze_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, module)
-        assert not rules.has_perm(perm_name, user, module)
-        assert not rules.has_perm(perm_name, moderator, module)
-        assert not rules.has_perm(perm_name, initiator, module)
-        assert not rules.has_perm(perm_name, admin, module)
+        assert not rules.has_perm(perm_name, anonymous, proposal)
+        assert not rules.has_perm(perm_name, user, proposal)
+        assert not rules.has_perm(perm_name, moderator, proposal)
+        assert not rules.has_perm(perm_name, initiator, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
 
 
 @pytest.mark.django_db
 def test_collect_phase_active(user_factory, phase_factory, proposal_factory,
                               user):
-    phase, module, project, _ = setup_phase(phase_factory, proposal_factory,
-                                            phases.CollectPhase)
+    phase, _, project, proposal = setup_phase(phase_factory, proposal_factory,
+                                              phases.CollectPhase)
     anonymous, moderator, initiator = setup_users(project)
     admin = user_factory(is_superuser=True)
 
     assert project.is_public
     with freeze_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, module)
-        assert not rules.has_perm(perm_name, user, module)
-        assert not rules.has_perm(perm_name, admin, module)
-        assert not rules.has_perm(perm_name, moderator, module)
-        assert not rules.has_perm(perm_name, initiator, module)
+        assert not rules.has_perm(perm_name, anonymous, proposal)
+        assert not rules.has_perm(perm_name, user, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
+        assert not rules.has_perm(perm_name, moderator, proposal)
+        assert not rules.has_perm(perm_name, initiator, proposal)
 
 
 @pytest.mark.django_db
 def test_rating_phase_active(user_factory, phase_factory, proposal_factory,
                              user):
-    phase, module, project, _ = setup_phase(phase_factory, proposal_factory,
-                                            phases.RatingPhase)
+    phase, _, project, proposal = setup_phase(phase_factory, proposal_factory,
+                                              phases.RatingPhase)
     anonymous, moderator, initiator = setup_users(project)
     admin = user_factory(is_superuser=True)
 
     assert project.is_public
     with freeze_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, module)
-        assert not rules.has_perm(perm_name, user, module)
-        assert not rules.has_perm(perm_name, admin, module)
-        assert not rules.has_perm(perm_name, moderator, module)
-        assert not rules.has_perm(perm_name, initiator, module)
+        assert not rules.has_perm(perm_name, anonymous, proposal)
+        assert not rules.has_perm(perm_name, user, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
+        assert not rules.has_perm(perm_name, moderator, proposal)
+        assert not rules.has_perm(perm_name, initiator, proposal)
 
 
 @pytest.mark.django_db
 def test_voting_phase_active(user_factory, phase_factory, proposal_factory,
                              user):
-    phase, module, project, _ = setup_phase(phase_factory, proposal_factory,
-                                            phases.VotingPhase)
+    phase, _, project, proposal = setup_phase(phase_factory, proposal_factory,
+                                              phases.VotingPhase)
     anonymous, moderator, initiator = setup_users(project)
     admin = user_factory(is_superuser=True)
 
     assert project.is_public
     with freeze_phase(phase):
-        assert rules.has_perm(perm_name, anonymous, module)
-        assert rules.has_perm(perm_name, user, module)
-        assert rules.has_perm(perm_name, admin, module)
-        assert rules.has_perm(perm_name, moderator, module)
-        assert rules.has_perm(perm_name, initiator, module)
+        assert rules.has_perm(perm_name, anonymous, proposal)
+        assert rules.has_perm(perm_name, user, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
+        assert rules.has_perm(perm_name, moderator, proposal)
+        assert rules.has_perm(perm_name, initiator, proposal)
 
 
 @pytest.mark.django_db
 def test_phase_active_project_private(user_factory, phase_factory,
                                       proposal_factory, user, user2):
-    phase, module, project, _ = setup_phase(
-        phase_factory, proposal_factory, phases.RequestPhase,
+    phase, _, project, proposal = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase,
         module__project__access=Access.PRIVATE)
     anonymous, moderator, initiator = setup_users(project)
     admin = user_factory(is_superuser=True)
@@ -117,19 +117,19 @@ def test_phase_active_project_private(user_factory, phase_factory,
 
     assert project.access == Access.PRIVATE
     with freeze_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, module)
-        assert not rules.has_perm(perm_name, user, module)
-        assert not rules.has_perm(perm_name, participant, module)
-        assert not rules.has_perm(perm_name, moderator, module)
-        assert not rules.has_perm(perm_name, initiator, module)
-        assert not rules.has_perm(perm_name, admin, module)
+        assert rules.has_perm(perm_name, anonymous, proposal)
+        assert rules.has_perm(perm_name, user, proposal)
+        assert rules.has_perm(perm_name, participant, proposal)
+        assert rules.has_perm(perm_name, moderator, proposal)
+        assert rules.has_perm(perm_name, initiator, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
 
 
 @pytest.mark.django_db
 def test_phase_active_project_semipublic(user_factory, phase_factory,
                                          proposal_factory, user, user2):
-    phase, module, project, _ = setup_phase(
-        phase_factory, proposal_factory, phases.RequestPhase,
+    phase, _, project, proposal = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase,
         module__project__access=Access.SEMIPUBLIC)
     anonymous, moderator, initiator = setup_users(project)
     admin = user_factory(is_superuser=True)
@@ -139,45 +139,67 @@ def test_phase_active_project_semipublic(user_factory, phase_factory,
 
     assert project.access == Access.SEMIPUBLIC
     with freeze_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, module)
-        assert not rules.has_perm(perm_name, user, module)
-        assert not rules.has_perm(perm_name, participant, module)
-        assert not rules.has_perm(perm_name, moderator, module)
-        assert not rules.has_perm(perm_name, initiator, module)
-        assert not rules.has_perm(perm_name, admin, module)
+        assert rules.has_perm(perm_name, anonymous, proposal)
+        assert rules.has_perm(perm_name, user, proposal)
+        assert rules.has_perm(perm_name, participant, proposal)
+        assert rules.has_perm(perm_name, moderator, proposal)
+        assert rules.has_perm(perm_name, initiator, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
 
 
 @pytest.mark.django_db
 def test_phase_active_project_draft(user_factory, phase_factory,
                                     proposal_factory, user):
-    phase, module, project, _ = setup_phase(phase_factory, proposal_factory,
-                                            phases.RequestPhase,
-                                            module__project__is_draft=True)
+    phase, _, project, proposal = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase,
+        module__project__is_draft=True)
     anonymous, moderator, initiator = setup_users(project)
     admin = user_factory(is_superuser=True)
 
     assert project.is_draft
     with freeze_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, module)
-        assert not rules.has_perm(perm_name, user, module)
-        assert not rules.has_perm(perm_name, moderator, module)
-        assert not rules.has_perm(perm_name, initiator, module)
-        assert not rules.has_perm(perm_name, admin, module)
+        assert not rules.has_perm(perm_name, anonymous, proposal)
+        assert not rules.has_perm(perm_name, user, proposal)
+        assert not rules.has_perm(perm_name, moderator, proposal)
+        assert not rules.has_perm(perm_name, initiator, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
 
 
 @pytest.mark.django_db
 def test_post_phase_project_archived(user_factory, phase_factory,
                                      proposal_factory, user):
-    phase, module, project, _ = setup_phase(phase_factory, proposal_factory,
-                                            phases.RequestPhase,
-                                            module__project__is_archived=True)
+    phase, _, project, proposal = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase,
+        module__project__is_archived=True)
     anonymous, moderator, initiator = setup_users(project)
     admin = user_factory(is_superuser=True)
 
     assert project.is_archived
     with freeze_post_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, module)
-        assert not rules.has_perm(perm_name, user, module)
-        assert not rules.has_perm(perm_name, moderator, module)
-        assert not rules.has_perm(perm_name, initiator, module)
-        assert not rules.has_perm(perm_name, admin, module)
+        assert not rules.has_perm(perm_name, anonymous, proposal)
+        assert not rules.has_perm(perm_name, user, proposal)
+        assert not rules.has_perm(perm_name, moderator, proposal)
+        assert not rules.has_perm(perm_name, initiator, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
+
+
+@pytest.mark.django_db
+def test_phase_active_proposal_archived(user_factory, phase_factory,
+                                        proposal_factory, user):
+    phase, _, project, proposal = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase,
+        module__project__is_draft=True)
+
+    proposal.is_archived = True
+    proposal.save()
+
+    anonymous, moderator, initiator = setup_users(project)
+    admin = user_factory(is_superuser=True)
+
+    assert project.is_draft
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, proposal)
+        assert not rules.has_perm(perm_name, user, proposal)
+        assert not rules.has_perm(perm_name, moderator, proposal)
+        assert not rules.has_perm(perm_name, initiator, proposal)
+        assert rules.has_perm(perm_name, admin, proposal)
