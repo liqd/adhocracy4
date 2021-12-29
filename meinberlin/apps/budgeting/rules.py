@@ -4,6 +4,7 @@ from adhocracy4.modules import predicates as module_predicates
 from adhocracy4.phases import predicates as phase_predicates
 
 from . import models
+from .predicates import is_allowed_delete_vote
 from .predicates import is_allowed_vote_proposal
 
 rules.add_perm(
@@ -53,5 +54,5 @@ rules.add_perm(
 
 rules.add_perm(
     'meinberlin_budgeting.delete_vote',
-    phase_predicates.phase_allows_delete_vote
+    is_allowed_delete_vote
 )

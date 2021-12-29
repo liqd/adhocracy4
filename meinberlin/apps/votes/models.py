@@ -10,7 +10,6 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.models import base
 from adhocracy4.modules.models import Module
-from adhocracy4.phases.predicates import has_feature_active
 
 
 def get_token():
@@ -72,13 +71,8 @@ class VotingToken(models.Model):
     def project(self):
         return self.module.project
 
-    # model needs to be passed as phase features are connected to models
-    def is_valid(self, model):
-        return (has_feature_active(self.module, model, 'vote')
-                and self.is_active)
-
     def is_valid_for_item(self, item):
-        return item.module == self.module and self.is_valid(item.__class__)
+        return item.module == self.module
 
     def __str__(self):
         return '{}-{}-{}'.format(self.token[0:4],
@@ -105,12 +99,18 @@ class TokenVote(base.TimeStampedModel):
         unique_together = ('content_type', 'object_pk', 'token')
         index_together = [('content_type', 'object_pk')]
 
-    # this should then happen in the api view
     def clean(self, *args, **kwargs):
         if not self.token.is_valid_for_item(self.content_object):
             raise ValidationError({
-                'token': _('This token is not valid. It might be expired '
-                           'or not valid for this project.')
+                'token': _('This token is not valid for this project.')
+            })
+        elif not self.token.is_active:
+            raise ValidationError({
+                'token': _('This token is not active.')
+            })
+        elif not self.token.has_votes_left:
+            raise ValidationError({
+                'token': _('This token has no votes left.')
             })
         super().clean(*args, **kwargs)
 

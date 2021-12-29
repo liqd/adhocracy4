@@ -57,6 +57,8 @@ class TokenVoteMixin:
             self.token = VotingToken.objects.get(pk=token_id)
         except ObjectDoesNotExist:
             pass
+        except KeyError:
+            pass
 
         return super().dispatch(request, *args, **kwargs)
 
@@ -79,20 +81,17 @@ class TokenVoteMixin:
         if not hasattr(self, 'token'):
             self.permission_denied(
                 request,
-                message=_('No token given.'),
-                code=401
+                message=_('No token given.')
             )
         elif not self.token.is_active:
             self.permission_denied(
                 request,
-                message=_('Token is inactive.'),
-                code=403
+                message=_('Token is inactive.')
             )
         elif not self.token.module == self.module:
             self.permission_denied(
                 request,
-                message=_('Token not valid for module.'),
-                code=403
+                message=_('Token not valid for module.')
             )
 
         super().check_permissions(request)
@@ -135,16 +134,24 @@ class TokenVoteViewSet(mixins.CreateModelMixin,
     lookup_field = 'object_pk'
 
     def get_queryset(self):
-        return TokenVote.objects.filter(token=self.token)
+        return TokenVote.objects.filter(token=self.token,
+                                        content_type=self.content_type)
 
     def get_permission_object(self):
-        return self.token.module
+        # for voting, the permission object is the item that is voted on
+        if self.action == 'create':
+            return self.content_type.get_object_for_this_type(
+                pk=self.request.data['object_id']
+            )
+        else:
+            return self.token.module
 
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
-            POST='{app_label}.add_vote'.format(
-                app_label=self.content_type.app_label),
+            POST='{app_label}.vote_{model}'.format(
+                app_label=self.content_type.app_label,
+                model=self.content_type.model),
             DELETE='{app_label}.delete_vote'.format(
                 app_label=self.content_type.app_label)
         )
@@ -153,6 +160,7 @@ class TokenVoteViewSet(mixins.CreateModelMixin,
         data = {'token': self.token.pk,
                 'content_type': self.content_type_id,
                 'object_pk': request.data['object_id']}
+
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
