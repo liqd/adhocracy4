@@ -1,7 +1,7 @@
 import React from 'react'
 import django from 'django'
 
-import Modal from './modal'
+import Modal from '../../../static/Modal'
 
 export default class ModerateModal extends React.Component {
   constructor (props) {
