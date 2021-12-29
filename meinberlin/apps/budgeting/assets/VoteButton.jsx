@@ -48,6 +48,7 @@ export default class VoteButton extends React.Component {
         <label
           htmlFor={this.props.objectID}
           className={this.props.isChecked ? checkedClass : uncheckedClass + (this.props.disabled ? disabledClass : '')}
+          tabIndex="0" // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
         >
           <input
             id={this.props.objectID}
