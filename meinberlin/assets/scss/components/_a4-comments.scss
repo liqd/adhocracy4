@@ -1,0 +1,127 @@
+.a4-comments__box--user {
+    margin-top: 2 * $spacer;
+}
+
+.a4-comments__commentbox__form {
+    :first-child {
+        display: flex;
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 1;
+    }
+
+    .row {
+        @extend .l-flex-row;
+
+        flex-direction: row-reverse;
+    }
+}
+
+.a4-comments__textarea--big {
+    min-width: 100%;
+}
+
+.a4-comments__filters__parent--closed,
+.a4-comments__filters,
+.a4-comments__action-bar-container,
+.a4-comments__box--user > .row {
+    @extend .l-flex-row;
+}
+
+.a4-comments__filters__parent--closed,
+.a4-comments__filters,
+.a4-comments__action-bar-container {
+    margin-top: $spacer;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.a4-comments__moderator {
+    @extend .label;
+}
+
+.a4-comments__filters__search {
+    @extend .form-group;
+    @extend .u-inline-flex;
+
+    margin-bottom: 0.5 * $spacer;
+    position: relative;
+}
+
+.a4-comments__filters__search-result {
+    position: absolute;
+    right: 45px;
+    top: 7px;
+}
+
+.a4-comments__filters__search-input {
+    @extend .input-group__input;
+}
+
+.a4-comments__filters__search-btn {
+    @extend .input-group__after;
+}
+
+.a4-comments__filters__btn {
+    @extend .btn--light;
+}
+
+.a4-comments__dropdown > .dropdown-toggle {
+    @extend .btn--small;
+    @extend .btn--light;
+}
+
+.a4-comments__user-img {
+    display: none;
+}
+
+.a4-comments__author {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-right: 0.5 * $spacer;
+}
+
+.a4-comments__anchor {
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+    height: 1px;
+}
+
+.a4-comments__action-bar__btn,
+.a4-comments__filters__show-btn {
+    @extend .btn--light;
+    @extend .btn--small;
+    @extend .btn--icon;
+
+    a {
+        color: $text-color;
+    }
+}
+
+.a4-comments__action-bar__btn:first-child {
+    margin-right: 0.5 * $spacer;
+}
+
+.a4-comments__text {
+    margin-top: $spacer;
+}
+
+.a4-comments__char-count,
+.a4-comments__submission-date {
+    font-size: $font-size-sm;
+}
+
+.a4-comments__read-btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.a4-comments__read-btn {
+    @extend .btn--link;
+}
