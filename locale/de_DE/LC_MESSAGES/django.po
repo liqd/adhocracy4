@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-14 11:16+0100\n"
+"POT-Creation-Date: 2022-01-03 12:06+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -429,6 +429,7 @@ msgstr "Kategorien bearbeiten"
 #: adhocracy4/categories/filters.py:16
 #: adhocracy4/categories/forms.py:45
 #: adhocracy4/exports/mixins/items.py:14
+#: meinberlin/apps/budgeting/api.py:63
 msgid "Category"
 msgstr "Kategorie"
 
@@ -540,22 +541,24 @@ msgid "Edit areasettings"
 msgstr "Kartenbereich bearbeiten"
 
 #: adhocracy4/dashboard/filter.py:15
-#: meinberlin/apps/projects/views.py:57
+#: meinberlin/apps/budgeting/api.py:70 meinberlin/apps/projects/views.py:57
 msgid "Archived"
 msgstr "Archiviert"
 
 #: adhocracy4/dashboard/filter.py:19
 #: adhocracy4/filters/widgets.py:32
+#: meinberlin/apps/budgeting/api.py:52 meinberlin/apps/budgeting/api.py:72
 #: meinberlin/apps/projects/views.py:61
 msgid "All"
 msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
-#: meinberlin/apps/projects/views.py:62
+#: meinberlin/apps/budgeting/api.py:73 meinberlin/apps/projects/views.py:62
 msgid "No"
 msgstr "Nein"
 
 #: adhocracy4/dashboard/filter.py:21
+#: meinberlin/apps/budgeting/api.py:74
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:13
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:13
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:13
@@ -748,7 +751,7 @@ msgid "Negative ratings"
 msgstr "Negative Bewertungen"
 
 #: adhocracy4/filters/widgets.py:66
-#: meinberlin/apps/projects/views.py:40
+#: meinberlin/apps/budgeting/api.py:85 meinberlin/apps/projects/views.py:40
 msgid "Ordering"
 msgstr "Sortierung"
 
@@ -874,50 +877,50 @@ msgstr ""
 "Projekt mehr als ein Modul oder eine Veranstaltung hat. Sie sollte in "
 "maximal 512 Zeichen das Ziel des Moduls beschreiben."
 
-#: adhocracy4/modules/models.py:192
+#: adhocracy4/modules/models.py:197
 #: adhocracy4/projects/models.py:593
 #: meinberlin/apps/projects/serializers.py:216
 msgid "day"
 msgstr "Tag"
 
-#: adhocracy4/modules/models.py:192
+#: adhocracy4/modules/models.py:197
 #: adhocracy4/projects/models.py:593
 #: meinberlin/apps/projects/serializers.py:216
 msgid "days"
 msgstr "Tage"
 
-#: adhocracy4/modules/models.py:193
+#: adhocracy4/modules/models.py:198
 #: adhocracy4/projects/models.py:594
 #: meinberlin/apps/projects/serializers.py:217
 msgid "hour"
 msgstr "Stunde"
 
-#: adhocracy4/modules/models.py:193
+#: adhocracy4/modules/models.py:198
 #: adhocracy4/projects/models.py:594
 #: meinberlin/apps/projects/serializers.py:217
 msgid "hours"
 msgstr "Stunden"
 
-#: adhocracy4/modules/models.py:194
+#: adhocracy4/modules/models.py:199
 #: adhocracy4/projects/models.py:595
 #: meinberlin/apps/projects/serializers.py:218
 msgid "minute"
 msgstr "Minute"
 
-#: adhocracy4/modules/models.py:194
+#: adhocracy4/modules/models.py:199
 #: adhocracy4/projects/models.py:595
 #: meinberlin/apps/projects/serializers.py:218
 msgid "minutes"
 msgstr "Minuten"
 
-#: adhocracy4/modules/models.py:195
+#: adhocracy4/modules/models.py:200
 #: adhocracy4/projects/models.py:596
 #: meinberlin/apps/projects/serializers.py:219
 msgid "second"
 msgstr "Sekunde"
 
-#: adhocracy4/modules/models.py:195
-#: adhocracy4/modules/models.py:206
+#: adhocracy4/modules/models.py:200
+#: adhocracy4/modules/models.py:211
 #: adhocracy4/projects/models.py:596
 #: adhocracy4/projects/models.py:607
 #: meinberlin/apps/projects/serializers.py:219
@@ -1739,6 +1742,30 @@ msgstr ""
 "Legen Sie ein Formular zur Stellungnahme zu den Bebauungsplänen an. Dieses "
 "Formular wird dann auf externen Seiten eingebunden."
 
+#: meinberlin/apps/budgeting/api.py:79 meinberlin/apps/budgeting/views.py:18
+#: meinberlin/apps/ideas/views.py:32 meinberlin/apps/kiezkasse/views.py:15
+#: meinberlin/apps/mapideas/views.py:15
+#: meinberlin/apps/maptopicprio/views.py:18
+#: meinberlin/apps/projects/views.py:92
+msgid "Most recent"
+msgstr "am aktuellsten"
+
+#: meinberlin/apps/budgeting/api.py:81 meinberlin/apps/budgeting/views.py:20
+#: meinberlin/apps/ideas/views.py:34 meinberlin/apps/kiezkasse/views.py:17
+#: meinberlin/apps/mapideas/views.py:17
+#: meinberlin/apps/maptopicprio/views.py:20
+#: meinberlin/apps/topicprio/views.py:31
+msgid "Most popular"
+msgstr "am beliebtesten"
+
+#: meinberlin/apps/budgeting/api.py:82 meinberlin/apps/budgeting/views.py:21
+#: meinberlin/apps/ideas/views.py:35 meinberlin/apps/kiezkasse/views.py:18
+#: meinberlin/apps/mapideas/views.py:18
+#: meinberlin/apps/maptopicprio/views.py:21
+#: meinberlin/apps/topicprio/views.py:32
+msgid "Most commented"
+msgstr "meist kommentiert"
+
 #: meinberlin/apps/budgeting/exports.py:42
 msgid "Contact E-Mail"
 msgstr "Kontakt E-Mail"
@@ -1953,7 +1980,7 @@ msgstr ""
 msgid "Submit proposal"
 msgstr "Vorschlag anlegen"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:40
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:38
 msgid "Enter code"
 msgstr "Schlüssel eingeben"
 
@@ -2017,27 +2044,6 @@ msgstr "%(title)s bearbeiten"
 msgid "Edit proposal"
 msgstr "Vorschlag bearbeiten"
 
-#: meinberlin/apps/budgeting/views.py:18 meinberlin/apps/ideas/views.py:32
-#: meinberlin/apps/kiezkasse/views.py:15 meinberlin/apps/mapideas/views.py:15
-#: meinberlin/apps/maptopicprio/views.py:18
-#: meinberlin/apps/projects/views.py:92
-msgid "Most recent"
-msgstr "am aktuellsten"
-
-#: meinberlin/apps/budgeting/views.py:20 meinberlin/apps/ideas/views.py:34
-#: meinberlin/apps/kiezkasse/views.py:17 meinberlin/apps/mapideas/views.py:17
-#: meinberlin/apps/maptopicprio/views.py:20
-#: meinberlin/apps/topicprio/views.py:31
-msgid "Most popular"
-msgstr "am beliebtesten"
-
-#: meinberlin/apps/budgeting/views.py:21 meinberlin/apps/ideas/views.py:35
-#: meinberlin/apps/kiezkasse/views.py:18 meinberlin/apps/mapideas/views.py:18
-#: meinberlin/apps/maptopicprio/views.py:21
-#: meinberlin/apps/topicprio/views.py:32
-msgid "Most commented"
-msgstr "meist kommentiert"
-
 #: meinberlin/apps/budgeting/views.py:107 meinberlin/apps/kiezkasse/views.py:76
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
@@ -2091,19 +2097,18 @@ msgid "Scroll down"
 msgstr "Runterscrollen"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:10
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:13
 #, python-format
 msgid "What is happening in <strong>%(district)s</strong>?"
 msgstr "Was passiert gerade in <strong>%(district)s</strong>?"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:16
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:13
 #, python-format
 msgid "display %(counter)s project"
 msgid_plural "display %(counter)s projects"
 msgstr[0] "%(counter)s Projekt anzeigen"
 msgstr[1] "%(counter)s Projekte anzeigen"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:42
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
 #: meinberlin/apps/plans/exports.py:64 meinberlin/apps/plans/forms.py:50
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
 #: meinberlin/apps/plans/views.py:87 meinberlin/apps/projects/admin.py:65
@@ -2113,26 +2118,26 @@ msgstr[1] "%(counter)s Projekte anzeigen"
 msgid "City wide"
 msgstr "Gesamtstädtisch"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:55
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:52
 #, python-format
 msgid "%(time_left)s remaining"
 msgstr "noch %(time_left)s"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:57
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:54
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:67
 msgid "more than 1 year remaining"
 msgstr "noch länger als 1 Jahr"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:64
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:61
 #, python-format
 msgid "Participation: from %(date)s"
 msgstr "Beteiligung: ab %(date)s"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:69
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:66
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:82
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:79
 #, python-format
 msgid "What is your opinion on this: %(name)s?"
 msgstr "Was ist Ihre Meinung zum Projekt: %(name)s?"
@@ -4415,11 +4420,23 @@ msgstr "Nutzerkonto Einstellungen"
 msgid "Platform Email"
 msgstr "Plattform-Mail"
 
-#: meinberlin/apps/votes/forms.py:23
+#: meinberlin/apps/votes/api.py:84
+msgid "No token given."
+msgstr ""
+
+#: meinberlin/apps/votes/api.py:89
+msgid "Token is inactive."
+msgstr ""
+
+#: meinberlin/apps/votes/api.py:94
+msgid "Token not valid for module."
+msgstr ""
+
+#: meinberlin/apps/votes/forms.py:45
 msgid "This token is not valid"
 msgstr "Dieser Abstimmungsschlüssel ist ungültig"
 
-#: meinberlin/apps/votes/models.py:36
+#: meinberlin/apps/votes/models.py:35
 msgid ""
 "Designates whether this token should be treated as active. Unselect this "
 "instead of deleting tokens."
@@ -4427,12 +4444,17 @@ msgstr ""
 "Legt fest, ob dieser Schlüssel aktiviert ist. Entfernen Sie die Auswahl, "
 "anstatt den Schlüssel zu löschen."
 
-#: meinberlin/apps/votes/models.py:112
-msgid ""
-"This token is not valid. It might be expired or not valid for this project."
+#: meinberlin/apps/votes/models.py:105
+msgid "This token is not valid for this project."
 msgstr ""
-"Dieser Schlüssel ist ungültig. Er ist entweder abgelaufen oder nicht gültig "
-"für dieses Projekt."
+
+#: meinberlin/apps/votes/models.py:109
+msgid "This token is not active."
+msgstr ""
+
+#: meinberlin/apps/votes/models.py:113
+msgid "This token has no votes left."
+msgstr ""
 
 #: meinberlin/config/settings/base.py:314
 #: meinberlin/config/settings/base.py:327
@@ -5112,6 +5134,13 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
+
+#~ msgid ""
+#~ "This token is not valid. It might be expired or not valid for this "
+#~ "project."
+#~ msgstr ""
+#~ "Dieser Schlüssel ist ungültig. Er ist entweder abgelaufen oder nicht "
+#~ "gültig für dieses Projekt."
 
 #~ msgid " %(time_left)s remaining "
 #~ msgstr " noch %(time_left)s"

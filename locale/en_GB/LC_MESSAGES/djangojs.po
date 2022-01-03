@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-14 11:16+0100\n"
+"POT-Creation-Date: 2022-01-03 12:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr "Do you really want to delete this comment?"
 #: adhocracy4/comments/static/comments/Comment.jsx:152
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:243
-#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:21
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:68
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:73
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:152
@@ -111,7 +111,6 @@ msgstr "Delete"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:153
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:244
-#: adhocracy4/comments_async/static/modals/modal.jsx:58
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
 msgid "Abort"
@@ -162,7 +161,7 @@ msgid "Only invited users can actively participate."
 msgstr "Only invited users can actively participate."
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
-#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:18
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:19
 msgid "Edit"
 msgstr "Edit"
 
@@ -244,12 +243,10 @@ msgstr "Last discussed"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:545
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:586
 #: meinberlin/apps/livequestions/assets/Filters.jsx:20
 #: meinberlin/apps/plans/assets/FilterNav.jsx:95
 #: meinberlin/apps/plans/assets/FilterNav.jsx:102
-#: meinberlin/apps/plans/assets/FilterOptions.jsx:29
-#: meinberlin/apps/plans/assets/FilterRadio.jsx:50
 msgid "all"
 msgstr "all"
 
@@ -260,53 +257,52 @@ msgstr "all"
 msgid "Write contribution"
 msgstr "Write contribution"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:519
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:523
-msgid "Search contributions"
-msgstr "Search contributions"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:521
-msgid "Clear search"
-msgstr "Clear search"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:537
-msgid "display: "
-msgstr "display: "
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:566
-msgid "sorted by: "
-msgstr "sorted by: "
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:587
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:517
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
 msgstr[1] "entries"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:591
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:521
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
 msgstr[1] "entries found for "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
-msgid "Filters"
-msgstr "Filters"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:526
 msgid "Show filters"
 msgstr "Show filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
-msgid "Hide Filters"
-msgstr "Hide Filters"
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:527
+msgid "Filters"
+msgstr "Filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:531
 msgid "Hide filters"
 msgstr "Hide filters"
 
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:532
+msgid "Hide Filters"
+msgstr "Hide Filters"
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:544
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:563
+msgid "Search contributions"
+msgstr "Search contributions"
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:554
+msgid "Clear search"
+msgstr "Clear search"
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:578
+msgid "display: "
+msgstr "display: "
+
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:607
+msgid "sorted by: "
+msgstr "sorted by: "
+
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:104
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:81
 msgid " characters"
 msgstr " characters"
 
@@ -325,24 +321,6 @@ msgstr "Is recommended"
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
 msgid "Submit"
 msgstr "Submit"
-
-#: adhocracy4/comments_async/static/modals/report_modal.jsx:62
-msgid ""
-"Thanks for the feedback. It will be checked by the moderators as soon as "
-"possible."
-msgstr ""
-"Thanks for the feedback. It will be checked by the moderators as soon as "
-"possible."
-
-#: adhocracy4/comments_async/static/modals/report_modal.jsx:71
-#: adhocracy4/reports/static/reports/ReportModal.jsx:61
-msgid "Your message"
-msgstr "Your message"
-
-#: adhocracy4/comments_async/static/modals/report_modal.jsx:84
-#: adhocracy4/reports/static/reports/ReportModal.jsx:62
-msgid "Send Report"
-msgstr "Send Report"
 
 #: adhocracy4/comments_async/static/modals/url_modal.jsx:23
 msgid "Copy"
@@ -523,7 +501,6 @@ msgid "Open question"
 msgstr "Open question"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:279
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
 msgid "Save"
 msgstr "Save"
 
@@ -533,7 +510,7 @@ msgstr "Multiple answers are possible."
 
 #: adhocracy4/polls/assets/PollQuestion.jsx:84
 #: adhocracy4/polls/assets/PollQuestion.jsx:123
-#: adhocracy4/polls/assets/PollResults.jsx:135
+#: adhocracy4/polls/assets/PollResults.jsx:113
 msgid "other"
 msgstr "other"
 
@@ -551,75 +528,75 @@ msgstr ""
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Your answer is invalid or empty. Please try again."
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:41
+#: adhocracy4/polls/assets/PollQuestions.jsx:42
 msgid "To poll"
 msgstr "To poll"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:47
-#: adhocracy4/polls/assets/PollQuestions.jsx:122
+#: adhocracy4/polls/assets/PollQuestions.jsx:48
+#: adhocracy4/polls/assets/PollQuestions.jsx:125
 msgid "Change answer"
 msgstr "Change answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:122
+#: adhocracy4/polls/assets/PollQuestions.jsx:125
 msgid "Submit answer"
 msgstr "Submit answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:128
+#: adhocracy4/polls/assets/PollQuestions.jsx:131
 msgid "Please login to answer"
 msgstr "Please login to answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:138
+#: adhocracy4/polls/assets/PollQuestions.jsx:141
 msgid "Show results"
 msgstr "Show results"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:144
+#: adhocracy4/polls/assets/PollQuestions.jsx:147
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:165
+#: adhocracy4/polls/assets/PollQuestions.jsx:168
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 
-#: adhocracy4/polls/assets/PollResults.jsx:65
+#: adhocracy4/polls/assets/PollResults.jsx:45
 msgid "Hide other answers"
 msgstr "Hide other answers"
 
-#: adhocracy4/polls/assets/PollResults.jsx:67
+#: adhocracy4/polls/assets/PollResults.jsx:47
 msgid "Show other answers"
 msgstr "Show other answers"
 
-#: adhocracy4/polls/assets/PollResults.jsx:81
+#: adhocracy4/polls/assets/PollResults.jsx:61
 #, javascript-format
 msgid "%s participant gave 1 answer."
 msgstr "%s participant gave 1 answer."
 
-#: adhocracy4/polls/assets/PollResults.jsx:83
-#: adhocracy4/polls/assets/PollResults.jsx:85
+#: adhocracy4/polls/assets/PollResults.jsx:63
+#: adhocracy4/polls/assets/PollResults.jsx:65
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
 msgstr[0] "%s participant gave %s answers."
 msgstr[1] "%s participants gave %s answers."
 
-#: adhocracy4/polls/assets/PollResults.jsx:87
+#: adhocracy4/polls/assets/PollResults.jsx:67
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
 " For multiple choice questions the percentages may add up to more than 100%."
 
-#: adhocracy4/polls/assets/PollResults.jsx:89
-#: adhocracy4/polls/assets/PollResults.jsx:98
+#: adhocracy4/polls/assets/PollResults.jsx:69
+#: adhocracy4/polls/assets/PollResults.jsx:78
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
 msgstr[0] "1 person has answered."
 msgstr[1] "%s people have answered."
 
-#: adhocracy4/polls/assets/PollResults.jsx:100
+#: adhocracy4/polls/assets/PollResults.jsx:80
 msgid "noone has answered this question"
 msgstr "noone has answered this question"
 
-#: adhocracy4/polls/assets/PollResults.jsx:132
+#: adhocracy4/polls/assets/PollResults.jsx:110
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -627,13 +604,19 @@ msgstr "Your choice"
 msgid "Thank you! We are taking care of it."
 msgstr "Thank you! We are taking care of it."
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:58
-#: meinberlin/apps/plans/assets/PlansList.jsx:258
-#: meinberlin/apps/plans/assets/PlansMap.jsx:293
+#: adhocracy4/reports/static/reports/ReportModal.jsx:61
+msgid "Your message"
+msgstr "Your message"
+
+#: adhocracy4/reports/static/reports/ReportModal.jsx:62
+msgid "Send Report"
+msgstr "Send Report"
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:76
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:68
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:83
 #, javascript-format
 msgid "you have 1 vote left"
 msgid_plural "you have %s votes left"
@@ -644,17 +627,27 @@ msgstr[1] "you have %s votes left"
 msgid "modified on"
 msgstr "modified on"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:13
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:16
 msgid "created on"
 msgstr "created on"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:44
-msgid "Voted"
-msgstr "Voted"
+#: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:11
+msgid "View as list"
+msgstr "View as list"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:45
-msgid "Give my vote"
-msgstr "Give my vote"
+#: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:14
+#: meinberlin/apps/plans/assets/Toggles.jsx:129
+msgid "List"
+msgstr "List"
+
+#: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:19
+msgid "View as map"
+msgstr "View as map"
+
+#: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:22
+#: meinberlin/apps/plans/assets/Toggles.jsx:130
+msgid "Map"
+msgstr "Map"
 
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:11
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:15
@@ -674,6 +667,14 @@ msgstr "Comments"
 #: meinberlin/apps/budgeting/assets/Pagination.jsx:15
 msgid "Page navigation"
 msgstr "Page navigation"
+
+#: meinberlin/apps/budgeting/assets/VoteButton.jsx:40
+msgid "Voted"
+msgstr "Voted"
+
+#: meinberlin/apps/budgeting/assets/VoteButton.jsx:41
+msgid "Give my vote"
+msgstr "Give my vote"
 
 #: meinberlin/apps/captcha/assets/captcheck.js:30
 msgid "Image mode"
@@ -759,14 +760,6 @@ msgstr ""
 msgid "Affiliation"
 msgstr "Affiliation"
 
-#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:18
-msgid ""
-"Answered questions will be displayed in the statistics according to the "
-"chosen affiliation."
-msgstr ""
-"Answered questions will be displayed in the statistics according to the "
-"chosen affiliation."
-
 #: meinberlin/apps/livequestions/assets/Filters.jsx:21
 msgid "only show marked questions"
 msgstr "only show marked questions"
@@ -820,29 +813,13 @@ msgstr "select affiliation"
 msgid "Information"
 msgstr "Information"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:196
-msgid "Questions"
-msgstr "Questions"
-
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:207
 msgid "Statistics"
 msgstr "Statistics"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:271
-msgid "display on screen"
-msgstr "display on screen"
-
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:64
 msgid "Here you can ask your question"
 msgstr "Here you can ask your question"
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:71
-msgid "Your question"
-msgstr "Your question"
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:89
-msgid "Post"
-msgstr "Post"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:97
 msgid "mark as hidden"
@@ -898,72 +875,52 @@ msgid "Affiliation Of Answered Questions"
 msgstr "Affiliation Of Answered Questions"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:126
-#: meinberlin/apps/plans/assets/FilterNav.jsx:242
 msgid "Filter bar"
 msgstr "Filter bar"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:127
-#: meinberlin/apps/plans/assets/FilterNav.jsx:243
 msgid "I am interested in projects from"
 msgstr "I am interested in projects from"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:135
-#: meinberlin/apps/plans/assets/FilterNav.jsx:252
-msgid "„ all Districts “"
-msgstr "„ all Districts “"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:151
-#: meinberlin/apps/plans/assets/FilterNav.jsx:268
-msgid "Which district are you interested in?"
-msgstr "Which district are you interested in?"
-
 #: meinberlin/apps/plans/assets/FilterNav.jsx:167
-#: meinberlin/apps/plans/assets/FilterNav.jsx:287
 msgid "„ all Topics “"
 msgstr "„ all Topics “"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:183
-#: meinberlin/apps/plans/assets/FilterNav.jsx:303
 msgid "Which topic are you interested in?"
 msgstr "Which topic are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:197
-#: meinberlin/apps/plans/assets/FilterNav.jsx:319
-msgid "display projects"
-msgstr "display projects"
+#: meinberlin/apps/plans/assets/FilterNav.jsx:252
+msgid "„ all Districts “"
+msgstr "„ all Districts “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:207
-#: meinberlin/apps/plans/assets/FilterNav.jsx:330
-#: meinberlin/apps/plans/assets/FilterNav.jsx:341
-msgid "more filters"
-msgstr "more filters"
+#: meinberlin/apps/plans/assets/FilterNav.jsx:268
+msgid "Which district are you interested in?"
+msgstr "Which district are you interested in?"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:278
 msgid " in the area of "
 msgstr " in the area of "
 
+#: meinberlin/apps/plans/assets/FilterNav.jsx:319
+msgid "display projects"
+msgstr "display projects"
+
+#: meinberlin/apps/plans/assets/FilterNav.jsx:330
+msgid "more filters"
+msgstr "more filters"
+
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:81
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:92
 msgid "Search title"
 msgstr "Search title"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:98
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:141
-msgid "Organisation"
-msgstr "Organisation"
-
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:114
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:157
 msgid "Enter the name of the organisation"
 msgstr "Enter the name of the organisation"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:122
-msgid "Participation"
-msgstr "Participation"
-
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:131
-msgid "Project status"
-msgstr "Project status"
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:141
+msgid "Organisation"
+msgstr "Organisation"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:166
 msgid "show projects"
@@ -1010,37 +967,17 @@ msgstr "Project overview"
 msgid "More than 1 year remaining"
 msgstr "More than 1 year remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:90
-#: meinberlin/apps/plans/assets/PopUp.jsx:24
-msgid "remaining"
-msgstr "remaining"
-
 #: meinberlin/apps/plans/assets/PlansList.jsx:192
-#: meinberlin/apps/plans/assets/PopUp.jsx:68
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:217
-#: meinberlin/apps/plans/assets/PopUp.jsx:88
 msgid "Participation projects: "
 msgstr "Participation projects: "
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:226
-msgid "Status: "
-msgstr "Status: "
 
 #: meinberlin/apps/plans/assets/PlansMap.jsx:267
 msgid "Address Search"
 msgstr "Address Search"
-
-#: meinberlin/apps/plans/assets/PlansMap.jsx:269
-#: meinberlin/apps/plans/assets/PlansMap.jsx:270
-msgid "Address search"
-msgstr "Address search"
-
-#: meinberlin/apps/plans/assets/PlansMap.jsx:300
-msgid "Close information box"
-msgstr "Close information box"
 
 #: meinberlin/apps/plans/assets/PlansMap.jsx:301
 msgid ""
@@ -1054,14 +991,6 @@ msgstr ""
 msgid "Participation: from "
 msgstr "Participation: from "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:72
-msgid "Superordinate project: "
-msgstr "Superordinate project: "
-
-#: meinberlin/apps/plans/assets/PopUp.jsx:92
-msgid "Participation: "
-msgstr "Participation: "
-
 #: meinberlin/apps/plans/assets/Toggles.jsx:41
 #: meinberlin/apps/plans/assets/Toggles.jsx:95
 msgid " search results"
@@ -1070,18 +999,6 @@ msgstr " search results"
 #: meinberlin/apps/plans/assets/Toggles.jsx:75
 msgid "Show map"
 msgstr "Show map"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:82
-msgid "hide map"
-msgstr "hide map"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:129
-msgid "List"
-msgstr "List"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:130
-msgid "Map"
-msgstr "Map"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:131
 msgid "show list"
@@ -1144,6 +1061,59 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#~ msgid ""
+#~ "Thanks for the feedback. It will be checked by the moderators as soon as "
+#~ "possible."
+#~ msgstr ""
+#~ "Thanks for the feedback. It will be checked by the moderators as soon as "
+#~ "possible."
+
+#~ msgid ""
+#~ "Answered questions will be displayed in the statistics according to the "
+#~ "chosen affiliation."
+#~ msgstr ""
+#~ "Answered questions will be displayed in the statistics according to the "
+#~ "chosen affiliation."
+
+#~ msgid "Questions"
+#~ msgstr "Questions"
+
+#~ msgid "display on screen"
+#~ msgstr "display on screen"
+
+#~ msgid "Your question"
+#~ msgstr "Your question"
+
+#~ msgid "Post"
+#~ msgstr "Post"
+
+#~ msgid "Participation"
+#~ msgstr "Participation"
+
+#~ msgid "Project status"
+#~ msgstr "Project status"
+
+#~ msgid "remaining"
+#~ msgstr "remaining"
+
+#~ msgid "Status: "
+#~ msgstr "Status: "
+
+#~ msgid "Address search"
+#~ msgstr "Address search"
+
+#~ msgid "Close information box"
+#~ msgstr "Close information box"
+
+#~ msgid "Superordinate project: "
+#~ msgstr "Superordinate project: "
+
+#~ msgid "Participation: "
+#~ msgstr "Participation: "
+
+#~ msgid "hide map"
+#~ msgstr "hide map"
 
 #~ msgid "January"
 #~ msgstr "January"
