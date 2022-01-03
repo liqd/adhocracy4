@@ -1,5 +1,5 @@
 # A4
-git+git://github.com/liqd/adhocracy4.git@e2660a76501e50ccc710f878134d84353464a07d#egg=adhocracy4
+git+git://github.com/liqd/adhocracy4.git@mB-v2201#egg=adhocracy4
 
 # Additional requirements
 bcrypt==3.2.0
