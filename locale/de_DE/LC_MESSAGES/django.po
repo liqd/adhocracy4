@@ -4422,15 +4422,15 @@ msgstr "Plattform-Mail"
 
 #: meinberlin/apps/votes/api.py:84
 msgid "No token given."
-msgstr ""
+msgstr "Fehlender Abstimmungsschlüssel."
 
 #: meinberlin/apps/votes/api.py:89
 msgid "Token is inactive."
-msgstr ""
+msgstr "Abstimmungsschlüssel ist nicht aktiviert."
 
 #: meinberlin/apps/votes/api.py:94
 msgid "Token not valid for module."
-msgstr ""
+msgstr "Der Abstimmungsschlüssel ist nicht gültig für dieses Modul."
 
 #: meinberlin/apps/votes/forms.py:45
 msgid "This token is not valid"
@@ -4446,15 +4446,15 @@ msgstr ""
 
 #: meinberlin/apps/votes/models.py:105
 msgid "This token is not valid for this project."
-msgstr ""
+msgstr "Der Abstimmungsschlüssel ist nicht gültig für dieses Projekt."
 
 #: meinberlin/apps/votes/models.py:109
 msgid "This token is not active."
-msgstr ""
+msgstr "Dieser Abstimmungsschlüssel ist nicht aktiviert."
 
 #: meinberlin/apps/votes/models.py:113
 msgid "This token has no votes left."
-msgstr ""
+msgstr "Dieser Abstimmungsschlüssel hat keine weiteren Stimmen."
 
 #: meinberlin/config/settings/base.py:314
 #: meinberlin/config/settings/base.py:327

@@ -746,12 +746,12 @@ msgstr "Keine Ergebnisse"
 #, javascript-format
 msgid "you have 1 vote left"
 msgid_plural "you have %s votes left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sie haben noch %s Stimmen."
+msgstr[1] "Sie haben noch %s Stimmen."
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:12
 msgid "modified on"
-msgstr "geändert am"
+msgstr "bearbeitet am"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:16
 msgid "created on"
@@ -759,7 +759,7 @@ msgstr "erstellt am"
 
 #: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:11
 msgid "View as list"
-msgstr ""
+msgstr "Als Liste ansehen"
 
 #: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:14
 #: meinberlin/apps/plans/assets/Toggles.jsx:129
@@ -768,7 +768,7 @@ msgstr "Liste"
 
 #: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:19
 msgid "View as map"
-msgstr ""
+msgstr "Als Karte ansehen"
 
 #: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:22
 #: meinberlin/apps/plans/assets/Toggles.jsx:130
