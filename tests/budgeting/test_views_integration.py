@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+from django.utils.translation import gettext
 
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
@@ -68,8 +69,8 @@ def test_list_view_token_form(client, user, phase_factory, proposal_factory,
 
         response = client.post(url, data)
         assert 'token' in response.context_data['token_form'].errors
-        assert response.context_data['token_form'].errors['token'] == \
-               ['This token is not valid']
+        msg = gettext('This token is not valid')
+        assert msg in response.context_data['token_form'].errors['token']
         assert 'voting_token' not in client.session
 
 
