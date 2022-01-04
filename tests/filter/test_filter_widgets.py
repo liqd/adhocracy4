@@ -1,3 +1,5 @@
+from django.utils.translation import gettext
+
 from adhocracy4.filters import widgets
 
 
@@ -22,6 +24,20 @@ def test_render_dropdown_link_widget():
     assert ('<li><a href="?test_filter=test-val1">test-label1</a></li>\n'
             '<li><a href="?test_filter=test-val2">test-label2</a></li>'
             in html)
+    assert not widget.right
+
+
+def test_ordering_widget():
+
+    choices = (
+        ('test-val1', 'test-label1'),
+        ('test-val2', 'test-label2'),
+    )
+    widget = widgets.OrderingWidget(choices=choices)
+
+    assert len(widget.choices) == 2
+    assert widget.label == gettext('Ordering')
+    assert widget.right
 
 
 def test_free_text_filter_widget():
