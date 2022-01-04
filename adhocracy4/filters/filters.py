@@ -92,9 +92,11 @@ class DynamicChoicesOrderingFilter(DynamicChoicesMixin,
         super().__init__(*args, **kwargs)
 
     def filter(self, qs, value):
-        qs = qs.annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
-            .annotate_comment_count()
+        qs = qs.annotate_comment_count()
+        if hasattr(qs, 'annotate_positive_rating_count'):
+            qs = qs.annotate_positive_rating_count() \
+                .annotate_negative_rating_count()
+
         if value == ['-comment_count']:
             return qs.order_by('-comment_count')
         elif value == ['-positive_rating_count']:
