@@ -11,7 +11,7 @@ from meinberlin.apps.votes.models import TokenVote
 
 def add_token_to_session(apiclient, token):
     session = apiclient.session
-    session['voting_token'] = token.pk
+    session['voting_token'] = token.token
     session.save()
 
 
@@ -310,7 +310,8 @@ def test_voting_phase_active_no_token(
         assert apiclient.login(username=admin.email, password='password')
         response = apiclient.post(url, data, format='json')
         assert response.status_code == status.HTTP_403_FORBIDDEN
-        assert 'No token given.' in response.content.decode()
+        assert 'No token given or token not valid for module.' in \
+               response.content.decode()
         assert TokenVote.objects.all().count() == 0
 
 
@@ -342,7 +343,8 @@ def test_voting_phase_active_token_wrong_module(
         assert apiclient.login(username=admin.email, password='password')
         response = apiclient.post(url, data, format='json')
         assert response.status_code == status.HTTP_403_FORBIDDEN
-        assert 'Token not valid for module.' in response.content.decode()
+        assert 'No token given or token not valid for module.' in \
+               response.content.decode()
         assert TokenVote.objects.all().count() == 0
 
 
@@ -816,7 +818,8 @@ def test_voting_phase_active_no_token_cannot_delete(
         assert apiclient.login(username=admin.email, password='password')
         response = apiclient.delete(url, format='json')
         assert response.status_code == status.HTTP_403_FORBIDDEN
-        assert 'No token given.' in response.content.decode()
+        assert 'No token given or token not valid for module.' in \
+               response.content.decode()
 
     assert TokenVote.objects.all().count() == 1
 
