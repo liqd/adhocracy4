@@ -37,11 +37,13 @@ class LocaleInfoMixin:
         return response
 
 
-class ProposalFilterInfoMixin(ModuleMixin):
+class ProposalFilterInfoMixin:
     def list(self, request, *args, **kwargs):
         """Add the filter information to the data of the Proposal API.
 
         Needs to be used with rest_framework.mixins.ListModelMixin
+        and adhocracy4.api.mixins.ModuleMixin or some other mixin that
+        fetches the module
         """
         filters = {}
 
@@ -92,7 +94,8 @@ class ProposalFilterInfoMixin(ModuleMixin):
         return response
 
 
-class ProposalViewSet(ProposalFilterInfoMixin,
+class ProposalViewSet(ModuleMixin,
+                      ProposalFilterInfoMixin,
                       LocaleInfoMixin,
                       VotingTokenInfoMixin,
                       mixins.ListModelMixin,

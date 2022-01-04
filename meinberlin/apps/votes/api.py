@@ -23,6 +23,8 @@ class VotingTokenInfoMixin:
     """Adds token info to response data of an api list view.
 
     Needs to be used with rest_framework.mixins.ListModelMixin
+    and adhocracy4.api.mixins.ModuleMixin or some other mixin that
+    fetches the module
     """
 
     def list(self, request, *args, **kwargs):
@@ -31,12 +33,13 @@ class VotingTokenInfoMixin:
         if 'voting_token' in request.session:
             try:
                 token = VotingToken.objects.get(
-                    pk=request.session['voting_token']
+                    token=request.session['voting_token'],
+                    module=self.module
                 )
+                serializer = VotingTokenSerializer(token)
+                token_info = serializer.data
             except VotingToken.DoesNotExist:
                 pass
-            serializer = VotingTokenSerializer(token)
-            token_info = serializer.data
 
         response.data['token_info'] = token_info
         return response
@@ -53,10 +56,13 @@ class TokenVoteMixin:
         self.content_type_id = kwargs.get('content_type', '')
         try:
             session = Session.objects.get(pk=request.session.session_key)
-            token_id = session.get_decoded()['voting_token']
-            self.token = VotingToken.objects.get(pk=token_id)
+            self.token = VotingToken.objects.get(
+                token=session.get_decoded()['voting_token'],
+                module=self.module
+            )
         except ObjectDoesNotExist:
             pass
+
         except KeyError:
             pass
 
@@ -81,17 +87,12 @@ class TokenVoteMixin:
         if not hasattr(self, 'token'):
             self.permission_denied(
                 request,
-                message=_('No token given.')
+                message=_('No token given or token not valid for module.')
             )
         elif not self.token.is_active:
             self.permission_denied(
                 request,
                 message=_('Token is inactive.')
-            )
-        elif not self.token.module == self.module:
-            self.permission_denied(
-                request,
-                message=_('Token not valid for module.')
             )
 
         super().check_permissions(request)

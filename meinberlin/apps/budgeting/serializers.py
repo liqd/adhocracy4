@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 from adhocracy4.categories.models import Category
 from meinberlin.apps.votes.models import TokenVote
+from meinberlin.apps.votes.models import VotingToken
 
 from .models import Proposal
 
@@ -89,8 +90,17 @@ class ProposalSerializer(serializers.ModelSerializer):
         """
         if 'request' in self.context:
             if 'voting_token' in self.context['request'].session:
+                token = None
+                try:
+                    token = VotingToken.objects.get(
+                        token=self.context['request'].session['voting_token'],
+                        module=self.context['view'].module
+                    )
+                except VotingToken.DoesNotExist:
+                    pass
+
                 vote = TokenVote.objects.filter(
-                    token__pk=self.context['request'].session['voting_token'],
+                    token=token,
                     content_type=ContentType.objects.get_for_model(
                         proposal.__class__),
                     object_pk=proposal.pk

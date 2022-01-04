@@ -32,7 +32,8 @@ def react_proposals_vote(context, module, proposal):
     if 'voting_token' in request.session:
         try:
             token = VotingToken.objects.get(
-                pk=request.session['voting_token']
+                token=request.session['voting_token'],
+                module=module
             )
         except VotingToken.DoesNotExist:
             pass

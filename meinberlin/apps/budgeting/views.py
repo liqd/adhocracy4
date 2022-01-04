@@ -9,6 +9,7 @@ from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from meinberlin.apps.ideas import views as idea_views
 from meinberlin.apps.projects.views import ArchivedWidget
 from meinberlin.apps.votes.forms import TokenForm
+from meinberlin.apps.votes.models import VotingToken
 
 from . import forms
 from . import models
@@ -45,6 +46,19 @@ class ProposalListView(idea_views.AbstractIdeaListView,
     model = models.Proposal
     filter_set = ProposalFilterSet
 
+    def has_valid_token_in_session(self, request):
+        """Return whether a valid token is stored in the session.
+
+        The token is valid if it is valid for the respective module.
+        """
+        if 'voting_token' in request.session:
+            token_queryset = VotingToken.objects.filter(
+                token=request.session['voting_token'],
+                module=self.module
+            )
+            return token_queryset.exists()
+        return False
+
     def dispatch(self, request, **kwargs):
         self.mode = request.GET.get('mode', 'map')
         if self.mode == 'map':
@@ -59,6 +73,8 @@ class ProposalListView(idea_views.AbstractIdeaListView,
         if 'token_form' not in kwargs:
             token_form = TokenForm(module_id=self.module.id)
             kwargs['token_form'] = token_form
+        kwargs['valid_token_present'] = \
+            self.has_valid_token_in_session(self.request)
         return super().get_context_data(**kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -66,6 +82,8 @@ class ProposalListView(idea_views.AbstractIdeaListView,
         token_form = TokenForm(request.POST, module_id=self.module.id)
         if token_form.is_valid():
             request.session['voting_token'] = token_form.cleaned_data['token']
+            kwargs['valid_token_present'] = True
+            self.mode = 'list'
         kwargs['token_form'] = token_form
         context = super().get_context_data(**kwargs)
         return self.render_to_response(context)
