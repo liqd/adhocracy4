@@ -26,9 +26,7 @@
     {% if module.phases.count == 3 %}
         {% has_perm 'meinberlin_budgeting.add_vote' request.user module as vote_allowed %}
         {% if vote_allowed %}
-            {% if request.session.voting_token %}
-                You are using token {{ request.session.voting_token }}
-            {% else %}
+            {% if not valid_token_present %}
                 <form class="" action="{{ request.path }}" method="post">
                     <div class="form-group">
                         {% csrf_token %}
