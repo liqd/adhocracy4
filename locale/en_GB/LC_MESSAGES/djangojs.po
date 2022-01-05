@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-03 12:06+0100\n"
+"POT-Creation-Date: 2022-01-05 09:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -624,8 +624,8 @@ msgstr[0] "you have 1 vote left"
 msgstr[1] "you have %s votes left"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:12
-msgid "modified on"
-msgstr "modified on"
+msgid "updated on"
+msgstr "updated on"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:16
 msgid "created on"
@@ -1061,6 +1061,9 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#~ msgid "modified on"
+#~ msgstr "modified on"
 
 #~ msgid ""
 #~ "Thanks for the feedback. It will be checked by the moderators as soon as "
