@@ -2,6 +2,14 @@
     margin-top: 2 * $spacer;
 }
 
+.a4-comments__anchor {
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+    height: 1px;
+}
+
 .a4-comments__commentbox__form {
     :first-child {
         display: flex;
@@ -20,10 +28,6 @@
     }
 }
 
-.a4-comments__textarea--big {
-    min-width: 100%;
-}
-
 .a4-comments__filters__parent--closed,
 .a4-comments__filters,
 .a4-comments__action-bar-container,
@@ -31,12 +35,41 @@
     @extend .l-flex-row;
 }
 
+.a4-comments__child--list {
+    margin-left: $spacer;
+
+    .a4-comments__comment {
+        padding-left: $spacer;
+        border-left: 1px solid $brand-primary;
+    }
+
+    .general-form {
+        margin-top: $spacer;
+
+        .row {
+            @extend .l-flex-row;
+
+            flex-direction: row-reverse;
+        }
+    }
+}
+
+.a4-comments__textarea--big {
+    min-width: 100%;
+}
+
 .a4-comments__filters__parent--closed,
 .a4-comments__filters,
 .a4-comments__action-bar-container {
-    margin-top: $spacer;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.a4-comments__filters__parent--closed,
+.a4-comments__filters,
+.a4-comments__action-bar,
+.a4-comments__action-bar-container > .rating {
+    margin-top: $spacer;
 }
 
 .a4-comments__moderator {
@@ -74,6 +107,7 @@
     @extend .btn--light;
 }
 
+// No user images in mB
 .a4-comments__user-img {
     display: none;
 }
@@ -83,14 +117,6 @@
     font-weight: bold;
     margin-bottom: 0;
     margin-right: 0.5 * $spacer;
-}
-
-.a4-comments__anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
-    height: 1px;
 }
 
 .a4-comments__action-bar__btn,
@@ -104,11 +130,16 @@
     }
 }
 
-.a4-comments__action-bar__btn:first-child {
+.btn.a4-comments__action-bar__btn {
     margin-right: 0.5 * $spacer;
+
+    &:last-child {
+        margin-right: 0;
+    }
 }
 
-.a4-comments__text {
+.a4-comments__text,
+.a4-comments__list {
     margin-top: $spacer;
 }
 
