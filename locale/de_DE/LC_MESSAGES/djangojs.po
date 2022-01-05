@@ -751,7 +751,7 @@ msgstr[1] "Sie haben noch %s Stimmen."
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:12
 msgid "updated on"
-msgstr ""
+msgstr "bearbeitet am"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:16
 msgid "created on"
