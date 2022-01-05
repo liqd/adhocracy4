@@ -9,7 +9,7 @@ export const BudgetingProposalListItem = (props) => {
   const { proposal, isVotingPhase, tokenvoteApiUrl } = props
   const safeLocale = props.locale ? props.locale : undefined
   const date = proposal.modified
-    ? `${django.gettext('modified on')} ${toLocaleDate(
+    ? `${django.gettext('updated on')} ${toLocaleDate(
         proposal.modified,
         safeLocale
       )}`
