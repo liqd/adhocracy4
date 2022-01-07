@@ -79,15 +79,17 @@ class PlansList extends React.Component {
   }
 
   getTimespan (item) {
+    const remainingStr = django.gettext('remaining')
+    const moreThanStr = django.gettext('More than 1 year remaining')
     const timeRemaining = item.active_phase[1].split(' ')
     const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
-        <span>{django.gettext('More than 1 year remaining')}</span>
+        <span>{moreThanStr}</span>
       )
     } else {
       return (
-        <span>{django.gettext('remaining')} {item.active_phase[1]}</span>
+        <span>{remainingStr} {item.active_phase[1]}</span>
       )
     }
   }
@@ -128,6 +130,10 @@ class PlansList extends React.Component {
 
   renderListItem (item, i) {
     const statusClass = (item.participation_active === true) ? 'participation-tile__status-active' : 'participation-tile__status-inactive'
+    const participationProjectsStr = django.gettext('Participation projects: ')
+    const futureParticipationStr = django.gettext('Participation: from ')
+    const endedParticipationStr = django.gettext('Participation ended. Read result.')
+    const statusStr = django.gettext('Status: ')
     return (
       <li
         className={this.props.isHorizontal ? 'participation-tile__horizontal' : 'participation-tile__vertical'}
@@ -159,7 +165,7 @@ class PlansList extends React.Component {
                         className="fas fa-th"
                         aria-hidden="true"
                       />{
-                        django.gettext('Participation projects: ')
+                        participationProjectsStr
                       }
                     </span>
                     <span>{item.published_projects_count}</span>
@@ -170,7 +176,7 @@ class PlansList extends React.Component {
                       <i
                         className="fas fa-clock"
                         aria-hidden="true"
-                      />{django.gettext('Participation: from ')}{this.getDate(item)}
+                      />{futureParticipationStr}{this.getDate(item)}
                     </span>
                   </div>}
                 {item.active_phase &&
@@ -189,7 +195,7 @@ class PlansList extends React.Component {
                   <div className="status-item status-bar__past">
                     <span
                       className="participation-tile__status"
-                    >{django.gettext('Participation ended. Read result.')}
+                    >{endedParticipationStr}
                     </span>
                   </div>}
               </div>
@@ -214,7 +220,7 @@ class PlansList extends React.Component {
                       className="fas fa-th"
                       aria-hidden="true"
                     />{
-                      django.gettext('Participation projects: ')
+                      participationProjectsStr
                     }
                   </span>
                   <span>{item.published_projects_count}</span>
@@ -223,7 +229,7 @@ class PlansList extends React.Component {
                     <i
                       className="fas fa-clock"
                       aria-hidden="true"
-                    />{django.gettext('Status: ')}
+                    />{statusStr}
                   </span>
                   <span className={statusClass}>{item.participation_string}</span>
                 </div>
@@ -243,6 +249,7 @@ class PlansList extends React.Component {
 
   renderList () {
     const list = []
+    const nothingStr = django.gettext('Nothing to show')
     this.props.items.forEach((item, i) => {
       list.push(this.renderListItem(item, i))
     })
@@ -255,7 +262,7 @@ class PlansList extends React.Component {
       )
     } else {
       return (
-        <div className="list-item-empty">{django.gettext('Nothing to show')}</div>
+        <div className="list-item-empty">{nothingStr}</div>
       )
     }
   }
