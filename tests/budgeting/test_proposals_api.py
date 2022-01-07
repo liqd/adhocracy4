@@ -187,7 +187,7 @@ def test_proposal_list_pagination(apiclient, module, proposal_factory):
     url_tmp = url + '?page=2'
     response = apiclient.get(url_tmp)
     assert not response.data['next']
-    assert not response.data['previous'].endswith('?page=1')
+    assert response.data['previous'].endswith(url)
     assert len(response.data['results']) == 1
 
     proposal = Proposal.objects.last()
