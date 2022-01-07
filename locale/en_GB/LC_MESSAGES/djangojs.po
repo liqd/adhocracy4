@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-05 09:32+0100\n"
+"POT-Creation-Date: 2022-01-07 15:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -613,6 +613,7 @@ msgid "Send Report"
 msgstr "Send Report"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:76
+#: meinberlin/apps/plans/assets/PlansList.jsx:252
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
@@ -962,18 +963,31 @@ msgstr "done"
 msgid "Project overview"
 msgstr "Project overview"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:86
+#: meinberlin/apps/plans/assets/PlansList.jsx:82
+msgid "remaining"
+msgstr "remaining"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:83
 #: meinberlin/apps/plans/assets/PopUp.jsx:20
 msgid "More than 1 year remaining"
 msgstr "More than 1 year remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:192
+#: meinberlin/apps/plans/assets/PlansList.jsx:133
+msgid "Participation projects: "
+msgstr "Participation projects: "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:134
+#: meinberlin/apps/plans/assets/PopUp.jsx:32
+msgid "Participation: from "
+msgstr "Participation: from "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:135
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:217
-msgid "Participation projects: "
-msgstr "Participation projects: "
+#: meinberlin/apps/plans/assets/PlansList.jsx:136
+msgid "Status: "
+msgstr "Status: "
 
 #: meinberlin/apps/plans/assets/PlansMap.jsx:267
 msgid "Address Search"
@@ -986,10 +1000,6 @@ msgid ""
 msgstr ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
-
-#: meinberlin/apps/plans/assets/PopUp.jsx:32
-msgid "Participation: from "
-msgstr "Participation: from "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:41
 #: meinberlin/apps/plans/assets/Toggles.jsx:95
@@ -1096,12 +1106,6 @@ msgstr "More information can be found in the privacy policy of Vimeo under: "
 
 #~ msgid "Project status"
 #~ msgstr "Project status"
-
-#~ msgid "remaining"
-#~ msgstr "remaining"
-
-#~ msgid "Status: "
-#~ msgstr "Status: "
 
 #~ msgid "Address search"
 #~ msgstr "Address search"

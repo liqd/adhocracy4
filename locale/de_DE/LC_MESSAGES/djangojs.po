@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-05 09:32+0100\n"
+"POT-Creation-Date: 2022-01-07 15:11+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -739,6 +739,7 @@ msgid "Send Report"
 msgstr "Meldung senden"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:76
+#: meinberlin/apps/plans/assets/PlansList.jsx:252
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
 
@@ -1089,18 +1090,31 @@ msgstr "abgeschlossen"
 msgid "Project overview"
 msgstr "Projektübersicht"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:86
+#: meinberlin/apps/plans/assets/PlansList.jsx:82
+msgid "remaining"
+msgstr "noch"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:83
 #: meinberlin/apps/plans/assets/PopUp.jsx:20
 msgid "More than 1 year remaining"
 msgstr "noch länger als 1 Jahr"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:192
+#: meinberlin/apps/plans/assets/PlansList.jsx:133
+msgid "Participation projects: "
+msgstr "Beteiligungsprojekte: "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:134
+#: meinberlin/apps/plans/assets/PopUp.jsx:32
+msgid "Participation: from "
+msgstr "Beteiligung: ab "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:135
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:217
-msgid "Participation projects: "
-msgstr "Beteiligungsprojekte: "
+#: meinberlin/apps/plans/assets/PlansList.jsx:136
+msgid "Status: "
+msgstr "Status: "
 
 #: meinberlin/apps/plans/assets/PlansMap.jsx:267
 msgid "Address Search"
@@ -1113,10 +1127,6 @@ msgid ""
 msgstr ""
 "Projekte ohne räumlichen Bezug werden nicht auf der Karte angezeigt. Bitte "
 "beachten Sie daher auch die Projektliste. "
-
-#: meinberlin/apps/plans/assets/PopUp.jsx:32
-msgid "Participation: from "
-msgstr "Beteiligung: ab "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:41
 #: meinberlin/apps/plans/assets/Toggles.jsx:95
@@ -1230,12 +1240,6 @@ msgstr ""
 
 #~ msgid "Project status"
 #~ msgstr "Projektstatus"
-
-#~ msgid "remaining"
-#~ msgstr "noch"
-
-#~ msgid "Status: "
-#~ msgstr "Status: "
 
 #~ msgid "Address search"
 #~ msgstr "Adresssuche"

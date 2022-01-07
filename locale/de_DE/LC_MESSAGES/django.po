@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-05 09:32+0100\n"
+"POT-Creation-Date: 2022-01-07 15:11+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -4456,122 +4456,122 @@ msgstr "Dieser Abstimmungsschlüssel ist nicht aktiviert."
 msgid "This token has no votes left."
 msgstr "Dieser Abstimmungsschlüssel hat keine weiteren Stimmen."
 
-#: meinberlin/config/settings/base.py:317
-#: meinberlin/config/settings/base.py:330
-#: meinberlin/config/settings/base.py:341
-#: meinberlin/config/settings/base.py:358
+#: meinberlin/config/settings/base.py:318
+#: meinberlin/config/settings/base.py:331
+#: meinberlin/config/settings/base.py:342
+#: meinberlin/config/settings/base.py:359
 msgid "Rich text editor"
 msgstr "Rich Text Editor"
 
-#: meinberlin/config/settings/base.py:503
+#: meinberlin/config/settings/base.py:504
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: meinberlin/config/settings/base.py:504
+#: meinberlin/config/settings/base.py:505
 msgid "Diamond"
 msgstr "Diamant"
 
-#: meinberlin/config/settings/base.py:505
+#: meinberlin/config/settings/base.py:506
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: meinberlin/config/settings/base.py:506
+#: meinberlin/config/settings/base.py:507
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: meinberlin/config/settings/base.py:507
+#: meinberlin/config/settings/base.py:508
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:508
+#: meinberlin/config/settings/base.py:509
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: meinberlin/config/settings/base.py:509
+#: meinberlin/config/settings/base.py:510
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: meinberlin/config/settings/base.py:510
+#: meinberlin/config/settings/base.py:511
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: meinberlin/config/settings/base.py:511
+#: meinberlin/config/settings/base.py:512
 msgid "Star"
 msgstr "Stern"
 
-#: meinberlin/config/settings/base.py:512
+#: meinberlin/config/settings/base.py:513
 msgid "Square"
 msgstr "Quadrat"
 
-#: meinberlin/config/settings/base.py:513
+#: meinberlin/config/settings/base.py:514
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: meinberlin/config/settings/base.py:514
+#: meinberlin/config/settings/base.py:515
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: meinberlin/config/settings/base.py:515
+#: meinberlin/config/settings/base.py:516
 msgid "Circle"
 msgstr "Kreis"
 
-#: meinberlin/config/settings/base.py:516
+#: meinberlin/config/settings/base.py:517
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: meinberlin/config/settings/base.py:517
+#: meinberlin/config/settings/base.py:518
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: meinberlin/config/settings/base.py:526
+#: meinberlin/config/settings/base.py:527
 msgid "Anti-discrimination"
 msgstr "Antidiskriminierung"
 
-#: meinberlin/config/settings/base.py:527
+#: meinberlin/config/settings/base.py:528
 msgid "Work & economy"
 msgstr "Arbeit & Wirtschaft"
 
-#: meinberlin/config/settings/base.py:528
+#: meinberlin/config/settings/base.py:529
 msgid "Building & living"
 msgstr "Bauen & Wohnen"
 
-#: meinberlin/config/settings/base.py:529
+#: meinberlin/config/settings/base.py:530
 msgid "Education & research"
 msgstr "Bildung & Forschung"
 
-#: meinberlin/config/settings/base.py:530
+#: meinberlin/config/settings/base.py:531
 msgid "Children, youth & family"
 msgstr "Kinder, Jugend & Familie"
 
-#: meinberlin/config/settings/base.py:531
+#: meinberlin/config/settings/base.py:532
 msgid "Finances"
 msgstr "Finanzen"
 
-#: meinberlin/config/settings/base.py:532
+#: meinberlin/config/settings/base.py:533
 msgid "Health & sports"
 msgstr "Gesundheit & Sport"
 
-#: meinberlin/config/settings/base.py:533
+#: meinberlin/config/settings/base.py:534
 msgid "Integration"
 msgstr "Integration"
 
-#: meinberlin/config/settings/base.py:534
+#: meinberlin/config/settings/base.py:535
 msgid "Culture & leisure"
 msgstr "Kultur & Freizeit"
 
-#: meinberlin/config/settings/base.py:535
+#: meinberlin/config/settings/base.py:536
 msgid "Neighborhood & participation"
 msgstr "Nachbarschaft & Teilhabe"
 
-#: meinberlin/config/settings/base.py:536
+#: meinberlin/config/settings/base.py:537
 msgid "Urban development"
 msgstr "Stadtentwicklung"
 
-#: meinberlin/config/settings/base.py:537
+#: meinberlin/config/settings/base.py:538
 msgid "Environment & public green space"
 msgstr "Umwelt & Grünflächen"
 
-#: meinberlin/config/settings/base.py:538
+#: meinberlin/config/settings/base.py:539
 msgid "Traffic"
 msgstr "Verkehr"
 
