@@ -61,8 +61,8 @@ class ModuleAreaSettingsComponent(ModuleFormComponent):
     identifier = 'area_settings'
     weight = 12
 
-    label = _('Areasettings')
-    form_title = _('Edit areasettings')
+    label = _('Area settings')
+    form_title = _('Edit area settings')
     form_class = forms.AreaSettingsForm
     form_template_name = 'a4dashboard/includes/module_areasettings_form.html'
 
