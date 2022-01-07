@@ -35,15 +35,15 @@ def react_proposals_vote(context, module, proposal):
                 token=request.session['voting_token'],
                 module=module
             )
+            serializer = VotingTokenSerializer(token)
+            token_info = serializer.data
+            session_token_voted = TokenVote.objects.filter(
+                token__pk=token.pk,
+                content_type=proposal_ct,
+                object_pk=proposal.pk
+            ).exists()
         except VotingToken.DoesNotExist:
             pass
-        serializer = VotingTokenSerializer(token)
-        token_info = serializer.data
-        session_token_voted = TokenVote.objects.filter(
-            token__pk=token.pk,
-            content_type=proposal_ct,
-            object_pk=proposal.pk
-        ).exists()
 
     attributes = {'proposals_api_url': proposals_api_url,
                   'tokenvote_api_url': tokenvote_api_url,
