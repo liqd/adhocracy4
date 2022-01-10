@@ -168,7 +168,7 @@ function init () {
     },
 
     _addToMap: function (map, shape) {
-      $('#map-import-modal').hide()
+      $('#map-import-modal').modal('hide')
 
       this._layer.clearLayers()
       shape.eachLayer((layer) => {
