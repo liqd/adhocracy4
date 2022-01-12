@@ -2,6 +2,14 @@ import React from 'react'
 import django from 'django'
 import { IconSwitch } from '../../contrib/assets/IconSwitch'
 
+const searchResultsStr = django.gettext(' search results')
+const showMapStr = django.gettext('Show map')
+const showMapAriaStr = django.gettext('show map')
+const hideMapStr = django.gettext('hide map')
+const listStr = django.gettext('List')
+const mapStr = django.gettext('Map')
+const showListStr = django.gettext('show list')
+
 class Toggles extends React.Component {
   clickStatusButton () {
     this.props.changeStatusSelection(-1)
@@ -38,7 +46,7 @@ class Toggles extends React.Component {
       return (
         <div>
           <div className="l-frame switch-container">
-            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' search results')}</div>
+            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{searchResultsStr}</div>
             <div className="switch-filter__btn-group">
               {this.props.displayButtons && this.props.statusSelected &&
                 <button
@@ -72,14 +80,14 @@ class Toggles extends React.Component {
             <div className="switch">
               <div className="switch-group" role="group" aria-labelledby="switch-primary">
                 <label htmlFor="switch-primary" className="switch-label">
-                  <span className="switch-label__text">{django.gettext('Show map')}</span>
+                  <span className="switch-label__text">{showMapStr}</span>
                   <input
                     className="switch-input"
                     id="switch-primary"
                     onChange={this.props.toggleSwitch} /* eslint-disable-line react/jsx-handler-names */
                     name="switch-primary"
                     type="checkbox"
-                    aria-label={django.gettext('hide map')}
+                    aria-label={hideMapStr}
                   />
                   <span className="switch__toggle" />
                 </label>
@@ -92,7 +100,7 @@ class Toggles extends React.Component {
       return (
         <div>
           <div className="l-frame switch-container">
-            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' search results')}</div>
+            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{searchResultsStr}</div>
             <div className="switch-filter__btn-group">
               {this.props.displayButtons && this.props.statusSelected &&
                 <button
@@ -126,10 +134,10 @@ class Toggles extends React.Component {
             <IconSwitch
               activeClass="btn btn--icon btn--light switch--btn active"
               inactiveClass="btn btn--icon btn--light"
-              startText={django.gettext('List')}
-              endText={django.gettext('Map')}
-              startAria={django.gettext('show list')}
-              endAria={django.gettext('show map')}
+              startText={listStr}
+              endText={mapStr}
+              startAria={showListStr}
+              endAria={showMapAriaStr}
               startIconClass="fa fa-list"
               endIconClass="fa fa-map"
               startID="show_list"

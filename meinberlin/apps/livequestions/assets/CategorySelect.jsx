@@ -2,6 +2,9 @@ import django from 'django'
 import React from 'react'
 import $ from 'jquery' // FIXME needed to run test but file should be refactored to not include jquery
 
+const affiliationStr = django.gettext('Affiliation')
+const answeredQuestionsStr = django.gettext('Answered questions will be displayed in the statistics according to the chosen affiliation.')
+
 export default class SelectCategory extends React.Component {
   componentDidMount () {
     const select = $('#categorySelect')
@@ -13,9 +16,9 @@ export default class SelectCategory extends React.Component {
       <div>
         {Object.keys(this.props.category_dict).length > 0 &&
           <div className="live_questions__select u-spacer-bottom">
-            <label htmlFor="categorySelect">{django.gettext('Affiliation')}*</label>
+            <label htmlFor="categorySelect">{affiliationStr}*</label>
             <div className="form-hint">
-              {django.gettext('Answered questions will be displayed in the statistics according to the chosen affiliation.')}
+              {answeredQuestionsStr}
             </div>
             <select
               name="categorySelect"

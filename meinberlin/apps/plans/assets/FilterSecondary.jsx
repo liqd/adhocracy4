@@ -3,6 +3,13 @@ const Typeahead = require('react-bootstrap-typeahead').Typeahead
 const FilterRadio = require('./FilterRadio')
 const React = require('react')
 
+const searchTitleStr = django.gettext('Search title')
+const orgaStr = django.gettext('Organisation')
+const enterOrgaNameStr = django.gettext('Enter the name of the organisation')
+const participationStr = django.gettext('Participation')
+const projectStatStr = django.gettext('Project status')
+const showProjectsStr = django.gettext('show projects')
+
 class FilterSecondary extends React.Component {
   constructor (props) {
     super(props)
@@ -78,7 +85,7 @@ class FilterSecondary extends React.Component {
             className="input-group__input filter-bar__search"
             type="text"
             id="id-title-search"
-            placeholder={django.gettext('Search title')}
+            placeholder={searchTitleStr}
             value={this.state.titleSearchChoice}
             onChange={this.changeTitleSearch.bind(this)}
           />
@@ -89,13 +96,13 @@ class FilterSecondary extends React.Component {
           >
             <i className="fa fa-search" aria-hidden="true" />
           </button>
-          <span className="visually-hidden">{django.gettext('Search title')}
+          <span className="visually-hidden">{searchTitleStr}
           </span>
         </label>
         {this.props.organisationFilterOnTop &&
           <div className="form-group">
             <div className="typeahead__input-label">
-              <h2 className="u-no-margin">{django.gettext('Organisation')}</h2>
+              <h2 className="u-no-margin">{orgaStr}</h2>
             </div>
             <span className="typeahead__input-group">
               <span className="typeahead__input-group-prepend">
@@ -111,7 +118,7 @@ class FilterSecondary extends React.Component {
                 multiple={false}
                 options={this.props.organisations}
                 selected={this.state.organisationChoice}
-                placeholder={django.gettext('Enter the name of the organisation')}
+                placeholder={enterOrgaNameStr}
               />
             </span>
           </div>}
@@ -119,7 +126,7 @@ class FilterSecondary extends React.Component {
           <div className="filter-bar__menu-radio-part">
             <FilterRadio
               filterId="par"
-              question={django.gettext('Participation')}
+              question={participationStr}
               chosen={this.state.participationChoice}
               choiceNames={this.props.participationNames}
               onSelect={this.clickParticipation.bind(this)}
@@ -128,7 +135,7 @@ class FilterSecondary extends React.Component {
           <div className="filter-bar__menu-radio-proj">
             <FilterRadio
               filterId="sta"
-              question={django.gettext('Project status')}
+              question={projectStatStr}
               chosen={this.state.statusChoice}
               choiceNames={this.props.statusNames}
               onSelect={this.clickStatus.bind(this)}
@@ -138,7 +145,7 @@ class FilterSecondary extends React.Component {
         {!this.props.organisationFilterOnTop &&
           <div className="form-group">
             <div className="typeahead__input-label">
-              <h2 className="u-no-margin">{django.gettext('Organisation')}</h2>
+              <h2 className="u-no-margin">{orgaStr}</h2>
             </div>
             <span className="typeahead__input-group">
               <span className="typeahead__input-group-prepend">
@@ -154,7 +161,7 @@ class FilterSecondary extends React.Component {
                 multiple={false}
                 options={this.props.organisations}
                 selected={this.state.organisationChoice}
-                placeholder={django.gettext('Enter the name of the organisation')}
+                placeholder={enterOrgaNameStr}
               />
             </span>
           </div>}
@@ -163,7 +170,7 @@ class FilterSecondary extends React.Component {
           type="submit"
           onClick={this.submitSecondaryFilters.bind(this)}
         >
-          {django.gettext('show projects')}
+          {showProjectsStr}
         </button>
       </form>
     )

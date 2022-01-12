@@ -3,6 +3,12 @@ import React from 'react'
 import { updateItem } from '../../contrib/assets/helpers.js'
 import CategorySelect from './CategorySelect'
 
+const askQuestionStr = django.gettext('Here you can ask your question')
+const questionStr = django.gettext('Question')
+const yourQuestionStr = django.gettext('Your question')
+const charsStr = django.gettext(' characters')
+const postStr = django.gettext('Post')
+
 export default class QuestionForm extends React.Component {
   constructor (props) {
     super(props)
@@ -61,14 +67,14 @@ export default class QuestionForm extends React.Component {
     return (
       <div className="container">
         <form id="id-comment-form" action="" onSubmit={this.addQuestion.bind(this)}>
-          <h2>{django.gettext('Here you can ask your question')}</h2>
+          <h2>{askQuestionStr}</h2>
           <CategorySelect
             onSelect={this.selectCategory.bind(this)}
             category_dict={this.props.category_dict}
           />
-          <label htmlFor="questionTextField">{django.gettext('Question')}*</label>
+          <label htmlFor="questionTextField">{questionStr}*</label>
           <textarea
-            placeholder={django.gettext('Your question')}
+            placeholder={yourQuestionStr}
             id="questionTextField"
             className="form-control"
             name="questionTextFieldName"
@@ -78,7 +84,7 @@ export default class QuestionForm extends React.Component {
             value={this.state.question}
             maxLength="1000"
           />
-          <label htmlFor="id-comment-form" className="live_questions__char-count">{this.state.questionCharCount}/1000{django.gettext(' characters')}</label>
+          <label htmlFor="id-comment-form" className="live_questions__char-count">{this.state.questionCharCount}/1000{charsStr}</label>
 
           <div className="form-check">
             <label className="form-check__label">
@@ -86,7 +92,7 @@ export default class QuestionForm extends React.Component {
               {this.getPrivacyPolicyLabelWithLinks()}
             </label>
           </div>
-          <input type="submit" value={django.gettext('Post')} className="submit-button" />
+          <input type="submit" value={postStr} className="submit-button" />
         </form>
       </div>
     )

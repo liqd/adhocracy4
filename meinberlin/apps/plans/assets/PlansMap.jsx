@@ -5,6 +5,13 @@ import { withCookies } from 'react-cookie'
 import PopUp from './PopUp'
 import { maps } from 'adhocracy4'
 import 'leaflet.markercluster'
+
+const addressSearchStr = django.gettext('Address search')
+const addressSearchCapStr = django.gettext('Address Search')
+const nothingStr = django.gettext('Nothing to show')
+const closeInfoBoxStr = django.gettext('Close information box')
+const projectsNotShownStr = django.gettext('Projects without spacial reference are not shown on the map. Please have a look at the project list.')
+
 const L = window.L
 const $ = window.$
 
@@ -264,10 +271,10 @@ class PlansMap extends Component {
                 name="search"
                 type="search"
                 id="id-map-search"
-                placeholder={django.gettext('Address Search')}
+                placeholder={addressSearchCapStr}
               />
-              <button className="input-group__after input-group__after--search btn btn--light" type="submit" title={django.gettext('Address search')}>
-                <i className="fas fa-search" aria-label={django.gettext('Address search')} />
+              <button className="input-group__after input-group__after--search btn btn--light" type="submit" title={addressSearchStr}>
+                <i className="fas fa-search" aria-label={addressSearchStr} />
               </button>
             </label>
 
@@ -290,15 +297,15 @@ class PlansMap extends Component {
 
             {this.state.displayError &&
               <ul aria-labelledby="id_filter_address" className="map-list-combined__map__search__error">
-                <li>{django.gettext('Nothing to show')}</li>
+                <li>{nothingStr}</li>
               </ul>}
 
           </form>
         </div>
         {this.state.showInfoBox &&
           <div className="map-infobox">
-            <button className="infobox__close" id="close" aria-label={django.gettext('Close information box')} onClick={this.closeInfoBox.bind(this)}><i className="fa fa-times" /></button>
-            <i className="fa fa-info-circle" aria-hidden="true" /><span>{django.gettext('Projects without spacial reference are not shown on the map. Please have a look at the project list.')}</span>
+            <button className="infobox__close" id="close" aria-label={closeInfoBoxStr} onClick={this.closeInfoBox.bind(this)}><i className="fa fa-times" /></button>
+            <i className="fa fa-info-circle" aria-hidden="true" /><span>{projectsNotShownStr}</span>
           </div>}
       </div>
     )

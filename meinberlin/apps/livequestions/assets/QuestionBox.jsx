@@ -7,6 +7,12 @@ import InfoBox from './InfoBox'
 import Filters from './Filters'
 import StatisticsBox from './StatisticsBox'
 
+const selectAffiliationStr = django.gettext('select affiliation')
+const informationStr = django.gettext('Information')
+const questionsStr = django.gettext('Questions')
+const statisticsStr = django.gettext('Statistics')
+const displayStr = django.gettext('display on screen')
+
 export default class QuestionBox extends React.Component {
   constructor (props) {
     super(props)
@@ -18,7 +24,7 @@ export default class QuestionBox extends React.Component {
       filteredQuestions: [],
       answeredQuestions: [],
       category: '-1',
-      categoryName: django.gettext('select affiliation'),
+      categoryName: selectAffiliationStr,
       displayNotHiddenOnly: false,
       displayOnShortlist: false,
       orderedByLikes: false,
@@ -46,7 +52,7 @@ export default class QuestionBox extends React.Component {
   }
 
   setCategory (category) {
-    const newName = (category === '-1') ? django.gettext('select affiliation') : category
+    const newName = (category === '-1') ? selectAffiliationStr : category
     this.setState({
       filterChanged: true,
       categoryName: newName,
@@ -182,7 +188,7 @@ export default class QuestionBox extends React.Component {
                 aria-controls="tabpanel-information"
                 aria-expanded="false"
               >
-                {django.gettext('Information')}
+                {informationStr}
               </a>
               <a
                 id="tab-questions"
@@ -193,7 +199,7 @@ export default class QuestionBox extends React.Component {
                 aria-controls="tabpanel-questions"
                 aria-expanded="true"
               >
-                {django.gettext('Questions')}
+                {questionsStr}
               </a>
               <a
                 id="tab-statistics"
@@ -204,7 +210,7 @@ export default class QuestionBox extends React.Component {
                 aria-controls="tabpanel-statistics"
                 aria-expanded="false"
               >
-                {django.gettext('Statistics')}
+                {statisticsStr}
               </a>
             </nav>
           </div>
@@ -268,7 +274,7 @@ export default class QuestionBox extends React.Component {
                           <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
                           <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
                         </span>
-                        {django.gettext('display on screen')}
+                        {displayStr}
                       </a>
                     </div>}
                 </div>

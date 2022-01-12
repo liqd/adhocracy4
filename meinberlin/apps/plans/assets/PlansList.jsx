@@ -2,6 +2,14 @@
 const React = require('react')
 const Moment = require('moment')
 
+const remainingStr = django.gettext('remaining')
+const moreThanStr = django.gettext('More than 1 year remaining')
+const participationProjectsStr = django.gettext('Participation projects: ')
+const futureParticipationStr = django.gettext('Participation: from ')
+const endedParticipationStr = django.gettext('Participation ended. Read result.')
+const statusStr = django.gettext('Status: ')
+const nothingStr = django.gettext('Nothing to show')
+
 class LazyBackground extends React.Component {
   constructor (props) {
     super(props)
@@ -79,8 +87,6 @@ class PlansList extends React.Component {
   }
 
   getTimespan (item) {
-    const remainingStr = django.gettext('remaining')
-    const moreThanStr = django.gettext('More than 1 year remaining')
     const timeRemaining = item.active_phase[1].split(' ')
     const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
@@ -130,10 +136,6 @@ class PlansList extends React.Component {
 
   renderListItem (item, i) {
     const statusClass = (item.participation_active === true) ? 'participation-tile__status-active' : 'participation-tile__status-inactive'
-    const participationProjectsStr = django.gettext('Participation projects: ')
-    const futureParticipationStr = django.gettext('Participation: from ')
-    const endedParticipationStr = django.gettext('Participation ended. Read result.')
-    const statusStr = django.gettext('Status: ')
     return (
       <li
         className={this.props.isHorizontal ? 'participation-tile__horizontal' : 'participation-tile__vertical'}
@@ -249,7 +251,6 @@ class PlansList extends React.Component {
 
   renderList () {
     const list = []
-    const nothingStr = django.gettext('Nothing to show')
     this.props.items.forEach((item, i) => {
       list.push(this.renderListItem(item, i))
     })

@@ -3,6 +3,14 @@ const React = require('react')
 const $ = require('jquery')
 const Moment = require('moment')
 
+const moreThanStr = django.gettext('More than 1 year remaining')
+const remainingStr = django.gettext('remaining')
+const futureParticipationStr = django.gettext('Participation: from ')
+const endedParticipationStr = django.gettext('Participation ended. Read result.')
+const superordProjectStr = django.gettext('Superordinate project: ')
+const participationProjectsStr = django.gettext('Participation projects: ')
+const participationStr = django.gettext('Participation: ')
+
 class PopUp extends React.Component {
   escapeHtml (unsafe) {
     return $('<div>').text(unsafe).html()
@@ -17,11 +25,11 @@ class PopUp extends React.Component {
     const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
-        <span>{django.gettext('More than 1 year remaining')}</span>
+        <span>{moreThanStr}</span>
       )
     } else {
       return (
-        <span>{django.gettext('remaining')} {this.props.item.active_phase[1]}</span>
+        <span>{remainingStr} {this.props.item.active_phase[1]}</span>
       )
     }
   }
@@ -29,7 +37,7 @@ class PopUp extends React.Component {
   getTranslation () {
     let newDate = Date.parse(this.props.item.future_phase.replace(/ /g, 'T'))
     newDate = Moment(newDate).format('DD.MM.YYYY')
-    return django.gettext('Participation: from ') + newDate
+    return futureParticipationStr + newDate
   }
 
   renderTopics () {
@@ -65,11 +73,11 @@ class PopUp extends React.Component {
             </div>}
           {this.props.item.past_phase && !this.props.item.active_phase && !this.props.item.future_phase &&
             <div className="maplist-item-popup__status status-bar__past">
-              <span className="maplist-item-popup__status">{django.gettext('Participation ended. Read result.')}</span>
+              <span className="maplist-item-popup__status">{endedParticipationStr}</span>
             </div>}
           {this.props.item.plan_url &&
             <div className="maps-popups-popup-name maplist-item-popup__proj-plan">
-              <span className="maplist-popup-item__roofline">{django.gettext('Superordinate project: ')}</span>
+              <span className="maplist-popup-item__roofline">{superordProjectStr}</span>
               <br />
               <a href={this.props.item.plan_url}>{this.props.item.plan_title}</a>
             </div>}
@@ -85,11 +93,11 @@ class PopUp extends React.Component {
           </div>
           <div className="maplist-popup-item__stats">
             <span className="maplist-item-popup__proj-count">
-              <i className="fas fa-th" />{django.gettext('Participation projects: ')}
+              <i className="fas fa-th" />{participationProjectsStr}
             </span>
             <span>{this.props.item.published_projects_count}</span>
             <br />
-            <span className="maplist-item-popup__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
+            <span className="maplist-item-popup__status"><i className="fas fa-clock" />{participationStr}</span>
             <span className={statusClass}>{this.props.item.participation_string}</span>
           </div>
         </div>
