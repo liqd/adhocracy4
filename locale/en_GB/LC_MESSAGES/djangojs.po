@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-07 15:11+0100\n"
+"POT-Creation-Date: 2022-01-12 15:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -303,6 +303,7 @@ msgid "sorted by: "
 msgstr "sorted by: "
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:104
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:9
 msgid " characters"
 msgstr " characters"
 
@@ -431,7 +432,7 @@ msgstr "remove"
 
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:16
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:19
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:69
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:7
 msgid "Question"
 msgstr "Question"
 
@@ -613,7 +614,8 @@ msgid "Send Report"
 msgstr "Send Report"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:76
-#: meinberlin/apps/plans/assets/PlansList.jsx:252
+#: meinberlin/apps/plans/assets/PlansList.jsx:11
+#: meinberlin/apps/plans/assets/PlansMap.jsx:11
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
@@ -637,7 +639,7 @@ msgid "View as list"
 msgstr "View as list"
 
 #: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:14
-#: meinberlin/apps/plans/assets/Toggles.jsx:129
+#: meinberlin/apps/plans/assets/Toggles.jsx:9
 msgid "List"
 msgstr "List"
 
@@ -646,7 +648,7 @@ msgid "View as map"
 msgstr "View as map"
 
 #: meinberlin/apps/budgeting/assets/FilterBarListMapSwitch.jsx:22
-#: meinberlin/apps/plans/assets/Toggles.jsx:130
+#: meinberlin/apps/plans/assets/Toggles.jsx:10
 msgid "Map"
 msgstr "Map"
 
@@ -757,9 +759,17 @@ msgstr ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
 
-#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:16
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:5
 msgid "Affiliation"
 msgstr "Affiliation"
+
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:6
+msgid ""
+"Answered questions will be displayed in the statistics according to the "
+"chosen affiliation."
+msgstr ""
+"Answered questions will be displayed in the statistics according to the "
+"chosen affiliation."
 
 #: meinberlin/apps/livequestions/assets/Filters.jsx:21
 msgid "only show marked questions"
@@ -805,22 +815,37 @@ msgstr "Open information"
 msgid "Hide"
 msgstr "Hide"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:21
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:49
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:10
 msgid "select affiliation"
 msgstr "select affiliation"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:185
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:11
 msgid "Information"
 msgstr "Information"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:207
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:12
+msgid "Questions"
+msgstr "Questions"
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:13
 msgid "Statistics"
 msgstr "Statistics"
 
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:64
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:14
+msgid "display on screen"
+msgstr "display on screen"
+
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:6
 msgid "Here you can ask your question"
 msgstr "Here you can ask your question"
+
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:8
+msgid "Your question"
+msgstr "Your question"
+
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:10
+msgid "Post"
+msgstr "Post"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:97
 msgid "mark as hidden"
@@ -911,19 +936,27 @@ msgstr "display projects"
 msgid "more filters"
 msgstr "more filters"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:81
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:6
 msgid "Search title"
 msgstr "Search title"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:114
-msgid "Enter the name of the organisation"
-msgstr "Enter the name of the organisation"
-
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:141
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:7
 msgid "Organisation"
 msgstr "Organisation"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:166
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:8
+msgid "Enter the name of the organisation"
+msgstr "Enter the name of the organisation"
+
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:9
+msgid "Participation"
+msgstr "Participation"
+
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:10
+msgid "Project status"
+msgstr "Project status"
+
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:11
 msgid "show projects"
 msgstr "show projects"
 
@@ -963,37 +996,48 @@ msgstr "done"
 msgid "Project overview"
 msgstr "Project overview"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:82
+#: meinberlin/apps/plans/assets/PlansList.jsx:5
+#: meinberlin/apps/plans/assets/PopUp.jsx:7
 msgid "remaining"
 msgstr "remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:83
-#: meinberlin/apps/plans/assets/PopUp.jsx:20
+#: meinberlin/apps/plans/assets/PlansList.jsx:6
+#: meinberlin/apps/plans/assets/PopUp.jsx:6
 msgid "More than 1 year remaining"
 msgstr "More than 1 year remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:133
+#: meinberlin/apps/plans/assets/PlansList.jsx:7
+#: meinberlin/apps/plans/assets/PopUp.jsx:11
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:134
-#: meinberlin/apps/plans/assets/PopUp.jsx:32
+#: meinberlin/apps/plans/assets/PlansList.jsx:8
+#: meinberlin/apps/plans/assets/PopUp.jsx:8
 msgid "Participation: from "
 msgstr "Participation: from "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:135
+#: meinberlin/apps/plans/assets/PlansList.jsx:9
+#: meinberlin/apps/plans/assets/PopUp.jsx:9
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:136
+#: meinberlin/apps/plans/assets/PlansList.jsx:10
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:267
+#: meinberlin/apps/plans/assets/PlansMap.jsx:9
+msgid "Address search"
+msgstr "Address search"
+
+#: meinberlin/apps/plans/assets/PlansMap.jsx:10
 msgid "Address Search"
 msgstr "Address Search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:301
+#: meinberlin/apps/plans/assets/PlansMap.jsx:12
+msgid "Close information box"
+msgstr "Close information box"
+
+#: meinberlin/apps/plans/assets/PlansMap.jsx:13
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
@@ -1001,22 +1045,33 @@ msgstr ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:41
-#: meinberlin/apps/plans/assets/Toggles.jsx:95
+#: meinberlin/apps/plans/assets/PopUp.jsx:10
+msgid "Superordinate project: "
+msgstr "Superordinate project: "
+
+#: meinberlin/apps/plans/assets/PopUp.jsx:12
+msgid "Participation: "
+msgstr "Participation: "
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:5
 msgid " search results"
 msgstr " search results"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:75
+#: meinberlin/apps/plans/assets/Toggles.jsx:6
 msgid "Show map"
 msgstr "Show map"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:131
-msgid "show list"
-msgstr "show list"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:132
+#: meinberlin/apps/plans/assets/Toggles.jsx:7
 msgid "show map"
 msgstr "show map"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:8
+msgid "hide map"
+msgstr "hide map"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:11
+msgid "show list"
+msgstr "show list"
 
 #: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
@@ -1081,46 +1136,6 @@ msgstr "More information can be found in the privacy policy of Vimeo under: "
 #~ msgstr ""
 #~ "Thanks for the feedback. It will be checked by the moderators as soon as "
 #~ "possible."
-
-#~ msgid ""
-#~ "Answered questions will be displayed in the statistics according to the "
-#~ "chosen affiliation."
-#~ msgstr ""
-#~ "Answered questions will be displayed in the statistics according to the "
-#~ "chosen affiliation."
-
-#~ msgid "Questions"
-#~ msgstr "Questions"
-
-#~ msgid "display on screen"
-#~ msgstr "display on screen"
-
-#~ msgid "Your question"
-#~ msgstr "Your question"
-
-#~ msgid "Post"
-#~ msgstr "Post"
-
-#~ msgid "Participation"
-#~ msgstr "Participation"
-
-#~ msgid "Project status"
-#~ msgstr "Project status"
-
-#~ msgid "Address search"
-#~ msgstr "Address search"
-
-#~ msgid "Close information box"
-#~ msgstr "Close information box"
-
-#~ msgid "Superordinate project: "
-#~ msgstr "Superordinate project: "
-
-#~ msgid "Participation: "
-#~ msgstr "Participation: "
-
-#~ msgid "hide map"
-#~ msgstr "hide map"
 
 #~ msgid "January"
 #~ msgstr "January"
