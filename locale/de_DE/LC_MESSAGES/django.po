@@ -4422,7 +4422,7 @@ msgstr "Plattform-Mail"
 
 #: meinberlin/apps/votes/api.py:90
 msgid "No token given or token not valid for module."
-msgstr ""
+msgstr "Fehlender oder für das Modul ungültiger Abstimmungsschlüssel."
 
 #: meinberlin/apps/votes/api.py:95
 msgid "Token is inactive."
