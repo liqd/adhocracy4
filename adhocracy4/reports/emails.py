@@ -7,3 +7,6 @@ User = get_user_model()
 
 class ReportModeratorEmail(emails.ModeratorNotification):
     template_name = 'a4reports/emails/report_moderators'
+
+    def get_organisation(self):
+        return self.object.project.organisation
