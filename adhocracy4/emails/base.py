@@ -21,7 +21,15 @@ class EmailBase:
     # then pass the exception with all mails to `handle_report`
     enable_reporting = False
 
+    def get_organisation(self):
+        return
+
     def get_site(self):
+        organisation = self.get_organisation()
+        if organisation is not None and hasattr(organisation, 'site'):
+            site = organisation.site
+            if site is not None:
+                return site
         if self.site_id is not None:
             return Site.objects.get(pk=self.site_id)
         elif hasattr(settings, 'SITE_ID'):
