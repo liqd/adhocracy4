@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
@@ -16,13 +17,15 @@ class CommentSerializer(serializers.ModelSerializer):
     is_deleted = serializers.SerializerMethodField()
     ratings = serializers.SerializerMethodField()
     is_moderator = serializers.SerializerMethodField()
+    comment_content_type = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
         read_only_fields = ('modified', 'created', 'id',
                             'user_name', 'user_pk', 'user_image',
                             'user_image_fallback', 'ratings',
-                            'content_type', 'object_pk')
+                            'content_type', 'object_pk',
+                            'comment_content_type')
         exclude = ('creator',)
 
     def to_representation(self, instance):
@@ -144,6 +147,11 @@ class CommentSerializer(serializers.ModelSerializer):
         }
 
         return result
+
+    # used in zt-app, where we can't pass props through template tags
+    # FIXME: this should replace comments_contenttype passed in template tag
+    def get_comment_content_type(self, comment):
+        return ContentType.objects.get_for_model(Comment).pk
 
 
 class CommentListSerializer(CommentSerializer):
