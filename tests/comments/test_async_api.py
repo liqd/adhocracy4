@@ -323,8 +323,7 @@ def test_comment_id_in_list(user, apiclient, question_ct, question):
 
 @pytest.mark.django_db
 def test_fields(user, apiclient, question_ct, question):
-    '''This will need to get adapeted whenever things change'''
-
+    """Adapt this whenever things change."""
     apiclient.force_authenticate(user=user)
     url = reverse(
         'comments_async-list',
@@ -348,7 +347,7 @@ def test_fields(user, apiclient, question_ct, question):
     assert response.data['count'] == 1
 
     commentDict = response.data['results'][0]
-    assert len(commentDict) == 20
+    assert len(commentDict) == 21
     assert 'child_comments' in commentDict
     assert 'comment' in commentDict
     assert 'comment_categories' in commentDict
