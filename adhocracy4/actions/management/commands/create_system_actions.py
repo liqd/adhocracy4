@@ -76,17 +76,50 @@ class Command(BaseCommand):
                 obj_object_id=phase.id
             ).first()
 
+            print(
+                "------------------------------\n"
+                "Project {0} - {1}, draft: {2}\n"
+                "Module {3} - {4}, draft: {5}\n"
+                "Phase {6} - {7}\n"
+                "Existing action: {8}\n"
+                .format(project.pk, project, project.is_draft,
+                        phase.module.pk, phase.module, phase.module.is_draft,
+                        phase.pk, phase,
+                        existing_action,
+                        )
+            )
+
             # If the phases end has been modified and moved more than 24 hours
             # ahead, a new phase schedule action is created
             if not existing_action \
                 or (existing_action.timestamp +
                     timedelta(hours=self.phase_ends_hours)) < phase.end_date:
 
+                timestamp = False
+                if existing_action:
+                    timestamp = existing_action.timestamp
+                print(
+                    "If not exists or end date moved\n"
+                    "Project: {0} - {1}\n"
+                    "Phase{2} - {3}\n"
+                    "Timestamp: {4}\n"
+                    "Phase end: {5}\n"
+                    .format(project.pk, project,
+                            phase.pk, phase,
+                            timestamp,
+                            phase.end_date)
+                )
+
                 Action.objects.create(
                     project=project,
                     verb=Verbs.SCHEDULE.value,
                     obj=phase,
                 )
+
+            if hasattr(settings, 'SITE_ID'):
+                print("site id: {}\n".format(settings.SITE_ID))
+            if hasattr(settings, 'BASE_URL'):
+                print("base url: {}\n".format(settings.BASE_URL))
 
     def _project_started(self):
         project_ct = ContentType.objects.get_for_model(Project)
