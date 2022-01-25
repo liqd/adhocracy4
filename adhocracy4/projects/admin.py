@@ -1,3 +1,5 @@
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
@@ -31,7 +33,23 @@ class ProjectAdminFilter(admin.SimpleListFilter):
             return queryset.filter(**query)
 
 
+class ProjectAdminForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['information'].widget = CKEditorUploadingWidget(
+            config_name='collapsible-image-editor')
+        self.fields['result'].widget = CKEditorUploadingWidget(
+            config_name='collapsible-image-editor')
+
+    class Meta:
+        model = models.Project
+        fields = '__all__'
+
+
 class ProjectAdmin(admin.ModelAdmin):
+    form = ProjectAdminForm
     filter_horizontal = ('moderators', 'participants')
     list_display = (
         '__str__', 'organisation', 'is_draft', 'is_archived', 'created'
