@@ -18,6 +18,7 @@ class CommentSerializer(serializers.ModelSerializer):
     ratings = serializers.SerializerMethodField()
     is_moderator = serializers.SerializerMethodField()
     comment_content_type = serializers.SerializerMethodField()
+    has_rating_permission = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -25,7 +26,7 @@ class CommentSerializer(serializers.ModelSerializer):
                             'user_name', 'user_pk', 'user_image',
                             'user_image_fallback', 'ratings',
                             'content_type', 'object_pk',
-                            'comment_content_type')
+                            'comment_content_type', 'has_rating_permission')
         exclude = ('creator',)
 
     def to_representation(self, instance):
@@ -152,6 +153,13 @@ class CommentSerializer(serializers.ModelSerializer):
     # FIXME: this should replace comments_contenttype passed in template tag
     def get_comment_content_type(self, comment):
         return ContentType.objects.get_for_model(Comment).pk
+
+    def get_has_rating_permission(self, comment):
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user.has_perm('a4comments.rate_comment', comment)
+        return False
 
 
 class CommentListSerializer(CommentSerializer):
