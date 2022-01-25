@@ -1,3 +1,5 @@
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
@@ -18,7 +20,23 @@ def set_is_archived_false(modeladmin, request, queryset):
 set_is_archived_false.short_description = _('dearchive')
 
 
+class ProjectAdminForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['information'].widget = CKEditorUploadingWidget(
+            config_name='collapsible-image-editor')
+        self.fields['result'].widget = CKEditorUploadingWidget(
+            config_name='collapsible-image-editor')
+
+    class Meta:
+        model = models.Project
+        fields = '__all__'
+
+
 class ProjectAdmin(admin.ModelAdmin):
+    form = ProjectAdminForm
     list_display = (
         '__str__', 'organisation', 'is_draft', 'is_archived',
         'project_type', 'created'

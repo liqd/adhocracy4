@@ -1,3 +1,5 @@
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
 from django.contrib import admin
 
 from adhocracy4.projects.admin import ProjectAdminFilter
@@ -5,8 +7,22 @@ from adhocracy4.projects.admin import ProjectAdminFilter
 from . import models
 
 
+class OfflineEventAdminForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['description'].widget = CKEditorUploadingWidget(
+            config_name='collapsible-image-editor', )
+
+    class Meta:
+        model = models.OfflineEvent
+        fields = '__all__'
+
+
 @admin.register(models.OfflineEvent)
 class OfflineEventAdmin(admin.ModelAdmin):
+    form = OfflineEventAdminForm
     list_display = ('__str__', 'project', 'date', 'created')
     list_filter = (
         'project__organisation',
