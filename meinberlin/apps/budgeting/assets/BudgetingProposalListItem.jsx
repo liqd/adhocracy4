@@ -5,15 +5,18 @@ import VoteButton from './VoteButton'
 import { ListItemBadges } from './ListItemBadges'
 import { ListItemStats } from './ListItemStats'
 
+const updatedOnStr = django.gettext('updated on')
+const createdOnStr = django.gettext('created on')
+
 export const BudgetingProposalListItem = (props) => {
   const { proposal, isVotingPhase, tokenvoteApiUrl } = props
   const safeLocale = props.locale ? props.locale : undefined
   const date = proposal.modified
-    ? `${django.gettext('updated on')} ${toLocaleDate(
+    ? `${updatedOnStr} ${toLocaleDate(
         proposal.modified,
         safeLocale
       )}`
-    : `${django.gettext('created on')} ${toLocaleDate(
+    : `${createdOnStr} ${toLocaleDate(
         proposal.created,
         safeLocale
       )}`

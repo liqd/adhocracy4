@@ -2,38 +2,42 @@ import React from 'react'
 import django from 'django'
 import { wrapSpaces } from './helpers'
 
+const positiveRatingsStr = django.gettext('Positive Ratings')
+const negativeRatingsStr = django.gettext('Negative Ratings')
+const commentsStr = django.gettext('Comments')
+
 export const ListItemStats = (props) => {
   return (
     <div className="list-item__stats">
       <span className="rating">
         <span
           className="rating-button rating-up is-read-only"
-          title={django.gettext('Positive Ratings')}
+          title={positiveRatingsStr}
         >
           <i
             className="fa fa-chevron-up"
-            aria-label={django.gettext('Positive Ratings')}
+            aria-label={positiveRatingsStr}
           />
           {wrapSpaces(props.positiveCount)}
         </span>
         <span
           className="rating-button rating-down is-read-only"
-          title={django.gettext('Negative Ratings')}
+          title={negativeRatingsStr}
         >
           <i
             className="fa fa-chevron-down"
-            aria-label={django.gettext('Negative Ratings')}
+            aria-label={negativeRatingsStr}
           />
           {wrapSpaces(props.negativeCount)}
         </span>
       </span>
       <span
-        title={django.gettext('Comments')}
+        title={commentsStr}
         className="list-item__comments"
       >
         <i
           className="far fa-comment"
-          aria-label={django.gettext('Comments')}
+          aria-label={commentsStr}
         />
         {wrapSpaces(props.commentCount)}
       </span>

@@ -1,5 +1,6 @@
 /* global django */
 const React = require('react')
+const allStr = django.gettext('all')
 
 class OptionButton extends React.Component {
   render () {
@@ -26,7 +27,7 @@ class OptionList extends React.Component {
               value="-1"
               onClick={this.props.onSelect}
             >
-              {django.gettext('all')}
+              {allStr}
             </button>
           </div>}
         {this.props.firstElement &&

@@ -1,6 +1,11 @@
 const React = require('react')
 const django = require('django')
 const ErrorList = require('../../contrib/assets/ErrorList')
+const headlineStr = django.gettext('Headline')
+const paragraphStr = django.gettext('Paragraph')
+const moveUpStr = django.gettext('Move up')
+const moveDownStr = django.gettext('Move down')
+const deleteStr = django.gettext('Delete')
 
 const ckGet = function (id) {
   return window.CKEDITOR.instances[id]
@@ -68,7 +73,7 @@ class Paragraph extends React.Component {
               <label
                 htmlFor={'id_paragraphs-' + this.props.id + '-name'}
               >
-                {django.gettext('Headline')}
+                {headlineStr}
                 <input
                   className="form-control"
                   id={'id_paragraphs-' + this.props.id + '-name'}
@@ -85,7 +90,7 @@ class Paragraph extends React.Component {
               <label
                 htmlFor={'id_paragraphs-' + this.props.id + '-text'}
               >
-                {django.gettext('Paragraph')}
+                {paragraphStr}
                 <div
                   className="django-ckeditor-widget"
                   data-field-id={'id_paragraphs-' + this.props.id + '-text'}
@@ -107,35 +112,35 @@ class Paragraph extends React.Component {
               className="btn btn--light btn--small"
               onClick={this.props.onMoveUp}
               disabled={!this.props.onMoveUp}
-              title={django.gettext('Move up')}
+              title={moveUpStr}
               type="button"
             >
               <i
                 className="fa fa-chevron-up"
-                aria-label={django.gettext('Move up')}
+                aria-label={moveUpStr}
               />
             </button>
             <button
               className="btn btn--light btn--small"
               onClick={this.props.onMoveDown}
               disabled={!this.props.onMoveDown}
-              title={django.gettext('Move down')}
+              title={moveDownStr}
               type="button"
             >
               <i
                 className="fa fa-chevron-down"
-                aria-label={django.gettext('Move down')}
+                aria-label={moveDownStr}
               />
             </button>
             <button
               className="btn btn--light btn--small"
               onClick={this.props.onDelete}
-              title={django.gettext('Delete')}
+              title={deleteStr}
               type="button"
             >
               <i
                 className="fas fa-trash-alt"
-                aria-label={django.gettext('Delete')}
+                aria-label={deleteStr}
               />
             </button>
           </div>

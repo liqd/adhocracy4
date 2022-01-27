@@ -5,6 +5,8 @@ import { Pagination } from './Pagination'
 import { CountDown } from '../../contrib/assets/CountDown'
 import { FilterBar } from './FilterBar'
 
+const nothingStr = django.gettext('Nothing to show')
+
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
   const [meta, setMeta] = useState()
@@ -73,7 +75,7 @@ export const BudgetingProposalList = (props) => {
       )
     } else {
       list = (
-        <span>{django.gettext('Nothing to show')}</span>
+        <span>{nothingStr}</span>
       )
     }
     return list

@@ -1,5 +1,6 @@
 /* global django */
 const React = require('react')
+const allStr = django.gettext('all')
 
 class FilterRadio extends React.Component {
   constructor (props) {
@@ -47,7 +48,7 @@ class FilterRadio extends React.Component {
               checked={this.isChecked(-1)}
               onChange={this.handleOnChange.bind(this)}
             />
-            <span>{django.gettext('all')}</span>
+            <span>{allStr}</span>
           </label>
           {this.props.choiceNames.map((choice, i) => {
             return (

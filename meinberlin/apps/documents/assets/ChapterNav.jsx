@@ -2,11 +2,13 @@ const React = require('react')
 const FlipMove = require('react-flip-move').default
 const django = require('django')
 const ChapterNavItem = require('./ChapterNavItem')
+const chapterNavigationStr = django.gettext('Chapter navigation')
+const addChapterStr = django.gettext('Add a new chapter')
 
 const ChapterNav = (props) => {
   const activeKey = props.activeChapter.id || props.activeChapter.key
   return (
-    <nav aria-label={django.gettext('Chapter navigation')}>
+    <nav aria-label={chapterNavigationStr}>
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)" typeName="ol" className="u-list-reset">
         {
           props.chapters.map((chapter, index, arr) => {
@@ -35,7 +37,7 @@ const ChapterNav = (props) => {
           onClick={props.onChapterAppend}
           type="button"
         >
-          <i className="fa fa-plus" /> {django.gettext('Add a new chapter')}
+          <i className="fa fa-plus" /> {addChapterStr}
         </button>
       </p>
     </nav>

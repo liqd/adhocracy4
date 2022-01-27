@@ -3,6 +3,8 @@ const FlipMove = require('react-flip-move').default
 const django = require('django')
 const ErrorList = require('../../contrib/assets/ErrorList')
 const ParagraphForm = require('./ParagraphForm')
+const chapterTitleStr = django.gettext('Chapter title')
+const addParagraphStr = django.gettext('Add a new paragraph')
 
 const ChapterForm = (props) => {
   return (
@@ -10,7 +12,7 @@ const ChapterForm = (props) => {
       <div className="commenting">
         <div className="form-group commenting__content">
           <label htmlFor={'id_chapters-' + props.id + '-name'}>
-            {django.gettext('Chapter title')}
+            {chapterTitleStr}
             <input
               id={'id_chapters-' + props.id + '-name'}
               name={'chapters-' + props.id + '-name'}
@@ -52,7 +54,7 @@ const ChapterForm = (props) => {
         onClick={props.onParagraphAppend}
         type="button"
       >
-        <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}
+        <i className="fa fa-plus" /> {addParagraphStr}
       </button>
     </section>
   )

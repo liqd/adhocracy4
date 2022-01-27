@@ -6,6 +6,13 @@ const update = require('immutability-helper')
 const ChapterNav = require('./ChapterNav')
 const ChapterForm = require('./ChapterForm')
 const Alert = require('../../contrib/assets/Alert')
+const firstChapterStr = django.gettext('first chapter')
+const newChapterStr = django.gettext('new chapter')
+const documentUpdatedStr = django.gettext('The document has been updated.')
+const documentNotUpdatedStr = django.gettext('The document could not be updated.')
+const contentsStr = django.gettext('Contents')
+const editChapterStr = django.gettext('Edit chapter')
+const saveStr = django.gettext('Save')
 
 class DocumentManagement extends React.Component {
   constructor (props) {
@@ -15,7 +22,7 @@ class DocumentManagement extends React.Component {
     let chapters = this.props.chapters
     if (!chapters || chapters.length === 0) {
       chapters = [
-        this.getNewChapter(django.gettext('first chapter'))
+        this.getNewChapter(firstChapterStr)
       ]
     }
 
@@ -95,7 +102,7 @@ class DocumentManagement extends React.Component {
   }
 
   handleChapterAppend () {
-    const newChapter = this.getNewChapter(django.gettext('new chapter'))
+    const newChapter = this.getNewChapter(newChapterStr)
     const newChapterIndex = this.state.chapters.length
 
     const diff = { $push: [newChapter] }
@@ -258,7 +265,7 @@ class DocumentManagement extends React.Component {
         this.setState({
           alert: {
             type: 'success',
-            message: django.gettext('The document has been updated.')
+            message: documentUpdatedStr
           },
           errors: [],
           chapters: data.chapters
@@ -276,7 +283,7 @@ class DocumentManagement extends React.Component {
         this.setState({
           alert: {
             type: 'danger',
-            message: django.gettext('The document could not be updated.')
+            message: documentNotUpdatedStr
           },
           errors: errors
         })
@@ -292,7 +299,7 @@ class DocumentManagement extends React.Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)} onChange={this.removeAlert.bind(this)}>
 
-        <h2>{django.gettext('Contents')}</h2>
+        <h2>{contentsStr}</h2>
         <ChapterNav
           chapters={this.state.chapters}
           activeChapter={this.state.chapters[chapterIndex]}
@@ -304,7 +311,7 @@ class DocumentManagement extends React.Component {
           errors={this.state.errors}
         />
 
-        <h2>{django.gettext('Edit chapter')}</h2>
+        <h2>{editChapterStr}</h2>
         <ChapterForm
           id={key}
           onChapterNameChange={(name) => { this.handleChapterNameChange(chapterIndex, name) }}
@@ -321,7 +328,7 @@ class DocumentManagement extends React.Component {
 
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
 
-        <button type="submit" className="btn btn--primary">{django.gettext('Save')}</button>
+        <button type="submit" className="btn btn--primary">{saveStr}</button>
       </form>
     )
   }

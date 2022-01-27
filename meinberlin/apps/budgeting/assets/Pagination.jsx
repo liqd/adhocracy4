@@ -1,6 +1,8 @@
 import React from 'react'
 import django from 'django'
 
+const pageNavigationStr = django.gettext('Page navigation')
+
 export const Pagination = (props) => {
   const {
     currPageIndex,
@@ -12,7 +14,7 @@ export const Pagination = (props) => {
   const pages = [...Array(pageCount).keys()].map(n => n + 1)
 
   return (
-    <nav aria-label={django.gettext('Page navigation')}>
+    <nav aria-label={pageNavigationStr}>
       <ul className="pagination">
         {pages.map(num => (
           <li
