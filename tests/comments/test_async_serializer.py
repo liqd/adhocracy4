@@ -83,10 +83,10 @@ def test_serializer(apiclient, question, comment_factory, user):
     # Testing a comment that is set to blocked by a moderator:
     comment_3 = comment_data[4]
     assert comment_3['id'] == 3
-    assert comment_3['user_name'] == ''
-    assert comment_3['user_pk'] == str(user.pk)
+    assert comment_3['user_name'] == 'unknown user'
+    assert comment_3['user_pk'] == -1
     assert comment_3['user_profile_url'] == ''
-    assert comment_3['is_deleted'] is False
+    assert comment_3['is_deleted'] is True
     assert comment_3['is_moderator'] is False
     assert len(comment_3['child_comments']) == 0
     assert comment_3['comment'] != Comment.objects.get(pk=3).comment

@@ -74,12 +74,12 @@ class CommentSerializer(serializers.ModelSerializer):
         return data
 
     def get_user_pk(self, obj):
-        if (obj.is_censored or obj.is_removed):
+        if obj.is_censored or obj.is_removed or obj.is_blocked:
             return -1
         return str(obj.creator.id)
 
     def get_user_profile_url(self, obj):
-        if obj.is_censored or obj.is_removed:
+        if obj.is_censored or obj.is_removed or obj.is_blocked:
             return ''
         try:
             return obj.creator.get_absolute_url()
@@ -88,13 +88,13 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_user_name(self, obj):
         """Don't show username if comment is marked removed or censored."""
-        if(obj.is_censored or obj.is_removed):
+        if obj.is_censored or obj.is_removed or obj.is_blocked:
             return _('unknown user')
         return obj.creator.get_short_name()
 
     def get_user_image_fallback(self, obj):
         """Load small thumbnail images for default user images."""
-        if(obj.is_censored or obj.is_removed):
+        if obj.is_censored or obj.is_removed or obj.is_blocked:
             return None
         try:
             if obj.creator.avatar_fallback:
@@ -105,7 +105,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_user_image(self, obj):
         """Load small thumbnail images for user images."""
-        if(obj.is_censored or obj.is_removed):
+        if obj.is_censored or obj.is_removed or obj.is_blocked:
             return None
         try:
             if obj.creator.avatar:
@@ -120,7 +120,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_is_deleted(self, obj):
         """Return true if one of the flags is set."""
-        return (obj.is_censored or obj.is_removed)
+        return obj.is_censored or obj.is_removed or obj.is_blocked
 
     def get_ratings(self, comment):
         """
