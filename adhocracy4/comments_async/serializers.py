@@ -19,6 +19,8 @@ class CommentSerializer(serializers.ModelSerializer):
     is_moderator = serializers.SerializerMethodField()
     comment_content_type = serializers.SerializerMethodField()
     has_rating_permission = serializers.SerializerMethodField()
+    has_changing_permission = serializers.SerializerMethodField()
+    has_deleting_permission = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -26,7 +28,9 @@ class CommentSerializer(serializers.ModelSerializer):
                             'user_name', 'user_pk', 'user_image',
                             'user_image_fallback', 'ratings',
                             'content_type', 'object_pk',
-                            'comment_content_type', 'has_rating_permission')
+                            'comment_content_type', 'has_rating_permission',
+                            'has_changing_permission',
+                            'has_deleting_permission')
         exclude = ('creator',)
 
     def to_representation(self, instance):
@@ -159,6 +163,20 @@ class CommentSerializer(serializers.ModelSerializer):
         if request and hasattr(request, 'user'):
             user = request.user
             return user.has_perm('a4comments.rate_comment', comment)
+        return False
+
+    def get_has_changing_permission(self, comment):
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user.has_perm('a4comments.change_comment', comment)
+        return False
+
+    def get_has_deleting_permission(self, comment):
+        request = self.context.get('request')
+        if request and hasattr(request, 'user'):
+            user = request.user
+            return user.has_perm('a4comments.delete_comment', comment)
         return False
 
 
