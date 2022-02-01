@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-12 15:51+0100\n"
+"POT-Creation-Date: 2022-02-01 11:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -983,21 +983,21 @@ msgstr "Only one vote per choice is allowed per user."
 msgid "Project"
 msgstr "Project"
 
-#: adhocracy4/projects/admin.py:47 meinberlin/apps/projects/admin.py:43
+#: adhocracy4/projects/admin.py:47 meinberlin/apps/projects/admin.py:61
 msgid "Information and result"
 msgstr "Information and result"
 
 #: adhocracy4/projects/admin.py:50
 #: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:4
-#: meinberlin/apps/projects/admin.py:46
+#: meinberlin/apps/projects/admin.py:64
 msgid "Settings"
 msgstr "Settings"
 
-#: adhocracy4/projects/admin.py:54 meinberlin/apps/projects/admin.py:51
+#: adhocracy4/projects/admin.py:54 meinberlin/apps/projects/admin.py:69
 msgid "Images"
 msgstr "Images"
 
-#: adhocracy4/projects/admin.py:59 meinberlin/apps/projects/admin.py:56
+#: adhocracy4/projects/admin.py:59 meinberlin/apps/projects/admin.py:74
 #: meinberlin/templates/email_base.html:84
 #: meinberlin/templates/email_base.txt:17
 msgid "Contact"
@@ -1987,7 +1987,7 @@ msgstr[1] "display %(counter)s projects"
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
 #: meinberlin/apps/plans/exports.py:64 meinberlin/apps/plans/forms.py:50
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
-#: meinberlin/apps/plans/views.py:87 meinberlin/apps/projects/admin.py:65
+#: meinberlin/apps/plans/views.py:87 meinberlin/apps/projects/admin.py:83
 #: meinberlin/apps/projects/forms.py:100
 #: meinberlin/apps/projects/serializers.py:15
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
@@ -3738,15 +3738,15 @@ msgstr "Container"
 msgid "A container contains multiple projects."
 msgstr "A container contains multiple projects."
 
-#: meinberlin/apps/projects/admin.py:11
+#: meinberlin/apps/projects/admin.py:13
 msgid "archive"
 msgstr "archive"
 
-#: meinberlin/apps/projects/admin.py:18
+#: meinberlin/apps/projects/admin.py:20
 msgid "dearchive"
 msgstr "dearchive"
 
-#: meinberlin/apps/projects/admin.py:40
+#: meinberlin/apps/projects/admin.py:58
 msgid "Topic and location"
 msgstr "Topic and location"
 

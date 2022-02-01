@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-12 15:51+0100\n"
+"POT-Creation-Date: 2022-02-01 11:06+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,10 +128,8 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:243
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:21
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:56
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:61
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:133
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:138
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:6
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:8
 msgid "Delete"
 msgstr "Löschen"
 
@@ -315,8 +313,9 @@ msgstr "Zuletzt diskutiert"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:586
 #: meinberlin/apps/livequestions/assets/Filters.jsx:20
-#: meinberlin/apps/plans/assets/FilterNav.jsx:95
-#: meinberlin/apps/plans/assets/FilterNav.jsx:102
+#: meinberlin/apps/plans/assets/FilterNav.jsx:6
+#: meinberlin/apps/plans/assets/FilterOptions.jsx:3
+#: meinberlin/apps/plans/assets/FilterRadio.jsx:3
 msgid "all"
 msgstr "Alle"
 
@@ -470,11 +469,10 @@ msgstr "Polygon aus Datei importieren"
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
 #: adhocracy4/static/Alert.jsx:5
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
-#: meinberlin/apps/contrib/assets/Alert.jsx:10
-#: meinberlin/apps/contrib/assets/Alert.jsx:11
+#: meinberlin/apps/contrib/assets/Alert.jsx:3
 #: meinberlin/apps/embed/assets/embed.js:59
 #: meinberlin/apps/embed/assets/embed.js:60
-#: meinberlin/apps/plans/assets/FilterNav.jsx:213
+#: meinberlin/apps/plans/assets/FilterNav.jsx:15
 msgid "Close"
 msgstr "Schließen"
 
@@ -567,10 +565,8 @@ msgstr "Erklärung"
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:50
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:129
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:134
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:32
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:37
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:110
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:115
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:4
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:6
 msgid "Move up"
 msgstr "nach oben"
 
@@ -578,10 +574,8 @@ msgstr "nach oben"
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:62
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:141
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:146
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:44
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:127
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:5
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:7
 msgid "Move down"
 msgstr "nach unten"
 
@@ -623,6 +617,7 @@ msgid "Open question"
 msgstr "Offene Frage"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:279
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:15
 msgid "Save"
 msgstr "Speichern"
 
@@ -739,24 +734,24 @@ msgstr "Ihre Nachricht"
 msgid "Send Report"
 msgstr "Meldung senden"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:76
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:8
 #: meinberlin/apps/plans/assets/PlansList.jsx:11
 #: meinberlin/apps/plans/assets/PlansMap.jsx:11
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:83
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:85
 #, javascript-format
 msgid "you have 1 vote left"
 msgid_plural "you have %s votes left"
 msgstr[0] "Sie haben noch %s Stimmen."
 msgstr[1] "Sie haben noch %s Stimmen."
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:12
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:8
 msgid "updated on"
 msgstr "bearbeitet am"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:16
+#: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:9
 msgid "created on"
 msgstr "erstellt am"
 
@@ -778,22 +773,19 @@ msgstr "Als Karte ansehen"
 msgid "Map"
 msgstr "Karte"
 
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:11
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:15
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:5
 msgid "Positive Ratings"
 msgstr "Positive Bewertungen"
 
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:21
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:25
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:6
 msgid "Negative Ratings"
 msgstr "Negative Bewertungen"
 
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:31
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:36
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:7
 msgid "Comments"
 msgstr "Kommentare"
 
-#: meinberlin/apps/budgeting/assets/Pagination.jsx:15
+#: meinberlin/apps/budgeting/assets/Pagination.jsx:4
 msgid "Page navigation"
 msgstr "Seitennummerierung"
 
@@ -817,51 +809,51 @@ msgstr "Textmodus"
 msgid "Switch between image and text question"
 msgstr "Umschalten zwischen Bild- und Textfrage"
 
-#: meinberlin/apps/documents/assets/ChapterForm.jsx:13
+#: meinberlin/apps/documents/assets/ChapterForm.jsx:6
 msgid "Chapter title"
 msgstr "Kapitelüberschrift"
 
-#: meinberlin/apps/documents/assets/ChapterForm.jsx:55
+#: meinberlin/apps/documents/assets/ChapterForm.jsx:7
 msgid "Add a new paragraph"
 msgstr "Neuer Absatz"
 
-#: meinberlin/apps/documents/assets/ChapterNav.jsx:9
+#: meinberlin/apps/documents/assets/ChapterNav.jsx:5
 msgid "Chapter navigation"
 msgstr "Kapitelnavigation"
 
-#: meinberlin/apps/documents/assets/ChapterNav.jsx:38
+#: meinberlin/apps/documents/assets/ChapterNav.jsx:6
 msgid "Add a new chapter"
 msgstr "Neues Kapitel hinzufügen"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:18
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:9
 msgid "first chapter"
 msgstr "Erstes Kapitel"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:98
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:10
 msgid "new chapter"
 msgstr "Neues Kapitel"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:261
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:11
 msgid "The document has been updated."
 msgstr "Das Dokument wurde aktualisiert."
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:279
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:12
 msgid "The document could not be updated."
 msgstr "Das Dokument konnte nicht aktualisiert werden."
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:295
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:13
 msgid "Contents"
 msgstr "Inhaltsverzeichnis"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:307
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:14
 msgid "Edit chapter"
 msgstr "Kapitel bearbeiten"
 
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:71
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:4
 msgid "Headline"
 msgstr "Überschrift"
 
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:88
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:5
 msgid "Paragraph"
 msgstr "Absatz"
 
@@ -1027,41 +1019,41 @@ msgstr "Beantwortete Fragen"
 msgid "Affiliation Of Answered Questions"
 msgstr "Zugehörigkeit der beantworteten Fragen"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:126
+#: meinberlin/apps/plans/assets/FilterNav.jsx:7
 msgid "Filter bar"
 msgstr "Filter Leiste"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:127
+#: meinberlin/apps/plans/assets/FilterNav.jsx:8
 msgid "I am interested in projects from"
 msgstr "Mich interessieren Projekte aus"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:167
-msgid "„ all Topics “"
-msgstr "„ alle Themen “"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:183
-msgid "Which topic are you interested in?"
-msgstr "Welches Thema interessiert Sie?"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:252
+#: meinberlin/apps/plans/assets/FilterNav.jsx:9
 msgid "„ all Districts “"
 msgstr "„ alle Bezirke “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:268
+#: meinberlin/apps/plans/assets/FilterNav.jsx:10
 msgid "Which district are you interested in?"
 msgstr "Welchen Bezirk suchen Sie?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:278
-msgid " in the area of "
-msgstr "und dem Bereich"
+#: meinberlin/apps/plans/assets/FilterNav.jsx:11
+msgid "„ all Topics “"
+msgstr "„ alle Themen “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:319
+#: meinberlin/apps/plans/assets/FilterNav.jsx:12
+msgid "Which topic are you interested in?"
+msgstr "Welches Thema interessiert Sie?"
+
+#: meinberlin/apps/plans/assets/FilterNav.jsx:13
 msgid "display projects"
 msgstr "Projekte anzeigen"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:330
+#: meinberlin/apps/plans/assets/FilterNav.jsx:14
 msgid "more filters"
 msgstr "weitere Filter"
+
+#: meinberlin/apps/plans/assets/FilterNav.jsx:16
+msgid "in the area of"
+msgstr "und dem Bereich"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:6
 msgid "Search title"
@@ -1260,6 +1252,9 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
+
+#~ msgid " in the area of "
+#~ msgstr "und dem Bereich"
 
 #~ msgid "modified on"
 #~ msgstr "bearbeitet am"
