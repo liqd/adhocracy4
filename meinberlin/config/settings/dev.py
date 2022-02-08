@@ -54,6 +54,12 @@ try:
 except NameError:
     pass
 
+try:
+    CKEDITOR_CONFIGS['collapsible-image-editor']['embed_provider'] = CKEDITOR_URL
+    CKEDITOR_CONFIGS['video-editor']['embed_provider'] = CKEDITOR_URL
+except NameError:
+    pass
+
 CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'blob:', '*']
 if os.getenv("DATABASE") == "postgresql":
