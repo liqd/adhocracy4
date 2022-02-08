@@ -35,16 +35,15 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         """
-        Create a dictionary form categories and don't show blocked comments.
+        Create a dictionary from categories and don't show blocked comments.
 
         Gets the categories and adds them along with their values
-        to a dictionary.
-        Also gets the comments and blocks their content
-        from being shown if they are set to blocked.
+        to a dictionary. Do return empty dict when comment is_blocked.
+        Does return empty string as comment text when comment is_blocked.
         """
         ret = super().to_representation(instance)
         categories = {}
-        if ret['comment_categories']:
+        if ret['comment_categories'] and not instance.is_blocked:
             category_choices = getattr(settings,
                                        'A4_COMMENT_CATEGORIES', '')
             if category_choices:
@@ -57,8 +56,7 @@ class CommentSerializer(serializers.ModelSerializer):
                 else:
                     categories[category] = category
         ret['comment_categories'] = categories
-        is_blocked = ret.get('is_blocked')
-        if is_blocked:
+        if instance.is_blocked:
             ret['comment'] = ''
         return ret
 
