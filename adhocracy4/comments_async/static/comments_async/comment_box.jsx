@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import React from 'react'
 import PropTypes from 'prop-types'
 import django from 'django'
@@ -144,8 +143,6 @@ export default class CommentBox extends React.Component {
           comments: update(comments, diff),
           commentCount: commentCount
         })
-        $('#sticky-footer').fadeIn()
-        $('body').addClass('body-sticky-footer')
         if (typeof parentIndex !== 'undefined') {
           this.updateStateComment(
             parentIndex,
