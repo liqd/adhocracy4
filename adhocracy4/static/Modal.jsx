@@ -59,3 +59,5 @@ Modal.defaultProps = {
   abort: django.gettext('Abort'),
   dismissOnSubmit: true
 }
+
+module.exports = Modal

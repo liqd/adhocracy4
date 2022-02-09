@@ -1,7 +1,7 @@
 import React from 'react'
 import django from 'django'
 
-export const Alert = ({ type, message, onClick }) => {
+const Alert = ({ type, message, onClick }) => {
   const closeTag = django.gettext('Close')
   if (type) {
     return (
@@ -18,3 +18,5 @@ export const Alert = ({ type, message, onClick }) => {
 
   return null
 }
+
+module.exports = Alert

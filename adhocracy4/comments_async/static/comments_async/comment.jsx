@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import django from 'django'
 import gfm from 'remark-gfm'
 
-import { Modal } from '../../../static/Modal'
+import Modal from '../../../static/Modal'
 import { ReportModal } from '../../../reports/static/reports/react_reports'
 import UrlModal from '../modals/url_modal'
 import CommentEditForm from './comment_edit_form'

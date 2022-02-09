@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import django from 'django'
 
-import Alert from '../../../static/Alert'
+import { Alert } from '../../../static/Alert'
 import CategoryList from './category_list'
 
 export default class CommentCategoryEditForm extends React.Component {
