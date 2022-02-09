@@ -6,6 +6,12 @@ import { alert as Alert } from 'adhocracy4'
 
 import CategoryList from './category_list'
 
+const translated = {
+  writeContrib: django.gettext('Write contribution'),
+  saveChanges: django.gettext('save changes'),
+  cancel: django.gettext('cancel')
+}
+
 export default class CommentCategoryEditForm extends React.Component {
   constructor (props) {
     super(props)
@@ -69,14 +75,14 @@ export default class CommentCategoryEditForm extends React.Component {
         <div className="form-group">
           <textarea
             rows={this.props.rows} className="a4-comments__textarea form-group"
-            placeholder={django.gettext('Write contribution')}
+            placeholder={translated.writeContrib}
             onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment}
           />
         </div>
-        <input type="submit" value={django.gettext('save changes')} className="submit-button" />
+        <input type="submit" value={translated.saveChanges} className="submit-button" />
         &nbsp;
         <input
-          type="submit" value={django.gettext('cancel')} className="cancel-button"
+          type="submit" value={translated.cancel} className="cancel-button"
           onClick={this.props.handleCancel}
         />
       </form>

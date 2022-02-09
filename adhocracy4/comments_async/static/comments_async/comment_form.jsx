@@ -7,6 +7,16 @@ import CategoryList from './category_list'
 import * as config from '../../../static/config'
 import Alert from '../../../static/Alert'
 
+const translated = {
+  writeContrib: django.gettext('Write contribution'),
+  characters: django.gettext(' characters'),
+  post: django.gettext('post'),
+  comment: django.gettext('Comment'),
+  pleasComment: django.gettext('Please login to comment'),
+  onlyInvited: django.gettext('Only invited users can actively participate.'),
+  notAllowedComment: django.gettext('The currently active phase doesn\'t allow to comment.')
+}
+
 export default class CommentForm extends React.Component {
   constructor (props) {
     super(props)
@@ -93,7 +103,7 @@ export default class CommentForm extends React.Component {
             <textarea
               id="textarea-top"
               className={this.props.commentCategoryChoices ? 'a4-comments__textarea--small form-group' : 'a4-comments__textarea--big form-group'}
-              placeholder={django.gettext('Write contribution')}
+              placeholder={translated.writeContrib}
               onChange={this.handleTextChange.bind(this)}
               required="required"
               value={this.state.comment}
@@ -101,11 +111,11 @@ export default class CommentForm extends React.Component {
               style={textareaStyle}
             />
             <div className="row">
-              <label htmlFor="id-comment-form" className="col-6 a4-comments__char-count">{this.state.commentCharCount}/4000{django.gettext(' characters')}</label>
+              <label htmlFor="id-comment-form" className="col-6 a4-comments__char-count">{this.state.commentCharCount}/4000{translated.characters}</label>
               <div className="a4-comments__submit d-flex col-6">
                 {this.props.commentCategoryChoices
-                  ? <button type="submit" value={django.gettext('post')} className="btn a4-comments__submit-input ms-auto">{django.gettext('post')}</button>
-                  : <button type="submit" value={django.gettext('Comment')} className="btn a4-comments__submit-input ms-auto">{django.gettext('post')}</button>}
+                  ? <button type="submit" value={translated.post} className="btn a4-comments__submit-input ms-auto">{translated.post}</button>
+                  : <button type="submit" value={translated.comment} className="btn a4-comments__submit-input ms-auto">{translated.post}</button>}
               </div>
             </div>
           </form>
@@ -114,19 +124,19 @@ export default class CommentForm extends React.Component {
     } else if (!this.props.isReadOnly) {
       return (
         <div className="a4-comments__login">
-          <a href={config.getLoginUrl()}>{django.gettext('Please login to comment')}</a>
+          <a href={config.getLoginUrl()}>{translated.pleaseComment}</a>
         </div>
       )
     } else if (!this.props.isContextMember) {
       return (
         <div>
-          {django.gettext('Only invited users can actively participate.')}
+          {translated.onlyInvited}
         </div>
       )
     } else {
       return (
         <div>
-          {django.gettext('The currently active phase doesn\'t allow to comment.')}
+          {translated.notAllowedComment}
         </div>
       )
     }
