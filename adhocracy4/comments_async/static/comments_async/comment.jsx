@@ -16,11 +16,17 @@ import CommentList from './comment_list'
 
 import { RatingBox } from '../../../ratings/static/ratings/react_ratings'
 
-const successMessage = django.gettext('Entry successfully created')
-const readMore = django.gettext('Read more...')
-const readLess = django.gettext('Read less')
-const share = django.gettext('Share')
-const report = django.gettext(' Report')
+const translated = {
+  reportTitle: django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).'),
+  shareLink: django.gettext('Share link'),
+  categories: django.gettext('Categories: '),
+  yourReply: django.gettext('Your reply here'),
+  successMessage: django.gettext('Entry successfully created'),
+  readMore: django.gettext('Read more...'),
+  readLess: django.gettext('Read less'),
+  share: django.gettext('Share'),
+  report: django.gettext(' Report')
+}
 
 function localeDate (dateStr) {
   const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }
@@ -286,19 +292,19 @@ export default class Comment extends React.Component {
     return (
       <div>
         {this.state.displayNotification &&
-          <div className="alert alert--success a4-comments__success-notification"><i className="fas fa-check" /> {successMessage}</div>}
+          <div className="alert alert--success a4-comments__success-notification"><i className="fas fa-check" /> {translated.successMessage}</div>}
         <div className={(this.isOwner() ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
           <a className="a4-comments__anchor" id={`comment_${this.props.id}`} href={`./?comment=${this.props.id}`}>{`Comment ${this.props.id}`}</a>
           <ReportModal
             name={`report_comment_${this.props.id}`}
-            title={django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')}
+            title={translated.reportTitle}
             btnStyle="cta"
             objectId={this.props.id}
             contentType={this.context.comments_contenttype}
           />
           <UrlModal
             name={`share_comment_${this.props.id}`}
-            title={django.gettext('Share link')}
+            title={translated.shareLink}
             btnStyle="cta"
             objectId={this.props.id}
             url={this.getCommentUrl()}
@@ -338,7 +344,7 @@ export default class Comment extends React.Component {
             <div className="row">
               <div className={this.state.anchored ? 'a4-comments__box--comment a4-comments__box--highlighted' : 'a4-comments__box--comment'}>
                 <div className="col-12">
-                  <span className="sr-only">{django.gettext('Categories: ')}</span>
+                  <span className="sr-only">{translated.categories}</span>
                   {this.renderCategories()}
                 </div>
               </div>
@@ -352,8 +358,8 @@ export default class Comment extends React.Component {
 
             <div className="row">
               <div className="col-6 col-md-4 a4-comments__read-btn-container">
-                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showMore.bind(this)}>{readMore}</button>}
-                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showLess.bind(this)}>{readLess}</button>}
+                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showMore.bind(this)}>{translated.readMore}</button>}
+                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showLess.bind(this)}>{translated.readLess}</button>}
               </div>
 
             </div>
@@ -374,14 +380,14 @@ export default class Comment extends React.Component {
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`?comment_${this.props.id}`}
                       data-bs-toggle="modal" data-bs-target={`#share_comment_${this.props.id}`}
-                    ><i className="fas fa-share" /> {share}
+                    ><i className="fas fa-share" /> {translated.share}
                     </a>}
 
                   {!this.props.is_deleted && this.context.isAuthenticated && !this.isOwner() &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`#report_comment_${this.props.id}`}
                       data-bs-toggle="modal"
-                    ><i className="fas fa-exclamation-triangle" />{report}
+                    ><i className="fas fa-exclamation-triangle" />{translated.report}
                     </a>}
 
                 </div>
@@ -417,7 +423,7 @@ export default class Comment extends React.Component {
                       subjectId={this.props.id}
                       onCommentSubmit={this.props.onCommentSubmit}
                       parentIndex={this.props.index}
-                      placeholder={django.gettext('Your reply here')}
+                      placeholder={translated.yourReply}
                       error={this.props.replyError}
                       errorMessage={this.props.errorMessage}
                       handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}

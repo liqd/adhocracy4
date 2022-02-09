@@ -18,6 +18,18 @@ const sorts = {
   dis: django.gettext('Last discussed')
 }
 
+const translated = {
+  writeContrib: django.gettext('Write contribution'),
+  showFilters: django.gettext('Show filters'),
+  filters: django.gettext('Filters'),
+  hideFilters: django.gettext('Hide filters'),
+  searchContrib: django.gettext('Search contributions'),
+  clearSearch: django.gettext('Clear search'),
+  display: django.gettext('display: '),
+  all: django.gettext('all'),
+  sortedBy: django.gettext('sorted by: ')
+}
+
 const autoScrollThreshold = 500
 
 export default class CommentBox extends React.Component {
@@ -71,6 +83,12 @@ export default class CommentBox extends React.Component {
       .then(
         (result) => {
           const data = result.data
+
+          translated.entries =
+            django.ngettext('entry', 'entries', data.count)
+
+          translated.entriesFound =
+            django.ngettext('entry found for ', 'entries found for ', data.count)
 
           if (this.state.anchoredCommentId && data.comment_found) {
             this.setState(
@@ -497,7 +515,7 @@ export default class CommentBox extends React.Component {
             subjectType={this.props.subjectType}
             subjectId={this.props.subjectId}
             onCommentSubmit={this.handleCommentSubmit}
-            placeholder={django.gettext('Write contribution')}
+            placeholder={translated.writeContrib}
             rows="5" isReadOnly={this.props.isReadOnly}
             error={this.state.error}
             errorMessage={this.state.errorMessage}
@@ -511,22 +529,22 @@ export default class CommentBox extends React.Component {
         <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'a4-comments__filters__parent'}>
           <div className="a4-comments__filters__parent--closed">
             <div className={this.state.search === '' ? 'a4-comments__filters__text' : 'd-none'}>
-              {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
+              {this.state.commentCount + ' ' + translated.entries}
             </div>
 
             <div className={this.state.search !== '' ? 'a4-comments__filters__text' : 'd-none'}>
-              <span className="a4-comments__filters__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)}{this.state.search}</span>
+              <span className="a4-comments__filters__span">{this.state.commentCount + ' ' + translated.entriesFound}{this.state.search}</span>
             </div>
 
             {!this.state.showFilters && this.state.commentCount > 0 &&
               <button className="btn a4-comments__filters__show-btn pe-0" type="button" onClick={this.handleToggleFilters}>
-                <i className="fas fa-sliders-h ms-2" aria-label={django.gettext('Show filters')} />
-                {django.gettext('Filters')}
+                <i className="fas fa-sliders-h ms-2" aria-label={translated.showFilters} />
+                {translated.filters}
               </button>}
             {this.state.showFilters && this.state.commentCount > 0 &&
               <button className="btn a4-comments__filters__show-btn pe-0" type="button" onClick={this.handleToggleFilters}>
-                <i className="fas fa-times ms-2" aria-label={django.gettext('Hide filters')} />
-                {django.gettext('Hide Filters')}
+                <i className="fas fa-times ms-2" aria-label={translated.hideFilters} />
+                {translated.hideFilters}
               </button>}
           </div>
 
@@ -538,7 +556,7 @@ export default class CommentBox extends React.Component {
                   type="search"
                   id="search-input"
                   onKeyPress={this.handleEnterSearch}
-                  placeholder={django.gettext('Search contributions')}
+                  placeholder={translated.searchContrib}
                 />
 
                 <button
@@ -548,7 +566,7 @@ export default class CommentBox extends React.Component {
                 >
                   <span className="fa-stack fa-2x">
                     <i className="far fa-circle fa-stack-2x" />
-                    <i className="fas fa-times fa-stack-1x" aria-label={django.gettext('Clear search')} />
+                    <i className="fas fa-times fa-stack-1x" aria-label={translated.clearSearch} />
                   </span>
                 </button>
 
@@ -557,7 +575,7 @@ export default class CommentBox extends React.Component {
                   type="button"
                   onClick={this.handleClickSearch}
                 >
-                  <i className="fas fa-search" aria-label={django.gettext('Search contributions')} />
+                  <i className="fas fa-search" aria-label={translated.searchContrib} />
                 </button>
               </div>
 
@@ -572,7 +590,7 @@ export default class CommentBox extends React.Component {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <span className={this.state.filter === 'all' ? 'a4-comments__filters__btn-text' : 'd-none'}>{django.gettext('display: ')}{this.state.filterDisplay}</span>
+                      <span className={this.state.filter === 'all' ? 'a4-comments__filters__btn-text' : 'd-none'}>{translated.display}{this.state.filterDisplay}</span>
                       <span className={this.state.filter !== 'all' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{this.state.filterDisplay}</span>
 
                       <i className={this.state.filter === 'all' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
@@ -580,7 +598,7 @@ export default class CommentBox extends React.Component {
                     <div className="dropdown-menu dropend" aria-labelledby="categoryDropdownBtn">
                       {this.state.filter !== 'all' &&
                         <button className="dropdown-item" onClick={this.handleClickFilter} id="all" key="all" href="#">
-                          {django.gettext('all')}
+                          {translated.all}
                         </button>}
                       {Object.keys(this.props.commentCategoryChoices).map(objectKey => {
                         const name = this.props.commentCategoryChoices[objectKey]
@@ -601,7 +619,7 @@ export default class CommentBox extends React.Component {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <span className={this.state.sort === 'new' ? 'a4-comments__filters__btn-text' : 'd-none'}>{django.gettext('sorted by: ')}{sorts[this.state.sort]}</span>
+                    <span className={this.state.sort === 'new' ? 'a4-comments__filters__btn-text' : 'd-none'}>{translated.sortedBy}{sorts[this.state.sort]}</span>
                     <span className={this.state.sort !== 'new' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{sorts[this.state.sort]}</span>
                     <i className={this.state.sort === 'new' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
                   </button>

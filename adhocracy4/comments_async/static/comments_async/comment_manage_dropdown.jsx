@@ -2,6 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import django from 'django'
 
+const translated = {
+  edit: django.gettext('Edit'),
+  delete: django.gettext('Delete')
+}
+
 const CommentManageDropdown = (props) => {
   return (
     <div className="dropdown a4-comments__dropdown">
@@ -16,9 +21,9 @@ const CommentManageDropdown = (props) => {
       </button>
       <div className="dropdown-menu dropdown-menu-end">
         {(props.renderOwnerOptions || props.renderModeratorOptions) && [
-          <button key="1" className="dropdown-item" type="button" onClick={props.handleToggleEdit}>{django.gettext('Edit')}</button>,
+          <button key="1" className="dropdown-item" type="button" onClick={props.handleToggleEdit}>{translated.edit}</button>,
           <div className="divider" key="2" />,
-          <a key="3" className="dropdown-item" href={`#comment_delete_${props.id}`} data-bs-toggle="modal">{django.gettext('Delete')}</a>,
+          <a key="3" className="dropdown-item" href={`#comment_delete_${props.id}`} data-bs-toggle="modal">{translated.delete}</a>,
           <div className="divider" key="4" />
         ]}
       </div>

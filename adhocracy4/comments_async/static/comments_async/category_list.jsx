@@ -1,9 +1,13 @@
 import React from 'react'
 import django from 'django'
 
+const translated = {
+  chooseCategories: django.gettext('Choose categories for your comment')
+}
+
 const CategoryList = (props) => (
   <fieldset>
-    <legend className="sr-only">{django.gettext('Choose categories for your comment')}</legend>
+    <legend className="sr-only">{translated.chooseCategories}</legend>
     {Object.keys(props.categoryChoices).map(objectKey => {
       const categoryCheck = props.categoryChoices[objectKey]
       const inputId = props.idPrefix + '_' + objectKey
