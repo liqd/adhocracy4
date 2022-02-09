@@ -3,7 +3,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import django from 'django'
 import update from 'immutability-helper'
-import axios from 'axios'
 
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
@@ -66,12 +65,12 @@ export default class CommentBox extends React.Component {
     if (this.state.anchoredCommentId) {
       params.commentID = this.state.anchoredCommentId
     }
-    axios.get(this.props.commentsApiUrl, {
+    api.comments.get(this.props.commentsApiUrl, {
       params: params
     })
-      .then(
+      .done(
         (result) => {
-          const data = result.data
+          const data = result
 
           if (this.state.anchoredCommentId && data.comment_found) {
             this.setState(
@@ -310,16 +309,16 @@ export default class CommentBox extends React.Component {
       displayFilter = django.gettext('all')
       commentCategory = ''
     }
-    axios.get(this.props.commentsApiUrl, {
+    api.comments.get(this.props.commentsApiUrl, {
       params: {
         comment_category: commentCategory,
         ordering: this.state.sort,
         search: this.state.search
       }
     })
-      .then(
+      .done(
         (result) => {
-          const data = result.data
+          const data = result
           this.setState({
             comments: data.results,
             nextComments: data.next,
@@ -346,16 +345,16 @@ export default class CommentBox extends React.Component {
     if (commentCategory === 'all') {
       commentCategory = ''
     }
-    axios.get(this.props.commentsApiUrl, {
+    api.comments.get(this.props.commentsApiUrl, {
       params: {
         ordering: order,
         comment_category: commentCategory,
         search: this.state.search
       }
     })
-      .then(
+      .done(
         (result) => {
-          const data = result.data
+          const data = result
           this.setState({
             comments: data.results,
             nextComments: data.next,
@@ -391,16 +390,16 @@ export default class CommentBox extends React.Component {
     if (commentCategory === 'all') {
       commentCategory = ''
     }
-    axios.get(this.props.commentsApiUrl, {
+    api.comments.get(this.props.commentsApiUrl, {
       params: {
         search: search,
         ordering: this.state.sort,
         comment_category: commentCategory
       }
     })
-      .then(
+      .done(
         (result) => {
-          const data = result.data
+          const data = result
           this.setState({
             comments: data.results,
             nextComments: data.next,
@@ -447,12 +446,12 @@ export default class CommentBox extends React.Component {
   }
 
   fetchComments () {
-    axios.get(this.state.nextComments, {
+    api.comments.get(this.state.nextComments, {
       params: {}
     })
-      .then(
+      .done(
         (result) => {
-          const data = result.data
+          const data = result
           const newCommentList = this.state.comments.concat(data.results)
           this.setState({
             comments: newCommentList,

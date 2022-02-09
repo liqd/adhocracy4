@@ -12,6 +12,18 @@ document.addEventListener('a4.embed.ready', init, false)
 
 const baseURL = '/api/'
 
+// This converts params = { ordering: "new" }
+// To ....endpoint/comments/?ordering=new
+const encodeQueryString = paramsObject => {
+  const params = Object.keys(paramsObject)
+  return params.reduce((acc, curr) => {
+    const symbol = acc === '' ? '?' : '&'
+    return paramsObject[curr]
+      ? `${acc}${symbol}${curr}=${paramsObject[curr]}`
+      : acc
+  }, '')
+}
+
 const api = (function () {
   const urls = {
     report: baseURL + 'reports/',
@@ -73,6 +85,30 @@ const api = (function () {
     return $.ajax(params)
   }
 
+  // This allows to use api-urls directly
+  // In contrast to _sendRequest which is used for more
+  // complex requests (e.g. constructs its api-urls itself)
+  function _sendDirectRequest (url, options) {
+    const $body = $('body')
+
+    if (options && options.params) {
+      url = url + encodeQueryString(options.params)
+    }
+
+    const defaultParams = {
+      url: url,
+      error: function (xhr, status, err) {
+        console.error(url, status, err.toString())
+      },
+      complete: function () {
+        $body.removeClass('loading')
+      }
+    }
+
+    $body.addClass('loading')
+    return $.ajax(defaultParams)
+  }
+
   async function _sendBatchRequest (endpoint, type, datalist) {
     const results = []
     for (const data of datalist) {
@@ -84,6 +120,9 @@ const api = (function () {
 
   return {
     comments: {
+      get: function (url, params) {
+        return _sendDirectRequest(url, params)
+      },
       add: function (data) {
         return _sendRequest('comment', {
           type: 'POST'
