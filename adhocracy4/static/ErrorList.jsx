@@ -1,6 +1,6 @@
-const React = require('react')
+import React from 'react'
 
-const ErrorList = ({ errors, field }) => {
+export const ErrorList = ({ errors, field }) => {
   if (errors && errors[field]) {
     return (
       <ul className="errorlist">
@@ -13,5 +13,3 @@ const ErrorList = ({ errors, field }) => {
 
   return null
 }
-
-module.exports = ErrorList

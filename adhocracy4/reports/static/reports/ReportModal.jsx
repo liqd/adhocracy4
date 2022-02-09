@@ -1,11 +1,11 @@
+import django from 'django'
+import $ from 'jquery'
+import React from 'react'
+import Modal from '../../../static/Modal'
+
 const api = require('../../../static/api')
-const Modal = require('../../../static/Modal')
 
-const $ = require('jquery')
-const React = require('react')
-const django = require('django')
-
-class ReportModal extends React.Component {
+export default class ReportModal extends React.Component {
   constructor (props) {
     super(props)
 
@@ -91,5 +91,3 @@ class ReportModal extends React.Component {
     )
   }
 }
-
-module.exports = ReportModal

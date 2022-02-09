@@ -1,7 +1,7 @@
 import React from 'react'
 import django from 'django'
 
-import Modal from '../../../static/Modal'
+import { Modal } from '../../../static/Modal'
 
 export default class UrlModal extends React.Component {
   constructor (props) {

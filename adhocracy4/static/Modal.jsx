@@ -1,6 +1,6 @@
-const React = require('react')
-const PropTypes = require('prop-types')
-const django = require('django')
+import React from 'react'
+import PropTypes from 'prop-types'
+import django from 'django'
 
 export const Modal = (props) => {
   const dismiss = props.dismissOnSubmit ? 'modal' : 'false'
@@ -28,18 +28,18 @@ export const Modal = (props) => {
           </div>
           {!props.partials.hideFooter &&
             <div className="modal-footer">
-              <div className="row">
-                <button
-                  className="submit-button" data-bs-dismiss={dismiss}
-                  onClick={props.handleSubmit}
-                >{props.action}
-                </button>
-              </div>
-              <div className="row">
+              <div>
                 <button
                   className="cancel-button" data-bs-dismiss="modal"
                   onClick={props.handleClose}
                 >{props.abort}
+                </button>
+              </div>
+              <div>
+                <button
+                  className="submit-button" data-bs-dismiss={dismiss}
+                  onClick={props.handleSubmit}
+                >{props.action}
                 </button>
               </div>
             </div>}
@@ -59,5 +59,3 @@ Modal.defaultProps = {
   abort: django.gettext('Abort'),
   dismissOnSubmit: true
 }
-
-module.exports = Modal
