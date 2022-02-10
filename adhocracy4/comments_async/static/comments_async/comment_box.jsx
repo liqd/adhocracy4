@@ -6,6 +6,7 @@ import axios from 'axios'
 
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
+import { FilterCategory } from './filter_category'
 import { FilterSearch } from './filter_search'
 import { getDocumentHeight } from '../util'
 
@@ -559,34 +560,13 @@ export default class CommentBox extends React.Component {
                 onClickResult={this.handleClickResult}
               />
               {this.props.withCategories
-                ? <div className="a4-comments__filters__dropdown me-sm-2">
-                  <div className="dropdown">
-                    <button
-                      className="btn btn--select dropdown-toggle a4-comments__filters__btn"
-                      type="button"
-                      id="categoryDropdownBtn"
-                      data-bs-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <span className={this.state.filter === 'all' ? 'a4-comments__filters__btn-text' : 'd-none'}>{translated.display}{this.state.filterDisplay}</span>
-                      <span className={this.state.filter !== 'all' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{this.state.filterDisplay}</span>
-
-                      <i className={this.state.filter === 'all' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
-                    </button>
-                    <div className="dropdown-menu dropend" aria-labelledby="categoryDropdownBtn">
-                      {this.state.filter !== 'all' &&
-                        <button className="dropdown-item" onClick={this.handleClickFilter} id="all" key="all" href="#">
-                          {translated.all}
-                        </button>}
-                      {Object.keys(this.props.commentCategoryChoices).map(objectKey => {
-                        const name = this.props.commentCategoryChoices[objectKey]
-                        return (objectKey !== this.state.filter) &&
-                          <button className="dropdown-item" onClick={this.handleClickFilter} id={objectKey} key={objectKey} href="#">{name}</button>
-                      })}
-                    </div>
-                  </div>
-                </div> // eslint-disable-line react/jsx-closing-tag-location
+                ? <FilterCategory
+                    translated={translated}
+                    filter={this.state.filter}
+                    filterDisplay={this.state.filterDisplay}
+                    onClickFilter={this.handleClickFilter}
+                    commentCategoryChoices={this.props.commentCategoryChoices}
+                  />
                 : <div className="col-lg-3" />}
               <div className="a4-comments__filters__dropdown">
                 <div className="dropdown">
