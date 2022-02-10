@@ -13,6 +13,7 @@ import CommentCategoryEditForm from './comment_category_edit_form'
 import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
+import { localeDate } from './helpers'
 
 import { RatingBox } from '../../../ratings/static/ratings/react_ratings'
 
@@ -26,11 +27,6 @@ const translated = {
   readLess: django.gettext('Read less'),
   share: django.gettext('Share'),
   report: django.gettext(' Report')
-}
-
-function localeDate (dateStr) {
-  const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }
-  return new Date(dateStr).toLocaleString(document.documentElement.lang, options)
 }
 
 function getAnswerForm (hide, number) {
