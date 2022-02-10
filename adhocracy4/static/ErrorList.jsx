@@ -1,4 +1,4 @@
-const React = require('react')
+import React from 'react'
 
 const ErrorList = ({ errors, field }) => {
   if (errors && errors[field]) {

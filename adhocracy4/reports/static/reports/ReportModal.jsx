@@ -1,9 +1,10 @@
-const api = require('../../../static/api')
-const Modal = require('../../../static/Modal')
+import React from 'react'
+import django from 'django'
 
+import Modal from '../../../static/Modal'
+
+const api = require('../../../static/api')
 const $ = require('jquery')
-const React = require('react')
-const django = require('django')
 
 class ReportModal extends React.Component {
   constructor (props) {

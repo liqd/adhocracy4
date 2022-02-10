@@ -1,5 +1,5 @@
-const React = require('react')
-const django = require('django')
+import React from 'react'
+import django from 'django'
 
 const Alert = ({ type, message, onClick }) => {
   const closeTag = django.gettext('Close')
