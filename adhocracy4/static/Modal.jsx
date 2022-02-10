@@ -1,8 +1,8 @@
-const React = require('react')
-const PropTypes = require('prop-types')
-const django = require('django')
+import React from 'react'
+import PropTypes from 'prop-types'
+import django from 'django'
 
-export const Modal = (props) => {
+const Modal = (props) => {
   const dismiss = props.dismissOnSubmit ? 'modal' : 'false'
   return (
     <div
