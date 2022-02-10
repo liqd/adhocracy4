@@ -6,6 +6,7 @@ import axios from 'axios'
 
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
+import { FilterSearch } from './filter_search'
 import { getDocumentHeight } from '../util'
 
 const api = require('../../../static/api')
@@ -550,35 +551,13 @@ export default class CommentBox extends React.Component {
 
           {this.state.showFilters &&
             <div className="a4-comments__filters">
-              <div className="a4-comments__filters__search">
-                <input
-                  className="form-control a4-comments__filters__search-input mb-0"
-                  type="search"
-                  id="search-input"
-                  onKeyPress={this.handleEnterSearch}
-                  placeholder={translated.searchContrib}
-                />
-
-                <button
-                  className={this.state.search !== '' ? 'a4-comments__filters__search-result text-muted' : 'd-none'}
-                  type="button"
-                  onClick={this.handleClickResult}
-                >
-                  <span className="fa-stack fa-2x">
-                    <i className="far fa-circle fa-stack-2x" />
-                    <i className="fas fa-times fa-stack-1x" aria-label={translated.clearSearch} />
-                  </span>
-                </button>
-
-                <button
-                  className="input-group-append a4-comments__filters__search-btn btn btn--transparent"
-                  type="button"
-                  onClick={this.handleClickSearch}
-                >
-                  <i className="fas fa-search" aria-label={translated.searchContrib} />
-                </button>
-              </div>
-
+              <FilterSearch
+                search={this.state.search}
+                translated={translated}
+                onEnterSearch={this.handleEnterSearch}
+                onClickSearch={this.handleClickSearch}
+                onClickResult={this.handleClickResult}
+              />
               {this.props.withCategories
                 ? <div className="a4-comments__filters__dropdown me-sm-2">
                   <div className="dropdown">
