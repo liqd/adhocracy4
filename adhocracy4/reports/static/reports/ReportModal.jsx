@@ -4,7 +4,6 @@ import django from 'django'
 import Modal from '../../../static/Modal'
 
 const api = require('../../../static/api')
-const $ = require('jquery')
 
 class ReportModal extends React.Component {
   constructor (props) {
@@ -34,11 +33,6 @@ class ReportModal extends React.Component {
     } else {
       setTimeout(this.resetModal.bind(this), 500)
     }
-  }
-
-  closeModal () {
-    $('#' + this.props.name).modal('hide')
-    this.resetModal()
   }
 
   submitReport () {
@@ -83,7 +77,6 @@ class ReportModal extends React.Component {
       <Modal
         abort={this.props.abort}
         name={this.props.name}
-        handleClose={this.closeModal.bind(this)}
         handleSubmit={this.submitReport.bind(this)}
         action={sendReportTag}
         partials={partials}
