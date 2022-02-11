@@ -40,12 +40,10 @@ def test_react_rating_anonymous(rf, question, comment):
     with freeze_time('2013-01-02 18:00:00 UTC'):
         user = AnonymousUser()
         props = react_comment_render_for_props(rf, user, question)
-        comments_content_type = ContentType.objects.get_for_model(comment)
         request = rf.get('/')
         request.user = user
 
         assert props == {
-            'comments_contenttype': comments_content_type.pk,
             'isAuthenticated': False,
             'isModerator': False,
             'isReadOnly': True,
@@ -64,12 +62,10 @@ def test_react_rating_user(rf, user, phase_factory, question_factory,
                                                 AskPhase)
     with helpers.freeze_phase(phase):
         props = react_comment_render_for_props(rf, user, question)
-        comments_content_type = ContentType.objects.get_for_model(comment)
         request = rf.get('/')
         request.user = user
 
         assert props == {
-            'comments_contenttype': comments_content_type.pk,
             'isAuthenticated': True,
             'isModerator': False,
             'isReadOnly': False,
@@ -110,12 +106,10 @@ def test_react_rating_anonymous_with_categories(rf, question, comment):
         user = AnonymousUser()
         props = react_comment_render_for_props_with_categories(rf, user,
                                                                question)
-        comments_content_type = ContentType.objects.get_for_model(comment)
         request = rf.get('/')
         request.user = user
 
         assert props == {
-            'comments_contenttype': comments_content_type.pk,
             'isAuthenticated': False,
             'isModerator': False,
             'isReadOnly': True,
@@ -136,12 +130,10 @@ def test_react_rating_user_with_categories(rf, user, phase_factory,
     with helpers.freeze_phase(phase):
         props = react_comment_render_for_props_with_categories(rf, user,
                                                                question)
-        comments_content_type = ContentType.objects.get_for_model(comment)
         request = rf.get('/')
         request.user = user
 
         assert props == {
-            'comments_contenttype': comments_content_type.pk,
             'isAuthenticated': True,
             'isModerator': False,
             'isReadOnly': False,

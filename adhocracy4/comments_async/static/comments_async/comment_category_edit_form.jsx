@@ -34,10 +34,6 @@ export default class CommentCategoryEditForm extends React.Component {
     this.setState({ selectedCategories: newSelectionArray })
   }
 
-  displayCategories () {
-    return this.props.content_type !== this.context.comments_contenttype
-  }
-
   handleTextChange (e) {
     this.setState({ comment: e.target.value })
   }

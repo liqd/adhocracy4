@@ -6,7 +6,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
 from django.utils.html import format_html
 
-from adhocracy4.comments.models import Comment
 from adhocracy4.modules.predicates import is_context_member
 from adhocracy4.rules.discovery import NormalUser
 
@@ -29,9 +28,6 @@ def react_comments_async(context, obj, with_categories=False):
     would_have_comment_permission = NormalUser().would_have_perm(
         permission, obj)
 
-    comments_contenttype = ContentType.objects.get_for_model(Comment)
-    pk = obj.pk
-
     with_categories = bool(with_categories)
 
     comment_category_choices = {}
@@ -52,9 +48,8 @@ def react_comments_async(context, obj, with_categories=False):
                       participant/moderator/org_member
     '''
     attributes = {
-        'comments_contenttype': comments_contenttype.pk,
         'subjectType': contenttype.pk,
-        'subjectId': pk,
+        'subjectId': obj.pk,
         'isAuthenticated': is_authenticated,
         'isModerator': is_moderator,
         'isReadOnly': (not has_comment_permission
