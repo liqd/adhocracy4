@@ -109,10 +109,6 @@ export default class Comment extends React.Component {
     }
   }
 
-  isOwner () {
-    return this.props.user_pk === this.context.user_name
-  }
-
   showMore () {
     this.setState({
       shorten: false
@@ -131,7 +127,7 @@ export default class Comment extends React.Component {
         <RatingBox
           contentType={this.context.comments_contenttype}
           objectId={this.props.id}
-          authenticatedAs={this.context.isAuthenticated ? this.context.user_name : null}
+          authenticatedAs={this.props.authenticated_user_pk}
           positiveRatings={this.props.positiveRatings}
           negativeRatings={this.props.negativeRatings}
           userRating={this.props.userRating}
@@ -238,7 +234,7 @@ export default class Comment extends React.Component {
   }
 
   renderDeleteModal () {
-    if (this.isOwner() || this.context.isModerator) {
+    if (this.props.is_users_own_comment || this.context.isModerator) {
       return (
         <Modal
           name={`comment_delete_${this.props.id}`}
@@ -291,7 +287,7 @@ export default class Comment extends React.Component {
       <div>
         {this.state.displayNotification &&
           <div className="alert alert--success a4-comments__success-notification"><i className="fas fa-check" /> {translated.successMessage}</div>}
-        <div className={(this.isOwner() ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
+        <div className={(this.props.is_users_own_comment ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
           <a className="a4-comments__anchor" id={`comment_${this.props.id}`} href={`./?comment=${this.props.id}`}>{`Comment ${this.props.id}`}</a>
           <ReportModal
             name={`report_comment_${this.props.id}`}
@@ -326,11 +322,11 @@ export default class Comment extends React.Component {
                 </div>
 
                 <div className="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
-                  {this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) &&
+                  {this.context.isAuthenticated && !this.props.is_deleted && (this.props.is_users_own_comment || this.context.isModerator) &&
                     <CommentManageDropdown
                       id={this.props.id}
                       handleToggleEdit={this.toggleEdit.bind(this)}
-                      renderOwnerOptions={this.isOwner() && !this.props.isReadOnly}
+                      renderOwnerOptions={this.props.is_users_own_comment && !this.props.isReadOnly}
                       renderModeratorOptions={this.context.isModerator && !this.props.isReadOnly}
                       isParentComment={this.displayCategories()}
                     />}
@@ -381,7 +377,7 @@ export default class Comment extends React.Component {
                     ><i className="fas fa-share" /> {translated.share}
                     </a>}
 
-                  {!this.props.is_deleted && this.context.isAuthenticated && !this.isOwner() &&
+                  {!this.props.is_deleted && this.context.isAuthenticated && !this.props.is_users_own_comment &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`#report_comment_${this.props.id}`}
                       data-bs-toggle="modal"
@@ -444,6 +440,5 @@ Comment.contextTypes = {
   comments_contenttype: PropTypes.number,
   isAuthenticated: PropTypes.bool,
   isModerator: PropTypes.bool,
-  user_name: PropTypes.string,
   contentType: PropTypes.number
 }

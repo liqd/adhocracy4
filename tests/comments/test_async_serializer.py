@@ -16,7 +16,7 @@ def test_serializer(apiclient, question, comment_factory, user):
     comment_factory(pk=2, content_object=question, creator=user,
                     comment_categories='QUE')
     comment_factory(pk=3, content_object=question, creator=user,
-                    is_blocked=True)
+                    is_blocked=True, comment_categories='QUE')
     comment_factory(pk=4, content_object=question, creator=user,
                     is_censored=True)
     comment_factory(pk=5, content_object=question, creator=user,
@@ -39,11 +39,8 @@ def test_serializer(apiclient, question, comment_factory, user):
     # Testing a plain comment
     comment_1 = comment_data[6]
     assert comment_1['id'] == 1
-    assert comment_1['user_name'] == ''  # should be user.username ?!!
-    # In the react_comments_async template tags,
-    # this is set as user_name = str(user.id)
-    # And in the react_comments template tags,
-    # this is set to user.username AFTER the serializer
+    # returns get_short_name() of user, doesn't exist in django auth user
+    assert comment_1['user_name'] == ''
     assert comment_1['user_pk'] == str(user.pk)
     # django auth user model does not define get_absolute_url()
     assert comment_1['user_profile_url'] == ''
