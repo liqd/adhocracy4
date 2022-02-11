@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import django from 'django'
 
 import CategoryList from './category_list'
@@ -89,7 +88,7 @@ export default class CommentForm extends React.Component {
     const textareaStyle = { height: (this.state.textareaHeight) + 'px' }
     const hasParent = this.props.parentIndex !== undefined
 
-    if (this.context.isAuthenticated && !this.props.isReadOnly) {
+    if (this.props.authenticated_user_pk && !this.props.isReadOnly) {
       return (
         <div>
           <form id="id-comment-form" className="general-form" onSubmit={this.handleSubmit.bind(this)}>
@@ -143,8 +142,4 @@ export default class CommentForm extends React.Component {
       )
     }
   }
-}
-
-CommentForm.contextTypes = {
-  isAuthenticated: PropTypes.bool
 }

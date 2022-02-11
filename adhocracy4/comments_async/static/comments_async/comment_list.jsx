@@ -30,6 +30,11 @@ export default function (props) {
               is_users_own_comment={comment.is_users_own_comment}
               authenticated_user_pk={comment.authenticated_user_pk}
               comment_content_type={comment.comment_content_type}
+              has_viewing_permission={comment.has_viewing_permission}
+              has_rating_permission={comment.has_rating_permission}
+              has_changing_permission={comment.has_changing_permission}
+              has_deleting_permission={comment.has_deleting_permission}
+              has_moderating_permission={comment.has_moderating_permission}
               index={index}
               parentIndex={props.parentIndex}
               onCommentDelete={props.onCommentDelete}
