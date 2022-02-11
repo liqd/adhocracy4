@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import django from 'django'
 import update from 'immutability-helper'
 
@@ -298,13 +297,6 @@ export default class CommentBox extends React.Component {
     )
   }
 
-  getChildContext () {
-    return {
-      isAuthenticated: this.props.isAuthenticated,
-      isModerator: this.props.isModerator
-    }
-  }
-
   handleToggleFilters (e) {
     e.preventDefault()
     this.setState(s => ({ showFilters: !s.showFilters }))
@@ -512,6 +504,8 @@ export default class CommentBox extends React.Component {
           <CommentForm
             subjectType={this.props.subjectType}
             subjectId={this.props.subjectId}
+            // FIXME: needs to be determined by commenting permission
+            authenticated_user_pk
             onCommentSubmit={this.handleCommentSubmit}
             rows="5" isReadOnly={this.props.isReadOnly}
             error={this.state.error}
@@ -601,9 +595,4 @@ export default class CommentBox extends React.Component {
       </div>
     )
   }
-}
-
-CommentBox.childContextTypes = {
-  isAuthenticated: PropTypes.bool,
-  isModerator: PropTypes.bool
 }

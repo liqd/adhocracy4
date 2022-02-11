@@ -232,7 +232,7 @@ export default class Comment extends React.Component {
   }
 
   renderDeleteModal () {
-    if (this.props.is_users_own_comment || this.context.isModerator) {
+    if (this.props.has_deleting_permission) {
       return (
         <Modal
           name={`comment_delete_${this.props.id}`}
@@ -320,12 +320,12 @@ export default class Comment extends React.Component {
                 </div>
 
                 <div className="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
-                  {this.context.isAuthenticated && !this.props.is_deleted && (this.props.is_users_own_comment || this.context.isModerator) &&
+                  {!this.props.is_deleted && (this.props.has_changing_permission || this.props.has_deleting_permission) &&
                     <CommentManageDropdown
                       id={this.props.id}
                       handleToggleEdit={this.toggleEdit.bind(this)}
-                      renderOwnerOptions={this.props.is_users_own_comment && !this.props.isReadOnly}
-                      renderModeratorOptions={this.context.isModerator && !this.props.isReadOnly}
+                      has_changing_permission={this.props.has_changing_permission}
+                      has_deleting_permission={this.props.has_deleting_permission}
                       isParentComment={this.displayCategories()}
                     />}
                 </div>
@@ -375,7 +375,7 @@ export default class Comment extends React.Component {
                     ><i className="fas fa-share" /> {translated.share}
                     </a>}
 
-                  {!this.props.is_deleted && this.context.isAuthenticated && !this.props.is_users_own_comment &&
+                  {!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`#report_comment_${this.props.id}`}
                       data-bs-toggle="modal"
@@ -413,6 +413,8 @@ export default class Comment extends React.Component {
                     <CommentForm
                       subjectType={this.props.comment_content_type}
                       subjectId={this.props.id}
+                      // FIXME: needs to be determined by commenting permission
+                      authenticated_user_pk={this.props.authenticated_user_pk}
                       onCommentSubmit={this.props.onCommentSubmit}
                       parentIndex={this.props.index}
                       placeholder={translated.yourReply}
@@ -435,7 +437,5 @@ export default class Comment extends React.Component {
 }
 
 Comment.contextTypes = {
-  isAuthenticated: PropTypes.bool,
-  isModerator: PropTypes.bool,
   contentType: PropTypes.number
 }

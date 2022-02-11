@@ -16,8 +16,6 @@ register = template.Library()
 def react_comments_async(context, obj, with_categories=False):
     request = context['request']
     user = request.user
-    is_authenticated = bool(user.is_authenticated)
-    is_moderator = user.is_superuser or user in obj.project.moderators.all()
 
     anchoredCommentId = request.GET.get('comment', '')
 
@@ -50,8 +48,6 @@ def react_comments_async(context, obj, with_categories=False):
     attributes = {
         'subjectType': contenttype.pk,
         'subjectId': obj.pk,
-        'isAuthenticated': is_authenticated,
-        'isModerator': is_moderator,
         'isReadOnly': (not has_comment_permission
                        and not would_have_comment_permission),
         'commentCategoryChoices': comment_category_choices,

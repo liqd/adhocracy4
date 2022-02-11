@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import django from 'django'
 
 import Alert from '../../../static/Alert'
@@ -62,8 +61,4 @@ export default class CommentEditForm extends React.Component {
       </form>
     )
   }
-}
-
-CommentEditForm.contextTypes = {
-  isAuthenticated: PropTypes.bool
 }

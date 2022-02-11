@@ -20,9 +20,11 @@ const CommentManageDropdown = (props) => {
         <i className="fas fa-ellipsis-h" aria-hidden="true" />
       </button>
       <div className="dropdown-menu dropdown-menu-end">
-        {(props.renderOwnerOptions || props.renderModeratorOptions) && [
+        {props.has_changing_permission && [
           <button key="1" className="dropdown-item" type="button" onClick={props.handleToggleEdit}>{translated.edit}</button>,
-          <div className="divider" key="2" />,
+          <div className="divider" key="2" />
+        ]}
+        {props.has_deleting_permission && [
           <a key="3" className="dropdown-item" href={`#comment_delete_${props.id}`} data-bs-toggle="modal">{translated.delete}</a>,
           <div className="divider" key="4" />
         ]}
@@ -33,8 +35,7 @@ const CommentManageDropdown = (props) => {
 
 CommentManageDropdown.propTypes = {
   handleToggleEdit: PropTypes.func,
-  id: PropTypes.number,
-  renderModeratorOptions: PropTypes.bool
+  id: PropTypes.number
 }
 
 export default CommentManageDropdown
