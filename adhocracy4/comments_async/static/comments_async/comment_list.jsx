@@ -27,6 +27,8 @@ export default function (props) {
               is_censored={comment.is_censored}
               is_blocked={comment.is_blocked}
               is_moderator_marked={comment.is_moderator_marked}
+              is_users_own_comment={comment.is_users_own_comment}
+              authenticated_user_pk={comment.authenticated_user_pk}
               index={index}
               parentIndex={props.parentIndex}
               onCommentDelete={props.onCommentDelete}

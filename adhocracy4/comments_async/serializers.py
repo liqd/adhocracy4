@@ -11,7 +11,6 @@ class CommentSerializer(serializers.ModelSerializer):
     """Default Serializer for the comments."""
 
     user_name = serializers.SerializerMethodField()
-    user_pk = serializers.SerializerMethodField()
     user_profile_url = serializers.SerializerMethodField()
     user_image = serializers.SerializerMethodField()
     is_deleted = serializers.SerializerMethodField()
@@ -25,8 +24,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         read_only_fields = ('modified', 'created', 'id',
-                            'user_name', 'user_pk', 'user_image',
-                            'user_image_fallback', 'ratings',
+                            'user_name', 'user_image', 'ratings',
                             'content_type', 'object_pk',
                             'comment_content_type', 'has_rating_permission',
                             'has_changing_permission',
@@ -58,6 +56,15 @@ class CommentSerializer(serializers.ModelSerializer):
         ret['comment_categories'] = categories
         if instance.is_blocked:
             ret['comment'] = ''
+
+        request = self.context.get('request')
+        ret['is_users_own_comment'] = False
+        ret['authenticated_user_pk'] = None
+        if request and hasattr(request, 'user'):
+            user = request.user
+            ret['is_users_own_comment'] = (user.pk == instance.creator.pk)
+            ret['authenticated_user_pk'] = user.pk
+
         return ret
 
     def to_internal_value(self, data):
@@ -70,11 +77,6 @@ class CommentSerializer(serializers.ModelSerializer):
                                             'categories.')
                 })
         return data
-
-    def get_user_pk(self, obj):
-        if obj.is_censored or obj.is_removed or obj.is_blocked:
-            return -1
-        return str(obj.creator.id)
 
     def get_user_profile_url(self, obj):
         if obj.is_censored or obj.is_removed or obj.is_blocked:

@@ -302,8 +302,7 @@ export default class CommentBox extends React.Component {
     return {
       isAuthenticated: this.props.isAuthenticated,
       isModerator: this.props.isModerator,
-      comments_contenttype: this.props.comments_contenttype,
-      user_name: this.props.user_name
+      comments_contenttype: this.props.comments_contenttype
     }
   }
 
@@ -608,6 +607,5 @@ export default class CommentBox extends React.Component {
 CommentBox.childContextTypes = {
   isAuthenticated: PropTypes.bool,
   isModerator: PropTypes.bool,
-  comments_contenttype: PropTypes.number,
-  user_name: PropTypes.string
+  comments_contenttype: PropTypes.number
 }
