@@ -146,6 +146,5 @@ export default class CommentForm extends React.Component {
 }
 
 CommentForm.contextTypes = {
-  isAuthenticated: PropTypes.bool,
-  comments_contenttype: PropTypes.number
+  isAuthenticated: PropTypes.bool
 }

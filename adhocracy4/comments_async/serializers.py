@@ -153,8 +153,6 @@ class CommentSerializer(serializers.ModelSerializer):
 
         return result
 
-    # used in zt-app, where we can't pass props through template tags
-    # FIXME: this should replace comments_contenttype passed in template tag
     def get_comment_content_type(self, comment):
         return ContentType.objects.get_for_model(Comment).pk
 

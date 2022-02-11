@@ -29,6 +29,7 @@ export default function (props) {
               is_moderator_marked={comment.is_moderator_marked}
               is_users_own_comment={comment.is_users_own_comment}
               authenticated_user_pk={comment.authenticated_user_pk}
+              comment_content_type={comment.comment_content_type}
               index={index}
               parentIndex={props.parentIndex}
               onCommentDelete={props.onCommentDelete}

@@ -96,11 +96,11 @@ export default class Comment extends React.Component {
   }
 
   allowForm () {
-    return !this.props.isReadOnly && this.props.content_type !== this.context.comments_contenttype
+    return !this.props.isReadOnly && this.props.content_type !== this.props.comment_content_type
   }
 
   displayCategories () {
-    return this.props.content_type !== this.context.comments_contenttype
+    return this.props.content_type !== this.props.comment_content_type
   }
 
   commentCategoryChoices () {
@@ -125,7 +125,7 @@ export default class Comment extends React.Component {
     if (!this.props.is_deleted) {
       return (
         <RatingBox
-          contentType={this.context.comments_contenttype}
+          contentType={this.props.comment_content_type}
           objectId={this.props.id}
           authenticatedAs={this.props.authenticated_user_pk}
           positiveRatings={this.props.positiveRatings}
@@ -169,8 +169,6 @@ export default class Comment extends React.Component {
             subjectType={this.props.content_type}
             subjectId={this.props.object_pk}
             comment={this.props.children}
-            withCategories={this.props.withCategories}
-            displayCategories={this.displayCategories()}
             commentCategoryChoices={this.props.commentCategoryChoices}
             comment_categories={this.props.comment_categories}
             error={this.props.editError}
@@ -294,7 +292,7 @@ export default class Comment extends React.Component {
             title={translated.reportTitle}
             btnStyle="cta"
             objectId={this.props.id}
-            contentType={this.context.comments_contenttype}
+            contentType={this.props.comment_content_type}
           />
           <UrlModal
             name={`share_comment_${this.props.id}`}
@@ -413,7 +411,7 @@ export default class Comment extends React.Component {
                 <div className="row">
                   <div className="col-12 ms-3">
                     <CommentForm
-                      subjectType={this.context.comments_contenttype}
+                      subjectType={this.props.comment_content_type}
                       subjectId={this.props.id}
                       onCommentSubmit={this.props.onCommentSubmit}
                       parentIndex={this.props.index}
@@ -437,7 +435,6 @@ export default class Comment extends React.Component {
 }
 
 Comment.contextTypes = {
-  comments_contenttype: PropTypes.number,
   isAuthenticated: PropTypes.bool,
   isModerator: PropTypes.bool,
   contentType: PropTypes.number
