@@ -7,6 +7,7 @@ import CommentForm from './comment_form'
 import CommentList from './comment_list'
 import { FilterCategory } from './filter_category'
 import { FilterSearch } from './filter_search'
+import { FilterSort } from './filter_sort'
 import { getDocumentHeight } from '../util'
 
 const api = require('../../../static/api')
@@ -566,33 +567,12 @@ export default class CommentBox extends React.Component {
                     commentCategoryChoices={this.props.commentCategoryChoices}
                   />
                 : <div className="col-lg-3" />}
-              <div className="a4-comments__filters__dropdown">
-                <div className="dropdown">
-                  <button
-                    className="btn btn--select dropdown-toggle a4-comments__filters__btn"
-                    type="button"
-                    id="sortDropdownBtn"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <span className={this.state.sort === 'new' ? 'a4-comments__filters__btn-text' : 'd-none'}>{translated.sortedBy}{sorts[this.state.sort]}</span>
-                    <span className={this.state.sort !== 'new' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{sorts[this.state.sort]}</span>
-                    <i className={this.state.sort === 'new' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
-                  </button>
-                  <div className="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdownBtn">
-                    {Object.keys(sorts).map(objectKey => {
-                      const name = sorts[objectKey]
-                      return (objectKey !== this.state.sort) &&
-                        <button
-                          className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
-                          key={objectKey} href="#"
-                        >{name}
-                        </button>
-                    })}
-                  </div>
-                </div>
-              </div>
+              <FilterSort
+                translated={translated}
+                sort={this.state.sort}
+                sorts={sorts}
+                onClickSorted={this.handleClickSorted}
+              />
             </div>}
 
           <div className={this.state.loadingFilter ? 'a4-comments__loading' : 'd-none'}>
