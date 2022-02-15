@@ -25,10 +25,10 @@
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-markdown": "6.0.3",
+    "react-markdown": "8.0.0",
     "react-popper": "2.2.5",
     "react-slick": "0.28.1",
-    "remark-gfm": "1.0.0",
+    "remark-gfm": "3.0.1",
     "shpjs": "4.0.2",
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
