@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import django from 'django'
 import update from 'immutability-helper'
-import axios from 'axios'
 
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
@@ -54,6 +53,10 @@ export default class CommentBox extends React.Component {
     this.handleHideReplyError = this.handleHideReplyError.bind(this)
     this.updateStateComment = this.updateStateComment.bind(this)
     this.handleToggleFilters = this.handleToggleFilters.bind(this)
+    this.urlReplaces = {
+      objectPk: this.props.subjectId,
+      contentTypeId: this.props.subjectType
+    }
 
     this.state = {
       comments: [],
@@ -73,18 +76,16 @@ export default class CommentBox extends React.Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll, { passive: true })
-
     const params = {}
     params.ordering = this.state.sort
+    params.urlReplaces = this.urlReplaces
     if (this.state.anchoredCommentId) {
       params.commentID = this.state.anchoredCommentId
     }
-    axios.get(this.props.commentsApiUrl, {
-      params: params
-    })
-      .then(
+    api.comments.get(params)
+      .done(
         (result) => {
-          const data = result.data
+          const data = result
 
           translated.entries =
             django.ngettext('entry', 'entries', data.count)
@@ -327,16 +328,16 @@ export default class CommentBox extends React.Component {
       displayFilter = django.gettext('all')
       commentCategory = ''
     }
-    axios.get(this.props.commentsApiUrl, {
-      params: {
-        comment_category: commentCategory,
-        ordering: this.state.sort,
-        search: this.state.search
-      }
-    })
-      .then(
+    const params = {
+      comment_category: commentCategory,
+      ordering: this.state.sort,
+      search: this.state.search,
+      urlReplaces: this.urlReplaces
+    }
+    api.comments.get(params)
+      .done(
         (result) => {
-          const data = result.data
+          const data = result
           this.setState({
             comments: data.results,
             nextComments: data.next,
@@ -363,16 +364,16 @@ export default class CommentBox extends React.Component {
     if (commentCategory === 'all') {
       commentCategory = ''
     }
-    axios.get(this.props.commentsApiUrl, {
-      params: {
-        ordering: order,
-        comment_category: commentCategory,
-        search: this.state.search
-      }
-    })
-      .then(
+    const params = {
+      ordering: order,
+      comment_category: commentCategory,
+      search: this.state.search,
+      urlReplaces: this.urlReplaces
+    }
+    api.comments.get(params)
+      .done(
         (result) => {
-          const data = result.data
+          const data = result
           this.setState({
             comments: data.results,
             nextComments: data.next,
@@ -408,16 +409,16 @@ export default class CommentBox extends React.Component {
     if (commentCategory === 'all') {
       commentCategory = ''
     }
-    axios.get(this.props.commentsApiUrl, {
-      params: {
-        search: search,
-        ordering: this.state.sort,
-        comment_category: commentCategory
-      }
-    })
-      .then(
+    const params = {
+      search: search,
+      ordering: this.state.sort,
+      comment_category: commentCategory,
+      urlReplaces: this.urlReplaces
+    }
+    api.comments.get(params)
+      .done(
         (result) => {
-          const data = result.data
+          const data = result
           this.setState({
             comments: data.results,
             nextComments: data.next,
@@ -464,28 +465,25 @@ export default class CommentBox extends React.Component {
   }
 
   fetchComments () {
-    axios.get(this.state.nextComments, {
-      params: {}
-    })
-      .then(
-        (result) => {
-          const data = result.data
-          const newCommentList = this.state.comments.concat(data.results)
-          this.setState({
-            comments: newCommentList,
-            nextComments: data.next,
-            commentCount: data.count
-          })
-          if (this.anchoredCommentFound()) {
-            this.setState(
-              {
-                loading: false
-              }
-            )
-          } else {
-            this.fetchComments()
-          }
+    fetch(this.state.nextComments)
+      .then(response => response.json())
+      .then(data => {
+        const newCommentList = this.state.comments.concat(data.results)
+        this.setState({
+          comments: newCommentList,
+          nextComments: data.next,
+          commentCount: data.count
+        })
+        if (this.anchoredCommentFound()) {
+          this.setState(
+            {
+              loading: false
+            }
+          )
+        } else {
+          this.fetchComments()
         }
+      }
       )
   }
 

@@ -84,6 +84,11 @@ const api = (function () {
 
   return {
     comments: {
+      get: function (data) {
+        return _sendRequest('comment', {
+          type: 'GET'
+        }, data)
+      },
       add: function (data) {
         return _sendRequest('comment', {
           type: 'POST'
