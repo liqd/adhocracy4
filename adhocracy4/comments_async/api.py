@@ -11,6 +11,7 @@ from adhocracy4.api.mixins import ContentTypeMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
 from adhocracy4.comments.models import Comment
 from adhocracy4.comments.signals import comment_removed
+from adhocracy4.rules.discovery import NormalUser
 
 from .filters import CommentCategoryFilterBackend
 from .filters import CommentOrderingFilterBackend
@@ -23,26 +24,13 @@ class CommentSetPagination(PageNumberPagination):
     page_size = 20
 
 
-class CommentViewSet(mixins.CreateModelMixin,
-                     mixins.ListModelMixin,
-                     mixins.RetrieveModelMixin,
-                     mixins.UpdateModelMixin,
-                     mixins.DestroyModelMixin,
-                     ContentTypeMixin,
-                     viewsets.GenericViewSet):
-
-    permission_classes = (ViewSetRulesPermission,)
-    filter_backends = (filters.DjangoFilterBackend,
-                       CommentOrderingFilterBackend,
-                       CommentCategoryFilterBackend,
-                       CustomSearchFilter)
-    filterset_fields = ('object_pk', 'content_type')
-    ordering = ('-created')
-    content_type_filter = settings.A4_COMMENTABLES
-    pagination_class = CommentSetPagination
-    search_fields = ('comment', '=creator__username')
-
+class PaginationCommentLinkMixin:
     def list(self, request, content_type=None, object_pk=None):
+        """
+        Add comment_found info to data when commentID is in request.
+
+        Attention: No super, be careful with order of inheritance!
+        """
         queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
         if page is not None:
@@ -67,6 +55,56 @@ class CommentViewSet(mixins.CreateModelMixin,
             return response
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+
+class PermissionInfoMixin:
+    def list(self, request, *args, **kwargs):
+        """
+        Add commenting_permissions to response's data.
+        """
+        response = super().list(request, args, kwargs)
+        if response.status_code == 400:
+            return response
+
+        obj = self.content_object
+        contenttype = ContentType.objects.get_for_model(obj)
+        permission = '{ct.app_label}.comment_{ct.model}'.format(
+            ct=contenttype)
+
+        has_commenting_permission = False
+        would_have_commenting_permission = NormalUser().would_have_perm(
+            permission, obj)
+
+        if hasattr(request, 'user'):
+            has_commenting_permission = request.user.has_perm(permission, obj)
+
+        response.data['has_commenting_permission'] = has_commenting_permission
+        response.data['would_have_commenting_permission'] = \
+            would_have_commenting_permission
+        return response
+
+
+class CommentViewSet(
+        PermissionInfoMixin,  # needs to be first, has super(list)
+        PaginationCommentLinkMixin,  # needs to be second, no super
+        mixins.CreateModelMixin,
+        mixins.ListModelMixin,
+        mixins.RetrieveModelMixin,
+        mixins.UpdateModelMixin,
+        mixins.DestroyModelMixin,
+        ContentTypeMixin,
+        viewsets.GenericViewSet):
+
+    permission_classes = (ViewSetRulesPermission,)
+    filter_backends = (filters.DjangoFilterBackend,
+                       CommentOrderingFilterBackend,
+                       CommentCategoryFilterBackend,
+                       CustomSearchFilter)
+    filterset_fields = ('object_pk', 'content_type')
+    ordering = ('-created')
+    content_type_filter = settings.A4_COMMENTABLES
+    pagination_class = CommentSetPagination
+    search_fields = ('comment', '=creator__username')
 
     def get_serializer_class(self):
         if self.action == 'list':

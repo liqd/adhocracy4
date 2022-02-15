@@ -69,7 +69,9 @@ export default class CommentBox extends React.Component {
       search: '',
       anchoredCommentId: props.anchoredCommentId ? parseInt(props.anchoredCommentId) : null,
       anchoredCommentParentId: 0,
-      anchoredCommentFound: false
+      anchoredCommentFound: false,
+      hasCommentingPermission: false,
+      wouldHaveCommentingPermission: false
     }
   }
 
@@ -98,7 +100,9 @@ export default class CommentBox extends React.Component {
                 comments: data.results,
                 nextComments: data.next,
                 commentCount: data.count,
-                anchoredCommentParentId: data.comment_parent
+                anchoredCommentParentId: data.comment_parent,
+                hasCommentingPermission: data.has_commenting_permission,
+                wouldHaveCommentingPermission: data.would_have_commenting_permission
               }
             )
             if (this.anchoredCommentFound()) {
@@ -121,7 +125,9 @@ export default class CommentBox extends React.Component {
                 comments: data.results,
                 nextComments: data.next,
                 commentCount: data.count,
-                loading: false
+                loading: false,
+                hasCommentingPermission: data.has_commenting_permission,
+                wouldHaveCommentingPermission: data.would_have_commenting_permission
               }
             )
           }
@@ -504,16 +510,16 @@ export default class CommentBox extends React.Component {
           <CommentForm
             subjectType={this.props.subjectType}
             subjectId={this.props.subjectId}
-            // FIXME: needs to be determined by commenting permission
-            authenticated_user_pk
             onCommentSubmit={this.handleCommentSubmit}
-            rows="5" isReadOnly={this.props.isReadOnly}
+            rows="5"
             error={this.state.error}
             errorMessage={this.state.errorMessage}
             handleErrorClick={this.hideNewError}
             commentCategoryChoices={this.commentCategoryChoices()}
             withCategories={this.props.withCategories}
             isContextMember={this.props.isContextMember}
+            hasCommentingPermission={this.state.hasCommentingPermission}
+            wouldHaveCommentingPermission={this.state.wouldHaveCommentingPermission}
           />
         </div>
 
@@ -580,12 +586,13 @@ export default class CommentBox extends React.Component {
               onCommentDelete={this.handleCommentDelete}
               onCommentSubmit={this.handleCommentSubmit}
               onCommentModify={this.handleCommentModify}
-              isReadOnly={this.props.isReadOnly}
               isContextMember={this.props.isContextMember}
               commentCategoryChoices={this.commentCategoryChoices()}
               onReplyErrorClick={this.handleHideReplyError}
               onEditErrorClick={this.handleHideEditError}
               withCategories={this.props.withCategories}
+              hasCommentingPermission={this.state.hasCommentingPermission}
+              wouldHaveCommentingPermission={this.state.wouldHaveCommentingPermission}
             />
           </div>
         </div>

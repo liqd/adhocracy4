@@ -35,6 +35,7 @@ export default function (props) {
               has_changing_permission={comment.has_changing_permission}
               has_deleting_permission={comment.has_deleting_permission}
               has_moderating_permission={comment.has_moderating_permission}
+              has_comment_commenting_permission={comment.has_comment_commenting_permission}
               index={index}
               parentIndex={props.parentIndex}
               onCommentDelete={props.onCommentDelete}
@@ -44,7 +45,6 @@ export default function (props) {
               negativeRatings={comment.ratings.negative_ratings}
               userRating={comment.ratings.current_user_rating_value}
               userRatingId={comment.ratings.current_user_rating_id}
-              isReadOnly={props.isReadOnly}
               isContextMember={props.isContextMember}
               replyError={comment.replyError}
               errorMessage={comment.errorMessage}
@@ -55,6 +55,8 @@ export default function (props) {
               displayNotification={comment.displayNotification}
               anchoredCommentId={props.anchoredCommentId}
               anchoredCommentParentId={props.anchoredCommentParentId}
+              hasCommentingPermission={props.hasCommentingPermission}
+              wouldHaveCommentingPermission={props.wouldHaveCommentingPermission}
             >{comment.comment}
             </Comment>
           )

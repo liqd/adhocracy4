@@ -96,7 +96,7 @@ export default class Comment extends React.Component {
   }
 
   allowForm () {
-    return !this.props.isReadOnly && this.props.content_type !== this.props.comment_content_type
+    return this.props.has_comment_commenting_permission && this.props.content_type !== this.props.comment_content_type
   }
 
   displayCategories () {
@@ -132,7 +132,7 @@ export default class Comment extends React.Component {
           negativeRatings={this.props.negativeRatings}
           userRating={this.props.userRating}
           userRatingId={this.props.userRatingId}
-          isReadOnly={this.props.isReadOnly}
+          isReadOnly={!this.props.has_rating_permission}
         />
       )
     }
@@ -403,7 +403,6 @@ export default class Comment extends React.Component {
                       parentIndex={this.props.index}
                       onCommentDelete={this.props.onCommentDelete}
                       onCommentModify={this.props.onCommentModify}
-                      isReadOnly={this.props.isReadOnly}
                       onEditErrorClick={this.props.handleEditErrorClick}
                     />
                   </div>
@@ -413,8 +412,6 @@ export default class Comment extends React.Component {
                     <CommentForm
                       subjectType={this.props.comment_content_type}
                       subjectId={this.props.id}
-                      // FIXME: needs to be determined by commenting permission
-                      authenticated_user_pk={this.props.authenticated_user_pk}
                       onCommentSubmit={this.props.onCommentSubmit}
                       parentIndex={this.props.index}
                       placeholder={translated.yourReply}
@@ -423,7 +420,8 @@ export default class Comment extends React.Component {
                       handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
                       rows="1"
                       autoFocus
-                      isReadOnly={this.props.isReadOnly}
+                      hasCommentingPermission={this.props.hasCommentingPermission}
+                      wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
                       isContextMember={this.props.isContextMember}
                     />
                   </div>
