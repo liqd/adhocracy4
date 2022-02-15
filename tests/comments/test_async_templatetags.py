@@ -5,7 +5,6 @@ import re
 import pytest
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
-from django.urls import reverse
 from freezegun import freeze_time
 
 from adhocracy4.test import helpers
@@ -41,18 +40,11 @@ def test_react_rating_anonymous(rf, question, comment):
     with freeze_time('2013-01-02 18:00:00 UTC'):
         user = AnonymousUser()
         props = react_comment_render_for_props(rf, user, question)
-        content_type = ContentType.objects.get_for_model(question)
         comments_content_type = ContentType.objects.get_for_model(comment)
         request = rf.get('/')
         request.user = user
 
-        url = reverse(
-            'comments-list',
-            kwargs={'content_type': content_type.pk,
-                    'object_pk': question.pk})
-
         assert props == {
-            'commentsApiUrl': url,
             'comments_contenttype': comments_content_type.pk,
             'isAuthenticated': False,
             'isModerator': False,
@@ -73,18 +65,11 @@ def test_react_rating_user(rf, user, phase_factory, question_factory,
                                                 AskPhase)
     with helpers.freeze_phase(phase):
         props = react_comment_render_for_props(rf, user, question)
-        content_type = ContentType.objects.get_for_model(question)
         comments_content_type = ContentType.objects.get_for_model(comment)
         request = rf.get('/')
         request.user = user
 
-        url = reverse(
-            'comments-list',
-            kwargs={'content_type': content_type.pk,
-                    'object_pk': question.pk})
-
         assert props == {
-            'commentsApiUrl': url,
             'comments_contenttype': comments_content_type.pk,
             'isAuthenticated': True,
             'isModerator': False,
@@ -127,18 +112,11 @@ def test_react_rating_anonymous_with_categories(rf, question, comment):
         user = AnonymousUser()
         props = react_comment_render_for_props_with_categories(rf, user,
                                                                question)
-        content_type = ContentType.objects.get_for_model(question)
         comments_content_type = ContentType.objects.get_for_model(comment)
         request = rf.get('/')
         request.user = user
 
-        url = reverse(
-            'comments-list',
-            kwargs={'content_type': content_type.pk,
-                    'object_pk': question.pk})
-
         assert props == {
-            'commentsApiUrl': url,
             'comments_contenttype': comments_content_type.pk,
             'isAuthenticated': False,
             'isModerator': False,
@@ -161,18 +139,11 @@ def test_react_rating_user_with_categories(rf, user, phase_factory,
     with helpers.freeze_phase(phase):
         props = react_comment_render_for_props_with_categories(rf, user,
                                                                question)
-        content_type = ContentType.objects.get_for_model(question)
         comments_content_type = ContentType.objects.get_for_model(comment)
         request = rf.get('/')
         request.user = user
 
-        url = reverse(
-            'comments-list',
-            kwargs={'content_type': content_type.pk,
-                    'object_pk': question.pk})
-
         assert props == {
-            'commentsApiUrl': url,
             'comments_contenttype': comments_content_type.pk,
             'isAuthenticated': True,
             'isModerator': False,
