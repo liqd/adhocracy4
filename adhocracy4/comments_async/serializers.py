@@ -61,6 +61,7 @@ class CommentSerializer(serializers.ModelSerializer):
         ret['has_changing_permission'] = False
         ret['has_deleting_permission'] = False
         ret['has_moderating_permission'] = False
+        ret['has_comment_commenting_permission'] = False
         if request and hasattr(request, 'user'):
             user = request.user
             ret['is_users_own_comment'] = (user.pk == instance.creator.pk)
@@ -80,6 +81,9 @@ class CommentSerializer(serializers.ModelSerializer):
             )
             ret['has_moderating_permission'] = user.has_perm(
                 'a4comments.moderate_comment', instance
+            )
+            ret['has_comment_commenting_permission'] = user.has_perm(
+                'a4comments.comment_comment', instance
             )
 
         return ret

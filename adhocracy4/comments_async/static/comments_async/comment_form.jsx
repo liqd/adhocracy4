@@ -12,7 +12,7 @@ const translated = {
   characters: django.gettext(' characters'),
   post: django.gettext('post'),
   comment: django.gettext('Comment'),
-  pleasComment: django.gettext('Please login to comment'),
+  pleaseComment: django.gettext('Please login to comment'),
   onlyInvited: django.gettext('Only invited users can actively participate.'),
   notAllowedComment: django.gettext('The currently active phase doesn\'t allow to comment.')
 }
@@ -88,7 +88,7 @@ export default class CommentForm extends React.Component {
     const textareaStyle = { height: (this.state.textareaHeight) + 'px' }
     const hasParent = this.props.parentIndex !== undefined
 
-    if (this.props.authenticated_user_pk && !this.props.isReadOnly) {
+    if (this.props.hasCommentingPermission) {
       return (
         <div>
           <form id="id-comment-form" className="general-form" onSubmit={this.handleSubmit.bind(this)}>
@@ -122,7 +122,7 @@ export default class CommentForm extends React.Component {
           </form>
         </div>
       )
-    } else if (!this.props.isReadOnly) {
+    } else if (this.props.wouldHaveCommentingPermission) {
       return (
         <div className="a4-comments__login">
           <a href={config.getLoginUrl()}>{translated.pleaseComment}</a>

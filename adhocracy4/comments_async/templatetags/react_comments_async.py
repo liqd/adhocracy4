@@ -20,12 +20,6 @@ def react_comments_async(context, obj, with_categories=False):
     anchoredCommentId = request.GET.get('comment', '')
 
     contenttype = ContentType.objects.get_for_model(obj)
-    permission = '{ct.app_label}.comment_{ct.model}'.format(ct=contenttype)
-    has_comment_permission = user.has_perm(permission, obj)
-
-    would_have_comment_permission = NormalUser().would_have_perm(
-        permission, obj)
-
     with_categories = bool(with_categories)
 
     comment_category_choices = {}
@@ -39,17 +33,12 @@ def react_comments_async(context, obj, with_categories=False):
             raise ImproperlyConfigured('set A4_COMMENT_CATEGORIES in settings')
 
     '''
-    isReadOnly - true if phase does not allow comment or project is non-public
-                 and user is not participant or project is draft
-                 (negation of modules.predicates.is_allowed_comment_item)
     isContextMember - true if project is public or user is
                       participant/moderator/org_member
     '''
     attributes = {
         'subjectType': contenttype.pk,
         'subjectId': obj.pk,
-        'isReadOnly': (not has_comment_permission
-                       and not would_have_comment_permission),
         'commentCategoryChoices': comment_category_choices,
         'anchoredCommentId': anchoredCommentId,
         'withCategories': with_categories,

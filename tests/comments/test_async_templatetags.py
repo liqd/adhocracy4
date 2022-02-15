@@ -44,7 +44,6 @@ def test_react_rating_anonymous(rf, question, comment):
         request.user = user
 
         assert props == {
-            'isReadOnly': True,
             'commentCategoryChoices': {},
             'anchoredCommentId': '',
             'withCategories': False,
@@ -64,7 +63,6 @@ def test_react_rating_user(rf, user, phase_factory, question_factory,
         request.user = user
 
         assert props == {
-            'isReadOnly': False,
             'commentCategoryChoices': {},
             'anchoredCommentId': '',
             'withCategories': False,
@@ -106,7 +104,6 @@ def test_react_rating_anonymous_with_categories(rf, question, comment):
         request.user = user
 
         assert props == {
-            'isReadOnly': True,
             'commentCategoryChoices': {'QUE': 'Question', 'REM': 'Remark'},
             'anchoredCommentId': '',
             'withCategories': True,
@@ -128,7 +125,6 @@ def test_react_rating_user_with_categories(rf, user, phase_factory,
         request.user = user
 
         assert props == {
-            'isReadOnly': False,
             'commentCategoryChoices': {'QUE': 'Question', 'REM': 'Remark'},
             'anchoredCommentId': '',
             'withCategories': True,

@@ -339,15 +339,17 @@ def test_fields(user, apiclient, question_ct, question):
                 'object_pk': question.pk})
     response = apiclient.get(url)
 
-    assert len(response.data) == 4
+    assert len(response.data) == 6
     assert 'count' in response.data
     assert 'next' in response.data
     assert 'previous' in response.data
     assert 'results' in response.data
+    assert 'has_commenting_permission' in response.data
+    assert 'would_have_commenting_permission' in response.data
     assert response.data['count'] == 1
 
     commentDict = response.data['results'][0]
-    assert len(commentDict) == 28
+    assert len(commentDict) == 29
     assert 'child_comments' in commentDict
     assert 'comment' in commentDict
     assert 'comment_categories' in commentDict
