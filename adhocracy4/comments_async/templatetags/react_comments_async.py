@@ -4,7 +4,6 @@ from django import template
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
-from django.urls import reverse
 from django.utils.html import format_html
 
 from adhocracy4.comments.models import Comment
@@ -34,11 +33,6 @@ def react_comments_async(context, obj, with_categories=False):
     comments_contenttype = ContentType.objects.get_for_model(Comment)
     pk = obj.pk
 
-    comments_api_url = reverse('comments-list',
-                               kwargs={'content_type': contenttype.pk,
-                                       'object_pk': obj.pk}
-                               )
-
     with_categories = bool(with_categories)
 
     comment_category_choices = {}
@@ -59,7 +53,6 @@ def react_comments_async(context, obj, with_categories=False):
                       participant/moderator/org_member
     '''
     attributes = {
-        'commentsApiUrl': comments_api_url,
         'comments_contenttype': comments_contenttype.pk,
         'subjectType': contenttype.pk,
         'subjectId': pk,
