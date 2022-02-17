@@ -43,6 +43,7 @@
 
     .general-form {
         padding-top: $spacer;
+        margin-bottom: $spacer * 2;
 
         .row {
             @extend .l-flex-row;
@@ -65,9 +66,13 @@
 
 .a4-comments__filters__parent--closed,
 .a4-comments__filters,
-.a4-comments__action-bar,
 .a4-comments__action-bar-container > .rating {
     margin-top: $spacer;
+}
+
+.a4-comments__action-bar {
+    margin-top: $spacer * 0.5;
+    margin-bottom: $spacer * 1.5;
 }
 
 .a4-comments__moderator {
@@ -110,7 +115,8 @@
     display: none;
 }
 
-.a4-comments__author {
+.a4-comments__author,
+.a4-comments__deleted-author {
     display: inline-block;
     font-weight: bold;
     margin-bottom: 0;
@@ -138,7 +144,7 @@
 
 .a4-comments__text,
 .a4-comments__list {
-    margin-top: $spacer * 1.4;
+    margin-top: $spacer * 0.7;
 }
 
 .a4-comments__char-count,
