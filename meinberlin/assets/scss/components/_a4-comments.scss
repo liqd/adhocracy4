@@ -1,5 +1,5 @@
 .a4-comments__box--user {
-    margin-top: 2 * $spacer;
+    margin-top: 0.75 * $spacer;
 }
 
 .a4-comments__anchor {
@@ -36,15 +36,13 @@
 }
 
 .a4-comments__child--list {
-    margin-left: $spacer;
-
-    .a4-comments__comment {
-        padding-left: $spacer;
+    > .row {
+        padding-left: $spacer * 1.6;
         border-left: 1px solid $brand-primary;
     }
 
     .general-form {
-        margin-top: $spacer;
+        padding-top: $spacer;
 
         .row {
             @extend .l-flex-row;
@@ -140,7 +138,7 @@
 
 .a4-comments__text,
 .a4-comments__list {
-    margin-top: $spacer;
+    margin-top: $spacer * 1.4;
 }
 
 .a4-comments__char-count,
