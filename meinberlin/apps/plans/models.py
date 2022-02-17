@@ -22,13 +22,15 @@ from adhocracy4.projects.models import ProjectContactDetailMixin
 
 class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
 
-    PARTICIPATION_YES = 0
-    PARTICIPATION_NO = 1
-    PARTICIPATION_UNDECIDED = 2
+    PARTICIPATION_INFORMATION = 0
+    PARTICIPATION_CONSULTATION = 1
+    PARTICIPATION_COOPERATION = 2
+    PARTICIPATION_DECISION_MAKING = 3
     PARTICIPATION_CHOICES = (
-        (PARTICIPATION_YES, _('with')),
-        (PARTICIPATION_NO, _('without')),
-        (PARTICIPATION_UNDECIDED, _('undecided')),
+        (PARTICIPATION_INFORMATION, _('information (no participation)')),
+        (PARTICIPATION_CONSULTATION, _('consultation')),
+        (PARTICIPATION_COOPERATION, _('cooperation')),
+        (PARTICIPATION_DECISION_MAKING, _('decision-making')),
     )
 
     STATUS_ONGOING = 0
@@ -145,11 +147,12 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     )
     participation = models.SmallIntegerField(
         choices=PARTICIPATION_CHOICES,
-        verbose_name=_('Participation'),
+        default=PARTICIPATION_INFORMATION,
+        verbose_name=_('Level of participation'),
         help_text=_('In the project overview '
                     'projects can be filtered '
-                    'according to participation '
-                    'status.')
+                    'according to the level of '
+                    'participation.')
     )
     duration = models.CharField(
         blank=True,
