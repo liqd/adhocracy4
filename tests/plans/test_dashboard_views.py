@@ -37,6 +37,7 @@ def test_initiator_can_edit(client, plan_factory):
         'topics': choices[0][0],
         'status': plan.status,
         'participation': plan.participation,
+        'participation_explanation': 'Some explanation',
         'duration': '1 month'
     }
     response = client.post(url, data)
@@ -78,6 +79,7 @@ def test_group_member_can_edit(client, plan_factory, user_factory,
         'topics': choices[0][0],
         'status': plan.status,
         'participation': plan.participation,
+        'participation_explanation': 'Some explanation',
         'duration': '1 month'
     }
     response = client.post(url, data)
@@ -118,6 +120,7 @@ def test_initiator_can_create(client, organisation):
         'topics': choices[0][0],
         'status': 0,
         'participation': 2,
+        'participation_explanation': 'Some explanation',
         'duration': '1 month'
     }
     response = client.post(url, data)
@@ -162,6 +165,7 @@ def test_group_member_can_create(client, organisation, user_factory,
         'topics': choices[0][0],
         'status': 0,
         'participation': 2,
+        'participation_explanation': 'Some explanation',
         'duration': '1 month'
     }
     response = client.post(url, data)

@@ -31,6 +31,7 @@ class PlanForm(forms.ModelForm):
             'topics',
             'status',
             'participation',
+            'participation_explanation',
             'duration',
             'tile_image',
             'tile_image_copyright',
@@ -49,6 +50,7 @@ class PlanForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['district'].empty_label = _('City wide')
         self.fields['contact_address_text'].widget.attrs['rows'] = 6
+        self.fields['participation_explanation'].widget.attrs['rows'] = 1
 
     def save(self, commit=True):
         plan = super().save(commit=False)
