@@ -1069,7 +1069,7 @@ msgstr "Name der Organisation eingeben"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:9
 msgid "Level of participation"
-msgstr ""
+msgstr "Art der Beteiligung"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:10
 msgid "Project status"
