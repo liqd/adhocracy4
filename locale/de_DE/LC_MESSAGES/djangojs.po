@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-18 12:31+0100\n"
+"POT-Creation-Date: 2022-02-18 18:40+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1068,8 +1068,8 @@ msgid "Enter the name of the organisation"
 msgstr "Name der Organisation eingeben"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:9
-msgid "Participation"
-msgstr "Beteiligung"
+msgid "Level of participation"
+msgstr ""
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:10
 msgid "Project status"
@@ -1080,38 +1080,14 @@ msgid "show projects"
 msgstr "Projekte anzeigen"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:13
-msgid "with"
-msgstr "mit"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:14
-msgid "without"
-msgstr "ohne"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:15
-msgid "undecided"
-msgstr "nicht entschieden"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:19
-msgid "with participation"
-msgstr "mit Beteiligung"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:20
-msgid "without participation"
-msgstr "ohne Beteiligung"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:21
-msgid "participation undecided"
-msgstr "Beteiligung nicht entschieden"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:25
 msgid "ongoing"
 msgstr "laufend"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:26
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:14
 msgid "done"
 msgstr "abgeschlossen"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:29
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:17
 msgid "Project overview"
 msgstr "Projektübersicht"
 
@@ -1252,6 +1228,27 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
+
+#~ msgid "Participation"
+#~ msgstr "Beteiligung"
+
+#~ msgid "with"
+#~ msgstr "mit"
+
+#~ msgid "without"
+#~ msgstr "ohne"
+
+#~ msgid "undecided"
+#~ msgstr "nicht entschieden"
+
+#~ msgid "with participation"
+#~ msgstr "mit Beteiligung"
+
+#~ msgid "without participation"
+#~ msgstr "ohne Beteiligung"
+
+#~ msgid "participation undecided"
+#~ msgstr "Beteiligung nicht entschieden"
 
 #~ msgid " in the area of "
 #~ msgstr "und dem Bereich"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-18 12:31+0100\n"
+"POT-Creation-Date: 2022-02-18 18:40+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -566,7 +566,7 @@ msgstr "Nein"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
-#: meinberlin/apps/projects/serializers.py:156
+#: meinberlin/apps/projects/serializers.py:157
 #: meinberlin/apps/projects/views.py:63
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
 msgid "Yes"
@@ -635,7 +635,7 @@ msgid "Project successfully created."
 msgstr "Projekt erfolgreich erstellt."
 
 #: adhocracy4/dashboard/views.py:154
-#: meinberlin/apps/dashboard/views.py:133 meinberlin/apps/plans/views.py:232
+#: meinberlin/apps/dashboard/views.py:133 meinberlin/apps/plans/views.py:239
 msgid "Invalid action"
 msgstr "Ungültige Aktion"
 
@@ -879,43 +879,43 @@ msgstr ""
 
 #: adhocracy4/modules/models.py:197
 #: adhocracy4/projects/models.py:593
-#: meinberlin/apps/projects/serializers.py:216
+#: meinberlin/apps/projects/serializers.py:217
 msgid "day"
 msgstr "Tag"
 
 #: adhocracy4/modules/models.py:197
 #: adhocracy4/projects/models.py:593
-#: meinberlin/apps/projects/serializers.py:216
+#: meinberlin/apps/projects/serializers.py:217
 msgid "days"
 msgstr "Tage"
 
 #: adhocracy4/modules/models.py:198
 #: adhocracy4/projects/models.py:594
-#: meinberlin/apps/projects/serializers.py:217
+#: meinberlin/apps/projects/serializers.py:218
 msgid "hour"
 msgstr "Stunde"
 
 #: adhocracy4/modules/models.py:198
 #: adhocracy4/projects/models.py:594
-#: meinberlin/apps/projects/serializers.py:217
+#: meinberlin/apps/projects/serializers.py:218
 msgid "hours"
 msgstr "Stunden"
 
 #: adhocracy4/modules/models.py:199
 #: adhocracy4/projects/models.py:595
-#: meinberlin/apps/projects/serializers.py:218
+#: meinberlin/apps/projects/serializers.py:219
 msgid "minute"
 msgstr "Minute"
 
 #: adhocracy4/modules/models.py:199
 #: adhocracy4/projects/models.py:595
-#: meinberlin/apps/projects/serializers.py:218
+#: meinberlin/apps/projects/serializers.py:219
 msgid "minutes"
 msgstr "Minuten"
 
 #: adhocracy4/modules/models.py:200
 #: adhocracy4/projects/models.py:596
-#: meinberlin/apps/projects/serializers.py:219
+#: meinberlin/apps/projects/serializers.py:220
 msgid "second"
 msgstr "Sekunde"
 
@@ -923,7 +923,7 @@ msgstr "Sekunde"
 #: adhocracy4/modules/models.py:211
 #: adhocracy4/projects/models.py:596
 #: adhocracy4/projects/models.py:607
-#: meinberlin/apps/projects/serializers.py:219
+#: meinberlin/apps/projects/serializers.py:220
 msgid "seconds"
 msgstr "Sekunden"
 
@@ -2113,7 +2113,7 @@ msgstr[1] "%(counter)s Projekte anzeigen"
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
 #: meinberlin/apps/plans/views.py:87 meinberlin/apps/projects/admin.py:83
 #: meinberlin/apps/projects/forms.py:100
-#: meinberlin/apps/projects/serializers.py:15
+#: meinberlin/apps/projects/serializers.py:16
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
 msgid "City wide"
 msgstr "Gesamtstädtisch"
@@ -3405,17 +3405,17 @@ msgstr "Entscheidung"
 
 #: meinberlin/apps/plans/models.py:40 meinberlin/apps/plans/models.py:201
 #: meinberlin/apps/projectcontainers/serializers.py:29
-#: meinberlin/apps/projects/serializers.py:84
-#: meinberlin/apps/projects/serializers.py:93
-#: meinberlin/apps/projects/serializers.py:248
+#: meinberlin/apps/projects/serializers.py:85
+#: meinberlin/apps/projects/serializers.py:94
+#: meinberlin/apps/projects/serializers.py:249
 msgid "running"
 msgstr "laufend"
 
 #: meinberlin/apps/plans/models.py:41
 #: meinberlin/apps/projectcontainers/serializers.py:33
-#: meinberlin/apps/projects/serializers.py:88
-#: meinberlin/apps/projects/serializers.py:105
-#: meinberlin/apps/projects/serializers.py:308
+#: meinberlin/apps/projects/serializers.py:89
+#: meinberlin/apps/projects/serializers.py:106
+#: meinberlin/apps/projects/serializers.py:309
 msgid "done"
 msgstr "abgeschlossen"
 
@@ -3568,7 +3568,7 @@ msgstr ""
 "des Vorhabens."
 
 #: meinberlin/apps/plans/models.py:208
-#: meinberlin/apps/projects/serializers.py:97
+#: meinberlin/apps/projects/serializers.py:98
 msgid "starts at {}"
 msgstr "startet am {}"
 
@@ -3748,31 +3748,31 @@ msgstr ""
 "Es wurde noch kein Vorhaben angelegt, dies können Sie <a href="
 "\"%(plan_create_url)s\">hier</a> tun."
 
-#: meinberlin/apps/plans/views.py:164
+#: meinberlin/apps/plans/views.py:171
 msgid "The plan was created"
 msgstr "Das Vorhaben wurde angelegt"
 
-#: meinberlin/apps/plans/views.py:189
+#: meinberlin/apps/plans/views.py:196
 msgid "The plan has been updated"
 msgstr "Das Vorhaben wurde aktualisiert"
 
-#: meinberlin/apps/plans/views.py:198
+#: meinberlin/apps/plans/views.py:205
 msgid "The plan has been deleted"
 msgstr "Das Vorhaben wurde gelöscht"
 
-#: meinberlin/apps/plans/views.py:242
+#: meinberlin/apps/plans/views.py:249
 msgid "The plan is already published"
 msgstr "Das Vorhaben wurde bereits veröffentlicht"
 
-#: meinberlin/apps/plans/views.py:249
+#: meinberlin/apps/plans/views.py:256
 msgid "The plan is published."
 msgstr "Das Vorhaben wurde veröffentlicht."
 
-#: meinberlin/apps/plans/views.py:254
+#: meinberlin/apps/plans/views.py:261
 msgid "The plan is already unpublished"
 msgstr "Das Vorhaben wurde bereits depubliziert."
 
-#: meinberlin/apps/plans/views.py:261
+#: meinberlin/apps/plans/views.py:268
 msgid "The plan is unpublished."
 msgstr "Das Vorhaben wurde depubliziert."
 
@@ -3836,9 +3836,9 @@ msgid "Description of your container"
 msgstr "Beschreibung Ihrer Projektsammlung"
 
 #: meinberlin/apps/projectcontainers/serializers.py:31
-#: meinberlin/apps/projects/serializers.py:86
-#: meinberlin/apps/projects/serializers.py:102
-#: meinberlin/apps/projects/serializers.py:279
+#: meinberlin/apps/projects/serializers.py:87
+#: meinberlin/apps/projects/serializers.py:103
+#: meinberlin/apps/projects/serializers.py:280
 msgid "starts in the future"
 msgstr "startet in der Zukunft"
 

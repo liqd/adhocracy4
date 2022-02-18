@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-18 12:31+0100\n"
+"POT-Creation-Date: 2022-02-18 18:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -941,8 +941,8 @@ msgid "Enter the name of the organisation"
 msgstr "Enter the name of the organisation"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:9
-msgid "Participation"
-msgstr "Participation"
+msgid "Level of participation"
+msgstr "Level of participation"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:10
 msgid "Project status"
@@ -953,38 +953,14 @@ msgid "show projects"
 msgstr "show projects"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:13
-msgid "with"
-msgstr "with"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:14
-msgid "without"
-msgstr "without"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:15
-msgid "undecided"
-msgstr "undecided"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:19
-msgid "with participation"
-msgstr "with participation"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:20
-msgid "without participation"
-msgstr "without participation"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:21
-msgid "participation undecided"
-msgstr "participation undecided"
-
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:25
 msgid "ongoing"
 msgstr "ongoing"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:26
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:14
 msgid "done"
 msgstr "done"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:29
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:17
 msgid "Project overview"
 msgstr "Project overview"
 
@@ -1118,6 +1094,27 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#~ msgid "Participation"
+#~ msgstr "Participation"
+
+#~ msgid "with"
+#~ msgstr "with"
+
+#~ msgid "without"
+#~ msgstr "without"
+
+#~ msgid "undecided"
+#~ msgstr "undecided"
+
+#~ msgid "with participation"
+#~ msgstr "with participation"
+
+#~ msgid "without participation"
+#~ msgstr "without participation"
+
+#~ msgid "participation undecided"
+#~ msgstr "participation undecided"
 
 #~ msgid " in the area of "
 #~ msgstr " in the area of "
