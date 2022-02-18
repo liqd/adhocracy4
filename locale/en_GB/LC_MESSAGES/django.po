@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 11:06+0100\n"
+"POT-Creation-Date: 2022-02-18 12:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1115,7 +1115,7 @@ msgid "Access to the project"
 msgstr "Access to the project"
 
 #: adhocracy4/projects/models.py:228 adhocracy4/projects/models.py:235
-#: meinberlin/apps/plans/models.py:107
+#: meinberlin/apps/plans/models.py:109
 msgid "Header image"
 msgstr "Header image"
 
@@ -1124,11 +1124,11 @@ msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
 #: adhocracy4/projects/models.py:238 adhocracy4/projects/models.py:246
-#: meinberlin/apps/plans/models.py:122
+#: meinberlin/apps/plans/models.py:124
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:240 meinberlin/apps/plans/models.py:124
+#: adhocracy4/projects/models.py:240 meinberlin/apps/plans/models.py:126
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
@@ -2678,7 +2678,7 @@ msgstr "Your Idea has been deleted"
 
 #: meinberlin/apps/initiators/forms.py:11
 #: meinberlin/apps/newsletters/forms.py:40
-#: meinberlin/apps/newsletters/forms.py:81 meinberlin/apps/plans/models.py:53
+#: meinberlin/apps/newsletters/forms.py:81 meinberlin/apps/plans/models.py:55
 #: meinberlin/apps/projects/views.py:45
 #: meinberlin/templates/a4dashboard/base_dashboard.html:55
 msgid "Organisation"
@@ -3235,19 +3235,23 @@ msgstr "Modified"
 msgid "Please locate the plan on the map."
 msgstr "Please locate the plan on the map."
 
-#: meinberlin/apps/plans/models.py:29
-msgid "with"
-msgstr "with"
-
 #: meinberlin/apps/plans/models.py:30
-msgid "without"
-msgstr "without"
+msgid "information (no participation)"
+msgstr "information (no participation)"
 
 #: meinberlin/apps/plans/models.py:31
-msgid "undecided"
-msgstr "undecided"
+msgid "consultation"
+msgstr "consultation"
 
-#: meinberlin/apps/plans/models.py:38 meinberlin/apps/plans/models.py:198
+#: meinberlin/apps/plans/models.py:32
+msgid "cooperation"
+msgstr "cooperation"
+
+#: meinberlin/apps/plans/models.py:33
+msgid "decision-making"
+msgstr "decision-making"
+
+#: meinberlin/apps/plans/models.py:40 meinberlin/apps/plans/models.py:201
 #: meinberlin/apps/projectcontainers/serializers.py:29
 #: meinberlin/apps/projects/serializers.py:84
 #: meinberlin/apps/projects/serializers.py:93
@@ -3255,7 +3259,7 @@ msgstr "undecided"
 msgid "running"
 msgstr "running"
 
-#: meinberlin/apps/plans/models.py:39
+#: meinberlin/apps/plans/models.py:41
 #: meinberlin/apps/projectcontainers/serializers.py:33
 #: meinberlin/apps/projects/serializers.py:88
 #: meinberlin/apps/projects/serializers.py:105
@@ -3263,11 +3267,11 @@ msgstr "running"
 msgid "done"
 msgstr "done"
 
-#: meinberlin/apps/plans/models.py:44
+#: meinberlin/apps/plans/models.py:46
 msgid "Title of your plan"
 msgstr "Title of your plan"
 
-#: meinberlin/apps/plans/models.py:45
+#: meinberlin/apps/plans/models.py:47
 msgid ""
 "Enter a meaningful title with a maximum length of 120 characters. The title "
 "will appear in the project tile and on top of the plan detail page."
@@ -3275,11 +3279,11 @@ msgstr ""
 "Enter a meaningful title with a maximum length of 120 characters. The title "
 "will appear in the project tile and on top of the plan detail page."
 
-#: meinberlin/apps/plans/models.py:66
+#: meinberlin/apps/plans/models.py:68
 msgid "Can your plan be located on the map?"
 msgstr "Can your plan be located on the map?"
 
-#: meinberlin/apps/plans/models.py:67
+#: meinberlin/apps/plans/models.py:69
 msgid ""
 "If you locate your plan, it will be shown on the map in the project overview "
 "in addition to the list. To set a pin, click inside the highlighted area or "
@@ -3289,11 +3293,11 @@ msgstr ""
 "in addition to the list. To set a pin, click inside the highlighted area or "
 "enter an address. Once a pin is set you can move it by dragging it."
 
-#: meinberlin/apps/plans/models.py:77
+#: meinberlin/apps/plans/models.py:79
 msgid "Name of the site"
 msgstr "Name of the site"
 
-#: meinberlin/apps/plans/models.py:78
+#: meinberlin/apps/plans/models.py:80
 msgid ""
 "The name of the site (e.g. name of street, building or park) makes it easier "
 "to locate the plan. The maximum length is 255 characters."
@@ -3301,11 +3305,11 @@ msgstr ""
 "The name of the site (e.g. name of street, building or park) makes it easier "
 "to locate the plan. The maximum length is 255 characters."
 
-#: meinberlin/apps/plans/models.py:84 meinberlin/apps/projects/views.py:49
+#: meinberlin/apps/plans/models.py:86 meinberlin/apps/projects/views.py:49
 msgid "District"
 msgstr "District"
 
-#: meinberlin/apps/plans/models.py:85
+#: meinberlin/apps/plans/models.py:87
 msgid ""
 "Enter the district in which the plan is located or whether it is a city-wide "
 "plan. In the project overview projects can be filtered by district."
@@ -3313,12 +3317,12 @@ msgstr ""
 "Enter the district in which the plan is located or whether it is a city-wide "
 "plan. In the project overview projects can be filtered by district."
 
-#: meinberlin/apps/plans/models.py:94
+#: meinberlin/apps/plans/models.py:96
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:78
 msgid "Cost"
 msgstr "Cost"
 
-#: meinberlin/apps/plans/models.py:95
+#: meinberlin/apps/plans/models.py:97
 msgid ""
 "Enter details of the estimated or actual costs of the plan in no more than "
 "255 characters."
@@ -3326,11 +3330,11 @@ msgstr ""
 "Enter details of the estimated or actual costs of the plan in no more than "
 "255 characters."
 
-#: meinberlin/apps/plans/models.py:100
+#: meinberlin/apps/plans/models.py:102
 msgid "Description of your plan"
 msgstr "Description of your plan"
 
-#: meinberlin/apps/plans/models.py:101
+#: meinberlin/apps/plans/models.py:103
 msgid ""
 "Describe the key points of your plan. You can upload PDFs and images, embed "
 "videos and link to external URLs, among other things."
@@ -3338,34 +3342,34 @@ msgstr ""
 "Describe the key points of your plan. You can upload PDFs and images, embed "
 "videos and link to external URLs, among other things."
 
-#: meinberlin/apps/plans/models.py:111
+#: meinberlin/apps/plans/models.py:113
 msgid "Visualize your plan with an image underneath the description."
 msgstr "Visualize your plan with an image underneath the description."
 
-#: meinberlin/apps/plans/models.py:115
+#: meinberlin/apps/plans/models.py:117
 msgid "Header image copyright"
 msgstr "Header image copyright"
 
-#: meinberlin/apps/plans/models.py:118
+#: meinberlin/apps/plans/models.py:120
 msgid "The name is displayed in the header image."
 msgstr "The name is displayed in the header image."
 
-#: meinberlin/apps/plans/models.py:130
+#: meinberlin/apps/plans/models.py:132
 msgid "Tile image copyright"
 msgstr "Tile image copyright"
 
-#: meinberlin/apps/plans/models.py:131
+#: meinberlin/apps/plans/models.py:133
 msgid "The name is displayed in the tile image."
 msgstr "The name is displayed in the tile image."
 
-#: meinberlin/apps/plans/models.py:134 meinberlin/apps/projects/dashboard.py:57
+#: meinberlin/apps/plans/models.py:136 meinberlin/apps/projects/dashboard.py:57
 #: meinberlin/apps/topicprio/dashboard.py:15
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:4
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:9
 msgid "Topics"
 msgstr "Topics"
 
-#: meinberlin/apps/plans/models.py:135
+#: meinberlin/apps/plans/models.py:137
 msgid ""
 "Assign your plan to 1 or 2 topics. In the project overview projects can be "
 "filtered according to topics."
@@ -3373,35 +3377,32 @@ msgstr ""
 "Assign your plan to 1 or 2 topics. In the project overview projects can be "
 "filtered according to topics."
 
-#: meinberlin/apps/plans/models.py:142
+#: meinberlin/apps/plans/models.py:144
 msgid "Status"
 msgstr "Status"
 
-#: meinberlin/apps/plans/models.py:143
+#: meinberlin/apps/plans/models.py:145
 msgid "In the project overview projects can be filtered by status."
 msgstr "In the project overview projects can be filtered by status."
 
-#: meinberlin/apps/plans/models.py:148
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:83
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:97
-msgid "Participation"
-msgstr "Participation"
+#: meinberlin/apps/plans/models.py:151
+msgid "Level of participation"
+msgstr "Level of participation"
 
-#: meinberlin/apps/plans/models.py:149
+#: meinberlin/apps/plans/models.py:152
 msgid ""
-"In the project overview projects can be filtered according to participation "
-"status."
+"In the project overview projects can be filtered according to the level of "
+"participation."
 msgstr ""
-"In the project overview projects can be filtered according to participation "
-"status."
+"In the project overview projects can be filtered according to the level of "
+"participation."
 
-#: meinberlin/apps/plans/models.py:158
+#: meinberlin/apps/plans/models.py:161
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:72
 msgid "Duration"
 msgstr "Duration"
 
-#: meinberlin/apps/plans/models.py:159
+#: meinberlin/apps/plans/models.py:162
 msgid ""
 "Provide information on the expected duration of the plan in no more than 255 "
 "characters."
@@ -3409,7 +3410,7 @@ msgstr ""
 "Provide information on the expected duration of the plan in no more than 255 "
 "characters."
 
-#: meinberlin/apps/plans/models.py:205
+#: meinberlin/apps/plans/models.py:208
 #: meinberlin/apps/projects/serializers.py:97
 msgid "starts at {}"
 msgstr "starts at {}"
@@ -3517,6 +3518,12 @@ msgstr "Location"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:65
 msgid "Topic"
 msgstr "Topic"
+
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:83
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:97
+msgid "Participation"
+msgstr "Participation"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:88
 msgid "see participation plans"
@@ -4954,6 +4961,22 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "with"
+#~ msgstr "with"
+
+#~ msgid "without"
+#~ msgstr "without"
+
+#~ msgid "undecided"
+#~ msgstr "undecided"
+
+#~ msgid ""
+#~ "In the project overview projects can be filtered according to "
+#~ "participation status."
+#~ msgstr ""
+#~ "In the project overview projects can be filtered according to "
+#~ "participation status."
 
 #~ msgid "No token given."
 #~ msgstr "No token given."
