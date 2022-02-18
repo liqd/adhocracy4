@@ -18,7 +18,7 @@ class ProjectContainerSerializer(ProjectSerializer):
                   'status',
                   'participation_string',
                   'participation_active',
-                  'participation', 'participation_display', 'description',
+                  'participation', 'description',
                   'future_phase', 'active_phase',
                   'past_phase', 'plan_url', 'plan_title',
                   'published_projects_count', 'created_or_modified']

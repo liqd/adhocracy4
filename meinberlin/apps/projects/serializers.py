@@ -46,7 +46,6 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     status = serializers.SerializerMethodField()
     organisation = serializers.SerializerMethodField()
     participation = serializers.SerializerMethodField()
-    participation_display = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
     future_phase = serializers.SerializerMethodField()
@@ -73,7 +72,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'status',
                   'participation_string',
                   'participation_active',
-                  'participation', 'participation_display', 'description',
+                  'participation', 'description',
                   'future_phase', 'active_phase',
                   'past_phase', 'plan_url', 'plan_title',
                   'published_projects_count', 'created_or_modified']
@@ -152,9 +151,6 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
     def get_participation(self, instance):
         return Plan.PARTICIPATION_CONSULTATION
-
-    def get_participation_display(self, instance):
-        return _('Yes')
 
     def get_future_phase(self, instance):
         if (instance.future_modules and
