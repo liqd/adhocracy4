@@ -1,6 +1,7 @@
 import pytest
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
+from django.utils import translation
 from rest_framework import status
 
 from adhocracy4.test.helpers import freeze_phase
@@ -307,12 +308,13 @@ def test_voting_phase_active_no_token(
     data = {'object_id': proposal.pk}
 
     with freeze_phase(phase):
-        assert apiclient.login(username=admin.email, password='password')
-        response = apiclient.post(url, data, format='json')
-        assert response.status_code == status.HTTP_403_FORBIDDEN
-        assert 'No token given or token not valid for module.' in \
-               response.content.decode()
-        assert TokenVote.objects.all().count() == 0
+        with translation.override('en_GB'):
+            assert apiclient.login(username=admin.email, password='password')
+            response = apiclient.post(url, data, format='json')
+            assert response.status_code == status.HTTP_403_FORBIDDEN
+            assert 'No token given or token not valid for module.' in \
+                   response.content.decode()
+            assert TokenVote.objects.all().count() == 0
 
 
 @pytest.mark.django_db
@@ -340,12 +342,13 @@ def test_voting_phase_active_token_wrong_module(
     add_token_to_session(apiclient, token)
 
     with freeze_phase(phase):
-        assert apiclient.login(username=admin.email, password='password')
-        response = apiclient.post(url, data, format='json')
-        assert response.status_code == status.HTTP_403_FORBIDDEN
-        assert 'No token given or token not valid for module.' in \
-               response.content.decode()
-        assert TokenVote.objects.all().count() == 0
+        with translation.override('en_GB'):
+            assert apiclient.login(username=admin.email, password='password')
+            response = apiclient.post(url, data, format='json')
+            assert response.status_code == status.HTTP_403_FORBIDDEN
+            assert 'No token given or token not valid for module.' in \
+                   response.content.decode()
+            assert TokenVote.objects.all().count() == 0
 
 
 @pytest.mark.django_db
@@ -371,11 +374,12 @@ def test_voting_phase_active_token_inactive(
     add_token_to_session(apiclient, token)
 
     with freeze_phase(phase):
-        assert apiclient.login(username=admin.email, password='password')
-        response = apiclient.post(url, data, format='json')
-        assert response.status_code == status.HTTP_403_FORBIDDEN
-        assert 'Token is inactive.' in response.content.decode()
-        assert TokenVote.objects.all().count() == 0
+        with translation.override('en_GB'):
+            assert apiclient.login(username=admin.email, password='password')
+            response = apiclient.post(url, data, format='json')
+            assert response.status_code == status.HTTP_403_FORBIDDEN
+            assert 'Token is inactive.' in response.content.decode()
+            assert TokenVote.objects.all().count() == 0
 
 
 @pytest.mark.django_db
@@ -815,11 +819,12 @@ def test_voting_phase_active_no_token_cannot_delete(
     assert TokenVote.objects.all().count() == 1
 
     with freeze_phase(phase):
-        assert apiclient.login(username=admin.email, password='password')
-        response = apiclient.delete(url, format='json')
-        assert response.status_code == status.HTTP_403_FORBIDDEN
-        assert 'No token given or token not valid for module.' in \
-               response.content.decode()
+        with translation.override('en_GB'):
+            assert apiclient.login(username=admin.email, password='password')
+            response = apiclient.delete(url, format='json')
+            assert response.status_code == status.HTTP_403_FORBIDDEN
+            assert 'No token given or token not valid for module.' in \
+                   response.content.decode()
 
     assert TokenVote.objects.all().count() == 1
 
@@ -889,9 +894,10 @@ def test_voting_phase_active_token_inactive_cannot_delete(
     assert TokenVote.objects.all().count() == 1
 
     with freeze_phase(phase):
-        assert apiclient.login(username=admin.email, password='password')
-        response = apiclient.delete(url, format='json')
-        assert response.status_code == status.HTTP_403_FORBIDDEN
-        assert 'Token is inactive.' in response.content.decode()
+        with translation.override('en_GB'):
+            assert apiclient.login(username=admin.email, password='password')
+            response = apiclient.delete(url, format='json')
+            assert response.status_code == status.HTTP_403_FORBIDDEN
+            assert 'Token is inactive.' in response.content.decode()
 
     assert TokenVote.objects.all().count() == 1

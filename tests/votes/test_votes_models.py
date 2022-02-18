@@ -1,5 +1,6 @@
 import pytest
 from django.core.exceptions import ValidationError
+from django.utils import translation
 
 from meinberlin.apps.votes.models import TokenVote
 
@@ -29,14 +30,16 @@ def test_token_vote_save(module_factory, proposal_factory,
     with pytest.raises(ValidationError) as error:
         TokenVote.objects.create(content_object=proposal,
                                  token=other_token)
-    assert error.value.messages[0] == \
-           'This token is not valid for this project.'
+    with translation.override('en_GB'):
+        assert error.value.messages[0] == \
+               'This token is not valid for this project.'
     assert TokenVote.objects.all().count() == 0
 
     with pytest.raises(ValidationError) as error:
         TokenVote.objects.create(content_object=proposal,
                                  token=token)
-    assert error.value.messages[0] == 'This token is not active.'
+    with translation.override('en_GB'):
+        assert error.value.messages[0] == 'This token is not active.'
     assert TokenVote.objects.all().count() == 0
 
     token.is_active = True
@@ -56,5 +59,6 @@ def test_token_vote_save(module_factory, proposal_factory,
     with pytest.raises(ValidationError) as error:
         TokenVote.objects.create(content_object=proposal_tmp,
                                  token=token)
-    assert error.value.messages[0] == 'This token has no votes left.'
+    with translation.override('en_GB'):
+        assert error.value.messages[0] == 'This token has no votes left.'
     assert TokenVote.objects.all().count() == 5
