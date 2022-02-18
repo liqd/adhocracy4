@@ -7,6 +7,7 @@ from rest_framework import serializers
 
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
+from meinberlin.apps.plans.models import Plan
 
 
 class CommonFields:
@@ -150,7 +151,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return 1
 
     def get_participation(self, instance):
-        return 0
+        return Plan.PARTICIPATION_CONSULTATION
 
     def get_participation_display(self, instance):
         return _('Yes')
