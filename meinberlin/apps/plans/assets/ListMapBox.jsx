@@ -9,18 +9,6 @@ import Toggles from './Toggles'
 const breakpointXS = 512
 const breakpointMD = 1024
 
-const participationNames = [
-  django.gettext('with'),
-  django.gettext('without'),
-  django.gettext('undecided')
-]
-
-const participationButtonNames = [
-  django.gettext('with participation'),
-  django.gettext('without participation'),
-  django.gettext('participation undecided')
-]
-
 const statusNames = [
   django.gettext('ongoing'),
   django.gettext('done')
@@ -51,7 +39,7 @@ class ListMapBox extends Component {
       filterChanged: false,
       filterOpen: false,
       status: 0,
-      participation: 0,
+      participation: -1,
       district: props.selectedDistrict,
       topic: props.selectedTopic,
       organisation: '-1',
@@ -342,7 +330,7 @@ class ListMapBox extends Component {
           statusString={statusNames[this.state.status]}
           statusSelected={this.state.status !== -1}
           changeStatusSelection={this.selectStatus.bind(this)}
-          participationString={participationButtonNames[this.state.participation]}
+          participationString={this.props.participationChoices[this.state.participation]}
           participationSelected={this.state.participation !== -1}
           changeParticipationSelection={this.selectParticipation.bind(this)}
           isSlider={isSlider}
@@ -372,7 +360,7 @@ class ListMapBox extends Component {
           topic={this.state.topic}
           topicChoices={this.props.topicChoices}
           participation={this.state.participation}
-          participationNames={participationNames}
+          participationNames={this.props.participationChoices}
           status={this.state.status}
           statusNames={statusNames}
           organisation={this.state.organisation}

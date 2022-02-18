@@ -99,6 +99,11 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         else:
             raise ImproperlyConfigured('set A4_PROJECT_TOPICS in settings')
 
+    def get_participation_choices(self):
+        choices = [str(choice[1]) for choice
+                   in Plan.participation.field.choices]
+        return json.dumps(choices)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -133,6 +138,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         context['bounds'] = json.dumps(settings.A4_MAP_BOUNDING_BOX)
         context['district'] = self.request.GET.get('district', -1)
         context['topic'] = self.request.GET.get('topic', -1)
+        context['participation_choices'] = self.get_participation_choices()
+
         return context
 
 

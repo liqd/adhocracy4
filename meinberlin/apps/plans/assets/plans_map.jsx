@@ -22,6 +22,7 @@ function init () {
     const mapboxToken = element.getAttribute('data-mapbox-token')
     const omtToken = element.getAttribute('data-omt-token')
     const useVectorMap = element.getAttribute('data-use_vector_map')
+    const participationChoices = JSON.parse(element.getAttribute('data-participation-choices'))
     ReactDOM.render(
       <CookiesProvider>
         <ListMapBox
@@ -42,6 +43,7 @@ function init () {
           districts={districts}
           districtnames={districtnames}
           topicChoices={topicChoices}
+          participationChoices={participationChoices}
         />
       </CookiesProvider>,
       element)

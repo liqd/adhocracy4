@@ -6,7 +6,7 @@ const React = require('react')
 const searchTitleStr = django.gettext('Search title')
 const orgaStr = django.gettext('Organisation')
 const enterOrgaNameStr = django.gettext('Enter the name of the organisation')
-const participationStr = django.gettext('Participation')
+const participationStr = django.gettext('Level of participation')
 const projectStatStr = django.gettext('Project status')
 const showProjectsStr = django.gettext('show projects')
 
