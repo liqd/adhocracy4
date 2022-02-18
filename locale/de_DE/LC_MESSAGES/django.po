@@ -3389,19 +3389,19 @@ msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
 
 #: meinberlin/apps/plans/models.py:30
 msgid "information (no participation)"
-msgstr ""
+msgstr "Information (ohne Beteiligung)"
 
 #: meinberlin/apps/plans/models.py:31
 msgid "consultation"
-msgstr ""
+msgstr "Mitwirkung"
 
 #: meinberlin/apps/plans/models.py:32
 msgid "cooperation"
-msgstr ""
+msgstr "Mitentscheidung"
 
 #: meinberlin/apps/plans/models.py:33
 msgid "decision-making"
-msgstr ""
+msgstr "Entscheidung"
 
 #: meinberlin/apps/plans/models.py:40 meinberlin/apps/plans/models.py:201
 #: meinberlin/apps/projectcontainers/serializers.py:29
@@ -3544,13 +3544,15 @@ msgstr "In der Projektübersicht können Projekte nach Status gefiltert werden."
 
 #: meinberlin/apps/plans/models.py:151
 msgid "Level of participation"
-msgstr ""
+msgstr "Art der Beteiligung"
 
 #: meinberlin/apps/plans/models.py:152
 msgid ""
 "In the project overview projects can be filtered according to the level of "
 "participation."
 msgstr ""
+"In der Projektübersicht können Projekte nach Art der Beteiligung gefiltert "
+"werden."
 
 #: meinberlin/apps/plans/models.py:161
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:72
