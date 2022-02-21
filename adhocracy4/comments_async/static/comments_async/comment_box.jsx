@@ -21,7 +21,6 @@ const sorts = {
 }
 
 const translated = {
-  writeContrib: django.gettext('Write contribution'),
   showFilters: django.gettext('Show filters'),
   filters: django.gettext('Filters'),
   hideFilters: django.gettext('Hide filters'),
@@ -516,7 +515,6 @@ export default class CommentBox extends React.Component {
             subjectType={this.props.subjectType}
             subjectId={this.props.subjectId}
             onCommentSubmit={this.handleCommentSubmit}
-            placeholder={translated.writeContrib}
             rows="5" isReadOnly={this.props.isReadOnly}
             error={this.state.error}
             errorMessage={this.state.errorMessage}
