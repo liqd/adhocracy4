@@ -156,6 +156,7 @@ export default class Comment extends React.Component {
             handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
             rows="5"
             handleCancel={this.toggleEdit.bind(this)}
+            parentIndex={this.props.parentIndex}
             onCommentSubmit={newComment => {
               this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
                 .then(() => {
@@ -181,6 +182,7 @@ export default class Comment extends React.Component {
             handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
             rows="5"
             handleCancel={this.toggleEdit.bind(this)}
+            parentIndex={this.props.parentIndex}
             onCommentSubmit={newComment => {
               this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
                 .then(() => {

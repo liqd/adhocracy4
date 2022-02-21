@@ -6,7 +6,8 @@ import Alert from '../../../static/Alert'
 import CategoryList from './category_list'
 
 const translated = {
-  writeContrib: django.gettext('Write contribution'),
+  yourComment: django.gettext('Your comment'),
+  yourReply: django.gettext('Your reply'),
   saveChanges: django.gettext('save changes'),
   cancel: django.gettext('cancel')
 }
@@ -61,6 +62,7 @@ export default class CommentCategoryEditForm extends React.Component {
   }
 
   render () {
+    const hasParent = this.props.parentIndex !== undefined
     return (
       <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
         {this.props.error &&
@@ -74,7 +76,7 @@ export default class CommentCategoryEditForm extends React.Component {
         <div className="form-group">
           <textarea
             rows={this.props.rows} className="a4-comments__textarea form-group"
-            placeholder={translated.writeContrib}
+            placeholder={hasParent ? translated.yourReply : translated.yourComment}
             onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment}
           />
         </div>

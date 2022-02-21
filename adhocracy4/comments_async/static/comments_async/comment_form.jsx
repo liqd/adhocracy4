@@ -8,7 +8,8 @@ import * as config from '../../../static/config'
 import Alert from '../../../static/Alert'
 
 const translated = {
-  writeContrib: django.gettext('Write contribution'),
+  yourComment: django.gettext('Your comment'),
+  yourReply: django.gettext('Your reply'),
   characters: django.gettext(' characters'),
   post: django.gettext('post'),
   comment: django.gettext('Comment'),
@@ -86,6 +87,7 @@ export default class CommentForm extends React.Component {
 
   render () {
     const textareaStyle = { height: (this.state.textareaHeight) + 'px' }
+    const hasParent = this.props.parentIndex !== undefined
 
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
@@ -103,7 +105,7 @@ export default class CommentForm extends React.Component {
             <textarea
               id="textarea-top"
               className={this.props.commentCategoryChoices ? 'a4-comments__textarea--small form-group' : 'a4-comments__textarea--big form-group'}
-              placeholder={translated.writeContrib}
+              placeholder={hasParent ? translated.yourReply : translated.yourComment}
               onChange={this.handleTextChange.bind(this)}
               required="required"
               value={this.state.comment}
