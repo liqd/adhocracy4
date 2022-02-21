@@ -31,13 +31,13 @@ const translated = {
 function getAnswerForm (hide, number) {
   let result
   if (hide) {
-    result = django.gettext('hide comments')
+    result = django.gettext('hide replies')
   } else {
     if (number > 0) {
-      const tmp = django.ngettext('1 comment', '%s comments', number)
+      const tmp = django.ngettext('1 reply', '%s replies', number)
       result = django.interpolate(tmp, [number])
     } else {
-      result = django.pgettext('verb', 'Comment')
+      result = django.pgettext('verb', 'Reply')
     }
   }
   return result
