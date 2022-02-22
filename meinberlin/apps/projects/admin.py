@@ -38,7 +38,7 @@ class ProjectAdminForm(forms.ModelForm):
 class ProjectAdmin(admin.ModelAdmin):
     form = ProjectAdminForm
     list_display = (
-        '__str__', 'organisation', 'is_draft', 'is_archived',
+        '__str__', 'slug', 'organisation', 'is_draft', 'is_archived',
         'project_type', 'created'
     )
     list_filter = ('is_draft', 'is_archived', 'organisation')
@@ -53,7 +53,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'organisation', 'group')
+            'fields': ('name', 'slug', 'organisation', 'group')
         }),
         (_('Topic and location'), {
             'fields': ('topics', 'point', 'administrative_district'),
