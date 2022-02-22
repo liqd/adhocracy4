@@ -45,7 +45,6 @@ export default function (props) {
               negativeRatings={comment.ratings.negative_ratings}
               userRating={comment.ratings.current_user_rating_value}
               userRatingId={comment.ratings.current_user_rating_id}
-              isContextMember={props.isContextMember}
               replyError={comment.replyError}
               errorMessage={comment.errorMessage}
               onReplyErrorClick={props.onReplyErrorClick}
@@ -57,6 +56,7 @@ export default function (props) {
               anchoredCommentParentId={props.anchoredCommentParentId}
               hasCommentingPermission={props.hasCommentingPermission}
               wouldHaveCommentingPermission={props.wouldHaveCommentingPermission}
+              projectIsPublic={props.projectIsPublic}
             >{comment.comment}
             </Comment>
           )

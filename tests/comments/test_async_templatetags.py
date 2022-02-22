@@ -47,7 +47,6 @@ def test_react_rating_anonymous(rf, question, comment):
             'commentCategoryChoices': {},
             'anchoredCommentId': '',
             'withCategories': False,
-            'isContextMember': True,
         }
 
 
@@ -66,7 +65,6 @@ def test_react_rating_user(rf, user, phase_factory, question_factory,
             'commentCategoryChoices': {},
             'anchoredCommentId': '',
             'withCategories': False,
-            'isContextMember': True,
         }
 
 
@@ -107,7 +105,6 @@ def test_react_rating_anonymous_with_categories(rf, question, comment):
             'commentCategoryChoices': {'QUE': 'Question', 'REM': 'Remark'},
             'anchoredCommentId': '',
             'withCategories': True,
-            'isContextMember': True,
         }
 
 
@@ -128,5 +125,4 @@ def test_react_rating_user_with_categories(rf, user, phase_factory,
             'commentCategoryChoices': {'QUE': 'Question', 'REM': 'Remark'},
             'anchoredCommentId': '',
             'withCategories': True,
-            'isContextMember': True,
         }

@@ -102,7 +102,8 @@ export default class CommentBox extends React.Component {
                 commentCount: data.count,
                 anchoredCommentParentId: data.comment_parent,
                 hasCommentingPermission: data.has_commenting_permission,
-                wouldHaveCommentingPermission: data.would_have_commenting_permission
+                wouldHaveCommentingPermission: data.would_have_commenting_permission,
+                projectIsPublic: data.project_is_public
               }
             )
             if (this.anchoredCommentFound()) {
@@ -127,7 +128,8 @@ export default class CommentBox extends React.Component {
                 commentCount: data.count,
                 loading: false,
                 hasCommentingPermission: data.has_commenting_permission,
-                wouldHaveCommentingPermission: data.would_have_commenting_permission
+                wouldHaveCommentingPermission: data.would_have_commenting_permission,
+                projectIsPublic: data.project_is_public
               }
             )
           }
@@ -517,9 +519,9 @@ export default class CommentBox extends React.Component {
             handleErrorClick={this.hideNewError}
             commentCategoryChoices={this.commentCategoryChoices()}
             withCategories={this.props.withCategories}
-            isContextMember={this.props.isContextMember}
             hasCommentingPermission={this.state.hasCommentingPermission}
             wouldHaveCommentingPermission={this.state.wouldHaveCommentingPermission}
+            projectIsPublic={this.state.projectIsPublic}
           />
         </div>
 
@@ -586,13 +588,13 @@ export default class CommentBox extends React.Component {
               onCommentDelete={this.handleCommentDelete}
               onCommentSubmit={this.handleCommentSubmit}
               onCommentModify={this.handleCommentModify}
-              isContextMember={this.props.isContextMember}
               commentCategoryChoices={this.commentCategoryChoices()}
               onReplyErrorClick={this.handleHideReplyError}
               onEditErrorClick={this.handleHideEditError}
               withCategories={this.props.withCategories}
               hasCommentingPermission={this.state.hasCommentingPermission}
               wouldHaveCommentingPermission={this.state.wouldHaveCommentingPermission}
+              projectIsPublic={this.state.projectIsPublic}
             />
           </div>
         </div>

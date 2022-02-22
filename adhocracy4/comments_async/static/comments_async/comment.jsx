@@ -422,7 +422,7 @@ export default class Comment extends React.Component {
                       autoFocus
                       hasCommentingPermission={this.props.hasCommentingPermission}
                       wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
-                      isContextMember={this.props.isContextMember}
+                      projectIsPublic={this.props.projectIsPublic}
                     />
                   </div>
                 </div>
