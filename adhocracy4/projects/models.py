@@ -173,7 +173,7 @@ class Project(ProjectContactDetailMixin,
               base.TimeStampedModel,
               ModuleClusterPropertiesMixin,
               TimelinePropertiesMixin):
-    slug = AutoSlugField(populate_from='name', unique=True)
+    slug = AutoSlugField(populate_from='name', unique=True, editable=True)
     name = models.CharField(
         max_length=120,
         verbose_name=_('Title of your project'),
