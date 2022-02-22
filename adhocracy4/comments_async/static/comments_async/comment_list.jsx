@@ -18,7 +18,7 @@ export default function (props) {
               child_comments={comment.child_comments}
               created={comment.created}
               modified={comment.modified}
-              authorIsModerator={comment.is_moderator}
+              authorIsModerator={comment.author_is_moderator}
               id={comment.id}
               content_type={comment.content_type}
               object_pk={comment.object_pk}

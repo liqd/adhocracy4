@@ -15,7 +15,7 @@ class CommentSerializer(serializers.ModelSerializer):
     user_image = serializers.SerializerMethodField()
     is_deleted = serializers.SerializerMethodField()
     ratings = serializers.SerializerMethodField()
-    is_moderator = serializers.SerializerMethodField()
+    author_is_moderator = serializers.SerializerMethodField()
     comment_content_type = serializers.SerializerMethodField()
 
     class Meta:
@@ -136,7 +136,7 @@ class CommentSerializer(serializers.ModelSerializer):
             pass
         return self.get_user_image_fallback(obj)
 
-    def get_is_moderator(self, obj):
+    def get_author_is_moderator(self, obj):
         return obj.project.has_moderator(obj.creator)
 
     def get_is_deleted(self, obj):
