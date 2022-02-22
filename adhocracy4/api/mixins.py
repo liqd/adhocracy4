@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django.utils.translation import get_language
 from rest_framework import status
 from rest_framework.request import clone_request
 from rest_framework.response import Response
@@ -131,3 +132,10 @@ class AllowPUTAsCreateMixin(object):
                 # PATCH requests where the object does not exist should still
                 # return a 404 response.
                 raise
+
+
+class LocaleInfoMixin:
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, args, kwargs)
+        response.data['locale'] = get_language()
+        return response

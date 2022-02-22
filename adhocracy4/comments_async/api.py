@@ -8,6 +8,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from adhocracy4.api.mixins import ContentTypeMixin
+from adhocracy4.api.mixins import LocaleInfoMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
 from adhocracy4.comments.models import Comment
 from adhocracy4.comments.signals import comment_removed
@@ -87,7 +88,8 @@ class PermissionInfoMixin:
 
 class CommentViewSet(
         PermissionInfoMixin,  # needs to be first, has super(list)
-        PaginationCommentLinkMixin,  # needs to be second, no super
+        LocaleInfoMixin,  # needs to be above PaginationCommentLinkMixin
+        PaginationCommentLinkMixin,  # no super
         mixins.CreateModelMixin,
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin,

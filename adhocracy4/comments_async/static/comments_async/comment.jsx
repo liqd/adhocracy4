@@ -251,18 +251,17 @@ export default class Comment extends React.Component {
   }
 
   render () {
-    // FIXME: new localeDate expects second argument, currently fallback is 'de-DE'
     let lastDate
     if (this.props.modified === null) {
-      lastDate = localeDate(this.props.created)
+      lastDate = localeDate(this.props.created, this.props.locale)
     } else if (this.props.is_removed) {
-      lastDate = django.gettext('Deleted by creator on') + ' ' + localeDate(this.props.modified)
+      lastDate = django.gettext('Deleted by creator on') + ' ' + localeDate(this.props.modified, this.props.locale)
     } else if (this.props.is_censored) {
-      lastDate = django.gettext('Deleted by moderator on') + ' ' + localeDate(this.props.modified)
+      lastDate = django.gettext('Deleted by moderator on') + ' ' + localeDate(this.props.modified, this.props.locale)
     } else if (this.props.is_blocked) {
-      lastDate = django.gettext('Blocked by moderator on') + ' ' + localeDate(this.props.modified)
+      lastDate = django.gettext('Blocked by moderator on') + ' ' + localeDate(this.props.modified, this.props.locale)
     } else {
-      lastDate = django.gettext('Latest edit on') + ' ' + localeDate(this.props.modified)
+      lastDate = django.gettext('Latest edit on') + ' ' + localeDate(this.props.modified, this.props.locale)
     }
 
     let moderatorLabel

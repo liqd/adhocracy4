@@ -57,6 +57,7 @@ export default function (props) {
               hasCommentingPermission={props.hasCommentingPermission}
               wouldHaveCommentingPermission={props.wouldHaveCommentingPermission}
               projectIsPublic={props.projectIsPublic}
+              locale={props.locale}
             >{comment.comment}
             </Comment>
           )

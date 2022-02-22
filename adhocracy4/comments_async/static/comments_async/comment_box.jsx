@@ -71,7 +71,8 @@ export default class CommentBox extends React.Component {
       anchoredCommentParentId: 0,
       anchoredCommentFound: false,
       hasCommentingPermission: false,
-      wouldHaveCommentingPermission: false
+      wouldHaveCommentingPermission: false,
+      locale: undefined
     }
   }
 
@@ -85,9 +86,8 @@ export default class CommentBox extends React.Component {
     }
     api.comments.get(params)
       .done(
-        (result) => {
-          const data = result
-
+        (data) => {
+          this.setState({ locale: data.locale })
           translated.entries =
             django.ngettext('entry', 'entries', data.count)
 
@@ -506,6 +506,7 @@ export default class CommentBox extends React.Component {
   }
 
   render () {
+    console.log('PROPS', this.props)
     return (
       <div>
         <div className="a4-comments__commentbox__form">
@@ -595,6 +596,7 @@ export default class CommentBox extends React.Component {
               hasCommentingPermission={this.state.hasCommentingPermission}
               wouldHaveCommentingPermission={this.state.wouldHaveCommentingPermission}
               projectIsPublic={this.state.projectIsPublic}
+              locale={this.state.locale}
             />
           </div>
         </div>
