@@ -45,7 +45,7 @@ def test_serializer(apiclient, question, comment_factory, user):
     # django auth user model does not define get_absolute_url()
     assert comment_1['user_profile_url'] == ''
     assert comment_1['is_deleted'] is False
-    assert comment_1['is_moderator'] is False
+    assert comment_1['author_is_moderator'] is False
     assert len(comment_1['child_comments']) == 0
     assert comment_1['comment'] == Comment.objects.get(pk=1).comment
     assert comment_1['object_pk'] == question.pk
@@ -64,7 +64,7 @@ def test_serializer(apiclient, question, comment_factory, user):
     assert comment_2['user_pk'] == str(user.pk)
     assert comment_2['user_profile_url'] == ''
     assert comment_2['is_deleted'] is False
-    assert comment_2['is_moderator'] is False
+    assert comment_2['author_is_moderator'] is False
     assert len(comment_2['child_comments']) == 0
     assert comment_2['comment'] == Comment.objects.get(pk=2).comment
     assert comment_2['object_pk'] == question.pk
@@ -84,7 +84,7 @@ def test_serializer(apiclient, question, comment_factory, user):
     assert comment_3['user_pk'] == -1
     assert comment_3['user_profile_url'] == ''
     assert comment_3['is_deleted'] is True
-    assert comment_3['is_moderator'] is False
+    assert comment_3['author_is_moderator'] is False
     assert len(comment_3['child_comments']) == 0
     assert comment_3['comment'] != Comment.objects.get(pk=3).comment
     assert comment_3['comment'] == ''
@@ -104,7 +104,7 @@ def test_serializer(apiclient, question, comment_factory, user):
     assert comment_4['user_pk'] == -1
     assert comment_4['user_profile_url'] == ''
     assert comment_4['is_deleted'] is True
-    assert comment_4['is_moderator'] is False
+    assert comment_4['author_is_moderator'] is False
     assert len(comment_4['child_comments']) == 0
     assert comment_4['comment'] == Comment.objects.get(pk=4).comment
     assert comment_4['comment'] == ''
@@ -124,7 +124,7 @@ def test_serializer(apiclient, question, comment_factory, user):
     assert comment_5['user_pk'] == -1
     assert comment_5['user_profile_url'] == ''
     assert comment_5['is_deleted'] is True
-    assert comment_5['is_moderator'] is False
+    assert comment_5['author_is_moderator'] is False
     assert len(comment_5['child_comments']) == 0
     assert comment_5['comment'] == Comment.objects.get(pk=5).comment
     assert comment_5['comment'] == ''
@@ -144,7 +144,7 @@ def test_serializer(apiclient, question, comment_factory, user):
     assert comment_6['user_pk'] == str(user.pk)
     assert comment_6['user_profile_url'] == ''
     assert comment_6['is_deleted'] is False
-    assert comment_6['is_moderator'] is False
+    assert comment_6['author_is_moderator'] is False
     assert len(comment_6['child_comments']) == 0
     assert comment_6['comment'] == Comment.objects.get(pk=6).comment
     assert comment_6['object_pk'] == question.pk
@@ -161,7 +161,7 @@ def test_serializer(apiclient, question, comment_factory, user):
     assert comment_7['id'] == 7
     assert comment_7['user_pk'] == str(moderator.pk)
     assert comment_7['is_deleted'] is False
-    assert comment_7['is_moderator'] is True
+    assert comment_7['author_is_moderator'] is True
     assert len(comment_7['child_comments']) == 1
     assert comment_7['comment'] == Comment.objects.get(pk=7).comment
     assert comment_7['object_pk'] == question.pk
@@ -178,7 +178,7 @@ def test_serializer(apiclient, question, comment_factory, user):
     assert comment_8['id'] == 8
     assert comment_8['user_pk'] == str(user.pk)
     assert comment_8['is_deleted'] is False
-    assert comment_8['is_moderator'] is False
+    assert comment_8['author_is_moderator'] is False
     assert comment_8['comment'] == Comment.objects.get(pk=8).comment
     assert comment_8['object_pk'] == comment.pk
     assert comment_8['is_removed'] is False
