@@ -60,7 +60,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'organisation')
+            'fields': ('name', 'slug', 'organisation')
         }),
         (_('Information and result'), {
             'fields': ('description', 'information', 'result'),
