@@ -251,6 +251,7 @@ export default class Comment extends React.Component {
   }
 
   render () {
+    // FIXME: new localeDate expects second argument, currently fallback is 'de-DE'
     let lastDate
     if (this.props.modified === null) {
       lastDate = localeDate(this.props.created)
