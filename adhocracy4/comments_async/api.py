@@ -81,6 +81,7 @@ class PermissionInfoMixin:
         response.data['has_commenting_permission'] = has_commenting_permission
         response.data['would_have_commenting_permission'] = \
             would_have_commenting_permission
+        response.data['project_is_public'] = obj.project.is_public
         return response
 
 
