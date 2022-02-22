@@ -9,7 +9,11 @@ from adhocracy4.images import fields
 
 
 class Organisation(models.Model):
-    slug = AutoSlugField(populate_from='name', unique=True)
+    slug = AutoSlugField(
+        populate_from='name',
+        unique=True,
+        editable=True
+    )
     name = models.CharField(max_length=512)
     initiators = models.ManyToManyField(
         settings.AUTH_USER_MODEL,

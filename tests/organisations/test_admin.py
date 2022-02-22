@@ -29,7 +29,8 @@ def test_organisation_admin_form(client, user_factory, group_factory):
         response,
         'admin/meinberlin_organisations/organisation/change_form.html')
 
-    data = {'name': 'My Organisation'}
+    data = {'name': 'My Organisation',
+            'slug': 'my-organisation'}
     response = client.post(url, data)
     assert response.status_code == 302
 
@@ -47,6 +48,7 @@ def test_organisation_admin_form(client, user_factory, group_factory):
         'admin/meinberlin_organisations/organisation/change_form.html')
 
     data = {'name': organisation.name,
+            'slug': 'my-organisation',
             'groups': group1.id}
     response = client.post(url, data)
 
@@ -56,6 +58,7 @@ def test_organisation_admin_form(client, user_factory, group_factory):
     assert organisation.groups.all().first() == group1
 
     data = {'name': organisation.name,
+            'slug': 'my-organisation',
             'groups': [group1.id, group2.id]
             }
     response = client.post(url, data)
@@ -70,6 +73,7 @@ def test_organisation_admin_form(client, user_factory, group_factory):
     group1.user_set.remove(user)
 
     data = {'name': organisation.name,
+            'slug': 'my-organisation',
             'groups': [group1.id, group2.id]
             }
     response = client.post(url, data)
@@ -107,6 +111,7 @@ def test_group_removal(client,
         args=(organisation.id,))
 
     data = {'name': organisation.name,
+            'slug': 'my-organisation',
             'groups': group2.id}
     response = client.post(url, data)
 

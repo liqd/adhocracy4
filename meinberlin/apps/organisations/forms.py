@@ -24,6 +24,7 @@ class OrganisationForm(forms.ModelForm):
         }
 
     def clean(self):
+        self._validate_unique = True
         groups = self.cleaned_data.get('groups')
         duplicates = self._check_user_twice(groups)
         if duplicates:
