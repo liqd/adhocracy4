@@ -7,6 +7,33 @@ from rest_framework import serializers
 from adhocracy4.comments.models import Comment
 
 
+class CommentCategoriesField(serializers.Field):
+
+    def to_internal_value(self, categories_string):
+        if categories_string == '' or categories_string == '[]':
+            raise serializers.ValidationError(
+                _('Please choose one or more categories.')
+            )
+        return categories_string
+
+    def to_representation(self, categories_string):
+        categories = {}
+        if categories_string:
+            category_choices = getattr(settings,
+                                       'A4_COMMENT_CATEGORIES', '')
+            if category_choices:
+                category_choices = dict((x, str(y)) for x, y
+                                        in category_choices)
+            category_list = categories_string.strip('[]').split(',')
+            for category in category_list:
+                if category in category_choices:
+                    categories[category] = category_choices[category]
+                else:
+                    categories[category] = category
+
+        return categories
+
+
 class CommentSerializer(serializers.ModelSerializer):
     """Default Serializer for the comments."""
 
@@ -17,6 +44,7 @@ class CommentSerializer(serializers.ModelSerializer):
     ratings = serializers.SerializerMethodField()
     author_is_moderator = serializers.SerializerMethodField()
     comment_content_type = serializers.SerializerMethodField()
+    comment_categories = CommentCategoriesField(required=False)
 
     class Meta:
         model = Comment
@@ -28,29 +56,15 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         """
-        Create category-dict, don't show blocked comments, add permissions.
+        Don't show blocked comments, add permissions.
 
-        Gets the categories and adds them along with their values
-        to a dictionary. Do return empty dict when comment is_blocked.
-        Does return empty string as comment text when comment is_blocked.
+        Returns empty string as comment text and empty categories dict
+        when comment is_blocked.
         """
         ret = super().to_representation(instance)
-        categories = {}
-        if ret['comment_categories'] and not instance.is_blocked:
-            category_choices = getattr(settings,
-                                       'A4_COMMENT_CATEGORIES', '')
-            if category_choices:
-                category_choices = dict((x, str(y)) for x, y
-                                        in category_choices)
-            category_list = ret['comment_categories'].strip('[]').split(',')
-            for category in category_list:
-                if category in category_choices:
-                    categories[category] = category_choices[category]
-                else:
-                    categories[category] = category
-        ret['comment_categories'] = categories
         if instance.is_blocked:
             ret['comment'] = ''
+            ret['comment_categories'] = {}
 
         request = self.context.get('request')
         ret['is_users_own_comment'] = False
@@ -87,17 +101,6 @@ class CommentSerializer(serializers.ModelSerializer):
             )
 
         return ret
-
-    def to_internal_value(self, data):
-        data = super().to_internal_value(data)
-        if 'comment_categories' in data:
-            value = data.get('comment_categories')
-            if value == '' or value == '[]':
-                raise serializers.ValidationError({
-                    'comment_categories': _('Please choose one or more '
-                                            'categories.')
-                })
-        return data
 
     def get_user_profile_url(self, obj):
         if obj.is_censored or obj.is_removed or obj.is_blocked:
