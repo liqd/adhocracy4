@@ -45,18 +45,19 @@ class CommentSerializer(serializers.ModelSerializer):
     author_is_moderator = serializers.SerializerMethodField()
     comment_content_type = serializers.SerializerMethodField()
     comment_categories = CommentCategoriesField(required=False)
+    user_info = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
         read_only_fields = ('modified', 'created', 'id',
                             'user_name', 'user_image', 'ratings',
                             'content_type', 'object_pk',
-                            'comment_content_type')
+                            'comment_content_type', 'user_info')
         exclude = ('creator',)
 
     def to_representation(self, instance):
         """
-        Don't show blocked comments, add permissions.
+        Don't show blocked comments.
 
         Returns empty string as comment text and empty categories dict
         when comment is_blocked.
@@ -65,41 +66,6 @@ class CommentSerializer(serializers.ModelSerializer):
         if instance.is_blocked:
             ret['comment'] = ''
             ret['comment_categories'] = {}
-
-        request = self.context.get('request')
-        ret['is_users_own_comment'] = False
-        ret['authenticated_user_pk'] = None
-
-        ret['has_viewing_permission'] = False
-        ret['has_rating_permission'] = False
-        ret['has_changing_permission'] = False
-        ret['has_deleting_permission'] = False
-        ret['has_moderating_permission'] = False
-        ret['has_comment_commenting_permission'] = False
-        if request and hasattr(request, 'user'):
-            user = request.user
-            ret['is_users_own_comment'] = (user.pk == instance.creator.pk)
-            ret['authenticated_user_pk'] = user.pk
-
-            ret['has_viewing_permission'] = user.has_perm(
-                'a4comments.view_comment', instance
-            )
-            ret['has_rating_permission'] = user.has_perm(
-                'a4comments.rate_comment', instance
-            )
-            ret['has_changing_permission'] = user.has_perm(
-                'a4comments.change_comment', instance
-            )
-            ret['has_deleting_permission'] = user.has_perm(
-                'a4comments.delete_comment', instance
-            )
-            ret['has_moderating_permission'] = user.has_perm(
-                'a4comments.moderate_comment', instance
-            )
-            ret['has_comment_commenting_permission'] = user.has_perm(
-                'a4comments.comment_comment', instance
-            )
-
         return ret
 
     def get_user_profile_url(self, obj):
@@ -179,6 +145,43 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_comment_content_type(self, comment):
         return ContentType.objects.get_for_model(Comment).pk
+
+    def get_user_info(self, comment):
+        request = self.context.get('request')
+        user_info = {
+            'is_users_own_comment': False,
+            'authenticated_user_pk': None,
+            'has_viewing_permission': False,
+            'has_rating_permission': False,
+            'has_changing_permission': False,
+            'has_deleting_permission': False,
+            'has_moderating_permission': False,
+            'has_comment_commenting_permission': False,
+        }
+        if request and hasattr(request, 'user'):
+            user = request.user
+            user_info['is_users_own_comment'] = (user.pk == comment.creator.pk)
+            user_info['authenticated_user_pk'] = user.pk
+            user_info['has_viewing_permission'] = user.has_perm(
+                'a4comments.view_comment', comment
+            )
+            user_info['has_rating_permission'] = user.has_perm(
+                'a4comments.rate_comment', comment
+            )
+            user_info['has_changing_permission'] = user.has_perm(
+                'a4comments.change_comment', comment
+            )
+            user_info['has_deleting_permission'] = user.has_perm(
+                'a4comments.delete_comment', comment
+            )
+            user_info['has_moderating_permission'] = user.has_perm(
+                'a4comments.moderate_comment', comment
+            )
+            user_info['has_comment_commenting_permission'] = user.has_perm(
+                'a4comments.comment_comment', comment
+            )
+
+        return user_info
 
 
 class CommentListSerializer(CommentSerializer):
