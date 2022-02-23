@@ -1,5 +1,6 @@
 .radio__input {
-    @include visually-hidden;
+    appearance: none;
+    position: absolute;
 }
 
 // use pixels here because otherwise the icon in the :after

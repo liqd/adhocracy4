@@ -244,59 +244,81 @@ $divider-margin: 1.25rem;
 }
 
 // secondary radio group
-.filter-bar__menu-radio-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
 
-.filter-bar__menu-radio-part,
-.filter-bar__menu-radio-proj {
-    width: 100%;
-    margin-bottom: 2 * $spacer;
+.filter-bar__menu-radio-par,
+.filter-bar__menu-radio-sta {
+    border: none;
+    padding: 0;
 
     .btn-group {
         margin-top: $spacer;
         display: flex;
         justify-content: flex-start;
-        flex-direction: row;
+        flex-flow: row wrap;
     }
 
     .switch--btn {
         font-weight: normal;
+        position: relative;
         padding-left: 0.5 * $padding;
         padding-right: 0.5 * $padding;
     }
 }
 
-.filter-bar__menu-radio-part {
-    .switch--btn {
-        min-width: 15%;
-        flex-grow: 1;
-    }
-}
-
-.filter-bar__menu-radio-proj {
+.filter-bar__menu-radio-par {
+    width: 100%;
     margin-bottom: 2 * $spacer;
 
     .switch--btn {
-        min-width: 20%;
         flex-grow: 1;
     }
 }
 
-@media screen and (min-width: $breakpoint-md) {
-    .filter-bar__menu-radio-part {
-        width: 56%;
+.filter-bar__menu-radio-sta {
+    display: inline-block;
+    flex-grow: 1;
+
+    .switch--btn {
+        flex-grow: 1;
+    }
+}
+
+.filter-bar__typeahead {
+    flex-grow: 2;
+
+    div:first-of-type {
+        flex-grow: 1;
+    }
+
+    .form-control {
+        line-height: 1.8;
+    }
+}
+
+@media screen and (max-width: $breakpoint-down) {
+    .filter-bar__menu-radio-par,
+    .filter-bar__menu-radio-sta {
+        .btn-group {
+            > :first-child {
+                border-top-left-radius: 0.3em;
+                border-top-right-radius: 0.3em;
+                border-bottom-left-radius: 0;
+            }
+
+            > :last-child {
+                border-bottom-left-radius: 0.3em;
+                border-bottom-right-radius: 0.3em;
+                border-top-right-radius: 0;
+            }
+        }
 
         .switch--btn {
-            width: 25%;
+            width: 100%;
         }
     }
 
-    .filter-bar__menu-radio-proj {
-        width: 39%;
-        margin-left: 2 * $spacer;
+    .filter-bar__typeahead {
+        margin-left: 0;
     }
 }
 

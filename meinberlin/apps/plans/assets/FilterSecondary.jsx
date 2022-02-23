@@ -4,6 +4,7 @@ const FilterRadio = require('./FilterRadio')
 const React = require('react')
 
 const searchTitleStr = django.gettext('Search title')
+const performSearchStr = django.gettext('Perform search')
 const orgaStr = django.gettext('Organisation')
 const enterOrgaNameStr = django.gettext('Enter the name of the organisation')
 const participationStr = django.gettext('Level of participation')
@@ -80,7 +81,8 @@ class FilterSecondary extends React.Component {
   render () {
     return (
       <form className="filter-bar__menu">
-        <label htmlFor="id-title-search">
+        <div role="search">
+          <label htmlFor="id-title-search"><span className="visually-hidden">{searchTitleStr}</span></label>
           <input
             className="input-group__input filter-bar__search"
             type="text"
@@ -95,18 +97,18 @@ class FilterSecondary extends React.Component {
             onClick={this.submitSecondaryFilters.bind(this)}
           >
             <i className="fa fa-search" aria-hidden="true" />
+            <span className="visually-hidden">{performSearchStr}</span>
           </button>
-          <span className="visually-hidden">{searchTitleStr}
-          </span>
-        </label>
+
+        </div>
         {this.props.organisationFilterOnTop &&
-          <div className="form-group">
-            <div className="typeahead__input-label">
+          <div className="form-group filter-bar__typeahead">
+            <label htmlFor="organisation-typeahead-id" className="typeahead__input-label">
               <h2 className="u-no-margin">{orgaStr}</h2>
-            </div>
+            </label>
             <span className="typeahead__input-group">
               <span className="typeahead__input-group-prepend">
-                <span className="typeahead__input-group-text">
+                <span className="typeahead__input-group-text input-group__before">
                   <i className="fas fa-sort-alpha-down" />
                 </span>
               </span>
@@ -122,49 +124,47 @@ class FilterSecondary extends React.Component {
               />
             </span>
           </div>}
-        <div className="filter-bar__menu-radio-group">
-          <div className="filter-bar__menu-radio-part">
-            <FilterRadio
-              filterId="par"
-              question={participationStr}
-              chosen={this.state.participationChoice}
-              choiceNames={this.props.participationNames}
-              onSelect={this.clickParticipation.bind(this)}
-            />
-          </div>
-          <div className="filter-bar__menu-radio-proj">
-            <FilterRadio
-              filterId="sta"
-              question={projectStatStr}
-              chosen={this.state.statusChoice}
-              choiceNames={this.props.statusNames}
-              onSelect={this.clickStatus.bind(this)}
-            />
-          </div>
-        </div>
-        {!this.props.organisationFilterOnTop &&
-          <div className="form-group">
-            <div className="typeahead__input-label">
-              <h2 className="u-no-margin">{orgaStr}</h2>
-            </div>
-            <span className="typeahead__input-group">
-              <span className="typeahead__input-group-prepend">
-                <span className="typeahead__input-group-text">
-                  <i className="fas fa-sort-alpha-down" />
+        <FilterRadio
+          className="filter-bar__menu-radio-part"
+          filterId="par"
+          question={participationStr}
+          chosen={this.state.participationChoice}
+          choiceNames={this.props.participationNames}
+          onSelect={this.clickParticipation.bind(this)}
+        />
+        <div className="u-flex">
+          <FilterRadio
+            className="filter-bar__menu-radio-proj"
+            filterId="sta"
+            question={projectStatStr}
+            chosen={this.state.statusChoice}
+            choiceNames={this.props.statusNames}
+            onSelect={this.clickStatus.bind(this)}
+          />
+          {!this.props.organisationFilterOnTop &&
+            <div className="form-group filter-bar__typeahead u-spacer-left">
+              <label htmlFor="organisation-typeahead-id" className="typeahead__input-label">
+                <h2 className="u-no-margin">{orgaStr}</h2>
+              </label>
+              <span className="typeahead__input-group">
+                <span className="typeahead__input-group-prepend">
+                  <span className="typeahead__input-group-text input-group__before">
+                    <i className="fas fa-sort-alpha-down" />
+                  </span>
                 </span>
+                <Typeahead
+                  id="organisation-typeahead-id"
+                  className="typeahead__input-group-append"
+                  onChange={this.clickOrganisation.bind(this)}
+                  labelKey="name"
+                  multiple={false}
+                  options={this.props.organisations}
+                  selected={this.state.organisationChoice}
+                  placeholder={enterOrgaNameStr}
+                />
               </span>
-              <Typeahead
-                id="organisation-typeahead-id"
-                className="typeahead__input-group-append"
-                onChange={this.clickOrganisation.bind(this)}
-                labelKey="name"
-                multiple={false}
-                options={this.props.organisations}
-                selected={this.state.organisationChoice}
-                placeholder={enterOrgaNameStr}
-              />
-            </span>
-          </div>}
+            </div>}
+        </div>
         <button
           className="btn btn--primary filter-secondary__btn"
           type="submit"
