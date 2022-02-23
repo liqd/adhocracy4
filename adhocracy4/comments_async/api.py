@@ -59,9 +59,7 @@ class PaginationCommentLinkMixin:
 
 class PermissionInfoMixin:
     def list(self, request, *args, **kwargs):
-        """
-        Add commenting_permissions to response's data.
-        """
+        """Add commenting_permissions to response's data."""
         response = super().list(request, args, kwargs)
         if response.status_code == 400:
             return response
@@ -148,6 +146,8 @@ class CommentViewSet(
             comment.is_removed = True
         else:
             comment.is_censored = True
+        # saving a removed or censored comment sets its comment text
+        # and comment_categories to '' (see models save method)
         comment.save()
         comment_removed.send(sender=type(comment),
                              instance=comment)
