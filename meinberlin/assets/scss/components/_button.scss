@@ -129,6 +129,26 @@
         background-color: transparent;
         cursor: not-allowed;
     }
+
+    &.collapsible {
+        .link--less {
+            display: none;
+        }
+
+        .link--more {
+            display: block;
+        }
+    }
+
+    .show + &.collapsible {
+        .link--less {
+            display: block;
+        }
+
+        .link--more {
+            display: none;
+        }
+    }
 }
 
 .btn--none {
