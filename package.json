@@ -78,7 +78,7 @@
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-standard": "4.1.0",
     "husky": "7.0.4",
-    "lint-staged": "12.2.0",
+    "lint-staged": "12.3.4",
     "markdownlint-cli": "0.30.0",
     "stylelint": "14.2.0",
     "stylelint-config-standard": "24.0.0",
