@@ -346,7 +346,7 @@ class ListMapBox extends Component {
 
   getFilterNav (numColumns, isStacked, isTablet) {
     return (
-      <div>
+      <>
         <h1 className="visually-hidden-focusable">{pageHeader}</h1>
         <FilterNav
           selectDistrict={this.selectDistrict.bind(this)}
@@ -371,7 +371,7 @@ class ListMapBox extends Component {
           isStacked={isStacked}
           isTablet={isTablet}
         />
-      </div>
+      </>
     )
   }
 

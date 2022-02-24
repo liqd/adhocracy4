@@ -19,14 +19,14 @@
     }
 }
 
-.switch-label > .switch-input[type="checkbox"] {
+.switch__label > .switch__input[type="checkbox"] {
     position: absolute;
     top: 10px;
     right: 5px;
     z-index: -1;
 }
 
-.switch-label {
+.switch__label {
     cursor: pointer;
     position: relative;
 
@@ -35,7 +35,7 @@
     }
 }
 
-.switch-label__text {
+.switch__label-text {
     vertical-align: super;
 }
 
@@ -65,7 +65,7 @@
     background: $body-bg;
 }
 
-.switch-input[type="checkbox"]:checked {
+.switch__input[type="checkbox"]:checked {
     & + .switch__toggle:before {
         background: inherit;
         border: 1px solid $gray-lighter;
@@ -79,7 +79,7 @@
     }
 }
 
-.switch-group {
+.switch__group {
     height: 3rem;
     display: flex;
     flex-direction: row;

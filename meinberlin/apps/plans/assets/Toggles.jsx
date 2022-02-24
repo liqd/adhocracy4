@@ -1,8 +1,12 @@
 import React from 'react'
 import django from 'django'
 import { IconSwitch } from '../../contrib/assets/IconSwitch'
+import { ToggleSwitch } from '../../contrib/assets/ToggleSwitch'
+import { PillBtn } from '../../contrib/assets/PillBtn'
 
+const filterProjectListStr = django.gettext('Filtered list of projects')
 const searchResultsStr = django.gettext(' search results')
+const removeFilterStr = django.gettext(' remove filter')
 const showMapStr = django.gettext('Show map')
 const showMapAriaStr = django.gettext('show map')
 const hideMapStr = django.gettext('hide map')
@@ -41,58 +45,80 @@ class Toggles extends React.Component {
     return this.props.organisationString
   }
 
+  statusFilterBtn () {
+    if (this.props.displayButtons && this.props.statusSelected) {
+      return (
+        <PillBtn
+          removeItemStr={removeFilterStr}
+          onClickRemove={this.clickStatusButton.bind(this)}
+          choiceBtnID="remove-search-filter"
+          choiceString={this.props.statusString}
+          choiceCount={this.props.statusCount}
+        />
+      )
+    }
+  }
+
+  organisationFilterBtn () {
+    if (this.props.displayButtons && this.props.organisationSelected) {
+      return (
+        <PillBtn
+          removeItemStr={removeFilterStr}
+          onClickRemove={this.clickOrganisationButton.bind(this)}
+          choiceBtnID="remove-organisation-filter"
+          choiceString={this.organisationButtonString()}
+        />
+      )
+    }
+  }
+
+  participationFilterBtn () {
+    if (this.props.displayButtons && this.props.participationSelected) {
+      return (
+        <PillBtn
+          removeItemStr={removeFilterStr}
+          onClickRemove={this.clickParticipationButton.bind(this)}
+          choiceBtnID="remove-search-filter"
+          choiceString={this.props.participationString}
+          choiceCount={this.props.participationCount}
+        />
+      )
+    }
+  }
+
+  searchFilterBtn () {
+    if (this.props.displayButtons && this.props.titleSearchSelected) {
+      return (
+        <PillBtn
+          removeItemStr={removeFilterStr}
+          onClickRemove={this.clickTitleSearchButton.bind(this)}
+          choiceBtnID="remove-search-filter"
+          choiceString={this.titleSearchButtonString()}
+          choiceCount={this.props.titleSearchCount}
+        />
+      )
+    }
+  }
+
   render () {
     if (this.props.isSlider) {
       return (
         <div>
+          <h2 className="visually-hidden-focusable">{filterProjectListStr}</h2>
           <div className="l-frame switch-container">
             <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{searchResultsStr}</div>
             <div className="switch-filter__btn-group">
-              {this.props.displayButtons && this.props.statusSelected &&
-                <button
-                  className="btn btn--transparent btn--small"
-                  onClick={this.clickStatusButton.bind(this)}
-                  type="button"
-                >{this.props.statusString} {this.props.statusCount} <i className="fa fa-times" />
-                </button>}
-              {this.props.displayButtons && this.props.participationSelected &&
-                <button
-                  className="btn btn--transparent btn--small"
-                  onClick={this.clickParticipationButton.bind(this)}
-                  type="button"
-                >{this.props.participationString} {this.props.participationCount} <i className="fa fa-times" />
-                </button>}
-              {this.props.displayButtons && this.props.organisationSelected &&
-                <button
-                  className="btn btn--transparent btn--small"
-                  onClick={this.clickOrganisationButton.bind(this)}
-                  type="button"
-                >{this.organisationButtonString()} {this.props.organisationCount} <i className="fa fa-times" />
-                </button>}
-              {this.props.displayButtons && this.props.titleSearchSelected &&
-                <button
-                  className="btn btn--transparent btn--small"
-                  onClick={this.clickTitleSearchButton.bind(this)}
-                  type="button"
-                >{this.titleSearchButtonString()} {this.props.titleSearchCount} <i className="fa fa-times" />
-                </button>}
+              {this.statusFilterBtn()}
+              {this.participationFilterBtn()}
+              {this.organisationFilterBtn()}
+              {this.searchFilterBtn()}
             </div>
-            <div className="switch">
-              <div className="switch-group" role="group" aria-labelledby="switch-primary">
-                <label htmlFor="switch-primary" className="switch-label">
-                  <span className="switch-label__text">{showMapStr}</span>
-                  <input
-                    className="switch-input"
-                    id="switch-primary"
-                    onChange={this.props.toggleSwitch} /* eslint-disable-line react/jsx-handler-names */
-                    name="switch-primary"
-                    type="checkbox"
-                    aria-label={hideMapStr}
-                  />
-                  <span className="switch__toggle" />
-                </label>
-              </div>
-            </div>
+            <ToggleSwitch
+              uniqueId="map-switch"
+              toggleSwitch={this.props.toggleSwitch}
+              onSwitchStr={showMapStr}
+              offSwitchStr={hideMapStr}
+            />
           </div>
         </div>
       )
@@ -102,34 +128,10 @@ class Toggles extends React.Component {
           <div className="l-frame switch-container">
             <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{searchResultsStr}</div>
             <div className="switch-filter__btn-group">
-              {this.props.displayButtons && this.props.statusSelected &&
-                <button
-                  className="btn btn--transparent btn--small"
-                  onClick={this.clickStatusButton.bind(this)}
-                  type="button"
-                >{this.props.statusString} <i className="fa fa-times" />
-                </button>}
-              {this.props.displayButtons && this.props.participationSelected &&
-                <button
-                  className="btn btn--transparent btn--small"
-                  onClick={this.clickParticipationButton.bind(this)}
-                  type="button"
-                >{this.props.participationString} <i className="fa fa-times" />
-                </button>}
-              {this.props.displayButtons && this.props.organisationSelected &&
-                <button
-                  className="btn btn--transparent btn--small"
-                  onClick={this.clickOrganisationButton.bind(this)}
-                  type="button"
-                >{this.props.organisationString} <i className="fa fa-times" />
-                </button>}
-              {this.props.displayButtons && this.props.titleSearchSelected &&
-                <button
-                  className="btn btn--transparent btn--small"
-                  onClick={this.clickTitleSearchButton.bind(this)}
-                  type="button"
-                >{this.titleSearchButtonString()} <i className="fa fa-times" />
-                </button>}
+              {this.statusFilterBtn()}
+              {this.participationFilterBtn()}
+              {this.organisationFilterBtn()}
+              {this.searchFilterBtn()}
             </div>
             <IconSwitch
               activeClass="btn btn--icon btn--light switch--btn active"
