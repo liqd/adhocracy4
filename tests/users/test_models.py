@@ -34,6 +34,8 @@ def test_organisations(user_factory, project_factory, group_factory,
     organisation2.groups.add(group2)
     project = project_factory(organisation=organisation1)
     anonymous, moderator, initiator = setup_users(project)
+    initiator2 = organisation2.initiators.first()
+    initiator2.groups.add(group1)
     user = user_factory()
     group_member1 = user_factory.create(groups=(group1, ))
     group_member2 = user_factory.create(groups=(group2, ))
@@ -44,6 +46,8 @@ def test_organisations(user_factory, project_factory, group_factory,
     assert organisation2 not in moderator.organisations
     assert organisation1 in initiator.organisations
     assert organisation2 not in initiator.organisations
+    assert organisation2 in initiator2.organisations
+    assert organisation1 in initiator2.organisations
     assert organisation1 in group_member1.organisations
     assert organisation2 not in group_member1.organisations
     assert organisation1 not in group_member2.organisations
