@@ -29,7 +29,7 @@
     "feature-detect": "1.0.0",
     "file-saver": "2.0.5",
     "immutability-helper": "3.1.1",
-    "jest": "27.4.7",
+    "jest": "27.5.1",
     "leaflet": "1.7.1",
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "github:liqd/Leaflet.markercluster#5ed89b26922c51083fc9632a2c01425b9261a0f5",
