@@ -80,7 +80,7 @@
     "husky": "7.0.4",
     "lint-staged": "12.3.4",
     "markdownlint-cli": "0.30.0",
-    "stylelint": "14.2.0",
+    "stylelint": "14.5.3",
     "stylelint-config-standard": "24.0.0",
     "stylelint-config-standard-scss": "3.0.0",
     "stylelint-declaration-strict-value": "1.8.0",
