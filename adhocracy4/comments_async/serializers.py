@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.template.defaultfilters import date as djangodate
+from django.template.defaultfilters import time as djangotime
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
@@ -66,6 +68,14 @@ class CommentSerializer(serializers.ModelSerializer):
         if instance.is_blocked:
             ret['comment'] = ''
             ret['comment_categories'] = {}
+
+        cdate = djangodate(instance.created)
+        ctime = djangotime(instance.created)
+        ret['created'] = cdate + ', ' + ctime
+        if instance.modified:
+            mdate = djangodate(instance.modified)
+            mtime = djangotime(instance.modified)
+            ret['modified'] = mdate + ', ' + mtime
         return ret
 
     def get_user_profile_url(self, obj):
