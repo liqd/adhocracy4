@@ -100,3 +100,56 @@ def test_delete_project(user_factory, group_factory, organisation,
                               project)
     assert rules.has_perm(perm_name_delete, initiator, project)
     assert rules.has_perm(perm_name_delete, admin, project)
+
+
+@pytest.mark.django_db
+def test_group_member_initiator_perms(group_factory,
+                                      organisation_factory,
+                                      project_factory):
+    organisation1 = organisation_factory()
+    organisation2 = organisation_factory()
+    group1 = group_factory()
+    group2 = group_factory()
+    organisation1.groups.add(group1)
+
+    # initiator is initiator of organisation2 and group member in group1
+    initiator = organisation2.initiators.first()
+    initiator.groups.add(group1)
+
+    project1 = project_factory(organisation=organisation1)
+    project2 = project_factory(organisation=organisation2)
+    project3 = project_factory(organisation=organisation1, group=group1)
+    project4 = project_factory(organisation=organisation2, group=group2)
+    project5 = project_factory(organisation=organisation1, group=group2)
+    project6 = project_factory(organisation=organisation2, group=group1)
+
+    assert rules.has_perm(
+        perm_name_add, initiator, organisation1)  # group member
+    assert rules.has_perm(
+        perm_name_add, initiator, organisation2)  # initiator
+
+    assert not rules.has_perm(
+        perm_name_change, initiator, project1)
+    assert rules.has_perm(
+        perm_name_change, initiator, project2)  # initiator
+    assert rules.has_perm(
+        perm_name_change, initiator, project3)  # group member
+    assert rules.has_perm(
+        perm_name_change, initiator, project4)  # initiator
+    assert not rules.has_perm(
+        perm_name_change, initiator, project5)
+    assert rules.has_perm(
+        perm_name_change, initiator, project6)  # initiator and group member
+
+    assert not rules.has_perm(
+        perm_name_delete, initiator, project1)
+    assert rules.has_perm(
+        perm_name_delete, initiator, project2)  # initiator
+    assert not rules.has_perm(
+        perm_name_delete, initiator, project3)  # group member
+    assert rules.has_perm(
+        perm_name_delete, initiator, project4)  # initiator
+    assert not rules.has_perm(
+        perm_name_delete, initiator, project5)
+    assert rules.has_perm(
+        perm_name_delete, initiator, project6)  # initiator and group member
