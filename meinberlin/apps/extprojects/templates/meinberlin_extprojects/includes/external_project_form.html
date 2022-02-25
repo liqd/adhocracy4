@@ -12,8 +12,6 @@
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.end_date %}
 
-{% include 'meinberlin_embed/includes/project_embed_code.html' with project=view.object %}
-
 {% if project.has_finished %}
     {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.is_archived %}
 {% endif %}
