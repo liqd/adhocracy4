@@ -26,5 +26,6 @@ def get_next_url(request):
 
 @register.inclusion_tag('meinberlin_users/indicator.html', takes_context=True)
 def userindicator(context):
-    context['redirect_field_value'] = get_next_url(context['request'])
+    if hasattr(context, 'request'):
+        context['redirect_field_value'] = get_next_url(context['request'])
     return context
