@@ -258,21 +258,21 @@ msgstr " Melden"
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 msgid "hide replies"
-msgstr ""
+msgstr "Antworten verbergen"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 #, javascript-format
 msgid "1 reply"
 msgid_plural "%s replies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eine Antwort"
+msgstr[1] "%s Antworten"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:40
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:40
 msgctxt "verb"
 msgid "Reply"
-msgstr ""
+msgstr "Antworten"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:262
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:262
@@ -373,7 +373,7 @@ msgstr[1] "Beiträge"
 #: adhocracy4/comments_async/static/comments_async/comment_edit_form.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:10
 msgid "Your comment"
-msgstr ""
+msgstr "Ihr Kommentar"
 
 #: adhocracy4/comments_async/static/comments_async/comment_category_edit_form.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_edit_form.jsx:8
@@ -382,7 +382,7 @@ msgstr ""
 #: adhocracy4/comments_async/static/comments_async/comment_edit_form.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
 msgid "Your reply"
-msgstr ""
+msgstr "Ihre Antwort"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
@@ -1059,7 +1059,7 @@ msgstr "nach Projekttitel suchen"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:7
 msgid "Perform search"
-msgstr ""
+msgstr "Suche starten"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:8
 msgid "Organisation"
@@ -1230,55 +1230,3 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
-
-#~ msgid "hide comments"
-#~ msgstr "Kommentare verbergen"
-
-#~ msgid "1 comment"
-#~ msgid_plural "%s comments"
-#~ msgstr[0] "1 Kommentar"
-#~ msgstr[1] "%s Kommentare"
-
-#~ msgctxt "verb"
-#~ msgid "Comment"
-#~ msgstr "Kommentieren"
-
-#~ msgid "Write contribution"
-#~ msgstr "Beitrag verfassen"
-
-#~ msgid "Hide Filters"
-#~ msgstr "Filter ausblenden"
-
-#~ msgid "Participation"
-#~ msgstr "Beteiligung"
-
-#~ msgid "with"
-#~ msgstr "mit"
-
-#~ msgid "without"
-#~ msgstr "ohne"
-
-#~ msgid "undecided"
-#~ msgstr "nicht entschieden"
-
-#~ msgid "with participation"
-#~ msgstr "mit Beteiligung"
-
-#~ msgid "without participation"
-#~ msgstr "ohne Beteiligung"
-
-#~ msgid "participation undecided"
-#~ msgstr "Beteiligung nicht entschieden"
-
-#~ msgid " in the area of "
-#~ msgstr "und dem Bereich"
-
-#~ msgid "modified on"
-#~ msgstr "bearbeitet am"
-
-#~ msgid ""
-#~ "Thanks for the feedback. It will be checked by the moderators as soon as "
-#~ "possible."
-#~ msgstr ""
-#~ "Danke für die Rückmeldung. Der Beitrag wird so schnell wie möglich von "
-#~ "der Moderation geprüft."

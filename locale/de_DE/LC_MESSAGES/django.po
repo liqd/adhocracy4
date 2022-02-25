@@ -534,11 +534,11 @@ msgstr "Phaseneinstellungen bearbeiten"
 
 #: adhocracy4/dashboard/dashboard.py:64
 msgid "Area settings"
-msgstr ""
+msgstr "Karte"
 
 #: adhocracy4/dashboard/dashboard.py:65
 msgid "Edit area settings"
-msgstr ""
+msgstr "Kartenbereich bearbeiten"
 
 #: adhocracy4/dashboard/filter.py:15
 #: meinberlin/apps/budgeting/api.py:72 meinberlin/apps/projects/views.py:57
@@ -3556,13 +3556,15 @@ msgstr ""
 
 #: meinberlin/apps/plans/models.py:158
 msgid "Participation explanation"
-msgstr ""
+msgstr "Begründung"
 
 #: meinberlin/apps/plans/models.py:161
 msgid ""
 "Justify your selection. The justification appears below the description of "
 "the project."
 msgstr ""
+"Begründen Sie Ihre Auswahl. Die Begründung erscheint unterhalb der "
+"Beschreibung des Vorhabens."
 
 #: meinberlin/apps/plans/models.py:170
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:72
@@ -3694,20 +3696,20 @@ msgstr "Beteiligung"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:88
 msgid "see participation projects"
-msgstr ""
+msgstr "siehe Beteiligungsprojekte"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:141
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:145
 msgid "toggle to"
-msgstr ""
+msgstr "umschalten zu"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:142
 msgid "Read more"
-msgstr ""
+msgstr "Weiterlesen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:146
 msgid "Read Less"
-msgstr ""
+msgstr "Weniger anzeigen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:166
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:134
@@ -4610,6 +4612,9 @@ msgid ""
 "The verification of your input has failed. Please reload the page and make "
 "sure that your browser settings allow setting session cookies."
 msgstr ""
+"Die Verifizierung Ihrer Eingabe ist fehlgeschlagen. Bitte laden Sie die Seite "
+"neu und stellen Sie sicher, dass Ihre Systemeinstellungen das Setzen von "
+"Session-Cookies erlauben."
 
 #: meinberlin/templates/404.html:7
 msgid "This page could not be found."
@@ -5166,185 +5171,3 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
-
-#~ msgid "Areasettings"
-#~ msgstr "Karte"
-
-#~ msgid "Edit areasettings"
-#~ msgstr "Kartenbereich bearbeiten"
-
-#~ msgid "see participation plans"
-#~ msgstr "siehe Beteiligung"
-
-#~ msgid "with"
-#~ msgstr "mit"
-
-#~ msgid "without"
-#~ msgstr "ohne"
-
-#~ msgid "undecided"
-#~ msgstr "nicht entschieden"
-
-#~ msgid ""
-#~ "In the project overview projects can be filtered according to "
-#~ "participation status."
-#~ msgstr ""
-#~ "In der Projektübersicht können Projekte nach Beteiligungsstatus gefiltert "
-#~ "werden."
-
-#~ msgid "No token given."
-#~ msgstr "Fehlender Abstimmungsschlüssel."
-
-#~ msgid "Token not valid for module."
-#~ msgstr "Der Abstimmungsschlüssel ist nicht gültig für dieses Modul."
-
-#~ msgid ""
-#~ "This token is not valid. It might be expired or not valid for this "
-#~ "project."
-#~ msgstr ""
-#~ "Dieser Schlüssel ist ungültig. Er ist entweder abgelaufen oder nicht "
-#~ "gültig für dieses Projekt."
-
-#~ msgid " %(time_left)s remaining "
-#~ msgstr " noch %(time_left)s"
-
-#~ msgid " Participation: from %(date)s"
-#~ msgstr " Beteiligung: ab %(date)s"
-
-#~ msgid " What is your opinion on this: %(name)s?"
-#~ msgstr "Was ist Ihre Meinung zum Projekt: %(name)s?"
-
-#~ msgid ""
-#~ "Here you can specify affiliations. Users must classify\n"
-#~ "    questions accordingly. The questions can be filtered by affiliation "
-#~ "and evaluated in the\n"
-#~ "    statistics."
-#~ msgstr ""
-#~ "Hier können Sie Zugehörigkeiten vorgeben. Nutzer*innen müssen Fragen "
-#~ "entsprechend einordnen. Die Fragen können nach Zugehörigkeiten gefiltert "
-#~ "und in der Statistik ausgewertet werden."
-
-#~ msgid ""
-#~ "\n"
-#~ "Please select the plan your project belongs to. Your project will be "
-#~ "shown in the list of plans accordingly.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Bitte geben Sie an, zu welchem Vorhaben das Projekt gehört. Das Projekt "
-#~ "wird entsprechend in der Vorhabenliste angezeigt.\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "    No plan has been created yet. You can do that <a href="
-#~ "\"%(plan_create_url)s\">here</a>.\n"
-#~ "    "
-#~ msgstr ""
-#~ "\n"
-#~ "    Es wurde noch kein Vorhaben angelegt, dies können Sie <a href="
-#~ "\"%(plan_create_url)s\">hier</a> tun.\n"
-#~ "    "
-
-#~ msgid ""
-#~ "\n"
-#~ "                You were invited by the initiator of the project. If you "
-#~ "accept you will be able to participate in the project with your username "
-#~ "\"%(user)s\".\n"
-#~ "                If you want to join with a different profile please login "
-#~ "with your other profile and follow the invitation link again. If you "
-#~ "decline the invitation the link is not valid anymore.\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ "Wenn Sie akzeptieren, treten Sie dem Projekt mit Ihrem Nutzernamen "
-#~ "\"%(user)s\" bei.\n"
-#~ "Wenn Sie dem Projekt mit einem anderen Profil beitreten möchten, melden "
-#~ "Sie sich ab und folgen Sie dem Einladungslink erneut. Wenn Sie die "
-#~ "Einladung ablehnen, verliert der Link seine Gültigkeit."
-
-#~ msgid ""
-#~ "\n"
-#~ "            <p>To sign in via Service-Konto on meinBerlin you will be "
-#~ "redirected to the Service-Konto.</p>\n"
-#~ "            <p>\n"
-#~ "                There you have to sign in with your credentials first, "
-#~ "find the Service <strong>mein.Berlin</strong> and\n"
-#~ "                finally click on <strong>Hier starten</strong> to return "
-#~ "to the meinBerlin platform.\n"
-#~ "            </p>\n"
-#~ "        "
-#~ msgstr ""
-#~ "\n"
-#~ "<p>Um sich mit dem Service-Konto bei meinBerlin anzumelden, werden Sie "
-#~ "auf die Service-Konto Seite weitergeleitet.</p><p>Dort müssen Sie sich "
-#~ "anmelden, den Dienst <strong>mein.Berlin</strong> auswählen und auf "
-#~ "<strong>Hier starten</strong> klicken um zur meinBerlin-Platform "
-#~ "zurückzukehren.</p>"
-
-#~ msgid ""
-#~ "Depending on the selected module, the participation\n"
-#~ "    process has one or two phases. The name and description of the "
-#~ "phase(s)\n"
-#~ "    should encourage the users to participate and let them know how\n"
-#~ "    they can participate."
-#~ msgstr ""
-#~ "Je nach ausgewähltem Modul hat der Beteiligungsprozess eine oder zwei "
-#~ "Phasen. Name und Beschreibung der Phase(n) sollten die Nutzer*innen zur "
-#~ "Teilnahme anregen und sie wissen lassen, wie sie sich beteiligen können."
-
-#~ msgid ""
-#~ "Please\n"
-#~ "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is "
-#~ "an\n"
-#~ "            email address for user %(user_display)s."
-#~ msgstr ""
-#~ "Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> "
-#~ "eine E-Mail Adresse der Nutzer*in %(user_display)s ist."
-
-#~ msgid ""
-#~ "This email confirmation link expired or is invalid.\n"
-#~ "            Please <a href=\"%(email_url)s\">issue a new email "
-#~ "confirmation\n"
-#~ "                request</a>."
-#~ msgstr ""
-#~ "Der Link zur E-Mail Bestätigung ist abgelaufen oder ist ungültig. Bitte "
-#~ "<a href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
-
-#~ msgid ""
-#~ "Already have an account? Then please\n"
-#~ "        <a href=\"%(login_url)s\">login</a>."
-#~ msgstr ""
-#~ "Haben Sie schon ein Nutzerkonto? Dann <a href=\"%(login_url)s\">melden "
-#~ "Sie sich bitte an</a>."
-
-#~ msgid ""
-#~ "\n"
-#~ "                 I hereby expressly consent to the collection and "
-#~ "processing (storage) of my data and expressly consent to the processing "
-#~ "and publication of my ideas, comments and contributions as described in "
-#~ "the privacy policy. I also confirm that I have read and accept the <a "
-#~ "href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the "
-#~ "<a href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>.\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ "Hiermit willige ich ausdrücklich in die Erhebung und Verarbeitung "
-#~ "(Speicherung) meiner Daten und willige ausdrücklich in die Verarbeitung "
-#~ "und Veröffentlichung meiner Ideen, Kommentare und Beiträge, wie in der "
-#~ "Datenschutzerklärung beschrieben, ein. Zudem bestätige ich, dass ich die "
-#~ "<a href=\"%(terms_of_use_url)s\" target=\"_blank\">Nutzungsbedingungen</"
-#~ "a> und die <a href=\"%(privacy_policy)s\" target=\"_blank\"> "
-#~ "Datenschutzerklärung</a> gelesen habe und akzeptiere.               "
-
-#~ msgid ""
-#~ "You are about to use your %(provider_name)s account to login to\n"
-#~ "%(site_name)s. As a final step, please complete the following form:"
-#~ msgstr ""
-#~ "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
-#~ "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt "
-#~ "aus:"
-
-#~ msgid "deleted by creator"
-#~ msgstr "Vom Ersteller gelöscht"
-
-#~ msgid "deleted by moderator"
-#~ msgstr "Vom Moderator gelöscht"
