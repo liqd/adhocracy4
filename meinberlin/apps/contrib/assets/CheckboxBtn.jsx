@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class SwitchButton extends React.Component {
+export default class CheckboxBtn extends React.Component {
   constructor (props) {
     super(props)
 
