@@ -57,7 +57,7 @@ class ItemExportWithModeratorFeedback(VirtualFieldMixin):
     Adds moderator feedback to an item.
 
     Only to be used in projects that have moderator feedback implemented (see
-    https://github.com/liqd/adhocracy-plus/tree/master/apps/moderatorfeedback)
+    https://github.com/liqd/adhocracy-plus/tree/main/apps/moderatorfeedback)
     And only with items that use it.
     """
     def get_virtual_fields(self, virtual):
@@ -81,7 +81,7 @@ class ItemExportWithModeratorRemark(VirtualFieldMixin):
     Adds moderator remarks to an item.
 
     Only to be used in projects that have moderator remarks implemented (see
-    https://github.com/liqd/adhocracy-plus/tree/master/apps/moderatorremark)
+    https://github.com/liqd/adhocracy-plus/tree/main/apps/moderatorremark)
     And only with items that use it.
     """
     def get_virtual_fields(self, virtual):

@@ -4,7 +4,7 @@ Performing releases on A4
 Basic properties of our release cycle:
 
 - version numbers follow semantic versioning
-- current development version is on branch `master`
+- current development version is on branch `main`
 - releases can only be on release branches named `releas<major>.<minor>`
 - patch releases are tags on the minor branch
 
@@ -15,7 +15,7 @@ How to perform a release
     NEW_VRSION=0.2.0
 
     # ensure last release branch is included
-    git checkout master
+    git checkout main
     git merge release0.1
 
     # create release branch
