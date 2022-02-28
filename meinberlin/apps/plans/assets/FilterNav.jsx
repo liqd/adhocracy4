@@ -224,7 +224,6 @@ class FilterNav extends React.Component {
                     <div className="modal-header filter-secondary__modal-header"><button type="button" className="close" onClick={this.closeSecondaryFilters.bind(this)} aria-label={closeStr}><i className="fa fa-times" /></button></div>
                     <div className="modal-body">
                       <FilterSecondary
-                        organisationFilterOnTop={this.props.isStacked || this.props.isTablet}
                         selectParticipation={this.props.selectParticipation.bind(this)}
                         selectStatus={this.props.selectStatus.bind(this)}
                         selectOrganisation={this.props.selectOrganisation.bind(this)}
@@ -355,7 +354,6 @@ class FilterNav extends React.Component {
           </div>
           {this.state.displaySecondaryFilters &&
             <FilterSecondary
-              organisationFilterOnTop={this.props.isStacked || this.props.isTablet}
               selectParticipation={this.props.selectParticipation.bind(this)}
               selectStatus={this.props.selectStatus.bind(this)}
               selectOrganisation={this.props.selectOrganisation.bind(this)}

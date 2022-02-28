@@ -285,6 +285,7 @@ $divider-margin: 1.25rem;
 
 .filter-bar__typeahead {
     flex-grow: 2;
+    margin-left: $spacer;
 
     div:first-of-type {
         flex-grow: 1;
@@ -295,9 +296,16 @@ $divider-margin: 1.25rem;
     }
 }
 
+.filter-bar__section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 @media screen and (max-width: $breakpoint-down) {
     .filter-bar__menu-radio-par,
     .filter-bar__menu-radio-sta {
+        width: 100%;
+
         .btn-group {
             > :first-child {
                 border-top-left-radius: 0.3em;
@@ -319,6 +327,7 @@ $divider-margin: 1.25rem;
 
     .filter-bar__typeahead {
         margin-left: 0;
+        width: 100%;
     }
 }
 

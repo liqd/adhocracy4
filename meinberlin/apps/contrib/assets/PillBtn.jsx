@@ -18,7 +18,7 @@ export const PillBtn = (props) => {
         aria-describedby={choiceBtnID}
       >{choiceString} {choiceCount} <i className="fa fa-times" aria-hidden="true" />
       </button>
-      <span id={choiceBtnID} class="visually-hidden">{removeItemStr}</span>
+      <span id={choiceBtnID} className="visually-hidden">{removeItemStr}</span>
     </>
   )
 }
