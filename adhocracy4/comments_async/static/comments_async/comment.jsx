@@ -12,7 +12,6 @@ import CommentCategoryEditForm from './comment_category_edit_form'
 import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
-import { localeDate } from './helpers'
 
 import { RatingBox } from '../../../ratings/static/ratings/react_ratings'
 
@@ -253,15 +252,15 @@ export default class Comment extends React.Component {
   render () {
     let lastDate
     if (this.props.modified === null) {
-      lastDate = localeDate(this.props.created)
+      lastDate = this.props.created
     } else if (this.props.is_removed) {
-      lastDate = django.gettext('Deleted by creator on') + ' ' + localeDate(this.props.modified)
+      lastDate = django.gettext('Deleted by creator on') + ' ' + this.props.modified
     } else if (this.props.is_censored) {
-      lastDate = django.gettext('Deleted by moderator on') + ' ' + localeDate(this.props.modified)
+      lastDate = django.gettext('Deleted by moderator on') + ' ' + this.props.modified
     } else if (this.props.is_blocked) {
-      lastDate = django.gettext('Blocked by moderator on') + ' ' + localeDate(this.props.modified)
+      lastDate = django.gettext('Blocked by moderator on') + ' ' + this.props.modified
     } else {
-      lastDate = django.gettext('Latest edit on') + ' ' + localeDate(this.props.modified)
+      lastDate = django.gettext('Latest edit on') + ' ' + this.props.modified
     }
 
     let moderatorLabel
