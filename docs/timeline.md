@@ -50,7 +50,7 @@ Additionally to the modules, which are always some form of online
 participation, some of the platforms also have offline events. To
 work with the timeline, these need to be implemented as `OfflineEvent`
 with `slug, name, date, event_type, description` like in
-[adhocracy+](https://github.com/liqd/adhocracy-plus/blob/master/apps/offlineevents/models.py).
+[adhocracy+](https://github.com/liqd/adhocracy-plus/blob/main/apps/offlineevents/models.py).
 
 
 ## Project properties concerning the timeline

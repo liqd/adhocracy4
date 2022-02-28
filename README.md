@@ -5,7 +5,7 @@ A core library for building participation platforms,
 maintained and developed by Liquid Democracy e.V..
 
 ![Build Status](https://github.com/liqd/adhocracy4/actions/workflows/django.yml/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/liqd/adhocracy4/badge.svg?branch=master)](https://coveralls.io/github/liqd/adhocracy4?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/liqd/adhocracy4/badge.svg?branch=main)](https://coveralls.io/github/liqd/adhocracy4?branch=main)
 
 ### Tested With
 
