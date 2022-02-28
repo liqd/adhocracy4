@@ -38,10 +38,8 @@ export default class CommentBox extends React.Component {
 
     this.anchoredCommentFound = this.anchoredCommentFound.bind(this)
     this.handleClickFilter = this.handleClickFilter.bind(this)
-    this.handleClickResult = this.handleClickResult.bind(this)
     this.handleClickSorted = this.handleClickSorted.bind(this)
-    this.handleClickSearch = this.handleClickSearch.bind(this)
-    this.handleEnterSearch = this.handleEnterSearch.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
     this.fetchComments = this.fetchComments.bind(this)
     this.handleCommentDelete = this.handleCommentDelete.bind(this)
     this.handleCommentModify = this.handleCommentModify.bind(this)
@@ -383,23 +381,11 @@ export default class CommentBox extends React.Component {
       )
   }
 
-  handleClickSearch (e) {
-    e.preventDefault()
-    const search = e.currentTarget.parentElement.firstChild.value
+  handleSearch (search) {
     this.fetchSearch(search)
     this.setState({
       loadingFilter: true
     })
-  }
-
-  handleEnterSearch (e) {
-    const search = e.currentTarget.value
-    if (e.key === 'Enter') {
-      this.fetchSearch(search)
-      this.setState({
-        loadingFilter: true
-      })
-    }
   }
 
   fetchSearch (search) {
@@ -426,15 +412,6 @@ export default class CommentBox extends React.Component {
           })
         }
       )
-  }
-
-  handleClickResult (e) {
-    const result = ''
-    this.fetchSearch(result)
-    document.getElementById('search-input').value = ''
-    this.setState({
-      loadingFilter: true
-    })
   }
 
   anchoredCommentFound () {
@@ -552,9 +529,7 @@ export default class CommentBox extends React.Component {
               <FilterSearch
                 search={this.state.search}
                 translated={translated}
-                onEnterSearch={this.handleEnterSearch}
-                onClickSearch={this.handleClickSearch}
-                onClickResult={this.handleClickResult}
+                onSearch={this.handleSearch}
               />
               {this.props.withCategories
                 ? <FilterCategory
