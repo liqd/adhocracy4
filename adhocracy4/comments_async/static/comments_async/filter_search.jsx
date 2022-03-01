@@ -26,7 +26,7 @@ export const FilterSearch = ({
     <div className="a4-comments__filters__search">
       <input
         className="form-control a4-comments__filters__search-input mb-0"
-        type="search"
+        type="text"
         id="search-input"
         value={query}
         onChange={handleChange}
