@@ -315,7 +315,9 @@ export default class Comment extends React.Component {
                       : <a href={userProfile}>{this.props.user_name}</a>}
                   </div>
                   {moderatorLabel}
-                  <div className="a4-comments__submission-date">{lastDate}</div>
+                  <time className="a4-comments__submission-date">
+                    {lastDate}
+                  </time>
                 </div>
 
                 <div className="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
