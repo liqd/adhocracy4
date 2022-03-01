@@ -52,56 +52,52 @@
                 </div>
 
                 <div class="item-detail-2__factsheet">
-                    <ul class="item-detail-2__factsheet-table">
+                    <dl class="item-detail-2__factsheet-table" title="{% trans 'Plan details' %}">
 
                         {% if object.point_label %}
-                        <dl>
-                            <dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd>
-                        </dl>
+                            <div><dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd></div>
                         {% endif %}
 
                         {% if object.topic_names %}
-                        <dl>
+                        <div>
                             <dt>{% trans 'Topic' %}</dt>
                             <dd>{{ object.topic_names.0 }}{% if object.topic_names.1 %}, {{ object.topic_names.1 }}{% endif %}</dd>
-                        </dl>
+                        </div>
                         {% endif %}
 
                         {% if object.duration %}
-                        <dl>
-                            <dt>{% trans 'Duration' %}</dt><dd>{{ object.duration }}</dd>
-                        </dl>
+                        <div>
+                          <dt>{% trans 'Duration' %}</dt><dd>{{ object.duration }}</dd>
+                        </div>
                         {% endif %}
 
                         {% if object.cost != "Keine Angabe" %}
-                        <dl>
-                            <dt>{% trans 'Cost' %}</dt><dd>{{ object.cost }}</dd>
-                        </dl>
+                        <div>
+                          <dt>{% trans 'Cost' %}</dt><dd>{{ object.cost }}</dd>
+                        </div>
                         {% endif %}
-
-                        <dl>
-                            <dt>{% trans 'Participation' %}</dt>
-                            <dd>
-                                {{ object.get_participation_display }}
-                                {% if object.published_projects.count %}/
-                                    <a href='#participation-plans'>
-                                        {% trans 'see participation projects' %}
-                                    </a>
-                                {% endif%}
-                            </dd>
-                        </dl>
-
-                        <dl>
-                            <dt>{% trans 'Reference No.' %}</dt>
-                            <dd>{{ object.reference_number }},
-                                {% if object.modified %}
-                                    {% trans 'updated on ' %}{% html_date object.modified class='list-item__date' %}
-                                {% else %}
-                                    {% trans 'created on ' %}{% html_date object.created class='list-item__date' %}
-                                {% endif %}
-                            </dd>
-                        </dl>
-                    </ul>
+                        <div>
+                          <dt>{% trans 'Participation' %}</dt>
+                          <dd>
+                              {{ object.get_participation_display }}
+                              {% if object.published_projects.count %}/
+                                  <a href='#participation-plans'>
+                                      {% trans 'see participation projects' %}
+                                  </a>
+                              {% endif%}
+                          </dd>
+                        </div>
+                        <div>
+                          <dt>{% trans 'Reference No.' %}</dt>
+                          <dd>{{ object.reference_number }},
+                              {% if object.modified %}
+                                  {% trans 'updated on ' %}{% html_date object.modified class='list-item__date' %}
+                              {% else %}
+                                  {% trans 'created on ' %}{% html_date object.created class='list-item__date' %}
+                              {% endif %}
+                          </dd>
+                        </div>
+                    </dl>
                     {% if object.description_image %}
                         <div class="item-detail__background-image" style="background-image: url({% thumbnail object.description_image 'item_image' %})">
                         {% if object.description_image_copyright %}
