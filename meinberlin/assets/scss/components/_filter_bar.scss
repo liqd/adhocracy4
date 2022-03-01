@@ -245,6 +245,24 @@ $divider-margin: 1.25rem;
 
 // secondary radio group
 
+.filter-bar__menu-radio-par {
+    width: 100%;
+    margin-bottom: 2 * $spacer;
+
+    .switch--btn {
+        flex-grow: 1;
+    }
+}
+
+.filter-bar__menu-radio-sta {
+    display: inline-block;
+    flex-grow: 1;
+
+    .switch--btn {
+        flex-grow: 1;
+    }
+}
+
 .filter-bar__menu-radio-par,
 .filter-bar__menu-radio-sta {
     border: none;
@@ -262,24 +280,18 @@ $divider-margin: 1.25rem;
         position: relative;
         padding-left: 0.5 * $padding;
         padding-right: 0.5 * $padding;
+
+        &:focus-within:not(.active) {
+            @include fake-focus;
+
+            background-color: $gray-lightest;
+        }
     }
-}
 
-.filter-bar__menu-radio-par {
-    width: 100%;
-    margin-bottom: 2 * $spacer;
+    .switch--btn.active:focus-within {
+        @include fake-focus;
 
-    .switch--btn {
-        flex-grow: 1;
-    }
-}
-
-.filter-bar__menu-radio-sta {
-    display: inline-block;
-    flex-grow: 1;
-
-    .switch--btn {
-        flex-grow: 1;
+        background-color: $brand-secondary-darker;
     }
 }
 
