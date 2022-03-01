@@ -350,7 +350,7 @@ def test_fields(user, apiclient, question_ct, question):
     assert response.data['count'] == 1
 
     commentDict = response.data['results'][0]
-    assert len(commentDict) == 29
+    assert len(commentDict) == 21
     assert 'child_comments' in commentDict
     assert 'comment' in commentDict
     assert 'comment_categories' in commentDict
@@ -365,7 +365,6 @@ def test_fields(user, apiclient, question_ct, question):
     assert 'object_pk' in commentDict
     assert 'ratings' in commentDict
     assert 'user_name' in commentDict
-    assert 'user_pk' in commentDict
     assert 'user_profile_url' in commentDict
     assert 'user_image' in commentDict
     assert 'is_blocked' in commentDict
