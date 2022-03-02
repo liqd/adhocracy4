@@ -23,7 +23,7 @@ export const FilterSearch = ({
   }
 
   return (
-    <div className="a4-comments__filters__search">
+    <div className="a4-comments__filters__search" role="search">
       <input
         className="form-control a4-comments__filters__search-input mb-0"
         type="text"
