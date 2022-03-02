@@ -36,7 +36,7 @@ def get_bplan_point_and_district_pk(bplan_identifier):
 
     except UnicodeEncodeError:
         # catches bplan-identifiers with problematic chars
-        pass
+        return None, None
 
 
 def get_bplan_api_pk_to_a4_admin_district_dict():
@@ -62,17 +62,18 @@ def get_bplan_api_pk_to_a4_admin_district_dict():
 def get_location_information(bplan_id):
     bplan = Bplan.objects.get(pk=bplan_id)
     point, district_pk = get_bplan_point_and_district_pk(bplan.identifier)
-    dis_dict = get_bplan_api_pk_to_a4_admin_district_dict()
 
     if district_pk:
+        dis_dict = get_bplan_api_pk_to_a4_admin_district_dict()
         bplan.administrative_district = \
             dis_dict[district_pk]
+        bplan.point = point
     else:
         logger.error(
             "The identifier '{}' for bplan '{}' seems to be wrong. "
             "It doesn't exist on https://bplan-prod.liqd.net/api/"
             .format(bplan.identifier, bplan)
         )
-    bplan.point = point
+
     bplan.topics = ['URB']
     bplan.save(update_fields=['point', 'administrative_district', 'topics'])
