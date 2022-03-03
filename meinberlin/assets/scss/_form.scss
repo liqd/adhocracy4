@@ -116,6 +116,10 @@ div.cke_focus {
     margin-bottom: 0;
 }
 
+.widget--textinput {
+    flex-grow: 1;
+}
+
 .widget--radioselect,
 .widget--checkboxselectmultiple,
 .widget--radioselectwithtextinputwidget {
