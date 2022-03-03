@@ -156,7 +156,6 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     )
     participation_explanation = models.TextField(
         verbose_name=_('Participation explanation'),
-        default='Bitte Begründung einfügen',
         max_length=4000,
         help_text=_('Justify your selection. '
                     'The justification appears '
