@@ -116,37 +116,37 @@
                         {% endif %}
                     </div>
                 </div>
+                {% if object.participation_explanation != "Bitte Begründung einfügen" %}
                 <div class="item-detail-2__info-box">
                     <h3 class="item-detail-2__info-box-headline">{% trans 'Level of participation' %}: {{ object.get_participation_display }}</h3>
-                    {% if object.participation_explanation != "Bitte Begründung einfügen" %}
-                        {% if object.participation_explanation|length > 300 %}
-                            <div id="collapsibleExplanation" class="collapse show u-no-transition">
-                                {{ object.participation_explanation|truncatechars:160 }}
-                            </div>
-                            <div id="collapsibleExplanation" class="collapse u-no-transition">
-                                {{ object.participation_explanation }}
-                            </div>
-                            <button
-                                class="btn--link collapsible"
-                                type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapsibleExplanation"
-                                aria-expanded="false"
-                                aria-controls="collapseReadLink"
-                            >
-                                <span class="link--more">
-                                    <span class="visually-hidden">{% trans 'toggle to' %}</span>
-                                    {% trans 'Read more' %}
-                                </span>
-                                <span class="link--less">
-                                    <span class="visually-hidden">{% trans 'toggle to' %}</span>
-                                    {% trans 'Read Less' %}
-                                </span>
-                            </button>
-                        {% else %}
+                    {% if object.participation_explanation|length > 300 %}
+                        <div id="collapsibleExplanation" class="collapse show u-no-transition">
+                            {{ object.participation_explanation|truncatechars:160 }}
+                        </div>
+                        <div id="collapsibleExplanation" class="collapse u-no-transition">
                             {{ object.participation_explanation }}
-                        {% endif %}
+                        </div>
+                        <button
+                            class="btn--link collapsible"
+                            type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapsibleExplanation"
+                            aria-expanded="false"
+                            aria-controls="collapseReadLink"
+                        >
+                            <span class="link--more">
+                                <span class="visually-hidden">{% trans 'toggle to' %}</span>
+                                {% trans 'Read more' %}
+                            </span>
+                            <span class="link--less">
+                                <span class="visually-hidden">{% trans 'toggle to' %}</span>
+                                {% trans 'Read Less' %}
+                            </span>
+                        </button>
+                    {% else %}
+                        {{ object.participation_explanation }}
                     {% endif %}
                 </div>
+                {% endif %}
                 {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url or object.organisation.address or object.organisation.url %}
                     <div class="l-tiles-2 u-spacer-bottom">
                     {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url %}
