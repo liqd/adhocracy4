@@ -2,6 +2,10 @@
 
 .input-group {
     display: flex;
+
+    input {
+        margin-bottom: 0;
+    }
 }
 
 .input-group__input {
