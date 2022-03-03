@@ -11,22 +11,19 @@
 
 .item-detail-2__factsheet-table {
     padding-left: 0;
+    display: table;
 
-    @media screen and (min-width: $breakpoint-xs) {
-        display: table;
+    div {
+        display: table-row;
+    }
 
-        div {
-            display: table-row;
-        }
+    dt {
+        display: table-cell;
+        border-right: 2em solid transparent;
+    }
 
-        dt {
-            display: table-cell;
-            border-right: 2em solid transparent;
-        }
-
-        dd {
-            display: table-cell;
-        }
+    dd {
+        display: table-cell;
     }
 }
 
