@@ -8,9 +8,12 @@ class CommentCategoryFilterBackend(BaseFilterBackend):
 
     def filter_queryset(self, request, queryset, view):
 
-        if 'comment_category' in request.GET:
+        if ('comment_category' in request.GET
+                and request.GET['comment_category'] != ''):
             category = request.GET['comment_category']
-            return queryset.filter(comment_categories__contains=category)
+            return queryset.filter(
+                comment_categories__contains=category,
+                is_blocked=False)
 
         return queryset
 
@@ -70,5 +73,6 @@ class CustomSearchFilter(SearchFilter):
     def filter_queryset(self, request, queryset, view):
         qs = super().filter_queryset(request, queryset, view)
         if self.get_search_terms(request):
-            return qs.filter(is_removed=False, is_censored=False)
+            return qs.filter(is_removed=False, is_censored=False,
+                             is_blocked=False)
         return qs
