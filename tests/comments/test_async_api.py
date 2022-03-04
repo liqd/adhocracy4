@@ -281,7 +281,8 @@ def test_rating_info(comment, user, another_user, apiclient):
 
 
 @pytest.mark.django_db
-def test_comment_id_in_list(user, apiclient, question_ct, question):
+def test_pagination_comment_link(user, apiclient, question_ct, question,
+                                 comment_factory):
     url = reverse(
         'comments_async-list',
         kwargs={'content_type': question_ct.pk,
@@ -319,6 +320,18 @@ def test_comment_id_in_list(user, apiclient, question_ct, question):
     response = apiclient.get(url)
     assert response.status_code == status.HTTP_200_OK
     assert response.data['comment_found']
+
+    comment = comment_factory(content_object=question)
+    child_comment = comment_factory(content_object=comment)
+    url = reverse(
+        'comments_async-list',
+        kwargs={'content_type': question_ct.pk,
+                'object_pk': question.pk})
+    url += '?commentID={}'.format(child_comment.id)
+    response = apiclient.get(url)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.data['comment_found']
+    assert response.data['comment_parent'] == comment.id
 
 
 @pytest.mark.django_db
