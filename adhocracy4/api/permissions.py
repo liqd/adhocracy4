@@ -31,9 +31,7 @@ RulesMethodMap = namedtuple('RulesMethodMap',
 
 
 class RulesPermission(permissions.BasePermission):
-    """
-    Combining drf permissions with django-rules.
-    """
+    """Combining drf permissions with django-rules."""
 
     default_rules_method_map = RulesMethodMap(
         GET='{app_label}.view_{model_name}',
@@ -96,10 +94,17 @@ class ViewSetRulesPermission(RulesPermission):
 
     def has_permission(self, request, view):
         """
-        Check permissions using get_object or get_permission_object depending
-        on viewset action.
+        Check permissions depending on viewset action.
+
+        For metadata action (OPTIONS request), call
+        RulesPermission.has_permission, as we cannot distinguish between
+        object or non object actions here.
+        For list and create actions check permissions on object returned by
+        get_permission_object, else on object returned by get_object.
         """
-        if not view.action or view.action in self.non_object_actions:
+        if view.action == 'metadata':
+            return super().has_permission(request, view)
+        elif not view.action or view.action in self.non_object_actions:
             obj = view.get_permission_object()
         else:
             obj = view.get_object()
