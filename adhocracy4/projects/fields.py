@@ -12,11 +12,11 @@ class TopicField(MultiSelectField):
         super().__init__(*args, **kwargs)
 
     def contribute_to_class(self, cls, name, **kwargs):
-        """
-        Initialize the choices from the project's settings if they exist.
-        """
+        """Initialize the choices from the project's settings if they exist."""
         if hasattr(settings, 'A4_PROJECT_TOPICS'):
             self.choices = settings.A4_PROJECT_TOPICS
+        else:
+            self.choices = ()
 
         # Call the super method at last so that choices are already initialized
         super().contribute_to_class(cls, name, **kwargs)
