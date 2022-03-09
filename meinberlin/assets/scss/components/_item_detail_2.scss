@@ -33,7 +33,7 @@
     border-bottom: 1px solid $border-color;
 }
 
-.item-detail-2__content-borderless {
+.item-detail-2__content--borderless {
     margin-top: 2em;
 }
 
@@ -52,8 +52,4 @@
 .item-detail-2__info-box {
     border: 1px solid $border-color;
     padding: 1em;
-}
-
-.item-detail-2__info-box-headline {
-    margin-top: 0;
 }

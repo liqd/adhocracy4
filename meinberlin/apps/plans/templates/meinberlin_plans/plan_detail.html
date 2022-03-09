@@ -109,7 +109,7 @@
                     {% endif %}
                 </div>
 
-                <div class="item-detail-2__content-borderless">
+                <div class="item-detail-2__content{% if object.participation_explanation != 'Bitte Begründung einfügen' %}--borderless{% endif%}">
                     <div class="item-detail__basic-content">
                         {% if object.description %}
                             {{ object.description | transform_collapsibles | richtext }}
@@ -118,7 +118,7 @@
                 </div>
                 {% if object.participation_explanation != "Bitte Begründung einfügen" %}
                 <div class="item-detail-2__info-box">
-                    <h3 class="item-detail-2__info-box-headline">{% trans 'Level of participation' %}: {{ object.get_participation_display }}</h3>
+                    <h2 class="item-detail-2__smalltitle">{% trans 'Level of participation' %}: {{ object.get_participation_display }}</h2>
                     {% if object.participation_explanation|length > 300 %}
                         <div id="collapsibleExplanation" class="collapse show u-no-transition">
                             {{ object.participation_explanation|truncatechars:160 }}
@@ -151,7 +151,7 @@
                     <div class="l-tiles-2 u-spacer-bottom">
                     {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url %}
                         <div>
-                            <h3>{% trans 'Contact for questions' %}</h3>
+                            <h2 class="item-detail-2__smalltitle">{% trans 'Contact for questions' %}</h2>
                             {% if object.contact_name %}
                                 <p>{{ object.contact_name }}</p>
                             {% endif %}
@@ -176,7 +176,7 @@
 
                     {% if object.organisation.address or object.organisation.url %}
                         <div>
-                            <h3>{% trans 'Responsible body' %}</h3>
+                            <h2 class="item-detail-2__smalltitle">{% trans 'Responsible body' %}</h2>
                             {% if object.organisation.address %}
                                 <p>{{ object.organisation.name }}</p>
                                 <p>{{ object.organisation.address|linebreaks }}</p>
