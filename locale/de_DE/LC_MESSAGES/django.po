@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 15:54+0100\n"
+"POT-Creation-Date: 2022-03-09 14:38+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -260,7 +260,7 @@ msgstr "privat"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:52
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:222
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:218
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:73
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
@@ -469,11 +469,11 @@ msgid "Please choose a category"
 msgstr "Bitte wählen Sie eine Kategorie"
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:82
+#: adhocracy4/comments_async/serializers.py:92
 msgid "unknown user"
 msgstr "unbekannte*r Nutzer*in"
 
-#: adhocracy4/comments_async/serializers.py:15
+#: adhocracy4/comments_async/serializers.py:17
 msgid "Please choose one or more categories."
 msgstr "Bitte wählen Sie eine oder mehrere Kategorien aus."
 
@@ -582,7 +582,7 @@ msgstr ""
 
 #: adhocracy4/dashboard/forms.py:86
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:33
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:158
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:154
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:126
 msgid "Contact for questions"
 msgstr "Kontakt für Rückfragen"
@@ -720,7 +720,7 @@ msgstr "Merkmale"
 #: adhocracy4/exports/mixins/items.py:46
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:60
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:61
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:95
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:91
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:45
 msgid "Reference No."
 msgstr "Referenznr."
@@ -1091,23 +1091,23 @@ msgid "Project"
 msgstr "Projekt"
 
 #: adhocracy4/projects/admin.py:65
-#: meinberlin/apps/projects/admin.py:61
+#: meinberlin/apps/projects/admin.py:45
 msgid "Information and result"
 msgstr "Informationen und Ergebnis"
 
 #: adhocracy4/projects/admin.py:68
 #: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:4
-#: meinberlin/apps/projects/admin.py:64
+#: meinberlin/apps/projects/admin.py:48
 msgid "Settings"
 msgstr "Einstellungen"
 
 #: adhocracy4/projects/admin.py:72
-#: meinberlin/apps/projects/admin.py:69
+#: meinberlin/apps/projects/admin.py:53
 msgid "Images"
 msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:77
-#: meinberlin/apps/projects/admin.py:74 meinberlin/templates/email_base.html:84
+#: meinberlin/apps/projects/admin.py:58 meinberlin/templates/email_base.html:84
 #: meinberlin/templates/email_base.txt:17
 msgid "Contact"
 msgstr "Kontakt"
@@ -1130,7 +1130,7 @@ msgid "Postal address"
 msgstr "Postadresse"
 
 #: adhocracy4/projects/models.py:54
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:170
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:166
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:138
 msgid "Email"
@@ -1145,8 +1145,8 @@ msgid "Phone"
 msgstr "Telefon"
 
 #: adhocracy4/projects/models.py:72
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:175
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:190
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:171
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:186
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:143
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:158
 msgid "Website"
@@ -2110,7 +2110,7 @@ msgstr[1] "%(counter)s Projekte anzeigen"
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
 #: meinberlin/apps/plans/exports.py:64 meinberlin/apps/plans/forms.py:51
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
-#: meinberlin/apps/plans/views.py:87 meinberlin/apps/projects/admin.py:83
+#: meinberlin/apps/plans/views.py:87 meinberlin/apps/projects/admin.py:67
 #: meinberlin/apps/projects/forms.py:100
 #: meinberlin/apps/projects/serializers.py:16
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
@@ -2281,7 +2281,7 @@ msgstr "Negative Bewertungen"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:54
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:44
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:49
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:98
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:94
 msgid "updated on "
 msgstr "bearbeitet am "
 
@@ -2289,14 +2289,14 @@ msgstr "bearbeitet am "
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:56
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:46
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:51
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:100
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:96
 msgid "created on "
 msgstr "erstellt am "
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:86
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:95
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:204
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:213
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:200
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:209
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -3402,7 +3402,7 @@ msgstr "Mitentscheidung"
 msgid "decision-making"
 msgstr "Entscheidung"
 
-#: meinberlin/apps/plans/models.py:40 meinberlin/apps/plans/models.py:210
+#: meinberlin/apps/plans/models.py:40 meinberlin/apps/plans/models.py:209
 #: meinberlin/apps/projectcontainers/serializers.py:29
 #: meinberlin/apps/projects/serializers.py:84
 #: meinberlin/apps/projects/serializers.py:93
@@ -3473,7 +3473,7 @@ msgstr ""
 "Projekte nach Bezirk gefiltert werden. "
 
 #: meinberlin/apps/plans/models.py:96
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:78
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:76
 msgid "Cost"
 msgstr "Kosten"
 
@@ -3542,7 +3542,7 @@ msgid "In the project overview projects can be filtered by status."
 msgstr "In der Projektübersicht können Projekte nach Status gefiltert werden."
 
 #: meinberlin/apps/plans/models.py:151
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:124
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:121
 msgid "Level of participation"
 msgstr "Art der Beteiligung"
 
@@ -3558,7 +3558,7 @@ msgstr ""
 msgid "Participation explanation"
 msgstr "Begründung"
 
-#: meinberlin/apps/plans/models.py:161
+#: meinberlin/apps/plans/models.py:160
 msgid ""
 "Justify your selection. The justification appears below the description of "
 "the project."
@@ -3566,12 +3566,12 @@ msgstr ""
 "Begründen Sie Ihre Auswahl. Die Begründung erscheint unterhalb der "
 "Beschreibung des Vorhabens."
 
-#: meinberlin/apps/plans/models.py:170
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:72
+#: meinberlin/apps/plans/models.py:169
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:70
 msgid "Duration"
 msgstr "Laufzeit"
 
-#: meinberlin/apps/plans/models.py:171
+#: meinberlin/apps/plans/models.py:170
 msgid ""
 "Provide information on the expected duration of the plan in no more than 255 "
 "characters."
@@ -3579,7 +3579,7 @@ msgstr ""
 "Machen Sie in maximal 255 Zeichen Angaben über die voraussichtliche Laufzeit "
 "des Vorhabens."
 
-#: meinberlin/apps/plans/models.py:217
+#: meinberlin/apps/plans/models.py:216
 #: meinberlin/apps/projects/serializers.py:97
 msgid "starts at {}"
 msgstr "startet am {}"
@@ -3680,48 +3680,52 @@ msgstr "Dieses Vorhaben ist noch nicht veröffentlicht."
 msgid "back to overview of projects"
 msgstr "zurück zur Projektübersicht"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:59
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:55
+msgid "Plan details"
+msgstr ""
+
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:58
 msgid "Location"
 msgstr "Ort"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:65
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:63
 msgid "Topic"
 msgstr "Thema"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:83
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:80
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:97
 msgid "Participation"
 msgstr "Beteiligung"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:88
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:85
 msgid "see participation projects"
 msgstr "siehe Beteiligungsprojekte"
 
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:137
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:141
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:145
 msgid "toggle to"
 msgstr "umschalten zu"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:142
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:138
 msgid "Read more"
 msgstr "Weiterlesen"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:146
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:142
 msgid "Read Less"
 msgstr "Weniger anzeigen"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:166
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:162
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:134
 msgid "Telephone"
 msgstr "Telefon"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:183
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:179
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:151
 msgid "Responsible body"
 msgstr "Verantwortliche Stelle"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:239
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:235
 #: meinberlin/templates/a4dashboard/base_project_list.html:7
 #: meinberlin/templates/a4dashboard/base_project_list.html:16
 #: meinberlin/templates/a4dashboard/project_list.html:9
@@ -3930,15 +3934,15 @@ msgstr "Projektsammlung"
 msgid "A container contains multiple projects."
 msgstr "Eine Projektsammlung enthält mehrere Projekte."
 
-#: meinberlin/apps/projects/admin.py:13
+#: meinberlin/apps/projects/admin.py:12
 msgid "archive"
 msgstr "archivieren"
 
-#: meinberlin/apps/projects/admin.py:20
+#: meinberlin/apps/projects/admin.py:19
 msgid "dearchive"
 msgstr "unarchivieren"
 
-#: meinberlin/apps/projects/admin.py:58
+#: meinberlin/apps/projects/admin.py:42
 msgid "Topic and location"
 msgstr "Thema und Ort"
 
@@ -4612,9 +4616,9 @@ msgid ""
 "The verification of your input has failed. Please reload the page and make "
 "sure that your browser settings allow setting session cookies."
 msgstr ""
-"Die Verifizierung Ihrer Eingabe ist fehlgeschlagen. Bitte laden Sie die Seite "
-"neu und stellen Sie sicher, dass Ihre Systemeinstellungen das Setzen von "
-"Session-Cookies erlauben."
+"Die Verifizierung Ihrer Eingabe ist fehlgeschlagen. Bitte laden Sie die "
+"Seite neu und stellen Sie sicher, dass Ihre Systemeinstellungen das Setzen "
+"von Session-Cookies erlauben."
 
 #: meinberlin/templates/404.html:7
 msgid "This page could not be found."
