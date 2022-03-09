@@ -3682,7 +3682,7 @@ msgstr "zurück zur Projektübersicht"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:55
 msgid "Plan details"
-msgstr ""
+msgstr "Vorhabendetails"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:58
 msgid "Location"

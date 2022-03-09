@@ -637,6 +637,7 @@ msgstr "Ihre Antwort wurde gespeichert."
 msgid ""
 "Your answer could not be saved. Please check the data you entered again."
 msgstr ""
+"Ihre Antwort konnte nicht gespeichert werden. Bitte überprüfen Sie Ihre Eingabe."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:23
 msgid "Your answer is invalid or empty. Please try again."
@@ -1017,7 +1018,7 @@ msgstr "Zugehörigkeit der beantworteten Fragen"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:7
 msgid "Filter bar for Project overview"
-msgstr ""
+msgstr "Filterleiste für die Projektübersicht"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:8
 msgid "I am interested in projects from"
@@ -1158,7 +1159,7 @@ msgstr " Suchergebnisse"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:9
 msgid " remove filter"
-msgstr ""
+msgstr " Filter entfernen"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:10
 msgid "Show map"
@@ -1236,13 +1237,3 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
-
-#~ msgid ""
-#~ "Your answer could not be saved due to a server error. Please try again "
-#~ "later."
-#~ msgstr ""
-#~ "Ihre Antwort konnte aufgrund eines Serverfehlers nicht gespeichert "
-#~ "werden. Bitte versuchen Sie es später noch einmal."
-
-#~ msgid "Filter bar"
-#~ msgstr "Filter Leiste"
