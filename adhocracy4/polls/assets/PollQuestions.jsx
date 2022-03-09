@@ -15,7 +15,7 @@ const ALERT_SUCCESS = {
 
 const ALERT_ERROR = {
   type: 'danger',
-  message: django.gettext('Your answer could not be saved due to a server error. Please try again later.')
+  message: django.gettext('Your answer could not be saved. Please check the data you entered again.')
 }
 
 const ALERT_INVALID = {
