@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-09 14:38+0100\n"
+"POT-Creation-Date: 2022-03-10 11:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3385,6 +3385,7 @@ msgid "In the project overview projects can be filtered by status."
 msgstr "In the project overview projects can be filtered by status."
 
 #: meinberlin/apps/plans/models.py:151
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:80
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:121
 msgid "Level of participation"
 msgstr "Level of participation"
@@ -3534,12 +3535,6 @@ msgstr "Location"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:63
 msgid "Topic"
 msgstr "Topic"
-
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:80
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:97
-msgid "Participation"
-msgstr "Participation"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:85
 msgid "see participation projects"
@@ -3761,6 +3756,11 @@ msgstr "%(active_count)s of %(count)s"
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:14
 msgid "projects are currently active."
 msgstr "projects are currently active."
+
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:97
+msgid "Participation"
+msgstr "Participation"
 
 #: meinberlin/apps/projectcontainers/views.py:21
 msgid "Container successfully created."
