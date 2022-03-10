@@ -258,7 +258,7 @@ msgstr " Melden"
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "hide replies"
-msgstr "Antworten verbergen"
+msgstr "Antworten ausblenden"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:36
@@ -363,8 +363,8 @@ msgstr[1] "Beiträge"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:93
 msgid "entry found for "
 msgid_plural "entries found for "
-msgstr[0] "Beitrag"
-msgstr[1] "Beiträge"
+msgstr[0] "Beitrag gefunden zu: "
+msgstr[1] "Beiträge gefunden zu: "
 
 #: adhocracy4/comments_async/static/comments_async/comment_category_edit_form.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_edit_form.jsx:7
