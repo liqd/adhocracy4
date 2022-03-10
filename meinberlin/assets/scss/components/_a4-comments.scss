@@ -1,8 +1,6 @@
 .a4-comments__box {
     > .a4-comments__list > div > div {
-        @media screen and (max-width: $breakpoint-xs-down) {
-            border-top: solid 1px $border-color;
-        }
+        border-top: solid 1px $border-color;
     }
 }
 
