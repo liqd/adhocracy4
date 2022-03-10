@@ -99,6 +99,10 @@
     position: absolute;
     right: 45px;
     top: 7px;
+
+    span {
+        color: $text-color-gray;
+    }
 }
 
 .a4-comments__filters__search-input {
