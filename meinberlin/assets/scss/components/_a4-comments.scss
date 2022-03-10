@@ -92,6 +92,10 @@
 
     margin-bottom: 0.5 * $spacer;
     position: relative;
+
+    @media screen and (max-width: 478px) {
+        flex-grow: 1;
+    }
 }
 
 .a4-comments__filters__search-result {
@@ -171,4 +175,15 @@
 
 .a4-comments__read-btn {
     @extend .btn--link;
+}
+
+.a4-comments__filters__dropdown {
+    @media screen and (max-width: 478px) {
+        flex-grow: 1;
+
+        > .dropdown button {
+            width: 100%;
+            max-width: initial;
+        }
+    }
 }
