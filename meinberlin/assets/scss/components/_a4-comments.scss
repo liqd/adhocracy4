@@ -73,7 +73,8 @@
 .a4-comments__filters__parent--closed,
 .a4-comments__filters,
 .a4-comments__action-bar-container > .rating {
-    margin-top: $spacer;
+    margin-top: $spacer * 0.5;
+    margin-bottom: $spacer * 1.5;
 }
 
 .a4-comments__action-bar {
