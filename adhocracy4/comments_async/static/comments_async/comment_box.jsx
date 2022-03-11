@@ -89,9 +89,6 @@ export default class CommentBox extends React.Component {
           translated.entries =
             django.ngettext('entry', 'entries', data.count)
 
-          translated.entriesFound =
-            django.ngettext('entry found for ', 'entries found for ', data.count)
-
           if (this.state.anchoredCommentId && data.comment_found) {
             this.setState(
               {
@@ -482,6 +479,10 @@ export default class CommentBox extends React.Component {
     }
   }
 
+  translatedEntriesFound (entriesFound) {
+    return django.ngettext('entry found for ', 'entries found for ', entriesFound)
+  }
+
   render () {
     return (
       <div>
@@ -509,7 +510,7 @@ export default class CommentBox extends React.Component {
             </div>
 
             <div className={this.state.search !== '' ? 'a4-comments__filters__text' : 'd-none'}>
-              <span className="a4-comments__filters__span">{this.state.commentCount + ' ' + translated.entriesFound}{this.state.search}</span>
+              <span className="a4-comments__filters__span">{this.state.commentCount + ' ' + this.translatedEntriesFound(this.state.commentCount)}{this.state.search}</span>
             </div>
 
             {!this.state.showFilters && this.state.commentCount > 0 &&
