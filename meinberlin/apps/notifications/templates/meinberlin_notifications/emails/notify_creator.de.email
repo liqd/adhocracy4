@@ -14,7 +14,7 @@
 {% endif %}
 Möchten Sie antworten?{% endblock %}
 
-{% block cta_url %}{% if action.target.get_absolute_url %}{{ email.get_host }}{{ action.target.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if action.target.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}
+{% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
+{% block cta_label %}{% if action.obj.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie einen Beitrag in einem Projekt erstellt haben. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, ändern Sie die Einstellungen zu Ihrem <a href="{{ email.get_host }}{% url 'account' %}">Nutzerkonto</a>.{% endblock %}

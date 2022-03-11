@@ -14,7 +14,7 @@
 {% endif %}
 Would you like to answer?{% endblock %}
 
-{% block cta_url %}{% if action.target.get_absolute_url %}{{ email.get_host }}{{ action.target.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if action.target.get_absolute_url %}View Post{% else %}Visit the project{% endif %}{% endblock %}
+{% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
+{% block cta_label %}{% if action.obj.get_absolute_url %}View Post{% else %}Visit the project{% endif %}{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you added a contribution to the above project. If you no longer want to receive notifications, change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}
