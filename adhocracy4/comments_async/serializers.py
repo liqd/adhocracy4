@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.template.defaultfilters import date as djangodate
-from django.template.defaultfilters import time as djangotime
+from django.template import defaultfilters
+from django.utils import timezone
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
@@ -69,12 +69,17 @@ class CommentSerializer(serializers.ModelSerializer):
             ret['comment'] = ''
             ret['comment_categories'] = {}
 
-        cdate = djangodate(instance.created)
-        ctime = djangotime(instance.created)
+        # Note: Converts the value to localtime as we loose the
+        # expects_localtime flag functionality by directly calling
+        # the date filter from django.
+        localtime_created = timezone.localtime(instance.created)
+        cdate = defaultfilters.date(localtime_created)
+        ctime = defaultfilters.time(localtime_created)
         ret['created'] = cdate + ', ' + ctime
         if instance.modified:
-            mdate = djangodate(instance.modified)
-            mtime = djangotime(instance.modified)
+            localtime_modified = timezone.localtime(instance.modified)
+            mdate = defaultfilters.date(localtime_modified)
+            mtime = defaultfilters.time(localtime_modified)
             ret['modified'] = mdate + ', ' + mtime
         return ret
 
