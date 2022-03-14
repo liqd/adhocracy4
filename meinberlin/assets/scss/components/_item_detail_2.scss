@@ -1,7 +1,7 @@
 .item-detail-2__smalltitle {
     font-weight: bold;
     font-size: inherit;
-    margin: 1em 0 0;
+    margin-top: 0;
 }
 
 .item-detail-2__factsheet {
@@ -52,4 +52,10 @@
 .item-detail-2__info-box {
     border: 1px solid $border-color;
     padding: 1em;
+    margin: 2 * $spacer 0 3.3 * $spacer;
+
+    button {
+        color: inherit;
+        line-height: 2;
+    }
 }
