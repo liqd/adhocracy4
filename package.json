@@ -38,7 +38,7 @@
     "moment": "2.29.1",
     "node-sass": "7.0.1",
     "path-browserify": "1.0.1",
-    "postcss": "8.4.8",
+    "postcss": "8.4.11",
     "postcss-loader": "6.2.1",
     "react-bootstrap-typeahead": "5.2.2",
     "react-cookie": "4.1.1",
