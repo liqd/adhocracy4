@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-10 11:40+0100\n"
+"POT-Creation-Date: 2022-03-15 11:17+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -469,7 +469,7 @@ msgid "Please choose a category"
 msgstr "Bitte wählen Sie eine Kategorie"
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:92
+#: adhocracy4/comments_async/serializers.py:97
 msgid "unknown user"
 msgstr "unbekannte*r Nutzer*in"
 
@@ -3703,11 +3703,11 @@ msgid "toggle to"
 msgstr "umschalten zu"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:138
-msgid "Read more"
-msgstr "Weiterlesen"
+msgid "Read more..."
+msgstr "Weiterlesen..."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:142
-msgid "Read Less"
+msgid "Read less"
 msgstr "Weniger anzeigen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:162
@@ -5175,3 +5175,9 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
+
+#~ msgid "Read more"
+#~ msgstr "Weiterlesen"
+
+#~ msgid "Read Less"
+#~ msgstr "Weniger anzeigen"

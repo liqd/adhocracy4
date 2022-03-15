@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-10 11:40+0100\n"
+"POT-Creation-Date: 2022-03-15 11:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -402,7 +402,7 @@ msgid "Please choose a category"
 msgstr "Please choose a category"
 
 #: adhocracy4/comments/serializers.py:82
-#: adhocracy4/comments_async/serializers.py:92
+#: adhocracy4/comments_async/serializers.py:97
 msgid "unknown user"
 msgstr "unknown user"
 
@@ -3546,12 +3546,12 @@ msgid "toggle to"
 msgstr "toggle to"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:138
-msgid "Read more"
-msgstr "Read more"
+msgid "Read more..."
+msgstr "Read more..."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:142
-msgid "Read Less"
-msgstr "Read Less"
+msgid "Read less"
+msgstr "Read less"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:162
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:134
@@ -4998,6 +4998,12 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "Read more"
+#~ msgstr "Read more"
+
+#~ msgid "Read Less"
+#~ msgstr "Read Less"
 
 #~ msgid "Areasettings"
 #~ msgstr "Areasettings"
