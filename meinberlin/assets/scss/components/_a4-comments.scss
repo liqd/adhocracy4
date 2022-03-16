@@ -17,6 +17,8 @@
 }
 
 .a4-comments__commentbox__form {
+    margin-top: $spacer;
+
     :first-child {
         display: flex;
     }
