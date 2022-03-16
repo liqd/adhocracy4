@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load react_polls react_comments %}
+{% load react_polls react_comments_async %}
 
 
 {% block phase_content %}
@@ -12,7 +12,7 @@
     </div>
     <div class="l-wrapper">
         <div class="l-center-8">
-            {% react_comments object %}
+            {% react_comments_async object %}
         </div>
     </div>
 {% endblock %}
