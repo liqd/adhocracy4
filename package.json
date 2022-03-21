@@ -32,7 +32,7 @@
     "leaflet": "1.7.1",
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "github:liqd/Leaflet.markercluster#5ed89b26922c51083fc9632a2c01425b9261a0f5",
-    "mapbox-gl": "1.13.2",
+    "mapbox-gl": "1.13.1",
     "mapbox-gl-leaflet": "0.0.15",
     "mini-css-extract-plugin": "2.6.0",
     "moment": "2.29.1",
