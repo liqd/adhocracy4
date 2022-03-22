@@ -1,0 +1,24 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Reset password request for {{ site.name }}{% endblock %}
+
+{% block headline %}Reset password{% endblock %}
+
+{% block greeting %}Hello,{% endblock %}
+
+{% block content %}
+You are receiving this e-mail because you or someone else has requested a
+password for your user account. However, we do not have any record of a user
+with email {{ email }} in our database.
+
+This mail can be safely ignored if you did not request a password reset.
+
+If it was you, you can sign up for an account using the link below.
+
+If you need assistance, please contact {{ contact_email }}.
+{% endblock %}
+
+{% block cta_url %}{{ signup_url }}{% endblock %}
+{% block cta_label %}Register{% endblock %}
+
+{% block reason %}This email was sent to {{ email }}. You have received the e-mail because the reset of your password has been requested on {{ site.name }}.{% endblock %}

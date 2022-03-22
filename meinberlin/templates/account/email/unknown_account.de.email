@@ -1,0 +1,25 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Passwort zurücksetzen auf {{ site.name }}{% endblock %}
+
+{% block headline %}Passwort zurücksetzen{% endblock %}
+
+{% block greeting %}Hallo,{% endblock %}
+
+{% block content %}
+
+Sie erhalten diese E-Mail, weil Sie oder eine andere Person eine
+Passwort-Zurücksetzung für Ihr Benutzerkonto angefordert haben. Wir haben jedoch keinen Benutzer
+mit der E-Mail-Adresse {{ email }} in unserer Datenbank.
+
+Sie können diese E-Mail ignorieren, wenn Sie kein neues Passwort angefordert haben.
+
+Wenn Sie es waren, können Sie sich über den unten stehenden Link für ein Konto anmelden.
+
+Wenn Sie Hilfe benötigen, wenden Sie sich bitte an {{ contact_email }}.
+{% endblock %}
+
+{% block cta_url %}{{ signup_url }}{% endblock %}
+{% block cta_label %}Registrieren{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ email }} gesendet. Sie haben die E-Mail erhalten, weil die Zurücksetzung Ihres Passwortes auf {{ site.name }} angefordert wurde.{% endblock %}
