@@ -23,7 +23,9 @@
   "packageRules": [
       {
         "packagePatterns": ["^eslint"],
-        "groupName": "eslint packages",
+        "groupName": "eslint packages"
+      },
+      {
         "matchPackageNames": ["mapbox-gl"],
         "enabled": false
       }
