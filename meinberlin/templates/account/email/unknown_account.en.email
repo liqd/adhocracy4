@@ -2,20 +2,20 @@
 
 {% block subject %}Reset password request for {{ site.name }}{% endblock %}
 
-{% block headline %}Reset password{% endblock %}
+{% block headline %}Unknown user account{% endblock %}
 
 {% block greeting %}Hello,{% endblock %}
 
 {% block content %}
-You are receiving this e-mail because you or someone else has requested a
-password for your user account. However, we do not have any record of a user
-with email {{ email }} in our database.
+you receive this email because you or someone else requested a password reset
+for your user account. However, we have not found a user account with the
+email address {{ email }} in our database.
 
-This mail can be safely ignored if you did not request a password reset.
+Please register first using the link below.
 
-If it was you, you can sign up for an account using the link below.
+If you have not requested a new password, you can ignore this email.
 
-If you need assistance, please contact {{ contact_email }}.
+If you need help, please contact {{ contact_email }}.
 {% endblock %}
 
 {% block cta_url %}{{ signup_url }}{% endblock %}

@@ -2,19 +2,19 @@
 
 {% block subject %}Passwort zurücksetzen auf {{ site.name }}{% endblock %}
 
-{% block headline %}Passwort zurücksetzen{% endblock %}
+{% block headline %}Unbekanntes Nutzerkonto{% endblock %}
 
 {% block greeting %}Hallo,{% endblock %}
 
 {% block content %}
 
-Sie erhalten diese E-Mail, weil Sie oder eine andere Person eine
-Passwort-Zurücksetzung für Ihr Benutzerkonto angefordert haben. Wir haben jedoch keinen Benutzer
-mit der E-Mail-Adresse {{ email }} in unserer Datenbank.
+Sie erhalten diese E-Mail, weil Sie oder eine andere Person
+eine Passwort-Zurücksetzung für Ihr Nutzerkonto angefordert haben.
+Wir haben in unserer Datenbank jedoch kein Nutzerkonto mit der E-Mail-Adresse {{ email }} gefunden.
 
-Sie können diese E-Mail ignorieren, wenn Sie kein neues Passwort angefordert haben.
+Bitte registrieren Sie sich zunächst über den unten stehenden Link.
 
-Wenn Sie es waren, können Sie sich über den unten stehenden Link für ein Konto anmelden.
+Sollten Sie kein neues Passwort angefordert haben, können Sie diese E-Mail ignorieren.
 
 Wenn Sie Hilfe benötigen, wenden Sie sich bitte an {{ contact_email }}.
 {% endblock %}
