@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 11:17+0100\n"
+"POT-Creation-Date: 2022-03-24 09:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2050,24 +2050,34 @@ msgstr ""
 #: meinberlin/apps/contrib/django_standard_messages.py:13
 msgid ""
 "We have sent an e-mail to you for verification. Follow the link provided to "
-"finalize the signup process. Please contact us if you do not receive it "
-"within a few minutes."
+"finalize the signup process. If you do not see the verification e-mail in "
+"your main inbox, check your spam folder. Please contact us if you do not "
+"receive the verification e-mail within a few minutes."
 msgstr ""
 "We have sent an e-mail to you for verification. Follow the link provided to "
-"finalize the signup process. Please contact us if you do not receive it "
-"within a few minutes."
+"finalize the signup process. If you do not see the verification e-mail in "
+"your main inbox, check your spam folder. Please contact us if you do not "
+"receive the verification e-mail within a few minutes."
 
-#: meinberlin/apps/contrib/django_standard_messages.py:16
+#: meinberlin/apps/contrib/django_standard_messages.py:19
+msgid ""
+"We have sent you an e-mail. If you have not received it please check your "
+"spam folder. Otherwise contact us if you do not receive it in a few minutes."
+msgstr ""
+"We have sent you an e-mail. If you have not received it please check your "
+"spam folder. Otherwise contact us if you do not receive it in a few minutes."
+
+#: meinberlin/apps/contrib/django_standard_messages.py:22
 #, python-format
 msgid "You must select a minimum of  %(limit_value)d choices."
 msgstr "You must select a minimum of  %(limit_value)d choices."
 
-#: meinberlin/apps/contrib/django_standard_messages.py:17
+#: meinberlin/apps/contrib/django_standard_messages.py:23
 #, python-format
 msgid "You must select a maximum of  %(limit_value)d choices."
 msgstr "You must select a maximum of  %(limit_value)d choices."
 
-#: meinberlin/apps/contrib/django_standard_messages.py:18
+#: meinberlin/apps/contrib/django_standard_messages.py:24
 msgid "Enter a valid email address."
 msgstr "Enter a valid email address."
 
@@ -4320,122 +4330,122 @@ msgstr "This token is not active."
 msgid "This token has no votes left."
 msgstr "This token has no votes left."
 
-#: meinberlin/config/settings/base.py:318
-#: meinberlin/config/settings/base.py:331
-#: meinberlin/config/settings/base.py:342
-#: meinberlin/config/settings/base.py:359
+#: meinberlin/config/settings/base.py:319
+#: meinberlin/config/settings/base.py:332
+#: meinberlin/config/settings/base.py:343
+#: meinberlin/config/settings/base.py:360
 msgid "Rich text editor"
 msgstr "Rich text editor"
 
-#: meinberlin/config/settings/base.py:504
+#: meinberlin/config/settings/base.py:505
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: meinberlin/config/settings/base.py:505
+#: meinberlin/config/settings/base.py:506
 msgid "Diamond"
 msgstr "Diamond"
 
-#: meinberlin/config/settings/base.py:506
+#: meinberlin/config/settings/base.py:507
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: meinberlin/config/settings/base.py:507
+#: meinberlin/config/settings/base.py:508
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: meinberlin/config/settings/base.py:508
+#: meinberlin/config/settings/base.py:509
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:509
+#: meinberlin/config/settings/base.py:510
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: meinberlin/config/settings/base.py:510
+#: meinberlin/config/settings/base.py:511
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: meinberlin/config/settings/base.py:511
+#: meinberlin/config/settings/base.py:512
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: meinberlin/config/settings/base.py:512
+#: meinberlin/config/settings/base.py:513
 msgid "Star"
 msgstr "Star"
 
-#: meinberlin/config/settings/base.py:513
+#: meinberlin/config/settings/base.py:514
 msgid "Square"
 msgstr "Square"
 
-#: meinberlin/config/settings/base.py:514
+#: meinberlin/config/settings/base.py:515
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: meinberlin/config/settings/base.py:515
+#: meinberlin/config/settings/base.py:516
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: meinberlin/config/settings/base.py:516
+#: meinberlin/config/settings/base.py:517
 msgid "Circle"
 msgstr "Circle"
 
-#: meinberlin/config/settings/base.py:517
+#: meinberlin/config/settings/base.py:518
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: meinberlin/config/settings/base.py:518
+#: meinberlin/config/settings/base.py:519
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: meinberlin/config/settings/base.py:527
+#: meinberlin/config/settings/base.py:528
 msgid "Anti-discrimination"
 msgstr "Anti-discrimination"
 
-#: meinberlin/config/settings/base.py:528
+#: meinberlin/config/settings/base.py:529
 msgid "Work & economy"
 msgstr "Work & economy"
 
-#: meinberlin/config/settings/base.py:529
+#: meinberlin/config/settings/base.py:530
 msgid "Building & living"
 msgstr "Building & living"
 
-#: meinberlin/config/settings/base.py:530
+#: meinberlin/config/settings/base.py:531
 msgid "Education & research"
 msgstr "Education & research"
 
-#: meinberlin/config/settings/base.py:531
+#: meinberlin/config/settings/base.py:532
 msgid "Children, youth & family"
 msgstr "Children, youth & family"
 
-#: meinberlin/config/settings/base.py:532
+#: meinberlin/config/settings/base.py:533
 msgid "Finances"
 msgstr "Finances"
 
-#: meinberlin/config/settings/base.py:533
+#: meinberlin/config/settings/base.py:534
 msgid "Health & sports"
 msgstr "Health & sports"
 
-#: meinberlin/config/settings/base.py:534
+#: meinberlin/config/settings/base.py:535
 msgid "Integration"
 msgstr "Integration"
 
-#: meinberlin/config/settings/base.py:535
+#: meinberlin/config/settings/base.py:536
 msgid "Culture & leisure"
 msgstr "Culture & leisure"
 
-#: meinberlin/config/settings/base.py:536
+#: meinberlin/config/settings/base.py:537
 msgid "Neighborhood & participation"
 msgstr "Neighborhood & participation"
 
-#: meinberlin/config/settings/base.py:537
+#: meinberlin/config/settings/base.py:538
 msgid "Urban development"
 msgstr "Urban development"
 
-#: meinberlin/config/settings/base.py:538
+#: meinberlin/config/settings/base.py:539
 msgid "Environment & public green space"
 msgstr "Environment & public green space"
 
-#: meinberlin/config/settings/base.py:539
+#: meinberlin/config/settings/base.py:540
 msgid "Traffic"
 msgstr "Traffic"
 
@@ -4998,6 +5008,15 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid ""
+#~ "We have sent an e-mail to you for verification. Follow the link provided "
+#~ "to finalize the signup process. Please contact us if you do not receive "
+#~ "it within a few minutes."
+#~ msgstr ""
+#~ "We have sent an e-mail to you for verification. Follow the link provided "
+#~ "to finalize the signup process. Please contact us if you do not receive "
+#~ "it within a few minutes."
 
 #~ msgid "Read more"
 #~ msgstr "Read more"
