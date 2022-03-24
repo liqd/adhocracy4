@@ -2178,12 +2178,22 @@ msgid ""
 "your main inbox, check your spam folder. Please contact us if you do not "
 "receive the verification e-mail within a few minutes."
 msgstr ""
+"Wir haben Ihnen eine Bestätigungs-E-Mail geschickt. "
+"Folgen Sie dem Link, um den Anmeldevorgang abzuschließen. "
+"Wenn Sie die Bestätigungs-E-Mail nicht in Ihrem "
+"Posteingang sehen, überprüfen Sie Ihren Spam-Ordner. Bitte "
+"kontaktieren Sie uns, wenn Sie die Bestätigungs-E-Mail "
+"nicht innerhalb weniger Minuten erhalten."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:19
 msgid ""
 "We have sent you an e-mail. If you have not received it please check your "
 "spam folder. Otherwise contact us if you do not receive it in a few minutes."
 msgstr ""
+"Wir haben Ihnen eine E-Mail geschickt. Wenn Sie diese nicht erhalten "
+"haben, überprüfen Sie bitte Ihren Spam-Ordner. Andernfalls "
+"kontaktieren Sie uns, wenn Sie die E-Mail nicht innerhalb "
+"weniger Minuten erhalten."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:22
 #, python-format
