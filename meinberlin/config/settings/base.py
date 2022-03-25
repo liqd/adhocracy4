@@ -303,11 +303,7 @@ PASSWORD_HASHERS = [
     'meinberlin.apps.users.hashers.A2PasswordHasher',
 ]
 
-# captcha
-CAPTCHA_URL = u'https://meinberlin-captcha.liqd.net/api.php'
-
 # ckeditor
-
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_RESTRICT_BY_USER = 'username'
 CKEDITOR_ALLOW_NONIMAGE_FILES = True
