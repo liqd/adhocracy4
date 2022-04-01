@@ -65,8 +65,9 @@ class DefaultsFilterSet(PagedFilterSet):
 
 
 class DistinctOrderingFilter(django_filters.OrderingFilter):
-    """Makes sure, that every queryset gets a distinct ordering, even if
-    field to order by (e.g. comment count) would produce a non-distinct
+    """Makes sure, that every queryset gets a distinct ordering.
+
+    Even if field to order by (e.g. comment count) would produce a non-distinct
     ordering.
     """
 
@@ -105,10 +106,8 @@ class DynamicChoicesOrderingFilter(DynamicChoicesMixin,
         return super().filter(qs, value)
 
 
-class DistinctOrderingWithDailyRandomFilter(DistinctOrderingFilter):
-    """Note: order reproducability relies on the string representation of the
-    seed
-    """
+class DistinctOrderingWithDailyRandomFilter(DynamicChoicesOrderingFilter):
+    """Note: order reproducability relies on string representation of seed."""
 
     def filter(self, qs, value):
         if value == ['dailyrandom']:
