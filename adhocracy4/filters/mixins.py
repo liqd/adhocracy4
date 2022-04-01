@@ -11,7 +11,8 @@ class DynamicChoicesMixin(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self.choices = kwargs.pop('choices')
+        if 'choices' in kwargs:
+            self.choices = kwargs.pop('choices')
         super().__init__(*args, **kwargs)
 
     def get_choices(self, view):
