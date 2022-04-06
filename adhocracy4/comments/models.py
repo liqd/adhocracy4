@@ -56,6 +56,11 @@ class Comment(base.UserGeneratedContentModel):
         ordering = ('created',)
         index_together = [('content_type', 'object_pk')]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._former_comment = transforms.clean_html_all(
+            self.comment)
+
     def __str__(self):
         if len(self.comment) > 200:
             return "{} ...".format(self.comment[:200])
@@ -74,6 +79,16 @@ class Comment(base.UserGeneratedContentModel):
         if self.is_removed or self.is_censored:
             self.comment = ''
             self.comment_categories = ''
+
+        # detect if comment text has changed
+        elif self._former_comment != self.comment:
+            if 'update_fiels' in kwargs:
+                kwargs['update_fields'].append['comment']
+            else:
+                kwargs['update_fields'] = ['comment']
+
+        self._former_comment = self.comment
+
         return super(Comment, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
