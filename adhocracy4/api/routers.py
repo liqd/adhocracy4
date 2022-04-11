@@ -58,3 +58,14 @@ class OrganisationSimpleRouter(OrganisationRouterMixin, routers.SimpleRouter):
 class OrganisationDefaultRouter(OrganisationRouterMixin,
                                 routers.DefaultRouter):
     pass
+
+
+class CommentRouterMixin(CustomRouterMixin):
+
+    prefix_regex = (
+        r'comments/(?P<comment_pk>[\d]+)/{prefix}'
+    )
+
+
+class CommentDefaultRouter(CommentRouterMixin, routers.DefaultRouter):
+    pass

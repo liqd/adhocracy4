@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.request import clone_request
 from rest_framework.response import Response
 
+from adhocracy4.comments.models import Comment
 from adhocracy4.modules import models as module_models
 
 
@@ -86,6 +87,21 @@ class OrganisationMixin:
         return get_object_or_404(
             apps.get_model(settings.A4_ORGANISATIONS_MODEL),
             pk=self.organisation_pk
+        )
+
+
+class CommentMixin:
+    """Use in combination with CommentRouter to fetch the comment."""
+
+    def dispatch(self, request, *args, **kwargs):
+        self.comment_pk = kwargs.get('comment_pk', '')
+        return super().dispatch(request, *args, **kwargs)
+
+    @property
+    def comment(self):
+        return get_object_or_404(
+            Comment,
+            pk=self.comment_pk
         )
 
 
