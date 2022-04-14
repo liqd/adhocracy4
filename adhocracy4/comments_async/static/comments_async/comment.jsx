@@ -12,6 +12,7 @@ import CommentCategoryEditForm from './comment_category_edit_form'
 import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
+import { ModeratorStatement } from './moderator_statement'
 
 import { RatingBox } from '../../../ratings/static/ratings/react_ratings'
 
@@ -24,7 +25,9 @@ const translated = {
   readMore: django.gettext('Read more...'),
   readLess: django.gettext('Read less'),
   share: django.gettext('Share'),
-  report: django.gettext(' Report')
+  report: django.gettext(' Report'),
+  showModStatement: django.gettext('Show moderator\'s statement'),
+  hideModStatement: django.gettext('Hide moderator\'s statement')
 }
 
 function getAnswerForm (hide, number) {
@@ -51,7 +54,9 @@ export default class Comment extends React.Component {
       showChildComments: false,
       displayNotification: this.props.displayNotification,
       shorten: true,
-      anchored: false
+      anchored: false,
+      showModStatement: true,
+      moderatorStatement: this.props.moderatorStatement
     }
 
     setTimeout(
@@ -350,13 +355,28 @@ export default class Comment extends React.Component {
             </div>
 
             <div className="row">
-              <div className="col-6 col-md-4 a4-comments__read-btn-container">
+              <div className="col-6 a4-comments__read-btn-container">
                 {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showMore.bind(this)}>{translated.readMore}</button>}
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showLess.bind(this)}>{translated.readLess}</button>}
               </div>
-
+              {this.state.moderatorStatement &&
+                <div className="col-6 text-end">
+                  <button
+                    className="btn btn--none text-muted px-0 a4-comments__read-btn"
+                    onClick={
+                      () => this.setState(
+                        { showModStatement: !this.state.showModStatement }
+                      )
+                    }
+                  >
+                    {this.state.showModStatement
+                      ? translated.hideModStatement
+                      : translated.showModStatement}
+                  </button>
+                </div>}
             </div>
-
+            {this.state.showModStatement && this.state.moderatorStatement &&
+              <ModeratorStatement {...this.state.moderatorStatement} />}
             <div className="row">
               <div className="col-12 a4-comments__action-bar-container">
                 {this.renderRatingBox()}
