@@ -8,7 +8,7 @@ django-capture-tag==1.0
 django-cloudflare-push==0.2.1
 django-sites==0.11
 django_csp==3.7
-sentry-sdk==1.5.7
+sentry-sdk==1.5.10
 requests==2.27.1
 wagtail==2.16.1
 whitenoise==6.0.0
