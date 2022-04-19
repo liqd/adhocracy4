@@ -57,6 +57,7 @@ export default function (props) {
               hasCommentingPermission={props.hasCommentingPermission}
               wouldHaveCommentingPermission={props.wouldHaveCommentingPermission}
               projectIsPublic={props.projectIsPublic}
+              moderatorStatement={comment.moderator_statement ? comment.moderator_statement : null}
             >{comment.comment}
             </Comment>
           )
