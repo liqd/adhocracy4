@@ -3,7 +3,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 
 // component to be tested
-import { ModeratorStatement } from 'adhocracy4/comments_async/static/comments_async/moderator_statement.jsx'
+import { ModeratorStatement } from '../moderator_statement.jsx'
 
 test('render <ModeratorStatement> properly', () => {
   const statement = {
