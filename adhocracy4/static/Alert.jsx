@@ -1,8 +1,11 @@
 import React from 'react'
 import django from 'django'
 
-const Alert = ({ type, message, onClick }) => {
+const Alert = ({ type, message, onClick, timer }) => {
   const closeTag = django.gettext('Close')
+  if (timer) {
+    setTimeout(onClick, timer)
+  }
   if (type) {
     return (
       <div className={`alert alert--${type}`} role="alert" onClick={onClick}>
