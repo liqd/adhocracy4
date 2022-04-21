@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ModeratorStatement = ({ last_edit: lastEdit, statement }) => {
+export const ModeratorStatement = ({ lastEdit, statement }) => {
   const translated = {
     moderator: 'Moderator'
   }
