@@ -376,7 +376,10 @@ export default class Comment extends React.Component {
                 </div>}
             </div>
             {this.state.showModStatement && this.state.moderatorStatement &&
-              <ModeratorStatement {...this.state.moderatorStatement} />}
+              <ModeratorStatement
+                lastEdit={this.state.moderatorStatement.last_edit}
+                statement={this.state.moderatorStatement.statement}
+              />}
             <div className="row">
               <div className="col-12 a4-comments__action-bar-container">
                 {this.renderRatingBox()}
