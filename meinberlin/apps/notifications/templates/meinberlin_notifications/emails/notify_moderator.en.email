@@ -1,7 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name %}
 
-{% block subject %}A {{ action.obj | verbose_name }} was added to the project {{ action.project.name }}{% endblock %}
+{% block subject %}New contribution on {{ site.name }}{% endblock %}
 
 {% block headline %}New input{% endblock  %}
 

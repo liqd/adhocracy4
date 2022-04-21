@@ -1,5 +1,4 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name %}
 
 {% block subject %}Einladung zum Projekt "{{ participantinvite.project.name }}" {% endblock %}
 

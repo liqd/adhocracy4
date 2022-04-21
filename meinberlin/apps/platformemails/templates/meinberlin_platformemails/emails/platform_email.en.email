@@ -1,7 +1,5 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% load verbose_name %}
-
 {% block headline %}{{ platformemail.subject }}{% endblock %}
 
 {% block subject %}{{ platformemail.subject }}{% endblock %}

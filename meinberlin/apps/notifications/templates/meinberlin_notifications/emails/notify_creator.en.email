@@ -1,5 +1,4 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name %}
 
 {% block subject %}Reaction to your contribution in project{{ action.project.name }}{% endblock %}
 
