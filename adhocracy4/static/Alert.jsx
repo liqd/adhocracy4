@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import django from 'django'
 
-const Alert = ({ type, message, onClick, timer }) => {
+const Alert = ({ type, message, onClick, timeInMs }) => {
+  const timer = useRef()
   const closeTag = django.gettext('Close')
-  if (timer) {
-    setTimeout(onClick, timer)
-  }
+  useEffect(() => {
+    if (timeInMs) {
+      timer.current = setTimeout(onClick, timeInMs)
+      return () => {
+        clearTimeout(timer.current)
+      }
+    }
+  }, [timeInMs])
   if (type) {
     return (
       <div className={`alert alert--${type}`} role="alert" onClick={onClick}>
