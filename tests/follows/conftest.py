@@ -1,5 +1,5 @@
 from pytest_factoryboy import register
 
-from tests.follows import factories as follow_factories
+from adhocracy4.test.factories import FollowFactory
 
-register(follow_factories.FollowFactory)
+register(FollowFactory)
