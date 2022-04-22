@@ -132,6 +132,47 @@ def test_send_project(admin, client, project, user_factory, follow_factory,
 
 
 @pytest.mark.django_db
+def test_send_project_no_project(admin, client, project, user_factory,
+                                 follow_factory, email_address_factory):
+    organisation = project.organisation
+
+    user1 = user_factory(get_newsletters=True)
+    user2 = user_factory()
+    email_address_factory(user=user1, email=user1.email,
+                          primary=True, verified=True)
+    email_address_factory(user=user2, email=user2.email,
+                          primary=True, verified=True)
+
+    user_factory()
+
+    follow_models.Follow.objects.all().delete()
+    follow_factory(creator=user1, project=project)
+    follow_factory(creator=user2, project=project, enabled=False)
+
+    data = {
+        'sender_name': 'Tester',
+        'sender': 'test@test.de',
+        'subject': 'Testsubject',
+        'body': 'Testbody',
+        'receivers': newsletter_models.PROJECT,
+        'organisation': organisation.pk,
+        'project': '',
+        'send': 'Send',
+    }
+
+    url = reverse('a4dashboard:newsletter-create',
+                  kwargs={'organisation_slug': organisation.slug})
+    client.login(username=admin.email, password='password')
+    response = client.post(url, data)
+    # form submit failed, still on same form page, no redirect
+    assert response.status_code == 200
+    assert response.template_name[0] == \
+        'meinberlin_newsletters/newsletter_dashboard_form.html'
+    assert not response.context['form'].is_valid()
+    assert newsletter_models.Newsletter.objects.count() == 0
+
+
+@pytest.mark.django_db
 def test_send_newsletter_platform(client, project, user_factory,
                                   email_address_factory):
     organisation = project.organisation
