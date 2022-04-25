@@ -32,6 +32,7 @@
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
     "@testing-library/react": "12.1.5",
