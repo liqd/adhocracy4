@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 
 from adhocracy4 import phases
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
-from adhocracy4.follows import models as follow_models
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.enums import Access
@@ -165,12 +164,3 @@ class AdministrativeDistrictFactory(factory.django.DjangoModelFactory):
         model = AdministrativeDistrict
 
     name = factory.Faker('name')
-
-
-class FollowFactory(factory.django.DjangoModelFactory):
-
-    class Meta:
-        model = follow_models.Follow
-
-    creator = factory.SubFactory(UserFactory)
-    project = factory.SubFactory(ProjectFactory)
