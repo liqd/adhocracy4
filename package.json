@@ -15,7 +15,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.4",
     "@testing-library/react-native": "9.1.0",
-    "acorn": "8.7.0",
+    "acorn": "8.7.1",
     "adhocracy4": "liqd/adhocracy4#mB-v2203.1",
     "autoprefixer": "10.4.5",
     "babel-loader": "8.2.5",
