@@ -82,8 +82,8 @@ class Comment(base.UserGeneratedContentModel):
 
         # detect if comment text has changed
         elif self._former_comment != self.comment:
-            if 'update_fiels' in kwargs:
-                kwargs['update_fields'].append['comment']
+            if 'update_fields' in kwargs:
+                kwargs['update_fields'].append('comment')
             else:
                 kwargs['update_fields'] = ['comment']
 
