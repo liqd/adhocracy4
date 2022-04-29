@@ -18,21 +18,30 @@ from adhocracy4.projects.predicates import is_semipublic
 @rules.predicate
 def is_context_initiator(user, item):
     if item:
-        return is_initiator(user, item.project)
+        if hasattr(item, 'project'):
+            return is_initiator(user, item.project)
+        else:
+            return is_initiator(user, item)
     return False
 
 
 @rules.predicate
 def is_context_moderator(user, item):
     if item:
-        return is_moderator(user, item.project)
+        if hasattr(item, 'project'):
+            return is_moderator(user, item.project)
+        else:
+            return is_moderator(user, item)
     return False
 
 
 @rules.predicate
 def is_context_group_member(user, item):
     if item:
-        return is_prj_group_member(user, item.project)
+        if hasattr(item, 'project'):
+            return is_prj_group_member(user, item.project)
+        else:
+            return is_prj_group_member(user, item)
 
 
 @rules.predicate
