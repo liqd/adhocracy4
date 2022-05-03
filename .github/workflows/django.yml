@@ -70,7 +70,7 @@ jobs:
           PGPASSWORD: postgres
           PGHOSTADDR: 127.0.0.1
         run: |
-          py.test --cov
+          DJANGO_SETTINGS_MODULE='tests.project.travis' py.test --cov
           python manage.py makemigrations --dry-run --check --noinput
           isort --diff -c adhocracy4 tests
           flake8 adhocracy4 tests --exclude migrations,settings
