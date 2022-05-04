@@ -39,8 +39,9 @@ def test_category_filter(apiclient, question, comment_factory, user):
         'comments_async-list',
         kwargs={'content_type': question_ct.pk,
                 'object_pk': question.pk})
-    url += '?comment_category=que'
+    url += '?comment_category=QUE'
     response = apiclient.get(url)
+    print(response)
 
     comment_data = response.data['results']
     assert len(comment_data) == 3
@@ -52,7 +53,7 @@ def test_category_filter(apiclient, question, comment_factory, user):
         'comments_async-list',
         kwargs={'content_type': question_ct.pk,
                 'object_pk': question.pk})
-    url += '?comment_category=rem'
+    url += '?comment_category=REM'
     response = apiclient.get(url)
 
     comment_data = response.data['results']
