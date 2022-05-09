@@ -5,6 +5,7 @@ import re
 import pytest
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
+from django.test import override_settings
 from freezegun import freeze_time
 
 from adhocracy4.test import helpers
@@ -47,6 +48,7 @@ def test_react_rating_anonymous(rf, question, comment):
             'commentCategoryChoices': {},
             'anchoredCommentId': '',
             'withCategories': False,
+            'useModeratorMarked': False,
         }
 
 
@@ -65,6 +67,7 @@ def test_react_rating_user(rf, user, phase_factory, question_factory,
             'commentCategoryChoices': {},
             'anchoredCommentId': '',
             'withCategories': False,
+            'useModeratorMarked': False,
         }
 
 
@@ -93,7 +96,7 @@ def react_comment_render_for_props_with_categories(rf, user, question):
 
 
 @pytest.mark.django_db
-def test_react_rating_anonymous_with_categories(rf, question, comment):
+def test_react_comment_render_anonymous_with_categories(rf, question):
     with freeze_time('2013-01-02 18:00:00 UTC'):
         user = AnonymousUser()
         props = react_comment_render_for_props_with_categories(rf, user,
@@ -105,13 +108,13 @@ def test_react_rating_anonymous_with_categories(rf, question, comment):
             'commentCategoryChoices': {'QUE': 'Question', 'REM': 'Remark'},
             'anchoredCommentId': '',
             'withCategories': True,
+            'useModeratorMarked': False,
         }
 
 
 @pytest.mark.django_db
-def test_react_rating_user_with_categories(rf, user, phase_factory,
-                                           question_factory,
-                                           comment):
+def test_react_comment_render_user_with_categories(rf, user, phase_factory,
+                                                   question_factory):
     phase, _, _, question = helpers.setup_phase(phase_factory,
                                                 question_factory,
                                                 AskPhase)
@@ -125,4 +128,49 @@ def test_react_rating_user_with_categories(rf, user, phase_factory,
             'commentCategoryChoices': {'QUE': 'Question', 'REM': 'Remark'},
             'anchoredCommentId': '',
             'withCategories': True,
+            'useModeratorMarked': False,
+        }
+
+
+@pytest.mark.django_db
+@override_settings(A4_COMMENTS_USE_MODERATOR_MARKED=True)
+def test_react_comment_render_anonymous_use_moderator_marked(
+        rf, user, phase_factory, question_factory):
+
+    phase, _, _, question = helpers.setup_phase(phase_factory,
+                                                question_factory,
+                                                AskPhase)
+    with helpers.freeze_phase(phase):
+
+        props = react_comment_render_for_props(
+            rf, user, question)
+        request = rf.get('/')
+        request.user = user
+        assert props == {
+            'commentCategoryChoices': {},
+            'anchoredCommentId': '',
+            'withCategories': False,
+            'useModeratorMarked': True,
+        }
+
+
+@pytest.mark.django_db
+@override_settings(A4_COMMENTS_USE_MODERATOR_MARKED=True)
+def test_react_comment_render_user_use_moderator_marked_with_categories(
+        rf, user, phase_factory, question_factory):
+
+    phase, _, _, question = helpers.setup_phase(phase_factory,
+                                                question_factory,
+                                                AskPhase)
+    with helpers.freeze_phase(phase):
+
+        props = react_comment_render_for_props_with_categories(
+            rf, user, question)
+        request = rf.get('/')
+        request.user = user
+        assert props == {
+            'commentCategoryChoices': {'QUE': 'Question', 'REM': 'Remark'},
+            'anchoredCommentId': '',
+            'withCategories': True,
+            'useModeratorMarked': True,
         }
