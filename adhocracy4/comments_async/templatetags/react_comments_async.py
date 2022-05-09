@@ -27,12 +27,16 @@ def react_comments_async(context, obj, with_categories=False):
         else:
             raise ImproperlyConfigured('set A4_COMMENT_CATEGORIES in settings')
 
+    use_moderator_marked = getattr(
+        settings, 'A4_COMMENTS_USE_MODERATOR_MARKED', False)
+
     attributes = {
         'subjectType': contenttype.pk,
         'subjectId': obj.pk,
         'commentCategoryChoices': comment_category_choices,
         'anchoredCommentId': anchoredCommentId,
-        'withCategories': with_categories
+        'withCategories': with_categories,
+        'useModeratorMarked': use_moderator_marked
     }
 
     return format_html(
