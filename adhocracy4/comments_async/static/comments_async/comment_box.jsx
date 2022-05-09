@@ -62,7 +62,7 @@ export default class CommentBox extends React.Component {
       showFilters: false,
       filter: 'all',
       filterDisplay: django.gettext('all'),
-      sort: 'new',
+      sort: props.useModeratorMarked ? 'mom' : 'new',
       loading: true,
       search: '',
       anchoredCommentId: props.anchoredCommentId ? parseInt(props.anchoredCommentId) : null,
@@ -75,6 +75,9 @@ export default class CommentBox extends React.Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll, { passive: true })
+    if (this.props.useModeratorMarked) {
+      sorts.mom = django.gettext('Highlighted')
+    }
     const params = {}
     params.ordering = this.state.sort
     params.urlReplaces = this.urlReplaces
