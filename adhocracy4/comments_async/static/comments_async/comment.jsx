@@ -2,7 +2,6 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import PropTypes from 'prop-types'
 import django from 'django'
-import gfm from 'remark-gfm'
 
 import Modal from '../../../static/Modal'
 import { ReportModal } from '../../../reports/static/reports/react_reports'
@@ -201,13 +200,21 @@ export default class Comment extends React.Component {
       }
       comment = (
         <div className={'a4-comments__text' + (this.state.anchored ? ' a4-comments__text--highlighted' : '')}>
-          <ReactMarkdown
-            disallowedElements={['h1', 'h2', 'h3', 'h4', 'input', 'table', 'thead', 'tr', 'th']}
-            unwrapDisallowed
-            plugins={[[gfm, { singleTilde: false }]]}
-          >
-            {content}
-          </ReactMarkdown>
+          {this.props.is_moderator_marked
+            ? <mark>
+              <ReactMarkdown
+                disallowedElements={['h1', 'h2', 'h3', 'h4', 'input', 'table', 'thead', 'tr', 'th']}
+                unwrapDisallowed
+              >
+                {content}
+              </ReactMarkdown>
+            </mark>// eslint-disable-line react/jsx-closing-tag-location
+            : <ReactMarkdown
+                disallowedElements={['h1', 'h2', 'h3', 'h4', 'input', 'table', 'thead', 'tr', 'th']}
+                unwrapDisallowed
+              >
+              {content}
+            </ReactMarkdown>/* eslint-disable-line react/jsx-closing-tag-location */}
         </div>
       )
     }
