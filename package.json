@@ -67,7 +67,7 @@
     "@babel/preset-react": "7.16.7",
     "@testing-library/react": "12.1.5",
     "@testing-library/react-native": "9.2.0",
-    "eslint": "8.14.0",
+    "eslint": "8.15.0",
     "eslint-config-standard": "16.0.3",
     "eslint-config-standard-jsx": "10.0.0",
     "eslint-plugin-import": "2.26.0",
