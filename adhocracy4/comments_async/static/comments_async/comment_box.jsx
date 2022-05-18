@@ -517,12 +517,12 @@ export default class CommentBox extends React.Component {
             </div>
 
             {!this.state.showFilters && this.state.commentCount > 0 &&
-              <button className="btn a4-comments__filters__show-btn pe-0" type="button" onClick={this.handleToggleFilters}>
+              <button className="btn a4-comments__filters__show-btn" type="button" onClick={this.handleToggleFilters}>
                 <i className="fas fa-sliders-h ms-2" aria-label={translated.showFilters} />
                 {translated.filters}
               </button>}
             {this.state.showFilters && this.state.commentCount > 0 &&
-              <button className="btn a4-comments__filters__show-btn pe-0" type="button" onClick={this.handleToggleFilters}>
+              <button className="btn a4-comments__filters__show-btn" type="button" onClick={this.handleToggleFilters}>
                 <i className="fas fa-times ms-2" aria-label={translated.hideFilters} />
                 {translated.hideFilters}
               </button>}
