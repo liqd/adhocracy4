@@ -40,3 +40,18 @@ def test_model_fields_mixin_exclude(idea):
     assert sorted(virtual.keys()) == ['category', 'created', 'creator',
                                       'description', 'id', 'labels',
                                       'modified', 'module', 'name']
+
+
+@pytest.mark.django_db
+def test_model_fields_mixin_related_fields(idea):
+    class Mixin(ExportModelFieldsMixin):
+        model = Idea
+        fields = ['name', 'module']
+        related_fields = {'module': ['name', 'description']}
+
+    mixin = Mixin()
+
+    virtual = mixin.get_virtual_fields({})
+
+    assert sorted(virtual.keys()) == ['module_description', 'module_name',
+                                      'name']
