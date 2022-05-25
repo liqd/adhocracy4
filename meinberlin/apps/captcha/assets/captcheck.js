@@ -123,7 +123,7 @@ window.onload = function () {
           const questionDiv = document.createElement('div')
           questionDiv.setAttribute('class', 'captcheck_label_message')
           questionDiv.setAttribute('id', 'captcheck_' + idp + '_label_message')
-          questionDiv.innerHTML = "<span class='captcheck_question_image' id='captcheck_" + idp + "_question_image'>" + data.question_i + "</span><span class='captcheck_question_access' id='captcheck_" + idp + "_question_access'>" + data.question_a + "</span><a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' aria-label=" + textLabel + " tabindex='0'>" + textTextMode + '</a>'
+          questionDiv.innerHTML = "<span class='captcheck_question_image' id='captcheck_" + idp + "_question_image'>" + data.question_i + "</span><span class='captcheck_question_access' id='captcheck_" + idp + "_question_access'>" + data.question_a + "</span><a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' aria-label='" + textLabel + "' tabindex='0'>" + textTextMode + '</a>'
 
           /* Add question and answers */
           captcha.appendChild(questionDiv)
