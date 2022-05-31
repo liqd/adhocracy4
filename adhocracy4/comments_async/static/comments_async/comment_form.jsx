@@ -2,6 +2,7 @@ import React from 'react'
 import django from 'django'
 
 import CategoryList from './category_list'
+import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
 import * as config from '../../../static/config'
 import Alert from '../../../static/Alert'
@@ -20,7 +21,6 @@ const translated = {
 export default class CommentForm extends React.Component {
   constructor (props) {
     super(props)
-
     this.state = {
       comment: '',
       commentCharCount: 0,
@@ -87,6 +87,15 @@ export default class CommentForm extends React.Component {
   render () {
     const textareaStyle = { height: (this.state.textareaHeight) + 'px' }
     const hasParent = this.props.parentIndex !== undefined
+    const actionButton = (
+      <button
+        type="submit"
+        className="btn a4-comments__submit-input ms-auto"
+        disabled={this.props.useTermsOfUse && !this.props.agreedTermsOfUse && !this.state.checkedTermsOfUse}
+      >
+        {translated.post}
+      </button>
+    )
 
     if (this.props.hasCommentingPermission) {
       return (
@@ -112,11 +121,21 @@ export default class CommentForm extends React.Component {
               style={textareaStyle}
             />
             <div className="row">
-              <label htmlFor="id-comment-form" className="col-6 a4-comments__char-count">{this.state.commentCharCount}/4000{translated.characters}</label>
-              <div className="a4-comments__submit d-flex col-6">
-                {this.props.commentCategoryChoices
-                  ? <button type="submit" value={translated.post} className="btn a4-comments__submit-input ms-auto">{translated.post}</button>
-                  : <button type="submit" value={translated.comment} className="btn a4-comments__submit-input ms-auto">{translated.post}</button>}
+              <div className="col-12 col-sm-8">
+                <label
+                  htmlFor="id-comment-form"
+                  className="a4-comments__char-count"
+                >
+                  {this.state.commentCharCount}/4000{translated.characters}
+                </label>
+                {(!this.props.useTermsOfUse || this.props.agreedTermsOfUse) ||
+                  <TermsOfUseCheckbox
+                    id={`terms-of-use-checkbox-${typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm'}`}
+                    onChange={val => this.setState({ checkedTermsOfUse: val })}
+                  />}
+              </div>
+              <div className="d-flex col-12 col-sm-4 align-items-center">
+                {actionButton}
               </div>
             </div>
           </form>

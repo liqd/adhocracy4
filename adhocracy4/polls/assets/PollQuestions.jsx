@@ -4,6 +4,7 @@ import { PollOpenQuestion } from './PollOpenQuestion'
 import Alert from '../../static/Alert'
 import django from 'django'
 import PollResults from './PollResults'
+import { TermsOfUseCheckbox } from '../../static/TermsOfUseCheckbox'
 
 const api = require('adhocracy4').api
 const config = require('adhocracy4').config
@@ -120,7 +121,11 @@ class PollQuestions extends React.Component {
           type="button"
           className="btn poll__btn--dark a4-spacer--right"
           onClick={(e) => this.handleSubmit(e)}
-          disabled={!this.state.hasVotes}
+          disabled={
+            !this.state.hasVotes ||
+            (this.state.useTermsOfUse && !this.state.agreedTermsOfuse &&
+            !this.state.checkedTermsOfUse)
+          }
         >
           {this.state.hasUserVote ? django.gettext('Change answer') : django.gettext('Submit answer')}
         </button>
@@ -207,7 +212,10 @@ class PollQuestions extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    this.setState({ loading: true })
+    this.setState({
+      loading: true,
+      checkedTermsOfUse: false
+    })
     const modifiedQuestions = this.state.questions.filter(q => q.modified)
     const validatedQuestions = modifiedQuestions.filter(q => {
       if (!q.is_open) {
@@ -249,6 +257,8 @@ class PollQuestions extends React.Component {
         questions: poll.questions,
         showResults: (poll.questions.length > 0 && poll.questions[0].isReadOnly) || poll.has_user_vote,
         hasUserVote: poll.has_user_vote,
+        useTermsOfUse: poll.use_org_terms_of_use,
+        agreedTermsOfuse: poll.user_has_agreed,
         loadingPage: false
       }))
   }
@@ -300,9 +310,18 @@ class PollQuestions extends React.Component {
               <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
               {!this.isReadOnly()
                 ? (
-                  <div className="poll poll__btn--wrapper">
-                    {this.buttonVote}{!this.state.loading ? this.linkShowResults() : this.loadingIndicator}
-                  </div>
+                  <>
+                    {this.state.useTermsOfUse && !this.state.agreedTermsOfuse &&
+                      <div className="col-12">
+                        <TermsOfUseCheckbox
+                          id="terms-of-use"
+                          onChange={val => this.setState({ checkedTermsOfUse: val })}
+                        />
+                      </div>}
+                    <div className="poll poll__btn--wrapper">
+                      {this.buttonVote}{!this.state.loading ? this.linkShowResults() : this.loadingIndicator}
+                    </div>
+                  </>
                   )
                 : (
                   <div className="poll">

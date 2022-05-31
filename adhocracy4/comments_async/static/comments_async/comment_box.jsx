@@ -69,7 +69,9 @@ export default class CommentBox extends React.Component {
       anchoredCommentParentId: 0,
       anchoredCommentFound: false,
       hasCommentingPermission: false,
-      wouldHaveCommentingPermission: false
+      wouldHaveCommentingPermission: false,
+      useTermsOfUse: false,
+      agreedTermsOfUse: false
     }
   }
 
@@ -101,7 +103,9 @@ export default class CommentBox extends React.Component {
                 anchoredCommentParentId: data.comment_parent,
                 hasCommentingPermission: data.has_commenting_permission,
                 wouldHaveCommentingPermission: data.would_have_commenting_permission,
-                projectIsPublic: data.project_is_public
+                projectIsPublic: data.project_is_public,
+                useTermsOfUse: data.use_org_terms_of_use,
+                agreedTermsOfUse: data.user_has_agreed
               }
             )
             if (this.anchoredCommentFound()) {
@@ -127,7 +131,9 @@ export default class CommentBox extends React.Component {
                 loading: false,
                 hasCommentingPermission: data.has_commenting_permission,
                 wouldHaveCommentingPermission: data.would_have_commenting_permission,
-                projectIsPublic: data.project_is_public
+                projectIsPublic: data.project_is_public,
+                useTermsOfUse: data.use_org_terms_of_use,
+                agreedTermsOfUse: data.user_has_agreed
               }
             )
           }
@@ -503,6 +509,8 @@ export default class CommentBox extends React.Component {
             hasCommentingPermission={this.state.hasCommentingPermission}
             wouldHaveCommentingPermission={this.state.wouldHaveCommentingPermission}
             projectIsPublic={this.state.projectIsPublic}
+            useTermsOfUse={this.state.useTermsOfUse}
+            agreedTermsOfUse={this.state.agreedTermsOfUse}
           />
         </div>
 
@@ -574,6 +582,8 @@ export default class CommentBox extends React.Component {
               hasCommentingPermission={this.state.hasCommentingPermission}
               wouldHaveCommentingPermission={this.state.wouldHaveCommentingPermission}
               projectIsPublic={this.state.projectIsPublic}
+              useTermsOfUse={this.state.useTermsOfUse}
+              agreedTermsOfUse={this.state.agreedTermsOfUse}
             />
           </div>
         </div>

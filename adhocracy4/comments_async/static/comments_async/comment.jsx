@@ -150,6 +150,9 @@ export default class Comment extends React.Component {
             subjectType={this.props.content_type}
             subjectId={this.props.object_pk}
             comment={this.props.children}
+            commentId={this.props.id}
+            useTermsOfUse={this.props.useTermsOfUse}
+            agreedTermsOfUse={this.props.agreedTermsOfUse}
             error={this.props.editError}
             errorMessage={this.props.errorMessage}
             handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
@@ -454,6 +457,8 @@ export default class Comment extends React.Component {
                       hasCommentingPermission={this.props.hasCommentingPermission}
                       wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
                       projectIsPublic={this.props.projectIsPublic}
+                      useTermsOfUse={this.props.useTermsOfUse}
+                      agreedTermsOfUse={this.props.agreedTermsOfUse}
                     />
                   </div>
                 </div>

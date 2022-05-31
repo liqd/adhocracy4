@@ -2,6 +2,7 @@ import React from 'react'
 import django from 'django'
 
 import Alert from '../../../static/Alert'
+import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
 const translated = {
   yourComment: django.gettext('Your comment'),
@@ -52,7 +53,18 @@ export default class CommentEditForm extends React.Component {
             onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment}
           />
         </div>
-        <input type="submit" value={translated.saveChanges} className="submit-button" />
+        {this.props.useTermsOfUse && !this.props.agreedTermsOfUse && (
+          <TermsOfUseCheckbox
+            id={`terms-of-use-${this.props.commentId}`}
+            onChange={val => this.setState({ checkedTermsOfUse: val })}
+          />
+        )}
+        <input
+          type="submit"
+          value={translated.saveChanges}
+          className="submit-button"
+          disabled={this.props.useTermsOfUse && !this.props.agreedTermsOfUse && !this.state.checkedTermsOfUse}
+        />
         &nbsp;
         <input
           type="submit" value={translated.cancel} className="cancel-button"
