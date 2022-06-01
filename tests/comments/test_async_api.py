@@ -352,7 +352,7 @@ def test_fields(user, apiclient, question_ct, question):
                 'object_pk': question.pk})
     response = apiclient.get(url)
 
-    assert len(response.data) == 7
+    assert len(response.data) == 8
     assert 'count' in response.data
     assert 'next' in response.data
     assert 'previous' in response.data
