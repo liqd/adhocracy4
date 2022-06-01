@@ -93,7 +93,6 @@ class CommentViewSet(
         mixins.DestroyModelMixin,
         ContentTypeMixin,
         viewsets.GenericViewSet):
-
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,
                        CommentOrderingFilterBackend,
@@ -153,3 +152,24 @@ class CommentViewSet(
                              instance=comment)
         serializer = self.get_serializer(comment)
         return Response(serializer.data)
+
+    def list(self, request, *args, **kwargs):
+        """Add organisation terms of use info to response.data."""
+        response = super().list(request, args, kwargs)
+        if response.status_code == 400:
+            return response
+
+        use_org_terms_of_use = False
+        if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
+           and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
+            user_has_agreed = None
+            use_org_terms_of_use = True
+            if hasattr(request, 'user'):
+                user = request.user
+                if user.is_authenticated:
+                    organisation = self.content_object.project.organisation
+                    user_has_agreed = \
+                        user.has_agreed_on_org_terms(organisation)
+            response.data['user_has_agreed'] = user_has_agreed
+        response.data['use_org_terms_of_use'] = use_org_terms_of_use
+        return response
