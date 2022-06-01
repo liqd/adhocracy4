@@ -44,7 +44,7 @@
     "react-dom": "17.0.2",
     "react-markdown": "8.0.3",
     "react-popper": "2.2.5",
-    "react-slick": "0.28.1",
+    "react-slick": "0.29.0",
     "shpjs": "4.0.2",
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
@@ -58,7 +58,7 @@
     "react-dom": "17.0.2",
     "react-markdown": "8.0.3",
     "react-popper": "2.2.5",
-    "react-slick": "0.28.1",
+    "react-slick": "0.29.0",
     "shpjs": "4.0.2",
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
