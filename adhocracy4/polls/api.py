@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import transaction
 from django.http import Http404
 from django.shortcuts import get_object_or_404
@@ -32,6 +33,27 @@ class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
     def get_permission_object(self):
         poll = self.get_object()
         return poll.module
+
+    def retrieve(self, request, *args, **kwargs):
+        """Add organisation terms of use info to response.data."""
+        response = super().retrieve(request, args, kwargs)
+        if response.status_code == 400:
+            return response
+
+        use_org_terms_of_use = False
+        if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
+           and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
+            user_has_agreed = None
+            use_org_terms_of_use = True
+            if hasattr(request, 'user'):
+                user = request.user
+                if user.is_authenticated:
+                    organisation = self.get_object().project.organisation
+                    user_has_agreed = \
+                        user.has_agreed_on_org_terms(organisation)
+            response.data['user_has_agreed'] = user_has_agreed
+        response.data['use_org_terms_of_use'] = use_org_terms_of_use
+        return response
 
 
 class VoteViewSet(viewsets.ViewSet):
