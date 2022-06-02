@@ -10,12 +10,7 @@ const config = {
   presets: [
     '@babel/preset-react',
     '@babel/preset-env'
-  ],
-  externals: {
-    react_markdown: 'react-markdown',
-    react_popper: 'react-popper',
-    react_slick: 'react-slick'
-  }
+  ]
 }
 
 module.exports = config
