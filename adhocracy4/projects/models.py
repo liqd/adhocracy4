@@ -231,7 +231,8 @@ class Project(ProjectContactDetailMixin,
         ),
         upload_to='projects/backgrounds',
         blank=True,
-        max_length=300)
+        max_length=300
+    )
     image_copyright = fields.ImageCopyrightField(image_name=_('Header image'))
     tile_image = fields.ConfiguredImageField(
         'tileimage',
@@ -241,9 +242,11 @@ class Project(ProjectContactDetailMixin,
         ),
         upload_to='projects/tiles',
         blank=True,
-        max_length=300)
+        max_length=512
+    )
     tile_image_copyright = fields.ImageCopyrightField(
-        image_name=_('Tile image'))
+        image_name=_('Tile image')
+    )
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name='project_participant',
