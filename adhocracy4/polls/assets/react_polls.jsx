@@ -1,12 +1,14 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
+
 import { EditPollQuestions } from './EditPollQuestions'
 import PollQuestions from './PollQuestions'
 
 module.exports.renderPolls = function (element) {
   const pollId = element.getAttribute('data-poll-id')
-
-  ReactDOM.render(<PollQuestions pollId={pollId} />, element)
+  const container = element
+  const root = createRoot(container)
+  root.render(<PollQuestions pollId={pollId} />)
 }
 
 module.exports.renderPollManagement = function (element) {
@@ -14,5 +16,6 @@ module.exports.renderPollManagement = function (element) {
 
   const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
 
-  ReactDOM.render(<EditPollQuestions pollId={pollId} reloadOnSuccess={reloadOnSuccess} />, element)
+  const root = createRoot(element)
+  root.render(<EditPollQuestions pollId={pollId} reloadOnSuccess={reloadOnSuccess} />)
 }
