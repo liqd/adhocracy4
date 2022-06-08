@@ -1,8 +1,8 @@
+import django from 'django'
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 
-const ReportModal = require('./ReportModal')
-const django = require('django')
+import ReportModal from './ReportModal'
 
 module.exports.ReportModal = ReportModal
 
