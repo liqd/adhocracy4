@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import classnames from 'classnames'
 import django from 'django'
 
@@ -152,5 +152,7 @@ module.exports.RatingBox = RatingBox
 
 module.exports.renderRatings = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
-  ReactDOM.render(<RatingBox {...props} />, el)
+
+  const root = createRoot(el)
+  root.render(<RatingBox {...props} />)
 }

@@ -1,8 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
+
 import FollowButton from './FollowButton'
 
 module.exports.renderFollow = function (el) {
   const project = el.getAttribute('data-project')
-  ReactDOM.render(<FollowButton project={project} />, el)
+  const root = createRoot(el)
+  root.render(<FollowButton project={project} />)
 }

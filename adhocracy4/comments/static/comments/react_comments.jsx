@@ -1,9 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import CommentBox from './CommentBox'
 
 module.exports.renderComment = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
-  ReactDOM.render(<CommentBox {...props} />, el)
+  const root = createRoot(el)
+  root.render(<CommentBox {...props} />)
 }
