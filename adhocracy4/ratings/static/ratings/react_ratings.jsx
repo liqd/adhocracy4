@@ -1,8 +1,9 @@
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+
 const api = require('../../../static/api')
 const config = require('../../../static/config')
 
-const React = require('react')
-const ReactDOM = require('react-dom')
 const classnames = require('classnames')
 
 class RatingBox extends React.Component {
@@ -144,5 +145,7 @@ module.exports.RatingBox = RatingBox
 
 module.exports.renderRatings = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
-  ReactDOM.render(<RatingBox {...props} />, el)
+
+  const root = createRoot(el)
+  root.render(<RatingBox {...props} />)
 }
