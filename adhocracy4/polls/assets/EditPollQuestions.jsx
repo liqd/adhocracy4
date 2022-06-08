@@ -223,13 +223,13 @@ export const EditPollQuestions = (props) => {
       onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}
       className="editpoll__questions"
     >
-      <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
+      <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)" typeName="ol" className="u-list-reset">
         {
           questions.map((question, index, arr) => {
             const key = question.id || question.key
             return question.is_open
               ? (
-                <div key={key}>
+                <li key={key}>
                   <EditPollOpenQuestion
                     id={key}
                     question={question}
@@ -240,10 +240,10 @@ export const EditPollQuestions = (props) => {
                     onDelete={() => handleQuestion('delete', { index })}
                     errors={errors && errors[index] ? errors[index] : {}}
                   />
-                </div>
+                </li>
                 )
               : (
-                <div key={key}>
+                <li key={key}>
                   <EditPollQuestion
                     id={key}
                     question={question}
@@ -259,7 +259,7 @@ export const EditPollQuestions = (props) => {
                     onDeleteChoice={(choiceIndex) => handleChoice('delete', { index, choiceIndex })}
                     onAppendChoice={(hasOtherOption) => handleChoice('append', { index, hasOtherOption })}
                   />
-                </div>
+                </li>
                 )
           })
         }

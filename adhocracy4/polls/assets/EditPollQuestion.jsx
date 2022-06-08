@@ -4,8 +4,6 @@ import django from 'django'
 import ErrorList from '../../static/ErrorList'
 import { HelptextForm } from './HelptextForm'
 
-const FlipMove = require('react-flip-move').default
-
 export const EditPollQuestion = (props) => {
   const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
   const hasOtherOption = props.question.choices.find(c => c.is_other_choice)
@@ -62,7 +60,6 @@ export const EditPollQuestion = (props) => {
           </label>
         </div>
 
-        <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
             props.question.choices.map((choice, index) => {
               const key = choice.id || choice.key
@@ -102,7 +99,6 @@ export const EditPollQuestion = (props) => {
                   )
             })
           }
-        </FlipMove>
         <div className="editpoll__btns--question">
           <button
             className="btn editpoll__btn--question"
