@@ -25,8 +25,8 @@ const translated = {
   readLess: django.gettext('Read less'),
   share: django.gettext('Share'),
   report: django.gettext(' Report'),
-  showModStatement: django.gettext('Show moderator\'s statement'),
-  hideModStatement: django.gettext('Hide moderator\'s statement')
+  showModStatement: django.gettext('Show moderator\'s feedback'),
+  hideModStatement: django.gettext('Hide moderator\'s feedback')
 }
 
 function getAnswerForm (hide, number) {
