@@ -1,10 +1,9 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
+import classnames from 'classnames'
 
-const api = require('../../../static/api')
-const config = require('../../../static/config')
-
-const classnames = require('classnames')
+import api from '../../../static/api'
+import config from '../../../static/config'
 
 class RatingBox extends React.Component {
   constructor (props) {
