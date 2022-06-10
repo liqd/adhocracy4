@@ -25,7 +25,16 @@ export default class CommentForm extends React.Component {
       comment: '',
       commentCharCount: 0,
       selectedCategories: [],
-      textareaHeight: 46
+      textareaHeight: 46,
+      agreedTermsOfUse: props.agreedTermsOfUse
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.agreedTermsOfUse !== prevProps.agreedTermsOfUse) {
+      this.setState({
+        agreedTermsOfUse: this.props.agreedTermsOfUse
+      })
     }
   }
 
@@ -71,6 +80,9 @@ export default class CommentForm extends React.Component {
         contentTypeId: this.props.subjectType
       }
     }
+    if (this.props.useTermsOfUse && !this.state.agreedTermsOfUse && this.state.checkedTermsOfUse) {
+      data.agreed_terms_of_use = true
+    }
     if (this.props.commentCategoryChoices) {
       data.comment_categories = this.state.selectedCategories.toString()
     }
@@ -80,6 +92,9 @@ export default class CommentForm extends React.Component {
     }
     this.props.onCommentSubmit(data, this.props.parentIndex).then(() => {
       this.clearForm()
+      if (this.props.useTermsOfUse) {
+        this.setState({ agreedTermsOfUse: this.state.checkedTermsOfUse })
+      }
     }
     )
   }
@@ -91,7 +106,7 @@ export default class CommentForm extends React.Component {
       <button
         type="submit"
         className="btn a4-comments__submit-input ms-auto"
-        disabled={this.props.useTermsOfUse && !this.props.agreedTermsOfUse && !this.state.checkedTermsOfUse}
+        disabled={this.props.useTermsOfUse && !this.state.agreedTermsOfUse && !this.state.checkedTermsOfUse}
       >
         {translated.post}
       </button>
@@ -128,7 +143,7 @@ export default class CommentForm extends React.Component {
                 >
                   {this.state.commentCharCount}/4000{translated.characters}
                 </label>
-                {(!this.props.useTermsOfUse || this.props.agreedTermsOfUse) ||
+                {this.props.useTermsOfUse && !this.state.agreedTermsOfUse &&
                   <TermsOfUseCheckbox
                     id={`terms-of-use-checkbox-${typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm'}`}
                     onChange={val => this.setState({ checkedTermsOfUse: val })}

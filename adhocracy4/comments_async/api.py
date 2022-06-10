@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django_filters import rest_framework as filters
@@ -110,6 +111,25 @@ class CommentViewSet(
         return ThreadSerializer
 
     def perform_create(self, serializer):
+        if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
+           and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
+            if 'agreed_terms_of_use' in self.request.data and \
+               self.request.data['agreed_terms_of_use']:
+                organisation_model = apps.get_model(
+                    settings.A4_ORGANISATIONS_MODEL)
+                OrganisationTermsOfUse = apps.get_model(
+                    organisation_model._meta.app_label,
+                    'OrganisationTermsOfUse'
+                )
+                OrganisationTermsOfUse.objects.update_or_create(
+                    user=self.request.user,
+                    organisation=self.content_object.project.organisation,
+                    defaults={
+                        'has_agreed':
+                            self.request.data['agreed_terms_of_use']
+                    }
+                )
+
         serializer.save(
             content_object=self.content_object,
             creator=self.request.user
