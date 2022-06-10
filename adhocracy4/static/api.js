@@ -17,7 +17,7 @@ const api = (function () {
     report: baseURL + 'reports/',
     document: baseURL + 'modules/$moduleId/documents/',
     poll: baseURL + 'polls/',
-    pollvote: baseURL + 'polls/question/$questionId/vote/',
+    pollvote: baseURL + 'polls/$pollId/vote/',
     follow: baseURL + 'follows/',
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
     commentmoderate: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comment-moderate/',
@@ -71,15 +71,6 @@ const api = (function () {
 
     $body.addClass('loading')
     return $.ajax(params)
-  }
-
-  async function _sendBatchRequest (endpoint, type, datalist) {
-    const results = []
-    for (const data of datalist) {
-      const result = await _sendRequest(endpoint, type, data)
-      results.push(result)
-    }
-    return results
   }
 
   return {
@@ -172,9 +163,6 @@ const api = (function () {
         return _sendRequest('pollvote', {
           type: 'POST'
         }, data)
-      },
-      batchvote: function (datalist) {
-        return _sendBatchRequest('pollvote', { type: 'POST' }, datalist)
       }
     },
     moderatorremark: {

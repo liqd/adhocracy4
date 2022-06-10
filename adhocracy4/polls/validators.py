@@ -18,6 +18,15 @@ def single_item_per_module(module, model, pk=None):
         })
 
 
+def question_belongs_to_poll(question, poll_pk):
+    if question.poll.pk != poll_pk:
+        raise rest_exceptions.ValidationError({
+            'question': [
+                _('Question has to belong to the poll set in the url.'),
+            ]
+        })
+
+
 def choice_belongs_to_question(choice, question_pk):
     if question_pk != choice.question.pk:
         raise rest_exceptions.ValidationError({
