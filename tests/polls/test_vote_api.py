@@ -23,16 +23,16 @@ def test_anonymous_user_can_not_vote(apiclient,
 
     assert Vote.objects.count() == 0
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': poll.pk})
 
     data = {
-        'choices': [choice1.pk],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice1.pk],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
 
     response = apiclient.post(url, data, format='json')
@@ -57,16 +57,16 @@ def test_normal_user_can_not_vote(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': poll.pk})
 
     data = {
-        'choices': [choice1.pk],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice1.pk],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
 
     response = apiclient.post(url, data, format='json')
@@ -91,16 +91,16 @@ def test_admin_can_vote(admin,
 
     apiclient.force_authenticate(user=admin)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': poll.pk})
 
     data = {
-        'choices': [choice1.pk],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice1.pk],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
 
     response = apiclient.post(url, data, format='json')
@@ -120,21 +120,27 @@ def test_normal_user_can_vote_in_active_phase(user,
     question = question_factory(poll=poll)
     choice1 = choice_factory(question=question)
     choice_factory(question=question)
+    open_question = question_factory(poll=poll, is_open=True)
 
     assert Vote.objects.count() == 0
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': poll.pk})
 
     data = {
-        'choices': [choice1.pk],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice1.pk],
+                'other_choice_answer': '',
+                'open_answer': ''
+            },
+            open_question.pk: {
+                'choices': [],
+                'other_choice_answer': '',
+                'open_answer': 'an open answer'
+            }
+        }
     }
 
     with active_phase(poll.module, VotingPhase):
@@ -142,6 +148,7 @@ def test_normal_user_can_vote_in_active_phase(user,
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Vote.objects.count() == 1
+    assert Answer.objects.count() == 1
 
 
 @pytest.mark.django_db
@@ -163,16 +170,16 @@ def test_user_cant_vote_in_private_project(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': poll.pk})
 
     data = {
-        'choices': [choice1.pk],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice1.pk],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
 
     with active_phase(poll.module, VotingPhase):
@@ -202,16 +209,16 @@ def test_participant_can_vote_in_private_project(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': poll.pk})
 
     data = {
-        'choices': [choice1.pk],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice1.pk],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
 
     with active_phase(poll.module, VotingPhase):
@@ -235,16 +242,16 @@ def test_other_choice_vote_created(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': question.poll.pk})
 
     data = {
-        'choices': [choice_other.pk],
-        'other_choice_answer': 'other choice answer',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice_other.pk],
+                'other_choice_answer': 'other choice answer',
+                'open_answer': ''
+            }
+        }
     }
 
     with active_phase(question.poll.module, VotingPhase):
@@ -271,16 +278,16 @@ def test_empty_other_choice_vote_raises_error(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': question.poll.pk})
 
     data = {
-        'choices': [choice_other.pk],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice_other.pk],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
 
     with active_phase(question.poll.module, VotingPhase):
@@ -305,16 +312,16 @@ def test_other_choice_vote_updated(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': question.poll.pk})
 
     data = {
-        'choices': [choice_other.pk],
-        'other_choice_answer': 'other choice answer',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice_other.pk],
+                'other_choice_answer': 'other choice answer',
+                'open_answer': ''
+            }
+        }
     }
 
     with active_phase(question.poll.module, VotingPhase):
@@ -327,9 +334,13 @@ def test_other_choice_vote_updated(user,
     assert OtherVote.objects.first().answer == 'other choice answer'
 
     data = {
-        'choices': [choice_other.pk],
-        'other_choice_answer': 'other choice answer updated',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [choice_other.pk],
+                'other_choice_answer': 'other choice answer updated',
+                'open_answer': ''
+            }
+        }
     }
 
     with active_phase(question.poll.module, VotingPhase):
@@ -351,16 +362,16 @@ def test_answer_created(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': open_question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': open_question.poll.pk})
 
     data = {
-        'choices': [],
-        'other_choice_answer': '',
-        'open_answer': 'answer to open question'
+        'votes': {
+            open_question.pk: {
+                'choices': [],
+                'other_choice_answer': '',
+                'open_answer': 'answer to open question'
+            }
+        }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
@@ -380,16 +391,16 @@ def test_answer_updated(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': open_question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': open_question.poll.pk})
 
     data = {
-        'choices': [],
-        'other_choice_answer': '',
-        'open_answer': 'answer to open question'
+        'votes': {
+            open_question.pk: {
+                'choices': [],
+                'other_choice_answer': '',
+                'open_answer': 'answer to open question'
+            }
+        }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
@@ -400,9 +411,13 @@ def test_answer_updated(user,
     assert Answer.objects.first().answer == 'answer to open question'
 
     data = {
-        'choices': [],
-        'other_choice_answer': '',
-        'open_answer': 'answer to open question updated'
+        'votes': {
+            open_question.pk: {
+                'choices': [],
+                'other_choice_answer': '',
+                'open_answer': 'answer to open question updated'
+            }
+        }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
@@ -422,16 +437,16 @@ def test_answer_deleted(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': open_question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': open_question.poll.pk})
 
     data = {
-        'choices': [],
-        'other_choice_answer': '',
-        'open_answer': 'answer to open question'
+        'votes': {
+            open_question.pk: {
+                'choices': [],
+                'other_choice_answer': '',
+                'open_answer': 'answer to open question'
+            }
+        }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
@@ -442,9 +457,13 @@ def test_answer_deleted(user,
     assert Answer.objects.first().answer == 'answer to open question'
 
     data = {
-        'choices': [],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            open_question.pk: {
+                'choices': [],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
@@ -461,16 +480,16 @@ def test_get_data(apiclient, user, question, choice_factory):
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': question.poll.pk})
 
     data = {
-        'choices': [1],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question.pk: {
+                'choices': [1],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
 
     with active_phase(question.poll.module, VotingPhase):
@@ -479,8 +498,12 @@ def test_get_data(apiclient, user, question, choice_factory):
 
     choice = choice_factory(question=question)
     data = {
-        'choices': [choice.id],
-        'other_choice_answer': '',
+        'votes': {
+            question.pk: {
+                'choices': [choice.id],
+                'other_choice_answer': '',
+            }
+        }
     }
 
     with active_phase(question.poll.module, VotingPhase):
@@ -492,31 +515,37 @@ def test_get_data(apiclient, user, question, choice_factory):
 def test_validate_choices(apiclient, user, question_factory, choice_factory):
 
     question1 = question_factory()
+    choice1 = choice_factory(question=question1)
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question1.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': question1.poll.pk})
 
-    choice1 = choice_factory(question=question1)
     data = {
-        'choices': [choice1.id, choice1.id],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question1.pk: {
+                'choices': [choice1.id, choice1.id],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
+
     with active_phase(question1.poll.module, VotingPhase):
         response = apiclient.post(url, data, format='json')
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert 'Duplicate choices detected' in response.content.decode()
 
     choice2 = choice_factory(question=question1)
+
     data = {
-        'choices': [choice1.id, choice2.id],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question1.pk: {
+                'choices': [choice1.id, choice2.id],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
     with active_phase(question1.poll.module, VotingPhase):
         response = apiclient.post(url, data, format='json')
@@ -526,19 +555,53 @@ def test_validate_choices(apiclient, user, question_factory, choice_factory):
 
     question2 = question_factory()
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question2.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': question2.poll.pk})
 
     data = {
-        'choices': [choice1.id],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question2.pk: {
+                'choices': [choice1.id],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
+
     with active_phase(question2.poll.module, VotingPhase):
         response = apiclient.post(url, data, format='json')
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert 'Choice has to belong to the question set in the url.' \
+           in response.content.decode()
+
+
+@pytest.mark.django_db
+def test_validate_question_belongs_to_poo(apiclient,
+                                          user,
+                                          poll_factory,
+                                          question_factory,
+                                          choice_factory):
+
+    poll_1 = poll_factory()
+    poll_2 = poll_factory()
+    question1 = question_factory(poll=poll_1)
+    choice1 = choice_factory(question=question1)
+
+    apiclient.force_authenticate(user=user)
+
+    url = reverse('polls-vote', kwargs={'pk': poll_2.pk})
+
+    data = {
+        'votes': {
+            question1.pk: {
+                'choices': [choice1.id],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
+    }
+
+    with active_phase(poll_2.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert 'Question has to belong to the poll set in the url.' \
            in response.content.decode()

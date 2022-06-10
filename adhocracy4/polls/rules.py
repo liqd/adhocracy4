@@ -2,7 +2,7 @@ import rules
 
 from adhocracy4.modules import predicates as module_predicates
 
-from . import models
+from .predicates import is_allowed_add_vote
 
 rules.add_perm(
     'a4polls.change_poll',
@@ -20,10 +20,7 @@ rules.add_perm(
     module_predicates.is_allowed_comment_item
 )
 
-
-# It has to be ensured that the permission is always checked against a module
-# never a Vote object.
 rules.add_perm(
     'a4polls.add_vote',
-    module_predicates.is_allowed_add_item(models.Vote)
+    is_allowed_add_vote
 )

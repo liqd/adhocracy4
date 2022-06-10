@@ -6,6 +6,7 @@ from django.utils.translation import gettext as _
 from rest_framework import mixins
 from rest_framework import status
 from rest_framework import viewsets
+from rest_framework.decorators import action
 from rest_framework.exceptions import NotFound
 from rest_framework.exceptions import ParseError
 from rest_framework.exceptions import ValidationError
@@ -13,6 +14,7 @@ from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
 
+from . import validators
 from .models import Answer
 from .models import Choice
 from .models import OtherVote
@@ -20,8 +22,6 @@ from .models import Poll
 from .models import Question
 from .models import Vote
 from .serializers import PollSerializer
-from .serializers import QuestionSerializer
-from .validators import choice_belongs_to_question
 
 
 class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
@@ -33,6 +33,12 @@ class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
     def get_permission_object(self):
         poll = self.get_object()
         return poll.module
+
+    @property
+    def rules_method_map(self):
+        return ViewSetRulesPermission.default_rules_method_map._replace(
+            POST='a4polls.add_vote',
+        )
 
     def retrieve(self, request, *args, **kwargs):
         """Add organisation terms of use info to response.data."""
@@ -55,28 +61,36 @@ class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
         response.data['use_org_terms_of_use'] = use_org_terms_of_use
         return response
 
+    @action(detail=True, methods=['post'],
+            permission_classes=[ViewSetRulesPermission])
+    def vote(self, request, pk):
+        for question_id in request.data['votes']:
+            question = self.get_question(question_id)
+            validators.question_belongs_to_poll(question, int(pk))
+            vote_data = self.request.data['votes'][question_id]
+            self.save_vote(question, vote_data)
+        poll = self.get_object()
+        poll_serializer = self.get_serializer(poll)
+        return Response(poll_serializer.data,
+                        status=status.HTTP_201_CREATED)
 
-class VoteViewSet(viewsets.ViewSet):
+    def save_vote(self, question, vote_data):
+        choices, other_choice_answer, open_answer = self.get_data(vote_data)
 
-    permission_classes = (ViewSetRulesPermission,)
-
-    def create(self, request, *args, **kwargs):
-        choices, other_choice_answer, open_answer = self.get_data(request)
-
-        if not self.question.is_open:
-            self.validate_choices(choices)
+        if not question.is_open:
+            self.validate_choices(question, choices)
 
         with transaction.atomic():
-            if self.question.is_open:
-                self.clear_open_answer()
+            if question.is_open:
+                self.clear_open_answer(question)
                 if open_answer:
                     Answer.objects.create(
-                        question=self.question,
+                        question=question,
                         answer=open_answer,
                         creator=self.request.user
                     )
             else:
-                self.clear_current_choices()
+                self.clear_current_choices(question)
                 for choice in choices:
                     vote = Vote.objects.create(
                         choice_id=choice.id,
@@ -93,17 +107,13 @@ class VoteViewSet(viewsets.ViewSet):
                                 'choice': _('Please specify your answer.')
                             })
 
-        question_serializer = self.get_question_serializer()
-        return Response({'question': question_serializer.data},
-                        status=status.HTTP_201_CREATED)
-
-    def get_data(self, request):
+    def get_data(self, vote_data):
         try:
             choices = [get_object_or_404(Choice, pk=choice_pk)
                        for choice_pk
-                       in request.data['choices']]
-            other_choice_answer = request.data['other_choice_answer']
-            open_answer = request.data['open_answer']
+                       in vote_data['choices']]
+            other_choice_answer = vote_data['other_choice_answer']
+            open_answer = vote_data['open_answer']
         except (ValueError, AttributeError):
             raise ValidationError()
         except KeyError as error:
@@ -113,9 +123,25 @@ class VoteViewSet(viewsets.ViewSet):
 
         return choices, other_choice_answer, open_answer
 
-    def validate_choices(self, choices):
-        question = self.question
+    def get_question(self, id):
+        return get_object_or_404(
+            Question,
+            pk=id
+        )
 
+    def clear_open_answer(self, question):
+        Answer.objects\
+            .filter(question_id=question.id,
+                    creator=self.request.user)\
+            .delete()
+
+    def clear_current_choices(self, question):
+        Vote.objects\
+            .filter(choice__question_id=question.id,
+                    creator=self.request.user)\
+            .delete()
+
+    def validate_choices(self, question, choices):
         if len(choices) > len(set(choices)):
             raise ValidationError(detail=_('Duplicate choices detected.'))
 
@@ -124,42 +150,4 @@ class VoteViewSet(viewsets.ViewSet):
                                            'question.'))
 
         for choice in choices:
-            choice_belongs_to_question(choice, question.pk)
-
-    def clear_current_choices(self):
-        Vote.objects\
-            .filter(choice__question_id=self.question.id,
-                    creator=self.request.user)\
-            .delete()
-
-    def clear_open_answer(self):
-        Answer.objects\
-            .filter(question_id=self.question.id,
-                    creator=self.request.user)\
-            .delete()
-
-    @property
-    def question(self):
-        return get_object_or_404(
-            Question,
-            pk=self.kwargs['question_pk']
-        )
-
-    def get_question_serializer(self):
-        question = Question.objects\
-            .annotate_vote_count()\
-            .get(pk=self.kwargs['question_pk'])
-
-        return QuestionSerializer(
-            question,
-            context={
-                'request': self.request
-            }
-        )
-
-    def get_queryset(self):
-        return Vote.objects.filter(
-            choice__question_id=self.kwargs['question_pk'])
-
-    def get_permission_object(self):
-        return self.question.poll.module
+            validators.choice_belongs_to_question(choice, question.pk)

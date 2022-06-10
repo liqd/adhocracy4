@@ -189,12 +189,16 @@ class PollQuestions extends React.Component {
     })
   }
 
-  sendRequest (datalist) {
-    api.poll.batchvote(datalist)
-      .then(() => {
-        this.getPollData()
+  sendRequest (data) {
+    api.poll.vote(data)
+      .then((poll) => {
         this.setState(prevState => {
           return {
+            result: JSON.parse(JSON.stringify(poll.questions)),
+            questions: poll.questions,
+            showResults: (poll.questions.length > 0 && poll.questions[0].isReadOnly) || poll.has_user_vote,
+            hasUserVote: poll.has_user_vote,
+            loadingPage: false,
             loading: false,
             alert: ALERT_SUCCESS
           }
@@ -233,18 +237,21 @@ class PollQuestions extends React.Component {
       return q
     })
 
-    const datalist = []
+    const voteData = {}
     for (const question of validatedQuestions) {
-      datalist.push({
-        urlReplaces: { questionId: question.id },
+      voteData[question.id] = {
         choices: question.userChoices,
         other_choice_answer: question.other_choice_answer || '',
         open_answer: question.open_answer || ''
-      })
+      }
+    }
+    const data = {
+      urlReplaces: { pollId: this.props.pollId },
+      votes: voteData
     }
 
     validatedQuestions.length > 0
-      ? this.sendRequest(datalist)
+      ? this.sendRequest(data)
       : Object.keys(this.state.errors).length > 0
         ? this.setState({ loading: false, alert: ALERT_SUCCESS })
         : this.setState({ loading: false, alert: ALERT_INVALID })

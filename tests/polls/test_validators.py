@@ -22,18 +22,17 @@ def test_choice_belongs_to_question(admin,
 
     apiclient.force_authenticate(user=admin)
 
-    url = reverse(
-        'votes-list',
-        kwargs={
-            'question_pk': question1.pk
-        })
+    url = reverse('polls-vote', kwargs={'pk': question1.poll.pk})
 
     data = {
-        'choices': [choice2.pk],
-        'other_choice_answer': '',
-        'open_answer': ''
+        'votes': {
+            question1.pk: {
+                'choices': [choice2.pk],
+                'other_choice_answer': '',
+                'open_answer': ''
+            }
+        }
     }
-
     response = apiclient.post(url, data, format='json')
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
