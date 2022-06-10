@@ -69,9 +69,7 @@ export default class CommentBox extends React.Component {
       anchoredCommentParentId: 0,
       anchoredCommentFound: false,
       hasCommentingPermission: false,
-      wouldHaveCommentingPermission: false,
-      useTermsOfUse: false,
-      agreedTermsOfUse: false
+      wouldHaveCommentingPermission: false
     }
   }
 
