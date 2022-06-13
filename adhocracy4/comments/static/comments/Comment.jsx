@@ -240,7 +240,7 @@ class Comment extends React.Component {
                 placeholder={answerPlaceholderText}
                 error={this.props.replyError}
                 errorMessage={this.props.errorMessage}
-                handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
+                handleErrorClick={() => this.props.onReplyErrorClick(this.props.index, this.props.parentIndex)}
                 rows="3"
                 grabFocus={this.state.replyFormHasFocus}
               />)
