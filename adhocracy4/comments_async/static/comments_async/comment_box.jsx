@@ -137,10 +137,13 @@ export default class CommentBox extends React.Component {
       )
   }
 
+// remove auto scroll
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll)
   }
 
+// handles update of the comment state
+// called in handleCommentSubmit, handleCommentModify, handleCommentDelete, handleHideReplyError, handleHideEditeError
   updateStateComment (index, parentIndex, updatedComment) {
     let comments = this.state.comments
     console.log('hello')
@@ -151,7 +154,9 @@ export default class CommentBox extends React.Component {
     } else {
       diff[index] = { $merge: updatedComment }
     }
-    comments = update(comments, diff)
+    this.setState({
+      comments: update(comments, diff),
+    })
     console.log(comments)
   }
 
@@ -217,14 +222,10 @@ export default class CommentBox extends React.Component {
         this.updateStateComment(
           index,
           parentIndex,
-          changed)
-        this.updateStateComment(
-          index,
-          parentIndex, {
+          {...changed,
             editError: false,
             errorMessage: undefined
-          }
-        )
+          })
       })
       .fail((xhr, status, err) => {
         const errorMessage = Object.values(xhr.responseJSON)[0]
