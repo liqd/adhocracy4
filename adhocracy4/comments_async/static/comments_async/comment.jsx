@@ -155,7 +155,7 @@ export default class Comment extends React.Component {
             agreedTermsOfUse={this.props.agreedTermsOfUse}
             error={this.props.editError}
             errorMessage={this.props.errorMessage}
-            handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
+            handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
             rows="5"
             handleCancel={this.toggleEdit.bind(this)}
             parentIndex={this.props.parentIndex}
@@ -179,7 +179,7 @@ export default class Comment extends React.Component {
             comment_categories={this.props.comment_categories}
             error={this.props.editError}
             errorMessage={this.props.errorMessage}
-            handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
+            handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
             rows="5"
             handleCancel={this.toggleEdit.bind(this)}
             parentIndex={this.props.parentIndex}
@@ -451,7 +451,7 @@ export default class Comment extends React.Component {
                       placeholder={translated.yourReply}
                       error={this.props.replyError}
                       errorMessage={this.props.errorMessage}
-                      handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
+                      handleErrorClick={() => this.props.onReplyErrorClick(this.props.index, this.props.parentIndex)}
                       rows="1"
                       autoFocus
                       hasCommentingPermission={this.props.hasCommentingPermission}
