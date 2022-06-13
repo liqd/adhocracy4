@@ -41,6 +41,7 @@ export default class CommentBox extends React.Component {
     this.handleClickSorted = this.handleClickSorted.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.fetchComments = this.fetchComments.bind(this)
+    console.log('top test')
     this.handleCommentDelete = this.handleCommentDelete.bind(this)
     this.handleCommentModify = this.handleCommentModify.bind(this)
     this.handleCommentSubmit = this.handleCommentSubmit.bind(this)
@@ -78,6 +79,7 @@ export default class CommentBox extends React.Component {
     if (this.props.useModeratorMarked) {
       sorts.mom = django.gettext('Highlighted')
     }
+    console.log('test1')
     const params = {}
     params.ordering = this.state.sort
     params.urlReplaces = this.urlReplaces
@@ -141,6 +143,7 @@ export default class CommentBox extends React.Component {
 
   updateStateComment (index, parentIndex, updatedComment) {
     let comments = this.state.comments
+    console.log('hello')
     const diff = {}
     if (typeof parentIndex !== 'undefined') {
       diff[parentIndex] = { child_comments: {} }
@@ -149,7 +152,7 @@ export default class CommentBox extends React.Component {
       diff[index] = { $merge: updatedComment }
     }
     comments = update(comments, diff)
-    this.setState({ comments: comments })
+    console.log(comments)
   }
 
   handleCommentSubmit (comment, parentIndex) {
@@ -487,6 +490,8 @@ export default class CommentBox extends React.Component {
   }
 
   render () {
+    console.log('render test')
+    console.log(this.state.comments)
     return (
       <div>
         <div className="a4-comments__commentbox__form">

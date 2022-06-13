@@ -21,13 +21,6 @@ export default class PollResult extends React.Component {
     }
   }
 
-  // FIXME - should add animation for poll results but not current priority
-  // doBarTransition (node, style) {
-  //   if (node && node.style) {
-  //     window.requestAnimationFrame(() => Object.assign(node.style, style))
-  //   }
-  // }
-
   isUserAnswer (slide) {
     const matchedId = this.state.question.is_open
       ? slide.id === this.state.userAnswerId
