@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.conf import settings
 from django.db import transaction
 from django.http import Http404
@@ -40,12 +41,7 @@ class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
             POST='a4polls.add_vote',
         )
 
-    def retrieve(self, request, *args, **kwargs):
-        """Add organisation terms of use info to response.data."""
-        response = super().retrieve(request, args, kwargs)
-        if response.status_code == 400:
-            return response
-
+    def add_terms_of_use_info(self, request, data):
         use_org_terms_of_use = False
         if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
            and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
@@ -57,21 +53,50 @@ class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
                     organisation = self.get_object().project.organisation
                     user_has_agreed = \
                         user.has_agreed_on_org_terms(organisation)
-            response.data['user_has_agreed'] = user_has_agreed
-        response.data['use_org_terms_of_use'] = use_org_terms_of_use
+            data['user_has_agreed'] = user_has_agreed
+        data['use_org_terms_of_use'] = use_org_terms_of_use
+        return data
+
+    def retrieve(self, request, *args, **kwargs):
+        """Add organisation terms of use info to response.data."""
+        response = super().retrieve(request, args, kwargs)
+        if response.status_code == 400:
+            return response
+        response.data = self.add_terms_of_use_info(request, response.data)
         return response
 
     @action(detail=True, methods=['post'],
             permission_classes=[ViewSetRulesPermission])
     def vote(self, request, pk):
+        if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
+           and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
+            if 'agreed_terms_of_use' in self.request.data and \
+               self.request.data['agreed_terms_of_use']:
+                organisation_model = apps.get_model(
+                    settings.A4_ORGANISATIONS_MODEL)
+                OrganisationTermsOfUse = apps.get_model(
+                    organisation_model._meta.app_label,
+                    'OrganisationTermsOfUse'
+                )
+                OrganisationTermsOfUse.objects.update_or_create(
+                    user=self.request.user,
+                    organisation=self.get_object().project.organisation,
+                    defaults={
+                        'has_agreed':
+                            self.request.data['agreed_terms_of_use']
+                    }
+                )
+
         for question_id in request.data['votes']:
             question = self.get_question(question_id)
             validators.question_belongs_to_poll(question, int(pk))
             vote_data = self.request.data['votes'][question_id]
             self.save_vote(question, vote_data)
+
         poll = self.get_object()
         poll_serializer = self.get_serializer(poll)
-        return Response(poll_serializer.data,
+        poll_data = self.add_terms_of_use_info(request, poll_serializer.data)
+        return Response(poll_data,
                         status=status.HTTP_201_CREATED)
 
     def save_vote(self, question, vote_data):

@@ -123,7 +123,7 @@ class PollQuestions extends React.Component {
           onClick={(e) => this.handleSubmit(e)}
           disabled={
             !this.state.hasVotes ||
-            (this.state.useTermsOfUse && !this.state.agreedTermsOfuse &&
+            (this.state.useTermsOfUse && !this.state.agreedTermsOfUse &&
             !this.state.checkedTermsOfUse)
           }
         >
@@ -198,6 +198,8 @@ class PollQuestions extends React.Component {
             questions: poll.questions,
             showResults: (poll.questions.length > 0 && poll.questions[0].isReadOnly) || poll.has_user_vote,
             hasUserVote: poll.has_user_vote,
+            useTermsOfUse: poll.use_org_terms_of_use,
+            agreedTermsOfUse: poll.user_has_agreed,
             loadingPage: false,
             loading: false,
             alert: ALERT_SUCCESS
@@ -249,6 +251,9 @@ class PollQuestions extends React.Component {
       urlReplaces: { pollId: this.props.pollId },
       votes: voteData
     }
+    if (this.state.useTermsOfUse && !this.state.agreedTermsOfUse && this.state.checkedTermsOfUse) {
+      data.agreed_terms_of_use = true
+    }
 
     validatedQuestions.length > 0
       ? this.sendRequest(data)
@@ -265,7 +270,7 @@ class PollQuestions extends React.Component {
         showResults: (poll.questions.length > 0 && poll.questions[0].isReadOnly) || poll.has_user_vote,
         hasUserVote: poll.has_user_vote,
         useTermsOfUse: poll.use_org_terms_of_use,
-        agreedTermsOfuse: poll.user_has_agreed,
+        agreedTermsOfUse: poll.user_has_agreed,
         loadingPage: false
       }))
   }
@@ -318,7 +323,7 @@ class PollQuestions extends React.Component {
               {!this.isReadOnly()
                 ? (
                   <>
-                    {this.state.useTermsOfUse && !this.state.agreedTermsOfuse &&
+                    {this.state.useTermsOfUse && !this.state.agreedTermsOfUse &&
                       <div className="col-12">
                         <TermsOfUseCheckbox
                           id="terms-of-use"
