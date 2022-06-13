@@ -1,6 +1,7 @@
 import React from 'react'
 import django from 'django'
 import update from 'immutability-helper'
+import { flushSync } from 'react-dom';
 
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
@@ -79,7 +80,6 @@ export default class CommentBox extends React.Component {
     if (this.props.useModeratorMarked) {
       sorts.mom = django.gettext('Highlighted')
     }
-    console.log('test1')
     const params = {}
     params.ordering = this.state.sort
     params.urlReplaces = this.urlReplaces
@@ -137,13 +137,15 @@ export default class CommentBox extends React.Component {
       )
   }
 
+// remove auto scroll
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll)
   }
 
+// handles update of the comment state
+// called in handleCommentSubmit, handleCommentModify, handleCommentDelete, handleHideReplyError, handleHideEditeError
   updateStateComment (index, parentIndex, updatedComment) {
     let comments = this.state.comments
-    console.log('hello')
     const diff = {}
     if (typeof parentIndex !== 'undefined') {
       diff[parentIndex] = { child_comments: {} }
@@ -151,8 +153,9 @@ export default class CommentBox extends React.Component {
     } else {
       diff[index] = { $merge: updatedComment }
     }
-    comments = update(comments, diff)
-    console.log(comments)
+    this.setState({
+      comments: update(comments, diff),
+    })
   }
 
   handleCommentSubmit (comment, parentIndex) {
@@ -212,12 +215,16 @@ export default class CommentBox extends React.Component {
       comment = comments[parentIndex].child_comments[index]
     }
 
+// flushSync stops react18 batching state updates and ensures
+// re-render when no error
     return api.comments.change(modifiedComment, comment.id)
       .done(changed => {
-        this.updateStateComment(
-          index,
-          parentIndex,
-          changed)
+        flushSync(() => {
+          this.updateStateComment(
+            index,
+            parentIndex,
+            changed)
+        })
         this.updateStateComment(
           index,
           parentIndex, {

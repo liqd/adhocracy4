@@ -37,6 +37,7 @@ export default class CommentEditForm extends React.Component {
       return
     }
     this.props.onCommentSubmit(data)
+    console.log('comment submit')
   }
 
   render () {
