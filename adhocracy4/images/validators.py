@@ -10,7 +10,7 @@ image_max_mb = 5
 def validate_image(
         image, min_resolution, max_size=image_max_mb * 10**6,
         fileformats=('image/png', 'image/jpeg'),
-        aspect_ratio=None, aspect_marign=0.1):
+        aspect_ratio=None, aspect_marign=0.1, max_resolution=None):
     errors = []
     min_width, min_height = min_resolution
 
@@ -43,6 +43,15 @@ def validate_image(
     if image_height < min_height:
         msg = _('Image must be at least {min_height} pixels high')
         errors.append(ValidationError(msg.format(min_height=min_height)))
+
+    if max_resolution:
+        max_width, max_height = max_resolution
+        if image_width > max_width:
+            msg = _('Image must be at most {max_width} pixels wide')
+            errors.append(ValidationError(msg.format(max_width=max_width)))
+        if image_height > max_height:
+            msg = _('Image must be at most {max_height} pixels high')
+            errors.append(ValidationError(msg.format(max_height=max_height)))
 
     if aspect_ratio:
         aspect_heigth, aspect_width = aspect_ratio
