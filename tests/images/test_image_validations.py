@@ -17,6 +17,19 @@ def test_min_size_validation(image_factory):
     validate_image(image, (100, 100))
 
 
+def test_max_size_validation(image_factory):
+    with pytest.raises(ValidationError):
+        image = image_factory((100, 100), 'JPEG')
+        validate_image(image, (50, 50), max_resolution=(50, 150))
+
+    with pytest.raises(ValidationError):
+        image = image_factory((100, 100), 'JPEG')
+        validate_image(image, (50, 50), max_resolution=(150, 50))
+
+    image = image_factory((100, 100), 'JPEG')
+    validate_image(image, (100, 100), max_resolution=(100, 100))
+
+
 def test_aspect_validation(image_factory):
     square_image = image_factory((100, 109), 'JPEG')
     image = image_factory((100, 120), 'JPEG')
