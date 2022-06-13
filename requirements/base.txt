@@ -13,6 +13,6 @@ easy-thumbnails==2.8.1
 html5lib==1.1
 jsonfield==3.1.0
 python-dateutil==2.8.2
-python-magic==0.4.26
+python-magic==0.4.27
 rules==3.3
 XlsxWriter==3.0.3
