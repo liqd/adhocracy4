@@ -92,8 +92,8 @@ export default class CommentForm extends React.Component {
     }
     this.props.onCommentSubmit(data, this.props.parentIndex).then(() => {
       this.clearForm()
-      if (this.props.useTermsOfUse) {
-        this.setState({ agreedTermsOfUse: this.state.checkedTermsOfUse })
+      if (this.props.useTermsOfUse && !this.state.agreedTermsOfUse && this.state.checkedTermsOfUse) {
+        this.setState({ agreedTermsOfUse: true })
       }
     }
     )
