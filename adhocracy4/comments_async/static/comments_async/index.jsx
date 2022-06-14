@@ -6,5 +6,9 @@ import CommentBox from './comment_box'
 export function renderComment (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
   const root = createRoot(el)
-  root.render(<CommentBox {...props} ref={(commentbox) => { window.commentbox = commentbox }} />)
+  root.render(
+    <React.StrictMode>
+      <CommentBox {...props} ref={(commentbox) => { window.commentbox = commentbox }} />
+    </React.StrictMode>
+  )
 }

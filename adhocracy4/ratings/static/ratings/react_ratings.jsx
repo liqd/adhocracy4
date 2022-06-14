@@ -146,5 +146,9 @@ module.exports.renderRatings = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
 
   const root = createRoot(el)
-  root.render(<RatingBox {...props} />)
+  root.render(
+    <React.StrictMode>
+      <RatingBox {...props} />
+    </React.StrictMode>
+  )
 }

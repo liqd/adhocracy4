@@ -6,5 +6,9 @@ import FollowButton from './FollowButton'
 module.exports.renderFollow = function (el) {
   const project = el.getAttribute('data-project')
   const root = createRoot(el)
-  root.render(<FollowButton project={project} />)
+  root.render(
+    <React.StrictMode>
+      <FollowButton project={project} />
+    </React.StrictMode>
+  )
 }

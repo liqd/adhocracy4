@@ -8,7 +8,11 @@ module.exports.renderPolls = function (element) {
   const pollId = element.getAttribute('data-poll-id')
   const container = element
   const root = createRoot(container)
-  root.render(<PollQuestions pollId={pollId} />)
+  root.render(
+    <React.StrictMode>
+      <PollQuestions pollId={pollId} />
+    </React.StrictMode>
+  )
 }
 
 module.exports.renderPollManagement = function (element) {
@@ -17,5 +21,9 @@ module.exports.renderPollManagement = function (element) {
   const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
 
   const root = createRoot(element)
-  root.render(<EditPollQuestions pollId={pollId} reloadOnSuccess={reloadOnSuccess} />)
+  root.render(
+    <React.StrictMode>
+      <EditPollQuestions pollId={pollId} reloadOnSuccess={reloadOnSuccess} />
+    </React.StrictMode>
+  )
 }
