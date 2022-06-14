@@ -73,6 +73,9 @@ export default class Comment extends React.Component {
       shorten: this.props.id !== this.props.anchoredCommentId,
       anchored: this.props.id === this.props.anchoredCommentId
     })
+    if (this.props.id === this.props.anchoredCommentId) {
+      this.props.onRenderFinished()
+    }
   }
 
   toggleEdit (e) {
@@ -439,6 +442,7 @@ export default class Comment extends React.Component {
                       anchoredCommentId={this.props.anchoredCommentId}
                       anchoredCommentParentId={this.props.anchoredCommentParentId}
                       parentIndex={this.props.index}
+                      onRenderFinished={this.props.onRenderFinished}
                       onCommentDelete={this.props.onCommentDelete}
                       onCommentModify={this.props.onCommentModify}
                       onEditErrorClick={this.props.handleEditErrorClick}

@@ -10,6 +10,7 @@ const CommentList = (props) => {
           return (
             <Comment
               comment_categories={comment.comment_categories}
+              onRenderFinished={props.onRenderFinished}
               key={comment.id}
               user_name={comment.user_name}
               user_pk={comment.user_pk}
