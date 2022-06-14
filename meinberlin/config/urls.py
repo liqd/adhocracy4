@@ -18,8 +18,6 @@ from adhocracy4.api import routers as a4routers
 from adhocracy4.comments_async.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.polls.api import PollViewSet
-from adhocracy4.polls.api import VoteViewSet
-from adhocracy4.polls.routers import QuestionDefaultRouter
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from meinberlin.apps.bplan.api import BplanViewSet
@@ -76,9 +74,6 @@ ct_router.register(r'comments', CommentViewSet, basename='comments')
 ct_router.register(r'ratings', RatingViewSet, basename='ratings')
 ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
                    basename='moderatorremarks')
-
-question_router = QuestionDefaultRouter()
-question_router.register(r'vote', VoteViewSet, basename='vote')
 
 tokenvote_router = TokenVoteDefaultRouter()
 tokenvote_router.register(r'tokenvotes', TokenVoteViewSet,
@@ -145,7 +140,6 @@ urlpatterns = [
     path('api/', include(likes_router.urls)),
     path('api/', include(module_router.urls)),
     path('api/', include(orga_router.urls)),
-    path('api/', include(question_router.urls)),
     path('api/', include(tokenvote_router.urls)),
     path('api/', include(router.urls)),
 
