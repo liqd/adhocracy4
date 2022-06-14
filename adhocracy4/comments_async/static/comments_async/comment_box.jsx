@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import django from 'django'
 import update from 'immutability-helper'
-import { flushSync } from 'react-dom'
 
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
@@ -33,60 +32,52 @@ const translated = {
 
 const autoScrollThreshold = 500
 
-export default class CommentBox extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.anchoredCommentFound = this.anchoredCommentFound.bind(this)
-    this.handleClickFilter = this.handleClickFilter.bind(this)
-    this.handleClickSorted = this.handleClickSorted.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
-    this.fetchComments = this.fetchComments.bind(this)
-    this.handleCommentDelete = this.handleCommentDelete.bind(this)
-    this.handleCommentModify = this.handleCommentModify.bind(this)
-    this.handleCommentSubmit = this.handleCommentSubmit.bind(this)
-    this.handleScroll = this.handleScroll.bind(this)
-    this.handleHideEditError = this.handleHideEditError.bind(this)
-    this.hideNewError = this.hideNewError.bind(this)
-    this.handleHideReplyError = this.handleHideReplyError.bind(this)
-    this.updateStateComment = this.updateStateComment.bind(this)
-    this.handleToggleFilters = this.handleToggleFilters.bind(this)
-    this.handleTermsOfUse = this.handleTermsOfUse.bind(this)
-
-    this.urlReplaces = {
-      objectPk: this.props.subjectId,
-      contentTypeId: this.props.subjectType
-    }
-
-    this.state = {
-      comments: [],
-      nextComments: null,
-      commentCount: 0,
-      showFilters: false,
-      filter: 'all',
-      filterDisplay: django.gettext('all'),
-      sort: props.useModeratorMarked ? 'mom' : 'new',
-      loading: true,
-      search: '',
-      anchoredCommentId: props.anchoredCommentId ? parseInt(props.anchoredCommentId) : null,
-      anchoredCommentParentId: 0,
-      anchoredCommentFound: false,
-      hasCommentingPermission: false,
-      wouldHaveCommentingPermission: false
-    }
+export const CommentBox = (props) => {
+  const urlReplaces = {
+    objectPk: props.subjectId,
+    contentTypeId: props.subjectType
   }
+  const anchoredCommentId = props.anchoredCommentId ? parseInt(props.anchoredCommentId) : null
+  const [comments, setComments] = useState([])
+  const [nextComments, setNextComments] = useState(null)
+  const [commentCount, setCommentCount] = useState(0)
+  const [showFilters, setShowFilters] = useState(false)
+  const [filter, setFilter] = useState([])
+  const [filterDisplay, setFilterDisplay] = useState(django.gettext('all'))
+  const [sort, setSort] = useState(props.useModeratorMarked ? 'mom' : 'new')
+  const [loading, setLoading] = useState(true)
+  const [loadingFilter, setLoadingFilter] = useState(false)
+  const [search, setSearch] = useState('')
+  const [anchoredCommentParentId, setAnchoredCommentParentId] = useState(0)
+  const [anchoredCommentFound, setAnchoredCommentFound] = useState(false)
+  const [hasCommentingPermission, setHasCommentingPermission] = useState(false)
+  const [wouldHaveCommentingPermission, setWouldHaveCommentingPermission] = useState(false)
+  const [projectIsPublic, setProjectIsPublic] = useState(false)
+  const [useTermsOfUse, setUseTermsOfUse] = useState(false)
+  const [agreedTermsOfUse, setAgreedTermsOfUse] = useState(false)
+  const [orgTermsUrl, setOrgTermsUrl] = useState('')
+  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(undefined)
+  const [anchorRendered, setAnchorRendered] = useState(false)
 
-  componentDidMount () {
-    window.addEventListener('scroll', this.handleScroll, { passive: true })
-    window.addEventListener('agreedTos', this.handleTermsOfUse)
-    if (this.props.useModeratorMarked) {
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('agreedTos', handleTermsOfUse)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('agreedTos', handleTermsOfUse)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (props.useModeratorMarked) {
       sorts.mom = django.gettext('Highlighted')
     }
     const params = {}
-    params.ordering = this.state.sort
-    params.urlReplaces = this.urlReplaces
-    if (this.state.anchoredCommentId) {
-      params.commentID = this.state.anchoredCommentId
+    params.ordering = sort
+    params.urlReplaces = urlReplaces
+    if (props.anchoredCommentId) {
+      params.commentID = props.anchoredCommentId
     }
     api.comments.get(params)
       .done(
@@ -95,173 +86,147 @@ export default class CommentBox extends React.Component {
 
           translated.entries =
             django.ngettext('entry', 'entries', data.count)
-
-          if (this.state.anchoredCommentId && data.comment_found) {
-            this.setState(
-              {
-                comments: data.results,
-                nextComments: data.next,
-                commentCount: data.count,
-                anchoredCommentParentId: data.comment_parent,
-                hasCommentingPermission: data.has_commenting_permission,
-                wouldHaveCommentingPermission: data.would_have_commenting_permission,
-                projectIsPublic: data.project_is_public,
-                useTermsOfUse: data.use_org_terms_of_use,
-                agreedTermsOfUse: data.user_has_agreed,
-                orgTermsUrl: data.org_terms_url
-              }
-            )
-            if (this.anchoredCommentFound()) {
-              this.setState(
-                {
-                  loading: false
-                }
-              )
+          setComments(data.results)
+          setNextComments(data.next)
+          setCommentCount(data.count)
+          setHasCommentingPermission(data.has_commenting_permission)
+          setProjectIsPublic(data.project_is_public)
+          setUseTermsOfUse(data.use_org_terms_of_use)
+          setAgreedTermsOfUse(data.user_has_agreed)
+          setOrgTermsUrl(data.org_terms_url)
+          if (props.anchoredCommentId && data.comment_found) {
+            setAnchoredCommentParentId(data.comment_parent)
+            if (findAnchoredComment(data.results, data.comment_parent)) {
+              setLoading(false)
             } else {
-              this.fetchComments()
+              fetchComments()
             }
           } else {
-            if (this.state.anchoredCommentId) {
+            if (props.anchoredCommentId) {
               /* display something like: django.gettext('We are sorry, this comment does not exist.')
                * probably using a modal
                */
             }
-            this.setState(
-              {
-                comments: data.results,
-                nextComments: data.next,
-                commentCount: data.count,
-                loading: false,
-                hasCommentingPermission: data.has_commenting_permission,
-                wouldHaveCommentingPermission: data.would_have_commenting_permission,
-                projectIsPublic: data.project_is_public,
-                useTermsOfUse: data.use_org_terms_of_use,
-                agreedTermsOfUse: data.user_has_agreed,
-                orgTermsUrl: data.org_terms_url
-              }
-            )
+            setLoading(false)
+            setWouldHaveCommentingPermission(data.would_have_commenting_permission)
           }
         }
       )
-  }
+  }, [])
 
-  // remove auto scroll
-  componentWillUnmount () {
-    window.removeEventListener('scroll', this.handleScroll)
-    window.removeEventListener('agreedTos', this.handleTermsOfUse)
-  }
+  useEffect(() => {
+    if (anchorRendered === true) {
+      const el = document.getElementById('comment_' + anchoredCommentId)
+      if (el !== null) {
+        const top = el.getBoundingClientRect().top
+        window.scrollTo(0, top)
+      }
+    }
+  }, [anchorRendered])
 
   // handles update of the comment state
   // called in handleCommentSubmit, handleCommentModify, handleCommentDelete,
   // handleHideReplyError, handleHideEditeError
-  updateStateComment (index, parentIndex, updatedComment) {
-    const comments = this.state.comments
+  function updateStateComment (index, parentIndex, updatedComment) {
     const diff = {}
-    if (typeof parentIndex !== 'undefined') {
+    if (parentIndex !== undefined) {
       diff[parentIndex] = { child_comments: {} }
       diff[parentIndex].child_comments[index] = { $merge: updatedComment }
     } else {
       diff[index] = { $merge: updatedComment }
     }
-    this.setState({
-      comments: update(comments, diff)
-    })
+    setComments(update(comments, diff))
   }
 
-  handleCommentSubmit (comment, parentIndex) {
+  function addComment (parentIndex, comment) {
+    let diff = {}
+    let newCommentCount = commentCount
+    if (parentIndex !== undefined) {
+      diff[parentIndex] = {
+        child_comments: { $push: [comment] },
+        $merge: {
+          replyError: false,
+          errorMessage: undefined
+        }
+      }
+    } else {
+      diff = { $unshift: [comment] }
+      newCommentCount++
+      setMainError(undefined)
+    }
+    setComments(update(comments, diff))
+    setCommentCount(newCommentCount)
+  }
+
+  function setReplyError (parentIndex, index, message) {
+    updateError(parentIndex, index, message, 'replyError')
+  }
+
+  function setEditError (parentIndex, index, message) {
+    updateError(parentIndex, index, message, 'editError')
+  }
+
+  function setMainError (message) {
+    updateError(undefined, undefined, message, undefined)
+  }
+
+  function updateError (parentIndex, index, message, type) {
+    if (parentIndex !== undefined) {
+      updateStateComment(
+        parentIndex,
+        index,
+        {
+          [type]: message !== undefined,
+          errorMessage: message
+        })
+    } else {
+      setError(message !== undefined)
+      setErrorMessage(message)
+    }
+  }
+
+  function handleCommentSubmit (comment, parentIndex) {
     return api.comments.add(comment)
       .done(comment => {
         comment.displayNotification = true
-        const comments = this.state.comments
-        let diff = {}
-        let commentCount = this.state.commentCount
-        if (typeof parentIndex !== 'undefined') {
-          diff[parentIndex] = { child_comments: { $push: [comment] } }
-        } else {
-          diff = { $unshift: [comment] }
-          commentCount++
-        }
-        this.setState({
-          comments: update(comments, diff),
-          commentCount
-        })
-        this.updateAgreedTOS()
-        if (typeof parentIndex !== 'undefined') {
-          this.updateStateComment(
-            parentIndex,
-            undefined,
-            {
-              replyError: false,
-              errorMessage: undefined
-            })
-        } else {
-          this.setState({
-            error: false,
-            errorMessage: undefined
-          })
-        }
+        addComment(parentIndex, comment)
+        updateAgreedTOS()
       })
       .fail((xhr, status, err) => {
-        const errorMessage = (Object.values(xhr.responseJSON))[0]
-        if (typeof parentIndex !== 'undefined') {
-          this.updateStateComment(
-            parentIndex,
-            undefined, {
-              replyError: true,
-              errorMessage
-            })
-        } else {
-          this.setState({
-            error: true,
-            errorMessage
-          })
-        }
+        const newErrorMessage = (Object.values(xhr.responseJSON))[0]
+        setReplyError(parentIndex, undefined, newErrorMessage)
       })
   }
 
-  handleCommentModify (modifiedComment, index, parentIndex) {
-    const comments = this.state.comments
+  function handleCommentModify (modifiedComment, index, parentIndex) {
     let comment = comments[index]
-    if (typeof parentIndex !== 'undefined') {
+    if (parentIndex !== undefined) {
       comment = comments[parentIndex].child_comments[index]
     }
-
-    // flushSync stops react18 batching state updates and ensures
-    // re-render when no error
     return api.comments.change(modifiedComment, comment.id)
       .done(changed => {
-        flushSync(() => {
-          this.updateStateComment(
-            index,
-            parentIndex,
-            changed)
-        })
-        this.updateStateComment(
+        updateStateComment(
           index,
-          parentIndex, {
+          parentIndex,
+          {
+            ...changed,
             editError: false,
             errorMessage: undefined
           }
         )
-        this.updateAgreedTOS()
+        updateAgreedTOS()
       })
       .fail((xhr, status, err) => {
-        const errorMessage = Object.values(xhr.responseJSON)[0]
-        this.updateStateComment(
-          index,
-          parentIndex,
-          {
-            editError: true,
-            errorMessage
-          })
+        const newErrorMessage = Object.values(xhr.responseJSON)[0]
+        setEditError(index, parentIndex, newErrorMessage)
       })
   }
 
-  handleCommentDelete (index, parentIndex) {
-    const comments = this.state.comments
-    let comment = comments[index]
-    if (typeof parentIndex !== 'undefined') {
-      comment = comments[parentIndex].child_comments[index]
+  function handleCommentDelete (index, parentIndex) {
+    const newComments = comments
+    let comment = newComments[index]
+    if (parentIndex !== undefined) {
+      comment = newComments[parentIndex].child_comments[index]
     }
 
     const data = {
@@ -272,357 +237,307 @@ export default class CommentBox extends React.Component {
     }
     return api.comments.delete(data, comment.id)
       .done(changed => {
-        this.updateStateComment(
-          index,
-          parentIndex,
-          changed)
-        this.updateStateComment(
+        updateStateComment(
           index,
           parentIndex,
           {
+            ...changed,
             editError: false,
             errorMessage: undefined
           })
       })
       .fail((xhr, status, err) => {
-        const errorMessage = Object.values(xhr.responseJSON)[0]
-        this.updateStateComment(
-          index,
-          parentIndex,
-          {
-            editError: true,
-            errorMessage
-          })
+        const newErrorMessage = Object.values(xhr.responseJSON)[0]
+        setEditError(index, parentIndex, newErrorMessage)
       })
   }
 
-  hideNewError () {
-    this.setState({
-      error: false,
-      errorMessage: undefined
-    })
+  function hideNewError () {
+    setMainError(undefined)
   }
 
-  handleHideReplyError (index, parentIndex) {
-    this.updateStateComment(
-      index,
-      parentIndex,
-      {
-        replyError: false,
-        errorMessage: undefined
-      }
-    )
+  function handleHideReplyError (index, parentIndex) {
+    setReplyError(index, parentIndex, undefined)
   }
 
-  handleHideEditError (index, parentIndex) {
-    this.updateStateComment(
-      index,
-      parentIndex,
-      {
-        editError: false,
-        errorMessage: undefined
-      }
-    )
+  function handleHideEditError (index, parentIndex) {
+    setEditError(index, parentIndex, undefined)
   }
 
-  handleToggleFilters (e) {
+  function handleToggleFilters (e) {
     e.preventDefault()
-    this.setState(s => ({ showFilters: !s.showFilters }))
+    setShowFilters(!showFilters)
   }
 
-  handleClickFilter (e) {
+  function handleClickFilter (e) {
     e.preventDefault()
     const filter = e.target.id
-    this.fetchFiltered(filter)
-    this.setState({
-      loadingFilter: true
-    })
+    fetchFiltered(filter)
+    setLoadingFilter(true)
   }
 
-  fetchFiltered (filter) {
+  function fetchFiltered (filter) {
     let commentCategory = filter
-    let displayFilter = this.props.commentCategoryChoices[filter]
+    let displayFilter = props.commentCategoryChoices[filter]
     if (filter === 'all') {
       displayFilter = django.gettext('all')
       commentCategory = ''
     }
     const params = {
       comment_category: commentCategory,
-      ordering: this.state.sort,
-      search: this.state.search,
-      urlReplaces: this.urlReplaces
+      ordering: sort,
+      search,
+      urlReplaces
     }
     api.comments.get(params)
       .done(
         (result) => {
           const data = result
-          this.setState({
-            comments: data.results,
-            nextComments: data.next,
-            commentCount: data.count,
-            filter,
-            filterDisplay: displayFilter,
-            loadingFilter: false
-          })
+          setComments(data.results)
+          setNextComments(data.next)
+          setCommentCount(data.count)
+          setFilter(filter)
+          setFilterDisplay(displayFilter)
+          setLoadingFilter(false)
         }
       )
   }
 
-  handleClickSorted (e) {
+  function handleClickSorted (e) {
     e.preventDefault()
     const order = e.target.id
-    this.fetchSorted(order)
-    this.setState({
-      loadingFilter: true
-    })
+    fetchSorted(order)
+    setLoadingFilter(true)
   }
 
-  fetchSorted (order) {
-    let commentCategory = this.state.filter
+  function fetchSorted (order) {
+    let commentCategory = filter
     if (commentCategory === 'all') {
       commentCategory = ''
     }
     const params = {
       ordering: order,
       comment_category: commentCategory,
-      search: this.state.search,
-      urlReplaces: this.urlReplaces
+      search,
+      urlReplaces
     }
     api.comments.get(params)
       .done(
         (result) => {
           const data = result
-          this.setState({
-            comments: data.results,
-            nextComments: data.next,
-            commentCount: data.count,
-            sort: order,
-            loadingFilter: false
-          })
+          setComments(data.results)
+          setNextComments(data.next)
+          setCommentCount(data.count)
+          setSort(order)
+          setLoadingFilter(false)
         }
       )
   }
 
-  handleSearch (search) {
-    this.fetchSearch(search)
-    this.setState({
-      loadingFilter: true
-    })
+  function handleSearch (search) {
+    fetchSearch(search)
+    setLoadingFilter(true)
   }
 
-  fetchSearch (search) {
-    let commentCategory = this.state.filter
+  function fetchSearch (search) {
+    let commentCategory = filter
     if (commentCategory === 'all') {
       commentCategory = ''
     }
     const params = {
       search,
-      ordering: this.state.sort,
+      ordering: sort,
       comment_category: commentCategory,
-      urlReplaces: this.urlReplaces
+      urlReplaces
     }
     api.comments.get(params)
       .done(
         (result) => {
           const data = result
-          this.setState({
-            comments: data.results,
-            nextComments: data.next,
-            commentCount: data.count,
-            search,
-            loadingFilter: false
-          })
+          setComments(data.results)
+          setNextComments(data.next)
+          setCommentCount(data.count)
+          setSearch(search)
+          setLoadingFilter(false)
         }
       )
   }
 
-  anchoredCommentFound () {
-    if (this.state.anchoredCommentId && !this.state.anchoredCommentFound) {
+  function findAnchoredComment (newComments, parentId) {
+    if (props.anchoredCommentId && !anchoredCommentFound) {
       let found = false
 
-      this.state.comments.map((comment) => (
-        (comment.id === this.state.anchoredCommentId || comment.id === this.state.anchoredCommentParentId) && (
+      for (const comment of newComments) {
+        if (comment.id === anchoredCommentId || comment.id === parentId) {
+          setAnchoredCommentFound(true)
           found = true
-        )
-      ))
-
-      if (found) {
-        this.setState(
-          {
-            anchoredCommentFound: true
-          }
-        )
-
-        const top = document.getElementById('comment_' + this.state.anchoredCommentId).getBoundingClientRect().top
-        window.scrollTo(0, top)
+          break
+        }
       }
       return found
     }
     return true
   }
 
-  fetchComments () {
-    fetch(this.state.nextComments)
+  function fetchComments () {
+    fetch(nextComments)
       .then(response => response.json())
       .then(data => {
-        const newCommentList = this.state.comments.concat(data.results)
-        this.setState({
-          comments: newCommentList,
-          nextComments: data.next,
-          commentCount: data.count
-        })
-        if (this.anchoredCommentFound()) {
-          this.setState(
-            {
-              loading: false
-            }
-          )
+        const newComments = comments.concat(data.results)
+        setComments(newComments)
+        setNextComments(data.next)
+        setCommentCount(data.count)
+        if (findAnchoredComment(newComments, anchoredCommentParentId)) {
+          setLoading(false)
         } else {
-          this.fetchComments()
+          fetchComments()
         }
       }
       )
   }
 
-  handleScroll () {
+  function handleScroll () {
     const html = document.documentElement
     if (html.scrollTop + html.clientHeight > getDocumentHeight() - autoScrollThreshold) {
-      if (this.state.nextComments && !this.state.loading) {
-        this.setState(
-          {
-            loading: true
-          }
-        )
-        this.fetchComments()
+      if (nextComments && !loading) {
+        setLoading(true)
+        fetchComments()
       }
     }
   }
 
-  commentCategoryChoices () {
-    if (this.props.withCategories === true) {
-      return this.props.commentCategoryChoices
+  function commentCategoryChoices () {
+    if (props.withCategories === true) {
+      return props.commentCategoryChoices
     }
   }
 
-  translatedEntriesFound (entriesFound) {
+  function translatedEntriesFound (entriesFound) {
     return django.ngettext('entry found for ', 'entries found for ', entriesFound)
   }
 
-  handleTermsOfUse () {
-    if (!this.state.agreedTermsOfUse) {
-      this.setState({ agreedTermsOfUse: true })
+  function handleTermsOfUse () {
+    if (!agreedTermsOfUse) {
+      setAgreedTermsOfUse(true)
     }
   }
 
-  updateAgreedTOS () {
-    if (!this.state.agreedTermsOfUse) {
-      this.setState({ agreedTermsOfUse: true })
+  function updateAgreedTOS () {
+    if (agreedTermsOfUse) {
+      setAgreedTermsOfUse(true)
       const event = new Event('agreedTos')
       dispatchEvent(event)
     }
+
+  function onRenderFinished () {
+    setAnchorRendered(true)
   }
 
-  render () {
-    return (
-      <div>
-        <div className="a4-comments__commentbox__form">
-          <CommentForm
-            subjectType={this.props.subjectType}
-            subjectId={this.props.subjectId}
-            onCommentSubmit={this.handleCommentSubmit}
-            rows="5"
-            error={this.state.error}
-            errorMessage={this.state.errorMessage}
-            handleErrorClick={this.hideNewError}
-            commentCategoryChoices={this.commentCategoryChoices()}
-            withCategories={this.props.withCategories}
-            hasCommentingPermission={this.state.hasCommentingPermission}
-            wouldHaveCommentingPermission={this.state.wouldHaveCommentingPermission}
-            projectIsPublic={this.state.projectIsPublic}
-            useTermsOfUse={this.state.useTermsOfUse}
-            agreedTermsOfUse={this.state.agreedTermsOfUse}
-            orgTermsUrl={this.state.orgTermsUrl}
+  return (
+    <div>
+      <div className="a4-comments__commentbox__form">
+        <CommentForm
+          subjectType={props.subjectType}
+          subjectId={props.subjectId}
+          onCommentSubmit={handleCommentSubmit}
+          rows="5"
+          error={error}
+          errorMessage={errorMessage}
+          handleErrorClick={hideNewError}
+          commentCategoryChoices={commentCategoryChoices()}
+          withCategories={props.withCategories}
+          hasCommentingPermission={hasCommentingPermission}
+          wouldHaveCommentingPermission={wouldHaveCommentingPermission}
+          projectIsPublic={projectIsPublic}
+          useTermsOfUse={useTermsOfUse}
+          agreedTermsOfUse={agreedTermsOfUse}
+          orgTermsUrl={orgTermsUrl}
           />
-        </div>
+        />
+      </div>
 
-        <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'a4-comments__filters__parent'}>
-          <div className="a4-comments__filters__parent--closed">
-            <div className={this.state.search === '' ? 'a4-comments__filters__text' : 'd-none'}>
-              {this.state.commentCount + ' ' + translated.entries}
-            </div>
-
-            <div className={this.state.search !== '' ? 'a4-comments__filters__text' : 'd-none'}>
-              <span className="a4-comments__filters__span">{this.state.commentCount + ' ' + this.translatedEntriesFound(this.state.commentCount)}{this.state.search}</span>
-            </div>
-
-            {!this.state.showFilters && this.state.commentCount > 0 &&
-              <button className="btn a4-comments__filters__show-btn" type="button" onClick={this.handleToggleFilters}>
-                <i className="fas fa-sliders-h ms-2" aria-label={translated.showFilters} />
-                {translated.filters}
-              </button>}
-            {this.state.showFilters && this.state.commentCount > 0 &&
-              <button className="btn a4-comments__filters__show-btn" type="button" onClick={this.handleToggleFilters}>
-                <i className="fas fa-times ms-2" aria-label={translated.hideFilters} />
-                {translated.hideFilters}
-              </button>}
+      <div className={(comments.length === 0 && loading) ? 'd-none' : 'a4-comments__filters__parent'}>
+        <div className="a4-comments__filters__parent--closed">
+          <div className={search === '' ? 'a4-comments__filters__text' : 'd-none'}>
+            {commentCount + ' ' + translated.entries}
           </div>
 
-          {this.state.showFilters &&
-            <div className="a4-comments__filters">
-              <FilterSearch
-                search={this.state.search}
-                translated={translated}
-                onSearch={this.handleSearch}
-              />
-              {this.props.withCategories
-                ? <FilterCategory
-                    translated={translated}
-                    filter={this.state.filter}
-                    filterDisplay={this.state.filterDisplay}
-                    onClickFilter={this.handleClickFilter}
-                    commentCategoryChoices={this.props.commentCategoryChoices}
-                  />
-                : <div className="col-lg-3" />}
-              <FilterSort
-                translated={translated}
-                sort={this.state.sort}
-                sorts={sorts}
-                onClickSorted={this.handleClickSorted}
-              />
-            </div>}
-
-          <div className={this.state.loadingFilter ? 'a4-comments__loading' : 'd-none'}>
-            <i className="fa fa-spinner fa-pulse" />
+          <div className={search !== '' ? 'a4-comments__filters__text' : 'd-none'}>
+            <span
+              className="a4-comments__filters__span"
+            >{commentCount + ' ' + translatedEntriesFound(commentCount)}{search}
+            </span>
           </div>
 
+          {!showFilters && commentCount > 0 &&
+            <button className="btn a4-comments__filters__show-btn" type="button" onClick={handleToggleFilters}>
+              <i className="fas fa-sliders-h ms-2" aria-label={translated.showFilters} />
+              {translated.filters}
+            </button>}
+          {showFilters && commentCount > 0 &&
+            <button className="btn a4-comments__filters__show-btn" type="button" onClick={handleToggleFilters}>
+              <i className="fas fa-times ms-2" aria-label={translated.hideFilters} />
+              {translated.hideFilters}
+            </button>}
         </div>
 
-        <div className="a4-comments__box">
-          <div className="a4-comments__list">
-            <CommentList
-              comments={this.state.comments}
-              anchoredCommentId={this.state.anchoredCommentId}
-              anchoredCommentParentId={this.state.anchoredCommentParentId}
-              onCommentDelete={this.handleCommentDelete}
-              onCommentSubmit={this.handleCommentSubmit}
-              onCommentModify={this.handleCommentModify}
-              commentCategoryChoices={this.commentCategoryChoices()}
-              onReplyErrorClick={this.handleHideReplyError}
-              onEditErrorClick={this.handleHideEditError}
-              withCategories={this.props.withCategories}
-              hasCommentingPermission={this.state.hasCommentingPermission}
-              wouldHaveCommentingPermission={this.state.wouldHaveCommentingPermission}
-              projectIsPublic={this.state.projectIsPublic}
-              useTermsOfUse={this.state.useTermsOfUse}
-              agreedTermsOfUse={this.state.agreedTermsOfUse}
-              orgTermsUrl={this.state.orgTermsUrl}
+        {showFilters &&
+          <div className="a4-comments__filters">
+            <FilterSearch
+              search={search}
+              translated={translated}
+              onSearch={handleSearch}
             />
-          </div>
-        </div>
-        <div className={this.state.loading ? 'a4-comments__loading' : 'd-none'}>
+            {props.withCategories
+              ? <FilterCategory
+                  translated={translated}
+                  filter={filter}
+                  filterDisplay={filterDisplay}
+                  onClickFilter={handleClickFilter}
+                  commentCategoryChoices={props.commentCategoryChoices}
+                />
+              : <div className="col-lg-3" />}
+            <FilterSort
+              translated={translated}
+              sort={sort}
+              sorts={sorts}
+              onClickSorted={handleClickSorted}
+            />
+          </div>}
+
+        <div className={loadingFilter ? 'a4-comments__loading' : 'd-none'}>
           <i className="fa fa-spinner fa-pulse" />
         </div>
+
       </div>
-    )
-  }
+
+      <div className="a4-comments__box">
+        <div className="a4-comments__list">
+          <CommentList
+            comments={comments}
+            anchoredCommentId={anchoredCommentId}
+            anchoredCommentParentId={anchoredCommentParentId}
+            onCommentDelete={handleCommentDelete}
+            onCommentSubmit={handleCommentSubmit}
+            onCommentModify={handleCommentModify}
+            commentCategoryChoices={commentCategoryChoices()}
+            onReplyErrorClick={handleHideReplyError}
+            onEditErrorClick={handleHideEditError}
+            onRenderFinished={onRenderFinished}
+            withCategories={props.withCategories}
+            hasCommentingPermission={hasCommentingPermission}
+            wouldHaveCommentingPermission={wouldHaveCommentingPermission}
+            projectIsPublic={projectIsPublic}
+            useTermsOfUse={useTermsOfUse}
+            agreedTermsOfUse={agreedTermsOfUse}
+          />
+        </div>
+      </div>
+      <div className={loading ? 'a4-comments__loading' : 'd-none'}>
+        <i className="fa fa-spinner fa-pulse" />
+      </div>
+    </div>
+  )
 }
+
+export default CommentBox
