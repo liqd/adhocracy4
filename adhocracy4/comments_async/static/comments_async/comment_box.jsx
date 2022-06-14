@@ -147,7 +147,7 @@ export default class CommentBox extends React.Component {
 
   // handles update of the comment state
   // called in handleCommentSubmit, handleCommentModify, handleCommentDelete,
-  // handleHideReplyError, handleHideEditeError
+  // handleHideReplyError
   updateStateComment (index, parentIndex, updatedComment) {
     const comments = this.state.comments
     const diff = {}
@@ -157,8 +157,10 @@ export default class CommentBox extends React.Component {
     } else {
       diff[index] = { $merge: updatedComment }
     }
-    this.setState({
-      comments: update(comments, diff)
+    flushSync(() => {
+      this.setState({
+        comments: update(comments, diff)
+      })
     })
   }
 
@@ -175,9 +177,11 @@ export default class CommentBox extends React.Component {
           diff = { $unshift: [comment] }
           commentCount++
         }
-        this.setState({
-          comments: update(comments, diff),
-          commentCount: commentCount
+        flushSync(() => {
+          this.setState({
+            comments: update(comments, diff),
+            commentCount
+          })
         })
         if (typeof parentIndex !== 'undefined') {
           this.updateStateComment(
@@ -188,9 +192,11 @@ export default class CommentBox extends React.Component {
               errorMessage: undefined
             })
         } else {
-          this.setState({
-            error: false,
-            errorMessage: undefined
+          flushSync(() => {
+            this.setState({
+              error: false,
+              errorMessage: undefined
+            })
           })
         }
       })
@@ -201,12 +207,14 @@ export default class CommentBox extends React.Component {
             parentIndex,
             undefined, {
               replyError: true,
-              errorMessage: errorMessage
+              errorMessage
             })
         } else {
-          this.setState({
-            error: true,
-            errorMessage: errorMessage
+          flushSync(() => {
+            this.setState({
+              error: true,
+              errorMessage
+            })
           })
         }
       })
@@ -223,15 +231,11 @@ export default class CommentBox extends React.Component {
     // re-render when no error
     return api.comments.change(modifiedComment, comment.id)
       .done(changed => {
-        flushSync(() => {
-          this.updateStateComment(
-            index,
-            parentIndex,
-            changed)
-        })
         this.updateStateComment(
           index,
-          parentIndex, {
+          parentIndex,
+          {
+            ...changed,
             editError: false,
             errorMessage: undefined
           }
@@ -244,7 +248,7 @@ export default class CommentBox extends React.Component {
           parentIndex,
           {
             editError: true,
-            errorMessage: errorMessage
+            errorMessage
           })
       })
   }
@@ -264,17 +268,17 @@ export default class CommentBox extends React.Component {
     }
     return api.comments.delete(data, comment.id)
       .done(changed => {
-        this.updateStateComment(
-          index,
-          parentIndex,
-          changed)
-        this.updateStateComment(
-          index,
-          parentIndex,
-          {
-            editError: false,
-            errorMessage: undefined
-          })
+        flushSync(() => {
+          this.updateStateComment(
+            index,
+            parentIndex,
+            {
+              ...changed,
+              editError: false,
+              errorMessage: undefined
+            }
+          )
+        })
       })
       .fail((xhr, status, err) => {
         const errorMessage = Object.values(xhr.responseJSON)[0]
@@ -283,7 +287,7 @@ export default class CommentBox extends React.Component {
           parentIndex,
           {
             editError: true,
-            errorMessage: errorMessage
+            errorMessage
           })
       })
   }
@@ -352,7 +356,7 @@ export default class CommentBox extends React.Component {
             comments: data.results,
             nextComments: data.next,
             commentCount: data.count,
-            filter: filter,
+            filter,
             filterDisplay: displayFilter,
             loadingFilter: false
           })
@@ -408,7 +412,7 @@ export default class CommentBox extends React.Component {
       commentCategory = ''
     }
     const params = {
-      search: search,
+      search,
       ordering: this.state.sort,
       comment_category: commentCategory,
       urlReplaces: this.urlReplaces
@@ -421,7 +425,7 @@ export default class CommentBox extends React.Component {
             comments: data.results,
             nextComments: data.next,
             commentCount: data.count,
-            search: search,
+            search,
             loadingFilter: false
           })
         }
