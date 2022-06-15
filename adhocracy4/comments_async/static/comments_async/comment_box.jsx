@@ -1,7 +1,6 @@
 import React from 'react'
 import django from 'django'
 import update from 'immutability-helper'
-import { flushSync } from 'react-dom'
 
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
@@ -86,58 +85,27 @@ export default class CommentBox extends React.Component {
       params.commentID = this.state.anchoredCommentId
     }
     api.comments.get(params)
-      .done(
-        (result) => {
-          const data = result
+      .done(data => {
+        translated.entries =
+          django.ngettext('entry', 'entries', data.count)
 
-          translated.entries =
-            django.ngettext('entry', 'entries', data.count)
-
-          if (this.state.anchoredCommentId && data.comment_found) {
-            this.setState(
-              {
-                comments: data.results,
-                nextComments: data.next,
-                commentCount: data.count,
-                anchoredCommentParentId: data.comment_parent,
-                hasCommentingPermission: data.has_commenting_permission,
-                wouldHaveCommentingPermission: data.would_have_commenting_permission,
-                projectIsPublic: data.project_is_public,
-                useTermsOfUse: data.use_org_terms_of_use,
-                agreedTermsOfUse: data.user_has_agreed
-              }
-            )
-            if (this.anchoredCommentFound()) {
-              this.setState(
-                {
-                  loading: false
-                }
-              )
-            } else {
-              this.fetchComments()
-            }
+        if (this.state.anchoredCommentId && data.comment_found) {
+          this.setFetchedData(data)
+          if (this.anchoredCommentFound()) {
+            this.setState({ loading: false })
           } else {
-            if (this.state.anchoredCommentId) {
-              /* display something like: django.gettext('We are sorry, this comment does not exist.')
-               * probably using a modal
-               */
-            }
-            this.setState(
-              {
-                comments: data.results,
-                nextComments: data.next,
-                commentCount: data.count,
-                loading: false,
-                hasCommentingPermission: data.has_commenting_permission,
-                wouldHaveCommentingPermission: data.would_have_commenting_permission,
-                projectIsPublic: data.project_is_public,
-                useTermsOfUse: data.use_org_terms_of_use,
-                agreedTermsOfUse: data.user_has_agreed
-              }
-            )
+            this.fetchComments()
           }
+        } else {
+          if (this.state.anchoredCommentId) {
+            /* display something like: django.gettext('We are sorry, this comment does not exist.')
+             * probably using a modal
+             */
+          }
+          this.setFetchedData(data)
+          this.setState({ loading: false })
         }
-      )
+      })
   }
 
   // remove auto scroll
@@ -162,37 +130,37 @@ export default class CommentBox extends React.Component {
     })
   }
 
+  setFetchedData = (data) => {
+    this.setState({
+      comments: data.results,
+      nextComments: data.next,
+      commentCount: data.count,
+      anchoredCommentParentId: data.comment_parent,
+      hasCommentingPermission: data.has_commenting_permission,
+      wouldHaveCommentingPermission: data.would_have_commenting_permission,
+      projectIsPublic: data.project_is_public,
+      useTermsOfUse: data.use_org_terms_of_use,
+      agreedTermsOfUse: data.user_has_agreed
+    })
+  }
+
+  getComments = () => {
+    const params = {}
+    params.ordering = this.state.sort
+    params.urlReplaces = this.urlReplaces
+    if (this.state.anchoredCommentId) {
+      params.commentID = this.state.anchoredCommentId
+    }
+    api.comments.get(params).done(data => {
+      this.setFetchedData(data)
+    })
+  }
+
   handleCommentSubmit (comment, parentIndex) {
     return api.comments.add(comment)
       .done(comment => {
         comment.displayNotification = true
-        const comments = this.state.comments
-        let diff = {}
-        let commentCount = this.state.commentCount
-        if (typeof parentIndex !== 'undefined') {
-          diff[parentIndex] = { child_comments: { $push: [comment] } }
-        } else {
-          diff = { $unshift: [comment] }
-          commentCount++
-        }
-        this.setState({
-          comments: update(comments, diff),
-          commentCount: commentCount
-        })
-        if (typeof parentIndex !== 'undefined') {
-          this.updateStateComment(
-            parentIndex,
-            undefined,
-            {
-              replyError: false,
-              errorMessage: undefined
-            })
-        } else {
-          this.setState({
-            error: false,
-            errorMessage: undefined
-          })
-        }
+        this.getComments()
       })
       .fail((xhr, status, err) => {
         const errorMessage = (Object.values(xhr.responseJSON))[0]
@@ -201,12 +169,12 @@ export default class CommentBox extends React.Component {
             parentIndex,
             undefined, {
               replyError: true,
-              errorMessage: errorMessage
+              errorMessage
             })
         } else {
           this.setState({
             error: true,
-            errorMessage: errorMessage
+            errorMessage
           })
         }
       })
@@ -222,13 +190,8 @@ export default class CommentBox extends React.Component {
     // flushSync stops react18 batching state updates and ensures
     // re-render when no error
     return api.comments.change(modifiedComment, comment.id)
-      .done(changed => {
-        flushSync(() => {
-          this.updateStateComment(
-            index,
-            parentIndex,
-            changed)
-        })
+      .done(() => {
+        this.getComments()
         this.updateStateComment(
           index,
           parentIndex, {
@@ -263,18 +226,8 @@ export default class CommentBox extends React.Component {
       }
     }
     return api.comments.delete(data, comment.id)
-      .done(changed => {
-        this.updateStateComment(
-          index,
-          parentIndex,
-          changed)
-        this.updateStateComment(
-          index,
-          parentIndex,
-          {
-            editError: false,
-            errorMessage: undefined
-          })
+      .done(() => {
+        this.getComments()
       })
       .fail((xhr, status, err) => {
         const errorMessage = Object.values(xhr.responseJSON)[0]
