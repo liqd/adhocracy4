@@ -38,6 +38,8 @@ class PollQuestions extends React.Component {
       loadingPage: true
     }
 
+    this.handleTermsOfUse = this.handleTermsOfUse.bind(this)
+
     this.linkToPoll = (
       <button type="button" className="btn poll__btn--link" onClick={() => this.handleToggleResultsPage()}>
         {django.gettext('To poll')}
@@ -189,6 +191,20 @@ class PollQuestions extends React.Component {
     })
   }
 
+  handleTermsOfUse () {
+    if (!this.state.agreedTermsOfUse) {
+      this.setState({ agreedTermsOfUse: true })
+    }
+  }
+
+  updateAgreedTOS () {
+    if (!this.state.agreedTermsOfUse) {
+      this.setState({ agreedTermsOfUse: true })
+      const event = new Event('agreedTos')
+      dispatchEvent(event)
+    }
+  }
+
   sendRequest (data) {
     api.poll.vote(data)
       .then((poll) => {
@@ -254,7 +270,7 @@ class PollQuestions extends React.Component {
     if (this.state.useTermsOfUse && !this.state.agreedTermsOfUse && this.state.checkedTermsOfUse) {
       data.agreed_terms_of_use = true
     }
-
+    this.updateAgreedTOS()
     validatedQuestions.length > 0
       ? this.sendRequest(data)
       : Object.keys(this.state.errors).length > 0
@@ -277,6 +293,11 @@ class PollQuestions extends React.Component {
 
   componentDidMount () {
     this.getPollData()
+    window.addEventListener('agreedTos', this.handleTermsOfUse)
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('agreedTos', this.handleTermsOfUse)
   }
 
   render () {
