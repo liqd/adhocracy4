@@ -1,5 +1,5 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import classnames from 'classnames'
 
 import api from '../../../static/api'
@@ -144,7 +144,5 @@ module.exports.RatingBox = RatingBox
 
 module.exports.renderRatings = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
-
-  const root = createRoot(el)
-  root.render(<RatingBox {...props} />)
+  ReactDOM.render(<RatingBox {...props} />, el)
 }

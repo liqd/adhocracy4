@@ -1,10 +1,9 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom'
 
 import CommentBox from './comment_box'
 
 export function renderComment (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
-  const root = createRoot(el)
-  root.render(<CommentBox {...props} ref={(commentbox) => { window.commentbox = commentbox }} />)
+  ReactDOM.render(<CommentBox {...props} ref={(commentbox) => { window.commentbox = commentbox }} />, el)
 }
