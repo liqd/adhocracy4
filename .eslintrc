@@ -21,8 +21,10 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:import/recommended",
-    "plugin:n/recommended"
-  ],
+    "plugin:n/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:promise/recommended"
+    ],
   "rules": {
     "jsx-quotes": [2, "prefer-double"],
     "jsx-a11y/no-onchange": "off",
