@@ -51,6 +51,8 @@ export default class CommentBox extends React.Component {
     this.handleHideReplyError = this.handleHideReplyError.bind(this)
     this.updateStateComment = this.updateStateComment.bind(this)
     this.handleToggleFilters = this.handleToggleFilters.bind(this)
+    this.handleTermsOfUse = this.handleTermsOfUse.bind(this)
+
     this.urlReplaces = {
       objectPk: this.props.subjectId,
       contentTypeId: this.props.subjectType
@@ -76,6 +78,7 @@ export default class CommentBox extends React.Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll, { passive: true })
+    window.addEventListener('agreedTos', this.handleTermsOfUse)
     if (this.props.useModeratorMarked) {
       sorts.mom = django.gettext('Highlighted')
     }
@@ -143,6 +146,7 @@ export default class CommentBox extends React.Component {
   // remove auto scroll
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('agreedTos', this.handleTermsOfUse)
   }
 
   // handles update of the comment state
@@ -177,8 +181,9 @@ export default class CommentBox extends React.Component {
         }
         this.setState({
           comments: update(comments, diff),
-          commentCount: commentCount
+          commentCount
         })
+        this.updateAgreedTOS()
         if (typeof parentIndex !== 'undefined') {
           this.updateStateComment(
             parentIndex,
@@ -201,12 +206,12 @@ export default class CommentBox extends React.Component {
             parentIndex,
             undefined, {
               replyError: true,
-              errorMessage: errorMessage
+              errorMessage
             })
         } else {
           this.setState({
             error: true,
-            errorMessage: errorMessage
+            errorMessage
           })
         }
       })
@@ -236,6 +241,7 @@ export default class CommentBox extends React.Component {
             errorMessage: undefined
           }
         )
+        this.updateAgreedTOS()
       })
       .fail((xhr, status, err) => {
         const errorMessage = Object.values(xhr.responseJSON)[0]
@@ -244,7 +250,7 @@ export default class CommentBox extends React.Component {
           parentIndex,
           {
             editError: true,
-            errorMessage: errorMessage
+            errorMessage
           })
       })
   }
@@ -283,7 +289,7 @@ export default class CommentBox extends React.Component {
           parentIndex,
           {
             editError: true,
-            errorMessage: errorMessage
+            errorMessage
           })
       })
   }
@@ -352,7 +358,7 @@ export default class CommentBox extends React.Component {
             comments: data.results,
             nextComments: data.next,
             commentCount: data.count,
-            filter: filter,
+            filter,
             filterDisplay: displayFilter,
             loadingFilter: false
           })
@@ -408,7 +414,7 @@ export default class CommentBox extends React.Component {
       commentCategory = ''
     }
     const params = {
-      search: search,
+      search,
       ordering: this.state.sort,
       comment_category: commentCategory,
       urlReplaces: this.urlReplaces
@@ -421,7 +427,7 @@ export default class CommentBox extends React.Component {
             comments: data.results,
             nextComments: data.next,
             commentCount: data.count,
-            search: search,
+            search,
             loadingFilter: false
           })
         }
@@ -498,6 +504,20 @@ export default class CommentBox extends React.Component {
 
   translatedEntriesFound (entriesFound) {
     return django.ngettext('entry found for ', 'entries found for ', entriesFound)
+  }
+
+  handleTermsOfUse () {
+    if (!this.state.agreedTermsOfUse) {
+      this.setState({ agreedTermsOfUse: true })
+    }
+  }
+
+  updateAgreedTOS () {
+    if (!this.state.agreedTermsOfUse) {
+      this.setState({ agreedTermsOfUse: true })
+      const event = new Event('agreedTos')
+      dispatchEvent(event)
+    }
   }
 
   render () {
