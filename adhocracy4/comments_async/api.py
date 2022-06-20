@@ -1,6 +1,7 @@
 from django.apps import apps
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
 from django_filters import rest_framework as filters
 from rest_framework import mixins
 from rest_framework import status
@@ -190,12 +191,18 @@ class CommentViewSet(
            and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
             user_has_agreed = None
             use_org_terms_of_use = True
+            organisation = self.content_object.project.organisation
+            org_terms_url = reverse(
+                'organisation-terms-of-use', kwargs={
+                    'organisation_slug': organisation.slug
+                }
+            )
             if hasattr(request, 'user'):
                 user = request.user
                 if user.is_authenticated:
-                    organisation = self.content_object.project.organisation
                     user_has_agreed = \
                         user.has_agreed_on_org_terms(organisation)
             response.data['user_has_agreed'] = user_has_agreed
+            response.data['org_terms_url'] = org_terms_url
         response.data['use_org_terms_of_use'] = use_org_terms_of_use
         return response

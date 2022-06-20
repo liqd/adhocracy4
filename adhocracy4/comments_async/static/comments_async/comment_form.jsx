@@ -147,6 +147,7 @@ export default class CommentForm extends React.Component {
                   <TermsOfUseCheckbox
                     id={`terms-of-use-checkbox-${typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm'}`}
                     onChange={val => this.setState({ checkedTermsOfUse: val })}
+                    orgTermsUrl={this.props.orgTermsUrl}
                   />}
               </div>
               <div className="d-flex col-12 col-sm-4 align-items-center">

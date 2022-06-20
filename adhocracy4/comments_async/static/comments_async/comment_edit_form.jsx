@@ -60,6 +60,7 @@ export default class CommentEditForm extends React.Component {
           <TermsOfUseCheckbox
             id={`terms-of-use-${this.props.commentId}`}
             onChange={val => this.setState({ checkedTermsOfUse: val })}
+            orgTermsUrl={this.props.orgTermsUrl}
           />
         )}
         <input

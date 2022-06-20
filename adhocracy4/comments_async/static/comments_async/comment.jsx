@@ -153,6 +153,7 @@ export default class Comment extends React.Component {
             commentId={this.props.id}
             useTermsOfUse={this.props.useTermsOfUse}
             agreedTermsOfUse={this.props.agreedTermsOfUse}
+            orgTermsUrl={this.props.orgTermsUrl}
             error={this.props.editError}
             errorMessage={this.props.errorMessage}
             handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
@@ -459,6 +460,7 @@ export default class Comment extends React.Component {
                       projectIsPublic={this.props.projectIsPublic}
                       useTermsOfUse={this.props.useTermsOfUse}
                       agreedTermsOfUse={this.props.agreedTermsOfUse}
+                      orgTermsUrl={this.props.orgTermsUrl}
                     />
                   </div>
                 </div>

@@ -60,6 +60,7 @@ export default function (props) {
               moderatorStatement={comment.moderator_statement ? comment.moderator_statement : null}
               useTermsOfUse={props.useTermsOfUse}
               agreedTermsOfUse={props.agreedTermsOfUse}
+              orgTermsUrl={props.orgTermsUrl}
             >{comment.comment}
             </Comment>
           )

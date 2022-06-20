@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import django from 'django'
 
 const translated = {
-  termsOfUse: django.gettext('I confirm that I have read and accepted the Terms of Use of the organisation. You can still manage your User Agreements in your account settings.')
+  termsOfUseLabelText: django.gettext('Yes, I have read and agree to this organisation\'s %(linkStart)s terms of use %(linkEnd)s.'),
+  termsOfUseHelpText: django.gettext('You can still manage all your preferences on User Agreements.')
 }
 
 export const TermsOfUseCheckbox = (props) => {
@@ -11,6 +12,11 @@ export const TermsOfUseCheckbox = (props) => {
     setChecked(e.target.checked)
     props.onChange(e.target.checked)
   }
+  const linkParts = {
+    linkStart: '<a href="' + props.orgTermsUrl + '" target="_blank">',
+    linkEnd: '</a>'
+  }
+  const termsOfUseLabel = django.interpolate(translated.termsOfUseLabelText, linkParts, true)
 
   return (
     <div className="a4-termsofuse__checkbox-container">
@@ -25,9 +31,11 @@ export const TermsOfUseCheckbox = (props) => {
       <label
         className="a4-termsofuse__checkbox-label"
         htmlFor={props.id}
-      >
-        {translated.termsOfUse}
-      </label>
+        dangerouslySetInnerHTML={{ __html: termsOfUseLabel }}
+      />
+      <div className="a4-termsofuse__checkbox-helptext">
+        {translated.termsOfUseHelpText}
+      </div>
     </div>
   )
 }
