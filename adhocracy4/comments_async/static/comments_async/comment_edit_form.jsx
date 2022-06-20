@@ -34,6 +34,9 @@ export default class CommentEditForm extends React.Component {
         contentTypeId: this.props.subjectType
       }
     }
+    if (this.props.useTermsOfUse && !this.props.agreedTermsOfUse && this.state.checkedTermsOfUse) {
+      data.agreed_terms_of_use = true
+    }
     if (!comment) {
       return
     }

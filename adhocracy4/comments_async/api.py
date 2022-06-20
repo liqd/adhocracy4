@@ -110,7 +110,7 @@ class CommentViewSet(
             return ThreadListSerializer
         return ThreadSerializer
 
-    def perform_create(self, serializer):
+    def _save_terms_agreement(self):
         if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
            and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
             if 'agreed_terms_of_use' in self.request.data and \
@@ -130,10 +130,16 @@ class CommentViewSet(
                     }
                 )
 
+    def perform_create(self, serializer):
+        self._save_terms_agreement()
         serializer.save(
             content_object=self.content_object,
             creator=self.request.user
         )
+
+    def perform_update(self, serializer):
+        self._save_terms_agreement()
+        serializer.save()
 
     def get_permission_object(self):
         return self.content_object
