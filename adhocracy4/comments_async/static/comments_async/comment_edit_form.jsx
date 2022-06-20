@@ -16,7 +16,16 @@ export default class CommentEditForm extends React.Component {
     super(props)
 
     this.state = {
-      comment: this.props.comment
+      comment: this.props.comment,
+      agreedTermsOfUse: props.agreedTermsOfUse
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.agreedTermsOfUse !== prevProps.agreedTermsOfUse) {
+      this.setState({
+        agreedTermsOfUse: this.props.agreedTermsOfUse
+      })
     }
   }
 
@@ -28,7 +37,7 @@ export default class CommentEditForm extends React.Component {
     e.preventDefault()
     const comment = this.state.comment.trim()
     const data = {
-      comment: comment,
+      comment,
       urlReplaces: {
         objectPk: this.props.subjectId,
         contentTypeId: this.props.subjectType
@@ -63,17 +72,21 @@ export default class CommentEditForm extends React.Component {
             orgTermsUrl={this.props.orgTermsUrl}
           />
         )}
-        <input
+        <button
           type="submit"
           value={translated.saveChanges}
           className="submit-button"
           disabled={this.props.useTermsOfUse && !this.props.agreedTermsOfUse && !this.state.checkedTermsOfUse}
-        />
+        >
+          {translated.saveChanges}
+        </button>
         &nbsp;
-        <input
+        <button
           type="submit" value={translated.cancel} className="cancel-button"
           onClick={this.props.handleCancel}
-        />
+        >
+          {translated.cancel}
+        </button>
       </form>
     )
   }

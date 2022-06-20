@@ -65,12 +65,12 @@ class CommentBox extends React.Component {
             parentIndex,
             undefined, {
               replyError: true,
-              errorMessage: errorMessage
+              errorMessage
             })
         } else {
           this.setState({
             error: true,
-            errorMessage: errorMessage
+            errorMessage
           })
         }
       })
@@ -101,7 +101,7 @@ class CommentBox extends React.Component {
           parentIndex,
           {
             editError: true,
-            errorMessage: errorMessage
+            errorMessage
           })
       })
   }

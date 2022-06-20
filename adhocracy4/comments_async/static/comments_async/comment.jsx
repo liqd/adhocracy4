@@ -178,6 +178,8 @@ export default class Comment extends React.Component {
             comment={this.props.children}
             commentCategoryChoices={this.props.commentCategoryChoices}
             comment_categories={this.props.comment_categories}
+            useTermsOfUse={this.props.useTermsOfUse}
+            agreedTermsOfUse={this.props.agreedTermsOfUse}
             error={this.props.editError}
             errorMessage={this.props.errorMessage}
             handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
