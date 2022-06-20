@@ -242,7 +242,7 @@ class Project(ProjectContactDetailMixin,
         ),
         upload_to='projects/tiles',
         blank=True,
-        max_length=512
+        max_length=300
     )
     tile_image_copyright = fields.ImageCopyrightField(
         image_name=_('Tile image')
