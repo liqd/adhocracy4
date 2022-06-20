@@ -33,9 +33,9 @@ export const TermsOfUseCheckbox = (props) => {
         htmlFor={props.id}
         dangerouslySetInnerHTML={{ __html: termsOfUseLabel }}
       />
-      <div className="a4-termsofuse__checkbox-helptext">
+      <p className="a4-termsofuse__checkbox-helptext">
         {translated.termsOfUseHelpText}
-      </div>
+      </p>
     </div>
   )
 }
