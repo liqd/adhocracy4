@@ -28,7 +28,7 @@ export default class CommentEditForm extends React.Component {
     e.preventDefault()
     const comment = this.state.comment.trim()
     const data = {
-      comment: comment,
+      comment,
       urlReplaces: {
         objectPk: this.props.subjectId,
         contentTypeId: this.props.subjectType
