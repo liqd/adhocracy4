@@ -216,6 +216,7 @@ class PollQuestions extends React.Component {
             hasUserVote: poll.has_user_vote,
             useTermsOfUse: poll.use_org_terms_of_use,
             agreedTermsOfUse: poll.user_has_agreed,
+            orgTermsUrl: poll.org_terms_url,
             loadingPage: false,
             loading: false,
             alert: ALERT_SUCCESS
@@ -287,6 +288,7 @@ class PollQuestions extends React.Component {
         hasUserVote: poll.has_user_vote,
         useTermsOfUse: poll.use_org_terms_of_use,
         agreedTermsOfUse: poll.user_has_agreed,
+        orgTermsUrl: poll.org_terms_url,
         loadingPage: false
       }))
   }
@@ -349,6 +351,7 @@ class PollQuestions extends React.Component {
                         <TermsOfUseCheckbox
                           id="terms-of-use"
                           onChange={val => this.setState({ checkedTermsOfUse: val })}
+                          orgTermsUrl={this.state.orgTermsUrl}
                         />
                       </div>}
                     <div className="poll poll__btn--wrapper">

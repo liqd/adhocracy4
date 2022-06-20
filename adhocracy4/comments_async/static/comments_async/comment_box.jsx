@@ -107,7 +107,8 @@ export default class CommentBox extends React.Component {
                 wouldHaveCommentingPermission: data.would_have_commenting_permission,
                 projectIsPublic: data.project_is_public,
                 useTermsOfUse: data.use_org_terms_of_use,
-                agreedTermsOfUse: data.user_has_agreed
+                agreedTermsOfUse: data.user_has_agreed,
+                orgTermsUrl: data.org_terms_url
               }
             )
             if (this.anchoredCommentFound()) {
@@ -135,7 +136,8 @@ export default class CommentBox extends React.Component {
                 wouldHaveCommentingPermission: data.would_have_commenting_permission,
                 projectIsPublic: data.project_is_public,
                 useTermsOfUse: data.use_org_terms_of_use,
-                agreedTermsOfUse: data.user_has_agreed
+                agreedTermsOfUse: data.user_has_agreed,
+                orgTermsUrl: data.org_terms_url
               }
             )
           }
@@ -539,6 +541,7 @@ export default class CommentBox extends React.Component {
             projectIsPublic={this.state.projectIsPublic}
             useTermsOfUse={this.state.useTermsOfUse}
             agreedTermsOfUse={this.state.agreedTermsOfUse}
+            orgTermsUrl={this.state.orgTermsUrl}
           />
         </div>
 
@@ -612,6 +615,7 @@ export default class CommentBox extends React.Component {
               projectIsPublic={this.state.projectIsPublic}
               useTermsOfUse={this.state.useTermsOfUse}
               agreedTermsOfUse={this.state.agreedTermsOfUse}
+              orgTermsUrl={this.state.orgTermsUrl}
             />
           </div>
         </div>
