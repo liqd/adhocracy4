@@ -7,9 +7,12 @@
   },
   "extends": [
     "standard",
-    "standard-jsx"],
+    "standard-jsx",
+    "plugin:react/recommended"
+  ],
   "rules": {
-    "jsx-quotes": [2, "prefer-double"]
+    "jsx-quotes": [2, "prefer-double"],
+    "react/prop-types": "off"
   },
   "overrides": [
     {
