@@ -2,7 +2,7 @@ import React from 'react'
 
 import Comment from './comment'
 
-export default function (props) {
+const CommentList = (props) => {
   return (
     <div>
       {
@@ -69,3 +69,5 @@ export default function (props) {
     </div>
   )
 }
+
+export default CommentList
