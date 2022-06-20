@@ -3,6 +3,7 @@ import django from 'django'
 
 import Alert from '../../../static/Alert'
 import CategoryList from './category_list'
+import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
 const translated = {
   yourComment: django.gettext('Your comment'),
@@ -17,7 +18,16 @@ export default class CommentCategoryEditForm extends React.Component {
 
     this.state = {
       comment: this.props.comment,
-      selectedCategories: Object.keys(this.props.comment_categories)
+      selectedCategories: Object.keys(this.props.comment_categories),
+      agreedTermsOfUse: props.agreedTermsOfUse
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.agreedTermsOfUse !== prevProps.agreedTermsOfUse) {
+      this.setState({
+        agreedTermsOfUse: this.props.agreedTermsOfUse
+      })
     }
   }
 
@@ -41,11 +51,14 @@ export default class CommentCategoryEditForm extends React.Component {
     e.preventDefault()
     const comment = this.state.comment.trim()
     const data = {
-      comment: comment,
+      comment,
       urlReplaces: {
         objectPk: this.props.subjectId,
         contentTypeId: this.props.subjectType
       }
+    }
+    if (this.props.useTermsOfUse && !this.props.agreedTermsOfUse && this.state.checkedTermsOfUse) {
+      data.agreed_terms_of_use = true
     }
     if (this.props.commentCategoryChoices) {
       data.comment_categories = this.state.selectedCategories.toString()
@@ -75,12 +88,28 @@ export default class CommentCategoryEditForm extends React.Component {
             onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment}
           />
         </div>
-        <input type="submit" value={translated.saveChanges} className="submit-button" />
+        {this.props.useTermsOfUse && !this.props.agreedTermsOfUse && (
+          <TermsOfUseCheckbox
+            id={`terms-of-use-${this.props.commentId}`}
+            onChange={val => this.setState({ checkedTermsOfUse: val })}
+            orgTermsUrl={this.props.orgTermsUrl}
+          />
+        )}
+        <button
+          type="submit"
+          value={translated.saveChanges}
+          className="submit-button"
+          disabled={this.props.useTermsOfUse && !this.props.agreedTermsOfUse && !this.state.checkedTermsOfUse}
+        >
+          {translated.saveChanges}
+        </button>
         &nbsp;
-        <input
+        <button
           type="submit" value={translated.cancel} className="cancel-button"
           onClick={this.props.handleCancel}
-        />
+        >
+          {translated.cancel}
+        </button>
       </form>
     )
   }

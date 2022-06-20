@@ -23,7 +23,7 @@ class CommentForm extends React.Component {
       return
     }
     this.props.onCommentSubmit({
-      comment: comment,
+      comment,
       urlReplaces: {
         objectPk: this.props.subjectId,
         contentTypeId: this.props.subjectType
