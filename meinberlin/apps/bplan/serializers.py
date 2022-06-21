@@ -39,15 +39,15 @@ class BplanSerializer(serializers.ModelSerializer):
     image_url = serializers.URLField(
         required=False,
         write_only=True,
-        max_length=(project_models.Project._meta.
-                    get_field('tile_image').max_length))
+    )
     image_copyright = serializers.CharField(
         required=False,
         write_only=True,
         source='tile_image_copyright',
         allow_blank=True,
         max_length=(project_models.Project._meta.
-                    get_field('tile_image_copyright').max_length))
+                    get_field('tile_image_copyright').max_length),
+    )
     embed_code = serializers.SerializerMethodField()
 
     class Meta:
@@ -196,9 +196,7 @@ class BplanSerializer(serializers.ModelSerializer):
             file.seek(0)
             extension = imghdr.what(file) or 'jpeg'
 
-        basename = posixpath.basename(root_path)
-        if not basename:
-            basename = 'bplan'
+        basename = 'bplan_%s' % (timezone.now().strftime('%Y%m%dT%H%M%S'))
 
         dirname = datetime.datetime.now().strftime(self._image_upload_to)
         filename = posixpath.join(dirname, basename + '.' + extension)
