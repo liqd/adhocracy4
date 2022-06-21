@@ -14,11 +14,11 @@ export function createMap (L, e, {
   omtToken = ''
 } = {}) {
   const map = new L.Map(e, {
-    dragging: dragging,
-    scrollWheelZoom: scrollWheelZoom,
-    zoomControl: zoomControl,
-    minZoom: minZoom,
-    maxZoom: maxZoom,
+    dragging,
+    scrollWheelZoom,
+    zoomControl,
+    minZoom,
+    maxZoom,
     tap: false
   })
 
@@ -46,7 +46,7 @@ export function createMap (L, e, {
         }).addTo(map)
       }
     }
-    const attributionLayer = L.tileLayer('', { attribution: attribution })
+    const attributionLayer = L.tileLayer('', { attribution })
     attributionLayer.addTo(map)
   } else {
     let basemap = baseUrl + '{z}/{x}/{y}.png'
@@ -58,7 +58,7 @@ export function createMap (L, e, {
       basemap = baseUrl + '{z}/{x}/{y}.png?token={accessToken}'
       accessToken = omtToken
     }
-    const baselayer = L.tileLayer(basemap, { attribution: attribution, accessToken: accessToken })
+    const baselayer = L.tileLayer(basemap, { attribution, accessToken })
     baselayer.addTo(map)
   }
 

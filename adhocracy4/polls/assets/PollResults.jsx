@@ -12,7 +12,7 @@ export default class PollResult extends React.Component {
       : question.other_choice_user_answer
 
     this.state = {
-      question: question,
+      question,
       selectedChoices: question.userChoices,
       showResult: (question.userChoices.length !== 0) || question.isReadOnly,
       alert: null,

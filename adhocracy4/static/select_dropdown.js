@@ -102,8 +102,8 @@ The following classes are available:
         const label = data.content || $option.text()
 
         data = $.extend(data, {
-          value: value,
-          label: label,
+          value,
+          label,
           selected: $option.is(':selected')
         })
 

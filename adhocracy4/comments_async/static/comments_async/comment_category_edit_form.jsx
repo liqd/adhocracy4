@@ -66,7 +66,11 @@ export default class CommentCategoryEditForm extends React.Component {
     if (!comment) {
       return
     }
-    this.props.onCommentSubmit(data)
+    this.props.onCommentSubmit(data).then(() => {
+      if (this.props.useTermsOfUse && !this.props.agreedTermsOfUse && this.state.checkedTermsOfUse) {
+        this.setState({ agreedTermsOfUse: true })
+      }
+    })
   }
 
   render () {
@@ -83,18 +87,20 @@ export default class CommentCategoryEditForm extends React.Component {
         />
         <div className="form-group">
           <textarea
-            rows={this.props.rows} className="a4-comments__textarea form-group"
+            rows={this.props.rows}
+            className="a4-comments__textarea form-group"
             placeholder={hasParent ? translated.yourReply : translated.yourComment}
-            onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment}
+            onChange={this.handleTextChange.bind(this)}
+            required="required"
+            defaultValue={this.state.comment}
           />
         </div>
-        {this.props.useTermsOfUse && !this.props.agreedTermsOfUse && (
+        {this.props.useTermsOfUse && !this.props.agreedTermsOfUse &&
           <TermsOfUseCheckbox
             id={`terms-of-use-${this.props.commentId}`}
             onChange={val => this.setState({ checkedTermsOfUse: val })}
             orgTermsUrl={this.props.orgTermsUrl}
-          />
-        )}
+          />}
         <button
           type="submit"
           value={translated.saveChanges}

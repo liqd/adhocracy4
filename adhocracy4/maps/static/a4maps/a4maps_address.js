@@ -70,7 +70,7 @@ const setBusy = function ($group, busy) {
 
 const getPoints = function (address, cb) {
   $.ajax(apiUrl, {
-    data: { address: address },
+    data: { address },
     success: function (geojson) {
       cb(geojson.features)
     },

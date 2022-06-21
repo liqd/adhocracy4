@@ -56,7 +56,7 @@ function init () {
           })
         }
 
-        const marker = L.marker(latlng, { icon: icon }).addTo(map)
+        const marker = L.marker(latlng, { icon }).addTo(map)
         return marker
       }
     })
