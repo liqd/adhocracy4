@@ -130,7 +130,7 @@ function init () {
           })
         }
 
-        const marker = L.marker(latlng, { icon: icon })
+        const marker = L.marker(latlng, { icon })
         cluster.addLayer(marker)
         const popupContent = getImage(feature) +
                           '<div class="maps-popups-popup-text-content">' +

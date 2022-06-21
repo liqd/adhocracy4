@@ -34,7 +34,7 @@ export const EditPollQuestions = (props) => {
 
   const getNewQuestion = (label = '', helptext = '') => {
     return {
-      label: label,
+      label,
       help_text: helptext,
       multiple_choice: false,
       key: getNextLocalKey(),
@@ -65,7 +65,7 @@ export const EditPollQuestions = (props) => {
     let diff = {}
     if (action === 'label') {
       const { index, label } = params
-      diff[index] = { $merge: { label: label } }
+      diff[index] = { $merge: { label } }
       updatePopper()
     } else if (action === 'helptext') {
       const { index, helptext } = params
@@ -102,7 +102,7 @@ export const EditPollQuestions = (props) => {
 
   const getNewChoice = (label = '', isOther = false) => {
     return {
-      label: label,
+      label,
       key: isOther ? 'other-choice' : getNextLocalKey(),
       is_other_choice: isOther
     }
@@ -113,7 +113,7 @@ export const EditPollQuestions = (props) => {
     if (action === 'label') {
       const { index, choiceIndex, label } = params
       diff[index] = { choices: {} }
-      diff[index].choices[choiceIndex] = { $merge: { label: label } }
+      diff[index].choices[choiceIndex] = { $merge: { label } }
     } else if (action === 'append') {
       const { index, hasOtherOption } = params
       const position = questions[index].choices.length - 1
@@ -152,7 +152,7 @@ export const EditPollQuestions = (props) => {
     e.preventDefault()
 
     const data = {
-      questions: questions
+      questions
     }
 
     api.poll.change(data, props.pollId)

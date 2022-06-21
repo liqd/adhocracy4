@@ -11,7 +11,7 @@ function createMarker ($, L, newlatln, oldlatln, basePolygon, map, name) {
     popupAnchor: [0, -45]
   })
 
-  const marker = L.marker(newlatln, { draggable: true, icon: icon }).addTo(map)
+  const marker = L.marker(newlatln, { draggable: true, icon }).addTo(map)
   marker.on('dragend', function () {
     let markerInsidePolygon = false
     basePolygon.getLayers().forEach(function (each) {

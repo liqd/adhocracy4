@@ -6,5 +6,5 @@ const getLoginUrl = function () {
 }
 
 module.exports = {
-  getLoginUrl: getLoginUrl
+  getLoginUrl
 }

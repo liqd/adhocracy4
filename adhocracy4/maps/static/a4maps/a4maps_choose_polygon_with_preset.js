@@ -244,7 +244,7 @@ function init () {
 
     map.addControl(new ImportControl(drawnItems,
       {
-        polygonStyle: polygonStyle
+        polygonStyle
       }
     ))
 

@@ -48,9 +48,9 @@ const api = (function () {
       url = url + id + '/'
     }
     const defaultParams = {
-      url: url,
+      url,
       dataType: 'json',
-      data: data,
+      data,
       error: function (xhr, status, err) {
         console.error(url, status, err.toString())
       },

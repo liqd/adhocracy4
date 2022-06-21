@@ -26,7 +26,7 @@ class CommentBox extends React.Component {
       diff[index] = { $merge: updatedComment }
     }
     comments = update(comments, diff)
-    this.setState({ comments: comments })
+    this.setState({ comments })
   }
 
   handleCommentSubmit (comment, parentIndex) {
