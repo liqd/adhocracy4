@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import django from 'django'
-import dashboard from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
+import dashboard from '../../../adhocracy4/dashboard/assets/dashboard'
 import update from 'immutability-helper'
 import { EditPollQuestion } from './EditPollQuestion'
 import { EditPollOpenQuestion } from './EditPollOpenQuestion'

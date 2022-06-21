@@ -3,7 +3,7 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
 // component and related data to be tested
-import { EditPollChoice } from 'adhocracy4/polls/assets/EditPollChoice.jsx'
+import { EditPollChoice } from '../EditPollChoice.jsx'
 
 const CHOICE_OBJECT = {
   id: 1,
