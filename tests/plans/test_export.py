@@ -29,6 +29,7 @@ def test_reply_to_mixin(plan_factory, project_factory,
     assert 'duration' in virtual
     assert 'status' in virtual
     assert 'participation' in virtual
+    assert 'participation_explanation' in virtual
     assert 'organisation' in virtual
     # ItemExportWithLocationMixin
     assert 'location_lon' in virtual
@@ -69,6 +70,8 @@ def test_reply_to_mixin(plan_factory, project_factory,
     assert plan.get_status_display() == export.get_status_data(plan)
     assert plan.get_participation_display() \
         == export.get_participation_data(plan)
+    assert plan.participation_explanation \
+        == export.get_field_data(plan, 'participation_explanation')
     assert plan.organisation.name == export.get_organisation_data(plan)
     # ItemExportWithLocationMixin
     assert '' == export.get_location_lon_data(plan)
@@ -100,6 +103,7 @@ def test_reply_to_mixin(plan_factory, project_factory,
         topics=choices[0][0],
         status=0,
         participation=2,
+        participation_explanation='this is some explanation',
         duration='1 month',
         projects=[project_1, project_2],
         district=administrative_district,
@@ -135,6 +139,8 @@ def test_reply_to_mixin(plan_factory, project_factory,
     assert plan.get_status_display() == export.get_status_data(plan)
     assert plan.get_participation_display() \
         == export.get_participation_data(plan)
+    assert plan.participation_explanation \
+        == export.get_field_data(plan, 'participation_explanation')
     assert plan.organisation.name == export.get_organisation_data(plan)
     # ItemExportWithLocationMixin
     assert 13.382721 == export.get_location_lon_data(plan)

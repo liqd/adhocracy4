@@ -24,7 +24,7 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
     fields = ['title', 'description', 'contact_name', 'contact_address_text',
               'contact_phone', 'contact_email', 'contact_url', 'district',
               'topics', 'cost', 'duration', 'status', 'participation',
-              'organisation']
+              'participation_explanation', 'organisation']
     html_fields = ['description']
 
     def get_object_list(self):
