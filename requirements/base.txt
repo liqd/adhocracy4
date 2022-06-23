@@ -1,7 +1,7 @@
 bleach==5.0.0
 Django==3.2.13 # pyup: < 3.3
 django-allauth==0.51.0
-django-autoslug==1.9.8
+git+https://github.com/fuzzylogic2000/django-autoslug.git@master#egg=django-autoslug
 django-background-tasks==1.2.5
 django-ckeditor==6.4.2
 django-enumfield==3.0
