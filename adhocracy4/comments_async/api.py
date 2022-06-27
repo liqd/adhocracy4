@@ -2,10 +2,13 @@ from django.apps import apps
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
+from django.urls.exceptions import NoReverseMatch
+from django.utils.translation import gettext_lazy as _
 from django_filters import rest_framework as filters
 from rest_framework import mixins
 from rest_framework import status
 from rest_framework import viewsets
+from rest_framework.exceptions import ValidationError
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
@@ -113,15 +116,11 @@ class CommentViewSet(
 
     def _save_terms_agreement(self):
         if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
-           and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
+                and settings.A4_USE_ORGANISATION_TERMS_OF_USE \
+                and not self._user_has_agreed(self.request.user):
             if 'agreed_terms_of_use' in self.request.data and \
-               self.request.data['agreed_terms_of_use']:
-                organisation_model = apps.get_model(
-                    settings.A4_ORGANISATIONS_MODEL)
-                OrganisationTermsOfUse = apps.get_model(
-                    organisation_model._meta.app_label,
-                    'OrganisationTermsOfUse'
-                )
+                    self.request.data['agreed_terms_of_use']:
+                OrganisationTermsOfUse = self._get_org_terms_model()
                 OrganisationTermsOfUse.objects.update_or_create(
                     user=self.request.user,
                     organisation=self.content_object.project.organisation,
@@ -130,6 +129,11 @@ class CommentViewSet(
                             self.request.data['agreed_terms_of_use']
                     }
                 )
+            else:
+                raise ValidationError({
+                    'comment':
+                    _("Please agree to the organisation's terms of use.")
+                })
 
     def perform_create(self, serializer):
         self._save_terms_agreement()
@@ -166,6 +170,27 @@ class CommentViewSet(
             )
         )
 
+    def _get_org_terms_model(self):
+        """Make sure, only used with A4_USE_ORGANISATION_TERMS_OF_USE."""
+        organisation_model = apps.get_model(
+            settings.A4_ORGANISATIONS_MODEL)
+        OrganisationTermsOfUse = apps.get_model(
+            organisation_model._meta.app_label,
+            'OrganisationTermsOfUse'
+        )
+        return OrganisationTermsOfUse
+
+    def _user_has_agreed(self, user):
+        OrganisationTermsOfUse = self._get_org_terms_model()
+        organisation = self.content_object.project.organisation
+        user_has_agreed = \
+            OrganisationTermsOfUse.objects.filter(
+                user=user,
+                organisation=organisation,
+                has_agreed=True
+            ).exists()
+        return user_has_agreed
+
     def destroy(self, request, *args, **kwargs):
         comment = self.get_object()
         if self.request.user == comment.creator:
@@ -192,16 +217,18 @@ class CommentViewSet(
             user_has_agreed = None
             use_org_terms_of_use = True
             organisation = self.content_object.project.organisation
-            org_terms_url = reverse(
-                'organisation-terms-of-use', kwargs={
-                    'organisation_slug': organisation.slug
-                }
-            )
+            try:
+                org_terms_url = reverse(
+                    'organisation-terms-of-use', kwargs={
+                        'organisation_slug': organisation.slug
+                    }
+                )
+            except NoReverseMatch:
+                raise NotImplementedError('Add org terms of use view.')
             if hasattr(request, 'user'):
                 user = request.user
                 if user.is_authenticated:
-                    user_has_agreed = \
-                        user.has_agreed_on_org_terms(organisation)
+                    user_has_agreed = self._user_has_agreed(user)
             response.data['user_has_agreed'] = user_has_agreed
             response.data['org_terms_url'] = org_terms_url
         response.data['use_org_terms_of_use'] = use_org_terms_of_use

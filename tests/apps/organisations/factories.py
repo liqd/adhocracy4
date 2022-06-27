@@ -4,6 +4,7 @@ from django.conf import settings
 from adhocracy4.test.factories import UserFactory
 from tests.apps.organisations.models import Member
 from tests.apps.organisations.models import Organisation
+from tests.apps.organisations.models import OrganisationTermsOfUse
 
 
 class OrganisationFactory(factory.django.DjangoModelFactory):
@@ -33,3 +34,11 @@ class MemberFactory(factory.django.DjangoModelFactory):
 
     member = factory.SubFactory(USER_FACTORY)
     organisation = factory.SubFactory(ORGANISATION_FACTORY)
+
+
+class OrganisationTermsOfUseFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = OrganisationTermsOfUse
+
+    user = factory.SubFactory(UserFactory)
+    organisation = factory.SubFactory(OrganisationFactory)

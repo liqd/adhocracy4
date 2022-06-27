@@ -346,10 +346,6 @@ def test_fields(user, apiclient, question_ct, question):
     with active_phase(question.module, AskPhase):
         apiclient.post(url, data, format='json')
 
-    url = reverse(
-        'comments_async-list',
-        kwargs={'content_type': question_ct.pk,
-                'object_pk': question.pk})
     response = apiclient.get(url)
 
     assert len(response.data) == 8
@@ -361,6 +357,8 @@ def test_fields(user, apiclient, question_ct, question):
     assert 'would_have_commenting_permission' in response.data
     assert 'project_is_public' in response.data
     assert response.data['count'] == 1
+    assert 'use_org_terms_of_use' in response.data
+    assert not response.data['use_org_terms_of_use']
 
     commentDict = response.data['results'][0]
     assert len(commentDict) == 21
