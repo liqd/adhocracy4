@@ -575,11 +575,11 @@ def test_validate_choices(apiclient, user, question_factory, choice_factory):
 
 
 @pytest.mark.django_db
-def test_validate_question_belongs_to_poo(apiclient,
-                                          user,
-                                          poll_factory,
-                                          question_factory,
-                                          choice_factory):
+def test_validate_question_belongs_to_poll(apiclient,
+                                           user,
+                                           poll_factory,
+                                           question_factory,
+                                           choice_factory):
 
     poll_1 = poll_factory()
     poll_2 = poll_factory()
