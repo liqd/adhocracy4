@@ -4,6 +4,7 @@ from django.db import transaction
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from django.urls.exceptions import NoReverseMatch
 from django.utils.translation import gettext as _
 from rest_framework import mixins
 from rest_framework import status
@@ -42,23 +43,46 @@ class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
             POST='a4polls.add_vote',
         )
 
+    def _get_org_terms_model(self):
+        """Make sure, only used with A4_USE_ORGANISATION_TERMS_OF_USE."""
+        organisation_model = apps.get_model(
+            settings.A4_ORGANISATIONS_MODEL)
+        OrganisationTermsOfUse = apps.get_model(
+            organisation_model._meta.app_label,
+            'OrganisationTermsOfUse'
+        )
+        return OrganisationTermsOfUse
+
+    def _user_has_agreed(self, user):
+        OrganisationTermsOfUse = self._get_org_terms_model()
+        organisation = self.get_object().project.organisation
+        user_has_agreed = \
+            OrganisationTermsOfUse.objects.filter(
+                user=user,
+                organisation=organisation,
+                has_agreed=True
+            ).exists()
+        return user_has_agreed
+
     def add_terms_of_use_info(self, request, data):
         use_org_terms_of_use = False
         if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
-           and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
+                and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
             user_has_agreed = None
             use_org_terms_of_use = True
             organisation = self.get_object().project.organisation
-            org_terms_url = reverse(
-                'organisation-terms-of-use', kwargs={
-                    'organisation_slug': organisation.slug
-                }
-            )
+            try:
+                org_terms_url = reverse(
+                    'organisation-terms-of-use', kwargs={
+                        'organisation_slug': organisation.slug
+                    }
+                )
+            except NoReverseMatch:
+                raise NotImplementedError('Add org terms of use view.')
             if hasattr(request, 'user'):
                 user = request.user
                 if user.is_authenticated:
-                    user_has_agreed = \
-                        user.has_agreed_on_org_terms(organisation)
+                    user_has_agreed = self._user_has_agreed(user)
             data['user_has_agreed'] = user_has_agreed
             data['org_terms_url'] = org_terms_url
         data['use_org_terms_of_use'] = use_org_terms_of_use
@@ -76,15 +100,11 @@ class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
             permission_classes=[ViewSetRulesPermission])
     def vote(self, request, pk):
         if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
-           and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
+                and settings.A4_USE_ORGANISATION_TERMS_OF_USE \
+                and not self._user_has_agreed(self.request.user):
             if 'agreed_terms_of_use' in self.request.data and \
-               self.request.data['agreed_terms_of_use']:
-                organisation_model = apps.get_model(
-                    settings.A4_ORGANISATIONS_MODEL)
-                OrganisationTermsOfUse = apps.get_model(
-                    organisation_model._meta.app_label,
-                    'OrganisationTermsOfUse'
-                )
+                    self.request.data['agreed_terms_of_use']:
+                OrganisationTermsOfUse = self._get_org_terms_model()
                 OrganisationTermsOfUse.objects.update_or_create(
                     user=self.request.user,
                     organisation=self.get_object().project.organisation,
@@ -93,6 +113,10 @@ class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
                             self.request.data['agreed_terms_of_use']
                     }
                 )
+            else:
+                raise ValidationError({
+                    _("Please agree to the organisation's terms of use.")
+                })
 
         for question_id in request.data['votes']:
             question = self.get_question(question_id)
