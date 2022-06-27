@@ -346,7 +346,7 @@ class PollQuestions extends React.Component {
               {!this.isReadOnly()
                 ? (
                   <>
-                    {this.state.useTermsOfUse && !this.state.agreedTermsOfUse &&
+                    {this.state.useTermsOfUse && (this.state.agreedTermsOfUse === false) &&
                       <div className="col-12">
                         <TermsOfUseCheckbox
                           id="terms-of-use"
