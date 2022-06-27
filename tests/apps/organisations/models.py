@@ -15,7 +15,7 @@ class Organisation(models.Model):
     )
     groups = models.ManyToManyField(
         Group,
-        blank=True
+        blank=True,
     )
 
     def __str__(self):
@@ -38,10 +38,33 @@ class Organisation(models.Model):
 
 
 class Member(models.Model):
-    member = models.ForeignKey(User,
-                               on_delete=models.CASCADE)
-    organisation = models.ForeignKey(settings.A4_ORGANISATIONS_MODEL,
-                                     on_delete=models.CASCADE)
+    member = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+    organisation = models.ForeignKey(
+        settings.A4_ORGANISATIONS_MODEL,
+        on_delete=models.CASCADE,
+    )
 
     class Meta:
         unique_together = [('member', 'organisation')]
+
+
+class OrganisationTermsOfUse(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        editable=False,
+    )
+    organisation = models.ForeignKey(
+        settings.A4_ORGANISATIONS_MODEL,
+        on_delete=models.CASCADE,
+        editable=False,
+    )
+    has_agreed = models.BooleanField(
+        default=False,
+    )
+
+    class Meta:
+        unique_together = [('user', 'organisation')]
