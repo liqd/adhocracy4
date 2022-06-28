@@ -10,6 +10,8 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.models import base
 from adhocracy4.projects import models as project_models
 
+from .fields import BlueprintTypeField
+
 
 class ModulesQuerySet(models.QuerySet):
 
@@ -84,6 +86,11 @@ class Module(models.Model):
     is_draft = models.BooleanField(default=False)
 
     objects = ModulesQuerySet.as_manager()
+
+    blueprint_type = BlueprintTypeField(
+        max_length=255,
+        blank=True,
+    )
 
     class Meta:
         ordering = ['weight']
