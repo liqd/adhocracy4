@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 
 from adhocracy4.phases import admin as phase_admin
@@ -27,6 +28,12 @@ class ModuleAdmin(admin.ModelAdmin):
     ]
     list_filter = ('project__organisation', 'project')
     list_display = ('__str__', 'name')
+    if hasattr(settings, 'A4_BLUEPRINT_TYPES'):
+        list_filter += ('blueprint_type',)
+        list_display += ('blueprint_type',)
+        readonly_fields = ('blueprint_type',)
+    else:
+        exclude = ['blueprint_type']
 
 
 admin.site.register(models.Module, ModuleAdmin)
