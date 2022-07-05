@@ -317,3 +317,74 @@ def test_agreement_info_without_terms_view_causes_error(
 
     with pytest.raises(NotImplementedError):
         apiclient.get(url)
+
+
+@pytest.mark.django_db
+@override_settings(
+    A4_USE_ORGANISATION_TERMS_OF_USE=True
+)
+@patch('adhocracy4.comments_async.api.reverse', return_value='/')
+def test_pagination_comment_link_with_terms(
+        mock_provider, user, apiclient, question_ct, question,
+        comment_factory):
+    url = reverse(
+        'comments_async-list',
+        kwargs={'content_type': question_ct.pk,
+                'object_pk': question.pk})
+    url += '?commentID=no_number'
+    response = apiclient.get(url)
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    url = reverse(
+        'comments_async-list',
+        kwargs={'content_type': question_ct.pk,
+                'object_pk': question.pk})
+    url += '?commentID=-1'
+    response = apiclient.get(url)
+    assert response.status_code == status.HTTP_200_OK
+    assert not response.data['comment_found']
+    assert response.data['use_org_terms_of_use']
+    assert response.data['user_has_agreed'] is None
+    assert response.data['org_terms_url'] == '/'
+
+    commentID = 0
+    apiclient.force_authenticate(user=user)
+    url = reverse(
+        'comments_async-list',
+        kwargs={'content_type': question_ct.pk,
+                'object_pk': question.pk})
+    data = {
+        'comment': 'comment comment',
+        'agreed_terms_of_use': True
+    }
+    with active_phase(question.module, AskPhase):
+        response = apiclient.post(url, data, format='json')
+        commentID = response.data['id']
+        assert commentID > 0
+
+    url = reverse(
+        'comments_async-list',
+        kwargs={'content_type': question_ct.pk,
+                'object_pk': question.pk})
+    url += '?commentID={}'.format(commentID)
+    response = apiclient.get(url)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.data['comment_found']
+    assert response.data['use_org_terms_of_use']
+    assert response.data['user_has_agreed']
+    assert response.data['org_terms_url'] == '/'
+
+    comment = comment_factory(content_object=question)
+    child_comment = comment_factory(content_object=comment)
+    url = reverse(
+        'comments_async-list',
+        kwargs={'content_type': question_ct.pk,
+                'object_pk': question.pk})
+    url += '?commentID={}'.format(child_comment.id)
+    response = apiclient.get(url)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.data['comment_found']
+    assert response.data['comment_parent'] == comment.id
+    assert response.data['use_org_terms_of_use']
+    assert response.data['user_has_agreed']
+    assert response.data['org_terms_url'] == '/'
