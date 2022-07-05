@@ -14,6 +14,7 @@ class Command(BaseCommand):
     help = 'Create system actions.'
 
     def __init__(self):
+        super().__init__()
         if hasattr(settings, 'A4_ACTIONS_PHASE_STARTED_HOURS'):
             self.phase_started_hours = settings.A4_ACTIONS_PHASE_STARTED_HOURS
         else:
