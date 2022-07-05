@@ -1,11 +1,10 @@
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.template import defaultfilters
-from django.utils import timezone
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 
+from adhocracy4.api.dates import get_datetime_display
 from adhocracy4.comments.models import Comment
 
 
@@ -48,6 +47,8 @@ class CommentSerializer(serializers.ModelSerializer):
     comment_content_type = serializers.SerializerMethodField()
     comment_categories = CommentCategoriesField(required=False)
     user_info = serializers.SerializerMethodField()
+    created = serializers.SerializerMethodField()
+    modified = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -68,19 +69,6 @@ class CommentSerializer(serializers.ModelSerializer):
         if instance.is_blocked:
             ret['comment'] = ''
             ret['comment_categories'] = {}
-
-        # Note: Converts the value to localtime as we loose the
-        # expects_localtime flag functionality by directly calling
-        # the date filter from django.
-        localtime_created = timezone.localtime(instance.created)
-        cdate = defaultfilters.date(localtime_created)
-        ctime = defaultfilters.time(localtime_created)
-        ret['created'] = cdate + ', ' + ctime
-        if instance.modified:
-            localtime_modified = timezone.localtime(instance.modified)
-            mdate = defaultfilters.date(localtime_modified)
-            mtime = defaultfilters.time(localtime_modified)
-            ret['modified'] = mdate + ', ' + mtime
         return ret
 
     def get_user_profile_url(self, obj):
@@ -197,6 +185,14 @@ class CommentSerializer(serializers.ModelSerializer):
             )
 
         return user_info
+
+    def get_created(self, comment):
+        return get_datetime_display(comment.created)
+
+    def get_modified(self, comment):
+        if comment.modified:
+            return get_datetime_display(comment.modified)
+        return comment.modified
 
 
 class CommentListSerializer(CommentSerializer):
