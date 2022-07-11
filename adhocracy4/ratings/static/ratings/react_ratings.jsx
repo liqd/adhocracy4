@@ -1,11 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classnames from 'classnames'
+import django from 'django'
 
 import api from '../../../static/api'
 import config from '../../../static/config'
 
 class RatingBox extends React.Component {
+  const translations = {
+    upvote = django.gettext("Click to vote up"),
+    downvote = django.gettext("Click to vote down")}
+  }
   constructor (props) {
     super(props)
 
@@ -120,6 +125,7 @@ class RatingBox extends React.Component {
     return (
       <div className="rating">
         <button
+          aria-label={translations.upvote}
           className={getRatingClasses('up')}
           disabled={this.props.isReadOnly}
           onClick={this.ratingUp.bind(this)}
@@ -128,6 +134,7 @@ class RatingBox extends React.Component {
           {this.state.positiveRatings}
         </button>
         <button
+          aria-label={translations.downvote}
           className={getRatingClasses('down')}
           disabled={this.props.isReadOnly}
           onClick={this.ratingDown.bind(this)}
