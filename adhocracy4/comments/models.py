@@ -68,11 +68,7 @@ class Comment(base.UserGeneratedContentModel):
             return "{}".format(self.comment)
 
     def save(self, *args, **kwargs):
-        """
-        Change the text of the comment if
-        the comment was marked removed or censored
-        """
-
+        """Change comment.comment if comment was marked removed or censored."""
         self.comment = transforms.clean_html_all(
             self.comment)
 
@@ -80,13 +76,7 @@ class Comment(base.UserGeneratedContentModel):
             self.comment = ''
             self.comment_categories = ''
 
-        # detect if comment text has changed
-        elif self._former_comment != self.comment:
-            if 'update_fields' in kwargs:
-                kwargs['update_fields'].append('comment')
-            else:
-                kwargs['update_fields'] = ['comment']
-
+        # save former comment to detect if comment text has changed
         self._former_comment = self.comment
 
         return super(Comment, self).save(*args, **kwargs)
