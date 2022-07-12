@@ -40,8 +40,7 @@
   ],
   "ignorePatterns": [
     "node_modules/",
-    "venv/",
-    "static/"
+    "venv/"
   ],
   "settings": {
     "import/core-modules": [ django ],
