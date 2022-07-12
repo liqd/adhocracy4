@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { TermsOfUseCheckbox } from '../TermsOfUseCheckbox'
-import django from '../../../../../__mocks__/djangoMock'
+import django from 'django'
 
 test('One TermsOfUseCheckbox is showing', () => {
   render(<TermsOfUseCheckbox id="test-checkbox" />)
