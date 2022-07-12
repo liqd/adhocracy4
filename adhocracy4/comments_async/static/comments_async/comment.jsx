@@ -460,7 +460,8 @@ export default class Comment extends React.Component {
                       errorMessage={this.props.errorMessage}
                       handleErrorClick={() => this.props.onReplyErrorClick(this.props.index, this.props.parentIndex)}
                       rows="1"
-                      autoFocus
+                      // we need the autoFocus here
+                      autoFocus // eslint-disable-line jsx-a11y/no-autofocus
                       hasCommentingPermission={this.props.hasCommentingPermission}
                       wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
                       projectIsPublic={this.props.projectIsPublic}

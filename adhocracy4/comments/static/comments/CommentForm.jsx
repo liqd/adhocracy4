@@ -46,7 +46,7 @@ class CommentForm extends React.Component {
             <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
           <div className="form-group">
             <textarea
-              autoFocus={this.props.grabFocus}
+              autoFocus={this.props.grabFocus} // eslint-disable-line jsx-a11y/no-autofocus
               rows={this.props.rows}
               className="form-control"
               placeholder={this.props.placeholder}
