@@ -14,10 +14,10 @@ const Alert = ({ type, message, onClick, timeInMs }) => {
   }, [timeInMs])
   if (type) {
     return (
-      <div className={`alert alert--${type}`} role="alert" onClick={onClick}>
+      <div className={`alert alert--${type}`} role="alert">
         <div className="l-wrapper">
           {message}
-          <button className="alert__close" title={closeTag}>
+          <button className="alert__close" title={closeTag} onClick={onClick}>
             <i className="fa fa-times" aria-label={closeTag} />
           </button>
         </div>
