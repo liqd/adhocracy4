@@ -28,7 +28,8 @@ export const TermsOfUseCheckbox = (props) => {
         checked={checked}
         onChange={handleOnChange}
       />
-      <label
+      <label // eslint-disable-line jsx-a11y/label-has-associated-control
+        // eslint ignores the dangerouslySetInnerHTML and gives a wrong error
         className="a4-termsofuse__checkbox-label"
         htmlFor={props.id}
         dangerouslySetInnerHTML={{ __html: termsOfUseLabel }}
