@@ -1,7 +1,7 @@
 /* Adds extra select dropdown to choose predefined polygon instead of drawing one */
 
 /* global django */
-import { maps } from 'adhocracy4'
+import { createMap } from './a4maps_common'
 import 'leaflet-draw'
 import './i18n-leaflet-draw'
 import FileSaver from 'file-saver'
@@ -184,7 +184,7 @@ function init () {
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const bbox = JSON.parse(e.getAttribute('data-bbox'))
 
-    const map = maps.createMap(L, e, {
+    const map = createMap(L, e, {
       baseUrl: e.getAttribute('data-baseurl'),
       useVectorMap: e.getAttribute('data-usevectormap'),
       attribution: e.getAttribute('data-attribution'),
