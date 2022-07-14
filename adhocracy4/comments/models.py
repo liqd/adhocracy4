@@ -58,6 +58,7 @@ class Comment(base.UserGeneratedContentModel):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # save former comment to detect if comment text has changed
         self._former_comment = transforms.clean_html_all(
             self.comment)
 
@@ -73,13 +74,10 @@ class Comment(base.UserGeneratedContentModel):
             self.comment)
 
         if self.is_removed or self.is_censored:
-            self.comment = ''
+            self.comment = self._former_comment = ''
             self.comment_categories = ''
 
-        # save former comment to detect if comment text has changed
-        self._former_comment = self.comment
-
-        return super(Comment, self).save(*args, **kwargs)
+        super(Comment, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         if hasattr(self.content_object, 'get_absolute_url'):
