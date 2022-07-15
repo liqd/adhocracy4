@@ -32,9 +32,12 @@ def test_delete_comment(comment_factory, rating_factory):
 def test_save(comment_factory):
     comment_removed = comment_factory(comment='I am not yet removed')
     comment_censored = comment_factory(comment='I am not yet censored')
+    comment_edited = comment_factory(comment='I am not yet edited')
 
     assert comment_removed.comment == 'I am not yet removed'
     assert comment_censored.comment == 'I am not yet censored'
+    assert comment_edited.comment == comment_edited._former_comment \
+           == 'I am not yet edited'
 
     comment_removed.is_removed = True
     comment_removed.save()
@@ -42,9 +45,13 @@ def test_save(comment_factory):
     comment_censored.is_censored = True
     comment_censored.save()
     comment_censored.refresh_from_db()
+    comment_edited.comment = 'I am edited'
+    comment_edited.save()
+    comment_edited.refresh_from_db()
 
-    assert comment_removed.comment == ''
-    assert comment_censored.comment == ''
+    assert comment_removed.comment == comment_removed._former_comment == ''
+    assert comment_censored.comment == comment_censored._former_comment == ''
+    assert not comment_edited.comment == comment_edited._former_comment
 
 
 @pytest.mark.django_db
