@@ -140,3 +140,48 @@ def test_edit_view_validation_2(client, project, module_factory,
     assert ({'end_date':
             ['End date can not be before start date.']}
             in errors)
+
+
+@pytest.mark.django_db
+def test_edit_view_validation_3(client, project, module_factory,
+                                phase_factory, admin):
+    module = module_factory(project=project)
+    phase_0 = phase_factory(module=module,
+                            weight=1)
+    phase_1 = phase_factory(module=module,
+                            weight=2)
+    url = component.get_base_url(module)
+    client.login(username=admin.username, password='password')
+    response = client.get(url)
+    assert_template_response(response, 'a4dashboard/base_form_module.html')
+
+    data = {
+        'phase_set-TOTAL_FORMS': '2',
+        'phase_set-INITIAL_FORMS': '2',
+        'phase_set-MIN_NUM_FORMS': '0',
+        'phase_set-MAX_NUM_FORMS': '1000',
+
+        'phase_set-0-name': 'Name 0',
+        'phase_set-0-description': 'some description for phase 0',
+        'phase_set-0-start_date_0': '2020-08-23',
+        'phase_set-0-start_date_1': '19:23',
+        'phase_set-0-end_date_0': '2020-09-17',
+        'phase_set-0-end_date_1': '16:12',
+        'phase_set-0-type': phase_0.type,
+        'phase_set-0-id': phase_0.id,
+
+        'phase_set-1-name': 'Name 1',
+        'phase_set-1-description': 'some description for phase 1',
+        'phase_set-1-start_date_0': '2020-07-22',
+        'phase_set-1-start_date_1': '19:23',
+        'phase_set-1-end_date_0': '2020-08-22',
+        'phase_set-1-end_date_1': '16:12',
+        'phase_set-1-type': phase_1.type,
+        'phase_set-1-id': phase_1.id,
+    }
+
+    response = client.post(url, data)
+    errors = response.context_data['form'].errors
+    assert ({'start_date':
+            ['Phases need to be in same order as in form.']}
+            in errors)
