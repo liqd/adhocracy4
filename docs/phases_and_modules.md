@@ -84,9 +84,6 @@ The states of the phases are implemented a bit differently in the different plac
 -   is_over
     -   returns True when no end_date is set (contrary to future_phases with also contains the phases without end_date)
     -   returns True is end date is past
--   is_first_of_project (function, not a property)
-    -   is meant to return if it is the first phase of the project
-    -   as the order is not defined when multiple modules exist, this shouldn't be used
 
 #### Module (model) properties
 -   future_phases and past_phases use PhasesQuerySet
@@ -121,7 +118,6 @@ The states of the phases are implemented a bit differently in the different plac
 -   past_and_active_phases are ordered by start date (while active_phases are ordered by weight)
 -   finish_next has all phases ending within 24 hours, not the next one to finish
 -   start_last has all phases that started in the last hour, not the last one to start
--   is_first_of_project will only work for single modules
 -   active_phase from module and project are taken from QS with different orderings (weight for module, start date for project)
 
 ## Modules

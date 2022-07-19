@@ -1,4 +1,3 @@
-import warnings
 from datetime import timedelta
 
 from django.core.exceptions import ValidationError
@@ -49,17 +48,13 @@ class PhasesQuerySet(models.QuerySet):
             .order_by('start_date')
 
     def finish_next(self, hours=24):
-        """
-        All phases that are active and finish within the given time.
-        """
+        """All phases that are active and finish within the given time."""
         now = timezone.now()
         last_end_date = (now + timedelta(hours=hours))
         return self.active_phases().filter(end_date__lte=last_end_date)
 
     def start_last(self, hours=1):
-        """
-        All phases that have started within the given time.
-        """
+        """All phases that have started within the given time."""
         now = timezone.now()
         first_start_date = (now - timedelta(hours=hours))
         return self.filter(start_date__gt=first_start_date, start_date__lt=now)
@@ -119,15 +114,17 @@ class Phase(models.Model):
     def has_feature(self, feature, model):
         return content[self.type].has_feature(feature, model)
 
-    def is_first_of_project(self):
-        """Test if this is the first phase of the project.
-
-        Attention: _deprecated_ as this only works for one module where the
-        phase order is determined by weight.
+    def starts_first_of_project(self):
         """
-        warnings.warn(
-            "is_first_of_project is deprecated as it relies "
-            "on the project only having one module",
-            DeprecationWarning
-        )
-        return self == self.module.project.phases.first()
+        Test if this is the phase that starts first in the project.
+
+        Phases from unpublished modules are not taken into consideration.
+        """
+        if not self.module.is_draft:
+            phases = self.module.project.phases.filter(
+                module__is_draft=False
+            ).order_by(
+                F('start_date').asc(nulls_last=True)
+            )
+            return self == phases.first()
+        return False

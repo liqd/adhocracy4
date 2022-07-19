@@ -114,6 +114,19 @@ def test_phase_validation(phase_factory):
 
     valid_phase.clean()
 
+    invalid_phase2 = phase_factory(
+        start_date=None,
+        end_date=parse('2013-01-01 16:00:00 UTC')
+    )
+    invalid_phase3 = phase_factory(
+        start_date=parse('2013-01-01 18:00:01 UTC'),
+        end_date=None
+    )
+    with pytest.raises(ValidationError):
+        models.Phase.clean(invalid_phase2)
+    with pytest.raises(ValidationError):
+        models.Phase.clean(invalid_phase3)
+
 
 @pytest.mark.django_db
 def test_questionsapp_phase_view(phase_factory):
@@ -137,10 +150,12 @@ def test_questionsapp_phase_content(phase_factory):
 def test_is_over_property(phase_factory):
     phase1 = phase_factory()
     phase2 = phase_factory()
+    phase3 = phase_factory(start_date=None, end_date=None)
     with freeze_time(phase1.start_date):
         assert phase1.is_over is False
     with freeze_time(phase2.end_date):
         assert phase2.is_over is True
+    assert phase3.is_over is True
 
 
 @pytest.mark.django_db
@@ -217,3 +232,75 @@ def test_past_and_active_phases(phase_factory):
     with freeze_time(phase2.end_date):
         assert (list(models.Phase.objects.past_and_active_phases())
                 == [phase1, phase2])
+
+
+@pytest.mark.django_db
+def test_starts_first_of_project(phase_factory,
+                                 module_factory,
+                                 project_factory):
+    project1 = project_factory()
+    module1 = module_factory(weight=1,
+                             project=project1)
+    module2 = module_factory(weight=2,
+                             project=project1)
+    # phase1 is after phase2, but is in a module with lower weight
+    phase1 = phase_factory(
+        module=module1,
+        start_date=parse('2022-01-20 17:00:00 UTC'),
+        end_date=parse('2022-01-24 18:00:00 UTC'),
+    )
+    phase2 = phase_factory(
+        module=module2,
+        start_date=parse('2022-01-15 17:00:00 UTC'),
+        end_date=parse('2022-01-19 18:00:00 UTC')
+    )
+
+    assert phase1.starts_first_of_project() is False
+    assert phase2.starts_first_of_project() is True
+
+    phase3 = phase_factory(
+        start_date=parse('2022-01-20 17:00:00 UTC'),
+        end_date=parse('2022-01-24 18:00:00 UTC'),
+    )
+    phase4 = phase_factory(
+        module=phase3.module,
+        start_date=None,
+        end_date=None,
+    )
+    assert phase3.starts_first_of_project() is True
+    assert phase4.starts_first_of_project() is False
+
+    phase5 = phase_factory(
+        start_date=None,
+        end_date=None,
+    )
+    assert phase5.starts_first_of_project() is True
+
+    # phase in a not published module should not be taken
+    # into consideration
+    module3 = module_factory(is_draft=True)
+    phase6 = phase_factory(
+        module=module3,
+        start_date=parse('2022-01-20 17:00:00 UTC'),
+        end_date=parse('2022-01-24 18:00:00 UTC'),
+    )
+    assert phase6.starts_first_of_project() is False
+
+    project2 = project_factory()
+    module4 = module_factory(is_draft=True,
+                             project=project2)
+    module5 = module_factory(is_draft=False,
+                             project=project2)
+    # phase7 is before phase8, but is in an unpublished module
+    phase7 = phase_factory(
+        module=module4,
+        start_date=parse('2022-01-15 17:00:00 UTC'),
+        end_date=parse('2022-01-19 18:00:00 UTC')
+    )
+    phase8 = phase_factory(
+        module=module5,
+        start_date=parse('2022-01-20 17:00:00 UTC'),
+        end_date=parse('2022-01-24 18:00:00 UTC'),
+    )
+    assert phase7.starts_first_of_project() is False
+    assert phase8.starts_first_of_project() is True

@@ -177,8 +177,6 @@ def test_project_start_last_hour(phase_factory):
         call_command('create_system_actions')
         action_count = Action.objects \
             .filter(verb=START, obj_content_type=content_type).count()
-        action = Action.objects.filter(verb=START,
-                                       obj_content_type=content_type).last()
         assert action_count == 1
 
 
@@ -239,3 +237,54 @@ def test_project_start_reschedule(phase_factory):
         action = Action.objects \
             .filter(verb=START, obj_content_type=content_type).first()
         assert action.timestamp == phase.start_date
+
+
+@pytest.mark.django_db
+def test_project_start_multi_module(phase_factory,
+                                    module_factory,
+                                    project):
+
+    module1 = module_factory(weight=1,
+                             project=project)
+    module2 = module_factory(weight=2,
+                             project=project)
+
+    # phase is after phase2, but is in a module with lower weight
+    phase = phase_factory(
+        module=module1,
+        start_date=parse('2022-01-20 17:00:00 UTC'),
+        end_date=parse('2022-01-24 18:00:00 UTC'),
+    )
+
+    phase2 = phase_factory(
+        module=module2,
+        start_date=parse('2022-01-15 17:00:00 UTC'),
+        end_date=parse('2022-01-19 18:00:00 UTC')
+    )
+    content_type = ContentType.objects.get_for_model(Project)
+
+    action_count = Action.objects \
+        .filter(verb=START, obj_content_type=content_type).count()
+    assert action_count == 0
+
+    # first phase in list starts after second phase, should not
+    # create action project start
+    with freeze_time(phase.start_date + timedelta(minutes=30)):
+        call_command('create_system_actions')
+        action_count = Action.objects \
+            .filter(verb=START, obj_content_type=content_type).count()
+
+        assert action_count == 0
+
+    # second phase in list is first phase timewise, should create action
+    with freeze_time(phase2.start_date + timedelta(minutes=30)):
+        call_command('create_system_actions')
+        action_count = Action.objects \
+            .filter(verb=START, obj_content_type=content_type).count()
+        action = Action.objects.filter(verb=START,
+                                       obj_content_type=content_type).last()
+        assert action_count == 1
+        assert action.obj == project
+        assert action.verb == START
+        assert action.project == project
+        assert action.timestamp == phase2.start_date
