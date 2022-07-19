@@ -37,6 +37,12 @@ class Command(BaseCommand):
         self._project_started()
 
     def _phase_started(self):
+        """Create an action for every phase that started.
+
+        The timespan in which the phases were started can be set
+        in the project with A4_ACTIONS_PHASE_STARTED_HOURS.
+        In the projects this is used to notify users if a phase has started.
+        """
         phase_ct = ContentType.objects.get_for_model(Phase)
 
         phases = Phase.objects.start_last(hours=self.phase_started_hours)
@@ -65,6 +71,12 @@ class Command(BaseCommand):
                 existing_action.save()
 
     def _phase_ends(self):
+        """Create an action for every phase that ends soon.
+
+        The timespan in which the phases will end can be set
+        in the project with A4_ACTIONS_PHASE_ENDS_HOURS.
+        In the projects this is used to notify users if a phase will end.
+        """
         phase_ct = ContentType.objects.get_for_model(Phase)
 
         phases = Phase.objects.finish_next(hours=self.phase_ends_hours)
@@ -90,11 +102,18 @@ class Command(BaseCommand):
                 )
 
     def _project_started(self):
+        """Create an action when a project has started.
+
+        The timespan in which the project has started can be set
+        in the project with A4_ACTIONS_PROJECT_STARTED_HOURS.
+        We do not use this action for notifications, but display
+        it in some lists of actions.
+        """
         project_ct = ContentType.objects.get_for_model(Project)
 
         phases = Phase.objects.start_last(hours=self.project_started_hours)
         for phase in phases:
-            if phase.is_first_of_project():
+            if phase.starts_first_of_project():
                 project = phase.module.project
                 existing_action = Action.objects.filter(
                     project=project,
@@ -112,8 +131,8 @@ class Command(BaseCommand):
                     )
 
                 elif existing_action.timestamp < phase.start_date:
-                    # If the first phases start has been modified and moved
-                    # ahead, the existing actions timestamp has be adapted to
-                    # the actual project start.
+                    # If the first phase start has been modified and moved
+                    # ahead, the existing actions timestamp has to be adapted
+                    # to the actual project start.
                     existing_action.timestamp = phase.start_date
                     existing_action.save()
