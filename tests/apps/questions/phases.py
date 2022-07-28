@@ -38,3 +38,20 @@ class RatePhase(phases.PhaseContent):
 
 
 phases.content.register(RatePhase())
+
+
+class VotePhase(phases.PhaseContent):
+    app = apps.Config.label
+    phase = 'vote'
+    view = views.QuestionList
+
+    name = 'Voting Phase'
+    description = 'Vote questions'
+    module_name = 'test questions'
+
+    features = {
+        'vote': (models.Question, ),
+    }
+
+
+phases.content.register(VotePhase())
