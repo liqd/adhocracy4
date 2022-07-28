@@ -34,12 +34,13 @@ class PhasesQuerySet(models.QuerySet):
         """
         Return future phases ordered by start date.
 
-        Note: Phases without a start date are assumed to start in the future.
+        Note: Phases without a start date are assumed to start in the future,
+        but are appended to the end of the list.
         """
         return self\
             .filter(models.Q(start_date__gt=timezone.now())
                     | models.Q(start_date=None))\
-            .order_by(F('start_date').asc(nulls_first=True))
+            .order_by(F('start_date').asc(nulls_last=True))
 
     def past_and_active_phases(self):
         """Return past and active phases ordered by start date."""
