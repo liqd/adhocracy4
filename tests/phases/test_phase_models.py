@@ -199,9 +199,9 @@ def test_future_phases(phase_factory):
 
     with freeze_time(phase1.start_date - timedelta(minutes=1)):
         assert (list(models.Phase.objects.future_phases())
-                == [phase3, phase1, phase2])
+                == [phase1, phase2, phase3])
     with freeze_time(phase2.start_date - timedelta(minutes=1)):
-        assert list(models.Phase.objects.future_phases()) == [phase3, phase2]
+        assert list(models.Phase.objects.future_phases()) == [phase2, phase3]
     with freeze_time(phase2.end_date):
         assert list(models.Phase.objects.future_phases()) == [phase3]
 
