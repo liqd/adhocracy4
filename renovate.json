@@ -35,5 +35,7 @@
       }
     ],
 
-  "schedule": ["on tuesday"]
+  "pip_requirements": {
+    "fileMatch": ["\\.requirements$"]
+  }
 }
