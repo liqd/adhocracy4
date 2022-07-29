@@ -1,5 +1,5 @@
 bleach==5.0.1
-Django==3.2.14
+Django==4.0.6
 django-allauth==0.51.0
 git+https://github.com/fuzzylogic2000/django-autoslug.git@master#egg=django-autoslug
 django-background-tasks==1.2.5
