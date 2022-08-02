@@ -90,7 +90,10 @@ class CommentSerializer(serializers.ModelSerializer):
         if obj.is_censored or obj.is_removed or obj.is_blocked:
             return None
         try:
-            if obj.creator.avatar_fallback:
+            if obj.project.is_app_accessible:
+                if obj.creator.avatar_fallback_png:
+                    return obj.creator.avatar_fallback_png
+            elif obj.creator.avatar_fallback:
                 return obj.creator.avatar_fallback
         except AttributeError:
             pass
