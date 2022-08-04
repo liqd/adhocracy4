@@ -41,6 +41,7 @@ class CommentSerializer(serializers.ModelSerializer):
     user_name = serializers.SerializerMethodField()
     user_profile_url = serializers.SerializerMethodField()
     user_image = serializers.SerializerMethodField()
+    user_image_fallback = serializers.SerializerMethodField()
     is_deleted = serializers.SerializerMethodField()
     ratings = serializers.SerializerMethodField()
     author_is_moderator = serializers.SerializerMethodField()
@@ -53,8 +54,8 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         read_only_fields = ('modified', 'created', 'id',
-                            'user_name', 'user_image', 'ratings',
-                            'content_type', 'object_pk',
+                            'user_name', 'user_image', 'user_image_fallback',
+                            'ratings', 'content_type', 'object_pk',
                             'comment_content_type', 'user_info')
         exclude = ('creator',)
 
@@ -85,6 +86,12 @@ class CommentSerializer(serializers.ModelSerializer):
             return _('unknown user')
         return obj.creator.get_short_name()
 
+    def _build_absolute_image_uri(self, image_url):
+        request = self.context.get('request', None)
+        if request is not None:
+            return request.build_absolute_uri(image_url)
+        return image_url
+
     def get_user_image_fallback(self, obj):
         """Load small thumbnail images for default user images."""
         if obj.is_censored or obj.is_removed or obj.is_blocked:
@@ -92,9 +99,11 @@ class CommentSerializer(serializers.ModelSerializer):
         try:
             if obj.project.is_app_accessible:
                 if obj.creator.avatar_fallback_png:
-                    return obj.creator.avatar_fallback_png
+                    url = obj.creator.avatar_fallback_png
+                    return self._build_absolute_image_uri(url)
             elif obj.creator.avatar_fallback:
-                return obj.creator.avatar_fallback
+                url = obj.creator.avatar_fallback
+                return self._build_absolute_image_uri(url)
         except AttributeError:
             pass
         return None
@@ -106,10 +115,10 @@ class CommentSerializer(serializers.ModelSerializer):
         try:
             if obj.creator.avatar:
                 avatar = get_thumbnailer(obj.creator.avatar)['avatar']
-                return avatar.url
+                return self._build_absolute_image_uri(avatar.url)
         except AttributeError:
             pass
-        return self.get_user_image_fallback(obj)
+        return None
 
     def get_author_is_moderator(self, obj):
         return obj.project.has_moderator(obj.creator)

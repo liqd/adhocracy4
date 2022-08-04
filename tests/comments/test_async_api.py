@@ -361,7 +361,7 @@ def test_fields(user, apiclient, question_ct, question):
     assert not response.data['use_org_terms_of_use']
 
     commentDict = response.data['results'][0]
-    assert len(commentDict) == 21
+    assert len(commentDict) == 22
     assert 'child_comments' in commentDict
     assert 'comment' in commentDict
     assert 'comment_categories' in commentDict

@@ -14,7 +14,7 @@ const CommentList = (props) => {
               user_name={comment.user_name}
               user_pk={comment.user_pk}
               user_profile_url={comment.user_profile_url}
-              user_image={comment.user_image}
+              user_image={comment.user_image ? comment.user_image : comment.user_image_fallback}
               child_comments={comment.child_comments}
               created={comment.created}
               modified={comment.modified}
