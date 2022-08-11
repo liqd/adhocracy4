@@ -35,7 +35,7 @@
       },
       {
         "matchPackageNames": ["Django"],
-        "allowedVersions": "<=3.2"
+        "allowedVersions": "=3.2"
       }
     ],
 
