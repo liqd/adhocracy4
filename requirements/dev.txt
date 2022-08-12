@@ -2,7 +2,7 @@
 factory-boy==3.2.1
 Faker==14.0.0
 flake8==4.0.1
-freezegun==1.2.1
+freezegun==1.2.2
 isort==5.10.1
 psycopg2-binary==2.9.3
 pytest==7.1.2
