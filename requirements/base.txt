@@ -16,7 +16,7 @@ zeep==4.1.0
 
 # Inherited a4-core requirements
 bleach==4.1.0
-Django==3.2.13
+Django==3.2.15
 django-allauth==0.50.0
 git+https://github.com/fuzzylogic2000/django-autoslug.git@master#egg=django-autoslug
 django-background-tasks==1.2.5
