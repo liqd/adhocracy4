@@ -28,8 +28,14 @@
       {
         "matchPackageNames": ["mapbox-gl"],
         "enabled": false
+      },
+      {
+        "matchPackageNames": ["Django"],
+        "allowedVersions": "=3.2"
       }
     ],
 
-  "schedule": ["on tuesday"]
+  "pip_requirements": {
+    "fileMatch": ["^requirements/.*\\.txt$"]
+  }
 }
