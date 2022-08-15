@@ -78,7 +78,7 @@ class CommentSerializer(serializers.ModelSerializer):
         """
         Don't show username if comment is marked removed or censored
         """
-        if(obj.is_censored or obj.is_removed):
+        if (obj.is_censored or obj.is_removed):
             return _('unknown user')
         return str(obj.creator.username)
 

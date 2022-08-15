@@ -22,9 +22,8 @@ class CommentViewSet(mixins.CreateModelMixin,
                      ContentTypeMixin,
                      viewsets.GenericViewSet):
 
-    """Attention: This class is deprecated, use comments_async.api.CommentViewSet
-    instead
-    """
+    """Attention: This class is deprecated, use
+     comments_async.api.CommentViewSet instead"""
 
     queryset = Comment.objects.all().order_by('-created')
     serializer_class = ThreadSerializer
