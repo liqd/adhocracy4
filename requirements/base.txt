@@ -1,4 +1,4 @@
-bleach==5.0.1
+bleach[css]==5.0.1
 Django==3.2.15
 django-allauth==0.51.0
 git+https://github.com/fuzzylogic2000/django-autoslug.git@master#egg=django-autoslug
@@ -9,7 +9,7 @@ django-filter==21.1
 django-multiselectfield==0.1.12
 django-widget-tweaks==1.4.12
 djangorestframework==3.13.1
-easy-thumbnails==2.8.1
+easy-thumbnails[svg]==2.8.3
 html5lib==1.1
 jsonfield==3.1.0
 python-dateutil==2.8.2
