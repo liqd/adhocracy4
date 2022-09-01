@@ -15,6 +15,53 @@ START = Verbs.START.value
 
 
 @pytest.mark.django_db
+def test_phase_started(phase_factory):
+
+    phase = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+
+    project = phase.module.project
+
+    action_count = Action.objects.filter(verb=START).count()
+    assert action_count == 0
+
+    with freeze_time('2013-01-01 17:30:00 UTC'):
+        call_command('create_system_actions')
+        action_count = Action.objects.filter(verb=START).count()
+        action_phase = Action.objects.filter(verb=START)[0]
+        action_project = Action.objects.filter(verb=START)[1]
+
+        # actions for phase and project started
+        assert action_count == 2
+        assert action_phase.obj == phase
+        assert action_phase.verb == START
+        assert action_phase.project == project
+        assert action_project.obj == project
+        assert action_project.verb == START
+
+
+@pytest.mark.django_db
+def test_draft_phase_started(phase_factory, module_factory):
+
+    module = module_factory(is_draft=True)
+    phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC'),
+        module=module
+    )
+
+    action_count = Action.objects.filter(verb=START).count()
+    assert action_count == 0
+
+    with freeze_time('2013-01-01 17:30:00 UTC'):
+        call_command('create_system_actions')
+        action_count = Action.objects.filter(verb=START).count()
+        assert action_count == 0
+
+
+@pytest.mark.django_db
 def test_phase_end_later(phase_factory):
 
     phase_factory(
@@ -49,6 +96,25 @@ def test_phase_end_tomorrow(phase_factory):
         assert action.obj == phase
         assert action.verb == SCHEDULE
         assert action.project == project
+
+
+@pytest.mark.django_db
+def test_draft_phase_end_tomorrow(phase_factory, module_factory):
+
+    module = module_factory(is_draft=True)
+    phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC'),
+        module=module
+    )
+
+    action_count = Action.objects.filter(verb=SCHEDULE).count()
+    assert action_count == 0
+
+    with freeze_time('2013-01-01 17:30:00 UTC'):
+        call_command('create_system_actions')
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
+        assert action_count == 0
 
 
 @pytest.mark.django_db
