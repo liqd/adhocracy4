@@ -42,7 +42,7 @@
     "react-bootstrap-typeahead": "5.2.2",
     "react-cookie": "4.1.1",
     "react-flip-move": "3.0.4",
-    "react-sticky-box": "0.9.3",
+    "react-sticky-box": "1.0.2",
     "react-test-renderer": "17.0.2",
     "sass-loader": "12.6.0",
     "sass-planifolia": "0.6.0",
