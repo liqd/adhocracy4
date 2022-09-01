@@ -45,7 +45,9 @@ class Command(BaseCommand):
         """
         phase_ct = ContentType.objects.get_for_model(Phase)
 
-        phases = Phase.objects.start_last(hours=self.phase_started_hours)
+        phases = Phase.objects.filter(
+            module__is_draft=False
+        ).start_last(hours=self.phase_started_hours)
         for phase in phases:
             project = phase.module.project
             existing_action = Action.objects.filter(
@@ -79,7 +81,9 @@ class Command(BaseCommand):
         """
         phase_ct = ContentType.objects.get_for_model(Phase)
 
-        phases = Phase.objects.finish_next(hours=self.phase_ends_hours)
+        phases = Phase.objects.filter(
+            module__is_draft=False
+        ).finish_next(hours=self.phase_ends_hours)
         for phase in phases:
             project = phase.module.project
             existing_action = Action.objects.filter(
