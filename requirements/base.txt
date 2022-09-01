@@ -1,5 +1,5 @@
 # A4
-git+https://github.com/liqd/adhocracy4.git@mB-v2203.1#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@043494bbd9e66e3da0159fa643315d89112db140#egg=adhocracy4
 
 # Additional requirements
 bcrypt==4.0.0
@@ -15,7 +15,7 @@ whitenoise==6.2.0
 zeep==4.1.0
 
 # Inherited a4-core requirements
-bleach==4.1.0
+bleach[css]==5.0.1
 Django==3.2.15
 django-allauth==0.51.0
 git+https://github.com/fuzzylogic2000/django-autoslug.git@master#egg=django-autoslug
