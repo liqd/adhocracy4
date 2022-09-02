@@ -14,7 +14,7 @@
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.4",
-    "acorn": "8.7.1",
+    "acorn": "8.8.0",
     "adhocracy4": "liqd/adhocracy4#043494bbd9e66e3da0159fa643315d89112db140",
     "autoprefixer": "10.4.8",
     "babel-loader": "8.2.5",
