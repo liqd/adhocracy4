@@ -48,7 +48,7 @@ help:
 
 .PHONY: install
 install:
-	npm install --no-save
+	npm install --no-save --legacy-peer-deps
 	npm run build
 	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements/dev.txt
@@ -168,7 +168,7 @@ compilemessages:
 .PHONY: release
 release: export DJANGO_SETTINGS_MODULE ?= meinberlin.config.settings.build
 release:
-	npm install --silent
+	npm install --silent --legacy-peer-deps
 	npm run build:prod
 	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt -q
 	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
