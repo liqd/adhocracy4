@@ -2,10 +2,6 @@
 @mixin grid-tiles($n, $settings: ()) {
     @include clearfix;
 
-    > * {
-        @include grid-same-width($n, $settings);
-    }
-
     @supports (display: grid) {
         display: grid;
         grid-column-gap: _grid-get("gutter", $settings);
@@ -19,13 +15,28 @@
     }
 }
 
-.l-wrapper {
+.container {
     @include clearfix;
     position: relative;
     width: 100%;  // required when used in a flex container
     max-width: $wrapper-width;
     margin: 0 auto;
     padding: 0 $padding;
+}
+
+// to be removed after a4 updated
+.l-wrapper {
+    @extend .container;
+}
+
+.l-center-8 {
+    @extend .col-lg-8;
+    @extend .offset-lg-2;
+}
+
+.l-center-6 {
+    @extend .col-lg-6;
+    @extend .offset-lg-3;
 }
 
 .l-frame {
@@ -38,6 +49,12 @@
     }
 }
 
+.l-flex-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .l-tiles-2,
 .l-tiles-3,
 .l-tiles-4 {
@@ -47,20 +64,6 @@
 }
 
 @media (min-width: $breakpoint) {
-    .l-center-8 {
-        @include grid-width(10);
-        margin: 0 auto;
-    }
-
-    .l-center-6 {
-        @include grid-width(8);
-        margin: 0 auto;
-    }
-
-    .l-col-9-3 {
-        @include grid-span(10, 2);
-    }
-
     .l-tiles-2 {
         @include grid-tiles(2);
     }
@@ -75,18 +78,6 @@
 }
 
 @media (min-width: $breakpoint-md) {
-    .l-center-8 {
-        @include grid-width(8);
-    }
-
-    .l-center-6 {
-        @include grid-width(6);
-    }
-
-    .l-col-9-3 {
-        @include grid-span(9, 3);
-    }
-
     .l-tiles-3 {
         @include grid-tiles(3);
     }
@@ -94,10 +85,4 @@
     .l-tiles-4 {
         @include grid-tiles(4);
     }
-}
-
-.l-flex-row {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
 }

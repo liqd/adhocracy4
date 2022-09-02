@@ -29,7 +29,7 @@
     &.active a,
     &.active button {
         background-color: $link-color;
-        color: contrast-color($link-color);
+        color: $text-color-inverted;
         border-color: $link-color;
     }
 }

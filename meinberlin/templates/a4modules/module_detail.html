@@ -20,7 +20,7 @@
     {% if project.is_draft %}
         <ul class="messages">
             <li class="alert alert--warning" role="alert">
-                <div class="l-wrapper">
+                <div class="container">
                     {% trans 'This project is not published yet.' %}
                 </div>
             </li>
@@ -29,7 +29,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
+    <div class="container">
         {% if module.is_in_module_cluster  %}
             <div class="u-align-right u-spacer-bottom-double">
             {% if module.previous_module_in_cluster %}
@@ -47,7 +47,7 @@
             {% endif %}
             </div>
         {% endif %}
-        <div class="l-center-6 project-header">
+        <div class="offset-lg-3 col-lg-6 project-header">
             <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
                 <ul>
                     <li>
@@ -72,15 +72,15 @@
         </div>
     </div>
     {% include "a4modules/includes/module_detail_phase.html" %}
-    <div class="l-wrapper">
-        <div class="l-center-6">
+    <div class="container">
+        <div class="offset-lg-3 col-lg-6">
         {% block project_action %}{% endblock %}
         </div>
     </div>
     {% block phase_content %}{% endblock %}
 
     {% if module.is_in_module_cluster %}
-    <div class="l-wrapper">
+    <div class="container">
         <div class="participation-tile__wrapper">
             <div class="participation-tile__list-container">
                 <ul class="u-list-reset participation-tile__list">

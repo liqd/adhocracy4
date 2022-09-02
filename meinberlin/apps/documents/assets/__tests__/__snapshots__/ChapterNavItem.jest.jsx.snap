@@ -3,14 +3,18 @@
 exports[`ChapterNavItem bottom renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="commenting"
+    class="row"
   >
-    <button
-      class="commenting__content commenting--toc__button btn btn--light btn--small"
-      type="button"
+    <div
+      class="commenting__content"
     >
-      4. Chapter name
-    </button>
+      <button
+        class="commenting--toc__button btn btn--light btn--small"
+        type="button"
+      >
+        4. Chapter name
+      </button>
+    </div>
     <div
       class="commenting__actions btn-group"
       role="group"
@@ -56,14 +60,18 @@ exports[`ChapterNavItem bottom renders correctly 1`] = `
 exports[`ChapterNavItem middle renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="commenting"
+    class="row"
   >
-    <button
-      class="commenting__content commenting--toc__button btn btn--light btn--small"
-      type="button"
+    <div
+      class="commenting__content"
     >
-      3. Chapter name
-    </button>
+      <button
+        class="commenting--toc__button btn btn--light btn--small"
+        type="button"
+      >
+        3. Chapter name
+      </button>
+    </div>
     <div
       class="commenting__actions btn-group"
       role="group"
@@ -109,14 +117,18 @@ exports[`ChapterNavItem middle renders correctly 1`] = `
 exports[`ChapterNavItem top renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="commenting"
+    class="row"
   >
-    <button
-      class="commenting__content commenting--toc__button btn btn--light btn--small active"
-      type="button"
+    <div
+      class="commenting__content"
     >
-      1. Chapter name
-    </button>
+      <button
+        class="commenting--toc__button btn btn--light btn--small active"
+        type="button"
+      >
+        1. Chapter name
+      </button>
+    </div>
     <div
       class="commenting__actions btn-group"
       role="group"

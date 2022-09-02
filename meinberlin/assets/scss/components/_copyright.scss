@@ -1,6 +1,6 @@
 .copyright {
     background-color: rgba(black, 0.55);
-    color: contrast-color(black);
+    color: $text-color-inverted;
     font-size: $font-size-xs;
     padding: 0 0.2em;
     overflow-wrap: break-word;

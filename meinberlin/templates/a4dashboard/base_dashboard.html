@@ -9,8 +9,8 @@
 {% if user_may_add %}
     {% block dashboard_nav %}
         <div class="tablist tablist--right u--bg-secondary">
-            <div class="l-wrapper">
-                <div class="tablist__left tablist--mobile dropdown">
+            <div class="container">
+                <div class="tablist--left tablist--mobile dropdown">
                     {% if view.other_organisations_of_user %}
                         <button
                                 title="{% trans 'Organisations' %}"
@@ -61,7 +61,7 @@
     {% endblock %}
 {% endif %}
 
-<div class="l-wrapper">
+<div class="container">
     {% block dashboard_content %}{% endblock %}
 </div>
 

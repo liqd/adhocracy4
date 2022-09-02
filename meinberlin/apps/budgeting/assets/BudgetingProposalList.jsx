@@ -90,8 +90,8 @@ export const BudgetingProposalList = (props) => {
     <>
       {(props.is_voting_phase && meta?.token_info) &&
         <div className="module-content--light">
-          <div className="l-wrapper">
-            <div className="l-center-6">
+          <div className="container">
+            <div className="offset-lg-3 col-lg-6">
               <CountDown
                 countText={getVoteCountText(meta?.token_info.num_votes_left)}
                 activeClass="btn btn--transparent btn--full u-spacer-bottom btn--huge u-primary"
@@ -106,8 +106,8 @@ export const BudgetingProposalList = (props) => {
         onChangeFilters={filterString => onChangeFilters(filterString)}
       />
       <div className="module-content--light">
-        <div className="l-wrapper">
-          <div className="l-center-8">
+        <div className="container">
+          <div className="col-lg-8">
             {renderList(data)}
           </div>
         </div>

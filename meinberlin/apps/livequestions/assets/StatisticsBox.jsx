@@ -46,8 +46,8 @@ export default class StatisticsBox extends React.Component {
 
     return (
       <div className="module-content--light">
-        <div className="l-wrapper">
-          <div className="l-center-8">
+        <div className="container">
+          <div className="offset-lg-2 col-lg-8">
             {this.props.categories.length > 0 &&
               <div>
                 <h3>{categoriesAnsweredTag}</h3>

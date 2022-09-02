@@ -21,7 +21,7 @@
     {% if plan.is_draft %}
         <ul class="messages">
             <li class="alert alert--warning" role="alert">
-                <div class="l-wrapper">
+                <div class="container">
                     {% trans 'This plan is not published yet.' %}
                 </div>
             </li>
@@ -30,7 +30,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
+    <div class="container">
         <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
             <ul>
                 <li>
@@ -40,7 +40,7 @@
                 </li>
             </ul>
         </nav>
-        <div class="l-center-6">
+        <div class="offset-lg-3 col-lg-6">
 
             <div class="item-detail">
                 <h1 class="item-detail__title u-break-word">
@@ -230,7 +230,7 @@
 
     {% if object.published_projects %}
     <div class="item-detail-2__project-list">
-        <div class="l-wrapper">
+        <div class="container">
             <h3 class="item-detail-2__project-title" id="participation-plans">
                 {% trans "Participation projects" %}
             </h3>

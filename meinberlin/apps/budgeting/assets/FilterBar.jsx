@@ -49,8 +49,8 @@ export const FilterBar = props => {
   }, [filterObject, filterString])
 
   return (
-    <div className="l-wrapper u-spacer-bottom u-spacer-top-double">
-      <div className="l-center-8">
+    <div className="container u-spacer-bottom u-spacer-top-double">
+      <div className="offset-lg-2 col-lg-8">
         <div className="control-bar control-bar--list">
           <FilterBarListMapSwitch query={filterString} />
           {props.filters &&

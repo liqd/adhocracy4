@@ -1,8 +1,8 @@
 {% load i18n rules thumbnail wagtailcore_tags contrib_tags ckeditor_tags %}
 
 <div class="project-header">
-    <div class="l-wrapper">
-        <div class="l-center-8">
+    <div class="container">
+        <div class="offset-lg-2 col-lg-8">
             <div class="project-header__logo-wrapper">
                 <img class="project-header__logo" src="{% thumbnail container.tile_image 'logo' %}" alt="" />
                 <div class="project-header__logo-body">
@@ -21,8 +21,8 @@
 </div>
 
 <div class="tablist tablist--left">
-    <div class="l-wrapper">
-        <div class="tablist__right">
+    <div class="container">
+        <div class="tablist--right">
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
             {% if user_may_change %}
                 <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small">{% trans 'Edit' %}</a>
@@ -60,8 +60,8 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-information"
     aria-expanded="false">
-    <div class="l-wrapper">
-        <div class="l-center-8">
+    <div class="container">
+        <div class="offset-lg-2 col-lg-8">
             {{ project.information | transform_collapsibles | richtext }}
         </div>
     </div>
@@ -73,7 +73,7 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-participation"
     aria-expanded="true">
-    <div class="l-wrapper">
+    <div class="container">
         {% filter_has_perm 'a4projects.view_project' request.user container.published_not_archived_projects.all as filtered_projects %}
         {% if filtered_projects|length > 0 %}
             <ul class="u-list-reset participation-tile__list">

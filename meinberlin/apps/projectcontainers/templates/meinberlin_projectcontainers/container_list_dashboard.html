@@ -21,7 +21,7 @@
             </div>
         {% else %}
             <div class="lr-bar__flex--wrapper lr-bar__actions">
-                <a href="{% url 'a4dashboard:container-create' organisation_slug=view.organisation.slug %}" class="btn">
+                <a href="{% url 'a4dashboard:container-create' organisation_slug=view.organisation.slug %}" class="btn btn--primary">
                     {% trans 'New Container' %}
                 </a>
             </div>

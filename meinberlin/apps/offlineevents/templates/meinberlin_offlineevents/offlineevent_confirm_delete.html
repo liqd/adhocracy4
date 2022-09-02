@@ -4,7 +4,7 @@
 {% block title %}{% trans 'Confirm Offline Event Deletion' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_project_content %}
-<div class="l-wrapper">
+<div class="container">
     <h1 class="u-first-heading">{% trans 'Are you sure you want to delete the offline event?' %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">

@@ -21,15 +21,15 @@
 {% endblock %}
 
 {% block phase_content %}
-    <div class="l-wrapper u-spacer-bottom u-spacer-top-double">
-        <div class="l-center-8">
+    <div class="container u-spacer-bottom u-spacer-top-double">
+        <div class="offset-lg-2 col-lg-8">
             {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
         </div>
     </div>
     {% if view.mode == 'map' %}
         <div class="map-list">
             <div class="map-list__controls">
-                <div class="l-wrapper">
+                <div class="container">
                     <div class="leaflet-control-zoom leaflet-bar leaflet-control">
                         <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% trans 'Zoom in' %}">+</a>
                         <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% trans 'Zoom out' %}">-</a>
@@ -48,8 +48,8 @@
         </div>
     {% else %}
         <div class="module-content--light">
-            <div class="l-wrapper">
-                <div class="l-center-8">
+            <div class="container">
+                <div class="offset-lg-2 col-lg-8">
                     {% if object_list.count > 0 %}
                         <ul class="u-list-reset">
                             {% for object in object_list %}

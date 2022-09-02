@@ -9,7 +9,7 @@ const addParagraphStr = django.gettext('Add a new paragraph')
 const ChapterForm = (props) => {
   return (
     <section className="u-spacer-bottom-double">
-      <div className="commenting">
+      <div className="row">
         <div className="form-group commenting__content">
           <label htmlFor={'id_chapters-' + props.id + '-name'}>
             {chapterTitleStr}

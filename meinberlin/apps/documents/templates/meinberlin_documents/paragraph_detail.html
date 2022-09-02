@@ -4,8 +4,8 @@
 {% block title %}{{ paragraph.name }} &mdash; {{ paragraph.chapter.project.name }} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="l-wrapper">
-    <div class="l-center-6">
+<div class="container">
+    <div class="offset-lg-3 col-lg-6">
         <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
             <ul>
                 <li>
@@ -26,7 +26,7 @@
         </article>
     </div>
 
-    <div class="l-center-6">
+    <div class="offset-lg-3 col-lg-6">
         {% react_comments_async paragraph %}
     </div>
 </div>

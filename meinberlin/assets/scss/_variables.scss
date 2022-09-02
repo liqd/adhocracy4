@@ -73,10 +73,6 @@ $hero-height: 41rem !default;
 $hero-height-secondary: 30rem !default;
 $hero-height-mobile: 10.4rem !default;
 
-@include grid-set('gutter', $padding);
-$planifolia-contrast-dark-default: $text-color;
-$planifolia-contrast-light-default: $text-color-inverted;
-
 $enable-caret: false;
 
 $idea-remark-bg: #faf5d1 !default;

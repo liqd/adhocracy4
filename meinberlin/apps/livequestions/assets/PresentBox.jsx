@@ -49,8 +49,8 @@ export default class PresentBox extends React.Component {
   render () {
     if (this.state.questions.length > 0) {
       return (
-        <div className="l-wrapper">
-          <div className="l-center-8">
+        <div className="container">
+          <div className="offset-lg-2 col-lg-8">
             <div className="item-detail-2__content live_question__presentation" />
             {this.state.questions.map((question, index) => {
               return (
@@ -68,8 +68,8 @@ export default class PresentBox extends React.Component {
       )
     } else {
       return (
-        <div className="l-wrapper">
-          <div className="l-center-6 live_question__presentation u-spacer-bottom-double">
+        <div className="container">
+          <div className="offset-lg-3 col-lg-6 live_question__presentation u-spacer-bottom-double">
             <h1 className="u-align-center">{this.props.title}</h1>
           </div>
         </div>

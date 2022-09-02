@@ -4,8 +4,8 @@
 {% block title %}{% trans 'Submit a development plan statement' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="l-wrapper">
-    <div class="l-center-8">
+<div class="container">
+    <div class="offset-lg-2 col-lg-8">
         <h2>{% trans 'Submit a development plan statement' %}</h2>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">

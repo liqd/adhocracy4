@@ -46,10 +46,10 @@
 
 @media (min-width: $breakpoint) {
     .upload-wrapper__fields {
-        @include grid-span(5, 0, ("columns": 9));
+        // @include grid-span(5, 0, ("columns": 9));
     }
 
     .upload-wrapper__preview {
-        @include grid-span(4, 5, ("columns": 9));
+        // @include grid-span(4, 5, ("columns": 9));
     }
 }

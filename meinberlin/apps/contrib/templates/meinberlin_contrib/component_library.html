@@ -4,7 +4,7 @@
 {% block title %}Component Library &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="l-wrapper">
+<div class="container">
     <div class="l-menu">
         <div class="l-menu__menu">
             <nav class="dashboard-nav">
@@ -399,25 +399,25 @@
                 <span title="`messages` behaves differently if it is the first child in a block"></span>
                 <ul class="messages">
                     <li class="alert alert--success" role="alert">
-                        <div class="l-wrapper">
+                        <div class="container">
                             Success
                             <button class="alert__close">X</button>
                         </div>
                     </li>
                     <li class="alert alert--info" role="alert">
-                        <div class="l-wrapper">
+                        <div class="container">
                             Info
                             <button class="alert__close">X</button>
                         </div>
                     </li>
                     <li class="alert alert--warning" role="alert">
-                        <div class="l-wrapper">
+                        <div class="container">
                             Warning
                             <button class="alert__close">X</button>
                         </div>
                     </li>
                     <li class="alert alert--danger" role="alert">
-                        <div class="l-wrapper">
+                        <div class="container">
                             Danger
                             <button class="alert__close">X</button>
                         </div>
@@ -440,7 +440,7 @@
                     </p>
                 </div>
                 <div class="block block--cta">
-                    <div class="l-wrapper">
+                    <div class="container">
                         <div class="rich-text">
                             <h2>Call to action block</h2>
                             <p>
@@ -593,7 +593,7 @@
             <h2 id="cl-commenting">Commenting</h2>
 
             <div class="cl-example">
-                <div class="commenting">
+                <div class="row">
                     <div class="commenting__content">
                         {% lorem random %}
                     </div>
@@ -611,9 +611,11 @@
                     </div>
                     {% endspaceless %}
                 </div>
-                <div class="commenting">
-                    <div class="commenting__content commenting__content--border">
-                        {% lorem random %}
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="commenting__content--border">
+                            {% lorem random %}
+                        </div>
                     </div>
                     <div class="commenting__actions">
                         <button class="btn btn--light btn--small" title="Delete" type="button">
@@ -621,20 +623,24 @@
                         </button>
                     </div>
                 </div>
-                <div class="commenting commenting--toc">
-                    <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small">
+                <div class="row">
+                    <div class="commenting__content">
+                    <button type="button" class="commenting--toc__button btn btn--light btn--small">
                         1. Title
                     </button>
+                    </div>
                     <div class="commenting__actions">
                         <button class="btn btn--light btn--small" title="Delete" type="button">
                             <i class="fas fa-trash-alt" aria-label="Delete"></i>
                         </button>
                     </div>
                 </div>
-                <div class="commenting commenting--toc">
-                    <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small active">
-                        2. Title (active)
-                    </button>
+                <div class="row">
+                    <div class="commenting__content">
+                        <button type="button" class="commenting--toc__button btn btn--light btn--small active">
+                            2. Title (active)
+                        </button>
+                    </div>
                     <div class="commenting__actions">
                         <button class="btn btn--light btn--small" title="Delete" type="button">
                             <i class="fas fa-trash-alt" aria-label="Delete"></i>
@@ -889,41 +895,6 @@
                 </section>
             </div>
 
-            <h2 id="cl-embed-code">Embed Code Interface</h2>
-
-            <div class="cl-example">
-                <div class="form-group">
-                    <label for="embed-code-spatial-idea-collection-2">Embed Code</label>
-                    <textarea id="embed-code-spatial-idea-collection-2" readonly=""></textarea>
-                </div>
-            </div>
-
-            <h2 id="cl-embed-layout">Embed Layout</h2>
-
-            <div class="cl-example">
-                <html class="embed">
-
-                <body>
-                    <header class="embed-header">
-                        You are logged in as Username
-                        <a href="#" class="btn btn--light" target="_blank">Logout</a>
-                        <div id="embed-status" class="embed-status"></div>
-                    </header>
-                    <main class="embed-main">
-                        <p>This is where the actual content of the embed will be.</p>
-                        <p>The class embed status left in above is only an empty div before embed.js puts stuff in there.</p>
-                    </main>
-                    <footer class="embed-footer">
-                        <a href="/" target="_blank">
-                            <img src="" alt="mein.berlin Logo" class="embed-footer__logo">
-                        </a>
-                        <a href="#" data-embed-target="external">Go to platform</a>
-                    </footer>
-                </body>
-
-                </html>
-            </div>
-
             <h2 id="cl-control_bar">Filter Bar and Input Group</h2>
 
             <div class="cl-example">
@@ -967,7 +938,7 @@
                             </div>
                         </div>
                         <div class="module-content">
-                            <div class="l-wrapper">
+                            <div class="container">
                                 <ul class="u-list-reset">
                                     <li class="list-item list-item--squashed">
                                         {% lorem 20 w random %}
@@ -1084,7 +1055,7 @@
 
                 <div class="cl-example">
                     <footer class="main-footer">
-                        <div class="l-wrapper">
+                        <div class="container">
                             <div class="shariff" data-theme="white">
                                 <ul class="theme-white orientation-horizontal col-4">
                                     <li class="shariff-button twitter">
@@ -1122,7 +1093,7 @@
 
                 <div class="cl-example">
                     <header class="main-header">
-                        <div class="l-wrapper">
+                        <div class="container">
                             <nav class="main-nav">
                                 <div class="main-nav__nav-item">
                                     <button
@@ -1185,15 +1156,7 @@
                 <h2 id="cl-hero-unit">Hero Unit</h2>
 
                 <div class="cl-example">
-                    <div class="hero-unit">
-                        <div class="hero-unit__wrapper">
-                            <h1 class="hero-unit__title u-first-heading">Hero Unit Title - the hero unit is used on the (wagtail) landing page</h1>
-                            <div class="hero-unit__subtitle">And a subtitle!</div>
-                        </div>
-                        <div class="hero-unit__img">
-                            <div class="hero-unit__copyright copyright">© Copyright</div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <h2 ID="cl-overlapping-ctrl-bar">Overlapping Control Bars</h2>
@@ -1201,8 +1164,8 @@
                 <div class="cl-example">
                     <div class="control-bar">
 
-                        <div class="l-wrapper">
-                            <div class="l-center-8">
+                        <div class="container">
+                            <div class="offset-lg-2 col-lg-8">
                                 <div class="control-bar">
                                     <span class="btn btn--light is-disabled">
                                         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -1217,7 +1180,7 @@
                         </div>
                     </div>
                     <div class="module-content">
-                        <div class="l-wrapper">
+                        <div class="container">
                             <ul class="u-list-reset">
                                 <li class="list-item list-item--squashed">
                                     {% lorem 20 w random %}
@@ -1269,7 +1232,7 @@
 
                 <div class="cl-example">
                     <div class="block block--infographic">
-                        <div class="l-wrapper">
+                        <div class="container">
                             <div class="block--infographic__body">
                                 <div class="block--infographic__icon-block">
                                     <div class="block--infographic__icon">
@@ -1304,7 +1267,7 @@
                             </div>
                         </div>
                         <div class="dialogue-box__container">
-                            <div class="l-wrapper dialogue-box">
+                            <div class="container dialogue-box">
                                 <div class="dialogue-box__left"></div>
                                 <div class="dialogue-box__right"></div>
                             </div>
@@ -1430,8 +1393,8 @@
 
                 <div class="cl-example">
                     <div class="module-content">
-                        <div class="l-wrapper">
-                            <div class="l-center-8">
+                        <div class="container">
+                            <div class="offset-lg-2 col-lg-8">
                                 <ul class="u-list-reset">
                                     <li class="list-item list-item--squashed">
                                         <div class="list-item__stats">
@@ -1477,8 +1440,8 @@
                         </div>
                     </div>
                     <div class="module-content--light">
-                        <div class="l-wrapper">
-                            <div class="l-center-8">
+                        <div class="container">
+                            <div class="offset-lg-2 col-lg-8">
                                 <ul class="u-list-reset">
                                     <li class="list-item">
                                         <div class="list-item__stats">
@@ -1651,16 +1614,16 @@
                     <h2 id="cl-menu-layout">Menu Layout</h2>
 
                     <div class="cl-example">
-                        <div class="l-menu">
-                            <nav class="l-menu__menu" aria-label="">
+                        <div class="row">
+                            <nav class="col-lg-3" aria-label="">
                                 <div class="dashboard-nav">
                                     <div class="dashboard-nav__item">Left Menu - Project nav</div>
                                 </div>
                             </nav>
-                            <div class="l-menu__content l-menu__content--aside">
+                            <div class="col-lg-6">
                                 <h1 class="u-first-heading">Dashbored content</h1>
                             </div>
-                            <div class="l-menu__aside">
+                            <div class="col-lg-3">
                                 <div class="progress-box">Right Menu - Progress</div>
                             </div>
                         </div>
@@ -1669,7 +1632,7 @@
                     <h2 id="cl-module">Moderato Statement</h2>
 
                     <div class="cl-example">
-                        <div class="l-center-8">
+                        <div class="offset-lg-2 col-lg-8">
                             <div class="moderator-statement">
                                 <h2 class="moderator-statement__title">Official Statement</h2>
                                 <div class="moderator-statement__subtitle">
@@ -1684,13 +1647,13 @@
 
                     <div class="cl-example">
                         <div class="module-content">
-                            <div class="l-wrapper">
+                            <div class="container">
                                 <h2>Module Content</h2>
                                 This is where the module content is normally shown on a grey background.
                             </div>
                         </div>
                         <div class="module-content--light">
-                            <div class="l-wrapper">
+                            <div class="container">
                                 <h2>Module Content Light</h2>
                                 This is where the module content is normally shown on a white background.
                             </div>
@@ -1796,7 +1759,7 @@
                     <h2 id="cl-poll">Poll and Radio</h2>
 
                     <div class="cl-example">
-                        <div class="l-center-8">
+                        <div class="offset-lg-2 col-lg-8">
                             <div>
                                 <form class="poll">
                                     <h2>First question, can click more than one answer</h2>
@@ -1846,7 +1809,7 @@
 
                     <div class="cl-example">
                         <div class="portal-header">
-                            <div class="l-wrapper">
+                            <div class="container">
                                 <div class="portal-header__red-line"></div>
                                 <a class="portal-header__logo" href="http://www.berlin.de/">
                                     <img src="/static/images/berlin_de.png" alt="Zur Homepage von Berlin.de">
@@ -1902,8 +1865,8 @@
 
                     <div class="cl-example" style="padding-top: 76px">
                         <div class="project-header project-header--image">
-                            <div class="l-wrapper">
-                                <div class="l-center-6">
+                            <div class="container">
+                                <div class="offset-lg-3 col-lg-6">
                                     <h1 class="project-header__title">Project Title</h1>
                                     <p class="project-header__description">Description - dark overlay on header image, with -60px top margin to allow it to sit properly under header line</p>
                                 </div>
@@ -1916,8 +1879,8 @@
 
                     <div class="cl-example">
                         <div class="module-content">
-                            <div class="l-wrapper">
-                                <div class="l-center-8">
+                            <div class="container">
+                                <div class="offset-lg-2 col-lg-8">
                                     <ul class="u-list-reset">
                                         <li class="list-item list-item--squashed">
                                             <div class="list-item__stats">
@@ -2022,7 +1985,7 @@
 
                     <div class="cl-example">
                         <div class="tablist tablist--left">
-                            <div class="l-wrapper">
+                            <div class="container">
                                 <nav class="nav" role="tablist">
                                     <a id="tab-project-3-information" class="tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-information" aria-expanded="false">Tab</a>
                                     <a id="tab-project-3-participation" class="tab active" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-participation" aria-expanded="true">Tab 2</a>
@@ -2076,7 +2039,7 @@
                     <div class="cl-example">
                         <div class="timeline-carousel__wrapper">
                             <div class="timeline-carousel">
-                                <div class="l-wrapper">
+                                <div class="container">
                                     <div id="timeline-carousel" data-initial-slide="1">
                                         <div class="timeline-carousel__line"></div>
                                         <div class="timeline-carousel__item slick-initialized slick-slider">

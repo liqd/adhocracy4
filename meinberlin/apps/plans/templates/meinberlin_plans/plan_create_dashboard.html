@@ -5,7 +5,7 @@
 
 {% block dashboard_nav %}
 <div class="u--bg-secondary u-spacer-bottom-double">
-    <div class="l-wrapper dashboard-nav__breadcrumb">
+    <div class="container dashboard-nav__breadcrumb">
         <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
             <ul>
                 <li>
@@ -20,15 +20,15 @@
 {% endblock %}
 
 {% block dashboard_content %}
-<div class="l-menu">
-    <div class="l-menu__content l-menu__content--aside">
+<div class="row">
+    <div class="offset-lg-3 col-lg-6">
         <h1 class="u-first-heading">{% trans 'Add a new plan' %}</h1>
 
         {% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug as cancel %}
         {% include "meinberlin_plans/includes/plan_form.html" with cancel=cancel %}
     </div>
 
-    <div class="l-menu__aside">
+    <div class="col-lg-3">
         <ul class="progress-line u-spacer-bottom">
             <li class="progress-line__entry">
                 <span class="progress-line__line--bottom"></span>

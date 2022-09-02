@@ -11,8 +11,8 @@
 
     <article class="module-content--light">
         {% if chapter_list %}
-        <div class="l-wrapper">
-            <div class="l-center-8">
+        <div class="container">
+            <div class="offset-lg-2 col-lg-8">
                 {% if chapter_list|length > 1 %}
                     <nav class="doc-toc" aria-label="{% trans 'Table of Contents' %}">
                         <button
@@ -66,8 +66,8 @@
             </div>
         </div>
         {% else %}
-        <div class="l-wrapper">
-            <div class="l-center-8">
+        <div class="container">
+            <div class="offset-lg-2 col-lg-8">
                 {% trans 'A Document has not been added yet' %}
             </div>
         </div>
@@ -81,8 +81,8 @@
     {% endif %}
 
 
-    <div class="l-wrapper">
-        <div class="l-center-8">
+    <div class="container">
+        <div class="offset-lg-2 col-lg-8">
             {% if object %}
             {% react_comments_async object %}
             {% endif %}

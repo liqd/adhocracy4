@@ -19,7 +19,7 @@
     {% if project.is_draft %}
         <ul class="messages">
             <li class="alert alert--warning" role="alert">
-                <div class="l-wrapper">
+                <div class="container">
                     {% trans 'This project is not published yet.' %}
                 </div>
             </li>
@@ -31,8 +31,8 @@
     <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
                    background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                    {% endif %}">
-        <div class="l-wrapper">
-            <div class="l-center-6">
+        <div class="container">
+            <div class="offset-lg-3 col-lg-6">
                 {% with container=project.containers.first %}
                     {% if container %}
                         <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
@@ -62,8 +62,8 @@
     </div>
 
     <div class="tablist tablist--left">
-        <div class="l-wrapper">
-            <div class="tablist__right">
+        <div class="container">
+            <div class="tablist--right">
                 {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
                 {% if user_may_change %}
                     <a
@@ -116,8 +116,8 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-information"
     aria-expanded="false">
-        <div class="l-wrapper">
-            <div class="l-center-8">
+        <div class="container">
+            <div class="offset-lg-2 col-lg-8">
                 {{ project.information | transform_collapsibles | richtext }}
                 {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
                     <div class="l-tiles-2 u-top-divider">
@@ -172,15 +172,15 @@
     aria-labelledby="tab-project-{{ project.pk }}-participation"
     aria-expanded="true">
         {% if project.display_timeline %}
-        <div class="l-wrapper">
+        <div class="container">
             <div class="timeline-carousel__wrapper">
                 {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
             </div>
         </div>
         {% endif %}
         {% if event %}
-        <div class="l-wrapper">
-            <div class="l-center-6">
+        <div class="container">
+            <div class="offset-lg-3 col-lg-6">
                 <h2>{{ event.name }}</h2>
                 <div class="phase-info__item__subtitle">
                   {% html_date event.date 'DATETIME_FORMAT' %}
@@ -189,7 +189,7 @@
             </div>
         </div>
         {% elif view.is_project_view %}
-        <div class="l-wrapper">
+        <div class="container">
             <div class="participation-tile__wrapper">
                 <div class="participation-tile__list-container">
                     <ul class="u-list-reset participation-tile__list">
@@ -204,8 +204,8 @@
         {% include "a4modules/includes/module_detail_phase.html" %}
         {% endif %}
         <!-- these blocks are only filled when in phase view -->
-        <div class="l-wrapper">
-            <div class="l-center-6">
+        <div class="container">
+            <div class="offset-lg-3 col-lg-6">
                 {% block project_action %}{% endblock %}
             </div>
         </div>
@@ -218,8 +218,8 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-result"
     aria-expanded="false">
-        <div class="l-wrapper">
-            <div class="l-center-8">
+        <div class="container">
+            <div class="offset-lg-2 col-lg-8">
                 {% if project.result %}
                     {{ project.result | transform_collapsibles | richtext }}
                 {% else %}

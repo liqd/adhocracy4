@@ -17,15 +17,17 @@ function getErrorCount (props) {
 
 const ChapterNavItem = (props) => {
   return (
-    <div className="commenting">
-      <button
-        type="button"
-        className={classNames('commenting__content', 'commenting--toc__button', 'btn btn--light', 'btn--small', { active: props.active })}
-        onClick={props.onClick}
-      >
-        {props.index + 1}. {props.name}
-        {getErrorCount(props)}
-      </button>
+    <div className="row">
+      <div className="commenting__content">
+        <button
+          type="button"
+          className={classNames('commenting--toc__button', 'btn btn--light', 'btn--small', { active: props.active })}
+          onClick={props.onClick}
+        >
+          {props.index + 1}. {props.name}
+          {getErrorCount(props)}
+        </button>
+      </div>
 
       <div className="commenting__actions btn-group" role="group">
         <button

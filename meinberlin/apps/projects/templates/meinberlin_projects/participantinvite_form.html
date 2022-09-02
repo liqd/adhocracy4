@@ -3,8 +3,8 @@
 
 {% block title %}{% blocktrans with project=participantinvite.project.name %}Project: {{ project }}{% endblocktrans %}{% endblock %}
 {% block content %}
-    <div class="l-wrapper">
-        <div class="l-center-6">
+    <div class="container">
+        <div class="offset-lg-3 col-lg-6">
             <h1>{% blocktrans with project=participantinvite.project.name %}Do you want to join {{ project }}?{% endblocktrans %}</h1>
             {{ form.non_field_errors }}
             <p>

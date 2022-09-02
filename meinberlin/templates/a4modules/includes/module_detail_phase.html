@@ -1,8 +1,8 @@
 {% load i18n contrib_tags meinberlin_project_tags static %}
 
-<div class="l-wrapper">
+<div class="container">
     {% if not module.active_phase %}
-    <div class="l-center-6 u-spacer-bottom">
+    <div class="offset-lg-3 col-lg-6 u-spacer-bottom">
         <strong>
             {% trans 'Participation is not possible at the moment.' %}
             {% if not module.past_phases %}
@@ -19,7 +19,7 @@
     </div>
     {% endif %}
     {% with phase_count=module.phases.count %}
-    <div class="l-center-6">
+    <div class="offset-lg-3 col-lg-6">
         {% for phase in module.phases %}
             <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %} u-spacer-top">
                 <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar u-inline-flex{% endif %}">
@@ -43,8 +43,8 @@
     {% endwith %}
 </div>
 
-<div class="l-wrapper">
-    <div class="l-center-6 u-spacer-bottom-double">
+<div class="container">
+    <div class="offset-lg-3 col-lg-6 u-spacer-bottom-double">
     {% if project.is_private %}
         <div class="">
             <i class="fas fa-lock u-spacer-right" aria-hidden="true"></i>{% trans 'This project is not publicly visible. Only invited users can see content and actively participate.' %}

@@ -28,7 +28,7 @@
         {% else %}
         {% if self.storefront %}
         {% image self.storefront.image max-400x600 as storefront_image %}
-        <div class="l-wrapper">
+        <div class="container">
             <div class="storefront">
                 <div class="storefront__col storefront__first-col u-xs-down-display-none">
                     <div class="storefront__item storefront__img tile__lg u-xs-down-display-none" style="width=100%; background:url({{ storefront_image.url }}) no-repeat; background-size: cover; background-position: bottom;">
@@ -66,9 +66,9 @@
         {% if block.block_type == 'call_to_action' or block.block_type == 'infographic' or block.block_type == 'map_teaser' %}
             {{ block }}
         {% else %}
-        <div class="l-wrapper block__homepage">
+        <div class="container block__homepage">
           {% if block.block_type == 'accordion' %}
-              <div class="l-center-8">
+              <div class="offset-lg-2 col-lg-8">
                   {{ block }}
               </div>
           {% else %}

@@ -1,6 +1,8 @@
 .commenting {
     display: block;
     margin-bottom: $em-spacer;
+
+    @extend .row;
 }
 
 .commenting__content--border {
@@ -22,7 +24,12 @@
     }
 }
 
+.commenting__content {
+    @extend .col-lg-9;
+}
+
 .commenting__actions {
+    @extend .col-lg-3;
     text-align: right;
 }
 
@@ -31,12 +38,7 @@
         @include clearfix;
     }
 
-    .commenting__content {
-        @include grid-span(9, 0);
-    }
-
     .commenting__actions {
-        @include grid-span(3, 9);
         text-align: left;
     }
 }

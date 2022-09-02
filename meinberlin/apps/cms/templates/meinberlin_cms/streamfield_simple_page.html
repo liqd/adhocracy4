@@ -11,8 +11,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
-        <div class="l-center-8">
+    <div class="container">
+        <div class="offset-lg-2 col-lg-8">
             <h1>{{ self.title }}</h1>
             {% for block in self.body %}
             <section>{% include_block block %}</section>

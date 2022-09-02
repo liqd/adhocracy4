@@ -1,8 +1,8 @@
 {% load wagtailcore_tags %}
 
 <div class="block block--cta">
-    <div class="l-wrapper">
-        <div class="l-center-6">
+    <div class="container">
+        <div class="offset-lg-3 col-lg-6">
             {{ value.body|richtext }}
             <a href="{{ value.link }}" class="btn btn--primary">{{ value.link_text }}</a>
         </div>

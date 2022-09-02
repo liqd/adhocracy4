@@ -177,7 +177,7 @@ export default class QuestionBox extends React.Component {
     return (
       <div>
         <div className="tablist mb-0">
-          <div className="l-wrapper">
+          <div className="container">
             <nav className="nav justify-content-center">
               <a
                 id="tab-information"
@@ -222,8 +222,8 @@ export default class QuestionBox extends React.Component {
           aria-labelledby="tab-information"
           aria-hidden="false"
         >
-          <div className="l-wrapper">
-            <div className="l-center-8">
+          <div className="container">
+            <div className="offset-lg-2 col-lg-8">
               {this.props.information}
             </div>
           </div>
@@ -237,8 +237,8 @@ export default class QuestionBox extends React.Component {
           aria-hidden="true"
         >
           {this.props.hasAskQuestionsPermission &&
-            <div className="l-wrapper">
-              <div className="l-center-8">
+            <div className="container">
+              <div className="offset-lg-2 col-lg-8">
                 <QuestionForm
                   restartPolling={this.restartPolling}
                   category_dict={this.props.category_dict}
@@ -248,8 +248,8 @@ export default class QuestionBox extends React.Component {
               </div>
             </div>}
           <div>
-            <div className="l-wrapper">
-              <div className="l-center-8">
+            <div className="container">
+              <div className="offset-lg-2 col-lg-8">
                 <InfoBox
                   isModerator={this.props.isModerator}
                 />
@@ -281,8 +281,8 @@ export default class QuestionBox extends React.Component {
               </div>
             </div>
             <div className="module-content--light u-spacer-bottom">
-              <div className="l-wrapper">
-                <div className="l-center-8">
+              <div className="container">
+                <div className="offset-lg-2 col-lg-8">
                   <QuestionList
                     questions={this.state.filteredQuestions}
                     removeFromList={this.removeFromList.bind(this)}

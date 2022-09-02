@@ -61,7 +61,7 @@
 
 // FIXME this should be refactored - ensure tabs remain on single line mobile
 @media (max-width: $breakpoint-md-down) {
-    .tablist--left > .l-wrapper {
+    .tablist--left > .container {
         padding: 0 0.5 * $spacer;
     }
 }
@@ -69,16 +69,16 @@
 // This element is meant to be in combination with tablist--{opposite}
 // It should contain elements with class .btn.btn--small
 
-.tablist__right,
-.tablist__left {
+.tablist--left,
+.tablist--right {
     font-size: $font-size-sm;
-    float: right;
 
-    &.dropdown {
-        margin-bottom: 0;
+    &.dropdown,
+    .btn {
+        margin-bottom: -1px;
     }
 }
 
-.tablist__left {
-    float: left;
-}
+// .tablist--left {
+//     float: left;
+// }

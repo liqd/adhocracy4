@@ -1,6 +1,6 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="l-center-6">
+<div class="offset-lg-3 col-lg-6">
     <div class="block block--image-cta">
         {% image value.image max-600x200 as image %}
         <a href="{{ value.link }}" class="block--image-cta__img" style="background-image: url({{ image.url }})">

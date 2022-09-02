@@ -14,7 +14,7 @@
 .project-header--image {
     min-height: $hero-height-mobile;
     background-size: cover;
-    color: contrast-color(#000);
+    color: $text-color-inverted;
 
     @media (min-width: $breakpoint) {
         min-height: ($hero-height-mobile + $hero-height-secondary) / 2;
