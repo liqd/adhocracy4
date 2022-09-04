@@ -81,7 +81,7 @@
     "eslint-plugin-n": "15.2.5",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.0.1",
-    "eslint-plugin-react": "7.31.4",
+    "eslint-plugin-react": "7.31.5",
     "eslint-plugin-standard": "4.1.0",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
