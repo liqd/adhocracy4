@@ -29,7 +29,7 @@ class FilterSecondary extends React.Component {
       participationChoice: this.props.participation,
       statusChoice: this.props.status,
       organisationChoice: orgChoice,
-      titleSearchChoice: titleSearchChoice
+      titleSearchChoice
     }
   }
 

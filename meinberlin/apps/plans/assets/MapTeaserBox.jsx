@@ -21,7 +21,7 @@ class MapTeaserBox extends React.Component {
   handleWindowSizeChange () {
     const width = window.innerWidth
     this.setState({
-      width: width
+      width
     })
   }
 
@@ -48,7 +48,7 @@ class MapTeaserBox extends React.Component {
   selectTopic (topic) {
     const newLinkUrl = this.props.url + '?district=' + this.state.district + '&topic=' + topic
     this.setState({
-      topic: topic,
+      topic,
       linkUrl: newLinkUrl
     })
   }

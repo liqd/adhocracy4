@@ -37,6 +37,7 @@ help:
 	@echo "  make coverage        				-- write coverage report to dir htmlcov"
 	@echo "  make lint            				-- lint all project files"
 	@echo "  make lint-quick      				-- lint all files staged in git"
+	@echo "  make lint-fix      					-- fix linting for all js files staged in git"
 	@echo "  make lint-python-files				-- lint all python files staged in git"
 	@echo "  make po              				-- create new po files from the source"
 	@echo "  make compilemessages 				-- create new mo files from the translated po files"

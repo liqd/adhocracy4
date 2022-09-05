@@ -36,7 +36,7 @@ class FilterNav extends React.Component {
       displayTopicOptions: false,
       displayDistrictOptions: !this.state.displayDistrictOptions,
       displaySecondaryFilters: false,
-      isExpanded: isExpanded
+      isExpanded
     })
   }
 
@@ -49,7 +49,7 @@ class FilterNav extends React.Component {
       displayDistrictOptions: false,
       displayTopicOptions: !this.state.displayTopicOptions,
       displaySecondaryFilters: false,
-      isExpanded: isExpanded
+      isExpanded
     })
   }
 
@@ -63,7 +63,7 @@ class FilterNav extends React.Component {
       displayDistrictOptions: false,
       displayTopicOptions: false,
       displaySecondaryFilters: !this.state.displaySecondaryFilters,
-      isExpanded: isExpanded
+      isExpanded
     })
   }
 

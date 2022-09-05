@@ -57,7 +57,7 @@ class PlansMap extends Component {
       selected: null,
       displayError: false,
       displayResults: false,
-      showInfoBox: showInfoBox,
+      showInfoBox,
       showInfoBoxUser: showInfoBox,
       filters: {
         status: -1,
@@ -216,7 +216,7 @@ class PlansMap extends Component {
     event.preventDefault()
     const address = event.target.search.value
     $.ajax(apiUrl, {
-      data: { address: address },
+      data: { address },
       context: this,
       success: function (geojson) {
         const count = geojson.count

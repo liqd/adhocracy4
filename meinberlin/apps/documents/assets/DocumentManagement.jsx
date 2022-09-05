@@ -27,7 +27,7 @@ class DocumentManagement extends React.Component {
     }
 
     this.state = {
-      chapters: chapters,
+      chapters,
       errors: null,
       alert: null,
       editChapterIndex: 0
@@ -51,7 +51,7 @@ class DocumentManagement extends React.Component {
 
   getNewChapter (name) {
     return {
-      name: name,
+      name,
       key: this.getNextLocalKey(),
       paragraphs: []
     }
@@ -68,7 +68,7 @@ class DocumentManagement extends React.Component {
     }
     this.setState({
       chapters: update(this.state.chapters, diff),
-      editChapterIndex: editChapterIndex
+      editChapterIndex
     })
   }
 
@@ -83,7 +83,7 @@ class DocumentManagement extends React.Component {
     }
     this.setState({
       chapters: update(this.state.chapters, diff),
-      editChapterIndex: editChapterIndex
+      editChapterIndex
     })
   }
 
@@ -97,7 +97,7 @@ class DocumentManagement extends React.Component {
     }
     this.setState({
       chapters: update(this.state.chapters, diff),
-      editChapterIndex: editChapterIndex
+      editChapterIndex
     })
   }
 
@@ -116,7 +116,7 @@ class DocumentManagement extends React.Component {
     const diff = {}
     diff[index] = {
       $merge: {
-        name: name
+        name
       }
     }
     this.setState({
@@ -145,8 +145,8 @@ class DocumentManagement extends React.Component {
 
   getNewParagraph (name = '', text = '') {
     return {
-      name: name,
-      text: text,
+      name,
+      text,
       key: this.getNextLocalKey()
     }
   }
@@ -209,7 +209,7 @@ class DocumentManagement extends React.Component {
     diff[chapterIndex] = { paragraphs: [] }
     diff[chapterIndex].paragraphs[paragraphIndex] = {
       $merge: {
-        name: name
+        name
       }
     }
     this.setState({
@@ -222,7 +222,7 @@ class DocumentManagement extends React.Component {
     diff[chapterIndex] = { paragraphs: [] }
     diff[chapterIndex].paragraphs[paragraphIndex] = {
       $merge: {
-        text: text
+        text
       }
     }
     this.setState({
@@ -285,7 +285,7 @@ class DocumentManagement extends React.Component {
             type: 'danger',
             message: documentNotUpdatedStr
           },
-          errors: errors
+          errors
         })
       })
   }

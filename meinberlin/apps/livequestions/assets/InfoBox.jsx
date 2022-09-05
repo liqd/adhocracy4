@@ -22,7 +22,7 @@ export default class InfoBox extends React.Component {
   toggleInformation () {
     const displayInfo = !this.state.displayInfo
     this.setState({
-      displayInfo: displayInfo
+      displayInfo
     })
   }
 

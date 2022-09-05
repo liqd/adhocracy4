@@ -166,7 +166,7 @@ $(document).ready(function () {
 
       $.ajax({
         url: href,
-        headers: headers,
+        headers,
         success: loadHtml,
         error: onAjaxError
       })
@@ -191,7 +191,7 @@ $(document).ready(function () {
       $.ajax({
         url: form.action,
         method: form.method,
-        headers: headers,
+        headers,
         data: $form.serialize(),
         success: loadHtml,
         error: onAjaxError
@@ -234,7 +234,7 @@ $(document).ready(function () {
 
   $.ajax({
     url: $('body').data('url'),
-    headers: headers,
+    headers,
     success: loadHtml,
     error: onAjaxError
   })

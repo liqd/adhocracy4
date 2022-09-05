@@ -50,7 +50,7 @@ class ListMapBox extends Component {
   handleWindowSizeChange () {
     const width = window.innerWidth
     this.setState({
-      width: width
+      width
     })
   }
 
@@ -185,9 +185,9 @@ class ListMapBox extends Component {
       showListMap = false
     }
     this.setState({
-      items: items,
+      items,
       filterChanged: false,
-      showListMap: showListMap
+      showListMap
     })
   }
 
@@ -230,7 +230,7 @@ class ListMapBox extends Component {
   selectTopic (topic) {
     this.setState({
       filterChanged: true,
-      topic: topic
+      topic
     })
     this.updateUrl(topic, this.state.district)
   }
@@ -238,14 +238,14 @@ class ListMapBox extends Component {
   selectParticipation (participation) {
     this.setState({
       filterChanged: true,
-      participation: participation
+      participation
     })
   }
 
   selectStatus (status) {
     this.setState({
       filterChanged: true,
-      status: status
+      status
     })
   }
 
@@ -253,7 +253,7 @@ class ListMapBox extends Component {
     if (organisation !== undefined) {
       this.setState({
         filterChanged: true,
-        organisation: organisation
+        organisation
       })
     } else {
       this.setState({
