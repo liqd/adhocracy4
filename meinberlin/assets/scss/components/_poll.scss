@@ -111,7 +111,7 @@ $checkbox-size: 20px;
 }
 
 .poll-row__bar--highlight {
-    background-color: $brand-primary-tint;
+    background-color: $primary-tint;
     max-width: 90%;
 
     @media (min-width: $breakpoint) {

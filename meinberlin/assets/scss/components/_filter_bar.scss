@@ -7,7 +7,7 @@ $divider-margin: 1.25rem;
 }
 
 .filter-bar {
-    background-color: $brand-secondary;
+    background-color: $secondary;
     color: $white;
     font-size: $font-size-lg;
     line-height: $line-height;
@@ -184,18 +184,18 @@ $divider-margin: 1.25rem;
 
 .filter-bar__option {
     font-size: $font-size-base;
-    color: $brand-secondary;
+    color: $secondary;
 
     &:focus,
     &:hover,
     &:active,
     &:disabled {
-        color: $brand-primary;
+        color: $primary;
     }
 }
 
 .filter-bar__option.active {
-    color: $brand-primary;
+    color: $primary;
 }
 
 .filter-bar__option-divider {
@@ -291,7 +291,7 @@ $divider-margin: 1.25rem;
     .switch--btn.active:focus-within {
         @include fake-focus;
 
-        background-color: $brand-secondary-darker;
+        background-color: $secondary-darker;
     }
 }
 

@@ -111,14 +111,14 @@ $header-margin-bottom: 25px;
 .main-nav__link {
     display: block;
     padding: 0.5em 0;
-    color: $brand-secondary;
+    color: $secondary;
     text-decoration: none;
 
     &:hover,
     &:focus {
         text-decoration: none;
         background-color: $bg-secondary;
-        color: $brand-primary;
+        color: $primary;
     }
 
     @media screen and (min-width: $breakpoint-md) {
@@ -128,16 +128,16 @@ $header-margin-bottom: 25px;
         &:hover,
         &:focus {
             background-color: transparent;
-            color: $brand-primary;
+            color: $primary;
         }
     }
 }
 
 .main-nav__link.is-active {
-    color: $brand-primary;
+    color: $primary;
 
     .fa-home {
-        color: $brand-primary;
+        color: $primary;
     }
 }
 
@@ -187,7 +187,7 @@ $header-margin-bottom: 25px;
         .dropdown-item {
             padding-left: 0;
             padding-right: 0;
-            color: $brand-secondary;
+            color: $secondary;
             border-color: $border-color;
             border-bottom: 1px solid $border-color;
         }

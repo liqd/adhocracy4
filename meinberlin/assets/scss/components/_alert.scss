@@ -16,25 +16,25 @@ $messages-margin-bottom: 25px;
 .alert {
     margin: 0;
     padding: $padding * 1.2 0;
-    background-color: contrast-stretch($brand-info, $brand-info, 7);
-    color: $brand-info;
+    background-color: contrast-stretch($info, $info, 7);
+    color: $info;
     text-align: center;
 }
 
 .alert--success {
-    background-color: contrast-stretch($brand-success, $brand-success);
-    color: $brand-success;
+    background-color: contrast-stretch($success, $success);
+    color: $success;
 }
 
 .alert--error,
 .alert--danger {
-    background-color: contrast-stretch($brand-danger, $brand-danger);
-    color: $brand-danger;
+    background-color: contrast-stretch($danger, $danger);
+    color: $danger;
 }
 
 .alert--warning {
-    background-color: lighten($brand-warning, 45%);
-    color: $brand-warning;
+    background-color: lighten($warning, 45%);
+    color: $warning;
 }
 
 .alert__close {

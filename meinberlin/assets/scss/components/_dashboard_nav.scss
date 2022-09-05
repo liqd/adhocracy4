@@ -65,12 +65,12 @@ input:checked ~ .dashboard-nav__dropdown {
 .dashboard-nav__item--interactive {
     &:hover,
     &:focus {
-        color: $brand-primary;
+        color: $primary;
     }
 
     &.is-active {
-        color: $brand-primary;
-        border-left-color: $brand-primary;
+        color: $primary;
+        border-left-color: $primary;
     }
 
     i {

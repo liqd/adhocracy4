@@ -4,14 +4,14 @@ $gray: #464a4c !default;
 $gray-lighter: #636c72 !default;
 $gray-lightest: #f9f9f9 !default;
 
-$brand-primary: #cd0055 !default;
-$brand-primary-tint: #f5ccdd !default;
-$brand-secondary: #253276 !default;
-$brand-secondary-darker: #1c2659 !default;
-$brand-success: #0a820a !default;
-$brand-info: $brand-secondary !default;
-$brand-warning: #f49e00 !default;
-$brand-danger: #a72b1e !default;
+$primary: #cd0055 !default;
+$primary-tint: #f5ccdd !default;
+$secondary: #253276 !default;
+$secondary-darker: #1c2659 !default;
+$success: #0a820a !default;
+$info: $secondary !default;
+$warning: #f49e00 !default;
+$danger: #a72b1e !default;
 
 $body-bg: #fff !default;
 $bg-secondary: #f2f2f2 !default;
@@ -26,10 +26,10 @@ $blue-light: #bfd3ff !default;
 $print-black: #000 !default;
 $print-link: #005cb4 !default;
 
-$link-color: $brand-secondary !default;
-$link-hover-color: $brand-primary !default;
+$link-color: $secondary !default;
+$link-hover-color: $primary !default;
 
-$link-color-btn: $brand-primary !default;
+$link-color-btn: $primary !default;
 $link-hover-color-btn: darken($link-color-btn, 15%) !default;
 
 $border-color: #ccc !default;

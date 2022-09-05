@@ -54,9 +54,9 @@
 }
 
 .rating-up {
-    @include rating-button($brand-success);
+    @include rating-button($success);
 }
 
 .rating-down {
-    @include rating-button($brand-danger);
+    @include rating-button($danger);
 }

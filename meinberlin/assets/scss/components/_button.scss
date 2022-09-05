@@ -46,10 +46,10 @@
     vertical-align: middle;
 }
 
-.btn {
-    @extend %button-base;
-    @include button-color($link-color-btn, $link-hover-color-btn);
-}
+// .btn {
+//     @extend %button-base;
+//     @include button-color($link-color-btn, $link-hover-color-btn);
+// }
 
 .btn--flex {
     @extend %button-base;
@@ -94,15 +94,15 @@
 }
 
 .btn--primary {
-    @include button-color($brand-primary, darken($brand-primary, 15%));
+    @include button-color($primary, darken($primary, 15%));
 }
 
 .btn--secondary {
-    @include button-color($brand-secondary, darken($brand-secondary, 15%));
+    @include button-color($secondary, darken($secondary, 15%));
 }
 
 .btn--danger {
-    @include button-color($brand-danger, darken($brand-danger, 15%));
+    @include button-color($danger, darken($danger, 15%));
 }
 
 .btn--link {

@@ -26,7 +26,7 @@
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-color: $brand-secondary;
+    background-color: $secondary;
 }
 
 .tile__image--contained {
@@ -97,11 +97,11 @@
 
 .tile__badge--external {
     background-color: $bg-secondary;
-    color: $brand-primary;
+    color: $primary;
 }
 
 .tile__badge--container {
-    background-color: $brand-secondary;
+    background-color: $secondary;
     color: $bg-secondary;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .tile__hint {
-    color: $brand-danger;
+    color: $danger;
     font-size: $font-size-sm;
 
     @media print {

@@ -37,11 +37,11 @@
 }
 
 .map-popup-upvotes i {
-    color: $brand-success;
+    color: $success;
 }
 
 .map-popup-downvotes i {
-    color: $brand-danger;
+    color: $danger;
 }
 
 .map-popup-upvotes,
@@ -166,7 +166,7 @@
         }
 
         i.fa-info-circle {
-            color: $brand-secondary;
+            color: $secondary;
             position: absolute;
             left: $padding;
             top: 1.2rem;
@@ -214,19 +214,19 @@
 }
 
 .map-list-combined__icon {
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
+    background-color: $secondary;
+    color: contrast-color($secondary);
     line-height: 20px;
     text-align: center;
     border-radius: 50%;
 
-    // box-shadow: 0 0 0 1px rgba(contrast-color($brand-secondary), 0.8);
+    // box-shadow: 0 0 0 1px rgba(contrast-color($secondary), 0.8);
 }
 
 .marker-cluster {
     background-clip: padding-box;
     border-radius: 20px;
-    background-color: rgba($brand-secondary, 0.6);
+    background-color: rgba($secondary, 0.6);
 
     div {
         width: 30px;
@@ -236,7 +236,7 @@
         text-align: center;
         border-radius: 15px;
         font-size: 12px $font-family-sans-serif;
-        background-color: $brand-secondary;
+        background-color: $secondary;
         color: $text-color-inverted;
         line-height: 30px;
     }

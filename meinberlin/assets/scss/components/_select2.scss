@@ -18,8 +18,8 @@
     }
 
     .select2-results__option--highlighted[aria-selected] {
-        background-color: $brand-secondary;
-        color: contrast-color($brand-secondary);
+        background-color: $secondary;
+        color: contrast-color($secondary);
     }
 
     .select2-selection--multiple .select2-selection__choice {
@@ -50,7 +50,7 @@
     &.select2-container--focus {
         .select2-selection--single,
         .select2-selection--multiple {
-            border-color: $brand-secondary;
+            border-color: $secondary;
         }
     }
 

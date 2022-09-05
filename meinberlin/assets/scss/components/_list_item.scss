@@ -38,7 +38,7 @@
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-color: $brand-secondary;
+    background-color: $secondary;
 }
 
 .list-item--has-image__copyright {
@@ -112,5 +112,5 @@
 }
 
 .list-item__status--active {
-    color: $brand-primary;
+    color: $primary;
 }

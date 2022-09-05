@@ -5,12 +5,12 @@
     margin-bottom: $spacer;
 
     .btn--transparent {
-        color: $brand-secondary;
+        color: $secondary;
         margin: 0 $spacer $spacer 0;
 
         &:hover,
         &:focus {
-            color: $brand-primary;
+            color: $primary;
         }
     }
 
@@ -51,7 +51,7 @@
     display: inline-block;
     height: 32px;
     width: 50px;
-    background: $brand-secondary;
+    background: $secondary;
     transition: all 0.4s ease-in-out;
 }
 
@@ -87,21 +87,21 @@
 }
 
 .switch--btn {
-    color: $brand-secondary;
+    color: $secondary;
 
     &:active,
     &:hover,
     &:focus {
         color: $body-bg;
-        background-color: $brand-secondary;
-        border-color: $brand-secondary;
+        background-color: $secondary;
+        border-color: $secondary;
     }
 }
 
 .switch--btn.active {
     color: $body-bg;
-    background-color: $brand-secondary;
-    border-color: $brand-secondary;
+    background-color: $secondary;
+    border-color: $secondary;
 }
 
 .switch-btn-group-container {

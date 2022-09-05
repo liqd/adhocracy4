@@ -7,8 +7,8 @@
 .block--cta {
     padding: 2.8em 0;
 
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
+    background-color: $secondary;
+    color: contrast-color($secondary);
     text-align: center;
 
     .col-lg-6 > :first-child {
@@ -70,7 +70,7 @@
     }
 
     h2 {
-        color: $brand-secondary;
+        color: $secondary;
         font-size: $font-size-xxl;
         margin-top: $spacer;
         -webkit-font-smoothing: antialiased;
@@ -79,7 +79,7 @@
 }
 
 .block--infographic {
-    background-color: $brand-secondary;
+    background-color: $secondary;
     color: $body-bg;
 
     padding-top: $padding;

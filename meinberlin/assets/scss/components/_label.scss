@@ -15,18 +15,18 @@
 }
 
 .label--primary {
-    background-color: $brand-primary;
-    color: contrast-color($brand-primary);
+    background-color: $primary;
+    color: contrast-color($primary);
 }
 
 .label--secondary {
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
+    background-color: $secondary;
+    color: contrast-color($secondary);
 }
 
 .label--active {
-    color: $brand-primary;
-    background-color: contrast-color($brand-primary);
+    color: $primary;
+    background-color: contrast-color($primary);
     font-weight: bold;
 }
 

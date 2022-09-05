@@ -145,13 +145,13 @@
 
 .storefront__stat-sm {
     font-size: $font-size-lg;
-    background-color: $brand-primary;
+    background-color: $primary;
     color: $white;
 }
 
 .storefront__stat-lg {
     font-size: $font-size-lg;
-    background-color: $brand-secondary;
+    background-color: $secondary;
     color: $white;
 }
 
@@ -193,7 +193,7 @@
 
 .storefront__district {
     padding: 2 * $padding;
-    color: $brand-secondary;
+    color: $secondary;
 
     @media screen and (min-width: $breakpoint) {
         padding: 3 * $padding;

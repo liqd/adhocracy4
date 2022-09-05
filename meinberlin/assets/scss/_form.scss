@@ -22,8 +22,8 @@ select {
     color: contrast-color($body-bg);
 
     &:invalid {
-        border-color: $brand-danger;
-        color: $brand-danger;
+        border-color: $danger;
+        color: $danger;
     }
 
     &:disabled {
@@ -32,7 +32,7 @@ select {
     }
 
     &:focus {
-        border-color: $brand-secondary;
+        border-color: $secondary;
     }
 
     &::placeholder {
@@ -47,7 +47,7 @@ input[type="radio"] {
 }
 
 div.cke_focus {
-    border-color: $brand-secondary;
+    border-color: $secondary;
 }
 
 .errorlist {
@@ -55,8 +55,8 @@ div.cke_focus {
     padding: $padding;
     list-style: none;
     text-align: center;
-    background-color: $brand-danger;
-    color: contrast-color($brand-danger);
+    background-color: $danger;
+    color: contrast-color($danger);
 }
 
 .django-ckeditor-widget {

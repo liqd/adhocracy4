@@ -51,7 +51,7 @@
 
     i {
         position: absolute;
-        color: $brand-primary;
+        color: $primary;
         line-height: 1.2rem;
     }
 }
@@ -105,7 +105,7 @@
 .progress-bar {
     display: flex;
     height: 1.5rem;
-    background-color: $brand-primary-tint;
+    background-color: $primary-tint;
     border-radius: 0.25rem;
     position: absolute;
 }

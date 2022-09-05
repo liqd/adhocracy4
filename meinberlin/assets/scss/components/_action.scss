@@ -20,7 +20,7 @@
 .action__icon {
     @include multi-line-icon(2);
     background-color: $bg-secondary;
-    color: $brand-primary;
+    color: $primary;
     text-align: center;
     float: left;
 }

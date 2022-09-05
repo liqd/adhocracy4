@@ -31,11 +31,11 @@
     }
 
     &:checked ~ label {
-        color: $brand-danger;
+        color: $danger;
     }
 
     &:checked ~ input {
-        color: $brand-danger;
+        color: $danger;
         text-decoration: line-through;
     }
 }

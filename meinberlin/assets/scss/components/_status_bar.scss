@@ -24,7 +24,7 @@
 }
 
 .status-bar__active-fill {
-    background-color: $brand-primary;
+    background-color: $primary;
     display: block;
     height: 100%;
     position: relative;
@@ -50,6 +50,6 @@
 
     i {
         padding-right: 0.5 * $padding;
-        color: $brand-secondary;
+        color: $secondary;
     }
 }

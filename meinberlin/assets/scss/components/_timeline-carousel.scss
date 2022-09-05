@@ -24,7 +24,7 @@ $timeline-carousel__top-space: 11px;
 .timeline-carousel__label {
     padding: $padding;
     margin-top: 2 * $em-spacer;
-    color: $brand-secondary;
+    color: $secondary;
     background-color: $blue-light;
     text-align: left;
     transition: transform 0.2s;
@@ -56,7 +56,7 @@ $timeline-carousel__top-space: 11px;
 
 .timeline-carousel {
     position: relative;
-    color: $brand-secondary;
+    color: $secondary;
     text-align: center;
     margin: $em-spacer 0;
 
@@ -80,11 +80,11 @@ $timeline-carousel__top-space: 11px;
         &:hover,
         &:focus,
         &:active {
-            border: 2px solid $brand-secondary;
+            border: 2px solid $secondary;
         }
 
         &:before {
-            color: $brand-secondary;
+            color: $secondary;
             opacity: 1;
             font-family: "Font Awesome 5 Free", sans-serif;
             font-weight: 900;
@@ -114,7 +114,7 @@ $timeline-carousel__top-space: 11px;
 }
 
 .initial {
-    background: $brand-secondary;
+    background: $secondary;
     color: $text-color-inverted;
 
     &.timeline-carousel__label {
