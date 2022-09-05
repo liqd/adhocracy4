@@ -1,0 +1,37 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block dashboard_project_content %}
+    <h1 class="u-first-heading mt-0">{% translate 'Generate voting codes' %}</h1>
+
+    <p class="form-hint">{% blocktranslate %}For voting in the third phase, participants need a voting code. You can generate and download the codes here. {% endblocktranslate %}</p>
+    <p>{% blocktranslate count counter=number_of_module_tokens %}
+    One code has been generated for this module so far.
+    {% plural %}
+    {{ counter }} codes have been generated for this module so far.
+    {% endblocktranslate %}</p>
+    <table class="export-table">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if token_export_url %}
+            {% for page in token_export_iterator %}
+            <tr>
+                <td class="export-table__txt-cell" id="id-export-tokens-hint">
+                    {% translate " here you can download the voting codes (Excel file)" %} - {{ page }}
+                </td>
+                <td class="export-table__btn-cell">
+                    <a class="btn btn--secondary" aria-labelledby="id-export-tokens-hint" href="{{ token_export_url }}?page={{ page }}">
+                        {% translate "Download" %}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}
