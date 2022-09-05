@@ -16,17 +16,17 @@
 
 .label--primary {
     background-color: $primary;
-    color: contrast-color($primary);
+    color: $text-color-inverted;
 }
 
 .label--secondary {
     background-color: $secondary;
-    color: contrast-color($secondary);
+    color: $text-color-inverted;
 }
 
 .label--active {
     color: $primary;
-    background-color: contrast-color($primary);
+    background-color: $text-color-inverted;
     font-weight: bold;
 }
 

@@ -99,7 +99,7 @@
         border: none;
 
         background: $primary;
-        color: contrast-color($primary);
+        color: $text-color-inverted;
         box-shadow: none;
         text-shadow: none;
     }

@@ -35,21 +35,13 @@
 
 %button-base {
     @extend %input-base;
-    border-radius: 0.3em;
     text-decoration: none;
-    display: inline-block;
-    text-align: center;
     font-weight: bold;
-    padding-left: 1em;
-    padding-right: 1em;
-    margin: 0;
-    vertical-align: middle;
 }
 
-// .btn {
-//     @extend %button-base;
-//     @include button-color($link-color-btn, $link-hover-color-btn);
-// }
+.btn {
+    @extend %button-base;
+}
 
 .btn--flex {
     @extend %button-base;
@@ -63,21 +55,9 @@
 }
 
 .btn--light {
+    @extend .btn-light;
+
     font-weight: inherit;
-
-    @include button-color($body-bg, $bg-secondary);
-
-    &,
-    &:disabled,
-    &.is-disabled {
-        border-color: $border-color;
-    }
-
-    &:focus,
-    &:hover,
-    &:active {
-        border-color: $idea-remark-color;
-    }
 }
 
 .btn--transparent {
@@ -94,15 +74,15 @@
 }
 
 .btn--primary {
-    @include button-color($primary, darken($primary, 15%));
+    @extend .btn-primary;
 }
 
 .btn--secondary {
-    @include button-color($secondary, darken($secondary, 15%));
+    @extend .btn-secondary;
 }
 
 .btn--danger {
-    @include button-color($danger, darken($danger, 15%));
+    @extend .btn-danger;
 }
 
 .btn--link {

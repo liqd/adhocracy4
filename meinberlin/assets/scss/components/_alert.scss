@@ -16,24 +16,24 @@ $messages-margin-bottom: 25px;
 .alert {
     margin: 0;
     padding: $padding * 1.2 0;
-    background-color: contrast-stretch($info, $info, 7);
+    background-color: lighten($info, 60%);
     color: $info;
     text-align: center;
 }
 
 .alert--success {
-    background-color: contrast-stretch($success, $success);
+    background-color: lighten($success, 70%);
     color: $success;
 }
 
 .alert--error,
 .alert--danger {
-    background-color: contrast-stretch($danger, $danger);
+    background-color: lighten($danger, 50%);
     color: $danger;
 }
 
 .alert--warning {
-    background-color: lighten($warning, 45%);
+    background-color: lighten($warning, 48%);
     color: $warning;
 }
 

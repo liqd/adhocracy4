@@ -19,7 +19,7 @@ select {
     display: block;
     max-width: 100%;
     background-color: $body-bg;
-    color: contrast-color($body-bg);
+    color: $text-color;
 
     &:invalid {
         border-color: $danger;
@@ -56,7 +56,7 @@ div.cke_focus {
     list-style: none;
     text-align: center;
     background-color: $danger;
-    color: contrast-color($danger);
+    color: $text-color-inverted;
 }
 
 .django-ckeditor-widget {

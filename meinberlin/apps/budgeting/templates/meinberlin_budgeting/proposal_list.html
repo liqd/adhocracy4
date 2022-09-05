@@ -15,7 +15,7 @@
 {% block project_action %}
     {% has_or_would_have_perm 'meinberlin_budgeting.add_proposal' request.user module as propose_allowed %}
     {% if propose_allowed %}
-        <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="btn btn--full u-spacer-bottom btn--huge">
+        <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="btn btn--primary btn--full u-spacer-bottom btn--huge">
             {% trans 'Submit proposal' %}
         </a>
     {% endif %}
@@ -32,7 +32,7 @@
                         {% csrf_token %}
                         <div class="widget--{{ token_form.token|widget_type }}">
                             {{ token_form.token }}
-                            <button type="submit" class="btn">{% trans 'Enter code' %}</button>
+                            <button type="submit" class="btn btn--primary">{% trans 'Enter code' %}</button>
                         </div>
                         {{ token_form.token.errors }}
                     </div>

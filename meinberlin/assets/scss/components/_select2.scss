@@ -19,7 +19,7 @@
 
     .select2-results__option--highlighted[aria-selected] {
         background-color: $secondary;
-        color: contrast-color($secondary);
+        color: $text-color-inverted;
     }
 
     .select2-selection--multiple .select2-selection__choice {

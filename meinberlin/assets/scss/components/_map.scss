@@ -215,7 +215,7 @@
 
 .map-list-combined__icon {
     background-color: $secondary;
-    color: contrast-color($secondary);
+    color: $text-color-inverted;
     line-height: 20px;
     text-align: center;
     border-radius: 50%;

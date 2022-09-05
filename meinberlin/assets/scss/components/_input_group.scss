@@ -59,7 +59,7 @@
 .addon {
     @extend %input-base;
     background-color: $body-bg;
-    color: contrast-color($body-bg);
+    color: $text-color;
     min-width: 2.4em;
     text-align: center;
 }

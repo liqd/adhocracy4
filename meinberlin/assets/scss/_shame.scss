@@ -22,7 +22,7 @@ input[type="search"] {
 
 // used by adhocracy4
 .submit-button {
-    @extend %button-base;
+    @extend .btn;
     @extend .btn--primary;
 }
 

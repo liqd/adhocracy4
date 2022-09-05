@@ -42,7 +42,7 @@ $checkbox-size: 20px;
         font-family: "Font Awesome 5 Free", sans-serif;
         font-weight: 900;
         background-color: $primary;
-        color: contrast-color($primary);
+        color: $text-color-inverted;
         font-size: $font-size-sm;
         line-height: 1.35 * $spacer;
         text-align: center;

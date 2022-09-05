@@ -9,7 +9,7 @@
     <h2 class="storefront__district-text">
         {% blocktrans with district=item.district %}What is happening in <strong>{{ district }}</strong>?{% endblocktrans %}
     </h2>
-    <button class="btn btn-primary">
+    <button class="btn btn--primary">
         {% blocktrans count counter=item.district_project_count %}display {{ counter }} project{% plural %}display {{ counter }} projects{% endblocktrans %}
     </button>
 </a>

@@ -14,7 +14,7 @@
 {% block project_action %}
     {% has_or_would_have_perm 'meinberlin_kiezkasse.add_proposal' request.user module as propose_allowed %}
     {% if propose_allowed %}
-        <a href="{% url 'meinberlin_kiezkasse:proposal-create' module_slug=module.slug %}" class="btn btn--full u-spacer-bottom btn--huge">
+        <a href="{% url 'meinberlin_kiezkasse:proposal-create' module_slug=module.slug %}" class="btn btn--primary btn--full u-spacer-bottom btn--huge">
             {% trans 'Submit proposal' %}
         </a>
     {% endif %}
