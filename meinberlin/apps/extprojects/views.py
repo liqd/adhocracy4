@@ -53,6 +53,7 @@ class ExternalProjectCreateView(ProjectCreateView):
         ],
         image='',
         settings_model=None,
+        type='EP',
     )
 
 

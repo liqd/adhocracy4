@@ -29,6 +29,7 @@ class ContainerCreateView(ProjectCreateView):
         content=[],
         image='',
         settings_model=None,
+        type='PC',
     )
 
 

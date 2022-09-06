@@ -60,6 +60,7 @@ class BplanProjectCreateView(ExternalProjectCreateView):
         ],
         image='',
         settings_model=None,
+        type='BP'
     )
 
 

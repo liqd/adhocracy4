@@ -536,6 +536,25 @@ A4_PROJECT_TOPICS = (
     ('TRA', _('Traffic'))
 )
 
+A4_BLUEPRINT_TYPES = [
+    ('BS', 'brainstorming'),
+    ('MBS', 'map brainstorming'),
+    ('IC', 'idea collection'),
+    ('MIC', 'map idea collection'),
+    ('PB', 'participatory budgeting (1 phase)'),
+    ('PB2', 'participatory budgeting (2 phase)'),
+    ('PB3', 'participatory budgeting (3 phase)'),
+    ('KK', 'kiezkasse'),
+    ('TP', 'topic prioritization'),
+    ('MTP', 'map topic prioritization'),
+    ('TR', 'text review'),
+    ('PO', 'poll'),
+    ('IE', 'interactive event'),
+    ('EP', 'external project'),
+    ('BP', 'bebauungsplan'),
+    ('PC', 'project container'),
+]
+
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 

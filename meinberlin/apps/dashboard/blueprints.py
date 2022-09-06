@@ -24,6 +24,7 @@ blueprints = [
          ],
          image='images/brainstorming.svg',
          settings_model=None,
+         type='BS',
      )),
     ('map-brainstorming',
      ProjectBlueprint(
@@ -37,6 +38,7 @@ blueprints = [
          ],
          image='images/map-brainstorming.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='MBS',
      )),
     ('idea-collection',
      ProjectBlueprint(
@@ -50,6 +52,7 @@ blueprints = [
          ],
          image='images/agenda-setting.svg',
          settings_model=None,
+         type='IC',
      )),
     ('map-idea-collection',
      ProjectBlueprint(
@@ -64,6 +67,7 @@ blueprints = [
          ],
          image='images/map-idea-collection.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='MIC',
      )),
     ('participatory-budgeting',
      ProjectBlueprint(
@@ -78,6 +82,7 @@ blueprints = [
          ],
          image='images/participatory-budgeting-1.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='PB',
      )),
     ('participatory-budgeting-2-phases',
      ProjectBlueprint(
@@ -93,6 +98,7 @@ blueprints = [
          ],
          image='images/participatory-budgeting-2.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='PB2',
      )),
     ('participatory-budgeting-3-phases',
      ProjectBlueprint(
@@ -111,6 +117,7 @@ blueprints = [
          # The icon has to be updated:
          image='images/participatory-budgeting-3.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='PB3',
      )),
     ('kiezkasse',
      ProjectBlueprint(
@@ -126,6 +133,7 @@ blueprints = [
          ],
          image='images/kiezkasse.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='KK',
      )),
     ('prioritization',
      ProjectBlueprint(
@@ -139,6 +147,7 @@ blueprints = [
          ],
          image='images/priorization.svg',
          settings_model=None,
+         type='TP',
      )),
     ('map-topic-prioritization',
      ProjectBlueprint(
@@ -153,6 +162,7 @@ blueprints = [
          ],
          image='images/place-priotization.svg',
          settings_model=('a4maps', 'AreaSettings'),
+         type='MTP',
      )),
     ('text-review',
      ProjectBlueprint(
@@ -166,6 +176,7 @@ blueprints = [
          ],
          image='images/text-review.svg',
          settings_model=None,
+         type='TR',
      )),
     ('poll',
      ProjectBlueprint(
@@ -179,6 +190,7 @@ blueprints = [
          ],
          image='images/poll.svg',
          settings_model=None,
+         type='PO',
      )),
     ('interactive-event',
      ProjectBlueprint(
@@ -193,5 +205,6 @@ blueprints = [
          ],
          image='images/interactive-event.svg',
          settings_model=None,
+         type='IE',
      )),
 ]
