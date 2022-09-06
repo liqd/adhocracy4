@@ -1,4 +1,5 @@
 from django.apps import apps
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
@@ -92,12 +93,21 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
         return response
 
     def _create_modules_and_phases(self, project):
-        module = module_models.Module(
-            name=self.blueprint.title,
-            description=project.description,
-            weight=1,
-            project=project,
-        )
+        if hasattr(settings, 'A4_BLUEPRINT_TYPES'):
+            module = module_models.Module(
+                name=self.blueprint.title,
+                description=project.description,
+                weight=1,
+                project=project,
+                blueprint_type=self.blueprint.type,
+            )
+        else:
+            module = module_models.Module(
+                name=self.blueprint.title,
+                description=project.description,
+                weight=1,
+                project=project,
+            )
         module.save()
         signals.module_created.send(sender=None,
                                     module=module,
