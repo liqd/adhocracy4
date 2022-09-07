@@ -21,7 +21,7 @@ from .serializers import ProposalSerializer
 # To be changed to a more general IdeaPagination, when using
 # pagination via rest api for more idea lists
 class ProposalPagination(PageNumberPagination):
-    page_size = 15
+    page_size = 2
 
     def get_paginated_response(self, data):
         response = super(ProposalPagination, self).get_paginated_response(data)
