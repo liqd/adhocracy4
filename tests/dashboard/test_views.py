@@ -1,6 +1,10 @@
+import importlib
+
 import pytest
+from django.test.utils import override_settings
 from django.urls import reverse
 
+from adhocracy4.modules.models import Module
 from adhocracy4.projects.models import Project
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
@@ -95,6 +99,43 @@ def test_project_create(client, organisation, user_factory, group_factory):
 
     assert 2 == Project.objects.all().count()
     assert 1 == Project.objects.filter(group_id=group2.id).count()
+
+
+@override_settings(A4_BLUEPRINT_TYPES=[('QS', 'questions')])
+@override_settings(A4_DASHBOARD={
+    'BLUEPRINTS': 'tests.project.blueprints_with_type.blueprints'})
+@pytest.mark.django_db
+def test_project_create_with_blueprint_type(client, organisation,
+                                            user_factory):
+    # reload blueprints to reinitialize ProjectBlueprint with
+    # overridden settings
+    bp_module = importlib.import_module('adhocracy4.dashboard.blueprints')
+    importlib.reload(bp_module)
+
+    initiator = user_factory()
+    organisation.initiators.add(initiator)
+
+    project_create_url = reverse('a4dashboard:project-create', kwargs={
+        'organisation_slug': organisation.slug,
+        'blueprint_slug': 'questions'
+    })
+
+    data = {
+        'name': 'project name',
+        'description': 'project description'
+    }
+
+    client.login(username=initiator, password='password')
+    response = client.post(project_create_url, data)
+    assert redirect_target(response) == 'project-edit'
+
+    assert 1 == Project.objects.all().count()
+    project = Project.objects.all().first()
+    assert 'project name' == project.name
+    assert 'project description' == project.description
+
+    assert 1 == Module.objects.all().count()
+    assert Module.objects.first().blueprint_type == 'QS'
 
 
 @pytest.mark.django_db
