@@ -4,6 +4,7 @@ import unicodedata
 from django import template
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+from django.core.paginator import Paginator
 from django.forms.utils import flatatt
 from django.template import defaultfilters
 from django.template.loader import render_to_string
@@ -107,3 +108,11 @@ def tracking_code():
     except AttributeError:
         pass
     return {'id': id, 'url': url, 'cookie_disabled': cookie_disabled}
+
+
+@register.simple_tag
+def get_proper_elided_page_range(p, number, on_each_side=1, on_ends=1):
+    paginator = Paginator(p.object_list, p.per_page)
+    return paginator.get_elided_page_range(number=number,
+                                           on_each_side=on_each_side,
+                                           on_ends=on_ends)

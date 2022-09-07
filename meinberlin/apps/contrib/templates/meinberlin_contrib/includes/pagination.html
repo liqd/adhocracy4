@@ -2,13 +2,34 @@
 
 {% if is_paginated %}
 <nav aria-label="{% trans 'Page navigation' %}">
-    <ul class="pagination">
-        {% for page_number in page_obj.paginator.page_range %}
+    <ul class="pagination btn-group">
+      {% get_proper_elided_page_range paginator page_obj.number as paginated_page_range %}
+
+      <li class="pagination-item">
+        {% if page_obj.has_previous %}
+          {% combined_url_parameter request.GET page=page_obj.previous_page_number as url_prev %}
+          {% endif %}
+
+          <a class="{% if not page_obj.has_previous %}disabled{% endif %}" href="{{ url_prev }}" aria-label="previous page">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </a>
+      </li>
+
+      {% for page_number in paginated_page_range %}
         <li class="pagination-item{% ifequal page_number page_obj.number %} active{% endifequal %}">
             {% combined_url_parameter request.GET page=page_number as url_par %}
             <a href="{{ url_par }}">{{ page_number }}</a>
         </li>
-        {% endfor %}
+      {% endfor %}
+
+      <li class="pagination-item">
+        {% if page_obj.has_next %}
+          {% combined_url_parameter request.GET page=page_obj.next_page_number as url_next %}
+          {% endif %}
+          <a class="{% if not page_obj.has_next %}disabled{% endif %}" href="{{ url_next }}" aria-label="next page">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </a>
+      </li>
     </ul>
 </nav>
 {% endif %}
