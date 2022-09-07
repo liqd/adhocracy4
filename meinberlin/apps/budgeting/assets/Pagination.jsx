@@ -1,12 +1,18 @@
 import React from 'react'
 import django from 'django'
+import { PaginationButton } from './Paginationbutton'
 
 const pageNavigationStr = django.gettext('Page navigation')
+const pageNextStr = django.gettext('next page')
+const pagePrevStr = django.gettext('prev page')
 
 export const Pagination = (props) => {
   const {
-    currPageIndex,
-    pageCount
+    currentIndex,
+    prevPage,
+    nextPage,
+    pageCount,
+    onPaginate
   } = props
 
   // Creating an Array from single digit, example: 5 = [0,1,2,3,4]
@@ -15,21 +21,34 @@ export const Pagination = (props) => {
 
   return (
     <nav aria-label={pageNavigationStr}>
-      <ul className="pagination">
+      <ul className="pagination btn-group">
+        <PaginationButton
+          type="prev"
+          key="page-prev"
+          pageIndex={currentIndex - 1}
+          isDisabled={!prevPage}
+          ariaLabel={pagePrevStr}
+          onClick={onPaginate}
+        />
+
         {pages.map(num => (
-          <li
+          <PaginationButton
+            type="num"
             key={`page-${num}`}
-            className={
-              num === currPageIndex
-                ? 'pagination-item active'
-                : 'pagination-item'
-              }
-          >
-            <button onClick={() => props.onPaginate(num)}>
-              {num}
-            </button>
-          </li>
+            isActive={num === currentIndex}
+            pageIndex={num}
+            onClick={onPaginate}
+          />
         ))}
+
+        <PaginationButton
+          type="next"
+          key="page-next"
+          pageIndex={currentIndex + 1}
+          isDisabled={!nextPage}
+          ariaLabel={pageNextStr}
+          onClick={onPaginate}
+        />
       </ul>
     </nav>
   )
