@@ -20,7 +20,7 @@ Django==3.2.15
 django-allauth==0.51.0
 git+https://github.com/fuzzylogic2000/django-autoslug.git@master#egg=django-autoslug
 django-background-tasks==1.2.5
-django-ckeditor==6.5.0
+django-ckeditor==6.5.1
 django-enumfield==3.0
 django-filter==21.1
 django-multiselectfield==0.1.12
