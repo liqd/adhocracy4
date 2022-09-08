@@ -16,7 +16,7 @@
 }
 
 .u-spacer-right-half {
-    margin-right: ($em-spacer / 2);
+    margin-right: ($em-spacer * 0.5);
 }
 
 .u-spacer-bottom {
@@ -32,7 +32,7 @@
 }
 
 .u-spacer-bottom-half {
-    margin-bottom: ($em-spacer / 2);
+    margin-bottom: ($em-spacer * 0.5);
 }
 
 .u-spacer-bottom-double {
@@ -214,8 +214,8 @@
 }
 
 .u-icon-spacing {
-    margin-right: ($em-spacer / 2);
-    margin-top: ($em-spacer / 4);
+    margin-right: ($em-spacer * 0.5);
+    margin-top: ($em-spacer * 0.25);
 }
 
 .u-spinner__container {
