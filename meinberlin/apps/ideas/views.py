@@ -56,7 +56,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
 
 class AbstractIdeaListView(ProjectMixin,
                            filter_views.FilteredListView):
-    paginate_by = 15
+    paginate_by = 2
 
 
 class IdeaListView(AbstractIdeaListView,
