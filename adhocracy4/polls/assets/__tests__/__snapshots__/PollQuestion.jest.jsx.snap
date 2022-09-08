@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render <PollQuestion> with... -> multiple-choice -> non-open-asnwers 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -168,7 +168,7 @@ Object {
 `;
 
 exports[`render <PollQuestion> with... -> multiple-choice -> open-asnwers 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -335,7 +335,7 @@ Object {
 `;
 
 exports[`render <PollQuestion> with... -> single-choice -> non-open-asnwers 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -492,7 +492,7 @@ Object {
 `;
 
 exports[`render <PollQuestion> with... -> single-choice -> open-asnwers 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
