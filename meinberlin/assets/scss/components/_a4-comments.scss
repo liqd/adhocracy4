@@ -125,6 +125,10 @@
     @extend .btn--light;
 }
 
+.a4-comments__dropdown-container {
+    padding-right: 0;
+}
+
 .a4-comments__dropdown > .dropdown-toggle {
     @extend .btn--small;
     @extend .btn--light;
@@ -154,6 +158,10 @@
     }
 }
 
+.a4-comments__submit-input {
+    @extend .btn--primary;
+}
+
 .btn.a4-comments__action-bar__btn {
     margin-right: 0.5 * $spacer;
 
@@ -165,6 +173,10 @@
 .a4-comments__text,
 .a4-comments__list {
     margin-top: $spacer * 0.7;
+}
+
+.a4-comments__char-count {
+    margin-left: auto;
 }
 
 .a4-comments__char-count,

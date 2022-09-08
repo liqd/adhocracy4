@@ -68,7 +68,7 @@ class Paragraph extends React.Component {
     return (
       <section>
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-lg-9">
             <div className="commenting__content--border">
               <div className="form-group">
                 <label

@@ -107,7 +107,7 @@ export const BudgetingProposalList = (props) => {
       />
       <div className="module-content--light">
         <div className="container">
-          <div className="col-lg-8">
+          <div className="offset-lg-2 col-lg-8">
             {renderList(data)}
           </div>
         </div>

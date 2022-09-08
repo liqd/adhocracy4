@@ -127,8 +127,9 @@ dt {
     margin-top: $em-spacer;
 }
 
-button,
-[type="submit"] {
+// FIXME what was this for? breaks button styling?!
+// [type="submit"]
+button {
     appearance: none;
     padding: 0;
     margin: 0;

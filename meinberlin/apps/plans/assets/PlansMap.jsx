@@ -267,13 +267,13 @@ class PlansMap extends Component {
             <label htmlFor="id-map-search" className="input-group">
               <input
                 onChange={this.onAddressSearchChange.bind(this)}
-                className="input-group__input u-inline"
+                className="form-control"
                 name="search"
                 type="search"
                 id="id-map-search"
                 placeholder={addressSearchCapStr}
               />
-              <button className="input-group__after input-group__after--search btn btn--light" type="submit" title={addressSearchStr}>
+              <button className="input-group__after--search btn btn--light" type="submit" title={addressSearchStr}>
                 <i className="fas fa-search" aria-label={addressSearchStr} />
               </button>
             </label>
