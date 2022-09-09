@@ -15,8 +15,7 @@ class TopicEditComponent(DashboardComponent):
     label = _('Topics')
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return module_app == 'meinberlin_topicprio'
+        return module.blueprint_type == 'TP'
 
     def get_progress(self, module):
         if models.Topic.objects.filter(module=module).exists():
@@ -54,8 +53,7 @@ class ExportTopicComponent(DashboardComponent):
     label = _('Export Excel')
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return (module_app == 'meinberlin_topicprio' and
+        return (module.blueprint_type == 'TP' and
                 not module.project.is_draft and not module.is_draft)
 
     def get_progress(self, module):

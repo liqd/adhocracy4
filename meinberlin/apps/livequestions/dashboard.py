@@ -15,8 +15,7 @@ class LiveStreamComponent(DashboardComponent):
     label = _('Livestream')
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return (module_app == 'meinberlin_livequestions')
+        return module.blueprint_type == 'IE'
 
     def get_progress(self, module):
         return 0, 0
@@ -45,8 +44,7 @@ class ModuleAffiliationsComponent(ModuleFormSetComponent):
         'meinberlin_livequestions/includes/module_affiliations_form.html'
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return module_app == 'meinberlin_livequestions'
+        return module.blueprint_type == 'IE'
 
 
 components.register_module(LiveStreamComponent())

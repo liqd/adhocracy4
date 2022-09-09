@@ -15,8 +15,7 @@ class MapTopicEditComponent(DashboardComponent):
     label = _('Places')
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        if module_app != 'meinberlin_maptopicprio':
+        if module.blueprint_type != 'MTP':
             return False
         elif module.settings_instance.polygon == '':
             return False
@@ -59,8 +58,7 @@ class ExportMapTopicComponent(DashboardComponent):
     label = _('Export Excel')
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return (module_app == 'meinberlin_maptopicprio' and
+        return (module.blueprint_type == 'MTP' and
                 not module.project.is_draft and not module.is_draft)
 
     def get_progress(self, module):

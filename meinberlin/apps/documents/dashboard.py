@@ -15,8 +15,7 @@ class DocumentComponent(DashboardComponent):
     label = _('Document')
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return module_app == 'meinberlin_documents'
+        return module.blueprint_type == 'TR'
 
     def get_progress(self, module):
         if Chapter.objects.filter(module=module).exists():
@@ -45,8 +44,7 @@ class ExportDocumentComponent(DashboardComponent):
     label = _('Export Excel')
 
     def is_effective(self, module):
-        module_app = module.phases[0].content().app
-        return (module_app == 'meinberlin_documents' and
+        return (module.blueprint_type == 'TR' and
                 not module.project.is_draft and not module.is_draft)
 
     def get_progress(self, module):
