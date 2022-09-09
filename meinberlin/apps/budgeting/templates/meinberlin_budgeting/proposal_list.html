@@ -19,11 +19,7 @@
             {% trans 'Submit proposal' %}
         </a>
     {% endif %}
-    {% comment %}
-        FIXME: differentiating 2 and 3 phase buergerhaushalt by just counting the phases
-               should be changed once we have module types
-    {% endcomment %}
-    {% if module.phases.count == 3 %}
+    {% if module.blueprint_type == 'PB3' %}
         {% has_perm 'meinberlin_budgeting.add_vote' request.user module as vote_allowed %}
         {% if vote_allowed %}
             {% if not valid_token_present %}

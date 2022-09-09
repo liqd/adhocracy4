@@ -73,8 +73,8 @@ def test_proposal_serializer(apiclient, module, proposal_factory,
     assert not proposal_commented_data['vote_allowed']
     assert not proposal_voted_data['vote_allowed']
 
-    phase_factory(phase_content=phases.CollectPhase(), module=module)
-    phase_factory(phase_content=phases.RatingPhase(), module=module)
+    module.blueprint_type = 'PB3'
+    module.save()
 
     with freeze_phase(voting_phase):
         response = apiclient.get(url)

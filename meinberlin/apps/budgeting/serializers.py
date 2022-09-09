@@ -117,9 +117,8 @@ class ProposalSerializer(serializers.ModelSerializer):
             has_voting_permission = user.has_perm(
                 'meinberlin_budgeting.vote_proposal', proposal
             )
-            # FIXME: This should be done differently once a module knows
-            #  its type
-            is_three_phase_budgeting = (proposal.module.phases.count() == 3)
+            is_three_phase_budgeting = \
+                (proposal.module.blueprint_type == 'PB3')
             return has_voting_permission and is_three_phase_budgeting
 
         return False
