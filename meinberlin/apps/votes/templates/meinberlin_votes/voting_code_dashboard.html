@@ -1,0 +1,40 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block dashboard_project_content %}
+<h1 class="u-first-heading mt-0">{% translate 'Generate voting codes' %}</h1>
+
+<p class="form-hint">{% blocktranslate %}For voting in the third phase, participants need a voting code. You can generate and download the codes here. {% endblocktranslate %}</p>
+<p>{% blocktranslate count counter=number_of_module_tokens %}
+One code has been generated for this module so far.
+{% plural %}
+{{ counter }} codes have been generated for this module so far.
+{% endblocktranslate %}</p>
+<table class="export-table">
+    <thead>
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <form method="POST">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="errorlist">{% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+                {% endif %}
+
+                {% for error in form.non_field_errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+
+                <div class="form-group">
+                    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.number_of_tokens %}
+                    <input type="submit" class="btn btn--secondary" value="{% translate 'Generate codes' %}"/>
+                </div>
+            </form>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

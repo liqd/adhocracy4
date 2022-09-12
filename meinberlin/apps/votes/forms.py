@@ -47,3 +47,12 @@ class TokenForm(forms.Form):
                 cleaned_data['token'] = token_queryset.first().token
 
         return cleaned_data
+
+
+class TokenBatchCreateForm(forms.Form):
+    number_of_tokens = forms.IntegerField(
+        min_value=1,
+        label=_('Number of codes needed'),
+        help_text=_('Please indicate how many participants should be invited '
+                    'to vote. One code will be generated per participant.')
+    )
