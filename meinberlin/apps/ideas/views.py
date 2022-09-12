@@ -18,6 +18,8 @@ from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
 from meinberlin.apps.notifications.emails import \
+    NotifyContactOnModeratorFeedback
+from meinberlin.apps.notifications.emails import \
     NotifyCreatorOnModeratorFeedback
 
 from . import forms
@@ -196,6 +198,8 @@ class AbstractIdeaModerateView(
             moderateable.moderator_statement = statement
             moderateable.save()
             NotifyCreatorOnModeratorFeedback.send(self.object)
+            if hasattr(self.object, 'contact_email'):
+                NotifyContactOnModeratorFeedback.send(self.object)
         return objects
 
     def get_instance(self, name):

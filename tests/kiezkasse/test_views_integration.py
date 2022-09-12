@@ -1,4 +1,5 @@
 import pytest
+from django.core import mail
 from django.urls import reverse
 
 from adhocracy4.test.helpers import assert_template_response
@@ -82,3 +83,8 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
         }
         response = client.post(url, data)
         assert redirect_target(response) == 'proposal-detail'
+
+        # was the NotifyCreatorOnModeratorFeedback sent?
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [item.creator.email]
+        assert mail.outbox[0].subject.startswith('Rückmeldung')

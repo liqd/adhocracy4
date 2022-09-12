@@ -15,6 +15,14 @@ def _exclude_actor(receivers, actor):
     return [receiver for receiver in receivers if not receiver == actor]
 
 
+def _exclude_creator(receivers, creator):
+    if not creator:
+        return receivers
+
+    return [receiver for receiver in receivers
+            if not receiver == creator.email]
+
+
 def _exclude_moderators(receivers, action):
     if hasattr(action, 'project'):
         moderator_ids = action.project.moderators.values_list('id', flat=True)
@@ -55,6 +63,21 @@ class NotifyCreatorOnModeratorFeedback(Email):
     def get_receivers(self):
         receivers = [self.object.creator]
         receivers = _exclude_notifications_disabled(receivers)
+        return receivers
+
+    def get_context(self):
+        context = super().get_context()
+        context['object'] = self.object
+        return context
+
+
+class NotifyContactOnModeratorFeedback(Email):
+    template_name = \
+        'meinberlin_notifications/emails/notify_contact_on_moderator_feedback'
+
+    def get_receivers(self):
+        receivers = [self.object.contact_email]
+        receivers = _exclude_creator(receivers, self.object.creator)
         return receivers
 
     def get_context(self):
