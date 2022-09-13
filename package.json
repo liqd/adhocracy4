@@ -17,7 +17,7 @@
     "@maplibre/maplibre-gl-leaflet": "0.0.17",
     "acorn": "8.8.0",
     "adhocracy4": "liqd/adhocracy4#08c980754345f97c01712723bedad0bde53d6034",
-    "autoprefixer": "10.4.9",
+    "autoprefixer": "10.4.10",
     "babel-loader": "8.2.5",
     "bootstrap": "5.2.1",
     "copy-webpack-plugin": "11.0.0",
