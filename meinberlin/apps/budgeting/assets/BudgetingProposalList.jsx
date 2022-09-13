@@ -27,7 +27,8 @@ export const BudgetingProposalList = (props) => {
           next: json.next,
           filters: json.filters,
           locale: json.locale,
-          token_info: json.token_info
+          token_info: json.token_info,
+          page_elided_range: json.page_elided_range
         })
       })
       .catch(error => console.log(error))
@@ -62,16 +63,21 @@ export const BudgetingProposalList = (props) => {
                 tokenvoteApiUrl={props.tokenvote_api_url}
                 onVoteChange={onVoteChange}
                 currentPage={meta?.current_page}
-                votesLeft={meta?.token_info ? meta?.token_info.votes_left : false}
+                votesLeft={
+                  meta?.token_info
+                    ? meta?.token_info.votes_left
+                    : false
+                }
               />)}
           </ul>
           {meta?.is_paginated &&
             <Pagination
-              currentIndex={meta.current_page}
+              currentPage={meta.current_page}
+              elidedRange={meta.page_elided_range}
               nextPage={meta.next}
+              onPaginate={newUrl => onPaginate(newUrl)}
               prevPage={meta.previous}
               pageCount={meta.page_count}
-              onPaginate={newUrl => onPaginate(newUrl)}
             />}
         </>
       )

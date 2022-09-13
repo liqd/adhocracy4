@@ -12,6 +12,8 @@ from adhocracy4.categories import get_category_icon_url
 from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
+from meinberlin.apps.contrib.templatetags.contrib_tags import \
+    get_proper_elided_page_range
 from meinberlin.apps.votes.api import VotingTokenInfoMixin
 
 from .models import Proposal
@@ -27,6 +29,8 @@ class ProposalPagination(PageNumberPagination):
         response = super(ProposalPagination, self).get_paginated_response(data)
         response.data['page_size'] = self.page_size
         response.data['page_count'] = self.page.paginator.num_pages
+        response.data['page_elided_range'] =\
+            get_proper_elided_page_range(self.page.paginator, self.page.number)
         return response
 
 
