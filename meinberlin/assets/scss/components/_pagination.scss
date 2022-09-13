@@ -39,6 +39,8 @@
 
         & a,
         & button {
+            background-color: $link-color;
+            border-color: $link-color;
             color: $text-color-inverted;
         }
 
