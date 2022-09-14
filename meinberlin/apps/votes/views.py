@@ -1,6 +1,7 @@
 from math import ceil
 
 from django.contrib import messages
+from django.contrib.humanize.templatetags.humanize import intcomma
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils import timezone
@@ -17,6 +18,7 @@ from meinberlin.apps.votes.models import VotingToken
 from meinberlin.apps.votes.tasks import generate_voting_tokens
 
 PAGE_SIZE = 1000000
+TOKENS_PER_MODULE = int(5e6)
 
 
 class VotingDashboardView(ProjectMixin,
@@ -104,6 +106,11 @@ class VotingGenerationDashboardView(
           'Please come back later to check if it is finished'),
         _('{} codes will be generated in the background. '
           'Please come back later to check if they are finished'))
+    error_message_token_number = (
+        _('Only {} tokens are allowed per module. '
+          'You are allowed to generate {} more.'),
+        _('Only {} tokens are allowed per module. '
+          'You are allowed to generate {} more.'))
     permission_required = 'a4projects.change_project'
     template_name = 'meinberlin_votes/voting_code_dashboard.html'
 
@@ -128,12 +135,29 @@ class VotingGenerationDashboardView(
 
     def form_valid(self, form):
         number_of_tokens = form.cleaned_data['number_of_tokens']
-        generate_voting_tokens(self.module.pk, number_of_tokens)
+        # check that no more than 5 Million codes are added per module
+        existing_tokens = self._get_number_of_tokens()
+        if existing_tokens + number_of_tokens > TOKENS_PER_MODULE:
+            allowed_tokens = int(TOKENS_PER_MODULE - existing_tokens)
+            messages.error(
+                self.request,
+                ngettext(
+                    self.error_message_token_number[0],
+                    self.error_message_token_number[1],
+                    allowed_tokens
+                ).format(
+                    intcomma(TOKENS_PER_MODULE),
+                    intcomma(allowed_tokens)
+                )
+            )
+        else:
+            # make tasks to generate the tokens
+            generate_voting_tokens(self.module.pk, number_of_tokens)
 
-        messages.success(
-            self.request,
-            ngettext(self.success_message[0], self.success_message[1],
-                     number_of_tokens).format(number_of_tokens)
-        )
+            messages.success(
+                self.request,
+                ngettext(self.success_message[0], self.success_message[1],
+                         number_of_tokens).format(intcomma(number_of_tokens))
+            )
 
         return redirect(self.get_success_url())

@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 import pytest
 from django.urls import reverse
 
@@ -10,12 +12,14 @@ from meinberlin.apps.votes.views import TokenExportView
 component = components.modules.get('voting_token_export')
 
 
+@patch('meinberlin.apps.votes.views.PAGE_SIZE', 2)
 @pytest.mark.django_db
 def test_token_vote_view(client, phase_factory, module_factory,
                          voting_token_factory):
     phase, module, project, item = setup_phase(
         phase_factory, None, VotingPhase)
     other_module = module_factory()
+    voting_token_factory(module=module)
     voting_token_factory(module=module)
     voting_token_factory(module=module)
     voting_token_factory(module=module, is_active=False)
@@ -37,8 +41,8 @@ def test_token_vote_view(client, phase_factory, module_factory,
     assert response.status_code == 200
     assert response.get('Content-Type') == \
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    assert token_export_iterator == range(1, 2)
-    assert number_of_module_tokens == 2
+    assert token_export_iterator == range(1, 3)
+    assert number_of_module_tokens == 3
 
 
 @pytest.mark.django_db
