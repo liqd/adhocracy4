@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
-from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
 
 from adhocracy4.api.mixins import ModuleMixin
@@ -12,6 +11,7 @@ from adhocracy4.categories import get_category_icon_url
 from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
+from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
 from meinberlin.apps.contrib.templatetags.contrib_tags import \
     get_proper_elided_page_range
 from meinberlin.apps.votes.api import VotingTokenInfoMixin
@@ -85,12 +85,13 @@ class ProposalFilterInfoMixin:
         ordering_choices = [('-created', _('Most recent')), ]
         if self.module.has_feature('rate', Proposal):
             ordering_choices += ('-positive_rating_count', _('Most popular')),
-        ordering_choices += ('-comment_count', _('Most commented')),
+        ordering_choices += ('-comment_count', _('Most commented')), \
+                            ('-daily_random', _('Random')),
 
         filters['ordering'] = {
             'label': _('Ordering'),
             'choices': ordering_choices,
-            'default': '-created',
+            'default': '-daily_random',
         }
 
         response = super().list(request, args, kwargs)
@@ -110,12 +111,13 @@ class ProposalViewSet(ModuleMixin,
     serializer_class = ProposalSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (DjangoFilterBackend,
-                       OrderingFilter,
+                       OrderingFilterWithDailyRandom,
                        IdeaCategoryFilterBackend,)
     filter_fields = ('is_archived', 'category',)
     ordering_fields = ('created',
                        'comment_count',
-                       'positive_rating_count',)
+                       'positive_rating_count',
+                       'daily_random',)
 
     def get_permission_object(self):
         return self.module
@@ -125,6 +127,5 @@ class ProposalViewSet(ModuleMixin,
             .filter(module=self.module) \
             .annotate_comment_count() \
             .annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
             .order_by('-created')
         return proposals

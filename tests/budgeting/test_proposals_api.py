@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _
+from freezegun import freeze_time
 
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting import phases
@@ -49,13 +50,16 @@ def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
     assert response.data['filters']['is_archived']['label'] == _('Archived')
     assert response.data['filters']['is_archived']['choices'] == \
            [('', _('All')), ('false', _('No')), ('true', _('Yes'))]
+    assert response.data['filters']['is_archived']['default'] == 'false'
 
     assert 'ordering' in response.data['filters']
     assert response.data['filters']['ordering']['label'] == _('Ordering')
     assert response.data['filters']['ordering']['choices'] == \
            [('-created', _('Most recent')),
             ('-positive_rating_count', _('Most popular')),
-            ('-comment_count', _('Most commented'))]
+            ('-comment_count', _('Most commented')),
+            ('-daily_random', _('Random'))]
+    assert response.data['filters']['ordering']['default'] == '-daily_random'
 
     # locale info
     assert 'locale' in response.data
@@ -78,37 +82,46 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     yesterday = now - timezone.timedelta(days=1)
     last_week = now - timezone.timedelta(days=7)
 
-    proposal_new = proposal_factory(module=module, created=now)
-    proposal_old = proposal_factory(module=module, created=last_week)
+    proposal_new = proposal_factory(pk=1, module=module, created=now)
+    proposal_old = proposal_factory(pk=2, module=module, created=last_week)
 
-    proposal_archived = proposal_factory(module=module,
+    proposal_archived = proposal_factory(pk=3,
+                                         module=module,
                                          created=yesterday,
                                          is_archived=True)
 
-    proposal_popular = proposal_factory(module=module, created=yesterday)
+    proposal_popular = proposal_factory(pk=4,
+                                        module=module,
+                                        created=yesterday)
     rating_factory(content_object=proposal_popular)
     rating_factory(content_object=proposal_popular)
 
-    proposal_commented = proposal_factory(module=module, created=yesterday)
+    proposal_commented = proposal_factory(pk=5,
+                                          module=module,
+                                          created=yesterday)
     comment_factory(content_object=proposal_commented)
 
-    proposal_cat1 = proposal_factory(module=module,
+    proposal_cat1 = proposal_factory(pk=6,
+                                     module=module,
                                      created=yesterday,
                                      category=category1)
 
-    proposal_cat2_archived = proposal_factory(module=module,
-                                              created=yesterday,
-                                              category=category2,
-                                              is_archived=True)
-    proposal_cat2_popular = proposal_factory(module=module,
+    proposal_cat2_popular = proposal_factory(pk=7,
+                                             module=module,
                                              created=yesterday,
                                              category=category2)
     rating_factory(content_object=proposal_cat2_popular)
 
+    proposal_cat2_archived = proposal_factory(pk=8,
+                                              module=module,
+                                              created=yesterday,
+                                              category=category2,
+                                              is_archived=True)
+
     url = reverse('proposals-list',
                   kwargs={'module_pk': module.pk})
 
-    # default ordering is created
+    # queryset is ordered by created
     response = apiclient.get(url)
     assert len(response.data['results']) == 8
     assert response.data['results'][0]['pk'] == proposal_new.pk
@@ -137,17 +150,32 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     assert len(response.data['results']) == 2
 
     # ordering
+    # positive rating
     querystring = '?ordering=-positive_rating_count'
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 8
     assert response.data['results'][0]['pk'] == proposal_popular.pk
     assert response.data['results'][1]['pk'] == proposal_cat2_popular.pk
+
+    # most commented
     querystring = '?ordering=-comment_count'
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 8
     assert response.data['results'][0]['pk'] == proposal_commented.pk
+
+    # daily random
+    querystring = '?ordering=-daily_random'
+    url_tmp = url + querystring
+    with freeze_time('2020-01-01 00:00:00 UTC'):
+        response = apiclient.get(url_tmp)
+    ordered_pks = [proposal['pk'] for proposal in response.data['results']]
+    assert ordered_pks == [6, 8, 7, 2, 1, 3, 4, 5]
+    with freeze_time('2022-01-01 00:00:00 UTC'):
+        response = apiclient.get(url_tmp)
+    ordered_pks = [proposal['pk'] for proposal in response.data['results']]
+    assert ordered_pks == [8, 2, 4, 7, 6, 5, 1, 3]
 
     # combinations
     querystring = '?is_archived=true&category=' + str(category2.pk)
@@ -163,6 +191,15 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     assert len(response.data['results']) == 2
     assert response.data['results'][0]['pk'] == proposal_cat2_popular.pk
     assert response.data['results'][1]['pk'] == proposal_cat2_archived.pk
+
+    querystring = '?ordering=-daily_random&category=' + \
+                  str(category2.pk)
+    url_tmp = url + querystring
+    with freeze_time('2020-01-01 00:00:00 UTC'):
+        response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 2
+    assert response.data['results'][0]['pk'] == proposal_cat2_archived.pk
+    assert response.data['results'][1]['pk'] == proposal_cat2_popular.pk
 
 
 @pytest.mark.django_db
