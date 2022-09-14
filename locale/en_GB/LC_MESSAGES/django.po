@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-14 08:18+0200\n"
+"POT-Creation-Date: 2022-09-14 15:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -675,7 +675,7 @@ msgstr "Positive ratings"
 msgid "Negative ratings"
 msgstr "Negative ratings"
 
-#: adhocracy4/filters/widgets.py:66 meinberlin/apps/budgeting/api.py:87
+#: adhocracy4/filters/widgets.py:66 meinberlin/apps/budgeting/api.py:88
 #: meinberlin/apps/projects/views.py:40
 msgid "Ordering"
 msgstr "Ordering"
@@ -1667,6 +1667,10 @@ msgstr "Most popular"
 #: meinberlin/apps/topicprio/views.py:32
 msgid "Most commented"
 msgstr "Most commented"
+
+#: meinberlin/apps/budgeting/api.py:85
+msgid "Random"
+msgstr "Random"
 
 #: meinberlin/apps/budgeting/exports.py:42
 msgid "Contact E-Mail"
