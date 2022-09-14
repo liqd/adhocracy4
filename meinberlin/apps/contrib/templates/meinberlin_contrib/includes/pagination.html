@@ -18,7 +18,7 @@
       {% for page_number in paginated_page_range %}
         <li class="pagination-item{% ifequal page_number page_obj.number %} active{% endifequal %}">
             {% combined_url_parameter request.GET page=page_number as url_par %}
-            <a href="{{ url_par }}">{{ page_number }}</a>
+            <a href="{{ url_par }}" class="{% if not page_number >= 0 %}disabled{% endif %}">{{ page_number }}</a>
         </li>
       {% endfor %}
 
