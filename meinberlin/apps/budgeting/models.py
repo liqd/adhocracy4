@@ -19,7 +19,11 @@ class Proposal(mapidea_models.AbstractMapIdea):
                                object_id_field='object_pk')
     budget = models.PositiveIntegerField(
         default=0,
-        help_text=_('Required Budget')
+        verbose_name=_('Budget'),
+        help_text=_('Please enter the estimated or actual costs for your '
+                    'proposal. Enter 0€ if the costs are not (yet) known. '
+                    'In this case, the description "budget not specified" '
+                    'will appear in your proposal.'),
     )
 
     is_archived = models.BooleanField(

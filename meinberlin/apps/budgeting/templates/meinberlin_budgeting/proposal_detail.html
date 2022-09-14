@@ -8,7 +8,9 @@
 
 {% block additional_labels %}
     {{ block.super }}
-    <span class="label label--big test">{{ proposal.budget|intcomma }}€</span>
+    <span class="label label--big test">
+        {% if proposal.budget == 0 %}{% translate 'budget not specified' %}{% else %}{{ proposal.budget|intcomma }}€{% endif %}
+    </span>
 {% endblock %}
 
 {% block vote_button %}
