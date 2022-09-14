@@ -1839,7 +1839,7 @@ msgstr "Bitte geben Sie eine E-Mail-Adresse an."
 
 #: meinberlin/apps/budgeting/models.py:22
 msgid "Budget"
-msgstr ""
+msgstr "Kosten"
 
 #: meinberlin/apps/budgeting/models.py:23
 msgid ""
@@ -1847,6 +1847,10 @@ msgid ""
 "the costs are not (yet) known. In this case, the description \"budget not "
 "specified\" will appear in your proposal."
 msgstr ""
+"Bitte tragen Sie die geschätzten oder tatsächlichen Kosten für Ihren "
+"Vorschlag ein. Tragen Sie 0€ ein, wenn die Kosten (noch) nicht bekannt sind. "
+"In diesem Fall erscheint in Ihrem Vorschlag die Beschreibung \"Kosten: keine "
+"Angabe\"."
 
 #: meinberlin/apps/budgeting/models.py:31
 msgid "Proposal is archived"
@@ -2006,7 +2010,7 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_detail.html:12
 msgid "budget not specified"
-msgstr ""
+msgstr "Kosten: keine Angabe"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:19
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:18
