@@ -1790,7 +1790,7 @@ msgstr "meist kommentiert"
 
 #: meinberlin/apps/budgeting/api.py:85
 msgid "Random"
-msgstr ""
+msgstr "zufällig"
 
 #: meinberlin/apps/budgeting/exports.py:42
 msgid "Contact E-Mail"
