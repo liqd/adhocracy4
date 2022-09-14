@@ -6,8 +6,8 @@ test('clicking on page 2 returns value of 2', () => {
   const onPageChangedFn = jest.fn()
   render(
     <Pagination
-      currentIndex={1}
-      pageCount={3}
+      currentPage={1}
+      elidedRange={[1, 2, '…', 3]}
       onPaginate={selPage => onPageChangedFn(selPage)}
     />
   )
