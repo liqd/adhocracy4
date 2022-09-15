@@ -231,18 +231,6 @@ $divider-margin: 1.25rem;
     }
 }
 
-// secondary search
-
-.filter-bar__search {
-    display: inline;
-    width: calc(100% - 63px);
-    margin-bottom: 2 * $spacer;
-
-    @media screen and (min-width: $breakpoint-xs) {
-        width: calc(100% - 51px);
-    }
-}
-
 // secondary radio group
 
 .filter-bar__menu-radio-par {
@@ -311,6 +299,12 @@ $divider-margin: 1.25rem;
 .filter-bar__section {
     display: flex;
     flex-wrap: wrap;
+}
+
+@media (max-width: $breakpoint) {
+    .filter-bar__section {
+        flex-direction: column;
+    }
 }
 
 @media screen and (max-width: $breakpoint-down) {

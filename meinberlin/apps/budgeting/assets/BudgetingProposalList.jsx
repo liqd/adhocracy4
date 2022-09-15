@@ -3,7 +3,7 @@ import django from 'django'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
 import { CountDown } from '../../contrib/assets/CountDown'
-import { FilterBar } from './FilterBar'
+import { ControlBar } from './ControlBar'
 
 const nothingStr = django.gettext('Nothing to show')
 
@@ -109,8 +109,9 @@ export const BudgetingProposalList = (props) => {
             </div>
           </div>
         </div>}
-      <FilterBar
+      <ControlBar
         filters={meta?.filters}
+        numOfResults={data?.length}
         onChangeFilters={filterString => onChangeFilters(filterString)}
       />
       <div className="module-content--light">

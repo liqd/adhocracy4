@@ -2,10 +2,6 @@
 
 .input-group {
     display: flex;
-
-    input {
-        margin-bottom: 0;
-    }
 }
 
 .input-group__input {
@@ -43,11 +39,6 @@
         border-top-right-radius: 0.3em;
         border-bottom-right-radius: 0.3em;
     }
-}
-
-.input-group__after--search {
-    vertical-align: inherit;
-    margin-bottom: 0;
 }
 
 .input-group__input:focus,

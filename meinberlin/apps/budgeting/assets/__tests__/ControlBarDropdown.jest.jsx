@@ -1,10 +1,10 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { FilterBarDropdown } from '../FilterBarDropdown'
+import { ControlBarDropdown } from '../ControlBarDropdown'
 
-test('FilterBarDropdown is displaying with icons', () => {
+test('ControlBarDropdown is displaying with icons', () => {
   render(
-    <FilterBarDropdown
+    <ControlBarDropdown
       filter={{
         label: 'categories',
         current: 'all',
@@ -19,10 +19,10 @@ test('FilterBarDropdown is displaying with icons', () => {
   expect(iconElement).toBeTruthy()
 })
 
-test('FilterBarDropdown on filter change', () => {
+test('ControlBarDropdown on filter change', () => {
   const onFilterChangeFn = jest.fn()
   render(
-    <FilterBarDropdown
+    <ControlBarDropdown
       filter={{
         label: 'categories',
         current: 'all',
@@ -37,9 +37,9 @@ test('FilterBarDropdown on filter change', () => {
   expect(onFilterChangeFn).toHaveBeenCalledTimes(1)
 })
 
-test('FilterBarDropdown is positioned right', () => {
+test('ControlBarDropdown is positioned right', () => {
   render(
-    <FilterBarDropdown
+    <ControlBarDropdown
       filter={{
         position: 'right',
         label: 'categories',

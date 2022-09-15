@@ -2,7 +2,7 @@
     @include clearfix;
 
     select,
-    .dropdown,
+    .control-bar__item,
     .btn-group__container {
         display: inline-block;
         vertical-align: top;
@@ -11,9 +11,13 @@
 
     @media (min-width: $breakpoint) {
         select,
-        .dropdown,
+        .control-bar__item,
         .btn-group__container {
-            margin-right: 0.25 * $spacer;
+            margin-right: 0.5 * $spacer;
+        }
+
+        .control-bar__item:last-child {
+            margin-right: 0;
         }
     }
 
@@ -22,18 +26,14 @@
             // @include grid-same-width(2);
         }
 
-        > :last-child {
-            float: right;
-            margin-right: 0;
-        }
-
-        .dropdown,
+        .control-bar__item,
         .btn-group__container {
             display: block;
-            margin-bottom: ($em-spacer * 0.5);
         }
 
-        .dropdown-toggle {
+        .dropdown-toggle,
+        .control-bar__item,
+        .control-bar__item button {
             width: 100%;
             max-width: none;
         }
@@ -69,27 +69,10 @@
     .input-group__input {
         min-width: 0;
     }
-
-    .control-bar-item {
-        margin-right: $spacer * 0.25;
-        display: inline-block;
-
-        &__right {
-            margin-right: 0;
-            float: right;
-        }
-    }
 }
 
 .control-bar__bottom-overlap {
     position: relative;
     z-index: 1;
     top: -1em;
-}
-
-.control-bar--list {
-    > :last-child {
-        float: right;
-        margin-right: 0;
-    }
 }

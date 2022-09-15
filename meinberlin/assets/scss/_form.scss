@@ -46,6 +46,11 @@ input[type="radio"] {
     border: 0;
 }
 
+input[type="search"] {
+    border-top-left-radius: 0.3em !important;
+    border-bottom-left-radius: 0.3em !important;
+}
+
 div.cke_focus {
     border-color: $secondary;
 }

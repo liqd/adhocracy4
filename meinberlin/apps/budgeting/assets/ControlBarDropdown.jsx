@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-export const FilterBarDropdown = props => {
+export const ControlBarDropdown = props => {
   const { filter: { label, choices, current, icons } } = props
 
   const onSelectFilter = filter => {
@@ -26,7 +26,7 @@ export const FilterBarDropdown = props => {
   }
 
   return (
-    <div className="dropdown">
+    <div className="dropdown control-bar__item">
       <button
         type="button"
         className="dropdown-toggle btn btn--light btn--select"
@@ -34,12 +34,12 @@ export const FilterBarDropdown = props => {
         data-flip="false"
         aria-haspopup="true"
         aria-expanded="false"
-        id="id_category"
+        id={props.filterId}
       >
         {current ? `${label}: ${current}` : `${label}`}
         <i className="fa fa-caret-down" aria-hidden />
       </button>
-      <ul aria-labelledby="id_category" className="dropdown-menu">
+      <ul aria-labelledby={props.filterId} className="dropdown-menu">
         {choices.map((choice, idx) => {
           const icon = icons && getIcon(choice[0])
           return (

@@ -220,7 +220,7 @@ class PlansMap extends Component {
 
   onAddressSearchSubmit (event) {
     event.preventDefault()
-    const address = event.target.search.value
+    const address = event.target[0].value
     $.ajax(apiUrl, {
       data: { address },
       context: this,
@@ -269,21 +269,33 @@ class PlansMap extends Component {
     return (
       <div className="map-list-combined__map" ref={this.bindMap.bind(this)}>
         <div className="map-list-combined__map__search">
-          <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore">
-            <label htmlFor="id-map-search" className="input-group">
+          <form onSubmit={e => this.onAddressSearchSubmit(e)} data-embed-target="ignore">
+            <div className="input-group">
+              <label
+                htmlFor="id-map-address-search"
+                className="visually-hidden"
+              >
+                {addressSearchStr}
+              </label>
               <input
-                onChange={this.onAddressSearchChange.bind(this)}
                 className="form-control"
-                name="search"
                 type="search"
-                id="id-map-search"
+                id="id-map-address-search"
                 placeholder={addressSearchCapStr}
+                onChange={e => this.onAddressSearchChange(e)}
               />
-              <button className="input-group__after--search btn btn--light" type="submit" title={addressSearchStr}>
-                <i className="fas fa-search" aria-label={addressSearchStr} />
-              </button>
-            </label>
-
+              <div className="input-group-append">
+                <button
+                  className="btn btn--light btn--attached-right"
+                  type="submit"
+                >
+                  <i className="fa fa-search" aria-hidden="true" />
+                  <span className="visually-hidden">
+                    {addressSearchStr}
+                  </span>
+                </button>
+              </div>
+            </div>
             {this.state.displayResults &&
               <ul aria-labelledby="id_filter_address">
                 {this.state.searchResults.map((name, i) => {

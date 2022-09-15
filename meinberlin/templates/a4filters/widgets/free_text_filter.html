@@ -1,13 +1,34 @@
 {% load i18n %}
 
 <form class="form-group u-inline-flex" method="get">
-    <input class="input-group__input" type="search" name="{{ name }}" placeholder="{% trans 'Search' %}" value="{{ value }}">
+    <label
+        for="{{ name }}"
+        class="visually-hidden"
+    >
+        {% trans 'Search' %}
+    </label>
+    <input
+        class="form-control"
+        type="search"
+        id="{{ name }}"
+        name="{{ name }}"
+        placeholder="{% trans 'Search' %}"
+        value="{{ value }}"
+    />
     {% for par_name, value in url_par.items %}
         {% if par_name != name %}
             <input type="hidden" name="{{ par_name }}" value="{{ value }}">
         {% endif %}
     {% endfor %}
-    <button class="input-group__after btn btn--light" type="submit" title="{% trans 'Search' %}">
-        <i class="fa fa-search" aria-label="{% trans 'Search' %}"></i>
-    </button>
+    <div class="input-group-append">
+        <button
+          class="btn btn--light btn--attached-right"
+          type="submit"
+        >
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <span class="visually-hidden">
+                {% trans 'Search' %}
+            </span>
+        </button>
+    </div>
 </form>

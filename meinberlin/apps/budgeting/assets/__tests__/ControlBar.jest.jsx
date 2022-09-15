@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { FilterBar } from '../FilterBar'
+import { ControlBar } from '../ControlBar'
 
 const filters = {
   category: {
@@ -16,13 +16,17 @@ const filters = {
   }
 }
 
-test('FilterBar shows filters', () => {
+test('ControlBar shows filters', () => {
   const onChangeFiltersFn = jest.fn()
   render(
-    <FilterBar filters={filters} onChangeFilters={() => onChangeFiltersFn()} />
+    <ControlBar
+      filters={filters}
+      onChangeFilters={() => onChangeFiltersFn()}
+      numOfResults={2}
+    />
   )
-  const categoriesFilterElement = screen.getByText('categories: all')
-  expect(categoriesFilterElement).toBeTruthy()
+  const numOfResultsElement = screen.getByText(/2/)
+  expect(numOfResultsElement).toBeTruthy()
   const orderingFilterElement = screen.getByText('ordering: Most recent')
   expect(orderingFilterElement).toBeTruthy()
 })

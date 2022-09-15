@@ -80,26 +80,36 @@ class FilterSecondary extends React.Component {
 
   render () {
     return (
-      <form className="filter-bar__menu">
-        <div role="search">
-          <label htmlFor="id-title-search"><span className="visually-hidden">{searchTitleStr}</span></label>
-          <input
-            className="input-group__input filter-bar__search"
-            type="text"
-            id="id-title-search"
-            placeholder={searchTitleStr}
-            value={this.state.titleSearchChoice}
-            onChange={this.changeTitleSearch.bind(this)}
-          />
-          <button
-            className="input-group__after input-group__after--search btn btn--light"
-            type="submit"
-            onClick={this.submitSecondaryFilters.bind(this)}
+      <form
+        className="filter-bar__menu"
+        onSubmit={e => this.submitSecondaryFilters(e)}
+      >
+        <div className="input-group">
+          <label
+            htmlFor="id-filter-search"
+            className="visually-hidden"
           >
-            <i className="fa fa-search" aria-hidden="true" />
-            <span className="visually-hidden">{performSearchStr}</span>
-          </button>
-
+            {searchTitleStr}
+          </label>
+          <input
+            className="form-control"
+            type="search"
+            id="id-filter-search"
+            placeholder={searchTitleStr}
+            onChange={(e) => this.changeTitleSearch(e)}
+            value={this.state.titleSearchChoice}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn--light btn--attached-right"
+              type="submit"
+            >
+              <i className="fa fa-search" aria-hidden="true" />
+              <span className="visually-hidden">
+                {performSearchStr}
+              </span>
+            </button>
+          </div>
         </div>
         <FilterRadio
           filterId="par"
@@ -129,7 +139,6 @@ class FilterSecondary extends React.Component {
         <button
           className="btn btn--primary filter-secondary__btn"
           type="submit"
-          onClick={this.submitSecondaryFilters.bind(this)}
         >
           {showProjectsStr}
         </button>

@@ -2,10 +2,11 @@ import React from 'react'
 import django from 'django'
 import { SpacedSpan } from './SpacedSpan'
 
-export const FilterBarListMapSwitch = ({ query }) => {
+export const ControlBarListMapSwitch = ({ query }) => {
+  // FIXME: to be changed, once Map is in React
   return (
     <div className="btn-group__container">
-      <div className="btn-group" role="group">
+      <div className="btn-group">
         <div
           className="btn btn--light switch--btn active"
           aria-label={django.gettext('View as list')}

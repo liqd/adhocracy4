@@ -171,6 +171,11 @@
     border-top-right-radius: 0;
 }
 
+.btn--attached-right {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 .btn-group {
     .dropdown {
         display: inline-block;
