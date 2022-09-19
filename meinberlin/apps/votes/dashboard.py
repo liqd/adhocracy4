@@ -38,6 +38,7 @@ class GenerateVotesComponent(DashboardComponent):
     identifier = 'voting_token_generation'
     weight = 49
     label = _('Generate voting codes')
+    for_superuser_only = True
 
     def is_effective(self, module):
         return module.blueprint_type == 'PB3'

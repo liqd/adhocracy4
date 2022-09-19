@@ -23,6 +23,7 @@
         <div class="dashboard-nav__menu-content">
             <ul>
             {% for item in module_menu.menu %}
+                {% if not item.for_superuser_only or request.user.is_superuser %}
                 <li class="dashboard-nav__page">
                     <a href="{{ item.url }}"
                        class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
@@ -32,6 +33,7 @@
                         {% endif %}
                     </a>
                 </li>
+                {% endif %}
             {% endfor %}
             </ul>
         </div>

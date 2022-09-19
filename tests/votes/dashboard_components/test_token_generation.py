@@ -16,7 +16,7 @@ component = components.modules.get('voting_token_generation')
 @patch('meinberlin.apps.votes.tasks.BATCH_SIZE', 10)
 @pytest.mark.django_db
 def test_token_generate_view(client, phase_factory, module_factory,
-                             voting_token_factory):
+                             voting_token_factory, admin):
     phase, module, project, item = setup_phase(
         phase_factory, None, VotingPhase)
     other_module = module_factory()
@@ -25,9 +25,14 @@ def test_token_generate_view(client, phase_factory, module_factory,
     voting_token_factory(module=module, is_active=False)
     voting_token_factory(module=other_module)
 
+    # initiator cannot access token generation view
     initiator = module.project.organisation.initiators.first()
     url = component.get_base_url(module)
     client.login(username=initiator.email, password='password')
+    response = client.get(url)
+    assert response.status_code == 403
+    # admin can access view and generate tokens
+    client.login(username=admin.email, password='password')
     response = client.get(url)
     assert response.status_code == 200
     assert 'number_of_module_tokens' in response.context
@@ -55,16 +60,14 @@ def test_token_generate_view(client, phase_factory, module_factory,
 @patch('meinberlin.apps.votes.views.TOKENS_PER_MODULE', 5)
 @pytest.mark.django_db
 def test_token_generate_view_max_validation(
-        client, phase_factory, voting_token_factory, rf):
+        client, phase_factory, voting_token_factory, rf, admin):
     phase, module, project, item = setup_phase(
         phase_factory, None, VotingPhase)
-    initiator = module.project.organisation.initiators.first()
     voting_token_factory(module=module)
     voting_token_factory(module=module)
 
-    initiator = module.project.organisation.initiators.first()
     url = component.get_base_url(module)
-    client.login(username=initiator.email, password='password')
+    client.login(username=admin.email, password='password')
     data = {
         'number_of_tokens': 5
     }

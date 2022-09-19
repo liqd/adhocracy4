@@ -111,7 +111,7 @@ class VotingGenerationDashboardView(
           'You are allowed to generate {} more.'),
         _('Only {} tokens are allowed per module. '
           'You are allowed to generate {} more.'))
-    permission_required = 'a4projects.change_project'
+    permission_required = 'is_superuser'
     template_name = 'meinberlin_votes/voting_code_dashboard.html'
 
     def _get_number_of_tokens(self):
