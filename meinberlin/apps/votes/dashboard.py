@@ -26,7 +26,7 @@ class VotesComponent(DashboardComponent):
     def get_urls(self):
         return [
             (r'^modules/(?P<module_slug>[-\w_]+)/voting/$',
-             views.VotingDashboardView.as_view(),
+             views.VotingDashboardView.as_view(component=self),
              'voting-tokens'),
             (r'^modules/(?P<module_slug>[-\w_]+)/voting/export-token/$',
              views.TokenExportView.as_view(),
@@ -53,7 +53,7 @@ class GenerateVotesComponent(DashboardComponent):
     def get_urls(self):
         return [
             (r'^modules/(?P<module_slug>[-\w_]+)/voting-codes/$',
-             views.VotingGenerationDashboardView.as_view(),
+             views.VotingGenerationDashboardView.as_view(component=self),
              'voting-token-generation'),
         ]
 

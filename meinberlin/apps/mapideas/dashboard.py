@@ -28,7 +28,7 @@ class ExportMapIdeaComponent(DashboardComponent):
     def get_urls(self):
         return [
             (r'^modules/(?P<module_slug>[-\w_]+)/export/mapidea/$',
-             views.MapIdeaDashboardExportView.as_view(),
+             views.MapIdeaDashboardExportView.as_view(component=self),
              'mapidea-export-module'),
             (r'^modules/(?P<module_slug>[-\w_]+)/export/mapidea/ideas/$',
              exports.MapIdeaExportView.as_view(),

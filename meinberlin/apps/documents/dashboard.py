@@ -58,7 +58,7 @@ class ExportDocumentComponent(DashboardComponent):
     def get_urls(self):
         return [
             (r'^modules/(?P<module_slug>[-\w_]+)/export/document/$',
-             views.DocumentDashboardExportView.as_view(),
+             views.DocumentDashboardExportView.as_view(component=self),
              'document-export-module'),
             (r'^modules/(?P<module_slug>[-\w_]+)/export/document/comments/$',
              exports.DocumentExportView.as_view(),

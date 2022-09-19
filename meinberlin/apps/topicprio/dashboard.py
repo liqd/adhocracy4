@@ -67,7 +67,7 @@ class ExportTopicComponent(DashboardComponent):
     def get_urls(self):
         return [
             (r'^modules/(?P<module_slug>[-\w_]+)/export/topic/$',
-             views.TopicDashboardExportView.as_view(),
+             views.TopicDashboardExportView.as_view(component=self),
              'topic-export-module'),
             (r'^modules/(?P<module_slug>[-\w_]+)/export/topic/maptopics/$',
              exports.TopicExportView.as_view(),

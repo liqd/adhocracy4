@@ -28,7 +28,7 @@ class ExportKiezkasseComponent(DashboardComponent):
     def get_urls(self):
         return [
             (r'^modules/(?P<module_slug>[-\w_]+)/export/kiezkasse/$',
-             views.ProposalDashboardExportView.as_view(),
+             views.ProposalDashboardExportView.as_view(component=self),
              'kiezkasse-export-module'),
             (r'^modules/(?P<module_slug>[-\w_]+)/export/kiezkasse/ideas/$',
              exports.ProposalExportView.as_view(),

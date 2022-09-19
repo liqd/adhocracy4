@@ -28,7 +28,7 @@ class ExportIdeaComponent(DashboardComponent):
     def get_urls(self):
         return [
             (r'^modules/(?P<module_slug>[-\w_]+)/export/idea/$',
-             views.IdeaDashboardExportView.as_view(),
+             views.IdeaDashboardExportView.as_view(component=self),
              'idea-export-module'),
             (r'^modules/(?P<module_slug>[-\w_]+)/export/idea/ideas/$',
              exports.IdeaExportView.as_view(),

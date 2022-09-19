@@ -72,7 +72,7 @@ class ExportMapTopicComponent(DashboardComponent):
     def get_urls(self):
         return [
             (r'^modules/(?P<module_slug>[-\w_]+)/export/maptopic/$',
-             views.MapTopicDashboardExportView.as_view(),
+             views.MapTopicDashboardExportView.as_view(component=self),
              'maptopic-export-module'),
             (r'^modules/(?P<module_slug>[-\w_]+)/export/maptopic/maptopics/$',
              exports.MapTopicExportView.as_view(),
