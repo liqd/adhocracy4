@@ -197,9 +197,10 @@ class AbstractIdeaModerateView(
             statement.save()
             moderateable.moderator_statement = statement
             moderateable.save()
-            NotifyCreatorOnModeratorFeedback.send(self.object)
             if hasattr(self.object, 'contact_email'):
                 NotifyContactOnModeratorFeedback.send(self.object)
+            else:
+                NotifyCreatorOnModeratorFeedback.send(self.object)
         return objects
 
     def get_instance(self, name):
