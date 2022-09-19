@@ -29,12 +29,9 @@ def test_list_view_token_form(client, user, phase_factory, proposal_factory,
         phase_factory, proposal_factory, phases.RequestPhase)
     url = project.get_absolute_url()
     token = voting_token_factory(module=module)
-    token_split = token.__str__().split('-')
 
     data = {
-        'token_0': token_split[0],
-        'token_1': token_split[1],
-        'token_2': token_split[2],
+        'token': str(token)
     }
 
     with freeze_phase(phase):
@@ -51,16 +48,12 @@ def test_list_view_token_form(client, user, phase_factory, proposal_factory,
     other_module = module_factory()
     other_token = voting_token_factory(module=other_module)
 
-    other_token_split = other_token.__str__().split('-')
-
     # remove token from session
     client.login(username=user.email, password='password')
     client.logout()
 
     data = {
-        'token_0': other_token_split[0],
-        'token_1': other_token_split[1],
-        'token_2': other_token_split[2],
+        'token': str(other_token)
     }
 
     with freeze_phase(phase):

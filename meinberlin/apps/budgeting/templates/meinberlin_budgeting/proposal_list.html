@@ -23,15 +23,16 @@
         {% has_perm 'meinberlin_budgeting.add_vote' request.user module as vote_allowed %}
         {% if vote_allowed %}
             {% if not valid_token_present %}
-                <form class="" action="{{ request.path }}" method="post">
-                    <div class="form-group">
-                        {% csrf_token %}
-                        <div class="widget--{{ token_form.token|widget_type }}">
-                            {{ token_form.token }}
-                            <button type="submit" class="btn btn--primary">{% trans 'Enter code' %}</button>
-                        </div>
-                        {{ token_form.token.errors }}
+                <form action="{{ request.path }}" method="post">
+                  {% csrf_token %}
+                    <div class="input-group input-group-lg">
+                        <label for="id_token" class="visually-hidden-focusable">{% trans 'Voting token form fields' %}</label>
+                        {{ token_form.token }}
+                        <button type="submit" class="btn btn--primary">{% trans 'Enter code' %}</button>
                     </div>
+                    {% if token_form.token.errors %}
+                        <div role="alert">{{ token_form.token.errors }}</div>
+                    {% endif %}
                 </form>
             {% endif %}
         {% endif %}

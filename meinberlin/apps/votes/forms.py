@@ -1,34 +1,43 @@
 from django import forms
+from django.forms.widgets import TextInput
 from django.utils.translation import gettext_lazy as _
 
 from meinberlin.apps.votes.models import VotingToken
 
 
-class VotingTokenWidget(forms.MultiWidget):
+class VotingTokenField(forms.CharField):
 
-    def __init__(self, attrs=None):
-        widgets = (
-            forms.TextInput(attrs={'minlength': '4',
-                                   'maxlength': '4'}),
-            forms.TextInput(attrs={'minlength': '4',
-                                   'maxlength': '4'}),
-            forms.TextInput(attrs={'minlength': '4',
-                                   'maxlength': '4'}),
-        )
-        super(VotingTokenWidget, self).__init__(widgets, attrs)
+    def __init__(self, placeholder=None, *args, **kwargs):
+        widget = (TextInput(attrs={'class': 'form-control',
+                                   'minlength': 12,
+                                   'maxlength': 14,
+                                   'placeholder': placeholder})
+                  )
+        super().__init__(widget=widget, *args, **kwargs)
 
-    def decompress(self, value):
-        if value:
-            return [value[i:i + 4] for i in range(0, len(value), 4)]
-        return [None, None, None]
+    default_error_messages = {
+        'invalid_short': _('The token is too short'),
+        'invalid_long': _('The token is too long'),
+    }
 
-    def value_from_datadict(self, data, files, name):
-        values = super().value_from_datadict(data, files, name)
-        return "".join(values)
+    def clean(self, value):
+
+        # ensure no spaces or dashes
+        value = value.replace(' ', '').replace('-', '')
+
+        # check the value is not too short or too long
+        if len(value) < 12:
+            raise forms.ValidationError(self.error_messages['invalid_short'])
+        elif len(value) > 12:
+            raise forms.ValidationError(self.error_messages['invalid_long'])
+
+        return value
 
 
 class TokenForm(forms.Form):
-    token = forms.CharField(widget=VotingTokenWidget())
+    token = VotingTokenField(
+        placeholder='0000-0000-0000'
+    )
 
     def __init__(self, *args, **kwargs):
         self.module_id = kwargs.pop('module_id')

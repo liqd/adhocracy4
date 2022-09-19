@@ -3,7 +3,7 @@ const React = require('react')
 const ErrorList = ({ errors, field }) => {
   if (errors && errors[field]) {
     return (
-      <ul className="errorlist">
+      <ul className="errorlist" role="alert">
         {errors[field].map(function (msg, index) {
           return <li key={msg}>{msg}</li>
         })}

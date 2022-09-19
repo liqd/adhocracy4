@@ -79,6 +79,8 @@
 
 .btn--secondary {
     @extend .btn-secondary;
+
+    border: none;
 }
 
 .btn--danger {
