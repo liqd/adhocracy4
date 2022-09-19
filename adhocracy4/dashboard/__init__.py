@@ -126,5 +126,6 @@ class ProjectDashboard:
                     'is_active': is_active,
                     'url': url,
                     'is_complete': is_complete,
+                    'for_superuser_only': component.for_superuser_only,
                 })
         return module_menu or None

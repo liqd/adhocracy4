@@ -40,6 +40,7 @@ class DashboardComponent:
     identifier = ''
     weight = 0
     label = ''
+    for_superuser_only = False
 
     def is_effective(self, project_or_module):
         """Return if the component is effective for the current context.

@@ -71,7 +71,8 @@ def test_menu(module, dashboard_test_component_factory):
             'label': module_component.label,
             'is_active': True,
             'url': 'mc1_url',
-            'is_complete': True
+            'is_complete': True,
+            'for_superuser_only': False
         }
     ]
 
@@ -88,7 +89,8 @@ def test_menu(module, dashboard_test_component_factory):
                 'label': module_component.label,
                 'is_active': False,
                 'url': 'mc1_url',
-                'is_complete': True
+                'is_complete': True,
+                'for_superuser_only': False
             }],
             'is_complete': True,
         }]
