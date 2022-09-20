@@ -169,6 +169,9 @@ export default class Comment extends React.Component {
                   this.setState({
                     edit: false
                   })
+                  return null
+                }).catch(error => {
+                  console.warn(error)
                 })
             }}
           />
@@ -196,6 +199,9 @@ export default class Comment extends React.Component {
                   this.setState({
                     edit: false
                   })
+                  return null
+                }).catch(error => {
+                  console.warn(error)
                 })
             }}
           />

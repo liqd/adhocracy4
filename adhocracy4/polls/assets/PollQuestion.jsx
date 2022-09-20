@@ -22,6 +22,11 @@ export const PollQuestion = (props) => {
   const [errors, setErrors] = useState()
   const maxlength = 250
 
+  useEffect(() => {
+    setUserChoices(props.question.userChoices)
+    setErrors(props.errors)
+  }, [props.question.userChoices, props.errors])
+
   const handleSingleChange = (event, isOther) => {
     const choiceId = parseInt(event.target.value)
     setUserChoices([choiceId])
@@ -51,11 +56,6 @@ export const PollQuestion = (props) => {
   const findOtherChoice = () => {
     return props.question.choices.find(c => c.is_other_choice)
   }
-
-  useEffect(() => {
-    setUserChoices(props.question.userChoices)
-    setErrors(props.errors)
-  })
 
   return (
     <form>

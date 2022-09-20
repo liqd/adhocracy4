@@ -222,6 +222,7 @@ class PollQuestions extends React.Component {
             alert: ALERT_SUCCESS
           }
         })
+        return null
       })
       .catch(() => {
         this.setState(prevState => {
