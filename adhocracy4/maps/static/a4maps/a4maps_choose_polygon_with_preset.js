@@ -142,6 +142,7 @@ function init () {
             } catch (e) {
               this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
             }
+            return null
           }, (e) => this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
           ).catch((e) => {
             this._showUploadError(django.gettext('The uploaded file could not be imported.'))

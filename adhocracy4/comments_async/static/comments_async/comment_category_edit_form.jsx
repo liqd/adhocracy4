@@ -70,7 +70,8 @@ export default class CommentCategoryEditForm extends React.Component {
       if (this.props.useTermsOfUse && !this.props.agreedTermsOfUse && this.state.checkedTermsOfUse) {
         this.setState({ agreedTermsOfUse: true })
       }
-    })
+      return null
+    }).catch(error => console.warn(error))
   }
 
   render () {
