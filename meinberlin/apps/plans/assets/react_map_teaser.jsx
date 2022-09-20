@@ -1,8 +1,9 @@
-const MapTeaserBox = require('./MapTeaserBox')
-const React = require('react')
-const ReactDOM = require('react-dom')
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import MapTeaserBox from './MapTeaserBox'
 
 module.exports.renderFilter = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
-  ReactDOM.render(<MapTeaserBox {...props} />, el)
+  const root = createRoot(el)
+  root.render(<MapTeaserBox {...props} />, el)
 }

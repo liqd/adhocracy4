@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { widget as ReactWidget } from 'adhocracy4'
 import { BudgetingProposalList } from './BudgetingProposalList.jsx'
 
@@ -7,7 +7,8 @@ function init () {
   ReactWidget.initialise('mb', 'proposals',
     function (el) {
       const props = JSON.parse(el.getAttribute('data-attributes'))
-      ReactDOM.render(<BudgetingProposalList {...props} />, el)
+      const root = createRoot(el)
+      root.render(<BudgetingProposalList {...props} />, el)
     }
   )
 }
