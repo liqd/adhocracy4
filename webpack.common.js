@@ -80,7 +80,7 @@ module.exports = {
         'maplibre-gl/dist/maplibre-gl.css',
         'leaflet.markercluster/dist/MarkerCluster.css',
         'react-bootstrap-typeahead/css/Typeahead.css',
-        './meinberlin/apps/plans/assets/plans_map.jsx'
+        './meinberlin/apps/plans/assets/react_plans_map.jsx'
       ],
       dependOn: 'adhocracy4'
     },

@@ -16,7 +16,7 @@ const statusNames = [
 
 const pageHeader = django.gettext('Project overview')
 
-class ListMapBox extends Component {
+class PlansListMapBox extends Component {
   constructor (props) {
     super(props)
 
@@ -435,4 +435,4 @@ class ListMapBox extends Component {
   }
 }
 
-export default ListMapBox
+export default PlansListMapBox

@@ -4,7 +4,7 @@ const FilterNav = require('./FilterNav')
 const breakpointXS = 800
 const breakpointMD = 1024
 
-class MapTeaserBox extends React.Component {
+class LandingPageMapTeaser extends React.Component {
   constructor (props) {
     super(props)
     this.windowSizeChange = this.handleWindowSizeChange.bind(this)
@@ -104,4 +104,4 @@ class MapTeaserBox extends React.Component {
   }
 }
 
-module.exports = MapTeaserBox
+module.exports = LandingPageMapTeaser

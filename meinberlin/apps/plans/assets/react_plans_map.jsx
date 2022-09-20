@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { CookiesProvider } from 'react-cookie'
-import ListMapBox from './ListMapBox'
+import PlansListMapBox from './PlansListMapBox'
 
 function init () {
   const plansMapBox = document.querySelectorAll('[data-map="plans"]')
@@ -27,7 +27,7 @@ function init () {
     const root = createRoot(el)
     root.render(
       <CookiesProvider>
-        <ListMapBox
+        <PlansListMapBox
           selectedDistrict={selectedDistrict}
           selectedTopic={selectedTopic}
           projectApiUrl={projectApiUrl}
