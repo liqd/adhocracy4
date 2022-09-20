@@ -84,6 +84,16 @@ export const CommentBox = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    if (anchorRendered === true) {
+      const el = document.getElementById('comment_' + anchoredCommentId)
+      if (el !== null) {
+        const top = el.getBoundingClientRect().top
+        window.scrollTo(0, top)
+      }
+    }
+  }, [anchorRendered, anchoredCommentId])
+
   function handleComments (result) {
     const data = result
 
@@ -113,16 +123,6 @@ export const CommentBox = (props) => {
       setWouldHaveCommentingPermission(data.would_have_commenting_permission)
     }
   }
-
-  useEffect(() => {
-    if (anchorRendered === true) {
-      const el = document.getElementById('comment_' + anchoredCommentId)
-      if (el !== null) {
-        const top = el.getBoundingClientRect().top
-        window.scrollTo(0, top)
-      }
-    }
-  }, [anchorRendered, anchoredCommentId])
 
   // handles update of the comment state
   // called in handleCommentSubmit, handleCommentModify, handleCommentDelete,
