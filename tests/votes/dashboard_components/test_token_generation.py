@@ -3,12 +3,16 @@ from unittest.mock import patch
 import pytest
 from background_task.models import Task
 from django.contrib.messages import get_messages
+from django.db import transaction
+from django.db.utils import IntegrityError
 from django.utils import translation
 
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting.phases import VotingPhase
+from meinberlin.apps.votes.models import VotingToken
+from meinberlin.apps.votes.tasks import generate_voting_tokens_batch
 
 component = components.modules.get('voting_token_generation')
 
@@ -81,3 +85,19 @@ def test_token_generate_view_max_validation(
         'Please adjust your number of codes. Per module you can '
         'generate up to 5 codes.')
     assert Task.objects.all().count() == 0
+
+
+@pytest.mark.django_db
+def test_token_batch_generation_not_unique(phase_factory):
+    phase, module, project, item = setup_phase(
+        phase_factory, None, VotingPhase)
+    with patch('secrets.choice', return_value='a'):
+        with pytest.raises(IntegrityError):
+            with transaction.atomic():
+                generate_voting_tokens_batch.now(module.id, 2)
+    tokens = VotingToken.objects.all()
+    assert tokens.count() == 0
+
+    generate_voting_tokens_batch.now(module.id, 2)
+    tokens = VotingToken.objects.all()
+    assert tokens.count() == 2
