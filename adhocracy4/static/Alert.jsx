@@ -11,7 +11,7 @@ const Alert = ({ type, message, onClick, timeInMs }) => {
         clearTimeout(timer.current)
       }
     }
-  }, [timeInMs])
+  }, [timeInMs, onClick])
   if (type) {
     return (
       <div className={`alert alert--${type}`} role="alert">

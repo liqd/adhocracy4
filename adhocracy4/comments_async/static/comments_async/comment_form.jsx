@@ -95,8 +95,8 @@ export default class CommentForm extends React.Component {
       if (this.props.useTermsOfUse && !this.state.agreedTermsOfUse && this.state.checkedTermsOfUse) {
         this.setState({ agreedTermsOfUse: true })
       }
-    }
-    )
+      return null
+    }).catch(error => console.warn(error))
   }
 
   render () {

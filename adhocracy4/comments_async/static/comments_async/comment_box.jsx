@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import django from 'django'
 import update from 'immutability-helper'
 
@@ -37,7 +37,9 @@ export const CommentBox = (props) => {
     objectPk: props.subjectId,
     contentTypeId: props.subjectType
   }
-  const anchoredCommentId = props.anchoredCommentId ? parseInt(props.anchoredCommentId) : null
+  const anchoredCommentId = props.anchoredCommentId
+    ? parseInt(props.anchoredCommentId)
+    : null
   const [comments, setComments] = useState([])
   const [nextComments, setNextComments] = useState(null)
   const [commentCount, setCommentCount] = useState(0)
@@ -51,7 +53,8 @@ export const CommentBox = (props) => {
   const [anchoredCommentParentId, setAnchoredCommentParentId] = useState(0)
   const [anchoredCommentFound, setAnchoredCommentFound] = useState(false)
   const [hasCommentingPermission, setHasCommentingPermission] = useState(false)
-  const [wouldHaveCommentingPermission, setWouldHaveCommentingPermission] = useState(false)
+  const [wouldHaveCommentingPermission, setWouldHaveCommentingPermission] =
+    useState(false)
   const [projectIsPublic, setProjectIsPublic] = useState(false)
   const [useTermsOfUse, setUseTermsOfUse] = useState(false)
   const [agreedTermsOfUse, setAgreedTermsOfUse] = useState(false)
@@ -63,13 +66,7 @@ export const CommentBox = (props) => {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('agreedTos', handleTermsOfUse)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('agreedTos', handleTermsOfUse)
-    }
-  }, [])
 
-  useEffect(() => {
     if (props.useModeratorMarked) {
       sorts.mom = django.gettext('Highlighted')
     }
@@ -79,40 +76,43 @@ export const CommentBox = (props) => {
     if (props.anchoredCommentId) {
       params.commentID = props.anchoredCommentId
     }
-    api.comments.get(params)
-      .done(
-        (result) => {
-          const data = result
-
-          translated.entries =
-            django.ngettext('entry', 'entries', data.count)
-          setComments(data.results)
-          setNextComments(data.next)
-          setCommentCount(data.count)
-          setHasCommentingPermission(data.has_commenting_permission)
-          setProjectIsPublic(data.project_is_public)
-          setUseTermsOfUse(data.use_org_terms_of_use)
-          setAgreedTermsOfUse(data.user_has_agreed)
-          setOrgTermsUrl(data.org_terms_url)
-          if (props.anchoredCommentId && data.comment_found) {
-            setAnchoredCommentParentId(data.comment_parent)
-            if (findAnchoredComment(data.results, data.comment_parent)) {
-              setLoading(false)
-            } else {
-              fetchComments()
-            }
-          } else {
-            if (props.anchoredCommentId) {
-              /* display something like: django.gettext('We are sorry, this comment does not exist.')
-               * probably using a modal
-               */
-            }
-            setLoading(false)
-            setWouldHaveCommentingPermission(data.would_have_commenting_permission)
-          }
-        }
-      )
+    api.comments.get(params).done(handleComments).fail()
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('agreedTos', handleTermsOfUse)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  function handleComments (result) {
+    const data = result
+
+    translated.entries = django.ngettext('entry', 'entries', data.count)
+    setComments(data.results)
+    setNextComments(data.next)
+    setCommentCount(data.count)
+    setHasCommentingPermission(data.has_commenting_permission)
+    setProjectIsPublic(data.project_is_public)
+    setUseTermsOfUse(data.use_org_terms_of_use)
+    setAgreedTermsOfUse(data.user_has_agreed)
+    setOrgTermsUrl(data.org_terms_url)
+    if (props.anchoredCommentId && data.comment_found) {
+      setAnchoredCommentParentId(data.comment_parent)
+      if (findAnchoredComment(data.results, data.comment_parent)) {
+        setLoading(false)
+      } else {
+        fetchComments()
+      }
+    } else {
+      if (props.anchoredCommentId) {
+        /* display something like: django.gettext('We are sorry, this comment does not exist.')
+         * probably using a modal
+         */
+      }
+      setLoading(false)
+      setWouldHaveCommentingPermission(data.would_have_commenting_permission)
+    }
+  }
 
   useEffect(() => {
     if (anchorRendered === true) {
@@ -122,7 +122,7 @@ export const CommentBox = (props) => {
         window.scrollTo(0, top)
       }
     }
-  }, [anchorRendered])
+  }, [anchorRendered, anchoredCommentId])
 
   // handles update of the comment state
   // called in handleCommentSubmit, handleCommentModify, handleCommentDelete,
@@ -172,13 +172,10 @@ export const CommentBox = (props) => {
 
   function updateError (parentIndex, index, message, type) {
     if (parentIndex !== undefined) {
-      updateStateComment(
-        parentIndex,
-        index,
-        {
-          [type]: message !== undefined,
-          errorMessage: message
-        })
+      updateStateComment(parentIndex, index, {
+        [type]: message !== undefined,
+        errorMessage: message
+      })
     } else {
       setError(message !== undefined)
       setErrorMessage(message)
@@ -186,14 +183,15 @@ export const CommentBox = (props) => {
   }
 
   function handleCommentSubmit (comment, parentIndex) {
-    return api.comments.add(comment)
-      .done(comment => {
+    return api.comments
+      .add(comment)
+      .done((comment) => {
         comment.displayNotification = true
         addComment(parentIndex, comment)
         updateAgreedTOS()
       })
       .fail((xhr, status, err) => {
-        const newErrorMessage = (Object.values(xhr.responseJSON))[0]
+        const newErrorMessage = Object.values(xhr.responseJSON)[0]
         setReplyError(parentIndex, undefined, newErrorMessage)
       })
   }
@@ -203,17 +201,14 @@ export const CommentBox = (props) => {
     if (parentIndex !== undefined) {
       comment = comments[parentIndex].child_comments[index]
     }
-    return api.comments.change(modifiedComment, comment.id)
-      .done(changed => {
-        updateStateComment(
-          index,
-          parentIndex,
-          {
-            ...changed,
-            editError: false,
-            errorMessage: undefined
-          }
-        )
+    return api.comments
+      .change(modifiedComment, comment.id)
+      .done((changed) => {
+        updateStateComment(index, parentIndex, {
+          ...changed,
+          editError: false,
+          errorMessage: undefined
+        })
         updateAgreedTOS()
       })
       .fail((xhr, status, err) => {
@@ -235,16 +230,14 @@ export const CommentBox = (props) => {
         objectPk: comment.object_pk
       }
     }
-    return api.comments.delete(data, comment.id)
-      .done(changed => {
-        updateStateComment(
-          index,
-          parentIndex,
-          {
-            ...changed,
-            editError: false,
-            errorMessage: undefined
-          })
+    return api.comments
+      .delete(data, comment.id)
+      .done((changed) => {
+        updateStateComment(index, parentIndex, {
+          ...changed,
+          editError: false,
+          errorMessage: undefined
+        })
       })
       .fail((xhr, status, err) => {
         const newErrorMessage = Object.values(xhr.responseJSON)[0]
@@ -289,18 +282,15 @@ export const CommentBox = (props) => {
       search,
       urlReplaces
     }
-    api.comments.get(params)
-      .done(
-        (result) => {
-          const data = result
-          setComments(data.results)
-          setNextComments(data.next)
-          setCommentCount(data.count)
-          setFilter(filter)
-          setFilterDisplay(displayFilter)
-          setLoadingFilter(false)
-        }
-      )
+    api.comments.get(params).done((result) => {
+      const data = result
+      setComments(data.results)
+      setNextComments(data.next)
+      setCommentCount(data.count)
+      setFilter(filter)
+      setFilterDisplay(displayFilter)
+      setLoadingFilter(false)
+    })
   }
 
   function handleClickSorted (e) {
@@ -321,17 +311,14 @@ export const CommentBox = (props) => {
       search,
       urlReplaces
     }
-    api.comments.get(params)
-      .done(
-        (result) => {
-          const data = result
-          setComments(data.results)
-          setNextComments(data.next)
-          setCommentCount(data.count)
-          setSort(order)
-          setLoadingFilter(false)
-        }
-      )
+    api.comments.get(params).done((result) => {
+      const data = result
+      setComments(data.results)
+      setNextComments(data.next)
+      setCommentCount(data.count)
+      setSort(order)
+      setLoadingFilter(false)
+    })
   }
 
   function handleSearch (search) {
@@ -350,17 +337,14 @@ export const CommentBox = (props) => {
       comment_category: commentCategory,
       urlReplaces
     }
-    api.comments.get(params)
-      .done(
-        (result) => {
-          const data = result
-          setComments(data.results)
-          setNextComments(data.next)
-          setCommentCount(data.count)
-          setSearch(search)
-          setLoadingFilter(false)
-        }
-      )
+    api.comments.get(params).done((result) => {
+      const data = result
+      setComments(data.results)
+      setNextComments(data.next)
+      setCommentCount(data.count)
+      setSearch(search)
+      setLoadingFilter(false)
+    })
   }
 
   function findAnchoredComment (newComments, parentId) {
@@ -381,8 +365,8 @@ export const CommentBox = (props) => {
 
   function fetchComments () {
     fetch(nextComments)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         const newComments = comments.concat(data.results)
         setComments(newComments)
         setNextComments(data.next)
@@ -392,13 +376,18 @@ export const CommentBox = (props) => {
         } else {
           fetchComments()
         }
-      }
-      )
+        return null
+      }).catch(error => {
+        console.warn(error)
+      })
   }
 
   function handleScroll () {
     const html = document.documentElement
-    if (html.scrollTop + html.clientHeight > getDocumentHeight() - autoScrollThreshold) {
+    if (
+      html.scrollTop + html.clientHeight >
+      getDocumentHeight() - autoScrollThreshold
+    ) {
       if (nextComments && !loading) {
         setLoading(true)
         fetchComments()
@@ -413,7 +402,11 @@ export const CommentBox = (props) => {
   }
 
   function translatedEntriesFound (entriesFound) {
-    return django.ngettext('entry found for ', 'entries found for ', entriesFound)
+    return django.ngettext(
+      'entry found for ',
+      'entries found for ',
+      entriesFound
+    )
   }
 
   function handleTermsOfUse () {
@@ -428,6 +421,7 @@ export const CommentBox = (props) => {
       const event = new Event('agreedTos')
       dispatchEvent(event)
     }
+  }
 
   function onRenderFinished () {
     setAnchorRendered(true)
@@ -452,36 +446,61 @@ export const CommentBox = (props) => {
           useTermsOfUse={useTermsOfUse}
           agreedTermsOfUse={agreedTermsOfUse}
           orgTermsUrl={orgTermsUrl}
-          />
         />
       </div>
 
-      <div className={(comments.length === 0 && loading) ? 'd-none' : 'a4-comments__filters__parent'}>
+      <div
+        className={
+          comments.length === 0 && loading
+            ? 'd-none'
+            : 'a4-comments__filters__parent'
+        }
+      >
         <div className="a4-comments__filters__parent--closed">
-          <div className={search === '' ? 'a4-comments__filters__text' : 'd-none'}>
+          <div
+            className={search === '' ? 'a4-comments__filters__text' : 'd-none'}
+          >
             {commentCount + ' ' + translated.entries}
           </div>
 
-          <div className={search !== '' ? 'a4-comments__filters__text' : 'd-none'}>
-            <span
-              className="a4-comments__filters__span"
-            >{commentCount + ' ' + translatedEntriesFound(commentCount)}{search}
+          <div
+            className={search !== '' ? 'a4-comments__filters__text' : 'd-none'}
+          >
+            <span className="a4-comments__filters__span">
+              {commentCount + ' ' + translatedEntriesFound(commentCount)}
+              {search}
             </span>
           </div>
 
-          {!showFilters && commentCount > 0 &&
-            <button className="btn a4-comments__filters__show-btn" type="button" onClick={handleToggleFilters}>
-              <i className="fas fa-sliders-h ms-2" aria-label={translated.showFilters} />
+          {!showFilters && commentCount > 0 && (
+            <button
+              className="btn a4-comments__filters__show-btn"
+              type="button"
+              onClick={handleToggleFilters}
+            >
+              <i
+                className="fas fa-sliders-h ms-2"
+                aria-label={translated.showFilters}
+              />
               {translated.filters}
-            </button>}
-          {showFilters && commentCount > 0 &&
-            <button className="btn a4-comments__filters__show-btn" type="button" onClick={handleToggleFilters}>
-              <i className="fas fa-times ms-2" aria-label={translated.hideFilters} />
+            </button>
+          )}
+          {showFilters && commentCount > 0 && (
+            <button
+              className="btn a4-comments__filters__show-btn"
+              type="button"
+              onClick={handleToggleFilters}
+            >
+              <i
+                className="fas fa-times ms-2"
+                aria-label={translated.hideFilters}
+              />
               {translated.hideFilters}
-            </button>}
+            </button>
+          )}
         </div>
 
-        {showFilters &&
+        {showFilters && (
           <div className="a4-comments__filters">
             <FilterSearch
               search={search}
@@ -489,26 +508,30 @@ export const CommentBox = (props) => {
               onSearch={handleSearch}
             />
             {props.withCategories
-              ? <FilterCategory
+              ? (
+                <FilterCategory
                   translated={translated}
                   filter={filter}
                   filterDisplay={filterDisplay}
                   onClickFilter={handleClickFilter}
                   commentCategoryChoices={props.commentCategoryChoices}
                 />
-              : <div className="col-lg-3" />}
+                )
+              : (
+                <div className="col-lg-3" />
+                )}
             <FilterSort
               translated={translated}
               sort={sort}
               sorts={sorts}
               onClickSorted={handleClickSorted}
             />
-          </div>}
+          </div>
+        )}
 
         <div className={loadingFilter ? 'a4-comments__loading' : 'd-none'}>
           <i className="fa fa-spinner fa-pulse" />
         </div>
-
       </div>
 
       <div className="a4-comments__box">

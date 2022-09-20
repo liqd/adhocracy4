@@ -216,6 +216,7 @@ export const EditPollQuestions = (props) => {
         ? setQuestions(questions)
         : setQuestions([getNewQuestion()])
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

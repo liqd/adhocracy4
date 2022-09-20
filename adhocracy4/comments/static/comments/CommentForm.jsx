@@ -28,9 +28,12 @@ class CommentForm extends React.Component {
         objectPk: this.props.subjectId,
         contentTypeId: this.props.subjectType
       }
-    }, this.props.parentIndex).then(() => {
-      this.setState({ comment: '' })
-    })
+    }, this.props.parentIndex)
+      .then(() => {
+        this.setState({ comment: '' })
+        return null
+      })
+      .catch(error => console.warn(error))
   }
 
   render () {
