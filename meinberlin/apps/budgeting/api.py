@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
+from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
 
 from adhocracy4.api.mixins import ModuleMixin
@@ -112,12 +113,14 @@ class ProposalViewSet(ModuleMixin,
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (DjangoFilterBackend,
                        OrderingFilterWithDailyRandom,
-                       IdeaCategoryFilterBackend,)
+                       IdeaCategoryFilterBackend,
+                       SearchFilter,)
     filter_fields = ('is_archived', 'category',)
     ordering_fields = ('created',
                        'comment_count',
                        'positive_rating_count',
                        'daily_random',)
+    search_fields = ('name', 'ref_number')
 
     def get_permission_object(self):
         return self.module
@@ -127,5 +130,6 @@ class ProposalViewSet(ModuleMixin,
             .filter(module=self.module) \
             .annotate_comment_count() \
             .annotate_positive_rating_count() \
+            .annotate_reference_number() \
             .order_by('-created')
         return proposals
