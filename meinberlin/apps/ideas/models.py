@@ -3,6 +3,8 @@ from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models.functions import Concat
+from django.db.models.functions import ExtractYear
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -19,7 +21,48 @@ from meinberlin.apps.moderatorremark import models as remark_models
 
 
 class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
-    pass
+
+    def annotate_reference_number(self):
+        return self.annotate(
+            ref_number=models.Case(
+                models.When(
+                    pk__lte=9,
+                    then=Concat(
+                        ExtractYear('created'),
+                        models.Value('-0000'),
+                        'pk',
+                        output_field=models.CharField())
+                ),
+                models.When(
+                    pk__lte=99,
+                    then=Concat(
+                        ExtractYear('created'),
+                        models.Value('-000'), 'pk',
+                        output_field=models.CharField())
+                ),
+                models.When(
+                    pk__lte=999,
+                    then=Concat(
+                        ExtractYear('created'),
+                        models.Value('-00'),
+                        'pk',
+                        output_field=models.CharField())
+                ),
+                models.When(pk__lte=9999,
+                            then=Concat(
+                                ExtractYear('created'),
+                                models.Value('-0'),
+                                'pk',
+                                output_field=models.CharField())
+                            ),
+                default=Concat(
+                    ExtractYear('created'),
+                    models.Value('-'),
+                    'pk',
+                    output_field=models.CharField()
+                )
+            )
+        )
 
 
 class AbstractIdea(module_models.Item, Moderateable):
