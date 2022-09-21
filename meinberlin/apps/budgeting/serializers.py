@@ -49,13 +49,14 @@ class ProposalSerializer(serializers.ModelSerializer):
                   'creator', 'is_archived', 'labels', 'name',
                   'negative_rating_count', 'positive_rating_count', 'url',
                   'pk', 'moderator_feedback', 'point_label',
-                  'session_token_voted', 'vote_allowed')
+                  'reference_number', 'session_token_voted', 'vote_allowed')
         read_only_fields = ('budget', 'category', 'comment_count', 'created',
                             'modified', 'creator', 'is_archived', 'labels',
                             'name', 'negative_rating_count',
                             'positive_rating_count', 'url', 'pk',
                             'moderator_feedback', 'point_label',
-                            'session_token_voted', 'vote_allowed')
+                            'reference_number', 'session_token_voted',
+                            'vote_allowed')
 
     def get_creator(self, proposal):
         return proposal.creator.username
@@ -134,3 +135,9 @@ class ProposalSerializer(serializers.ModelSerializer):
             return has_voting_permission and is_three_phase_budgeting
 
         return False
+
+    def reference_number(self, proposal):
+        if hasattr(proposal, 'ref_number'):
+            return proposal.ref_number
+        else:
+            return ''

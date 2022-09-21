@@ -43,6 +43,7 @@ export const BudgetingProposalListItem = (props) => {
         <div>
           <span className="list-item__author">{proposal.creator}</span>
           {date}
+          {` - ${proposal.reference_number}`}
         </div>
         {proposal.vote_allowed && (
           <VoteButton
