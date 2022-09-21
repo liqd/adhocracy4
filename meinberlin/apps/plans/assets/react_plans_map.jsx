@@ -26,28 +26,30 @@ function init () {
     const participationChoices = JSON.parse(el.getAttribute('data-participation-choices'))
     const root = createRoot(el)
     root.render(
-      <CookiesProvider>
-        <PlansListMapBox
-          selectedDistrict={selectedDistrict}
-          selectedTopic={selectedTopic}
-          projectApiUrl={projectApiUrl}
-          containersApiUrl={containersApiUrl}
-          extprojectApiUrl={extprojectApiUrl}
-          privateprojectApiUrl={privateprojectApiUrl}
-          plansApiUrl={plansApiUrl}
-          attribution={attribution}
-          baseurl={baseurl}
-          mapboxToken={mapboxToken}
-          omtToken={omtToken}
-          useVectorMap={useVectorMap}
-          bounds={bounds}
-          organisations={organisations}
-          districts={districts}
-          districtnames={districtnames}
-          topicChoices={topicChoices}
-          participationChoices={participationChoices}
-        />
-      </CookiesProvider>)
+      <React.StrictMode>
+        <CookiesProvider>
+          <PlansListMapBox
+            selectedDistrict={selectedDistrict}
+            selectedTopic={selectedTopic}
+            projectApiUrl={projectApiUrl}
+            containersApiUrl={containersApiUrl}
+            extprojectApiUrl={extprojectApiUrl}
+            privateprojectApiUrl={privateprojectApiUrl}
+            plansApiUrl={plansApiUrl}
+            attribution={attribution}
+            baseurl={baseurl}
+            mapboxToken={mapboxToken}
+            omtToken={omtToken}
+            useVectorMap={useVectorMap}
+            bounds={bounds}
+            organisations={organisations}
+            districts={districts}
+            districtnames={districtnames}
+            topicChoices={topicChoices}
+            participationChoices={participationChoices}
+          />
+        </CookiesProvider>
+      </React.StrictMode>)
   })
 }
 

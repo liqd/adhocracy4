@@ -5,5 +5,9 @@ import { createRoot } from 'react-dom/client'
 export function renderQuestions (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
   const root = createRoot(el)
-  root.render(<QuestionBox {...props} />, el)
+  root.render(
+    <React.StrictMode>
+      <QuestionBox {...props} />
+    </React.StrictMode>
+  )
 }

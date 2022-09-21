@@ -85,6 +85,12 @@ class PlansMap extends Component {
     this.markers = this.addMarkers(this.cluster)
   }
 
+  componentWillUnmount () {
+    if (this.map !== undefined) {
+      this.map.remove()
+    }
+  }
+
   bindMap (element) {
     this.mapElement = element
   }

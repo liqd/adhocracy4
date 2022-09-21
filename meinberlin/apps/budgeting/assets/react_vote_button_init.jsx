@@ -9,14 +9,15 @@ function init () {
     const votesLeft = props.token_info ? props.token_info.votes_left : false
     const root = createRoot(el)
     root.render(
-      <VoteButton
-        objectID={props.objectID}
-        tokenvoteApiUrl={props.tokenvote_api_url}
-        isChecked={props.session_token_voted}
-        disabled={!votesLeft && !props.session_token_voted}
-        asWidget
-      />,
-      el
+      <React.StrictMode>
+        <VoteButton
+          objectID={props.objectID}
+          tokenvoteApiUrl={props.tokenvote_api_url}
+          isChecked={props.session_token_voted}
+          disabled={!votesLeft && !props.session_token_voted}
+          asWidget
+        />
+      </React.StrictMode>
     )
   })
 }

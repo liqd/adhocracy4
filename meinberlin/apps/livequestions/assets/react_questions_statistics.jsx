@@ -5,5 +5,9 @@ import { createRoot } from 'react-dom/client'
 export function renderData (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
   const root = createRoot(el)
-  root.render(<StatisticsBox {...props} />, el)
+  root.render(
+    <React.StrictMode>
+      <StatisticsBox {...props} />
+    </React.StrictMode>
+  )
 }

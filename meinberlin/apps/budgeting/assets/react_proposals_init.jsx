@@ -8,7 +8,11 @@ function init () {
     function (el) {
       const props = JSON.parse(el.getAttribute('data-attributes'))
       const root = createRoot(el)
-      root.render(<BudgetingProposalList {...props} />, el)
+      root.render(
+        <React.StrictMode>
+          <BudgetingProposalList {...props} />
+        </React.StrictMode>
+      )
     }
   )
 }
