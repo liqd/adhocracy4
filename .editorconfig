@@ -13,10 +13,3 @@ indent_size = 2
 
 [Makefile]
 indent_style = tab
-
-# isort configuration
-[*.py]
-skip = migrations,node_modules,venv
-skip_glob = */migrations/*.py
-known_first_party = adhocracy4, meinberlin, tests
-force_single_line = true
