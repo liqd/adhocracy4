@@ -83,7 +83,10 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     last_week = now - timezone.timedelta(days=7)
 
     proposal_new = proposal_factory(pk=1, module=module, created=now)
-    proposal_old = proposal_factory(pk=2, module=module, created=last_week)
+    proposal_old = proposal_factory(pk=2,
+                                    module=module,
+                                    created=last_week,
+                                    name='liqd proposal')
 
     proposal_archived = proposal_factory(pk=3,
                                          module=module,
@@ -149,6 +152,30 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 2
 
+    # search filter
+    querystring = '?search=liqd+proposal'
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 1
+    assert response.data['results'][0]['pk'] == proposal_old.pk
+
+    querystring = '?search=2021-'
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 7
+
+    querystring = '?search=2022-'
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 1
+    assert response.data['results'][0]['pk'] == proposal_new.pk
+
+    querystring = '?search=2021-00006'
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 1
+    assert response.data['results'][0]['pk'] == proposal_cat1.pk
+
     # ordering
     # positive rating
     querystring = '?ordering=-positive_rating_count'
@@ -183,6 +210,17 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 1
     assert response.data['results'][0]['pk'] == proposal_cat2_archived.pk
+
+    querystring = '?is_archived=true&search=2022-'
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 0
+
+    querystring = '?ordering=-created&search=2021-'
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 7
+    assert response.data['results'][6]['pk'] == proposal_old.pk
 
     querystring = '?ordering=-positive_rating_count&category=' + \
                   str(category2.pk)
