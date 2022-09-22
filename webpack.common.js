@@ -5,18 +5,24 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
-    adhocracy4: [
-      '@fortawesome/fontawesome-free/scss/fontawesome.scss',
-      '@fortawesome/fontawesome-free/scss/brands.scss',
-      '@fortawesome/fontawesome-free/scss/regular.scss',
-      '@fortawesome/fontawesome-free/scss/solid.scss',
-      'shariff/dist/shariff.min.css',
-      'select2/dist/css/select2.min.css',
-      'slick-carousel/slick/slick.css',
-      './meinberlin/assets/extra_css/_slick-theme.css',
-      './meinberlin/assets/scss/style.scss',
-      './meinberlin/assets/js/app.js'
-    ],
+    adhocracy4: {
+      import: [
+        '@fortawesome/fontawesome-free/scss/fontawesome.scss',
+        '@fortawesome/fontawesome-free/scss/brands.scss',
+        '@fortawesome/fontawesome-free/scss/regular.scss',
+        '@fortawesome/fontawesome-free/scss/solid.scss',
+        'shariff/dist/shariff.min.css',
+        'select2/dist/css/select2.min.css',
+        'slick-carousel/slick/slick.css',
+        './meinberlin/assets/extra_css/_slick-theme.css',
+        './meinberlin/assets/scss/style.scss',
+        './meinberlin/assets/js/app.js'
+      ],
+      library: {
+        name: '[name]',
+        type: 'this'
+      }
+    },
     captcheck: {
       import: [
         './meinberlin/apps/captcha/assets/captcheck.js'
@@ -132,8 +138,6 @@ module.exports = {
     }
   },
   output: {
-    libraryTarget: 'this',
-    library: '[name]',
     path: path.resolve('./meinberlin/static/'),
     publicPath: '/static/'
   },
