@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $messages-margin-bottom: 25px;
 
 .messages {
@@ -16,24 +18,24 @@ $messages-margin-bottom: 25px;
 .alert {
     margin: 0;
     padding: $padding * 1.2 0;
-    background-color: lighten($info, 60%);
+    background-color: color.adjust($info, $lightness: 60%);
     color: $info;
     text-align: center;
 }
 
 .alert--success {
-    background-color: lighten($success, 70%);
+    background-color: color.adjust($success, $lightness: 70%);
     color: $success;
 }
 
 .alert--error,
 .alert--danger {
-    background-color: lighten($danger, 50%);
+    background-color: color.adjust($danger, $lightness: 50%);
     color: $danger;
 }
 
 .alert--warning {
-    background-color: lighten($warning, 48%);
+    background-color: color.adjust($warning, $lightness: 48%);
     color: $warning;
 }
 

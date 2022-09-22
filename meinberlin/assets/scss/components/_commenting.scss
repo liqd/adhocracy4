@@ -6,10 +6,10 @@
 }
 
 .commenting__content--border {
-    margin-bottom: $em-spacer / 2;
+    margin-bottom: $em-spacer * 0.5;
     padding: $padding;
     border: 1px solid $border-color;
-    border-radius: ($padding / 2);
+    border-radius: ($padding * 0.5);
 }
 
 .commenting--toc__button {

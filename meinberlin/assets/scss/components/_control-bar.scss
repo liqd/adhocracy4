@@ -30,7 +30,7 @@
         .dropdown,
         .btn-group__container {
             display: block;
-            margin-bottom: ($em-spacer / 2);
+            margin-bottom: ($em-spacer * 0.5);
         }
 
         .dropdown-toggle {

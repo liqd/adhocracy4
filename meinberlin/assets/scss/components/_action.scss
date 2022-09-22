@@ -1,6 +1,8 @@
+@use "sass:math";
+
 @mixin multi-line-icon($lines, $line-height: 1.4) {
     $font-size: 0.7 * $lines;
-    $size: $lines * $line-height / $font-size;
+    $size: math.div($lines * $line-height, $font-size);
 
     line-height: $size;
     min-width: $size * 1em;

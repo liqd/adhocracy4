@@ -17,7 +17,7 @@
     color: $text-color-inverted;
 
     @media (min-width: $breakpoint) {
-        min-height: ($hero-height-mobile + $hero-height-secondary) / 2;
+        min-height: ($hero-height-mobile + $hero-height-secondary) * 0.5;
     }
 
     @media (min-width: $breakpoint-md) {

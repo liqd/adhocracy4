@@ -21,7 +21,7 @@
 
     @media (min-width: $breakpoint) {
         padding-left: 1em;
-        font-size: ($font-size-lg + 3.5rem) / 2;
+        font-size: ($font-size-lg + 3.5rem) * 0.5;
     }
 
     @media (min-width: $breakpoint-md) {
@@ -42,7 +42,7 @@
     min-height: $hero-height-mobile;
 
     @media (min-width: $breakpoint) {
-        min-height: ($hero-height-mobile + $hero-height) / 2;
+        min-height: ($hero-height-mobile + $hero-height) * 0.5;
     }
 
     @media (min-width: $breakpoint-md) {

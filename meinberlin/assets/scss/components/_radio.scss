@@ -26,7 +26,7 @@ $checkbox-size: 20px;
 
         width: $checkbox-size;
         height: $checkbox-size;
-        border-radius: $checkbox-size / 2;
+        border-radius: $checkbox-size * 0.5;
     }
 
     &:before {

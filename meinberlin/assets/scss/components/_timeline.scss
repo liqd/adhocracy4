@@ -53,7 +53,7 @@ $circle-size: 0.8em;
         position: absolute;
         top: 50%;
         left: (-$circle-size * 1.5);
-        margin-top: (-$circle-size / 2);
+        margin-top: (-$circle-size * 0.5);
 
         background-color: $body-bg;
         border: 1px solid $border-color;
@@ -110,7 +110,7 @@ $circle-size: 0.8em;
 
         bottom: (-$circle-size * 1.5);
         left: 50%;
-        margin-left: (-$circle-size / 2);
+        margin-left: (-$circle-size * 0.5);
     }
 
     .timeline__active {

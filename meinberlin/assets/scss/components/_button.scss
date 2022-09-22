@@ -1,5 +1,7 @@
+@use "sass:color";
+
 @mixin button-color($color, $color-active) {
-    $color-focus: mix($color, $color-active, 50%);
+    $color-focus: color.mix($color, $color-active, 50%);
     $color-contrast: contrast-color($color);
 
     border-color: $color;

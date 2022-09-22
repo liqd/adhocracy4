@@ -194,10 +194,10 @@ $checkbox-size: 20px;
 }
 
 .editpoll__question--border {
-    margin-bottom: $spacer / 2;
+    margin-bottom: $spacer * 0.5;
     padding: $padding;
     border: 1px solid $border-color;
-    border-radius: ($padding / 2);
+    border-radius: ($padding * 0.5);
 }
 
 .editpoll__menu-container--override {
