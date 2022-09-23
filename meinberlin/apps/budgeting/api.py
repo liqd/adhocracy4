@@ -11,6 +11,7 @@ from adhocracy4.api.permissions import ViewSetRulesPermission
 from adhocracy4.categories import get_category_icon_url
 from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
+from adhocracy4.labels.models import Label
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
 from meinberlin.apps.contrib.templatetags.contrib_tags import \
@@ -52,6 +53,7 @@ class ProposalFilterInfoMixin:
         """
         filters = {}
 
+        # category filter
         categories = Category.objects.filter(
             module=self.module
         )
@@ -73,6 +75,21 @@ class ProposalFilterInfoMixin:
             if has_icons(self.module):
                 filters['category']['icons'] = category_icons
 
+        # label filter
+        labels = Label.objects.filter(
+            module=self.module
+        )
+        if labels:
+            label_choices = [('', _('All')), ]
+            for label in labels:
+                label_choices += (str(label.pk), label.name),
+
+            filters['labels'] = {
+                'label': _('Label'),
+                'choices': label_choices,
+            }
+
+        # archived filter
         filters['is_archived'] = {
             'label': _('Archived'),
             'choices': [
@@ -83,6 +100,7 @@ class ProposalFilterInfoMixin:
             'default': 'false',
         }
 
+        # ordering filter
         ordering_choices = [('-created', _('Most recent')), ]
         if self.module.has_feature('rate', Proposal):
             ordering_choices += ('-positive_rating_count', _('Most popular')),
@@ -115,7 +133,7 @@ class ProposalViewSet(ModuleMixin,
                        OrderingFilterWithDailyRandom,
                        IdeaCategoryFilterBackend,
                        SearchFilter,)
-    filter_fields = ('is_archived', 'category',)
+    filter_fields = ('is_archived', 'category', 'labels',)
     ordering_fields = ('created',
                        'comment_count',
                        'positive_rating_count',
