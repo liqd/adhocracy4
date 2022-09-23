@@ -26,6 +26,17 @@ class ProposalForm(MapIdeaForm, ContactStorageConsentMixin):
                                'of my proposal you can contact me.'),
             'contact_phone': _('Telephone number'),
         }
+        help_texts = {
+            'category': _('Assign your proposal to a category. This '
+                          'automatically appears in the display of your '
+                          'proposal. The list of all proposals can be '
+                          'filtered by category.'),
+            'labels': _('Specify your proposal with one or more labels. '
+                        'These will automatically appear in the display of '
+                        'your proposal. In addition, the list of all '
+                        'proposals can be filtered by labels.'),
+
+        }
 
     class Media:
         js = ('budgeting_disable_contact.js',)
