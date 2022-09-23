@@ -2,6 +2,7 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework import serializers
 
 from adhocracy4.categories.models import Category
+from adhocracy4.labels.models import Label
 from meinberlin.apps.votes.models import TokenVote
 from meinberlin.apps.votes.models import VotingToken
 
@@ -20,6 +21,15 @@ class CategoryField(serializers.Field):
         return {'id': category.pk, 'name': category.name}
 
 
+class LabelListingField(serializers.StringRelatedField):
+
+    def to_internal_value(self, label):
+        return Label.objects.get(pk=label)
+
+    def to_representation(self, label):
+        return {'id': label.pk, 'name': label.name}
+
+
 class ProposalSerializer(serializers.ModelSerializer):
 
     creator = serializers.SerializerMethodField()
@@ -27,6 +37,7 @@ class ProposalSerializer(serializers.ModelSerializer):
     positive_rating_count = serializers.SerializerMethodField()
     negative_rating_count = serializers.SerializerMethodField()
     category = CategoryField()
+    labels = LabelListingField(many=True)
     url = serializers.SerializerMethodField()
     moderator_feedback = serializers.SerializerMethodField()
     session_token_voted = serializers.SerializerMethodField()
@@ -35,15 +46,16 @@ class ProposalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proposal
         fields = ('budget', 'category', 'comment_count', 'created', 'modified',
-                  'creator', 'is_archived', 'name', 'negative_rating_count',
-                  'positive_rating_count', 'url', 'pk', 'moderator_feedback',
-                  'point_label', 'session_token_voted', 'vote_allowed')
+                  'creator', 'is_archived', 'labels', 'name',
+                  'negative_rating_count', 'positive_rating_count', 'url',
+                  'pk', 'moderator_feedback', 'point_label',
+                  'session_token_voted', 'vote_allowed')
         read_only_fields = ('budget', 'category', 'comment_count', 'created',
-                            'modified', 'creator', 'is_archived', 'name',
-                            'negative_rating_count', 'positive_rating_count',
-                            'url', 'pk', 'moderator_feedback',
-                            'point_label', 'session_token_voted',
-                            'vote_allowed')
+                            'modified', 'creator', 'is_archived', 'labels',
+                            'name', 'negative_rating_count',
+                            'positive_rating_count', 'url', 'pk',
+                            'moderator_feedback', 'point_label',
+                            'session_token_voted', 'vote_allowed')
 
     def get_creator(self, proposal):
         return proposal.creator.username
