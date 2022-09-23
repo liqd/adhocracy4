@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-14 15:25+0200\n"
+"POT-Creation-Date: 2022-09-23 18:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,46 +70,34 @@ msgstr ""
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:287
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:282
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:110
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:276
 msgid "Deleted by creator on"
 msgstr "Deleted by creator on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:112
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:278
 msgid "Deleted by moderator on"
 msgstr "Deleted by moderator on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:151
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:257
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:152
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:259
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:68
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:73
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:152
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:157
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:6
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:8
 msgid "Delete"
 msgstr "Delete"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:153
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
 msgid "Abort"
 msgstr "Abort"
@@ -222,10 +210,6 @@ msgctxt "verb"
 msgid "Reply"
 msgstr "Reply"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:280
-msgid "Blocked by moderator on"
-msgstr "Blocked by moderator on"
-
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
 msgid "Newest"
 msgstr "Newest"
@@ -328,10 +312,6 @@ msgstr "Recommend comment"
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:35
 msgid "Is recommended"
 msgstr "Is recommended"
-
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
-msgid "Submit"
-msgstr "Submit"
 
 #: adhocracy4/comments_async/static/modals/url_modal.jsx:23
 msgid "Copy"
@@ -445,30 +425,6 @@ msgstr "remove"
 msgid "Question"
 msgstr "Question"
 
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:36
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:119
-#: adhocracy4/polls/assets/HelptextForm.jsx:11
-msgid "Explanation"
-msgstr "Explanation"
-
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:45
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:50
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:129
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:134
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:4
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:6
-msgid "Move up"
-msgstr "Move up"
-
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:57
-#: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:62
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:141
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:146
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:5
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:7
-msgid "Move down"
-msgstr "Move down"
-
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:46
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr "Participants can vote for more than one option (multiple choice)"
@@ -476,15 +432,6 @@ msgstr "Participants can vote for more than one option (multiple choice)"
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:61
 msgid "Participants can add their own answer"
 msgstr "Participants can add their own answer"
-
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:94
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:95
-msgid "Other"
-msgstr "Other"
-
-#: adhocracy4/polls/assets/EditPollQuestion.jsx:112
-msgid "New answer"
-msgstr "New answer"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:163
 msgid "The poll has been updated."
@@ -510,6 +457,10 @@ msgstr "Open question"
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:15
 msgid "Save"
 msgstr "Save"
+
+#: adhocracy4/polls/assets/HelptextForm.jsx:11
+msgid "Explanation"
+msgstr "Explanation"
 
 #: adhocracy4/polls/assets/PollQuestion.jsx:18
 msgid "Multiple answers are possible."
@@ -645,13 +596,6 @@ msgstr "You can still manage all your preferences on User Agreements."
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:85
-#, javascript-format
-msgid "you have 1 vote left"
-msgid_plural "you have %s votes left"
-msgstr[0] "you have 1 vote left"
-msgstr[1] "you have %s votes left"
-
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:8
 msgid "updated on"
 msgstr "updated on"
@@ -690,9 +634,17 @@ msgstr "Negative Ratings"
 msgid "Comments"
 msgstr "Comments"
 
-#: meinberlin/apps/budgeting/assets/Pagination.jsx:4
+#: meinberlin/apps/budgeting/assets/Pagination.jsx:5
 msgid "Page navigation"
 msgstr "Page navigation"
+
+#: meinberlin/apps/budgeting/assets/Pagination.jsx:6
+msgid "next page"
+msgstr "next page"
+
+#: meinberlin/apps/budgeting/assets/Pagination.jsx:7
+msgid "prev page"
+msgstr "prev page"
 
 #: meinberlin/apps/budgeting/assets/VoteButton.jsx:40
 msgid "Voted"
@@ -729,6 +681,16 @@ msgstr "Chapter navigation"
 #: meinberlin/apps/documents/assets/ChapterNav.jsx:6
 msgid "Add a new chapter"
 msgstr "Add a new chapter"
+
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:4
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:6
+msgid "Move up"
+msgstr "Move up"
+
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:5
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:7
+msgid "Move down"
+msgstr "Move down"
 
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:9
 msgid "first chapter"
@@ -1137,6 +1099,24 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#~ msgid "Blocked by moderator on"
+#~ msgstr "Blocked by moderator on"
+
+#~ msgid "Submit"
+#~ msgstr "Submit"
+
+#~ msgid "Other"
+#~ msgstr "Other"
+
+#~ msgid "New answer"
+#~ msgstr "New answer"
+
+#, javascript-format
+#~ msgid "you have 1 vote left"
+#~ msgid_plural "you have %s votes left"
+#~ msgstr[0] "you have 1 vote left"
+#~ msgstr[1] "you have %s votes left"
 
 #~ msgid ""
 #~ "Your answer could not be saved due to a server error. Please try again "
