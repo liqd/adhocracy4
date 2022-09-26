@@ -38,7 +38,7 @@ export const Pagination = (props) => {
             isActive={num === currentPage}
             pageIndex={num}
             onClick={onPaginate}
-            isDisabled={num === '…'}
+            isNoButton={num === '…'}
           />
         ))}
 

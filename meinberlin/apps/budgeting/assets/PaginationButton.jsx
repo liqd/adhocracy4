@@ -6,10 +6,10 @@ export const PaginationButton = (props) => {
     : undefined
 
   const itemClass = props.isActive
-    ? 'pagination-item active'
-    : 'pagination-item'
+    ? 'pagination__item active'
+    : 'pagination__item'
 
-  const buttonLabel = () => {
+  const getLabel = () => {
     if (props.type === 'num') {
       return props.pageIndex
     } else if (props.type === 'prev') {
@@ -23,13 +23,21 @@ export const PaginationButton = (props) => {
     <li
       className={itemClass}
     >
-      <button
-        className={disabledClass}
-        onClick={() => props.onClick(props.pageIndex)}
-        aria-label={props.ariaLabel}
-      >
-        {buttonLabel()}
-      </button>
+      {props.isNoButton
+        ? (
+          <div>
+            {getLabel()}
+          </div>
+          )
+        : (
+          <button
+            className={disabledClass}
+            onClick={() => props.onClick(props.pageIndex)}
+            aria-label={props.ariaLabel}
+          >
+            {getLabel()}
+          </button>
+          )}
     </li>
   )
 }

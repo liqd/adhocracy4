@@ -6,28 +6,32 @@
     background-color: $body-bg;
 }
 
-.pagination-item {
+.pagination__item {
     float: left;
     display: inline-block;
     border: 1px solid $border-color;
 
     a,
-    button {
+    button,
+    div {
         display: inline-block;
         margin-right: -1px;
-        padding: 0.5 * $spacer 0.87 * $spacer;
+        padding: 0.4 * $spacer 0.75 * $spacer;
         text-align: center;
         text-decoration: none;
-
-        &:hover {
-            background-color: $bg-secondary;
-            color: $primary;
-        }
 
         &.disabled {
             cursor: not-allowed;
             pointer-events: none;
             color: $border-color;
+        }
+    }
+
+    a,
+    button {
+        &:hover {
+            background-color: $bg-secondary;
+            color: $primary;
         }
     }
 
@@ -44,9 +48,18 @@
         }
 
         & a:hover,
-        & a:focus,
         & button:hover {
             color: $primary;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-xs) {
+    .pagination__item {
+        a,
+        button,
+        div {
+            padding: 0.5 * $spacer 0.87 * $spacer;
         }
     }
 }

@@ -5,7 +5,7 @@
     <ul class="pagination btn-group">
       {% get_proper_elided_page_range paginator page_obj.number as paginated_page_range %}
 
-      <li class="pagination-item">
+      <li class="pagination__item">
         {% if page_obj.has_previous %}
           {% combined_url_parameter request.GET page=page_obj.previous_page_number as url_prev %}
           {% endif %}
@@ -16,13 +16,19 @@
       </li>
 
       {% for page_number in paginated_page_range %}
-        <li class="pagination-item{% ifequal page_number page_obj.number %} active{% endifequal %}">
+        {% if page_number >= 0 %}
+        <li class="pagination__item{% ifequal page_number page_obj.number %} active{% endifequal %}">
             {% combined_url_parameter request.GET page=page_number as url_par %}
-            <a href="{{ url_par }}" class="{% if not page_number >= 0 %}disabled{% endif %}">{{ page_number }}</a>
+            <a href="{{ url_par }}">{{ page_number }}</a>
         </li>
+        {% else %}
+        <li class="pagination__item">
+            <div>{{ page_number }}</div>
+        </li>
+        {% endif %}
       {% endfor %}
 
-      <li class="pagination-item">
+      <li class="pagination__item">
         {% if page_obj.has_next %}
           {% combined_url_parameter request.GET page=page_obj.next_page_number as url_next %}
           {% endif %}
