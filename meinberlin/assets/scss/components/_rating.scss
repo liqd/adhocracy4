@@ -29,7 +29,7 @@
     border-radius: 0.3em;
 
     &:hover,
-    &:focus-within {
+    &:focus {
         background: $color;
         border-color: $color;
         color: $text-color-inverted;

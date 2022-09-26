@@ -1,35 +1,3 @@
-@use "sass:color";
-
-@mixin button-color($color, $color-active) {
-    $color-focus: color.mix($color, $color-active, 50%);
-    $color-contrast: contrast-color($color);
-
-    border-color: $color;
-    background-color: $color;
-    color: $color-contrast;
-
-    &:hover,
-    &:focus {
-        border-color: $color-focus;
-        background-color: $color-focus;
-        color: contrast-color($color-focus);
-    }
-
-    &:active {
-        border-color: $color-active;
-        background-color: $color-active;
-        color: contrast-color($color-active);
-    }
-
-    &.is-disabled,
-    &:disabled {
-        // border-color: mix($color, $color-contrast, $weight-bg);
-        // background-color: mix($color, $color-contrast, $weight-bg);
-        // color: mix($color, $color-contrast, $weight-fg);
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-}
 
 %button-base {
     @extend %input-base;
@@ -39,16 +7,11 @@
 
 .btn {
     @extend %button-base;
-}
 
-.btn--flex {
-    @extend %button-base;
-    @include button-color($link-color-btn, $link-hover-color-btn);
-    flex: 1 0 auto;
-    height: 100%;
-
-    &.bottom {
-        align-self: flex-end;
+    &.is-disabled {
+        opacity: 0.75;
+        cursor: not-allowed;
+        pointer-events: none;
     }
 }
 
@@ -56,12 +19,16 @@
     @extend .btn-light;
 
     background-color: $body-bg;
-    border: 1px solid $border-color;
-    font-weight: inherit;
+
+    &:focus,
+    &:hover,
+    &:active {
+        background-color: $bg-secondary !important;
+    }
 }
 
 .btn--transparent {
-    @include button-color(transparent, transparent);
+    // @include button-color($border-color, transparent, transparent, transparent);
 
     &,
     &:focus,
@@ -134,7 +101,7 @@
 }
 
 .btn--none {
-    @include button-color(transparent, transparent);
+    // @include button-color(transparent, transparent, transparent, transparent);
 }
 
 .btn--select {
@@ -164,8 +131,6 @@
 .btn--full {
     display: block;
     width: 100%;
-
-    // margin-bottom: $spacer;
 }
 
 .btn--attached-top {
@@ -176,6 +141,10 @@
 .btn--attached-right {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+.btn-group__container {
+    margin-bottom: $spacer;
 }
 
 .btn-group {
@@ -210,7 +179,7 @@
 
 @media print {
     .btn {
-        background-color: contrast-color($print-black);
+        background-color: $body-bg;
         color: $print-black;
         border-color: $border-color;
     }
