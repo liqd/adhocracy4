@@ -1,7 +1,7 @@
 .label {
     display: inline-block;
     background-color: $bg-tertiary;
-    color: contrast-color($bg-tertiary);
+    color: $text-color;
     font-size: $font-size-xs;
     font-weight: normal;
     border-radius: 0.4em;
@@ -32,23 +32,23 @@
 
 .label--consideration {
     background-color: $feedback-color-consideration;
-    color: contrast-color($feedback-color-consideration);
+    color: $text-color;
 }
 
 .label--rejected {
     background-color: $feedback-color-rejected;
-    color: contrast-color($feedback-color-rejected);
+    color: $text-color-inverted;
 }
 
 .label--accepted {
     background-color: $feedback-color-accepted;
-    color: contrast-color($feedback-color-accepted);
+    color: $text-color-inverted;
 }
 
 @media print {
     .label {
         color: $print-black;
-        background-color: contrast-color($print-black);
+        background-color: $text-color-inverted;
         border: 1px solid $border-color;
     }
 }

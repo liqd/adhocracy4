@@ -223,37 +223,80 @@
                 <a href="">This is a link</a>
 
                 <span class="colour-list">Colours:</span>
-                <div>
-                    <div class="l-tiles-4">
-                        <li>Brand primary <span class="primary cl-colour-block"></span></li>
-                        <li>Brand primary tint<span class="primary-tint cl-colour-block"></span></li>
-                        <li>Brand-secondary<span class="secondary cl-colour-block"></span></li>
-                        <li>Brand-success<span class="sucess cl-colour-block"></span></li>
-                        <li>Brand-info<span class="info cl-colour-block"></span></li>
-                        <li>Brand-warning<span class="warning cl-colour-block"></span></li>
-                        <li>Brand-danger<span class="danger cl-colour-block"></span></li>
-                        <li>Gray<span class="gray cl-colour-block"></span></li>
-                        <li>Gray-lighter<span class="gray-lighter cl-colour-block"></span></li>
-                        <li>Body-background<span class="background cl-colour-block"></span></li>
-                        <li>Background-secondary<span class="bg-secondary cl-colour-block"></span></li>
-                        <li>Background-tertiary<span class="bg-tertiary cl-colour-block"></span></li>
-                        <li>Text-colour<span class="text-colour cl-colour-block"></span></li>
-                        <li>Text-color-inverted<span class="text-inverted cl-colour-block"></span></li>
-                        <li>Text-color-gray<span class="text-gray cl-colour-block"></span></li>
-                        <li>Blue-Light<span class="blue-light cl-colour-block"></span></li>
-                        <li>Print-black<span class="print-black cl-colour-block"></span></li>
-                        <li>Print-link<span class="print-link cl-colour-block"></span></li>
-                        <li>Link-color<span class="link-color cl-colour-block"></span></li>
-                        <li>link-hover-color<span class="link-hover-color cl-colour-block"></span></li>
-                        <li>Border-color<span class="border cl-colour-block"></span></li>
-                        <li>Input-border-color<span class="input-border cl-colour-block"></span></li>
-                        <li>Feedback-color-accepted<span class="feedback-accepted cl-colour-block"></span></li>
-                        <li>Feedback-color-rejected<span class="feedback-rejected cl-colour-block"></span></li>
-                        <li>Feedback-color-consideration<span class="feedback-color-consideration cl-colour-block"></span></li>
-                        <li>Feedback-color-consideration<span class="idea-remark-bg cl-colour-block"></span></li>
-                        <li>Feedback-color-consideration<span class="idea-remark-colour cl-colour-block"></span></li>
-                    </div>
-                </div>
+                <table>
+                    <tr>
+                        <td class="primary cl-colour-block"></td>
+                        <td>Brand primary</td>
+                        <td class="primary-tint cl-colour-block"></td>
+                        <td>Brand primary tint</td>
+                        <td class="secondary cl-colour-block"></td>
+                        <td>Brand-secondary</td>
+                        <td class="sucess cl-colour-block"></td>
+                        <td>Brand-success</td>
+                        <td class="info cl-colour-block"></td>
+                        <td>Brand-info</td>
+                    </tr>
+                    <tr>
+                        <td class="warning cl-colour-block"></td>
+                        <td>Brand-warning</td>
+                        <td class="danger cl-colour-block"></td>
+                        <td>Brand-danger</td>
+                        <td class="gray cl-colour-block"></td>
+                        <td>Gray</td>
+                        <td class="gray-lighter cl-colour-block"></td>
+                        <td>Gray-lighter</td>
+                        <td class="background cl-colour-block"></td>
+                        <td>Body-background</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-secondary cl-colour-block"></td>
+                        <td>Background-secondary</td>
+                        <td class="bg-tertiary cl-colour-block"></td>
+                        <td>Background-tertiary</td>
+                        <td class="text-colour cl-colour-block"></td>
+                        <td>Text-colour</td>
+                        <td class="text-inverted cl-colour-block"></td>
+                        <td>Text-color-inverted</td>
+                        <td class="text-gray cl-colour-block"></td>
+                        <td>Text-color-gray</td>
+                    </tr>
+                    <tr>
+                        <td class="blue-light cl-colour-block"></td>
+                        <td>Blue-Light</td>
+                        <td class="print-black cl-colour-block"></td>
+                        <td>Print-black</td>
+                        <td class="print-link cl-colour-block"></td>
+                        <td>Print-link</td>
+                        <td class="link-color cl-colour-block"></td>
+                        <td>Link-color</td>
+                        <td class="link-hover-color cl-colour-block"></td>
+                        <td>link-hover-color</td>
+                    </tr>
+                    <tr>
+                        <td class="border cl-colour-block"></td>
+                        <td>Border-color</td>
+                        <td class="input-border cl-colour-block"></td>
+                        <td>Input-border-color</td>
+                        <td class="feedback-accepted cl-colour-block"></td>
+                        <td>Feedback-color-accepted</td>
+                        <td class="feedback-rejected cl-colour-block"></td>
+                        <td>Feedback-color-rejected</td>
+                        <td class="feedback-color-consideration cl-colour-block"></td>
+                        <td>Feedback-color-consideration</td>
+                    </tr>
+                    <tr>
+                        <td class="idea-remark-bg cl-colour-block"></td>
+                        <td>Idea remark bg</td>
+                        <td class="idea-remark-colour cl-colour-block"></td>
+                        <td>Idea remark text</td>
+                        <td class=""></td>
+                        <td></td>
+                        <td class=""></td>
+                        <td></td>
+                        <td class=""></td>
+                        <td></td>
+                    </tr>
+                </table>
             </div>
 
             <h1>Component Library</h1>
@@ -286,17 +329,17 @@
                         <li>Error Message</li>
                     </ul>
                 </div>
-                <div class="form-group form-group--narrow">
-                    <label for="id_narrowfield">
-                        Label for narrow formgroup
+                <div class="form-group">
+                    <label for="id_field">
+                        Label for formgroup
                     </label>
                     <div class="form-hint">
                         Help text
                     </div>
                     <div class="widget widget--textinput">
-                        <input type="text" name="name" value="" id="id_narrowfield">
+                        <input type="text" name="name" value="" id="id_field">
                     </div>
-                    <ul class="errorlist">
+                    <ul class="errorlist" role="alert">
                         <li>Error Message</li>
                     </ul>
                 </div>
@@ -323,13 +366,7 @@
 
             <div class="cl-example">
                 <div class="accordion">
-                    <a
-                        id="accordion-{{ index }}-title"
-                        href="#accordion-{{ index }}-body"
-                        class="accordion__title collapsed"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        data-bs-toggle="collapse">
+                    <a id="accordion-{{ index }}-title" href="#accordion-{{ index }}-body" class="accordion__title collapsed" aria-haspopup="true" aria-expanded="false" data-bs-toggle="collapse">
                         <h2>
                             Docs Block Title
                             <i class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -523,7 +560,8 @@
                             <switch class="btn btn--light switch--btn" for="show_list">
                                 <input class="radio__input" type="radio" id="show_list" aria-label="Liste anzeigen" value="list">
                                 <i class="fa fa-list"></i><span> List</span>
-                            </switch><switch class="btn btn--light switch--btn active" for="show_map"><input class="radio__input" type="radio" id="show_map" aria-label="Karte anzeigen" value="map"><i class="fa fa-map"></i><span> Map</span></switch>
+                            </switch>
+                            <switch class="btn btn--light switch--btn active" for="show_map"><input class="radio__input" type="radio" id="show_map" aria-label="Karte anzeigen" value="map"><i class="fa fa-map"></i><span> Map</span></switch>
                         </div>
                     </div>
                     &nbsp
@@ -836,12 +874,7 @@
 
             <div class="cl-example">
                 <nav class="doc-toc" aria-label="Table of Contents">
-                    <button
-                        class="doc-toc__toggle collapsed"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#doc-toc__content"
-                        aria-expanded="true"
-                        aria-controls="doc-toc__content">
+                    <button class="doc-toc__toggle collapsed" data-bs-toggle="collapse" data-bs-target="#doc-toc__content" aria-expanded="true" aria-controls="doc-toc__content">
                         <h2 class="doc-toc__title">Table of Contents</h2>
                         <i class="fa fa-chevron-up" aria-hidden="true"></i>
                     </button>
@@ -917,33 +950,19 @@
                                 </div>
                             </div>
                             <div class="control-bar__item">
-                                <form
-                                  class="input-group"
-                                >
-                                  <label
-                                    for="id-filter-search"
-                                    class="visually-hidden"
-                                  >
-                                    Search
-                                  </label>
-                                  <input
-                                    class="form-control"
-                                    type="search"
-                                    id="id-filter-search"
-                                    placeholder="Search"
-                                    value=""
-                                  />
-                                  <div class="input-group-append">
-                                    <button
-                                      class="btn btn--light btn--attached-right"
-                                      type="submit"
-                                    >
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                      <span class="visually-hidden">
+                                <form class="input-group">
+                                    <label for="id-filter-search" class="visually-hidden">
                                         Search
-                                      </span>
-                                    </button>
-                                  </div>
+                                    </label>
+                                    <input class="form-control" type="search" id="id-filter-search" placeholder="Search" value="" />
+                                    <div class="input-group-append">
+                                        <button class="btn btn--light btn--attached-right" type="submit">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                            <span class="visually-hidden">
+                                                Search
+                                            </span>
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                             <div class="dropdown control-bar__item">
@@ -1025,29 +1044,17 @@
                 <div class="cl-example">
                     <form class="filter-bar__menu">
                         <div class="input-group">
-                            <label
-                              for="id-filter-search"
-                              class="visually-hidden"
-                            >
-                              Search title
+                            <label for="id-filter-search" class="visually-hidden">
+                                Search title
                             </label>
-                            <input
-                              class="form-control"
-                              type="search"
-                              id="id-filter-search"
-                              placeholder="Search title"
-                              value=""
-                            />
+                            <input class="form-control" type="search" id="id-filter-search" placeholder="Search title" value="" />
                             <div class="input-group-append">
-                              <button
-                                class="btn btn--light btn--attached-right"
-                                type="submit"
-                              >
-                                  <i class="fa fa-search" aria-hidden="true"></i>
-                                <span class="visually-hidden">
-                                  Search title
-                                </span>
-                              </button>
+                                <button class="btn btn--light btn--attached-right" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    <span class="visually-hidden">
+                                        Search title
+                                    </span>
+                                </button>
                             </div>
                         </div>
                         <div class="filter-bar__menu-radio-group">
@@ -1137,13 +1144,7 @@
                         <div class="container">
                             <nav class="main-nav">
                                 <div class="main-nav__nav-item">
-                                    <button
-                                        class="btn btn--light main-nav__toggle"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#menu-collapse"
-                                        aria-expanded="false"
-                                        aria-controls="menu-collapse"
-                                        aria-label="Menu">
+                                    <button class="btn btn--light main-nav__toggle" data-bs-toggle="collapse" data-bs-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="Menu">
                                         <i class="fas fa-bars" aria-hidden="true"></i>
                                     </button>
                                     <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
@@ -1163,13 +1164,7 @@
                                     </a>
                                 </div>
                                 <div class="main-nav__nav-item main-nav__nav-item--right">
-                                    <button
-                                        class="btn btn--secondary main-nav__toggle"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#user-menu-collapse"
-                                        aria-expanded="false"
-                                        aria-controls="user-menu-collapse"
-                                        aria-label="User Menu">
+                                    <button class="btn btn--secondary main-nav__toggle" data-bs-toggle="collapse" data-bs-target="#user-menu-collapse" aria-expanded="false" aria-controls="user-menu-collapse" aria-label="User Menu">
                                         <i class="fas fa-user"></i>
                                     </button>
                                     <div class="main-nav__menu-wrapper collapse" id="user-menu-collapse">

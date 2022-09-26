@@ -14,7 +14,7 @@
 
     .select2-results__option [aria-selected="true"] {
         background-color: $body-bg;
-        color: contrast-color($bg-secondary);
+        color: $text-color;
     }
 
     .select2-results__option--highlighted[aria-selected] {
@@ -24,7 +24,7 @@
 
     .select2-selection--multiple .select2-selection__choice {
         background-color: $body-bg;
-        color: contrast-color($bg-secondary);
+        color: $text-color;
         border-color: core.$border-color;
     }
 

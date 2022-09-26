@@ -60,14 +60,6 @@ $circle-size: 0.8em;
         border-radius: 50%;
         box-shadow: 0 0 0 0.2em $body-bg;
     }
-
-    &.is-selected {
-        @include button-color($link-color, $link-hover-color);
-
-        &:after {
-            @include button-color($link-color, $link-hover-color);
-        }
-    }
 }
 
 @media (min-width: $breakpoint) {

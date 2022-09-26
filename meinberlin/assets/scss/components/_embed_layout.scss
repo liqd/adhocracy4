@@ -42,7 +42,7 @@ html.embed body {
 
 .embed-footer a {
     text-decoration: underline;
-    color: contrast-color($bg-tertiary);
+    color: $text-color;
 }
 
 .embed-footer__logo {

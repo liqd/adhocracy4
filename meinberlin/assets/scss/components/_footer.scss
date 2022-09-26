@@ -15,7 +15,7 @@ body {
     font-size: $font-size-sm;
     text-align: right;
     background-color: $bg-secondary;
-    color: contrast-color($bg-secondary);
+    color: $text-color;
 }
 
 .footer-nav__link {
