@@ -19,8 +19,7 @@
         text-align: center;
         text-decoration: none;
 
-        &:hover,
-        &:focus {
+        &:hover {
             background-color: $bg-secondary;
             color: $primary;
         }
@@ -46,8 +45,7 @@
 
         & a:hover,
         & a:focus,
-        & button:hover,
-        & button:focus {
+        & button:hover {
             color: $primary;
         }
     }
