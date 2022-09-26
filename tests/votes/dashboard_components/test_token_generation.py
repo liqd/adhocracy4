@@ -37,7 +37,7 @@ def test_token_generate_view(client, phase_factory, module_factory,
     assert response.status_code == 200
     assert 'number_of_module_tokens' in response.context
     number_of_module_tokens = response.context['number_of_module_tokens']
-    assert number_of_module_tokens == 2
+    assert number_of_module_tokens == '2'
     data = {
         'number_of_tokens': 12
     }
@@ -46,8 +46,8 @@ def test_token_generate_view(client, phase_factory, module_factory,
     messages = list(get_messages(response.wsgi_request))
     assert len(messages) == 1
     assert str(messages[0]) == (
-        '12 codes will be generated in the background. Please come back '
-        'later to check if they are finished')
+        '12 codes will be generated in the background. This may take a '
+        'few minutes.')
     assert Task.objects.all().count() == 2
     task_1 = Task.objects.first()
     task_2 = Task.objects.last()
@@ -78,6 +78,6 @@ def test_token_generate_view_max_validation(
     messages = list(get_messages(response.wsgi_request))
     assert len(messages) == 1
     assert str(messages[0]) == (
-        'Only 5 tokens are allowed per module. You are allowed to '
-        'generate 3 more.')
+        'Please adjust your number of codes. Per module you can '
+        'generate up to 5 codes.')
     assert Task.objects.all().count() == 0

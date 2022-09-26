@@ -9,8 +9,8 @@ from . import views
 
 class VotesComponent(DashboardComponent):
     identifier = 'voting_token_export'
-    weight = 48
-    label = _('Voting codes')
+    weight = 49
+    label = _('Code download')
 
     def is_effective(self, module):
         return module.blueprint_type == 'PB3'
@@ -25,10 +25,10 @@ class VotesComponent(DashboardComponent):
 
     def get_urls(self):
         return [
-            (r'^modules/(?P<module_slug>[-\w_]+)/voting/$',
+            (r'^modules/(?P<module_slug>[-\w_]+)/download-codes/$',
              views.VotingDashboardView.as_view(component=self),
              'voting-tokens'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/voting/export-token/$',
+            (r'^modules/(?P<module_slug>[-\w_]+)/download-codes/export/$',
              views.TokenExportView.as_view(),
              'token-export'),
         ]
@@ -36,8 +36,8 @@ class VotesComponent(DashboardComponent):
 
 class GenerateVotesComponent(DashboardComponent):
     identifier = 'voting_token_generation'
-    weight = 49
-    label = _('Generate voting codes')
+    weight = 48
+    label = _('Code generation')
     for_superuser_only = True
 
     def is_effective(self, module):
@@ -53,7 +53,7 @@ class GenerateVotesComponent(DashboardComponent):
 
     def get_urls(self):
         return [
-            (r'^modules/(?P<module_slug>[-\w_]+)/voting-codes/$',
+            (r'^modules/(?P<module_slug>[-\w_]+)/generate-codes/$',
              views.VotingGenerationDashboardView.as_view(component=self),
              'voting-token-generation'),
         ]

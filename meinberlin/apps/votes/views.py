@@ -1,5 +1,6 @@
 from math import ceil
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.shortcuts import redirect
@@ -48,7 +49,10 @@ class VotingDashboardView(ProjectMixin,
             'a4dashboard:token-export',
             kwargs={'module_slug': self.module.slug})
         context['token_export_iterator'] = self._get_page_range()
-        context['number_of_module_tokens'] = self._get_number_of_tokens()
+        context['number_of_module_tokens'] = \
+            intcomma(self._get_number_of_tokens())
+        context['contact_email'] = settings.CONTACT_EMAIL
+        context['export_size'] = intcomma(PAGE_SIZE)
         return context
 
 
@@ -103,14 +107,12 @@ class VotingGenerationDashboardView(
     form_class = TokenBatchCreateForm
     success_message = (
         _('{} code will be generated in the background. '
-          'Please come back later to check if it is finished'),
+          'This may take a few minutes.'),
         _('{} codes will be generated in the background. '
-          'Please come back later to check if they are finished'))
+          'This may take a few minutes.'))
     error_message_token_number = (
-        _('Only {} tokens are allowed per module. '
-          'You are allowed to generate {} more.'),
-        _('Only {} tokens are allowed per module. '
-          'You are allowed to generate {} more.'))
+        _('Please adjust your number of codes. Per module you can '
+          'generate up to {} codes.'))
     permission_required = 'is_superuser'
     template_name = 'meinberlin_votes/voting_code_dashboard.html'
 
@@ -125,7 +127,9 @@ class VotingGenerationDashboardView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['number_of_module_tokens'] = self._get_number_of_tokens()
+        context['number_of_module_tokens'] = \
+            intcomma(self._get_number_of_tokens())
+        context['tokens_per_module'] = intcomma(TOKENS_PER_MODULE)
         return context
 
     def get_success_url(self):
@@ -138,16 +142,10 @@ class VotingGenerationDashboardView(
         # check that no more than 5 Million codes are added per module
         existing_tokens = self._get_number_of_tokens()
         if existing_tokens + number_of_tokens > TOKENS_PER_MODULE:
-            allowed_tokens = int(TOKENS_PER_MODULE - existing_tokens)
             messages.error(
                 self.request,
-                ngettext(
-                    self.error_message_token_number[0],
-                    self.error_message_token_number[1],
-                    allowed_tokens
-                ).format(
-                    intcomma(TOKENS_PER_MODULE),
-                    intcomma(allowed_tokens)
+                self.error_message_token_number.format(
+                    intcomma(TOKENS_PER_MODULE)
                 )
             )
         else:

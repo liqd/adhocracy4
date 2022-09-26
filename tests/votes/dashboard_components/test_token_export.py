@@ -42,7 +42,7 @@ def test_token_vote_view(client, phase_factory, module_factory,
     assert response.get('Content-Type') == \
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     assert token_export_iterator == range(1, 3)
-    assert number_of_module_tokens == 3
+    assert number_of_module_tokens == '3'
 
 
 @pytest.mark.django_db
