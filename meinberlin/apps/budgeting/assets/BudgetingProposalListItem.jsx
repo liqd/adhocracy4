@@ -30,9 +30,9 @@ export const BudgetingProposalListItem = (props) => {
           commentCount={proposal.comment_count}
         />
       )}
-      <h3 className="list-item__title">
+      <h2 className="list-item__title">
         <a href={proposal.url}>{proposal.name}</a>
-      </h3>
+      </h2>
       <ListItemBadges
         category={proposal.category}
         budget={proposal.budget}
