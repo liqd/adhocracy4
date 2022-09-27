@@ -23,7 +23,10 @@ class ProposalForm(MapIdeaForm, ContactStorageConsentMixin):
         }
         labels = {
             'allow_contact': _('For questions or in case of implementation '
-                               'of my proposal you can contact me.'),
+                               'of my proposal you can contact me. I will '
+                               'receive automatic notifications for any '
+                               'status update or official statement to my '
+                               'proposal.'),
             'contact_phone': _('Telephone number'),
         }
         help_texts = {
