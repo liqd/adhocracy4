@@ -68,7 +68,7 @@
 .a4-comments__filters__parent--closed,
 .a4-comments__filters,
 .a4-comments__action-bar-container {
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
 }
 
@@ -129,9 +129,20 @@
     padding-right: 0;
 }
 
-.a4-comments__dropdown > .dropdown-toggle {
-    @extend .btn--small;
-    @extend .btn--light;
+.a4-comments__dropdown {
+    text-align: right !important;
+    margin-right: -0.7 * $spacer;
+
+    .btn--link {
+        @extend .btn--small;
+        @extend .btn--light;
+
+        color: $text-color;
+
+        &:hover {
+            color: $text-color !important;
+        }
+    }
 }
 
 // No user images in mB
@@ -176,7 +187,9 @@
 }
 
 .a4-comments__char-count {
+    text-align: right;
     margin-left: auto;
+    margin-right: -$spacer;
 }
 
 .a4-comments__char-count,
@@ -187,7 +200,7 @@
 
 .a4-comments__read-btn-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .a4-comments__read-btn {
@@ -203,4 +216,9 @@
             max-width: initial;
         }
     }
+}
+
+.modal-url-bar-button.active {
+    background-color: $success;
+    color: $text-color-inverted;
 }

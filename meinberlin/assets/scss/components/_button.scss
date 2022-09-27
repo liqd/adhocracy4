@@ -1,6 +1,5 @@
-
 %button-base {
-    @extend %input-base;
+    @extend %input-base; // needed for stretched dropdowns ect.
     text-decoration: none;
     font-weight: bold;
 }
@@ -19,6 +18,8 @@
     @extend .btn-light;
 
     background-color: $body-bg;
+    font-weight: normal;
+    border-color: $border-color !important;
 
     &:focus,
     &:hover,
@@ -28,15 +29,13 @@
 }
 
 .btn--transparent {
-    // @include button-color($border-color, transparent, transparent, transparent);
-
     &,
     &:focus,
     &:hover,
     &:active,
     &:disabled,
     &.is-disabled {
-        border-color: $border-color;
+        border-color: $border-color !important;
     }
 }
 
@@ -98,10 +97,6 @@
             display: none;
         }
     }
-}
-
-.btn--none {
-    // @include button-color(transparent, transparent, transparent, transparent);
 }
 
 .btn--select {

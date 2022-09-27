@@ -1,10 +1,5 @@
-label {
-    display: block;
-    margin-bottom: 0.2em;
-}
-
 %input-base {
-    margin: 0 0 $em-spacer;
+    margin: 0 0 $spacer;
     border: 1px solid $input-border-color;
     padding: 0.4em 0.6em;
     line-height: 1.6;
@@ -71,7 +66,7 @@ div.cke_focus {
 
 .form-check,
 .form-group {
-    margin: 0 0 $em-spacer;
+    margin: 0 0 $spacer;
 
     .django-ckeditor-widget,
     %input-base {
@@ -88,10 +83,6 @@ div.cke_focus {
 .form-fieldset {
     padding: 0;
     border: none;
-}
-
-.form-group--narrow {
-    // @include grid-width(9);
 }
 
 .form-check__label {

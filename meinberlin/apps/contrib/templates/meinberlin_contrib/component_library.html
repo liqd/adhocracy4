@@ -50,9 +50,6 @@
                         <a href="#cl-category_formset" class="dashboard-nav__item dashboard-nav__item--interactive">Category Formset</a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
-                    </li>
-                    <li class="dashboard-nav__page">
                         <a href="#cl-comments" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
                     </li>
                     <li class="dashboard-nav__page">
@@ -171,6 +168,9 @@
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Tabs</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Text Commenting</a>
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="#cl-tile" class="dashboard-nav__item dashboard-nav__item--interactive">Tile</a>
@@ -628,153 +628,181 @@
                 </div>
             </div>
 
-            <h2 id="cl-commenting">Commenting</h2>
-
-            <div class="cl-example">
-                <div class="row">
-                    <div class="commenting__content">
-                        {% lorem random %}
-                    </div>
-                    {% spaceless %}
-                    <div class="commenting__actions btn-group" role="group">
-                        <button class="btn btn--light btn--small" title="Move up" type="button">
-                            <i class="fa fa-chevron-up" aria-label="Move up"></i>
-                        </button>
-                        <button class="btn btn--light btn--small" title="Move down" type="button">
-                            <i class="fa fa-chevron-down" aria-label="Move down"></i>
-                        </button>
-                        <button class="btn btn--light btn--small" title="Delete" type="button">
-                            <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                        </button>
-                    </div>
-                    {% endspaceless %}
-                </div>
-                <div class="row">
-                    <div class="col-lg-9">
-                        <div class="commenting__content--border">
-                            {% lorem random %}
-                        </div>
-                    </div>
-                    <div class="commenting__actions">
-                        <button class="btn btn--light btn--small" title="Delete" type="button">
-                            <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="commenting__content">
-                    <button type="button" class="commenting--toc__button btn btn--light btn--small">
-                        1. Title
-                    </button>
-                    </div>
-                    <div class="commenting__actions">
-                        <button class="btn btn--light btn--small" title="Delete" type="button">
-                            <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="commenting__content">
-                        <button type="button" class="commenting--toc__button btn btn--light btn--small active">
-                            2. Title (active)
-                        </button>
-                    </div>
-                    <div class="commenting__actions">
-                        <button class="btn btn--light btn--small" title="Delete" type="button">
-                            <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             <h2 id="cl-commenting">Comments</h2>
 
             <div class="cl-example">
-                <div class="comments">
-                    <p>The markup (and classnames) for the comments come from A4 React. Here's our styling</p>
-                    <div class="black-divider">This is the black divider showing the number of comments</div>
-                    <div class="comment-box">
-                        <form class="general-form">
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Your comment here"></textarea>
-                            </div>
-                            <input value="post" class="submit-button" type="submit">
-                        </form>
-                        <div class="comment-list">
-                            <div>
-                                <div class="comment">
-                                    <h3 class="comment-author">
-                                        <a href="#" data-embed-target="external">Comment Author</a>
-                                    </h3>
-                                    <span class="comment-submission-date">11/23/2017, 2:24:21 PM</span>
-                                    <div class="comment-text">
-                                        This is the comment text.
-                                        Click the ... button below to see the comment-dropdown.
-                                    </div>
-                                    <div class="action-bar">
-                                        <nav class="navbar navbar-default navbar-static">
-                                            <div class="rating">
-                                                <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>12</button>
-                                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>3</button>
-                                            </div>
-                                            <ul class="nav navbar-nav">
-                                                <li class="dropdown">
-                                                    <button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><button type="button">Edit</button></li>
-                                                        <li class="divider"></li>
-                                                        <li><a href="#">Delete</a></li>
-                                                        <li class="divider"></li>
-                                                        <li><a href="#">Report</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                    <div class="action-bar">
-                                        <div class="navbar">
-                                            <button class="comment-reply-button" type="button">View 1 reply</button>
-                                            <div class="navbar-right">
-                                                <button class="comment-reply-button" type="button"><i class="fa fa-reply" aria-hidden="true"></i>Answer</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment-child-list">
-                                        <div>
-                                            <div class="comment">
-                                                <h3 class="comment-author">
-                                                    <a href="#" data-embed-target="external">Answer comment author</a>
-                                                </h3>
-                                                <span class="comment-submission-date">11/23/2017, 2:24:34 PM</span>
-                                                <div class="comment-text">
-                                                    This is the answer text to the other comment.
-                                                </div>
-                                                <div class="action-bar">
-                                                    <nav class="navbar navbar-default navbar-static">
-                                                        <div class="rating">
-                                                            <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button>
-                                                            <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button>
-                                                        </div>
-                                                        <ul class="nav navbar-nav">
-                                                            <li class="dropdown"><button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
-                                                                      aria-hidden="true"></i></button>
-                                                        </ul>
-                                                    </nav>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <form class="general-form">
-                                            <div class="form-group">
-                                                <textarea class="form-control" placeholder="Your comment here"></textarea>
-                                            </div>
-                                            <input value="post" class="submit-button" type="submit">
-                                        </form>
-                                    </div>
-                                </div>
+              <div>
+                  <div class="a4-comments__commentbox__form">
+                      <div>
+                          <form id="id-comment-form" class="general-form"><textarea id="textarea-top" class="a4-comments__textarea--big form-group" placeholder="Ihr Kommentar" required="" style="height: 46px;"></textarea>
+                              <div class="row">
+                                  <div class="col-12 col-sm-8"><label for="id-comment-form" class="a4-comments__char-count">0/4000 Zeichen</label></div>
+                                  <div class="d-flex col-12 col-sm-4 align-items-center"><button type="submit" class="btn a4-comments__submit-input ms-auto">Senden</button></div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+                  <div class="a4-comments__filters__parent">
+                      <div class="a4-comments__filters__parent--closed">
+                          <div class="a4-comments__filters__text">1 Beiträge</div>
+                          <div class="d-none"><span class="a4-comments__filters__span">1 Beitrag gefunden zu: </span></div><button class="btn a4-comments__filters__show-btn" type="button"><i class="fas fa-sliders-h ms-2"
+                                aria-label="Filter ausblenden"></i>Filter</button>
+                      </div>
+                  </div>
+                  <div class="a4-comments__filters__parent">
+                    <div class="a4-comments__filters__parent--closed">
+                        <div class="a4-comments__filters__text">1 Beiträge</div>
+                        <div class="d-none"><span class="a4-comments__filters__span">1 Beitrag gefunden zu: </span></div><button class="btn a4-comments__filters__show-btn" type="button"><i class="fas fa-times ms-2"
+                              aria-label="Filter ausblenden"></i>Filter ausblenden</button>
+                    </div>
+                    <div class="a4-comments__filters">
+                        <div class="a4-comments__filters__search" role="search"><input class="form-control a4-comments__filters__search-input mb-0" type="text" id="search-input" placeholder="Beiträge durchsuchen" value=""><button class="d-none"
+                              type="button"><span class="fa-stack fa-2x"><i class="far fa-circle fa-stack-2x"></i><i class="fas fa-times fa-stack-1x" aria-label="Suche aufheben"></i></span></button><button
+                              class="input-group-append a4-comments__filters__search-btn btn btn--transparent" type="button"><i class="fas fa-search" aria-label="Beiträge durchsuchen"></i></button></div>
+                        <div class="col-lg-3"></div>
+                        <div class="a4-comments__filters__dropdown">
+                            <div class="dropdown"><button class="btn btn--select dropdown-toggle a4-comments__filters__btn" type="button" id="sortDropdownBtn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                      class="a4-comments__filters__btn-text">sortiert nach: Neueste</span><span class="d-none">Neueste</span><i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdownBtn"><button class="dropdown-item" id="pos" href="#">Meiste Zustimmung</button><button class="dropdown-item" id="neg" href="#">Meiste
+                                        Ablehnung</button><button class="dropdown-item" id="ans" href="#">Meiste Antworten</button><button class="dropdown-item" id="dis" href="#">Zuletzt diskutiert</button></div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="a4-comments__box">
+                      <div class="a4-comments__list">
+                          <div>
+                              <div>
+                                  <div class="a4-comments__comment a4-comments__comment-owner"><a class="a4-comments__anchor" id="comment_20" href="./?comment=20">Comment 20</a>
+                                      <div class="modal fade" id="report_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg" role="document">
+                                              <div class="modal-content">
+                                                  <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
+                                                  <div class="modal-body undefined">
+                                                      <h3 class="modal-title u-first-heading">Sie möchten diesen Beitrag melden? Ihre Nachricht wird an die Moderation weitergeleitet. Diese prüft den gemeldeten Beitrag. Er wird gelöscht, wenn er nicht unseren
+                                                          Diskussionsregeln (Netiquette) entspricht.</h3>
+                                                      <div class="form-group"><textarea rows="5" class="form-control report-message" placeholder="Ihre Nachricht"></textarea></div>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      <div class="row"><button class="submit-button" data-bs-dismiss="false">Meldung senden</button></div>
+                                                      <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button></div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="modal fade" id="share_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg" role="document">
+                                              <div class="modal-content">
+                                                  <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
+                                                  <div class="modal-body undefined">
+                                                      <h3 class="modal-title u-first-heading"></h3>
+                                                      <div class="input-group"><input id="share-url-20" type="text" class="form-control" readonly="" value="http://localhost:8003/budgeting/2022-00012/?comment=20"><button
+                                                            class="btn btn--transparent input-group-append modal-url-bar-button" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Kopieren</button></div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="modal fade" id="comment_delete_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg" role="document">
+                                              <div class="modal-content">
+                                                  <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
+                                                  <div class="modal-body undefined">
+                                                      <h3 class="modal-title u-first-heading">Möchten Sie diesen Kommentar wirklich löschen?</h3>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      <div class="row"><button class="submit-button" data-bs-dismiss="modal">Löschen</button></div>
+                                                      <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button></div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="a4-comments__box">
+                                          <div class="a4-comments__box--user">
+                                              <div class="row">
+                                                  <div class="col-2 col-lg-1 a4-comments__user-img"></div>
+                                                  <div class="col-7 col-md-8 a4-comments__author-container">
+                                                      <div class="a4-comments__author">admin</div><span class="a4-comments__moderator">Moderation</span><time class="a4-comments__submission-date">27. September 2022, 08:28</time>
+                                                  </div>
+                                                  <div class="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
+                                                      <div class="dropdown a4-comments__dropdown"><button type="button" class="dropdown-toggle btn btn--link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"
+                                                                aria-hidden="true"></i></button>
+                                                          <div class="dropdown-menu dropdown-menu-end"><button class="dropdown-item" type="button">Bearbeiten</button>
+                                                              <div class="divider"></div><a class="dropdown-item" href="#comment_delete_20" data-bs-toggle="modal">Löschen</a>
+                                                              <div class="divider"></div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-12">
+                                                  <div class="a4-comments__text">
+                                                      <p>{% lorem 20 w random %}</p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-6 a4-comments__read-btn-container">Read More</div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-12 a4-comments__action-bar-container">
+                                                  <div class="rating"><button aria-label="Click to vote up" class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button><button aria-label="Click to vote down"
+                                                        class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button></div>
+                                                  <div class="a4-comments__action-bar">
+                                                    <button class="btn btn--no-border a4-comments__action-bar__btn" type="button">
+                                                      <a href="#child-comment-form">
+                                                        <i class="far fa-comment" aria-hidden="true"></i>
+                                                              Antworten
+                                                      </a>
+                                                    </button>
+                                                    <a class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_20" data-bs-toggle="modal" data-bs-target="#share_comment_20"><i class="fas fa-share"></i> Teilen</a>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-12 a4-comments__action-bar-container">
+                                                  <div class="rating"><button aria-label="Click to vote up" class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button><button aria-label="Click to vote down"
+                                                        class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button></div>
+                                                  <div class="a4-comments__action-bar"><button class="btn btn--no-border a4-comments__action-bar__btn" type="button"><a href="#child-comment-form"><i class="fa fa-minus" aria-hidden="true"></i>
+                                                              Antworten ausblenden</a></button><a class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_20" data-bs-toggle="modal" data-bs-target="#share_comment_20"><i
+                                                            class="fas fa-share"></i> Teilen</a></div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="container">
+                                      <div class="a4-comments__child--list">
+                                          <div class="row a4-comments__list">
+                                              <div class="col-12 ms-3">
+                                                  <div></div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-12 ms-3">
+                                                  <div>
+                                                      <form id="id-comment-form" class="general-form">
+                                                          <textarea id="textarea-top" class="a4-comments__textarea--big form-group" placeholder="Ihre Antwort" required="" style="height: 46px;"></textarea>
+                                                          <div class="row">
+                                                              <div class="col-12 col-sm-8">
+                                                                <label for="id-comment-form" class="a4-comments__char-count">0/4000 Zeichen</label>
+                                                              </div>
+                                                              <div class="d-flex col-12 col-sm-4 align-items-center">
+                                                                <button type="submit" class="btn a4-comments__submit-input ms-auto">Senden</button>
+                                                              </div>
+                                                          </div>
+                                                      </form>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div><i class="fa fa-spinner fa-pulse"></i></div>
+
             </div>
 
             <h2 id="cl-complete">Complete</h2>
@@ -2027,6 +2055,65 @@
                                     <a id="tab-project-3-participation" class="tab active" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-participation" aria-expanded="true">Tab 2</a>
                                     <a id="tab-project-3-result" class="tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-result" aria-expanded="false">Tab 3</a>
                                 </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 id="cl-commenting">Text Commenting (Documents)</h2>
+
+                    <div class="cl-example">
+                        <div class="row">
+                            <div class="commenting__content">
+                                {% lorem random %}
+                            </div>
+                            {% spaceless %}
+                            <div class="commenting__actions btn-group" role="group">
+                                <button class="btn btn--light btn--small" title="Move up" type="button">
+                                    <i class="fa fa-chevron-up" aria-label="Move up"></i>
+                                </button>
+                                <button class="btn btn--light btn--small" title="Move down" type="button">
+                                    <i class="fa fa-chevron-down" aria-label="Move down"></i>
+                                </button>
+                                <button class="btn btn--light btn--small" title="Delete" type="button">
+                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                                </button>
+                            </div>
+                            {% endspaceless %}
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div class="commenting__content--border">
+                                    {% lorem random %}
+                                </div>
+                            </div>
+                            <div class="commenting__actions">
+                                <button class="btn btn--light btn--small" title="Delete" type="button">
+                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="commenting__content">
+                            <button type="button" class="commenting--toc__button btn btn--light btn--small">
+                                1. Title
+                            </button>
+                            </div>
+                            <div class="commenting__actions">
+                                <button class="btn btn--light btn--small" title="Delete" type="button">
+                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="commenting__content">
+                                <button type="button" class="commenting--toc__button btn btn--light btn--small active">
+                                    2. Title (active)
+                                </button>
+                            </div>
+                            <div class="commenting__actions">
+                                <button class="btn btn--light btn--small" title="Delete" type="button">
+                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
