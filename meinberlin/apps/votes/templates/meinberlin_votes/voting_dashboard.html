@@ -2,32 +2,22 @@
 {% load i18n %}
 
 {% block dashboard_project_content %}
-    <h1 class="u-first-heading mt-0">{% translate 'Download voting codes' %}</h1>
+    <h1 class="u-first-heading">{% translate 'Download voting codes' %}</h1>
 
-    <p class="form-hint">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can download the codes in packages of {{ export_size }} per excel file. To generate the codes, please contact {{ contact_email }}{% endblocktranslate %}</p>
-    <p>{% blocktranslate %}Number of generated codes: {{ number_of_module_tokens }}. To download them please go to code download.{% endblocktranslate %}</p>
-    <table class="export-table">
-        <thead>
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
+    <p class="form-hint u-bottom-divider">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can download the codes in packages of {{ export_size }} per excel file. To generate the codes, please contact {{ contact_email }}{% endblocktranslate %}</p>
+    <p class="u-bottom-divider">{% blocktranslate %}Number of generated codes: {{ number_of_module_tokens }}.{% endblocktranslate %}</p>
+    <ul class="u-list-reset">
         {% if token_export_url %}
             {% for page in token_export_iterator %}
-            <tr>
-                <td class="export-table__txt-cell" id="id-export-tokens-hint">
+            <li class="u-bottom-divider u-space-between">
+                <div class="" id="id-export-tokens-hint">
                     {% translate " code package no." %} - {{ page }}
-                </td>
-                <td class="export-table__btn-cell">
-                    <a class="btn btn--secondary" aria-labelledby="id-export-tokens-hint" href="{{ token_export_url }}?page={{ page }}">
-                        {% translate "Download" %}
-                    </a>
-                </td>
-            </tr>
+                </div>
+                <a class="btn btn--secondary" id="download-link" aria-labelledby="id-export-tokens-hint download-link" href="{{ token_export_url }}?page={{ page }}">
+                    {% translate "Download" %}
+                </a>
+            </li>
             {% endfor %}
         {% endif %}
-        </tbody>
-    </table>
+    </ul>
 {% endblock %}

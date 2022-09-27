@@ -1,37 +1,35 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
-{% load i18n %}
+{% load i18n widget_tweaks %}
 
 {% block dashboard_project_content %}
-<h1 class="u-first-heading mt-0">{% translate 'Generate voting codes' %}</h1>
+<h1 class="u-first-heading">{% translate 'Generate voting codes' %}</h1>
 
-<p class="form-hint">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can generate up to {{ tokens_per_module }} codes. Depending on the number this may take a few minutes.
+<p class="form-hint u-bottom-divider">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can generate up to {{ tokens_per_module }} codes. Depending on the number this may take a few minutes.
 {% endblocktranslate %}</p>
-<p>{% blocktranslate %}Number of generated codes: {{ number_of_module_tokens }}. To download them please go to code download.{% endblocktranslate %}</p>
-<table class="export-table">
-    <thead>
-    <tr>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <form method="POST">
-                {% csrf_token %}
-                {% if form.errors %}
-                    <div class="errorlist">{% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
-                {% endif %}
+<p class="u-bottom-divider">{% blocktranslate %}Number of generated codes: {{ number_of_module_tokens }}.{% endblocktranslate %} {% blocktranslate %}To download them please go to code download.{% endblocktranslate %}</p>
 
-                {% for error in form.non_field_errors %}
-                    <span>{{ error }}</span>
-                {% endfor %}
+<form method="POST">
+    {% csrf_token %}
+    {% if form.errors %}
+        <div class="errorlist">{% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+    {% endif %}
 
-                <div class="form-group">
-                    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.number_of_tokens %}
-                    <input type="submit" class="btn btn--secondary" value="{% translate 'Generate codes' %}"/>
-                </div>
-            </form>
-        </tr>
-    </tbody>
-</table>
+    {% for error in form.non_field_errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+
+    <label for="{{ form.number_of_tokens.id_for_label }}">
+    {{ form.number_of_tokens.label }}{% if form.number_of_tokens.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
+    </label>
+    {% if form.number_of_tokens.help_text %}
+    <div class="form-hint">
+        {{ form.number_of_tokens.help_text }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+        {{ form.number_of_tokens|add_class:"form-control" }}
+        <input type="submit" class="btn btn--secondary" value="{% translate 'Generate codes' %}"/>
+    </div>
+    {{ form.number_of_tokens.errors }}
+</form>
 {% endblock %}

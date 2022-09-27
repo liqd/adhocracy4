@@ -48,7 +48,7 @@
     margin: 0;
     padding: 0;
 
-    > li {
+    > * {
         display: block;
     }
 }
@@ -79,6 +79,11 @@
 
 .u-flex {
     display: flex;
+}
+
+.u-space-between {
+    display: flex;
+    justify-content: space-between;
 }
 
 .u-align-right {
