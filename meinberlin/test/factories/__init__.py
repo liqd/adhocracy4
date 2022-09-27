@@ -105,3 +105,12 @@ class LiveStreamFactory(factory.django.DjangoModelFactory):
         model = 'meinberlin_livequestions.LiveStream'
 
     module = factory.SubFactory(factories.ModuleFactory)
+
+
+class LabelFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'a4labels.Label'
+
+    name = factory.Faker('name')
+    module = factory.SubFactory(factories.ModuleFactory)

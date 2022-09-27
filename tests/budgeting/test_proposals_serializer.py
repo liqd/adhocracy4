@@ -9,7 +9,11 @@ from tests.votes.test_token_vote_api import add_token_to_session
 @pytest.mark.django_db
 def test_proposal_serializer(apiclient, module, proposal_factory,
                              rating_factory, comment_factory, phase_factory,
-                             token_vote_factory, voting_token_factory):
+                             token_vote_factory, voting_token_factory,
+                             category_factory, label_factory):
+
+    category = category_factory(module=module)
+    label = label_factory(module=module)
 
     url = reverse('proposals-list',
                   kwargs={'module_pk': module.pk})
@@ -18,8 +22,10 @@ def test_proposal_serializer(apiclient, module, proposal_factory,
 
     proposal_rated = proposal_factory(module=module)
     rating_factory(content_object=proposal_rated)
+    proposal_rated.labels.set([label])
 
-    proposal_commented = proposal_factory(module=module)
+    proposal_commented = proposal_factory(module=module,
+                                          category=category)
     comment_factory(content_object=proposal_commented)
 
     proposal_voted = proposal_factory(module=module)
@@ -36,12 +42,16 @@ def test_proposal_serializer(apiclient, module, proposal_factory,
     proposal_voted_data = [p for p in proposal_data if p['pk'] ==
                            proposal_voted.pk][0]
 
+    assert proposal_rated_data['labels'] == [{'id': label.pk,
+                                              'name': label.name}]
     assert proposal_rated_data['negative_rating_count'] == 0
     assert proposal_rated_data['positive_rating_count'] == 1
     assert proposal_rated_data['comment_count'] == 0
     assert not proposal_rated_data['vote_allowed']
     assert not proposal_rated_data['session_token_voted']
 
+    assert proposal_commented_data['category'] == {'id': category.pk,
+                                                   'name': category.name}
     assert proposal_commented_data['negative_rating_count'] == 0
     assert proposal_commented_data['positive_rating_count'] == 0
     assert proposal_commented_data['comment_count'] == 1

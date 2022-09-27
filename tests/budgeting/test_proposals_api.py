@@ -14,7 +14,8 @@ from tests.votes.test_token_vote_api import add_token_to_session
 
 @pytest.mark.django_db
 def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
-                              category_factory, voting_token_factory):
+                              category_factory, voting_token_factory,
+                              label_factory):
     phase, module, project, proposal = setup_phase(phase_factory,
                                                    proposal_factory,
                                                    phases.RatingPhase)
@@ -70,13 +71,28 @@ def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
     assert response.data['token_info']['votes_left']
     assert response.data['token_info']['num_votes_left'] == 5
 
+    # with labels
+    label1 = label_factory(module=module)
+    label2 = label_factory(module=module)
+
+    response = apiclient.get(url)
+    assert 'filters' in response.data
+    assert len(response.data['filters']) == 4
+    assert 'labels' in response.data['filters']
+    assert (str(label1.pk), label1.name) in \
+           response.data['filters']['labels']['choices']
+    assert (str(label2.pk), label2.name) in \
+           response.data['filters']['labels']['choices']
+
 
 @pytest.mark.django_db
 def test_proposal_list_filtering(apiclient, module, proposal_factory,
                                  category_factory, comment_factory,
-                                 rating_factory):
+                                 rating_factory, label_factory):
     category1 = category_factory(module=module)
     category2 = category_factory(module=module)
+    label1 = label_factory(module=module)
+    label2 = label_factory(module=module)
 
     now = parse('2022-01-01 18:00:00 UTC')
     yesterday = now - timezone.timedelta(days=1)
@@ -88,16 +104,17 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
                                     created=last_week,
                                     name='liqd proposal')
 
-    proposal_archived = proposal_factory(pk=3,
-                                         module=module,
-                                         created=yesterday,
-                                         is_archived=True)
-
-    proposal_popular = proposal_factory(pk=4,
-                                        module=module,
-                                        created=yesterday)
-    rating_factory(content_object=proposal_popular)
-    rating_factory(content_object=proposal_popular)
+    proposal_archived_labels = proposal_factory(pk=3,
+                                                module=module,
+                                                created=yesterday,
+                                                is_archived=True)
+    proposal_archived_labels.labels.set([label1])
+    proposal_popular_labels = proposal_factory(pk=4,
+                                               module=module,
+                                               created=yesterday)
+    proposal_popular_labels.labels.set([label1, label2])
+    rating_factory(content_object=proposal_popular_labels)
+    rating_factory(content_object=proposal_popular_labels)
 
     proposal_commented = proposal_factory(pk=5,
                                           module=module,
@@ -139,7 +156,8 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 2
-    assert proposal_archived.pk in [p['pk'] for p in response.data['results']]
+    assert proposal_archived_labels.pk in \
+           [p['pk'] for p in response.data['results']]
 
     # category filter
     querystring = '?category=' + str(category1.pk)
@@ -151,6 +169,14 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 2
+
+    # label filter
+    querystring = '?labels=' + str(label1.pk)
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 2
+    assert response.data['results'][0]['pk'] == proposal_archived_labels.pk
+    assert response.data['results'][1]['pk'] == proposal_popular_labels.pk
 
     # search filter
     querystring = '?search=liqd+proposal'
@@ -182,7 +208,7 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 8
-    assert response.data['results'][0]['pk'] == proposal_popular.pk
+    assert response.data['results'][0]['pk'] == proposal_popular_labels.pk
     assert response.data['results'][1]['pk'] == proposal_cat2_popular.pk
 
     # most commented
@@ -229,6 +255,14 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     assert len(response.data['results']) == 2
     assert response.data['results'][0]['pk'] == proposal_cat2_popular.pk
     assert response.data['results'][1]['pk'] == proposal_cat2_archived.pk
+
+    querystring = '?ordering=-positive_rating_count&labels=' + \
+                  str(label1.pk)
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 2
+    assert response.data['results'][0]['pk'] == proposal_popular_labels.pk
+    assert response.data['results'][1]['pk'] == proposal_archived_labels.pk
 
     querystring = '?ordering=-daily_random&category=' + \
                   str(category2.pk)
