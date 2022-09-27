@@ -127,18 +127,20 @@ dt {
     margin-top: $em-spacer;
 }
 
-// FIXME what was this for? breaks button styling?!
-// [type="submit"]
+// FIXME ensure auto added buttons look inline with rest of UI eg:close on alerts
 button {
     appearance: none;
-    padding: 0;
-    margin: 0;
     color: inherit;
     background: none;
     font-size: inherit;
-    font-family: $font-family-base;
-    line-height: inherit;
     border: 0;
-    text-align: left;
     cursor: pointer;
+}
+
+%control-base {
+    border: 1px solid $input-border-color;
+    padding: 0.4em 0.6em;
+    line-height: 1.6;
+    font-family: inherit;
+    font-size: inherit;
 }

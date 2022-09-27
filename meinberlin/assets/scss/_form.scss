@@ -1,16 +1,7 @@
-%input-base {
-    margin: 0 0 $spacer;
-    border: 1px solid $input-border-color;
-    padding: 0.4em 0.6em;
-    line-height: 1.6;
-    font-family: inherit;
-    font-size: inherit;
-}
-
 input,
 textarea,
 select {
-    @extend %input-base;
+    @extend %control-base;
     display: block;
     max-width: 100%;
     background-color: $body-bg;
@@ -69,7 +60,7 @@ div.cke_focus {
     margin: 0 0 $spacer;
 
     .django-ckeditor-widget,
-    %input-base {
+    %control-base {
         width: 100%;
 
         // FIXME: Generally, we would prefer to use .form-group everywhere and

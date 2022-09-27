@@ -49,7 +49,7 @@
 }
 
 .addon {
-    @extend %input-base;
+    @extend %control-base;
     background-color: $body-bg;
     color: $text-color;
     min-width: 2.4em;

@@ -1,5 +1,5 @@
 %button-base {
-    @extend %input-base; // needed for stretched dropdowns ect.
+    @extend %control-base; // needed for stretched dropdowns ect.
     text-decoration: none;
     font-weight: bold;
 }
