@@ -50,7 +50,7 @@ export default class Filter extends React.Component {
                   checked={this.props.displayOnShortlist}
                   onChange={this.props.toggleDisplayOnShortlist} // eslint-disable-line react/jsx-handler-names
                 />
-                <div className="checkbox-btn__text">
+                <div className="btn checkbox-btn__text">
                   <i className="far fa-list-alt" aria-label={onlyShowMarkedText} />
                 </div>
               </label>
@@ -65,7 +65,7 @@ export default class Filter extends React.Component {
                   checked={this.props.displayNotHiddenOnly}
                   onChange={this.props.toggledisplayNotHiddenOnly} // eslint-disable-line react/jsx-handler-names
                 />
-                <span className="checkbox-btn__text">
+                <span className="btn checkbox-btn__text">
                   <i className="far fa-eye" aria-label={displayNotHiddenText} />
                 </span>
               </label>
@@ -80,7 +80,7 @@ export default class Filter extends React.Component {
                   checked={this.props.orderedByLikes}
                   onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
                 />
-                <span className="checkbox-btn__text">
+                <span className="btn checkbox-btn__text">
                   <i className="far fa-thumbs-up" aria-label={orderLikesText} />
                 </span>
               </label>

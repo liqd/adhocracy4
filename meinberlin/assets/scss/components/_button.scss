@@ -14,17 +14,17 @@
     }
 }
 
-.btn--light {
+.btn.btn--light {
     @extend .btn-light;
 
     background-color: $body-bg;
     font-weight: normal;
-    border-color: $border-color !important;
+    border-color: $border-color;
 
     &:focus,
     &:hover,
     &:active {
-        background-color: $bg-secondary !important;
+        background-color: $bg-secondary;
     }
 }
 

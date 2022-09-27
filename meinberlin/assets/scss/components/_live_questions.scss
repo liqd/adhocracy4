@@ -131,12 +131,6 @@
 }
 
 .checkbox-btn__label--primary {
-    .checkbox-btn__text {
-        @extend .btn;
-        @extend .btn--light;
-        cursor: pointer;
-    }
-
     input[type="checkbox"]:focus + .checkbox-btn__text {
         @include fake-focus;
     }

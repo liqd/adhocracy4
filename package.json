@@ -98,7 +98,7 @@
     "watch": "webpack --config webpack.dev.js --watch --mode development",
     "lint": "eslint meinberlin/apps meinberlin/assets --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss'",
     "lint-staged": "lint-staged",
-    "lint-fix": "eslint meinberlin/apps meinberlin/assets --fix --ext .js,.jsx .",
+    "lint-fix": "eslint meinberlin/apps meinberlin/assets --fix --ext .js,.jsx",
     "postinstall": "husky install",
     "test": "jest",
     "testDebug": "jest -o --coverage=false",
