@@ -58,4 +58,4 @@ def test_export(voting_token, rf):
                                    module=module)
     assert voting_token in view.get_queryset()
     assert module.project.slug in view.get_base_filename()
-    assert view.get_token_data(voting_token) == voting_token.token
+    assert view.get_token_data(voting_token) == str(voting_token)

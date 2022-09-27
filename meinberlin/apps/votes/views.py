@@ -91,7 +91,8 @@ class TokenExportView(PermissionRequiredMixin,
             yield [self.get_token_data(item)]
 
     def get_token_data(self, item):
-        return item.token
+        """Add dashes like in string method."""
+        return str(item)
 
     @property
     def raise_exception(self):
