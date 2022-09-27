@@ -235,6 +235,7 @@ $divider-margin: 1.25rem;
 
 .filter-bar__menu-radio-par {
     width: 100%;
+    margin-top: 2 * $spacer;
     margin-bottom: 2 * $spacer;
 
     .switch--btn {
@@ -279,6 +280,7 @@ $divider-margin: 1.25rem;
     .switch--btn.active:focus-within {
         @include fake-focus;
 
+        color: $text-color-inverted;
         background-color: $secondary-darker;
     }
 }
