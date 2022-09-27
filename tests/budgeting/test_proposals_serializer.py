@@ -6,7 +6,7 @@ from meinberlin.apps.budgeting import phases
 from tests.votes.test_token_vote_api import add_token_to_session
 
 
-@pytest.mark.skip(reason="Due to page_size set to 2")
+@pytest.mark.django_db
 def test_proposal_serializer(apiclient, module, proposal_factory,
                              rating_factory, comment_factory, phase_factory,
                              token_vote_factory, voting_token_factory):

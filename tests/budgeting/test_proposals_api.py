@@ -71,7 +71,7 @@ def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
     assert response.data['token_info']['num_votes_left'] == 5
 
 
-@pytest.mark.skip(reason="Due to setting of page_size to 2")
+@pytest.mark.django_db
 def test_proposal_list_filtering(apiclient, module, proposal_factory,
                                  category_factory, comment_factory,
                                  rating_factory):
