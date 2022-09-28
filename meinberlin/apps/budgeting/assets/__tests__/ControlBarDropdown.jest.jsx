@@ -52,3 +52,36 @@ test('ControlBarDropdown is positioned right', () => {
   const allChoiceElement = screen.getByText('all')
   expect(allChoiceElement).toBeTruthy()
 })
+
+test('ControlBarDropdown without current selection', () => {
+  const onSelectFilterFn = jest.fn()
+  render(
+    <ControlBarDropdown
+      filter={{
+        position: 'right',
+        label: 'categories',
+        icons: [['1', 'some/url']],
+        choices: [['1', 'all'], ['2', 'category1']]
+      }}
+      onSelectFilter={onSelectFilterFn}
+    />
+  )
+  expect(onSelectFilterFn).toHaveBeenCalled()
+})
+
+test('ControlBarDropdown with default selection', () => {
+  const onSelectFilterFn = jest.fn()
+  render(
+    <ControlBarDropdown
+      filter={{
+        position: 'right',
+        default: 'all',
+        label: 'categories',
+        icons: [['1', 'some/url']],
+        choices: [['1', 'all'], ['2', 'category1']]
+      }}
+      onSelectFilter={onSelectFilterFn}
+    />
+  )
+  expect(onSelectFilterFn).toHaveBeenCalled()
+})
