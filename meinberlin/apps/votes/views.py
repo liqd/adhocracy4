@@ -22,12 +22,12 @@ PAGE_SIZE = 1000000
 TOKENS_PER_MODULE = int(5e6)
 
 
-class VotingDashboardView(ProjectMixin,
-                          dashboard_mixins.DashboardBaseMixin,
-                          dashboard_mixins.DashboardComponentMixin,
-                          generic.TemplateView):
+class ExportTokenDashboardView(ProjectMixin,
+                               dashboard_mixins.DashboardBaseMixin,
+                               dashboard_mixins.DashboardComponentMixin,
+                               generic.TemplateView):
     permission_required = 'a4projects.change_project'
-    template_name = 'meinberlin_votes/voting_dashboard.html'
+    template_name = 'meinberlin_votes/token_export_dashboard.html'
 
     def _get_number_of_tokens(self):
         return VotingToken.objects.filter(
@@ -99,7 +99,7 @@ class TokenExportView(PermissionRequiredMixin,
         return self.request.user.is_authenticated
 
 
-class VotingGenerationDashboardView(
+class TokenGenerationDashboardView(
         ProjectMixin, dashboard_mixins.DashboardBaseMixin,
         dashboard_mixins.DashboardComponentMixin,
         generic.base.TemplateResponseMixin, generic.edit.FormMixin,
@@ -115,7 +115,7 @@ class VotingGenerationDashboardView(
         _('Please adjust your number of codes. Per module you can '
           'generate up to {} codes.'))
     permission_required = 'is_superuser'
-    template_name = 'meinberlin_votes/voting_code_dashboard.html'
+    template_name = 'meinberlin_votes/token_generation_dashboard.html'
 
     def _get_number_of_tokens(self):
         return VotingToken.objects.filter(
