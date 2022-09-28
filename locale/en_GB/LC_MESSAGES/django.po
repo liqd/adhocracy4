@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-23 18:19+0200\n"
+"POT-Creation-Date: 2022-09-28 08:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -290,6 +290,7 @@ msgstr "Search"
 
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_field.html:5
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:22
 #: meinberlin/templates/a4forms/includes/form_field.html:5
 msgid "This field is required"
 msgstr "This field is required"
@@ -1691,15 +1692,19 @@ msgstr "Comment"
 
 #: meinberlin/apps/budgeting/forms.py:25
 msgid ""
-"For questions or in case of implementation of my proposal you can contact me."
+"For questions or in case of implementation of my proposal you can contact "
+"me. I will receive automatic notifications for any status update or official "
+"statement to my proposal."
 msgstr ""
-"For questions or in case of implementation of my proposal you can contact me."
+"For questions or in case of implementation of my proposal you can contact "
+"me. I will receive automatic notifications for any status update or official "
+"statement to my proposal."
 
-#: meinberlin/apps/budgeting/forms.py:27
+#: meinberlin/apps/budgeting/forms.py:30
 msgid "Telephone number"
 msgstr "Telephone number"
 
-#: meinberlin/apps/budgeting/forms.py:30
+#: meinberlin/apps/budgeting/forms.py:33
 msgid ""
 "Assign your proposal to a category. This automatically appears in the "
 "display of your proposal. The list of all proposals can be filtered by "
@@ -1709,7 +1714,7 @@ msgstr ""
 "display of your proposal. The list of all proposals can be filtered by "
 "category."
 
-#: meinberlin/apps/budgeting/forms.py:34
+#: meinberlin/apps/budgeting/forms.py:37
 msgid ""
 "Specify your proposal with one or more labels. These will automatically "
 "appear in the display of your proposal. In addition, the list of all "
@@ -1719,31 +1724,31 @@ msgstr ""
 "appear in the display of your proposal. In addition, the list of all "
 "proposals can be filtered by labels."
 
-#: meinberlin/apps/budgeting/forms.py:48
+#: meinberlin/apps/budgeting/forms.py:51
 msgid "Please contact me via the e-mail address of my user account ({})."
 msgstr "Please contact me via the e-mail address of my user account ({})."
 
-#: meinberlin/apps/budgeting/forms.py:51
+#: meinberlin/apps/budgeting/forms.py:54
 msgid "Please contact me via another e-mail address:"
 msgstr "Please contact me via another e-mail address:"
 
-#: meinberlin/apps/budgeting/forms.py:55
+#: meinberlin/apps/budgeting/forms.py:58
 msgid "E-mail address"
 msgstr "E-mail address"
 
-#: meinberlin/apps/budgeting/forms.py:59
+#: meinberlin/apps/budgeting/forms.py:62
 msgid "new e-mail address"
 msgstr "new e-mail address"
 
-#: meinberlin/apps/budgeting/forms.py:68
+#: meinberlin/apps/budgeting/forms.py:71
 msgid "Please enter an email address."
 msgstr "Please enter an email address."
 
-#: meinberlin/apps/budgeting/models.py:22
+#: meinberlin/apps/budgeting/models.py:24
 msgid "Budget"
 msgstr "Budget"
 
-#: meinberlin/apps/budgeting/models.py:23
+#: meinberlin/apps/budgeting/models.py:25
 msgid ""
 "Please enter the estimated or actual costs for your proposal. Enter 0€ if "
 "the costs are not (yet) known. In this case, the description \"budget not "
@@ -1753,11 +1758,11 @@ msgstr ""
 "the costs are not (yet) known. In this case, the description \"budget not "
 "specified\" will appear in your proposal."
 
-#: meinberlin/apps/budgeting/models.py:31
+#: meinberlin/apps/budgeting/models.py:33
 msgid "Proposal is archived"
 msgstr "Proposal is archived"
 
-#: meinberlin/apps/budgeting/models.py:32
+#: meinberlin/apps/budgeting/models.py:34
 msgid ""
 "Exclude this proposal from all listings by default. You can still access "
 "this proposal by using filters."
@@ -1831,14 +1836,14 @@ msgid ""
 "I hereby expressly consent to the storage of the contact information I have "
 "entered. The contact information may be used by the responsible "
 "administration exclusively for contacting me in the present project. I can "
-"revoke this consent at any time. I have read and accept the <a "
-"href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
+"revoke this consent at any time. I have read and accept the <a href="
+"\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
 msgstr ""
 "I hereby expressly consent to the storage of the contact information I have "
 "entered. The contact information may be used by the responsible "
 "administration exclusively for contacting me in the present project. I can "
-"revoke this consent at any time. I have read and accept the <a "
-"href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
+"revoke this consent at any time. I have read and accept the <a href="
+"\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:4
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:4
@@ -1896,7 +1901,7 @@ msgstr "Submit a new proposal for this project"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:6
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_create_form.html:11
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_update_form.html:11
-#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:25
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:14
 #: meinberlin/templates/a4dashboard/base_form_module.html:10
 #: meinberlin/templates/a4dashboard/base_form_project.html:10
 msgid ""
@@ -3683,11 +3688,11 @@ msgstr ""
 #: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:10
 #, python-format
 msgid ""
-"No plan has been created yet. You can do that <a "
-"href=\"%(plan_create_url)s\">here</a>."
+"No plan has been created yet. You can do that <a href=\"%(plan_create_url)s"
+"\">here</a>."
 msgstr ""
-"No plan has been created yet. You can do that <a "
-"href=\"%(plan_create_url)s\">here</a>."
+"No plan has been created yet. You can do that <a href=\"%(plan_create_url)s"
+"\">here</a>."
 
 #: meinberlin/apps/plans/views.py:171
 msgid "The plan was created"
@@ -4370,15 +4375,13 @@ msgstr "No token given or token not valid for module."
 msgid "Token is inactive."
 msgstr "Token is inactive."
 
-#: meinberlin/apps/votes/dashboard.py:13 meinberlin/apps/votes/views.py:78
-msgid "Voting codes"
-msgstr "Voting codes"
+#: meinberlin/apps/votes/dashboard.py:13
+msgid "Code download"
+msgstr "Code download"
 
 #: meinberlin/apps/votes/dashboard.py:40
-#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:5
-#: meinberlin/apps/votes/templates/meinberlin_votes/voting_dashboard.html:5
-msgid "Generate voting codes"
-msgstr "Generate voting codes"
+msgid "Code generation"
+msgstr "Code generation"
 
 #: meinberlin/apps/votes/forms.py:45
 msgid "This token is not valid"
@@ -4416,82 +4419,81 @@ msgstr "This token is not active."
 msgid "This token has no votes left."
 msgstr "This token has no votes left."
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:7
-#: meinberlin/apps/votes/templates/meinberlin_votes/voting_dashboard.html:7
-msgid ""
-"For voting in the third phase, participants need a voting code. You can "
-"generate and download the codes here. "
-msgstr ""
-"For voting in the third phase, participants need a voting code. You can "
-"generate and download the codes here. "
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:5
+msgid "Generate voting codes"
+msgstr "Generate voting codes"
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:8
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:7
 #, python-format
 msgid ""
-"\n"
-"One code has been generated for this module so far.\n"
-msgid_plural ""
-"\n"
-"%(counter)s codes have been generated for this module so far.\n"
-msgstr[0] ""
-"\n"
-"One code has been generated for this module so far.\n"
-msgstr[1] ""
-"\n"
-"%(counter)s codes have been generated for this module so far.\n"
+"For voting in the third phase, all participants need their own voting code. "
+"Here you can generate up to %(tokens_per_module)s codes. Depending on the "
+"number this may take a few minutes.\n"
+msgstr ""
+"For voting in the third phase, all participants need their own voting code. "
+"Here you can generate up to %(tokens_per_module)s codes. Depending on the "
+"number this may take a few minutes.\n"
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:34
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:9
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_dashboard.html:8
+#, python-format
+msgid "Number of generated codes: %(number_of_module_tokens)s."
+msgstr "Number of generated codes: %(number_of_module_tokens)s."
+
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:9
+msgid "To download them please go to code download."
+msgstr "To download them please go to code download."
+
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_code_dashboard.html:31
 msgid "Generate codes"
 msgstr "Generate codes"
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/voting_dashboard.html:8
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_dashboard.html:5
+msgid "Download voting codes"
+msgstr "Download voting codes"
+
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_dashboard.html:7
 #, python-format
 msgid ""
-"\n"
-"    One code has been generated for this module so far.\n"
-"    "
-msgid_plural ""
-"\n"
-"    %(counter)s codes have been generated for this module so far.\n"
-"    "
-msgstr[0] ""
-"\n"
-"    One code has been generated for this module so far.\n"
-"    "
-msgstr[1] ""
-"\n"
-"    %(counter)s codes have been generated for this module so far.\n"
-"    "
+"For voting in the third phase, all participants need their own voting code. "
+"Here you can download the codes in packages of %(export_size)s per excel "
+"file. To generate the codes, please contact %(contact_email)s"
+msgstr ""
+"For voting in the third phase, all participants need their own voting code. "
+"Here you can download the codes in packages of %(export_size)s per excel "
+"file. To generate the codes, please contact %(contact_email)s"
+
+#: meinberlin/apps/votes/templates/meinberlin_votes/voting_dashboard.html:21
+msgid " code package no."
+msgstr " code package no."
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/voting_dashboard.html:25
-msgid " here you can download the voting codes (Excel file)"
-msgstr " here you can download the voting codes (Excel file)"
-
-#: meinberlin/apps/votes/templates/meinberlin_votes/voting_dashboard.html:29
 msgid "Download"
 msgstr "Download"
 
-#: meinberlin/apps/votes/views.py:105
-msgid ""
-"{} code will be generated in the background. Please come back later to check "
-"if it is finished"
-msgstr ""
-"{} code will be generated in the background. Please come back later to check "
-"if it is finished"
+#: meinberlin/apps/votes/views.py:82
+msgid "Voting codes"
+msgstr "Voting codes"
 
-#: meinberlin/apps/votes/views.py:107
+#: meinberlin/apps/votes/views.py:110
 msgid ""
-"{} codes will be generated in the background. Please come back later to "
-"check if they are finished"
+"{} code will be generated in the background. This may take a few minutes."
 msgstr ""
-"{} codes will be generated in the background. Please come back later to "
-"check if they are finished"
+"{} code will be generated in the background. This may take a few minutes."
 
-#: meinberlin/apps/votes/views.py:110 meinberlin/apps/votes/views.py:112
+#: meinberlin/apps/votes/views.py:112
 msgid ""
-"Only {} tokens are allowed per module. You are allowed to generate {} more."
+"{} codes will be generated in the background. This may take a few minutes."
 msgstr ""
-"Only {} tokens are allowed per module. You are allowed to generate {} more."
+"{} codes will be generated in the background. This may take a few minutes."
+
+#: meinberlin/apps/votes/views.py:115
+msgid ""
+"Please adjust your number of codes. Per module you can generate up to {} "
+"codes."
+msgstr ""
+"Please adjust your number of codes. Per module you can generate up to {} "
+"codes."
 
 #: meinberlin/config/settings/base.py:315
 #: meinberlin/config/settings/base.py:328
@@ -4964,20 +4966,20 @@ msgstr "Confirm"
 #: meinberlin/templates/account/email_confirm.html:19
 #, python-format
 msgid ""
-"This email confirmation link expired or is invalid. Please <a "
-"href=\"%(email_url)s\">issue a new email confirmation request</a>."
+"This email confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new email confirmation request</a>."
 msgstr ""
-"This email confirmation link expired or is invalid. Please <a "
-"href=\"%(email_url)s\">issue a new email confirmation request</a>."
+"This email confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new email confirmation request</a>."
 
 #: meinberlin/templates/account/login.html:9
 #, python-format
 msgid ""
-"If you have not created an account yet, then please <a "
-"href=\"%(signup_url)s\">register</a> first."
+"If you have not created an account yet, then please <a href=\"%(signup_url)s"
+"\">register</a> first."
 msgstr ""
-"If you have not created an account yet, then please <a "
-"href=\"%(signup_url)s\">register</a> first."
+"If you have not created an account yet, then please <a href=\"%(signup_url)s"
+"\">register</a> first."
 
 #: meinberlin/templates/account/login.html:27
 msgid "Forgot Password?"
@@ -5177,6 +5179,74 @@ msgstr ""
 "%(site_name)s. As a final step, please complete the following form:"
 
 #~ msgid ""
+#~ "For questions or in case of implementation of my proposal you can contact "
+#~ "me."
+#~ msgstr ""
+#~ "For questions or in case of implementation of my proposal you can contact "
+#~ "me."
+
+#~ msgid ""
+#~ "For voting in the third phase, participants need a voting code. You can "
+#~ "generate and download the codes here. "
+#~ msgstr ""
+#~ "For voting in the third phase, participants need a voting code. You can "
+#~ "generate and download the codes here. "
+
+#~ msgid ""
+#~ "\n"
+#~ "One code has been generated for this module so far.\n"
+#~ msgid_plural ""
+#~ "\n"
+#~ "%(counter)s codes have been generated for this module so far.\n"
+#~ msgstr[0] ""
+#~ "\n"
+#~ "One code has been generated for this module so far.\n"
+#~ msgstr[1] ""
+#~ "\n"
+#~ "%(counter)s codes have been generated for this module so far.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "    One code has been generated for this module so far.\n"
+#~ "    "
+#~ msgid_plural ""
+#~ "\n"
+#~ "    %(counter)s codes have been generated for this module so far.\n"
+#~ "    "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "    One code has been generated for this module so far.\n"
+#~ "    "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "    %(counter)s codes have been generated for this module so far.\n"
+#~ "    "
+
+#~ msgid " here you can download the voting codes (Excel file)"
+#~ msgstr " here you can download the voting codes (Excel file)"
+
+#~ msgid ""
+#~ "{} code will be generated in the background. Please come back later to "
+#~ "check if it is finished"
+#~ msgstr ""
+#~ "{} code will be generated in the background. Please come back later to "
+#~ "check if it is finished"
+
+#~ msgid ""
+#~ "{} codes will be generated in the background. Please come back later to "
+#~ "check if they are finished"
+#~ msgstr ""
+#~ "{} codes will be generated in the background. Please come back later to "
+#~ "check if they are finished"
+
+#~ msgid ""
+#~ "Only {} tokens are allowed per module. You are allowed to generate {} "
+#~ "more."
+#~ msgstr ""
+#~ "Only {} tokens are allowed per module. You are allowed to generate {} "
+#~ "more."
+
+#~ msgid ""
 #~ "In this section, you can create categories. If you create any, each "
 #~ "contribution has to be assigned to one of them. This way, content can be "
 #~ "classified."
@@ -5278,13 +5348,13 @@ msgstr ""
 
 #~ msgid ""
 #~ "\n"
-#~ "    No plan has been created yet. You can do that <a "
-#~ "href=\"%(plan_create_url)s\">here</a>.\n"
+#~ "    No plan has been created yet. You can do that <a href="
+#~ "\"%(plan_create_url)s\">here</a>.\n"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    No plan has been created yet. You can do that <a "
-#~ "href=\"%(plan_create_url)s\">here</a>.\n"
+#~ "    No plan has been created yet. You can do that <a href="
+#~ "\"%(plan_create_url)s\">here</a>.\n"
 #~ "    "
 
 #~ msgid ""
