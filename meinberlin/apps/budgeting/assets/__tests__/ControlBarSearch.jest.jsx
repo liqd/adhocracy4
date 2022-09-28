@@ -1,0 +1,28 @@
+import React from 'react'
+import { render, screen, fireEvent } from '@testing-library/react'
+import { ControlBarSearch } from '../ControlBarSearch'
+
+test('ControlBarSearch changing searchterm', () => {
+  render(
+    <ControlBarSearch
+      term="example"
+    />
+  )
+  const searchInput = screen.getByPlaceholderText('mock text')
+  expect(searchInput.value).toBe('example')
+  fireEvent.change(searchInput, { target: { value: 'changed example' } })
+  expect(searchInput.value).toBe('changed example')
+})
+
+test('ControlBarSearch submit search', () => {
+  const onSearchFn = jest.fn()
+  render(
+    <ControlBarSearch
+      term="example"
+      onSearch={onSearchFn}
+    />
+  )
+  const searchForm = window.document.querySelector('form')
+  fireEvent.submit(searchForm)
+  expect(onSearchFn).toHaveBeenCalled()
+})
