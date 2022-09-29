@@ -7,6 +7,11 @@
         display: inline-block;
         vertical-align: top;
         margin-bottom: 0;
+
+        & > button,
+        & > form > input {
+            margin-bottom: $spacer;
+        }
     }
 
     @media (min-width: $breakpoint) {

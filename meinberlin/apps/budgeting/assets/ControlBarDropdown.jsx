@@ -1,28 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export const ControlBarDropdown = props => {
-  const { filter: { label, choices, current, icons } } = props
+  const { filter } = props
+  const [currentChoiceName, setCurrentChoiceName] = useState(filter.current)
 
-  const onSelectFilter = filter => {
-    props.onSelectFilter(filter)
+  const onSelectFilter = filterChoice => {
+    setCurrentChoiceName(filterChoice[1])
+    props.onSelectFilter(filterChoice)
   }
 
   const getFilterByValue = filterval => {
-    return choices.find(choice => choice[0] === filterval)
+    return filter.choices.find(choice => choice[0] === filterval)
   }
 
   useEffect(() => {
-    if (!current) {
-      if (props.filter.default) {
-        onSelectFilter(getFilterByValue(props.filter.default))
+    if (!filter.current) {
+      if (filter.default) {
+        const filterChoice = getFilterByValue(filter.default)
+        setCurrentChoiceName(filterChoice[1])
+        onSelectFilter(filterChoice)
       } else {
-        onSelectFilter(choices[0])
+        setCurrentChoiceName(filter.choices[0])
+        onSelectFilter(filter.choices[0])
       }
     }
-  })
+  }, [])
 
   const getIcon = choiceIndex => {
-    return icons.find(icon => icon[0] === choiceIndex)
+    return filter.icons.find(icon => icon[0] === choiceIndex)
   }
 
   return (
@@ -36,12 +41,12 @@ export const ControlBarDropdown = props => {
         aria-expanded="false"
         id={props.filterId}
       >
-        {current ? `${label}: ${current}` : `${label}`}
+        {`${filter.label}: ${currentChoiceName}`}
         <i className="fa fa-caret-down" aria-hidden />
       </button>
       <ul aria-labelledby={props.filterId} className="dropdown-menu">
-        {choices.map((choice, idx) => {
-          const icon = icons && getIcon(choice[0])
+        {filter.choices.map((choice, idx) => {
+          const icon = filter.icons && getIcon(choice[0])
           return (
             <li key={`filter-choice_${idx}`}>
               <button onClick={() => onSelectFilter(choice)}>

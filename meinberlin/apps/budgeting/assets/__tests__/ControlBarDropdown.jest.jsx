@@ -78,7 +78,7 @@ test('ControlBarDropdown with default selection', () => {
         default: 'all',
         label: 'categories',
         icons: [['1', 'some/url']],
-        choices: [['1', 'all'], ['2', 'category1']]
+        choices: [['all', 'All'], ['1', 'category1']]
       }}
       onSelectFilter={onSelectFilterFn}
     />
