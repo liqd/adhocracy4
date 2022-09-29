@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags react_questions ckeditor_tags wagtailcore_tags %}
+{% load static i18n discovery_tags react_questions ckeditor_tags wagtailcore_tags %}
 
 {% block phase_content %}
     {% if url_name == 'module-detail' %}
@@ -22,4 +22,9 @@
         </div>
     </div>
     {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'live_questions.js' %}"></script>
+    {{ block.super }}
 {% endblock %}

@@ -61,7 +61,12 @@
         </div>
     </div>
 </div>
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'live_questions_presents.js' %}"></script>
+    {{ block.super }}
+{% endblock %}
 {% endblock %}
 
 {% block footer %}
+
 {% endblock %}
