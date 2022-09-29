@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SelectCategory renders correctly 1`] = `
+exports[`CategorySelect renders correctly 1`] = `
 <DocumentFragment>
   <div>
     <div
