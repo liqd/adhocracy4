@@ -61,9 +61,20 @@
     font-size: $font-size-sm;
 }
 
+.list-item__link {
+    font-size: $font-size-sm;
+}
+
 .list-item__labels {
     @include clearfix;
     margin: 0 0 0.4rem;
+
+    > span.label {
+        overflow: hidden;
+        max-width: 40ch;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
 
 .list-item__label--moderator-feedback {

@@ -10,6 +10,10 @@
     margin-left: $em-spacer;
 }
 
+.u-spacer-left-half {
+    margin-left: ($em-spacer * 0.5);
+}
+
 .u-spacer-right,
 .a4-spacer--right {
     margin-right: $em-spacer;

@@ -42,6 +42,8 @@ class ProposalSerializer(serializers.ModelSerializer):
     moderator_feedback = serializers.SerializerMethodField()
     session_token_voted = serializers.SerializerMethodField()
     vote_allowed = serializers.SerializerMethodField()
+    budget = serializers.SerializerMethodField()
+    point_label = serializers.SerializerMethodField()
 
     class Meta:
         model = Proposal
@@ -83,15 +85,22 @@ class ProposalSerializer(serializers.ModelSerializer):
         return proposal.get_absolute_url()
 
     def get_moderator_feedback(self, proposal):
-        if hasattr(proposal, 'moderator_feedback'):
+        if hasattr(proposal, 'moderator_feedback') and\
+                proposal.get_moderator_feedback_display():
             return (proposal.moderator_feedback,
                     proposal.get_moderator_feedback_display())
         else:
             return None
 
     def get_point_label(self, proposal):
-        if hasattr(proposal, 'point_label'):
+        if hasattr(proposal, 'point_label') and proposal.point_label != '':
             return (proposal.point_label)
+        else:
+            return None
+
+    def get_budget(self, proposal):
+        if hasattr(proposal, 'budget') and proposal.budget != 0:
+            return proposal.budget
         else:
             return None
 
