@@ -22,33 +22,33 @@ exports[`ChapterNavItem bottom renders correctly 1`] = `
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="mock text"
+        title="Move up"
         type="button"
       >
         <i
-          aria-label="mock text"
+          aria-label="Move up"
           class="fa fa-chevron-up"
         />
       </button>
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="mock text"
+        title="Move down"
         type="button"
       >
         <i
-          aria-label="mock text"
+          aria-label="Move down"
           class="fa fa-chevron-down"
         />
       </button>
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="mock text"
+        title="Delete"
         type="button"
       >
         <i
-          aria-label="mock text"
+          aria-label="Delete"
           class="fas fa-trash-alt"
         />
       </button>
@@ -79,33 +79,33 @@ exports[`ChapterNavItem middle renders correctly 1`] = `
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="mock text"
+        title="Move up"
         type="button"
       >
         <i
-          aria-label="mock text"
+          aria-label="Move up"
           class="fa fa-chevron-up"
         />
       </button>
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="mock text"
+        title="Move down"
         type="button"
       >
         <i
-          aria-label="mock text"
+          aria-label="Move down"
           class="fa fa-chevron-down"
         />
       </button>
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="mock text"
+        title="Delete"
         type="button"
       >
         <i
-          aria-label="mock text"
+          aria-label="Delete"
           class="fas fa-trash-alt"
         />
       </button>
@@ -136,33 +136,33 @@ exports[`ChapterNavItem top renders correctly 1`] = `
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="mock text"
+        title="Move up"
         type="button"
       >
         <i
-          aria-label="mock text"
+          aria-label="Move up"
           class="fa fa-chevron-up"
         />
       </button>
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="mock text"
+        title="Move down"
         type="button"
       >
         <i
-          aria-label="mock text"
+          aria-label="Move down"
           class="fa fa-chevron-down"
         />
       </button>
       <button
         class="btn btn--light btn--small"
         disabled=""
-        title="mock text"
+        title="Delete"
         type="button"
       >
         <i
-          aria-label="mock text"
+          aria-label="Delete"
           class="fas fa-trash-alt"
         />
       </button>

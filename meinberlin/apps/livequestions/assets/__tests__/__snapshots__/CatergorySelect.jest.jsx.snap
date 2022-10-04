@@ -9,12 +9,12 @@ exports[`SelectCategory renders correctly 1`] = `
       <label
         for="categorySelect"
       >
-        mock text*
+        Affiliation*
       </label>
       <div
         class="form-hint"
       >
-        mock text
+        Answered questions will be displayed in the statistics according to the chosen affiliation.
       </div>
       <select
         class="js-select2"

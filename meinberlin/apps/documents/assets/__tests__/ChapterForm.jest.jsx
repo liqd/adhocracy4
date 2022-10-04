@@ -16,7 +16,7 @@ test('Chapter Form without paragraphs', () => {
     paragraphs: []
   }
   render(<ChapterForm id="chapter-form-id" chapter={mockedChapter} />)
-  const chapterLabel = screen.queryByLabelText('mock text')
+  const chapterLabel = screen.queryByLabelText('Chapter title')
   expect(chapterLabel).toBeTruthy()
 })
 
@@ -33,7 +33,7 @@ test('Chapter Form with paragraph', () => {
     ]
   }
   render(<ChapterForm id="chapter-form-id" chapter={mockedChapter} />)
-  const chapterLabel = screen.queryByLabelText('mock text')
+  const chapterLabel = screen.queryByLabelText('Chapter title')
   expect(chapterLabel).toBeTruthy()
 })
 

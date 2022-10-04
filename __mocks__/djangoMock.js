@@ -1,4 +1,4 @@
 module.exports = {
-  gettext: () => 'mock text',
-  pgettext: () => 'mock text'
+  gettext: (text) => text,
+  pgettext: (text) => text
 }

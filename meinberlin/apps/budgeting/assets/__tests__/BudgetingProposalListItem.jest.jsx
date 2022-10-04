@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BudgetingProposalListItem } from '../BudgetingProposalListItem'
-import django from '../../../../../__mocks__/djangoMock'
 
 test('render list item with vote button', () => {
   const proposal = {
@@ -16,8 +15,8 @@ test('render list item with vote button', () => {
   expect(screen.getByText('myProposal')).toBeTruthy()
   expect(screen.getByText('creator')).toBeTruthy()
   const resolvedDate =
-    screen.queryByText(`${django.gettext()} 11. November 2021 - 2021-12345`) ||
-    screen.queryByText(`${django.gettext()} 11 November 2021 - 2021-12345`)
+    screen.queryByText('created on 11. November 2021 - 2021-12345') ||
+    screen.queryByText('updated on 11 November 2021 - 2021-12345')
   expect(resolvedDate).toBeTruthy()
 })
 
@@ -36,7 +35,7 @@ test('render list item with stats', () => {
   expect(screen.getByText('myProposal')).toBeTruthy()
   expect(screen.getByText('creator')).toBeTruthy()
   const resolvedDate =
-    screen.queryByText(`${django.gettext()} 11. November 2021 - 2021-12345`) ||
-    screen.queryByText(`${django.gettext()} 11 November 2021 - 2021-12345`)
+    screen.queryByText('created on 11. November 2021 - 2021-12345') ||
+    screen.queryByText('updated on 11 November 2021 - 2021-12345')
   expect(resolvedDate).toBeTruthy()
 })

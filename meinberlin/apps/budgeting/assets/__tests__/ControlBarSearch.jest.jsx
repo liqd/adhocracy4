@@ -8,7 +8,7 @@ test('ControlBarSearch changing searchterm', () => {
       term="example"
     />
   )
-  const searchInput = screen.getByPlaceholderText('mock text')
+  const searchInput = screen.getByPlaceholderText('Search for Proposals')
   expect(searchInput.value).toBe('example')
   fireEvent.change(searchInput, { target: { value: 'changed example' } })
   expect(searchInput.value).toBe('changed example')
