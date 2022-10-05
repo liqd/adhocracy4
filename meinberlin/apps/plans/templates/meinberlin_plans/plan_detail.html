@@ -99,7 +99,7 @@
                         </div>
                     </dl>
                     {% if object.description_image %}
-                        <div class="item-detail__background-image" style="background-image: url({% thumbnail object.description_image 'item_image' %})">
+                        <div class="item-detail__background-image" style="background-image: url({% thumbnail object.description_image 'plan_image' %})">
                         {% if object.description_image_copyright %}
                             <span class="item-detail__copyright copyright">
                                 © {{ object.description_image_copyright }}

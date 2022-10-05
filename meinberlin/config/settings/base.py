@@ -243,6 +243,7 @@ THUMBNAIL_ALIASES = {
         'logo': {'size': (160, 160), 'background': 'white'},
         'item_image': {'size': (330, 0), 'crop': 'scale'},
         'map_thumbnail': {'size': (200, 200), 'crop': 'smart'},
+        'plan_image': {'size': (600, 400)},
         'project_tile': {'size': (500, 500)}
     }
 }
