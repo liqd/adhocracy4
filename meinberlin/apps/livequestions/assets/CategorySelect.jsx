@@ -1,4 +1,5 @@
 import django from 'django'
+import 'select2'
 import React, { useEffect } from 'react'
 
 const affiliationStr = django.gettext('Affiliation')
@@ -7,6 +8,13 @@ const answeredQuestionsStr = django.gettext('Answered questions will be displaye
 export const CategorySelect = (props) => {
   useEffect(() => {
     const select = document.getElementById('categorySelect')
+    // FIXME remove select2 when viable alternate available
+    if ($.fn.select2) {
+      $(select).select2()
+      $('.select2__no-search').select2({
+        minimumResultsForSearch: -1
+      })
+    }
     select.addEventListener('change', props.onSelect)
   }, [])
 
