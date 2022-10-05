@@ -104,14 +104,15 @@ blueprints = [
      ProjectBlueprint(
          title=_('Participatory budgeting (3 phase)'),
          description=_(
-             'In a first phase, participants can submit their own proposals, '
-             'mark them on a map, and add a budget. The proposals of others '
-             'can be discussed and in a second phase rated (pro/contra). In '
-             'the third phase, participants vote on the shortlisted proposals.'
+             'In a first phase, participants can submit their own '
+             'suggestions, mark them on a map, and add a budget. The '
+             'proposals of others can be discussed. In a second phase '
+             'proposals can be supported. In the third phase, participants '
+             'vote on the shortlisted proposals.  '
          ),
          content=[
              budgeting_phases.CollectPhase(),
-             budgeting_phases.RatingPhase(),
+             budgeting_phases.SupportPhase(),
              budgeting_phases.VotingPhase(),
          ],
          # The icon has to be updated:
