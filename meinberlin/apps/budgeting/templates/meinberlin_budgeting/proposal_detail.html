@@ -1,8 +1,9 @@
 {% extends "meinberlin_mapideas/mapidea_detail.html" %}
-{% load rules i18n humanize contrib_tags react_proposals_vote static %}
+{% load rules i18n humanize contrib_tags react_proposals_vote static module_tags react_support discovery_tags %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'vote_button.js' %}"></script>
+    <script type="text/javascript" src="{% static 'budget_support.js' %}"></script>
     {{ block.super }}
 {% endblock %}
 
@@ -11,6 +12,17 @@
     <span class="label label--big test">
         {% if proposal.budget == 0 %}{% translate 'budget not specified' %}{% else %}{{ proposal.budget|intcomma }}€{% endif %}
     </span>
+{% endblock %}
+
+{% block ratings %}
+    {% if module.blueprint_type == 'PB3' and proposal|has_feature:"support" %}
+        {% has_or_would_have_perm 'meinberlin_budgeting.support_proposal' request.user proposal as may_support_proposal %}
+        {% if may_support_proposal %}
+            {% react_support proposal %}
+        {% endif %}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
 {% endblock %}
 
 {% block vote_button %}

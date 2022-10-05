@@ -63,11 +63,13 @@
             </div>
 
             <div class="item-detail__actions lr-bar">
-                {% if object|has_feature:"rate" %}
-                    <div class="lr-bar__left">
-                        {% react_ratings object %}
-                    </div>
-                {% endif %}
+                {% block ratings %}
+                    {% if object|has_feature:"rate" %}
+                        <div class="lr-bar__left">
+                            {% react_ratings object %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
 
                 {% get_item_change_permission object as change_perm %}
                 {% has_perm change_perm request.user object as user_may_change %}

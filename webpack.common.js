@@ -64,6 +64,9 @@ module.exports = {
     budget_proposals: {
       import: './meinberlin/apps/budgeting/assets/react_proposals_init.jsx'
     },
+    budget_support: {
+      import: './meinberlin/apps/budgeting/assets/react_support_init.jsx'
+    },
     unload_warning: {
       import: './meinberlin/assets/js/unload_warning.js'
     },
