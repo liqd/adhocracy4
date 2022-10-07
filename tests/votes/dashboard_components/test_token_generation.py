@@ -57,8 +57,16 @@ def test_token_generate_view(client, phase_factory, module_factory,
     task_2 = Task.objects.last()
     assert task_1.task_name == \
         'meinberlin.apps.votes.tasks.generate_voting_tokens_batch'
-    assert task_1.task_params == '[[' + str(module.id) + ', 10], {}]'
-    assert task_2.task_params == '[[' + str(module.id) + ', 2], {}]'
+    assert task_1.task_params == (
+        '[[' + str(module.id) + ', 10, 12, "' + str(module.name)
+        + '", ' + str(module.project.id) + ', "' + str(module.project.name)
+        + '", 2], {}]'
+    )
+    assert task_2.task_params == (
+        '[[' + str(module.id) + ', 2, 12, "' + str(module.name)
+        + '", ' + str(module.project.id) + ', "' + str(module.project.name)
+        + '", 2], {}]'
+    )
 
 
 @patch('meinberlin.apps.votes.views.TOKENS_PER_MODULE', 5)
@@ -94,10 +102,16 @@ def test_token_batch_generation_not_unique(phase_factory):
     with patch('secrets.choice', return_value='a'):
         with pytest.raises(IntegrityError):
             with transaction.atomic():
-                generate_voting_tokens_batch.now(module.id, 2)
+                generate_voting_tokens_batch.now(
+                    module.id, 2, 2, module.name, module.project.id,
+                    module.project.name, 0
+                )
     tokens = VotingToken.objects.all()
     assert tokens.count() == 0
 
-    generate_voting_tokens_batch.now(module.id, 2)
+    generate_voting_tokens_batch.now(
+        module.id, 2, 2, module.name, module.project.id,
+        module.project.name, 0
+    )
     tokens = VotingToken.objects.all()
     assert tokens.count() == 2

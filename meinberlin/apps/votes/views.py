@@ -151,7 +151,8 @@ class TokenGenerationDashboardView(
             )
         else:
             # make tasks to generate the tokens
-            generate_voting_tokens(self.module.pk, number_of_tokens)
+            generate_voting_tokens(self.module.pk, number_of_tokens,
+                                   existing_tokens)
 
             messages.success(
                 self.request,
