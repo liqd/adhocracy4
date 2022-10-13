@@ -7,7 +7,8 @@ import { SpacedSpan } from './SpacedSpan'
 import django from 'django'
 
 const translated = {
-  toggleFilters: django.gettext('Toggle filters'),
+  showFilters: django.gettext('Show filters'),
+  hideFilters: django.gettext('Hide filters'),
   filters: django.gettext('Filters'),
   results: django.gettext('results found.')
 }
@@ -88,12 +89,12 @@ export const ControlBar = props => {
           )}
           <div className="control-bar__item control-bar__right">
             <button
-              className={
+              className="btn btn--light"
+              aria-label={
                 expandFilters
-                  ? 'btn btn--light active'
-                  : 'btn btn--light'
+                  ? translated.hideFilters
+                  : translated.showFilters
               }
-              aria-label={translated.toggleFilters}
               onClick={() => setExpandFilters(!expandFilters)}
             >
               <i className="fa fa-filter" aria-hidden="true" />

@@ -40,7 +40,7 @@ test('ControlBar expanded bar', async () => {
       numOfResults={2}
     />
   )
-  const filterButton = screen.getByLabelText('Toggle filters')
+  const filterButton = screen.getByLabelText('Show filters')
   let expandedFilter = screen.queryByText(/category1/)
   expect(expandedFilter).toBeFalsy()
   fireEvent.click(filterButton)
