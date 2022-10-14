@@ -103,8 +103,14 @@ class ProposalFilterInfoMixin:
 
         # ordering filter
         ordering_choices = [('-created', _('Most recent')), ]
+        # only show sort by rating when rating is allowed at anytime in module
+        # like "view_rate_count" from PermissionInfoMixin
         if self.module.has_feature('rate', Proposal):
             ordering_choices += ('-positive_rating_count', _('Most popular')),
+        # only show sort by support during supporting phase
+        # like "view_support_count" from PermissionInfoMixin
+        if has_feature_active(self.module, Proposal, 'support'):
+            ordering_choices += ('-positive_rating_count', _('Most support')),
         ordering_choices += ('-comment_count', _('Most commented')), \
                             ('-daily_random', _('Random')),
 
