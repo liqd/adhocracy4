@@ -10,7 +10,7 @@ const createdOnStr = django.gettext('created on')
 const BADGES_LIMIT = 3
 
 export const BudgetingProposalListItem = (props) => {
-  const { proposal, isVotingPhase, tokenvoteApiUrl } = props
+  const { proposal, permissions, tokenvoteApiUrl } = props
   const safeLocale = props.locale ? props.locale : undefined
   const date = proposal.modified
     ? `${updatedOnStr} ${toLocaleDate(
@@ -51,13 +51,12 @@ export const BudgetingProposalListItem = (props) => {
 
   return (
     <li className="list-item">
-      {!isVotingPhase && (
-        <ListItemStats
-          positiveCount={proposal.positive_rating_count}
-          negativeCount={proposal.negative_rating_count}
-          commentCount={proposal.comment_count}
-        />
-      )}
+      <ListItemStats
+        permissions={permissions}
+        positiveCount={proposal.positive_rating_count}
+        negativeCount={proposal.negative_rating_count}
+        commentCount={proposal.comment_count}
+      />
       <h2 className="list-item__title">
         <a href={proposal.url}>{proposal.name}</a>
       </h2>

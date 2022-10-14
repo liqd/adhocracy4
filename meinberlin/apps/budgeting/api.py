@@ -12,6 +12,7 @@ from adhocracy4.categories import get_category_icon_url
 from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
 from adhocracy4.labels.models import Label
+from adhocracy4.phases.predicates import has_feature_active
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
 from meinberlin.apps.contrib.templatetags.contrib_tags import \
@@ -118,8 +119,35 @@ class ProposalFilterInfoMixin:
         return response
 
 
+class PermissionInfoMixin:
+    def list(self, request, *args, **kwargs):
+        """Add the permission information to the data of the Proposal API.
+
+        Needs to be used with rest_framework.mixins.ListModelMixin
+        and adhocracy4.api.mixins.ModuleMixin or some other mixin that
+        fetches the module
+        """
+        permissions = {}
+
+        permissions['view_support_count'] = has_feature_active(
+            self.module, Proposal, 'support'
+        )
+        permissions['view_rate_count'] = self.module.has_feature(
+            'rate', Proposal
+        )
+        permissions['view_comment_count'] = (
+            self.module.has_feature('comment', Proposal)
+            and not has_feature_active(self.module, Proposal, 'vote')
+        )
+
+        response = super().list(request, args, kwargs)
+        response.data['permissions'] = permissions
+        return response
+
+
 class ProposalViewSet(ModuleMixin,
                       ProposalFilterInfoMixin,
+                      PermissionInfoMixin,
                       LocaleInfoMixin,
                       VotingTokenInfoMixin,
                       mixins.ListModelMixin,

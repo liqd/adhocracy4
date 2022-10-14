@@ -26,6 +26,7 @@ export const BudgetingProposalList = (props) => {
           previous: json.previous,
           next: json.next,
           filters: json.filters,
+          permissions: json.permissions,
           locale: json.locale,
           token_info: json.token_info,
           page_elided_range: json.page_elided_range
@@ -59,7 +60,7 @@ export const BudgetingProposalList = (props) => {
                 key={`budgeting-proposal-${idx}`}
                 proposal={proposal}
                 locale={meta?.locale}
-                isVotingPhase={props.is_voting_phase}
+                permissions={meta?.permissions}
                 tokenvoteApiUrl={props.tokenvote_api_url}
                 onVoteChange={onVoteChange}
                 currentPage={meta?.current_page}
