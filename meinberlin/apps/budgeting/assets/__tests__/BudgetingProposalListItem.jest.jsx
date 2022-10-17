@@ -2,6 +2,12 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BudgetingProposalListItem } from '../BudgetingProposalListItem'
 
+const permissions = {
+  view_support_count: false,
+  view_rate_count: true,
+  view_comment_count: true
+}
+
 test('render list item with vote button', () => {
   const proposal = {
     name: 'myProposal',
@@ -11,7 +17,7 @@ test('render list item with vote button', () => {
     moderator_feedback: ['CONSIDERATION', 'wird ueberprueft'],
     reference_number: '2021-12345'
   }
-  render(<BudgetingProposalListItem proposal={proposal} isVotingPhase />)
+  render(<BudgetingProposalListItem proposal={proposal} permissions={permissions} />)
   expect(screen.getByText('myProposal')).toBeTruthy()
   expect(screen.getByText('creator')).toBeTruthy()
   const resolvedDate =
@@ -30,7 +36,7 @@ test('render list item with stats', () => {
     reference_number: '2021-12345'
   }
   render(
-    <BudgetingProposalListItem proposal={proposal} isVotingPhase={false} />
+    <BudgetingProposalListItem proposal={proposal} permissions={permissions} />
   )
   expect(screen.getByText('myProposal')).toBeTruthy()
   expect(screen.getByText('creator')).toBeTruthy()

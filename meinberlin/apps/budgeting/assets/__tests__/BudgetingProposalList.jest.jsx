@@ -2,6 +2,12 @@ import React from 'react'
 import { render, act, screen } from '@testing-library/react'
 import { BudgetingProposalList } from '../BudgetingProposalList'
 
+const permissions = {
+  view_support_count: false,
+  view_rate_count: true,
+  view_comment_count: true
+}
+
 test('Budgeting Proposal List without list item (empty)', async () => {
   // mimicking fetch response with empty list
   const mockedFetchEmpty = Promise.resolve({
@@ -45,7 +51,7 @@ test('Budgeting Proposal List with one list item', async () => {
 
   // mimicking fetch response
   const mockedFetch = Promise.resolve({
-    json: () => Promise.resolve({ results: mockedResults })
+    json: () => Promise.resolve({ results: mockedResults, permissions })
   })
 
   // overwrite global.fetch with mock function
