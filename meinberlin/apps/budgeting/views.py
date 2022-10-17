@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
+from adhocracy4.labels import filters as label_filters
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from meinberlin.apps.ideas import views as idea_views
 from meinberlin.apps.projects.views import ArchivedWidget
@@ -29,6 +30,7 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
         'is_archived': 'false'
     }
     category = category_filters.CategoryFilter()
+    labels = label_filters.LabelFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=get_ordering_choices
     )
@@ -38,7 +40,7 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
 
     class Meta:
         model = models.Proposal
-        fields = ['category', 'is_archived']
+        fields = ['category', 'labels', 'is_archived']
 
 
 class ProposalListView(idea_views.AbstractIdeaListView,

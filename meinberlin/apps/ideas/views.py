@@ -10,6 +10,7 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
+from adhocracy4.labels import filters as label_filters
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
@@ -43,6 +44,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
         'ordering': '-created'
     }
     category = category_filters.CategoryFilter()
+    labels = label_filters.LabelFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=get_ordering_choices
     )
@@ -53,7 +55,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
 
     class Meta:
         model = models.Idea
-        fields = ['search', 'category']
+        fields = ['search', 'labels', 'category']
 
 
 class AbstractIdeaListView(ProjectMixin,

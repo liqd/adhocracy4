@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
+from adhocracy4.labels import filters as label_filters
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from meinberlin.apps.ideas import views as idea_views
 
@@ -24,13 +25,14 @@ class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
         'ordering': '-created'
     }
     category = category_filters.CategoryFilter()
+    labels = label_filters.LabelFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=get_ordering_choices
     )
 
     class Meta:
         model = models.MapIdea
-        fields = ['category']
+        fields = ['category', 'labels']
 
 
 class MapIdeaListView(idea_views.AbstractIdeaListView,

@@ -8,6 +8,7 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
+from adhocracy4.labels import filters as label_filters
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.ideas import views as idea_views
@@ -25,6 +26,7 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
         'ordering': 'name'
     }
     category = category_filters.CategoryFilter()
+    labels = label_filters.LabelFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=(
             ('name', _('Alphabetical')),
@@ -39,7 +41,7 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
 
     class Meta:
         model = models.Topic
-        fields = ['search', 'category']
+        fields = ['search', 'category', 'labels']
 
 
 class TopicListView(idea_views.AbstractIdeaListView,
@@ -66,6 +68,7 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
     }
 
     category = category_filters.CategoryFilter()
+    labels = label_filters.LabelFilter()
 
     ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=(
@@ -75,7 +78,7 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
 
     class Meta:
         model = models.Topic
-        fields = ['category']
+        fields = ['category', 'labels']
 
 
 class TopicListDashboardView(ProjectMixin,
