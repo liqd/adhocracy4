@@ -1,9 +1,14 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { ControlBarListMapSwitch } from '../ControlBarListMapSwitch'
+import { BrowserRouter } from 'react-router-dom'
 
 test('Buttonlink to map with href', () => {
-  render(<ControlBarListMapSwitch query="&ordering=-created" />)
-  const linkToMap = screen.getByRole('link')
-  expect(linkToMap.href).toMatch(/(\?mode=map&ordering=-created)/i)
+  render(
+    <BrowserRouter>
+      <ControlBarListMapSwitch query="&ordering=-created" />
+    </BrowserRouter>
+  )
+  const buttonToMap = screen.getByRole('button')
+  expect(buttonToMap).toBeTruthy()
 })

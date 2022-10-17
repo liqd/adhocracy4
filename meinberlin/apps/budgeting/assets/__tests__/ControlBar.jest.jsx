@@ -1,6 +1,7 @@
 import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { ControlBar } from '../ControlBar'
+import { BrowserRouter } from 'react-router-dom'
 
 const filters = {
   category: {
@@ -19,11 +20,13 @@ const filters = {
 test('ControlBar collapsed bar', () => {
   const onChangeFiltersFn = jest.fn()
   render(
-    <ControlBar
-      filters={filters}
-      onChangeFilters={() => onChangeFiltersFn()}
-      numOfResults={2}
-    />
+    <BrowserRouter>
+      <ControlBar
+        filters={filters}
+        onChangeFilters={() => onChangeFiltersFn()}
+        numOfResults={2}
+      />
+    </BrowserRouter>
   )
   const numOfResultsElement = screen.getByText(/2/)
   expect(numOfResultsElement).toBeTruthy()
@@ -34,11 +37,13 @@ test('ControlBar collapsed bar', () => {
 test('ControlBar expanded bar', async () => {
   const onChangeFiltersFn = jest.fn()
   render(
-    <ControlBar
-      filters={filters}
-      onChangeFilters={() => onChangeFiltersFn()}
-      numOfResults={2}
-    />
+    <BrowserRouter>
+      <ControlBar
+        filters={filters}
+        onChangeFilters={() => onChangeFiltersFn()}
+        numOfResults={2}
+      />
+    </BrowserRouter>
   )
   const filterButton = screen.getByLabelText('Show filters')
   let expandedFilter = screen.queryByText(/category1/)

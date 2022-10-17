@@ -2,6 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { widget as ReactWidget } from 'adhocracy4'
 import { BudgetingProposalList } from './BudgetingProposalList.jsx'
+import { BrowserRouter } from 'react-router-dom'
 
 function init () {
   ReactWidget.initialise('mb', 'proposals',
@@ -10,7 +11,9 @@ function init () {
       const root = createRoot(el)
       root.render(
         <React.StrictMode>
-          <BudgetingProposalList {...props} />
+          <BrowserRouter>
+            <BudgetingProposalList {...props} />
+          </BrowserRouter>
         </React.StrictMode>
       )
     }

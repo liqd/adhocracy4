@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { ControlBarDropdown } from './ControlBarDropdown'
 import { ControlBarListMapSwitch } from './ControlBarListMapSwitch'
 import { ControlBarSearch } from './ControlBarSearch'
 import { ControlBarSearchTerm } from './ControlBarSearchTerm'
 import { SpacedSpan } from './SpacedSpan'
 import django from 'django'
+import { useSearchParams } from 'react-router-dom'
 
 const translated = {
   showFilters: django.gettext('Show filters'),
@@ -14,75 +15,47 @@ const translated = {
 }
 
 export const ControlBar = props => {
-  const [filterString, setFilterString] = useState('')
-  const [filterObject, setFilterObject] = useState({})
   const [expandFilters, setExpandFilters] = useState()
-  const [term, setTerm] = useState('')
-
-  // Creating an object with all used filters.
-  // Input: filterType: 'ordering', filterChoice = '[-created, am aktuellsten]'
-  // Output: { ordering: ['-created', 'am aktuellsten'] }
-  const makeFilterObject = (filterType, filterChoice) => {
-    const newFilterChoice = {}
-    newFilterChoice[filterType] = filterChoice
-    const newFilterObject = Object.assign(filterObject, newFilterChoice)
-    setFilterObject(newFilterObject)
-  }
-
-  // From a given object it returns a query string to use
-  // for API requests.
-  // Input: { ordering: ['-created', 'am aktuellsten'] }
-  // Output: '&ordering=-created'
-  const encodeFilterString = filterObject => {
-    const newFilterString = Object.keys(filterObject).reduce((acc, curr) => {
-      // if filter with empty string is selected ('All')
-      // then do not append a querystring, e.g. '&is_archived=' is ommitted
-      return filterObject[curr][0]
-        ? `${acc}&${curr}=${filterObject[curr][0]}`
-        : acc
-    }, '')
-    setFilterString(newFilterString)
-  }
+  const [queryParams, setQueryParams] = useSearchParams()
+  const [term, setTerm] = useState(queryParams.get('search') || '')
 
   const applyFilter = (filterType, filterChoice) => {
-    makeFilterObject(filterType, filterChoice)
-    encodeFilterString(filterObject)
+    if (filterChoice[0] !== '') {
+      queryParams.set(filterType, filterChoice[0])
+    } else {
+      queryParams.delete(filterType)
+    }
+
+    // to avoid empty pagination page for given
+    // filter settings, always show first page,
+    queryParams.delete('page')
+
+    setQueryParams(queryParams)
   }
 
-  const prepareFilter = (filter, filterType) => {
-    filter.current = selectedFilter(filterType)
-    return filter
-  }
-
-  const selectedFilter = filterType =>
-    filterObject && filterObject[filterType] && filterObject[filterType][1]
-
-  const handleSearch = (value) => {
+  const applySearch = (value) => {
     setTerm(value)
     applyFilter('search', [value])
   }
 
-  useEffect(() => {
-    props.onChangeFilters(filterString)
-  }, [filterObject, filterString])
-
   return (
     <div className="container u-spacer-bottom u-spacer-top-double">
       <div className="offset-lg-2 col-lg-8">
-        <ControlBarListMapSwitch query={filterString} />
+        <ControlBarListMapSwitch query={queryParams} />
       </div>
       <div className="offset-lg-2 col-lg-8">
         <div className="control-bar">
           <div className="control-bar__item">
             <ControlBarSearch
               term={term}
-              onSearch={value => handleSearch(value)}
+              onSearch={value => applySearch(value)}
             />
           </div>
           {props.filters?.ordering && (
             <ControlBarDropdown
               key="ordering_dropdown"
               filter={props.filters.ordering}
+              current={queryParams.get('ordering')}
               filterId="id_ordering"
               onSelectFilter={choice => applyFilter('ordering', choice)}
             />
@@ -109,12 +82,12 @@ export const ControlBar = props => {
         <div className="offset-lg-2 col-lg-8">
           <div className="control-bar">
             {Object.keys(props.filters).map((type, idx) => {
-              const filterCopy = props.filters[type]
-              const filter = prepareFilter(filterCopy, type)
+              const filterItem = props.filters[type]
               return type !== 'ordering' && (
                 <ControlBarDropdown
                   key={`filter_${idx}`}
-                  filter={filter}
+                  filter={filterItem}
+                  current={queryParams.get(type)}
                   filterId={`id_${type}`}
                   onSelectFilter={choice => applyFilter(type, choice)}
                 />
@@ -131,7 +104,7 @@ export const ControlBar = props => {
         <div className="offset-lg-2 col-lg-8">
           <ControlBarSearchTerm
             term={term}
-            onDismiss={() => handleSearch('')}
+            onDismiss={() => applySearch('')}
           />
         </div>}
     </div>

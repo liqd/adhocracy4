@@ -4,23 +4,22 @@ import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
 import { CountDown } from '../../contrib/assets/CountDown'
 import { ControlBar } from './ControlBar'
-
-const nothingStr = django.gettext('Nothing to show')
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
   const [meta, setMeta] = useState()
-  const [queryString, setQueryString] = useState('')
+  const location = useLocation()
+  const [queryParams] = useSearchParams()
 
-  const fetchProposals = (newIndex) => {
-    const pageNumber = newIndex || 1
-    const url = `${props.proposals_api_url}?page=${pageNumber}${queryString}`
+  const fetchProposals = () => {
+    const url = props.proposals_api_url + location.search
     fetch(url)
       .then(resp => resp.json())
       .then(json => {
         setData(json.results)
         setMeta({
-          current_page: pageNumber,
+          current_page: queryParams.get('page') || 1,
           page_count: json.page_count,
           is_paginated: json.page_count > 1,
           previous: json.previous,
@@ -35,59 +34,39 @@ export const BudgetingProposalList = (props) => {
       .catch(error => console.log(error))
   }
 
-  const onPaginate = (selectedPage) => {
-    fetchProposals(selectedPage)
-  }
-
-  const onChangeFilters = (filterString) => {
-    setQueryString(filterString)
-  }
-
-  const onVoteChange = (selectedPage) => {
-    fetchProposals(selectedPage)
-  }
-
-  useEffect(fetchProposals, [queryString])
+  useEffect(() => {
+    fetchProposals()
+  }, [location.search])
 
   const renderList = (data) => {
-    let list
-    if (data.length > 0) {
-      list = (
-        <>
-          <ul className="u-list-reset">
-            {data.map((proposal, idx) =>
-              <BudgetingProposalListItem
-                key={`budgeting-proposal-${idx}`}
-                proposal={proposal}
-                locale={meta?.locale}
-                permissions={meta?.permissions}
-                tokenvoteApiUrl={props.tokenvote_api_url}
-                onVoteChange={onVoteChange}
-                currentPage={meta?.current_page}
-                votesLeft={
-                  meta?.token_info
-                    ? meta?.token_info.votes_left
-                    : false
-                }
-              />)}
-          </ul>
-          {meta?.is_paginated &&
-            <Pagination
-              currentPage={meta.current_page}
-              elidedRange={meta.page_elided_range}
-              nextPage={meta.next}
-              onPaginate={newUrl => onPaginate(newUrl)}
-              prevPage={meta.previous}
-              pageCount={meta.page_count}
-            />}
-        </>
-      )
-    } else {
-      list = (
-        <span>{nothingStr}</span>
-      )
-    }
-    return list
+    return (
+      <>
+        <ul className="u-list-reset">
+          {data.map((proposal, idx) =>
+            <BudgetingProposalListItem
+              key={`budgeting-proposal-${idx}`}
+              proposal={proposal}
+              locale={meta?.locale}
+              permissions={meta?.permissions}
+              tokenvoteApiUrl={props.tokenvote_api_url}
+              onVoteChange={selectedPage => fetchProposals(selectedPage)}
+              currentPage={meta?.current_page}
+              votesLeft={
+                meta?.token_info
+                  ? meta?.token_info.votes_left
+                  : false
+              }
+            />)}
+        </ul>
+        {meta?.is_paginated &&
+          <Pagination
+            elidedRange={meta.page_elided_range}
+            nextPage={meta.next}
+            prevPage={meta.previous}
+            pageCount={meta.page_count}
+          />}
+      </>
+    )
   }
 
   const getVoteCountText = (votes) => {
@@ -113,7 +92,6 @@ export const BudgetingProposalList = (props) => {
       <ControlBar
         filters={meta?.filters}
         numOfResults={data?.length}
-        onChangeFilters={filterString => onChangeFilters(filterString)}
       />
       <div className="module-content--light">
         <div className="container">

@@ -1,17 +1,19 @@
 import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
 import { Pagination } from '../Pagination'
+import { BrowserRouter } from 'react-router-dom'
 
-test('clicking on page 2 returns value of 2', () => {
-  const onPageChangedFn = jest.fn()
+test('clicking on page 2 sets button to active', () => {
   render(
-    <Pagination
-      currentPage={1}
-      elidedRange={[1, 2, '…', 3]}
-      onPaginate={selPage => onPageChangedFn(selPage)}
-    />
+    <BrowserRouter>
+      <Pagination
+        currentPage={1}
+        elidedRange={[1, 2, '…', 3]}
+      />
+    </BrowserRouter>
   )
   const pageButton2 = screen.getByText('2')
   fireEvent.click(pageButton2)
-  expect(onPageChangedFn).toHaveBeenCalledWith(2)
+  const parentPageButton2 = screen.getByText('2').closest('li')
+  expect(parentPageButton2.className).toBe('pagination__item active')
 })

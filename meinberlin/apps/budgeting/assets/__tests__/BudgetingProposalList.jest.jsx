@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, act, screen } from '@testing-library/react'
 import { BudgetingProposalList } from '../BudgetingProposalList'
+import { BrowserRouter } from 'react-router-dom'
 
 const permissions = {
   view_support_count: false,
@@ -17,7 +18,7 @@ test('Budgeting Proposal List without list item (empty)', async () => {
   // overwrite global.fetch with mock function
   global.fetch = jest.fn().mockImplementation(() => mockedFetchEmpty)
 
-  render(<BudgetingProposalList />)
+  render(<BrowserRouter><BudgetingProposalList /></BrowserRouter>)
   expect(global.fetch).toHaveBeenCalledTimes(1)
 
   // waiting for async fetching ends --> without this, the
@@ -58,7 +59,7 @@ test('Budgeting Proposal List with one list item', async () => {
   // overwrite global.fetch with mock function
   global.fetch = jest.fn().mockImplementation(() => mockedFetch)
 
-  render(<BudgetingProposalList />)
+  render(<BrowserRouter><BudgetingProposalList /></BrowserRouter>)
   expect(global.fetch).toHaveBeenCalledTimes(1)
 
   // waiting for async fetching ends --> without this, the
@@ -75,7 +76,7 @@ test('Budgeting Proposal List with fetch error', async () => {
   // overwrite global.fetch with mock function
   global.fetch = jest.fn().mockRejectedValue('testing: expected network error')
 
-  render(<BudgetingProposalList />)
+  render(<BrowserRouter><BudgetingProposalList /></BrowserRouter>)
   expect(global.fetch).toHaveBeenCalledTimes(1)
   const emptyList = screen.queryAllByText('mock text')
   expect(emptyList).toBeTruthy()

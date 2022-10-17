@@ -1,9 +1,19 @@
 import React from 'react'
 import django from 'django'
 import { SpacedSpan } from './SpacedSpan'
+import { useSearchParams } from 'react-router-dom'
 
-export const ControlBarListMapSwitch = ({ query }) => {
+export const ControlBarListMapSwitch = () => {
   // FIXME: to be changed, once Map is in React
+
+  const [queryParams, setQueryParams] = useSearchParams()
+
+  const handleClick = () => {
+    queryParams.set('mode', 'map')
+    setQueryParams(queryParams)
+    location.reload()
+  }
+
   return (
     <div className="btn-group__container">
       <div className="btn-group">
@@ -14,14 +24,14 @@ export const ControlBarListMapSwitch = ({ query }) => {
           <i className="fa fa-list" aria-hidden="true" />
           <SpacedSpan>{django.gettext('List')}</SpacedSpan>
         </div>
-        <a
+        <button
           className="btn btn--light"
-          href={'?mode=map' + query}
+          onClick={handleClick}
           aria-label={django.gettext('View as map')}
         >
           <i className="fa fa-map" aria-hidden="true" />
           <SpacedSpan>{django.gettext('Map')}</SpacedSpan>
-        </a>
+        </button>
       </div>
     </div>
   )
