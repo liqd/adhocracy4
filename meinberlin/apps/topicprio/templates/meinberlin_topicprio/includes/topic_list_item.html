@@ -26,9 +26,21 @@
         {{ object.name }}
         </a>
     </h3>
-    {% if object.category %}
-        <div class="list-item__labels">
-            <span class="label label--big">{{ object.category }}</span>
-        </div>
-    {% endif %}
+    <div class="list-item__labels">
+        {% for badge in object.item_badges_for_list  %}
+            <span class="label label--big {% if badge.0 == 'moderator_feedback' %}label--{{badge.2|classify|lower }}{% endif %}">
+                {% if badge.0 == 'point_label' %}
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                {% endif %}
+                {{ badge.1 }}
+            </span>
+        {% endfor %}
+        {% if object.additional_item_badges_for_list_count > 0 %}
+            <span class="u-spacer-left-half">
+            <a href="{{ object.get_absolute_url }}" class="list-item__link">
+                {% blocktranslate with counter=object.additional_item_badges_for_list_count %}{{ counter }} More{% endblocktranslate %}
+            </a>
+            </span>
+        {% endif %}
+    </div>
 </li>

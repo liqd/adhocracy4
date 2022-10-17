@@ -2,6 +2,7 @@ from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.humanize.templatetags.humanize import intcomma
 from django.db import models
 from django.db.models.functions import Concat
 from django.db.models.functions import ExtractYear
@@ -18,6 +19,8 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
 from meinberlin.apps.moderatorfeedback.models import Moderateable
 from meinberlin.apps.moderatorremark import models as remark_models
+
+BADGES_LIMIT = 3
 
 
 class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
@@ -103,6 +106,50 @@ class AbstractIdea(module_models.Item, Moderateable):
             item_content_type=content_type,
             item_object_id=self.id
         ).first()
+
+    @property
+    def item_badges(self):
+        """List all badges an idea item can have."""
+        labels = []
+        if hasattr(self, 'moderator_feedback') and self.moderator_feedback:
+            labels.append(
+                ['moderator_feedback',
+                 self.get_moderator_feedback_display(),
+                 self.moderator_feedback]
+            )
+        if hasattr(self, 'budget') and self.budget > 0:
+            labels.append(
+                ['budget',
+                 intcomma(self.budget) + '€']
+            )
+        if hasattr(self, 'point_label') and self.point_label:
+            labels.append(
+                ['point_label',
+                 self.point_label]
+            )
+        if hasattr(self, 'category') and self.category:
+            labels.append(
+                ['category',
+                 self.category]
+            )
+        if hasattr(self, 'labels') and self.labels:
+            for label in self.labels.all():
+                labels.append(
+                    ['label',
+                     label.name]
+                )
+        return labels
+
+    @property
+    def item_badges_for_list(self):
+        return self.item_badges[:BADGES_LIMIT]
+
+    @property
+    def additional_item_badges_for_list_count(self):
+        count = 0
+        if len(self.item_badges) > BADGES_LIMIT:
+            count = len(self.item_badges) - BADGES_LIMIT
+        return count
 
     class Meta:
         abstract = True
