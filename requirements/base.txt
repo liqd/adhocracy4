@@ -29,7 +29,6 @@ djangorestframework==3.14.0
 easy-thumbnails==2.8.3
 html5lib==1.1
 jsonfield==3.1.0
-psycopg2-binary==2.9.4
 python-dateutil==2.8.2
 python-magic==0.4.27
 rules==3.3
