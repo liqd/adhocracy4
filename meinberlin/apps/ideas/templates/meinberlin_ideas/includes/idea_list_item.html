@@ -5,18 +5,18 @@
         {% spaceless %}
         {% if object|has_feature:"rate" %}
             <span class="rating">
-                <span class="rating-button rating-up is-read-only" title="{% trans 'Positive Ratings' %}">
-                    <i class="fa fa-chevron-up" aria-label="{% trans 'Positive Ratings' %}"></i>
+                <span class="rating-button rating-up is-read-only" title="{% translate 'Positive Ratings' %}">
+                    <i class="fa fa-chevron-up" aria-label="{% translate 'Positive Ratings' %}"></i>
                     {{ object.positive_rating_count }}
                 </span>
-                <span class="rating-button rating-down is-read-only" title="{% trans 'Negative Ratings' %}">
-                    <i class="fa fa-chevron-down" aria-label="{% trans 'Negative Ratings' %}"></i>
+                <span class="rating-button rating-down is-read-only" title="{% translate 'Negative Ratings' %}">
+                    <i class="fa fa-chevron-down" aria-label="{% translate 'Negative Ratings' %}"></i>
                     {{ object.negative_rating_count }}
                 </span>
             </span>
         {% endif %}
-        <span title="{% trans 'Comments' %}" class="list-item__comments">
-            <i class="far fa-comment" aria-label="{% trans 'Comments' %}"></i>
+        <span title="{% translate 'Comments' %}" class="list-item__comments">
+            <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
             {{ object.comment_count }}
         </span>
         {% endspaceless %}
@@ -44,12 +44,14 @@
         {% endif %}
     </div>
 
-    <span class="list-item__author">
-        {{ object.creator.username }}
-    </span>
-    {% if object.modified %}
-        {% trans 'updated on ' %}{% html_date object.modified class='list-item__date' %}
-    {% else %}
-        {% trans 'created on ' %}{% html_date object.created class='list-item__date' %}
-    {% endif %}
+    {% block creator_info %}
+        <span class="list-item__author">
+            {{ object.creator.username }}
+        </span>
+        {% if object.modified %}
+            {% translate 'updated on ' %}{% html_date object.modified class='list-item__date' %}
+        {% else %}
+            {% translate 'created on ' %}{% html_date object.created class='list-item__date' %}
+        {% endif %}
+    {% endblock %}
 </li>

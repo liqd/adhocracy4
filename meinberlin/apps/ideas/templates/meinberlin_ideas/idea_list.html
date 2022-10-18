@@ -5,7 +5,7 @@
     {% has_or_would_have_perm 'meinberlin_ideas.add_idea' request.user module as propose_allowed %}
     {% if propose_allowed %}
         <a href="{% url 'meinberlin_ideas:idea-create' module_slug=module.slug %}" class="btn btn--primary btn--full u-spacer-bottom btn--huge">
-            {% trans 'Submit idea' %}
+            {% translate 'Submit idea' %}
         </a>
     {% endif %}
 {% endblock %}
@@ -26,7 +26,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    {% trans "Nothing to show" %}
+                    {% translate "Nothing to show" %}
                 {% endif %}
 
                 {% include "meinberlin_contrib/includes/pagination.html" %}

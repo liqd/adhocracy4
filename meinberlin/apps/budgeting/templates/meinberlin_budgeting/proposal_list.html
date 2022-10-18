@@ -16,7 +16,7 @@
     {% has_or_would_have_perm 'meinberlin_budgeting.add_proposal' request.user module as propose_allowed %}
     {% if propose_allowed %}
         <a href="{% url 'meinberlin_budgeting:proposal-create' module_slug=module.slug %}" class="btn btn--primary btn--full u-spacer-bottom btn--huge">
-            {% trans 'Submit proposal' %}
+            {% translate 'Submit proposal' %}
         </a>
     {% endif %}
     {% if module.blueprint_type == 'PB3' %}
@@ -26,9 +26,9 @@
                 <form action="{{ request.path }}" method="post">
                   {% csrf_token %}
                     <div class="input-group input-group-lg">
-                        <label for="id_token" class="visually-hidden-focusable">{% trans 'Voting token form fields' %}</label>
+                        <label for="id_token" class="visually-hidden-focusable">{% translate 'Voting token form fields' %}</label>
                         {{ token_form.token }}
-                        <button type="submit" class="btn btn--primary">{% trans 'Enter code' %}</button>
+                        <button type="submit" class="btn btn--primary">{% translate 'Enter code' %}</button>
                     </div>
                     {% if token_form.token.errors %}
                         <div role="alert">{{ token_form.token.errors }}</div>
@@ -50,8 +50,8 @@
             <div class="map-list__controls">
                 <div class="container">
                     <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% trans 'Zoom in' %}">+</a>
-                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% trans 'Zoom out' %}">-</a>
+                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% translate 'Zoom in' %}">+</a>
+                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% translate 'Zoom out' %}">-</a>
                     </div>
                 </div>
             </div>
@@ -72,11 +72,11 @@
                     {% if object_list.count > 0 %}
                         <ul class="u-list-reset">
                             {% for object in object_list %}
-                                {% include "meinberlin_contrib/includes/proposal_list_item.html" with object=object %}
+                                {% include "meinberlin_ideas/includes/idea_list_item.html" with object=object %}
                             {% endfor %}
                         </ul>
                     {% else %}
-                        {% trans "Nothing to show" %}
+                        {% translate "Nothing to show" %}
                     {% endif %}
 
                     {% include "meinberlin_contrib/includes/pagination.html" %}
