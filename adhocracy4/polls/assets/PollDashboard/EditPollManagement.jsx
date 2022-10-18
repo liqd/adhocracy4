@@ -54,12 +54,16 @@ export const EditPollManagement = (props) => {
     return newQuestion
   }
 
+  const handleQuestionLabel = (action, params) => {
+    const diff = {}
+    const { index, label } = params
+    diff[index] = { $merge: { label } }
+    setQuestions(update(questions, diff))
+  }
+
   const handleQuestion = (action, params) => {
     let diff = {}
-    if (action === 'label') {
-      const { index, label } = params
-      diff[index] = { $merge: { label } }
-    } else if (action === 'helptext') {
+    if (action === 'helptext') {
       const { index, helptext } = params
       diff[index] = { $merge: { help_text: helptext } }
     } else if (action === 'multiple-choice') {
@@ -97,43 +101,33 @@ export const EditPollManagement = (props) => {
     }
   }
 
-  const handleChoiceLabel = (params) => {
+  const handleChoice = (action, params) => {
     const diff = {}
-    const { index, choiceIndex, label } = params
-    diff[index] = { choices: {} }
-    diff[index].choices[choiceIndex] = { $merge: { label } }
-    setQuestions(update(questions, diff))
-  }
-
-  const handleChoiceAppend = (params) => {
-    const diff = {}
-    const { index, hasOtherOption } = params
-    const position = questions[index].choices.length - 1
-    const newChoice = getNewChoice()
-    diff[index] = hasOtherOption
-      ? { choices: { $splice: [[position, 0, newChoice]] } }
-      : { choices: { $push: [newChoice] } }
-    setQuestions(update(questions, diff))
-  }
-
-  const handleChoiceIsOtherChoice = (params) => {
-    const diff = {}
-    const { index, isOtherChoice } = params
-    if (isOtherChoice) {
-      const otherChoice = getNewChoice('other', true)
-      diff[index] = { choices: { $push: [otherChoice] } }
-    } else {
-      const choiceIndex = questions[index].choices.findIndex(c => c.key === 'other-choice')
+    if (action === 'label') {
+      const { index, choiceIndex, label } = params
+      diff[index] = { choices: {} }
+      diff[index].choices[choiceIndex] = { $merge: { label } }
+    } else if (action === 'append') {
+      const { index, hasOtherOption } = params
+      const position = questions[index].choices.length - 1
+      const newChoice = getNewChoice()
+      diff[index] = hasOtherOption
+        ? { choices: { $splice: [[position, 0, newChoice]] } }
+        : { choices: { $push: [newChoice] } }
+    } else if (action === 'is-other-choice') {
+      const { index, isOtherChoice } = params
+      if (isOtherChoice) {
+        const otherChoice = getNewChoice('other', true)
+        diff[index] = { choices: { $push: [otherChoice] } }
+      } else {
+        const choiceIndex = questions[index].choices.findIndex(c => c.key === 'other-choice')
+        diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
+      }
+    } else if (action === 'delete') {
+      const { index, choiceIndex } = params
       diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
     }
-    setQuestions(update(questions, diff))
-  }
-
-  const handleChoiceDelete = (params) => {
-    const diff = {}
-    const { index, choiceIndex } = params
-    diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
-    setQuestions(update(questions, diff))
+    action && setQuestions(update(questions, diff))
   }
 
   /*
@@ -211,7 +205,7 @@ export const EditPollManagement = (props) => {
                   <EditPollOpenQuestion
                     id={key}
                     question={question}
-                    onLabelChange={(label) => handleQuestion('label', { index, label })}
+                    onLabelChange={(label) => handleQuestionLabel('label', { index, label })}
                     onHelptextChange={(helptext) => handleQuestion('helptext', { index, helptext })}
                     onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
                     onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
@@ -228,14 +222,14 @@ export const EditPollManagement = (props) => {
                     onLabelChange={(label) => handleQuestion('label', { index, label })}
                     onHelptextChange={(helptext) => handleQuestion('helptext', { index, helptext })}
                     onMultipleChoiceChange={(multipleChoice) => handleQuestion('multiple-choice', { index, multipleChoice })}
-                    onHasOtherChoiceChange={(isOtherChoice) => handleChoiceIsOtherChoice(index, isOtherChoice)}
+                    onHasOtherChoiceChange={(isOtherChoice) => handleChoice(index, isOtherChoice)}
                     onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
                     onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
                     onDelete={() => handleQuestion('delete', { index })}
                     errors={errors && errors[index] ? errors[index] : {}}
-                    onChoiceLabelChange={(choiceIndex, label) => handleChoiceLabel(index, choiceIndex, label)}
-                    onDeleteChoice={(choiceIndex) => handleChoiceDelete(index, choiceIndex)}
-                    onAppendChoice={(hasOtherOption) => handleChoiceAppend(index, hasOtherOption)}
+                    onChoiceLabelChange={(choiceIndex, label) => handleChoice(index, choiceIndex, label)}
+                    onDeleteChoice={(choiceIndex) => handleChoice(index, choiceIndex)}
+                    onAppendChoice={(hasOtherOption) => handleChoice(index, hasOtherOption)}
                   />
                 </div>
                 )
