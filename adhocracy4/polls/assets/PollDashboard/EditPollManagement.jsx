@@ -120,33 +120,39 @@ export const EditPollManagement = (props) => {
     }
   }
 
-  const handleChoice = (action, params) => {
+  const handleChoiceLabel = (index, choiceIndex, label) => {
     const diff = {}
-    if (action === 'label') {
-      const { index, choiceIndex, label } = params
-      diff[index] = { choices: {} }
-      diff[index].choices[choiceIndex] = { $merge: { label } }
-    } else if (action === 'append') {
-      const { index, hasOtherOption } = params
-      const position = questions[index].choices.length - 1
-      const newChoice = getNewChoice()
-      diff[index] = hasOtherOption
-        ? { choices: { $splice: [[position, 0, newChoice]] } }
-        : { choices: { $push: [newChoice] } }
-    } else if (action === 'is-other-choice') {
-      const { index, isOtherChoice } = params
-      if (isOtherChoice) {
-        const otherChoice = getNewChoice('other', true)
-        diff[index] = { choices: { $push: [otherChoice] } }
-      } else {
-        const choiceIndex = questions[index].choices.findIndex(c => c.key === 'other-choice')
-        diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
-      }
-    } else if (action === 'delete') {
-      const { index, choiceIndex } = params
+    diff[index] = { choices: {} }
+    diff[index].choices[choiceIndex] = { $merge: { label } }
+    setQuestions(update(questions, diff))
+  }
+
+  const handleChoiceAppend = (index, hasOtherOption) => {
+    const position = questions[index].choices.length - 1
+    const newChoice = getNewChoice()
+    const diff = {}
+    diff[index] = hasOtherOption
+      ? { choices: { $splice: [[position, 0, newChoice]] } }
+      : { choices: { $push: [newChoice] } }
+    setQuestions(update(questions, diff))
+  }
+
+  const handleChoiceIsOtherChoice = (index, isOtherChoice) => {
+    const diff = {}
+    if (isOtherChoice) {
+      const otherChoice = getNewChoice('other', true)
+      diff[index] = { choices: { $push: [otherChoice] } }
+    } else {
+      const choiceIndex = questions[index].choices.findIndex(c => c.key === 'other-choice')
       diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
     }
-    action && setQuestions(update(questions, diff))
+    setQuestions(update(questions, diff))
+  }
+
+  const handleChoiceDelete = (index, choiceIndex) => {
+    const diff = {}
+    diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
+    setQuestions(update(questions, diff))
   }
 
   // | Poll form and submit logic
@@ -156,14 +162,17 @@ export const EditPollManagement = (props) => {
   }
 
   const handleSubmit = (e) => {
+    console.log(questions)
     e.preventDefault()
 
     const data = {
       questions
     }
+    console.log(data.questions)
 
     api.poll.change(data, props.pollId)
       .done((data) => {
+        console.log(data.questions)
         setQuestions(data.questions)
         setAlert({
           type: 'success',
@@ -193,7 +202,7 @@ export const EditPollManagement = (props) => {
       onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}
       className="editpoll__questions"
     >
-      <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)" typeName={null}>
+      <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
         {
           questions.map((question, index, arr) => {
             const key = question.id || question.key
@@ -220,14 +229,14 @@ export const EditPollManagement = (props) => {
                     onLabelChange={(label) => handleQuestionLabel(index, label)}
                     onHelptextChange={(helptext) => handleQuestionHelpText(index, helptext)}
                     onMultipleChoiceChange={(multipleChoice) => handleQuestionMultiChoice(index, multipleChoice)}
-                    onHasOtherChoiceChange={(isOtherChoice) => handleChoice('is-other-choice', { index, isOtherChoice })}
                     onMoveUp={index !== 0 ? () => handleQuestionMoveUp(index) : null}
                     onMoveDown={index < arr.length - 1 ? () => handleQuestionMoveDown(index) : null}
                     onDelete={() => handleQuestionDelete(index)}
                     errors={errors && errors[index] ? errors[index] : {}}
-                    onChoiceLabelChange={(choiceIndex, label) => handleChoice('label', { index, choiceIndex, label })}
-                    onDeleteChoice={(choiceIndex) => handleChoice('delete', { index, choiceIndex })}
-                    onAppendChoice={(hasOtherOption) => handleChoice('append', { index, hasOtherOption })}
+                    onHasOtherChoiceChange={(isOtherChoice) => handleChoiceIsOtherChoice(index, isOtherChoice)}
+                    onChoiceLabelChange={(choiceIndex, label) => handleChoiceLabel(index, choiceIndex, label)}
+                    onDeleteChoice={(choiceIndex) => handleChoiceDelete(index, choiceIndex)}
+                    onAppendChoice={(hasOtherOption) => handleChoiceAppend(index, hasOtherOption)}
                   />
                 </div>
                 )
