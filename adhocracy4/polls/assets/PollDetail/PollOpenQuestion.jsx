@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { CharCounter } from './CharCounter'
 
 export const PollOpenQuestion = (props) => {
-  const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
-  const maxlength = 750
+  // | Function to define state
 
   const getUserOpenAnswer = () => {
     const userAnswerId = props.question.userAnswer
@@ -17,6 +16,8 @@ export const PollOpenQuestion = (props) => {
   }
 
   const [userAnswer, setUserAnswer] = useState(getUserOpenAnswer())
+  const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
+  const maxlength = 750
 
   const handleOpenChange = (event) => {
     setUserAnswer(event.target.value)

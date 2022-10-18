@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { EditPollChoice } from './EditPollChoice'
 import django from 'django'
-import ErrorList from '../../static/ErrorList'
+import ErrorList from '../../../static/ErrorList'
 import { HelptextForm } from './HelptextForm'
 
 const FlipMove = require('react-flip-move').default

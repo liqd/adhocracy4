@@ -1,13 +1,14 @@
 import React from 'react'
+import django from 'django'
+
 import { PollQuestion } from './PollQuestion'
 import { PollOpenQuestion } from './PollOpenQuestion'
-import Alert from '../../static/Alert'
-import django from 'django'
 import PollResults from './PollResults'
-import { TermsOfUseCheckbox } from '../../static/TermsOfUseCheckbox'
 
-const api = require('adhocracy4').api
-const config = require('adhocracy4').config
+import Alert from '../../../static/Alert'
+import api from '../../../static/api'
+import config from '../../../static/config'
+import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
 const ALERT_SUCCESS = {
   type: 'success',

@@ -1,6 +1,6 @@
 import React from 'react'
 import django from 'django'
-import ErrorList from '../../static/ErrorList'
+import ErrorList from '../../../static/ErrorList'
 
 export const HelptextForm = (props) => {
   return (

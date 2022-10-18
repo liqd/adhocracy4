@@ -1,14 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import django from 'django'
-import dashboard from '../../../adhocracy4/dashboard/assets/dashboard'
+import FlipMove from 'react-flip-move'
 import update from 'immutability-helper'
+
 import { EditPollQuestion } from './EditPollQuestion'
 import { EditPollOpenQuestion } from './EditPollOpenQuestion'
-import Alert from '../../static/Alert'
-import PopperMenu from './PopperMenu'
+import EditPollDropdown from './EditPollDropdown'
 
-const api = require('adhocracy4').api
-const FlipMove = require('react-flip-move').default
+import dashboard from '../../../../adhocracy4/dashboard/assets/dashboard'
+import api from '../../../static/api'
+import Alert from '../../../static/Alert'
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +26,19 @@ const getNextLocalKey = () => {
   return 'local_' + maxLocalKey++
 }
 
-export const EditPollQuestions = (props) => {
-  /*
-  |--------------------------------------------------------------------------
-  | Question state related handlers
-  |--------------------------------------------------------------------------
-  */
+export const EditPollManagement = (props) => {
+  const [questions, setQuestions] = useState([])
+  const [errors, setErrors] = useState([])
+  const [alert, setAlert] = useState(null)
+
+  useEffect(() => {
+    api.poll.get(props.pollId).done(({ questions }) => {
+      questions.length > 0
+        ? setQuestions(questions)
+        : setQuestions([getNewQuestion()])
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const getNewQuestion = (label = '', helptext = '') => {
     return {
@@ -47,6 +55,8 @@ export const EditPollQuestions = (props) => {
     }
   }
 
+  // | Question state related handlers
+
   const getNewOpenQuestion = (label = '') => {
     const newQuestion = getNewQuestion(label)
     newQuestion.is_open = true
@@ -54,23 +64,18 @@ export const EditPollQuestions = (props) => {
     return newQuestion
   }
 
-  const updatePopper = () => {
-    popper &&
-    popper.current &&
-    popper.current.instance.update &&
-    popper.current.instance.update()
+  const handleQuestionLabel = (action, params) => {
+    const diff = {}
+    const { index, label } = params
+    diff[index] = { $merge: { label } }
+    setQuestions(update(questions, diff))
   }
 
   const handleQuestion = (action, params) => {
     let diff = {}
-    if (action === 'label') {
-      const { index, label } = params
-      diff[index] = { $merge: { label } }
-      updatePopper()
-    } else if (action === 'helptext') {
+    if (action === 'helptext') {
       const { index, helptext } = params
       diff[index] = { $merge: { help_text: helptext } }
-      updatePopper()
     } else if (action === 'multiple-choice') {
       const { index, multipleChoice } = params
       diff[index] = { $merge: { multiple_choice: multipleChoice } }
@@ -83,11 +88,9 @@ export const EditPollQuestions = (props) => {
         ? getNewOpenQuestion()
         : getNewQuestion()
       diff = { $push: [newQuestion] }
-      updatePopper()
     } else if (action === 'delete') {
       const { index } = params
       diff = { $splice: [[index, 1]] }
-      updatePopper()
     } else {
       return null
     }
@@ -134,7 +137,6 @@ export const EditPollQuestions = (props) => {
       const { index, choiceIndex } = params
       diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
     }
-    updatePopper()
     action && setQuestions(update(questions, diff))
   }
 
@@ -179,45 +181,7 @@ export const EditPollQuestions = (props) => {
       })
   }
 
-  /*
-  |--------------------------------------------------------------------------
-  | Runtime logic and JSX render
-  |--------------------------------------------------------------------------
-  */
-
-  const [questions, setQuestions] = useState([])
-  const [errors, setErrors] = useState([])
-  const [alert, setAlert] = useState(null)
-  const popper = useRef()
-
-  const popperMenuContent = {
-    popperButton: {
-      styleClass: 'btn poll__btn--light',
-      buttonText: django.gettext('New question'),
-      icon: 'fa fa-plus'
-    },
-    popperMenuItems: [
-      {
-        styleClass: 'btn poll__btn--light submenu-item',
-        text: django.gettext('Multiple choice question'),
-        handleClick: () => handleQuestion('append')
-      },
-      {
-        styleClass: 'btn poll__btn--light submenu-item',
-        text: django.gettext('Open question'),
-        handleClick: () => handleQuestion('append', { isOpen: true })
-      }
-    ]
-  }
-
-  useEffect(() => {
-    api.poll.get(props.pollId).done(({ questions }) => {
-      questions.length > 0
-        ? setQuestions(questions)
-        : setQuestions([getNewQuestion()])
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // | JSX render
 
   return (
     <form
@@ -234,7 +198,7 @@ export const EditPollQuestions = (props) => {
                   <EditPollOpenQuestion
                     id={key}
                     question={question}
-                    onLabelChange={(label) => handleQuestion('label', { index, label })}
+                    onLabelChange={(label) => handleQuestionLabel('label', { index, label })}
                     onHelptextChange={(helptext) => handleQuestion('helptext', { index, helptext })}
                     onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
                     onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
@@ -268,13 +232,12 @@ export const EditPollQuestions = (props) => {
       <Alert onClick={() => removeAlert()} {...alert} />
       <div className="editpoll__actions-container">
         <div className="editpoll__menu-container">
-          <PopperMenu
-            ref={popper}
-            containerStyleClass="editpoll__menu-container--override"
-          >
-            {popperMenuContent}
-          </PopperMenu>
+          <EditPollDropdown
+            handleToggleMulti={() => handleQuestion('append')}
+            handleToggleOpen={() => handleQuestion('append', { isOpen: true })}
+          />
         </div>
+
         <div className="editpoll__menu-container">
           <button type="submit" className="btn poll__btn--dark">
             {django.gettext('Save')}
