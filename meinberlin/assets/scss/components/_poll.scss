@@ -164,6 +164,11 @@ $checkbox-size: 20px;
     margin-bottom: 0.5em;
 }
 
+.editpoll__dropdown .dropdown-menu {
+    border-radius: 0.3em;
+    box-shadow: none;
+}
+
 .editpoll__actions-container {
     display: flex;
     flex-direction: column;
@@ -187,14 +192,14 @@ $checkbox-size: 20px;
 }
 
 .editpoll__question-container {
-    // display: block;
+    display: flex;
     margin-bottom: $spacer;
-
-    @extend .row;
 }
 
 .editpoll__question--border {
+    flex-grow: 2;
     margin-bottom: $spacer * 0.5;
+    margin-right: $spacer * 0.5;
     padding: $padding;
     border: 1px solid $border-color;
     border-radius: ($padding * 0.5);
@@ -204,12 +209,10 @@ $checkbox-size: 20px;
     margin: 0 1rem;
 }
 
-.editpoll__question {
-    @extend .col-lg-9;
-}
-
 .editpoll__question-actions {
-    @extend .col-lg-3;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
 }
 
 @media (min-width: $breakpoint) {
