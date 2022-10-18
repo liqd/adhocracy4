@@ -10,8 +10,13 @@ import { useSearchParams } from 'react-router-dom'
 const translated = {
   showFilters: django.gettext('Show filters'),
   hideFilters: django.gettext('Hide filters'),
-  filters: django.gettext('Filters'),
-  results: django.gettext('results found.')
+  filters: django.gettext('Filters')
+}
+
+const getResultCountText = (count) => {
+  const foundProposalsText =
+    django.ngettext('1 proposal found.', '%s proposals found.', count)
+  return django.interpolate(foundProposalsText, [count])
 }
 
 export const ControlBar = props => {
@@ -95,12 +100,11 @@ export const ControlBar = props => {
             })}
           </div>
         </div>}
-      {props.numOfResults && (
-        <div className="offset-lg-2 col-lg-8">
-          <div className="control-bar">
-            {`${props.numOfResults} ${translated.results}`}
-          </div>
-        </div>)}
+      <div className="offset-lg-2 col-lg-8">
+        <div className="control-bar">
+          {props.numOfResults >= 0 && getResultCountText(props.numOfResults)}
+        </div>
+      </div>
       {term &&
         <div className="offset-lg-2 col-lg-8">
           <ControlBarSearchTerm
