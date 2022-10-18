@@ -21,7 +21,7 @@ class QuestionQuerySet(models.QuerySet):
             answer_count=models.Count(
                 'answers__creator_id',
                 distinct=True),
-        )
+        ).order_by('weight')
 
 
 class ChoiceQuerySet(models.QuerySet):
