@@ -3,7 +3,7 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
 // component and related data to be tested
-import { PollQuestion } from '../PollQuestion.jsx'
+import { PollQuestion } from '../PollDetail/PollQuestion.jsx'
 import { QUESTION_OBJECT } from './__testdata__/QUESTION_OBJECT'
 
 describe('render <PollQuestion> with...', () => {
