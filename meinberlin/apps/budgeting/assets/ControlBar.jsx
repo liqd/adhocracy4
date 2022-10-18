@@ -95,11 +95,12 @@ export const ControlBar = props => {
             })}
           </div>
         </div>}
-      <div className="offset-lg-2 col-lg-8">
-        <div className="control-bar">
-          {`${props.numOfResults} ${translated.results}`}
-        </div>
-      </div>
+      {props.numOfResults && (
+        <div className="offset-lg-2 col-lg-8">
+          <div className="control-bar">
+            {`${props.numOfResults} ${translated.results}`}
+          </div>
+        </div>)}
       {term &&
         <div className="offset-lg-2 col-lg-8">
           <ControlBarSearchTerm

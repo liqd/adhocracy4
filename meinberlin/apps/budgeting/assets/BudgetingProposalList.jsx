@@ -19,6 +19,7 @@ export const BudgetingProposalList = (props) => {
       .then(json => {
         setData(json.results)
         setMeta({
+          total_count: json.count,
           current_page: queryParams.get('page') || 1,
           page_count: json.page_count,
           is_paginated: json.page_count > 1,
@@ -91,7 +92,7 @@ export const BudgetingProposalList = (props) => {
         </div>}
       <ControlBar
         filters={meta?.filters}
-        numOfResults={data?.length}
+        numOfResults={meta?.total_count}
       />
       <div className="module-content--light">
         <div className="container">
