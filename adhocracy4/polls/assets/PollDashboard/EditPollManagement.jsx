@@ -162,17 +162,14 @@ export const EditPollManagement = (props) => {
   }
 
   const handleSubmit = (e) => {
-    console.log(questions)
     e.preventDefault()
 
     const data = {
       questions
     }
-    console.log(data.questions)
 
     api.poll.change(data, props.pollId)
       .done((data) => {
-        console.log(data.questions)
         setQuestions(data.questions)
         setAlert({
           type: 'success',
