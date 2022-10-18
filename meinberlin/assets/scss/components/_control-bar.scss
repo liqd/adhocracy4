@@ -9,6 +9,7 @@
         margin-bottom: 0;
 
         & > button,
+        & > div.btn-group,
         & > form > input {
             margin-bottom: $spacer;
         }
@@ -29,11 +30,6 @@
     @media (max-width: $breakpoint) {
         > * {
             // @include grid-same-width(2);
-        }
-
-        .control-bar__item,
-        .btn-group__container {
-            display: block;
         }
 
         .dropdown-toggle,
