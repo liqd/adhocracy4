@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import django from 'django'
-import ErrorList from '../../static/ErrorList'
+import ErrorList from '../../../static/ErrorList'
 import { HelptextForm } from './HelptextForm'
 
 export const EditPollOpenQuestion = (props) => {

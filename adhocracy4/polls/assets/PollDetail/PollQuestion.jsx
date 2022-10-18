@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { CharCounter } from './CharCounter'
-import ErrorList from '../../static/ErrorList'
+import ErrorList from '../../../static/ErrorList'
+
+const translated = {
+  multiple: django.gettext('Multiple answers are possible.'),
+  other: django.gettext('other')
+}
 
 export const PollQuestion = (props) => {
+  // | Function to define state
+
   const getUserAnswer = () => {
     const userAnswerId = props.question.other_choice_user_answer
     const userAnswer = props.question.other_choice_answers.find(oc => oc.vote_id === userAnswerId)
@@ -15,11 +22,11 @@ export const PollQuestion = (props) => {
         )
   }
 
-  const multiHelpText = props.question.multiple_choice ? <div className="poll__help-text">{django.gettext('Multiple answers are possible.')}</div> : null
-  const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
   const [userChoices, setUserChoices] = useState(props.question.userChoices)
   const [otherChoiceAnswer, setOtherChoiceAnswer] = useState(getUserAnswer())
   const [errors, setErrors] = useState()
+  const multiHelpText = props.question.multiple_choice ? <div className="poll__help-text">{translated.multiple}</div> : null
+  const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
   const maxlength = 250
 
   useEffect(() => {
@@ -81,7 +88,7 @@ export const PollQuestion = (props) => {
                       onChange={(event) => { handleSingleChange(event, choice.is_other_choice) }}
                       disabled={!props.question.authenticated || props.question.isReadOnly}
                     />
-                    <span className="radio__text">{choice.is_other_choice ? django.gettext('other') : choice.label}</span>
+                    <span className="radio__text">{choice.is_other_choice ? translated.other : choice.label}</span>
                     {choice.is_other_choice &&
                       <>
                         <input
@@ -120,7 +127,7 @@ export const PollQuestion = (props) => {
                       onChange={(event) => { handleMultiChange(event, choice.is_other_choice) }}
                       disabled={!props.question.authenticated || props.question.isReadOnly}
                     />
-                    <span className="radio__text radio__text--checkbox">{choice.is_other_choice ? django.gettext('other') : choice.label}</span>
+                    <span className="radio__text radio__text--checkbox">{choice.is_other_choice ? translated.other : choice.label}</span>
                     {choice.is_other_choice &&
                       <>
                         <input
