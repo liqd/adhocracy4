@@ -89,7 +89,7 @@ export default class CommentEditForm extends React.Component {
         </button>
         &nbsp;
         <button
-          type="submit" value={translated.cancel} className="cancel-button"
+          type="submit" value={translated.cancel} className="btn btn--light cancel-button"
           onClick={this.props.handleCancel}
         >
           {translated.cancel}
