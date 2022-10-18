@@ -11,18 +11,12 @@ import dashboard from '../../../../adhocracy4/dashboard/assets/dashboard'
 import api from '../../../static/api'
 import Alert from '../../../static/Alert'
 
-/*
-|--------------------------------------------------------------------------
-| Helper method for local scoped key/identifier
-|--------------------------------------------------------------------------
-*/
+// | Helper method for local scoped key/identifier
 
 let maxLocalKey = 0
 const getNextLocalKey = () => {
-  /** Get an artificial key for non-committed items.
-   *
-   *  The key is prefixed to prevent collisions with real database keys.
-   */
+  // Get an artificial key for non-committed items.
+  // The key is prefixed to prevent collisions with real database keys.
   return 'local_' + maxLocalKey++
 }
 
@@ -64,44 +58,59 @@ export const EditPollManagement = (props) => {
     return newQuestion
   }
 
-  const handleQuestionLabel = (action, params) => {
+  const handleQuestionLabel = (index, label) => {
     const diff = {}
-    const { index, label } = params
     diff[index] = { $merge: { label } }
     setQuestions(update(questions, diff))
   }
 
-  const handleQuestion = (action, params) => {
-    let diff = {}
-    if (action === 'helptext') {
-      const { index, helptext } = params
-      diff[index] = { $merge: { help_text: helptext } }
-    } else if (action === 'multiple-choice') {
-      const { index, multipleChoice } = params
-      diff[index] = { $merge: { multiple_choice: multipleChoice } }
-    } else if (action === 'move') {
-      const { index, direction } = params
-      const position = direction === 'up' ? (index - 1) : (index + 1)
-      diff = { $splice: [[index, 1], [position, 0, questions[index]]] }
-    } else if (action === 'append') {
-      const newQuestion = params && params.isOpen
-        ? getNewOpenQuestion()
-        : getNewQuestion()
-      diff = { $push: [newQuestion] }
-    } else if (action === 'delete') {
-      const { index } = params
-      diff = { $splice: [[index, 1]] }
-    } else {
-      return null
-    }
-    action && setQuestions(update(questions, diff))
+  const handleQuestionHelpText = (index, helptext) => {
+    const diff = {}
+    diff[index] = { $merge: { help_text: helptext } }
+    setQuestions(update(questions, diff))
   }
 
-  /*
-  |--------------------------------------------------------------------------
-  | Choice state related handlers
-  |--------------------------------------------------------------------------
-  */
+  const handleQuestionMultiChoice = (index, multipleChoice) => {
+    const diff = {}
+    diff[index] = { $merge: { multiple_choice: multipleChoice } }
+    setQuestions(update(questions, diff))
+  }
+
+  const handleQuestionAppend = (params, index) => {
+    let diff = {}
+    const newQuestion = params && params.isOpen
+      ? getNewOpenQuestion()
+      : getNewQuestion()
+    diff = { $push: [newQuestion] }
+    setQuestions(update(questions, diff))
+  }
+
+  const handleQuestionDelete = (index) => {
+    let diff = {}
+    diff = { $splice: [[index, 1]] }
+    setQuestions(update(questions, diff))
+  }
+
+  const handleQuestionMoveUp = (index) => {
+    let diff = {}
+    const position = index - 1
+    diff = {
+      $splice: [
+        [index, 1], // remove from current index
+        [position, 0, questions[index]] // insert to new index
+      ]
+    }
+    setQuestions(update(questions, diff))
+  }
+
+  const handleQuestionMoveDown = (index) => {
+    let diff = {}
+    const position = index + 1
+    diff = { $splice: [[index, 1], [position, 0, questions[index]]] }
+    setQuestions(update(questions, diff))
+  }
+
+  // | Choice state related handlers
 
   const getNewChoice = (label = '', isOther = false) => {
     return {
@@ -140,11 +149,7 @@ export const EditPollManagement = (props) => {
     action && setQuestions(update(questions, diff))
   }
 
-  /*
-  |--------------------------------------------------------------------------
-  | Poll form and submit logic
-  |--------------------------------------------------------------------------
-  */
+  // | Poll form and submit logic
 
   const removeAlert = () => {
     setAlert(null)
@@ -188,7 +193,7 @@ export const EditPollManagement = (props) => {
       onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}
       className="editpoll__questions"
     >
-      <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
+      <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)" typeName={null}>
         {
           questions.map((question, index, arr) => {
             const key = question.id || question.key
@@ -198,11 +203,11 @@ export const EditPollManagement = (props) => {
                   <EditPollOpenQuestion
                     id={key}
                     question={question}
-                    onLabelChange={(label) => handleQuestionLabel('label', { index, label })}
-                    onHelptextChange={(helptext) => handleQuestion('helptext', { index, helptext })}
-                    onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
-                    onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
-                    onDelete={() => handleQuestion('delete', { index })}
+                    onLabelChange={(label) => handleQuestionLabel(index, label)}
+                    onHelptextChange={(helptext) => handleQuestionHelpText(index, helptext)}
+                    onMoveUp={index !== 0 ? () => handleQuestionMoveUp(index) : null}
+                    onMoveDown={index < arr.length - 1 ? () => handleQuestionMoveDown(index) : null}
+                    onDelete={() => handleQuestionDelete(index)}
                     errors={errors && errors[index] ? errors[index] : {}}
                   />
                 </div>
@@ -212,13 +217,13 @@ export const EditPollManagement = (props) => {
                   <EditPollQuestion
                     id={key}
                     question={question}
-                    onLabelChange={(label) => handleQuestion('label', { index, label })}
-                    onHelptextChange={(helptext) => handleQuestion('helptext', { index, helptext })}
-                    onMultipleChoiceChange={(multipleChoice) => handleQuestion('multiple-choice', { index, multipleChoice })}
+                    onLabelChange={(label) => handleQuestionLabel(index, label)}
+                    onHelptextChange={(helptext) => handleQuestionHelpText(index, helptext)}
+                    onMultipleChoiceChange={(multipleChoice) => handleQuestionMultiChoice(index, multipleChoice)}
                     onHasOtherChoiceChange={(isOtherChoice) => handleChoice('is-other-choice', { index, isOtherChoice })}
-                    onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
-                    onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
-                    onDelete={() => handleQuestion('delete', { index })}
+                    onMoveUp={index !== 0 ? () => handleQuestionMoveUp(index) : null}
+                    onMoveDown={index < arr.length - 1 ? () => handleQuestionMoveDown(index) : null}
+                    onDelete={() => handleQuestionDelete(index)}
                     errors={errors && errors[index] ? errors[index] : {}}
                     onChoiceLabelChange={(choiceIndex, label) => handleChoice('label', { index, choiceIndex, label })}
                     onDeleteChoice={(choiceIndex) => handleChoice('delete', { index, choiceIndex })}
@@ -233,8 +238,8 @@ export const EditPollManagement = (props) => {
       <div className="editpoll__actions-container">
         <div className="editpoll__menu-container">
           <EditPollDropdown
-            handleToggleMulti={() => handleQuestion('append')}
-            handleToggleOpen={() => handleQuestion('append', { isOpen: true })}
+            handleToggleMulti={() => handleQuestionAppend()}
+            handleToggleOpen={() => handleQuestionAppend({ isOpen: true })}
           />
         </div>
 
