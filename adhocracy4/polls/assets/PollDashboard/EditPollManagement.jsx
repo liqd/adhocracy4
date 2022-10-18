@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import django from 'django'
-import dashboard from '../../../adhocracy4/dashboard/assets/dashboard'
+import dashboard from '../../../../adhocracy4/dashboard/assets/dashboard'
 import update from 'immutability-helper'
 import { EditPollQuestion } from './EditPollQuestion'
 import { EditPollOpenQuestion } from './EditPollOpenQuestion'
-import Alert from '../../static/Alert'
-import PopperMenu from './PopperMenu'
+import Alert from '../../../static/Alert'
+import EditPollDropdown from './EditPollDropdown'
 
 const api = require('adhocracy4').api
 const FlipMove = require('react-flip-move').default
@@ -54,23 +54,14 @@ export const EditPollQuestions = (props) => {
     return newQuestion
   }
 
-  const updatePopper = () => {
-    popper &&
-    popper.current &&
-    popper.current.instance.update &&
-    popper.current.instance.update()
-  }
-
   const handleQuestion = (action, params) => {
     let diff = {}
     if (action === 'label') {
       const { index, label } = params
       diff[index] = { $merge: { label } }
-      updatePopper()
     } else if (action === 'helptext') {
       const { index, helptext } = params
       diff[index] = { $merge: { help_text: helptext } }
-      updatePopper()
     } else if (action === 'multiple-choice') {
       const { index, multipleChoice } = params
       diff[index] = { $merge: { multiple_choice: multipleChoice } }
@@ -83,11 +74,9 @@ export const EditPollQuestions = (props) => {
         ? getNewOpenQuestion()
         : getNewQuestion()
       diff = { $push: [newQuestion] }
-      updatePopper()
     } else if (action === 'delete') {
       const { index } = params
       diff = { $splice: [[index, 1]] }
-      updatePopper()
     } else {
       return null
     }
@@ -134,7 +123,6 @@ export const EditPollQuestions = (props) => {
       const { index, choiceIndex } = params
       diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
     }
-    updatePopper()
     action && setQuestions(update(questions, diff))
   }
 
@@ -188,27 +176,6 @@ export const EditPollQuestions = (props) => {
   const [questions, setQuestions] = useState([])
   const [errors, setErrors] = useState([])
   const [alert, setAlert] = useState(null)
-  const popper = useRef()
-
-  const popperMenuContent = {
-    popperButton: {
-      styleClass: 'btn poll__btn--light',
-      buttonText: django.gettext('New question'),
-      icon: 'fa fa-plus'
-    },
-    popperMenuItems: [
-      {
-        styleClass: 'btn poll__btn--light submenu-item',
-        text: django.gettext('Multiple choice question'),
-        handleClick: () => handleQuestion('append')
-      },
-      {
-        styleClass: 'btn poll__btn--light submenu-item',
-        text: django.gettext('Open question'),
-        handleClick: () => handleQuestion('append', { isOpen: true })
-      }
-    ]
-  }
 
   useEffect(() => {
     api.poll.get(props.pollId).done(({ questions }) => {
@@ -268,13 +235,12 @@ export const EditPollQuestions = (props) => {
       <Alert onClick={() => removeAlert()} {...alert} />
       <div className="editpoll__actions-container">
         <div className="editpoll__menu-container">
-          <PopperMenu
-            ref={popper}
-            containerStyleClass="editpoll__menu-container--override"
-          >
-            {popperMenuContent}
-          </PopperMenu>
+          <EditPollDropdown
+            handleToggleMulti={() => handleQuestion('append')}
+            handleToggleOpen={() => handleQuestion('append', { isOpen: true })}
+          />
         </div>
+
         <div className="editpoll__menu-container">
           <button type="submit" className="btn poll__btn--dark">
             {django.gettext('Save')}

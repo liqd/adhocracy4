@@ -1,10 +1,10 @@
 import React from 'react'
 import { PollQuestion } from './PollQuestion'
 import { PollOpenQuestion } from './PollOpenQuestion'
-import Alert from '../../static/Alert'
+import Alert from '../../../static/Alert'
 import django from 'django'
 import PollResults from './PollResults'
-import { TermsOfUseCheckbox } from '../../static/TermsOfUseCheckbox'
+import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
 const api = require('adhocracy4').api
 const config = require('adhocracy4').config

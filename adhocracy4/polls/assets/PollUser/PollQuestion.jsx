@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { CharCounter } from './CharCounter'
-import ErrorList from '../../static/ErrorList'
+import ErrorList from '../../../static/ErrorList'
 
 export const PollQuestion = (props) => {
   const getUserAnswer = () => {

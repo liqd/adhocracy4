@@ -1,8 +1,8 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { EditPollQuestions } from './EditPollQuestions'
-import PollQuestions from './PollQuestions'
+import { EditPollManagement } from './PollDashboard/EditPollManagement'
+import PollQuestions from './PollUser/PollQuestions'
 
 module.exports.renderPolls = function (element) {
   const pollId = element.getAttribute('data-poll-id')
@@ -17,5 +17,5 @@ module.exports.renderPollManagement = function (element) {
   const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
 
   const root = createRoot(element)
-  root.render(<EditPollQuestions pollId={pollId} reloadOnSuccess={reloadOnSuccess} />)
+  root.render(<EditPollManagement pollId={pollId} reloadOnSuccess={reloadOnSuccess} />)
 }
