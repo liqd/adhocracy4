@@ -92,18 +92,21 @@ class DynamicChoicesOrderingFilter(DynamicChoicesMixin,
         kwargs['empty_label'] = None
         super().__init__(*args, **kwargs)
 
-    def filter(self, qs, value):
+    def annotate_queryset(self, qs):
         qs = qs.annotate_comment_count()
         if hasattr(qs, 'annotate_positive_rating_count'):
             qs = qs.annotate_positive_rating_count() \
                 .annotate_negative_rating_count()
+        return qs
 
+    def filter(self, qs, value):
+        annotated_qs = self.annotate_queryset(qs)
         if value == ['-comment_count']:
-            return qs.order_by('-comment_count')
+            return annotated_qs.order_by('-comment_count')
         elif value == ['-positive_rating_count']:
-            return qs.order_by('-positive_rating_count')
+            return annotated_qs.order_by('-positive_rating_count')
 
-        return super().filter(qs, value)
+        return super().filter(annotated_qs, value)
 
 
 class DistinctOrderingWithDailyRandomFilter(DynamicChoicesOrderingFilter):
@@ -119,7 +122,7 @@ class DistinctOrderingWithDailyRandomFilter(DynamicChoicesOrderingFilter):
             ordered_qs = qs \
                 .filter(pk__in=pks) \
                 .order_by(preserved)
-            return ordered_qs
+            return self.annotate_queryset(ordered_qs)
         else:
             return super().filter(qs, value)
 
