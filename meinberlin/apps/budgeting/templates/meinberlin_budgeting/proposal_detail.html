@@ -7,13 +7,6 @@
     {{ block.super }}
 {% endblock %}
 
-{% block additional_labels %}
-    {{ block.super }}
-    <span class="label label--big test">
-        {% if proposal.budget == 0 %}{% translate 'budget not specified' %}{% else %}{{ proposal.budget|intcomma }}€{% endif %}
-    </span>
-{% endblock %}
-
 {% block ratings %}
     {% if module.blueprint_type == 'PB3' and proposal|has_feature:"support" %}
         {% has_or_would_have_perm 'meinberlin_budgeting.support_proposal' request.user proposal as may_support_proposal %}

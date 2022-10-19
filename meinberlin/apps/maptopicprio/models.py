@@ -14,13 +14,15 @@ from adhocracy4.maps import fields as map_fields
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
+from meinberlin.apps.ideas.models import ItemBadgesPropertyMixin
 
 
 class MapTopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class MapTopic(module_models.Item):
+class MapTopic(module_models.Item,
+               ItemBadgesPropertyMixin):
     item_ptr = models.OneToOneField(to=module_models.Item,
                                     parent_link=True,
                                     related_name='%(app_label)s_%(class)s',

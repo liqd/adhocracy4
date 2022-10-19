@@ -1,7 +1,1 @@
 {% extends "meinberlin_mapideas/mapidea_detail.html" %}
-{% load rules i18n humanize contrib_tags %}
-
-{% block additional_labels %}
-    {{ block.super }}
-    <span class="label label--big">{{ proposal.budget|intcomma }}€</span>
-{% endblock %}

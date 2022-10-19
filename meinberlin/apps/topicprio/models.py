@@ -13,13 +13,15 @@ from adhocracy4.labels import models as labels_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
+from meinberlin.apps.ideas.models import ItemBadgesPropertyMixin
 
 
 class TopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class Topic(module_models.Item):
+class Topic(module_models.Item,
+            ItemBadgesPropertyMixin):
     item_ptr = models.OneToOneField(
         to=module_models.Item,
         parent_link=True,
