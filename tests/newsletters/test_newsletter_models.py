@@ -14,8 +14,9 @@ def test_absolute_media_urls(newsletter_factory):
                        abs=settings.MEDIA_URL)
     newsletter = newsletter_factory(body=body)
 
-    expected = base.format(rel=settings.BASE_URL + settings.MEDIA_URL,
-                           abs=settings.MEDIA_URL)
+    expected = base.format(
+        rel=settings.WAGTAILADMIN_BASE_URL + settings.MEDIA_URL,
+        abs=settings.MEDIA_URL)
     assert body == newsletter.body
     assert expected == newsletter.body_with_absolute_urls
 

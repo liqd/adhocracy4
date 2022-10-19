@@ -50,7 +50,8 @@ class PlatformEmail(UserGeneratedContentModel):
         # Find every occurrence of the MEDIA_URL that is either following a
         # whitespace, an equal sign or a quotation mark.
         pattern = re.compile(r'([\s="\'])(%s)' % re.escape(settings.MEDIA_URL))
-        text = re.sub(pattern, r'\1%s\2' % settings.BASE_URL, text)
+        text = re.sub(pattern, r'\1%s\2' %
+                      settings.WAGTAILADMIN_BASE_URL, text)
         return text
 
     def save(self, *args, **kwargs):

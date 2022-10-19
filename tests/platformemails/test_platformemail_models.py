@@ -14,8 +14,9 @@ def test_absolute_media_urls(platform_email_factory):
                        abs=settings.MEDIA_URL)
     platform_email = platform_email_factory(body=body)
 
-    expected = base.format(rel=settings.BASE_URL + settings.MEDIA_URL,
-                           abs=settings.MEDIA_URL)
+    expected = base.format(
+        rel=settings.WAGTAILADMIN_BASE_URL + settings.MEDIA_URL,
+        abs=settings.MEDIA_URL)
     assert body == platform_email.body
     assert expected == platform_email.body_with_absolute_urls
 
