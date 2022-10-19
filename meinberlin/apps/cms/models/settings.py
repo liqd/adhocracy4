@@ -1,5 +1,5 @@
 from django.db import models
-from wagtail.admin.panels import PageChooserPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.contrib.settings.models import BaseSetting
 from wagtail.contrib.settings.models import register_setting
 
@@ -24,6 +24,6 @@ class HeaderPages(BaseSetting):
         help_text="Please add a link to the feedback form page.")
 
     panels = [
-        PageChooserPanel('help_page'),
-        PageChooserPanel('feedback_page')
+        FieldPanel('help_page'),
+        FieldPanel('feedback_page')
     ]
