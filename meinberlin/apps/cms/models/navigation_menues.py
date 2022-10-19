@@ -1,7 +1,7 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.admin import edit_handlers
+from wagtail.admin import panels
 from wagtail.models import Orderable
 from wagtail.snippets.models import register_snippet
 
@@ -21,8 +21,8 @@ class MenuItem(models.Model):
         return self.title
 
     panels = [
-        edit_handlers.FieldPanel('title'),
-        edit_handlers.PageChooserPanel('link_page')
+        panels.FieldPanel('title'),
+        panels.PageChooserPanel('link_page')
     ]
 
 
@@ -34,8 +34,8 @@ class NavigationMenu(ClusterableModel):
         return self.title
 
     panels = [
-        edit_handlers.FieldPanel('title'),
-        edit_handlers.InlinePanel('items')
+        panels.FieldPanel('title'),
+        panels.InlinePanel('items')
     ]
 
 

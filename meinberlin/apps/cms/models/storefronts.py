@@ -6,9 +6,8 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.admin import edit_handlers
+from wagtail.admin import panels
 from wagtail.admin.panels import FieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
 
 from adhocracy4.comments.models import Comment
@@ -134,22 +133,22 @@ class Storefront(ClusterableModel):
             return items
 
     title_panel = [
-        edit_handlers.FieldPanel('title')
+        panels.FieldPanel('title')
     ]
 
     image_tile_panel = [
-        ImageChooserPanel('image'),
-        edit_handlers.FieldPanel('teaser')
+        panels.FieldPanel('image'),
+        panels.FieldPanel('teaser')
     ]
 
     project_tiles_panel = [
-        edit_handlers.InlinePanel('items', min_num=3)
+        panels.InlinePanel('items', min_num=3)
     ]
 
-    edit_handler = edit_handlers.TabbedInterface([
-        edit_handlers.ObjectList(title_panel, heading='Title'),
-        edit_handlers.ObjectList(image_tile_panel, heading='Image Tile'),
-        edit_handlers.ObjectList(project_tiles_panel, heading='Project Tiles')
+    edit_handler = panels.TabbedInterface([
+        panels.ObjectList(title_panel, heading='Title'),
+        panels.ObjectList(image_tile_panel, heading='Image Tile'),
+        panels.ObjectList(project_tiles_panel, heading='Project Tiles')
     ])
 
 

@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail import fields
-from wagtail.admin import edit_handlers
+from wagtail.admin import panels
 from wagtail.contrib.forms.forms import FormBuilder
 from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
@@ -64,17 +64,17 @@ class EmailFormPage(WagtailCaptchaEmailForm):
     )
 
     content_panels = AbstractEmailForm.content_panels + [
-        edit_handlers.MultiFieldPanel([
-            edit_handlers.FieldPanel('intro', classname='full'),
-            edit_handlers.FieldPanel('thank_you', classname='full'),
+        panels.MultiFieldPanel([
+            panels.FieldPanel('intro', classname='full'),
+            panels.FieldPanel('thank_you', classname='full'),
         ], 'Page'),
-        edit_handlers.MultiFieldPanel([
-            edit_handlers.FieldPanel('to_address'),
-            edit_handlers.FieldPanel('subject'),
-            edit_handlers.FieldPanel('email_content', classname='full'),
-            edit_handlers.FieldPanel('attach_as'),
+        panels.MultiFieldPanel([
+            panels.FieldPanel('to_address'),
+            panels.FieldPanel('subject'),
+            panels.FieldPanel('email_content', classname='full'),
+            panels.FieldPanel('attach_as'),
         ], 'Email'),
-        edit_handlers.InlinePanel('form_fields', label='Form fields'),
+        panels.InlinePanel('form_fields', label='Form fields'),
     ]
 
     def send_mail(self, form):

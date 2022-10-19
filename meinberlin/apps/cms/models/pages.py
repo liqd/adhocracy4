@@ -1,10 +1,8 @@
 from django.db import models
 from wagtail import blocks
 from wagtail import fields
-from wagtail.admin import edit_handlers
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin import panels
 from wagtail.models import Page
-from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from meinberlin.apps.actions import blocks as actions_blocks
 from meinberlin.apps.cms import blocks as cms_blocks
@@ -14,8 +12,8 @@ class SimplePage(Page):
     body = fields.RichTextField(blank=True)
 
     content_panels = [
-        edit_handlers.FieldPanel('title'),
-        edit_handlers.FieldPanel('body'),
+        panels.FieldPanel('title'),
+        panels.FieldPanel('body'),
     ]
 
     subpage_types = []
@@ -28,8 +26,8 @@ class StreamfieldSimplePage(Page):
     ], blank=True)
 
     content_panels = [
-        edit_handlers.FieldPanel('title'),
-        edit_handlers.FieldPanel('body'),
+        panels.FieldPanel('title'),
+        panels.FieldPanel('body'),
     ]
 
     subpage_types = []
@@ -66,10 +64,10 @@ class HomePage(Page):
     )
 
     content_panels = Page.content_panels + [
-        edit_handlers.FieldPanel('subtitle'),
-        ImageChooserPanel('header_image'),
-        edit_handlers.FieldPanel('body'),
-        SnippetChooserPanel('storefront')
+        panels.FieldPanel('subtitle'),
+        panels.FieldPanel('header_image'),
+        panels.FieldPanel('body'),
+        panels.FieldPanel('storefront')
     ]
 
 
@@ -83,8 +81,8 @@ class DocsPage(Page):
     description = fields.RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
-        edit_handlers.FieldPanel('description'),
-        edit_handlers.FieldPanel('body'),
+        panels.FieldPanel('description'),
+        panels.FieldPanel('body'),
     ]
 
     class Meta:
