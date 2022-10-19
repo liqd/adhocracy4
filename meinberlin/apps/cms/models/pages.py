@@ -29,7 +29,7 @@ class StreamfieldSimplePage(Page):
 
     content_panels = [
         edit_handlers.FieldPanel('title'),
-        edit_handlers.StreamFieldPanel('body'),
+        edit_handlers.FieldPanel('body'),
     ]
 
     subpage_types = []
@@ -68,7 +68,7 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         edit_handlers.FieldPanel('subtitle'),
         ImageChooserPanel('header_image'),
-        edit_handlers.StreamFieldPanel('body'),
+        edit_handlers.FieldPanel('body'),
         SnippetChooserPanel('storefront')
     ]
 
@@ -84,7 +84,7 @@ class DocsPage(Page):
 
     content_panels = Page.content_panels + [
         edit_handlers.FieldPanel('description'),
-        edit_handlers.StreamFieldPanel('body'),
+        edit_handlers.FieldPanel('body'),
     ]
 
     class Meta:
