@@ -16,7 +16,7 @@
     "@fortawesome/fontawesome-free": "5.15.4",
     "@maplibre/maplibre-gl-leaflet": "0.0.17",
     "acorn": "8.8.0",
-    "adhocracy4": "liqd/adhocracy4#fbf9b06fbabd17e57de5a881e95a15fec3826dda",
+    "adhocracy4": "liqd/adhocracy4#f70e903002cd9cb2ac1cbd3e2f4e697ce04703ba",
     "autoprefixer": "10.4.12",
     "babel-loader": "8.2.5",
     "bootstrap": "5.2.2",
