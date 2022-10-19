@@ -1,9 +1,9 @@
 from django.db import models
+from wagtail import blocks
+from wagtail import fields
 from wagtail.admin import edit_handlers
-from wagtail.core import blocks
-from wagtail.core import fields
-from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.models import Page
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from meinberlin.apps.actions import blocks as actions_blocks

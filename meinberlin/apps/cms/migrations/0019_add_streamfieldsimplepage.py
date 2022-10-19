@@ -3,8 +3,8 @@
 from __future__ import unicode_literals
 
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 from django.db import migrations
 from django.db import models
 
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             name='StreamfieldSimplePage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.core.fields.StreamField((('paragraph', wagtail.core.blocks.RichTextBlock()), ('html', wagtail.core.blocks.RawHTMLBlock())), blank=True)),
+                ('body', wagtail.fields.StreamField((('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock())), blank=True)),
             ],
             options={
                 'abstract': False,

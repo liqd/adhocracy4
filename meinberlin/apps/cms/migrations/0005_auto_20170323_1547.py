@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 import modelcluster.fields
-import wagtail.core.fields
+import wagtail.fields
 from django.db import migrations
 from django.db import models
 
@@ -39,8 +39,8 @@ class Migration(migrations.Migration):
                 ('to_address', models.CharField(verbose_name='to address', max_length=255, blank=True, help_text='Optional - form submissions will be emailed to these addresses. Separate multiple addresses by comma.')),
                 ('from_address', models.CharField(verbose_name='from address', max_length=255, blank=True)),
                 ('subject', models.CharField(verbose_name='subject', max_length=255, blank=True)),
-                ('intro', wagtail.core.fields.RichTextField(help_text='Introduction text shown above the form')),
-                ('thank_you', wagtail.core.fields.RichTextField(help_text='Text shown after form submission')),
+                ('intro', wagtail.fields.RichTextField(help_text='Introduction text shown above the form')),
+                ('thank_you', wagtail.fields.RichTextField(help_text='Text shown after form submission')),
                 ('email_content', models.CharField(max_length=200, help_text='Email content message')),
                 ('attach_as', models.CharField(max_length=3, default='csv', choices=[('csv', 'CSV Document')], help_text='Form results are send in this document format')),
             ],

@@ -1,11 +1,11 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
+from wagtail import fields
 from wagtail.admin import edit_handlers
 from wagtail.contrib.forms.forms import FormBuilder
 from wagtail.contrib.forms.models import AbstractEmailForm
 from wagtail.contrib.forms.models import AbstractFormField
-from wagtail.core import fields
 
 from meinberlin.apps.captcha.fields import CaptcheckCaptchaField
 from meinberlin.apps.cms import emails

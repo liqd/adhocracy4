@@ -7,7 +7,7 @@ from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.admin import edit_handlers
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
 

@@ -158,7 +158,7 @@ urlpatterns = [
 
     path('components/', contrib_views.ComponentLibraryView.as_view()),
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
-    path('', include('wagtail.core.urls')),
+    path('', include('wagtail.urls')),
 ]
 
 if settings.DEBUG:

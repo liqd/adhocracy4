@@ -3,8 +3,8 @@
 from __future__ import unicode_literals
 
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 from django.db import migrations
 from django.db import models
 
@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
             name='DocsPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.core.fields.StreamField((('documents_list', wagtail.core.blocks.StructBlock((('title', wagtail.core.blocks.CharBlock()), ('body', wagtail.core.blocks.RichTextBlock(required=False))))),))),
-                ('description', wagtail.core.fields.RichTextField(blank=True)),
+                ('body', wagtail.fields.StreamField((('documents_list', wagtail.blocks.StructBlock((('title', wagtail.blocks.CharBlock()), ('body', wagtail.blocks.RichTextBlock(required=False))))),))),
+                ('description', wagtail.fields.RichTextField(blank=True)),
             ],
             options={
                 'verbose_name': 'Documents',

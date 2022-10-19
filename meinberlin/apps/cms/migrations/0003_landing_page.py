@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 from django.db import migrations
 from django.db import models
 
@@ -30,6 +30,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='homepage',
             name='body',
-            field=wagtail.core.fields.StreamField((('paragraph', wagtail.core.blocks.RichTextBlock()), ('call_to_action', wagtail.core.blocks.StructBlock((('body', wagtail.core.blocks.RichTextBlock()), ('link', wagtail.core.blocks.CharBlock()), ('link_text', wagtail.core.blocks.CharBlock(label='Link Text', max_length=50))))), ('columns_text', wagtail.core.blocks.StructBlock((('columns_count', wagtail.core.blocks.ChoiceBlock(choices=[(2, 'Two columns'), (3, 'Three columns'), (4, 'Four columns')])), ('columns', wagtail.core.blocks.ListBlock(wagtail.core.blocks.RichTextBlock(label='Column body')))))))),
+            field=wagtail.fields.StreamField((('paragraph', wagtail.blocks.RichTextBlock()), ('call_to_action', wagtail.blocks.StructBlock((('body', wagtail.blocks.RichTextBlock()), ('link', wagtail.blocks.CharBlock()), ('link_text', wagtail.blocks.CharBlock(label='Link Text', max_length=50))))), ('columns_text', wagtail.blocks.StructBlock((('columns_count', wagtail.blocks.ChoiceBlock(choices=[(2, 'Two columns'), (3, 'Three columns'), (4, 'Four columns')])), ('columns', wagtail.blocks.ListBlock(wagtail.blocks.RichTextBlock(label='Column body')))))))),
         ),
     ]
