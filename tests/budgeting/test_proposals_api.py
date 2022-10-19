@@ -59,8 +59,8 @@ def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
            [('-created', _('Most recent')),
             ('-positive_rating_count', _('Most popular')),
             ('-comment_count', _('Most commented')),
-            ('-daily_random', _('Random'))]
-    assert response.data['filters']['ordering']['default'] == '-daily_random'
+            ('dailyrandom', _('Random'))]
+    assert response.data['filters']['ordering']['default'] == 'dailyrandom'
 
     # locale info
     assert 'locale' in response.data
@@ -219,7 +219,7 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     assert response.data['results'][0]['pk'] == proposal_commented.pk
 
     # daily random
-    querystring = '?ordering=-daily_random'
+    querystring = '?ordering=dailyrandom'
     url_tmp = url + querystring
     with freeze_time('2020-01-01 00:00:00 UTC'):
         response = apiclient.get(url_tmp)
@@ -264,7 +264,7 @@ def test_proposal_list_filtering(apiclient, module, proposal_factory,
     assert response.data['results'][0]['pk'] == proposal_popular_labels.pk
     assert response.data['results'][1]['pk'] == proposal_archived_labels.pk
 
-    querystring = '?ordering=-daily_random&category=' + \
+    querystring = '?ordering=dailyrandom&category=' + \
                   str(category2.pk)
     url_tmp = url + querystring
     with freeze_time('2020-01-01 00:00:00 UTC'):

@@ -112,12 +112,12 @@ class ProposalFilterInfoMixin:
         if has_feature_active(self.module, Proposal, 'support'):
             ordering_choices += ('-positive_rating_count', _('Most support')),
         ordering_choices += ('-comment_count', _('Most commented')), \
-                            ('-daily_random', _('Random')),
+                            ('dailyrandom', _('Random')),
 
         filters['ordering'] = {
             'label': _('Ordering'),
             'choices': ordering_choices,
-            'default': '-daily_random',
+            'default': 'dailyrandom',
         }
 
         response = super().list(request, args, kwargs)
@@ -171,7 +171,7 @@ class ProposalViewSet(ModuleMixin,
     ordering_fields = ('created',
                        'comment_count',
                        'positive_rating_count',
-                       'daily_random',)
+                       'dailyrandom',)
     search_fields = ('name', 'ref_number')
 
     def get_permission_object(self):

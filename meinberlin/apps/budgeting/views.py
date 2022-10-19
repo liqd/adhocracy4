@@ -20,7 +20,8 @@ def get_ordering_choices(view):
     choices = (('-created', _('Most recent')),)
     if view.module.has_feature('rate', models.Proposal):
         choices += ('-positive_rating_count', _('Most popular')),
-    choices += ('-comment_count', _('Most commented')),
+    choices += ('-comment_count', _('Most commented')), \
+               ('dailyrandom', _('Random')),
     return choices
 
 
@@ -31,7 +32,7 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
     }
     category = category_filters.CategoryFilter()
     labels = label_filters.LabelFilter()
-    ordering = a4_filters.DynamicChoicesOrderingFilter(
+    ordering = a4_filters.DistinctOrderingWithDailyRandomFilter(
         choices=get_ordering_choices
     )
     is_archived = django_filters.BooleanFilter(

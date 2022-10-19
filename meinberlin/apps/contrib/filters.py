@@ -25,7 +25,7 @@ class OrderingFilterWithDailyRandom(OrderingFilter):
         ordering = self.get_ordering(request, queryset, view)
 
         if ordering:
-            if ordering == ['-daily_random']:
+            if ordering == ['dailyrandom']:
                 pks = list(queryset.values_list('pk', flat=True))
                 random.seed(str(date.today()))
                 random.shuffle(pks)
