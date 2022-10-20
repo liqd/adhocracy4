@@ -12,7 +12,6 @@ $timeline-carousel__top-space: 11px;
     display: inline-block;
     background-color: $border-color;
     padding: 0;
-    margin-bottom: 3px;
     border-radius: 50%;
     height: 12px;
     width: 12px;
@@ -86,7 +85,7 @@ $timeline-carousel__top-space: 11px;
         &:before {
             color: $secondary;
             opacity: 1;
-            font-family: "Font Awesome 5 Free", sans-serif;
+            font-family: "Font Awesome 6 Free", sans-serif;
             font-weight: 900;
             font-size: $font-size-xxl;
             line-height: 1.3rem;
