@@ -32,33 +32,37 @@ class LabelListingField(serializers.StringRelatedField):
 
 class ProposalSerializer(serializers.ModelSerializer):
 
-    creator = serializers.SerializerMethodField()
-    comment_count = serializers.SerializerMethodField()
-    positive_rating_count = serializers.SerializerMethodField()
-    negative_rating_count = serializers.SerializerMethodField()
-    category = CategoryField()
-    labels = LabelListingField(many=True)
-    url = serializers.SerializerMethodField()
-    moderator_feedback = serializers.SerializerMethodField()
-    session_token_voted = serializers.SerializerMethodField()
-    vote_allowed = serializers.SerializerMethodField()
     budget = serializers.SerializerMethodField()
+    category = CategoryField()
+    comment_count = serializers.SerializerMethodField()
+    creator = serializers.SerializerMethodField()
+    labels = LabelListingField(many=True)
+    moderator_feedback = serializers.SerializerMethodField()
+    negative_rating_count = serializers.SerializerMethodField()
     point_label = serializers.SerializerMethodField()
+    positive_rating_count = serializers.SerializerMethodField()
+    session_token_voted = serializers.SerializerMethodField()
+    url = serializers.SerializerMethodField()
+    vote_allowed = serializers.SerializerMethodField()
 
     class Meta:
         model = Proposal
-        fields = ('budget', 'category', 'comment_count', 'created', 'modified',
-                  'creator', 'is_archived', 'labels', 'name',
-                  'negative_rating_count', 'positive_rating_count', 'url',
-                  'pk', 'moderator_feedback', 'point_label',
-                  'reference_number', 'session_token_voted', 'vote_allowed')
-        read_only_fields = ('budget', 'category', 'comment_count', 'created',
-                            'modified', 'creator', 'is_archived', 'labels',
-                            'name', 'negative_rating_count',
-                            'positive_rating_count', 'url', 'pk',
-                            'moderator_feedback', 'point_label',
-                            'reference_number', 'session_token_voted',
-                            'vote_allowed')
+        fields = (
+            'budget', 'category', 'comment_count', 'created',
+            'creator', 'is_archived', 'labels', 'moderator_feedback',
+            'modified', 'name', 'negative_rating_count', 'pk',
+            'point_label', 'positive_rating_count',
+            'reference_number', 'session_token_voted', 'url',
+            'vote_allowed'
+        )
+        read_only_fields = (
+            'budget', 'category', 'comment_count', 'created',
+            'creator', 'is_archived', 'labels', 'moderator_feedback',
+            'modified', 'name', 'negative_rating_count', 'pk',
+            'point_label', 'positive_rating_count',
+            'reference_number', 'session_token_voted', 'url',
+            'vote_allowed'
+        )
 
     def get_creator(self, proposal):
         return proposal.creator.username
