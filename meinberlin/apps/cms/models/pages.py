@@ -45,7 +45,7 @@ class HomePage(Page):
         ('accordion', cms_blocks.DocsBlock()),
         ('infographic', cms_blocks.InfographicBlock()),
         ('map_teaser', cms_blocks.MapTeaserBlock())
-    ])
+    ], use_json_field=True)
     # use_json_field not added to homepage due to broken migrations
 
     subtitle = models.CharField(max_length=120)
