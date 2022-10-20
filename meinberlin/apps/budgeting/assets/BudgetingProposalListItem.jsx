@@ -7,7 +7,6 @@ import { ListItemStats } from './ListItemStats'
 
 const updatedOnStr = django.gettext('updated on')
 const createdOnStr = django.gettext('created on')
-const BADGES_LIMIT = 3
 
 export const BudgetingProposalListItem = (props) => {
   const { proposal, permissions, tokenvoteApiUrl } = props
@@ -22,33 +21,6 @@ export const BudgetingProposalListItem = (props) => {
         safeLocale
       )}`
 
-  const normalizeBadgesData = () => {
-    const tmpList = []
-    if (proposal.moderator_feedback) {
-      tmpList.push({ type: 'modFeedback', value: proposal.moderator_feedback })
-    }
-    if (proposal.budget) {
-      tmpList.push({ type: 'budget', value: proposal.budget })
-    }
-    if (proposal.point_label) {
-      tmpList.push({ type: 'pointLabel', value: proposal.point_label })
-    }
-    if (proposal.category) {
-      tmpList.push({ type: 'category', value: proposal.category })
-    }
-    if (proposal.labels && proposal.labels.length !== 0) {
-      for (let i = 0; i < proposal.labels.length; i++) {
-        tmpList.push({ type: 'label', value: proposal.labels[i] })
-      }
-    }
-    return tmpList
-  }
-
-  const badges = normalizeBadgesData()
-  const numOfMoreBadges = badges.length > BADGES_LIMIT
-    ? badges.length - BADGES_LIMIT
-    : -1
-
   return (
     <li className="list-item">
       <ListItemStats
@@ -61,8 +33,8 @@ export const BudgetingProposalListItem = (props) => {
         <a href={proposal.url}>{proposal.name}</a>
       </h2>
       <ListItemBadges
-        badges={badges.slice(0, BADGES_LIMIT)}
-        numOfMoreBadges={numOfMoreBadges}
+        badges={proposal.item_badges_for_list}
+        numOfMoreBadges={proposal.additional_item_badges_for_list_count}
         proposalUrl={proposal.url}
       />
       <div className="list-item__vote">

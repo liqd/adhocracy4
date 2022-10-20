@@ -100,7 +100,7 @@ class ItemBadgesPropertyMixin():
         if hasattr(self, 'category') and self.category:
             labels.append(
                 ['category',
-                 self.category]
+                 self.category.name]
             )
         if hasattr(self, 'labels') and self.labels:
             for label in self.labels.all():

@@ -10,14 +10,6 @@ export const toLocaleDate = (isodate, locale = 'de-DE') => {
   return new Intl.DateTimeFormat(locale, formatStyle).format(date)
 }
 
-// intComma returns a number separated by
-// a comma or period depending on the locale
-// input: 20000
-// output: 20.000 or 20,000
-export const intComma = (number) => {
-  return Number(number).toLocaleString()
-}
-
 // wrapSpaces returns the given value
 // wrapped by a space before and after
 // input: "0"

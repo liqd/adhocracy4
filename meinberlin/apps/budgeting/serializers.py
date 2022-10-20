@@ -1,45 +1,17 @@
 from django.contrib.contenttypes.models import ContentType
 from rest_framework import serializers
 
-from adhocracy4.categories.models import Category
-from adhocracy4.labels.models import Label
 from meinberlin.apps.votes.models import TokenVote
 from meinberlin.apps.votes.models import VotingToken
 
 from .models import Proposal
 
 
-class CategoryField(serializers.Field):
-
-    def to_internal_value(self, category):
-        if category:
-            return Category.objects.get(pk=category)
-        else:
-            return None
-
-    def to_representation(self, category):
-        return {'id': category.pk, 'name': category.name}
-
-
-class LabelListingField(serializers.StringRelatedField):
-
-    def to_internal_value(self, label):
-        return Label.objects.get(pk=label)
-
-    def to_representation(self, label):
-        return {'id': label.pk, 'name': label.name}
-
-
 class ProposalSerializer(serializers.ModelSerializer):
 
-    budget = serializers.SerializerMethodField()
-    category = CategoryField()
     comment_count = serializers.SerializerMethodField()
     creator = serializers.SerializerMethodField()
-    labels = LabelListingField(many=True)
-    moderator_feedback = serializers.SerializerMethodField()
     negative_rating_count = serializers.SerializerMethodField()
-    point_label = serializers.SerializerMethodField()
     positive_rating_count = serializers.SerializerMethodField()
     session_token_voted = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
@@ -48,20 +20,18 @@ class ProposalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proposal
         fields = (
-            'budget', 'category', 'comment_count', 'created',
-            'creator', 'is_archived', 'labels', 'moderator_feedback',
+            'additional_item_badges_for_list_count', 'comment_count',
+            'created', 'creator', 'is_archived', 'item_badges_for_list',
             'modified', 'name', 'negative_rating_count', 'pk',
-            'point_label', 'positive_rating_count',
-            'reference_number', 'session_token_voted', 'url',
-            'vote_allowed'
+            'positive_rating_count', 'reference_number',
+            'session_token_voted', 'url', 'vote_allowed'
         )
         read_only_fields = (
-            'budget', 'category', 'comment_count', 'created',
-            'creator', 'is_archived', 'labels', 'moderator_feedback',
+            'additional_item_badges_for_list_count', 'comment_count',
+            'created', 'creator', 'is_archived', 'item_badges_for_list',
             'modified', 'name', 'negative_rating_count', 'pk',
-            'point_label', 'positive_rating_count',
-            'reference_number', 'session_token_voted', 'url',
-            'vote_allowed'
+            'positive_rating_count', 'reference_number',
+            'session_token_voted', 'url', 'vote_allowed'
         )
 
     def get_creator(self, proposal):
@@ -87,26 +57,6 @@ class ProposalSerializer(serializers.ModelSerializer):
 
     def get_url(self, proposal):
         return proposal.get_absolute_url()
-
-    def get_moderator_feedback(self, proposal):
-        if hasattr(proposal, 'moderator_feedback') and\
-                proposal.get_moderator_feedback_display():
-            return (proposal.moderator_feedback,
-                    proposal.get_moderator_feedback_display())
-        else:
-            return None
-
-    def get_point_label(self, proposal):
-        if hasattr(proposal, 'point_label') and proposal.point_label != '':
-            return (proposal.point_label)
-        else:
-            return None
-
-    def get_budget(self, proposal):
-        if hasattr(proposal, 'budget') and proposal.budget != 0:
-            return proposal.budget
-        else:
-            return None
 
     def get_session_token_voted(self, proposal):
         """Serialize if proposal has been voted.

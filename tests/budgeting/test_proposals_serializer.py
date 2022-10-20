@@ -20,15 +20,22 @@ def test_proposal_serializer(apiclient, module, proposal_factory,
     token = voting_token_factory(module=module)
     add_token_to_session(apiclient, token)
 
-    proposal_rated = proposal_factory(module=module)
+    proposal_rated = proposal_factory(module=module,
+                                      category=category,
+                                      budget=25,
+                                      point_label='')
     rating_factory(content_object=proposal_rated)
     proposal_rated.labels.set([label])
 
     proposal_commented = proposal_factory(module=module,
-                                          category=category)
+                                          category=category,
+                                          budget=20)
     comment_factory(content_object=proposal_commented)
 
-    proposal_voted = proposal_factory(module=module)
+    proposal_voted = proposal_factory(module=module,
+                                      budget=25,
+                                      point_label='')
+    proposal_voted.labels.set([label])
     token_vote_factory(token=token, content_object=proposal_voted)
 
     response = apiclient.get(url)
@@ -42,27 +49,55 @@ def test_proposal_serializer(apiclient, module, proposal_factory,
     proposal_voted_data = [p for p in proposal_data if p['pk'] ==
                            proposal_voted.pk][0]
 
-    assert proposal_rated_data['labels'] == [{'id': label.pk,
-                                              'name': label.name}]
-    assert proposal_rated_data['negative_rating_count'] == 0
-    assert proposal_rated_data['positive_rating_count'] == 1
+    assert proposal_rated_data['additional_item_badges_for_list_count'] == 1
     assert proposal_rated_data['comment_count'] == 0
-    assert not proposal_rated_data['vote_allowed']
+    assert proposal_rated_data['creator'] == proposal_rated.creator.username
+    assert proposal_rated_data['is_archived'] == proposal_rated.is_archived
+    assert proposal_rated_data['item_badges_for_list'] == [
+        ['moderator_feedback',
+         proposal_rated.get_moderator_feedback_display(),
+         proposal_rated.moderator_feedback],
+        ['budget', '{}€'.format(proposal_rated.budget)],
+        ['category', proposal_rated.category.name]
+    ]
+    assert proposal_rated_data['name'] == proposal_rated.name
+    assert proposal_rated_data['negative_rating_count'] == 0
+    assert proposal_rated_data['pk'] == proposal_rated.pk
+    assert proposal_rated_data['positive_rating_count'] == 1
+    assert proposal_rated_data['reference_number'] \
+        == proposal_rated.reference_number
     assert not proposal_rated_data['session_token_voted']
+    assert proposal_rated_data['url'] == proposal_rated.get_absolute_url()
+    assert not proposal_rated_data['vote_allowed']
 
-    assert proposal_commented_data['category'] == {'id': category.pk,
-                                                   'name': category.name}
+    assert proposal_commented_data['additional_item_badges_for_list_count'] \
+        == 1
+    assert proposal_commented_data['comment_count'] == 1
+    assert proposal_commented_data['item_badges_for_list'] == [
+        ['moderator_feedback',
+         proposal_commented.get_moderator_feedback_display(),
+         proposal_commented.moderator_feedback],
+        ['budget', '{}€'.format(proposal_commented.budget)],
+        ['point_label', proposal_commented.point_label]
+    ]
     assert proposal_commented_data['negative_rating_count'] == 0
     assert proposal_commented_data['positive_rating_count'] == 0
-    assert proposal_commented_data['comment_count'] == 1
-    assert not proposal_commented_data['vote_allowed']
     assert not proposal_commented_data['session_token_voted']
+    assert not proposal_commented_data['vote_allowed']
 
+    assert proposal_voted_data['additional_item_badges_for_list_count'] == 0
+    assert proposal_voted_data['comment_count'] == 0
+    assert proposal_voted_data['item_badges_for_list'] == [
+        ['moderator_feedback',
+         proposal_voted.get_moderator_feedback_display(),
+         proposal_voted.moderator_feedback],
+        ['budget', '{}€'.format(proposal_voted.budget)],
+        ['label', label.name]
+    ]
     assert proposal_voted_data['negative_rating_count'] == 0
     assert proposal_voted_data['positive_rating_count'] == 0
-    assert proposal_voted_data['comment_count'] == 0
-    assert not proposal_voted_data['vote_allowed']
     assert proposal_voted_data['session_token_voted']
+    assert not proposal_voted_data['vote_allowed']
 
     # test that vote allowed is only true for 3 phase budgeting
     voting_phase = phase_factory(phase_content=phases.VotingPhase(),
