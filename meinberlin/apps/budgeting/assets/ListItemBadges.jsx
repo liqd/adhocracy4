@@ -1,6 +1,11 @@
 import React from 'react'
 import { intComma } from './helpers'
 import { SpacedSpan } from './SpacedSpan'
+import django from 'django'
+
+const translated = {
+  more: django.gettext('More')
+}
 
 export const ListItemBadges = props => {
   // combine css class names to match different styling, depending
@@ -51,12 +56,12 @@ export const ListItemBadges = props => {
         )
       })}
       {props.numOfMoreBadges >= 0 &&
-        <SpacedSpan className="u-spacer-left-half">
+        <SpacedSpan className="label__link label--big">
           <a
             href={props.proposalUrl}
             className="list-item__link"
           >
-            {`${props.numOfMoreBadges} More`}
+            {props.numOfMoreBadges + ' ' + translated.more}
           </a>
         </SpacedSpan>}
     </div>

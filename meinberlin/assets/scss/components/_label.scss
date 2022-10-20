@@ -6,6 +6,12 @@
     font-weight: normal;
     border-radius: 0.4em;
     padding: 0.2em 0.7em;
+
+    &__link {
+        display: inline-block;
+        background-color: transparent;
+        overflow: hidden;
+    }
 }
 
 .label--big {

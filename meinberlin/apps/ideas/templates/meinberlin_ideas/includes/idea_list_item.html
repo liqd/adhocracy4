@@ -36,7 +36,7 @@
             </span>
         {% endfor %}
         {% if object.additional_item_badges_for_list_count > 0 %}
-            <span class="u-spacer-left-half">
+            <span class="label__link label--big">
             <a href="{{ object.get_absolute_url }}" class="list-item__link">
                 {% blocktranslate with counter=object.additional_item_badges_for_list_count %}{{ counter }} More{% endblocktranslate %}
             </a>
