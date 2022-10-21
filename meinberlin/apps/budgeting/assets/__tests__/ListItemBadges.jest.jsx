@@ -3,59 +3,29 @@ import { render, screen } from '@testing-library/react'
 import { ListItemBadges } from '../ListItemBadges'
 
 // testing data:
-const categoryBadge = [{
-  type: 'category',
-  value: { id: 0, name: 'category1' }
-}]
-
-const labelsBadges = [
-  {
-    type: 'label',
-    value: { id: 0, name: 'label1' }
-  },
-  {
-    type: 'label',
-    value: { id: 1, name: 'label2' }
-  },
-  {
-    type: 'label',
-    value: { id: 2, name: 'label3' }
-  }
+const someBadges = [
+  ['category', 'category1'],
+  ['label', 'label1'],
+  ['label', 'label2']
 ]
 
-const pointLabelBadge = [{
-  type: 'pointLabel',
-  value: 'labelwithicon'
-}]
+const pointLabelBadge = [
+  ['point_label', 'labelwithicon']
+]
 
-const budgetBadge = [{
-  type: 'budget',
-  value: '20000'
-}]
-
-const modFeedbackBadge = [{
-  type: 'modFeedback',
-  value: ['CONSIDERATION', 'Under consideration']
-}]
-
-test('displaying category badge', () => {
-  render(
-    <ListItemBadges
-      badges={categoryBadge}
-    />
-  )
-  expect(screen.getByText('category1')).toBeTruthy()
-})
+const modFeedbackBadge = [
+  ['moderator_feedback', 'Under consideration', 'CONSIDERATION']
+]
 
 test('displaying 3 labels', () => {
   render(
     <ListItemBadges
-      badges={labelsBadges}
+      badges={someBadges}
     />
   )
+  expect(screen.getByText('category1')).toBeTruthy()
   expect(screen.getByText('label1')).toBeTruthy()
   expect(screen.getByText('label2')).toBeTruthy()
-  expect(screen.getByText('label3')).toBeTruthy()
 })
 
 test('displaying point label badge', () => {
@@ -65,17 +35,6 @@ test('displaying point label badge', () => {
     />
   )
   expect(screen.getByText('labelwithicon')).toBeTruthy()
-})
-
-test('displaying budget badge with thousand separator', () => {
-  render(
-    <ListItemBadges
-      badges={budgetBadge}
-    />
-  )
-  expect(
-    screen.queryByText('20,000€') || screen.queryByText('20.000€')
-  ).toBeTruthy()
 })
 
 test('displaying moderator feedback badge', () => {
@@ -90,7 +49,7 @@ test('displaying moderator feedback badge', () => {
 test('displaying first 3 badges and add more link', () => {
   render(
     <ListItemBadges
-      badges={[...categoryBadge, ...labelsBadges]}
+      badges={someBadges}
       numOfMoreBadges={1}
     />
   )

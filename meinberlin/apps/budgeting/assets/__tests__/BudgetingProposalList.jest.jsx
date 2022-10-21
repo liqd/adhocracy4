@@ -34,8 +34,6 @@ test('Budgeting Proposal List with one list item', async () => {
   // sample data (one proposal item)
   const mockedResults = [
     {
-      budget: 0,
-      category: { id: 3, name: 'candalf' },
       comment_count: 0,
       created: '2021-11-11T15:36:57.941072+01:00',
       creator: 'admin',
@@ -45,7 +43,10 @@ test('Budgeting Proposal List with one list item', async () => {
       pk: 7,
       positive_rating_count: 0,
       url: '/budgeting/2021-00007/',
-      moderator_feedback: ['CONSIDERATION', 'wird ueberprueft']
+      additional_item_badges_for_list_count: 1,
+      item_badges_for_list: [
+        ['moderator_feedback', 'wird ueberprueft', 'CONSIDERATION'],
+        ['budget', '20€'], ['category', 'candalf']]
     }
   ]
 

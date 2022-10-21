@@ -14,7 +14,10 @@ test('render list item with vote button', () => {
     url: 'www',
     creator: 'creator',
     created: '2021-11-11T15:37:19.490201+01:00',
-    moderator_feedback: ['CONSIDERATION', 'wird ueberprueft'],
+    additional_item_badges_for_list_count: 0,
+    item_badges_for_list: [
+      ['moderator_feedback', 'wird ueberprueft', 'CONSIDERATION'],
+      ['budget', '20€'], ['category', 'candalf']],
     reference_number: '2021-12345'
   }
   render(<BudgetingProposalListItem proposal={proposal} permissions={permissions} />)
@@ -32,7 +35,10 @@ test('render list item with stats', () => {
     url: 'www',
     creator: 'creator',
     created: '2021-11-11T15:37:19.490201+01:00',
-    moderator_feedback: ['CONSIDERATION', 'wird ueberprueft'],
+    additional_item_badges_for_list_count: 0,
+    item_badges_for_list: [
+      ['moderator_feedback', 'wird ueberprueft', 'CONSIDERATION'],
+      ['budget', '20€'], ['category', 'candalf']],
     reference_number: '2021-12345'
   }
   render(
