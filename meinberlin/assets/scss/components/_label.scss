@@ -36,7 +36,8 @@
     font-weight: bold;
 }
 
-.label--consideration {
+.label--consideration,
+.label--checked {
     background-color: $feedback-color-consideration;
     color: $text-color;
 }
