@@ -172,3 +172,11 @@ def is_allowed_change_item(user, item):
                  is_owner(user, item) &
                  phase_predicates.phase_allows_change(user, item)))
     return False
+
+
+def module_is_between_phases(past_phase_type, future_phase_type, module):
+    return (module.phases.active_phases().count() == 0
+            and past_phase_type
+            in [phase.type for phase in module.phases.past_phases()]
+            and future_phase_type
+            in [phase.type for phase in module.phases.future_phases()])

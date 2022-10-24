@@ -1,4 +1,6 @@
 import pytest
+from dateutil.parser import parse
+from freezegun import freeze_time
 
 from adhocracy4.modules import predicates
 from adhocracy4.projects.enums import Access
@@ -600,3 +602,35 @@ def test_is_allowed_view_item(user_factory, question_factory, project_factory,
     assert predicates.is_allowed_view_item(group_member, question)
     assert predicates.is_allowed_view_item(group_member, question_private)
     assert not predicates.is_allowed_view_item(group_member, False)
+
+
+@pytest.mark.django_db
+def test_module_is_between_phases(module, phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2022-01-01 16:00:00 UTC'),
+        end_date=parse('2022-01-01 18:00:00 UTC'),
+        type='phase_content_factory:first_phase',
+        module=module
+    )
+    phase2 = phase_factory(
+        start_date=parse('2022-01-01 20:00:00 UTC'),
+        end_date=parse('2022-01-01 22:00:00 UTC'),
+        type='phase_content_factory:second_phase',
+        module=module
+    )
+
+    with freeze_time('2022-01-01 15:00:00 UTC'):
+        assert not predicates.module_is_between_phases(
+            phase1.type, phase2.type, module)
+    with freeze_time('2022-01-01 17:00:00 UTC'):
+        assert not predicates.module_is_between_phases(
+            phase1.type, phase2.type, module)
+    with freeze_time('2022-01-01 19:00:00 UTC'):
+        assert predicates.module_is_between_phases(
+            phase1.type, phase2.type, module)
+    with freeze_time('2022-01-01 21:00:00 UTC'):
+        assert not predicates.module_is_between_phases(
+            phase1.type, phase2.type, module)
+    with freeze_time('2022-01-01 23:00:00 UTC'):
+        assert not predicates.module_is_between_phases(
+            phase1.type, phase2.type, module)
