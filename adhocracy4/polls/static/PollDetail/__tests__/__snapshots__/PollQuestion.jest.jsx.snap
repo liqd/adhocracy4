@@ -1,0 +1,649 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render <PollQuestion> with... -> multiple-choice -> non-open-asnwers 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <form>
+        <div
+          class="poll"
+        >
+          <h2>
+            My Question
+          </h2>
+          <div
+            class="poll__help-text"
+          >
+            mock text
+          </div>
+          <div
+            class="poll__rows"
+          >
+            <label
+              class="poll-row radio"
+              for="id_choice-1-multiple"
+            >
+              <input
+                class="poll-row__radio"
+                id="id_choice-1-multiple"
+                name="question"
+                type="checkbox"
+                value="1"
+              />
+              <span
+                class="radio__text radio__text--checkbox"
+              >
+                cool1
+              </span>
+            </label>
+            <label
+              class="poll-row radio"
+              for="id_choice-2-multiple"
+            >
+              <input
+                class="poll-row__radio"
+                id="id_choice-2-multiple"
+                name="question"
+                type="checkbox"
+                value="2"
+              />
+              <span
+                class="radio__text radio__text--checkbox"
+              >
+                yeah
+              </span>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <form>
+      <div
+        class="poll"
+      >
+        <h2>
+          My Question
+        </h2>
+        <div
+          class="poll__help-text"
+        >
+          mock text
+        </div>
+        <div
+          class="poll__rows"
+        >
+          <label
+            class="poll-row radio"
+            for="id_choice-1-multiple"
+          >
+            <input
+              class="poll-row__radio"
+              id="id_choice-1-multiple"
+              name="question"
+              type="checkbox"
+              value="1"
+            />
+            <span
+              class="radio__text radio__text--checkbox"
+            >
+              cool1
+            </span>
+          </label>
+          <label
+            class="poll-row radio"
+            for="id_choice-2-multiple"
+          >
+            <input
+              class="poll-row__radio"
+              id="id_choice-2-multiple"
+              name="question"
+              type="checkbox"
+              value="2"
+            />
+            <span
+              class="radio__text radio__text--checkbox"
+            >
+              yeah
+            </span>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`render <PollQuestion> with... -> multiple-choice -> open-asnwers 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <form>
+        <div
+          class="poll"
+        >
+          <h2>
+            My Question
+          </h2>
+          <div
+            class="poll__help-text"
+          >
+            mock text
+          </div>
+          <div
+            class="poll__rows"
+          >
+            <label
+              class="poll-row radio"
+              for="id_choice-1-multiple"
+            >
+              <input
+                class="poll-row__radio"
+                id="id_choice-1-multiple"
+                name="question"
+                type="checkbox"
+                value="1"
+              />
+              <span
+                class="radio__text radio__text--checkbox"
+              >
+                cool1
+              </span>
+            </label>
+            <label
+              class="poll-row radio"
+              for="id_choice-2-multiple"
+            >
+              <input
+                class="poll-row__radio"
+                id="id_choice-2-multiple"
+                name="question"
+                type="checkbox"
+                value="2"
+              />
+              <span
+                class="radio__text radio__text--checkbox"
+              >
+                yeah
+              </span>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <form>
+      <div
+        class="poll"
+      >
+        <h2>
+          My Question
+        </h2>
+        <div
+          class="poll__help-text"
+        >
+          mock text
+        </div>
+        <div
+          class="poll__rows"
+        >
+          <label
+            class="poll-row radio"
+            for="id_choice-1-multiple"
+          >
+            <input
+              class="poll-row__radio"
+              id="id_choice-1-multiple"
+              name="question"
+              type="checkbox"
+              value="1"
+            />
+            <span
+              class="radio__text radio__text--checkbox"
+            >
+              cool1
+            </span>
+          </label>
+          <label
+            class="poll-row radio"
+            for="id_choice-2-multiple"
+          >
+            <input
+              class="poll-row__radio"
+              id="id_choice-2-multiple"
+              name="question"
+              type="checkbox"
+              value="2"
+            />
+            <span
+              class="radio__text radio__text--checkbox"
+            >
+              yeah
+            </span>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`render <PollQuestion> with... -> single-choice -> non-open-asnwers 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <form>
+        <div
+          class="poll"
+        >
+          <h2>
+            My Question
+          </h2>
+          <div
+            class="poll__rows"
+          >
+            <label
+              class="poll-row radio"
+              for="id_choice-1-single"
+            >
+              <input
+                class="poll-row__radio"
+                id="id_choice-1-single"
+                name="question"
+                type="radio"
+                value="1"
+              />
+              <span
+                class="radio__text"
+              >
+                cool1
+              </span>
+            </label>
+            <label
+              class="poll-row radio"
+              for="id_choice-2-single"
+            >
+              <input
+                class="poll-row__radio"
+                id="id_choice-2-single"
+                name="question"
+                type="radio"
+                value="2"
+              />
+              <span
+                class="radio__text"
+              >
+                yeah
+              </span>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <form>
+      <div
+        class="poll"
+      >
+        <h2>
+          My Question
+        </h2>
+        <div
+          class="poll__rows"
+        >
+          <label
+            class="poll-row radio"
+            for="id_choice-1-single"
+          >
+            <input
+              class="poll-row__radio"
+              id="id_choice-1-single"
+              name="question"
+              type="radio"
+              value="1"
+            />
+            <span
+              class="radio__text"
+            >
+              cool1
+            </span>
+          </label>
+          <label
+            class="poll-row radio"
+            for="id_choice-2-single"
+          >
+            <input
+              class="poll-row__radio"
+              id="id_choice-2-single"
+              name="question"
+              type="radio"
+              value="2"
+            />
+            <span
+              class="radio__text"
+            >
+              yeah
+            </span>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`render <PollQuestion> with... -> single-choice -> open-asnwers 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <form>
+        <div
+          class="poll"
+        >
+          <h2>
+            My Question
+          </h2>
+          <div
+            class="poll__rows"
+          >
+            <label
+              class="poll-row radio"
+              for="id_choice-1-single"
+            >
+              <input
+                class="poll-row__radio"
+                id="id_choice-1-single"
+                name="question"
+                type="radio"
+                value="1"
+              />
+              <span
+                class="radio__text"
+              >
+                cool1
+              </span>
+            </label>
+            <label
+              class="poll-row radio"
+              for="id_choice-2-single"
+            >
+              <input
+                class="poll-row__radio"
+                id="id_choice-2-single"
+                name="question"
+                type="radio"
+                value="2"
+              />
+              <span
+                class="radio__text"
+              >
+                yeah
+              </span>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <form>
+      <div
+        class="poll"
+      >
+        <h2>
+          My Question
+        </h2>
+        <div
+          class="poll__rows"
+        >
+          <label
+            class="poll-row radio"
+            for="id_choice-1-single"
+          >
+            <input
+              class="poll-row__radio"
+              id="id_choice-1-single"
+              name="question"
+              type="radio"
+              value="1"
+            />
+            <span
+              class="radio__text"
+            >
+              cool1
+            </span>
+          </label>
+          <label
+            class="poll-row radio"
+            for="id_choice-2-single"
+          >
+            <input
+              class="poll-row__radio"
+              id="id_choice-2-single"
+              name="question"
+              type="radio"
+              value="2"
+            />
+            <span
+              class="radio__text"
+            >
+              yeah
+            </span>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

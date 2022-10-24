@@ -3,8 +3,8 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
 // component and related data to be tested
-import { EditPollQuestion } from '../PollDashboard/EditPollQuestion.jsx'
-import { QUESTION_OBJECT } from './__testdata__/QUESTION_OBJECT'
+import { EditPollQuestion } from '../EditPollQuestion.jsx'
+import { QUESTION_OBJECT } from '../../__testdata__/QUESTION_OBJECT'
 
 describe('<EditPollQuestion> with...', () => {
   test('question textarea', () => {
