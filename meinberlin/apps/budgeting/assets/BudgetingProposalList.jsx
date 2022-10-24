@@ -71,7 +71,7 @@ export const BudgetingProposalList = (props) => {
   }
 
   const getVoteCountText = (votes) => {
-    const countText = django.ngettext('you have 1 vote left', 'you have %s votes left', votes)
+    const countText = django.ngettext('you have 1 vote left.', 'you have %s votes left.', votes)
     return django.interpolate(countText, [votes])
   }
 

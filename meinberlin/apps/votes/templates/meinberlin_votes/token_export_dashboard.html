@@ -4,7 +4,7 @@
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{% translate 'Download voting codes' %}</h1>
 
-    <p class="form-hint u-bottom-divider">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can download the codes in packages of {{ export_size }} per excel file. To generate the codes, please contact {{ contact_email }}{% endblocktranslate %}</p>
+    <p class="form-hint u-bottom-divider">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can download the codes in packages of {{ export_size }} per excel file. To generate the codes, please contact {{ contact_email }}.{% endblocktranslate %}</p>
     <p class="u-bottom-divider">{% blocktranslate %}Number of generated codes: {{ number_of_module_tokens }}.{% endblocktranslate %}</p>
     <ul class="u-list-reset">
         {% if token_export_url %}

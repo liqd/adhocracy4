@@ -4,8 +4,7 @@
 {% block dashboard_project_content %}
 <h1 class="u-first-heading">{% translate 'Generate voting codes' %}</h1>
 
-<p class="form-hint u-bottom-divider">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can generate up to {{ tokens_per_module }} codes. Depending on the number this may take a few minutes.
-{% endblocktranslate %}</p>
+<p class="form-hint u-bottom-divider">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can generate up to {{ tokens_per_module }} codes. Depending on the number this may take a few minutes.{% endblocktranslate %}</p>
 <p class="u-bottom-divider">{% blocktranslate %}Number of generated codes: {{ number_of_module_tokens }}.{% endblocktranslate %} {% blocktranslate %}To download them please go to code download.{% endblocktranslate %}</p>
 
 <form method="POST">
