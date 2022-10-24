@@ -6,6 +6,7 @@ from adhocracy4.phases import predicates as phase_predicates
 from . import models
 from .predicates import is_allowed_delete_vote
 from .predicates import is_allowed_support_item
+from .predicates import is_allowed_view_support
 from .predicates import is_allowed_vote_proposal
 
 rules.add_perm(
@@ -27,6 +28,11 @@ rules.add_perm(
 rules.add_perm(
     'meinberlin_budgeting.support_proposal',
     is_allowed_support_item
+)
+
+rules.add_perm(
+    'meinberlin_budgeting.view_support',
+    is_allowed_view_support(models.Proposal)
 )
 
 rules.add_perm(

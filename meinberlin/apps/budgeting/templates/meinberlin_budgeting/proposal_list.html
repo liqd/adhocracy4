@@ -55,7 +55,12 @@
                     </div>
                 </div>
             </div>
-            {% map_display_points object_list module.settings_instance.polygon %}
+            {% if module.blueprint_type == 'PB3' %}
+                {% has_or_would_have_perm 'meinberlin_budgeting.view_support' request.user module as may_view_support %}
+                {% map_display_points object_list module.settings_instance.polygon 'true' may_view_support|yesno:"false,true" %}
+            {% else %}
+                {% map_display_points object_list module.settings_instance.polygon %}
+            {% endif %}
         </div>
     {% else %}
         {% react_proposals view.module %}

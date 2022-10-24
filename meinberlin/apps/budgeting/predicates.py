@@ -3,6 +3,7 @@ from rules import predicates as rules_predicates
 
 from adhocracy4.modules.predicates import is_context_member
 from adhocracy4.modules.predicates import is_live_context
+from adhocracy4.modules.predicates import module_is_between_phases
 from adhocracy4.phases.predicates import has_feature_active
 from adhocracy4.phases.predicates import phase_allows_delete_vote
 from adhocracy4.phases.predicates import phase_allows_vote
@@ -39,3 +40,17 @@ def is_allowed_support_item(user, item):
              is_live_context(user, item) &
              phase_allows_support(user, item))
     return False
+
+
+@rules.predicate
+def is_allowed_view_support(item_class):
+    @rules.predicate
+    def _view_support(user, module):
+        if module:
+            return has_feature_active(module, item_class, 'support')\
+                | module_is_between_phases('meinberlin_budgeting:support',
+                                           'meinberlin_budgeting:voting',
+                                           module)
+        return False
+
+    return _view_support
