@@ -16,7 +16,7 @@
 }
 
 .dropdown-menu {
-    min-width: 100%;
+    min-width: 100%; // full width on mobile
     padding: 0;
     border: 1px solid $text-color;
     border-radius: 2px;
@@ -30,7 +30,6 @@
         padding: 0.5em;
         color: inherit;
         border-bottom: 1px solid $text-color;
-        white-space: nowrap;
         text-decoration: none;
 
         &:hover,
@@ -63,8 +62,12 @@
         height: 1.6em;
         width: auto;
         vertical-align: middle;
-        margin-right: 0.6em;
+        margin-right: 0.2 * $spacer;
     }
+
+    // @media (min-width: $breakpoint) {
+    //     min-width: revert; // ensure width consistent on larger screens
+    // }
 
     @media print {
         display: none;
