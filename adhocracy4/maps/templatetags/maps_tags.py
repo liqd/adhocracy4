@@ -56,11 +56,11 @@ def get_points(items):
 
 
 @register.simple_tag()
-def map_display_points(items, polygon, hideRatings='false'):
+def map_display_points(items, polygon, hideRatings='false',
+                       hideSupport='true'):
     use_vector_map = 0
     mapbox_token = ''
     omt_token = ''
-
     if (hasattr(settings, 'A4_USE_VECTORMAP') and
             settings.A4_USE_VECTORMAP):
         use_vector_map = 1
@@ -84,6 +84,7 @@ def map_display_points(items, polygon, hideRatings='false'):
             ' data-points="{points}"'
             ' data-polygon="{polygon}"'
             ' data-hide-ratings="{hideRatings}"'
+            ' data-hide-support="{hideSupport}"'
             '></div>'
         ),
         baseurl=settings.A4_MAP_BASEURL,
@@ -93,7 +94,8 @@ def map_display_points(items, polygon, hideRatings='false'):
         attribution=settings.A4_MAP_ATTRIBUTION,
         points=get_points(items),
         polygon=json.dumps(polygon),
-        hideRatings=hideRatings
+        hideRatings=hideRatings,
+        hideSupport=hideSupport
     )
 
 
