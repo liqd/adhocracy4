@@ -55,7 +55,10 @@ export const ControlBarDropdown = props => {
           const icon = filter.icons && getIcon(choice[0])
           return (
             <li key={`filter-choice_${idx}`}>
-              <button onClick={() => onSelectFilter(choice)}>
+              <button
+                className="dropdown-item"
+                onClick={() => onSelectFilter(choice)}
+              >
                 {icon && (
                   <img className="dropdown-item__icon" src={icon[1]} alt="" />
                 )}
