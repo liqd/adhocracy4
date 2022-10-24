@@ -37,7 +37,7 @@ def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
 
     # filter info
     assert 'filters' in response.data
-    assert len(response.data['filters']) == 3
+    assert len(response.data['filters']) == 4
 
     assert 'category' in response.data['filters']
     assert response.data['filters']['category']['label'] == _('Category')
@@ -52,6 +52,16 @@ def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
     assert response.data['filters']['is_archived']['choices'] == \
            [('', _('All')), ('false', _('No')), ('true', _('Yes'))]
     assert response.data['filters']['is_archived']['default'] == 'false'
+
+    assert 'moderator_feedback' in response.data['filters']
+    assert response.data['filters']['moderator_feedback']['label'] == \
+        _('Status')
+    assert response.data['filters']['moderator_feedback']['choices'] == \
+           [('', _('All')),
+            ('CONSIDERATION', _('Under consideration')),
+            ('CHECKED', _('Checked')),
+            ('REJECTED', _('Rejected')),
+            ('ACCEPTED', _('Accepted'))]
 
     assert 'ordering' in response.data['filters']
     assert response.data['filters']['ordering']['label'] == _('Ordering')
@@ -77,7 +87,7 @@ def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
 
     response = apiclient.get(url)
     assert 'filters' in response.data
-    assert len(response.data['filters']) == 4
+    assert len(response.data['filters']) == 5
     assert 'labels' in response.data['filters']
     assert (str(label1.pk), label1.name) in \
            response.data['filters']['labels']['choices']

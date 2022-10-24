@@ -17,6 +17,7 @@ from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
 from meinberlin.apps.contrib.templatetags.contrib_tags import \
     get_proper_elided_page_range
+from meinberlin.apps.moderatorfeedback.models import DEFAULT_CHOICES
 from meinberlin.apps.votes.api import VotingTokenInfoMixin
 
 from .models import Proposal
@@ -101,6 +102,15 @@ class ProposalFilterInfoMixin:
             'default': 'false',
         }
 
+        # moderator feedback filter
+        moderator_feedback_choices = (
+            [('', _('All'))] + [choice for choice in DEFAULT_CHOICES]
+        )
+        filters['moderator_feedback'] = {
+            'label': _('Status'),
+            'choices': moderator_feedback_choices
+        }
+
         # ordering filter
         ordering_choices = [('-created', _('Most recent')), ]
         # only show sort by rating when rating is allowed at anytime in module
@@ -167,7 +177,10 @@ class ProposalViewSet(ModuleMixin,
                        OrderingFilterWithDailyRandom,
                        IdeaCategoryFilterBackend,
                        SearchFilter,)
-    filter_fields = ('is_archived', 'category', 'labels',)
+    filter_fields = ('is_archived',
+                     'category',
+                     'labels',
+                     'moderator_feedback')
     ordering_fields = ('created',
                        'comment_count',
                        'positive_rating_count',
