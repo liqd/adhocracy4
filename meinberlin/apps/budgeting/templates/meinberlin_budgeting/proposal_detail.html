@@ -11,7 +11,9 @@
     {% if module.blueprint_type == 'PB3' and proposal|has_feature:"support" %}
         {% has_or_would_have_perm 'meinberlin_budgeting.support_proposal' request.user proposal as may_support_proposal %}
         {% if may_support_proposal %}
+        <div class="lr-bar__left">
             {% react_support proposal %}
+        </div>
         {% endif %}
     {% else %}
         {{ block.super }}
