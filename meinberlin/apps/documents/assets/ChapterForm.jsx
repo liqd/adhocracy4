@@ -1,7 +1,7 @@
 const React = require('react')
 const FlipMove = require('react-flip-move').default
 const django = require('django')
-const ErrorList = require('../../contrib/assets/ErrorList')
+const ErrorList = require('adhocracy4/adhocracy4/static/ErrorList')
 const ParagraphForm = require('./ParagraphForm')
 const chapterTitleStr = django.gettext('Chapter title')
 const addParagraphStr = django.gettext('Add a new paragraph')

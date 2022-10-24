@@ -1,6 +1,6 @@
 const React = require('react')
 const django = require('django')
-const ErrorList = require('../../contrib/assets/ErrorList')
+const ErrorList = require('adhocracy4/adhocracy4/static/ErrorList')
 const headlineStr = django.gettext('Headline')
 const paragraphStr = django.gettext('Paragraph')
 const moveUpStr = django.gettext('Move up')

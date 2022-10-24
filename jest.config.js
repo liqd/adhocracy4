@@ -20,11 +20,21 @@ const config = {
     '!**/node_modules/**',
     '!**/babel.config.js',
     '!**/jest.setup.js',
-    '!**/chrome/**'
+    '!**/chrome/**',
+    '!**/site-packages/adhocracy4/**',
+    '!static/**'
+  ],
+  testPathIgnorePatterns: [
+    '/(.*/site-packages/adhocracy4/.*)/',
+    '/(static/.*)/'
   ],
   transform: {
     '^.+\\.[t|j]sx?$': 'babel-jest'
-  }
+  },
+  transformIgnorePatterns: [
+  // transpile all node_modules, not great?
+    '/node_modules/(?!(.*)/)'
+  ]
 }
 
 module.exports = config
