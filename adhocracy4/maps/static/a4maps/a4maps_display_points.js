@@ -20,6 +20,7 @@ function init () {
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const points = JSON.parse(e.getAttribute('data-points'))
     const hideRatings = e.getAttribute('data-hide-ratings')
+    const hideSupport = e.getAttribute('data-hide-support')
     let initial = 0
 
     const map = createMap(L, e, {
@@ -82,25 +83,42 @@ function init () {
     }
 
     function getRatings (feature) {
+      return '<span class="map-popup-upvotes">' +
+               feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
+             '</span>' +
+             '<span class="map-popup-downvotes">' +
+               feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
+             '</span>'
+    }
+
+    function getSupport (feature) {
+      return '<span class="map-popup-upvotes">' +
+               feature.properties.positive_rating_count + ' <i class="fa fa-thumbs-up" aria-hidden="true"></i>' +
+             '</span>'
+    }
+
+    function getCommentCount (feature) {
+      return '<span class="map-popup-comments-count">' +
+               feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
+             '</span>'
+    }
+
+    function getPopUpContent (feature) {
+      let popupContent = getImage(feature) +
+                         '<div class="maps-popups-popup-text-content">' +
+                         '<div class="maps-popups-popup-meta">'
       if (hideRatings === 'false' || hideRatings === null) {
-        return '<div class="maps-popups-popup-meta">' +
-            '<span class="map-popup-upvotes">' +
-            feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
-            '</span>' +
-            '<span class="map-popup-downvotes">' +
-            feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
-            '</span>' +
-            '<span class="map-popup-comments-count">' +
-            feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
-            '</span>' +
-        '</div>'
-      } else if (hideRatings === 'true') {
-        return '<div class="maps-popups-popup-meta">' +
-            '<span class="map-popup-comments-count">' +
-            feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
-            '</span>' +
-        '</div>'
+        popupContent += getRatings(feature)
+      } else if (hideSupport === 'false') {
+        popupContent += getSupport(feature)
       }
+      popupContent += getCommentCount(feature) +
+                      '</div>' +
+                      '<div class="maps-popups-popup-name">' +
+                          '<a href="' + feature.properties.url + '">' + escapeHtml(feature.properties.name) + '</a>' +
+                      '</div>' +
+                      '</div>'
+      return popupContent
     }
 
     const defaultIcon = L.icon({
@@ -132,14 +150,7 @@ function init () {
 
         const marker = L.marker(latlng, { icon })
         cluster.addLayer(marker)
-        const popupContent = getImage(feature) +
-                          '<div class="maps-popups-popup-text-content">' +
-                          getRatings(feature) +
-                            '<div class="maps-popups-popup-name">' +
-                                '<a href="' + feature.properties.url + '">' + escapeHtml(feature.properties.name) + '</a>' +
-                            '</div>' +
-                          '</div>'
-        marker.bindPopup(popupContent, customOptions)
+        marker.bindPopup(getPopUpContent(feature), customOptions)
         return marker
       }
     })
