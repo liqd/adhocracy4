@@ -3,15 +3,25 @@
 
     select,
     .control-bar__item,
-    .btn-group__container {
+    .btn-group__container,
+    .control-bar__item input {
         display: inline-block;
         vertical-align: top;
         margin-bottom: 0;
 
         & > button,
         & > div.btn-group,
-        & > form > input {
+        & > form {
             margin-bottom: $spacer;
+        }
+    }
+
+    @media (max-width: $breakpoint) {
+        .dropdown-toggle,
+        .control-bar__item,
+        .control-bar__item button {
+            width: 100%;
+            max-width: none;
         }
     }
 
@@ -27,46 +37,15 @@
         }
     }
 
-    @media (max-width: $breakpoint) {
-        > * {
-            // @include grid-same-width(2);
-        }
+    .control-bar__right {
+        margin-left: 0;
 
-        .dropdown-toggle,
-        .control-bar__item,
-        .control-bar__item button {
-            width: 100%;
-            max-width: none;
-        }
-    }
-
-    @media (max-width: $breakpoint-xs) {
-        > * {
-            // @include grid-same-width(1);
-        }
-
-        .btn-group {
+        @media (min-width: $breakpoint) {
             float: right;
         }
     }
 
-    .control-bar__right {
-        float: right;
-
-        @media (max-width: $breakpoint) {
-            // push to the right
-            // NOTE: needs to overwrite grid-tiles
-
-            // @include grid-cell;
-            // @include grid-position(6);
-        }
-
-        @media (max-width: $breakpoint-xs) {
-            margin-left: 0;
-        }
-    }
-
-    // firfox workaround for not shrinking felx item
+    // firfox workaround for not shrinking flex item
     .input-group__input {
         min-width: 0;
     }

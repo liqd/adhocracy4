@@ -59,6 +59,9 @@
                         <a href="#cl-component-library" class="dashboard-nav__item dashboard-nav__item--interactive">Component Library</a>
                     </li>
                     <li class="dashboard-nav__page">
+                        <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Control Bar</a>
+                    </li>
+                    <li class="dashboard-nav__page">
                         <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Copyright</a>
                     </li>
                     <li class="dashboard-nav__page">
@@ -77,7 +80,7 @@
                         <a href="#cl-embed-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Embed Layout</a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Control Bar</a>
+                        <a href="#cl-filter_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar (Project overview)</a>
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="#cl-filter-primary_menu" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Menu - Primary</a>
@@ -631,177 +634,178 @@
             <h2 id="cl-commenting">Comments</h2>
 
             <div class="cl-example">
-              <div>
-                  <div class="a4-comments__commentbox__form">
-                      <div>
-                          <form id="id-comment-form" class="general-form"><textarea id="textarea-top" class="a4-comments__textarea--big form-group" placeholder="Ihr Kommentar" required="" style="height: 46px;"></textarea>
-                              <div class="row">
-                                  <div class="col-12 col-sm-8"><label for="id-comment-form" class="a4-comments__char-count">0/4000 Zeichen</label></div>
-                                  <div class="d-flex col-12 col-sm-4 align-items-center"><button type="submit" class="btn a4-comments__submit-input ms-auto">Senden</button></div>
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-                  <div class="a4-comments__filters__parent">
-                      <div class="a4-comments__filters__parent--closed">
-                          <div class="a4-comments__filters__text">1 Beiträge</div>
-                          <div class="d-none"><span class="a4-comments__filters__span">1 Beitrag gefunden zu: </span></div><button class="btn a4-comments__filters__show-btn" type="button"><i class="fas fa-sliders-h ms-2"
-                                aria-label="Filter ausblenden"></i>Filter</button>
-                      </div>
-                  </div>
-                  <div class="a4-comments__filters__parent">
-                    <div class="a4-comments__filters__parent--closed">
-                        <div class="a4-comments__filters__text">1 Beiträge</div>
-                        <div class="d-none"><span class="a4-comments__filters__span">1 Beitrag gefunden zu: </span></div><button class="btn a4-comments__filters__show-btn" type="button"><i class="fas fa-times ms-2"
-                              aria-label="Filter ausblenden"></i>Filter ausblenden</button>
+                <div>
+                    <div class="a4-comments__commentbox__form">
+                        <div>
+                            <form id="id-comment-form" class="general-form"><textarea id="textarea-top" class="a4-comments__textarea--big form-group" placeholder="Ihr Kommentar" required="" style="height: 46px;"></textarea>
+                                <div class="row">
+                                    <div class="col-12 col-sm-8"><label for="id-comment-form" class="a4-comments__char-count">0/4000 Zeichen</label></div>
+                                    <div class="d-flex col-12 col-sm-4 align-items-center"><button type="submit" class="btn a4-comments__submit-input ms-auto">Senden</button></div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="a4-comments__filters">
-                        <div class="a4-comments__filters__search" role="search"><input class="form-control a4-comments__filters__search-input mb-0" type="text" id="search-input" placeholder="Beiträge durchsuchen" value=""><button class="d-none"
-                              type="button"><span class="fa-stack fa-2x"><i class="far fa-circle fa-stack-2x"></i><i class="fas fa-times fa-stack-1x" aria-label="Suche aufheben"></i></span></button><button
-                              class="input-group-append a4-comments__filters__search-btn btn btn--transparent" type="button"><i class="fas fa-search" aria-label="Beiträge durchsuchen"></i></button></div>
-                        <div class="col-lg-3"></div>
-                        <div class="a4-comments__filters__dropdown">
-                            <div class="dropdown"><button class="btn btn--select dropdown-toggle a4-comments__filters__btn" type="button" id="sortDropdownBtn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
-                                      class="a4-comments__filters__btn-text">sortiert nach: Neueste</span><span class="d-none">Neueste</span><i class="fa fa-caret-down" aria-hidden="true"></i></button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdownBtn"><button class="dropdown-item" id="pos" href="#">Meiste Zustimmung</button><button class="dropdown-item" id="neg" href="#">Meiste
-                                        Ablehnung</button><button class="dropdown-item" id="ans" href="#">Meiste Antworten</button><button class="dropdown-item" id="dis" href="#">Zuletzt diskutiert</button></div>
+                    <div class="a4-comments__filters__parent">
+                        <div class="a4-comments__filters__parent--closed">
+                            <div class="a4-comments__filters__text">1 Beiträge</div>
+                            <div class="d-none"><span class="a4-comments__filters__span">1 Beitrag gefunden zu: </span></div><button class="btn a4-comments__filters__show-btn" type="button"><i class="fas fa-sliders-h ms-2"
+                                  aria-label="Filter ausblenden"></i>Filter</button>
+                        </div>
+                    </div>
+                    <div class="a4-comments__filters__parent">
+                        <div class="a4-comments__filters__parent--closed">
+                            <div class="a4-comments__filters__text">1 Beiträge</div>
+                            <div class="d-none"><span class="a4-comments__filters__span">1 Beitrag gefunden zu: </span></div><button class="btn a4-comments__filters__show-btn" type="button"><i class="fas fa-times ms-2"
+                                  aria-label="Filter ausblenden"></i>Filter ausblenden</button>
+                        </div>
+                        <div class="a4-comments__filters">
+                            <div class="a4-comments__filters__search" role="search"><input class="form-control a4-comments__filters__search-input mb-0" type="text" id="search-input" placeholder="Beiträge durchsuchen" value=""><button class="d-none"
+                                  type="button"><span class="fa-stack fa-2x"><i class="far fa-circle fa-stack-2x"></i><i class="fas fa-times fa-stack-1x" aria-label="Suche aufheben"></i></span></button><button
+                                  class="input-group-append a4-comments__filters__search-btn btn btn--transparent" type="button"><i class="fas fa-search" aria-label="Beiträge durchsuchen"></i></button></div>
+                            <div class="col-lg-3"></div>
+                            <div class="a4-comments__filters__dropdown">
+                                <div class="dropdown"><button class="btn btn--select dropdown-toggle a4-comments__filters__btn" type="button" id="sortDropdownBtn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                          class="a4-comments__filters__btn-text">sortiert nach: Neueste</span><span class="d-none">Neueste</span><i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdownBtn"><button class="dropdown-item" id="pos" href="#">Meiste Zustimmung</button><button class="dropdown-item" id="neg" href="#">Meiste
+                                            Ablehnung</button><button class="dropdown-item" id="ans" href="#">Meiste Antworten</button><button class="dropdown-item" id="dis" href="#">Zuletzt diskutiert</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="a4-comments__box">
+                        <div class="a4-comments__list">
+                            <div>
+                                <div>
+                                    <div class="a4-comments__comment a4-comments__comment-owner"><a class="a4-comments__anchor" id="comment_20" href="./?comment=20">Comment 20</a>
+                                        <div class="modal fade" id="report_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
+                                                    <div class="modal-body undefined">
+                                                        <h3 class="modal-title u-first-heading">Sie möchten diesen Beitrag melden? Ihre Nachricht wird an die Moderation weitergeleitet. Diese prüft den gemeldeten Beitrag. Er wird gelöscht, wenn er
+                                                            nicht unseren
+                                                            Diskussionsregeln (Netiquette) entspricht.</h3>
+                                                        <div class="form-group"><textarea rows="5" class="form-control report-message" placeholder="Ihre Nachricht"></textarea></div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="row"><button class="submit-button" data-bs-dismiss="false">Meldung senden</button></div>
+                                                        <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="share_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
+                                                    <div class="modal-body undefined">
+                                                        <h3 class="modal-title u-first-heading"></h3>
+                                                        <div class="input-group"><input id="share-url-20" type="text" class="form-control" readonly="" value="http://localhost:8003/budgeting/2022-00012/?comment=20"><button
+                                                              class="btn btn--transparent input-group-append modal-url-bar-button" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Kopieren</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="comment_delete_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
+                                                    <div class="modal-body undefined">
+                                                        <h3 class="modal-title u-first-heading">Möchten Sie diesen Kommentar wirklich löschen?</h3>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="row"><button class="submit-button" data-bs-dismiss="modal">Löschen</button></div>
+                                                        <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="a4-comments__box">
+                                            <div class="a4-comments__box--user">
+                                                <div class="row">
+                                                    <div class="col-2 col-lg-1 a4-comments__user-img"></div>
+                                                    <div class="col-7 col-md-8 a4-comments__author-container">
+                                                        <div class="a4-comments__author">admin</div><span class="a4-comments__moderator">Moderation</span><time class="a4-comments__submission-date">27. September 2022, 08:28</time>
+                                                    </div>
+                                                    <div class="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
+                                                        <div class="dropdown a4-comments__dropdown"><button type="button" class="dropdown-toggle btn btn--link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"><i
+                                                                  class="fas fa-ellipsis-h" aria-hidden="true"></i></button>
+                                                            <div class="dropdown-menu dropdown-menu-end"><button class="dropdown-item" type="button">Bearbeiten</button>
+                                                                <div class="divider"></div><a class="dropdown-item" href="#comment_delete_20" data-bs-toggle="modal">Löschen</a>
+                                                                <div class="divider"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="a4-comments__text">
+                                                        <p>{% lorem 20 w random %}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6 a4-comments__read-btn-container">Read More</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 a4-comments__action-bar-container">
+                                                    <div class="rating"><button aria-label="Click to vote up" class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button><button aria-label="Click to vote down"
+                                                          class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button></div>
+                                                    <div class="a4-comments__action-bar">
+                                                        <button class="btn btn--no-border a4-comments__action-bar__btn" type="button">
+                                                            <a href="#child-comment-form">
+                                                                <i class="far fa-comment" aria-hidden="true"></i>
+                                                                Antworten
+                                                            </a>
+                                                        </button>
+                                                        <a class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_20" data-bs-toggle="modal" data-bs-target="#share_comment_20"><i class="fas fa-share"></i> Teilen</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 a4-comments__action-bar-container">
+                                                    <div class="rating"><button aria-label="Click to vote up" class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button><button aria-label="Click to vote down"
+                                                          class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button></div>
+                                                    <div class="a4-comments__action-bar"><button class="btn btn--no-border a4-comments__action-bar__btn" type="button"><a href="#child-comment-form"><i class="fa fa-minus" aria-hidden="true"></i>
+                                                                Antworten ausblenden</a></button><a class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_20" data-bs-toggle="modal" data-bs-target="#share_comment_20"><i
+                                                              class="fas fa-share"></i> Teilen</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="a4-comments__child--list">
+                                            <div class="row a4-comments__list">
+                                                <div class="col-12 ms-3">
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 ms-3">
+                                                    <div>
+                                                        <form id="id-comment-form" class="general-form">
+                                                            <textarea id="textarea-top" class="a4-comments__textarea--big form-group" placeholder="Ihre Antwort" required="" style="height: 46px;"></textarea>
+                                                            <div class="row">
+                                                                <div class="col-12 col-sm-8">
+                                                                    <label for="id-comment-form" class="a4-comments__char-count">0/4000 Zeichen</label>
+                                                                </div>
+                                                                <div class="d-flex col-12 col-sm-4 align-items-center">
+                                                                    <button type="submit" class="btn a4-comments__submit-input ms-auto">Senden</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="a4-comments__box">
-                      <div class="a4-comments__list">
-                          <div>
-                              <div>
-                                  <div class="a4-comments__comment a4-comments__comment-owner"><a class="a4-comments__anchor" id="comment_20" href="./?comment=20">Comment 20</a>
-                                      <div class="modal fade" id="report_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                          <div class="modal-dialog modal-lg" role="document">
-                                              <div class="modal-content">
-                                                  <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
-                                                  <div class="modal-body undefined">
-                                                      <h3 class="modal-title u-first-heading">Sie möchten diesen Beitrag melden? Ihre Nachricht wird an die Moderation weitergeleitet. Diese prüft den gemeldeten Beitrag. Er wird gelöscht, wenn er nicht unseren
-                                                          Diskussionsregeln (Netiquette) entspricht.</h3>
-                                                      <div class="form-group"><textarea rows="5" class="form-control report-message" placeholder="Ihre Nachricht"></textarea></div>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                      <div class="row"><button class="submit-button" data-bs-dismiss="false">Meldung senden</button></div>
-                                                      <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="modal fade" id="share_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                          <div class="modal-dialog modal-lg" role="document">
-                                              <div class="modal-content">
-                                                  <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
-                                                  <div class="modal-body undefined">
-                                                      <h3 class="modal-title u-first-heading"></h3>
-                                                      <div class="input-group"><input id="share-url-20" type="text" class="form-control" readonly="" value="http://localhost:8003/budgeting/2022-00012/?comment=20"><button
-                                                            class="btn btn--transparent input-group-append modal-url-bar-button" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Kopieren</button></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="modal fade" id="comment_delete_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                          <div class="modal-dialog modal-lg" role="document">
-                                              <div class="modal-content">
-                                                  <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
-                                                  <div class="modal-body undefined">
-                                                      <h3 class="modal-title u-first-heading">Möchten Sie diesen Kommentar wirklich löschen?</h3>
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                      <div class="row"><button class="submit-button" data-bs-dismiss="modal">Löschen</button></div>
-                                                      <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="a4-comments__box">
-                                          <div class="a4-comments__box--user">
-                                              <div class="row">
-                                                  <div class="col-2 col-lg-1 a4-comments__user-img"></div>
-                                                  <div class="col-7 col-md-8 a4-comments__author-container">
-                                                      <div class="a4-comments__author">admin</div><span class="a4-comments__moderator">Moderation</span><time class="a4-comments__submission-date">27. September 2022, 08:28</time>
-                                                  </div>
-                                                  <div class="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
-                                                      <div class="dropdown a4-comments__dropdown"><button type="button" class="dropdown-toggle btn btn--link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-h"
-                                                                aria-hidden="true"></i></button>
-                                                          <div class="dropdown-menu dropdown-menu-end"><button class="dropdown-item" type="button">Bearbeiten</button>
-                                                              <div class="divider"></div><a class="dropdown-item" href="#comment_delete_20" data-bs-toggle="modal">Löschen</a>
-                                                              <div class="divider"></div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-12">
-                                                  <div class="a4-comments__text">
-                                                      <p>{% lorem 20 w random %}</p>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-6 a4-comments__read-btn-container">Read More</div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-12 a4-comments__action-bar-container">
-                                                  <div class="rating"><button aria-label="Click to vote up" class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button><button aria-label="Click to vote down"
-                                                        class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button></div>
-                                                  <div class="a4-comments__action-bar">
-                                                    <button class="btn btn--no-border a4-comments__action-bar__btn" type="button">
-                                                      <a href="#child-comment-form">
-                                                        <i class="far fa-comment" aria-hidden="true"></i>
-                                                              Antworten
-                                                      </a>
-                                                    </button>
-                                                    <a class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_20" data-bs-toggle="modal" data-bs-target="#share_comment_20"><i class="fas fa-share"></i> Teilen</a>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-12 a4-comments__action-bar-container">
-                                                  <div class="rating"><button aria-label="Click to vote up" class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button><button aria-label="Click to vote down"
-                                                        class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button></div>
-                                                  <div class="a4-comments__action-bar"><button class="btn btn--no-border a4-comments__action-bar__btn" type="button"><a href="#child-comment-form"><i class="fa fa-minus" aria-hidden="true"></i>
-                                                              Antworten ausblenden</a></button><a class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_20" data-bs-toggle="modal" data-bs-target="#share_comment_20"><i
-                                                            class="fas fa-share"></i> Teilen</a></div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="container">
-                                      <div class="a4-comments__child--list">
-                                          <div class="row a4-comments__list">
-                                              <div class="col-12 ms-3">
-                                                  <div></div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-12 ms-3">
-                                                  <div>
-                                                      <form id="id-comment-form" class="general-form">
-                                                          <textarea id="textarea-top" class="a4-comments__textarea--big form-group" placeholder="Ihre Antwort" required="" style="height: 46px;"></textarea>
-                                                          <div class="row">
-                                                              <div class="col-12 col-sm-8">
-                                                                <label for="id-comment-form" class="a4-comments__char-count">0/4000 Zeichen</label>
-                                                              </div>
-                                                              <div class="d-flex col-12 col-sm-4 align-items-center">
-                                                                <button type="submit" class="btn a4-comments__submit-input ms-auto">Senden</button>
-                                                              </div>
-                                                          </div>
-                                                      </form>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div><i class="fa fa-spinner fa-pulse"></i></div>
+                <div><i class="fa fa-spinner fa-pulse"></i></div>
 
             </div>
 
@@ -835,6 +839,83 @@
             <div class="cl-example">
                 <div class="cl-example">
                     Every component in the component library has a border and some padding.
+                </div>
+            </div>
+
+            <h2 id="cl-control_bar">Control Bar and Input Group</h2>
+
+            <div class="cl-example">
+                <p>Control Bars are intended to be used atop of lists of elements or maps.</p>
+                <p>Control Bars may only contain <a href="#">Buttons</a>, <a href="#">Dropdowns</a> and <code>input-groups</code>.</p>
+                <p>Note that they are located within the <code>_control-bar.scss</code> file.</p>
+                <div class="cl-example">
+                    <div class="control-bar" role="group" aria-label="Filterleiste">
+                        <div class="control-bar__item">
+                            <form class="input-group" method="get">
+                                <label for="search" class="visually-hidden">
+                                    Suchen
+                                </label>
+                                <input class="form-control" type="search" id="search" name="search" placeholder="Suchen" value="">
+                                <input type="hidden" name="ordering" value="-created">
+                                <div class="input-group-append">
+                                    <button class="btn btn--light btn--attached-right" type="submit">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                        <span class="visually-hidden">
+                                            Suchen
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="dropdown control-bar__item">
+                            <button type="button" class="dropdown-toggle btn btn--light btn--select" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false" id="id_labels">
+                                Merkmal: Alle
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </button>
+                            <ul aria-labelledby="id_labels" class="dropdown-menu">
+                                <li><a class="selected" href="?ordering=-created&amp;labels=">Alle</a></li>
+                                <li><a href="?ordering=-created&amp;labels=1">label 1</a></li>
+                                <li><a href="?ordering=-created&amp;labels=2">label 2</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown control-bar__item">
+                            <button type="button" class="dropdown-toggle btn btn--light btn--select" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false" id="id_category">
+                                Kategorie: Alle
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </button>
+                            <ul aria-labelledby="id_category" class="dropdown-menu">
+                                <li><a class="selected" href="?ordering=-created&amp;category=">Alle</a></li>
+                                <li><a href="?ordering=-created&amp;category=1"><span class="dropdown-item__label">first category</span></a></li>
+                                <li><a href="?ordering=-created&amp;category=2"><span class="dropdown-item__label">second category</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="control-bar__right">
+                            <div class="dropdown control-bar__item">
+                                <button type="button" class="dropdown-toggle btn btn--light btn--select" data-bs-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false" id="id_ordering">
+                                    Sortierung: am aktuellsten
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+                                <ul aria-labelledby="id_ordering" class="dropdown-menu">
+                                    <li><a class="selected" href="?ordering=-created">am aktuellsten</a></li>
+                                    <li><a href="?ordering=-positive_rating_count">am beliebtesten</a></li>
+                                    <li><a href="?ordering=-comment_count">meist kommentiert</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        <div class="container">
+                            <ul class="u-list-reset">
+                                <li class="list-item list-item--squashed">
+                                    {% lorem 20 w random %}
+                                </li>
+                                <li class="list-item list-item--squashed">
+                                    {% lorem 20 w random %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -956,836 +1037,783 @@
                 </section>
             </div>
 
-            <h2 id="cl-control_bar">Control Bar and Input Group</h2>
+            <h2 id="cl-filter-primary_menu">Filter Menu - Primary</h2>
 
             <div class="cl-example">
-                <p>Control Bars are intended to be used atop of lists of elements or maps.</p>
-                <p>Control Bars may only contain <a href="#">Buttons</a>, <a href="#">Dropdowns</a> and <code>input-groups</code>.</p>
-                <p>Note that they are somehow located within the <code>_filter_bar.scss</code> file.</p>
-                <div class="cl-example">
-                    <div class="control-bar" role="group" aria-label="Control bar">
-                        <div class="control-bar">
-                            <div class="btn-group__container">
-                                <div class="btn-group" role="group">
-                                    <a class="btn btn--light switch--btn" href="?mode=list" aria-label="Listenansicht">
-                                        <i class="fa fa-list"></i>
-                                        <span>List</span>
-                                    </a>
-                                    <div class="btn btn--light switch--btn active" aria-label="Kartenansicht">
-                                        <i class="fa fa-map"></i>
-                                        <span>Map</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="control-bar__item">
-                                <form class="input-group">
-                                    <label for="id-filter-search" class="visually-hidden">
-                                        Search
-                                    </label>
-                                    <input class="form-control" type="search" id="id-filter-search" placeholder="Search" value="" />
-                                    <div class="input-group-append">
-                                        <button class="btn btn--light btn--attached-right" type="submit">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                            <span class="visually-hidden">
-                                                Search
-                                            </span>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="dropdown control-bar__item">
-                                <button type="button" class="dropdown-toggle btn btn--light btn--select">
-                                    Category: All
-                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                            <div class="control-bar__right">
-                                <div class="dropdown">
-                                    <button type="button" class="dropdown-toggle btn btn--light btn--select">
-                                        Ordering: Most recent
-                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="module-content">
-                            <div class="container">
-                                <ul class="u-list-reset">
-                                    <li class="list-item list-item--squashed">
-                                        {% lorem 20 w random %}
-                                    </li>
-                                    <li class="list-item list-item--squashed">
-                                        {% lorem 20 w random %}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="filter-bar filter-bar--horizontal" role="group" aria-label="Filter bar">
+                    <span class="filter-bar__project-text">I am interested in projects from</span>
+                    <div class="filter-bar__dropdown">
+                        <button class="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
                     </div>
-                </div>
-
-
-                <h2 id="cl-filter-primary_menu">Filter Menu - Primary</h2>
-
-                <div class="cl-example">
-                    <div class="filter-bar filter-bar--horizontal" role="group" aria-label="Filter bar">
-                        <span class="filter-bar__project-text">I am interested in projects from</span>
-                        <div class="filter-bar__dropdown">
-                            <button class="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
-                        </div>
-                        <span class="u-md-down-display-none"> in the area of </span>
-                        <div class="filter-bar__dropdown">
-                            <button class="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn--small btn--transparent filter-bar__btn--light">
-                                <i class="fas fa-sliders-h" aria-label="more filters"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-
-                <h2 id="cl-filter-primary_menu">Filter Menu - Stacked Primary</h2>
-
-                <div class="cl-example">
-                    <div class="filter-bar filter-bar--stacked" role="group" aria-label="Filter bar" style="width: 50%;">
-                        <span class="filter-bar__project-text">I am interested in projects from</span>
-                        <div className="filter-bar__dropdown">
-                            <button class="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
-                        </div>
-                        <div className="filter-bar__dropdown">
-                            <button class="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="u-spacer-top btn btn--small btn--transparent btn--full u-spacer-bottom filter-bar__btn--light" style="margin-left: 0px;">
-                                more filters
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-
-                <h2 id="cl-filter-secondary_menu">Filter Menu - Secondary</h2>
-
-                <div class="cl-example">
-                    <form class="filter-bar__menu">
-                        <div class="input-group">
-                            <label for="id-filter-search" class="visually-hidden">
-                                Search title
-                            </label>
-                            <input class="form-control" type="search" id="id-filter-search" placeholder="Search title" value="" />
-                            <div class="input-group-append">
-                                <button class="btn btn--light btn--attached-right" type="submit">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                    <span class="visually-hidden">
-                                        Search title
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="filter-bar__menu-radio-group">
-                            <div class="filter-bar__menu-radio-part">
-                                <fieldset class="u-no-border u-no-margin u-no-padding">
-                                    <legend>
-                                        <h2 class="u-no-margin">Choice input - styled radios</h2>
-                                    </legend>
-                                    <div class="btn-group " role="group">
-                                        <label class="btn btn--light switch--btn">
-                                            <input class="radio__input" type="radio" />
-                                            <span>all</span>
-                                        </label>
-                                        <label class="btn btn--light switch--btn active">
-                                            <input class="radio__input" type="radio" />
-                                            <span> choice </span>
-                                        </label>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="typeahead__input-label">
-                                <h2 class="u-no-margin">Look up input with autocomplete </h2>
-                            </div>
-                            <span class="typeahead__input-group">
-                                <span class="typeahead__input-group-prepend">
-                                    <span class="typeahead__input-group-text">
-                                        <i class="fas fa-sort-alpha-down"></i>
-                                    </span>
-                                </span>
-                                <input class="input-group__input" placeholder="Enter the name of the organisation" style="width: 85%;" />
-                            </span>
-                        </div>
-
-                        <button class="btn btn--primary filter-secondary__btn" type="submit">
-                            show projects
+                    <span class="u-md-down-display-none"> in the area of </span>
+                    <div class="filter-bar__dropdown">
+                        <button class="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
                         </button>
-                    </form>
-                </div>
-
-
-
-                <h2 id="cl-footer">Footer</h2>
-
-                <div class="cl-example">
-                    <footer class="main-footer">
-                        <div class="container">
-                            <div class="shariff" data-theme="white">
-                                <ul class="theme-white orientation-horizontal col-4">
-                                    <li class="shariff-button twitter">
-                                        <a href="#" data-rel="popup" rel="nofollow" title="Bei Twitter teilen" role="button" aria-label="Bei Twitter teilen">
-                                            <span class="fab fa-twitter"></span>
-                                            <span class="share_text">tweet</span>
-                                        </a>
-                                    </li>
-                                    <li class="shariff-button ">
-                                        <a href="#" data-rel="popup" rel="nofollow" title="Bei Facebook teilen" role="button" aria-label="Bei Facebook teilen">
-                                            <span class="fab fa-facebook"></span>
-                                            <span class="share_text">teilen</span>
-                                        </a>
-                                    </li>
-                                    <li class="shariff-button googleplus">
-                                        <a href="#cl-footer" data-rel="popup" rel="nofollow" title="Bei Google+ teilen" role="button" aria-label="Bei Google+ teilen">
-                                            <span class="fab fa-google-plus-g"></span>
-                                            <span class="share_text">teilen</span>
-                                        </a>
-                                    </li>
-                                    <li class="shariff-button info">
-                                        <a href="#" title="Weitere Informationen" role="button" aria-label="Weitere Informationen">
-                                            <span class="fa fa-info"></span>
-                                            <span class="share_text">Info</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <nav class="footer-nav"></nav>
-                        </div>
-                    </footer>
-                </div>
-
-                <h2 id="cl-header">Header</h2>
-
-                <div class="cl-example">
-                    <header class="main-header">
-                        <div class="container">
-                            <nav class="main-nav">
-                                <div class="main-nav__nav-item">
-                                    <button class="btn btn--light main-nav__toggle" data-bs-toggle="collapse" data-bs-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="Menu">
-                                        <i class="fas fa-bars" aria-hidden="true"></i>
-                                    </button>
-                                    <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
-                                        <ul class="main-nav__list">
-                                            <li class="main-nav__item">
-                                                <a class="main-nav__link" href="/"><i class="fas fa-home"></i></a>
-                                            </li>
-                                            <li class="main-nav__item">
-                                                <a class="main-nav__link" href="#">Where can I take part?'</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="main-nav__logo-item">
-                                    <a href="/" class="main-nav__logo" rel="home">
-                                        <img src="/static/images/LOGO.png" alt="mein.berlin">
-                                    </a>
-                                </div>
-                                <div class="main-nav__nav-item main-nav__nav-item--right">
-                                    <button class="btn btn--secondary main-nav__toggle" data-bs-toggle="collapse" data-bs-target="#user-menu-collapse" aria-expanded="false" aria-controls="user-menu-collapse" aria-label="User Menu">
-                                        <i class="fas fa-user"></i>
-                                    </button>
-                                    <div class="main-nav__menu-wrapper collapse" id="user-menu-collapse">
-                                        <div class="main-header__user">
-                                            <button type="button" class="dropdown-toggle btn btn--secondary">
-                                                Anmelden/Registrieren
-                                                <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                        <ul class="main-nav__list">
-                                            <li class="main-nav__item">
-                                                <a class="main-nav__link" href="#">Help</a>
-                                            </li>
-                                            <li class="main-nav__item">
-                                                <a class="main-nav__link" href="#">Give Feedback</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-                    </header>
-                </div>
-
-                <h2 id="cl-hero-unit">Hero Unit</h2>
-
-                <div class="cl-example">
-
-                </div>
-
-                <h2 ID="cl-overlapping-ctrl-bar">Overlapping Control Bars</h2>
-
-                <div class="cl-example">
-                    <div class="control-bar">
-
-                        <div class="container">
-                            <div class="offset-lg-2 col-lg-8">
-                                <div class="control-bar">
-                                    <span class="btn btn--light is-disabled">
-                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                        Vorheriges Kapitel
-                                    </span>
-                                    <a href="/text/chapters/47/?initialSlide=0" class="btn btn--light control-bar__right">
-                                        Nächstes Kapitel
-                                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="module-content">
-                        <div class="container">
-                            <ul class="u-list-reset">
-                                <li class="list-item list-item--squashed">
-                                    {% lorem 20 w random %}
-                                </li>
-                                <li class="list-item list-item--squashed">
-                                    {% lorem 20 w random %}
-                                </li>
-                            </ul>
-                        </div>
+                    <div>
+                        <button class="btn btn--small btn--transparent filter-bar__btn--light">
+                            <i class="fas fa-sliders-h" aria-label="more filters"></i>
+                        </button>
                     </div>
                 </div>
+            </div>
 
-                <h2 id="cl-idea_remark">Idea Remark</h2>
 
-                <div class="cl-example" style="min-height: 22em">
-                    First button shown when clicked and no comment saved, second button display state after comment has been saved.
-                    <div class="lr-bar__right">
-                        <div class="dropdown dropdown--right show">
-                            <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
-                                <i class="fa fa-comment" aria-label="Moderator remark"></i>
-                                <i class="fa fa-check-circle idea-remark__btn__notify  d-none " aria-hidden="true"></i>
-                            </button>
-                            <ul class="dropdown-menu idea-remark" id="remark__dropdown-menu" aria-labelledby="id_remark_dropdown">
-                                <li>
-                                    <form class="general-form" id="idea-remark__form">
-                                        <div class="form-group idea-remark__text">
-                                            <label for="id_remark" class="idea-remark__label">Remark</label>
-                                            <textarea class="form-control" id="id_remark" aria-describedby="idea_remark_hint" aria-label="moderator-remark-input" placeholder="Write down your remark!"></textarea>
-                                            <div class="idea-remark__hint" id="idea_remark_hint">
-                                                <i class="fa fa-lock" aria-hidden="true"></i>
-                                                Note only visible internally within project.
-                                            </div>
-                                        </div>
-                                        <input class="btn btn--transparent btn--full u-spacer-bottom idea-remark__btn" value="Sichern" type="submit">
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="dropdown dropdown--right">
-                            <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small" data-flip="false" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
-                                <i class="fa fa-comment" aria-label="Moderator remark"></i>
-                                <i class="fa fa-check-circle idea-remark__btn__notify  d-none " aria-hidden="true" style="display: inline;"></i>
+            <h2 id="cl-filter-primary_menu">Filter Menu - Stacked Primary</h2>
+
+            <div class="cl-example">
+                <div class="filter-bar filter-bar--stacked" role="group" aria-label="Filter bar" style="width: 50%;">
+                    <span class="filter-bar__project-text">I am interested in projects from</span>
+                    <div className="filter-bar__dropdown">
+                        <button class="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
+                    </div>
+                    <div className="filter-bar__dropdown">
+                        <button class="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="u-spacer-top btn btn--small btn--transparent btn--full u-spacer-bottom filter-bar__btn--light" style="margin-left: 0px;">
+                            more filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <h2 id="cl-filter-secondary_menu">Filter Menu - Secondary</h2>
+
+            <div class="cl-example">
+                <form class="filter-bar__menu">
+                    <div class="input-group">
+                        <label for="id-filter-search" class="visually-hidden">
+                            Search title
+                        </label>
+                        <input class="form-control" type="search" id="id-filter-search" placeholder="Search title" value="" />
+                        <div class="input-group-append">
+                            <button class="btn btn--light btn--attached-right" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                <span class="visually-hidden">
+                                    Search title
+                                </span>
                             </button>
                         </div>
                     </div>
-                </div>
-
-                <h2 id="cl-inforgraphic">Infographic</h2>
-
-                <div class="cl-example">
-                    <div class="block block--infographic">
-                        <div class="container">
-                            <div class="block--infographic__body">
-                                <div class="block--infographic__icon-block">
-                                    <div class="block--infographic__icon">
-                                        <img src="{% static 'images/icon_infografik_projekte.png' %}" alt="">
-                                    </div>
-                                    <div class="block--infographic__text">
-                                        First lot of text for inforgraphic
-                                    </div>
+                    <div class="filter-bar__menu-radio-group">
+                        <div class="filter-bar__menu-radio-part">
+                            <fieldset class="u-no-border u-no-margin u-no-padding">
+                                <legend>
+                                    <h2 class="u-no-margin">Choice input - styled radios</h2>
+                                </legend>
+                                <div class="btn-group " role="group">
+                                    <label class="btn btn--light switch--btn">
+                                        <input class="radio__input" type="radio" />
+                                        <span>all</span>
+                                    </label>
+                                    <label class="btn btn--light switch--btn active">
+                                        <input class="radio__input" type="radio" />
+                                        <span> choice </span>
+                                    </label>
                                 </div>
-                                <div class="block--infographic__arrow">
-                                    <img src="{% static 'images/icon_infografik_arrow_down@2x.png' %}" alt="">
-                                </div>
-                                <div class="block--infographic__icon-block">
-                                    <div class="block--infographic__icon">
-                                        <img src="{% static 'images/icon_infografik_mitmachen.png' %}" alt="">
-                                    </div>
-                                    <div class="block--infographic__text">
-                                        Second lot of text for inforgraphic
-                                    </div>
-                                </div>
-                                <div class="block--infographic__arrow">
-                                    <img src="{% static 'images/icon_infografik_arrow_up@2x.png' %}" alt="">
-                                </div>
-                                <div class="block--infographic__icon-block">
-                                    <div class="block--infographic__icon">
-                                        <img src="{% static 'images/icon_infografik_folgen.png' %}" alt="">
-                                    </div>
-                                    <div class="block--infographic__text">
-                                        Last lot of text for infographic
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dialogue-box__container">
-                            <div class="container dialogue-box">
-                                <div class="dialogue-box__left"></div>
-                                <div class="dialogue-box__right"></div>
-                            </div>
-                            <div class="dialogue-box__background-left"></div>
-                            <div class="dialogue-box__background-right"></div>
+                            </fieldset>
                         </div>
                     </div>
-                </div>
 
-                <h2 id="cl-item_detail">Item Detail</h2>
-
-                <div class="cl-example">
-                    <div class="item-detail">
-                        <h1 class="item-detail__title">Item Detail Title</h1>
-
-                        <div class="item-detail__labels">
-                            <div class="label label--big">Label</div>
+                    <div class="form-group">
+                        <div class="typeahead__input-label">
+                            <h2 class="u-no-margin">Look up input with autocomplete </h2>
                         </div>
-
-                        <div class="item-detail__content">
-                            Here some richtext content. And maybe a map.
-
-                            Below under the grey line are the actions.
-                        </div>
-
-                        <div class="item-detail__meta lr-bar">
-                            <div class="lr-bar__left">
-                                <strong class="item-detail__creator">Creator</strong>
-                                Jan. 30, 2018
-                            </div>
-                            <div class="lr-bar__right item-detail__ref">
-                                <strong>Reference No.:</strong>
-                                2018-00134
-                            </div>
-                        </div>
-
-                        <div class="item-detail__actions lr-bar">
-                            <div class="lr-bar__left">
-                                <button class="rating-button rating-up">
-                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                                    12
-                                </button>
-                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                    0
-                                </button>
-                            </div>
-                            <div class="dropdown dropdown--right lr-bar__right">
-                                <button class="dropdown-toggle btn btn--light btn--small">
-                                    <i class="fa fa-ellipsis-h"></i>
-                                </button>
-                            </div>
-                        </div>
+                        <span class="typeahead__input-group">
+                            <span class="typeahead__input-group-prepend">
+                                <span class="typeahead__input-group-text">
+                                    <i class="fas fa-sort-alpha-down"></i>
+                                </span>
+                            </span>
+                            <input class="input-group__input" placeholder="Enter the name of the organisation" style="width: 85%;" />
+                        </span>
                     </div>
-                </div>
 
-                <h2 id="cl-item_detail-2">Item Detail 2</h2>
+                    <button class="btn btn--primary filter-secondary__btn" type="submit">
+                        show projects
+                    </button>
+                </form>
+            </div>
 
-                <div class="cl-example">
 
-                    <div class="item-detail">
-                        <h1 class="item-detail__title">Item Detail 2</h1>
 
-                        <div class="item-detail__labels">
-                            <div class="label label--big">Label</div>
-                        </div>
+            <h2 id="cl-footer">Footer</h2>
 
-                        <div class="item-detail-2__factsheet">
-                            <ul class="item-detail-2__factsheet-table">
-                                <dl>
-                                    <dt>Facts</dt>
-                                    <dd>are shown in a table</dd>
-                                </dl>
-                                <dl>
-                                    <dt>More facts</dt>
-                                    <dd>great!</dd>
-                                </dl>
-                                <dl>
-                                    <dt>Below</dt>
-                                    <dd>the table</dd>
-                                </dl>
-                                <dl>
-                                    <dt>is a</dt>
-                                    <dd>border!</dd>
-                                </dl>
+            <div class="cl-example">
+                <footer class="main-footer">
+                    <div class="container">
+                        <div class="shariff" data-theme="white">
+                            <ul class="theme-white orientation-horizontal col-4">
+                                <li class="shariff-button twitter">
+                                    <a href="#" data-rel="popup" rel="nofollow" title="Bei Twitter teilen" role="button" aria-label="Bei Twitter teilen">
+                                        <span class="fab fa-twitter"></span>
+                                        <span class="share_text">tweet</span>
+                                    </a>
+                                </li>
+                                <li class="shariff-button ">
+                                    <a href="#" data-rel="popup" rel="nofollow" title="Bei Facebook teilen" role="button" aria-label="Bei Facebook teilen">
+                                        <span class="fab fa-facebook"></span>
+                                        <span class="share_text">teilen</span>
+                                    </a>
+                                </li>
+                                <li class="shariff-button googleplus">
+                                    <a href="#cl-footer" data-rel="popup" rel="nofollow" title="Bei Google+ teilen" role="button" aria-label="Bei Google+ teilen">
+                                        <span class="fab fa-google-plus-g"></span>
+                                        <span class="share_text">teilen</span>
+                                    </a>
+                                </li>
+                                <li class="shariff-button info">
+                                    <a href="#" title="Weitere Informationen" role="button" aria-label="Weitere Informationen">
+                                        <span class="fa fa-info"></span>
+                                        <span class="share_text">Info</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
-
-                        <div class="item-detail-2__content">
-                            <p>
-                                Richtext Content with a border at the bottom!
-                            </p>
-                            <p>
-                                For the plan detail, item-detail-2 and item-detail are used. item-detail-2 will most likely also be used for ideas or at least parts of it at some point.
-                            </p>
-                        </div>
-
-                        <h3 class="item-detail-2__smalltitle">a small title</h3>
-                        <p>Some other stuff like contact info goes here.</p>
-
-                        <div class="item-detail-2__project-list">
-                            <h3 class="item-detail-2__project-title" id="participation-plans">Item Detail Projects</h3>
-                            The same tiles as in the project list are shown in the plan detail.
-                        </div>
+                        <nav class="footer-nav"></nav>
                     </div>
-                </div>
+                </footer>
+            </div>
 
-                <h2 id="cl-labels">Labels</h2>
+            <h2 id="cl-header">Header</h2>
 
-                <div class="cl-example">
-                    <p>
-                        <span class="label label--primary">Finished</span>
-                    <div class="label label--big">Label Big</div>
-                    <div class="label label--primary">Label Primary</div>
-                    <div class="label label--secondary">Label Seconday</div>
-                    <div class="label label--consideration">Label Consideration</div>
-                    <div class="label label--checked">Label Checked</div>
-                    <div class="label label--rejected">Label Rejected</div>
-                    <div class="label label--accepted">Label Accepted</div>
-                    <div class="label">Label</div>
-                    </p>
-                </div>
-
-                <h2 id="cl-list_item">List Item</h2>
-
-                <div class="cl-example">
-                    <div class="module-content">
-                        <div class="container">
-                            <div class="offset-lg-2 col-lg-8">
-                                <ul class="u-list-reset">
-                                    <li class="list-item list-item--squashed">
-                                        <div class="list-item__stats">
-                                            <span class="rating">
-                                                <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
-                                                    <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
-                                                </span>
-                                                <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
-                                                    <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
-                                                </span>
-                                            </span>
-                                            <span title="Comments">0
-                                                <i class="far fa-comment" aria-label="Comments"></i></span>
-                                        </div>
-
-                                        <h3 class="list-item__title"><a href="#cl-list_item">My Idea</a></h3>
-                                        <div class="list-item__labels">
-                                            <span class="label label--big">This is a category</span>
-                                        </div>
-                                        <span class="list-item__author">Author</span>
-                                        <time class="list-item__date">Date 2018</time>
-                                    </li>
-
-                                    <li class="list-item list-item--squashed">
-                                        <div class="list-item__stats">
-                                            <span class="rating">
-                                                <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
-                                                    <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i></span>
-                                                <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
-                                                    <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
-                                                </span>
-                                            </span>
-                                            <span title="Comments">0
-                                                <i class="far fa-comment" aria-label="Comments"></i>
-                                            </span>
-                                        </div>
-
-                                        <h3 class="list-item__title"><a href="#cl-list_item">My Idea 2</a></h3>
-                                        <div class="list-item__labels">
-                                            <span class="label label--big">
-                                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                                This is a point string
-                                            </span>
-                                        </div>
-                                        <span class="list-item__author">Author</span>
-                                        <time class="list-item__date">Date 2018</time>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="module-content--light">
-                        <div class="container">
-                            <div class="offset-lg-2 col-lg-8">
-                                <ul class="u-list-reset">
-                                    <li class="list-item">
-                                        <div class="list-item__stats">
-                                            <span class="rating"><span class="rating-button rating-up is-read-only" title="Positive Bewertungen">
-                                                    1
-                                                    <i class="fa fa-chevron-up" aria-label="Positive Bewertungen"></i></span><span class="rating-button rating-down is-read-only" title="Negative Bewertungen">
-                                                    0
-                                                    <i class="fa fa-chevron-down" aria-label="Negative Bewertungen"></i></span></span><span title="Kommentare">
-                                                1
-                                                <i class="far fa-comment" aria-label="Kommentare"></i></span>
-                                        </div>
-                                        <h3 class="list-item__title">
-                                            <a href="/mapideas/2021-00053/">
-                                                this is an idea
-                                            </a>
-                                        </h3>
-                                        <div class="list-item__labels">
-                                            <span class="label label--big">Only 3</span>
-                                            <span class="label label--big">labels</span>
-                                            <span class="label label--big">displayed</span>
-                                            <span class="label__link label--big">
-                                                <a href="" class="list-item__link">3 More</a>
-                                            </span>
-                                        </div>
-                                        <span class="list-item__author">
-                                            admin
-                                        </span>
-                                        <time class="list-item__date" datetime="2021-02-25T09:03:56.035407+01:00">25. Februar 2021</time>
-                                    </li>
-                                    <li class="list-item">
-                                        <div class="list-item__stats">
-                                            <span class="rating"><span class="rating-button rating-up is-read-only" title="Positive Bewertungen">
-                                                    1
-                                                    <i class="fa fa-chevron-up" aria-label="Positive Bewertungen"></i></span><span class="rating-button rating-down is-read-only" title="Negative Bewertungen">
-                                                    0
-                                                    <i class="fa fa-chevron-down" aria-label="Negative Bewertungen"></i></span></span><span title="Kommentare">
-                                                1
-                                                <i class="far fa-comment" aria-label="Kommentare"></i></span>
-                                        </div>
-                                        <h3 class="list-item__title">
-                                            <a href="/mapideas/2021-00053/">
-                                                this is an idea
-                                            </a>
-                                        </h3>
-                                        <div class="list-item__labels">
-                                            <span class="label label--big">This is a category</span>
-                                        </div>
-                                        <span class="list-item__author">
-                                            admin
-                                        </span>
-                                        <time class="list-item__date" datetime="2021-02-25T09:03:56.035407+01:00">25. Februar 2021</time>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-maplist-item">Map List Item Horizontal - no image</h2>
-
-                <div class="cl-example">
-                    <div class="map-list-combined">
-                        <div class="list-container map-list-combined__list">
-                            <div>
-                                <ul class="u-list-reset participation-tile__list">
-                                    <li class="participation-tile__horizontal" key=>
-                                        <a href="">
-                                            <div class="participation-tile__body maplist-item">
-                                                <div class="participation-tile__content">
-                                                    <div class="maplist-item__label-spacer">
-                                                        <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
-                                                    </div>
-                                                    <span class="maplist-item__roofline">District</span>
-                                                    <h3 class="maplist-item__title">Title of an external project - starting in future</h3>
-                                                    <div class="maplist-item__description">
-                                                        <span>Project description of some kind maybe lots of words.</span>
-                                                    </div>
-                                                    <div class="maplist-item__link"></div>
-                                                    <div class="status-item status__future">
-                                                        <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>Participation: from 10/04/2019</span>
-                                                    </div>
-                                                </div>
-                                                <div class="status-item_spacer"></div>
-                                                <div class="maplist-item__corner-badge maplist-item__corner-badge--external"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-maplist-item-vertical">Map List Item Vertical</h2>
-                <note>
-
-                    <div class="cl-example">
-                        <p>Note: size of container means tiles are shown as thinner than when in container that reflects size of screen.</p>
-                        <div class="map-list-combined">
-                            <div class="list-container map-list-combined__list">
-                                <div>
-                                    <ul class="u-list-reset participation-tile__list">
-                                        <li class="participation-tile__vertical" key=>
-                                            <a href="">
-                                                <div class="participation-tile__body maplist-item">
-                                                    <div class="maplist-item__img" style="background-image: url(/static/images/cl-brainstorming.svg); background-position: center; background-repeat: no-repeat;" alt="">
-                                                        <div class="maplist-item__label-img">
-                                                            <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
-                                                        </div>
-                                                        <span class="maplist-item__img-copyright copyright">© Copyright</span>
-                                                    </div>
-                                                    <div class="participation-tile__content">
-                                                        <span class="maplist-item__roofline">District</span>
-                                                        <h3 class="maplist-item__title">Title of the project - still active</h3>
-                                                        <div class="maplist-item__description">
-                                                            <span>Project description of some kind maybe lots of words.</span>
-                                                        </div>
-                                                        <div class="maplist-item__link"></div>
-                                                        <div class="status-item status__active">
-                                                            <div class="status-bar__active"><span class="status-bar__active-fill" style="width: 20%;"></span></div>
-                                                            <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>remaining 5 days</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="status-item_spacer"></div>
-                                                </div>
-                                            </a>
+            <div class="cl-example">
+                <header class="main-header">
+                    <div class="container">
+                        <nav class="main-nav">
+                            <div class="main-nav__nav-item">
+                                <button class="btn btn--light main-nav__toggle" data-bs-toggle="collapse" data-bs-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="Menu">
+                                    <i class="fas fa-bars" aria-hidden="true"></i>
+                                </button>
+                                <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
+                                    <ul class="main-nav__list">
+                                        <li class="main-nav__item">
+                                            <a class="main-nav__link" href="/"><i class="fas fa-home"></i></a>
                                         </li>
-                                        <li class="participation-tile__vertical" key=>
-                                            <a href="">
-                                                <div class="participation-tile__body maplist-item">
-                                                    <div class="maplist-item__img" style="background-image: url(/static/images/cl-brainstorming.svg); background-position: center; background-repeat: no-repeat;" alt="">
-                                                        <div class="maplist-item__label-img">
-                                                            <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
-                                                        </div>
-                                                        <span class="maplist-item__img-copyright copyright">© Copyright</span>
-                                                    </div>
-                                                    <div class="participation-tile__content">
-                                                        <span class="maplist-item__roofline">District</span>
-                                                        <h3 class="maplist-item__title">Title of the project - ended</h3>
-                                                        <div class="maplist-item__description">
-                                                            <span>Project description of some kind maybe lots of words.</span>
-                                                        </div>
-                                                        <div class="maplist-item__link"></div>
-                                                        <div class="status-item status-bar__past">Participation ended. Read result.</div>
-                                                    </div>
-                                                    <div class="status-item_spacer"></div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="participation-tile__vertical" key=>
-                                            <a href="">
-                                                <div class="participation-tile__body maplist-item">
-                                                    <div class="participation-tile__content">
-                                                        <span class="maplist-item__roofline">District</span>
-                                                        <h3 class="maplist-item__title">Title of the plan</h3>
-                                                        <div class="maplist-item__link"></div>
-                                                        <div class="maplist-item__stats">
-                                                            <span class="participation-tile__proj-count"><i class="fas fa-th" aria-hidden="true"></i>Participation projects: </span>
-                                                            <span>4</span>
-                                                            <br />
-                                                            <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>Status: </span>
-                                                            <span class="participation-tile__status-active">running</span>
-                                                        </div>
-                                                        <div class="status-item_spacer"></div>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                        <li class="main-nav__item">
+                                            <a class="main-nav__link" href="#">Where can I take part?'</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <h2 id="cl-menu-layout">Menu Layout</h2>
-
-                    <div class="cl-example">
-                        <div class="row">
-                            <nav class="col-lg-3" aria-label="">
-                                <div class="dashboard-nav">
-                                    <div class="dashboard-nav__item">Left Menu - Project nav</div>
+                            <div class="main-nav__logo-item">
+                                <a href="/" class="main-nav__logo" rel="home">
+                                    <img src="/static/images/LOGO.png" alt="mein.berlin">
+                                </a>
+                            </div>
+                            <div class="main-nav__nav-item main-nav__nav-item--right">
+                                <button class="btn btn--secondary main-nav__toggle" data-bs-toggle="collapse" data-bs-target="#user-menu-collapse" aria-expanded="false" aria-controls="user-menu-collapse" aria-label="User Menu">
+                                    <i class="fas fa-user"></i>
+                                </button>
+                                <div class="main-nav__menu-wrapper collapse" id="user-menu-collapse">
+                                    <div class="main-header__user">
+                                        <button type="button" class="dropdown-toggle btn btn--secondary">
+                                            Anmelden/Registrieren
+                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <ul class="main-nav__list">
+                                        <li class="main-nav__item">
+                                            <a class="main-nav__link" href="#">Help</a>
+                                        </li>
+                                        <li class="main-nav__item">
+                                            <a class="main-nav__link" href="#">Give Feedback</a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </nav>
-                            <div class="col-lg-6">
-                                <h1 class="u-first-heading">Dashbored content</h1>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="progress-box">Right Menu - Progress</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2 id="cl-module">Moderato Statement</h2>
-
-                    <div class="cl-example">
-                        <div class="offset-lg-2 col-lg-8">
-                            <div class="moderator-statement">
-                                <h2 class="moderator-statement__title">Official Statement</h2>
-                                <div class="moderator-statement__subtitle">
-                                    <strong class="moderator-statement__organisation">Organisation</strong>
-                                </div>
-                                <div class="moderator-statement__body">Body of statement</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2 id="cl-module">Module</h2>
-
-                    <div class="cl-example">
-                        <div class="module-content">
-                            <div class="container">
-                                <h2>Module Content</h2>
-                                This is where the module content is normally shown on a grey background.
-                            </div>
-                        </div>
-                        <div class="module-content--light">
-                            <div class="container">
-                                <h2>Module Content Light</h2>
-                                This is where the module content is normally shown on a white background.
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2 id="cl-multiform">Multiform</h2>
-
-                    <div class="cl-example">
-                        <form class="multiform" method="post" action="#">
-                            <div class="form-errors">
-                                <p class="alert alert--danger">Error</p>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="{{ form.email.id_for_label }}">
-                                    Add another Email
-                                </label>
-                            </div>
-                            <div class="u-spacer-bottom">
-                                <input class="btn btn--primary" name="action_add" type="submit" value="Add Email" />
-                            </div>
-                        </form>
-                    </div>
-
-                    <h2 id="cl-pagination">Pagination</h2>
-
-                    <div class="cl-example">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li class="pagination__item{% ifequal page_number page_obj.number %} active{% endifequal %}">
-                                    <a href="#">Page number link</a>
-                                </li>
-                            </ul>
                         </nav>
                     </div>
+                </header>
+            </div>
 
+            <h2 id="cl-hero-unit">Hero Unit</h2>
 
-                    <h2 id="cl-participation-tile">Participation Tile</h2>
+            <div class="cl-example">
 
-                    <div class="cl-example">
-                        <p>Note: basis for the <a href="#cl-maplist-item-vertical">maplist tile/item</a></p>
-                        <div class="participation-tile__wrapper">
-                            <div class="participation-tile__list-container">
+            </div>
+
+            <h2 ID="cl-overlapping-ctrl-bar">Overlapping Control Bars</h2>
+
+            <div class="cl-example">
+                <div class="control-bar">
+
+                    <div class="container">
+                        <div class="offset-lg-2 col-lg-8">
+                            <div class="control-bar">
+                                <span class="btn btn--light is-disabled">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                    Vorheriges Kapitel
+                                </span>
+                                <a href="/text/chapters/47/?initialSlide=0" class="btn btn--light control-bar__right">
+                                    Nächstes Kapitel
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="container">
+                        <ul class="u-list-reset">
+                            <li class="list-item list-item--squashed">
+                                {% lorem 20 w random %}
+                            </li>
+                            <li class="list-item list-item--squashed">
+                                {% lorem 20 w random %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-idea_remark">Idea Remark</h2>
+
+            <div class="cl-example" style="min-height: 22em">
+                First button shown when clicked and no comment saved, second button display state after comment has been saved.
+                <div class="lr-bar__right">
+                    <div class="dropdown dropdown--right show">
+                        <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
+                            <i class="fa fa-comment" aria-label="Moderator remark"></i>
+                            <i class="fa fa-check-circle idea-remark__btn__notify  d-none " aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu idea-remark" id="remark__dropdown-menu" aria-labelledby="id_remark_dropdown">
+                            <li>
+                                <form class="general-form" id="idea-remark__form">
+                                    <div class="form-group idea-remark__text">
+                                        <label for="id_remark" class="idea-remark__label">Remark</label>
+                                        <textarea class="form-control" id="id_remark" aria-describedby="idea_remark_hint" aria-label="moderator-remark-input" placeholder="Write down your remark!"></textarea>
+                                        <div class="idea-remark__hint" id="idea_remark_hint">
+                                            <i class="fa fa-lock" aria-hidden="true"></i>
+                                            Note only visible internally within project.
+                                        </div>
+                                    </div>
+                                    <input class="btn btn--transparent btn--full u-spacer-bottom idea-remark__btn" value="Sichern" type="submit">
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="dropdown dropdown--right">
+                        <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small" data-flip="false" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
+                            <i class="fa fa-comment" aria-label="Moderator remark"></i>
+                            <i class="fa fa-check-circle idea-remark__btn__notify  d-none " aria-hidden="true" style="display: inline;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-inforgraphic">Infographic</h2>
+
+            <div class="cl-example">
+                <div class="block block--infographic">
+                    <div class="container">
+                        <div class="block--infographic__body">
+                            <div class="block--infographic__icon-block">
+                                <div class="block--infographic__icon">
+                                    <img src="{% static 'images/icon_infografik_projekte.png' %}" alt="">
+                                </div>
+                                <div class="block--infographic__text">
+                                    First lot of text for inforgraphic
+                                </div>
+                            </div>
+                            <div class="block--infographic__arrow">
+                                <img src="{% static 'images/icon_infografik_arrow_down@2x.png' %}" alt="">
+                            </div>
+                            <div class="block--infographic__icon-block">
+                                <div class="block--infographic__icon">
+                                    <img src="{% static 'images/icon_infografik_mitmachen.png' %}" alt="">
+                                </div>
+                                <div class="block--infographic__text">
+                                    Second lot of text for inforgraphic
+                                </div>
+                            </div>
+                            <div class="block--infographic__arrow">
+                                <img src="{% static 'images/icon_infografik_arrow_up@2x.png' %}" alt="">
+                            </div>
+                            <div class="block--infographic__icon-block">
+                                <div class="block--infographic__icon">
+                                    <img src="{% static 'images/icon_infografik_folgen.png' %}" alt="">
+                                </div>
+                                <div class="block--infographic__text">
+                                    Last lot of text for infographic
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dialogue-box__container">
+                        <div class="container dialogue-box">
+                            <div class="dialogue-box__left"></div>
+                            <div class="dialogue-box__right"></div>
+                        </div>
+                        <div class="dialogue-box__background-left"></div>
+                        <div class="dialogue-box__background-right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-item_detail">Item Detail</h2>
+
+            <div class="cl-example">
+                <div class="item-detail">
+                    <h1 class="item-detail__title">Item Detail Title</h1>
+
+                    <div class="item-detail__labels">
+                        <div class="label label--big">Label</div>
+                    </div>
+
+                    <div class="item-detail__content">
+                        Here some richtext content. And maybe a map.
+
+                        Below under the grey line are the actions.
+                    </div>
+
+                    <div class="item-detail__meta lr-bar">
+                        <div class="lr-bar__left">
+                            <strong class="item-detail__creator">Creator</strong>
+                            Jan. 30, 2018
+                        </div>
+                        <div class="lr-bar__right item-detail__ref">
+                            <strong>Reference No.:</strong>
+                            2018-00134
+                        </div>
+                    </div>
+
+                    <div class="item-detail__actions lr-bar">
+                        <div class="lr-bar__left">
+                            <button class="rating-button rating-up">
+                                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                12
+                            </button>
+                            <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                0
+                            </button>
+                        </div>
+                        <div class="dropdown dropdown--right lr-bar__right">
+                            <button class="dropdown-toggle btn btn--light btn--small">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-item_detail-2">Item Detail 2</h2>
+
+            <div class="cl-example">
+
+                <div class="item-detail">
+                    <h1 class="item-detail__title">Item Detail 2</h1>
+
+                    <div class="item-detail__labels">
+                        <div class="label label--big">Label</div>
+                    </div>
+
+                    <div class="item-detail-2__factsheet">
+                        <ul class="item-detail-2__factsheet-table">
+                            <dl>
+                                <dt>Facts</dt>
+                                <dd>are shown in a table</dd>
+                            </dl>
+                            <dl>
+                                <dt>More facts</dt>
+                                <dd>great!</dd>
+                            </dl>
+                            <dl>
+                                <dt>Below</dt>
+                                <dd>the table</dd>
+                            </dl>
+                            <dl>
+                                <dt>is a</dt>
+                                <dd>border!</dd>
+                            </dl>
+                        </ul>
+                    </div>
+
+                    <div class="item-detail-2__content">
+                        <p>
+                            Richtext Content with a border at the bottom!
+                        </p>
+                        <p>
+                            For the plan detail, item-detail-2 and item-detail are used. item-detail-2 will most likely also be used for ideas or at least parts of it at some point.
+                        </p>
+                    </div>
+
+                    <h3 class="item-detail-2__smalltitle">a small title</h3>
+                    <p>Some other stuff like contact info goes here.</p>
+
+                    <div class="item-detail-2__project-list">
+                        <h3 class="item-detail-2__project-title" id="participation-plans">Item Detail Projects</h3>
+                        The same tiles as in the project list are shown in the plan detail.
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-labels">Labels</h2>
+
+            <div class="cl-example">
+                <p>
+                <span class="label label--primary">Finished</span>
+                <div class="label label--big">Label Big</div>
+                <div class="label label--primary">Label Primary</div>
+                <div class="label label--secondary">Label Seconday</div>
+                <div class="label label--consideration">Label Consideration</div>
+                <div class="label label--rejected">Label Rejected</div>
+                <div class="label label--accepted">Label Accepted</div>
+                <div class="label">Label</div>
+                </p>
+            </div>
+
+            <h2 id="cl-list_item">List Item</h2>
+
+            <div class="cl-example">
+                <div class="module-content">
+                    <div class="container">
+                        <div class="offset-lg-2 col-lg-8">
+                            <ul class="u-list-reset">
+                                <li class="list-item list-item--squashed">
+                                    <div class="list-item__stats">
+                                        <span class="rating">
+                                            <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
+                                                <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
+                                            </span>
+                                            <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
+                                                <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                            </span>
+                                        </span>
+                                        <span title="Comments">0
+                                            <i class="far fa-comment" aria-label="Comments"></i></span>
+                                    </div>
+
+                                    <h3 class="list-item__title"><a href="#cl-list_item">My Idea</a></h3>
+                                    <div class="list-item__labels">
+                                        <span class="label label--big">This is a category</span>
+                                    </div>
+                                    <span class="list-item__author">Author</span>
+                                    <time class="list-item__date">Date 2018</time>
+                                </li>
+
+                                <li class="list-item list-item--squashed">
+                                    <div class="list-item__stats">
+                                        <span class="rating">
+                                            <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
+                                                <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i></span>
+                                            <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
+                                                <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                            </span>
+                                        </span>
+                                        <span title="Comments">0
+                                            <i class="far fa-comment" aria-label="Comments"></i>
+                                        </span>
+                                    </div>
+
+                                    <h3 class="list-item__title"><a href="#cl-list_item">My Idea 2</a></h3>
+                                    <div class="list-item__labels">
+                                        <span class="label label--big">
+                                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                            This is a point string
+                                        </span>
+                                    </div>
+                                    <span class="list-item__author">Author</span>
+                                    <time class="list-item__date">Date 2018</time>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="module-content--light">
+                    <div class="container">
+                        <div class="offset-lg-2 col-lg-8">
+                            <ul class="u-list-reset">
+                                <li class="list-item">
+                                    <div class="list-item__stats">
+                                        <span class="rating"><span class="rating-button rating-up is-read-only" title="Positive Bewertungen">
+                                                1
+                                                <i class="fa fa-chevron-up" aria-label="Positive Bewertungen"></i></span><span class="rating-button rating-down is-read-only" title="Negative Bewertungen">
+                                                0
+                                                <i class="fa fa-chevron-down" aria-label="Negative Bewertungen"></i></span></span><span title="Kommentare">
+                                            1
+                                            <i class="far fa-comment" aria-label="Kommentare"></i></span>
+                                    </div>
+                                    <h3 class="list-item__title">
+                                        <a href="/mapideas/2021-00053/">
+                                            this is an idea
+                                        </a>
+                                    </h3>
+                                    <div class="list-item__labels">
+                                        <span class="label label--big">Only 3</span>
+                                        <span class="label label--big">labels</span>
+                                        <span class="label label--big">displayed</span>
+                                        <span class="label__link label--big">
+                                            <a href="" class="list-item__link">3 More</a>
+                                        </span>
+                                    </div>
+                                    <span class="list-item__author">
+                                        admin
+                                    </span>
+                                    <time class="list-item__date" datetime="2021-02-25T09:03:56.035407+01:00">25. Februar 2021</time>
+                                </li>
+                                <li class="list-item">
+                                    <div class="list-item__stats">
+                                        <span class="rating"><span class="rating-button rating-up is-read-only" title="Positive Bewertungen">
+                                                1
+                                                <i class="fa fa-chevron-up" aria-label="Positive Bewertungen"></i></span><span class="rating-button rating-down is-read-only" title="Negative Bewertungen">
+                                                0
+                                                <i class="fa fa-chevron-down" aria-label="Negative Bewertungen"></i></span></span><span title="Kommentare">
+                                            1
+                                            <i class="far fa-comment" aria-label="Kommentare"></i></span>
+                                    </div>
+                                    <h3 class="list-item__title">
+                                        <a href="/mapideas/2021-00053/">
+                                            this is an idea
+                                        </a>
+                                    </h3>
+                                    <div class="list-item__labels">
+                                        <span class="label label--big">This is a category</span>
+                                    </div>
+                                    <span class="list-item__author">
+                                        admin
+                                    </span>
+                                    <time class="list-item__date" datetime="2021-02-25T09:03:56.035407+01:00">25. Februar 2021</time>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-maplist-item">Map List Item Horizontal - no image</h2>
+
+            <div class="cl-example">
+                <div class="map-list-combined">
+                    <div class="list-container map-list-combined__list">
+                        <div>
+                            <ul class="u-list-reset participation-tile__list">
+                                <li class="participation-tile__horizontal" key=>
+                                    <a href="">
+                                        <div class="participation-tile__body maplist-item">
+                                            <div class="participation-tile__content">
+                                                <div class="maplist-item__label-spacer">
+                                                    <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
+                                                </div>
+                                                <span class="maplist-item__roofline">District</span>
+                                                <h3 class="maplist-item__title">Title of an external project - starting in future</h3>
+                                                <div class="maplist-item__description">
+                                                    <span>Project description of some kind maybe lots of words.</span>
+                                                </div>
+                                                <div class="maplist-item__link"></div>
+                                                <div class="status-item status__future">
+                                                    <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>Participation: from 10/04/2019</span>
+                                                </div>
+                                            </div>
+                                            <div class="status-item_spacer"></div>
+                                            <div class="maplist-item__corner-badge maplist-item__corner-badge--external"></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-maplist-item-vertical">Map List Item Vertical</h2>
+            <note>
+
+                <div class="cl-example">
+                    <p>Note: size of container means tiles are shown as thinner than when in container that reflects size of screen.</p>
+                    <div class="map-list-combined">
+                        <div class="list-container map-list-combined__list">
+                            <div>
                                 <ul class="u-list-reset participation-tile__list">
-                                    <li class="participation-tile__vertical">
+                                    <li class="participation-tile__vertical" key=>
+                                        <a href="">
+                                            <div class="participation-tile__body maplist-item">
+                                                <div class="maplist-item__img" style="background-image: url(/static/images/cl-brainstorming.svg); background-position: center; background-repeat: no-repeat;" alt="">
+                                                    <div class="maplist-item__label-img">
+                                                        <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
+                                                    </div>
+                                                    <span class="maplist-item__img-copyright copyright">© Copyright</span>
+                                                </div>
+                                                <div class="participation-tile__content">
+                                                    <span class="maplist-item__roofline">District</span>
+                                                    <h3 class="maplist-item__title">Title of the project - still active</h3>
+                                                    <div class="maplist-item__description">
+                                                        <span>Project description of some kind maybe lots of words.</span>
+                                                    </div>
+                                                    <div class="maplist-item__link"></div>
+                                                    <div class="status-item status__active">
+                                                        <div class="status-bar__active"><span class="status-bar__active-fill" style="width: 20%;"></span></div>
+                                                        <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>remaining 5 days</span>
+                                                    </div>
+                                                </div>
+                                                <div class="status-item_spacer"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="participation-tile__vertical" key=>
+                                        <a href="">
+                                            <div class="participation-tile__body maplist-item">
+                                                <div class="maplist-item__img" style="background-image: url(/static/images/cl-brainstorming.svg); background-position: center; background-repeat: no-repeat;" alt="">
+                                                    <div class="maplist-item__label-img">
+                                                        <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
+                                                    </div>
+                                                    <span class="maplist-item__img-copyright copyright">© Copyright</span>
+                                                </div>
+                                                <div class="participation-tile__content">
+                                                    <span class="maplist-item__roofline">District</span>
+                                                    <h3 class="maplist-item__title">Title of the project - ended</h3>
+                                                    <div class="maplist-item__description">
+                                                        <span>Project description of some kind maybe lots of words.</span>
+                                                    </div>
+                                                    <div class="maplist-item__link"></div>
+                                                    <div class="status-item status-bar__past">Participation ended. Read result.</div>
+                                                </div>
+                                                <div class="status-item_spacer"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="participation-tile__vertical" key=>
+                                        <a href="">
+                                            <div class="participation-tile__body maplist-item">
+                                                <div class="participation-tile__content">
+                                                    <span class="maplist-item__roofline">District</span>
+                                                    <h3 class="maplist-item__title">Title of the plan</h3>
+                                                    <div class="maplist-item__link"></div>
+                                                    <div class="maplist-item__stats">
+                                                        <span class="participation-tile__proj-count"><i class="fas fa-th" aria-hidden="true"></i>Participation projects: </span>
+                                                        <span>4</span>
+                                                        <br />
+                                                        <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>Status: </span>
+                                                        <span class="participation-tile__status-active">running</span>
+                                                    </div>
+                                                    <div class="status-item_spacer"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-menu-layout">Menu Layout</h2>
+
+                <div class="cl-example">
+                    <div class="row">
+                        <nav class="col-lg-3" aria-label="">
+                            <div class="dashboard-nav">
+                                <div class="dashboard-nav__item">Left Menu - Project nav</div>
+                            </div>
+                        </nav>
+                        <div class="col-lg-6">
+                            <h1 class="u-first-heading">Dashbored content</h1>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="progress-box">Right Menu - Progress</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-module">Moderato Statement</h2>
+
+                <div class="cl-example">
+                    <div class="offset-lg-2 col-lg-8">
+                        <div class="moderator-statement">
+                            <h2 class="moderator-statement__title">Official Statement</h2>
+                            <div class="moderator-statement__subtitle">
+                                <strong class="moderator-statement__organisation">Organisation</strong>
+                            </div>
+                            <div class="moderator-statement__body">Body of statement</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-module">Module</h2>
+
+                <div class="cl-example">
+                    <div class="module-content">
+                        <div class="container">
+                            <h2>Module Content</h2>
+                            This is where the module content is normally shown on a grey background.
+                        </div>
+                    </div>
+                    <div class="module-content--light">
+                        <div class="container">
+                            <h2>Module Content Light</h2>
+                            This is where the module content is normally shown on a white background.
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-multiform">Multiform</h2>
+
+                <div class="cl-example">
+                    <form class="multiform" method="post" action="#">
+                        <div class="form-errors">
+                            <p class="alert alert--danger">Error</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="{{ form.email.id_for_label }}">
+                                Add another Email
+                            </label>
+                        </div>
+                        <div class="u-spacer-bottom">
+                            <input class="btn btn--primary" name="action_add" type="submit" value="Add Email" />
+                        </div>
+                    </form>
+                </div>
+
+                <h2 id="cl-pagination">Pagination</h2>
+
+                <div class="cl-example">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="pagination__item{% ifequal page_number page_obj.number %} active{% endifequal %}">
+                                <a href="#">Page number link</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+
+                <h2 id="cl-participation-tile">Participation Tile</h2>
+
+                <div class="cl-example">
+                    <p>Note: basis for the <a href="#cl-maplist-item-vertical">maplist tile/item</a></p>
+                    <div class="participation-tile__wrapper">
+                        <div class="participation-tile__list-container">
+                            <ul class="u-list-reset participation-tile__list">
+                                <li class="participation-tile__vertical">
+                                    <div class="participation-tile__type">
+                                        <div class="participation-tile__content">
+                                            <h3 class="participation-tile__title">Project name</h3>
+                                            <div class="status-item status__active">
+                                                <div class="status-bar__active">
+                                                    <span class="status-bar__active-fill" style="width: {{ project.active_phase_progress }}%"></span>
+                                                </div>
+                                                <span class="participation-tile__status">
+                                                    <i class="fas fa-clock" aria-hidden="true"></i>
+                                                    remaining 28 days
+                                                </span>
+                                            </div>
+                                            <div class="participation-tile__spacer"></div>
+                                            <div class="participation-tile__btn">
+                                                <a class="btn btn--primary btn--full u-spacer-bottom btn--small" href="">Join now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="participation-tile__vertical">
+                                    <a href="" target="">
                                         <div class="participation-tile__type">
                                             <div class="participation-tile__content">
                                                 <h3 class="participation-tile__title">Project name</h3>
-                                                <div class="status-item status__active">
-                                                    <div class="status-bar__active">
-                                                        <span class="status-bar__active-fill" style="width: {{ project.active_phase_progress }}%"></span>
-                                                    </div>
-                                                    <span class="participation-tile__status">
-                                                        <i class="fas fa-clock" aria-hidden="true"></i>
-                                                        remaining 28 days
+                                                <div class="status-item status__future">
+                                                    <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>Participation: starts on 12.04.2019
                                                     </span>
                                                 </div>
                                                 <div class="participation-tile__spacer"></div>
@@ -1794,460 +1822,444 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li class="participation-tile__vertical">
-                                        <a href="" target="">
-                                            <div class="participation-tile__type">
-                                                <div class="participation-tile__content">
-                                                    <h3 class="participation-tile__title">Project name</h3>
-                                                    <div class="status-item status__future">
-                                                        <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>Participation: starts on 12.04.2019
-                                                        </span>
-                                                    </div>
-                                                    <div class="participation-tile__spacer"></div>
-                                                    <div class="participation-tile__btn">
-                                                        <a class="btn btn--primary btn--full u-spacer-bottom btn--small" href="">Join now</a>
-                                                    </div>
+                                    </a>
+                                </li>
+                                <li class="participation-tile__vertical">
+                                    <a href="" target="">
+                                        <div class="participation-tile__type">
+                                            <div class="participation-tile__content">
+                                                <h3 class="participation-tile__title">Project name</h3>
+                                                <div class="status-item status-bar__past status-bar__past--sm">
+                                                    <span class="participation-tile__status">Participation ended. Read result</span>
+                                                </div>
+                                                <div class="participation-tile__spacer"></div>
+                                                <div class="participation-tile__btn">
+                                                    <a class="btn btn--primary btn--full u-spacer-bottom btn--small" href="">Join now</a>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </li>
-                                    <li class="participation-tile__vertical">
-                                        <a href="" target="">
-                                            <div class="participation-tile__type">
-                                                <div class="participation-tile__content">
-                                                    <h3 class="participation-tile__title">Project name</h3>
-                                                    <div class="status-item status-bar__past status-bar__past--sm">
-                                                        <span class="participation-tile__status">Participation ended. Read result</span>
-                                                    </div>
-                                                    <div class="participation-tile__spacer"></div>
-                                                    <div class="participation-tile__btn">
-                                                        <a class="btn btn--primary btn--full u-spacer-bottom btn--small" href="">Join now</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-poll">Poll and Radio</h2>
+
+                <div class="cl-example">
+                    <div class="offset-lg-2 col-lg-8">
+                        <div>
+                            <form class="poll">
+                                <h2>First question, can click more than one answer</h2>
+                                <div class="poll__rows">
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="3" type="checkbox">
+                                        <span class="radio__text radio__text--checkbox">yes</span>
+                                    </label>
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="4" type="checkbox">
+                                        <span class="radio__text radio__text--checkbox">no</span>
+                                    </label>
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="5" type="checkbox">
+                                        <span class="radio__text radio__text--checkbox">other</span>
+                                    </label>
+                                </div>
+                                <div class="poll__actions">
+                                    <button type="submit" class="btn btn--primary">Vote</button>&nbsp;
+                                    <button type="button" class="btn btn--link">Show preliminary results</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div>
+                            <form class="poll">
+                                <h2>Second question, can only choose ones answer</h2>
+                                <div class="poll__rows">
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="3" type="radio">
+                                        <span class="radio__text">yes</span>
+                                    </label>
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="4" type="radio">
+                                        <span class="radio__text">no</span>
+                                    </label>
+                                </div>
+                                <div class="poll__actions">
+                                    <button type="submit" class="btn btn--primary" disabled="">Vote</button>&nbsp;
+                                    <button type="button" class="btn btn--link">Show preliminary results</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-portal-header">Portal Header</h2>
+
+                <div class="cl-example">
+                    <div class="portal-header">
+                        <div class="container">
+                            <div class="portal-header__red-line"></div>
+                            <a class="portal-header__logo" href="http://www.berlin.de/">
+                                <img src="/static/images/berlin_de.png" alt="Zur Homepage von Berlin.de">
+                            </a>
+
+                            <nav aria-label="Portal Navigation">
+                                <ul class="portal-header__nav">
+                                    <li><a href="#">Politik, Verwaltung, Bürger</a></li>
+                                    <li><a href="#">Kultur &amp; Ausgehen</a></li>
+                                    <li><a href="#">Tourismus</a></li>
+                                    <li><a href="#">Wirtschaft</a></li>
+                                    <li><a href="#">Themen</a></li>
+                                    <li><a href="#">BerlinFinder</a></li>
+                                    <li><a href="#">Stadtplan</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-progress">Progress</h2>
+
+                <div class="cl-example">
+                    <ul class="progress-line u-spacer-bottom">
+                        <li class="progress-line__entry">
+                            <span class="progress-line__line--bottom"></span>
+                            <i class="fas fa-check-circle u-success progress-line__icon" title="Projekttyp wurde erstellt." aria-label="Projekttyp wurde erstellt."></i>
+                            <span>Projekt anlegen</span>
+                        </li>
+                        <li class="progress-line__entry">
+                            <span class="progress-line__line--top"></span>
+                            <span class="progress-line__line--bottom"></span>
+                            <i class="fas fa-check-circle u-success progress-line__icon" title="Projekttyp zur Veröffentlichung bereit" aria-label="Projekttyp zur Veröffentlichung bereit"></i>
+                            <span class="progress-line__entry--active">
+                                <span>Projektdetails ausfüllen</span>
+                            </span>
+                        </li>
+                        <li class="progress-line__entry">
+                            <span class="progress-line__line--top"></span>
+                            <span class="progress-line__line--bottom"></span>
+                            <i class="fas fa-circle progress-line__icon--active" title="Kein Modul erstellt" aria-label="Kein Modul erstellt"></i>
+                            <span>Beteiligungsmodul(e) anlegen</span>
+                        </li>
+                        <li class="progress-line__entry">
+                            <span class="progress-line__line--top"></span>
+                            <i class="far fa-circle progress-line__icon" title="Projekttyp nicht zur Veröffentlichung bereit" aria-label="Projekttyp nicht zur Veröffentlichung bereit"></i>
+                            <span>Projekt veröffentlichen</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <h2 id="cl-project-header">Project Header</h2>
+
+                <div class="cl-example" style="padding-top: 76px">
+                    <div class="project-header project-header--image">
+                        <div class="container">
+                            <div class="offset-lg-3 col-lg-6">
+                                <h1 class="project-header__title">Project Title</h1>
+                                <p class="project-header__description">Description - dark overlay on header image, with -60px top margin to allow it to sit properly under header line</p>
+                            </div>
+                        </div>
+                        <div class="project-header__copyright copyright">© Copyright</div>
+                    </div>
+                </div>
+
+                <h2 id="cl-rating">Rating</h2>
+
+                <div class="cl-example">
+                    <div class="module-content">
+                        <div class="container">
+                            <div class="offset-lg-2 col-lg-8">
+                                <ul class="u-list-reset">
+                                    <li class="list-item list-item--squashed">
+                                        <div class="list-item__stats">
+                                            <span class="rating">
+                                                <span class="rating-button rating-up is-read-only" title="Positive Ratings">
+                                                    0
+                                                    <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
+                                                </span>
+                                                <span class="rating-button rating-down is-read-only" title="Negative Ratings">
+                                                    0
+                                                    <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                                </span>
+                                            </span>
+                                            <span title="Comments">
+                                                0
+                                                <i class="far fa-comment" aria-label="Comments"></i>
+                                            </span>
+                                        </div>
+                                        <h3 class="list-item__title">Rated comment</h3>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <h2 id="cl-poll">Poll and Radio</h2>
-
-                    <div class="cl-example">
-                        <div class="offset-lg-2 col-lg-8">
-                            <div>
-                                <form class="poll">
-                                    <h2>First question, can click more than one answer</h2>
-                                    <div class="poll__rows">
-                                        <label class="poll-row radio">
-                                            <input class="poll-row__radio radio__input" name="question" value="3" type="checkbox">
-                                            <span class="radio__text radio__text--checkbox">yes</span>
-                                        </label>
-                                        <label class="poll-row radio">
-                                            <input class="poll-row__radio radio__input" name="question" value="4" type="checkbox">
-                                            <span class="radio__text radio__text--checkbox">no</span>
-                                        </label>
-                                        <label class="poll-row radio">
-                                            <input class="poll-row__radio radio__input" name="question" value="5" type="checkbox">
-                                            <span class="radio__text radio__text--checkbox">other</span>
-                                        </label>
-                                    </div>
-                                    <div class="poll__actions">
-                                        <button type="submit" class="btn btn--primary">Vote</button>&nbsp;
-                                        <button type="button" class="btn btn--link">Show preliminary results</button>
-                                    </div>
-                                </form>
+                <h2 id="cl-table">Storefront (Hero Unit)</h2>
+                <div class="cl-example">
+                    <div class="storefront">
+                        <div class="storefront__col storefront__first-col u-xs-down-display-none">
+                            <div class="storefront__item storefront__img tile__lg u-xs-down-display-none"
+                              style="width=100%; background:url(/media/images/The-Fernsehturm-Tv-Tower-Lit-Up-At-Night.max-400x600.jpg) no-repeat; background-size: cover; background-position: bottom;">
+                                <h1 class="storefront__lg-text">Help shape Berlin: Your opinion is important to us!</h1>
                             </div>
-                            <div>
-                                <form class="poll">
-                                    <h2>Second question, can only choose ones answer</h2>
-                                    <div class="poll__rows">
-                                        <label class="poll-row radio">
-                                            <input class="poll-row__radio radio__input" name="question" value="3" type="radio">
-                                            <span class="radio__text">yes</span>
-                                        </label>
-                                        <label class="poll-row radio">
-                                            <input class="poll-row__radio radio__input" name="question" value="4" type="radio">
-                                            <span class="radio__text">no</span>
-                                        </label>
-                                    </div>
-                                    <div class="poll__actions">
-                                        <button type="submit" class="btn btn--primary" disabled="">Vote</button>&nbsp;
-                                        <button type="button" class="btn btn--link">Show preliminary results</button>
-                                    </div>
-                                </form>
+                            <div class="storefront__item storefront__stat-sm tile__sm u-xs-down-display-none">
+                                <h1 class="storefront__lg-text storefront__xl-text">93</h1>
+                                <p>Ideas and comments submitted by citizens</p>
+                            </div>
+                        </div>
+                        <div class="storefront__col storefront__mid-col u-xs-down-display-none">
+                            <a href="/" class="storefront__item storefront__proj-quote tile__md">
+                                <blockquote class="storefront__quote-text">
+                                    „this is a lovely quote about this project how many chars can i have in one quote, i feel like this chars can i have in one quote, i feel like this can“
+                                </blockquote>
+                                <div class="storefront__opinion-text">Was ist Ihre Meinung zum Projekt: Spacial Brainstorm this is as long as it can get Spacial Br…?</div>
+                            </a>
+                            <a href="/" class="storefront__item storefront__proj tile__md">
+                                <div class="item-detail__labels">
+                                    <span class="label label--secondary">Bildung &amp; Forschung</span>
+                                </div>
+                                <p class="storefront__sm-text">Reinickendorf</p>
+                                <h2 class="storefront__proj-text ">Brainstorm guidelines for citizen participation in the Treptow-Köpenick</h2>
+                                <div class="status-item status-item__position-storefront status-bar__past">
+                                    Beteiligung beendet. Ergebnis lesen.
+                                </div>
+                            </a>
+                        </div>
+                        <div class="storefront__col storefront__last-col u-xs-md-display-none">
+                            <div class="storefront__item storefront__img tile__lg--xs-screen u-xs-only-display"
+                              style="width=100%; background:url(/media/images/The-Fernsehturm-Tv-Tower-Lit-Up-At-Night.max-400x600.jpg) no-repeat; background-size: cover; background-position: bottom;">
+                                <h1 class="storefront__lg-text">Help shape Berlin: Your opinion is important to us!</h1>
+                            </div>
+                            <a href="/" class="storefront__item storefront__district tile__md">
+                                <h2 class="storefront__district-text">Whats happening in <strong>Neukölln</strong>?</h2>
+                                <button class="btn btn--primary">
+                                    2 Projekte anzeigen
+                                </button>
+                            </a>
+                            <div class="storefront__item storefront__stat-lg tile__md">
+                                <span class="storefront__xxl-text">5</span>
+                                <div class="storefront__stat-text">
+                                    <p>Projekte, zu denen wir Ihre Meinung wissen möchten!</p>
+                                    <div class="storefront__stat-spacer"></div>
+                                </div>
+                                <div class="storefront__stat-arrow"><i class="fa fa-arrow-down" aria-label="Runterscrollen"></i></div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <h2 id="cl-portal-header">Portal Header</h2>
+                <h2 id="cl-table">Table</h2>
 
-                    <div class="cl-example">
-                        <div class="portal-header">
-                            <div class="container">
-                                <div class="portal-header__red-line"></div>
-                                <a class="portal-header__logo" href="http://www.berlin.de/">
-                                    <img src="/static/images/berlin_de.png" alt="Zur Homepage von Berlin.de">
-                                </a>
+                <div class="cl-example">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Table header</th>
+                                <th>Table header</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Standard cell</td>
+                                <td>Standard cell</td>
+                                <td class="td--action">
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                                <nav aria-label="Portal Navigation">
-                                    <ul class="portal-header__nav">
-                                        <li><a href="#">Politik, Verwaltung, Bürger</a></li>
-                                        <li><a href="#">Kultur &amp; Ausgehen</a></li>
-                                        <li><a href="#">Tourismus</a></li>
-                                        <li><a href="#">Wirtschaft</a></li>
-                                        <li><a href="#">Themen</a></li>
-                                        <li><a href="#">BerlinFinder</a></li>
-                                        <li><a href="#">Stadtplan</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
+                <h2 id="cl-tabs">Tabs</h2>
+
+                <div class="cl-example">
+                    <div class="tablist tablist--left">
+                        <div class="container">
+                            <nav class="nav" role="tablist">
+                                <a id="tab-project-3-information" class="tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-information" aria-expanded="false">Tab</a>
+                                <a id="tab-project-3-participation" class="tab active" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-participation" aria-expanded="true">Tab 2</a>
+                                <a id="tab-project-3-result" class="tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-result" aria-expanded="false">Tab 3</a>
+                            </nav>
                         </div>
                     </div>
+                </div>
 
-                    <h2 id="cl-progress">Progress</h2>
+                <h2 id="cl-commenting">Text Commenting (Documents)</h2>
 
-                    <div class="cl-example">
-                        <ul class="progress-line u-spacer-bottom">
-                            <li class="progress-line__entry">
-                                <span class="progress-line__line--bottom"></span>
-                                <i class="fas fa-check-circle u-success progress-line__icon" title="Projekttyp wurde erstellt." aria-label="Projekttyp wurde erstellt."></i>
-                                <span>Projekt anlegen</span>
-                            </li>
-                            <li class="progress-line__entry">
-                                <span class="progress-line__line--top"></span>
-                                <span class="progress-line__line--bottom"></span>
-                                <i class="fas fa-check-circle u-success progress-line__icon" title="Projekttyp zur Veröffentlichung bereit" aria-label="Projekttyp zur Veröffentlichung bereit"></i>
-                                <span class="progress-line__entry--active">
-                                    <span>Projektdetails ausfüllen</span>
-                                </span>
-                            </li>
-                            <li class="progress-line__entry">
-                                <span class="progress-line__line--top"></span>
-                                <span class="progress-line__line--bottom"></span>
-                                <i class="fas fa-circle progress-line__icon--active" title="Kein Modul erstellt" aria-label="Kein Modul erstellt"></i>
-                                <span>Beteiligungsmodul(e) anlegen</span>
-                            </li>
-                            <li class="progress-line__entry">
-                                <span class="progress-line__line--top"></span>
-                                <i class="far fa-circle progress-line__icon" title="Projekttyp nicht zur Veröffentlichung bereit" aria-label="Projekttyp nicht zur Veröffentlichung bereit"></i>
-                                <span>Projekt veröffentlichen</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <h2 id="cl-project-header">Project Header</h2>
-
-                    <div class="cl-example" style="padding-top: 76px">
-                        <div class="project-header project-header--image">
-                            <div class="container">
-                                <div class="offset-lg-3 col-lg-6">
-                                    <h1 class="project-header__title">Project Title</h1>
-                                    <p class="project-header__description">Description - dark overlay on header image, with -60px top margin to allow it to sit properly under header line</p>
-                                </div>
-                            </div>
-                            <div class="project-header__copyright copyright">© Copyright</div>
+                <div class="cl-example">
+                    <div class="row">
+                        <div class="commenting__content">
+                            {% lorem random %}
                         </div>
-                    </div>
-
-                    <h2 id="cl-rating">Rating</h2>
-
-                    <div class="cl-example">
-                        <div class="module-content">
-                            <div class="container">
-                                <div class="offset-lg-2 col-lg-8">
-                                    <ul class="u-list-reset">
-                                        <li class="list-item list-item--squashed">
-                                            <div class="list-item__stats">
-                                                <span class="rating">
-                                                    <span class="rating-button rating-up is-read-only" title="Positive Ratings">
-                                                        0
-                                                        <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
-                                                    </span>
-                                                    <span class="rating-button rating-down is-read-only" title="Negative Ratings">
-                                                        0
-                                                        <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
-                                                    </span>
-                                                </span>
-                                                <span title="Comments">
-                                                    0
-                                                    <i class="far fa-comment" aria-label="Comments"></i>
-                                                </span>
-                                            </div>
-                                            <h3 class="list-item__title">Rated comment</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                        {% spaceless %}
+                        <div class="commenting__actions btn-group" role="group">
+                            <button class="btn btn--light btn--small" title="Move up" type="button">
+                                <i class="fa fa-chevron-up" aria-label="Move up"></i>
+                            </button>
+                            <button class="btn btn--light btn--small" title="Move down" type="button">
+                                <i class="fa fa-chevron-down" aria-label="Move down"></i>
+                            </button>
+                            <button class="btn btn--light btn--small" title="Delete" type="button">
+                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                            </button>
                         </div>
+                        {% endspaceless %}
                     </div>
-
-                    <h2 id="cl-table">Storefront (Hero Unit)</h2>
-                    <div class="cl-example">
-                        <div class="storefront">
-                            <div class="storefront__col storefront__first-col u-xs-down-display-none">
-                                <div class="storefront__item storefront__img tile__lg u-xs-down-display-none"
-                                  style="width=100%; background:url(/media/images/The-Fernsehturm-Tv-Tower-Lit-Up-At-Night.max-400x600.jpg) no-repeat; background-size: cover; background-position: bottom;">
-                                    <h1 class="storefront__lg-text">Help shape Berlin: Your opinion is important to us!</h1>
-                                </div>
-                                <div class="storefront__item storefront__stat-sm tile__sm u-xs-down-display-none">
-                                    <h1 class="storefront__lg-text storefront__xl-text">93</h1>
-                                    <p>Ideas and comments submitted by citizens</p>
-                                </div>
-                            </div>
-                            <div class="storefront__col storefront__mid-col u-xs-down-display-none">
-                                <a href="/" class="storefront__item storefront__proj-quote tile__md">
-                                    <blockquote class="storefront__quote-text">
-                                        „this is a lovely quote about this project how many chars can i have in one quote, i feel like this chars can i have in one quote, i feel like this can“
-                                    </blockquote>
-                                    <div class="storefront__opinion-text">Was ist Ihre Meinung zum Projekt: Spacial Brainstorm this is as long as it can get Spacial Br…?</div>
-                                </a>
-                                <a href="/" class="storefront__item storefront__proj tile__md">
-                                    <div class="item-detail__labels">
-                                        <span class="label label--secondary">Bildung &amp; Forschung</span>
-                                    </div>
-                                    <p class="storefront__sm-text">Reinickendorf</p>
-                                    <h2 class="storefront__proj-text ">Brainstorm guidelines for citizen participation in the Treptow-Köpenick</h2>
-                                    <div class="status-item status-item__position-storefront status-bar__past">
-                                        Beteiligung beendet. Ergebnis lesen.
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="storefront__col storefront__last-col u-xs-md-display-none">
-                                <div class="storefront__item storefront__img tile__lg--xs-screen u-xs-only-display"
-                                  style="width=100%; background:url(/media/images/The-Fernsehturm-Tv-Tower-Lit-Up-At-Night.max-400x600.jpg) no-repeat; background-size: cover; background-position: bottom;">
-                                    <h1 class="storefront__lg-text">Help shape Berlin: Your opinion is important to us!</h1>
-                                </div>
-                                <a href="/" class="storefront__item storefront__district tile__md">
-                                    <h2 class="storefront__district-text">Whats happening in <strong>Neukölln</strong>?</h2>
-                                    <button class="btn btn--primary">
-                                        2 Projekte anzeigen
-                                    </button>
-                                </a>
-                                <div class="storefront__item storefront__stat-lg tile__md">
-                                    <span class="storefront__xxl-text">5</span>
-                                    <div class="storefront__stat-text">
-                                        <p>Projekte, zu denen wir Ihre Meinung wissen möchten!</p>
-                                        <div class="storefront__stat-spacer"></div>
-                                    </div>
-                                    <div class="storefront__stat-arrow"><i class="fa fa-arrow-down" aria-label="Runterscrollen"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2 id="cl-table">Table</h2>
-
-                    <div class="cl-example">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Table header</th>
-                                    <th>Table header</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Standard cell</td>
-                                    <td>Standard cell</td>
-                                    <td class="td--action">
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h2 id="cl-tabs">Tabs</h2>
-
-                    <div class="cl-example">
-                        <div class="tablist tablist--left">
-                            <div class="container">
-                                <nav class="nav" role="tablist">
-                                    <a id="tab-project-3-information" class="tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-information" aria-expanded="false">Tab</a>
-                                    <a id="tab-project-3-participation" class="tab active" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-participation" aria-expanded="true">Tab 2</a>
-                                    <a id="tab-project-3-result" class="tab" data-bs-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-result" aria-expanded="false">Tab 3</a>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2 id="cl-commenting">Text Commenting (Documents)</h2>
-
-                    <div class="cl-example">
-                        <div class="row">
-                            <div class="commenting__content">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="commenting__content--border">
                                 {% lorem random %}
                             </div>
-                            {% spaceless %}
-                            <div class="commenting__actions btn-group" role="group">
-                                <button class="btn btn--light btn--small" title="Move up" type="button">
-                                    <i class="fa fa-chevron-up" aria-label="Move up"></i>
-                                </button>
-                                <button class="btn btn--light btn--small" title="Move down" type="button">
-                                    <i class="fa fa-chevron-down" aria-label="Move down"></i>
-                                </button>
-                                <button class="btn btn--light btn--small" title="Delete" type="button">
-                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                                </button>
-                            </div>
-                            {% endspaceless %}
                         </div>
-                        <div class="row">
-                            <div class="col-lg-9">
-                                <div class="commenting__content--border">
-                                    {% lorem random %}
-                                </div>
-                            </div>
-                            <div class="commenting__actions">
-                                <button class="btn btn--light btn--small" title="Delete" type="button">
-                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                                </button>
-                            </div>
+                        <div class="commenting__actions">
+                            <button class="btn btn--light btn--small" title="Delete" type="button">
+                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                            </button>
                         </div>
-                        <div class="row">
-                            <div class="commenting__content">
+                    </div>
+                    <div class="row">
+                        <div class="commenting__content">
                             <button type="button" class="commenting--toc__button btn btn--light btn--small">
                                 1. Title
                             </button>
-                            </div>
-                            <div class="commenting__actions">
-                                <button class="btn btn--light btn--small" title="Delete" type="button">
-                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                                </button>
-                            </div>
                         </div>
-                        <div class="row">
-                            <div class="commenting__content">
-                                <button type="button" class="commenting--toc__button btn btn--light btn--small active">
-                                    2. Title (active)
-                                </button>
-                            </div>
-                            <div class="commenting__actions">
-                                <button class="btn btn--light btn--small" title="Delete" type="button">
-                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                                </button>
-                            </div>
+                        <div class="commenting__actions">
+                            <button class="btn btn--light btn--small" title="Delete" type="button">
+                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                            </button>
                         </div>
                     </div>
-
-                    <h2 id="cl-tile">Tile</h2>
-
-                    <div class="cl-example">
-                        <ul class="l-tiles-4">
-                            <li class="tile ">
-                                <div class="tile__head">
-                                    <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-3" href="#" target="_self"></a>
-                                    <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
-                                    <div class="tile__labels"></div>
-                                </div>
-                                <div class="tile__body">
-                                    <h3 class="tile__title" id="project-title-3">
-                                        <a href="#" target="_self">Blueprint - finished</a>
-                                    </h3>
-                                    <p class="tile__text">Blueprint description</p>
-                                    <p class="tile__hint">
-                                        Participation possible until
-                                        <time datetime="2018-06-14T00:00:00+02:00">14.06.2018</time>
-                                    </p>
-                                </div>
-                            </li>
-                            <li class="tile ">
-                                <div class="tile__head">
-                                    <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-2" href="#" target="_self"></a>
-                                    <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
-                                    <div class="tile__labels">
-                                        <span class="label label--primary">Finished</span>
-                                    </div>
-                                </div>
-                                <div class="tile__body">
-                                    <h3 class="tile__title" id="project-title-2">
-                                        <a href="#" target="_self">Blueprint - active</a>
-                                    </h3>
-                                    <p class="tile__text">Blueprint description</p>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="row">
+                        <div class="commenting__content">
+                            <button type="button" class="commenting--toc__button btn btn--light btn--small active">
+                                2. Title (active)
+                            </button>
+                        </div>
+                        <div class="commenting__actions">
+                            <button class="btn btn--light btn--small" title="Delete" type="button">
+                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                            </button>
+                        </div>
                     </div>
+                </div>
 
-                    <h2 id="cl-timeline">Timeline</h2>
+                <h2 id="cl-tile">Tile</h2>
 
-                    <div class="cl-example">
-                        <div class="timeline-carousel__wrapper">
-                            <div class="timeline-carousel">
-                                <div class="container">
-                                    <div id="timeline-carousel" data-initial-slide="1">
-                                        <div class="timeline-carousel__line"></div>
-                                        <div class="timeline-carousel__item slick-initialized slick-slider">
-                                            <button class="slick-prev slick-arrow" aria-label="Previous" type="button" aria-disabled="false" style="">Previous</button>
-                                            <div class="slick-list draggable">
-                                                <div class="slick-track">
-                                                    <div class="slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1">
-                                                        <div><a href="/" aria-labelledby="timeline_item timeline_entry_1" tabindex="-1">
-                                                                <div id="timeline_item" class="timeline-carousel__dot ">
-                                                                    <span class="visually-hidden">Zeitleistenkachel</span>
-                                                                </div>
-                                                                <div class="timeline-carousel__label ">
-                                                                    <span id="timeline_entry_1">
-                                                                        <span class="timeline-carousel__title">1. Online-Beteiligung</span><br>
-                                                                        ab 1. April 2021
-                                                                    </span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="slick-slide slick-current slick-center" data-slick-index="1" aria-hidden="true">
-                                                        <div><a href="/projekte/many-maps/?initialSlide=1" aria-labelledby="timeline_item timeline_entry_2" tabindex="-1">
-                                                                <div id="timeline_item" class="timeline-carousel__dot  initial ">
-                                                                    <span class="visually-hidden">Zeitleistenkachel</span>
-                                                                </div>
-                                                                <div class="timeline-carousel__label  initial ">
-                                                                    <span id="timeline_entry_2">
-                                                                        <span class="timeline-carousel__title">2. Online-Beteiligung</span><br>
-                                                                        ab 21. April 2021
-                                                                    </span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
+                <div class="cl-example">
+                    <ul class="l-tiles-4">
+                        <li class="tile ">
+                            <div class="tile__head">
+                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-3" href="#" target="_self"></a>
+                                <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
+                                <div class="tile__labels"></div>
+                            </div>
+                            <div class="tile__body">
+                                <h3 class="tile__title" id="project-title-3">
+                                    <a href="#" target="_self">Blueprint - finished</a>
+                                </h3>
+                                <p class="tile__text">Blueprint description</p>
+                                <p class="tile__hint">
+                                    Participation possible until
+                                    <time datetime="2018-06-14T00:00:00+02:00">14.06.2018</time>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="tile ">
+                            <div class="tile__head">
+                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-2" href="#" target="_self"></a>
+                                <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
+                                <div class="tile__labels">
+                                    <span class="label label--primary">Finished</span>
+                                </div>
+                            </div>
+                            <div class="tile__body">
+                                <h3 class="tile__title" id="project-title-2">
+                                    <a href="#" target="_self">Blueprint - active</a>
+                                </h3>
+                                <p class="tile__text">Blueprint description</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <h2 id="cl-timeline">Timeline</h2>
+
+                <div class="cl-example">
+                    <div class="timeline-carousel__wrapper">
+                        <div class="timeline-carousel">
+                            <div class="container">
+                                <div id="timeline-carousel" data-initial-slide="1">
+                                    <div class="timeline-carousel__line"></div>
+                                    <div class="timeline-carousel__item slick-initialized slick-slider">
+                                        <button class="slick-prev slick-arrow" aria-label="Previous" type="button" aria-disabled="false" style="">Previous</button>
+                                        <div class="slick-list draggable">
+                                            <div class="slick-track">
+                                                <div class="slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1">
+                                                    <div><a href="/" aria-labelledby="timeline_item timeline_entry_1" tabindex="-1">
+                                                            <div id="timeline_item" class="timeline-carousel__dot ">
+                                                                <span class="visually-hidden">Zeitleistenkachel</span>
+                                                            </div>
+                                                            <div class="timeline-carousel__label ">
+                                                                <span id="timeline_entry_1">
+                                                                    <span class="timeline-carousel__title">1. Online-Beteiligung</span><br>
+                                                                    ab 1. April 2021
+                                                                </span>
+                                                            </div>
+                                                        </a>
                                                     </div>
                                                 </div>
-                                            </div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="" aria-disabled="false">Next</button>
-                                        </div>
+                                                <div class="slick-slide slick-current slick-center" data-slick-index="1" aria-hidden="true">
+                                                    <div><a href="/projekte/many-maps/?initialSlide=1" aria-labelledby="timeline_item timeline_entry_2" tabindex="-1">
+                                                            <div id="timeline_item" class="timeline-carousel__dot  initial ">
+                                                                <span class="visually-hidden">Zeitleistenkachel</span>
+                                                            </div>
+                                                            <div class="timeline-carousel__label  initial ">
+                                                                <span id="timeline_entry_2">
+                                                                    <span class="timeline-carousel__title">2. Online-Beteiligung</span><br>
+                                                                    ab 21. April 2021
+                                                                </span>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="" aria-disabled="false">Next</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <h2 id="cl-upload">Upload</h2>
+                <h2 id="cl-upload">Upload</h2>
 
-                    <div class="cl-example">
-                        <div class="form-group">
-                            <label for="id_logo">Logo</label>
-                            <div class="form-hint">
-                                The image will be shown in the newsletter in the banner. It must be min. 200 pixel wide and 50 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
-                            </div>
-                            <div class="widget widget--imageinputwidget">
-                                <div class="upload-wrapper form-control-upload">
-                                    <div class="upload-wrapper__fields input-group">
-                                        <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
-                                        <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
-                                        <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
-                                            <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
-                                        </label>
-                                    </div>
-                                    <div class="form-id_logo upload-wrapper__preview">
-                                        <input name="logo-clear" id="logo_id" class="clear-image" data-upload-clear="id_logo" type="checkbox">
-                                        <img id="id_logo-file" src="" data-upload-preview="id_logo" alt="">
-                                    </div>
-                                    <div class="alert alert--info upload-wrapper__alert" role="alert">
-                                        Your image will be uploaded/removed once you save your changes at the end of this page.
-                                    </div>
+                <div class="cl-example">
+                    <div class="form-group">
+                        <label for="id_logo">Logo</label>
+                        <div class="form-hint">
+                            The image will be shown in the newsletter in the banner. It must be min. 200 pixel wide and 50 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
+                        </div>
+                        <div class="widget widget--imageinputwidget">
+                            <div class="upload-wrapper form-control-upload">
+                                <div class="upload-wrapper__fields input-group">
+                                    <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
+                                    <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
+                                    <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
+                                        <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
+                                    </label>
+                                </div>
+                                <div class="form-id_logo upload-wrapper__preview">
+                                    <input name="logo-clear" id="logo_id" class="clear-image" data-upload-clear="id_logo" type="checkbox">
+                                    <img id="id_logo-file" src="" data-upload-preview="id_logo" alt="">
+                                </div>
+                                <div class="alert alert--info upload-wrapper__alert" role="alert">
+                                    Your image will be uploaded/removed once you save your changes at the end of this page.
                                 </div>
                             </div>
                         </div>
                     </div>
-            </div>
+                </div>
         </div>
+    </div>
 
-        {% endblock %}
+    {% endblock %}

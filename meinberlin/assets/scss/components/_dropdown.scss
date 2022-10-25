@@ -24,7 +24,7 @@
 
     a,
     button {
-        // FIXME: can be removed once filter and sort has dropdown-item added to the links
+        // FIXME: check dropdowns if dropdown-item used, if so this can be removed
         display: block;
         width: 100%;
         padding: 0.5em;
@@ -64,10 +64,6 @@
         vertical-align: middle;
         margin-right: 0.2 * $spacer;
     }
-
-    // @media (min-width: $breakpoint) {
-    //     min-width: revert; // ensure width consistent on larger screens
-    // }
 
     @media print {
         display: none;
