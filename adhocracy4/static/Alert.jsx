@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import django from 'django'
 
-const Alert = ({ type, message, onClick, timeInMs }) => {
+const Alert = ({ type, alertAttribute, message, onClick, timeInMs }) => {
   const timer = useRef()
   const closeTag = django.gettext('Close')
   useEffect(() => {
@@ -14,18 +14,24 @@ const Alert = ({ type, message, onClick, timeInMs }) => {
   }, [timeInMs, onClick])
   if (type) {
     return (
-      <div className={`alert alert--${type}`} role="alert">
-        <div className="l-wrapper">
+      <div
+        id="alert"
+        className={`alert alert--${type}`}
+        aria-atomic="true"
+        aria-live={alertAttribute}
+      >
+        <div className="container">
           {message}
           <button className="alert__close" title={closeTag} onClick={onClick}>
             <i className="fa fa-times" aria-label={closeTag} />
           </button>
         </div>
+
       </div>
     )
   }
 
-  return null
+  return <div aria-live="assertive" aria-atomic="true" id="alert" />
 }
 
 module.exports = Alert

@@ -1,6 +1,6 @@
 import React from 'react'
 import django from 'django'
-import ErrorList from '../../../static/ErrorList'
+import FormFieldError from '../../../static/FormFieldError'
 
 export const EditPollChoice = (props) => {
   return (
@@ -20,6 +20,8 @@ export const EditPollChoice = (props) => {
           value={props.choice.label}
           onChange={(e) => { props.onLabelChange(e.target.value) }}
           disabled={props.isOther}
+          aria-invalid={props.errors ? 'true' : 'false'}
+          aria-describedby={props.errors && 'id_error-' + props.id}
         />
         <button
           className="input-group__after btn editpoll__btn--delete"
@@ -34,7 +36,11 @@ export const EditPollChoice = (props) => {
           />
         </button>
       </div>
-      <ErrorList errors={props.errors} field="label" />
+      <FormFieldError
+        id={'id_error-' + props.id}
+        error={props.errors}
+        field="label"
+      />
     </div>
   )
 }

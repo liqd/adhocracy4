@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { EditPollChoice } from './EditPollChoice'
 import django from 'django'
-import ErrorList from '../../../static/ErrorList'
+import FormFieldError from '../../../static/FormFieldError'
 import { HelptextForm } from './HelptextForm'
 
 const FlipMove = require('react-flip-move').default
@@ -11,7 +11,7 @@ export const EditPollQuestion = (props) => {
   const hasOtherOption = props.question.choices.find(c => c.is_other_choice)
   return (
     <section className="editpoll__question-container">
-      <div className="editpoll__question editpoll__question--border">
+      <div className="editpoll__question--border">
         <div className="form-group">
           <label
             htmlFor={'id_questions-' + props.id + '-name'}
@@ -24,9 +24,11 @@ export const EditPollQuestion = (props) => {
               name={'questions-' + props.id + '-name'}
               value={props.question.label}
               onChange={(e) => { props.onLabelChange(e.target.value) }}
+              aria-invalid={props.errors ? 'true' : 'false'}
+              aria-describedby={props.errors && 'id_error-' + props.id}
             />
+            <FormFieldError id={'id_error-' + props.id} error={props.errors} field="label" />
           </label>
-          <ErrorList errors={props.errors} field="label" />
         </div>
 
         {hasHelptext

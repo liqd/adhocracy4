@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { CharCounter } from './CharCounter'
-import ErrorList from '../../../static/ErrorList'
+import FormFieldError from '../../../static/FormFieldError'
 
 const translated = {
   multiple: django.gettext('Multiple answers are possible.'),
@@ -100,6 +100,8 @@ export const PollQuestion = (props) => {
                           onChange={(event) => { handleOtherChange(event) }}
                           disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
                           maxLength={maxlength}
+                          aria-invalid={props.errors ? 'true' : 'false'}
+                          aria-describedby={props.errors && 'id_error-' + props.id}
                         />
                         {checked
                           ? (
@@ -107,7 +109,7 @@ export const PollQuestion = (props) => {
                               <div className="poll__char-counter">
                                 <CharCounter value={otherChoiceAnswer} max={maxlength} />
                               </div>
-                              <ErrorList errors={errors} field={choice.id} />
+                              <FormFieldError id={'id_error-' + choice.id} error={errors} field={choice.id} />
                             </>
                             )
                           : null}
@@ -139,6 +141,8 @@ export const PollQuestion = (props) => {
                           onChange={(event) => { handleOtherChange(event) }}
                           disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
                           maxLength={maxlength}
+                          aria-invalid={props.errors ? 'true' : 'false'}
+                          aria-describedby={props.errors && 'id_error-' + props.id}
                         />
                         {checked
                           ? (
@@ -146,7 +150,7 @@ export const PollQuestion = (props) => {
                               <div className="poll__char-counter">
                                 <CharCounter value={otherChoiceAnswer} max={maxlength} />
                               </div>
-                              <ErrorList errors={errors} field={choice.id} />
+                              <FormFieldError id={'id_error-' + choice.id} error={errors} field={choice.id} />
                             </>
                             )
                           : null}

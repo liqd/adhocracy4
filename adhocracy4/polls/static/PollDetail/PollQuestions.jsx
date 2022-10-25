@@ -11,16 +11,19 @@ import config from '../../../static/config'
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
 const ALERT_SUCCESS = {
+  alertAttribute: 'polite',
   type: 'success',
   message: django.gettext('Your answer has been saved.')
 }
 
 const ALERT_ERROR = {
+  alertAttribute: 'assertive',
   type: 'danger',
   message: django.gettext('Your answer could not be saved. Please check the data you entered again.')
 }
 
 const ALERT_INVALID = {
+  alertAttribute: 'assertive',
   type: 'danger',
   message: django.gettext('Your answer is invalid or empty. Please try again.')
 }

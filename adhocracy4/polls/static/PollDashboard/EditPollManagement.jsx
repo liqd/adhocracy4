@@ -9,6 +9,7 @@ import EditPollDropdown from './EditPollDropdown'
 
 import dashboard from '../../../../adhocracy4/dashboard/assets/dashboard'
 import api from '../../../static/api'
+
 import Alert from '../../../static/Alert'
 
 // | Helper method for local scoped key/identifier
@@ -172,6 +173,7 @@ export const EditPollManagement = (props) => {
       .done((data) => {
         setQuestions(data.questions)
         setAlert({
+          alertAttribute: 'polite',
           type: 'success',
           message: django.gettext('The poll has been updated.')
         })
@@ -186,8 +188,11 @@ export const EditPollManagement = (props) => {
         }
 
         setAlert({
+          alertAttribute: 'assertive',
           type: 'danger',
-          message: django.gettext('The poll could not be updated.')
+          message: django.gettext(
+            'The poll could not be updated. Please check the data you entered again.'
+          )
         })
       })
   }
@@ -240,7 +245,9 @@ export const EditPollManagement = (props) => {
           })
         }
       </FlipMove>
+
       <Alert onClick={() => removeAlert()} {...alert} />
+
       <div className="editpoll__actions-container">
         <div className="editpoll__menu-container">
           <EditPollDropdown
