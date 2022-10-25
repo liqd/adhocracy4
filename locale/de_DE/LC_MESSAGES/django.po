@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 16:09+0200\n"
-"PO-Revision-Date: 2022-10-20 01:11+0000\n"
-"Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
+"POT-Creation-Date: 2022-09-28 08:35+0200\n"
+"PO-Revision-Date: 2022-10-25 16:08+0000\n"
+"Last-Translator: Katharina Lindenlaub <katharina.albers@gmail.com>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -3213,7 +3213,7 @@ msgstr ""
 
 #: meinberlin/apps/moderatorfeedback/models.py:13
 msgid "Rejected"
-msgstr "nicht umgesetzt"
+msgstr "wird nicht umgesetzt"
 
 #: meinberlin/apps/moderatorfeedback/models.py:14
 msgid "Accepted"
