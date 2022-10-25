@@ -14,17 +14,25 @@
     }
 }
 
+// to be more specific then BS
 .btn.btn--light {
     @extend .btn-light;
 
     background-color: $body-bg;
     font-weight: normal;
     border-color: $border-color;
+    color: $secondary;
 
     &:focus,
     &:hover,
+    &:focus-within,
     &:active {
         background-color: $bg-secondary;
+    }
+
+    // to mimic the focus-visible styling on styled inputs
+    &:focus-within {
+        box-shadow: 0 0 0 0.25rem rgb(211, 212, 213, 0.5);
     }
 }
 
@@ -41,6 +49,11 @@
 
 .btn--primary {
     @extend .btn-primary;
+
+    // see above
+    &:focus-within {
+        box-shadow: 0 0 0 0.25rem rgb(213, 38, 111, 0.5);
+    }
 }
 
 .btn--secondary {

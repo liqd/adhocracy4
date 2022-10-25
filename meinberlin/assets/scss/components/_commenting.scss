@@ -26,12 +26,16 @@
 }
 
 .commenting__content {
+    margin-bottom: $spacer;
+
     @extend .col-lg-9;
 }
 
 .commenting__actions {
-    @extend .col-lg-3;
+    margin-bottom: $spacer;
     text-align: right;
+
+    @extend .col-lg-3;
 }
 
 @media (min-width: $breakpoint) {

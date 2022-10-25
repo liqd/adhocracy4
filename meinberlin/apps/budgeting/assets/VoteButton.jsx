@@ -39,7 +39,7 @@ export default class VoteButton extends React.Component {
   render () {
     const checkedText = django.gettext('Voted')
     const uncheckedText = django.gettext('Give my vote')
-    const checkedClass = 'btn btn--full'
+    const checkedClass = 'btn btn--full btn--primary'
     const uncheckedClass = 'btn btn--full btn--light'
     const disabledClass = ' is-disabled'
 
@@ -48,7 +48,6 @@ export default class VoteButton extends React.Component {
         <label
           htmlFor={this.props.objectID}
           className={this.props.isChecked ? checkedClass : uncheckedClass + (this.props.disabled ? disabledClass : '')}
-          tabIndex="0" // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
         >
           <input
             id={this.props.objectID}
@@ -57,6 +56,7 @@ export default class VoteButton extends React.Component {
             disabled={this.props.disabled}
             checked={this.props.isChecked}
             onChange={e => this.handleOnChange(e)}
+            onKeyPress={e => event.key === 'Enter' && this.handleOnChange(e)}
           />
           <span>{this.props.isChecked ? checkedText : uncheckedText}</span>
         </label>
