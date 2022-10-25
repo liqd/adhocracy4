@@ -80,3 +80,34 @@ def test_image_deleted_after_update(idea_factory, ImagePNG):
 
     assert not os.path.isfile(image_path)
     assert not os.path.isfile(thumbnail_path)
+
+
+@pytest.mark.django_db
+def test_item_badges_properties(
+        idea_factory, category, label_factory):
+    module = category.module
+    idea = idea_factory(
+        module=module,
+        moderator_feedback='CHECKED',
+        category=category
+    )
+    label_1 = label_factory(module=module)
+    label_2 = label_factory(module=module)
+    label_3 = label_factory(module=module)
+    idea.labels.set([label_1, label_2, label_3])
+
+    assert idea.item_badges == \
+        [['moderator_feedback',
+          idea.get_moderator_feedback_display(),
+          idea.moderator_feedback],
+         ['category', category.name],
+         ['label', label_1.name],
+         ['label', label_2.name],
+         ['label', label_3.name]]
+    assert idea.item_badges_for_list == \
+        [['moderator_feedback',
+          idea.get_moderator_feedback_display(),
+          idea.moderator_feedback],
+         ['category', category.name],
+         ['label', label_1.name]]
+    assert idea.additional_item_badges_for_list_count == 2
