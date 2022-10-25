@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import django from 'django'
-import ErrorList from '../../../static/ErrorList'
+import FormFieldError from '../../../static/FormFieldError'
 import { HelptextForm } from './HelptextForm'
 
 export const EditPollOpenQuestion = (props) => {
@@ -8,7 +8,7 @@ export const EditPollOpenQuestion = (props) => {
 
   return (
     <section className="editpoll__question-container">
-      <div className="editpoll__question editpoll__question--border">
+      <div className="editpoll__question--border">
         <div className="form-group">
           <label
             htmlFor={'id_questions-' + props.id + '-name'}
@@ -21,9 +21,11 @@ export const EditPollOpenQuestion = (props) => {
               name={'questions-' + props.id + '-name'}
               value={props.question.label}
               onChange={(e) => { props.onLabelChange(e.target.value) }}
+              aria-invalid={props.errors ? 'true' : 'false'}
+              aria-describedby={props.errors && 'id_error-' + props.id}
             />
+            <FormFieldError id={'id_error-' + props.id} error={props.errors} field="label" />
           </label>
-          <ErrorList errors={props.errors} field="label" />
         </div>
         {hasHelptext
           ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
