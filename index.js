@@ -15,4 +15,5 @@ export { default as ratings } from './adhocracy4/ratings/static/ratings/react_ra
 export { default as reports } from './adhocracy4/reports/static/reports/react_reports'
 export { default as selectDropdown } from './adhocracy4/static/select_dropdown'
 export { default as errorList } from './adhocracy4/static/ErrorList'
+export { default as formFieldError } from './adhocracy4/static/FormFieldError'
 export * as widget from './adhocracy4/static/widget'

@@ -102,6 +102,7 @@ function init () {
                         '<input type="submit" class="btn btn--primary input-group__after" value="' + django.gettext('Upload') + '">' +
                       '</div>' +
                     '</div>' +
+                    '<p id="id_error-map-import-form" aria-live="assertive"></p>' +
                   '</div>' +
                 '</form>' +
               '</div>' +
@@ -115,11 +116,12 @@ function init () {
     },
 
     _removeUploadError: function () {
-      $('#map-import-form .errorlist').remove()
+      $('#id_error-map-import-form').removeAttr('class').empty()
     },
 
     _showUploadError: function (msg) {
-      $('#map-import-form .form-group').append('<ul class="errorlist"><li>' + msg + '</li>')
+      $('#id_error-map-import-form').attr('class', 'field-error').text(msg)
+      $('#map-import-file-input').attr('aria-invalid', 'true').attr('aria-describedby', 'id_error-map-import-form')
     },
 
     _export: function (map) {
