@@ -41,7 +41,8 @@ div.cke_focus {
     border-color: $secondary;
 }
 
-.errorlist {
+.errorlist,
+.field-error {
     margin: 0 0 $em-spacer 0;
     padding: $padding;
     list-style: none;

@@ -11,7 +11,6 @@ $checkbox-size: 20px;
 
 .poll {
     padding: 1.5 * $spacer;
-
     background-color: $body-bg;
 
     h2 {
@@ -151,6 +150,7 @@ $checkbox-size: 20px;
 }
 
 // EditPollQuestions/EditPollOpenQuestions
+
 .editpoll__help-text,
 .poll__help-text {
     color: $gray-lighter;
@@ -175,7 +175,7 @@ $checkbox-size: 20px;
 }
 
 .editpoll__menu-container {
-    margin: 0.25 * $spacer 0;
+    margin: 0.5 * $spacer 0;
 
     & > * {
         width: 100%;
@@ -198,15 +198,10 @@ $checkbox-size: 20px;
 
 .editpoll__question--border {
     flex-grow: 2;
-    margin-bottom: $spacer * 0.5;
     margin-right: $spacer * 0.5;
     padding: $padding;
     border: 1px solid $border-color;
     border-radius: ($padding * 0.5);
-}
-
-.editpoll__menu-container--override {
-    margin: 0 1rem;
 }
 
 .editpoll__question-actions {
@@ -227,10 +222,6 @@ $checkbox-size: 20px;
 
     .editpoll__menu-container > * {
         width: inherit;
-    }
-
-    .editpoll__menu-container--override {
-        margin: 0;
     }
 
     .editpoll__btns--question {
