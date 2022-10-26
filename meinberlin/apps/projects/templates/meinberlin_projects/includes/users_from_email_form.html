@@ -3,7 +3,9 @@
 <form method="POST">
     {% csrf_token %}
     {% if form.errors %}
-        <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+    <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
+      {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+    </div>
     {% endif %}
 
     <div class="form-group">
@@ -45,7 +47,7 @@
             </div>
         </div>
         {% if form.non_field_errors %}
-        <ul class="errorlist">
+        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
             {% for error in form.non_field_errors %}
             <li>{{ error }}</li>
             {% endfor %}

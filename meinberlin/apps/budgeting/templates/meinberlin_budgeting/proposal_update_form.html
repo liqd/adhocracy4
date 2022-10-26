@@ -24,7 +24,9 @@
         <h1>{% trans 'Edit proposal' %}</h1>
 
         {% if form.errors %}
-            <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+        <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
+          {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+        </div>
         {% endif %}
 
         {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=object.get_absolute_url %}

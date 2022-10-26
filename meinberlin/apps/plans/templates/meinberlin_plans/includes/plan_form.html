@@ -4,7 +4,9 @@
     {{ form.media }}
 
     {% if form.errors %}
-        <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+    <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
+      {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+    </div>
     {% endif %}
 
     <h2 class="form__subheading"> {% trans 'Description of the plan' %}</h2>

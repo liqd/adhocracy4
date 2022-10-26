@@ -7,7 +7,9 @@
     <h1 class="u-first-heading">{{ view.title }}</h1>
 
     {% if form.errors %}
-        <div class="errorlist">{% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}</div>
+    <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
+      {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+    </div>
     {% endif %}
 
     {% for error in form.non_field_errors %}
