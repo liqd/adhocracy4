@@ -1,6 +1,6 @@
 const React = require('react')
 const django = require('django')
-const ErrorList = require('adhocracy4/adhocracy4/static/ErrorList')
+const FormFieldError = require('adhocracy4/adhocracy4/static/FormFieldError')
 const headlineStr = django.gettext('Headline')
 const paragraphStr = django.gettext('Paragraph')
 const moveUpStr = django.gettext('Move up')
@@ -82,9 +82,12 @@ class Paragraph extends React.Component {
                     type="text"
                     value={this.props.paragraph.name}
                     onChange={this.handleNameChange.bind(this)}
+                    aria-invalid={this.props.errors ? 'true' : 'false'}
+                    aria-describedby={this.props.errors && 'id_error-' + this.props.id}
                   />
+                  <FormFieldError id={'id_error-' + this.props.id} error={this.props.errors} field="name" />
                 </label>
-                <ErrorList errors={this.props.errors} field="name" />
+
               </div>
 
               <div className="form-group">
@@ -101,10 +104,12 @@ class Paragraph extends React.Component {
                       // fix height to avoid jumping on ckeditor initalization
                       style={{ height: this.props.config.height + ckEditorToolbarsHeight }}
                       id={'id_paragraphs-' + this.props.id + '-text'}
+                      aria-invalid={this.props.errors ? 'true' : 'false'}
+                      aria-describedby={this.props.errors && 'id_error-' + this.props.id}
                     />
                   </div>
+                  <FormFieldError id={'id_error-' + this.props.id} error={this.props.errors} field="text" />
                 </label>
-                <ErrorList errors={this.props.errors} field="text" />
               </div>
             </div>
           </div>

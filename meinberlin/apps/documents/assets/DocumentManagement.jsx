@@ -6,6 +6,7 @@ const update = require('immutability-helper')
 const ChapterNav = require('./ChapterNav')
 const ChapterForm = require('./ChapterForm')
 const Alert = require('adhocracy4/adhocracy4/static/Alert')
+
 const firstChapterStr = django.gettext('first chapter')
 const newChapterStr = django.gettext('new chapter')
 const documentUpdatedStr = django.gettext('The document has been updated.')
@@ -264,6 +265,7 @@ class DocumentManagement extends React.Component {
       .done((data) => {
         this.setState({
           alert: {
+            alertAttribute: 'polite',
             type: 'success',
             message: documentUpdatedStr
           },
@@ -282,6 +284,7 @@ class DocumentManagement extends React.Component {
 
         this.setState({
           alert: {
+            alertAttribute: 'assertive',
             type: 'danger',
             message: documentNotUpdatedStr
           },

@@ -1,10 +1,13 @@
 const React = require('react')
 const FlipMove = require('react-flip-move').default
 const django = require('django')
-const ErrorList = require('adhocracy4/adhocracy4/static/ErrorList')
+const FormFieldError = require('adhocracy4/adhocracy4/static/FormFieldError')
 const ParagraphForm = require('./ParagraphForm')
-const chapterTitleStr = django.gettext('Chapter title')
-const addParagraphStr = django.gettext('Add a new paragraph')
+
+const translated = {
+  title: django.gettext('Chapter title'),
+  addParagraph: django.gettext('Add a new paragraph')
+}
 
 const ChapterForm = (props) => {
   return (
@@ -12,16 +15,18 @@ const ChapterForm = (props) => {
       <div className="row">
         <div className="form-group commenting__content">
           <label htmlFor={'id_chapters-' + props.id + '-name'}>
-            {chapterTitleStr}
+            {translated.title}
             <input
               id={'id_chapters-' + props.id + '-name'}
               name={'chapters-' + props.id + '-name'}
               type="text"
               value={props.chapter.name}
               onChange={(e) => { props.onChapterNameChange(e.target.value) }}
+              aria-invalid={props.errors ? 'true' : 'false'}
+              aria-describedby={props.errors && 'id_error-' + props.id}
             />
+            <FormFieldError id={'id_error-' + props.id} error={props.errors} field="name" />
           </label>
-          <ErrorList errors={props.errors} field="name" />
         </div>
       </div>
 
@@ -54,7 +59,7 @@ const ChapterForm = (props) => {
         onClick={props.onParagraphAppend}
         type="button"
       >
-        <i className="fa fa-plus" /> {addParagraphStr}
+        <i className="fa fa-plus" /> {translated.addParagraph}
       </button>
     </section>
   )
