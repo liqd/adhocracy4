@@ -35,7 +35,7 @@
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
-            <li class="alert alert--{{ message.level_tag }}" role="alert">
+            <li class="alert alert--{{ message.level_tag }}" aria-live="polite" aria-atomic="true" id="alert">
                 <div class="container">
                     {{ message }}
                 </div>
