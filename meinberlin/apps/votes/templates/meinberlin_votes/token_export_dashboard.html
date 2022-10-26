@@ -10,10 +10,15 @@
         {% if token_export_url %}
             {% for page in token_export_iterator %}
             <li class="u-bottom-divider u-space-between">
-                <div class="" id="id-export-tokens-hint">
+              <div class="" id="id-export-tokens-hint-{{ page }}">
                     {% translate " code package no." %} {{ page }}
                 </div>
-                <a class="btn btn--secondary" id="download-link" aria-labelledby="id-export-tokens-hint download-link" href="{{ token_export_url }}?page={{ page }}">
+                <a
+                  class="btn btn--secondary"
+                  id="download-link"
+                  aria-labelledby="id-export-tokens-hint-{{ page }} download-link"
+                  href="{{ token_export_url }}?page={{ page }}"
+                >
                     {% translate "Download" %}
                 </a>
             </li>
