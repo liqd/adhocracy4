@@ -1,17 +1,17 @@
 import React from 'react'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 import Alert from '../Alert'
 
 test('Alert is showing', () => {
   render(<Alert type="success" message="hello" />)
-  const alert = screen.getByRole('alert')
+  const alert = document.querySelector('#alert')
   expect(alert).toBeTruthy()
 })
 
 test('Alert is not showing', () => {
-  render(<Alert message="hello" />)
-  const alert = screen.queryByRole('alert')
-  expect(alert).toBeFalsy()
+  render(<Alert type="" message="" />)
+  const alert = document.querySelector('#alert')
+  expect(alert).toBeTruthy()
 })
 
 test('Invoke callback through click', () => {
@@ -20,6 +20,7 @@ test('Invoke callback through click', () => {
     <Alert
       type="success"
       message="hello"
+      aria-atomic="true"
       onClick={onClickCallback}
     />
   )
