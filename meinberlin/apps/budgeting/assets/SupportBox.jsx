@@ -68,6 +68,7 @@ export const SupportBox = (props) => {
       <button
         aria-label={translations.support}
         className={`rating-button rating-up ${userSupported ? 'is-selected' : ''}`}
+        disabled={props.isReadOnly}
         onClick={handleSupport}
       >
         <i className="far fa-thumbs-up" aria-hidden="true" />
