@@ -40,7 +40,7 @@ help:
 	@echo "  make lint-fix      					-- fix linting for all js files staged in git"
 	@echo "  make lint-python-files				-- lint all python files staged in git"
 	@echo "  make po              				-- create new po files from the source"
-	@echo "  make compilemessages 				-- create new mo files from the translated po files"
+	@echo "  make mo							-- create new mo files from the translated po files"
 	@echo "  make release         				-- build everything required for a release"
 	@echo "  make start-postgres  -- start the local postgres cluster"
 	@echo "  make stop-postgres   -- stops the local postgres cluster"

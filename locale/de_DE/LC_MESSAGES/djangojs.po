@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 16:09+0200\n"
-"PO-Revision-Date: 2022-11-04 17:08+0000\n"
-"Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
+"POT-Creation-Date: 2022-11-14 14:59+0100\n"
+"PO-Revision-Date: 2022-08-31 14:20+0000\n"
+"Last-Translator: Julian Dehm <j.dehm@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -82,67 +82,67 @@ msgstr ""
 "er nicht unseren Diskussionsregeln (Netiquette) entspricht."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:296
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:296
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 msgid "Moderator"
 msgstr "Moderation"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:291
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:291
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 msgid "Latest edit on"
 msgstr "Letzte Änderung am"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:110
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:285
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 #: adhocracy4/comments/static/comments/Comment.jsx:110
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:285
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "Deleted by creator on"
 msgstr "Von Ersteller*in gelöscht"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:112
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:287
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 #: adhocracy4/comments/static/comments/Comment.jsx:112
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:287
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 msgid "Deleted by moderator on"
 msgstr "Von Moderation gelöscht"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:153
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:266
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 #: adhocracy4/comments/static/comments/Comment.jsx:153
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:266
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:268
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:68
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:73
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:152
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:157
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:70
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:75
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:268
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:7
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:68
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:73
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:152
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:157
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:6
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:70
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:75
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:5
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:8
 msgid "Delete"
 msgstr "Löschen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:155
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:269
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
 #: adhocracy4/comments/static/comments/Comment.jsx:155
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:269
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 msgid "Abort"
 msgstr "Abbrechen"
@@ -271,27 +271,27 @@ msgstr ""
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:35
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:35
-msgid "hide replies"
-msgstr "Antworten ausblenden"
+msgid "Blocked by moderator on"
+msgstr "Von Moderation gesperrt"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:38
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:38
+msgid "hide replies"
+msgstr "Antworten ausblenden"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:39
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:39
+msgctxt "verb"
+msgid "Reply"
+msgstr "Antworten"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:48
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:48
 #, javascript-format
 msgid "1 reply"
 msgid_plural "%s replies"
 msgstr[0] "Eine Antwort"
 msgstr[1] "%s Antworten"
-
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:41
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:41
-msgctxt "verb"
-msgid "Reply"
-msgstr "Antworten"
-
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:289
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:289
-msgid "Blocked by moderator on"
-msgstr "Von Moderation gesperrt"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
@@ -523,52 +523,52 @@ msgstr ""
 msgid "Upload"
 msgstr "Hochladen"
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:109
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:109
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:143
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:146
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:143
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:146
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
 msgid "The uploaded file is not a valid shapefile."
 msgstr "Die hochgeladene Datei ist kein gültiges Shapefile."
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:150
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:150
 msgid "The uploaded file could not be imported."
 msgstr "Die hochgeladene Datei kann nicht importiert werden."
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:162
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:162
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:164
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:164
 msgid "The uploaded file is not a valid geojson file."
 msgstr "Die hochgeladene Datei ist keine gültiges GeoJSON Datei."
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:167
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:167
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:169
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:169
 msgid "Invalid file format."
 msgstr "Ungültiges Dateiformat."
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:284
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:284
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:286
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:286
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
 "entfernen?"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:69
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:71
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:69
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:71
 msgctxt "noun"
 msgid "Answer"
 msgstr "Antwort"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:27
-#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:33
-#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:27
-#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:33
+#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:29
+#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:35
+#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:29
+#: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:35
 msgid "remove"
 msgstr "entfernen"
 
@@ -587,19 +587,19 @@ msgstr ""
 msgid "Open question"
 msgstr "Offene Frage"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:176
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:176
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:178
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:178
 msgid "The poll has been updated."
 msgstr "Die Umfrage wurde aktualisiert."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:190
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:190
-msgid "The poll could not be updated."
-msgstr "Die Umfrage konnte nicht aktualisiert werden."
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:194
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:194
+msgid "The poll could not be updated. Please check the data you entered again."
+msgstr ""
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:254
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:254
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:15
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:261
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:261
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:16
 msgid "Save"
 msgstr "Speichern"
 
@@ -611,60 +611,60 @@ msgstr "Speichern"
 msgid "Question"
 msgstr "Frage"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:36
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:119
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:38
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:121
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:36
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:119
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:38
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:121
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
 msgstr "Erklärung"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:45
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:50
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:129
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:134
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:45
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:50
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:129
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:134
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:4
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:47
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:52
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:47
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:52
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:3
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:6
 msgid "Move up"
 msgstr "nach oben"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:57
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:62
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:141
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:146
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:57
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:62
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:141
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:146
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:5
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:59
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:64
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:59
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:64
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:4
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:7
 msgid "Move down"
 msgstr "nach unten"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:46
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:46
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:48
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:48
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr "Teilnehmer*innen können mehrere Antworten auswählen (Mehrfachauswahl)"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:61
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:63
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:63
 msgid "Participants can add their own answer"
 msgstr "Teilnehmer*innen können eine eigene Antwort eingeben"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:94
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:95
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:94
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:95
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:96
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:97
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:96
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:97
 msgid "Other"
 msgstr "Sonstige"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:112
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:112
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:114
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:114
 msgid "New answer"
 msgstr "Neue Antwort"
 
@@ -680,58 +680,58 @@ msgstr "Mehrfachantworten sind möglich."
 msgid "other"
 msgstr "sonstige"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:15
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:15
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:16
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:16
 msgid "Your answer has been saved."
 msgstr "Ihre Antwort wurde gespeichert."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:20
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:20
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:22
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:22
 msgid ""
 "Your answer could not be saved. Please check the data you entered again."
 msgstr ""
 "Ihre Antwort konnte nicht gespeichert werden. Bitte überprüfen Sie Ihre "
 "Eingabe."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:25
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:25
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:28
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:28
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Ihre Antwort ist ungültig oder leer. Bitte versuchen Sie es erneut."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:46
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:46
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:52
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:133
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:52
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:133
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:55
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:55
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
 msgid "Change answer"
 msgstr "Antwort ändern"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:133
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:133
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
 msgid "Submit answer"
 msgstr "Antwort senden"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:139
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:139
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:142
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:142
 msgid "Please login to answer"
 msgstr "Bitte melden Sie sich zum Antworten an."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:149
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:149
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:152
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:152
 msgid "Show results"
 msgstr "Ergebnis zeigen"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:155
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:155
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:158
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:158
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:176
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:176
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:179
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:179
 msgid "Please enter your answer in this field."
 msgstr "Bitte geben Sie hier Ihre Antwort ein."
 
@@ -824,7 +824,7 @@ msgstr ""
 msgid "You can still manage all your preferences on User Agreements."
 msgstr ""
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:74
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:15
 #, javascript-format
 msgid "you have 1 vote left."
 msgid_plural "you have %s votes left."
@@ -928,11 +928,11 @@ msgstr "Textmodus"
 msgid "Switch between image and text question"
 msgstr "Umschalten zwischen Bild- und Textfrage"
 
-#: meinberlin/apps/documents/assets/ChapterForm.jsx:6
+#: meinberlin/apps/documents/assets/ChapterForm.jsx:8
 msgid "Chapter title"
 msgstr "Kapitelüberschrift"
 
-#: meinberlin/apps/documents/assets/ChapterForm.jsx:7
+#: meinberlin/apps/documents/assets/ChapterForm.jsx:9
 msgid "Add a new paragraph"
 msgstr "Neuer Absatz"
 
@@ -944,27 +944,27 @@ msgstr "Kapitelnavigation"
 msgid "Add a new chapter"
 msgstr "Neues Kapitel hinzufügen"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:9
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:10
 msgid "first chapter"
 msgstr "Erstes Kapitel"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:10
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:11
 msgid "new chapter"
 msgstr "Neues Kapitel"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:11
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:12
 msgid "The document has been updated."
 msgstr "Das Dokument wurde aktualisiert."
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:12
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:13
 msgid "The document could not be updated."
 msgstr "Das Dokument konnte nicht aktualisiert werden."
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:13
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:14
 msgid "Contents"
 msgstr "Inhaltsverzeichnis"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:14
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:15
 msgid "Edit chapter"
 msgstr "Kapitel bearbeiten"
 
@@ -1364,6 +1364,9 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
+
+#~ msgid "The poll could not be updated."
+#~ msgstr "Die Umfrage konnte nicht aktualisiert werden."
 
 #~ msgid "New question"
 #~ msgstr "Neue Frage"
