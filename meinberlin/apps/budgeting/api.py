@@ -144,16 +144,14 @@ class PermissionInfoMixin:
         fetches the module
         """
         permissions = {}
-
-        permissions['view_support_count'] = has_feature_active(
-            self.module, Proposal, 'support'
-        )
+        user = request.user
+        permissions['view_support_count'] = user.has_perm(
+            'meinberlin_budgeting.view_support', self.module)
         permissions['view_rate_count'] = self.module.has_feature(
             'rate', Proposal
         )
         permissions['view_comment_count'] = (
             self.module.has_feature('comment', Proposal)
-            and not has_feature_active(self.module, Proposal, 'vote')
         )
 
         response = super().list(request, args, kwargs)
