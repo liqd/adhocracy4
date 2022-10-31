@@ -17,7 +17,7 @@ exports[`CategorySelect renders correctly 1`] = `
         Answered questions will be displayed in the statistics according to the chosen affiliation.
       </div>
       <select
-        class="js-select2"
+        class="form-select"
         data-minimum-results-for-search="Infinity"
         id="categorySelect"
         name="categorySelect"

@@ -8,13 +8,6 @@ const answeredQuestionsStr = django.gettext('Answered questions will be displaye
 export const CategorySelect = (props) => {
   useEffect(() => {
     const select = document.getElementById('categorySelect')
-    // FIXME remove select2 when viable alternate available
-    if ($.fn.select2) {
-      $(select).select2()
-      $('.select2__no-search').select2({
-        minimumResultsForSearch: -1
-      })
-    }
     select.addEventListener('change', props.onSelect)
   }, [])
 
@@ -29,7 +22,7 @@ export const CategorySelect = (props) => {
           <select
             name="categorySelect"
             id="categorySelect"
-            className="js-select2"
+            className="form-select"
             required="required"
             data-minimum-results-for-search="Infinity"
           >
