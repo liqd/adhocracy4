@@ -6,13 +6,14 @@ import { BrowserRouter } from 'react-router-dom'
 const permissions = {
   view_support_count: false,
   view_rate_count: true,
-  view_comment_count: true
+  view_comment_count: true,
+  view_vote_count: true
 }
 
 test('Budgeting Proposal List without list item (empty)', async () => {
   // mimicking fetch response with empty list
   const mockedFetchEmpty = Promise.resolve({
-    json: () => Promise.resolve({ results: [] })
+    json: () => Promise.resolve({ results: [], permissions })
   })
 
   // overwrite global.fetch with mock function

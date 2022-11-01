@@ -13,6 +13,7 @@ from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
 from adhocracy4.labels.models import Label
 from adhocracy4.modules.predicates import module_is_between_phases
+from adhocracy4.phases.predicates import has_feature_active
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
 from meinberlin.apps.contrib.templatetags.contrib_tags import \
@@ -184,6 +185,9 @@ class PermissionInfoMixin:
         )
         permissions['view_comment_count'] = (
             self.module.has_feature('comment', Proposal)
+        )
+        permissions['view_vote_count'] = has_feature_active(
+            self.module, Proposal, 'vote'
         )
 
         response = super().list(request, args, kwargs)

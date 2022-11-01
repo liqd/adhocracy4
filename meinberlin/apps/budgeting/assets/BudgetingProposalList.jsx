@@ -77,7 +77,7 @@ export const BudgetingProposalList = (props) => {
 
   return (
     <>
-      {(props.is_voting_phase && meta?.token_info) &&
+      {(meta?.permissions.view_vote_count && meta?.token_info) &&
         <div className="module-content--light">
           <div className="container">
             <div className="offset-lg-3 col-lg-6">
