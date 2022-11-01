@@ -12,7 +12,7 @@ from adhocracy4.categories import get_category_icon_url
 from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
 from adhocracy4.labels.models import Label
-from adhocracy4.phases.predicates import has_feature_active
+from adhocracy4.modules.predicates import module_is_between_phases
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
 from meinberlin.apps.contrib.templatetags.contrib_tags import \
@@ -56,36 +56,19 @@ class ProposalFilterInfoMixin:
         filters = {}
 
         # category filter
-        categories = Category.objects.filter(
-            module=self.module
-        )
-        if categories:
-            category_choices = [('', _('All')), ]
-            if has_icons(self.module):
-                category_icons = []
-            for category in categories:
-                category_choices += (str(category.pk), category.name),
-                if has_icons(self.module):
-                    icon_name = getattr(category, 'icon', None)
-                    icon_url = get_category_icon_url(icon_name)
-                    category_icons += (str(category.pk), icon_url),
-
+        category_choices, category_icons = \
+            self.get_category_choices_and_icons()
+        if category_choices:
             filters['category'] = {
                 'label': _('Category'),
                 'choices': category_choices,
             }
-            if has_icons(self.module):
+            if category_icons:
                 filters['category']['icons'] = category_icons
 
         # label filter
-        labels = Label.objects.filter(
-            module=self.module
-        )
-        if labels:
-            label_choices = [('', _('All')), ]
-            for label in labels:
-                label_choices += (str(label.pk), label.name),
-
+        label_choices = self.get_label_choices()
+        if label_choices:
             filters['labels'] = {
                 'label': _('Label'),
                 'choices': label_choices,
@@ -106,33 +89,82 @@ class ProposalFilterInfoMixin:
         moderator_feedback_choices = (
             [('', _('All'))] + [choice for choice in DEFAULT_CHOICES]
         )
+
         filters['moderator_feedback'] = {
             'label': _('Status'),
             'choices': moderator_feedback_choices
         }
 
         # ordering filter
-        ordering_choices = [('-created', _('Most recent')), ]
-        # only show sort by rating when rating is allowed at anytime in module
-        # like "view_rate_count" from PermissionInfoMixin
-        if self.module.has_feature('rate', Proposal):
-            ordering_choices += ('-positive_rating_count', _('Most popular')),
-        # only show sort by support during supporting phase
-        # like "view_support_count" from PermissionInfoMixin
-        if has_feature_active(self.module, Proposal, 'support'):
-            ordering_choices += ('-positive_rating_count', _('Most support')),
-        ordering_choices += ('-comment_count', _('Most commented')), \
-                            ('dailyrandom', _('Random')),
-
+        ordering_choices = self.get_ordering_choices(request)
+        default_ordering = self.get_default_ordering()
         filters['ordering'] = {
             'label': _('Ordering'),
             'choices': ordering_choices,
-            'default': 'dailyrandom',
+            'default': default_ordering,
         }
 
         response = super().list(request, args, kwargs)
         response.data['filters'] = filters
         return response
+
+    def get_category_choices_and_icons(self):
+        category_choices = category_icons = None
+        categories = Category.objects.filter(
+            module=self.module
+        )
+        if categories:
+            category_choices = [('', _('All')), ]
+            if has_icons(self.module):
+                category_icons = []
+            for category in categories:
+                category_choices += (str(category.pk), category.name),
+                if has_icons(self.module):
+                    icon_name = getattr(category, 'icon', None)
+                    icon_url = get_category_icon_url(icon_name)
+                    category_icons += (str(category.pk), icon_url),
+        return category_choices, category_icons
+
+    def get_label_choices(self):
+        label_choices = None
+        labels = Label.objects.filter(
+            module=self.module
+        )
+        if labels:
+            label_choices = [('', _('All')), ]
+            for label in labels:
+                label_choices += (str(label.pk), label.name),
+
+        return label_choices
+
+    def get_ordering_choices(self, request):
+        ordering_choices = [('-created', _('Most recent')), ]
+        # only show sort by rating when rating is allowed at anytime in module
+        # like "view_rate_count" from PermissionInfoMixin
+        if self.module.has_feature('rate', Proposal):
+            ordering_choices += ('-positive_rating_count', _('Most popular')),
+        # only show sort by support option during support phase and btw support
+        # and voting phase like "view_support_count" from PermissionInfoMixin
+        show_support_option = request.user.has_perm(
+            'meinberlin_budgeting.view_support', self.module)
+        if show_support_option:
+            ordering_choices += ('-positive_rating_count', _('Most support')),
+        ordering_choices += ('-comment_count', _('Most commented')), \
+                            ('dailyrandom', _('Random')),
+
+        return ordering_choices
+
+    def get_default_ordering(self):
+        """Return current default of ordering filter.
+
+        Between support and voting phase, 'most support' is default ordering
+        filter, else dailyrandom
+        """
+        if module_is_between_phases('meinberlin_budgeting:support',
+                                    'meinberlin_budgeting:voting',
+                                    self.module):
+            return '-positive_rating_count'
+        return 'dailyrandom'
 
 
 class PermissionInfoMixin:
@@ -184,6 +216,14 @@ class ProposalViewSet(ModuleMixin,
                        'positive_rating_count',
                        'dailyrandom',)
     search_fields = ('name', 'ref_number')
+
+    @property
+    def ordering(self):
+        if module_is_between_phases('meinberlin_budgeting:support',
+                                    'meinberlin_budgeting:voting',
+                                    self.module):
+            return ['-positive_rating_count']
+        return ['dailyrandom']
 
     def get_permission_object(self):
         return self.module

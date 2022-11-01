@@ -20,6 +20,8 @@ def get_ordering_choices(view):
     choices = (('-created', _('Most recent')),)
     if view.module.has_feature('rate', models.Proposal):
         choices += ('-positive_rating_count', _('Most popular')),
+    elif view.module.has_feature('support', models.Proposal):
+        choices += ('-positive_rating_count', _('Most support')),
     choices += ('-comment_count', _('Most commented')), \
                ('dailyrandom', _('Random')),
     return choices

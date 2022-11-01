@@ -373,7 +373,9 @@ def test_proposal_ordering_filter(
                   kwargs={'module_pk': module.pk})
 
     # queryset is ordered by created
-    response = apiclient.get(url)
+    querystring = '?ordering=-created'
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 8
     assert response.data['results'][0]['pk'] == proposal_new.pk
     assert response.data['results'][-1]['pk'] == proposal_old.pk
@@ -419,7 +421,7 @@ def test_proposal_filter_combinations(
     yesterday = now - timezone.timedelta(days=1)
     last_week = now - timezone.timedelta(days=7)
 
-    proposal_new = proposal_factory(pk=1, module=module, created=now)
+    proposal_factory(pk=1, module=module, created=now)
     proposal_old = proposal_factory(pk=2,
                                     module=module,
                                     created=last_week,
@@ -461,12 +463,6 @@ def test_proposal_filter_combinations(
 
     url = reverse('proposals-list',
                   kwargs={'module_pk': module.pk})
-
-    # queryset is ordered by created
-    response = apiclient.get(url)
-    assert len(response.data['results']) == 8
-    assert response.data['results'][0]['pk'] == proposal_new.pk
-    assert response.data['results'][-1]['pk'] == proposal_old.pk
 
     # combinations
     querystring = '?is_archived=true&category=' + str(category2.pk)
