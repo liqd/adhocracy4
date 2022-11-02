@@ -27,11 +27,15 @@
                   {% csrf_token %}
                     <div class="input-group input-group-lg">
                         <label for="id_token" class="visually-hidden-focusable">{% translate 'Voting token form fields' %}</label>
-                        {{ token_form.token }}
+                        {{ token_form.token|add_error_attr:"aria-invalid:true" }}
                         <button type="submit" class="btn btn--primary">{% translate 'Enter code' %}</button>
                     </div>
                     {% if token_form.token.errors %}
-                        <div role="alert">{{ token_form.token.errors }}</div>
+                        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                        {% for error in token_form.token.errors %}
+                            <li>{{ error|escape }}</li>
+                        {% endfor %}
+                        </ul>
                     {% endif %}
                 </form>
             {% endif %}

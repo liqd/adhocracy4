@@ -1,8 +1,8 @@
-{% load i18n %}
+{% load i18n widget_tweaks %}
 
 <div class="form-check">
     <label class="form-check__label">
-        {{ field }}
+        {{ field|add_error_attr:"aria-invalid:true" }}
         {{ field.label }}
         {% if field.help_text %}
         <div class="form-hint">
@@ -10,5 +10,11 @@
         </div>
         {% endif %}
     </label>
-    {{ field.errors }}
+    {% if field.errors %}
+        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+        {% for error in field.errors %}
+            <li>{{ error|escape }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 </div>

@@ -13,8 +13,14 @@
     {% endif %}
     {% block field %}
         <div class="widget widget--{{ field|widget_type }}">
-            {{ field }}
+            {{ field|add_error_attr:"aria-invalid:true" }}
         </div>
     {% endblock %}
-    {{ field.errors }}
+    {% if field.errors %}
+        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+        {% for error in field.errors %}
+            <li>{{ error|escape }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 </div>
