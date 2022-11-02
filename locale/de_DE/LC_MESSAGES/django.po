@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-28 08:35+0200\n"
-"PO-Revision-Date: 2022-10-25 16:08+0000\n"
-"Last-Translator: Katharina Lindenlaub <katharina.albers@gmail.com>\n"
+"PO-Revision-Date: 2022-11-02 14:08+0000\n"
+"Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -1820,6 +1820,9 @@ msgid ""
 "me. I will receive automatic notifications for any status update or official "
 "statement to my proposal."
 msgstr ""
+"Für Rückfragen bzw. im Falle einer Umsetzung meines Vorschlags können Sie "
+"mich kontaktieren. Ich werde automatisch benachrichtigt, wenn es eine "
+"Statusänderung oder eine offizielle Rückmeldung zu meinem Vorschlag gibt."
 
 #: meinberlin/apps/budgeting/forms.py:30
 msgid "Telephone number"
@@ -1938,13 +1941,15 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/phases.py:63
 msgid "Which of the submitted proposals would you like to support?"
-msgstr ""
+msgstr "Welche der eingereichten Vorschläge möchten Sie unterstützen?"
 
 #: meinberlin/apps/budgeting/phases.py:64
 msgid ""
 "The proposals with the most supporters will be examined and will then be put "
 "to the final vote."
 msgstr ""
+"Die Vorschläge mit den meisten Unterstützer*innen werden geprüft und kommen "
+"anschließend in die finale Abstimmung."
 
 #: meinberlin/apps/budgeting/phases.py:78
 msgid "Which of the proposals do you think should be implemented?"
@@ -2459,6 +2464,11 @@ msgid ""
 "second phase proposals can be supported. In the third phase, participants "
 "vote on the shortlisted proposals.  "
 msgstr ""
+"Die Teilnehmenden können in einer ersten Phase eigene Vorschläge auf einer "
+"Karte eintragen und mit einem Budget versehen. Die Vorschläge Anderer können "
+"diskutiert werden. In einer zweiten Phase können Vorschläge unterstützt "
+"werden. In der dritten Phase stimmen die Teilnehmenden über die Vorschläge "
+"in der engeren Auswahl ab.  "
 
 #: meinberlin/apps/dashboard/blueprints.py:125
 msgid "Kiezkasse"
@@ -3209,7 +3219,7 @@ msgstr "wird geprüft"
 
 #: meinberlin/apps/moderatorfeedback/models.py:12
 msgid "Checked"
-msgstr ""
+msgstr "geprüft"
 
 #: meinberlin/apps/moderatorfeedback/models.py:13
 msgid "Rejected"
