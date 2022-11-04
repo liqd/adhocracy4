@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-28 08:35+0200\n"
-"PO-Revision-Date: 2022-11-02 14:08+0000\n"
+"PO-Revision-Date: 2022-11-04 17:08+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
@@ -1783,7 +1783,7 @@ msgstr "am beliebtesten"
 
 #: meinberlin/apps/budgeting/api.py:123
 msgid "Most support"
-msgstr ""
+msgstr "meist unterstützt"
 
 #: meinberlin/apps/budgeting/api.py:124 meinberlin/apps/budgeting/views.py:23
 #: meinberlin/apps/ideas/views.py:38 meinberlin/apps/kiezkasse/views.py:19
