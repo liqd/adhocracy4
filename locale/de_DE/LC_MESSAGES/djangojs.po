@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-25 16:09+0200\n"
-"PO-Revision-Date: 2022-11-02 14:08+0000\n"
+"PO-Revision-Date: 2022-11-04 17:08+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
@@ -874,7 +874,7 @@ msgstr "Vorschläge durchsuchen"
 
 #: meinberlin/apps/budgeting/assets/ListItemBadges.jsx:6
 msgid "More"
-msgstr ""
+msgstr "Mehr"
 
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:5
 msgid "Positive Ratings"
@@ -886,7 +886,7 @@ msgstr "Negative Bewertungen"
 
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:7
 msgid "Support"
-msgstr ""
+msgstr "Unterstützung"
 
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:8
 msgid "Comments"
@@ -906,7 +906,7 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/assets/SupportBox.jsx:8
 msgid "Click to support"
-msgstr ""
+msgstr "Zum Unterstützen klicken"
 
 #: meinberlin/apps/budgeting/assets/VoteButton.jsx:40
 msgid "Voted"
