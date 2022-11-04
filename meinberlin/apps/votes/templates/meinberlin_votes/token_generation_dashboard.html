@@ -11,13 +11,17 @@
     {% csrf_token %}
     {% if form.errors %}
     <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-      {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+        {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
     </div>
     {% endif %}
 
-    {% for error in form.non_field_errors %}
-        <span>{{ error }}</span>
-    {% endfor %}
+    {% if form.non_field_errors %}
+        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+        {% for error in form.non_field_errors %}
+            <li>{{ error|escape }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 
     <label for="{{ form.number_of_tokens.id_for_label }}">
     {{ form.number_of_tokens.label }}{% if form.number_of_tokens.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
@@ -28,9 +32,15 @@
     </div>
     {% endif %}
     <div class="input-group">
-        {{ form.number_of_tokens|add_class:"form-control" }}
+        {{ form.number_of_tokens|add_class:"form-control"|add_error_attr:"aria-invalid:true" }}
         <input type="submit" class="btn btn--secondary" value="{% translate 'Generate codes' %}"/>
     </div>
-    {{ form.number_of_tokens.errors }}
+    {% if form.number_of_tokens.errors %}
+        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+        {% for error in form.number_of_tokens.errors %}
+            <li>{{ error|escape }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 </form>
 {% endblock %}

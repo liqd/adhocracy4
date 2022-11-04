@@ -4,7 +4,7 @@
     {% csrf_token %}
     {% if form.errors %}
     <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-      {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+        {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
     </div>
     {% endif %}
 
@@ -19,13 +19,19 @@
         {% endif %}
         <div class="input-group">
             <div class="widget widget--{{ form.add_users|widget_type }}">
-                {{ form.add_users }}
+                {{ form.add_users|add_error_attr:"aria-invalid:true" }}
             </div>
             <span>
                 <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Add' %}"/>
             </span>
         </div>
-        {{ form.add_users.errors }}
+        {% if form.add_users.errors %}
+            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+            {% for error in form.add_users.errors %}
+                <li>{{ error|escape }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 </form>
 
@@ -40,19 +46,25 @@
         </div>
         <div class="widget widget--{{ form.add_users_upload|widget_type }}">
             <div class="input-group">
-                {{ form.add_users_upload|add_class:'input-group__input' }}
+                {{ form.add_users_upload|add_class:'input-group__input'|add_error_attr:"aria-invalid:true" }}
                 <span>
                     <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Upload' %}"/>
                 </span>
             </div>
         </div>
         {% if form.non_field_errors %}
-        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
             {% for error in form.non_field_errors %}
-            <li>{{ error }}</li>
+                <li>{{ error|escape }}</li>
             {% endfor %}
-        </ul>
+            </ul>
         {% endif %}
-        {{ form.add_users_upload.errors }}
+        {% if form.add_users_upload.errors %}
+            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+            {% for error in form.add_users_upload.errors %}
+                <li>{{ error|escape }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 </form>

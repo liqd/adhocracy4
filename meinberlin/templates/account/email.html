@@ -1,7 +1,6 @@
 {% extends "meinberlin_account/account_dashboard.html" %}
 
-{% load i18n %}
-{% load widget_tweaks %}
+{% load i18n widget_tweaks %}
 
 {% block title %}{% trans 'Email Addresses' %} &mdash; {{ block.super }}{% endblock %}
 
@@ -39,17 +38,23 @@
 <form class="multiform" method="post" action="{% url 'account_email' %}">
     {% csrf_token %}
     {% if form.non_field_errors %}
-    <div class="form-errors">
+        <ul class="errorlist" aria-live="assertive" aria-atomic="true">
         {% for error in form.non_field_errors %}
-        <p class="alert alert--danger">{{ error }}</p>
+            <li>{{ error|escape }}</li>
         {% endfor %}
-    </div>
+        </ul>
     {% endif %}
 
     <div class="form-group">
         <label class="control-label" for="{{ form.email.id_for_label }}">{% trans "Add another Email" %}</label>
-        {{ form.email.errors }}
-        {{ form.email|add_class:"form-control" }}
+        {% if form.email.errors %}
+            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+            {% for error in form.email.errors %}
+                <li>{{ error|escape }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {{ form.email|add_class:"form-control"|add_error_attr:"aria-invalid:true" }}
     </div>
     <div class="u-spacer-bottom">
         <input class="btn btn--primary" name="action_add" type="submit" value="{% trans 'Add Email' %}"/>

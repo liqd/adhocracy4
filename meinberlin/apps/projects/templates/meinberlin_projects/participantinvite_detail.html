@@ -6,7 +6,15 @@
     <div class="container">
         <div class="offset-lg-3 col-lg-6">
             <h1>{% blocktrans with project=participantinvite.project.name %}Do you want to take part in "{{ project }}"?{% endblocktrans %}</h1>
-            {{ form.non_field_errors }}
+
+            {% if form.non_field_errors %}
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                {% for error in form.non_field_errors %}
+                    <li>{{ error|escape }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+
             <p>
                 {% trans "For this you need an account. Please login with your account or register."%}
             </p>

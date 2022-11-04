@@ -25,9 +25,13 @@
         <div class="offset-lg-3 col-lg-6">
             <h1 class="u-first-heading">{% trans 'Create project' %}</h1>
 
-            {% for error in form.non_field_errors %}
-                <span>{{ error }}</span>
-            {% endfor %}
+            {% if form.non_field_errors %}
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                {% for error in form.non_field_errors %}
+                    <li>{{ error|escape }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
 
             <form enctype="multipart/form-data" action="{{ request.path }}" method="post" id="project-create-form">
                 {% csrf_token %}

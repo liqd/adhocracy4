@@ -12,11 +12,11 @@
         <form class="multiform" method="post" action="{% url 'socialaccount_connections' %}">
             {% csrf_token %}
             {% if form.non_field_errors %}
-            <div class="form-errors">
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
                 {% for error in form.non_field_errors %}
-                <p class="alert alert--danger">{{ error }}</p>
+                    <li>{{ error|escape }}</li>
                 {% endfor %}
-            </div>
+                </ul>
             {% endif %}
 
             {% for base_account in form.accounts %}

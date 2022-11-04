@@ -9,7 +9,13 @@
     <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktrans %}</p>
 
     <form method="POST" action="{% url 'account_login' %}" class="u-spacer-bottom-double">
-        {{ form.non_field_errors }}
+        {% if form.non_field_errors %}
+            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+            {% for error in form.non_field_errors %}
+                <li>{{ error|escape }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
         {% csrf_token %}
 
         <div class="form-group form-group--narrow">

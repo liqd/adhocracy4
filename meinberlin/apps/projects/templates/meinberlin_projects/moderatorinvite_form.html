@@ -6,7 +6,15 @@
     <div class="container">
         <div class="offset-lg-3 col-lg-6">
             <h1>{% blocktrans with project=moderatorinvite.project.name %}Moderation invitation for {{ project }}{% endblocktrans %}</h1>
-            {{ form.non_field_errors }}
+
+            {% if form.non_field_errors %}
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                {% for error in form.non_field_errors %}
+                    <li>{{ error|escape }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+
             <p>
                 {% trans "You were invited by the initiator of the project. If you accept you will be able to moderate the project." %}
             </p>

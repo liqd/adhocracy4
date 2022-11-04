@@ -1,5 +1,5 @@
 {% extends "account/base.html" %}
-{% load i18n %}
+{% load i18n widget_tweaks %}
 
 {% block head_title %}{% trans "Register" %}{% endblock %}
 
@@ -11,7 +11,14 @@
     <p>{% trans "If you register on mein.berlin.de, you can write ideas and comments for ongoing participation processes and rate the contributors of other users." %}</p>
 
     <form id="signup_form" method="post" action="{% url 'account_signup' %}">
-        {{ form.non_field_errors }}
+        {% if form.non_field_errors %}
+            <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+            {% for error in form.non_field_errors %}
+                <li>{{ error|escape }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
         {{ form.media }}
         {% csrf_token %}
 
@@ -26,10 +33,16 @@
 
         <div class="form-check">
             <label class="form-check__label">
-                {{ form.terms_of_use }}
+                {{ form.terms_of_use|add_error_attr:"aria-invalid:true" }}
                 {% blocktrans with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.{% endblocktrans %}
             </label>
-            {{ form.terms_of_use.errors }}
+            {% if form.terms_of_use.errors %}
+                <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+                {% for error in form.terms_of_use.errors %}
+                    <li>{{ error|escape }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
         </div>
 
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.captcha %}
