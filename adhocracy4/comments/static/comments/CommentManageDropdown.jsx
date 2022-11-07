@@ -21,10 +21,10 @@ const CommentManageDropdown = (props) => {
               <button type="button" onClick={props.handleToggleEdit}>{editTag}</button>
             </li>,
             <li className="divider" key="2" />,
-            <li key="3"><a href={`#comment_delete_${props.id}`} data-bs-toggle="modal">{deleteTag}</a></li>,
+            <li key="3"><a href={'#comment_delete_' + props.id} data-bs-toggle="modal">{deleteTag}</a></li>,
             <li className="divider" key="4" />
           ]}
-          <li><a href={`#report_comment_${props.id}`} data-bs-toggle="modal">{reportTag}</a>
+          <li><a href={'#report_comment_' + props.id} data-bs-toggle="modal">{reportTag}</a>
           </li>
         </ul>
       </li>

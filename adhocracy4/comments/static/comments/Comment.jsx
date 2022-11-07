@@ -156,7 +156,7 @@ class Comment extends React.Component {
     if (this.isOwner() || this.context.isModerator) {
       return (
         <Modal
-          name={`comment_delete_${this.props.id}`}
+          name={'comment_delete_' + this.props.id}
           partials={{ title: confirmDeleteText }}
           handleSubmit={() => this.props.onCommentDelete(this.props.index, this.props.parentIndex)}
           action={deleteTag}
@@ -173,7 +173,7 @@ class Comment extends React.Component {
     return (
       <div className="comment">
         <ReportModal
-          name={`report_comment_${this.props.id}`}
+          name={'report_comment_' + this.props.id}
           title={reportText}
           btnStyle="cta"
           objectId={this.props.id}

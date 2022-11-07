@@ -118,7 +118,7 @@ class RatingBox extends React.Component {
   render () {
     const getRatingClasses = ratingType => {
       const valueForRatingType = ratingType === 'up' ? 1 : -1
-      return classnames(`rating-button rating-${ratingType}`, {
+      return classnames('rating-button rating-' + ratingType, {
         'is-selected': this.state.userRating === valueForRatingType
       })
     }

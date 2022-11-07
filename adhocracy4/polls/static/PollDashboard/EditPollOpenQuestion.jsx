@@ -31,11 +31,11 @@ export const EditPollOpenQuestion = (props) => {
           ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
           : null}
         <button
-          className={`btn ${hasHelptext ? 'poll__btn--dark' : 'poll__btn--light'}`}
+          className={'btn ' + hasHelptext ? 'poll__btn--dark' : 'poll__btn--light'}
           onClick={() => setHasHelptext(!hasHelptext)}
           type="button"
         >
-          <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} /> {django.gettext('Explanation')}
+          <i className={'fa +' + hasHelptext ? 'fa-check' : 'fa-plus'} /> {django.gettext('Explanation')}
         </button>
       </div>
 

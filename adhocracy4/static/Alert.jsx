@@ -16,7 +16,7 @@ const Alert = ({ type, alertAttribute, message, onClick, timeInMs }) => {
     return (
       <div
         id="alert"
-        className={`alert alert--${type}`}
+        className={'alert alert--' + type}
         aria-atomic="true"
         aria-live={alertAttribute}
       >
