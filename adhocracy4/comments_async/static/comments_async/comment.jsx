@@ -26,19 +26,29 @@ const translated = {
   share: django.gettext('Share'),
   report: django.gettext(' Report'),
   showModStatement: django.gettext('Show moderator\'s feedback'),
-  hideModStatement: django.gettext('Hide moderator\'s feedback')
+  hideModStatement: django.gettext('Hide moderator\'s feedback'),
+  deleteComment: django.gettext('Do you really want to delete this comment?'),
+  delete: django.gettext('Delete'),
+  abort: django.gettext('Abort'),
+  deletedyByCreatorOn: django.gettext('Deleted by creator on'),
+  deletedByModeratorOn: django.gettext('Deleted by moderator on'),
+  blockedByModeratorOn: django.gettext('Blocked by moderator on'),
+  lastEditOn: django.gettext('Latest edit on'),
+  moderator: django.gettext('Moderator'),
+  hideReplies: django.gettext('hide replies'),
+  reply: django.pgettext('verb', 'Reply')
 }
 
 function getAnswerForm (hide, number) {
   let result
   if (hide) {
-    result = django.gettext('hide replies')
+    result = translated.hideReplies
   } else {
     if (number > 0) {
       const tmp = django.ngettext('1 reply', '%s replies', number)
       result = django.interpolate(tmp, [number])
     } else {
-      result = django.pgettext('verb', 'Reply')
+      result = translated.reply
     }
   }
   return result
@@ -263,10 +273,10 @@ export default class Comment extends React.Component {
       return (
         <Modal
           name={'comment_delete_' + this.props.id}
-          partials={{ title: django.gettext('Do you really want to delete this comment?') }}
+          partials={{ title: translated.deleteComment }}
           handleSubmit={() => this.props.onCommentDelete(this.props.index, this.props.parentIndex)}
-          action={django.gettext('Delete')}
-          abort={django.gettext('Abort')}
+          action={translated.delete}
+          abort={translated.abort}
           btnStyle="cta"
         />
       )
@@ -282,18 +292,18 @@ export default class Comment extends React.Component {
     if (this.props.modified === null) {
       lastDate = this.props.created
     } else if (this.props.is_removed) {
-      lastDate = django.gettext('Deleted by creator on') + ' ' + this.props.modified
+      lastDate = translated.deletedyByCreatorOn + ' ' + this.props.modified
     } else if (this.props.is_censored) {
-      lastDate = django.gettext('Deleted by moderator on') + ' ' + this.props.modified
+      lastDate = translated.deletedByModeratorOn + ' ' + this.props.modified
     } else if (this.props.is_blocked) {
-      lastDate = django.gettext('Blocked by moderator on') + ' ' + this.props.modified
+      lastDate = translated.blockedByModeratorOn + ' ' + this.props.modified
     } else {
-      lastDate = django.gettext('Latest edit on') + ' ' + this.props.modified
+      lastDate = translated.lastEditOn + ' ' + this.props.modified
     }
 
     let moderatorLabel
     if (this.props.authorIsModerator && !this.props.is_deleted) {
-      moderatorLabel = <span className="a4-comments__moderator">{django.gettext('Moderator')}</span>
+      moderatorLabel = <span className="a4-comments__moderator">{translated.moderator}</span>
     }
 
     let userImage
