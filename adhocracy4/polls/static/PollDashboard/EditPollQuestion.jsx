@@ -68,7 +68,7 @@ export const EditPollQuestion = (props) => {
           {
             props.question.choices.map((choice, index) => {
               const key = choice.id || choice.key
-              const label = django.pgettext('noun', 'Answer') + ` #${index + 1}`
+              const label = django.pgettext('noun', 'Answer') + ' #' + (index + 1)
               const errors = props.errors && props.errors.choices
                 ? props.errors.choices[index]
                 : {}
@@ -114,11 +114,11 @@ export const EditPollQuestion = (props) => {
             <i className="fa fa-plus" /> {django.gettext('New answer')}
           </button>
           <button
-            className={`btn ${hasHelptext ? 'poll__btn--dark' : 'poll__btn--light'}`}
+            className={'btn ' + hasHelptext ? 'poll__btn--dark' : 'poll__btn--light'}
             onClick={() => setHasHelptext(!hasHelptext)}
             type="button"
           >
-            <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} /> {django.gettext('Explanation')}
+            <i className={'fa ' + hasHelptext ? 'fa-check' : 'fa-plus'} /> {django.gettext('Explanation')}
           </button>
         </div>
       </div>

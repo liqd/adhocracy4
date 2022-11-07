@@ -25,7 +25,7 @@ const CommentManageDropdown = (props) => {
           <div className="divider" key="2" />
         ]}
         {props.has_deleting_permission && [
-          <a key="3" className="dropdown-item" href={`#comment_delete_${props.id}`} data-bs-toggle="modal">{translated.delete}</a>,
+          <a key="3" className="dropdown-item" href={'#comment_delete_' + props.id} data-bs-toggle="modal">{translated.delete}</a>,
           <div className="divider" key="4" />
         ]}
       </div>

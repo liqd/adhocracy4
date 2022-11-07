@@ -47,7 +47,7 @@ export default class ModerateModal extends React.Component {
 
     return (
       <Modal
-        name={`comment_moderate_${this.props.id}`}
+        name={'comment_moderate_' + this.props.id}
         partials={partials}
         handleSubmit={() => this.props.onCommentModerate(data, this.props.index, this.props.parentIndex)}
         action={django.gettext('Submit')}
