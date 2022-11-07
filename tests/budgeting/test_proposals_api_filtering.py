@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 import pytest
 from dateutil.parser import parse
 from django.urls import reverse
@@ -11,11 +13,19 @@ from meinberlin.apps.budgeting import phases
 
 
 @pytest.mark.django_db
-def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
-                              category_factory, label_factory):
-    phase, module, project, proposal = setup_phase(phase_factory,
-                                                   proposal_factory,
-                                                   phases.SupportPhase)
+def test_proposal_list_filter_mixin(apiclient, phase_factory, proposal_factory,
+                                    category_factory, label_factory):
+    support_phase, module, project, proposal = setup_phase(phase_factory,
+                                                           proposal_factory,
+                                                           phases.SupportPhase)
+    voting_phase = phase_factory(
+        phase_content=phases.VotingPhase(),
+        module=module,
+        start_date=support_phase.end_date + timedelta(hours=2),
+        end_date=support_phase.end_date + timedelta(hours=3),
+    )
+    between_phases = support_phase.end_date + timedelta(hours=1)
+
     category1 = category_factory(module=module)
     category2 = category_factory(module=module)
 
@@ -63,7 +73,6 @@ def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
     # with labels
     label1 = label_factory(module=module)
     label2 = label_factory(module=module)
-
     response = apiclient.get(url)
     assert 'filters' in response.data
     assert len(response.data['filters']) == 5
@@ -73,13 +82,33 @@ def test_proposal_list_mixins(apiclient, phase_factory, proposal_factory,
     assert (str(label2.pk), label2.name) in \
            response.data['filters']['labels']['choices']
 
-    with freeze_phase(phase):
+    # ordering choices and default in different phases
+    with freeze_phase(support_phase):
         response = apiclient.get(url)
-        assert response.data['filters']['ordering']['choices'] == \
-               [('-created', _('Most recent')),
-                ('-positive_rating_count', _('Most support')),
-                ('-comment_count', _('Most commented')),
-                ('dailyrandom', _('Random'))]
+    assert response.data['filters']['ordering']['choices'] == \
+           [('-created', _('Most recent')),
+            ('-positive_rating_count', _('Most support')),
+            ('-comment_count', _('Most commented')),
+            ('dailyrandom', _('Random'))]
+    assert response.data['filters']['ordering']['default'] == 'dailyrandom'
+
+    with freeze_time(between_phases):
+        response = apiclient.get(url)
+    assert response.data['filters']['ordering']['choices'] == \
+           [('-created', _('Most recent')),
+            ('-positive_rating_count', _('Most support')),
+            ('-comment_count', _('Most commented')),
+            ('dailyrandom', _('Random'))]
+    assert response.data['filters']['ordering']['default'] == \
+           '-positive_rating_count'
+
+    with freeze_phase(voting_phase):
+        response = apiclient.get(url)
+    assert response.data['filters']['ordering']['choices'] == \
+           [('-created', _('Most recent')),
+            ('-comment_count', _('Most commented')),
+            ('dailyrandom', _('Random'))]
+    assert response.data['filters']['ordering']['default'] == 'dailyrandom'
 
     phase_factory(phase_content=phases.RatingPhase(), module=module)
     response = apiclient.get(url)
@@ -406,6 +435,60 @@ def test_proposal_ordering_filter(
         response = apiclient.get(url_tmp)
     ordered_pks = [proposal['pk'] for proposal in response.data['results']]
     assert ordered_pks == [8, 2, 4, 7, 6, 5, 1, 3]
+
+
+@pytest.mark.django_db
+def test_proposal_default_ordering_filter(
+        apiclient, module, phase_factory, proposal_factory,
+        rating_factory):
+
+    support_phase = phase_factory(
+        phase_content=phases.SupportPhase(),
+        module=module,
+        start_date=parse('2022-01-01 00:00:00 UTC'),
+        end_date=parse('2022-01-01 10:00:00 UTC'),
+    )
+    voting_phase = phase_factory(
+        phase_content=phases.VotingPhase(),
+        module=module,
+        start_date=parse('2022-01-01 14:00:00 UTC'),
+        end_date=parse('2022-01-01 18:00:00 UTC'),
+    )
+
+    between_phases = parse('2022-01-01 12:00:00 UTC')
+
+    url = reverse('proposals-list',
+                  kwargs={'module_pk': module.pk})
+
+    proposal_factory(pk=1,
+                     module=module)
+    proposal_2 = proposal_factory(pk=2,
+                                  module=module)
+    proposal_3 = proposal_factory(pk=3,
+                                  module=module)
+
+    rating_factory(content_object=proposal_2, value=1)
+    rating_factory(content_object=proposal_2, value=1)
+    rating_factory(content_object=proposal_3, value=1)
+
+    # dailyrandom is default during support
+    # dailyrandom order for '2022-01-01' is [2, 1, 3]
+    with freeze_phase(support_phase):
+        response = apiclient.get(url)
+    ordered_pks = [proposal['pk'] for proposal in response.data['results']]
+    assert ordered_pks == [2, 1, 3]
+
+    # support is default between support and voting phase
+    with freeze_time(between_phases):
+        response = apiclient.get(url)
+    ordered_pks = [proposal['pk'] for proposal in response.data['results']]
+    assert ordered_pks == [2, 3, 1]
+
+    # dailyrandom is default during voting
+    with freeze_phase(voting_phase):
+        response = apiclient.get(url)
+    ordered_pks = [proposal['pk'] for proposal in response.data['results']]
+    assert ordered_pks == [2, 1, 3]
 
 
 @pytest.mark.django_db

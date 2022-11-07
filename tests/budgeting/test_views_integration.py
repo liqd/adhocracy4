@@ -1,7 +1,7 @@
 import pytest
 from django.core import mail
 from django.urls import reverse
-from django.utils.translation import gettext
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
@@ -9,6 +9,7 @@ from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting import models
 from meinberlin.apps.budgeting import phases
+from meinberlin.apps.budgeting import views
 
 
 @pytest.mark.django_db
@@ -20,6 +21,37 @@ def test_list_view(client, phase_factory, proposal_factory):
         response = client.get(url)
         assert_template_response(
             response, 'meinberlin_budgeting/proposal_list.html')
+
+
+@pytest.mark.django_db
+def test_list_view_ordering_choices(client, phase_factory, proposal_factory):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RatingPhase)
+    url = project.get_absolute_url()
+    with freeze_phase(phase):
+        response = client.get(url)
+        view = response.context['view']
+        ordering_choices = views.get_ordering_choices(view)
+        assert ordering_choices == (
+            ('-created', _('Most recent')),
+            ('-positive_rating_count', _('Most popular')),
+            ('-comment_count', _('Most commented')),
+            ('dailyrandom', _('Random'))
+        )
+
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.SupportPhase)
+    url = project.get_absolute_url()
+    with freeze_phase(phase):
+        response = client.get(url)
+        view = response.context['view']
+        ordering_choices = views.get_ordering_choices(view)
+        assert ordering_choices == (
+            ('-created', _('Most recent')),
+            ('-positive_rating_count', _('Most support')),
+            ('-comment_count', _('Most commented')),
+            ('dailyrandom', _('Random'))
+        )
 
 
 @pytest.mark.django_db
@@ -63,7 +95,7 @@ def test_list_view_token_form(client, user, phase_factory, proposal_factory,
 
         response = client.post(url, data)
         assert 'token' in response.context_data['token_form'].errors
-        msg = gettext('This token is not valid')
+        msg = _('This token is not valid')
         assert msg in response.context_data['token_form'].errors['token']
         assert 'voting_token' not in client.session
 
