@@ -20,6 +20,8 @@ rules.add_perm(
     module_predicates.is_allowed_add_item(models.Proposal)
 )
 
+# is_allowed_support_item is needed, because support also uses
+# the rating api which checks rate_proposal permission
 rules.add_perm(
     'meinberlin_budgeting.rate_proposal',
     module_predicates.is_allowed_rate_item | is_allowed_support_item
