@@ -17,5 +17,6 @@ rules.add_perm('a4projects.view_project',
                 & is_live))
 
 rules.set_perm('a4projects.participate_in_project',
-               is_superuser | is_initiator | is_moderator |
+               is_superuser | is_initiator |
+               is_moderator | is_prj_group_member |
                ((is_public | is_project_member) & is_live))

@@ -40,8 +40,8 @@ def test_participate_project_draft(user_factory, group_factory, organisation,
     assert not rules.has_perm(perm_name_participate, group_member_in_orga,
                               project)
     assert not rules.has_perm(perm_name_participate, group_member_out, project)
-    assert not rules.has_perm(perm_name_participate, group_member_in_project,
-                              project)
+    assert rules.has_perm(perm_name_participate, group_member_in_project,
+                          project)
     assert rules.has_perm(perm_name_participate, moderator, project)
     assert rules.has_perm(perm_name_participate, initiator, project)
     assert rules.has_perm(perm_name_participate, admin, project)
@@ -150,8 +150,8 @@ def test_participate_private_project(user_factory, group_factory,
     assert not rules.has_perm(perm_name_participate, group_member_in_orga,
                               project)
     assert not rules.has_perm(perm_name_participate, group_member_out, project)
-    assert not rules.has_perm(perm_name_participate, group_member_in_project,
-                              project)
+    assert rules.has_perm(perm_name_participate, group_member_in_project,
+                          project)
     assert rules.has_perm(perm_name_participate, participant, project)
     assert rules.has_perm(perm_name_participate, moderator, project)
     assert rules.has_perm(perm_name_participate, initiator, project)
@@ -190,8 +190,8 @@ def test_participate_semiprivate_project(user_factory, group_factory,
     assert not rules.has_perm(perm_name_participate, group_member_in_orga,
                               project)
     assert not rules.has_perm(perm_name_participate, group_member_out, project)
-    assert not rules.has_perm(perm_name_participate, group_member_in_project,
-                              project)
+    assert rules.has_perm(perm_name_participate, group_member_in_project,
+                          project)
     assert rules.has_perm(perm_name_participate, participant, project)
     assert rules.has_perm(perm_name_participate, moderator, project)
     assert rules.has_perm(perm_name_participate, initiator, project)
