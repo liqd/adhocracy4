@@ -45,7 +45,6 @@ def react_support(context, obj):
         'userSupportId': user_support_id,
         'isReadOnly': (not has_support_permission and
                        not would_have_support_permission),
-        'style': 'ideas',
     }
 
     return format_html(
