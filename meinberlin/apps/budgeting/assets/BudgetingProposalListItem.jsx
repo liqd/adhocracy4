@@ -12,14 +12,14 @@ export const BudgetingProposalListItem = (props) => {
   const { proposal, permissions, tokenvoteApiUrl } = props
   const safeLocale = props.locale ? props.locale : undefined
   const date = proposal.modified
-    ? `${updatedOnStr} ${toLocaleDate(
-        proposal.modified,
-        safeLocale
-      )}`
-    : `${createdOnStr} ${toLocaleDate(
-        proposal.created,
-        safeLocale
-      )}`
+    ? updatedOnStr + ' ' + toLocaleDate(
+      proposal.modified,
+      safeLocale
+    )
+    : createdOnStr + ' ' + toLocaleDate(
+      proposal.created,
+      safeLocale
+    )
 
   return (
     <li className="list-item">
@@ -39,9 +39,8 @@ export const BudgetingProposalListItem = (props) => {
       />
       <div className="list-item__vote">
         <div>
-          <span className="list-item__author">{proposal.creator}</span>
-          {date}
-          {` - ${proposal.reference_number}`}
+          <span className="list-item__author test">{proposal.creator}</span>
+          {date + ' - ' + proposal.reference_number}
         </div>
         {proposal.vote_allowed && (
           <VoteButton

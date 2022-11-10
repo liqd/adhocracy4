@@ -67,7 +67,7 @@ export const SupportBox = (props) => {
     <div className="rating">
       <button
         aria-label={translations.support}
-        className={`rating-button rating-up ${userSupported ? 'is-selected' : ''}`}
+        className={'rating-button rating-up ' + userSupported ? 'is-selected' : ''}
         disabled={props.isReadOnly}
         onClick={handleSupport}
       >

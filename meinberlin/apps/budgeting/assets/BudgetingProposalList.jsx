@@ -11,6 +11,10 @@ export const BudgetingProposalList = (props) => {
   const [meta, setMeta] = useState()
   const location = useLocation()
   const [queryParams] = useSearchParams()
+  const getVoteCountText = (votes) => {
+    const countText = django.ngettext('you have 1 vote left.', 'you have %s votes left.', votes)
+    return django.interpolate(countText, [votes])
+  }
 
   const fetchProposals = () => {
     const url = props.proposals_api_url + location.search
@@ -45,7 +49,7 @@ export const BudgetingProposalList = (props) => {
         <ul className="u-list-reset">
           {data.map((proposal, idx) =>
             <BudgetingProposalListItem
-              key={`budgeting-proposal-${idx}`}
+              key={'budgeting-proposal-' + idx}
               proposal={proposal}
               locale={meta?.locale}
               permissions={meta?.permissions}
@@ -70,11 +74,6 @@ export const BudgetingProposalList = (props) => {
     )
   }
 
-  const getVoteCountText = (votes) => {
-    const countText = django.ngettext('you have 1 vote left.', 'you have %s votes left.', votes)
-    return django.interpolate(countText, [votes])
-  }
-
   return (
     <>
       {(meta?.permissions.view_vote_count && meta?.token_info) &&
@@ -83,7 +82,7 @@ export const BudgetingProposalList = (props) => {
             <div className="offset-lg-3 col-lg-6">
               <CountDown
                 countText={getVoteCountText(meta?.token_info.num_votes_left)}
-                activeClass="btn btn--transparent btn--full u-spacer-bottom btn--huge u-primary"
+                activeClass="btn btn--light btn--full u-spacer-bottom btn--huge u-primary"
                 inactiveClass="btn btn--full btn--light u-spacer-bottom btn--huge"
                 counter={meta?.token_info.num_votes_left}
               />

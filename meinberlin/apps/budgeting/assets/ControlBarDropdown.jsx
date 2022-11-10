@@ -47,14 +47,14 @@ export const ControlBarDropdown = props => {
         aria-expanded="false"
         id={props.filterId}
       >
-        {`${filter.label}: ${currentChoiceName}`}
+        {filter.label + ':' + ' ' + currentChoiceName}
         <i className="fa fa-caret-down" aria-hidden />
       </button>
       <ul aria-labelledby={props.filterId} className="dropdown-menu">
         {filter.choices.map((choice, idx) => {
           const icon = filter.icons && getIcon(choice[0])
           return (
-            <li key={`filter-choice_${idx}`}>
+            <li key={'filter-choice_' + idx}>
               <button
                 className="dropdown-item"
                 onClick={() => onSelectFilter(choice)}

@@ -15,7 +15,7 @@ const ckReplace = function (id, config) {
   return window.CKEDITOR.replace(id, config)
 }
 
-class Paragraph extends React.Component {
+class ParagraphForm extends React.Component {
   handleNameChange (e) {
     const name = e.target.value
     this.props.onNameChange(name)
@@ -157,4 +157,4 @@ class Paragraph extends React.Component {
   }
 }
 
-module.exports = Paragraph
+module.exports = ParagraphForm

@@ -15,5 +15,5 @@ export const toLocaleDate = (isodate, locale = 'de-DE') => {
 // input: "0"
 // output: " 0 "
 export const wrapSpaces = (value) => {
-  return ` ${value} `
+  return ' ' + value + ' '
 }

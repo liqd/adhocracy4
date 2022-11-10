@@ -123,7 +123,7 @@ exports[`ChapterNavItem top renders correctly 1`] = `
       class="commenting__content"
     >
       <button
-        class="commenting--toc__button btn btn--light btn--small active"
+        class="active commenting--toc__button btn btn--light btn--small"
         type="button"
       >
         1. Chapter name

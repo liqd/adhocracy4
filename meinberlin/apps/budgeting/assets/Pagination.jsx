@@ -36,7 +36,7 @@ export const Pagination = (props) => {
         {elidedRange.map((num, idx) => (
           <PaginationButton
             type="num"
-            key={`pagination-item-${idx}`}
+            key={'pagination-item-' + idx}
             isActive={num === currPage}
             pageIndex={num}
             onClick={onPaginate}

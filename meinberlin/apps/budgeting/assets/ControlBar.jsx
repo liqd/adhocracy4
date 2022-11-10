@@ -90,10 +90,10 @@ export const ControlBar = props => {
               const filterItem = props.filters[type]
               return type !== 'ordering' && (
                 <ControlBarDropdown
-                  key={`filter_${idx}`}
+                  key={'filter_' + idx}
                   filter={filterItem}
                   current={queryParams.get(type)}
-                  filterId={`id_${type}`}
+                  filterId={'id_' + type}
                   onSelectFilter={choice => applyFilter(type, choice)}
                 />
               )

@@ -1,6 +1,5 @@
 const React = require('react')
 const django = require('django')
-const classNames = require('classnames')
 const moveUpStr = django.gettext('Move up')
 const moveDownStr = django.gettext('Move down')
 const deleteStr = django.gettext('Delete')
@@ -21,7 +20,7 @@ const ChapterNavItem = (props) => {
       <div className="commenting__content">
         <button
           type="button"
-          className={classNames('commenting--toc__button', 'btn btn--light', 'btn--small', { active: props.active })}
+          className={(props.active ? 'active ' : '') + 'commenting--toc__button btn btn--light btn--small'}
           onClick={props.onClick}
         >
           {props.index + 1}. {props.name}

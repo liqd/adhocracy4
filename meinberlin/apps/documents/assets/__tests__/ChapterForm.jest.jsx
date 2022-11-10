@@ -7,6 +7,7 @@ import ChapterForm from '../ChapterForm'
 // FIXME: Because of mocking ParagraphForm, some things cannot be tested
 // E.g. not able to reach 100% coverage for this component at the moment.
 // Note: () => () => {} to unwrap it properly.
+// eslint-disable-next-line react/display-name
 jest.mock('../ParagraphForm', () => () => <div>MockedParagraphForm</div>)
 
 test('Chapter Form without paragraphs', () => {

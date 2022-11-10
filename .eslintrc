@@ -2,6 +2,7 @@
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 6,
+    "sourceType": "module",
     "requireConfigFile": false,
     "babelOptions": {
       "presets": ["@babel/preset-react"]
@@ -20,25 +21,38 @@
   "extends": [
     "standard",
     "standard-jsx",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:n/recommended"
   ],
   "rules": {
     "jsx-quotes": [2, "prefer-double"],
     "jsx-a11y/no-onchange": "off",
+    "react/prop-types": "off",
+    "n/no-missing-require": "off",
+    "n/no-unsupported-features/es-syntax": "off",
+    "n/no-missing-import": "off",
+    "n/no-unpublished-import": "off",
+    "n/no-extraneous-import": "off",
+    "no-restricted-syntax": ["error", "TemplateLiteral"]
   },
   "plugins": [
     "jsx-a11y",
-    "jest"
+    "jest",
+    "promise"
   ],
-  "overrides": [
-    {
-      "files": [
-        "**/*.jest.js",
-        "**/*.jest.jsx"
-      ],
-      "env": {
-        "jest": true
+  "ignorePatterns": [
+    "node_modules/",
+    "venv/",
+    "static/"
+  ],
+  "settings": {
+    "import/core-modules": [ django ],
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
       }
     }
-  ]
+  }
 }

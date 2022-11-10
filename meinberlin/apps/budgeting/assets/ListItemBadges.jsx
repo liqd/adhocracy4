@@ -14,8 +14,8 @@ export const ListItemBadges = props => {
     if (badge[0] !== 'moderator_feedback') {
       return labelClass
     }
-    const modTypeClass = `label--${badge[2].toLowerCase()}`
-    return `${labelClass} ${modTypeClass}`
+    const modTypeClass = 'label--' + badge[2].toLowerCase()
+    return labelClass + ' ' + modTypeClass
   }
 
   // only return icon for pointLabels
@@ -31,7 +31,7 @@ export const ListItemBadges = props => {
       {props.badges.map((badge, idx) => {
         return (
           <SpacedSpan
-            key={`badge_${idx}`}
+            key={'badge_' + idx}
             className={getClass(badge)}
           >
             {hasPointLabelIcon(badge[0])}
