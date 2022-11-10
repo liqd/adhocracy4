@@ -81,7 +81,7 @@ class CommentModerateSet(mixins.CreateModelMixin,
     serializer_class = CommentModerateSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('object_pk', 'content_type')
+    filterset_fields = ('object_pk', 'content_type')
     content_type_filter = settings.A4_COMMENTABLES
 
     def get_permission_object(self):
