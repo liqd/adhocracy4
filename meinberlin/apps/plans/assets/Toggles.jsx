@@ -134,7 +134,7 @@ class Toggles extends React.Component {
               {this.searchFilterBtn()}
             </div>
             <IconSwitch
-              activeClass="btn btn--icon btn--light switch--btn active"
+              activeClass="btn btn--icon switch--btn active"
               inactiveClass="btn btn--icon btn--light"
               startText={listStr}
               endText={mapStr}

@@ -15,6 +15,12 @@
     // stylelint-enable
 }
 
+@mixin fake-focus-shadow-light {
+    // stylelint-disable scale-unlimited/declaration-strict-value
+    box-shadow: 0 0 1px 3px rgb(211, 212, 213, 0.5);
+    // stylelint-enable
+}
+
 @mixin secondary-text {
     font-weight: bold;
     text-transform: uppercase;

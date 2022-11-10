@@ -4,16 +4,6 @@
     flex-flow: row wrap;
     margin-bottom: $spacer;
 
-    .btn--transparent {
-        color: $secondary;
-        margin: 0 $spacer $spacer 0;
-
-        &:hover,
-        &:focus {
-            color: $primary;
-        }
-    }
-
     @media screen and (min-width: $breakpoint-xs) {
         margin-bottom: 0;
     }
@@ -88,20 +78,35 @@
 
 .switch--btn {
     color: $secondary;
+    background-color: $body-bg;
+    border-radius: 0;
+    font-weight: normal;
+    position: relative;
+    padding-left: 0.5 * $padding;
+    padding-right: 0.5 * $padding;
 
     &:active,
     &:hover,
-    &:focus {
+    &:focus,
+    &.active {
         color: $body-bg;
         background-color: $secondary;
         border-color: $secondary;
     }
+
+    &:focus-within {
+        @include fake-focus-shadow;
+    }
 }
 
-.switch--btn.active {
-    color: $body-bg;
-    background-color: $secondary;
-    border-color: $secondary;
+.btn-group > div:first-child > .switch--btn {
+    border-top-left-radius: ($spacer * 0.3);
+    border-bottom-left-radius: ($spacer * 0.3);
+}
+
+.btn-group > div:last-child > .switch--btn {
+    border-top-right-radius: ($spacer * 0.3);
+    border-bottom-right-radius: ($spacer * 0.3);
 }
 
 .switch-btn-group-container {

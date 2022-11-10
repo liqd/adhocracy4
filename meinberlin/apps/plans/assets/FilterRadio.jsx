@@ -25,9 +25,9 @@ class FilterRadio extends React.Component {
 
   getClassNameInput (choice) {
     if (this.isChecked(choice)) {
-      return 'btn btn--light switch--btn u-z-index-1 active'
+      return 'btn switch--btn u-z-index-1 active'
     }
-    return 'btn btn--light switch--btn'
+    return 'btn switch--btn'
   }
 
   render () {
@@ -35,37 +35,39 @@ class FilterRadio extends React.Component {
       <fieldset className={'filter-bar__menu-radio-' + this.props.filterId} role="group" aria-labelledby={this.props.filterId}>
         <legend><h2 id={this.props.filterId} className="u-no-margin">{this.props.question}</h2></legend>
         <div className="btn-group">
-          <div key={this.props.filterId + 'all'} className={this.getClassNameInput(-1)}>
-            <input
-              id={'id_choice-' + this.props.filterId + '-all'}
-              type="radio"
-              value="-1"
-              name={this.props.filterId + '-' + allStr}
-              className="radio__input"
-              checked={this.isChecked(-1)}
-              onChange={this.handleOnChange.bind(this)}
-            />
+          <div key={this.props.filterId + 'all'}>
             <label
               htmlFor={'id_choice-' + this.props.filterId + '-all'}
+              className={this.getClassNameInput(-1)}
             >
+              <input
+                id={'id_choice-' + this.props.filterId + '-all'}
+                type="radio"
+                value="-1"
+                name={this.props.filterId + '-' + allStr}
+                className="radio__input"
+                checked={this.isChecked(-1)}
+                onChange={this.handleOnChange.bind(this)}
+              />
               <span>{allStr}</span>
             </label>
           </div>
           {this.props.choiceNames.map((choice, i) => {
             return (
-              <div key={this.props.filterId + i} className={this.getClassNameInput(i)}>
-                <input
-                  id={'id_choice-' + this.props.filterId + '-' + i}
-                  type="radio"
-                  value={i}
-                  name={choice}
-                  className="radio__input"
-                  checked={this.isChecked(i)}
-                  onChange={this.handleOnChange.bind(this)}
-                />
+              <div key={this.props.filterId + i}>
                 <label
                   htmlFor={'id_choice-' + this.props.filterId + '-' + i}
+                  className={this.getClassNameInput(i)}
                 >
+                  <input
+                    id={'id_choice-' + this.props.filterId + '-' + i}
+                    type="radio"
+                    value={i}
+                    name={choice}
+                    className="radio__input"
+                    checked={this.isChecked(i)}
+                    onChange={this.handleOnChange.bind(this)}
+                  />
                   <span>{choice}</span>
                 </label>
               </div>

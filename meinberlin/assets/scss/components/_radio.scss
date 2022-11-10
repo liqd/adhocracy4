@@ -1,8 +1,5 @@
 .radio__input {
-    appearance: none;
-    // stylelint-disable
-    -webkit-appearance: none;
-    // stylelint-enable
+    opacity: 0;
     position: absolute;
 }
 

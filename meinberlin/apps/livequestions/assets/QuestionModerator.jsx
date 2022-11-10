@@ -119,7 +119,7 @@ export default class QuestionModerator extends React.Component {
             {this.props.displayIsOnShortlist &&
               <button
                 type="button"
-                className="btn btn--none"
+                className="btn btn--light u-spacer-right"
                 onClick={this.toggleIsOnShortList.bind(this)}
                 aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText}
                 title={this.state.is_on_shortlist ? addShortlistText : removeShortlistText}
@@ -129,7 +129,7 @@ export default class QuestionModerator extends React.Component {
             {this.props.displayIsLive &&
               <button
                 type="button"
-                className="btn btn--none"
+                className="btn btn--light u-spacer-right"
                 onClick={this.toggleIslive.bind(this)}
                 aria-label={this.state.is_live ? addLiveText : removeLiveText}
                 title={this.state.is_live ? addLiveText : removeLiveText}
@@ -141,7 +141,7 @@ export default class QuestionModerator extends React.Component {
               </button>}
             {this.props.displayIsAnswered &&
               <button
-                type="button" className="btn btn--none"
+                type="button" className="btn btn--light u-spacer-right"
                 onClick={this.toggleIsAnswered.bind(this)}
                 aria-label={doneText}
                 title={doneText}
@@ -151,7 +151,7 @@ export default class QuestionModerator extends React.Component {
             {this.props.displayIsHidden &&
               <button
                 type="button"
-                className="btn btn--none"
+                className="btn btn--light"
                 onClick={this.toggleIshidden.bind(this)}
                 aria-label={this.props.is_hidden ? hiddenText : undoHiddenText}
                 title={this.props.is_hidden ? hiddenText : undoHiddenText}

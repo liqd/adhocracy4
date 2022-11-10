@@ -28,7 +28,7 @@ export default class CheckboxBtn extends React.Component {
         >
           <input
             id={uniqueID}
-            className="checkbox-btn__input"
+            className="radio__input"
             type="checkbox"
             checked={this.state.checkedState}
             onChange={(e) => this.handleOnChange(e)}

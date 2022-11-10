@@ -139,7 +139,7 @@ class FilterNav extends React.Component {
             {this.props.district === '-1'
               ? (
                 <FilterButton
-                  className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
+                  className="btn filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
                   ariaExpanded={this.state.displayDistrictOptions}
                   showOptions={this.showDistrictOptions.bind(this)}
                   id="id_filter_district"
@@ -149,7 +149,7 @@ class FilterNav extends React.Component {
                 )
               : (
                 <FilterButton
-                  className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
+                  className="btn filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
                   ariaExpanded={this.state.displayDistrictOptions}
                   showOptions={this.showDistrictOptions.bind(this)}
                   id="id_filter_district"
@@ -171,7 +171,7 @@ class FilterNav extends React.Component {
             {this.props.topic === '-1'
               ? (
                 <FilterButton
-                  className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
+                  className="btn filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
                   ariaExpanded={this.state.displayTopicOptions}
                   showOptions={this.showTopicOptions.bind(this)}
                   id="id_filter_topic"
@@ -181,7 +181,7 @@ class FilterNav extends React.Component {
                 )
               : (
                 <FilterButton
-                  className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
+                  className="btn filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
                   ariaExpanded={this.state.displayTopicOptions}
                   showOptions={this.showTopicOptions.bind(this)}
                   id="id_filter_topic"
@@ -211,7 +211,7 @@ class FilterNav extends React.Component {
             {!this.props.linkUrl &&
               <button
                 onClick={this.showSecondaryFilters.bind(this)}
-                className="u-spacer-top btn btn--small btn--transparent btn--full u-spacer-bottom filter-bar__btn--light"
+                className="u-spacer-top btn btn--small btn--light btn--full u-spacer-bottom filter-bar__btn--light"
                 aria-haspopup="true"
                 aria-expanded={this.state.displaySecondaryFilters}
               >
@@ -255,7 +255,7 @@ class FilterNav extends React.Component {
               {this.props.district === '-1'
                 ? (
                   <FilterButton
-                    className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
+                    className="btn filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
                     ariaExpanded={this.state.displayDistrictOptions}
                     showOptions={this.showDistrictOptions.bind(this)}
                     id="id_filter_district"
@@ -265,7 +265,7 @@ class FilterNav extends React.Component {
                   )
                 : (
                   <FilterButton
-                    className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
+                    className="btn filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
                     ariaExpanded={this.state.displayDistrictOptions}
                     showOptions={this.showDistrictOptions.bind(this)}
                     id="id_filter_district"
@@ -290,7 +290,7 @@ class FilterNav extends React.Component {
               {this.props.topic === '-1'
                 ? (
                   <FilterButton
-                    className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
+                    className="btn filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
                     ariaExpanded={this.state.displayTopicOptions}
                     showOptions={this.showTopicOptions.bind(this)}
                     id="id_filter_topic"
@@ -300,7 +300,7 @@ class FilterNav extends React.Component {
                   )
                 : (
                   <FilterButton
-                    className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
+                    className="btn filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
                     ariaExpanded={this.state.displayTopicOptions}
                     showOptions={this.showTopicOptions.bind(this)}
                     id="id_filter_topic"
@@ -333,7 +333,7 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
-                  className="btn btn--small btn--transparent filter-bar__btn--light"
+                  className="btn btn--small btn--light filter-bar__btn--light"
                   aria-haspopup="true"
                   aria-expanded={this.state.displaySecondaryFilters}
                 >
@@ -344,7 +344,7 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
-                  className="btn btn--small btn--transparent filter-bar__btn--light"
+                  className="btn btn--small btn--light filter-bar__btn--light"
                   aria-haspopup="true"
                   aria-expanded={this.state.displaySecondaryFilters}
                 >

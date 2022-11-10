@@ -35,7 +35,7 @@ export default class InfoBox extends React.Component {
               {this.props.isModerator &&
                 <div className="alert-dismissible">
                   <div className="u-align-right">
-                    <button type="button" className="btn btn--light u-muted" onClick={this.toggleInformation.bind(this)}>
+                    <button type="button" className="btn btn--light u-muted u-spacer-bottom" onClick={this.toggleInformation.bind(this)}>
                       <span aria-label={ariaCloseInfo}>{btnHide} <i className="fa fa-times" /></span>
                     </button>
                   </div>
@@ -80,7 +80,7 @@ export default class InfoBox extends React.Component {
           : (
             <div>
               <div className="u-align-right">
-                <button type="button" className="btn btn--light u-muted" onClick={this.toggleInformation.bind(this)}>
+                <button type="button" className="btn btn--light u-muted u-spacer-bottom" onClick={this.toggleInformation.bind(this)}>
                   <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle" /></span>
                 </button>
               </div>

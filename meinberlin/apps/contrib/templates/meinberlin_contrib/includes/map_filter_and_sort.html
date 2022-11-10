@@ -8,7 +8,7 @@
                 <a class="btn btn--light" href="{{ url_par }}" aria-label="{% trans 'View as list' %}">
                   <i class="fa fa-list" aria-hidden="true"></i>
                   <span>{% trans 'List' %}</span>
-                </a><div class="btn btn--light switch--btn active" aria-label="{% trans 'View as map' %}">
+                </a><div class="btn switch--btn active" aria-label="{% trans 'View as map' %}">
                   <i class="fa fa-map" aria-hidden="true"></i>
                   <span>{% trans 'Map' %}</span>
                 </div>
@@ -18,7 +18,7 @@
         {% combined_url_parameter request.GET mode='map' as url_par %}
         <div class="btn-group__container control-bar__item">
             <div class="btn-group" role="group">
-                <div class="btn btn--light switch--btn active" aria-label="{% trans 'View as list' %}">
+                <div class="btn switch--btn active" aria-label="{% trans 'View as list' %}">
                   <i class="fa fa-list" aria-hidden="true"></i>
                   <span>{% trans 'List' %}</span>
                 </div><a class="btn btn--light" href="{{ url_par }}" aria-label="{% trans 'View as map' %}">

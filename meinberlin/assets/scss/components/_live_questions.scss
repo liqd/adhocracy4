@@ -23,6 +23,10 @@
     justify-content: flex-end;
     margin: $em-spacer 0;
 
+    .switch--btn {
+        border-radius: $border-radius;
+    }
+
     @media screen and (min-width: $breakpoint-xs) {
         margin: 0 0 0 $em-spacer;
     }
@@ -117,27 +121,6 @@
 
 .checkbox-btn {
     display: inline-block;
-}
-
-.checkbox-btn__input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.checkbox-btn__label--primary {
-    input[type="checkbox"]:focus + .checkbox-btn__text {
-        @include fake-focus;
-    }
-
-    input[type="checkbox"]:checked + .checkbox-btn__text {
-        @extend .btn--secondary;
-    }
 }
 
 .live_questions_infographic__footer {

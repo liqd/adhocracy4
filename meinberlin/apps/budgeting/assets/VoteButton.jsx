@@ -51,7 +51,7 @@ export default class VoteButton extends React.Component {
         >
           <input
             id={this.props.objectID}
-            className="checkbox-btn__input"
+            className="radio__input"
             type="checkbox"
             disabled={this.props.disabled}
             checked={this.props.isChecked}

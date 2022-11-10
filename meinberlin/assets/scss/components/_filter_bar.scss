@@ -36,6 +36,7 @@ $divider-margin: 1.25rem;
     color: $white;
     font-weight: normal;
     font-style: italic;
+    border: none;
     border-radius: 0;
 
     &:focus,
@@ -238,6 +239,11 @@ $divider-margin: 1.25rem;
     margin-top: 2 * $spacer;
     margin-bottom: 2 * $spacer;
 
+    div {
+        flex-grow: 1;
+        display: flex;
+    }
+
     .switch--btn {
         flex-grow: 1;
     }
@@ -246,6 +252,11 @@ $divider-margin: 1.25rem;
 .filter-bar__menu-radio-sta {
     display: inline-block;
     flex-grow: 1;
+
+    div {
+        flex-grow: 1;
+        display: flex;
+    }
 
     .switch--btn {
         flex-grow: 1;
@@ -262,26 +273,6 @@ $divider-margin: 1.25rem;
         display: flex;
         justify-content: flex-start;
         flex-flow: row wrap;
-    }
-
-    .switch--btn {
-        font-weight: normal;
-        position: relative;
-        padding-left: 0.5 * $padding;
-        padding-right: 0.5 * $padding;
-
-        &:focus-within:not(.active) {
-            @include fake-focus;
-
-            background-color: $gray-lightest;
-        }
-    }
-
-    .switch--btn.active:focus-within {
-        @include fake-focus;
-
-        color: $text-color-inverted;
-        background-color: $secondary-darker;
     }
 }
 

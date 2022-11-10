@@ -25,25 +25,12 @@
 
     &:focus,
     &:hover,
-    &:focus-within,
-    &:active {
-        background-color: $bg-secondary;
-    }
-
-    // to mimic the focus-visible styling on styled inputs
-    &:focus-within {
-        box-shadow: 0 0 0 0.25rem rgb(211, 212, 213, 0.5);
-    }
-}
-
-.btn--transparent {
-    &,
-    &:focus,
-    &:hover,
     &:active,
-    &:disabled,
-    &.is-disabled {
-        border-color: $border-color !important;
+    &:focus-within,
+    &:focus-visible {
+        @include fake-focus-shadow-light;
+
+        background-color: $bg-secondary;
     }
 }
 

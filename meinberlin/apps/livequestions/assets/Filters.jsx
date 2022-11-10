@@ -41,48 +41,54 @@ export default class Filter extends React.Component {
         {this.props.isModerator &&
           <div className="live_questions__filters--btns">
             <div className="checkbox-btn u-spacer-right">
-              <label htmlFor="markedCheck" className="checkbox-btn__label--primary" title={onlyShowMarkedText}>
+              <label
+                htmlFor="markedCheck"
+                className={'btn switch--btn' + (this.props.displayOnShortlist ? ' active' : '')}
+                title={onlyShowMarkedText}
+              >
                 <input
-                  className="checkbox-btn__input"
+                  className="radio__input"
                   type="checkbox"
                   id="markedCheck"
                   name="markedCheck"
                   checked={this.props.displayOnShortlist}
                   onChange={this.props.toggleDisplayOnShortlist} // eslint-disable-line react/jsx-handler-names
                 />
-                <div className="btn checkbox-btn__text">
-                  <i className="far fa-list-alt" aria-label={onlyShowMarkedText} />
-                </div>
+                <i className="far fa-list-alt" aria-hidden="true" />
               </label>
             </div>
             <div className="checkbox-btn u-spacer-right">
-              <label htmlFor="displayNotHiddenOnly" className="checkbox-btn__label--primary" title={displayNotHiddenText}>
+              <label
+                htmlFor="displayNotHiddenOnly"
+                className={'btn switch--btn' + (this.props.displayNotHiddenOnly ? ' active' : '')}
+                title={displayNotHiddenText}
+              >
                 <input
-                  className="checkbox-btn__input"
+                  className="radio__input"
                   type="checkbox"
                   id="displayNotHiddenOnly"
                   name="displayNotHiddenOnly"
                   checked={this.props.displayNotHiddenOnly}
                   onChange={this.props.toggledisplayNotHiddenOnly} // eslint-disable-line react/jsx-handler-names
                 />
-                <span className="btn checkbox-btn__text">
-                  <i className="far fa-eye" aria-label={displayNotHiddenText} />
-                </span>
+                <i className="far fa-eye" aria-hidden="true" />
               </label>
             </div>
             <div className="checkbox-btn">
-              <label htmlFor="orderedByLikes" className="checkbox-btn__label--primary" title={orderLikesText}>
+              <label
+                htmlFor="orderedByLikes"
+                className={'btn switch--btn' + (this.props.orderedByLikes ? ' active' : '')}
+                title={orderLikesText}
+              >
                 <input
-                  className="checkbox-btn__input"
+                  className="radio__input"
                   type="checkbox"
                   id="orderedByLikes"
                   name="orderedByLikes"
                   checked={this.props.orderedByLikes}
                   onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
                 />
-                <span className="btn checkbox-btn__text">
-                  <i className="far fa-thumbs-up" aria-label={orderLikesText} />
-                </span>
+                <i className="far fa-thumbs-up" aria-hidden="true" />
               </label>
             </div>
           </div>}

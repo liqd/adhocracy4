@@ -12,7 +12,7 @@ export const PillBtn = (props) => {
   return (
     <>
       <button
-        className="btn btn--transparent btn--small"
+        className="btn btn--light btn--small"
         onClick={onClickRemove}
         type="button"
         aria-describedby={choiceBtnID}
