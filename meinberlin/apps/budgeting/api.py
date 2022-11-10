@@ -211,10 +211,10 @@ class ProposalViewSet(ModuleMixin,
                        OrderingFilterWithDailyRandom,
                        IdeaCategoryFilterBackend,
                        SearchFilter,)
-    filter_fields = ('is_archived',
-                     'category',
-                     'labels',
-                     'moderator_feedback')
+    filterset_fields = ('is_archived',
+                        'category',
+                        'labels',
+                        'moderator_feedback')
     ordering_fields = ('created',
                        'comment_count',
                        'positive_rating_count',
