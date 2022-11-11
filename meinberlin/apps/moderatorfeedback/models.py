@@ -9,7 +9,7 @@ from . import fields
 
 DEFAULT_CHOICES = (
     ('CONSIDERATION', _('Under consideration')),
-    ('CHECKED', _('Checked')),
+    ('QUALIFIED', _('Qualified for next phase')),
     ('REJECTED', _('Rejected')),
     ('ACCEPTED', _('Accepted')),
 )
