@@ -24,6 +24,23 @@ def setup_group_member(organisation, project, group_factory,
     return group_member, organisation, project
 
 
+@factory.django.mute_signals(post_save)
+def setup_multiple_group_members(project, group_factory,
+                                 user_factory):
+    group_org = group_factory()
+    project.organisation.groups.add(group_org)
+    group_member_in_org = user_factory.create(groups=(group_org, ))
+
+    group_pro = group_factory()
+    project.group = group_pro
+    group_member_in_pro = user_factory.create(groups=(group_pro, ))
+
+    group_out = group_factory()
+    group_member_out = user_factory.create(groups=(group_out, ))
+
+    return project, group_member_in_org, group_member_in_pro, group_member_out
+
+
 def assert_dashboard_form_component_response(
         response, component, status_code=200):
     assert response.status_code == status_code
