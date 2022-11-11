@@ -10,7 +10,7 @@
 {% block content %}
 {{ object.module.project.organisation.name }} hat auf Ihren Beitrag reagiert.
 
-{% if object.moderator_feedback %}Ihr Beitrag {{ object.get_moderator_feedback_display }}.
+{% if object.moderator_feedback %}Der Status Ihres Beitrags hat sich geändert und steht nun auf “{{ object.get_moderator_feedback_display }}”.
 
 {% endif %}
 {% if object.moderator_statement.statement %}Offizielle Rückmeldung: {{ object.moderator_statement.statement | safe }}

@@ -10,7 +10,7 @@
 {% block content %}
 {{ object.module.project.organisation.name }} reacted on your contribution.
 
-{% if object.moderator_feedback %}Your contribution {{ object.get_moderator_feedback_display }}.
+{% if object.moderator_feedback %}The status of your contribution has been changed and is now “{{ object.get_moderator_feedback_display }}".
 
 {% endif %}
 {% if object.moderator_statement.statement %}Official feedback: {{ object.moderator_statement.statement | safe }}
