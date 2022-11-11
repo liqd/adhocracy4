@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-28 08:35+0200\n"
+"POT-Creation-Date: 2022-11-11 13:01+0100\n"
 "PO-Revision-Date: 2022-11-04 17:08+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
@@ -328,9 +328,9 @@ msgstr "hier können Sie alle Kommentare exportieren"
 #: meinberlin/apps/bplan/views.py:21 meinberlin/apps/extprojects/views.py:21
 #: meinberlin/apps/ideas/views.py:31 meinberlin/apps/plans/views.py:33
 #: meinberlin/apps/projects/views.py:53 meinberlin/apps/topicprio/views.py:21
-#: meinberlin/templates/a4filters/widgets/free_text_filter.html:8
-#: meinberlin/templates/a4filters/widgets/free_text_filter.html:15
-#: meinberlin/templates/a4filters/widgets/free_text_filter.html:30
+#: meinberlin/templates/a4filters/widgets/free_text_filter.html:9
+#: meinberlin/templates/a4filters/widgets/free_text_filter.html:16
+#: meinberlin/templates/a4filters/widgets/free_text_filter.html:31
 #: meinberlin/templates/a4maps/map_choose_point_widget.html:6
 #: meinberlin/templates/a4maps/map_choose_point_widget.html:7
 msgid "Search"
@@ -430,7 +430,7 @@ msgstr "Kategorien bearbeiten"
 #: adhocracy4/categories/filters.py:16
 #: adhocracy4/categories/forms.py:45
 #: adhocracy4/exports/mixins/items.py:14
-#: meinberlin/apps/budgeting/api.py:74
+#: meinberlin/apps/budgeting/api.py:64
 msgid "Category"
 msgstr "Kategorie"
 
@@ -539,25 +539,25 @@ msgid "Edit area settings"
 msgstr "Kartenbereich bearbeiten"
 
 #: adhocracy4/dashboard/filter.py:15
-#: meinberlin/apps/budgeting/api.py:96 meinberlin/apps/projects/views.py:57
+#: meinberlin/apps/budgeting/api.py:80 meinberlin/apps/projects/views.py:57
 msgid "Archived"
 msgstr "Archiviert"
 
 #: adhocracy4/dashboard/filter.py:19
 #: adhocracy4/filters/widgets.py:32
-#: meinberlin/apps/budgeting/api.py:63 meinberlin/apps/budgeting/api.py:85
-#: meinberlin/apps/budgeting/api.py:98 meinberlin/apps/budgeting/api.py:107
+#: meinberlin/apps/budgeting/api.py:82 meinberlin/apps/budgeting/api.py:91
+#: meinberlin/apps/budgeting/api.py:118 meinberlin/apps/budgeting/api.py:135
 #: meinberlin/apps/projects/views.py:61
 msgid "All"
 msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
-#: meinberlin/apps/budgeting/api.py:99 meinberlin/apps/projects/views.py:62
+#: meinberlin/apps/budgeting/api.py:83 meinberlin/apps/projects/views.py:62
 msgid "No"
 msgstr "Nein"
 
 #: adhocracy4/dashboard/filter.py:21
-#: meinberlin/apps/budgeting/api.py:100
+#: meinberlin/apps/budgeting/api.py:84
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:13
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:13
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:13
@@ -750,7 +750,7 @@ msgid "Negative ratings"
 msgstr "Negative Bewertungen"
 
 #: adhocracy4/filters/widgets.py:66
-#: meinberlin/apps/budgeting/api.py:128 meinberlin/apps/projects/views.py:40
+#: meinberlin/apps/budgeting/api.py:103 meinberlin/apps/projects/views.py:40
 msgid "Ordering"
 msgstr "Sortierung"
 
@@ -824,7 +824,7 @@ msgstr "Merkmale bearbeiten"
 
 #: adhocracy4/labels/filters.py:10
 #: adhocracy4/labels/forms.py:17
-#: meinberlin/apps/budgeting/api.py:90
+#: meinberlin/apps/budgeting/api.py:74
 msgid "Label"
 msgstr "Merkmal"
 
@@ -1761,11 +1761,11 @@ msgstr ""
 "Legen Sie ein Formular zur Stellungnahme zu den Bebauungsplänen an. Dieses "
 "Formular wird dann auf externen Seiten eingebunden."
 
-#: meinberlin/apps/budgeting/api.py:110 meinberlin/apps/plans/models.py:144
+#: meinberlin/apps/budgeting/api.py:95 meinberlin/apps/plans/models.py:144
 msgid "Status"
 msgstr "Status"
 
-#: meinberlin/apps/budgeting/api.py:115 meinberlin/apps/budgeting/views.py:20
+#: meinberlin/apps/budgeting/api.py:142 meinberlin/apps/budgeting/views.py:20
 #: meinberlin/apps/ideas/views.py:35 meinberlin/apps/kiezkasse/views.py:16
 #: meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
@@ -1773,7 +1773,7 @@ msgstr "Status"
 msgid "Most recent"
 msgstr "am aktuellsten"
 
-#: meinberlin/apps/budgeting/api.py:119 meinberlin/apps/budgeting/views.py:22
+#: meinberlin/apps/budgeting/api.py:146 meinberlin/apps/budgeting/views.py:22
 #: meinberlin/apps/ideas/views.py:37 meinberlin/apps/kiezkasse/views.py:18
 #: meinberlin/apps/mapideas/views.py:18
 #: meinberlin/apps/maptopicprio/views.py:21
@@ -1781,11 +1781,11 @@ msgstr "am aktuellsten"
 msgid "Most popular"
 msgstr "am beliebtesten"
 
-#: meinberlin/apps/budgeting/api.py:123
+#: meinberlin/apps/budgeting/api.py:152 meinberlin/apps/budgeting/views.py:24
 msgid "Most support"
 msgstr "meist unterstützt"
 
-#: meinberlin/apps/budgeting/api.py:124 meinberlin/apps/budgeting/views.py:23
+#: meinberlin/apps/budgeting/api.py:153 meinberlin/apps/budgeting/views.py:25
 #: meinberlin/apps/ideas/views.py:38 meinberlin/apps/kiezkasse/views.py:19
 #: meinberlin/apps/mapideas/views.py:19
 #: meinberlin/apps/maptopicprio/views.py:22
@@ -1793,7 +1793,7 @@ msgstr "meist unterstützt"
 msgid "Most commented"
 msgstr "meist kommentiert"
 
-#: meinberlin/apps/budgeting/api.py:125 meinberlin/apps/budgeting/views.py:24
+#: meinberlin/apps/budgeting/api.py:154 meinberlin/apps/budgeting/views.py:26
 msgid "Random"
 msgstr "zufällig"
 
@@ -1976,15 +1976,16 @@ msgid ""
 "I hereby expressly consent to the storage of the contact information I have "
 "entered. The contact information may be used by the responsible "
 "administration exclusively for contacting me in the present project. I can "
-"revoke this consent at any time. I have read and accept the <a href="
-"\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
+"revoke this consent at any time. I have read and accept the <a "
+"href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
 msgstr ""
 "Hiermit willige ich ausdrücklich in die Speicherung der von mir "
 "eingetragenen Kontaktinformationen ein. Die Kontaktinformationen dürfen von "
 "der verantwortlichen Verwaltung ausschließlich für die Kontaktaufnahme in "
 "dem vorliegenden Projekt verwendet werden. Ich kann diese Einwilligung "
-"jederzeit widerrufen. Die <a href=\"%(privacy_policy)s\" target=\"_blank"
-"\">Datenschutzerklärung</a> habe ich gelesen und akzeptiere sie."
+"jederzeit widerrufen. Die <a href=\"%(privacy_policy)s\" "
+"target=\"_blank\">Datenschutzerklärung</a> habe ich gelesen und akzeptiere "
+"sie."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:4
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:4
@@ -2079,7 +2080,7 @@ msgstr "hineinzoomen"
 msgid "Zoom out"
 msgstr "auszoomen"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:79
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:84
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_list.html:29
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:52
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:60
@@ -2125,7 +2126,7 @@ msgstr "%(title)s bearbeiten"
 msgid "Edit proposal"
 msgstr "Vorschlag bearbeiten"
 
-#: meinberlin/apps/budgeting/views.py:128 meinberlin/apps/kiezkasse/views.py:78
+#: meinberlin/apps/budgeting/views.py:130 meinberlin/apps/kiezkasse/views.py:78
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
@@ -3218,8 +3219,8 @@ msgid "Under consideration"
 msgstr "wird geprüft"
 
 #: meinberlin/apps/moderatorfeedback/models.py:12
-msgid "Checked"
-msgstr "geprüft"
+msgid "Qualified for next phase"
+msgstr ""
 
 #: meinberlin/apps/moderatorfeedback/models.py:13
 msgid "Rejected"
@@ -3852,11 +3853,11 @@ msgstr ""
 #: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:10
 #, python-format
 msgid ""
-"No plan has been created yet. You can do that <a href=\"%(plan_create_url)s"
-"\">here</a>."
+"No plan has been created yet. You can do that <a "
+"href=\"%(plan_create_url)s\">here</a>."
 msgstr ""
-"Es wurde noch kein Vorhaben angelegt, dies können Sie <a href="
-"\"%(plan_create_url)s\">hier</a> tun."
+"Es wurde noch kein Vorhaben angelegt, dies können Sie <a "
+"href=\"%(plan_create_url)s\">hier</a> tun."
 
 #: meinberlin/apps/plans/views.py:171
 msgid "The plan was created"
@@ -4277,10 +4278,10 @@ msgid ""
 "and follow the invitation link again. If you decline the invitation the link "
 "is not valid anymore."
 msgstr ""
-"Wenn Sie akzeptieren, treten Sie dem Projekt mit Ihrem Nutzernamen \"%(user)s"
-"\" bei. Wenn Sie dem Projekt mit einem anderen Profil beitreten möchten, "
-"melden Sie sich ab und folgen Sie dem Einladungslink erneut. Wenn Sie die "
-"Einladung ablehnen, verliert der Link seine Gültigkeit."
+"Wenn Sie akzeptieren, treten Sie dem Projekt mit Ihrem Nutzernamen "
+"\"%(user)s\" bei. Wenn Sie dem Projekt mit einem anderen Profil beitreten "
+"möchten, melden Sie sich ab und folgen Sie dem Einladungslink erneut. Wenn "
+"Sie die Einladung ablehnen, verliert der Link seine Gültigkeit."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:23
 #: meinberlin/templates/a4modules/module_detail.html:24
@@ -4624,7 +4625,7 @@ msgstr "Anzahl der erstellten Codes: %(number_of_module_tokens)s."
 msgid " code package no."
 msgstr " Code-Paket Nr."
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:17
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:22
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -5149,8 +5150,8 @@ msgstr "Bestätigen"
 #: meinberlin/templates/account/email_confirm.html:19
 #, python-format
 msgid ""
-"This email confirmation link expired or is invalid. Please <a href="
-"\"%(email_url)s\">issue a new email confirmation request</a>."
+"This email confirmation link expired or is invalid. Please <a "
+"href=\"%(email_url)s\">issue a new email confirmation request</a>."
 msgstr ""
 "Der Link zur E-Mail Bestätigung ist abgelaufen oder ist ungültig. Bitte <a "
 "href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
@@ -5158,11 +5159,11 @@ msgstr ""
 #: meinberlin/templates/account/login.html:9
 #, python-format
 msgid ""
-"If you have not created an account yet, then please <a href=\"%(signup_url)s"
-"\">register</a> first."
+"If you have not created an account yet, then please <a "
+"href=\"%(signup_url)s\">register</a> first."
 msgstr ""
-"Wenn Sie noch kein Nutzerkonto haben, <a href=\"%(signup_url)s"
-"\">registrieren</a> Sie sich bitte zuerst."
+"Wenn Sie noch kein Nutzerkonto haben, <a "
+"href=\"%(signup_url)s\">registrieren</a> Sie sich bitte zuerst."
 
 #: meinberlin/templates/account/login.html:27
 msgid "Forgot Password?"
@@ -5235,8 +5236,8 @@ msgid ""
 "a>."
 msgstr ""
 "Der Link zur Passwortzurücksetzung ist nicht mehr gültig, vermutlich weil "
-"dieser schon einmal genutzt wurde. Bitte fordern Sie die <a href="
-"\"%(passwd_reset_url)s\">Zurücksetzung des Passwort</a> erneut an."
+"dieser schon einmal genutzt wurde. Bitte fordern Sie die <a "
+"href=\"%(passwd_reset_url)s\">Zurücksetzung des Passwort</a> erneut an."
 
 #: meinberlin/templates/account/password_reset_from_key.html:23
 msgid "Your password is now changed."
@@ -5366,6 +5367,9 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
+
+#~ msgid "Checked"
+#~ msgstr "geprüft"
 
 #~ msgid ""
 #~ "In a first phase, participants can submit their own proposals, mark them "

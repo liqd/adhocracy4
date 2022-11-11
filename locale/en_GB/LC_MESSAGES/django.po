@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-25 16:09+0200\n"
+"POT-Creation-Date: 2022-11-11 13:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -280,9 +280,9 @@ msgstr "here you can export all comments"
 #: meinberlin/apps/extprojects/views.py:21 meinberlin/apps/ideas/views.py:31
 #: meinberlin/apps/plans/views.py:33 meinberlin/apps/projects/views.py:53
 #: meinberlin/apps/topicprio/views.py:21
-#: meinberlin/templates/a4filters/widgets/free_text_filter.html:8
-#: meinberlin/templates/a4filters/widgets/free_text_filter.html:15
-#: meinberlin/templates/a4filters/widgets/free_text_filter.html:30
+#: meinberlin/templates/a4filters/widgets/free_text_filter.html:9
+#: meinberlin/templates/a4filters/widgets/free_text_filter.html:16
+#: meinberlin/templates/a4filters/widgets/free_text_filter.html:31
 #: meinberlin/templates/a4maps/map_choose_point_widget.html:6
 #: meinberlin/templates/a4maps/map_choose_point_widget.html:7
 msgid "Search"
@@ -367,7 +367,7 @@ msgstr "Edit categories"
 
 #: adhocracy4/categories/fields.py:12 adhocracy4/categories/filters.py:16
 #: adhocracy4/categories/forms.py:45 adhocracy4/exports/mixins/items.py:14
-#: meinberlin/apps/budgeting/api.py:74
+#: meinberlin/apps/budgeting/api.py:64
 msgid "Category"
 msgstr "Category"
 
@@ -469,24 +469,24 @@ msgstr "Area settings"
 msgid "Edit area settings"
 msgstr "Edit area settings"
 
-#: adhocracy4/dashboard/filter.py:15 meinberlin/apps/budgeting/api.py:96
+#: adhocracy4/dashboard/filter.py:15 meinberlin/apps/budgeting/api.py:80
 #: meinberlin/apps/projects/views.py:57
 msgid "Archived"
 msgstr "Archived"
 
 #: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:32
-#: meinberlin/apps/budgeting/api.py:63 meinberlin/apps/budgeting/api.py:85
-#: meinberlin/apps/budgeting/api.py:98 meinberlin/apps/budgeting/api.py:107
+#: meinberlin/apps/budgeting/api.py:82 meinberlin/apps/budgeting/api.py:91
+#: meinberlin/apps/budgeting/api.py:118 meinberlin/apps/budgeting/api.py:135
 #: meinberlin/apps/projects/views.py:61
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/budgeting/api.py:99
+#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/budgeting/api.py:83
 #: meinberlin/apps/projects/views.py:62
 msgid "No"
 msgstr "No"
 
-#: adhocracy4/dashboard/filter.py:21 meinberlin/apps/budgeting/api.py:100
+#: adhocracy4/dashboard/filter.py:21 meinberlin/apps/budgeting/api.py:84
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:13
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:13
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:13
@@ -670,7 +670,7 @@ msgstr "Positive ratings"
 msgid "Negative ratings"
 msgstr "Negative ratings"
 
-#: adhocracy4/filters/widgets.py:66 meinberlin/apps/budgeting/api.py:128
+#: adhocracy4/filters/widgets.py:66 meinberlin/apps/budgeting/api.py:103
 #: meinberlin/apps/projects/views.py:40
 msgid "Ordering"
 msgstr "Ordering"
@@ -744,7 +744,7 @@ msgid "Edit labels"
 msgstr "Edit labels"
 
 #: adhocracy4/labels/filters.py:10 adhocracy4/labels/forms.py:17
-#: meinberlin/apps/budgeting/api.py:90
+#: meinberlin/apps/budgeting/api.py:74
 msgid "Label"
 msgstr "Label"
 
@@ -1640,11 +1640,11 @@ msgstr ""
 "Create a statement formular for development plans to be embedded on external "
 "sites."
 
-#: meinberlin/apps/budgeting/api.py:110 meinberlin/apps/plans/models.py:144
+#: meinberlin/apps/budgeting/api.py:95 meinberlin/apps/plans/models.py:144
 msgid "Status"
 msgstr "Status"
 
-#: meinberlin/apps/budgeting/api.py:115 meinberlin/apps/budgeting/views.py:20
+#: meinberlin/apps/budgeting/api.py:142 meinberlin/apps/budgeting/views.py:20
 #: meinberlin/apps/ideas/views.py:35 meinberlin/apps/kiezkasse/views.py:16
 #: meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
@@ -1652,7 +1652,7 @@ msgstr "Status"
 msgid "Most recent"
 msgstr "Most recent"
 
-#: meinberlin/apps/budgeting/api.py:119 meinberlin/apps/budgeting/views.py:22
+#: meinberlin/apps/budgeting/api.py:146 meinberlin/apps/budgeting/views.py:22
 #: meinberlin/apps/ideas/views.py:37 meinberlin/apps/kiezkasse/views.py:18
 #: meinberlin/apps/mapideas/views.py:18
 #: meinberlin/apps/maptopicprio/views.py:21
@@ -1660,11 +1660,11 @@ msgstr "Most recent"
 msgid "Most popular"
 msgstr "Most popular"
 
-#: meinberlin/apps/budgeting/api.py:123
+#: meinberlin/apps/budgeting/api.py:152 meinberlin/apps/budgeting/views.py:24
 msgid "Most support"
 msgstr "Most support"
 
-#: meinberlin/apps/budgeting/api.py:124 meinberlin/apps/budgeting/views.py:23
+#: meinberlin/apps/budgeting/api.py:153 meinberlin/apps/budgeting/views.py:25
 #: meinberlin/apps/ideas/views.py:38 meinberlin/apps/kiezkasse/views.py:19
 #: meinberlin/apps/mapideas/views.py:19
 #: meinberlin/apps/maptopicprio/views.py:22
@@ -1672,7 +1672,7 @@ msgstr "Most support"
 msgid "Most commented"
 msgstr "Most commented"
 
-#: meinberlin/apps/budgeting/api.py:125 meinberlin/apps/budgeting/views.py:24
+#: meinberlin/apps/budgeting/api.py:154 meinberlin/apps/budgeting/views.py:26
 msgid "Random"
 msgstr "Random"
 
@@ -1852,14 +1852,14 @@ msgid ""
 "I hereby expressly consent to the storage of the contact information I have "
 "entered. The contact information may be used by the responsible "
 "administration exclusively for contacting me in the present project. I can "
-"revoke this consent at any time. I have read and accept the <a href="
-"\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
+"revoke this consent at any time. I have read and accept the <a "
+"href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
 msgstr ""
 "I hereby expressly consent to the storage of the contact information I have "
 "entered. The contact information may be used by the responsible "
 "administration exclusively for contacting me in the present project. I can "
-"revoke this consent at any time. I have read and accept the <a href="
-"\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
+"revoke this consent at any time. I have read and accept the <a "
+"href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:4
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:4
@@ -1954,7 +1954,7 @@ msgstr "Zoom in"
 msgid "Zoom out"
 msgstr "Zoom out"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:79
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:84
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_list.html:29
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:52
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:60
@@ -2000,7 +2000,7 @@ msgstr "Edit %(title)s"
 msgid "Edit proposal"
 msgstr "Edit proposal"
 
-#: meinberlin/apps/budgeting/views.py:128 meinberlin/apps/kiezkasse/views.py:78
+#: meinberlin/apps/budgeting/views.py:130 meinberlin/apps/kiezkasse/views.py:78
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
@@ -3067,8 +3067,8 @@ msgid "Under consideration"
 msgstr "Under consideration"
 
 #: meinberlin/apps/moderatorfeedback/models.py:12
-msgid "Checked"
-msgstr "Checked"
+msgid "Qualified for next phase"
+msgstr "Qualified for next phase"
 
 #: meinberlin/apps/moderatorfeedback/models.py:13
 msgid "Rejected"
@@ -3693,11 +3693,11 @@ msgstr ""
 #: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:10
 #, python-format
 msgid ""
-"No plan has been created yet. You can do that <a href=\"%(plan_create_url)s"
-"\">here</a>."
+"No plan has been created yet. You can do that <a "
+"href=\"%(plan_create_url)s\">here</a>."
 msgstr ""
-"No plan has been created yet. You can do that <a href=\"%(plan_create_url)s"
-"\">here</a>."
+"No plan has been created yet. You can do that <a "
+"href=\"%(plan_create_url)s\">here</a>."
 
 #: meinberlin/apps/plans/views.py:171
 msgid "The plan was created"
@@ -4457,7 +4457,7 @@ msgstr "Number of generated codes: %(number_of_module_tokens)s."
 msgid " code package no."
 msgstr " code package no."
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:17
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:22
 msgid "Download"
 msgstr "Download"
 
@@ -4979,20 +4979,20 @@ msgstr "Confirm"
 #: meinberlin/templates/account/email_confirm.html:19
 #, python-format
 msgid ""
-"This email confirmation link expired or is invalid. Please <a href="
-"\"%(email_url)s\">issue a new email confirmation request</a>."
+"This email confirmation link expired or is invalid. Please <a "
+"href=\"%(email_url)s\">issue a new email confirmation request</a>."
 msgstr ""
-"This email confirmation link expired or is invalid. Please <a href="
-"\"%(email_url)s\">issue a new email confirmation request</a>."
+"This email confirmation link expired or is invalid. Please <a "
+"href=\"%(email_url)s\">issue a new email confirmation request</a>."
 
 #: meinberlin/templates/account/login.html:9
 #, python-format
 msgid ""
-"If you have not created an account yet, then please <a href=\"%(signup_url)s"
-"\">register</a> first."
+"If you have not created an account yet, then please <a "
+"href=\"%(signup_url)s\">register</a> first."
 msgstr ""
-"If you have not created an account yet, then please <a href=\"%(signup_url)s"
-"\">register</a> first."
+"If you have not created an account yet, then please <a "
+"href=\"%(signup_url)s\">register</a> first."
 
 #: meinberlin/templates/account/login.html:27
 msgid "Forgot Password?"
@@ -5190,6 +5190,9 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "Checked"
+#~ msgstr "Checked"
 
 #~ msgid ""
 #~ "In a first phase, participants can submit their own proposals, mark them "
@@ -5390,13 +5393,13 @@ msgstr ""
 
 #~ msgid ""
 #~ "\n"
-#~ "    No plan has been created yet. You can do that <a href="
-#~ "\"%(plan_create_url)s\">here</a>.\n"
+#~ "    No plan has been created yet. You can do that <a "
+#~ "href=\"%(plan_create_url)s\">here</a>.\n"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    No plan has been created yet. You can do that <a href="
-#~ "\"%(plan_create_url)s\">here</a>.\n"
+#~ "    No plan has been created yet. You can do that <a "
+#~ "href=\"%(plan_create_url)s\">here</a>.\n"
 #~ "    "
 
 #~ msgid ""
