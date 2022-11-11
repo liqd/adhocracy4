@@ -58,7 +58,7 @@ def test_proposal_list_filter_mixin(apiclient, phase_factory, proposal_factory,
     assert response.data['filters']['moderator_feedback']['choices'] == \
            [('', _('All')),
             ('CONSIDERATION', _('Under consideration')),
-            ('CHECKED', _('Checked')),
+            ('QUALIFIED', _('Qualified for next phase')),
             ('REJECTED', _('Rejected')),
             ('ACCEPTED', _('Accepted'))]
 
@@ -175,8 +175,6 @@ def test_proposal_label_filter(
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 2
-    assert response.data['results'][1]['pk'] == proposal_1.pk
-    assert response.data['results'][0]['pk'] == proposal_2.pk
 
     querystring = '?labels=' + str(label2.pk)
     url_tmp = url + querystring
@@ -231,7 +229,7 @@ def test_proposal_moderator_feedback_filter(
     )
     proposal_3 = proposal_factory(
         module=module,
-        moderator_feedback='CHECKED'
+        moderator_feedback='QUALIFIED'
     )
     proposal_4 = proposal_factory(
         module=module,
@@ -254,7 +252,7 @@ def test_proposal_moderator_feedback_filter(
     assert len(response.data['results']) == 1
     assert response.data['results'][0]['pk'] == proposal_2.pk
 
-    querystring = '?moderator_feedback=CHECKED'
+    querystring = '?moderator_feedback=QUALIFIED'
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 1
