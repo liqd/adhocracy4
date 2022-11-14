@@ -28,8 +28,8 @@ test('ControlBar collapsed bar', () => {
       />
     </BrowserRouter>
   )
-  const numOfResultsElement = screen.getByText(/2/)
-  expect(numOfResultsElement).toBeTruthy()
+  const numOfResultsElement = screen.queryByText(/2/)
+  expect(numOfResultsElement).toBeFalsy()
   const orderingFilterElement = screen.getByText('ordering: Most recent')
   expect(orderingFilterElement).toBeTruthy()
 })
@@ -45,7 +45,7 @@ test('ControlBar expanded bar', async () => {
       />
     </BrowserRouter>
   )
-  const filterButton = screen.getByLabelText('Show filters')
+  const filterButton = screen.getByText(/Show filters/)
   let expandedFilter = screen.queryByText(/category1/)
   expect(expandedFilter).toBeFalsy()
   fireEvent.click(filterButton)

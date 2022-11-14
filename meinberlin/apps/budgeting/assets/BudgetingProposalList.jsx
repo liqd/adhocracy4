@@ -15,6 +15,7 @@ export const BudgetingProposalList = (props) => {
     const countText = django.ngettext('you have 1 vote left.', 'you have %s votes left.', votes)
     return django.interpolate(countText, [votes])
   }
+  const noResults = django.gettext('Nothing to show')
 
   const fetchProposals = () => {
     const url = props.proposals_api_url + location.search
@@ -96,7 +97,9 @@ export const BudgetingProposalList = (props) => {
       <div className="module-content--light">
         <div className="container">
           <div className="offset-lg-2 col-lg-8">
-            {renderList(data)}
+            {Object.keys(data).length > 0
+              ? renderList(data)
+              : noResults}
           </div>
         </div>
       </div>
