@@ -97,6 +97,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.likes',
     'meinberlin.apps.livequestions',
     'meinberlin.apps.maps',
+    'meinberlin.apps.moderationtasks',
     'meinberlin.apps.moderatorfeedback',
     'meinberlin.apps.moderatorremark',
     'meinberlin.apps.notifications',

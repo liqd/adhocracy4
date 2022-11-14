@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<p class="form-hint">{% blocktranslate %}Moderation tasks appear in the detail view
+    of the submitted proposals. They are only displayed for moderators and initiators.
+    They can be marked as done via the "moderate" form. The list of all proposals can
+    be filtered by open tasks.{% endblocktranslate %}</p>
+
+<div class="js-formset category-formset"
+     data-prefix="{{ form.prefix }}">
+    {{ form.management_form }}
+
+    {% for moderation_task_form in form %}
+        {% include 'a4forms/includes/inline_form.html' with form=moderation_task_form can_delete=form.can_delete %}
+    {% endfor %}
+    <div class="js-form-template category-formset__template">
+        {% include 'a4forms/includes/inline_form.html' with form=form.empty_form can_delete=form.can_delete %}
+    </div>
+
+    <div class="category-formset__btn">
+        <button class="btn btn--secondary btn--small btn--full u-spacer-bottom js-add-form" type="button">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            {% translate 'Add moderation tasks' %}
+        </button>
+    </div>
+
+</div>
