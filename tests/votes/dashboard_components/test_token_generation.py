@@ -45,8 +45,10 @@ def test_token_generate_view(client, phase_factory, module_factory,
     data = {
         'number_of_tokens': 12
     }
-    response = client.post(url, data)
+    with translation.override('en_GB'):
+        response = client.post(url, data)
     assert redirect_target(response) == 'voting-token-generation'
+
     messages = list(get_messages(response.wsgi_request))
     assert len(messages) == 1
     assert str(messages[0]) == (
