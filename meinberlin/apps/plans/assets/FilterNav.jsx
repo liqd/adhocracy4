@@ -333,7 +333,7 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
-                  className="btn btn--small btn--light filter-bar__btn--light"
+                  className="btn btn--small filter-bar__btn--light"
                   aria-haspopup="true"
                   aria-expanded={this.state.displaySecondaryFilters}
                 >
@@ -344,7 +344,7 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
-                  className="btn btn--small btn--light filter-bar__btn--light"
+                  className="btn btn--small filter-bar__btn--light"
                   aria-haspopup="true"
                   aria-expanded={this.state.displaySecondaryFilters}
                 >

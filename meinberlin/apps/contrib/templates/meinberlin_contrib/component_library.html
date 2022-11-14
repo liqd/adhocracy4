@@ -535,7 +535,6 @@
                 </p>
                 <p>
                     <button class="btn btn--link" type="button">Button as Link</button>
-                    <button class="btn btn--none" type="button">No Button</button>
                     <a class="btn btn--link" href="#" type="button">Link as Button</a>
                     <a class="btn btn--link is-disabled" type="button" href="">Link Button disabled</a>
                 </p>
@@ -1042,15 +1041,15 @@
                 <div class="filter-bar filter-bar--horizontal" role="group" aria-label="Filter bar">
                     <span class="filter-bar__project-text">I am interested in projects from</span>
                     <div class="filter-bar__dropdown">
-                        <button class="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
+                        <button class="btn filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
                     </div>
                     <span class="u-md-down-display-none"> in the area of </span>
                     <div class="filter-bar__dropdown">
-                        <button class="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
+                        <button class="btn filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
                         </button>
                     </div>
                     <div>
-                        <button class="btn btn--small btn--light filter-bar__btn--light">
+                        <button class="btn btn--small filter-bar__btn--light">
                             <i class="fas fa-sliders-h" aria-label="more filters"></i>
                         </button>
                     </div>
@@ -1064,14 +1063,14 @@
                 <div class="filter-bar filter-bar--stacked" role="group" aria-label="Filter bar" style="width: 50%;">
                     <span class="filter-bar__project-text">I am interested in projects from</span>
                     <div className="filter-bar__dropdown">
-                        <button class="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
+                        <button class="btn filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
                     </div>
                     <div className="filter-bar__dropdown">
-                        <button class="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
+                        <button class="btn filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
                         </button>
                     </div>
                     <div>
-                        <button class="u-spacer-top btn btn--small btn--light btn--full u-spacer-bottom filter-bar__btn--light" style="margin-left: 0px;">
+                        <button class="u-spacer-top btn btn--small btn--full u-spacer-bottom filter-bar__btn--light" style="margin-left: 0px;">
                             more filters
                         </button>
                     </div>
@@ -1097,37 +1096,30 @@
                             </button>
                         </div>
                     </div>
-                    <div class="filter-bar__menu-radio-group">
-                        <div class="filter-bar__menu-radio-part">
-                            <fieldset class="u-no-border u-no-margin u-no-padding">
-                                <legend>
-                                    <h2 class="u-no-margin">Choice input - styled radios</h2>
-                                </legend>
-                                <div class="btn-group " role="group">
-                                    <label class="btn btn--light switch--btn">
-                                        <input class="radio__input" type="radio" />
-                                        <span>all</span>
-                                    </label>
-                                    <label class="btn btn--light switch--btn active">
-                                        <input class="radio__input" type="radio" />
-                                        <span> choice </span>
-                                    </label>
-                                </div>
-                            </fieldset>
+                    <fieldset class="filter-bar__menu-radio-sta" role="group" aria-labelledby="sta">
+                        <legend>
+                            <h2 id="sta" class="u-no-margin">Projektstatus</h2>
+                        </legend>
+                        <div class="btn-group">
+                            <div><label for="id_choice-sta-all" class="btn switch--btn"><input id="id_choice-sta-all" type="radio" name="sta-Alle" class="radio__input" value="-1"><span>Alle</span></label></div>
+                            <div><label for="id_choice-sta-0" class="btn switch--btn u-z-index-1 active"><input id="id_choice-sta-0" type="radio" name="laufend" class="radio__input" value="0" checked=""><span>laufend</span></label></div>
+                            <div><label for="id_choice-sta-1" class="btn switch--btn"><input id="id_choice-sta-1" type="radio" name="abgeschlossen" class="radio__input" value="1"><span>abgeschlossen</span></label></div>
                         </div>
-                    </div>
+                    </fieldset>
 
-                    <div class="form-group">
-                        <div class="typeahead__input-label">
-                            <h2 class="u-no-margin">Look up input with autocomplete </h2>
-                        </div>
-                        <span class="typeahead__input-group">
-                            <span class="typeahead__input-group-prepend">
-                                <span class="typeahead__input-group-text">
-                                    <i class="fas fa-sort-alpha-down"></i>
-                                </span>
-                            </span>
-                            <input class="input-group__input" placeholder="Enter the name of the organisation" style="width: 85%;" />
+                    <div class="form-group filter-bar__typeahead">
+                        <label for="organisation-typeahead-id" class="typeahead__input-label">
+                            <h2 class="u-no-margin">Organisation</h2>
+                        </label>
+                        <span class="typeahead__input-group"><span class="typeahead__input-group-prepend"><span class="typeahead__input-group-text input-group__before"><i class="fas fa-sort-alpha-down"></i></span></span>
+                            <div class="rbt typeahead__input-group-append" tabindex="-1" style="outline: none; position: relative;">
+                                <div style="display: flex; flex: 1 1 0%; height: 100%; position: relative;">
+                                    <input autocomplete="off" placeholder="Name der Organisation eingeben" type="text" aria-autocomplete="both" aria-expanded="false" aria-haspopup="listbox"
+                                      role="combobox" class="rbt-input-main form-control rbt-input" value="">
+                                    <input aria-hidden="true" class="rbt-input-hint" readonly="" tabindex="-1" value=""
+                                      style="background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.54); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%;">
+                                </div>
+                            </div>
                         </span>
                     </div>
 

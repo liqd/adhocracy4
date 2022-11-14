@@ -15,7 +15,7 @@
                         <button
                                 title="{% trans 'Organisations' %}"
                                 type="button"
-                                class="dropdown-toggle btn btn--none btn--small"
+                                class="dropdown-toggle btn btn--small"
                                 data-bs-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
@@ -37,7 +37,7 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        <span class="btn btn--none btn--small">{{ view.organisation.name }}</span>
+                        <span class="btn btn--small">{{ view.organisation.name }}</span>
                     {% endif %}
                 </div>
                 <nav aria-label="{% trans 'Dashboard' %}">

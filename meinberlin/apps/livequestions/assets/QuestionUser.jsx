@@ -69,7 +69,7 @@ export default class QuestionUser extends React.Component {
         <div className="live-question__action-bar">
           {this.props.hasLikingPermission
             ? (
-              <button type="button" className={this.state.session_like ? 'btn btn--none u-success' : 'btn btn--none'} onClick={this.handleLike.bind(this)}>
+              <button type="button" className={(this.state.session_like ? 'u-success ' : '') + 'btn'} onClick={this.handleLike.bind(this)}>
                 <span>{this.state.likes} </span>
                 <span className="visually-hidden">{likesTag}</span>
                 <i className="far fa-thumbs-up" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
