@@ -6,7 +6,7 @@ from django.contrib.humanize.templatetags.humanize import intcomma
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 from django.views import generic
 from rules.contrib.views import PermissionRequiredMixin
