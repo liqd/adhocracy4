@@ -1,10 +1,5 @@
-(function (init) {
-  document.addEventListener('DOMContentLoaded', init, false)
-  document.addEventListener('a4.embed.ready', init, false)
-})(function () {
-  // Dynamically add or remove subforms to a formset.
-  const $ = window.jQuery
-  const $formsets = $('.js-formset')
+window.addEventListener('load', function () {
+  const formsets = document.querySelectorAll('.js-formset')
   const PLACEHOLDER = /__prefix__/g
   const dynamicFormSets = []
   const selectDropdownSettings = {
@@ -12,71 +7,100 @@
     styleDropdown: 'category-icon-select'
   }
 
-  const DynamicFormSet = function ($formset) {
-    this.$formset = $formset
-    this.$formTemplate = this.$formset.find('.js-form-template')
-    this.prefix = this.$formset.data('prefix')
-    this.$totalInput = this.$formset.find('#id_' + this.prefix + '-TOTAL_FORMS')
-    this.total = parseInt(this.$totalInput.val())
-    this.maxNum = parseInt(this.$formset.find('#id_' + this.prefix + '-MAX_NUM_FORMS').val())
+  // empty formset created on page load
+  // used in: module_label_forms, module_category_forms {include inline_form}
+  const DynamicFormSet = function (formset) {
+    this.formset = formset
+    this.formTemplate = this.formset.querySelector('.js-form-template')
+    // prefix from django form modal
+    this.prefix = this.formset.dataset.prefix
+    this.totalInput = this.formset.querySelector(
+      '#id_' + this.prefix + '-TOTAL_FORMS'
+    )
+    this.total = parseInt(this.totalInput.value)
+    // maxNum from django form modal
+    this.maxNum = parseInt(
+      this.formset.querySelector('#id_' + this.prefix + '-MAX_NUM_FORMS').value
+    )
 
-    this.$formset.on('click', '.js-add-form', this.addForm.bind(this))
-    this.$formset.on('click', '.js-remove-form', this.removeForm.bind(this))
+    this.formset
+      .querySelector('.js-add-form')
+      .addEventListener('click', addForm.bind(this))
   }
 
-  DynamicFormSet.prototype.addForm = function () {
+  // checks if max forms reached and inserts field before hidden template element
+  const addForm = function () {
     if (this.total < this.maxNum) {
       this.total += 1
-      this.$totalInput.val(this.total)
-      const newForm = getNewForm(this.$formTemplate, this.total - 1)
-      const $newForm = $(newForm).insertBefore(this.$formTemplate)
-      if ($.fn.selectdropdown) {
-        $newForm.find('.category-icon-select').selectdropdown(selectDropdownSettings)
+      this.totalInput.value = this.total
+      const newForm = getNewForm(this.formTemplate, this.total - 1)
+      this.formTemplate.insertAdjacentHTML('beforebegin', newForm)
+
+      // take new field and add event listener to delete btn
+      this.formTemplate.previousElementSibling
+        .querySelector('.js-remove-form')
+        .addEventListener('click', removeForm.bind(this))
+      // only calling jquery for select dropdown (used for icon select for map modules)
+      if (window.jQuery.fn.selectdropdown) {
+        window
+          .jQuery(
+            this.formTemplate.previousElementSibling.querySelector(
+              '.category-icon-select'
+            )
+          )
+          .selectdropdown(selectDropdownSettings)
       }
     }
   }
 
-  DynamicFormSet.prototype.removeForm = function (event) {
+  // list all fields and remove field before save
+  const removeForm = function (event) {
     const _this = this
-
     this.total -= 1
-    this.$totalInput.val(this.total)
+    this.totalInput.value = this.total
+    const form = event.currentTarget.closest('.js-form')
+    const id = Array.from(this.formset.querySelectorAll('.js-form')).indexOf(
+      form
+    )
 
-    const $form = $(event.currentTarget).closest('.js-form')
-    const id = this.$formset.find('.js-form').index($form)
-
-    const updateAttr = function ($el, key, i) {
-      if ($el.attr(key)) {
+    // update index prefix of all elements in fields after removed field
+    const updateAttr = function (element, key, i) {
+      // boolean to check attribute
+      if (element.hasAttribute(key)) {
         const _old = _this.prefix + '-' + (id + i + 1)
         const _new = _this.prefix + '-' + (id + i)
-        $el.attr(key, $el.attr(key).replace(_old, _new))
+        element.setAttribute(key, element.getAttribute(key).replace(_old, _new))
       }
     }
 
-    $form.nextUntil(this.$formTemplate).each(function (i, sibling) {
-      $(sibling).find('*').each(function (j, el) {
-        const $el = $(el)
-        // FIXME: only a limited number of attributes is supported
-        updateAttr($el, 'name', i)
-        updateAttr($el, 'for', i)
-        updateAttr($el, 'id', i)
-      })
-    })
-
-    $form.remove()
+    // loop through elements in field and run updateAttr to ensure correct index
+    let nextSibling = form.nextElementSibling
+    while (nextSibling && nextSibling !== this.formTemplate) {
+      Array.from(nextSibling.firstElementChild.children)
+        .forEach(function (element, i) {
+          updateAttr(element, 'name', i)
+          updateAttr(element, 'for', i)
+          updateAttr(element, 'id', i)
+        })
+      nextSibling = nextSibling.nextElementSibling
+    }
+    form.remove()
   }
 
-  function getNewForm ($formTemplate, id) {
-    return $formTemplate.html().replace(PLACEHOLDER, id)
+  // create a form as a string object, replacing prefix with correct id
+  function getNewForm (formTemplate, id) {
+    const gotForm = formTemplate.innerHTML.replace(PLACEHOLDER, id)
+    return gotForm
   }
 
-  $formsets.each(function (i) {
-    dynamicFormSets.push(
-      new DynamicFormSet($formsets.eq(i))
-    )
+  formsets.forEach(function (formset, i) {
+    dynamicFormSets.push(new DynamicFormSet(formset))
   })
 
-  if ($.fn.selectdropdown) {
-    $('.category-icon-select').not('.js-form-template .category-icon-select').selectdropdown(selectDropdownSettings)
+  // only calling jquery for select dropdown (used for icon select for map modules)
+  if (window.jQuery.fn.selectdropdown) {
+    window.jQuery('.category-icon-select')
+      .not('.js-form-template .category-icon-select')
+      .selectdropdown(selectDropdownSettings)
   }
 })
