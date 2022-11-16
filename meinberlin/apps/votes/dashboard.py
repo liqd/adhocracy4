@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
 
+from . import exports
 from . import views
 
 
@@ -54,7 +55,7 @@ class ExportTokenComponent(DashboardComponent):
              views.ExportTokenDashboardView.as_view(component=self),
              'voting-tokens'),
             (r'^modules/(?P<module_slug>[-\w_]+)/download-codes/export/$',
-             views.TokenExportView.as_view(),
+             exports.TokenExportView.as_view(),
              'token-export'),
         ]
 

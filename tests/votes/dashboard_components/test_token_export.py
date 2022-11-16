@@ -7,7 +7,7 @@ from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import dispatch_view
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting.phases import VotingPhase
-from meinberlin.apps.votes.views import TokenExportView
+from meinberlin.apps.votes.exports import TokenExportView
 
 component = components.modules.get('voting_token_export')
 
