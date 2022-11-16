@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-14 14:59+0100\n"
-"PO-Revision-Date: 2022-10-20 01:11+0000\n"
+"PO-Revision-Date: 2022-11-16 12:08+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
@@ -2898,7 +2898,7 @@ msgstr "Negative Bewertungen"
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:41
 #, python-format
 msgid "%(counter)s More"
-msgstr ""
+msgstr "%(counter)s Mehr"
 
 #: meinberlin/apps/ideas/views.py:157 meinberlin/apps/mapideas/views.py:77
 msgid "Your Idea has been deleted"
@@ -3220,7 +3220,7 @@ msgstr "wird geprüft"
 
 #: meinberlin/apps/moderatorfeedback/models.py:12
 msgid "Qualified for next phase"
-msgstr ""
+msgstr "für nächste Phase qualifiziert"
 
 #: meinberlin/apps/moderatorfeedback/models.py:13
 msgid "Rejected"
@@ -4614,6 +4614,10 @@ msgid ""
 "Here you can download the codes in packages of %(export_size)s per excel "
 "file. To generate the codes, please contact %(contact_email)s."
 msgstr ""
+"Für die Abstimmung in der dritten Phase benötigen alle Teilnehmer*innen "
+"einen eigenen Abstimmungscode. Hier können Sie die Codes in Paketen von "
+"%(export_size)s pro Excel-Datei herunterladen. Um die Codes zu erstellen, "
+"wenden Sie sich bitte an %(contact_email)s."
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:8
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:8
@@ -4640,6 +4644,9 @@ msgid ""
 "Here you can generate up to %(tokens_per_module)s codes. Depending on the "
 "number this may take a few minutes."
 msgstr ""
+"Für die Abstimmung in der dritten Phase benötigen alle Teilnehmer*innen "
+"einen eigenen Abstimmungscode. Hier können Sie bis zu %(tokens_per_module)s "
+"Codes erstellen. Je nach Anzahl kann dies ein paar Minuten dauern."
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:8
 msgid "To download them please go to code download."
@@ -5054,6 +5061,10 @@ msgid ""
 "(multiple choice, not obligatory). Labels automatically appear in the "
 "display of ideas. The list of all ideas can be filtered by labels."
 msgstr ""
+"Wenn Sie Merkmale definieren, können die Teilnehmer:innen ihre Ideen "
+"entsprechend zuordnen (Multiple-Choice, nicht verpflichtend). Merkmale "
+"erscheinen automatisch in der Darstellung der Ideen. Die Liste aller Ideen "
+"kann nach Merkmalen gefiltert werden."
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase.html:50
 msgid ""
