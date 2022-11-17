@@ -18,7 +18,7 @@ DEFAULT_CHOICES = (
 class ModeratorStatement(UserGeneratedContentModel):
     statement = RichTextField(
         blank=True,
-        verbose_name=_('Official feedback'),
+        verbose_name=_('Feedback on the contribution (public)'),
         help_text=_(
             'The official feedback will appear below the idea, '
             'indicating your organisation. The idea provider receives '
@@ -34,7 +34,7 @@ class Moderateable(models.Model):
     moderator_feedback_choices = DEFAULT_CHOICES
 
     moderator_feedback = fields.ModeratorFeedbackField(
-        verbose_name=_('Processing status'),
+        verbose_name=_('Processing status (public)'),
         help_text=_(
             'The editing status appears below the title of the '
             'idea in red, yellow or green. The idea provider receives a '

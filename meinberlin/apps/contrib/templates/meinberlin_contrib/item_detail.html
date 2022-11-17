@@ -7,12 +7,12 @@
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{{ module.get_detail_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'go back' %}
+                        {% translate 'go back' %}
                     </a>
                 </li>
             </ul>
@@ -36,13 +36,13 @@
                 <div class="lr-bar__left">
                     <strong class="item-detail__creator">{{ object.creator.username }}</strong>
                     {% if object.modified %}
-                        {% trans 'updated on ' %}{% html_date object.modified class='list-item__date' %}
+                        {% translate 'updated on ' %}{% html_date object.modified class='list-item__date' %}
                     {% else %}
-                        {% trans 'created on ' %}{% html_date object.created class='list-item__date' %}
+                        {% translate 'created on ' %}{% html_date object.created class='list-item__date' %}
                     {% endif %}
                 </div>
                 <div class="lr-bar__right item-detail__ref">
-                    <strong>{% trans 'Reference No.' %}:</strong>
+                    <strong>{% translate 'Reference No.' %}:</strong>
                     {{ object.reference_number }}
                 </div>
             </div>
@@ -63,14 +63,14 @@
 
 
                 <div class="lr-bar__right">
-                {% if is_moderator %}
+                {% if is_moderator and not module.blueprint_type in 'PB3,PB2,PB1' %}
                     {% popover_remark object %}
                 {% endif %}
 
                 {% if request.user.is_authenticated %}
                     <div class="dropdown">
                         <button
-                                title="{% trans 'Actions' %}"
+                                title="{% translate 'Actions' %}"
                                 type="button"
                                 class="dropdown-toggle btn btn--light btn--small"
                                 data-bs-toggle="dropdown"
@@ -79,23 +79,23 @@
                                 aria-expanded="false"
                                 id="idea-{{ object.pk }}-actions"
                         >
-                            <i class="fa fa-ellipsis-h" aria-label="{% trans 'Actions' %}"></i>
+                            <i class="fa fa-ellipsis-h" aria-label="{% translate 'Actions' %}"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="idea-{{ object.pk }}-actions">
                             {% if user_may_change %}
-                                    {% get_item_update_url object as change_url %}
-                                    <a class="dropdown-item" href="{{ change_url }}">{% trans 'edit' %}</a>
-                                    {% get_item_delete_url object as delete_url %}
-                                    <a class="dropdown-item" href="{{ delete_url }}">{% trans 'delete' %}</a>
+                                {% get_item_update_url object as change_url %}
+                                <a class="dropdown-item" href="{{ change_url }}">{% translate 'edit' %}</a>
+                                {% get_item_delete_url object as delete_url %}
+                                <a class="dropdown-item" href="{{ delete_url }}">{% translate 'delete' %}</a>
                             {% endif %}
                             {% get_item_url object 'moderate' False as moderate_url %}
                             {% if is_moderator and moderate_url %}
-                                    <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'give feedback' %}</a>
+                                <a class="dropdown-item" href="{{ moderate_url }}">{% translate 'moderate' %}</a>
                             {% endif %}
 
                             {% block dropdown_items %}{% endblock %}
                             <li>
-                                {% trans 'report' as report_text %}
+                                {% translate 'report' as report_text %}
                                 {% react_reports object text=report_text class='dropdown-item' %}
                             </li>
                         </div>
@@ -110,7 +110,7 @@
         {% if object.moderator_statement.statement %}
             <div class="offset-lg-2 col-lg-8">
                 <div class="moderator-statement">
-                    <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
+                    <h2 class="moderator-statement__title">{% translate 'Official Statement' %}</h2>
                     <div class="moderator-statement__subtitle">
                         <strong class="moderator-statement__organisation">
                             {{ object.module.project.organisation.name }}
@@ -126,6 +126,56 @@
     {% endblock %}
 
     {% block vote_button %}{% endblock %}
+
+    {% block moderation_info %}
+        {% if is_moderator and module.blueprint_type in 'PB3,PB2,PB1' %}
+        <div class="offset-lg-3 col-lg-6">
+            <div class="moderation-info__accordion">
+                <details class="accordion" open>
+                    <summary class="moderation-info__accordion-title">
+                        <h2 class="moderation-info__title">{% translate 'Moderation' %}</h2>
+                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </summary>
+                    {% if object.module.moderationtask_set or object.remark.remark %}
+                    <div class="moderation-info__accordion-body">
+                        {% if object.module.moderationtask_set.count > 0 %}
+                            <h3 class="moderation-info__section">{% translate 'Moderation tasks' %}</h3>
+                            <ul class="u-list-reset">
+                            {% for task in object.module.moderationtask_set.all %}
+                                <li class="moderation-info__list-item">
+                                {% if task in object.completed_tasks.all %}
+                                    <i class="fas fa-circle-check u-success" aria-role="img" aria-label="{% translate 'Done' %}"></i>
+                                {% else %}
+                                    <i class="far fa-circle u-muted" aria-role="img" aria-label="{% translate 'Open' %}"></i>
+                                {% endif %}
+                                {{ task.name }}
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if object.remark.remark %}
+                            <h3 class="moderation-info__section">{% translate 'Remark' %}</h3>
+                            <p>
+                                {{ object.remark.remark }}
+                            </p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </details>
+                {% get_item_url object 'moderate' False as moderate_url %}
+                {% if moderate_url %}
+                    <a
+                        href="{{ moderate_url }}"
+                        class="btn btn--light btn--small moderation-info__btn"
+                        data-embed-target="external">
+                            <i class="fas fa-pencil" aria-hidden="true"></i>
+                            {% translate 'Edit' %}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    {% endblock %}
 
     <div class="offset-lg-3 col-lg-6">
         {% react_comments_async object %}

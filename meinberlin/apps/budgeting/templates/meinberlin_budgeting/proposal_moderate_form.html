@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Moderate' %} {{ object.name }} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Moderate' %} {{ object.name }} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{{ module.get_detail_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'go back' %}</a>
+                        {% translate 'go back' %}</a>
                 </li>
                 <li>
                     <a href="{{ object.get_absolute_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to proposal' %}</a>
+                        {% translate 'back to proposal' %}</a>
                 </li>
             </ul>
         </nav>
 
-        <h1>{% trans 'Moderate proposal' %}</h1>
+        <h1>{% translate 'Moderate proposal' %}</h1>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
@@ -31,14 +31,17 @@
             {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.moderator_feedback %}
             {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.statement.statement %}
             {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=forms.moderateable.is_archived %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark %}
             {% if forms.moderateable.show_tasks %}
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.completed_tasks %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.completed_tasks add_class='u-top-divider' %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark %}
+            {% else %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark add_class='u-top-divider' %}
+            }
             {% endif %}
 
             <div class="u-spacer-bottom">
-                <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
-                <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% trans 'Cancel' %}</a>
+                <input type="submit" class="btn btn--primary" value="{% translate 'Save' %}" />
+                <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% translate 'Cancel' %}</a>
             </div>
         </form>
 

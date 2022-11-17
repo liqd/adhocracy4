@@ -25,7 +25,7 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
 
-    <h2>{% blocktrans %}Contact Information{% endblocktrans %}</h2>
+    <h2>{% blocktranslate %}Contact Information{% endblocktranslate %}</h2>
 
     {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.allow_contact %}
 
@@ -36,7 +36,7 @@
     <div class="form-check">
         <label class="form-check__label">
             {{ form.contact_storage_consent|add_error_attr:"aria-invalid:true" }}
-            {% blocktrans with privacy_policy="/datenschutz" %}I hereby expressly consent to the storage of the contact information I have entered. The contact information may be used by the responsible administration exclusively for contacting me in the present project. I can revoke this consent at any time. I have read and accept the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.{% endblocktrans %}
+            {% blocktranslate with privacy_policy="/datenschutz" %}I hereby expressly consent to the storage of the contact information I have entered. The contact information may be used by the responsible administration exclusively for contacting me in the present project. I can revoke this consent at any time. I have read and accept the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.{% endblocktranslate %}
         </label>
         {% if form.contact_storage_consent.errors %}
             <ul class="errorlist" aria-live="assertive" aria-atomic="true">
@@ -48,7 +48,7 @@
     </div>
 
     <div class="u-spacer-bottom">
-        <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />
-        <a href="{{ cancel }}" class="btn btn--light">{% trans 'Cancel'%}</a>
+        <input type="submit" class="btn btn--primary" value="{% translate 'Save'%}" />
+        <a href="{{ cancel }}" class="btn btn--light">{% translate 'Cancel'%}</a>
     </div>
 </form>

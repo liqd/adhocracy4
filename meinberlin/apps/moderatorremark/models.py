@@ -15,8 +15,12 @@ class ModeratorRemark(UserGeneratedContentModel):
     item = GenericForeignKey(
         ct_field='item_content_type', fk_field='item_object_id')
 
-    remark = models.TextField(verbose_name=_('Remark'),
-                              blank=True)
+    remark = models.TextField(
+        blank=True,
+        verbose_name=_('Moderation remark (internal)'),
+        help_text=_('Here you can write a moderation remark. It is only '
+                    'displayed for moderators and initiators of your project.')
+    )
 
     @property
     def project(self):

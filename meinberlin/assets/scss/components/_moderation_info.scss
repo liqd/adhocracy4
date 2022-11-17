@@ -1,0 +1,34 @@
+.moderation-info__accordion {
+    position: relative;
+}
+
+.moderation-info__accordion-title {
+    display: block;
+    position: relative;
+    padding: $padding;
+    text-decoration: none;
+    color: inherit;
+}
+
+.moderation-info__accordion-body {
+    padding-inline: $padding;
+}
+
+.moderation-info__btn {
+    position: absolute;
+    top: 0.8 * $padding;
+    right: 3 * $padding;
+}
+
+.moderation-info__section {
+    border-top: 1px solid $border-color;
+    padding-top: 1.4 * $padding;
+    margin-top: 0;
+}
+
+.moderation-info__list-item {
+    border-top: 1px solid $border-color;
+    padding-top: 0.7 * $padding;
+    padding-bottom: 0.7 * $padding;
+    margin-bottom: 0;
+}

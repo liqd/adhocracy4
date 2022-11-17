@@ -1,0 +1,18 @@
+details summary {
+    cursor: pointer;
+}
+
+details summary > * {
+    display: inline;
+}
+
+details summary > i {
+    position: absolute;
+    right: $padding;
+    top: 1.2 * $padding;
+    transition: transform 0.3s;
+}
+
+details[open] summary > i {
+    transform: rotate(180deg);
+}
