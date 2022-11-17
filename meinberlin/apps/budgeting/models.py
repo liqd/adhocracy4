@@ -9,6 +9,7 @@ from adhocracy4.projects.models import \
     ProjectContactDetailMixin as contact_mixin
 from adhocracy4.ratings import models as rating_models
 from meinberlin.apps.mapideas import models as mapidea_models
+from meinberlin.apps.moderationtasks.models import ModerationTask
 
 
 class Proposal(mapidea_models.AbstractMapIdea):
@@ -42,6 +43,14 @@ class Proposal(mapidea_models.AbstractMapIdea):
     contact_phone = models.CharField(blank=True,
                                      max_length=255,
                                      validators=[contact_mixin.phone_regex])
+
+    completed_tasks = models.ManyToManyField(
+        ModerationTask,
+        verbose_name=_('completed moderation tasks'),
+        related_name=('%(app_label)s_'
+                      '%(class)s'
+                      '_completed')
+    )
 
     def get_absolute_url(self):
         return reverse('meinberlin_budgeting:proposal-detail',
