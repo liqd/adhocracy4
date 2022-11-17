@@ -12,12 +12,15 @@ from adhocracy4.categories import get_category_icon_url
 from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
 from adhocracy4.labels.models import Label
+from adhocracy4.modules.predicates import is_allowed_moderate_project
 from adhocracy4.modules.predicates import module_is_between_phases
 from adhocracy4.phases.predicates import has_feature_active
 from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
 from meinberlin.apps.contrib.templatetags.contrib_tags import \
     get_proper_elided_page_range
+from meinberlin.apps.moderationtasks.filters import ModerationTaskFilterBackend
+from meinberlin.apps.moderationtasks.models import ModerationTask
 from meinberlin.apps.moderatorfeedback.models import DEFAULT_CHOICES
 from meinberlin.apps.votes.api import VotingTokenInfoMixin
 
@@ -96,6 +99,15 @@ class ProposalFilterInfoMixin:
             'choices': moderator_feedback_choices
         }
 
+        # moderation task filter, only show to moderators
+        if is_allowed_moderate_project(request.user, self.module):
+            moderation_task_choices = self.get_moderation_task_choices()
+            if moderation_task_choices:
+                filters['open_task'] = {
+                    'label': _('Open tasks'),
+                    'choices': moderation_task_choices,
+                }
+
         # ordering filter
         ordering_choices = self.get_ordering_choices(request)
         default_ordering = self.get_default_ordering()
@@ -137,6 +149,18 @@ class ProposalFilterInfoMixin:
                 label_choices += (str(label.pk), label.name),
 
         return label_choices
+
+    def get_moderation_task_choices(self):
+        moderation_task_choices = None
+        moderation_tasks = ModerationTask.objects.filter(
+            module=self.module
+        )
+        if moderation_tasks:
+            moderation_task_choices = [('', _('All')), ]
+            for task in moderation_tasks:
+                moderation_task_choices += (str(task.pk), task.name),
+
+        return moderation_task_choices
 
     def get_ordering_choices(self, request):
         ordering_choices = [('-created', _('Most recent')), ]
@@ -210,11 +234,13 @@ class ProposalViewSet(ModuleMixin,
     filter_backends = (DjangoFilterBackend,
                        OrderingFilterWithDailyRandom,
                        IdeaCategoryFilterBackend,
-                       SearchFilter,)
+                       SearchFilter,
+                       ModerationTaskFilterBackend)
     filterset_fields = ('is_archived',
                         'category',
                         'labels',
-                        'moderator_feedback')
+                        'moderator_feedback',
+                        'completed_tasks')
     ordering_fields = ('created',
                        'comment_count',
                        'positive_rating_count',
