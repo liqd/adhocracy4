@@ -8,6 +8,7 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.labels import filters as label_filters
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from meinberlin.apps.ideas import views as idea_views
+from meinberlin.apps.moderatorremark.forms import ModeratorRemarkForm
 from meinberlin.apps.projects.views import ArchivedWidget
 from meinberlin.apps.votes.forms import TokenForm
 from meinberlin.apps.votes.models import VotingToken
@@ -137,6 +138,7 @@ class ProposalModerateView(idea_views.AbstractIdeaModerateView):
     permission_required = 'meinberlin_budgeting.moderate_proposal'
     template_name = 'meinberlin_budgeting/proposal_moderate_form.html'
     moderateable_form_class = forms.ProposalModerateForm
+    remark_form_class = ModeratorRemarkForm
 
 
 class ProposalDashboardExportView(DashboardExportView):

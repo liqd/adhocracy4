@@ -18,6 +18,7 @@ from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
+from meinberlin.apps.moderatorremark.models import ModeratorRemark
 from meinberlin.apps.notifications.emails import \
     NotifyContactOnModeratorFeedback
 from meinberlin.apps.notifications.emails import \
@@ -167,6 +168,7 @@ class AbstractIdeaModerateView(
         contrib_forms.BaseMultiModelFormView):
 
     get_context_from_object = True
+    remark_form_class = None
 
     def __init__(self):
         self.forms = {
@@ -179,6 +181,13 @@ class AbstractIdeaModerateView(
                 'form_class': ModeratorStatementForm
             }
         }
+        # FIXME: use the form class directly here and remove "if"-condition
+        # when used for all ideas and not only for budgeting proposals
+        if self.remark_form_class:
+            self.forms['remark'] = {
+                'model': ModeratorRemark,
+                'form_class': self.remark_form_class
+            }
 
     def dispatch(self, *args, **kwargs):
         self.object = self.get_object()
@@ -191,6 +200,13 @@ class AbstractIdeaModerateView(
         objects = super().forms_save(forms, commit=False)
         moderateable = objects['moderateable']
         statement = objects['statement']
+        # FIXME: use the remark directly and remove "if"-condition
+        # when used for all ideas and not only for budgeting proposals
+        remark = None
+        if 'remark' in objects:
+            remark = objects['remark']
+            if not remark.pk:
+                remark.creator = self.request.user
 
         if not statement.pk:
             statement.creator = self.request.user
@@ -199,6 +215,13 @@ class AbstractIdeaModerateView(
             statement.save()
             moderateable.moderator_statement = statement
             moderateable.save()
+            # FIXME: remove "if"-condition when form used for all ideas
+            if remark:
+                remark.item = moderateable
+                remark.save()
+
+            # FIXME: nooooooo! no email when added remark or changed tasks.
+            # but there's also no emails when an item is archived???
             if hasattr(self.object, 'contact_email'):
                 NotifyContactOnModeratorFeedback.send(self.object)
             else:
@@ -210,6 +233,8 @@ class AbstractIdeaModerateView(
             return self.object
         elif name == 'statement':
             return self.object.moderator_statement
+        elif name == 'remark':
+            return self.object.remark
 
 
 class IdeaModerateView(AbstractIdeaModerateView):
