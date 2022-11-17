@@ -6,6 +6,7 @@ from meinberlin.apps.contrib import fields
 from meinberlin.apps.contrib import widgets
 from meinberlin.apps.contrib.mixins import ContactStorageConsentMixin
 from meinberlin.apps.mapideas.forms import MapIdeaForm
+from meinberlin.apps.moderationtasks.mixins import TasksAddableFieldMixin
 
 from . import models
 
@@ -72,7 +73,7 @@ class ProposalForm(MapIdeaForm, ContactStorageConsentMixin):
         return cleaned_data
 
 
-class ProposalModerateForm(forms.ModelForm):
+class ProposalModerateForm(TasksAddableFieldMixin, forms.ModelForm):
     class Meta:
         model = models.Proposal
-        fields = ['moderator_feedback', 'is_archived']
+        fields = ['moderator_feedback', 'is_archived', 'completed_tasks']

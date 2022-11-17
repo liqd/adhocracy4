@@ -32,6 +32,9 @@
             {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.statement.statement %}
             {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=forms.moderateable.is_archived %}
             {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.remark.remark %}
+            {% if forms.moderateable.show_tasks %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.completed_tasks %}
+            {% endif %}
 
             <div class="u-spacer-bottom">
                 <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
