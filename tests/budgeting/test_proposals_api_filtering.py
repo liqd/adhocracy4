@@ -9,15 +9,26 @@ from freezegun import freeze_time
 
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
+from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.budgeting import phases
+from meinberlin.test.helpers import setup_group_member
 
 
 @pytest.mark.django_db
-def test_proposal_list_filter_mixin(apiclient, phase_factory, proposal_factory,
-                                    category_factory, label_factory):
+def test_proposal_list_filter_mixin(apiclient, user_factory, group_factory,
+                                    phase_factory, proposal_factory,
+                                    category_factory, label_factory,
+                                    moderation_task_factory):
     support_phase, module, project, proposal = setup_phase(phase_factory,
                                                            proposal_factory,
                                                            phases.SupportPhase)
+    user = user_factory()
+    group_member, organisation, project = setup_group_member(None, project,
+                                                             group_factory,
+                                                             user_factory)
+
+    anonymous, moderator, initiator = setup_users(project)
+
     voting_phase = phase_factory(
         phase_content=phases.VotingPhase(),
         module=module,
@@ -28,6 +39,8 @@ def test_proposal_list_filter_mixin(apiclient, phase_factory, proposal_factory,
 
     category1 = category_factory(module=module)
     category2 = category_factory(module=module)
+
+    moderation_task = moderation_task_factory(module=module)
 
     url = reverse('proposals-list',
                   kwargs={'module_pk': module.pk})
@@ -69,6 +82,7 @@ def test_proposal_list_filter_mixin(apiclient, phase_factory, proposal_factory,
             ('-comment_count', _('Most commented')),
             ('dailyrandom', _('Random'))]
     assert response.data['filters']['ordering']['default'] == 'dailyrandom'
+    assert 'labels' not in response.data['filters']
 
     # with labels
     label1 = label_factory(module=module)
@@ -117,6 +131,31 @@ def test_proposal_list_filter_mixin(apiclient, phase_factory, proposal_factory,
             ('-positive_rating_count', _('Most popular')),
             ('-comment_count', _('Most commented')),
             ('dailyrandom', _('Random'))]
+
+    # moderation tasks filter only added for moderators
+    assert 'open_task' not in response.data['filters']
+
+    apiclient.force_authenticate(user=user)
+    response = apiclient.get(url)
+    assert 'open_task' not in response.data['filters']
+
+    apiclient.force_authenticate(user=moderator)
+    response = apiclient.get(url)
+    assert 'open_task' in response.data['filters']
+    assert response.data['filters']['open_task']['choices'] == \
+           [('', _('All')), (str(moderation_task.pk), moderation_task.name)]
+
+    apiclient.force_authenticate(user=initiator)
+    response = apiclient.get(url)
+    assert 'open_task' in response.data['filters']
+    assert response.data['filters']['open_task']['choices'] == \
+           [('', _('All')), (str(moderation_task.pk), moderation_task.name)]
+
+    apiclient.force_authenticate(user=group_member)
+    response = apiclient.get(url)
+    assert 'open_task' in response.data['filters']
+    assert response.data['filters']['open_task']['choices'] == \
+           [('', _('All')), (str(moderation_task.pk), moderation_task.name)]
 
 
 @pytest.mark.django_db
@@ -269,6 +308,41 @@ def test_proposal_moderator_feedback_filter(
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 1
     assert response.data['results'][0]['pk'] == proposal_5.pk
+
+
+@pytest.mark.django_db
+def test_proposal_open_task_filter(
+        apiclient, module, proposal_factory, moderation_task_factory):
+    task1 = moderation_task_factory(module=module)
+    task2 = moderation_task_factory(module=module)
+
+    proposal1 = proposal_factory(module=module)
+    proposal1.completed_tasks.set([task1])
+    proposal2 = proposal_factory(module=module)
+    proposal2.completed_tasks.set([task1, task2])
+    proposal3 = proposal_factory(module=module)
+
+    url = reverse('proposals-list',
+                  kwargs={'module_pk': module.pk})
+
+    response = apiclient.get(url)
+    assert len(response.data['results']) == 3
+
+    querystring = '?open_task=' + str(task1.pk)
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 1
+    pks = [proposal['pk'] for proposal in response.data['results']]
+    assert pks == [proposal3.pk]
+
+    querystring = '?open_task=' + str(task2.pk)
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data['results']) == 2
+    pks = [proposal['pk'] for proposal in response.data['results']]
+    assert proposal1.pk in pks
+    assert proposal2.pk not in pks
+    assert proposal3.pk in pks
 
 
 @pytest.mark.django_db

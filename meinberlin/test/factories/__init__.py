@@ -114,3 +114,12 @@ class LabelFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('name')
     module = factory.SubFactory(factories.ModuleFactory)
+
+
+class ModerationTaskFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'meinberlin_moderationtasks.ModerationTask'
+
+    name = factory.Faker('name')
+    module = factory.SubFactory(factories.ModuleFactory)
