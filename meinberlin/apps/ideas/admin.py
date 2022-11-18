@@ -14,7 +14,9 @@ class ItemAdminForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['category'].required = True
         self.fields['labels'].required = False
-        self.fields['completed_tasks'].required = False
+        # FIXME if can be removed once all ideas have moderation tasks
+        if hasattr(self.instance, 'completed_tasks'):
+            self.fields['completed_tasks'].required = False
 
 
 class IdeaAdmin(module_admin.ItemAdmin):
