@@ -241,7 +241,7 @@ $checkbox-size: 20px;
 }
 
 .poll-slider__answer {
-    padding-bottom: 1.75 * $spacer;
+    padding-bottom: 2 * $spacer;
 
     i {
         color: $gray-lighter;
@@ -253,7 +253,7 @@ $checkbox-size: 20px;
     font-size: $font-size-xs;
     color: $gray-lighter;
     position: absolute;
-    bottom: 1.25 * $spacer; // to allign with arrows
+    bottom: 1.75 * $spacer; // to allign with arrows
     left: $spacer;
 }
 
@@ -266,7 +266,7 @@ $checkbox-size: 20px;
     // slick overwrites - nested for specificity
     .slick-prev {
         left: revert !important;
-        right: 4 * $spacer !important;
+        right: 5 * $spacer !important;
     }
 
     .slick-next {
@@ -275,13 +275,14 @@ $checkbox-size: 20px;
 
     .slick-prev,
     .slick-next {
+        @extend .btn;
         @extend .btn--primary;
         position: absolute;
         top: revert;
         bottom: 0;
         text-align: center;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 100%;
         z-index: 1; // for when tile links overlap
 
@@ -289,6 +290,7 @@ $checkbox-size: 20px;
             opacity: 0.25;
             cursor: not-allowed;
             pointer-events: none;
+            box-shadow: none;
         }
 
         &:before {
@@ -296,8 +298,8 @@ $checkbox-size: 20px;
             opacity: 1;
             font-family: "Font Awesome 6 Free", sans-serif;
             font-weight: 900;
-            font-size: $font-size-xl;
-            line-height: 1.3rem;
+            font-size: $font-size-xxl;
+            line-height: 1.6rem;
         }
     }
 
@@ -325,7 +327,7 @@ $checkbox-size: 20px;
 @media (min-width: $breakpoint) {
     .poll-slider__count--spaced {
         left: revert;
-        right: 6.5 * $spacer;
+        right: 8.5 * $spacer;
     }
 
     .poll-slider__count {
