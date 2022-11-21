@@ -220,12 +220,12 @@ class AbstractIdeaModerateView(
                 remark.item = moderateable
                 remark.save()
 
-            # FIXME: nooooooo! no email when added remark or changed tasks.
-            # but there's also no emails when an item is archived???
-            if hasattr(self.object, 'contact_email'):
-                NotifyContactOnModeratorFeedback.send(self.object)
-            else:
-                NotifyCreatorOnModeratorFeedback.send(self.object)
+            if 'moderator_feedback' in forms['moderateable'].changed_data \
+                    or 'statement' in forms['statement'].changed_data:
+                if hasattr(self.object, 'contact_email'):
+                    NotifyContactOnModeratorFeedback.send(self.object)
+                else:
+                    NotifyCreatorOnModeratorFeedback.send(self.object)
         return objects
 
     def get_instance(self, name):
