@@ -205,7 +205,7 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
         response = client.post(url, data)
         assert redirect_target(response) == 'proposal-detail'
 
-        # was the NotifyContactOnModeratorFeedback sent?
+        # was the NotifyCreatorOrContactOnModeratorFeedback sent?
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [item.contact_email]
         assert mail.outbox[0].subject.startswith('Rückmeldung')
@@ -239,7 +239,7 @@ def test_moderate_view_same_creator_contact(
         response = client.post(url, data)
         assert redirect_target(response) == 'proposal-detail'
 
-        # was the NotifyContactOnModeratorFeedback sent,
+        # was the NotifyCreatorOrContactOnModeratorFeedback sent,
         # even though the contact email is the same as the creator's?
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [item.contact_email]

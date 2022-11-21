@@ -20,9 +20,7 @@ from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
 from meinberlin.apps.moderatorremark.models import ModeratorRemark
 from meinberlin.apps.notifications.emails import \
-    NotifyContactOnModeratorFeedback
-from meinberlin.apps.notifications.emails import \
-    NotifyCreatorOnModeratorFeedback
+    NotifyCreatorOrContactOnModeratorFeedback
 
 from . import forms
 from . import models
@@ -222,10 +220,7 @@ class AbstractIdeaModerateView(
 
             if 'moderator_feedback' in forms['moderateable'].changed_data \
                     or 'statement' in forms['statement'].changed_data:
-                if hasattr(self.object, 'contact_email'):
-                    NotifyContactOnModeratorFeedback.send(self.object)
-                else:
-                    NotifyCreatorOnModeratorFeedback.send(self.object)
+                NotifyCreatorOrContactOnModeratorFeedback.send(self.object)
         return objects
 
     def get_instance(self, name):

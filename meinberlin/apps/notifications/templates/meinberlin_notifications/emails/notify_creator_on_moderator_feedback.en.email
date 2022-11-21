@@ -5,7 +5,7 @@
 {% block headline %}Feedback for your contribution{% endblock  %}
 {% block sub-headline %}{{ object.project.name }}{% endblock  %}
 
-{% block greeting %}Hello {{ receiver.username }},{% endblock %}
+{% block greeting %}{% if send_to_creator %}Hello {{ receiver.username }},{% else %}Hello,{% endif %}{% endblock %}
 
 {% block content %}
 {{ object.module.project.organisation.name }} reacted on your contribution.
@@ -22,4 +22,4 @@ Do you want to answer?
 {% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if object.get_absolute_url %}Check your contribution{% else %}Visit the project{% endif %}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you added a contribution to the above project. If you no longer want to receive notifications, change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}
+{% block reason %}{% if send_to_creator %}This email was sent to {{ receiver.email }}. You have received the e-mail because you added a contribution to the above project. If you no longer want to receive notifications, change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% else %}This e-mail was sent to {{ receiver }}. You received this notification because you entered this e-mail-address in your proposal as a contact. If you no longer wish to receive this notification, please adjust the contact information in your proposal.{% endif %}{% endblock %}

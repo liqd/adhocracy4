@@ -48,32 +48,26 @@ class NotifyCreatorEmail(Email):
         return []
 
 
-class NotifyCreatorOnModeratorFeedback(Email):
+class NotifyCreatorOrContactOnModeratorFeedback(Email):
     template_name = \
         'meinberlin_notifications/emails/notify_creator_on_moderator_feedback'
 
     def get_receivers(self):
-        receivers = [self.object.creator]
-        receivers = _exclude_notifications_disabled(receivers)
+        if hasattr(self.object, 'contact_email'):
+            #  send to contact
+            receivers = [self.object.contact_email]
+        else:
+            #  send to creator
+            receivers = [self.object.creator]
+            receivers = _exclude_notifications_disabled(receivers)
         return receivers
 
     def get_context(self):
         context = super().get_context()
         context['object'] = self.object
-        return context
-
-
-class NotifyContactOnModeratorFeedback(Email):
-    template_name = \
-        'meinberlin_notifications/emails/notify_contact_on_moderator_feedback'
-
-    def get_receivers(self):
-        receivers = [self.object.contact_email]
-        return receivers
-
-    def get_context(self):
-        context = super().get_context()
-        context['object'] = self.object
+        if not hasattr(self.object, 'contact_email'):
+            #  send to creator
+            context['send_to_creator'] = True
         return context
 
 
