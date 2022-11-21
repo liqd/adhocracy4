@@ -47,9 +47,7 @@
         }
     }
 
-    button:last-child,
-    li:last-child > a,
-    li:last-child > button {
+    &:last-child {
         border-bottom: 0;
     }
 
