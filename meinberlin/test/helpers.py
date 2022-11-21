@@ -25,8 +25,7 @@ def setup_group_member(organisation, project, group_factory,
 
 
 @factory.django.mute_signals(post_save)
-def setup_multiple_group_members(project, group_factory,
-                                 user_factory):
+def setup_group_members(project, group_factory, user_factory):
     group_org = group_factory()
     project.organisation.groups.add(group_org)
     group_member_in_org = user_factory.create(groups=(group_org, ))

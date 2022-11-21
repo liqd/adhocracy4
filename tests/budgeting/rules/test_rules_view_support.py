@@ -11,7 +11,7 @@ from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.budgeting import phases
-from meinberlin.test.helpers import setup_multiple_group_members
+from meinberlin.test.helpers import setup_group_members
 
 perm_name = 'meinberlin_budgeting.view_support'
 
@@ -28,7 +28,7 @@ def test_pre_phase(
                                                phases.CollectPhase)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_pre_phase(phase):
@@ -50,7 +50,7 @@ def test_support_phase_active(
                                                phases.SupportPhase)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_phase(phase):
@@ -82,7 +82,7 @@ def test_between_support_and_voting_phase(
 
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_time(between_phases):
@@ -104,7 +104,7 @@ def test_voting_phase_active(
                                                phases.VotingPhase)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_phase(phase):
@@ -126,7 +126,7 @@ def test_rating_phase_active(
                                                phases.RatingPhase)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_phase(phase):
@@ -149,7 +149,7 @@ def test_phase_active_project_private(
         module__project__access=Access.PRIVATE)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     participant = user_factory()
     project.participants.add(participant)
@@ -176,7 +176,7 @@ def test_phase_active_project_semipublic(
         module__project__access=Access.SEMIPUBLIC)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     participant = user_factory()
     project.participants.add(participant)
@@ -203,7 +203,7 @@ def test_phase_active_project_draft(
                                                module__project__is_draft=True)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_draft
     with freeze_phase(phase):
@@ -227,7 +227,7 @@ def test_post_phase_project_archived(
         module__project__is_archived=True)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_archived
     with freeze_post_phase(phase):

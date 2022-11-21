@@ -8,7 +8,7 @@ from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.budgeting import phases
-from meinberlin.test.helpers import setup_multiple_group_members
+from meinberlin.test.helpers import setup_group_members
 
 perm_name = 'meinberlin_budgeting.view_proposal'
 
@@ -26,7 +26,7 @@ def test_pre_phase(
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PUBLIC
     with freeze_pre_phase(phase):
@@ -50,7 +50,7 @@ def test_request_phase_active(
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PUBLIC
     with freeze_phase(phase):
@@ -74,7 +74,7 @@ def test_collect_phase_active(
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PUBLIC
     with freeze_phase(phase):
@@ -98,7 +98,7 @@ def test_rating_phase_active(
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PUBLIC
     with freeze_phase(phase):
@@ -125,7 +125,7 @@ def test_phase_active_project_private(
     project.participants.add(participant)
     creator = item.creator
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PRIVATE
     with freeze_phase(phase):
@@ -153,7 +153,7 @@ def test_phase_active_project_semipublic(
     project.participants.add(participant)
     creator = item.creator
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.SEMIPUBLIC
     with freeze_phase(phase):
@@ -179,7 +179,7 @@ def test_phase_active_project_draft(
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_draft
     with freeze_phase(phase):
@@ -204,7 +204,7 @@ def test_post_phase_project_archived(
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_archived
     with freeze_post_phase(phase):

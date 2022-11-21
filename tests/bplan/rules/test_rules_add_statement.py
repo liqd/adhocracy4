@@ -7,7 +7,7 @@ from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.bplan import phases
-from meinberlin.test.helpers import setup_multiple_group_members
+from meinberlin.test.helpers import setup_group_members
 
 perm_name = 'meinberlin_bplan.add_statement'
 
@@ -22,7 +22,7 @@ def test_pre_phase(phase_factory, user, admin, user_factory, group_factory):
                                             phases.StatementPhase)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_pre_phase(phase):
@@ -42,7 +42,7 @@ def test_active(phase_factory, user, admin, user_factory, group_factory):
                                             phases.StatementPhase)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_phase(phase):
@@ -62,7 +62,7 @@ def test_post_phase(phase_factory, user, admin, user_factory, group_factory):
                                             phases.StatementPhase)
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_multiple_group_members(project, group_factory, user_factory)
+        setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_post_phase(phase):

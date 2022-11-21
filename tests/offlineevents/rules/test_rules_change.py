@@ -2,7 +2,7 @@ import pytest
 import rules
 
 from adhocracy4.test.helpers import setup_users
-from tests.helpers import setup_group_users
+from meinberlin.test.helpers import setup_group_members
 
 perm_name = 'meinberlin_offlineevents.change_offlineevent'
 
@@ -18,13 +18,13 @@ def test_rule(offline_event, user_factory, group_factory,
     project = offline_event.project
 
     anonymous, moderator, initiator = setup_users(project)
-    group_member_in_orga, group_member_out, group_member_in_project, project \
-        = setup_group_users(user_factory, group_factory, project)
+    project, group_member_in_org, group_member_in_pro, group_member_out = \
+        setup_group_members(project, group_factory, user_factory)
 
     assert not rules.has_perm(perm_name, anonymous, project)
     assert not rules.has_perm(perm_name, user, project)
-    assert not rules.has_perm(perm_name, group_member_in_orga, project)
+    assert not rules.has_perm(perm_name, group_member_in_org, project)
     assert not rules.has_perm(perm_name, group_member_out, project)
     assert not rules.has_perm(perm_name, moderator, project)
-    assert rules.has_perm(perm_name, group_member_in_project, project)
+    assert rules.has_perm(perm_name, group_member_in_pro, project)
     assert rules.has_perm(perm_name, initiator, project)
