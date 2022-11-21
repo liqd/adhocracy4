@@ -67,10 +67,12 @@ export default class QuestionForm extends React.Component {
     return (
       <form id="id-comment-form" action="" onSubmit={this.addQuestion.bind(this)}>
         <h2>{askQuestionStr}</h2>
-        <CategorySelect
-          onSelect={this.selectCategory.bind(this)}
-          category_dict={this.props.category_dict}
-        />
+        {Object.keys(this.props.category_dict).length > 0
+          ? <CategorySelect
+              onSelect={this.selectCategory.bind(this)}
+              category_dict={this.props.category_dict}
+            />
+          : ''}
         <label htmlFor="questionTextField">{questionStr}*</label>
         <textarea
           placeholder={yourQuestionStr}

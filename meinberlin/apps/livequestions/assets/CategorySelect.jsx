@@ -1,5 +1,4 @@
 import django from 'django'
-import 'select2'
 import React, { useEffect } from 'react'
 
 const affiliationStr = django.gettext('Affiliation')

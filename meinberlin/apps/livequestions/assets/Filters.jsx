@@ -23,21 +23,23 @@ export default class Filter extends React.Component {
     const orderLikesText = django.gettext('order by likes')
     return (
       <div className="live_questions__filters">
-        <div className="dropdown">
-          <button
-            className={this.getButtonClass()} type="button" id="dropdownMenuButton"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-          >
-            {this.props.currentCategoryName}
-            <i className="fa fa-caret-down" aria-label={onlyShowMarkedText} />
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <button className="dropdown-item" data-value={-1} onClick={this.selectCategory.bind(this)} href="#">{allTag}</button>
-            {this.props.categories.map((category, index) => {
-              return <button className="dropdown-item" key={index} data-value={category} onClick={this.selectCategory.bind(this)} href="#">{category}</button>
-            })}
-          </div>
-        </div>
+        {this.props.categories.length > 0
+          ? <div className="dropdown live_questions__filters--dropdown">
+            <button
+              className={this.getButtonClass()} type="button" id="dropdownMenuButton"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            >
+              {this.props.currentCategoryName}
+              <i className="fa fa-caret-down" aria-label={onlyShowMarkedText} />
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <button className="dropdown-item" data-value={-1} onClick={this.selectCategory.bind(this)} href="#">{allTag}</button>
+              {this.props.categories.map((category, index) => {
+                return <button className="dropdown-item" key={index} data-value={category} onClick={this.selectCategory.bind(this)} href="#">{category}</button>
+              })}
+            </div>
+          </div> // eslint-disable-line react/jsx-closing-tag-location
+          : ''}
         {this.props.isModerator &&
           <div className="live_questions__filters--btns">
             <div className="checkbox-btn u-spacer-right">
