@@ -19,7 +19,7 @@
     "adhocracy4": "liqd/adhocracy4#5d2db2beec82926ac019e7ac750921fc74e4096a",
     "autoprefixer": "10.4.13",
     "babel-loader": "9.1.0",
-    "bootstrap": "5.2.2",
+    "bootstrap": "5.2.3",
     "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.7.2",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
