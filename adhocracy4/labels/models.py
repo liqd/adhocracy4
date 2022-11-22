@@ -12,6 +12,7 @@ class Label(models.Model):
 
     class Meta:
         verbose_name_plural = 'labels'
+        ordering = ['pk']
 
     def __str__(self):
         return self.name
