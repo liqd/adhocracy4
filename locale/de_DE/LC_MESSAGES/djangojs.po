@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-14 14:59+0100\n"
+"POT-Creation-Date: 2022-11-22 11:59+0100\n"
 "PO-Revision-Date: 2022-08-31 14:20+0000\n"
 "Last-Translator: Julian Dehm <j.dehm@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
@@ -996,11 +996,11 @@ msgstr ""
 "Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
 "zwar anschauen, werden sich aber nicht anmelden können."
 
-#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:5
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:4
 msgid "Affiliation"
 msgstr "Zugehörigkeit"
 
-#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:6
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:5
 msgid ""
 "Answered questions will be displayed in the statistics according to the "
 "chosen affiliation."
