@@ -4,15 +4,15 @@
 {% blocktrans count counter=dashboard_menu.modules|length %}Participation Module{% plural %}Participation Modules{% endblocktrans %}
 </h4>
 
-<a
+<button
     class="btn btn--secondary btn--full u-spacer-bottom"
+    type="button"
     id="module-blueprint-btn"
     href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}"
     data-bs-toggle="modal"
-    data-bs-target="#module-blueprint-list"
-    data-target-selector="#module-blueprint-list">
+    data-bs-target="#module-blueprint-list">
     {% trans 'Create Module' %}
-</a>
+</button>
 
 {% for module_menu in dashboard_menu.modules reversed %}
     {% include "a4dashboard/includes/nav_modules_item.html" %}
