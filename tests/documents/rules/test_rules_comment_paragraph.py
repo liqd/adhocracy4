@@ -26,6 +26,7 @@ def test_pre_phase(phase_factory, chapter_factory, paragraph_factory,
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
         setup_group_members(project, group_factory, user_factory)
+    creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
 
@@ -33,6 +34,7 @@ def test_pre_phase(phase_factory, chapter_factory, paragraph_factory,
     with freeze_pre_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, paragraph)
         assert not rules.has_perm(perm_name, user, paragraph)
+        assert not rules.has_perm(perm_name, creator, paragraph)
         assert not rules.has_perm(perm_name, group_member_in_org, paragraph)
         assert not rules.has_perm(perm_name, group_member_out, paragraph)
         assert rules.has_perm(perm_name, group_member_in_pro, paragraph)
@@ -49,6 +51,7 @@ def test_phase_active(phase_factory, chapter_factory, paragraph_factory,
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
         setup_group_members(project, group_factory, user_factory)
+    creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
 
@@ -56,6 +59,7 @@ def test_phase_active(phase_factory, chapter_factory, paragraph_factory,
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, paragraph)
         assert rules.has_perm(perm_name, user, paragraph)
+        assert rules.has_perm(perm_name, creator, paragraph)
         assert rules.has_perm(perm_name, group_member_in_org, paragraph)
         assert rules.has_perm(perm_name, group_member_out, paragraph)
         assert rules.has_perm(perm_name, group_member_in_pro, paragraph)
@@ -76,6 +80,7 @@ def test_phase_active_project_private(phase_factory, chapter_factory,
     project.participants.add(participant)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
         setup_group_members(project, group_factory, user_factory)
+    creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
 
@@ -83,6 +88,7 @@ def test_phase_active_project_private(phase_factory, chapter_factory,
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, paragraph)
         assert not rules.has_perm(perm_name, user, paragraph)
+        assert not rules.has_perm(perm_name, creator, paragraph)
         assert not rules.has_perm(perm_name, group_member_in_org, paragraph)
         assert not rules.has_perm(perm_name, group_member_out, paragraph)
         assert rules.has_perm(perm_name, group_member_in_pro, paragraph)
@@ -104,6 +110,7 @@ def test_phase_active_project_semipublic(phase_factory, chapter_factory,
     project.participants.add(participant)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
         setup_group_members(project, group_factory, user_factory)
+    creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
 
@@ -111,6 +118,7 @@ def test_phase_active_project_semipublic(phase_factory, chapter_factory,
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, paragraph)
         assert not rules.has_perm(perm_name, user, paragraph)
+        assert not rules.has_perm(perm_name, creator, paragraph)
         assert not rules.has_perm(perm_name, group_member_in_org, paragraph)
         assert not rules.has_perm(perm_name, group_member_out, paragraph)
         assert rules.has_perm(perm_name, group_member_in_pro, paragraph)
@@ -130,6 +138,7 @@ def test_phase_active_project_draft(phase_factory, chapter_factory,
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
         setup_group_members(project, group_factory, user_factory)
+    creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
 
@@ -137,6 +146,7 @@ def test_phase_active_project_draft(phase_factory, chapter_factory,
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, paragraph)
         assert not rules.has_perm(perm_name, user, paragraph)
+        assert not rules.has_perm(perm_name, creator, paragraph)
         assert not rules.has_perm(perm_name, group_member_in_org, paragraph)
         assert not rules.has_perm(perm_name, group_member_out, paragraph)
         assert rules.has_perm(perm_name, group_member_in_pro, paragraph)
@@ -155,6 +165,7 @@ def test_post_phase_project_archived(phase_factory, chapter_factory,
     anonymous, moderator, initiator = setup_users(project)
     project, group_member_in_org, group_member_in_pro, group_member_out = \
         setup_group_members(project, group_factory, user_factory)
+    creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
 
@@ -162,6 +173,7 @@ def test_post_phase_project_archived(phase_factory, chapter_factory,
     with freeze_post_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, paragraph)
         assert not rules.has_perm(perm_name, user, paragraph)
+        assert not rules.has_perm(perm_name, creator, paragraph)
         assert not rules.has_perm(perm_name, group_member_in_org, paragraph)
         assert not rules.has_perm(perm_name, group_member_out, paragraph)
         assert rules.has_perm(perm_name, group_member_in_pro, paragraph)
