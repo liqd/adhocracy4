@@ -116,14 +116,14 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-information"
     aria-expanded="false">
-        <div class="container">
+        <section class="container">
             <div class="offset-lg-2 col-lg-8">
                 {{ project.information | transform_collapsibles | richtext }}
                 {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
                     <div class="l-tiles-2 u-top-divider">
                     {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
-                        <div>
-                            <h3>{% trans 'Contact for questions' %}</h3>
+                        <h3>{% trans 'Contact for questions' %}</h3>
+                        <address>
                             {% if project.contact_name %}
                             <p>{{ project.contact_name }}</p>
                             {% endif %}
@@ -143,12 +143,12 @@
                                 {% trans 'Website' %}
                             </a>
                             {% endif %}
-                        </div>
+                        </address>
                     {% endif %}
 
                     {% if project.organisation.address or project.organisation.url %}
-                        <div>
-                            <h3>{% trans 'Responsible body' %}</h3>
+                        <h3>{% trans 'Responsible body' %}</h3>
+                        <address>
                             {% if project.organisation.address %}
                             <p>{{ project.organisation.name }}</p>
                             <p>{{ project.organisation.address|linebreaks }}</p>
@@ -158,12 +158,12 @@
                                 {% trans 'Website' %}
                             </a>
                             {% endif %}
-                        </div>
+                        </address>
                     {% endif %}
                     </div>
                 {% endif %}
             </div>
-        </div>
+        </section>
     </div>
     <div
     class="tabpanel active u-overflow-visible"
@@ -171,25 +171,22 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-participation"
     aria-expanded="true">
-        {% if project.display_timeline %}
+    <section>
         <div class="container">
+        {% if project.display_timeline %}
             <div class="timeline-carousel__wrapper">
                 {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
             </div>
-        </div>
         {% endif %}
         {% if event %}
-        <div class="container">
-            <div class="offset-lg-3 col-lg-6">
+            <article class="offset-lg-3 col-lg-6">
                 <h2>{{ event.name }}</h2>
                 <div class="phase-info__item__subtitle">
                   {% html_date event.date 'DATETIME_FORMAT' %}
                 </div>
-                <P>{{ event.description | safe | transform_collapsibles | richtext }}</P>
-            </div>
-        </div>
+                <p>{{ event.description | safe | transform_collapsibles | richtext }}</p>
+            </article>
         {% elif view.is_project_view %}
-        <div class="container">
             <div class="participation-tile__wrapper">
                 <div class="participation-tile__list-container">
                     <ul class="u-list-reset participation-tile__list">
@@ -199,18 +196,16 @@
                     </ul>
                 </div>
             </div>
-        </div>
         {% else %} <!-- if just one module and no phase view to dispatch to -->
         {% include "a4modules/includes/module_detail_phase.html" %}
         {% endif %}
         <!-- these blocks are only filled when in phase view -->
-        <div class="container">
             <div class="offset-lg-3 col-lg-6">
                 {% block project_action %}{% endblock %}
             </div>
         </div>
         {% block phase_content %}{% endblock %}
-    </div>
+    </section>
 
     <div
     class="tabpanel"
@@ -218,7 +213,7 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-result"
     aria-expanded="false">
-        <div class="container">
+        <section class="container">
             <div class="offset-lg-2 col-lg-8">
                 {% if project.result %}
                     {{ project.result | transform_collapsibles | richtext }}
@@ -226,6 +221,6 @@
                     {% trans 'No results yet.' %}
                 {% endif %}
             </div>
-        </div>
+        </section>
     </div>
 {% endblock %}

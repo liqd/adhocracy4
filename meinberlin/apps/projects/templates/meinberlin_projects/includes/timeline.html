@@ -36,7 +36,7 @@
 
 {% if not object|is_offlineevent and not object|has_activity %}
     <div class="offset-lg-3 col-lg-6">
-        <div class="timeline-detail">
+        <section class="timeline-detail">
             {% if module %}
                 {% if module_event_count > 1 %}
                     <h2 class="timeline-detail__title">
@@ -99,7 +99,7 @@
                     </strong>
                 </div>
             {% endif %}
-        </div>
+        </section>
     </div>
 {% endif %}
 

@@ -5,21 +5,19 @@
 {% block phase_content %}
     <div class="container">
         <div class="offset-lg-3 col-lg-6">
-
-            <div class="item-detail">
+            <article class="item-detail">
                 <h2 class="item-detail__title">{{ object.name }}</h2>
 
                 <div class="item-detail__meta">
                     <strong>{{ object.date }}</strong>
                 </div>
 
-
                 <div class="item-detail__content">
                     {{ object.description | transform_collapsibles | richtext }}
 
                     {% block additional_content %}{% endblock %}
                 </div>
-            </div>
+            </article>
         </div>
     </div>
 {% endblock %}

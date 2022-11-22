@@ -47,7 +47,7 @@
             {% endif %}
             </div>
         {% endif %}
-        <div class="offset-lg-3 col-lg-6 project-header">
+        <div class="offset-lg-3 col-lg-6">
             <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
                 <ul>
                     <li>
@@ -58,29 +58,35 @@
                     </li>
                 </ul>
             </nav>
-
-            <!-- Live stream -->
-            {% for phase in module.phases %}
-              {% if phase == module.active_phase and live_stream %}
-                  {{ live_stream.live_stream | richtext }}
-                  <span class="label label--active">•{% trans ' Live now' %}</span>
-              {% endif %}
-            {% endfor %}
-
-            <h1 class="project-header__title">{{ module.name }}</h1>
-            <p class="project-header__description">{{ module.description }}</p>
         </div>
     </div>
-    {% include "a4modules/includes/module_detail_phase.html" %}
-    <div class="container">
-        <div class="offset-lg-3 col-lg-6">
-        {% block project_action %}{% endblock %}
+    <section>
+        <div class="container">
+            <div class="offset-lg-3 col-lg-6 project-header">
+
+                <!-- Live stream -->
+                {% for phase in module.phases %}
+                  {% if phase == module.active_phase and live_stream %}
+                      {{ live_stream.live_stream | richtext }}
+                      <span class="label label--active">•{% trans ' Live now' %}</span>
+                  {% endif %}
+                {% endfor %}
+    
+                <h1 class="project-header__title">{{ module.name }}</h1>
+                <p class="project-header__description">{{ module.description }}</p>
+            </div>
+            {% include "a4modules/includes/module_detail_phase.html" %}
+            <div class="offset-lg-3 col-lg-6">
+                {% block project_action %}{% endblock %}
+            </div>
+
         </div>
-    </div>
-    {% block phase_content %}{% endblock %}
+
+        {% block phase_content %}{% endblock %}
+    </section>
 
     {% if module.is_in_module_cluster %}
-    <div class="container">
+    <section class="container">
         <div class="participation-tile__wrapper">
             <div class="participation-tile__list-container">
                 <ul class="u-list-reset participation-tile__list">
@@ -93,6 +99,6 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </section>
     {% endif %}
 {% endblock %}

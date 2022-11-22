@@ -31,17 +31,18 @@
 
 {% block content %}
     <div class="container">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
-            <ul>
-                <li>
-                    <a href="{% url 'meinberlin_plans:plan-list' %}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to overview of projects' %}</a>
-                </li>
-            </ul>
-        </nav>
         <div class="offset-lg-3 col-lg-6">
-
+            <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+                <ul>
+                    <li>
+                        <a href="{% url 'meinberlin_plans:plan-list' %}">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            {% trans 'back to overview of projects' %}</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <article class="offset-lg-3 col-lg-6">
             <div class="item-detail">
                 <h1 class="item-detail__title u-break-word">
                     {{ object.title }}
@@ -51,7 +52,7 @@
                     <span class="label label--secondary">{{ object.get_status_display }}</span>
                 </div>
 
-                <div class="item-detail-2__factsheet">
+                <section class="item-detail-2__factsheet">
                     <dl class="item-detail-2__factsheet-table" title="{% trans 'Plan details' %}">
 
                         {% if object.point_label %}
@@ -107,7 +108,7 @@
                         {% endif %}
                         </div>
                     {% endif %}
-                </div>
+                </section>
 
                 <div class="item-detail-2__content{% if object.participation_explanation != 'Bitte Begründung einfügen' %}--borderless{% endif%}">
                     <div class="item-detail__basic-content">
@@ -119,6 +120,7 @@
                 {% if object.participation_explanation != "Bitte Begründung einfügen" %}
                 <div class="item-detail-2__info-box">
                     <h2 class="item-detail-2__smalltitle">{% trans 'Level of participation' %}: {{ object.get_participation_display }}</h2>
+
                     {% if object.participation_explanation|length > 300 %}
                         <div id="collapsibleExplanation" class="collapse show u-no-transition">
                             {{ object.participation_explanation|truncatechars:160 }}
@@ -152,40 +154,44 @@
                     {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url %}
                         <div>
                             <h2 class="item-detail-2__smalltitle">{% trans 'Contact for questions' %}</h2>
-                            {% if object.contact_name %}
+                            <address>
+                                {% if object.contact_name %}
                                 <p>{{ object.contact_name }}</p>
-                            {% endif %}
-                            {% if object.contact_address_text %}
-                                <p>{{ object.contact_address_text|linebreaks }}</p>
-                            {% endif %}
-                            {% if object.contact_phone %}
-                                <p><strong>{% trans 'Telephone' %}: </strong>{{ object.contact_phone }}</p>
-                            {% endif %}
-                            {% if object.contact_email %}
-                                <a class="btn btn--secondary" href="mailto:{{ object.contact_email }}">
-                                    {% trans 'Email' %}
-                                </a>
-                            {% endif %}
-                            {% if object.contact_url %}
-                                <a class="btn btn--secondary" target="_blank" href="{{ object.contact_url }}">
-                                    {% trans 'Website' %}
-                                </a>
-                            {% endif %}
+                                {% endif %}
+                                {% if object.contact_address_text %}
+                                    <p>{{ object.contact_address_text|linebreaks }}</p>
+                                {% endif %}
+                                {% if object.contact_phone %}
+                                    <p><strong>{% trans 'Telephone' %}: </strong>{{ object.contact_phone }}</p>
+                                {% endif %}
+                                {% if object.contact_email %}
+                                    <a class="btn btn--secondary" href="mailto:{{ object.contact_email }}">
+                                        {% trans 'Email' %}
+                                    </a>
+                                {% endif %}
+                                {% if object.contact_url %}
+                                    <a class="btn btn--secondary" target="_blank" href="{{ object.contact_url }}">
+                                        {% trans 'Website' %}
+                                    </a>
+                                {% endif %}
+                            </address>
                         </div>
                     {% endif %}
 
                     {% if object.organisation.address or object.organisation.url %}
                         <div>
                             <h2 class="item-detail-2__smalltitle">{% trans 'Responsible body' %}</h2>
-                            {% if object.organisation.address %}
+                            <address>
+                                {% if object.organisation.address %}
                                 <p>{{ object.organisation.name }}</p>
                                 <p>{{ object.organisation.address|linebreaks }}</p>
-                            {% endif %}
-                            {% if object.organisation.url %}
-                                <a class="btn btn--secondary" target="_blank" href="{{ object.organisation.url }}">
-                                    {% trans 'Website' %}
-                                </a>
-                            {% endif %}
+                                {% endif %}
+                                {% if object.organisation.url %}
+                                    <a class="btn btn--secondary" target="_blank" href="{{ object.organisation.url }}">
+                                        {% trans 'Website' %}
+                                    </a>
+                                {% endif %}
+                            </address>
                         </div>
                     {% endif %}
                     </div>
@@ -225,11 +231,11 @@
                 {% endif %}
             </div>
 
-        </div>
+        </article>
     </div>
 
     {% if object.published_projects %}
-    <div class="item-detail-2__project-list">
+    <section class="item-detail-2__project-list">
         <div class="container">
             <h3 class="item-detail-2__project-title" id="participation-plans">
                 {% trans "Participation projects" %}
@@ -240,6 +246,6 @@
             {% endfor %}
             </ul>
         </div>
-    </div>
+    </section>
     {% endif %}
 {% endblock %}
