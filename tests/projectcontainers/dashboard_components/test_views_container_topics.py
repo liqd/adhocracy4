@@ -4,7 +4,7 @@ from django.conf import settings
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.test.helpers import assert_dashboard_form_component_response
-from meinberlin.test.helpers import setup_group_member
+from meinberlin.test.helpers import setup_group_members
 
 component = components.projects.get('topics')
 
@@ -33,10 +33,10 @@ def test_edit_view(client, project_container):
 @pytest.mark.django_db
 def test_edit_view_group_member(client, project_container,
                                 group_factory, user_factory):
-    group_member, _, project_container = setup_group_member(
-        None, project_container, group_factory, user_factory)
+    project_container, _, group_member_in_pro, _ = \
+        setup_group_members(project_container, group_factory, user_factory)
     url = component.get_base_url(project_container)
-    client.login(username=group_member.email, password='password')
+    client.login(username=group_member_in_pro.email, password='password')
     response = client.get(url)
     assert_dashboard_form_component_response(response, component)
 

@@ -6,7 +6,7 @@ from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.bplan.phases import StatementPhase
 from meinberlin.test.helpers import assert_dashboard_form_component_response
-from meinberlin.test.helpers import setup_group_member
+from meinberlin.test.helpers import setup_group_members
 
 component = components.projects.get('bplan')
 
@@ -62,10 +62,10 @@ def test_edit_view_group_member(
         user_factory):
     module = module_factory(project=bplan)
     phase = phase_factory(phase_content=StatementPhase(), module=module)
-    group_member, organisation, bplan = setup_group_member(
-        None, bplan, group_factory, user_factory)
+    bplan, _, group_member_in_pro, _ = setup_group_members(
+        bplan, group_factory, user_factory)
     url = component.get_base_url(bplan)
-    client.login(username=group_member.email, password='password')
+    client.login(username=group_member_in_pro.email, password='password')
     response = client.get(url)
     assert_dashboard_form_component_response(response, component)
     assert len(mail.outbox) == 1

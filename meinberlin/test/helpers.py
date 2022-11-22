@@ -6,25 +6,6 @@ from adhocracy4.test.helpers import redirect_target
 
 
 @factory.django.mute_signals(post_save)
-def setup_group_member(organisation, project, group_factory,
-                       user_factory):
-    group1 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
-    if organisation:
-        organisation.groups.add(group1)
-    else:
-        organisation = None
-    if project:
-        organisation = project.organisation
-        organisation.groups.add(group1)
-        project.group = group1
-        project.save()
-    else:
-        project = None
-    return group_member, organisation, project
-
-
-@factory.django.mute_signals(post_save)
 def setup_group_members(project, group_factory, user_factory):
     group_org = group_factory()
     project.organisation.groups.add(group_org)
@@ -32,6 +13,7 @@ def setup_group_members(project, group_factory, user_factory):
 
     group_pro = group_factory()
     project.group = group_pro
+    project.save()
     group_member_in_pro = user_factory.create(groups=(group_pro, ))
 
     group_out = group_factory()

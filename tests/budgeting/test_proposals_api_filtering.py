@@ -11,7 +11,6 @@ from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.budgeting import phases
-from meinberlin.test.helpers import setup_group_member
 
 
 @pytest.mark.django_db
@@ -19,15 +18,16 @@ def test_proposal_list_filter_mixin(apiclient, user_factory, group_factory,
                                     phase_factory, proposal_factory,
                                     category_factory, label_factory,
                                     moderation_task_factory):
-    support_phase, module, project, proposal = setup_phase(phase_factory,
-                                                           proposal_factory,
-                                                           phases.SupportPhase)
+    support_phase, module, project, proposal = setup_phase(
+        phase_factory, proposal_factory, phases.SupportPhase
+    )
     user = user_factory()
-    group_member, organisation, project = setup_group_member(None, project,
-                                                             group_factory,
-                                                             user_factory)
-
     anonymous, moderator, initiator = setup_users(project)
+
+    group_pro = group_factory()
+    project.group = group_pro
+    project.save()
+    group_member = user_factory.create(groups=(group_pro, ))
 
     voting_phase = phase_factory(
         phase_content=phases.VotingPhase(),
