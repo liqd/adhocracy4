@@ -136,8 +136,8 @@
                     </summary>
                     {% if object.module.moderationtask_set or object.remark.remark %}
                     <div class="moderation-info__accordion-body">
+                        <h3 class="moderation-info__section">{% translate 'Moderation tasks' %}</h3>
                         {% if object.module.moderationtask_set.count > 0 %}
-                            <h3 class="moderation-info__section">{% translate 'Moderation tasks' %}</h3>
                             <ul class="u-list-reset">
                             {% for task in object.module.moderationtask_set.all %}
                                 <li class="moderation-info__list-item">
@@ -150,11 +150,19 @@
                                 </li>
                             {% endfor %}
                             </ul>
+                        {% else %}
+                            <p class="u-muted">
+                                {% translate 'If you want to add moderation tasks here, you can do so in the module settings.' %}
+                            </p>
                         {% endif %}
+                        <h3 class="moderation-info__section">{% translate 'Remark' %}</h3>
                         {% if object.remark.remark %}
-                            <h3 class="moderation-info__section">{% translate 'Remark' %}</h3>
                             <p>
                                 {{ object.remark.remark }}
+                            </p>
+                        {% else %}
+                            <p class="u-muted">
+                                {% translate 'No moderation remark has been filled yet.' %}
                             </p>
                         {% endif %}
                     </div>

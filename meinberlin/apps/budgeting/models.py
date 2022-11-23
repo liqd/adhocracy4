@@ -31,7 +31,7 @@ class Proposal(mapidea_models.AbstractMapIdea):
 
     is_archived = models.BooleanField(
         default=False,
-        verbose_name=_('Proposal is archived'),
+        verbose_name=_('Proposal is archived (public)'),
         help_text=_('Exclude this proposal from all listings by default. '
                     'You can still access this proposal by using filters.'),
     )
