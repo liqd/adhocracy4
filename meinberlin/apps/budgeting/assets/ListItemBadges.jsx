@@ -1,5 +1,4 @@
 import React from 'react'
-import { SpacedSpan } from './SpacedSpan'
 import django from 'django'
 
 const translated = {
@@ -30,24 +29,24 @@ export const ListItemBadges = props => {
     <div className="list-item__labels">
       {props.badges.map((badge, idx) => {
         return (
-          <SpacedSpan
+          <div
             key={'badge_' + idx}
             className={getClass(badge)}
           >
             {hasPointLabelIcon(badge[0])}
             {badge[1]}
-          </SpacedSpan>
+          </div>
         )
       })}
       {props.numOfMoreBadges > 0 &&
-        <SpacedSpan className="label__link label--big">
+        <div className="label__link label--big">
           <a
             href={props.proposalUrl}
             className="list-item__link"
           >
             {props.numOfMoreBadges + ' ' + translated.more}
           </a>
-        </SpacedSpan>}
+        </div>}
     </div>
   )
 }
