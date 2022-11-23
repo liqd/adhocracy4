@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-22 11:59+0100\n"
+"POT-Creation-Date: 2022-11-23 16:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr "Missing fields for publication"
 #: meinberlin/apps/activities/templates/meinberlin_activities/activities_dashboard.html:17
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:43
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:51
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:43
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:42
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:44
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:35
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_form.html:23
@@ -164,7 +164,7 @@ msgstr "Create draft"
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:45
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:52
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:14
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:44
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:43
 #: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:49
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:46
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:15
@@ -223,7 +223,7 @@ msgid "private"
 msgstr "private"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:172
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:180
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:52
@@ -657,7 +657,7 @@ msgid "Official Statement"
 msgstr "Official Statement"
 
 #: adhocracy4/exports/mixins/items.py:89
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:157
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:160
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:5
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:21
 msgid "Remark"
@@ -1767,8 +1767,8 @@ msgstr ""
 "specified\" will appear in your proposal."
 
 #: meinberlin/apps/budgeting/models.py:34
-msgid "Proposal is archived"
-msgstr "Proposal is archived"
+msgid "Proposal is archived (public)"
+msgstr "Proposal is archived (public)"
 
 #: meinberlin/apps/budgeting/models.py:35
 msgid ""
@@ -2264,7 +2264,7 @@ msgstr "report"
 msgid "Moderation"
 msgstr "Moderation"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:142
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:141
 #: meinberlin/apps/moderationtasks/forms.py:18
 msgid "Moderation tasks"
 msgstr "Moderation tasks"
@@ -2276,6 +2276,18 @@ msgstr "Done"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:149
 msgid "Open"
 msgstr "Open"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:157
+msgid ""
+"If you want to add moderation tasks here, you can do so in the module "
+"settings."
+msgstr ""
+"If you want to add moderation tasks here, you can do so in the module "
+"settings."
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:167
+msgid "No moderation remark has been filled yet."
+msgstr "No moderation remark has been filled yet."
 
 #: meinberlin/apps/dashboard/blueprints.py:17
 msgid "Brainstorming"
@@ -5270,6 +5282,9 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "Proposal is archived"
+#~ msgstr "Proposal is archived"
 
 #~ msgid "give feedback"
 #~ msgstr "give feedback"
