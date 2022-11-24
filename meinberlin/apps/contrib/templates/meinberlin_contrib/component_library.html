@@ -131,10 +131,13 @@
                         <a href="#cl-menu-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Menu Layout</a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
+                        <a href="#cl-moderation-info" class="dashboard-nav__item dashboard-nav__item--interactive">Moderation Info</a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderato Statement</a>
+                        <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderator Statement</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="#cl-multiform" class="dashboard-nav__item dashboard-nav__item--interactive">Multiform</a>
@@ -1709,7 +1712,46 @@
                     </div>
                 </div>
 
-                <h2 id="cl-module">Moderato Statement</h2>
+                <h2 id="cl-moderation-info">Moderation Info</h2>
+
+                <div class="cl-example">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="moderation-info__accordion">
+                            <details class="accordion" open>
+                                <summary class="moderation-info__accordion-title">
+                                    <h2 class="moderation-info__title">Moderation</h2>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </summary>
+                                <div class="moderation-info__accordion-body">
+                                    <h3 class="moderation-info__section">Moderation tasks</h3>
+                                    <ul class="u-list-reset">
+                                        <li class="moderation-info__list-item">
+                                            <i class="fas fa-circle-check u-success" aria-role="img" aria-label="Done"></i>
+                                        Task is done
+                                        </li>
+                                        <li class="moderation-info__list-item">
+                                            <i class="far fa-circle u-muted" aria-role="img" aria-label="Open"></i>
+                                        Task is open
+                                        </li>
+                                    </ul>
+                                    <h3 class="moderation-info__section">Remark</h3>
+                                    <p>
+                                        Here is the moderator remark.
+                                    </p>
+                                </div>
+                            </details>
+                                <a
+                                    href="#"
+                                    class="btn btn--light btn--small moderation-info__btn"
+                                    data-embed-target="external">
+                                        <i class="fas fa-pencil" aria-hidden="true"></i>
+                                        Edit
+                                </a>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-moderator-statement">Moderator Statement</h2>
 
                 <div class="cl-example">
                     <div class="offset-lg-2 col-lg-8">
