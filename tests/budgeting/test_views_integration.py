@@ -200,7 +200,46 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
         data = {
             'moderator_feedback': 'test',
             'is_archived': False,
-            'statement': 'its a statement'
+            'statement': 'its a statement',
+            'remark': 'this is a remark',
+        }
+        response = client.post(url, data)
+        assert redirect_target(response) == 'proposal-detail'
+
+        # was the NotifyCreatorOrContactOnModeratorFeedback sent?
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [item.contact_email]
+        assert mail.outbox[0].subject.startswith('Rückmeldung')
+
+
+@pytest.mark.django_db
+def test_moderate_view_with_tasks(
+        client, phase_factory, proposal_factory, user,
+        area_settings_factory, moderation_task_factory):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase)
+    item.contact_email = 'user_test@liqd.net'
+    item.save()
+    area_settings_factory(module=module)
+    url = reverse('meinberlin_budgeting:proposal-moderate',
+                  kwargs={'pk': item.pk, 'year': item.created.year})
+    project.moderators.set([user])
+    task1 = moderation_task_factory(module=module)
+    task2 = moderation_task_factory(module=module)
+    with freeze_phase(phase):
+        client.login(username=user.email, password='password')
+
+        response = client.get(url)
+        assert_template_response(
+            response,
+            'meinberlin_budgeting/proposal_moderate_form.html')
+
+        data = {
+            'moderator_feedback': 'test',
+            'is_archived': False,
+            'statement': 'its a statement',
+            'remark': 'this is a remark',
+            'completed_tasks': [task1.pk, task2.pk],
         }
         response = client.post(url, data)
         assert redirect_target(response) == 'proposal-detail'
