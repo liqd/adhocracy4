@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-23 16:45+0100\n"
-"PO-Revision-Date: 2022-11-16 12:08+0000\n"
+"PO-Revision-Date: 2022-11-25 07:53+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
@@ -1768,7 +1768,7 @@ msgstr "Status"
 
 #: meinberlin/apps/budgeting/api.py:107
 msgid "Open tasks"
-msgstr ""
+msgstr "offene Aufgaben"
 
 #: meinberlin/apps/budgeting/api.py:166 meinberlin/apps/budgeting/views.py:21
 #: meinberlin/apps/ideas/views.py:34 meinberlin/apps/kiezkasse/views.py:16
@@ -1890,7 +1890,7 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/models.py:34
 msgid "Proposal is archived (public)"
-msgstr ""
+msgstr "Vorschlag ist archiviert (öffentlich)"
 
 #: meinberlin/apps/budgeting/models.py:35
 msgid ""
@@ -2382,7 +2382,7 @@ msgstr "löschen"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:93
 msgid "moderate"
-msgstr ""
+msgstr "moderieren"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:98
 msgid "report"
@@ -2390,12 +2390,12 @@ msgstr "melden"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:136
 msgid "Moderation"
-msgstr ""
+msgstr "Moderation"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:141
 #: meinberlin/apps/moderationtasks/forms.py:18
 msgid "Moderation tasks"
-msgstr ""
+msgstr "Moderationsaufgaben"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:147
 msgid "Done"
@@ -2410,10 +2410,12 @@ msgid ""
 "If you want to add moderation tasks here, you can do so in the module "
 "settings."
 msgstr ""
+"Wenn Sie an dieser Stelle Moderationsaufgaben hinzufügen möchten, können sie "
+"dies in den Moduleinstellungen tun."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:167
 msgid "No moderation remark has been filled yet."
-msgstr ""
+msgstr "Es wurde noch keine Moderationsnotiz hinterlegt."
 
 #: meinberlin/apps/dashboard/blueprints.py:17
 msgid "Brainstorming"
@@ -3247,25 +3249,27 @@ msgstr "Ort wurde gelöscht"
 
 #: meinberlin/apps/moderationtasks/dashboard.py:12
 msgid "Moderation Tasks"
-msgstr ""
+msgstr "Moderationsaufgaben"
 
 #: meinberlin/apps/moderationtasks/dashboard.py:14
 msgid "Edit moderation tasks"
-msgstr ""
+msgstr "Moderationsaufgaben bearbeiten"
 
 #: meinberlin/apps/moderationtasks/forms.py:15
 msgid "Moderation task"
-msgstr ""
+msgstr "Moderationsaufgabe"
 
 #: meinberlin/apps/moderationtasks/mixins.py:20
 msgid "Moderation tasks (internal)"
-msgstr ""
+msgstr "Moderationsaufgaben (intern)"
 
 #: meinberlin/apps/moderationtasks/mixins.py:21
 msgid ""
 "Here you can mark your moderation tasks as done. The list of all proposals "
 "can be filtered by open tasks."
 msgstr ""
+"Hier können Sie Ihre Moderationsaufgaben als erledigt markieren. Die Liste "
+"aller Vorschläge kann nach offenen Aufgaben gefiltert werden."
 
 #: meinberlin/apps/moderationtasks/templates/meinberlin_moderationtasks/moderation_tasks_form.html:3
 msgid ""
@@ -3276,10 +3280,14 @@ msgid ""
 "proposals can\n"
 "    be filtered by open tasks."
 msgstr ""
+"Moderationsaufgaben erscheinen in der Detailansicht der eingereichten "
+"Vorschläge. Sie werden nur für die Moderation und Initiator*innen angezeigt "
+"und können über das Formular „moderieren“ als erledigt markiert werden. Die "
+"Liste aller Vorschläge kann nach offenen Aufgaben gefiltert werden."
 
 #: meinberlin/apps/moderationtasks/templates/meinberlin_moderationtasks/moderation_tasks_form.html:22
 msgid "Add moderation tasks"
-msgstr ""
+msgstr "Moderationsaufgaben hinzufügen"
 
 #: meinberlin/apps/moderatorfeedback/fields.py:6
 msgid "Moderator feedback for items with fixed feedback choices"
@@ -3303,7 +3311,7 @@ msgstr "wird umgesetzt"
 
 #: meinberlin/apps/moderatorfeedback/models.py:21
 msgid "Feedback on the contribution (public)"
-msgstr ""
+msgstr "Rückmeldung zum Beitrag (öffentlich)"
 
 #: meinberlin/apps/moderatorfeedback/models.py:23
 msgid ""
@@ -3315,7 +3323,7 @@ msgstr ""
 
 #: meinberlin/apps/moderatorfeedback/models.py:37
 msgid "Processing status (public)"
-msgstr ""
+msgstr "Bearbeitungsstatus (öffentlich)"
 
 #: meinberlin/apps/moderatorfeedback/models.py:39
 msgid ""
@@ -3327,13 +3335,15 @@ msgstr ""
 
 #: meinberlin/apps/moderatorremark/models.py:20
 msgid "Moderation remark (internal)"
-msgstr ""
+msgstr "Moderationsnotiz (intern)"
 
 #: meinberlin/apps/moderatorremark/models.py:21
 msgid ""
 "Here you can write a moderation remark. It is only displayed for moderators "
 "and initiators of your project."
 msgstr ""
+"Hier können Sie eine Moderationsnotiz hinterlegen. Sie ist nur für die "
+"Moderation und Initiator*innen Ihres Projektes sichbar."
 
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:15
 msgid "Moderator remark"
