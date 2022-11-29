@@ -17,7 +17,7 @@ class ModerationTasksComponent(ModuleFormSetComponent):
         'meinberlin_moderationtasks/moderation_tasks_form.html'
 
     def is_effective(self, module):
-        return module.blueprint_type in ['PB1', 'PB2', 'PB3']
+        return module.blueprint_type in ['PB', 'PB2', 'PB3']
 
 
 components.register_module(ModerationTasksComponent())

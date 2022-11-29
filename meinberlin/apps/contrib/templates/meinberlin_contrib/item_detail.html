@@ -64,7 +64,7 @@
 
 
                 <div class="lr-bar__right">
-                {% if is_moderator and not module.blueprint_type in 'PB3,PB2,PB1' %}
+                {% if is_moderator and not module.blueprint_type in 'PB3,PB2,PB' %}
                     {% popover_remark object %}
                 {% endif %}
 
@@ -126,7 +126,7 @@
     {% block vote_button %}{% endblock %}
 
     {% block moderation_info %}
-        {% if is_moderator and module.blueprint_type in 'PB3,PB2,PB1' %}
+        {% if is_moderator and module.blueprint_type in 'PB3,PB2,PB' %}
         <div class="offset-lg-3 col-lg-6">
             <div class="moderation-info__accordion">
                 <details class="accordion" open>
