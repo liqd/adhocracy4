@@ -248,16 +248,16 @@ export const EditPollManagement = (props) => {
 
       <Alert onClick={() => removeAlert()} {...alert} />
 
-      <div className="editpoll__actions-container">
-        <div className="editpoll__menu-container">
+      <div className="editpoll__question-container">
+        <div className="editpoll__question">
           <EditPollDropdown
             handleToggleMulti={() => handleQuestionAppend()}
             handleToggleOpen={() => handleQuestionAppend({ isOpen: true })}
           />
         </div>
 
-        <div className="editpoll__menu-container">
-          <button type="submit" className="btn poll__btn--dark">
+        <div className="editpoll__question-actions">
+          <button type="submit" className="btn btn--primary">
             {django.gettext('Save')}
           </button>
         </div>

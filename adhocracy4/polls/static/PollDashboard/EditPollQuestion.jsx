@@ -11,8 +11,8 @@ export const EditPollQuestion = (props) => {
   const hasOtherOption = props.question.choices.find(c => c.is_other_choice)
   return (
     <section className="editpoll__question-container">
-      <div className="editpoll__question--border">
-        <div className="form-group">
+      <div className="editpoll__question">
+        <div className="form-group editpoll__question--border">
           <label
             htmlFor={'id_questions-' + props.id + '-name'}
           >
@@ -29,97 +29,97 @@ export const EditPollQuestion = (props) => {
             />
             <FormFieldError id={'id_error-' + props.id} error={props.errors} field="label" />
           </label>
-        </div>
 
-        {hasHelptext
-          ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
-          : null}
+          {hasHelptext
+            ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
+            : null}
 
-        <div className="form-check">
-          <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-multiple_choice'}>
-            <input
-              type="checkbox"
-              id={'id_questions-' + props.id + '-multiple_choice'}
-              name={'questions-' + props.id + '-multiple_choice'}
-              checked={props.question.multiple_choice}
-              onChange={(e) => { props.onMultipleChoiceChange(e.target.checked) }}
-            />
-            &nbsp;
-            {django.gettext('Participants can vote for more than one option (multiple choice)')}
-          </label>
-        </div>
+          <div className="form-check">
+            <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-multiple_choice'}>
+              <input
+                type="checkbox"
+                id={'id_questions-' + props.id + '-multiple_choice'}
+                name={'questions-' + props.id + '-multiple_choice'}
+                checked={props.question.multiple_choice}
+                onChange={(e) => { props.onMultipleChoiceChange(e.target.checked) }}
+              />
+              &nbsp;
+              {django.gettext('Participants can vote for more than one option (multiple choice)')}
+            </label>
+          </div>
 
-        <div className="form-check">
-          <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-is_other_choice'}>
-            <input
-              type="checkbox"
-              id={'id_questions-' + props.id + '-is_other_choice'}
-              name={'questions-' + props.id + '-is_other_choice'}
-              checked={hasOtherOption || false}
-              onChange={(e) => { props.onHasOtherChoiceChange(e.target.checked) }}
-              disabled={props.question.choices.length < 3 && hasOtherOption}
-            />
-            &nbsp;
-            {django.gettext('Participants can add their own answer')}
-          </label>
-        </div>
+          <div className="form-check">
+            <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-is_other_choice'}>
+              <input
+                type="checkbox"
+                id={'id_questions-' + props.id + '-is_other_choice'}
+                name={'questions-' + props.id + '-is_other_choice'}
+                checked={hasOtherOption || false}
+                onChange={(e) => { props.onHasOtherChoiceChange(e.target.checked) }}
+                disabled={props.question.choices.length < 3 && hasOtherOption}
+              />
+              &nbsp;
+              {django.gettext('Participants can add their own answer')}
+            </label>
+          </div>
 
-        <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
-          {
-            props.question.choices.map((choice, index) => {
-              const key = choice.id || choice.key
-              const label = django.pgettext('noun', 'Answer') + ' #' + (index + 1)
-              const errors = props.errors && props.errors.choices
-                ? props.errors.choices[index]
-                : {}
-              return !choice.is_other_choice
-                ? (
-                  <div key={key}>
-                    <EditPollChoice
-                      id={'id_questions-poll' + props.id + '-multiple_choice'}
-                      index={index + 1}
-                      label={label}
-                      choice={choice}
-                      choiceId={choice.id}
-                      onLabelChange={(label) => { props.onChoiceLabelChange(index, label) }}
-                      onDelete={() => { props.onDeleteChoice(index) }}
-                      errors={errors}
-                      undeletable={props.question.choices.length < 3}
-                    />
-                  </div>
-                  )
-                : (
-                  <div key={key}>
-                    <EditPollChoice
-                      id={'id_questions-poll' + props.id + '-is_other_choice'}
-                      index={index + 1}
-                      label={django.gettext('Other')}
-                      choice={{ label: django.gettext('Other') }}
-                      choiceId={choice.id}
-                      onDelete={() => props.onHasOtherChoiceChange(false)}
-                      undeletable={props.question.choices.length < 3}
-                      isOther
-                    />
-                  </div>
-                  )
-            })
-          }
-        </FlipMove>
-        <div className="editpoll__btns--question">
-          <button
-            className="btn editpoll__btn--question"
-            onClick={() => props.onAppendChoice(hasOtherOption)}
-            type="button"
-          >
-            <i className="fa fa-plus" /> {django.gettext('New answer')}
-          </button>
-          <button
-            className={'btn ' + hasHelptext ? 'poll__btn--dark' : 'poll__btn--light'}
-            onClick={() => setHasHelptext(!hasHelptext)}
-            type="button"
-          >
-            <i className={'fa ' + hasHelptext ? 'fa-check' : 'fa-plus'} /> {django.gettext('Explanation')}
-          </button>
+          <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
+            {
+              props.question.choices.map((choice, index) => {
+                const key = choice.id || choice.key
+                const label = django.pgettext('noun', 'Answer') + ' #' + (index + 1)
+                const errors = props.errors && props.errors.choices
+                  ? props.errors.choices[index]
+                  : {}
+                return !choice.is_other_choice
+                  ? (
+                    <div key={key}>
+                      <EditPollChoice
+                        id={'id_questions-poll' + props.id + '-multiple_choice'}
+                        index={index + 1}
+                        label={label}
+                        choice={choice}
+                        choiceId={choice.id}
+                        onLabelChange={(label) => { props.onChoiceLabelChange(index, label) }}
+                        onDelete={() => { props.onDeleteChoice(index) }}
+                        errors={errors}
+                        undeletable={props.question.choices.length < 3}
+                      />
+                    </div>
+                    )
+                  : (
+                    <div key={key}>
+                      <EditPollChoice
+                        id={'id_questions-poll' + props.id + '-is_other_choice'}
+                        index={index + 1}
+                        label={django.gettext('Other')}
+                        choice={{ label: django.gettext('Other') }}
+                        choiceId={choice.id}
+                        onDelete={() => props.onHasOtherChoiceChange(false)}
+                        undeletable={props.question.choices.length < 3}
+                        isOther
+                      />
+                    </div>
+                    )
+              })
+            }
+          </FlipMove>
+          <div className="editpoll__btns--question">
+            <button
+              className="btn editpoll__btn--question"
+              onClick={() => props.onAppendChoice(hasOtherOption)}
+              type="button"
+            >
+              <i className="fa fa-plus" /> {django.gettext('New answer')}
+            </button>
+            <button
+              className={'btn ' + (hasHelptext ? 'editpoll__btn--dark' : 'editpoll__btn--question')}
+              onClick={() => setHasHelptext(!hasHelptext)}
+              type="button"
+            >
+              <i className={'fa ' + (hasHelptext ? 'fa-check' : 'fa-plus')} /> {django.gettext('Explanation')}
+            </button>
+          </div>
         </div>
       </div>
 
