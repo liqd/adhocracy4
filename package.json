@@ -34,7 +34,7 @@
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "github:liqd/Leaflet.markercluster#5ed89b26922c51083fc9632a2c01425b9261a0f5",
     "maplibre-gl": "1.15.3",
-    "mini-css-extract-plugin": "2.7.0",
+    "mini-css-extract-plugin": "2.7.1",
     "moment": "2.29.4",
     "path-browserify": "1.0.1",
     "postcss": "8.4.19",
