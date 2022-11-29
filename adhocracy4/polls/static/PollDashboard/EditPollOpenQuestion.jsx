@@ -8,8 +8,8 @@ export const EditPollOpenQuestion = (props) => {
 
   return (
     <section className="editpoll__question-container">
-      <div className="editpoll__question--border">
-        <div className="form-group">
+      <div className="editpoll__question">
+        <div className="form-group editpoll__question--border">
           <label
             htmlFor={'id_questions-' + props.id + '-name'}
           >
@@ -26,17 +26,17 @@ export const EditPollOpenQuestion = (props) => {
             />
             <FormFieldError id={'id_error-' + props.id} error={props.errors} field="label" />
           </label>
+          {hasHelptext
+            ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
+            : null}
+          <button
+            className={'btn ' + (hasHelptext ? 'editpoll__btn--dark' : 'editpoll__btn--question')}
+            onClick={() => setHasHelptext(!hasHelptext)}
+            type="button"
+          >
+            <i className={'fa ' + (hasHelptext ? 'fa-check' : 'fa-plus')} /> {django.gettext('Explanation')}
+          </button>
         </div>
-        {hasHelptext
-          ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
-          : null}
-        <button
-          className={'btn ' + hasHelptext ? 'poll__btn--dark' : 'poll__btn--light'}
-          onClick={() => setHasHelptext(!hasHelptext)}
-          type="button"
-        >
-          <i className={'fa +' + hasHelptext ? 'fa-check' : 'fa-plus'} /> {django.gettext('Explanation')}
-        </button>
       </div>
 
       <div className="editpoll__question-actions btn-group" role="group">

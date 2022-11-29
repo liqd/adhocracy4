@@ -64,7 +64,7 @@ class FollowButton extends React.Component {
     const followingTag = django.gettext('Following')
     return (
       <span className="follow">
-        <button className={this.state.followed ? 'btn btn--sm btn--light' : 'btn btn--sm btn--secondary'} type="button" onClick={this.toggleFollow.bind(this)}>
+        <button className={this.state.followed ? 'btn btn--following' : 'btn btn--follow'} type="button" onClick={this.toggleFollow.bind(this)}>
           <i className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? followingTag : followTag}</span>
         </button>
         <span className="follow__notification">
