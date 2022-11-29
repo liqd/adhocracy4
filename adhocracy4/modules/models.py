@@ -191,6 +191,12 @@ class Module(models.Model):
         return now >= self.module_start
 
     @cached_property
+    def module_in_future(self):
+        """Test if the module is taking place in the future."""
+        now = timezone.now()
+        return now < self.module_start
+
+    @cached_property
     def module_has_finished(self):
         """Test if the module has already finished."""
         now = timezone.now()
@@ -232,6 +238,21 @@ class Module(models.Model):
                                             str(best_unit[0]))
             return time_delta_str
 
+        return None
+
+    @cached_property
+    def module_running_days_left(self):
+        """
+        Return the number of days left in the currently running module.
+
+        Attention: It's a bit coarse and should only be used for estimations
+        like 'ending soon', but NOT to display the number of days a project
+        is still running. For that use module_running_time_left.
+        """
+        if self.module_has_started and not self.module_has_finished:
+            today = timezone.now().replace(hour=0, minute=0, second=0)
+            time_delta = self.module_end - today
+            return time_delta.days
         return None
 
     @cached_property

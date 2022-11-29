@@ -396,9 +396,7 @@ class Project(ProjectContactDetailMixin,
         """
         running_module = self.running_module_ends_next
         if running_module:
-            today = timezone.now().replace(hour=0, minute=0, second=0)
-            time_delta = running_module.module_end - today
-            return time_delta.days
+            return running_module.module_running_days_left
         return None
 
     @cached_property
