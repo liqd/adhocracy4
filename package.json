@@ -50,7 +50,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-flip-move": "3.0.4",
-    "react-markdown": "8.0.3",
+    "react-markdown": "8.0.4",
     "react-slick": "0.29.0",
     "shpjs": "4.0.4",
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
@@ -64,7 +64,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-flip-move": "3.0.4",
-    "react-markdown": "8.0.3",
+    "react-markdown": "8.0.4",
     "react-slick": "0.29",
     "shpjs": "4.0.4",
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
