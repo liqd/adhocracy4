@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import pgettext_lazy
 
 from adhocracy4.models import base
 from adhocracy4.projects import models as project_models
@@ -202,26 +203,49 @@ class Module(models.Model):
         now = timezone.now()
         return now > self.module_end
 
-    def seconds_in_units(self, seconds):
+    def seconds_in_units(self, seconds, abbr=False):
         """Return time and unit."""
         unit_totals = []
 
         unit_limits = [
-            ([_('day'), _('days')], 24 * 3600),
-            ([_('hour'), _('hours')], 3600),
-            ([_('minute'), _('minutes')], 60),
-            ([_('second'), _('seconds')], 1)
+            ('days', 24 * 3600),
+            ('hours', 3600),
+            ('minutes', 60),
+            ('seconds', 1)
         ]
 
-        for unit_name, limit in unit_limits:
+        unit_names = {
+            'days': [_('day'), _('days')],
+            'hours': [_('hour'), _('hours')],
+            'minutes': [_('minute'), _('minutes')],
+            'seconds': [_('second'), _('seconds')],
+        }
+
+        unit_abbreviations = {
+            'days': [pgettext_lazy('abbreviation "day(s)"', 'D'),
+                     _('days')],
+            'hours': [pgettext_lazy('abbreviation "hour(s)"', 'H'),
+                      _('hours')],
+            'minutes': [pgettext_lazy('abbreviation "minute(s)"', 'M'),
+                        _('minutes')],
+            'seconds': [pgettext_lazy('abbreviation "second(s)"', 'S'),
+                        _('seconds')],
+        }
+
+        for unit, limit in unit_limits:
             if seconds >= limit:
                 amount = int(float(seconds) / limit)
-                if amount > 1:
-                    unit_totals.append((unit_name[1], amount))
+                if abbr:
+                    unit_totals.append([amount] + unit_abbreviations[unit])
+                elif amount > 1:
+                    unit_totals.append((unit_names[unit][1], amount))
                 else:
-                    unit_totals.append((unit_name[0], amount))
+                    unit_totals.append((unit_names[unit][0], amount))
                 seconds = seconds - (amount * limit)
-        unit_totals.append((_('seconds'), 0))
+        if abbr:
+            unit_totals.append([0] + unit_abbreviations['seconds'])
+        else:
+            unit_totals.append((unit_names['seconds'][1], 0))
 
         return unit_totals
 
@@ -256,17 +280,42 @@ class Module(models.Model):
         return None
 
     @cached_property
-    def module_running_time_left(self):
+    def module_running_seconds_left(self):
         """Return the time left of the module if it is currently running."""
         if self.module_has_started and not self.module_has_finished:
             now = timezone.now()
             time_delta = self.module_end - now
             seconds = time_delta.total_seconds()
+            return seconds
+
+        return None
+
+    @cached_property
+    def module_running_time_left(self):
+        """Return the time left of the module if it is currently running."""
+        if self.module_running_seconds_left:
+            seconds = self.module_running_seconds_left
             time_delta_list = self.seconds_in_units(seconds)
             best_unit = time_delta_list[0]
             time_delta_str = '{} {}'.format(str(best_unit[1]),
                                             str(best_unit[0]))
             return time_delta_str
+
+        return None
+
+    @cached_property
+    def module_running_time_left_abbreviated(self):
+        """
+        Return the time left of the module if it is currently running.
+
+        Gives it a s list in the form [number, abbreviation, title] to be
+        used in an <abbr>-tag. Would look like this in html:
+        number <abbr title=title>abbreviation</abbr>
+        """
+        if self.module_running_seconds_left:
+            seconds = self.module_running_seconds_left
+            best_unit_abbreviations = self.seconds_in_units(seconds, abbr=True)
+            return best_unit_abbreviations[0]
 
         return None
 

@@ -411,6 +411,17 @@ class Project(ProjectContactDetailMixin,
         return None
 
     @cached_property
+    def module_running_time_left_abbreviated(self):
+        """
+        Return the time left in the currently running module that ends next.
+        """
+
+        running_module = self.running_module_ends_next
+        if running_module:
+            return running_module.module_running_time_left_abbreviated
+        return None
+
+    @cached_property
     def module_running_progress(self):
         """
         Return the progress of the currently running module that ends next
