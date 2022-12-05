@@ -1,5 +1,6 @@
 import 'leaflet'
 import '@maplibre/maplibre-gl-leaflet'
+import { isMapboxURL, transformMapboxUrl } from 'maplibregl-mapbox-request-transformer'
 
 export function createMap (L, e, {
   dragging = undefined,
@@ -22,11 +23,21 @@ export function createMap (L, e, {
     tap: false
   })
 
+  // Transform urls with the mapbox:// scheme as maplibre-gl dropped support
+  // for it in v2.
+  const transformRequest = (url, resourceType) => {
+    if (isMapboxURL(url)) {
+      return transformMapboxUrl(url, resourceType, mapboxToken)
+    }
+    return { url }
+  }
+
   if (useVectorMap === '1') {
     if (mapboxToken !== '') {
       L.maplibreGL({
         accessToken: mapboxToken,
-        style: baseUrl
+        style: baseUrl,
+        transformRequest
       }).addTo(map)
     } else {
       if (omtToken !== '') {

@@ -17,6 +17,7 @@
     "classnames": "2.3.2",
     "file-saver": "2.0.5",
     "js-cookie": "3.0.1",
+    "maplibregl-mapbox-request-transformer": "0.0.1",
     "prop-types": "15.8.1"
   },
   "devDependencies": {
