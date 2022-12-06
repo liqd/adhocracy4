@@ -96,10 +96,4 @@ window.addEventListener('load', function () {
   formsets.forEach(function (formset, i) {
     dynamicFormSets.push(new DynamicFormSet(formset))
   })
-
-  if (window.jQuery.fn.selectdropdown) {
-    window.jQuery('.category-icon-select')
-      .not('.js-form-template .category-icon-select')
-      .selectdropdown(selectDropdownSettings)
-  }
 })
