@@ -14,6 +14,9 @@ class ImageInputWidget(widgets.ClearableFileInput):
     Allows to upload and delete uploaded files. It doesn't passing attributes
     using the positional `attrs` argument and hard codes css files.
     """
+
+    widget_template_name = 'a4images/image_upload_widget.html'
+
     class Media:
         js = ('image_uploader.js'),
 
@@ -63,7 +66,7 @@ class ImageInputWidget(widgets.ClearableFileInput):
         }
 
         return loader.render_to_string(
-            'a4images/image_upload_widget.html',
+            self.widget_template_name,
             context
         )
 
