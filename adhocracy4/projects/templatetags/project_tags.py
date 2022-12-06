@@ -7,6 +7,7 @@ register = template.Library()
 
 @register.simple_tag
 def get_days(number):
+    # FIXME: only used in opin. Do we need it? Is there a better way?
     if number and number >= 1 and number <= 5:
         text = ngettext(
             '%(number)d day left',
@@ -19,20 +20,6 @@ def get_days(number):
         return _('a few hours left')
     else:
         return ''
-
-
-@register.simple_tag
-def get_class(project):
-    if project.is_private:
-        return 'private'
-    elif project.has_finished:
-        return 'finished'
-    elif project.days_left and project.days_left <= 5:
-        return 'running-out'
-    elif project.is_semipublic:
-        return 'semipublic'
-    else:
-        return 'public'
 
 
 @register.simple_tag

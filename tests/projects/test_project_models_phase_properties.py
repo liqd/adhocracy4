@@ -8,34 +8,6 @@ from adhocracy4.projects import models
 
 
 @pytest.mark.django_db
-def test_days_left(project_factory, phase_factory):
-    project1 = project_factory()
-    project2 = project_factory()
-    phase1 = phase_factory(
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-02 18:00:00 UTC'),
-        module__project=project1,
-    )
-    phase2 = phase_factory(
-        start_date=parse('2013-02-01 18:00:00 UTC'),
-        end_date=parse('2013-02-02 18:00:00 UTC'),
-        module__project=project2,
-    )
-
-    with freeze_time(phase1.start_date):
-        assert project1.days_left == 1
-        del project1.days_left
-    with freeze_time(phase1.end_date):
-        assert project1.days_left == 0
-        del project1.days_left
-    with freeze_time(phase2.start_date):
-        assert project2.days_left == 1
-        del project2.days_left
-    with freeze_time(phase2.end_date):
-        assert project2.days_left == 0
-
-
-@pytest.mark.django_db
 def test_has_started(phase):
     project = phase.module.project
     with freeze_time(phase.start_date - timedelta(minutes=1)):
@@ -273,91 +245,6 @@ def test_active_phase_ends_next(project, module_factory, phase_factory):
     )
     with freeze_time('2013-01-01 17:30:00 UTC'):
         assert project.active_phase_ends_next == phase2
-
-
-@pytest.mark.django_db
-def test_time_left_plural(project, module_factory, phase_factory):
-    module1 = module_factory(project=project, weight=1)
-    module2 = module_factory(project=project, weight=2)
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-01-01 17:00:00 UTC'),
-        end_date=parse('2013-01-01 18:05:00 UTC')
-    )
-    phase_factory(
-        module=module2,
-        start_date=parse('2013-01-01 17:05:00 UTC'),
-        end_date=parse('2013-01-01 18:00:00 UTC')
-    )
-    with freeze_time('2013-01-01 17:30:00 UTC'):
-        assert project.time_left == '30 minutes'
-
-
-@pytest.mark.django_db
-def test_time_left_singular(project, module_factory, phase_factory):
-    module1 = module_factory(project=project, weight=1)
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-01-01 16:00:00 UTC'),
-        end_date=parse('2013-01-01 18:00:00 UTC')
-    )
-    with freeze_time('2013-01-01 17:00:00 UTC'):
-        assert project.time_left == '1 hour'
-
-
-@pytest.mark.django_db
-def test_time_left_seconds(project, module_factory, phase_factory):
-    module1 = module_factory(project=project, weight=1)
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-01-01 16:00:00 UTC'),
-        end_date=parse('2013-01-01 18:00:00 UTC')
-    )
-    with freeze_time('2013-01-01 17:59:22 UTC'):
-        assert project.time_left == '38 seconds'
-
-
-@pytest.mark.django_db
-def test_time_left_0_seconds(project, module_factory, phase_factory):
-    module1 = module_factory(project=project, weight=1)
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-01-01 16:00:00 UTC'),
-        end_date=parse('2013-01-01 18:00:00.45 UTC')
-    )
-    with freeze_time('2013-01-01 18:00:00 UTC'):
-        assert project.time_left == '0 seconds'
-
-
-@pytest.mark.django_db
-def test_active_phase_progress(project, module_factory, phase_factory):
-    module1 = module_factory(project=project, weight=1)
-    module2 = module_factory(project=project, weight=2)
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-01-01 17:00:00 UTC'),
-        end_date=parse('2013-01-01 18:05:00 UTC')
-    )
-    phase_factory(
-        module=module2,
-        start_date=parse('2013-01-01 17:05:00 UTC'),
-        end_date=parse('2013-01-01 18:00:00 UTC')
-    )
-    with freeze_time('2013-01-01 17:30:00 UTC'):
-        assert project.active_phase_progress == 45
-
-
-@pytest.mark.django_db
-def test_active_phase_progress_no_active_phase(
-        project, module_factory, phase_factory):
-    module1 = module_factory(project=project, weight=1)
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-01-01 17:00:00 UTC'),
-        end_date=parse('2013-01-01 18:05:00 UTC')
-    )
-    with freeze_time('2013-01-01 18:30:00 UTC'):
-        assert project.active_phase_progress is None
 
 
 @pytest.mark.django_db
