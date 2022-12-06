@@ -91,15 +91,7 @@ def test_last_active_phase(module, phase_factory):
 
 
 @pytest.mark.django_db
-def test_first_phase_start_date(phase, phase_factory):
-    module = phase.module
-    first_phase = phase_factory(
-        module=module, start_date=phase.start_date - timedelta(days=1))
-    assert module.first_phase_start_date == first_phase.start_date
-
-
-@pytest.mark.django_db
-def test_module_dates(phase_factory):
+def test_module_start_and_module_end(phase_factory):
     phase1 = phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
         end_date=parse('2013-01-01 18:00:00 UTC')
@@ -147,6 +139,29 @@ def test_module_has_started(phase_factory):
     with freeze_time('2013-01-01 17:00:00 UTC'):
         assert not module1.module_has_started
         assert module2.module_has_started
+
+
+@pytest.mark.django_db
+def test_module_in_future(phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2013-01-01 17:02:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+    module1 = phase1.module
+
+    phase2 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+    module2 = phase2.module
+    phase_factory(
+        module=module2,
+        start_date=parse('2013-01-01 17:02:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+    with freeze_time('2013-01-01 17:01:00 UTC'):
+        assert module1.module_in_future
+        assert not module2.module_in_future
 
 
 @pytest.mark.django_db
@@ -236,6 +251,146 @@ def test_module_starting_time_left(phase_factory):
 
 
 @pytest.mark.django_db
+def test_module_running_days_left(phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-02 18:01:00 UTC')
+    )
+    module1 = phase1.module
+    phase2 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+    module2 = phase2.module
+    phase_factory(
+        module=module2,
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:01 UTC')
+    )
+    phase3 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 19:00:00 UTC')
+    )
+    module3 = phase3.module
+    phase_factory(
+        module=module3,
+        start_date=parse('2013-01-01 19:00:01 UTC'),
+        end_date=parse('2013-01-01 20:00:00 UTC')
+    )
+    phase4 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-21 18:00:00.45 UTC')
+    )
+    module4 = phase4.module
+    # with future phase
+    phase5 = phase_factory(
+        start_date=parse('2013-05-11 17:00:00 UTC'),
+        end_date=parse('2013-05-14 17:20:00 UTC')
+    )
+    module5 = phase5.module
+    # with past phase
+    phase6 = phase_factory(
+        start_date=parse('2013-01-01 8:00:00 UTC'),
+        end_date=parse('2013-01-01 17:00:00 UTC')
+    )
+    module6 = phase6.module
+    # between two phases
+    phase7 = phase_factory(
+        start_date=parse('2013-01-01 8:00:00 UTC'),
+        end_date=parse('2013-01-01 17:00:00 UTC')
+    )
+    module7 = phase7.module
+    phase_factory(
+        module=module7,
+        start_date=parse('2013-01-01 18:30:00 UTC'),
+        end_date=parse('2013-01-02 21:00:00 UTC')
+    )
+    with freeze_time('2013-01-01 18:00:00 UTC'):
+        assert module1.module_running_days_left \
+            == 1
+        assert module2.module_running_days_left \
+            == 0
+        assert module3.module_running_days_left \
+            == 0
+        assert module4.module_running_days_left \
+            == 20
+        assert module5.module_running_days_left is None
+        assert module6.module_running_days_left is None
+        assert module7.module_running_days_left \
+            == 1
+
+
+@pytest.mark.django_db
+def test_module_running_seconds_left(phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-02 18:01:00 UTC')
+    )
+    module1 = phase1.module
+    phase2 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+    module2 = phase2.module
+    phase_factory(
+        module=module2,
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:01 UTC')
+    )
+    phase3 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 19:00:00 UTC')
+    )
+    module3 = phase3.module
+    phase_factory(
+        module=module3,
+        start_date=parse('2013-01-01 19:00:01 UTC'),
+        end_date=parse('2013-01-01 20:00:00 UTC')
+    )
+    phase4 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00.45 UTC')
+    )
+    module4 = phase4.module
+    # with future phase
+    phase5 = phase_factory(
+        start_date=parse('2013-05-11 17:00:00 UTC'),
+        end_date=parse('2013-05-14 17:20:00 UTC')
+    )
+    module5 = phase5.module
+    # with past phase
+    phase6 = phase_factory(
+        start_date=parse('2013-01-01 8:00:00 UTC'),
+        end_date=parse('2013-01-01 17:00:00 UTC')
+    )
+    module6 = phase6.module
+    # between two phases
+    phase7 = phase_factory(
+        start_date=parse('2013-01-01 8:00:00 UTC'),
+        end_date=parse('2013-01-01 17:00:00 UTC')
+    )
+    module7 = phase7.module
+    phase_factory(
+        module=module7,
+        start_date=parse('2013-01-01 18:30:00 UTC'),
+        end_date=parse('2013-01-01 21:00:00 UTC')
+    )
+    with freeze_time('2013-01-01 18:00:00 UTC'):
+        assert module1.module_running_seconds_left \
+            == 86460
+        assert module2.module_running_seconds_left \
+            == 1
+        assert module3.module_running_seconds_left \
+            == 7200
+        assert module4.module_running_seconds_left \
+            == 0.45
+        assert module5.module_running_seconds_left is None
+        assert module6.module_running_seconds_left is None
+        assert module7.module_running_seconds_left \
+            == 10800
+
+
+@pytest.mark.django_db
 def test_module_running_time_left(phase_factory):
     phase1 = phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
@@ -306,6 +461,76 @@ def test_module_running_time_left(phase_factory):
 
 
 @pytest.mark.django_db
+def test_module_running_time_left_abbreviated(phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-02 18:01:00 UTC')
+    )
+    module1 = phase1.module
+    phase2 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+    module2 = phase2.module
+    phase_factory(
+        module=module2,
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:01 UTC')
+    )
+    phase3 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 19:00:00 UTC')
+    )
+    module3 = phase3.module
+    phase_factory(
+        module=module3,
+        start_date=parse('2013-01-01 19:00:01 UTC'),
+        end_date=parse('2013-01-01 20:00:00 UTC')
+    )
+    phase4 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00.45 UTC')
+    )
+    module4 = phase4.module
+    # with future phase
+    phase5 = phase_factory(
+        start_date=parse('2013-05-11 17:00:00 UTC'),
+        end_date=parse('2013-05-14 17:20:00 UTC')
+    )
+    module5 = phase5.module
+    # with past phase
+    phase6 = phase_factory(
+        start_date=parse('2013-01-01 8:00:00 UTC'),
+        end_date=parse('2013-01-01 17:00:00 UTC')
+    )
+    module6 = phase6.module
+    # between two phases
+    phase7 = phase_factory(
+        start_date=parse('2013-01-01 8:00:00 UTC'),
+        end_date=parse('2013-01-01 17:00:00 UTC')
+    )
+    module7 = phase7.module
+    phase_factory(
+        module=module7,
+        start_date=parse('2013-01-01 18:30:00 UTC'),
+        end_date=parse('2013-01-01 21:00:00 UTC')
+    )
+    with freeze_time('2013-01-01 18:00:00 UTC'):
+        assert module1.module_running_time_left_abbreviated \
+            == [1, 'D', 'days']
+        assert module2.module_running_time_left_abbreviated \
+            == [1, 'S', 'seconds']
+        assert module3.module_running_time_left_abbreviated \
+            == [2, 'H', 'hours']
+        assert module4.module_running_time_left_abbreviated \
+            == [0, 'S', 'seconds']
+        assert module5.module_running_time_left_abbreviated is None
+        assert module6.module_running_time_left_abbreviated is None
+        assert module7.module_running_time_left_abbreviated \
+            == [3, 'H', 'hours']
+
+
+@pytest.mark.django_db
 def test_module_running_progress(phase_factory):
     phase1 = phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
@@ -336,3 +561,12 @@ def test_module_running_progress(phase_factory):
         assert module1.module_running_progress == 50
         assert module2.module_running_progress == 2
         assert module3.module_running_progress == 17
+
+
+# Deprecated properties
+@pytest.mark.django_db
+def test_first_phase_start_date(phase, phase_factory):
+    module = phase.module
+    first_phase = phase_factory(
+        module=module, start_date=phase.start_date - timedelta(days=1))
+    assert module.first_phase_start_date == first_phase.start_date

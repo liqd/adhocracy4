@@ -107,10 +107,6 @@ class ModuleClusterPropertiesMixin:
     def module_cluster_dict(self):
         return get_module_clusters_dict(self.module_clusters)
 
-    @cached_property
-    def running_modules(self):
-        return self.modules.running_modules()
-
 
 class TimelinePropertiesMixin:
 
@@ -284,6 +280,9 @@ class Project(ProjectContactDetailMixin,
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('project-detail', kwargs=dict(slug=self.slug))
+
     def save(self, *args, **kwargs):
         self.information = html_transforms.clean_html_field(
             self.information, 'collapsible-image-editor')
@@ -296,9 +295,6 @@ class Project(ProjectContactDetailMixin,
             )
             self.project_type = project_type
         super(Project, self).save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse('project-detail', kwargs=dict(slug=self.slug))
 
     # functions needed to determine permissions
     def has_member(self, user):
@@ -356,19 +352,16 @@ class Project(ProjectContactDetailMixin,
         return self.module_set.all()
 
     @cached_property
+    def running_modules(self):
+        return self.modules.running_modules()
+
+    @cached_property
     def published_modules(self):
         return self.module_set.filter(is_draft=False)
 
     @cached_property
     def unpublished_modules(self):
         return self.module_set.filter(is_draft=True)
-
-    @cached_property
-    def running_module_ends_next(self):
-        """
-        Return the currently active module that ends next.
-        """
-        return self.running_modules.order_by('module_end').first()
 
     @cached_property
     def past_modules(self):
@@ -383,6 +376,13 @@ class Project(ProjectContactDetailMixin,
         Note: Modules without a start date are assumed to start in the future.
         """
         return self.published_modules.future_modules()
+
+    @cached_property
+    def running_module_ends_next(self):
+        """
+        Return the currently active module that ends next.
+        """
+        return self.running_modules.order_by('module_end').first()
 
     @cached_property
     def module_running_days_left(self):

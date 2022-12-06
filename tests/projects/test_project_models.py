@@ -13,27 +13,8 @@ from adhocracy4.test import helpers
 
 
 @pytest.mark.django_db
-def test_get_absolute_url(project):
-    project_url = reverse('project-detail', args=[project.slug])
-    assert project.get_absolute_url() == project_url
-
-
-@pytest.mark.django_db
 def test_get_by_natural_key(project):
     assert project == models.Project.objects.get_by_natural_key(project.name)
-
-
-@pytest.mark.django_db
-def test_is_public(project):
-    assert project.is_public
-    assert not project.is_private
-
-
-@pytest.mark.django_db
-@pytest.mark.parametrize('project__access', [Access.PRIVATE])
-def test_is_private(project):
-    assert not project.is_public
-    assert project.is_private
 
 
 @pytest.mark.django_db
@@ -42,17 +23,9 @@ def test_str(project):
 
 
 @pytest.mark.django_db
-def test_feature_projects(project_factory):
-    projects = [project_factory(is_draft=False) for i in range(10)]
-    featured = list(models.Project.objects.featured())
-    assert featured == list(reversed(projects))[:8]
-
-
-@pytest.mark.django_db
-def test_other_projects(organisation, project_factory):
-    project = project_factory(organisation=organisation)
-    related_project = project_factory(organisation=organisation)
-    assert list(project.other_projects) == [related_project]
+def test_get_absolute_url(project):
+    project_url = reverse('project-detail', args=[project.slug])
+    assert project.get_absolute_url() == project_url
 
 
 @override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
@@ -104,6 +77,48 @@ def test_image_deleted_after_update(project_factory, image_factory):
     assert not os.path.isfile(thumbnail_path)
 
 
+# FIXME: add tests for has_member, is_group_member, and has_moderator
+
+@pytest.mark.django_db
+def test_feature_projects(project_factory):
+    projects = [project_factory(is_draft=False) for i in range(10)]
+    featured = list(models.Project.objects.featured())
+    assert featured == list(reversed(projects))[:8]
+
+
+# project properties
+# FIXME: add tests for topic names
+
+@pytest.mark.django_db
+def test_other_projects(organisation, project_factory):
+    project = project_factory(organisation=organisation)
+    related_project = project_factory(organisation=organisation)
+    assert list(project.other_projects) == [related_project]
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('project__access', [Access.PRIVATE])
+def test_is_private(project):
+    assert not project.is_public
+    assert project.is_private
+    assert not project.is_semipublic
+
+
+@pytest.mark.django_db
+def test_is_public(project):
+    assert project.is_public
+    assert not project.is_private
+    assert not project.is_semipublic
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('project__access', [Access.SEMIPUBLIC])
+def test_is_semipublic(project):
+    assert not project.is_public
+    assert not project.is_private
+    assert project.is_semipublic
+
+
 @pytest.mark.django_db
 def test_is_archivable(project_factory, phase_factory):
     project1 = project_factory(is_archived=True)
@@ -128,93 +143,3 @@ def test_is_archivable(project_factory, phase_factory):
         assert not project1.is_archivable
         assert not project2.is_archivable
         assert project3.is_archivable
-
-
-@pytest.mark.django_db
-def test_module_cluster(phase_factory, module_factory, project):
-
-    module1 = module_factory(project=project)
-    module2 = module_factory(project=project)
-
-    phase1 = phase_factory(
-        module=module1,
-        start_date=parse('2013-01-01 17:00:00 UTC'),
-        end_date=parse('2013-01-13 18:05:00 UTC')
-    )
-
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-01-12 17:00:00 UTC'),
-        end_date=parse('2013-02-01 18:05:00 UTC')
-    )
-
-    phase3 = phase_factory(
-        module=module1,
-        start_date=parse('2013-02-02 17:00:00 UTC'),
-        end_date=parse('2013-03-03 8:05:00 UTC')
-    )
-
-    assert str(module1.module_start) == '2013-01-01 17:00:00+00:00'
-    assert str(module1.module_end) == '2013-03-03 08:05:00+00:00'
-
-    phase_factory(
-        module=module2,
-        start_date=parse('2013-01-15 17:00:00 UTC'),
-        end_date=parse('2013-02-15 18:05:00 UTC')
-    )
-
-    assert len(project.module_clusters) == 1
-    assert len(project.module_cluster_dict) == 1
-
-    assert project.module_clusters[0][0] == module1
-    assert project.module_clusters[0][1] == module2
-
-    assert project.module_cluster_dict[0]['date'] == phase1.start_date
-    assert project.module_cluster_dict[0]['end_date'] == phase3.end_date
-
-
-@pytest.mark.django_db
-def test_time_line(phase_factory, module_factory, project):
-
-    module1 = module_factory(project=project)
-    module2 = module_factory(project=project)
-
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-01-01 17:00:00 UTC'),
-        end_date=parse('2013-01-13 18:05:00 UTC')
-    )
-
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-01-12 17:00:00 UTC'),
-        end_date=parse('2013-02-01 18:05:00 UTC')
-    )
-
-    phase_factory(
-        module=module1,
-        start_date=parse('2013-02-02 17:00:00 UTC'),
-        end_date=parse('2013-03-03 8:05:00 UTC')
-    )
-
-    assert str(module1.module_start) == '2013-01-01 17:00:00+00:00'
-    assert str(module1.module_end) == '2013-03-03 08:05:00+00:00'
-
-    phase_factory(
-        module=module2,
-        start_date=parse('2013-05-05 17:00:00 UTC'),
-        end_date=parse('2013-06-06 18:05:00 UTC')
-    )
-
-    assert len(project.module_clusters) == 2
-    assert len(project.module_cluster_dict) == 2
-
-    assert len(project.participation_dates) == 2
-    assert project.display_timeline
-    assert not project.get_current_participation_date()
-
-    with freeze_time('2013-05-10 18:30:00 UTC'):
-        assert project.get_current_participation_date() == 1
-
-    with freeze_time('2013-01-12 18:05:00 UTC'):
-        assert project.get_current_participation_date() == 0
