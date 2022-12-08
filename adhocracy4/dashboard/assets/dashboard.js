@@ -1,20 +1,29 @@
-const $ = require('jquery')
-const elementsToUpdate = ['.l-menu__menu', '.l-menu__aside', '.js-selector-update-dashboard']
+// list of predefined selectors to find elements which are to be updated.
+const elementsToUpdate = [
+  '.l-menu__menu',
+  '.l-menu__aside',
+  '.js-selector-update-dashboard'
+]
 
-module.exports = {
-  /**
-   * Makes an ajax call to the current page and updates the elements menu and
-   * progress.
-   */
-  updateDashboard () {
-    $.get(window.location.pathname, { dataType: 'html' }, function (data) {
-      const selector = elementsToUpdate.join(', ')
-      const $newElements = $(data).find(selector)
-      const $oldElements = $(selector)
+export const updateDashboard = async () => {
+  // fetching the entire dom and store as html
+  const response = await fetch(window.location.pathname)
+  const htmlString = await response.text()
+  try {
+    // convert text to html = a new DOM
+    const parser = new DOMParser()
+    const newDom = parser.parseFromString(htmlString, 'text/html')
 
-      $oldElements.each(function (i, e) {
-        $(e).replaceWith($newElements.eq(i))
-      })
+    // find new and old elements
+    const selectors = elementsToUpdate.join(', ')
+    const newElements = newDom.querySelectorAll(selectors)
+    const oldElements = document.querySelectorAll(selectors)
+
+    // replace old by new elements
+    oldElements.forEach(function (oldElement, index) {
+      oldElement.replaceWith(newElements[index])
     })
+  } catch (error) {
+    console.log('error', error)
   }
 }
