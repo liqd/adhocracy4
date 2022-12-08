@@ -7,7 +7,8 @@ import { EditPollQuestion } from './EditPollQuestion'
 import { EditPollOpenQuestion } from './EditPollOpenQuestion'
 import EditPollDropdown from './EditPollDropdown'
 
-import dashboard from '../../../../adhocracy4/dashboard/assets/dashboard'
+import { updateDashboard } from '../../../../adhocracy4/dashboard/assets/dashboard'
+
 import api from '../../../static/api'
 
 import Alert from '../../../static/Alert'
@@ -179,7 +180,7 @@ export const EditPollManagement = (props) => {
         })
         setErrors([])
         if (props.reloadOnSuccess) {
-          dashboard.updateDashboard()
+          updateDashboard()
         }
       })
       .fail((xhr, status, err) => {
