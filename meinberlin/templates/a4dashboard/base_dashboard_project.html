@@ -37,7 +37,10 @@
 
 {% block dashboard_content %}
     <div class="row">
-        <nav class="col-lg-3" aria-label="{% trans 'Project Settings' %}">
+        <nav
+          class="col-lg-3 js-selector-update-dashboard"
+          aria-label="{% trans 'Project Settings' %}"
+        >
             {% include "a4dashboard/includes/nav_project.html" %}
 
             {% if project.project_type == 'a4projects.Project' %}
