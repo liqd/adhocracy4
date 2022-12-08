@@ -1,7 +1,7 @@
+import { updateDashboard } from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
 const api = require('adhocracy4').api
 const React = require('react')
 const django = require('django')
-const dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
 const update = require('immutability-helper')
 const ChapterNav = require('./ChapterNav')
 const ChapterForm = require('./ChapterForm')
@@ -273,7 +273,7 @@ class DocumentManagement extends React.Component {
           chapters: data.chapters
         })
         if (this.props.reloadOnSuccess) {
-          dashboard.updateDashboard()
+          updateDashboard()
         }
       })
       .fail((xhr, status, err) => {
