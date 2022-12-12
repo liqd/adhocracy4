@@ -1,6 +1,6 @@
 {% load i18n %}
-<div class="upload-wrapper form-control-upload">
-    <div class="upload-wrapper__fields input-group">
+<div class="upload-wrapper form-control-upload row">
+    <div class="upload-wrapper__fields input-group col">
         {{ file_input }}
         {{ text_input }}
         {% if has_image_set and not is_required %}
@@ -11,13 +11,13 @@
             </label>
         {% else %}
             <label for="{{ id }}"
-                class="upload-wrapper__action input-group__after btn"
+                class="upload-wrapper__action input-group__after btn btn--primary"
                 title="{% trans 'Upload a picture' %}">
                 <i class="fas fa-cloud-upload-alt" aria-label="{% trans 'Upload a picture' %}"></i>
             </label>
         {% endif %}
     </div>
-    <div class="form-{{ id }} upload-wrapper__preview">
+    <div class="form-{{ id }} upload-wrapper__preview col">
         {{ checkbox_input }}
         <img id="{{ file_id }}"
              src="{% if has_image_set %}{{ file_url }}{% else %}data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs={% endif %}"
@@ -25,7 +25,9 @@
              alt=""
         >
     </div>
-    <div class="alert alert--info upload-wrapper__alert" role="alert">
-        {% trans 'Your image will be uploaded/removed once you save your changes at the end of this page.' %}
+    <div class="col-12">
+        <div class="alert alert--info upload-wrapper__alert" aria-live="polite">
+            {% trans 'Your image will be uploaded/removed once you save your changes at the end of this page.' %}
+        </div>
     </div>
 </div>

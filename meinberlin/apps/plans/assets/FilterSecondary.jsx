@@ -99,17 +99,15 @@ class FilterSecondary extends React.Component {
             onChange={(e) => this.changeTitleSearch(e)}
             value={this.state.titleSearchChoice}
           />
-          <div className="input-group-append">
-            <button
-              className="btn btn--light btn--attached-right"
-              type="submit"
-            >
-              <i className="fa fa-search" aria-hidden="true" />
-              <span className="visually-hidden">
-                {performSearchStr}
-              </span>
-            </button>
-          </div>
+          <button
+            className="btn btn--light input-group__after"
+            type="submit"
+          >
+            <i className="fa fa-search" aria-hidden="true" />
+            <span className="visually-hidden">
+              {performSearchStr}
+            </span>
+          </button>
         </div>
         <FilterRadio
           filterId="par"

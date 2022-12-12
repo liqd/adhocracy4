@@ -169,61 +169,12 @@ $checkbox-size: 20px;
     box-shadow: none;
 }
 
-.editpoll__actions-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.editpoll__menu-container {
-    margin: 0.5 * $spacer 0;
-
-    & > * {
-        width: 100%;
-    }
-}
-
 .editpoll__btns--question {
     display: flex;
     flex-flow: column wrap;
 }
 
-.editpoll__questions {
-    font-size: 0.875rem;
-}
-
-.editpoll__question-container {
-    display: flex;
-    margin-bottom: $spacer;
-}
-
-.editpoll__question--border {
-    flex-grow: 2;
-    margin-right: $spacer * 0.5;
-    padding: $padding;
-    border: 1px solid $border-color;
-    border-radius: ($padding * 0.5);
-}
-
-.editpoll__question-actions {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: flex-start;
-}
-
 @media (min-width: $breakpoint) {
-    .editpoll__question-container {
-        @include clearfix;
-    }
-
-    .editpoll__actions-container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .editpoll__menu-container > * {
-        width: inherit;
-    }
-
     .editpoll__btns--question {
         flex-direction: row;
     }

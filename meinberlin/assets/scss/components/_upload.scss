@@ -20,7 +20,7 @@
 .upload-wrapper__fields,
 .upload-wrapper__preview {
     margin-bottom: $padding;
-    position: relative;
+    align-items: baseline;
 }
 
 // This is actually a label that looks like a button.  It is used to trigger
@@ -38,18 +38,4 @@
 .clear-image:checked + img {
     opacity: 0.2;
     filter: grayscale(100%);
-}
-
-.upload-wrapper__alert {
-    clear: left;
-}
-
-@media (min-width: $breakpoint) {
-    .upload-wrapper__fields {
-        // @include grid-span(5, 0, ("columns": 9));
-    }
-
-    .upload-wrapper__preview {
-        // @include grid-span(4, 5, ("columns": 9));
-    }
 }

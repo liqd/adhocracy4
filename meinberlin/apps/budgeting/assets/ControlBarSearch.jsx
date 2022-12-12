@@ -41,17 +41,15 @@ export const ControlBarSearch = (props) => {
         onChange={handleChange}
         value={value}
       />
-      <div className="input-group-append">
-        <button
-          className="btn btn--light btn--attached-right"
-          type="submit"
-        >
-          <i className="fa fa-search" aria-hidden="true" />
-          <span className="visually-hidden">
-            {translated.startSearch}
-          </span>
-        </button>
-      </div>
+      <button
+        className="btn btn--light input-group__after"
+        type="submit"
+      >
+        <i className="fa fa-search" aria-hidden="true" />
+        <span className="visually-hidden">
+          {translated.startSearch}
+        </span>
+      </button>
     </form>
   )
 }

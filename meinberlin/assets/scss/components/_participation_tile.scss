@@ -16,10 +16,10 @@
 }
 
 .participation-tile__list-container {
-    flex: 0 1 44vh;
+    flex: 0 1 auto;
 
     @media (min-width: $breakpoint-xs) {
-        flex-grow: 2;
+        flex: 2 0 44vh;
         overflow-y: visible;
     }
 }

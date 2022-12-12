@@ -284,17 +284,15 @@ class PlansMap extends Component {
                 placeholder={addressSearchCapStr}
                 onChange={e => this.onAddressSearchChange(e)}
               />
-              <div className="input-group-append">
-                <button
-                  className="btn btn--light btn--attached-right"
-                  type="submit"
-                >
-                  <i className="fa fa-search" aria-hidden="true" />
-                  <span className="visually-hidden">
-                    {addressSearchStr}
-                  </span>
-                </button>
-              </div>
+              <button
+                className="btn btn--light input-group__after"
+                type="submit"
+              >
+                <i className="fa fa-search" aria-hidden="true" />
+                <span className="visually-hidden">
+                  {addressSearchStr}
+                </span>
+              </button>
             </div>
             {this.state.displayResults &&
               <ul aria-labelledby="id_filter_address">

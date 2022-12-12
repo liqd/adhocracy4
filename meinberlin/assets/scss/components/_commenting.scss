@@ -1,20 +1,27 @@
+.editpoll__question-container,
+.editpoll__actions-container,
 .commenting {
-    display: block;
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
 
     @extend .row;
 }
 
+.editpoll__question,
+.commenting__content {
+    margin-bottom: $spacer;
+
+    @extend .col-lg-9;
+}
+
+.editpoll__question--border,
 .commenting__content--border {
-    margin-bottom: $em-spacer * 0.5;
+    margin-bottom: $spacer * 0.5;
     padding: $padding;
     border: 1px solid $border-color;
     border-radius: ($padding * 0.5);
 }
 
 .commenting--toc__button {
-    // FIXME: This class should either not add styling or not be combined with .btn
-    // see: https://github.com/liqd/a4-meinberlin/pull/555#discussion_r122957403
     display: block;
     width: 100%;
     text-align: left;
@@ -25,12 +32,8 @@
     }
 }
 
-.commenting__content {
-    margin-bottom: $spacer;
-
-    @extend .col-lg-9;
-}
-
+.editpoll__question-actions,
+.editpoll__menu-container,
 .commenting__actions {
     margin-bottom: $spacer;
     text-align: right;

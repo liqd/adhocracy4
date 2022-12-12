@@ -551,7 +551,9 @@
                     <button class="btn btn--primary btn--full u-spacer-bottom" type="button">Full Button</button>
                 </p>
                 <div class="btn-group" role="group">
-                    <button class="btn btn--primary" type="button">But</button><button class="btn btn--primary" type="button">ton</button><button class="btn btn--primary" type="button">group</button>
+                    <button class="btn btn--light" type="button">But</button>
+                    <button class="btn btn--light" type="button">ton</button>
+                    <button class="btn btn--light" type="button">group</button>
                 </div>
                 <div class="switch__group" role="group" aria-labelledby="switch-primary">
                     <div class="switch-filter__btn-group">
@@ -560,19 +562,23 @@
                     &nbsp
                     <div class="switch-btn-group-container">
                         <div class="btn-group switch-btn-group" role="group">
-                            <switch class="btn btn--light switch--btn" for="show_list">
-                                <input class="radio__input" type="radio" id="show_list" aria-label="Liste anzeigen" value="list">
-                                <i class="fa fa-list"></i><span> List</span>
-                            </switch>
-                            <switch class="btn btn--light switch--btn active" for="show_map"><input class="radio__input" type="radio" id="show_map" aria-label="Karte anzeigen" value="map"><i class="fa fa-map"></i><span> Map</span></switch>
+                            <label for="show_list" class="btn btn--icon btn--light">
+                                <input class="radio__input" type="radio" id="show_list" aria-label="Liste anzeigen" value="show_list">
+                                <i class="fa fa-list"></i><span>Liste</span>
+                            </label>
+                            <label for="show_map" class="btn btn--icon switch--btn active">
+                                <input class="radio__input" type="radio" id="show_map" aria-label="Karte anzeigen" value="show_map">
+                                <i class="fa fa-map"></i>
+                                <span>Karte</span>
+                            </label>
                         </div>
                     </div>
                     &nbsp
-                    <div class="switch">
-                        <label for="switch-primary" class="switch__label">
-                            <span class="switch__label-text">View map</span>
-                            <input class="switch__input" id="switch-primary" name="switch-primary" type="checkbox" aria-label="Karte ausblenden">
-                            <span class="switch__toggle"></span>
+                    <div class="switch__group">
+                        <label for="map-switch" class="switch__label">
+                            <span class="switch__label-text" aria-hidden="true">Karte anzeigen</span>
+                            <input class="switch__input" type="checkbox" data-check-switch="" role="switch" id="map-switch" name="map-switch" aria-label="Karte ausblenden">
+                            <span class="switch__toggle" aria-hidden="true"></span>
                         </label>
                     </div>
                     &nbsp
@@ -858,14 +864,12 @@
                                 </label>
                                 <input class="form-control" type="search" id="search" name="search" placeholder="Suchen" value="">
                                 <input type="hidden" name="ordering" value="-created">
-                                <div class="input-group-append">
-                                    <button class="btn btn--light btn--attached-right" type="submit">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                        <span class="visually-hidden">
-                                            Suchen
-                                        </span>
-                                    </button>
-                                </div>
+                                <button class="btn btn--light input-group__after" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                    <span class="visually-hidden">
+                                        Suchen
+                                    </span>
+                                </button>
                             </form>
                         </div>
                         <div class="dropdown control-bar__item">
@@ -1090,14 +1094,12 @@
                             Search title
                         </label>
                         <input class="form-control" type="search" id="id-filter-search" placeholder="Search title" value="" />
-                        <div class="input-group-append">
-                            <button class="btn btn--light btn--attached-right" type="submit">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <span class="visually-hidden">
-                                    Search title
-                                </span>
-                            </button>
-                        </div>
+                        <button class="btn btn--light input-group__after" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <span class="visually-hidden">
+                                Search title
+                            </span>
+                        </button>
                     </div>
                     <fieldset class="filter-bar__menu-radio-sta" role="group" aria-labelledby="sta">
                         <legend>
@@ -2277,7 +2279,7 @@
                                 <div class="upload-wrapper__fields input-group">
                                     <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
                                     <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
-                                    <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
+                                    <label for="id_logo" class="upload-wrapper__action input-group__after btn btn--primary" title="Upload a picture">
                                         <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
                                     </label>
                                 </div>
