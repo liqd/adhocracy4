@@ -73,7 +73,7 @@
     > span.label {
         margin-left: 0.2 * $spacer;
         overflow: hidden;
-        max-width: 40ch;
+        max-width: 25ch; // cuts label text after approx 30char
         text-overflow: ellipsis;
         white-space: nowrap;
     }

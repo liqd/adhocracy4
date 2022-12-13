@@ -1,4 +1,5 @@
 %button-base {
+    @extend %control-base; // needed for stretched dropdowns ect.
     text-decoration: none;
     font-weight: bold;
 }
@@ -6,8 +7,7 @@
 .btn {
     @extend %button-base;
 
-    &.is-disabled,
-    &:disabled {
+    &.is-disabled {
         opacity: 0.75;
         cursor: not-allowed;
         pointer-events: none;
@@ -32,15 +32,12 @@
 
         background-color: $bg-secondary;
     }
-
-    &.is-disabled,
-    &:disabled {
-        background-color: $bg-secondary;
-    }
 }
 
 .btn--primary {
     @extend .btn-primary;
+
+    border-color: $primary;
 
     // see above
     &:focus-within {
@@ -136,6 +133,11 @@
 .btn--attached-top {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.btn--attached-right {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .btn-group__container {
