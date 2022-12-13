@@ -1,0 +1,28 @@
+.swiper-phases {
+    .swiper-pagination-clickable {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            margin: 0 $spacer * 0.75 !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: $primary;
+            width: 16px;
+            height: 16px;
+            margin: 0 $spacer * 0.75 !important;
+        }
+    }
+
+    .swiper-pagination {
+        position: relative !important;
+    }
+
+    .swiper-pagination-bullets {
+        bottom: 0 !important;
+    }
+}

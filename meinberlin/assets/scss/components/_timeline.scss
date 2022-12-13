@@ -128,11 +128,6 @@ $circle-size: 0.8em;
 
 .phase-info__item {
     padding: $padding 0;
-    border-bottom: 1px solid $border-color;
-
-    &:first-child {
-        border-top: 1px solid $border-color;
-    }
 
     &:last-child {
         margin-bottom: $em-spacer;

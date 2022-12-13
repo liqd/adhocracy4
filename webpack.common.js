@@ -16,7 +16,9 @@ module.exports = {
         'slick-carousel/slick/slick.css',
         './meinberlin/assets/extra_css/_slick-theme.css',
         './meinberlin/assets/scss/style.scss',
-        './meinberlin/assets/js/app.js'
+        './meinberlin/assets/js/app.js',
+        'swiper/swiper.min.css',
+        'swiper/swiper-bundle.min.css'
       ],
       library: {
         name: '[name]',
@@ -81,6 +83,9 @@ module.exports = {
     },
     live_questions_presents: {
       import: './meinberlin/apps/livequestions/assets/react_questions_present_init.jsx'
+    },
+    swiper_phases: {
+      import: './meinberlin/assets/js/swiper_phases.js'
     },
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: {
