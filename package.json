@@ -21,7 +21,7 @@
     "babel-loader": "9.1.0",
     "bootstrap": "5.2.3",
     "copy-webpack-plugin": "11.0.0",
-    "css-loader": "6.7.2",
+    "css-loader": "6.7.3",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "dsgvo-video-embed": "git+https://github.com/liqd/dsgvo-video-embed.git",
     "es6-promise": "4.2.8",
