@@ -101,6 +101,16 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
         .annotate_negative_rating_count()
     permission_required = 'meinberlin_budgeting.view_proposal'
 
+    def get_back(self):
+        if 'Referer' in self.request.headers:
+            return self.request.headers['Referer']
+        return None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['back'] = self.get_back()
+        return context
+
 
 class ProposalCreateView(idea_views.AbstractIdeaCreateView):
     model = models.Proposal

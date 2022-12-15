@@ -10,7 +10,11 @@
         <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
+                    {% if back %}
+                    <a href="{{ back }}">
+                    {% else %}
                     <a href="{{ module.get_detail_url }}">
+                    {% endif %}
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                         {% translate 'go back' %}
                     </a>
