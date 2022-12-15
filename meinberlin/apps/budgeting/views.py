@@ -1,4 +1,7 @@
+from urllib.parse import urlparse
+
 import django_filters
+from django.urls import resolve
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -102,8 +105,20 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
     permission_required = 'meinberlin_budgeting.view_proposal'
 
     def get_back(self):
+        """
+        Get last page to return to if was project or module view.
+
+        To make sure all the filters and the display mode (map or list)
+        are remembered when going back, we check if the referer is a
+        module or project detail view and add the appropriate back url.
+        """
         if 'Referer' in self.request.headers:
-            return self.request.headers['Referer']
+            referer = self.request.headers['Referer']
+            match = resolve(urlparse(referer)[2])
+            if match.url_name == 'project-detail' or \
+                    match.url_name == 'module-detail':
+                return referer
+            return None
         return None
 
     def get_context_data(self, **kwargs):

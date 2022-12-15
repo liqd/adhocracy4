@@ -5,12 +5,12 @@
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{{ module.get_detail_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'go back' %}
+                        {% translate 'list' %}
                     </a>
                 </li>
             </ul>
@@ -31,7 +31,7 @@
 
             <div class="item-detail__meta lr-bar">
                 <div class="lr-bar__right">
-                    <strong>{% trans 'Reference No.' %}:</strong>
+                    <strong>{% translate 'Reference No.' %}:</strong>
                     {{ object.reference_number }}
                 </div>
             </div>
