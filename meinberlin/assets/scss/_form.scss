@@ -43,7 +43,7 @@ div.cke_focus {
 
 .errorlist,
 .field-error {
-    margin: 0 0 $em-spacer 0;
+    margin: 0 0 $spacer 0;
     padding: $padding;
     list-style: none;
     text-align: center;
@@ -53,7 +53,7 @@ div.cke_focus {
 
 .django-ckeditor-widget {
     display: block !important;
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
 }
 
 .form-check,
@@ -81,11 +81,11 @@ div.cke_focus {
     input {
         display: inline;
         width: auto;
-        margin-left: -1.25em;
+        margin-left: -1.25 * $spacer;
     }
 
     span {
-        margin-left: 0.5em;
+        margin-left: 0.5 * $spacer;
     }
 }
 
@@ -93,11 +93,11 @@ div.cke_focus {
     font-style: italic;
     color: $text-color-gray;
     font-size: $font-size-sm;
-    margin-bottom: 0.4em;
+    margin-bottom: 0.5 * $spacer;
 }
 
 .form-hint--margin {
-    margin-bottom: 1em;
+    margin-bottom: $spacer;
 }
 
 .form__subheading {
@@ -118,6 +118,7 @@ div.cke_focus {
     }
 
     label {
+        display: inline-block;
         padding-bottom: 0.5 * $padding;
         padding-left: 1.25 * $padding;
 
@@ -126,7 +127,7 @@ div.cke_focus {
 
     input[type="checkbox"] {
         transform: scale(1.5);
-        margin-right: 0.5 * $em-spacer;
+        margin-right: 0.5 * $spacer;
     }
 }
 
