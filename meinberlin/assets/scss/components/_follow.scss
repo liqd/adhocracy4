@@ -4,3 +4,11 @@
         font-size: inherit;
     }
 }
+
+.btn--follow {
+    @extend .btn--secondary;
+}
+
+.btn--following {
+    @extend .btn--light;
+}
