@@ -122,43 +122,47 @@
                 {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
                     <div class="l-tiles-2 u-top-divider">
                     {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
-                        <h3>{% trans 'Contact for questions' %}</h3>
-                        <address>
-                            {% if project.contact_name %}
-                            <p>{{ project.contact_name }}</p>
-                            {% endif %}
-                            {% if project.contact_address_text %}
-                            <p>{{ project.contact_address_text|linebreaks }}</p>
-                            {% endif %}
-                            {% if project.contact_phone %}
-                            <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
-                            {% endif %}
-                            {% if project.contact_email %}
-                            <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
-                                {% trans 'Email' %}
-                            </a>
-                            {% endif %}
-                            {% if project.contact_url %}
-                            <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
-                                {% trans 'Website' %}
-                            </a>
-                            {% endif %}
-                        </address>
+                        <div>
+                            <h3>{% trans 'Contact for questions' %}</h3>
+                            <address>
+                                {% if project.contact_name %}
+                                <p>{{ project.contact_name }}</p>
+                                {% endif %}
+                                {% if project.contact_address_text %}
+                                <p>{{ project.contact_address_text|linebreaks }}</p>
+                                {% endif %}
+                                {% if project.contact_phone %}
+                                <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
+                                {% endif %}
+                                {% if project.contact_email %}
+                                <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
+                                    {% trans 'Email' %}
+                                </a>
+                                {% endif %}
+                                {% if project.contact_url %}
+                                <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
+                                    {% trans 'Website' %}
+                                </a>
+                                {% endif %}
+                            </address>
+                        </div>
                     {% endif %}
 
                     {% if project.organisation.address or project.organisation.url %}
-                        <h3>{% trans 'Responsible body' %}</h3>
-                        <address>
-                            {% if project.organisation.address %}
-                            <p>{{ project.organisation.name }}</p>
-                            <p>{{ project.organisation.address|linebreaks }}</p>
-                            {% endif %}
-                            {% if project.organisation.url %}
-                            <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
-                                {% trans 'Website' %}
-                            </a>
-                            {% endif %}
-                        </address>
+                        <div>
+                            <h3>{% trans 'Responsible body' %}</h3>
+                            <address>
+                                {% if project.organisation.address %}
+                                <p>{{ project.organisation.name }}</p>
+                                <p>{{ project.organisation.address|linebreaks }}</p>
+                                {% endif %}
+                                {% if project.organisation.url %}
+                                <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
+                                    {% trans 'Website' %}
+                                </a>
+                                {% endif %}
+                            </address>
+                        </div>
                     {% endif %}
                     </div>
                 {% endif %}
