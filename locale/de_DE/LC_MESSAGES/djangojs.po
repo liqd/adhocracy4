@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-23 16:45+0100\n"
-"PO-Revision-Date: 2022-08-31 14:20+0000\n"
-"Last-Translator: Julian Dehm <j.dehm@liqd.net>\n"
+"PO-Revision-Date: 2022-12-15 10:48+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -575,12 +575,12 @@ msgstr "entfernen"
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:5
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:5
 msgid " New Question"
-msgstr ""
+msgstr " Neue Frage"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:6
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:6
 msgid "Multiple Choice question"
-msgstr ""
+msgstr "Multiple-Choice-Frage"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:7
 #: adhocracy4/polls/static/PollDashboard/EditPollDropdown.jsx:7
@@ -596,6 +596,8 @@ msgstr "Die Umfrage wurde aktualisiert."
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:194
 msgid "The poll could not be updated. Please check the data you entered again."
 msgstr ""
+"Ihre Antwort konnte nicht gespeichert werden. Bitte überprüfen Sie Ihre "
+"Eingabe."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:261
 #: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:261
@@ -792,12 +794,12 @@ msgstr "Ihre Wahl"
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:10
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:10
 msgid "Click to vote up"
-msgstr ""
+msgstr "Für eine positive Bewertung hier klicken"
 
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:11
 #: adhocracy4/ratings/static/ratings/react_ratings.jsx:11
 msgid "Click to vote down"
-msgstr ""
+msgstr "Für eine negative Bewertung hier klicken"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:55
 #: adhocracy4/reports/static/reports/ReportModal.jsx:55
