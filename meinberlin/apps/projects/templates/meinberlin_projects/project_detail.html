@@ -175,42 +175,42 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-participation"
     aria-expanded="true">
-    <section>
-        <div class="container">
-        {% if project.display_timeline %}
-            <div class="timeline-carousel__wrapper">
-                {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
-            </div>
-        {% endif %}
-        {% if event %}
-            <article class="offset-lg-3 col-lg-6">
-                <h2>{{ event.name }}</h2>
-                <div class="phase-info__item__subtitle">
-                  {% html_date event.date 'DATETIME_FORMAT' %}
+        <section>
+            <div class="container">
+            {% if project.display_timeline %}
+                <div class="timeline-carousel__wrapper">
+                    {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
                 </div>
-                <p>{{ event.description | safe | transform_collapsibles | richtext }}</p>
-            </article>
-        {% elif view.is_project_view %}
-            <div class="participation-tile__wrapper">
-                <div class="participation-tile__list-container">
-                    <ul class="u-list-reset participation-tile__list">
-                    {% for module in modules %}
-                        {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
-                    {% endfor %}
-                    </ul>
+            {% endif %}
+            {% if event %}
+                <article class="offset-lg-3 col-lg-6">
+                    <h2>{{ event.name }}</h2>
+                    <div class="phase-info__item__subtitle">
+                    {% html_date event.date 'DATETIME_FORMAT' %}
+                    </div>
+                    <p>{{ event.description | safe | transform_collapsibles | richtext }}</p>
+                </article>
+            {% elif view.is_project_view %}
+                <div class="participation-tile__wrapper">
+                    <div class="participation-tile__list-container">
+                        <ul class="u-list-reset participation-tile__list">
+                        {% for module in modules %}
+                            {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% else %} <!-- if just one module and no phase view to dispatch to -->
+            {% include "a4modules/includes/module_detail_phase.html" %}
+            {% endif %}
+            <!-- these blocks are only filled when in phase view -->
+                <div class="offset-lg-3 col-lg-6">
+                    {% block project_action %}{% endblock %}
                 </div>
             </div>
-        {% else %} <!-- if just one module and no phase view to dispatch to -->
-        {% include "a4modules/includes/module_detail_phase.html" %}
-        {% endif %}
-        <!-- these blocks are only filled when in phase view -->
-            <div class="offset-lg-3 col-lg-6">
-                {% block project_action %}{% endblock %}
-            </div>
-        </div>
-        {% block phase_content %}{% endblock %}
-    </section>
-
+            {% block phase_content %}{% endblock %}
+        </section>
+    </div>
     <div
     class="tabpanel"
     id="tabpanel-project-{{ project.pk }}-result"
