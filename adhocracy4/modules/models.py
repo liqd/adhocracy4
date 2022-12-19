@@ -222,13 +222,13 @@ class Module(models.Model):
         }
 
         unit_abbreviations = {
-            'days': [pgettext_lazy('abbreviation "day(s)"', 'D'),
+            'days': [pgettext_lazy("abbreviation for day(s)", "D"),
                      _('days')],
-            'hours': [pgettext_lazy('abbreviation "hour(s)"', 'H'),
+            'hours': [pgettext_lazy("abbreviation for hour(s)", "H"),
                       _('hours')],
-            'minutes': [pgettext_lazy('abbreviation "minute(s)"', 'M'),
+            'minutes': [pgettext_lazy("abbreviation for minute(s)", "M"),
                         _('minutes')],
-            'seconds': [pgettext_lazy('abbreviation "second(s)"', 'S'),
+            'seconds': [pgettext_lazy("abbreviation for second(s)", "S"),
                         _('seconds')],
         }
 
