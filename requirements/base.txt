@@ -26,7 +26,7 @@ django-filter==22.1
 django-multiselectfield==0.1.12
 django-widget-tweaks==1.4.12
 djangorestframework==3.14.0
-easy-thumbnails==2.8.3
+easy-thumbnails==2.8.4
 html5lib==1.1
 jsonfield==3.1.0
 python-dateutil==2.8.2
