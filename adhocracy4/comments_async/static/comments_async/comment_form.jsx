@@ -136,7 +136,7 @@ export default class CommentForm extends React.Component {
               style={textareaStyle}
             />
             <div className="row">
-              <div className="col-12 col-sm-8">
+              <div className="col-12 col-sm-9 col-lg-10">
                 <label
                   htmlFor="id-comment-form"
                   className="a4-comments__char-count"
@@ -150,7 +150,7 @@ export default class CommentForm extends React.Component {
                     orgTermsUrl={this.props.orgTermsUrl}
                   />}
               </div>
-              <div className="d-flex col-12 col-sm-4 align-items-center">
+              <div className="d-flex col-12 col-sm-3 col-lg-2 align-items-center">
                 {actionButton}
               </div>
             </div>
