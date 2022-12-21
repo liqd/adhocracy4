@@ -311,6 +311,10 @@ class Module(models.Model):
         Gives it a s list in the form [number, abbreviation, title] to be
         used in an <abbr>-tag. Would look like this in html:
         number <abbr title=title>abbreviation</abbr>
+        Or using the actual property:
+        {{ module.module_running_time_left_abbreviated.0 }}
+        <abbr title="{{ module.module_running_time_left_abbreviated.2 }}">
+        {{ module.module_running_time_left_abbreviated.1 }}</abbr>
         """
         if self.module_running_seconds_left:
             seconds = self.module_running_seconds_left
