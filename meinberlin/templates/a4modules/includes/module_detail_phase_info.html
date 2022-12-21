@@ -8,20 +8,20 @@
                 class="lr-bar__right phase-info__highlight"
                 id="active-phase"
             >
-                {% trans 'active' %}
+                {% translate 'active' %}
             </span>
         {% elif phase in module.future_phases %}
             <span
                 class="lr-bar__right phase-info__highlight"
                 id="upcoming-phase"
             >
-                {% trans 'upcoming' %}
+                {% translate 'upcoming' %}
             </span>
         {% else %}
             <span
                 class="lr-bar__right phase-info__highlight"
             >
-                {% trans 'finished' %}
+                {% translate 'finished' %}
             </span>
         {% endif %}
     </div>

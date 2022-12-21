@@ -15,11 +15,11 @@
 <div class="offset-lg-3 col-lg-6 u-spacer-bottom-double">
 {% if project.is_private %}
     <div>
-        <i class="fas fa-lock u-spacer-right" aria-hidden="true"></i>{% trans 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
+        <i class="fas fa-lock u-spacer-right" aria-hidden="true"></i>{% translate 'This project is not publicly visible. Only invited users can see content and actively participate.' %}
     </div>
 {% elif project.is_semipublic %}
     <div>
-        <i class="fas fa-eye u-spacer-right" aria-hidden="true"></i>{% trans 'This project is publicly visible. Invited users can actively participate.' %}
+        <i class="fas fa-eye u-spacer-right" aria-hidden="true"></i>{% translate 'This project is publicly visible. Invited users can actively participate.' %}
     </div>
 {% endif %}
 </div>
