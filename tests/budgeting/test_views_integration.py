@@ -129,14 +129,18 @@ def test_detail_view_back_link(client, phase_factory, proposal_factory):
     filtered_module_referer = module_referer + filter_string
     with freeze_phase(phase):
         response = client.get(url, HTTP_referer=project_referer)
-        assert response.context['back'] == project_referer
+        assert (response.context['back'] ==
+                '{}#proposal_{}'.format(project_referer, item.id))
         response = client.get(url, HTTP_referer=module_referer)
-        assert response.context['back'] == module_referer
+        assert (response.context['back'] ==
+                '{}#proposal_{}'.format(module_referer, item.id))
 
         response = client.get(url, HTTP_referer=filtered_project_referer)
-        assert response.context['back'] == filtered_project_referer
+        assert (response.context['back'] ==
+                '{}#proposal_{}'.format(filtered_project_referer, item.id))
         response = client.get(url, HTTP_referer=filtered_module_referer)
-        assert response.context['back'] == filtered_module_referer
+        assert (response.context['back'] ==
+                '{}#proposal_{}'.format(filtered_module_referer, item.id))
 
         response = client.get(url, HTTP_referer='/')
         assert not response.context['back']

@@ -6,6 +6,7 @@
     background-color: $body-bg;
     margin-bottom: $em-spacer;
     page-break-inside: avoid;
+    scroll-margin-top: 2 * $spacer;
 }
 
 .list-item--squashed {

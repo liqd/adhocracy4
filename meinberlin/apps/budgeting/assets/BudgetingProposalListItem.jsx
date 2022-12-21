@@ -22,7 +22,7 @@ export const BudgetingProposalListItem = (props) => {
     )
 
   return (
-    <li className="list-item">
+    <li id={'proposal_' + proposal.pk} className="list-item">
       <ListItemStats
         permissions={permissions}
         positiveCount={proposal.positive_rating_count}

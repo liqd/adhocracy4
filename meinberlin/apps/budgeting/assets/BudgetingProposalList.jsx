@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import django from 'django'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
 import { Pagination } from './Pagination'
@@ -16,6 +16,7 @@ export const BudgetingProposalList = (props) => {
     return django.interpolate(countText, [votes])
   }
   const noResults = django.gettext('Nothing to show')
+  const scrolledRef = useRef(false)
 
   const fetchProposals = () => {
     const url = props.proposals_api_url + location.search
@@ -40,9 +41,19 @@ export const BudgetingProposalList = (props) => {
       .catch(error => console.log(error))
   }
 
-  useEffect(() => {
-    fetchProposals()
-  }, [location.search])
+  const scrollToProposal = () => {
+    if (location.hash && !scrolledRef.current) {
+      const id = location.hash.replace('#', '')
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+        scrolledRef.current = true
+      }
+    }
+  }
+
+  useEffect(fetchProposals, [location.search])
+  useEffect(scrollToProposal)
 
   const renderList = (data) => {
     return (

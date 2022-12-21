@@ -114,10 +114,11 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
         """
         if 'Referer' in self.request.headers:
             referer = self.request.headers['Referer']
-            match = resolve(urlparse(referer)[2])
+            parsed_url = urlparse(referer)
+            match = resolve(parsed_url.path)
             if match.url_name == 'project-detail' or \
                     match.url_name == 'module-detail':
-                return referer
+                return referer + '#proposal_{}'.format(self.object.id)
             return None
         return None
 
