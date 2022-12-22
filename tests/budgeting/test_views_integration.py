@@ -112,6 +112,39 @@ def test_detail_view(client, phase_factory, proposal_factory):
 
 
 @pytest.mark.django_db
+def test_detail_view_back_link(client, phase_factory, proposal_factory):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase)
+    url = item.get_absolute_url()
+    project_referer = reverse(
+        'project-detail',
+        kwargs={'slug': item.project.slug}
+    )
+    module_referer = reverse(
+        'module-detail',
+        kwargs={'module_slug': item.module.slug}
+    )
+    filter_string = '?is_archived=&page=1&search='
+    filtered_project_referer = project_referer + filter_string
+    filtered_module_referer = module_referer + filter_string
+    with freeze_phase(phase):
+        response = client.get(url, HTTP_referer=project_referer)
+        assert response.context['back'] == project_referer
+        response = client.get(url, HTTP_referer=module_referer)
+        assert response.context['back'] == module_referer
+
+        response = client.get(url, HTTP_referer=filtered_project_referer)
+        assert response.context['back'] == filtered_project_referer
+        response = client.get(url, HTTP_referer=filtered_module_referer)
+        assert response.context['back'] == filtered_module_referer
+
+        response = client.get(url, HTTP_referer='/')
+        assert not response.context['back']
+        response = client.get(url)
+        assert not response.context['back']
+
+
+@pytest.mark.django_db
 def test_create_view(client, phase_factory, proposal_factory, user,
                      category_factory, area_settings_factory):
     phase, module, project, item = setup_phase(
