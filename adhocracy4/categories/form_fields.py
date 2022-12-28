@@ -33,7 +33,7 @@ class CategorySelectWidget(widgets.Select):
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
         current_class = context['widget']['attrs'].get('class', '')
-        new_class = current_class + ' select-dropdown'
+        new_class = current_class + ' form-select'
 
         context['widget']['attrs']['class'] = new_class
         return context
