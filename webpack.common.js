@@ -241,11 +241,9 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      timeago: 'timeago.js',
       $: 'jquery',
       jQuery: 'jquery',
-      Promise: ['es6-promise', 'Promise'],
-      fetch: ['whatwg-fetch', 'fetch']
+      timeago: 'timeago.js'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
