@@ -24,11 +24,11 @@
 
     {% if project.is_draft %}
         <button name="action" value="publish" {% if value != max %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top">
-            {% trans 'Publish' %}
+            {% translate 'Publish' %}
         </button>
     {% else %}
         <button name="action" value="unpublish" class="btn btn--light btn--full btn--attached-top">
-            {% trans 'Unpublish' %}
+            {% translate 'Unpublish' %}
         </button>
     {% endif %}
 </form>

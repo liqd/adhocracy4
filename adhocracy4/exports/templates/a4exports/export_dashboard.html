@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block dashboard_project_content %}
-    <h1 class="u-first-heading mt-0">{% trans 'Export' %}</h1>
+    <h1 class="u-first-heading mt-0">{% translate 'Export' %}</h1>
 
     <p class="form-hint">{% blocktrans %}You can export the results of your participation project as an excel file.{% endblocktrans %}</p>
 <table class="export-table">
@@ -16,11 +16,11 @@
     {% if export %}
     <tr>
         <td class="export-table__txt-cell" id="id-export-hint">
-            {% trans "here you can export all ideas" %}
+            {% translate "here you can export all ideas" %}
         </td>
         <td class="export-table__btn-cell">
             <a class="btn btn--secondary" aria-labelledby="id-export-hint" href="{{ export }}">
-                {% trans "Export" %}
+                {% translate "Export" %}
             </a>
         </td>
     </tr>
@@ -28,11 +28,11 @@
     {% if subject_export %}
     <tr>
         <td class="export-table__txt-cell" id="id-subject-export-hint">
-            {% trans "here you can export all subjects" %}
+            {% translate "here you can export all subjects" %}
         </td>
         <td class="export-table__btn-cell">
             <a class="btn btn--secondary" aria-labelledby="id-export-hint" href="{{ subject_export }}">
-                {% trans "Export" %}
+                {% translate "Export" %}
             </a>
         </td>
     </tr>
@@ -40,11 +40,11 @@
     {% if poll_export %}
     <tr>
         <td class="export-table__txt-cell" id="id-export-poll-hint">
-            {% trans "here you can export all answers" %}
+            {% translate "here you can export all answers" %}
         </td>
         <td class="export-table__btn-cell">
             <a class="btn btn--secondary" aria-labelledby="id-export-comment-hint" href="{{ poll_export }}">
-                {% trans "Export" %}
+                {% translate "Export" %}
             </a>
         </td>
     </tr>
@@ -52,11 +52,11 @@
     {% if comment_export %}
     <tr>
         <td class="export-table__txt-cell" id="id-export-comment-hint">
-            {% trans "here you can export all comments" %}
+            {% translate "here you can export all comments" %}
         </td>
         <td class="export-table__btn-cell">
             <a class="btn btn--secondary" aria-labelledby="id-export-comment-hint" href="{{ comment_export }}">
-                {% trans "Export" %}
+                {% translate "Export" %}
             </a>
         </td>
     </tr>

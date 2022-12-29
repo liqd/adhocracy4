@@ -1,12 +1,12 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n project_tags thumbnail rules %}
 
-{% block title %}{% trans "Projects" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "Projects" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
-    <h1>{% trans 'Projects' %}</h1>
+    <h1>{% translate 'Projects' %}</h1>
 
-    <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="btn">{% trans 'New Project' %}</a>
+    <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="btn">{% translate 'New Project' %}</a>
 
     {# NOTE: missing filter #}
 
@@ -21,13 +21,13 @@
                     <h2>
                         {{ project.name }}
                         {% if project.has_finished %}
-                            ({% trans "Finished" %})
+                            ({% translate "Finished" %})
                         {% endif %}
                         {% if project.is_semipublic %}
-                            ({% trans 'semipublic' %})
+                            ({% translate 'semipublic' %})
                         {% endif %}
                         {% if project.is_private %}
-                            ({% trans 'private' %})
+                            ({% translate 'private' %})
                         {% endif %}
                     </h2>
                     <img alt="" src="{% thumbnail project_image '170x170' crop %}" title="© {{ project_image_copyright }}">
@@ -36,16 +36,16 @@
                        class="btn btn--light btn--small">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         {% if project.is_draft %}
-                            {% trans 'Preview' %}
+                            {% translate 'Preview' %}
                         {% else %}
-                            {% trans 'View' %}
+                            {% translate 'View' %}
                         {% endif %}
                     </a>
 
                     <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
                        class="btn btn--light btn--small">
                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        {% trans 'Edit' %}
+                        {% translate 'Edit' %}
                     </a>
 
                     <form method="post">
@@ -54,7 +54,7 @@
                         <button type="submit" name="duplicate" value="{{ project }}"
                                 class="dropdown-item">
                             <i class="far fa-copy" aria-hidden="true"></i>
-                            {% trans 'Duplicate' %}
+                            {% translate 'Duplicate' %}
                         </button>
                     </form>
                 </li>
@@ -62,7 +62,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>{% trans 'We could not find any projects.' %}</p>
+        <p>{% translate 'We could not find any projects.' %}</p>
     {% endif %}
 
     {# NOTE: missing pagination #}

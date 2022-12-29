@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block dashboard_content %}
-    <nav aria-label="{% trans 'Project Settings' %}">
+    <nav aria-label="{% translate 'Project Settings' %}">
         <div>
             {{ project.name }}
             <ul>
@@ -12,7 +12,7 @@
                            class="{{ item.is_active|yesno:"is-active," }}">
                             {{ item.label }}
                             {% if not item.is_complete %}
-                                <i class="fa fa-exclamation-circle u-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                                <i class="fa fa-exclamation-circle u-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
                             {% endif %}
                         </a>
                     </li>
@@ -30,7 +30,7 @@
                                class="{{ item.is_active|yesno:"is-active," }}">
                                 {{ item.label }}
                                 {% if not item.is_complete %}
-                                    <i class="fa fa-exclamation-circle u-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                                    <i class="fa fa-exclamation-circle u-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
                                 {% endif %}
                             </a>
                         </li>
