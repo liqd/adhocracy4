@@ -33,7 +33,7 @@
     "kleur": "4.1.5",
     "leaflet": "1.9.3",
     "leaflet-draw": "1.0.4",
-    "leaflet.markercluster": "github:liqd/Leaflet.markercluster#5ed89b26922c51083fc9632a2c01425b9261a0f5",
+    "leaflet.markercluster": "github:liqd/Leaflet.markercluster#liqd2212",
     "maplibre-gl": "2.4.0",
     "maplibregl-mapbox-request-transformer": "0.0.2",
     "mini-css-extract-plugin": "2.7.2",
