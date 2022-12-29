@@ -20,7 +20,7 @@
         <ul class="messages">
             <li class="alert alert--warning" role="alert">
                 <div class="container">
-                    {% trans 'This project is not published yet.' %}
+                    {% translate 'This project is not published yet.' %}
                 </div>
             </li>
         </ul>
@@ -35,7 +35,7 @@
             <div class="offset-lg-3 col-lg-6">
                 {% with container=project.containers.first %}
                     {% if container %}
-                        <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
+                        <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% translate 'breadcrumbs' %}">
                             <ul>
                                 <li>
                                     <a href="{{ container.get_absolute_url }}" data-embed-target="external">
@@ -70,7 +70,7 @@
                         href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
                         class="btn btn--light btn--small"
                         data-embed-target="external">
-                        {% trans 'Edit' %}
+                        {% translate 'Edit' %}
                     </a>
                 {% endif %}
             </div>
@@ -84,7 +84,7 @@
                     role="tab"
                     aria-controls="tabpanel-project-{{ project.pk }}-information"
                     aria-expanded="false">
-                    {% trans 'About the Project' %}
+                    {% translate 'About the Project' %}
                 </a>
                 <a
                     id="tab-project-{{ project.pk }}-participation"
@@ -94,7 +94,7 @@
                     role="tab"
                     aria-controls="tabpanel-project-{{ project.pk }}-participation"
                     aria-expanded="true">
-                    {% trans 'Participation' %}
+                    {% translate 'Participation' %}
                 </a>
                 <a
                     id="tab-project-{{ project.pk }}-result"
@@ -104,7 +104,7 @@
                     role="tab"
                     aria-controls="tabpanel-project-{{ project.pk }}-result"
                     aria-expanded="false">
-                    {% trans 'Result' %}
+                    {% translate 'Result' %}
                 </a>
             </nav>
         </div>
@@ -123,7 +123,7 @@
                     <div class="l-tiles-2 u-top-divider">
                     {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
                         <div>
-                            <h3>{% trans 'Contact for questions' %}</h3>
+                            <h3>{% translate 'Contact for questions' %}</h3>
                             <address>
                                 {% if project.contact_name %}
                                 <p>{{ project.contact_name }}</p>
@@ -132,16 +132,16 @@
                                 <p>{{ project.contact_address_text|linebreaks }}</p>
                                 {% endif %}
                                 {% if project.contact_phone %}
-                                <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
+                                <p><strong>{% translate 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
                                 {% endif %}
                                 {% if project.contact_email %}
                                 <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
-                                    {% trans 'Email' %}
+                                    {% translate 'Email' %}
                                 </a>
                                 {% endif %}
                                 {% if project.contact_url %}
                                 <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
-                                    {% trans 'Website' %}
+                                    {% translate 'Website' %}
                                 </a>
                                 {% endif %}
                             </address>
@@ -150,7 +150,7 @@
 
                     {% if project.organisation.address or project.organisation.url %}
                         <div>
-                            <h3>{% trans 'Responsible body' %}</h3>
+                            <h3>{% translate 'Responsible body' %}</h3>
                             <address>
                                 {% if project.organisation.address %}
                                 <p>{{ project.organisation.name }}</p>
@@ -158,7 +158,7 @@
                                 {% endif %}
                                 {% if project.organisation.url %}
                                 <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
-                                    {% trans 'Website' %}
+                                    {% translate 'Website' %}
                                 </a>
                                 {% endif %}
                             </address>
@@ -222,7 +222,7 @@
                 {% if project.result %}
                     {{ project.result | transform_collapsibles | richtext }}
                 {% else %}
-                    {% trans 'No results yet.' %}
+                    {% translate 'No results yet.' %}
                 {% endif %}
             </div>
         </section>

@@ -11,7 +11,7 @@
                         <p>{{ container.description }}</p>
                         <p>
                             {% blocktrans with count=project.projectcontainer.total_project_count active_count=project.projectcontainer.active_project_count %}{{ active_count }} of {{ count }}{% endblocktrans %}
-                            {% trans 'projects are currently active.' %}
+                            {% translate 'projects are currently active.' %}
                         </p>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
         <div class="tablist--right">
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
             {% if user_may_change %}
-                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small">{% trans 'Edit' %}</a>
+                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small">{% translate 'Edit' %}</a>
             {% endif %}
         </div>
 
@@ -38,7 +38,7 @@
                 role="tab"
                 aria-controls="tabpanel-project-{{ project.pk }}-information"
                 aria-expanded="false">
-                {% trans 'Information' %}
+                {% translate 'Information' %}
             </a>
             <a
                 id="tab-project-{{ project.pk }}-participation"
@@ -48,7 +48,7 @@
                 role="tab"
                 aria-controls="tabpanel-project-{{ project.pk }}-participation"
                 aria-expanded="true">
-                {% trans 'Participation' %}
+                {% translate 'Participation' %}
             </a>
         </nav>
     </div>
@@ -82,7 +82,7 @@
                 {% endfor %}
             </ul>
         {% else %}
-            <p>{% trans 'We could not find any projects.' %}</p>
+            <p>{% translate 'We could not find any projects.' %}</p>
         {% endif %}
     </div>
 </div>

@@ -1,14 +1,14 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n widget_tweaks %}
 
-{% block title %}{% trans 'Participants' %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate 'Participants' %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_project_content %}
-    <h1 class="u-first-heading">{% trans 'Edit Participants' %}</h1>
+    <h1 class="u-first-heading">{% translate 'Edit Participants' %}</h1>
     {% include 'meinberlin_projects/includes/users_from_email_form.html' %}
 
-    <h2>{% trans 'Pending Invitations' %}</h2>
+    <h2>{% translate 'Pending Invitations' %}</h2>
     {% include 'meinberlin_projects/includes/removeable_invite_list.html' with invites=project.participantinvite_set.all %}
-    <h2>{% trans 'Participants' %}</h2>
+    <h2>{% translate 'Participants' %}</h2>
     {% include 'meinberlin_projects/includes/removeable_user_list.html' with users=project.participants.all %}
 {% endblock %}

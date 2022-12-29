@@ -1,16 +1,16 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Offlineevents" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "Offlineevents" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_project_content %}
     <div class="lr-bar lr-bar--with-margin">
         <h1 class="u-first-heading lr-bar__left">
-            {% trans 'Offline Events' %}
+            {% translate 'Offline Events' %}
         </h1>
         <div class="lr-bar__right">
             <a href="{% url 'a4dashboard:offlineevent-create' project_slug=project.slug %}" class="btn btn--primary">
-                {% trans 'Add offline event' %}
+                {% translate 'Add offline event' %}
             </a>
         </div>
     </div>
@@ -24,7 +24,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        {% trans "Nothing to show" %}
+        {% translate "Nothing to show" %}
     {% endif %}
 
     {% include "meinberlin_contrib/includes/pagination.html" %}

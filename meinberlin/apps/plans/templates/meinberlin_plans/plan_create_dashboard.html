@@ -1,17 +1,17 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Add a new plan" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Add a new plan" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_nav %}
 <div class="u--bg-secondary u-spacer-bottom-double">
     <div class="container dashboard-nav__breadcrumb">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug %}">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'All plans' %}</a>
+                        {% translate 'All plans' %}</a>
                 </li>
             </ul>
         </nav>
@@ -22,7 +22,7 @@
 {% block dashboard_content %}
 <div class="row">
     <div class="offset-lg-3 col-lg-6">
-        <h1 class="u-first-heading">{% trans 'Add a new plan' %}</h1>
+        <h1 class="u-first-heading">{% translate 'Add a new plan' %}</h1>
 
         {% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug as cancel %}
         {% include "meinberlin_plans/includes/plan_form.html" with cancel=cancel %}
@@ -32,31 +32,31 @@
         <ul class="progress-line u-spacer-bottom">
             <li class="progress-line__entry">
                 <span class="progress-line__line--bottom"></span>
-                <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Create plan' %}" aria-label="{% trans 'Create plan' %}"></i>
+                <i class="fas fa-circle progress-line__icon--active" title="{% translate 'Create plan' %}" aria-label="{% translate 'Create plan' %}"></i>
                 <span class="progress-line__entry--active">
-                    <span>{% trans 'Create plan' %}</span>
+                    <span>{% translate 'Create plan' %}</span>
                 </span>
             </li>
 
             <li class="progress-line__entry">
                 <span class="progress-line__line--top"></span>
                 <span class="progress-line__line--bottom"></span>
-                    <i class="fas fa-circle progress-line__icon" title="{% trans 'Plan not ready for publication' %}" aria-label="{% trans 'Plan not ready for publication' %}"></i>
-                <span>{% trans 'Fill in plan details' %}</span>
+                    <i class="fas fa-circle progress-line__icon" title="{% translate 'Plan not ready for publication' %}" aria-label="{% translate 'Plan not ready for publication' %}"></i>
+                <span>{% translate 'Fill in plan details' %}</span>
             </li>
 
             <li class="progress-line__entry">
                 <span class="progress-line__line--top"></span>
-                <i class="far fa-circle progress-line__icon" title="{% trans 'Plan not ready for publication' %}" aria-label="{% trans 'Plan not ready for publication' %}"></i>
-                <span>{% trans 'Publish plan' %}</span>
+                <i class="far fa-circle progress-line__icon" title="{% translate 'Plan not ready for publication' %}" aria-label="{% translate 'Plan not ready for publication' %}"></i>
+                <span>{% translate 'Publish plan' %}</span>
             </li>
         </ul>
         <button disabled class="btn btn--light btn--full u-spacer-bottom">
             <i class="fa fa-eye" aria-hidden="true"></i>
-            {% trans 'Preview' %}
+            {% translate 'Preview' %}
         </button>
-        <button disabled type="submit" class="btn btn--primary btn--full u-spacer-bottom" value="{% trans 'Publish' %}">
-            {% trans 'Publish' %}
+        <button disabled type="submit" class="btn btn--primary btn--full u-spacer-bottom" value="{% translate 'Publish' %}">
+            {% translate 'Publish' %}
         </button>
     </div>
 </div>

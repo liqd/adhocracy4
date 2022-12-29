@@ -1,16 +1,16 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Places" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "Places" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_project_content %}
     <div class="lr-bar lr-bar--with-margin">
         <h1 class="u-first-heading lr-bar__left">
-            {% trans 'Places' %}
+            {% translate 'Places' %}
         </h1>
         <div class="lr-bar__right">
             <a href="{% url 'a4dashboard:maptopic-create' module_slug=module.slug %}" class="btn btn--primary">
-                {% trans 'Add Place' %}
+                {% translate 'Add Place' %}
             </a>
         </div>
     </div>
@@ -23,7 +23,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        {% trans "Nothing to show" %}
+        {% translate "Nothing to show" %}
     {% endif %}
 
     {% include "meinberlin_contrib/includes/pagination.html" %}

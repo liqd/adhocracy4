@@ -1,20 +1,20 @@
 {% extends "a4dashboard/base_project_list.html" %}
 {% load rules i18n thumbnail %}
 
-{% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Plans" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block project_list %}
     <div class="lr-bar lr-bar--with-margin">
         <h1 class="u-first-heading lr-bar__left">
-            {% trans 'Plans' %}
+            {% translate 'Plans' %}
         </h1>
         <div class="lr-bar__flex--wrapper lr-bar__actions">
             <a href="{% url 'a4dashboard:plan-export' organisation_slug=view.organisation.slug %}" class="btn btn--secondary">
                 <i class="fas fa-download" aria-hidden="true"></i>
-                {% trans 'Download list' %}
+                {% translate 'Download list' %}
             </a>
             <a href="{% url 'a4dashboard:plan-create' organisation_slug=view.organisation.slug %}" class="btn btn--primary">
-                {% trans 'New Plan' %}
+                {% translate 'New Plan' %}
             </a>
         </div>
     </div>
@@ -41,15 +41,15 @@
                                        class="btn btn--small btn--light">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                         {% if plan.is_draft %}
-                                        {% trans 'Preview' %}
+                                        {% translate 'Preview' %}
                                         {% else %}
-                                        {% trans 'View' %}
+                                        {% translate 'View' %}
                                         {% endif %}
                                     </a>
                                     <a href="{% url 'a4dashboard:plan-update' organisation_slug=view.organisation.slug pk=plan.pk %}"
                                        class="btn btn--small btn--light">
                                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                                        {% trans 'Edit'%}
+                                        {% translate 'Edit'%}
                                     </a>
                                     <div class="dropdown">
                                         <button
@@ -60,16 +60,16 @@
                                                 aria-haspopup="true"
                                                 aria-expanded="false"
                                                 id="project-actions"
-                                                title="{% trans 'more' %}"
+                                                title="{% translate 'more' %}"
                                         >
-                                            <i class="fa fa-caret-down" aria-label="{% trans 'more' %}"></i>
+                                            <i class="fa fa-caret-down" aria-label="{% translate 'more' %}"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="project-actions">
                                             <li>
                                               <a href="{% url 'a4dashboard:plan-delete' organisation_slug=view.organisation.slug pk=plan.pk %}"
                                                  class="dropdown-item">
                                                   <i class="fas fa-trash-alt" aria-hidden="true"></i>
-                                                  {% trans 'Delete' %}
+                                                  {% translate 'Delete' %}
                                               </a>
                                             </li>
                                         </ul>
@@ -81,7 +81,7 @@
                 </div>
             </li>
         {% empty %}
-            {% trans "Nothing to show" %}
+            {% translate "Nothing to show" %}
         {% endfor %}
     </ul>
 

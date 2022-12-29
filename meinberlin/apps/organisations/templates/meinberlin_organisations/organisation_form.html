@@ -1,11 +1,11 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Settings" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "Settings" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
 <div class="offset-lg-2 col-lg-8">
-    <h1>{% trans "Edit your organisation information" %}</h1>
+    <h1>{% translate "Edit your organisation information" %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
@@ -14,7 +14,7 @@
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.url %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.address %}
         <div class="u-spacer-bottom">
-            <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
+            <button type="submit" class="btn btn--primary">{% translate 'Save changes'%}</button>
         </div>
     </form>
     {{ form.media }}

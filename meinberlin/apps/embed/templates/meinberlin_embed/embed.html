@@ -20,12 +20,12 @@
     <header class="embed-header">
         {% if not object|is_external %}
             {% if request.user.is_anonymous %}
-                <a href="{% url 'account_login' %}?next={% url 'embed-login-success' %}" class="btn btn--light">{% trans 'Login' %}</a>
+                <a href="{% url 'account_login' %}?next={% url 'embed-login-success' %}" class="btn btn--light">{% translate 'Login' %}</a>
             {% else %}
-                {% trans 'You are logged in as ' %} {{ request.user.username }}
+                {% translate 'You are logged in as ' %} {{ request.user.username }}
                 <form class="u-inline">
                     {% csrf_token %}
-                    <button type="submit" class="js-embed-logout btn btn--light">{% trans "Logout" %}</button>
+                    <button type="submit" class="js-embed-logout btn btn--light">{% translate "Logout" %}</button>
                 </form>
             {% endif %}
         {% endif %}
@@ -37,16 +37,16 @@
             <img src="{% static 'images/logo_horizontal.svg' %}" alt="mein.berlin" class="embed-footer__logo">
         </a>
         {% if not object|is_external %}
-            <a href="{{ object.get_absolute_url }}" data-embed-target="external">{% trans 'Go to platform' %}</a>
+            <a href="{{ object.get_absolute_url }}" data-embed-target="external">{% translate 'Go to platform' %}</a>
         {% endif %}
     </footer>
-    <div id="embed-confirm" class="modal" tabindex="-1" role="dialog" aria-label="{% trans 'Confirm login' %}" aria-hidden="true">
+    <div id="embed-confirm" class="modal" tabindex="-1" role="dialog" aria-label="{% translate 'Confirm login' %}" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <p class="modal-body">{% trans 'You need to login first. By clicking "Login" a popup will open so you can sign in safely. Do you want to login now?' %}</p>
+                <p class="modal-body">{% translate 'You need to login first. By clicking "Login" a popup will open so you can sign in safely. Do you want to login now?' %}</p>
                 <div class="modal-footer">
-                    <a href="{% url 'account_login' %}?next={% url 'embed-login-success' %}" class="embed-confirm__login btn btn--primary">{% trans 'Login' %}</a>
-                    <button class="embed-confirm__cancel btn btn--light" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
+                    <a href="{% url 'account_login' %}?next={% url 'embed-login-success' %}" class="embed-confirm__login btn btn--primary">{% translate 'Login' %}</a>
+                    <button class="embed-confirm__cancel btn btn--light" data-bs-dismiss="modal">{% translate 'Cancel' %}</button>
                 </div>
             </div>
         </div>

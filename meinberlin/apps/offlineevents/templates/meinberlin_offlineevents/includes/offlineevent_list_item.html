@@ -12,17 +12,17 @@
                     <a href="{% url 'meinberlin_offlineevents:offlineevent-detail' slug=object.slug %}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-eye" aria-hidden="true"></i>
-                        {% trans 'View' %}
+                        {% translate 'View' %}
                     </a>
                     <a href="{% url 'a4dashboard:offlineevent-update' slug=object.slug %}"
                        class="btn btn--small btn--light">
                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        {% trans 'Edit'%}
+                        {% translate 'Edit'%}
                     </a>
                     <a href="{% url 'a4dashboard:offlineevent-delete' slug=object.slug %}"
                        class="btn btn--small btn--light">
                         <i class="fas fa-times" aria-hidden="true"></i>
-                        {% trans 'Delete'%}
+                        {% translate 'Delete'%}
                     </a>
                 {% endspaceless %}
             </div>

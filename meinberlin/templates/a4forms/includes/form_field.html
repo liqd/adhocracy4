@@ -2,7 +2,7 @@
 
 <div class="form-group">
     <label for="{{ field.id_for_label }}">
-        {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
+        {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
         {% block after_label %}
         {% endblock %}
     </label>

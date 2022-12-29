@@ -1,17 +1,17 @@
 {% extends "a4dashboard/base_project_list.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Confirm Plan Deletion" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Confirm Plan Deletion" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block project_list %}
-    <h1 class="u-first-heading">{% trans 'Are you sure you want to delete the plan?' %}</h1>
+    <h1 class="u-first-heading">{% translate 'Are you sure you want to delete the plan?' %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
-        <input type="submit" class="btn btn--primary" value="{% trans 'Yes' %}" />
+        <input type="submit" class="btn btn--primary" value="{% translate 'Yes' %}" />
 
         <a href="{% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug %}" class="btn btn--light">
-            {% trans 'Cancel' %}
+            {% translate 'Cancel' %}
         </a>
     </form>
 

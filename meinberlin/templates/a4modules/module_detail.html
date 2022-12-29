@@ -21,7 +21,7 @@
         <ul class="messages">
             <li class="alert alert--warning" role="alert">
                 <div class="container">
-                    {% trans 'This project is not published yet.' %}
+                    {% translate 'This project is not published yet.' %}
                 </div>
             </li>
         </ul>
@@ -35,20 +35,20 @@
             {% if module.previous_module_in_cluster %}
                 <a class="btn btn--light u-secondary" href="{% url 'module-detail' module.previous_module_in_cluster.slug %}">
                     <i class="fa fa-chevron-left u-md-up-display-none"></i>
-                    <span class="u-md-down-display-none">{% trans 'Previous' %}</span>
+                    <span class="u-md-down-display-none">{% translate 'Previous' %}</span>
                 </a>
             {% endif %}
-            <span class="u-spacer-left u-spacer-right">{{ module.readable_index_in_cluster }} {% trans 'of' %} {{ module.module_cluster|length }}</span>
+            <span class="u-spacer-left u-spacer-right">{{ module.readable_index_in_cluster }} {% translate 'of' %} {{ module.module_cluster|length }}</span>
             {% if module.next_module_in_cluster %}
                 <a class="btn btn--light u-secondary" href="{% url 'module-detail' module.next_module_in_cluster.slug %}">
                     <i class="fa fa-chevron-right u-md-up-display-none"></i>
-                    <span class="u-md-down-display-none">{% trans 'Next' %}</span>
+                    <span class="u-md-down-display-none">{% translate 'Next' %}</span>
                 </a>
             {% endif %}
             </div>
         {% endif %}
         <div class="offset-lg-3 col-lg-6">
-            <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
+            <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% translate 'breadcrumbs' %}">
                 <ul>
                     <li>
                         <a href="{% url 'project-detail' project.slug %}">
@@ -68,7 +68,7 @@
                 {% for phase in module.phases %}
                   {% if phase == module.active_phase and live_stream %}
                       {{ live_stream.live_stream | richtext }}
-                      <span class="label label--active">•{% trans ' Live now' %}</span>
+                      <span class="label label--active">•{% translate ' Live now' %}</span>
                   {% endif %}
                 {% endfor %}
     
@@ -90,7 +90,7 @@
         <div class="participation-tile__wrapper">
             <div class="participation-tile__list-container">
                 <ul class="u-list-reset participation-tile__list">
-                    <h3 class="participation-tile__list-header">{% trans 'More from this online participation:' %}</h3>
+                    <h3 class="participation-tile__list-header">{% translate 'More from this online participation:' %}</h3>
                     {% for other_module in module.module_cluster %}
                         {% if not other_module == module %}
                             {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=other_module %}

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% block title %}{% trans 'meinBerlin' %}{% endblock %}</title>
+    <title>{% block title %}{% translate 'meinBerlin' %}{% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}?v=2" />
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
@@ -23,7 +23,7 @@
     {% if tracking %} {% tracking_code %} {% endif %}
 </head>
 <body>
-    <a href="#main" class="visually-hidden-focusable">{% trans "Skip to content "%}</a>
+    <a href="#main" class="visually-hidden-focusable">{% translate "Skip to content "%}</a>
     {% block portal_header %}
       {% include 'portal_header.html' %}
     {% endblock %}

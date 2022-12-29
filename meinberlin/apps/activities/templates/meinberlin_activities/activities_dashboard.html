@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block dashboard_project_content %}
-    <h1 class="u-first-heading">{% trans 'Edit face to face participation information' %}</h1>
+    <h1 class="u-first-heading">{% translate 'Edit face to face participation information' %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
@@ -14,7 +14,7 @@
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
         <div class="u-spacer-bottom">
-            <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />
+            <input type="submit" class="btn btn--primary" value="{% translate 'Save'%}" />
         </div>
     </form>
 {% endblock %}

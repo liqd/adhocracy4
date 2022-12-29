@@ -12,12 +12,12 @@
                 <h3>{{ module.name }}</h3>
                 <div class="alert u-spacer-bottom" role="alert">
                     <i class="fas fa-info-circle" aria-hidden="true"></i>
-                {% trans 'During this event you can hand in questions with your smartphone' %}
+                {% translate 'During this event you can hand in questions with your smartphone' %}
                 </div>
                 <div class="u-spacer-bottom">
                     {{ module.description | transform_collapsibles | richtext }}
                 </div>
-                <a class="btn btn--secondary" href="{% url 'module-detail' module.slug %}">{% trans 'Go to event' %}</a>
+                <a class="btn btn--secondary" href="{% url 'module-detail' module.slug %}">{% translate 'Go to event' %}</a>
             </div>
         </div>
     </div>

@@ -14,14 +14,14 @@
         <div class="container">
             <div class="offset-lg-2 col-lg-8">
                 {% if chapter_list|length > 1 %}
-                    <nav class="doc-toc" aria-label="{% trans 'Table of Contents' %}">
+                    <nav class="doc-toc" aria-label="{% translate 'Table of Contents' %}">
                         <button
                             class="doc-toc__toggle {% if object.prev %}collapsed{% endif %}"
                             data-bs-toggle="collapse"
                             data-bs-target="#doc-toc__content"
                             aria-expanded="{{ object.prev|yesno:'false,true' }}"
                             aria-controls="doc-toc__content">
-                            <h2 class="doc-toc__title">{% trans 'Table of Contents' %}</h2>
+                            <h2 class="doc-toc__title">{% translate 'Table of Contents' %}</h2>
                             <i class="fa fa-chevron-up" aria-hidden="true"></i>
                         </button>
                         <div class="doc-toc__content collapse {% if not object.prev %}show{% endif %}" id="doc-toc__content">
@@ -68,7 +68,7 @@
         {% else %}
         <div class="container">
             <div class="offset-lg-2 col-lg-8">
-                {% trans 'A Document has not been added yet' %}
+                {% translate 'A Document has not been added yet' %}
             </div>
         </div>
         {% endif %}

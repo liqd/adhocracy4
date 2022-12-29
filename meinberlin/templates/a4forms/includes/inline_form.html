@@ -11,12 +11,12 @@
         {{ form.name }}
 
         {% if not form.name.value %}
-            <button type="button" class="category-formset__delete-label js-remove-form" title="{% trans 'Remove item' %}">
-                <i class="fa fa-times" aria-label="{% trans 'Remove item' %}"></i>
+            <button type="button" class="category-formset__delete-label js-remove-form" title="{% translate 'Remove item' %}">
+                <i class="fa fa-times" aria-label="{% translate 'Remove item' %}"></i>
             </button>
         {% elif can_delete %}
-            <label for="{{ form.DELETE.id_for_label }}" class="category-formset__delete-label" title="{% trans 'Remove item' %}">
-                <i class="fas fa-trash-alt" aria-label="{% trans 'Remove item' %}"></i>
+            <label for="{{ form.DELETE.id_for_label }}" class="category-formset__delete-label" title="{% translate 'Remove item' %}">
+                <i class="fas fa-trash-alt" aria-label="{% translate 'Remove item' %}"></i>
             </label>
         {% endif %}
         {% for hidden in form.hidden_fields %}

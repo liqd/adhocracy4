@@ -22,8 +22,8 @@
             <div class="map-list__controls">
                 <div class="container">
                     <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% trans 'Zoom in' %}">+</a>
-                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% trans 'Zoom out' %}">-</a>
+                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% translate 'Zoom in' %}">+</a>
+                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% translate 'Zoom out' %}">-</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        {% trans "Nothing to show" %}
+                        {% translate "Nothing to show" %}
                     {% endif %}
 
                     {% include "meinberlin_contrib/includes/pagination.html" %}

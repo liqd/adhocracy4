@@ -10,14 +10,14 @@
 
 {% if project.is_draft %}
     <button {% if not project|is_publishable:project_progress %}disabled{% endif %} class="btn btn--primary btn--full u-spacer-bottom" data-bs-toggle="modal" data-bs-target="#publish-modal">
-        {% trans 'Publish' %}
+        {% translate 'Publish' %}
     </button>
 {% else %}
     <form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true">
         {% csrf_token %}
         <input type="hidden" name="referrer" value="{{ request.path }}" />
         <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom">
-            {% trans 'Unpublish' %}
+            {% translate 'Unpublish' %}
         </button>
     </form>
 {% endif %}
@@ -26,8 +26,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title u-first-heading">{% trans "Are you sure you want to publish your project?" %}</h2>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% trans 'Close'%}">
+                <h2 class="modal-title u-first-heading">{% translate "Are you sure you want to publish your project?" %}</h2>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close'%}">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -42,10 +42,10 @@
                         {% csrf_token %}
                         <input type="hidden" name="referrer" value="{{ request.path }}" />
                         <button name="action" value="publish" class="btn btn--primary">
-                        {% trans 'Publish' %}
+                        {% translate 'Publish' %}
                         </button>
                     </form>
-                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% trans 'Cancel'%}
+                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% translate 'Cancel'%}
                     </button>
                 </div>
             </div>

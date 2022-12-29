@@ -13,7 +13,7 @@
                 <div class="tablist--left tablist--mobile dropdown">
                     {% if view.other_organisations_of_user %}
                         <button
-                                title="{% trans 'Organisations' %}"
+                                title="{% translate 'Organisations' %}"
                                 type="button"
                                 class="dropdown-toggle btn btn--small"
                                 data-bs-toggle="dropdown"
@@ -40,19 +40,19 @@
                         <span class="btn btn--small">{{ view.organisation.name }}</span>
                     {% endif %}
                 </div>
-                <nav aria-label="{% trans 'Dashboard' %}">
+                <nav aria-label="{% translate 'Dashboard' %}">
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                        class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
-                        {% trans 'Projects' %}
+                        {% translate 'Projects' %}
                     </a>
                     <a href="{% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug %}"
                        class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
-                        {% trans 'Newsletter' %}
+                        {% translate 'Newsletter' %}
                     </a>
                     {% if user_may_change %}
                     <a href="{% url 'a4dashboard:organisation-edit' organisation_slug=view.organisation.slug %}"
                        class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
-                        {% trans 'Organisation' %}
+                        {% translate 'Organisation' %}
                     </a>
                     {% endif %}
                 </nav>

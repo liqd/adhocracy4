@@ -11,14 +11,14 @@
     href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}"
     data-bs-toggle="modal"
     data-bs-target="#module-blueprint-list">
-    {% trans 'Create Module' %}
+    {% translate 'Create Module' %}
 </button>
 
 {% for module_menu in dashboard_menu.modules reversed %}
     {% include "a4dashboard/includes/nav_modules_item.html" %}
 {% empty %}
 <div>
-    <p>{% trans 'You have not set up a participation module yet.' %}</p>
+    <p>{% translate 'You have not set up a participation module yet.' %}</p>
 </div>
 {% endfor %}
 
@@ -26,8 +26,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title u-first-heading">{% trans "Choose Participation Module" %}</h2>
-                <button type="button" class="close btn--close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}">
+                <h2 class="modal-title u-first-heading">{% translate "Choose Participation Module" %}</h2>
+                <button type="button" class="close btn--close" data-bs-dismiss="modal" aria-label="{% translate 'Close' %}">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>

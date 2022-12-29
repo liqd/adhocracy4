@@ -4,12 +4,12 @@
 {% block dashboard_nav %}
 <div class="u--bg-secondary u-spacer-bottom-double">
     <div class="container dashboard-nav__breadcrumb">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug %}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'All plans' %}</a>
+                        {% translate 'All plans' %}</a>
                 </li>
             </ul>
         </nav>
@@ -22,7 +22,7 @@
 {% block dashboard_content %}
 <div class="row">
     <div class="offset-lg-3 col-lg-6">
-        <h1 class="u-first-heading">{% trans 'Edit plan' %}</h1>
+        <h1 class="u-first-heading">{% translate 'Edit plan' %}</h1>
 
         {% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug as cancel %}
         {% include "meinberlin_plans/includes/plan_form.html" with cancel=cancel %}
@@ -34,30 +34,30 @@
             <ul class="progress-line u-spacer-bottom">
                 <li class="progress-line__entry">
                     <span class="progress-line__line--bottom"></span>
-                    <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Create plan' %}" aria-label="{% trans 'Create plan, step completed' %}"></i>
-                    <span>{% trans 'Create plan' %}</span>
+                    <i class="fas fa-check-circle u-success progress-line__icon" title="{% translate 'Create plan' %}" aria-label="{% translate 'Create plan, step completed' %}"></i>
+                    <span>{% translate 'Create plan' %}</span>
                 </li>
 
                 <li class="progress-line__entry">
                     <span class="progress-line__line--top"></span>
                     <span class="progress-line__line--bottom"></span>
-                        <i class="fas fa-check-circle u-success progress-line__icon--active" title="{% trans 'Plan not ready for publication' %}" aria-label="{% trans 'Plan not ready for publication' %}"></i>
+                        <i class="fas fa-check-circle u-success progress-line__icon--active" title="{% translate 'Plan not ready for publication' %}" aria-label="{% translate 'Plan not ready for publication' %}"></i>
                     <span class="progress-line__entry--active">
-                        <span>{% trans 'Fill in plan details' %}</span>
+                        <span>{% translate 'Fill in plan details' %}</span>
                     </span>
                 </li>
 
                 <li class="progress-line__entry">
                     <span class="progress-line__line--top"></span>
-                    <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Plan ready for publication' %}" aria-label="{% trans 'Plan ready for publication' %}"></i>
-                    <span>{% trans 'Publish plan' %}</span>
+                    <i class="fas fa-circle progress-line__icon--active" title="{% translate 'Plan ready for publication' %}" aria-label="{% translate 'Plan ready for publication' %}"></i>
+                    <span>{% translate 'Publish plan' %}</span>
                 </li>
 
             </ul>
             {% else %}
             <li class="progress-line__entry--published">
-                <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'The plan has been published.' %}" aria-label="{% trans 'The plan has been published.' %}"></i>
-                <span>{% trans 'The plan has been published.' %}</span>
+                <i class="fas fa-check-circle u-success progress-line__icon" title="{% translate 'The plan has been published.' %}" aria-label="{% translate 'The plan has been published.' %}"></i>
+                <span>{% translate 'The plan has been published.' %}</span>
             </li>
             {% endif %}
         </ul>
@@ -65,9 +65,9 @@
            class="btn btn--light btn--full u-spacer-bottom">
             <i class="fa fa-eye" aria-hidden="true"></i>
             {% if plan.is_draft %}
-            {% trans 'Preview' %}
+            {% translate 'Preview' %}
             {% else %}
-            {% trans 'View' %}
+            {% translate 'View' %}
             {% endif %}
         </a>
         {% if plan.is_draft %}
@@ -76,13 +76,13 @@
               class="btn btn--primary btn--full u-spacer-bottom"
               data-bs-toggle="modal"
               data-bs-target="#plan-publish-modal">
-                {% trans 'Publish' %}
+                {% translate 'Publish' %}
             </button>
         {% else %}
             <form action="{% url 'a4dashboard:plan-publish' pk=plan.pk %}" method="post" data-ignore-submit="true">
                 {% csrf_token %}
                 <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom">
-                    {% trans 'Unpublish' %}
+                    {% translate 'Unpublish' %}
                 </button>
             </form>
         {% endif %}
@@ -93,8 +93,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title u-first-heading" id="plan-publish-label">{% trans "Are you sure you want to publish your plan?" %}</h2>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% trans 'Close'%}">
+                <h2 class="modal-title u-first-heading" id="plan-publish-label">{% translate "Are you sure you want to publish your plan?" %}</h2>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close'%}">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -103,10 +103,10 @@
                     <form action="{% url 'a4dashboard:plan-publish' pk=plan.pk %}" method="post" data-ignore-submit="true" class="u-inline">
                         {% csrf_token %}
                         <button name="action" value="publish" class="btn btn--primary">
-                        {% trans 'Publish' %}
+                        {% translate 'Publish' %}
                         </button>
                     </form>
-                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% trans 'Cancel'%}
+                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% translate 'Cancel'%}
                     </button>
                 </div>
             </div>

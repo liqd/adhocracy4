@@ -6,14 +6,14 @@
             for="{{ name }}"
             class="visually-hidden"
         >
-            {% trans 'Search' %}
+            {% translate 'Search' %}
         </label>
         <input
             class="form-control"
             type="search"
             id="{{ name }}"
             name="{{ name }}"
-            placeholder="{% trans 'Search' %}"
+            placeholder="{% translate 'Search' %}"
             value="{{ value }}"
         />
         {% for par_name, value in url_par.items %}
@@ -27,7 +27,7 @@
         >
             <i class="fa fa-search" aria-hidden="true"></i>
             <span class="visually-hidden">
-                {% trans 'Search' %}
+                {% translate 'Search' %}
             </span>
         </button>
     </form>

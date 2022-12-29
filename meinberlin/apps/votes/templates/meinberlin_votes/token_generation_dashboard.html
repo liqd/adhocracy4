@@ -11,7 +11,7 @@
     {% csrf_token %}
     {% if form.errors %}
     <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-        {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+        {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
     </div>
     {% endif %}
 
@@ -24,7 +24,7 @@
     {% endif %}
 
     <label for="{{ form.number_of_tokens.id_for_label }}">
-    {{ form.number_of_tokens.label }}{% if form.number_of_tokens.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
+    {{ form.number_of_tokens.label }}{% if form.number_of_tokens.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
     </label>
     {% if form.number_of_tokens.help_text %}
     <div class="form-hint">

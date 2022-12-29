@@ -3,16 +3,16 @@
 
 <div class="dashboard-nav">
     <div class="dashboard-nav__collapsible-menu">
-        <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__module--{{ module_menu.module.pk }}" {% if not module_menu.module.pk in closed_accordeons %}checked{% endif %} aria-label="{% trans 'Toggle menu' %}">
+        <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__module--{{ module_menu.module.pk }}" {% if not module_menu.module.pk in closed_accordeons %}checked{% endif %} aria-label="{% translate 'Toggle menu' %}">
         <label class="dashboard-nav__dropdown" for="dashboard-nav__module--{{ module_menu.module.pk }}" tabindex="0">
             <div class="dashboard-nav__item">
                 <div class="dashboard-nav__header">
-                    <span>{% trans 'Module' %}</span>
+                    <span>{% translate 'Module' %}</span>
                     <span>
                         {% if module_menu.is_complete %}
-                            <i class="fas fa-check-circle u-success dashboard-nav__dropdown-icon" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
+                            <i class="fas fa-check-circle u-success dashboard-nav__dropdown-icon" title="{% translate 'Module ready for addition' %}" aria-label="{% translate 'Module ready for addition' %}"></i>
                         {% else %}
-                            <i class="fas fa-exclamation-circle u-danger dashboard-nav__dropdown-icon" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
+                            <i class="fas fa-exclamation-circle u-danger dashboard-nav__dropdown-icon" title="{% translate 'Module not ready for addition' %}" aria-label="{% translate 'Module not ready for addition' %}"></i>
                         {% endif %}
                         <i class="fa fa-caret-down" aria-hidden="true"></i>
                     </span>
@@ -29,7 +29,7 @@
                        class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
                         {{ item.label }}
                         {% if not item.is_complete %}
-                            <i class="fas fa-exclamation-circle u-danger dashboard-nav__icon" title="{% trans 'Missing required fields' %}" aria-label="{% trans 'Missing required fields' %}"></i>
+                            <i class="fas fa-exclamation-circle u-danger dashboard-nav__icon" title="{% translate 'Missing required fields' %}" aria-label="{% translate 'Missing required fields' %}"></i>
                         {% endif %}
                     </a>
                 </li>
@@ -45,18 +45,18 @@
         <input type="hidden" name="referrer" value="{{ request.path }}" />
         {% if module_menu.module.is_draft %}
             <button name="action" value="publish" {% if not module_menu.is_complete %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top u-spacer-bottom-half">
-                {% trans 'Show in project' %}
+                {% translate 'Show in project' %}
             </button>
         {% else %}
             <button name="action" value="unpublish" {% if not project|has_unpublishable_modules %}disabled{% endif %} class="btn btn--secondary btn--full btn--attached-top u-spacer-bottom-half">
-                {% trans 'Hide from project' %}
+                {% translate 'Hide from project' %}
             </button>
         {% endif %}
     </form>
     {% if module_menu.module.is_draft %}
-    <button type="submit" class="btn btn--full btn--danger u-spacer-bottom dashboard_nav__btn--delete" value="{% trans 'Delete' %}" data-bs-toggle="modal" data-bs-target="#delete-modal{{ module_menu.module.pk }}">
-        <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
-        {% trans 'Delete module' %}
+    <button type="submit" class="btn btn--full btn--danger u-spacer-bottom dashboard_nav__btn--delete" value="{% translate 'Delete' %}" data-bs-toggle="modal" data-bs-target="#delete-modal{{ module_menu.module.pk }}">
+        <i class="fas fa-trash-alt" aria-label="{% translate 'Delete module' %}"></i>
+        {% translate 'Delete module' %}
     </button>
     {% endif %}
 </div>
@@ -65,8 +65,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title u-first-heading" id="delete-modal-label">{% trans "Are you sure you want to delete your module?" %}</h2>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% trans 'Close'%}">
+                <h2 class="modal-title u-first-heading" id="delete-modal-label">{% translate "Are you sure you want to delete your module?" %}</h2>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close'%}">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -75,12 +75,12 @@
                     <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post" class="u-inline">
                         {% csrf_token %}
                         <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        <button type="submit" class="btn btn--danger" value="{% trans 'Delete' %}" data-bs-toggle="modal" data-bs-target="#delete-modal">
-                            <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
-                            {% trans 'Delete module' %}
+                        <button type="submit" class="btn btn--danger" value="{% translate 'Delete' %}" data-bs-toggle="modal" data-bs-target="#delete-modal">
+                            <i class="fas fa-trash-alt" aria-label="{% translate 'Delete module' %}"></i>
+                            {% translate 'Delete module' %}
                         </button>
                     </form>
-                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% trans 'Cancel'%}
+                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% translate 'Cancel'%}
                     </button>
                 </div>
             </div>

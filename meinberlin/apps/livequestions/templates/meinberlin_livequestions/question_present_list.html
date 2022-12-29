@@ -22,7 +22,7 @@
                     <img src="{% static 'images/icon_liveq_infografik_phone.svg' %}" alt="">
                 </div>
                 <div class="block--infographic__text">
-                {% trans "Enter event link" %}
+                {% translate "Enter event link" %}
                 </div>
             </div>
             <div class="block--infographic__arrow">
@@ -36,7 +36,7 @@
                     <img src="{% static 'images/icon_liveq_infografik_thumb.svg' %}" alt="">
                 </div>
                 <div class="block--infographic__text">
-                  {% trans "Like questions" %}
+                  {% translate "Like questions" %}
                 </div>
             </div>
             <div class="block--infographic__arrow">
@@ -50,12 +50,12 @@
                     <img src="{% static 'images/icon_liveq_infografik_question.svg' %}" alt="">
                 </div>
                 <div class="block--infographic__text">
-                  {% trans "Ask a question yourself!" %}
+                  {% translate "Ask a question yourself!" %}
                 </div>
             </div>
         </div>
         <div class="offset-lg-2 col-lg-8 u-align-center">
-          <span>{% trans "join in here" %}
+          <span>{% translate "join in here" %}
             <a href="{{ project.get_absolute_url }}">{{ view.get_full_url }}</a>
           </span>
         </div>

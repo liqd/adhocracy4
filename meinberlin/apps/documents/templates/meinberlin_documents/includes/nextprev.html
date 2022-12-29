@@ -6,23 +6,23 @@
             {% if object.prev %}
                 <a href="{{ object.prev.get_absolute_url }}" class="btn btn--light">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                    {% trans "Previous Chapter" %}
+                    {% translate "Previous Chapter" %}
                 </a>
             {% else %}
                 <span class="btn btn--light is-disabled">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                    {% trans "Previous Chapter" %}
+                    {% translate "Previous Chapter" %}
                 </span>
             {% endif %}
 
             {% if object.next %}
                 <a href="{{ object.next.get_absolute_url }}" class="btn btn--light control-bar__right">
-                    {% trans "Next Chapter" %}
+                    {% translate "Next Chapter" %}
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
             {% else %}
                 <span class="btn btn--light is-disabled control-bar__right">
-                    {% trans "Next Chapter" %}
+                    {% translate "Next Chapter" %}
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </span>
             {% endif %}

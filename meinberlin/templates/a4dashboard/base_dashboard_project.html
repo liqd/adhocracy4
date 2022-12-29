@@ -4,28 +4,28 @@
 {% block dashboard_nav %}
 <div class="u--bg-secondary u-spacer-bottom-double">
     <div class="container dashboard-nav__breadcrumb">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     {% if project.project_type == 'meinberlin_bplan.Bplan' %}
                     <a href="{% url 'a4dashboard:bplan-list' organisation_slug=view.organisation.slug %}">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'All development plans' %}
+                        {% translate 'All development plans' %}
                     </a>
                     {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
                     <a href="{% url 'a4dashboard:extproject-list' organisation_slug=view.organisation.slug %}">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'All linkages' %}
+                        {% translate 'All linkages' %}
                     </a>
                     {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
                     <a href="{% url 'a4dashboard:container-list' organisation_slug=view.organisation.slug %}">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'All containers' %}
+                        {% translate 'All containers' %}
                     </a>
                     {% else %}
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'All participation projects' %}
+                        {% translate 'All participation projects' %}
                     </a>
                     {% endif %}
                 </li>
@@ -39,7 +39,7 @@
     <div class="row">
         <nav
           class="col-lg-3 js-selector-update-dashboard"
-          aria-label="{% trans 'Project Settings' %}"
+          aria-label="{% translate 'Project Settings' %}"
         >
             {% include "a4dashboard/includes/nav_project.html" %}
 

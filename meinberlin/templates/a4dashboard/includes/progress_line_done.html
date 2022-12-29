@@ -2,16 +2,16 @@
 
 <ul class="progress-line u-spacer-bottom">
     <li class="progress-line__entry--published">
-        <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Project type has been published' %}" aria-label="{% trans 'Project type has been published' %}"></i>
+        <i class="fas fa-check-circle u-success progress-line__icon" title="{% translate 'Project type has been published' %}" aria-label="{% translate 'Project type has been published' %}"></i>
 
         {% if project.project_type == 'meinberlin_bplan.Bplan' %}
-        <span>{% trans 'The development plan has been published.' %}</span>
+        <span>{% translate 'The development plan has been published.' %}</span>
         {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
-        <span>{% trans 'The linkage has been published.' %}</span>
+        <span>{% translate 'The linkage has been published.' %}</span>
         {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-        <span>{% trans 'The container has been published.' %}</span>
+        <span>{% translate 'The container has been published.' %}</span>
         {% else %}
-        <span>{% trans 'The project has been published. You can add further modules.' %}</span>
+        <span>{% translate 'The project has been published. You can add further modules.' %}</span>
         {% endif %}
     </li>
 </ul>

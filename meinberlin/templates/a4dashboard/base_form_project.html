@@ -8,7 +8,7 @@
 
     {% if form.errors %}
     <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-        {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+        {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
     </div>
     {% endif %}
 
@@ -26,7 +26,7 @@
         {% include view.form_template_name %}
 
         <div class="u-spacer-bottom">
-            <input type="submit" class="btn btn--primary" name="save" value="{% trans 'Save' %}"/>
+            <input type="submit" class="btn btn--primary" name="save" value="{% translate 'Save' %}"/>
         </div>
     </form>
 {% endblock %}

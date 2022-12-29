@@ -4,7 +4,7 @@
 {% with modules_and_events|length as module_event_count %}
 
 {% if module_event_count > 1 %}
-<nav class="timeline" aria-label="{% trans 'Timeline' %}">
+<nav class="timeline" aria-label="{% translate 'Timeline' %}">
     <ul>
         {% for obj in modules_and_events %}
             {% if obj|is_module %}
@@ -15,8 +15,8 @@
                     >
                         {{ obj.name }}
                     </a>
-                    {% if obj.active_phase %}<span class="timeline__active">{% trans 'active' %}</span>{% endif %}
-                    {% if obj == module %}<span class="visually-hidden">{% trans 'current page' %}</span>{% endif %}
+                    {% if obj.active_phase %}<span class="timeline__active">{% translate 'active' %}</span>{% endif %}
+                    {% if obj == module %}<span class="visually-hidden">{% translate 'current page' %}</span>{% endif %}
                 </li>
             {% else %}
                 <li>
@@ -25,7 +25,7 @@
                         class="btn btn--light btn--small timeline__button {% if obj == object %}is-selected{% endif %}"
                     >
                         {{ obj.name }}
-                        {% if obj == object %}<span class="visually-hidden">{% trans 'current page' %}</span>{% endif %}
+                        {% if obj == object %}<span class="visually-hidden">{% translate 'current page' %}</span>{% endif %}
                     </a>
                 </li>
             {% endif %}
@@ -46,7 +46,7 @@
                 {% if not module.active_phase %}
                     <div class="timeline-detail__meta">
                         <strong>
-                            {% trans 'Participation is not possible at the moment.' %}
+                            {% translate 'Participation is not possible at the moment.' %}
                             {% if not module.past_phases %}
                                 {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
                                 {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
@@ -73,7 +73,7 @@
                             <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar u-inline-flex{% endif %}">
                                 {% if phase == module.active_phase %}
                                     <span class="lr-bar__left">{{ phase.name }}</span>
-                                    <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                                    <span class="lr-bar__right phase-info__highlight">{% translate 'active' %}</span>
                                 {% else %}
                                     {{ phase.name }}
                                 {% endif %}
@@ -93,7 +93,7 @@
             {% else %}
                 <div class="timeline-detail__meta">
                     <strong>
-                        {% trans 'Participation is not possible at the moment.' %}
+                        {% translate 'Participation is not possible at the moment.' %}
                         {% html_date project.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
                         {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
                     </strong>

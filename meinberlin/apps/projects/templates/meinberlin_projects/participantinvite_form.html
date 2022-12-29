@@ -20,8 +20,8 @@
             </p>
             <form method="POST">
                 {% csrf_token %}
-                <button type="submit" name="accept" class="btn btn--primary">{% trans 'Accept' %}</button>
-                <button type="submit" name="reject" class="btn btn--light">{% trans 'Decline' %}</button>
+                <button type="submit" name="accept" class="btn btn--primary">{% translate 'Accept' %}</button>
+                <button type="submit" name="reject" class="btn btn--light">{% translate 'Decline' %}</button>
             </form>
         </div>
     </div>

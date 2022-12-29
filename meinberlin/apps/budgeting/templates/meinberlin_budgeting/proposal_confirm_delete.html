@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Confirm Proposal Deletion' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Confirm Proposal Deletion' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">
-        <h1>{% trans 'Are you sure you want to delete the proposal?' %} </h1>
+        <h1>{% translate 'Are you sure you want to delete the proposal?' %} </h1>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
-            <input type="submit" class="btn btn--primary" value="{% trans 'Yes'%}" />
-            <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% trans 'Cancel'%}</a>
+            <input type="submit" class="btn btn--primary" value="{% translate 'Yes'%}" />
+            <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% translate 'Cancel'%}</a>
         </form>
     </div>
 </div>

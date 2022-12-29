@@ -2,7 +2,7 @@
 {% block headline %}{% endblock %}
 {% block sub-headline %}{% endblock %}
 
-{% block greeting %}{% trans 'Hello' %},{% endblock %}
+{% block greeting %}{% translate 'Hello' %},{% endblock %}
 {% block content %}{% endblock %}
 {% block content_left_aligned %}{% endblock %}
 
@@ -11,8 +11,8 @@
 {% block reason %}{% endblock %}
 
 ---
-{% trans 'meinBerlin is a participation platform operated by' %}
+{% translate 'meinBerlin is a participation platform operated by' %}
 Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
 
-{% trans 'Contact' %}: {{ site.domain }}/impressum/
-{% trans 'Terms of use' %}: {{ site.domain }}/terms-of-use/
+{% translate 'Contact' %}: {{ site.domain }}/impressum/
+{% translate 'Terms of use' %}: {{ site.domain }}/terms-of-use/

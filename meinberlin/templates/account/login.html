@@ -1,10 +1,10 @@
 {% extends "account/base.html" %}
 {% load i18n account socialaccount %}
 
-{% block head_title %}{% trans "Login" %}{% endblock %}
+{% block head_title %}{% translate "Login" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Login" %}</h1>
+    <h1>{% translate "Login" %}</h1>
 
     <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktrans %}</p>
 
@@ -29,15 +29,15 @@
         {% endif %}
 
         <div class="u-spacer-bottom">
-            <button class="btn btn--primary" type="submit">{% trans "Login" %}</button>
-            <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+            <button class="btn btn--primary" type="submit">{% translate "Login" %}</button>
+            <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
         </div>
     </form>
 
     {% get_providers as socialaccount_providers %}
     {% if socialaccount_providers %}
         <p class="u-spacer-bottom-half">
-            {% trans 'Or use your Service-Konto:' %}
+            {% translate 'Or use your Service-Konto:' %}
         </p>
         {% include "socialaccount/snippets/provider_list.html" with process="login" %}
     {% endif %}

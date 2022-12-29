@@ -17,19 +17,19 @@
         <i class="fa fa-caret-down" aria-hidden="true"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
+            <a class="dropdown-item" href="{% url 'account' %}">{% translate "Account Settings" %}</a>
         {% for organisation in request.user.organisations %}
             <a class="dropdown-item" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
                 {{ organisation.name }}
             </a>
         {% endfor %}
         {% if request.user.is_superuser %}
-                <a class="dropdown-item" href="{% url 'meinberlin_platformemails:create' %}">{% trans "Platform Email" %}</a>
+                <a class="dropdown-item" href="{% url 'meinberlin_platformemails:create' %}">{% translate "Platform Email" %}</a>
         {% endif %}
-            <form class="u-inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
+            <form class="u-inline" action="{% url 'account_logout' %}" method="post" aria-label="{% translate 'Logout' %}">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ redirect_field_value }}">
-                <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
+                <button type="submit" class="dropdown-item">{% translate "Logout" %}</button>
             </form>
     </div>
 
@@ -44,15 +44,15 @@
             aria-expanded="false"
             id="login-register"
     >
-        {% trans "Login" %} / {% trans "Register" %}
+        {% translate "Login" %} / {% translate "Register" %}
         <i class="fa fa-caret-down" aria-hidden="true"></i>
     </button>
     <ul class="dropdown-menu" aria-labelledby="login-register">
         <li>
-            <a class="dropdown-item" href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}">{% trans "Login" %}</a>
+            <a class="dropdown-item" href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}">{% translate "Login" %}</a>
         </li>
         <li>
-            <a class="dropdown-item" href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}">{% trans "Register" %}</a>
+            <a class="dropdown-item" href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}">{% translate "Register" %}</a>
         </li>
     </ul>
 

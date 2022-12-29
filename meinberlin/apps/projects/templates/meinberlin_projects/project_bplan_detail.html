@@ -8,7 +8,7 @@
         {# This replaces the default project detail by a simple notice that the participation has not started yet. #}
         <div class="container">
             <div class="offset-lg-3 col-lg-6">
-                <h1 class="u-first-heading">{% trans 'Participation is not possible at the moment.' %}</h1>
+                <h1 class="u-first-heading">{% translate 'Participation is not possible at the moment.' %}</h1>
                 <p>
                     {% html_date project.modules.first.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
                     {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}

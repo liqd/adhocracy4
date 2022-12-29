@@ -11,17 +11,17 @@
                     <a href="{{ object.get_absolute_url }}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-eye" aria-hidden="true"></i>
-                        {% trans 'View' %}
+                        {% translate 'View' %}
                     </a>
                     <a href="{% url 'a4dashboard:maptopic-update' pk=object.pk year=object.created.year %}"
                        class="btn btn--small btn--light">
                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        {% trans 'Edit'%}
+                        {% translate 'Edit'%}
                     </a>
                     <a href="{% url 'a4dashboard:maptopic-delete' pk=object.pk year=object.created.year %}"
                        class="btn btn--small btn--light">
                         <i class="fas fa-times" aria-hidden="true"></i>
-                        {% trans 'Delete'%}
+                        {% translate 'Delete'%}
                     </a>
                 {% endspaceless %}
             </div>

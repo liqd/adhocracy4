@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load i18n socialaccount %}
 
-{% block title %}{% trans "User Dashboard" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "User Dashboard" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <nav class="dashboard-nav" aria-label="{% trans 'User Dashboard navigation' %}">
+            <nav class="dashboard-nav" aria-label="{% translate 'User Dashboard navigation' %}">
                 <div class="dashboard-nav__dropdown">
                     <div class="dashboard-nav__item">
                         {{ request.user.username }}
@@ -19,25 +19,25 @@
                         <li class="dashboard-nav__page">
                             <a href="{% url 'account_profile' %}"
                                class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_profile" %}is-active{% endif %}">
-                                {% trans 'Profile' %}
+                                {% translate 'Profile' %}
                             </a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="{% url 'account_actions' %}"
                                class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_actions" %}is-active{% endif %}">
-                                {% trans 'Activities' %}
+                                {% translate 'Activities' %}
                             </a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="{% url 'account_change_password' %}"
                                class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_change_password" %}is-active{% endif %}">
-                                {% trans 'Change password' %}
+                                {% translate 'Change password' %}
                             </a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="{% url 'account_email' %}"
                                class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_email" %}is-active{% endif %}">
-                                {% trans 'Email addresses' %}
+                                {% translate 'Email addresses' %}
                             </a>
                         </li>
                         {% get_providers as socialaccount_providers %}
@@ -45,7 +45,7 @@
                         <li class="dashboard-nav__page">
                             <a href="{% url 'socialaccount_connections' %}"
                                class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "socialaccount_connections" %}is-active{% endif %}">
-                                {% trans 'Account Connections' %}
+                                {% translate 'Account Connections' %}
                             </a>
                         </li>
                         {% endif %}

@@ -2,7 +2,7 @@
 {% load i18n static %}
 
 {% block dashboard_project_content %}
-    <h1 class="u-first-heading">{% trans 'Edit livestream' %}</h1>
+    <h1 class="u-first-heading">{% translate 'Edit livestream' %}</h1>
 
     {% if form.non_field_errors %}
         <ul class="errorlist" aria-live="assertive" aria-atomic="true">
@@ -19,7 +19,7 @@
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.live_stream %}
 
         <div class="u-spacer-bottom">
-            <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />
+            <input type="submit" class="btn btn--primary" value="{% translate 'Save'%}" />
         </div>
     </form>
 {% endblock %}

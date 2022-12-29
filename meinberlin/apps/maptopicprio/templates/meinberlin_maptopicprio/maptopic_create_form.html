@@ -1,15 +1,15 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Add a new place' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Add a new place' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_project_content %}
 <div class="container">
-    <h1 class="u-first-heading">{% trans 'Add a new place'%}</h1>
+    <h1 class="u-first-heading">{% translate 'Add a new place'%}</h1>
 
     {% if form.errors %}
     <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-      {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+      {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
     </div>
     {% endif %}
 

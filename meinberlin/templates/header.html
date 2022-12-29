@@ -10,17 +10,17 @@
                     data-bs-target="#menu-collapse"
                     aria-expanded="false"
                     aria-controls="menu-collapse"
-                    aria-label="{% trans 'Menu' %}">
+                    aria-label="{% translate 'Menu' %}">
                     <i class="fas fa-bars" aria-hidden="true"></i>
                 </button>
                 <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
                     <ul class="main-nav__list">
                         <li class="main-nav__item">
-                            <a class="main-nav__link {% if request.path == '/' %}is-active{% else %}not-active{% endif %}" href="/" aria-label="{% trans 'Home' %}"><i class="fas fa-home"></i><span class="main-nav__link-home">{% trans 'Home' %}</span></a>
+                            <a class="main-nav__link {% if request.path == '/' %}is-active{% else %}not-active{% endif %}" href="/" aria-label="{% translate 'Home' %}"><i class="fas fa-home"></i><span class="main-nav__link-home">{% translate 'Home' %}</span></a>
                         </li>
                         <li class="main-nav__item">
                             {% url 'meinberlin_plans:plan-list' as project_list %}
-                            <a class="main-nav__link {% if request.path == project_list %}is-active{% else %}not-active{% endif %}" href="{% url 'meinberlin_plans:plan-list' %}">{% trans 'Project overview' %}</a>
+                            <a class="main-nav__link {% if request.path == project_list %}is-active{% else %}not-active{% endif %}" href="{% url 'meinberlin_plans:plan-list' %}">{% translate 'Project overview' %}</a>
                         </li>
                         {% get_menu "topnav" as topnav %}
                         {% for item in topnav %}
@@ -43,7 +43,7 @@
                     data-bs-target="#user-menu-collapse"
                     aria-expanded="false"
                     aria-controls="user-menu-collapse"
-                    aria-label="{% trans 'User Menu' %}">
+                    aria-label="{% translate 'User Menu' %}">
                     <i class="fas fa-user"></i>
                 </button>
                 <div class="main-nav__menu-wrapper collapse" id="user-menu-collapse">
@@ -53,12 +53,12 @@
                     <ul class="main-nav__list">
                         {% if settings.meinberlin_cms.HeaderPages.help_page %}
                         <li class="main-nav__item">
-                            <a class="main-nav__link {% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}is-active{% else %}not-active{% endif %}" href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% trans 'Help' %}</a>
+                            <a class="main-nav__link {% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}is-active{% else %}not-active{% endif %}" href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% translate 'Help' %}</a>
                         </li>
                         {% endif %}
                         {% if settings.meinberlin_cms.HeaderPages.feedback_page %}
                         <li class="main-nav__item">
-                            <a class="main-nav__link {% if request.path == settings.meinberlin_cms.HeaderPages.feedback_page.get_url %}is-active{% else %}not-active{% endif %}" href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% trans 'Give Feedback' %}</a>
+                            <a class="main-nav__link {% if request.path == settings.meinberlin_cms.HeaderPages.feedback_page.get_url %}is-active{% else %}not-active{% endif %}" href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% translate 'Give Feedback' %}</a>
                         </li>
                         {% endif %}
                     </ul>

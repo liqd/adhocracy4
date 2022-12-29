@@ -15,12 +15,12 @@
                     {{ project.name }}
                     {% if not project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
                         {% if project.has_finished %}
-                            <span class="label label--primary">{% trans "Finished" %}</span>
+                            <span class="label label--primary">{% translate "Finished" %}</span>
                         {% endif %}
                         {% if project.is_semipublic %}
-                            <span class="label label--secondary">{% trans 'Semipublic' %}</span>
+                            <span class="label label--secondary">{% translate 'Semipublic' %}</span>
                         {% elif project.is_private %}
-                            <span class="label label--secondary">{% trans 'Private' %}</span>
+                            <span class="label label--secondary">{% translate 'Private' %}</span>
                         {% endif %}
                     {% endif %}
                 </h2>
@@ -33,15 +33,15 @@
                        class="btn btn--light btn--small">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         {% if project.is_draft %}
-                        {% trans 'Preview' %}
+                        {% translate 'Preview' %}
                         {% else %}
-                        {% trans 'View' %}
+                        {% translate 'View' %}
                         {% endif %}
                     </a>
                     <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
                        class="btn btn--light btn--small">
                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                        {% trans 'Edit'%}
+                        {% translate 'Edit'%}
                     </a>
                     {% if project.project_type == 'a4projects.Project' %}
                         <div class="dropdown">
@@ -53,9 +53,9 @@
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                     id="project-actions"
-                                    title="{% trans 'more' %}"
+                                    title="{% translate 'more' %}"
                             >
-                                <i class="fa fa-caret-down" aria-label="{% trans 'more' %}"></i>
+                                <i class="fa fa-caret-down" aria-label="{% translate 'more' %}"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="project-actions">
                                 <li>
@@ -65,7 +65,7 @@
                                         <button type="submit" name="duplicate" value="{{ project }}"
                                                 class="dropdown-item">
                                             <i class="far fa-copy" aria-hidden="true"></i>
-                                            {% trans 'Duplicate' %}
+                                            {% translate 'Duplicate' %}
                                         </button>
                                     </form>
                                 </li>

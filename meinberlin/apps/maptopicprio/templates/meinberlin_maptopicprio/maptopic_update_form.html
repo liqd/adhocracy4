@@ -5,11 +5,11 @@
 
 {% block dashboard_project_content %}
 <div class="container">
-    <h1 class="u-first-heading">{% trans 'Edit place' %}</h1>
+    <h1 class="u-first-heading">{% translate 'Edit place' %}</h1>
 
     {% if form.errors %}
     <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-      {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+      {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
     </div>
     {% endif %}
 

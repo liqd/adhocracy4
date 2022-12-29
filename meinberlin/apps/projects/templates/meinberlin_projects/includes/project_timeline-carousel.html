@@ -9,16 +9,16 @@
                        aria-labelledby="timeline_item timeline_entry_{{ forloop.counter }}">
                         <div id="timeline_item"
                              class="timeline-carousel__dot {% if forloop.counter0 == initial_slide %} initial {% endif %}">
-                            <span class="visually-hidden">{% trans 'Timeline item' %}</span>
+                            <span class="visually-hidden">{% translate 'Timeline item' %}</span>
                         </div>
                         <div class="timeline-carousel__label {% if forloop.counter0 == initial_slide %} initial {% endif %}">
                             <span id="timeline_entry_{{ forloop.counter }}">
                                 {% if  date.type == 'module' %}
                                     <span class="timeline-carousel__title">{{ date.title }}</span><br>
-                                    {% trans 'from' %} {{ date.date | date }}
+                                    {% translate 'from' %} {{ date.date | date }}
                                 {% else %}
                                     <span class="timeline-carousel__title">{{ date.event_type }}</span><br>
-                                    {% trans 'on' %} {{ date.date | date }}
+                                    {% translate 'on' %} {{ date.date | date }}
                                 {% endif %}
                             </span>
                         </div>

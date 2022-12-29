@@ -4,40 +4,40 @@
 
 {% block dashboard_content %}
 <div class="row">
-    <nav class="col-lg-3" aria-label="{% trans 'Participation projects' %}">
+    <nav class="col-lg-3" aria-label="{% translate 'Participation projects' %}">
         <div class="dashboard-nav">
             <div class="dashboard-nav__dropdown">
-                <div class="dashboard-nav__item">{% trans "Projects" %}</div>
+                <div class="dashboard-nav__item">{% translate "Projects" %}</div>
             </div>
             <ul class="dashboard-nav__pages">
                 <li class="dashboard-nav__page">
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                         class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'project-list' %}is-active{% endif %}">
-                        {% trans "Participation projects" %}
+                        {% translate "Participation projects" %}
                     </a>
                 </li>
                 <li class="dashboard-nav__page">
                     <a href="{% url 'a4dashboard:bplan-list' organisation_slug=view.organisation.slug %}"
                         class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'bplan-list' %}is-active{% endif %}">
-                        {% trans "Development plans" %}
+                        {% translate "Development plans" %}
                     </a>
                 </li>
                 <li class="dashboard-nav__page">
                     <a href="{% url 'a4dashboard:container-list' organisation_slug=view.organisation.slug %}"
                         class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'container-list' %}is-active{% endif %}">
-                        {% trans "Containers" %}
+                        {% translate "Containers" %}
                     </a>
                 </li>
                 <li class="dashboard-nav__page">
                     <a href="{% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug %}"
                        class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'plan-list' %}is-active{% endif %}">
-                        {% trans "Plans" %}
+                        {% translate "Plans" %}
                     </a>
                 </li>
                 <li class="dashboard-nav__page">
                     <a href="{% url 'a4dashboard:extproject-list' organisation_slug=view.organisation.slug %}"
                         class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'extproject-list' %}is-active{% endif %}">
-                        {% trans "Linkages" %}
+                        {% translate "Linkages" %}
                     </a>
                 </li>
             </ul>

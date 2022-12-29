@@ -36,7 +36,7 @@
         {% if item.project.administrative_district %}
             {{ item.project.administrative_district }}
         {% else %}
-            {% trans 'City wide' %}
+            {% translate 'City wide' %}
         {% endif %}
     </p>
     <h2 class="storefront__proj-text {% if item.project.name|length > 95 %} storefront__proj-text-wide {% endif %}">
@@ -51,7 +51,7 @@
           {% if item.project.module_running_days_left < 365 %}
             {% blocktrans with time_left=item.project.module_running_time_left %}{{ time_left }} remaining{% endblocktrans %}
           {% else %}
-          <span>{% trans 'more than 1 year remaining' %}</span>
+          <span>{% translate 'more than 1 year remaining' %}</span>
           {% endif %}
         </span>
     </div>

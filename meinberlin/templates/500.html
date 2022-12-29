@@ -1,12 +1,12 @@
 {% load i18n static %}
 <html>
     <head>
-        <title>Error &mdash; {% trans 'meinBerlin' %}</title>
+        <title>Error &mdash; {% translate 'meinBerlin' %}</title>
         <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     </head>
 
     <body>
-        <a href="#main" class="visually-hidden-focusable">{% trans "Skip to content "%}</a>
+        <a href="#main" class="visually-hidden-focusable">{% translate "Skip to content "%}</a>
 
         <div class="portal-header">
             <div class="container">
@@ -15,7 +15,7 @@
                     <img src="{% static 'images/berlin_de.png' %}" alt="Zur Homepage von Berlin.de" />
                 </a>
 
-                <nav aria-label="{% trans 'Portal Navigation' %}">
+                <nav aria-label="{% translate 'Portal Navigation' %}">
                     <ul class="portal-header__nav">
                         <li><a href="https://www.berlin.de/politik-verwaltung-buerger/">Politik, Verwaltung, Bürger</a></li>
                         <li><a href="https://www.berlin.de/kultur-und-tickets/">Kultur &#38; Ausgehen</a></li>
@@ -46,8 +46,8 @@
         <div class="container">
             <div class="offset-lg-3 col-lg-6">
                 <h1>500</h1>
-                <p>{% trans 'Internal server error.' %}</p>
-                <a href="/">{% trans 'Back to meinBerlin.' %}</a>
+                <p>{% translate 'Internal server error.' %}</p>
+                <a href="/">{% translate 'Back to meinBerlin.' %}</a>
             </div>
         </div>
 

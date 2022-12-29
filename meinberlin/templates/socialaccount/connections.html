@@ -2,10 +2,10 @@
 
 {% load i18n %}
 
-{% block title %}{% trans "Account Connections" %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Account Connections" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-    <h1 class="u-first-heading">{% trans "Account Connections" %}</h1>
+    <h1 class="u-first-heading">{% translate "Account Connections" %}</h1>
 
     {% if form.accounts %}
         <p>{% blocktrans %}Your account is connected to the following services:{% endblocktrans %}</p>
@@ -28,10 +28,10 @@
                 {% endwith %}
             {% endfor %}
 
-            <button class="btn btn--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+            <button class="btn btn--secondary" type="submit" name="action_remove" >{% translate 'Remove' %}</button>
         </form>
     {% else %}
-        <p>{% trans 'You can connect your account to the following services:' %}</p>
+        <p>{% translate 'You can connect your account to the following services:' %}</p>
         {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
     {% endif %}
 

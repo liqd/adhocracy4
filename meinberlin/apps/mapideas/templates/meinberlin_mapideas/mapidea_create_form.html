@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Create a new proposal' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Create a new proposal' %} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">
-        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <nav class="breadcrumbs" aria-label="{% translate 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{{ module.get_detail_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'go back' %}</a>
+                        {% translate 'go back' %}</a>
                 </li>
             </ul>
         </nav>
 
-        <h1>{% trans 'Submit a new idea for this project'%}</h1>
+        <h1>{% translate 'Submit a new idea for this project'%}</h1>
 
         {% if form.errors %}
         <div class="alert alert--danger" aria-live="assertive" aria-atomic="true" id="alert">
-          {% trans 'An error occurred while evaluating your data. Please check the data you entered again.' %}
+          {% translate 'An error occurred while evaluating your data. Please check the data you entered again.' %}
         </div>
         {% endif %}
 

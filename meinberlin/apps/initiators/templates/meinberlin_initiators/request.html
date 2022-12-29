@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Registration for Initiators' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Registration for Initiators' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="offset-lg-3 col-lg-6">
-            <h1>{% trans 'Registration for Initiators' %}</h1>
+            <h1>{% translate 'Registration for Initiators' %}</h1>
 
-            <p>{% trans 'If you want to initiate new participation projects on meinBerlin, please use this form to request the required access permissions.' %}</p>
+            <p>{% translate 'If you want to initiate new participation projects on meinBerlin, please use this form to request the required access permissions.' %}</p>
 
             <form enctype="multipart/form-data" action="{{ request.path }}" method="post" >
                 {% csrf_token %}
@@ -17,7 +17,7 @@
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.phone %}
 
                 <div class="u-spacer-bottom">
-                    <button type="submit" class="btn btn--primary">{% trans 'Send request' %}</button>
+                    <button type="submit" class="btn btn--primary">{% translate 'Send request' %}</button>
                 </div>
             </form>
             {{ form.media }}

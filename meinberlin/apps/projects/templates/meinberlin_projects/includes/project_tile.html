@@ -37,7 +37,7 @@
                 {% if project.administrative_district %}
                 {{ project.administrative_district }}
                 {% else %}
-                {% trans 'City wide' %}
+                {% translate 'City wide' %}
                 {% endif %}
                 </span>
                 <h3 class="maplist-item__title">{{ project.name }}</h3>
@@ -49,7 +49,7 @@
                 <div class="maplist-item__stats">
                     <span class="participation-tile__proj-count">
                         <i class="fas fa-th" aria-hidden="true"></i>
-                        {% trans 'Participation projects: ' %}
+                        {% translate 'Participation projects: ' %}
                     </span>
                     <span>{{ project.projectcontainer.total_project_count }}</span>
                 </div>
@@ -64,7 +64,7 @@
                             {% if project.module_running_days_left < 365 %}
                             {% blocktrans with time_left=project.module_running_time_left %}{{ time_left }} remaining {% endblocktrans %}
                             {% else %}
-                            <span>{% trans 'more than 1 year remaining' %}</span>
+                            <span>{% translate 'more than 1 year remaining' %}</span>
                             {% endif %}
                         </span>
                     </div>

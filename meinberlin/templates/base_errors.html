@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Error' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Error' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">
         <h1>{% block error_status %}{% endblock %}</h1>
         {% block error_description %}{% endblock %}
-        <a href="/">{% trans 'Back to meinBerlin.' %}</a>
+        <a href="/">{% translate 'Back to meinBerlin.' %}</a>
     </div>
 </div>
 {% endblock %}

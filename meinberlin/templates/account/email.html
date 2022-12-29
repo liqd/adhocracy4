@@ -2,10 +2,10 @@
 
 {% load i18n widget_tweaks %}
 
-{% block title %}{% trans 'Email Addresses' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Email Addresses' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-<h1 class="u-first-heading">{% trans 'Email Addresses' %}</h1>
+<h1 class="u-first-heading">{% translate 'Email Addresses' %}</h1>
 
 <form class="multiform" action="{% url 'account_email' %}?next={{ request.path|urlencode }}" method="post">
     {% csrf_token %}
@@ -17,21 +17,21 @@
                    value="{{emailaddress.email}}">
             {{ emailaddress.email }}
             {% if emailaddress.primary %}
-            <span class="label">{% trans "Primary" %}</span>
+            <span class="label">{% translate "Primary" %}</span>
             {% endif %}
             {% if emailaddress.verified %}
-            <span class="label">{% trans "Verified" %}</span>
+            <span class="label">{% translate "Verified" %}</span>
             {% else %}
-            <span class="label">{% trans "Unverified" %}</span>
+            <span class="label">{% translate "Unverified" %}</span>
             {% endif %}
         </label>
     </div>
     {% endfor %}
 
     <div class="u-spacer-bottom">
-        <button class="btn btn--primary" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
-        <button class="btn btn--secondary" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button>
-        <button class="btn btn--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+        <button class="btn btn--primary" type="submit" name="action_primary">{% translate 'Make Primary' %}</button>
+        <button class="btn btn--secondary" type="submit" name="action_send">{% translate 'Re-send Verification' %}</button>
+        <button class="btn btn--secondary" type="submit" name="action_remove" >{% translate 'Remove' %}</button>
     </div>
 </form>
 
@@ -46,7 +46,7 @@
     {% endif %}
 
     <div class="form-group">
-        <label class="control-label" for="{{ form.email.id_for_label }}">{% trans "Add another Email" %}</label>
+        <label class="control-label" for="{{ form.email.id_for_label }}">{% translate "Add another Email" %}</label>
         {% if form.email.errors %}
             <ul class="errorlist" aria-live="assertive" aria-atomic="true">
             {% for error in form.email.errors %}
@@ -57,7 +57,7 @@
         {{ form.email|add_class:"form-control"|add_error_attr:"aria-invalid:true" }}
     </div>
     <div class="u-spacer-bottom">
-        <input class="btn btn--primary" name="action_add" type="submit" value="{% trans 'Add Email' %}"/>
+        <input class="btn btn--primary" name="action_add" type="submit" value="{% translate 'Add Email' %}"/>
     </div>
 </form>
 {% endblock %}

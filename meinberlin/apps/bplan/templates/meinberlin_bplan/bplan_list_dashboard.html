@@ -1,16 +1,16 @@
 {% extends "a4dashboard/base_project_list.html" %}
 {% load i18n rules %}
 
-{% block title %}{% trans "Development plans" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "Development plans" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block project_list %}
     <div class="lr-bar lr-bar--with-margin">
         <h1 class="lr-bar__left">
-            {% trans 'Development plans' %}
+            {% translate 'Development plans' %}
         </h1>
         <div class="lr-bar__flex--wrapper lr-bar__actions">
             <a href="{% url 'a4dashboard:bplan-project-create' organisation_slug=view.organisation.slug %}" class="btn btn--primary">
-                {% trans 'New Development plan' %}
+                {% translate 'New Development plan' %}
             </a>
         </div>
     </div>
@@ -21,7 +21,7 @@
         {% for bplan in bplan_list %}
             {% include "a4dashboard/includes/project_list_item.html" with project=bplan %}
         {% empty %}
-            <p>{% trans 'We could not find any development plans.' %}</p>
+            <p>{% translate 'We could not find any development plans.' %}</p>
         {% endfor %}
     </ul>
 

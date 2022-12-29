@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Statement sent' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Statement sent' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">
-        <h1>{% trans 'Statement sent' %}</h1>
+        <h1>{% translate 'Statement sent' %}</h1>
 
         <p>
-            {% trans 'Thanks! Your statement has been sent! An answer will be send to your email address.' %}
+            {% translate 'Thanks! Your statement has been sent! An answer will be send to your email address.' %}
         </p>
     </div>
 </div>

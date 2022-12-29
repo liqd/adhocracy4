@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6 mb-5">
-        <h2>{% trans 'Here you can ask your question'%}</h2>
+        <h2>{% translate 'Here you can ask your question'%}</h2>
         <div>
             <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
                 {% csrf_token %}
@@ -18,7 +18,7 @@
 
                 <div class="row">
                     <div class="col-12 col-sm-2">
-                        <button type="submit" class="btn btn--primary btn-block">{% trans 'post'%}</button>
+                        <button type="submit" class="btn btn--primary btn-block">{% translate 'post'%}</button>
                     </div>
                 </div>
             </form>

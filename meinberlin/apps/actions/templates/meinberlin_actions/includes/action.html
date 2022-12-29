@@ -13,9 +13,9 @@
             {% elif action.type == 'item' and action.verb == 'update' %}
                 {% blocktrans with name=action.actor.username item_url=action.obj.get_absolute_url %}{{ name }} updated an <a href="{{ item_url }}">item</a>{% endblocktrans %}
             {% elif action.type == 'project' and action.verb == 'start' %}
-                {% trans "New participation started" %}
+                {% translate "New participation started" %}
             {% elif action.type == 'phase' and action.verb == 'schedule' %}
-                {% trans "Participation phase will end soon:" %}
+                {% translate "Participation phase will end soon:" %}
                 {{ action.obj.name }}
             {% else %}
                 {{ action }}

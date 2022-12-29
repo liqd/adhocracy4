@@ -2,9 +2,9 @@
 
 {% load i18n %}
 
-{% block title %}{% trans 'Your user profile' %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate 'Your user profile' %} &mdash; {{ block.super }}{% endblock %}
 {% block dashboard_content %}
-    <h1 class="u-first-heading">{% trans 'Your profile' %}</h1>
+    <h1 class="u-first-heading">{% translate 'Your profile' %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
@@ -15,7 +15,7 @@
         {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
 
         <div class="u-spacer-bottom">
-            <button type="submit" class="btn btn--primary">{% trans 'Save changes'%}</button>
+            <button type="submit" class="btn btn--primary">{% translate 'Save changes'%}</button>
         </div>
     </form>
     {{ form.media }}

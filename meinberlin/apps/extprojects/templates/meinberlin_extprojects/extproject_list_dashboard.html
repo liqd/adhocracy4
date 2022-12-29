@@ -1,16 +1,16 @@
 {% extends "a4dashboard/base_project_list.html" %}
 {% load i18n rules %}
 
-{% block title %}{% trans "Linkages" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% translate "Linkages" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block project_list %}
     <div class="lr-bar lr-bar--with-margin">
         <h1 class="lr-bar__left">
-            {% trans 'Linkages' %}
+            {% translate 'Linkages' %}
         </h1>
         <div class="lr-bar__flex--wrapper lr-bar__actions">
             <a href="{% url 'a4dashboard:external-project-create' organisation_slug=view.organisation.slug %}" class="btn btn--primary">
-                {% trans 'New Linkage' %}
+                {% translate 'New Linkage' %}
             </a>
         </div>
     </div>
@@ -21,7 +21,7 @@
         {% for linkage in externalproject_list %}
             {% include "a4dashboard/includes/project_list_item.html" with project=linkage %}
         {% empty %}
-            <p>{% trans 'We could not find any linkages.' %}</p>
+            <p>{% translate 'We could not find any linkages.' %}</p>
         {% endfor %}
     </ul>
 

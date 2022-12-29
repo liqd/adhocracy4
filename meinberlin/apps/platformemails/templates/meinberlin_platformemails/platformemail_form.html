@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Create platform email' %}{% endblock %}
+{% block title %}{% translate 'Create platform email' %}{% endblock %}
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">
-        <h1>{% trans 'Create platform email'%}</h1>
+        <h1>{% translate 'Create platform email'%}</h1>
         <p class="form-hint">{% blocktrans %}This email will be sent to all registered and verified users of mein.berlin.de.{% endblocktrans %}</p>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
@@ -21,8 +21,8 @@
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
 
             <div class="u-spacer-bottom">
-                <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send'%}" />
-                <a href="/" class="btn btn--light">{% trans 'Cancel'%}</a>
+                <input type="submit" class="btn btn--primary" name="send" value="{% translate 'Send'%}" />
+                <a href="/" class="btn btn--light">{% translate 'Cancel'%}</a>
             </div>
         </form>
     </div>

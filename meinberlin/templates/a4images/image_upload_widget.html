@@ -6,14 +6,14 @@
         {% if has_image_set and not is_required %}
             <label for="{{ checkbox_id }}"
                 class="upload-wrapper__action input-group__after btn btn--danger"
-                title="{% trans 'Remove the picture' %}">
-                <i class="fas fa-trash-alt" aria-label="{% trans 'Remove the picture' %}"></i>
+                title="{% translate 'Remove the picture' %}">
+                <i class="fas fa-trash-alt" aria-label="{% translate 'Remove the picture' %}"></i>
             </label>
         {% else %}
             <label for="{{ id }}"
                 class="upload-wrapper__action input-group__after btn btn--primary"
-                title="{% trans 'Upload a picture' %}">
-                <i class="fas fa-cloud-upload-alt" aria-label="{% trans 'Upload a picture' %}"></i>
+                title="{% translate 'Upload a picture' %}">
+                <i class="fas fa-cloud-upload-alt" aria-label="{% translate 'Upload a picture' %}"></i>
             </label>
         {% endif %}
     </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="col-12">
         <div class="alert alert--info upload-wrapper__alert" aria-live="polite">
-            {% trans 'Your image will be uploaded/removed once you save your changes at the end of this page.' %}
+            {% translate 'Your image will be uploaded/removed once you save your changes at the end of this page.' %}
         </div>
     </div>
 </div>

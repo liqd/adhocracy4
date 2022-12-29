@@ -4,9 +4,9 @@
     <table>
         <thead>
         <tr>
-            <th>{% trans 'Email' %}</th>
-            <th>{% trans 'Date' %}</th>
-            <th><span class="visually-hidden">{% trans 'Remove' %}</span></th>
+            <th>{% translate 'Email' %}</th>
+            <th>{% translate 'Date' %}</th>
+            <th><span class="visually-hidden">{% translate 'Remove' %}</span></th>
         </tr>
         </thead>
         <tbody>
@@ -18,8 +18,8 @@
                     <form method="post">
                         {% csrf_token %}
                         <input type="hidden" name="invite_pk" value="{{ invite.pk }}">
-                        <button type="submit" name="submit_action" value="remove_invite" title="{% trans 'Remove' %}">
-                            <i class="fa fa-times" aria-label="{% trans 'Remove' %}"></i>
+                        <button type="submit" name="submit_action" value="remove_invite" title="{% translate 'Remove' %}">
+                            <i class="fa fa-times" aria-label="{% translate 'Remove' %}"></i>
                         </button>
                     </form>
                 </td>
@@ -28,5 +28,5 @@
         </tbody>
     </table>
 {% else %}
-    {% trans 'None' %}
+    {% translate 'None' %}
 {% endif %}

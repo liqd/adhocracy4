@@ -16,10 +16,10 @@
             {% endif %}
 
             <p>
-                {% trans "Please login to procceed. If you do not have an account, register and revisit the invitation link." %}
+                {% translate "Please login to procceed. If you do not have an account, register and revisit the invitation link." %}
             </p>
-            <a class="btn btn--primary" href="{% url 'account_login' %}?next={% url 'project-moderator-invite-detail' invite_token=moderatorinvite.token %}">{% trans "Proceed to login" %}</a>
-            <a class="btn btn--light" href="{% url 'account_signup' %}">{% trans "Register" %}</a>
+            <a class="btn btn--primary" href="{% url 'account_login' %}?next={% url 'project-moderator-invite-detail' invite_token=moderatorinvite.token %}">{% translate "Proceed to login" %}</a>
+            <a class="btn btn--light" href="{% url 'account_signup' %}">{% translate "Register" %}</a>
         </div>
     </div>
 {% endblock %}
