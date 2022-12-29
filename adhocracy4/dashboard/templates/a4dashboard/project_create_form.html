@@ -1,10 +1,10 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Create project based on" %} {{ view.blueprint.title }} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% translate "Create project based on" %} {{ view.blueprint.title }} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-    <h1>{% trans "Create project based on" %} {{ view.blueprint.title }}</h1>
+    <h1>{% translate "Create project based on" %} {{ view.blueprint.title }}</h1>
 
     {% for error in form.non_field_errors %}
         <span>{{ error }}</span>
@@ -20,11 +20,11 @@
         {% include 'a4forms/includes/form_field.html' with field=form.image %}
         {% include 'a4forms/includes/form_field.html' with field=form.image_copyright %}
 
-        <p>{% trans 'After saving the draft project you can further customize and edit your project and eventually publish it.' %}</p>
+        <p>{% translate 'After saving the draft project you can further customize and edit your project and eventually publish it.' %}</p>
 
-        <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Create draft' %}"/>
+        <input type="submit" class="btn btn--primary" name="send" value="{% translate 'Create draft' %}"/>
         <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}"
-           class="btn btn--light">{% trans 'Cancel' %}</a>
+           class="btn btn--light">{% translate 'Cancel' %}</a>
     </form>
 {% endblock %}
 

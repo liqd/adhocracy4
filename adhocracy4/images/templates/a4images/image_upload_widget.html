@@ -5,11 +5,11 @@
         <span class="input-group-btn">
             {% if has_image_set and not is_required %}
             <label for="{{ checkbox_id }}" class="btn btn-danger"
-                   title="{% trans 'Remove the picture' %}">
+                   title="{% translate 'Remove the picture' %}">
                 <i class="fas fa-trash-alt"></i>
             </label>
             {% else %}
-            <label for="{{ id }}" class="btn btn-default" title="{% trans  'Upload a picture' %}">
+            <label for="{{ id }}" class="btn btn-default" title="{% translate  'Upload a picture' %}">
                 <i class="fas fa-cloud-upload-alt"></i>
             </label>
             {% endif  %}
