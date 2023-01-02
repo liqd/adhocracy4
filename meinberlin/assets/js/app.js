@@ -24,10 +24,6 @@ import {
 
 import * as ReactMapTeaser from '../../apps/plans/assets/react_map_teaser.jsx'
 
-import * as Tether from 'tether'
-
-window.Tether = Tether
-
 function init () {
   const shariffs = $('.shariff')
   if (shariffs.length > 0) {
