@@ -6,7 +6,6 @@ const CommentForm = require('./CommentForm')
 const CommentManageDropdown = require('./CommentManageDropdown')
 
 const React = require('react')
-const PropTypes = require('prop-types')
 const django = require('django')
 
 const safeHtml = function (text) {
@@ -251,14 +250,6 @@ class Comment extends React.Component {
       </div>
     )
   }
-}
-
-Comment.contextTypes = {
-  comments_contenttype: PropTypes.number,
-  isAuthenticated: PropTypes.bool,
-  isModerator: PropTypes.bool,
-  user_name: PropTypes.string,
-  contentType: PropTypes.number
 }
 
 module.exports = Comment

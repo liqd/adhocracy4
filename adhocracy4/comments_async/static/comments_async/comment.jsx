@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import PropTypes from 'prop-types'
 import django from 'django'
 
 import Modal from '../../../static/Modal'
@@ -497,8 +496,4 @@ export default class Comment extends React.Component {
       </div>
     )
   }
-}
-
-Comment.contextTypes = {
-  contentType: PropTypes.number
 }

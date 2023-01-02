@@ -1,5 +1,4 @@
 const React = require('react')
-const PropTypes = require('prop-types')
 const django = require('django')
 
 const CommentManageDropdown = (props) => {
@@ -30,12 +29,6 @@ const CommentManageDropdown = (props) => {
       </li>
     </ul>
   )
-}
-
-CommentManageDropdown.propTypes = {
-  handleToggleEdit: PropTypes.func,
-  id: PropTypes.number,
-  renderModeratorOptions: PropTypes.bool
 }
 
 module.exports = CommentManageDropdown

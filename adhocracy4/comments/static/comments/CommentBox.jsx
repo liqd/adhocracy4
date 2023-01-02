@@ -4,7 +4,6 @@ const api = require('../../../static/api')
 
 const React = require('react')
 const update = require('immutability-helper')
-const PropTypes = require('prop-types')
 const django = require('django')
 
 class CommentBox extends React.Component {
@@ -194,13 +193,6 @@ class CommentBox extends React.Component {
       </div>
     )
   }
-}
-
-CommentBox.childContextTypes = {
-  isAuthenticated: PropTypes.bool,
-  isModerator: PropTypes.bool,
-  comments_contenttype: PropTypes.number,
-  user_name: PropTypes.string
 }
 
 module.exports = CommentBox
