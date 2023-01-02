@@ -14,11 +14,9 @@
   ],
   "dependencies": {
     "@popperjs/core": "2.11.6",
-    "classnames": "2.3.2",
     "file-saver": "2.0.5",
     "js-cookie": "3.0.1",
-    "maplibregl-mapbox-request-transformer": "0.0.2",
-    "prop-types": "15.8.1"
+    "maplibregl-mapbox-request-transformer": "0.0.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.19.1",
@@ -27,7 +25,6 @@
     "@babel/preset-react": "7.18.6",
     "@maplibre/maplibre-gl-leaflet": "0.0.18",
     "@testing-library/react": "13.4.0",
-    "babel-preset-react": "6.24.1",
     "eslint": "8.16.0",
     "eslint-config-standard": "17.0.0",
     "eslint-config-standard-jsx": "11.0.0",
@@ -52,8 +49,7 @@
     "react-flip-move": "3.0.5",
     "react-markdown": "8.0.4",
     "react-slick": "0.29.0",
-    "shpjs": "4.0.4",
-    "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
+    "shpjs": "4.0.4"
   },
   "peerDependencies": {
     "immutability-helper": "3.1.1",

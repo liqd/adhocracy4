@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import django from 'django'
 
 const Modal = (props) => {
@@ -47,11 +46,6 @@ const Modal = (props) => {
       </div>
     </div>
   )
-}
-
-Modal.propTypes = {
-  handleSubmit: PropTypes.func,
-  handleClose: PropTypes.func
 }
 
 Modal.defaultProps = {

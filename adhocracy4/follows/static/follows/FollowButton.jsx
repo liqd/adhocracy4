@@ -1,6 +1,5 @@
 const api = require('../../../static/api')
 const django = require('django')
-const PropTypes = require('prop-types')
 const React = require('react')
 const Alert = require('../../../static/Alert')
 
@@ -73,10 +72,6 @@ class FollowButton extends React.Component {
       </span>
     )
   }
-}
-
-FollowButton.propTypes = {
-  project: PropTypes.string.isRequired
 }
 
 module.exports = FollowButton

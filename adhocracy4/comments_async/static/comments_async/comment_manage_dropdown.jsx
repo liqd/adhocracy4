@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import django from 'django'
 
 const translated = {
@@ -31,11 +30,6 @@ const CommentManageDropdown = (props) => {
       </div>
     </div>
   )
-}
-
-CommentManageDropdown.propTypes = {
-  handleToggleEdit: PropTypes.func,
-  id: PropTypes.number
 }
 
 export default CommentManageDropdown

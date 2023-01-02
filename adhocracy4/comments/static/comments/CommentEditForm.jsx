@@ -1,7 +1,6 @@
 const Alert = require('../../../static/Alert')
 
 const React = require('react')
-const PropTypes = require('prop-types')
 const django = require('django')
 
 class CommentEditForm extends React.Component {
@@ -54,10 +53,6 @@ class CommentEditForm extends React.Component {
       </form>
     )
   }
-}
-
-CommentEditForm.contextTypes = {
-  isAuthenticated: PropTypes.bool
 }
 
 module.exports = CommentEditForm

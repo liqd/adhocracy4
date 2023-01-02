@@ -1,6 +1,5 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import classnames from 'classnames'
 import django from 'django'
 
 import api from '../../../static/api'
@@ -118,9 +117,10 @@ class RatingBox extends React.Component {
   render () {
     const getRatingClasses = ratingType => {
       const valueForRatingType = ratingType === 'up' ? 1 : -1
-      return classnames('rating-button rating-' + ratingType, {
-        'is-selected': this.state.userRating === valueForRatingType
-      })
+      const cssClasses = this.state.userRating === valueForRatingType
+        ? 'rating-button rating-' + ratingType + ' is-selected'
+        : 'rating-button rating-' + ratingType
+      return cssClasses
     }
 
     return (
