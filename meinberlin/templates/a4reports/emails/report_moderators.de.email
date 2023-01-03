@@ -10,14 +10,19 @@
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content %}
+<p>
 in dem von Ihnen moderierten Projekt wurde ein Beitrag als unangemessen gemeldet.
-
-Gemeldeter Beitrag: <i style="color: #818181;">„{{ report.content_object }}“</i>,
+</p>
+<p>
+Gemeldeter Beitrag: <i style="color: #818181;">„{{ report.content_object }}“</i>,<br>
 erstellt von {{ report.content_object.creator.username }} am {% language 'de' %} {{ report.content_object.created|date:"d. F Y, H:i"}} Uhr.{% endlanguage %}
-
+</p>
+<p>
 Gemeldet von {{ report.creator.username }} mit folgender Begründung: <i style="color: #818181;">„{{ report.description }}“</i>
-
+</p>
+<p>
 Als Moderator*in können Sie den Beitrag löschen, sollte er nicht unserer <a href="{{ email.get_host }}/netiquette/">Netiquette</a> entsprechen.
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}

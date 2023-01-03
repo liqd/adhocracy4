@@ -7,9 +7,17 @@
 
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
-{% block content %}The following event takes place on {{ action.obj.date }}:
+{% block content %}
+<p>
+The following event takes place on {{ action.obj.date }}:
+</p>
+<p>
 <b>{{ action.obj.name }}</b>
-Further information about the event can be found in the project.{% endblock %}
+</p>
+<p>
+Further information about the event can be found in the project.
+</p>
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
 {% block cta_label %}Show Event{% endblock %}

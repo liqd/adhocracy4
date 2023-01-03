@@ -12,20 +12,26 @@
 {% block greeting %}{% endblock %}
 
 {% block content_left_aligned %}
-Name:
+<p>
+Name:<br>
 {{ statement.name }}
-
-Straße, Hausnummer:
+</p>
+<p>
+Straße, Hausnummer:<br>
 {{ statement.street_number }}
-
-PLZ, Ort:
+</p>
+<p>
+PLZ, Ort:<br>
 {{ statement.postal_code_city }}
-
-E-Mail Adresse:
+</p>
+<p>
+E-Mail Adresse:<br>
 {{ statement.email }}
-
-Stellungnahme:
+</p>
+<p>
+Stellungnahme:<br>
 {{ statement.statement }}
+</p>
 {% endblock %}
 
 {% block cta %}{% endblock %}

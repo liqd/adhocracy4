@@ -7,13 +7,18 @@
 {% block sub-headline%}{{ participantinvite.project.name }}{% endblock %}
 
 {% block content %}
+<p>
 You were invited to participate in a {% if participantinvite.project.is_semipublic %}semi-public{% else %}private{% endif %} project at {{ site.name }}. {{ site.name }} is the participation platform of the state of Berlin. Here you are asked for your opinion on projects of the Berlin administration. You were invited by "{{ participantinvite.project.organisation }}".
-
+</p>
+<p>
 Click on "Accept invitation" to participate in the project. If you are not yet registered on {{ site.name }}, you can do so in a few steps. Please note: This invitation is only for you personally.
-
+</p>
+<p>
 We look forward to your contribution!
-
+</p>
+<p>
 You have questions? Please write to {{ contact_email }}.
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ participantinvite.get_absolute_url }}{% endblock %}

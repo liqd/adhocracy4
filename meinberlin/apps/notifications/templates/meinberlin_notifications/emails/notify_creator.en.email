@@ -7,11 +7,19 @@
 
 {% block greeting %}Hello  {{ receiver.username }},{% endblock %}
 
-{% block content %}{{ action.actor.username }} commented on your post:
+{% block content %}
+<p>
+{{ action.actor.username }} commented on your post:
+</p>
 {% if action.obj.comment %}
+<p>
 <i>"{{ action.obj.comment|truncatewords:75 }}"</i>
+</p>
 {% endif %}
-Would you like to answer?{% endblock %}
+<p>
+Would you like to answer?
+</p>
+{% endblock %}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if action.obj.get_absolute_url %}View Post{% else %}Visit the project{% endif %}{% endblock %}

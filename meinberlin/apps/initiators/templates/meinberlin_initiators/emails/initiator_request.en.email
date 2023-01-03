@@ -5,23 +5,30 @@
 
 {% block headline %}New initiator request by {{ user.username }}{% endblock %}
 
-{% block content %}{{ user.username }} wants to become an initiator.
-
-Name
+{% block content %}
+<p>
+{{ user.username }} wants to become an initiator.
+</p>
+<p>
+Name<br>
 {{ user.username }}
-
-Name of the Organisation
+</p>
+<p>
+Name of the Organisation<br>
 {{ organisation.name }}
-
-Email address
+</p>
+<p>
+Email address<br>
 {{ user.email }}
-
-Phone number
+</p>
+<p>
+Phone number<br>
 {{ phone }}
-
-Date of registration on meinBerlin
+</p>
+<p>
+Date of registration on meinBerlin<br>
 {{ user.date_joined }}
-
+</p>
 {% endblock %}
 
 {% block cta_label %}Go to Administration{% endblock %}

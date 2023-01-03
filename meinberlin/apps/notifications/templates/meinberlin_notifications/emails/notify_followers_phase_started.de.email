@@ -7,9 +7,14 @@
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
-{% block content %}die Online-Beteiligung im oben genannten Projekt hat begonnen.
-
-<b>Sie können bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.</b>{% endblock %}
+{% block content %}
+<p>
+die Online-Beteiligung im oben genannten Projekt hat begonnen.
+</p>
+<p>
+<b>Sie können bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.</b>
+</p>
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_detail_url }}{% endblock %}
 {% block cta_label %}Jetzt mitmachen{% endblock %}

@@ -8,15 +8,22 @@
 {% block greeting %}{% if send_to_creator %}Hello {{ receiver.username }},{% else %}Hello,{% endif %}{% endblock %}
 
 {% block content %}
+<p>
 {{ object.module.project.organisation.name }} reacted on your contribution.
-
-{% if object.moderator_feedback %}The status of your contribution has been changed and is now “{{ object.get_moderator_feedback_display }}".
-
+</p>
+{% if object.moderator_feedback %}
+<p>
+The status of your contribution has been changed and is now “{{ object.get_moderator_feedback_display }}".
+</p>
 {% endif %}
-{% if object.moderator_statement.statement %}Official feedback: {{ object.moderator_statement.statement | safe }}
-
+{% if object.moderator_statement.statement %}
+<p>
+Official feedback: {{ object.moderator_statement.statement | safe }}
+</p>
 {% endif %}
+<p>
 Do you want to answer?
+</p>
 {% endblock %}
 
 {% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}

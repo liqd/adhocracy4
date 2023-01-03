@@ -9,11 +9,15 @@
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content %}
+<p>
 es gibt einen neuen Beitrag in dem Projekt, das Sie moderieren.
-
+</p>
+<p>
 {{ action.actor.username }} schrieb am {{ action.timestamp|date:"d. F Y, H:i"}} Uhr:
-
+</p>
+<p>
 <i style="color: #818181;">„{{ action.obj }}“</i>
+</p>
 {% endblock%}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}

@@ -6,5 +6,7 @@
 {% block headline %}{{ emailformpage.title }}{% endblock %}
 
 {% block content %}
+<p>
     {{ emailformpage.email_content }}
+</p>
 {% endblock %}

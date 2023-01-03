@@ -7,15 +7,20 @@
 {% block greeting %}Hello,{% endblock %}
 
 {% block content %}
+<p>
 you receive this email because you or someone else requested a password reset
 for your user account. However, we have not found a user account with the
 email address {{ email }} in our database.
-
+</p>
+<p>
 Please register first using the link below.
-
+</p>
+<p>
 If you have not requested a new password, you can ignore this email.
-
+</p>
+<p>
 If you need help, please contact {{ contact_email }}.
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ signup_url }}{% endblock %}

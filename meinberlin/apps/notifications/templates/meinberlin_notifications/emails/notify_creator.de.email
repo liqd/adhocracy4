@@ -7,11 +7,19 @@
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
-{% block content %}{{ action.actor.username }} hat Ihren Beitrag kommentiert:
+{% block content %}
+<p>
+{{ action.actor.username }} hat Ihren Beitrag kommentiert:
+</p>
 {% if action.obj.comment %}
+<p>
 <i>"{{ action.obj.comment|truncatewords:75 }}"</i>
+</p>
 {% endif %}
-Möchten Sie antworten?{% endblock %}
+<p>
+Möchten Sie antworten?
+</p>
+{% endblock %}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if action.obj.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}

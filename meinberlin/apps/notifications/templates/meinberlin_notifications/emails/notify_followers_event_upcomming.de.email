@@ -7,11 +7,17 @@
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
-{% block content %}am {{ action.obj.date }} Uhr findet die folgende Veranstaltung statt:
-
+{% block content %}
+<p>
+am {{ action.obj.date }} Uhr findet die folgende Veranstaltung statt:
+</p>
+<p>
 <b>{{ action.obj.name }}</b>
-
-Weitere Informationen zu der Veranstaltung finden Sie im Projekt.{% endblock %}
+</p>
+<p>
+Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
+</p>
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
 {% block cta_label %}Veranstaltung anzeigen{% endblock %}

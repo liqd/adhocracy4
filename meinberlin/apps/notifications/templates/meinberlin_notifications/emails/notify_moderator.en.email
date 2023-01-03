@@ -9,11 +9,15 @@
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
 {% block content %}
+<p>
 there is a new post in the project you are moderating.
-
+</p>
+<p>
 {{ action.actor.username }} wrote on {% language 'en' %}{{ action.timestamp }}{% endlanguage %}:
-
+</p>
+<p>
 <i style="color: #818181;">"{{ action.obj }}"</i>
+</p>
 {% endblock %}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}

@@ -7,15 +7,21 @@
 {% block greeting %}Hello {{ user.username }},{% endblock %}
 
 {% block content %}
+<p>
 should this e-mail address be added to your account on {{ site.name }}?
-
+</p>
+<p>
 Please confirm by clicking on "Add e-mail address".
-
+</p>
+<p>
 If you have changed your mind, you can ignore this e-mail.
-
+</p>
+<p>
 If you have not requested this e-mail or need help, please contact {{ contact_email }}.
-
+</p>
+<p>
 Great that you are using {{ site.name }} to shape Berlin with us!
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}

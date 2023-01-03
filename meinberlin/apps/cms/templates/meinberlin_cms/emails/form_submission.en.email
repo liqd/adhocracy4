@@ -6,12 +6,14 @@
 {% block headline %}{{ emailformpage.title }}{% endblock %}
 
 {% block content %}
+    <p>
     {{ emailformpage.email_content }}
-
+    </p>
     {% for key, value in field_values.items %}
-
-        {{key}}:
+        <p>
+        {{key}}:<br>
         {{value}}
+        </p>
     {% endfor %}
 
 {% endblock %}

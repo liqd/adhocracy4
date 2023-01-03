@@ -10,14 +10,19 @@
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
 {% block content %}
+<p>
 in the project you moderate, a contribution was reported as inappropriate.
-
-Reported contribution: <i style="color: #818181;">"{{ report.content_object }}"</i>,
+</p>
+<p>
+Reported contribution: <i style="color: #818181;">"{{ report.content_object }}"</i>,<br>
 created by {{ report.content_object.creator.username }} on {% language 'en' %}{{ report.content_object.created }}.{% endlanguage %}
-
+</p>
+<p>
 Reported by {{ report.creator.username }} for the following reason: <i style="color: #818181;">„{{ report.description }}“</i>
-
+</p>
+<p>
 As a moderator* you can delete the post if it does not comply with our <a href="{{ email.get_host }}/netiquette/">netiquette</a>.
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}

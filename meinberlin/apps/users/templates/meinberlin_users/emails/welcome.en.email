@@ -7,13 +7,18 @@
 {% block greeting %}Hello {{ user.username }},{% endblock %}
 
 {% block content %}
+<p>
 welcome to {{ site.name }}, the participation platform of the state of Berlin!
-
+</p>
+<p>
 Here you will find projects of the Berlin administration in which you can participate online and offline.
-
+</p>
+<p>
 Take your chance and help shape Berlin. Your opinion is important to us!
-
+</p>
+<p>
 If you have any questions, please contact {{ contact_email }}.
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% url 'meinberlin_plans:plan-list' %}{% endblock %}

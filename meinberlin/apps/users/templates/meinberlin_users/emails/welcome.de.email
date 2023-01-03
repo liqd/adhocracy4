@@ -7,13 +7,18 @@
 {% block greeting %}Hallo {{ user.username }},{% endblock %}
 
 {% block content %}
+<p>
 herzlich Willkommen auf {{ site.name }}, der Partizipationsplattform des Landes Berlin!
-
+</p>
+<p>
 Hier finden Sie Projekte der Berliner Verwaltung, an denen Sie sich online und offline beteiligen können.
-
+</p>
+<p>
 Nutzen Sie Ihre Chance und gestalten Sie Berlin mit. Ihre Meinung ist uns wichtig!
-
+</p>
+<p>
 Bei Fragen können Sie sich an {{ contact_email }} wenden.
+</p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% url 'meinberlin_plans:plan-list' %}{% endblock %}
