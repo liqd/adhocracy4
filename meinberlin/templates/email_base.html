@@ -38,11 +38,8 @@
                         <p>
                             {% block content_html %}
                                 <div style="text-align: left;">{% block newsletter_content %}{% endblock %} </div>
-                                {% load capture_tags %}
-                                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
-                                {{ content|linebreaks }}
-                                {% capture as content_left_aligned silent %}{% block content_left_aligned %}{% endblock %}{% endcapture %}
-                                <div style="text-align: left;">{{ content_left_aligned|linebreaks }}</div>
+                                {% block content %}{% endblock %}
+                                <div style="text-align: left;">{% block content_left_aligned %}{% endblock %}</div>
                             {% endblock %}
                         </p>
                     </td>
