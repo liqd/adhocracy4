@@ -1,7 +1,7 @@
 /* global django */
+import { toLocaleDate } from '../../contrib/assets/helpers'
 const React = require('react')
 const $ = require('jquery')
-const Moment = require('moment')
 
 const moreThanStr = django.gettext('More than 1 year remaining')
 const remainingStr = django.gettext('remaining')
@@ -34,10 +34,14 @@ class PopUp extends React.Component {
     }
   }
 
-  getTranslation () {
-    let newDate = Date.parse(this.props.item.future_phase.replace(/ /g, 'T'))
-    newDate = Moment(newDate).format('DD.MM.YYYY')
-    return futureParticipationStr + newDate
+  getTranslation (item) {
+    const date = this.props.item.future_phase
+    const dateStyle = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }
+    return futureParticipationStr + toLocaleDate(date, undefined, dateStyle)
   }
 
   renderTopics () {

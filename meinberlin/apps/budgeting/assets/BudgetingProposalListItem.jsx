@@ -1,6 +1,6 @@
 import React from 'react'
 import django from 'django'
-import { toLocaleDate } from './helpers'
+import { toLocaleDate } from '../../contrib/assets/helpers'
 import VoteButton from './VoteButton'
 import { ListItemBadges } from './ListItemBadges'
 import { ListItemStats } from './ListItemStats'

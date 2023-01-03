@@ -1,6 +1,6 @@
 /* global django */
+import { toLocaleDate } from '../../contrib/assets/helpers'
 const React = require('react')
-const Moment = require('moment')
 
 const remainingStr = django.gettext('remaining')
 const moreThanStr = django.gettext('More than 1 year remaining')
@@ -130,9 +130,12 @@ class PlansList extends React.Component {
   }
 
   getDate (item) {
-    let newDate = Date.parse(item.future_phase.replace(/ /g, 'T'))
-    newDate = Moment(newDate).format('DD.MM.YYYY')
-    return newDate
+    const dateStyle = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }
+    return toLocaleDate(item.future_phase, undefined, dateStyle)
   }
 
   renderListItem (item, i) {
