@@ -3,3 +3,4 @@ source =
     meinberlin/apps
 omit =
     */migrations/*
+    */apps/notifications/management/commands/send_test_emails.py
