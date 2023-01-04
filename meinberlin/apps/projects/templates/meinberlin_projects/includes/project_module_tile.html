@@ -9,7 +9,7 @@
                 <span class="participation-tile__item-count">
                     <i class="fas fa-comments" aria-hidden="true"></i>
                     {% get_num_entries module as num_entries %}
-                    {% blocktrans count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktrans %}
+                    {% blocktranslate count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktranslate %}
                 </span>
                 {% if module.module_running_time_left %}
                 <div class="status-item status__active">
@@ -18,18 +18,18 @@
                     </div>
                     <span class="participation-tile__status">
                         <i class="fas fa-clock" aria-hidden="true"></i>
-                    {% blocktrans with time_left=module.module_running_time_left %}remaining {{ time_left }}{% endblocktrans %}
+                    {% blocktranslate with time_left=module.module_running_time_left %}remaining {{ time_left }}{% endblocktranslate %}
                     </span>
                 </div>
                 {% elif not module.module_has_started %}
                 <div class="status-item status__future">
                     <span class="participation-tile__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date module.module_start 'd.m.Y' as start_date %}
-                    {% blocktrans with date=start_date %}Participation: starts on {{ date }}{% endblocktrans %}
+                    {% blocktranslate with date=start_date %}Participation: starts on {{ date }}{% endblocktranslate %}
                     </span>
                 </div>
                 {% elif module.module_has_finished %}
                 <div class="status-item status-bar__past">
-                    <span class="participation-tile__status">{% blocktrans %}Participation ended. Read result{% endblocktrans %}</span>
+                    <span class="participation-tile__status">{% blocktranslate %}Participation ended. Read result{% endblocktranslate %}</span>
                 </div>
                 {% endif %}
                 <div class="participation-tile__spacer"></div>

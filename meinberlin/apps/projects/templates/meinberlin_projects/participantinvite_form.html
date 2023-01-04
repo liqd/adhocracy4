@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktrans with project=participantinvite.project.name %}Project: {{ project }}{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktranslate with project=participantinvite.project.name %}Project: {{ project }}{% endblocktranslate %}{% endblock %}
 {% block content %}
     <div class="container">
         <div class="offset-lg-3 col-lg-6">
-            <h1>{% blocktrans with project=participantinvite.project.name %}Do you want to join {{ project }}?{% endblocktrans %}</h1>
+            <h1>{% blocktranslate with project=participantinvite.project.name %}Do you want to join {{ project }}?{% endblocktranslate %}</h1>
 
             {% if form.non_field_errors %}
                 <ul class="errorlist" aria-live="assertive" aria-atomic="true">
@@ -16,7 +16,7 @@
             {% endif %}
 
             <p>
-                {% blocktrans with user=request.user.username %}You were invited by the initiator of the project. If you accept you will be able to participate in the project with your username "{{ user }}". If you want to join with a different profile please login with your other profile and follow the invitation link again. If you decline the invitation the link is not valid anymore.{% endblocktrans %}
+                {% blocktranslate with user=request.user.username %}You were invited by the initiator of the project. If you accept you will be able to participate in the project with your username "{{ user }}". If you want to join with a different profile please login with your other profile and follow the invitation link again. If you decline the invitation the link is not valid anymore.{% endblocktranslate %}
             </p>
             <form method="POST">
                 {% csrf_token %}

@@ -34,7 +34,7 @@
             <div class="modal-body">
                 {% if project.unpublished_modules %}
                 <p>
-                {% blocktrans count counter=project.unpublished_modules.count %}One module has not been added to the project.{% plural %}{{ counter }} modules have not been added to the project.{% endblocktrans %}
+                {% blocktranslate count counter=project.unpublished_modules.count %}One module has not been added to the project.{% plural %}{{ counter }} modules have not been added to the project.{% endblocktranslate %}
                 </p>
                 {% endif %}
                 <div class="u-spacer-bottom">

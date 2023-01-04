@@ -8,7 +8,7 @@
     <h1 class="u-first-heading">{% translate "Account Connections" %}</h1>
 
     {% if form.accounts %}
-        <p>{% blocktrans %}Your account is connected to the following services:{% endblocktrans %}</p>
+        <p>{% blocktranslate %}Your account is connected to the following services:{% endblocktranslate %}</p>
         <form class="multiform" method="post" action="{% url 'socialaccount_connections' %}">
             {% csrf_token %}
             {% if form.non_field_errors %}

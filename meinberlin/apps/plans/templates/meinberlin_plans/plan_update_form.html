@@ -17,7 +17,7 @@
 </div>
 {% endblock %}
 
-{% block title %}{% blocktrans with title=object.title %}Edit {{title}}{% endblocktrans %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% blocktranslate with title=object.title %}Edit {{title}}{% endblocktranslate %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
 <div class="row">

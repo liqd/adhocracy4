@@ -49,13 +49,13 @@
                             {% translate 'Participation is not possible at the moment.' %}
                             {% if not module.past_phases %}
                                 {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                                {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
                             {% elif module.future_phases %}
                                 {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                                {% blocktranslate with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
                             {% else %}
                                 {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                                {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                                {% blocktranslate with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
                             {% endif %}
                         </strong>
                     </div>
@@ -95,7 +95,7 @@
                     <strong>
                         {% translate 'Participation is not possible at the moment.' %}
                         {% html_date project.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
-                        {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                        {% blocktranslate with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
                     </strong>
                 </div>
             {% endif %}

@@ -10,7 +10,7 @@
                     <div class="project-header__description">
                         <p>{{ container.description }}</p>
                         <p>
-                            {% blocktrans with count=project.projectcontainer.total_project_count active_count=project.projectcontainer.active_project_count %}{{ active_count }} of {{ count }}{% endblocktrans %}
+                            {% blocktranslate with count=project.projectcontainer.total_project_count active_count=project.projectcontainer.active_project_count %}{{ active_count }} of {{ count }}{% endblocktranslate %}
                             {% translate 'projects are currently active.' %}
                         </p>
                     </div>

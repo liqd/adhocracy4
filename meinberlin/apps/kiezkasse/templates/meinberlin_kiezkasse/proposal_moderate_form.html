@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktrans with name=object.name %}Moderate {{ name }}{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktranslate with name=object.name %}Moderate {{ name }}{% endblocktranslate %}{% endblock %}
 {% block content %}
 <div class="container">
     <div class="offset-lg-3 col-lg-6">

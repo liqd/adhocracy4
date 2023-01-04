@@ -1,7 +1,7 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktrans with title=object.name %}Edit {{ title }}{% endblocktrans %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% blocktranslate with title=object.name %}Edit {{ title }}{% endblocktranslate %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_project_content %}
 <div class="container">

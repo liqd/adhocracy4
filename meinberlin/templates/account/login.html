@@ -6,7 +6,7 @@
 {% block content %}
     <h1>{% translate "Login" %}</h1>
 
-    <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktrans %}</p>
+    <p>{% blocktranslate %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktranslate %}</p>
 
     <form method="POST" action="{% url 'account_login' %}" class="u-spacer-bottom-double">
         {% if form.non_field_errors %}

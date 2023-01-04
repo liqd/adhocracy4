@@ -6,7 +6,7 @@
 {% block content %}
     <h1>{% translate "Register" %}</h1>
 
-    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">login</a>.{% endblocktrans %}</p>
+    <p>{% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">login</a>.{% endblocktranslate %}</p>
 
     <p>{% translate "If you register on mein.berlin.de, you can write ideas and comments for ongoing participation processes and rate the contributors of other users." %}</p>
 
@@ -34,7 +34,7 @@
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.terms_of_use|add_error_attr:"aria-invalid:true" }}
-                {% blocktrans with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.{% endblocktrans %}
+                {% blocktranslate with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.{% endblocktranslate %}
             </label>
             {% if form.terms_of_use.errors %}
                 <ul class="errorlist" aria-live="assertive" aria-atomic="true">

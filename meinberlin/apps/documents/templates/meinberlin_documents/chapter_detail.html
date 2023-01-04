@@ -56,7 +56,7 @@
                                         href="{{ paragraph.get_absolute_url }}"
                                 >
                                     <i class="far fa-comment" aria-hidden="true"></i>
-                                    {% blocktrans count count=paragraph.comments.all|length %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktrans %}
+                                    {% blocktranslate count count=paragraph.comments.all|length %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktranslate %}
                                 </a>
                             </div>
                         </section>

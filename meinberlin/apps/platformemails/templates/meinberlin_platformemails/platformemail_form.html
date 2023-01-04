@@ -6,7 +6,7 @@
 <div class="container">
     <div class="offset-lg-3 col-lg-6">
         <h1>{% translate 'Create platform email'%}</h1>
-        <p class="form-hint">{% blocktrans %}This email will be sent to all registered and verified users of mein.berlin.de.{% endblocktrans %}</p>
+        <p class="form-hint">{% blocktranslate %}This email will be sent to all registered and verified users of mein.berlin.de.{% endblocktranslate %}</p>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}

@@ -5,13 +5,13 @@
     <div class="action__main">
         <div class="action__line">
             {% if action.type == 'comment' and action.verb == 'add' %}
-                {% blocktrans with name=action.actor.username comment_url=action.obj.get_absolute_url %}{{ name }} added a new <a href="{{ comment_url }}">comment</a>{% endblocktrans %}
+                {% blocktranslate with name=action.actor.username comment_url=action.obj.get_absolute_url %}{{ name }} added a new <a href="{{ comment_url }}">comment</a>{% endblocktranslate %}
             {% elif action.type == 'comment' and action.verb == 'update' %}
-                {% blocktrans with name=action.actor.username comment_url=action.obj.get_absolute_url %}{{ name }} updated a <a href="{{ comment_url }}">comment</a>{% endblocktrans %}
+                {% blocktranslate with name=action.actor.username comment_url=action.obj.get_absolute_url %}{{ name }} updated a <a href="{{ comment_url }}">comment</a>{% endblocktranslate %}
             {% elif action.type == 'item' and action.verb == 'add' %}
-                {% blocktrans with name=action.actor.username item_url=action.obj.get_absolute_url %}{{ name }} added a new <a href="{{ item_url }}">item</a>{% endblocktrans %}
+                {% blocktranslate with name=action.actor.username item_url=action.obj.get_absolute_url %}{{ name }} added a new <a href="{{ item_url }}">item</a>{% endblocktranslate %}
             {% elif action.type == 'item' and action.verb == 'update' %}
-                {% blocktrans with name=action.actor.username item_url=action.obj.get_absolute_url %}{{ name }} updated an <a href="{{ item_url }}">item</a>{% endblocktrans %}
+                {% blocktranslate with name=action.actor.username item_url=action.obj.get_absolute_url %}{{ name }} updated an <a href="{{ item_url }}">item</a>{% endblocktranslate %}
             {% elif action.type == 'project' and action.verb == 'start' %}
                 {% translate "New participation started" %}
             {% elif action.type == 'phase' and action.verb == 'schedule' %}
@@ -22,7 +22,7 @@
             {% endif %}
         </div>
         <div class="action__line">
-            {% blocktrans with url=action.project.get_absolute_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
+            {% blocktranslate with url=action.project.get_absolute_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktranslate %}
         </div>
         <div class="action__date">
             {% html_date action.timestamp 'd.m.Y' class='relative' title=action.timestamp|date:'DATETIME_FORMAT' %}

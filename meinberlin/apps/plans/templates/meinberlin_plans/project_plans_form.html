@@ -1,13 +1,13 @@
 {% load i18n %}
 <p class="form-hint">
-    {% blocktrans %}Please select the plan your project belongs to. Your project will be shown in the list of plans accordingly.{% endblocktrans %}
+    {% blocktranslate %}Please select the plan your project belongs to. Your project will be shown in the list of plans accordingly.{% endblocktranslate %}
 </p>
 {% if form.plans.field.choices %}
     {% include 'a4dashboard/includes/form_field.html' with field=form.plans %}
 {% else %}
     <p class="form-hint">
     {% url 'a4dashboard:plan-create' form.instance.organisation.slug as plan_create_url  %}
-    {% blocktrans %}No plan has been created yet. You can do that <a href="{{ plan_create_url }}">here</a>.{% endblocktrans %}
+    {% blocktranslate %}No plan has been created yet. You can do that <a href="{{ plan_create_url }}">here</a>.{% endblocktranslate %}
     </p>
 {% endif %}
 {% if form.plans.errors %}
