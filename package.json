@@ -18,7 +18,7 @@
     "acorn": "8.8.1",
     "adhocracy4": "liqd/adhocracy4#c61fdc3bbb5922f4c365368bbe74591a01465bc6",
     "autoprefixer": "10.4.13",
-    "babel-loader": "9.1.0",
+    "babel-loader": "9.1.2",
     "bootstrap": "5.2.3",
     "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.7.3",
