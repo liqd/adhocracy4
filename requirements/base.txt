@@ -2,7 +2,6 @@
 git+https://github.com/liqd/adhocracy4.git@c61fdc3bbb5922f4c365368bbe74591a01465bc6#egg=adhocracy4
 
 # Additional requirements
-bcrypt==4.0.1
 brotli==1.0.9
 django-capture-tag==1.0
 django-cloudflare-push==0.2.2

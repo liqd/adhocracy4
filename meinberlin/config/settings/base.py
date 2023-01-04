@@ -299,12 +299,6 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.BCryptPasswordHasher',  # a3
-    'meinberlin.apps.users.hashers.A2PasswordHasher',
-]
-
 # ckeditor
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_RESTRICT_BY_USER = 'username'
