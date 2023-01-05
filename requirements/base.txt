@@ -24,4 +24,4 @@ djangorestframework==3.14.0
 easy-thumbnails[svg]==2.8.4
 python-dateutil==2.8.2
 rules==3.3
-XlsxWriter==3.0.5
+XlsxWriter==3.0.6
