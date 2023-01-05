@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-23 16:45+0100\n"
+"POT-Creation-Date: 2023-01-05 16:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -431,7 +431,7 @@ msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:71
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
 msgctxt "noun"
 msgid "Answer"
 msgstr "Answer"
@@ -453,16 +453,16 @@ msgstr "Multiple Choice question"
 msgid "Open question"
 msgstr "Open question"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:178
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:179
 msgid "The poll has been updated."
 msgstr "The poll has been updated."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:194
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:195
 msgid "The poll could not be updated. Please check the data you entered again."
 msgstr ""
 "The poll could not be updated. Please check the data you entered again."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:261
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:262
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:16
 msgid "Save"
 msgstr "Save"
@@ -473,8 +473,8 @@ msgstr "Save"
 msgid "Question"
 msgstr "Question"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:38
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:121
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:37
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:120
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
 msgstr "Explanation"
@@ -497,20 +497,20 @@ msgstr "Move up"
 msgid "Move down"
 msgstr "Move down"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:48
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:47
 msgid "Participants can vote for more than one option (multiple choice)"
 msgstr "Participants can vote for more than one option (multiple choice)"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:63
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:62
 msgid "Participants can add their own answer"
 msgstr "Participants can add their own answer"
 
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:95
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:96
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:97
 msgid "Other"
 msgstr "Other"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:114
+#: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:113
 msgid "New answer"
 msgstr "New answer"
 
@@ -648,6 +648,12 @@ msgid_plural "you have %s votes left."
 msgstr[0] "you have 1 vote left."
 msgstr[1] "you have %s votes left."
 
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:18
+#: meinberlin/apps/plans/assets/PlansList.jsx:11
+#: meinberlin/apps/plans/assets/PlansMap.jsx:11
+msgid "Nothing to show"
+msgstr "Nothing to show"
+
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:8
 msgid "updated on"
 msgstr "updated on"
@@ -656,27 +662,31 @@ msgstr "updated on"
 msgid "created on"
 msgstr "created on"
 
-#: meinberlin/apps/budgeting/assets/ControlBar.jsx:18
+#: meinberlin/apps/budgeting/assets/ControlBar.jsx:14
+msgid "Search, filter and sort the ideas list"
+msgstr "Search, filter and sort the ideas list"
+
+#: meinberlin/apps/budgeting/assets/ControlBar.jsx:19
 #, javascript-format
 msgid "1 proposal found."
 msgid_plural "%s proposals found."
 msgstr[0] "1 proposal found."
 msgstr[1] "%s proposals found."
 
-#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:22
+#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:21
 msgid "View as list"
 msgstr "View as list"
 
-#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:25
+#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:24
 #: meinberlin/apps/plans/assets/Toggles.jsx:13
 msgid "List"
 msgstr "List"
 
-#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:30
+#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:29
 msgid "View as map"
 msgstr "View as map"
 
-#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:33
+#: meinberlin/apps/budgeting/assets/ControlBarListMapSwitch.jsx:32
 #: meinberlin/apps/plans/assets/Toggles.jsx:14
 msgid "Map"
 msgstr "Map"
@@ -689,7 +699,11 @@ msgstr "Start search"
 msgid "Search for Proposals"
 msgstr "Search for Proposals"
 
-#: meinberlin/apps/budgeting/assets/ListItemBadges.jsx:6
+#: meinberlin/apps/budgeting/assets/ControlBarSearchTerm.jsx:5
+msgid "Remove filters"
+msgstr "Remove filters"
+
+#: meinberlin/apps/budgeting/assets/ListItemBadges.jsx:5
 msgid "More"
 msgstr "More"
 
@@ -1047,11 +1061,6 @@ msgstr "Participation ended. Read result."
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:11
-#: meinberlin/apps/plans/assets/PlansMap.jsx:11
-msgid "Nothing to show"
-msgstr "Nothing to show"
-
 #: meinberlin/apps/plans/assets/PlansListMapBox.jsx:13
 msgid "ongoing"
 msgstr "ongoing"
@@ -1119,6 +1128,14 @@ msgstr "hide map"
 #: meinberlin/apps/plans/assets/Toggles.jsx:15
 msgid "show list"
 msgstr "show list"
+
+#: meinberlin/assets/js/swiper_phases.js:27
+msgid "Slider to go back and forth between phases."
+msgstr "Slider to go back and forth between phases."
+
+#: meinberlin/assets/js/swiper_phases.js:29
+msgid "Go to slide {{index}}"
+msgstr "Go to slide {{index}}"
 
 #: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
