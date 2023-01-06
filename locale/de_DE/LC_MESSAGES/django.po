@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-05 16:43+0100\n"
-"PO-Revision-Date: 2022-12-15 10:50+0000\n"
-"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
+"PO-Revision-Date: 2023-01-06 16:37+0000\n"
+"Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -5188,11 +5188,11 @@ msgstr ""
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase_info.html:18
 msgid "upcoming"
-msgstr ""
+msgstr "anstehend"
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase_info.html:24
 msgid "finished"
-msgstr ""
+msgstr "abgeschlossen"
 
 #: meinberlin/templates/a4modules/module_detail.html:38
 msgid "Previous"
