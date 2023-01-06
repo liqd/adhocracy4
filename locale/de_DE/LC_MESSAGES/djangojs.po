@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-05 16:43+0100\n"
-"PO-Revision-Date: 2022-12-15 10:48+0000\n"
-"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
+"PO-Revision-Date: 2023-01-06 16:37+0000\n"
+"Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -1317,11 +1317,11 @@ msgstr "Liste anzeigen"
 
 #: meinberlin/assets/js/swiper_phases.js:27
 msgid "Slider to go back and forth between phases."
-msgstr ""
+msgstr "Schieberegler, um zwischen den Phasen hin und her zu wechseln."
 
 #: meinberlin/assets/js/swiper_phases.js:29
 msgid "Go to slide {{index}}"
-msgstr ""
+msgstr "Gehe zu Phase {{index}}"
 
 #: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
