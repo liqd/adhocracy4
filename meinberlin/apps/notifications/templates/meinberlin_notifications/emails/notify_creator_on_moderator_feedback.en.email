@@ -18,7 +18,7 @@ The status of your contribution has been changed and is now “{{ object.get_mod
 {% endif %}
 {% if object.moderator_statement.statement %}
 <p>
-Official feedback: {{ object.moderator_statement.statement | safe }}
+Feedback: {{ object.moderator_statement.statement | safe }}
 </p>
 {% endif %}
 <p>
