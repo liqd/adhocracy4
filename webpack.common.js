@@ -14,11 +14,10 @@ module.exports = {
         'shariff/dist/shariff.min.css',
         'select2/dist/css/select2.min.css',
         'slick-carousel/slick/slick.css',
+        'swiper/swiper-bundle.min.css',
         './meinberlin/assets/extra_css/_slick-theme.css',
         './meinberlin/assets/scss/style.scss',
-        './meinberlin/assets/js/app.js',
-        'swiper/swiper.min.css',
-        'swiper/swiper-bundle.min.css'
+        './meinberlin/assets/js/app.js'
       ],
       library: {
         name: '[name]',
