@@ -70,7 +70,7 @@ export default class InfoBox extends React.Component {
                   </div>
                   <div className="infobox__box infobox__box--last">
                     <i className="far fa-list-alt" />
-                    <div>
+                    <div className="infobox__text">
                       {textMarkedModeration}
                     </div>
                   </div>
