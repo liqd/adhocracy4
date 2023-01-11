@@ -51,6 +51,10 @@
         border-bottom: 0;
     }
 
+    &:last-child button {
+        margin-bottom: 0; // rm safari auto 2px box margin
+    }
+
     .dropdown.show & {
         display: block;
     }
