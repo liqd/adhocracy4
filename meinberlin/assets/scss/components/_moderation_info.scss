@@ -1,3 +1,7 @@
+.moderation-info__title {
+    font-size: $font-size-lg;
+}
+
 .moderation-info__accordion {
     position: relative;
 }
@@ -21,6 +25,8 @@
 }
 
 .moderation-info__section {
+    font-size: $font-size-md;
+    font-weight: bold;
     border-top: 1px solid $border-color;
     padding-top: 1.4 * $padding;
     margin-top: 0;

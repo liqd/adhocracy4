@@ -3,7 +3,7 @@ details summary {
 }
 
 // Hides the default arrow on safari
-details summary:-webkit-details-marker {
+details summary::-webkit-details-marker {
     display: none;
 }
 

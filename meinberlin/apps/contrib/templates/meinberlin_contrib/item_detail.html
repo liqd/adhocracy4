@@ -146,11 +146,11 @@
                             {% for task in object.module.moderationtask_set.all %}
                                 <li class="moderation-info__list-item">
                                 {% if task in object.completed_tasks.all %}
-                                    <i class="fas fa-circle-check u-success" aria-role="img" aria-label="{% translate 'Done' %}"></i>
+                                    <i class="fas fa-circle-check u-success" aria-role="img" aria-label="{% translate 'Done' %}"></i>                                
+                                    {{ task.name }}
                                 {% else %}
-                                    <i class="far fa-circle u-muted" aria-role="img" aria-label="{% translate 'Open' %}"></i>
+                                    <span class="u-muted">{{ task.name }}</span>
                                 {% endif %}
-                                {{ task.name }}
                                 </li>
                             {% endfor %}
                             </ul>

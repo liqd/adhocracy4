@@ -46,13 +46,13 @@ $padding: 1rem !default;
 $font-family-base: "Arial", "Helvetica", sans-serif !default;
 $font-family-sans-serif: "Arial", "Helvetica", sans-serif !default;
 
-$font-size-xxxl: 2.25rem !default;
-$font-size-xxl: 1.95rem !default;
-$font-size-xl: 1.56rem !default;
-$font-size-lg: 1.25rem !default;
-$font-size-md: 1.125rem !default;
-$font-size-sm: 0.9rem !default;
-$font-size-xs: 0.8rem !default;
+$font-size-xxxl: 2.25rem !default; // 36px
+$font-size-xxl: 1.95rem !default; // 31.2px
+$font-size-xl: 1.56rem !default; // 24.96px
+$font-size-lg: 1.25rem !default; // 20px
+$font-size-md: 1.125rem !default; // 18px
+$font-size-sm: 0.9rem !default; // 14.44px
+$font-size-xs: 0.8rem !default; // 12.8px
 
 // use for min-width media-queries
 $breakpoint-xs: 32rem !default;
