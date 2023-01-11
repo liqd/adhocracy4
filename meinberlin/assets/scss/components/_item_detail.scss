@@ -46,6 +46,8 @@
     @include clearfix;
     position: relative;
     margin-bottom: 1.5em;
+
+    overflow-wrap: break-word;
 }
 
 .item-detail__hero-image {
