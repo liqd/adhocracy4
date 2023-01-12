@@ -19,8 +19,7 @@ class TimeStampedModel(models.Model):
 
 class UserGeneratedContentModel(TimeStampedModel):
 
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                on_delete=models.CASCADE)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         abstract = True

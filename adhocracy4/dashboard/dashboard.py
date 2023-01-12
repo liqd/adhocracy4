@@ -8,67 +8,67 @@ from . import forms
 
 
 class ProjectBasicComponent(ProjectFormComponent):
-    identifier = 'basic'
+    identifier = "basic"
     weight = 10
-    label = _('Basic settings')
+    label = _("Basic settings")
 
-    form_title = _('Edit basic settings')
+    form_title = _("Edit basic settings")
     form_class = forms.ProjectBasicForm
-    form_template_name = 'a4dashboard/includes/project_basic_form.html'
+    form_template_name = "a4dashboard/includes/project_basic_form.html"
 
 
 class ProjectInformationComponent(ProjectFormComponent):
-    identifier = 'information'
+    identifier = "information"
     weight = 11
-    label = _('Information')
+    label = _("Information")
 
-    form_title = _('Edit project information')
+    form_title = _("Edit project information")
     form_class = forms.ProjectInformationForm
-    form_template_name = 'a4dashboard/includes/project_information_form.html'
+    form_template_name = "a4dashboard/includes/project_information_form.html"
 
 
 class ProjectResultComponent(ProjectFormComponent):
-    identifier = 'result'
+    identifier = "result"
     weight = 12
-    label = _('Result')
+    label = _("Result")
 
-    form_title = _('Edit project result')
+    form_title = _("Edit project result")
     form_class = forms.ProjectResultForm
-    form_template_name = 'a4dashboard/includes/project_result_form.html'
+    form_template_name = "a4dashboard/includes/project_result_form.html"
 
 
 class ModuleBasicComponent(ModuleFormComponent):
-    identifier = 'module_basic'
+    identifier = "module_basic"
     weight = 10
-    label = _('Basic information')
+    label = _("Basic information")
 
-    form_title = _('Edit basic module information')
+    form_title = _("Edit basic module information")
     form_class = forms.ModuleBasicForm
-    form_template_name = 'a4dashboard/includes/module_basic_form.html'
+    form_template_name = "a4dashboard/includes/module_basic_form.html"
 
 
 class ModulePhasesComponent(ModuleFormSetComponent):
-    identifier = 'phases'
+    identifier = "phases"
     weight = 11
-    label = _('Phases')
+    label = _("Phases")
 
-    form_title = _('Edit phases information')
+    form_title = _("Edit phases information")
     form_class = forms.PhaseFormSet
-    form_template_name = 'a4dashboard/includes/module_phases_form.html'
+    form_template_name = "a4dashboard/includes/module_phases_form.html"
 
 
 class ModuleAreaSettingsComponent(ModuleFormComponent):
-    identifier = 'area_settings'
+    identifier = "area_settings"
     weight = 12
 
-    label = _('Area settings')
-    form_title = _('Edit area settings')
+    label = _("Area settings")
+    form_title = _("Edit area settings")
     form_class = forms.AreaSettingsForm
-    form_template_name = 'a4dashboard/includes/module_areasettings_form.html'
+    form_template_name = "a4dashboard/includes/module_areasettings_form.html"
 
     def is_effective(self, module):
         module_settings = module.settings_instance
-        return module_settings and hasattr(module_settings, 'polygon')
+        return module_settings and hasattr(module_settings, "polygon")
 
     def get_progress(self, module):
         module_settings = module.settings_instance

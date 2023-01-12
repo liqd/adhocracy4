@@ -11,8 +11,8 @@ class DynamicChoicesMixin(object):
     """
 
     def __init__(self, *args, **kwargs):
-        if 'choices' in kwargs:
-            self.choices = kwargs.pop('choices')
+        if "choices" in kwargs:
+            self.choices = kwargs.pop("choices")
         super().__init__(*args, **kwargs)
 
     def get_choices(self, view):
@@ -24,9 +24,9 @@ class DynamicChoicesMixin(object):
 
     @property
     def field(self):
-        choices = self.get_choices(getattr(self, 'view', None))
+        choices = self.get_choices(getattr(self, "view", None))
 
         if choices is not None:
-            self.extra['choices'] = choices
+            self.extra["choices"] = choices
 
         return super(DynamicChoicesMixin, self).field

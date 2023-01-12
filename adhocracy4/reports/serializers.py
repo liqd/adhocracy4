@@ -4,7 +4,6 @@ from .models import Report
 
 
 class ReportSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Report
-        exclude = ('creator', 'modified', 'created')
+        exclude = ("creator", "modified", "created")

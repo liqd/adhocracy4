@@ -11,9 +11,9 @@ def test_distinct_ordering_daily_random(question_factory):
     questions = [question_factory() for i in range(5)]
     qs = Question.objects.all()
 
-    with freeze_time('2020-01-01 00:00:00 UTC'):
+    with freeze_time("2020-01-01 00:00:00 UTC"):
         random_filter = DistinctOrderingWithDailyRandomFilter()
-        random_qs = random_filter.filter(qs, ['dailyrandom'])
+        random_qs = random_filter.filter(qs, ["dailyrandom"])
 
         assert random_qs[0] == questions[4]
         assert random_qs[1] == questions[3]
@@ -21,9 +21,9 @@ def test_distinct_ordering_daily_random(question_factory):
         assert random_qs[3] == questions[2]
         assert random_qs[4] == questions[1]
 
-    with freeze_time('2020-01-02 00:00:00 UTC'):
+    with freeze_time("2020-01-02 00:00:00 UTC"):
         random_filter = DistinctOrderingWithDailyRandomFilter()
-        random_qs = random_filter.filter(qs, ['dailyrandom'])
+        random_qs = random_filter.filter(qs, ["dailyrandom"])
 
         assert random_qs[0] == questions[4]
         assert random_qs[1] == questions[3]
@@ -31,9 +31,9 @@ def test_distinct_ordering_daily_random(question_factory):
         assert random_qs[3] == questions[1]
         assert random_qs[4] == questions[0]
 
-    with freeze_time('2020-01-03 00:00:00 UTC'):
+    with freeze_time("2020-01-03 00:00:00 UTC"):
         random_filter = DistinctOrderingWithDailyRandomFilter()
-        random_qs = random_filter.filter(qs, ['dailyrandom'])
+        random_qs = random_filter.filter(qs, ["dailyrandom"])
 
         assert random_qs[0] == questions[3]
         assert random_qs[1] == questions[1]
@@ -57,20 +57,22 @@ def test_distinct_ordering(question_factory, comment_factory, rating_factory):
 
     filter = DistinctOrderingWithDailyRandomFilter(
         fields=(
-            ('-created', 'newest'),
-            ('-comment_count', 'comments'),
-            ('-positive_rating_count', 'support'),
-            ('title', 'title'),
+            ("-created", "newest"),
+            ("-comment_count", "comments"),
+            ("-positive_rating_count", "support"),
+            ("title", "title"),
         ),
-        choices=[('dailyrandom', ('Daily random')),
-                 ('comments', ('Most comments')),
-                 ('support', ('Most support'))]
+        choices=[
+            ("dailyrandom", ("Daily random")),
+            ("comments", ("Most comments")),
+            ("support", ("Most support")),
+        ],
     )
-    qs_comments = filter.filter(qs, ['comments'])
+    qs_comments = filter.filter(qs, ["comments"])
     assert qs_comments[0] == questions[2]
     assert qs_comments[1] == questions[1]
 
-    qs_ratings = filter.filter(qs, ['support'])
+    qs_ratings = filter.filter(qs, ["support"])
 
     assert qs_ratings[0] == questions[4]
     assert qs_ratings[1] == questions[0]

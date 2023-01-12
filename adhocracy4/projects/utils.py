@@ -3,12 +3,13 @@ from django.utils.translation import gettext_lazy as _
 
 
 def get_module_clusters(modules):
-    modules = modules \
-        .filter(is_draft=False) \
-        .annotate_module_start() \
-        .annotate_module_end() \
-        .exclude(Q(module_start=None) | Q(module_end=None)) \
-        .order_by('module_start', 'weight')
+    modules = (
+        modules.filter(is_draft=False)
+        .annotate_module_start()
+        .annotate_module_end()
+        .exclude(Q(module_start=None) | Q(module_end=None))
+        .order_by("module_start", "weight")
+    )
     clusters = []
 
     try:
@@ -42,14 +43,14 @@ def get_module_clusters_dict(module_clusters):
         end_date = sorted(end_dates)[-1]
         clusters.append(
             {
-                'title': _('{}. Online Participation').format(str(index + 1)),
-                'type': 'module',
-                'count': index + 1,
-                'date': start_date,
-                'end_date': end_date,
-                'modules': cluster
+                "title": _("{}. Online Participation").format(str(index + 1)),
+                "type": "module",
+                "count": index + 1,
+                "date": start_date,
+                "end_date": end_date,
+                "modules": cluster,
             }
         )
     if len(clusters) == 1:
-        clusters[0]['title'] = _('Online Participation')
+        clusters[0]["title"] = _("Online Participation")
     return clusters

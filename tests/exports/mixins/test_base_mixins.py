@@ -10,19 +10,17 @@ from tests.apps.ideas.models import Idea
 def test_model_fields_mixin(idea):
     class Mixin(ExportModelFieldsMixin):
         model = Idea
-        fields = ['description', 'name']
-        html_fields = ['description']
+        fields = ["description", "name"]
+        html_fields = ["description"]
 
     mixin = Mixin()
 
     virtual = mixin.get_virtual_fields(OrderedDict())
-    assert list(virtual.items()) == [
-        ('description', 'Description'),
-        ('name', 'name')
-    ]
+    assert list(virtual.items()) == [("description", "Description"), ("name", "name")]
 
-    idea.description = '&nbsp; &amp;&euro;&lt;&quot;&auml;&ouml;&uuml;' \
-                       '&#x1F4A9;&nbsp; '
+    idea.description = (
+        "&nbsp; &amp;&euro;&lt;&quot;&auml;&ouml;&uuml;" "&#x1F4A9;&nbsp; "
+    )
     assert mixin.get_description_data(idea) == '&€<"äöü💩'
 
 
@@ -30,28 +28,34 @@ def test_model_fields_mixin(idea):
 def test_model_fields_mixin_exclude(idea):
     class Mixin(ExportModelFieldsMixin):
         model = Idea
-        exclude = ['moderator_feedback', 'moderator_statement',
-                   'point', 'point_label']
+        exclude = ["moderator_feedback", "moderator_statement", "point", "point_label"]
 
     mixin = Mixin()
 
     virtual = mixin.get_virtual_fields({})
 
-    assert sorted(virtual.keys()) == ['category', 'created', 'creator',
-                                      'description', 'id', 'labels',
-                                      'modified', 'module', 'name']
+    assert sorted(virtual.keys()) == [
+        "category",
+        "created",
+        "creator",
+        "description",
+        "id",
+        "labels",
+        "modified",
+        "module",
+        "name",
+    ]
 
 
 @pytest.mark.django_db
 def test_model_fields_mixin_related_fields(idea):
     class Mixin(ExportModelFieldsMixin):
         model = Idea
-        fields = ['name', 'module']
-        related_fields = {'module': ['name', 'description']}
+        fields = ["name", "module"]
+        related_fields = {"module": ["name", "description"]}
 
     mixin = Mixin()
 
     virtual = mixin.get_virtual_fields({})
 
-    assert sorted(virtual.keys()) == ['module_description', 'module_name',
-                                      'name']
+    assert sorted(virtual.keys()) == ["module_description", "module_name", "name"]

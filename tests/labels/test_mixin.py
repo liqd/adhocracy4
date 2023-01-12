@@ -6,10 +6,9 @@ from tests.apps.ideas.models import Idea
 
 
 class LabelForm(LabelsAddableFieldMixin, forms.ModelForm):
-
     class Meta:
         model = Idea
-        fields = ['labels']
+        fields = ["labels"]
 
 
 @pytest.mark.django_db
@@ -17,7 +16,7 @@ def test_choice(module, label_factory):
     label1 = label_factory(module=module)
     label2 = label_factory()
     form = LabelForm(module=module)
-    choice = form.fields['labels'].queryset.all()
+    choice = form.fields["labels"].queryset.all()
     assert label1 in choice
     assert label2 not in choice
 

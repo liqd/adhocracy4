@@ -11,10 +11,9 @@ from tests.helpers import active_phase
 
 
 @pytest.mark.django_db
-def test_anonymous_user_can_not_vote(apiclient,
-                                     poll_factory,
-                                     question_factory,
-                                     choice_factory):
+def test_anonymous_user_can_not_vote(
+    apiclient, poll_factory, question_factory, choice_factory
+):
 
     poll = poll_factory()
     question = question_factory(poll=poll)
@@ -23,30 +22,28 @@ def test_anonymous_user_can_not_vote(apiclient,
 
     assert Vote.objects.count() == 0
 
-    url = reverse('polls-vote', kwargs={'pk': poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice1.pk],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
-    response = apiclient.post(url, data, format='json')
+    response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_403_FORBIDDEN
 
     assert Vote.objects.count() == 0
 
 
 @pytest.mark.django_db
-def test_normal_user_can_not_vote(user,
-                                  apiclient,
-                                  poll_factory,
-                                  question_factory,
-                                  choice_factory):
+def test_normal_user_can_not_vote(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
 
     poll = poll_factory()
     question = question_factory(poll=poll)
@@ -57,30 +54,28 @@ def test_normal_user_can_not_vote(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice1.pk],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
-    response = apiclient.post(url, data, format='json')
+    response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_403_FORBIDDEN
 
     assert Vote.objects.count() == 0
 
 
 @pytest.mark.django_db
-def test_admin_can_vote(admin,
-                        apiclient,
-                        poll_factory,
-                        question_factory,
-                        choice_factory):
+def test_admin_can_vote(
+    admin, apiclient, poll_factory, question_factory, choice_factory
+):
 
     poll = poll_factory()
     question = question_factory(poll=poll)
@@ -91,30 +86,28 @@ def test_admin_can_vote(admin,
 
     apiclient.force_authenticate(user=admin)
 
-    url = reverse('polls-vote', kwargs={'pk': poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice1.pk],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
-    response = apiclient.post(url, data, format='json')
+    response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_201_CREATED
 
     assert Vote.objects.count() == 1
 
 
 @pytest.mark.django_db
-def test_normal_user_can_vote_in_active_phase(user,
-                                              apiclient,
-                                              poll_factory,
-                                              question_factory,
-                                              choice_factory):
+def test_normal_user_can_vote_in_active_phase(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
 
     poll = poll_factory()
     question = question_factory(poll=poll)
@@ -126,25 +119,25 @@ def test_normal_user_can_vote_in_active_phase(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice1.pk],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
             },
             open_question.pk: {
-                'choices': [],
-                'other_choice_answer': '',
-                'open_answer': 'an open answer'
-            }
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "an open answer",
+            },
         }
     }
 
     with active_phase(poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Vote.objects.count() == 1
@@ -152,11 +145,9 @@ def test_normal_user_can_vote_in_active_phase(user,
 
 
 @pytest.mark.django_db
-def test_user_cant_vote_in_private_project(user,
-                                           apiclient,
-                                           poll_factory,
-                                           question_factory,
-                                           choice_factory):
+def test_user_cant_vote_in_private_project(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
 
     poll = poll_factory()
     project = poll.module.project
@@ -170,31 +161,29 @@ def test_user_cant_vote_in_private_project(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice1.pk],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     assert Vote.objects.count() == 0
 
 
 @pytest.mark.django_db
-def test_participant_can_vote_in_private_project(user,
-                                                 apiclient,
-                                                 poll_factory,
-                                                 question_factory,
-                                                 choice_factory):
+def test_participant_can_vote_in_private_project(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
 
     poll = poll_factory()
     project = poll.module.project
@@ -209,30 +198,27 @@ def test_participant_can_vote_in_private_project(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice1.pk],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Vote.objects.count() == 1
 
 
 @pytest.mark.django_db
-def test_other_choice_vote_created(user,
-                                   question,
-                                   apiclient,
-                                   choice_factory):
+def test_other_choice_vote_created(user, question, apiclient, choice_factory):
 
     choice_factory(question=question)
     choice_other = choice_factory(question=question, is_other_choice=True)
@@ -242,33 +228,32 @@ def test_other_choice_vote_created(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': question.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": question.poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice_other.pk],
-                'other_choice_answer': 'other choice answer',
-                'open_answer': ''
+                "choices": [choice_other.pk],
+                "other_choice_answer": "other choice answer",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Vote.objects.count() == 1
     assert OtherVote.objects.count() == 1
     assert OtherVote.objects.first().vote == Vote.objects.first()
-    assert OtherVote.objects.first().answer == 'other choice answer'
+    assert OtherVote.objects.first().answer == "other choice answer"
 
 
 @pytest.mark.django_db
-def test_empty_other_choice_vote_raises_error(user,
-                                              question,
-                                              apiclient,
-                                              choice_factory):
+def test_empty_other_choice_vote_raises_error(
+    user, question, apiclient, choice_factory
+):
 
     choice_factory(question=question)
     choice_other = choice_factory(question=question, is_other_choice=True)
@@ -278,20 +263,20 @@ def test_empty_other_choice_vote_raises_error(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': question.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": question.poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice_other.pk],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice_other.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_400_BAD_REQUEST
 
     assert Vote.objects.count() == 0
@@ -299,10 +284,7 @@ def test_empty_other_choice_vote_raises_error(user,
 
 
 @pytest.mark.django_db
-def test_other_choice_vote_updated(user,
-                                   question,
-                                   apiclient,
-                                   choice_factory):
+def test_other_choice_vote_updated(user, question, apiclient, choice_factory):
 
     choice_factory(question=question)
     choice_other = choice_factory(question=question, is_other_choice=True)
@@ -312,162 +294,156 @@ def test_other_choice_vote_updated(user,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': question.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": question.poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice_other.pk],
-                'other_choice_answer': 'other choice answer',
-                'open_answer': ''
+                "choices": [choice_other.pk],
+                "other_choice_answer": "other choice answer",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Vote.objects.count() == 1
     assert OtherVote.objects.count() == 1
     assert OtherVote.objects.first().vote == Vote.objects.first()
-    assert OtherVote.objects.first().answer == 'other choice answer'
+    assert OtherVote.objects.first().answer == "other choice answer"
 
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice_other.pk],
-                'other_choice_answer': 'other choice answer updated',
-                'open_answer': ''
+                "choices": [choice_other.pk],
+                "other_choice_answer": "other choice answer updated",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Vote.objects.count() == 1
     assert OtherVote.objects.count() == 1
     assert OtherVote.objects.first().vote == Vote.objects.first()
-    assert OtherVote.objects.first().answer == 'other choice answer updated'
+    assert OtherVote.objects.first().answer == "other choice answer updated"
 
 
 @pytest.mark.django_db
-def test_answer_created(user,
-                        open_question,
-                        apiclient):
+def test_answer_created(user, open_question, apiclient):
 
     assert Answer.objects.count() == 0
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': open_question.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": open_question.poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             open_question.pk: {
-                'choices': [],
-                'other_choice_answer': '',
-                'open_answer': 'answer to open question'
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "answer to open question",
             }
         }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Answer.objects.count() == 1
-    assert Answer.objects.first().answer == 'answer to open question'
+    assert Answer.objects.first().answer == "answer to open question"
 
 
 @pytest.mark.django_db
-def test_answer_updated(user,
-                        open_question,
-                        apiclient):
+def test_answer_updated(user, open_question, apiclient):
 
     assert Answer.objects.count() == 0
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': open_question.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": open_question.poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             open_question.pk: {
-                'choices': [],
-                'other_choice_answer': '',
-                'open_answer': 'answer to open question'
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "answer to open question",
             }
         }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Answer.objects.count() == 1
-    assert Answer.objects.first().answer == 'answer to open question'
+    assert Answer.objects.first().answer == "answer to open question"
 
     data = {
-        'votes': {
+        "votes": {
             open_question.pk: {
-                'choices': [],
-                'other_choice_answer': '',
-                'open_answer': 'answer to open question updated'
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "answer to open question updated",
             }
         }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Answer.objects.count() == 1
-    assert Answer.objects.first().answer == 'answer to open question updated'
+    assert Answer.objects.first().answer == "answer to open question updated"
 
 
 @pytest.mark.django_db
-def test_answer_deleted(user,
-                        open_question,
-                        apiclient):
+def test_answer_deleted(user, open_question, apiclient):
 
     assert Answer.objects.count() == 0
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': open_question.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": open_question.poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             open_question.pk: {
-                'choices': [],
-                'other_choice_answer': '',
-                'open_answer': 'answer to open question'
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "answer to open question",
             }
         }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Answer.objects.count() == 1
-    assert Answer.objects.first().answer == 'answer to open question'
+    assert Answer.objects.first().answer == "answer to open question"
 
     data = {
-        'votes': {
+        "votes": {
             open_question.pk: {
-                'choices': [],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(open_question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Answer.objects.count() == 0
@@ -480,34 +456,30 @@ def test_get_data(apiclient, user, question, choice_factory):
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': question.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": question.poll.pk})
 
     data = {
-        'votes': {
-            question.pk: {
-                'choices': [1],
-                'other_choice_answer': '',
-                'open_answer': ''
-            }
+        "votes": {
+            question.pk: {"choices": [1], "other_choice_answer": "", "open_answer": ""}
         }
     }
 
     with active_phase(question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_404_NOT_FOUND
 
     choice = choice_factory(question=question)
     data = {
-        'votes': {
+        "votes": {
             question.pk: {
-                'choices': [choice.id],
-                'other_choice_answer': '',
+                "choices": [choice.id],
+                "other_choice_answer": "",
             }
         }
     }
 
     with active_phase(question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
@@ -519,67 +491,66 @@ def test_validate_choices(apiclient, user, question_factory, choice_factory):
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': question1.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": question1.poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question1.pk: {
-                'choices': [choice1.id, choice1.id],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.id, choice1.id],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(question1.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert 'Duplicate choices detected' in response.content.decode()
+    assert "Duplicate choices detected" in response.content.decode()
 
     choice2 = choice_factory(question=question1)
 
     data = {
-        'votes': {
+        "votes": {
             question1.pk: {
-                'choices': [choice1.id, choice2.id],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.id, choice2.id],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
     with active_phase(question1.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert 'Multiple choice disabled for question' \
-           in response.content.decode()
+    assert "Multiple choice disabled for question" in response.content.decode()
 
     question2 = question_factory()
 
-    url = reverse('polls-vote', kwargs={'pk': question2.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": question2.poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question2.pk: {
-                'choices': [choice1.id],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.id],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(question2.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert 'Choice has to belong to the question set in the url.' \
-           in response.content.decode()
+    assert (
+        "Choice has to belong to the question set in the url."
+        in response.content.decode()
+    )
 
 
 @pytest.mark.django_db
-def test_validate_question_belongs_to_poll(apiclient,
-                                           user,
-                                           poll_factory,
-                                           question_factory,
-                                           choice_factory):
+def test_validate_question_belongs_to_poll(
+    apiclient, user, poll_factory, question_factory, choice_factory
+):
 
     poll_1 = poll_factory()
     poll_2 = poll_factory()
@@ -588,20 +559,22 @@ def test_validate_question_belongs_to_poll(apiclient,
 
     apiclient.force_authenticate(user=user)
 
-    url = reverse('polls-vote', kwargs={'pk': poll_2.pk})
+    url = reverse("polls-vote", kwargs={"pk": poll_2.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question1.pk: {
-                'choices': [choice1.id],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice1.id],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
 
     with active_phase(poll_2.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
+        response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_400_BAD_REQUEST
-    assert 'Question has to belong to the poll set in the url.' \
-           in response.content.decode()
+    assert (
+        "Question has to belong to the poll set in the url."
+        in response.content.decode()
+    )

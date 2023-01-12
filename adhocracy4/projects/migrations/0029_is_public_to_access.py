@@ -6,7 +6,7 @@ from adhocracy4.projects.enums import Access
 
 
 def initialize_access(apps, schema_editor):
-    Project = apps.get_model('a4projects', 'Project')
+    Project = apps.get_model("a4projects", "Project")
     for project in Project.objects.all():
         if project.is_public:
             project.access = Access.PUBLIC
@@ -16,7 +16,7 @@ def initialize_access(apps, schema_editor):
 
 
 def backward_function(apps, schema_editor):
-    Project = apps.get_model('a4projects', 'Project')
+    Project = apps.get_model("a4projects", "Project")
     for project in Project.objects.all():
         if project.access == Access.PUBLIC:
             project.is_public = True
@@ -28,7 +28,7 @@ def backward_function(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0028_project_access'),
+        ("a4projects", "0028_project_access"),
     ]
 
     operations = [

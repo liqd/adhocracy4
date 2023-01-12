@@ -8,12 +8,9 @@ from .widgets import MapChoosePolygonWidget
 
 class AreaSettings(module_models.AbstractSettings):
     polygon = MultiPolygonField(
-        verbose_name=_('Polygon'),
-        help_text=_('Please draw an area on the map.')
+        verbose_name=_("Polygon"), help_text=_("Please draw an area on the map.")
     )
 
     @staticmethod
     def widgets():
-        return {
-            'polygon': MapChoosePolygonWidget
-        }
+        return {"polygon": MapChoosePolygonWidget}

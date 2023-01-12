@@ -6,25 +6,24 @@ from adhocracy4.modules import models as module_models
 
 
 class IconField(models.CharField):
-
     def __init__(self, *args, **kwargs):
-        kwargs['max_length'] = 254
-        kwargs['default'] = ''
-        kwargs['blank'] = True
+        kwargs["max_length"] = 254
+        kwargs["default"] = ""
+        kwargs["blank"] = True
         super().__init__(*args, **kwargs)
 
     def contribute_to_class(self, cls, name, **kwargs):
         """Initialize icon choices from the settings if they exist."""
 
-        if hasattr(settings, 'A4_CATEGORY_ICONS'):
+        if hasattr(settings, "A4_CATEGORY_ICONS"):
             self.choices = settings.A4_CATEGORY_ICONS
 
         # Call the super method at last so that choices are already initialized
         super().contribute_to_class(cls, name, **kwargs)
 
     def formfield(self, **kwargs):
-        form_class = kwargs.get('choices_form_class', IconChoiceField)
-        kwargs['choices_form_class'] = form_class
+        form_class = kwargs.get("choices_form_class", IconChoiceField)
+        kwargs["choices_form_class"] = form_class
         return super().formfield(**kwargs)
 
 
@@ -37,8 +36,8 @@ class Category(models.Model):
     )
 
     class Meta:
-        verbose_name_plural = 'categories'
-        ordering = ['pk']
+        verbose_name_plural = "categories"
+        ordering = ["pk"]
 
     def __str__(self):
         return self.name

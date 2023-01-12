@@ -7,14 +7,14 @@ class Email(mixins.PlatformEmailMixin, base.EmailBase):
 
 
 class ExternalNotification(Email):
-    email_attr_name = 'email'
+    email_attr_name = "email"
 
     def get_receivers(self):
         return [getattr(self.object, self.email_attr_name)]
 
 
 class UserNotification(Email):
-    user_attr_name = 'creator'
+    user_attr_name = "creator"
 
     def get_receivers(self):
         return [getattr(self.object, self.user_attr_name)]

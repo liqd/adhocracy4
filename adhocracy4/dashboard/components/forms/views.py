@@ -9,23 +9,25 @@ from adhocracy4.projects.mixins import ProjectMixin
 from ... import mixins
 
 
-class ProjectComponentFormView(ProjectMixin,
-                               mixins.DashboardBaseMixin,
-                               mixins.DashboardComponentMixin,
-                               mixins.DashboardComponentFormSignalMixin,
-                               SuccessMessageMixin,
-                               generic.UpdateView):
+class ProjectComponentFormView(
+    ProjectMixin,
+    mixins.DashboardBaseMixin,
+    mixins.DashboardComponentMixin,
+    mixins.DashboardComponentFormSignalMixin,
+    SuccessMessageMixin,
+    generic.UpdateView,
+):
 
-    permission_required = 'a4projects.change_project'
+    permission_required = "a4projects.change_project"
     model = project_models.Project
-    template_name = 'a4dashboard/base_form_project.html'
-    success_message = _('The project has been updated.')
+    template_name = "a4dashboard/base_form_project.html"
+    success_message = _("The project has been updated.")
 
     # Properties to be set when calling as_view()
     component = None
-    title = ''
+    title = ""
     form_class = None
-    form_template_name = ''
+    form_template_name = ""
 
     def get_object(self, queryset=None):
         return self.project
@@ -34,23 +36,25 @@ class ProjectComponentFormView(ProjectMixin,
         return self.project
 
 
-class ModuleComponentFormView(ProjectMixin,
-                              mixins.DashboardBaseMixin,
-                              mixins.DashboardComponentMixin,
-                              mixins.DashboardComponentFormSignalMixin,
-                              SuccessMessageMixin,
-                              generic.UpdateView):
+class ModuleComponentFormView(
+    ProjectMixin,
+    mixins.DashboardBaseMixin,
+    mixins.DashboardComponentMixin,
+    mixins.DashboardComponentFormSignalMixin,
+    SuccessMessageMixin,
+    generic.UpdateView,
+):
 
-    permission_required = 'a4projects.change_project'
+    permission_required = "a4projects.change_project"
     model = module_models.Module
-    template_name = 'a4dashboard/base_form_module.html'
-    success_message = _('The module has been updated.')
+    template_name = "a4dashboard/base_form_module.html"
+    success_message = _("The module has been updated.")
 
     # Properties to be set when calling as_view()
     component = None
-    title = ''
+    title = ""
     form_class = None
-    form_template_name = ''
+    form_template_name = ""
 
     def get_object(self, queryset=None):
         return self.module

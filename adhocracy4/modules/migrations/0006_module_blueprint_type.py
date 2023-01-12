@@ -7,13 +7,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4modules', '0005_module_is_draft'),
+        ("a4modules", "0005_module_is_draft"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='module',
-            name='blueprint_type',
-            field=adhocracy4.modules.fields.BlueprintTypeField(blank=True, max_length=255),
+            model_name="module",
+            name="blueprint_type",
+            field=adhocracy4.modules.fields.BlueprintTypeField(
+                blank=True, max_length=255
+            ),
         ),
     ]

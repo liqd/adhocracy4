@@ -9,13 +9,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0019_rename_topic_field'),
+        ("a4projects", "0019_rename_topic_field"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='topics',
-            field=adhocracy4.projects.fields.TopicField(blank=True, default='', max_length=254, verbose_name='Project topics'),
+            model_name="project",
+            name="topics",
+            field=adhocracy4.projects.fields.TopicField(
+                blank=True, default="", max_length=254, verbose_name="Project topics"
+            ),
         ),
     ]

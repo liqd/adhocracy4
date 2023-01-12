@@ -11,23 +11,22 @@ from adhocracy4.projects.models import Project
 
 
 class Command(BaseCommand):
-    help = 'Create system actions.'
+    help = "Create system actions."
 
     def __init__(self):
         super().__init__()
-        if hasattr(settings, 'A4_ACTIONS_PHASE_STARTED_HOURS'):
+        if hasattr(settings, "A4_ACTIONS_PHASE_STARTED_HOURS"):
             self.phase_started_hours = settings.A4_ACTIONS_PHASE_STARTED_HOURS
         else:
             self.phase_started_hours = 1
 
-        if hasattr(settings, 'A4_ACTIONS_PHASE_ENDS_HOURS'):
+        if hasattr(settings, "A4_ACTIONS_PHASE_ENDS_HOURS"):
             self.phase_ends_hours = settings.A4_ACTIONS_PHASE_ENDS_HOURS
         else:
             self.phase_ends_hours = 24
 
-        if hasattr(settings, 'A4_ACTIONS_PROJECT_STARTED_HOURS'):
-            self.project_started_hours = \
-                settings.A4_ACTIONS_PROJECTED_START_HOURS
+        if hasattr(settings, "A4_ACTIONS_PROJECT_STARTED_HOURS"):
+            self.project_started_hours = settings.A4_ACTIONS_PROJECTED_START_HOURS
         else:
             self.project_started_hours = 1
 
@@ -45,16 +44,16 @@ class Command(BaseCommand):
         """
         phase_ct = ContentType.objects.get_for_model(Phase)
 
-        phases = Phase.objects.filter(
-            module__is_draft=False
-        ).start_last(hours=self.phase_started_hours)
+        phases = Phase.objects.filter(module__is_draft=False).start_last(
+            hours=self.phase_started_hours
+        )
         for phase in phases:
             project = phase.module.project
             existing_action = Action.objects.filter(
                 project=project,
                 verb=Verbs.START.value,
                 obj_content_type=phase_ct,
-                obj_object_id=phase.id
+                obj_object_id=phase.id,
             ).first()
 
             if not existing_action:
@@ -62,7 +61,7 @@ class Command(BaseCommand):
                     project=project,
                     verb=Verbs.START.value,
                     obj=phase,
-                    timestamp=phase.start_date
+                    timestamp=phase.start_date,
                 )
 
             elif existing_action.timestamp < phase.start_date:
@@ -81,23 +80,25 @@ class Command(BaseCommand):
         """
         phase_ct = ContentType.objects.get_for_model(Phase)
 
-        phases = Phase.objects.filter(
-            module__is_draft=False
-        ).finish_next(hours=self.phase_ends_hours)
+        phases = Phase.objects.filter(module__is_draft=False).finish_next(
+            hours=self.phase_ends_hours
+        )
         for phase in phases:
             project = phase.module.project
             existing_action = Action.objects.filter(
                 project=project,
                 verb=Verbs.SCHEDULE.value,
                 obj_content_type=phase_ct,
-                obj_object_id=phase.id
+                obj_object_id=phase.id,
             ).first()
 
             # If the phases end has been modified and moved more than 24 hours
             # ahead, a new phase schedule action is created
-            if not existing_action \
-                or (existing_action.timestamp +
-                    timedelta(hours=self.phase_ends_hours)) < phase.end_date:
+            if (
+                not existing_action
+                or (existing_action.timestamp + timedelta(hours=self.phase_ends_hours))
+                < phase.end_date
+            ):
 
                 Action.objects.create(
                     project=project,
@@ -123,7 +124,7 @@ class Command(BaseCommand):
                     project=project,
                     verb=Verbs.START.value,
                     obj_content_type=project_ct,
-                    obj_object_id=project.id
+                    obj_object_id=project.id,
                 ).first()
 
                 if not existing_action:
@@ -131,7 +132,7 @@ class Command(BaseCommand):
                         project=project,
                         verb=Verbs.START.value,
                         obj=project,
-                        timestamp=phase.start_date
+                        timestamp=phase.start_date,
                     )
 
                 elif existing_action.timestamp < phase.start_date:

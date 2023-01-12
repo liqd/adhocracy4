@@ -19,16 +19,16 @@ class GroupFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Group
 
-    name = factory.Faker('name')
+    name = factory.Faker("name")
 
 
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
 
-    username = factory.Sequence(lambda n: 'user%d' % n)
-    email = factory.Sequence(lambda n: 'user%d@liqd.net' % n)
-    password = make_password('password')
+    username = factory.Sequence(lambda n: "user%d" % n)
+    email = factory.Sequence(lambda n: "user%d@liqd.net" % n)
+    password = make_password("password")
     is_staff = False
     is_superuser = False
 
@@ -44,15 +44,14 @@ class UserFactory(factory.django.DjangoModelFactory):
                 self.groups.add(group)
 
 
-USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
+USER_FACTORY = getattr(settings, "A4_USER_FACTORY", UserFactory)
 
 
 class AdminFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = settings.AUTH_USER_MODEL
 
-    username = factory.Faker('name')
+    username = factory.Faker("name")
     password = (  # password = "password"
         "pbkdf2_sha256$20000$"
         "qMYSzezfIiw3$w3A0xY/kOgE8yA4m3RDFItXTqWCV3N7v2CLy2fD8gyw="
@@ -60,19 +59,19 @@ class AdminFactory(factory.django.DjangoModelFactory):
     is_superuser = True
 
 
-ORGANISATION_FACTORY = getattr(settings, 'A4_ORGANISATION_FACTORY')
+ORGANISATION_FACTORY = getattr(settings, "A4_ORGANISATION_FACTORY")
 
 
 class ProjectFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Project
 
-    name = factory.Faker('sentence', nb_words=4)
+    name = factory.Faker("sentence", nb_words=4)
     group = factory.SubFactory(GroupFactory)
-    slug = factory.Faker('slug')
+    slug = factory.Faker("slug")
     organisation = factory.SubFactory(ORGANISATION_FACTORY)
-    description = factory.Faker('text', max_nb_chars=120)
-    information = factory.Faker('text')
+    description = factory.Faker("text", max_nb_chars=120)
+    information = factory.Faker("text")
     access = Access.PUBLIC
     is_draft = False
 
@@ -89,19 +88,17 @@ class ProjectFactory(factory.django.DjangoModelFactory):
 
 
 class ModuleFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = Module
 
-    name = factory.Faker('sentence', nb_words=4)
-    slug = factory.Faker('slug')
-    description = factory.Faker('text')
+    name = factory.Faker("sentence", nb_words=4)
+    slug = factory.Faker("slug")
+    description = factory.Faker("text")
     weight = random.randint(1, 1000)
     project = factory.SubFactory(ProjectFactory)
 
 
 class ItemFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         abstract = True
 
@@ -113,13 +110,13 @@ class PhaseContentFactory(factory.Factory):
     class Meta:
         model = phases.PhaseContent
 
-    app = 'phase_content_factory'
-    phase = 'factory_phase'
+    app = "phase_content_factory"
+    phase = "factory_phase"
     view = None
 
-    name = 'Factory Phase'
-    description = 'Factory Phase Description'
-    module_name = 'factory phase module'
+    name = "Factory Phase"
+    description = "Factory Phase Description"
+    module_name = "factory phase module"
 
     features = {}
 
@@ -134,24 +131,22 @@ class PhaseContentFactory(factory.Factory):
 
 
 class PhaseFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = Phase
 
     class Params:
         phase_content = PhaseContentFactory()
 
-    name = factory.Sequence(lambda n: '{}. phase'.format(n))
-    description = factory.Faker('text')
+    name = factory.Sequence(lambda n: "{}. phase".format(n))
+    description = factory.Faker("text")
     module = factory.SubFactory(ModuleFactory)
-    start_date = parse('2013-01-02 00:00:00 UTC')
-    end_date = parse('2013-01-03 00:00:00 UTC')
+    start_date = parse("2013-01-02 00:00:00 UTC")
+    end_date = parse("2013-01-03 00:00:00 UTC")
 
     type = factory.LazyAttribute(lambda f: f.phase_content.identifier)
 
 
 class SettingsFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         abstract = True
 
@@ -159,8 +154,7 @@ class SettingsFactory(factory.django.DjangoModelFactory):
 
 
 class AdministrativeDistrictFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = AdministrativeDistrict
 
-    name = factory.Faker('name')
+    name = factory.Faker("name")

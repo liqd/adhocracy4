@@ -10,15 +10,14 @@ from . import has_icons
 
 
 class CategorizableFieldMixin:
-    category_field_name = 'category'
+    category_field_name = "category"
 
     def __init__(self, *args, **kwargs):
-        self.module = kwargs.pop('module')
+        self.module = kwargs.pop("module")
         super().__init__(*args, **kwargs)
 
         field = self.fields[self.category_field_name]
-        field.queryset = category_models.Category.objects.filter(
-            module=self.module)
+        field.queryset = category_models.Category.objects.filter(module=self.module)
 
         required = field.queryset.exists()
         field.empty_label = None
@@ -35,34 +34,33 @@ class CategoryForm(forms.ModelForm):
     def __init__(self, module, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['name'].label = _('Category name')
-        self.fields['icon'].label = _('Category icon')
+        self.fields["name"].label = _("Category name")
+        self.fields["icon"].label = _("Category icon")
 
         if not (module and has_icons(module)):
-            del self.fields['icon']
+            del self.fields["icon"]
 
-    name = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': _('Category')}
-    ))
+    name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": _("Category")}))
 
     class Media:
-        js = ('category_formset.js',)
+        js = ("category_formset.js",)
 
     class Meta:
         model = category_models.Category
-        fields = ['name', 'icon']
+        fields = ["name", "icon"]
 
 
 class CategoryModuleDashboardFormSet(ModuleDashboardFormSet):
     def get_form_kwargs(self, index):
         form_kwargs = super().get_form_kwargs(index)
-        form_kwargs['module'] = self.instance
+        form_kwargs["module"] = self.instance
         return form_kwargs
 
 
-CategoryFormSet = inlineformset_factory(module_models.Module,
-                                        category_models.Category,
-                                        form=CategoryForm,
-                                        formset=CategoryModuleDashboardFormSet,
-                                        extra=0,
-                                        )
+CategoryFormSet = inlineformset_factory(
+    module_models.Module,
+    category_models.Category,
+    form=CategoryForm,
+    formset=CategoryModuleDashboardFormSet,
+    extra=0,
+)

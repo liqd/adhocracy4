@@ -12,5 +12,5 @@ class Access(Enum):
     __labels__ = {
         PUBLIC: _("public"),
         SEMIPUBLIC: _("semipublic"),
-        PRIVATE: _("private")
+        PRIVATE: _("private"),
     }

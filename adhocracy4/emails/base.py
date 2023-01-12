@@ -26,13 +26,13 @@ class EmailBase:
 
     def get_site(self):
         organisation = self.get_organisation()
-        if organisation is not None and hasattr(organisation, 'site'):
+        if organisation is not None and hasattr(organisation, "site"):
             site = organisation.site
             if site is not None:
                 return site
         if self.site_id is not None:
             return Site.objects.get(pk=self.site_id)
-        elif hasattr(settings, 'SITE_ID'):
+        elif hasattr(settings, "SITE_ID"):
             return Site.objects.get(pk=settings.SITE_ID)
         else:
             return None
@@ -40,25 +40,21 @@ class EmailBase:
     def get_host(self):
         site = self.get_site()
         if site is None:
-            return ''
+            return ""
 
         ssl_enabled = True
-        if site.domain.startswith('localhost:'):
+        if site.domain.startswith("localhost:"):
             ssl_enabled = False
 
-        url = 'http{ssl_flag}://{domain}'.format(
-            ssl_flag='s' if ssl_enabled else '',
+        url = "http{ssl_flag}://{domain}".format(
+            ssl_flag="s" if ssl_enabled else "",
             domain=site.domain,
         )
         return url
 
     def get_context(self):
         object_context_key = self.object.__class__.__name__.lower()
-        return {
-            'email': self,
-            'site': self.get_site(),
-            object_context_key: self.object
-        }
+        return {"email": self, "site": self.get_site(), object_context_key: self.object}
 
     def get_receivers(self):
         return []
@@ -67,11 +63,11 @@ class EmailBase:
         return []
 
     def get_fallback_language(self):
-        if hasattr(settings, 'DEFAULT_LANGUAGE'):
+        if hasattr(settings, "DEFAULT_LANGUAGE"):
             return settings.DEFAULT_LANGUAGE
-        elif hasattr(settings, 'DEFAULT_USER_LANGUAGE_CODE'):
+        elif hasattr(settings, "DEFAULT_USER_LANGUAGE_CODE"):
             return settings.DEFAULT_USER_LANGUAGE_CODE
-        return 'en'
+        return "en"
 
     def get_languages(self, receiver):
         return [translation.get_language(), self.get_fallback_language()]
@@ -87,27 +83,31 @@ class EmailBase:
         """
         ct = ContentType.objects.get_for_model(object)
         tasks.send_async(
-            cls.__module__, cls.__name__,
-            ct.app_label, ct.model, object.pk,
-            args, kwargs)
+            cls.__module__,
+            cls.__name__,
+            ct.app_label,
+            ct.model,
+            object.pk,
+            args,
+            kwargs,
+        )
         return []
 
     def render(self, template_name, context):
-        languages = self.get_languages(context['receiver'])
-        template = select_template([
-            '{}.{}.email'.format(template_name, lang)
-            for lang in languages
-        ])
+        languages = self.get_languages(context["receiver"])
+        template = select_template(
+            ["{}.{}.email".format(template_name, lang) for lang in languages]
+        )
 
         # Get the actually chosen language from the template name
-        language = template.template.name.split('.', 2)[-2]
+        language = template.template.name.split(".", 2)[-2]
 
         with translation.override(language):
             parts = []
-            for part_type in ('subject', 'txt', 'html'):
-                context['part_type'] = part_type
+            for part_type in ("subject", "txt", "html"):
+                context["part_type"] = part_type
                 parts.append(template.render(context))
-                context.pop('part_type')
+                context.pop("part_type")
 
         return tuple(parts)
 
@@ -123,16 +123,16 @@ class EmailBase:
         mails = []
         mail_exceptions = []
         for receiver in receivers:
-            context['receiver'] = receiver
+            context["receiver"] = receiver
             (subject, text, html) = self.render(template, context)
-            context.pop('receiver')
+            context.pop("receiver")
 
-            if hasattr(receiver, 'email'):
+            if hasattr(receiver, "email"):
                 to_address = receiver.email
             else:
                 to_address = receiver
 
-            subject_clean = re.sub(r'[\r\n]', '', subject).strip()
+            subject_clean = re.sub(r"[\r\n]", "", subject).strip()
 
             mail = EmailMultiAlternatives(
                 subject=subject_clean,
@@ -143,12 +143,12 @@ class EmailBase:
             )
 
             if len(attachments) > 0:
-                mail.mixed_subtype = 'related'
+                mail.mixed_subtype = "related"
 
                 for attachment in attachments:
                     mail.attach(attachment)
 
-            mail.attach_alternative(html, 'text/html')
+            mail.attach_alternative(html, "text/html")
             mails.append(mail)
 
             if self.enable_reporting:

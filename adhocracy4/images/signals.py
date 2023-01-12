@@ -7,9 +7,9 @@ from adhocracy4.images import services
 
 from .fields import ConfiguredImageField
 
-_PREFIX = '_a4images_'
-_IMAGE_FIELDS_ATTR = _PREFIX + 'image_fields'
-_CURRENT_IMAGES_ATTR = _PREFIX + 'current_images'
+_PREFIX = "_a4images_"
+_IMAGE_FIELDS_ATTR = _PREFIX + "image_fields"
+_CURRENT_IMAGES_ATTR = _PREFIX + "current_images"
 
 
 def backup_images_path_on_init(sender, instance, **kwargs):
@@ -18,8 +18,7 @@ def backup_images_path_on_init(sender, instance, **kwargs):
 
 def backup_images_path(instance):
     image_fields = getattr(instance, _IMAGE_FIELDS_ATTR, [])
-    current_images = [getattr(instance, fieldname)
-                      for fieldname in image_fields]
+    current_images = [getattr(instance, fieldname) for fieldname in image_fields]
     setattr(instance, _CURRENT_IMAGES_ATTR, current_images)
 
 
@@ -27,10 +26,11 @@ def delete_old_images_on_save(sender, instance, **kwargs):
     image_fields = getattr(instance, _IMAGE_FIELDS_ATTR, [])
     current_images = getattr(instance, _CURRENT_IMAGES_ATTR, ())
 
-    delete_images = [current_image
-                     for fieldname, current_image
-                     in zip(image_fields, current_images)
-                     if getattr(instance, fieldname, None) != current_image]
+    delete_images = [
+        current_image
+        for fieldname, current_image in zip(image_fields, current_images)
+        if getattr(instance, fieldname, None) != current_image
+    ]
     services.delete_images(delete_images)
 
     backup_images_path(instance)

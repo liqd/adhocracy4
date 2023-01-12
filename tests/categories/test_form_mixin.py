@@ -6,10 +6,9 @@ from tests.apps.questions.models import Question
 
 
 class CategoryForm(CategorizableFieldMixin, forms.ModelForm):
-
     class Meta:
         model = Question
-        fields = ['category']
+        fields = ["category"]
 
 
 @pytest.mark.django_db
@@ -17,7 +16,7 @@ def test_choice(module, category_factory):
     category = category_factory(module=module)
     other_category = category_factory()
     form = CategoryForm(module=module)
-    choice = form.fields['category'].queryset.all()
+    choice = form.fields["category"].queryset.all()
     assert category in choice
     assert other_category not in choice
 

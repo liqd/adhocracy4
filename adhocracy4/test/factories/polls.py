@@ -5,11 +5,10 @@ from adhocracy4.polls import models
 from adhocracy4.test.factories import ModuleFactory
 from adhocracy4.test.factories import UserFactory
 
-USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
+USER_FACTORY = getattr(settings, "A4_USER_FACTORY", UserFactory)
 
 
 class PollFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Poll
 
@@ -18,43 +17,39 @@ class PollFactory(factory.django.DjangoModelFactory):
 
 
 class QuestionFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Question
 
-    label = factory.Faker('sentence', nb_words=4)
-    weight = factory.Faker('random_number', digits=4)
+    label = factory.Faker("sentence", nb_words=4)
+    weight = factory.Faker("random_number", digits=4)
     poll = factory.SubFactory(PollFactory)
 
 
 class OpenQuestionFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Question
 
-    label = factory.Faker('sentence', nb_words=4)
-    weight = factory.Faker('random_number', digits=4)
+    label = factory.Faker("sentence", nb_words=4)
+    weight = factory.Faker("random_number", digits=4)
     poll = factory.SubFactory(PollFactory)
     is_open = True
 
 
 class AnswerFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Answer
 
     creator = factory.SubFactory(USER_FACTORY)
-    answer = factory.Faker('sentence', nb_words=10)
+    answer = factory.Faker("sentence", nb_words=10)
     question = factory.SubFactory(OpenQuestionFactory)
 
 
 class ChoiceFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Choice
 
-    label = factory.Faker('sentence', nb_words=4)
-    weight = factory.Faker('random_number', digits=4)
+    label = factory.Faker("sentence", nb_words=4)
+    weight = factory.Faker("random_number", digits=4)
     question = factory.SubFactory(QuestionFactory)
 
 
@@ -64,7 +59,6 @@ class OtherChoiceFactory(ChoiceFactory):
 
 
 class VoteFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Vote
 
@@ -73,7 +67,6 @@ class VoteFactory(factory.django.DjangoModelFactory):
 
 
 class VoteOnOtherChoiceFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.Vote
 
@@ -82,9 +75,8 @@ class VoteOnOtherChoiceFactory(factory.django.DjangoModelFactory):
 
 
 class OtherVoteFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = models.OtherVote
 
     vote = factory.SubFactory(VoteOnOtherChoiceFactory)
-    answer = factory.Faker('sentence', nb_words=4)
+    answer = factory.Faker("sentence", nb_words=4)

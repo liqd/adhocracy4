@@ -8,32 +8,30 @@ from . import models
 
 
 class ProjectFilter(ProjectAdminFilter):
-    project_key = 'module__project'
+    project_key = "module__project"
 
 
 class ItemAdmin(admin.ModelAdmin):
     list_filter = (
-        'module__project__organisation',
-        'module__project__is_archived',
-        ProjectFilter
+        "module__project__organisation",
+        "module__project__is_archived",
+        ProjectFilter,
     )
-    list_display = ('__str__', 'creator', 'created')
-    readonly_fields = ('creator', )
-    date_hierarchy = 'created'
+    list_display = ("__str__", "creator", "created")
+    readonly_fields = ("creator",)
+    date_hierarchy = "created"
 
 
 class ModuleAdmin(admin.ModelAdmin):
-    inlines = [
-        phase_admin.PhaseInline
-    ]
-    list_filter = ('project__organisation', 'project')
-    list_display = ('__str__', 'name')
-    if hasattr(settings, 'A4_BLUEPRINT_TYPES'):
-        list_filter += ('blueprint_type',)
-        list_display += ('blueprint_type',)
-        readonly_fields = ('blueprint_type',)
+    inlines = [phase_admin.PhaseInline]
+    list_filter = ("project__organisation", "project")
+    list_display = ("__str__", "name")
+    if hasattr(settings, "A4_BLUEPRINT_TYPES"):
+        list_filter += ("blueprint_type",)
+        list_display += ("blueprint_type",)
+        readonly_fields = ("blueprint_type",)
     else:
-        exclude = ['blueprint_type']
+        exclude = ["blueprint_type"]
 
 
 admin.site.register(models.Module, ModuleAdmin)

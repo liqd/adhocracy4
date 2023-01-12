@@ -4,8 +4,7 @@ from adhocracy4.organisations import predicates
 
 
 @pytest.mark.django_db
-def test_is_initiator(user_factory, organisation_factory,
-                      project_factory):
+def test_is_initiator(user_factory, organisation_factory, project_factory):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator1 = user_factory()
@@ -41,8 +40,9 @@ def test_is_initiator(user_factory, organisation_factory,
 
 
 @pytest.mark.django_db
-def test_is_org_member(user_factory, organisation_factory,
-                       project_factory, member_factory):
+def test_is_org_member(
+    user_factory, organisation_factory, project_factory, member_factory
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     member1 = user_factory()
@@ -79,8 +79,9 @@ def test_is_org_member(user_factory, organisation_factory,
 
 
 @pytest.mark.django_db
-def test_is_org_group_member(user_factory, organisation_factory,
-                             project_factory, group_factory):
+def test_is_org_group_member(
+    user_factory, organisation_factory, project_factory, group_factory
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()

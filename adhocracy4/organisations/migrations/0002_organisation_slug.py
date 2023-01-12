@@ -9,14 +9,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4organisations', '0001_initial'),
+        ("a4organisations", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='organisation',
-            name='slug',
-            field=autoslug.fields.AutoSlugField(default='', editable=False, populate_from='name', unique=True),
+            model_name="organisation",
+            name="slug",
+            field=autoslug.fields.AutoSlugField(
+                default="", editable=False, populate_from="name", unique=True
+            ),
             preserve_default=False,
         ),
     ]

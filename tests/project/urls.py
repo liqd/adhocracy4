@@ -16,22 +16,21 @@ from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 
 router = routers.DefaultRouter()
-router.register(r'follows', FollowViewSet, basename='follows')
-router.register(r'reports', ReportViewSet, basename='reports')
-router.register(r'polls', PollViewSet, basename='polls')
+router.register(r"follows", FollowViewSet, basename="follows")
+router.register(r"reports", ReportViewSet, basename="reports")
+router.register(r"polls", PollViewSet, basename="polls")
 
 ct_router = a4routers.ContentTypeDefaultRouter()
-ct_router.register(r'comments', CommentViewSet, basename='comments')
-ct_router.register(r'comments_async', CommentViewSetAsync,
-                   basename='comments_async')
-ct_router.register(r'ratings', RatingViewSet, basename='ratings')
+ct_router.register(r"comments", CommentViewSet, basename="comments")
+ct_router.register(r"comments_async", CommentViewSetAsync, basename="comments_async")
+ct_router.register(r"ratings", RatingViewSet, basename="ratings")
 
 urlpatterns = [
-    path('api/', include(ct_router.urls)),
-    path('api/', include(router.urls)),
-    path('admin/', admin.site.urls),
-    path('projects/', include(prj_urls)),
-    path('modules/', include(mod_urls)),
-    path('accounts/login', views.LoginView, name='account_login'),
-    path('dashboard/', include(dashboard_urls))
+    path("api/", include(ct_router.urls)),
+    path("api/", include(router.urls)),
+    path("admin/", admin.site.urls),
+    path("projects/", include(prj_urls)),
+    path("modules/", include(mod_urls)),
+    path("accounts/login", views.LoginView, name="account_login"),
+    path("dashboard/", include(dashboard_urls)),
 ]

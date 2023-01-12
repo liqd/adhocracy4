@@ -8,11 +8,9 @@ from adhocracy4.polls.validators import single_item_per_module
 
 
 @pytest.mark.django_db
-def test_choice_belongs_to_question(admin,
-                                    apiclient,
-                                    poll_factory,
-                                    question_factory,
-                                    choice_factory):
+def test_choice_belongs_to_question(
+    admin, apiclient, poll_factory, question_factory, choice_factory
+):
 
     poll = poll_factory()
     question1 = question_factory(poll=poll)
@@ -22,18 +20,18 @@ def test_choice_belongs_to_question(admin,
 
     apiclient.force_authenticate(user=admin)
 
-    url = reverse('polls-vote', kwargs={'pk': question1.poll.pk})
+    url = reverse("polls-vote", kwargs={"pk": question1.poll.pk})
 
     data = {
-        'votes': {
+        "votes": {
             question1.pk: {
-                'choices': [choice2.pk],
-                'other_choice_answer': '',
-                'open_answer': ''
+                "choices": [choice2.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
             }
         }
     }
-    response = apiclient.post(url, data, format='json')
+    response = apiclient.post(url, data, format="json")
     assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 

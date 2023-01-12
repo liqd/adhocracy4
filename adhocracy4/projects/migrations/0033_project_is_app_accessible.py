@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0032_increase_image_name_max_length'),
+        ("a4projects", "0032_increase_image_name_max_length"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='is_app_accessible',
+            model_name="project",
+            name="is_app_accessible",
             field=models.BooleanField(default=False),
         ),
     ]

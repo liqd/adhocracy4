@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4polls', '0003_add_weight_to_choices'),
+        ("a4polls", "0003_add_weight_to_choices"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='question',
-            name='help_text',
-            field=models.CharField(blank=True, max_length=250, verbose_name='Explanation'),
+            model_name="question",
+            name="help_text",
+            field=models.CharField(
+                blank=True, max_length=250, verbose_name="Explanation"
+            ),
         ),
     ]

@@ -41,20 +41,22 @@ class PaginationCommentLinkMixin:
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             response = self.get_paginated_response(serializer.data)
-            if 'commentID' in request.query_params:
+            if "commentID" in request.query_params:
                 try:
-                    commentID = int(request.query_params['commentID'])
+                    commentID = int(request.query_params["commentID"])
                     if queryset.filter(id=commentID).exists():
-                        response.data['comment_found'] = True
+                        response.data["comment_found"] = True
                     else:
-                        parent = [item for item in
-                                  queryset.values_list('id', 'child_comments')
-                                  if item[1] == commentID]
+                        parent = [
+                            item
+                            for item in queryset.values_list("id", "child_comments")
+                            if item[1] == commentID
+                        ]
                         if parent:
-                            response.data['comment_found'] = True
-                            response.data['comment_parent'] = parent[0][0]
+                            response.data["comment_found"] = True
+                            response.data["comment_parent"] = parent[0][0]
                         else:
-                            response.data['comment_found'] = False
+                            response.data["comment_found"] = False
                 except ValueError:
                     return Response(status=status.HTTP_400_BAD_REQUEST)
             return response
@@ -71,76 +73,75 @@ class PermissionInfoMixin:
 
         obj = self.content_object
         contenttype = ContentType.objects.get_for_model(obj)
-        permission = '{ct.app_label}.comment_{ct.model}'.format(
-            ct=contenttype)
+        permission = "{ct.app_label}.comment_{ct.model}".format(ct=contenttype)
 
         has_commenting_permission = False
-        would_have_commenting_permission = NormalUser().would_have_perm(
-            permission, obj)
+        would_have_commenting_permission = NormalUser().would_have_perm(permission, obj)
 
-        if hasattr(request, 'user'):
+        if hasattr(request, "user"):
             has_commenting_permission = request.user.has_perm(permission, obj)
 
-        response.data['has_commenting_permission'] = has_commenting_permission
-        response.data['would_have_commenting_permission'] = \
-            would_have_commenting_permission
-        response.data['project_is_public'] = obj.project.is_public
+        response.data["has_commenting_permission"] = has_commenting_permission
+        response.data[
+            "would_have_commenting_permission"
+        ] = would_have_commenting_permission
+        response.data["project_is_public"] = obj.project.is_public
         return response
 
 
 class CommentViewSet(
-        PermissionInfoMixin,  # needs to be first, has super(list)
-        PaginationCommentLinkMixin,  # needs to be second, no super
-        mixins.CreateModelMixin,
-        mixins.ListModelMixin,
-        mixins.RetrieveModelMixin,
-        mixins.UpdateModelMixin,
-        mixins.DestroyModelMixin,
-        ContentTypeMixin,
-        viewsets.GenericViewSet):
+    PermissionInfoMixin,  # needs to be first, has super(list)
+    PaginationCommentLinkMixin,  # needs to be second, no super
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    ContentTypeMixin,
+    viewsets.GenericViewSet,
+):
     permission_classes = (ViewSetRulesPermission,)
-    filter_backends = (filters.DjangoFilterBackend,
-                       CommentOrderingFilterBackend,
-                       CommentCategoryFilterBackend,
-                       CustomSearchFilter)
-    filterset_fields = ('object_pk', 'content_type')
-    ordering = ('-created')
+    filter_backends = (
+        filters.DjangoFilterBackend,
+        CommentOrderingFilterBackend,
+        CommentCategoryFilterBackend,
+        CustomSearchFilter,
+    )
+    filterset_fields = ("object_pk", "content_type")
+    ordering = "-created"
     content_type_filter = settings.A4_COMMENTABLES
     pagination_class = CommentSetPagination
-    search_fields = ('comment', '=creator__username')
+    search_fields = ("comment", "=creator__username")
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action == "list":
             return ThreadListSerializer
         return ThreadSerializer
 
     def _save_terms_agreement(self):
-        if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
-                and settings.A4_USE_ORGANISATION_TERMS_OF_USE \
-                and not self._user_has_agreed(self.request.user):
-            if 'agreed_terms_of_use' in self.request.data and \
-                    self.request.data['agreed_terms_of_use']:
+        if (
+            hasattr(settings, "A4_USE_ORGANISATION_TERMS_OF_USE")
+            and settings.A4_USE_ORGANISATION_TERMS_OF_USE
+            and not self._user_has_agreed(self.request.user)
+        ):
+            if (
+                "agreed_terms_of_use" in self.request.data
+                and self.request.data["agreed_terms_of_use"]
+            ):
                 OrganisationTermsOfUse = self._get_org_terms_model()
                 OrganisationTermsOfUse.objects.update_or_create(
                     user=self.request.user,
                     organisation=self.content_object.project.organisation,
-                    defaults={
-                        'has_agreed':
-                            self.request.data['agreed_terms_of_use']
-                    }
+                    defaults={"has_agreed": self.request.data["agreed_terms_of_use"]},
                 )
             else:
-                raise ValidationError({
-                    'comment':
-                    _("Please agree to the organisation's terms of use.")
-                })
+                raise ValidationError(
+                    {"comment": _("Please agree to the organisation's terms of use.")}
+                )
 
     def perform_create(self, serializer):
         self._save_terms_agreement()
-        serializer.save(
-            content_object=self.content_object,
-            creator=self.request.user
-        )
+        serializer.save(content_object=self.content_object, creator=self.request.user)
 
     def perform_update(self, serializer):
         self._save_terms_agreement()
@@ -150,45 +151,38 @@ class CommentViewSet(
         return self.content_object
 
     def get_queryset(self):
-        child_comment_content_type_id = \
-            ContentType.objects.get_for_model(Comment)
-        comments = Comment.objects\
-            .filter(object_pk=self.object_pk)\
-            .filter(content_type_id=self.content_type.pk)
-        if self.action == 'list':
-            return comments\
-                .exclude(content_type_id=child_comment_content_type_id)\
-                .order_by('-created')
+        child_comment_content_type_id = ContentType.objects.get_for_model(Comment)
+        comments = Comment.objects.filter(object_pk=self.object_pk).filter(
+            content_type_id=self.content_type.pk
+        )
+        if self.action == "list":
+            return comments.exclude(
+                content_type_id=child_comment_content_type_id
+            ).order_by("-created")
         return comments
 
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
-            POST='{app_label}.comment_{model}'.format(
-                app_label=self.content_type.app_label,
-                model=self.content_type.model
+            POST="{app_label}.comment_{model}".format(
+                app_label=self.content_type.app_label, model=self.content_type.model
             )
         )
 
     def _get_org_terms_model(self):
         """Make sure, only used with A4_USE_ORGANISATION_TERMS_OF_USE."""
-        organisation_model = apps.get_model(
-            settings.A4_ORGANISATIONS_MODEL)
+        organisation_model = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
         OrganisationTermsOfUse = apps.get_model(
-            organisation_model._meta.app_label,
-            'OrganisationTermsOfUse'
+            organisation_model._meta.app_label, "OrganisationTermsOfUse"
         )
         return OrganisationTermsOfUse
 
     def _user_has_agreed(self, user):
         OrganisationTermsOfUse = self._get_org_terms_model()
         organisation = self.content_object.project.organisation
-        user_has_agreed = \
-            OrganisationTermsOfUse.objects.filter(
-                user=user,
-                organisation=organisation,
-                has_agreed=True
-            ).exists()
+        user_has_agreed = OrganisationTermsOfUse.objects.filter(
+            user=user, organisation=organisation, has_agreed=True
+        ).exists()
         return user_has_agreed
 
     def destroy(self, request, *args, **kwargs):
@@ -200,8 +194,7 @@ class CommentViewSet(
         # saving a removed or censored comment sets its comment text
         # and comment_categories to '' (see models save method)
         comment.save()
-        comment_removed.send(sender=type(comment),
-                             instance=comment)
+        comment_removed.send(sender=type(comment), instance=comment)
         serializer = self.get_serializer(comment)
         return Response(serializer.data)
 
@@ -212,24 +205,25 @@ class CommentViewSet(
             return response
 
         use_org_terms_of_use = False
-        if hasattr(settings, 'A4_USE_ORGANISATION_TERMS_OF_USE') \
-           and settings.A4_USE_ORGANISATION_TERMS_OF_USE:
+        if (
+            hasattr(settings, "A4_USE_ORGANISATION_TERMS_OF_USE")
+            and settings.A4_USE_ORGANISATION_TERMS_OF_USE
+        ):
             user_has_agreed = None
             use_org_terms_of_use = True
             organisation = self.content_object.project.organisation
             try:
                 org_terms_url = reverse(
-                    'organisation-terms-of-use', kwargs={
-                        'organisation_slug': organisation.slug
-                    }
+                    "organisation-terms-of-use",
+                    kwargs={"organisation_slug": organisation.slug},
                 )
             except NoReverseMatch:
-                raise NotImplementedError('Add org terms of use view.')
-            if hasattr(request, 'user'):
+                raise NotImplementedError("Add org terms of use view.")
+            if hasattr(request, "user"):
                 user = request.user
                 if user.is_authenticated:
                     user_has_agreed = self._user_has_agreed(user)
-            response.data['user_has_agreed'] = user_has_agreed
-            response.data['org_terms_url'] = org_terms_url
-        response.data['use_org_terms_of_use'] = use_org_terms_of_use
+            response.data["user_has_agreed"] = user_has_agreed
+            response.data["org_terms_url"] = org_terms_url
+        response.data["use_org_terms_of_use"] = use_org_terms_of_use
         return response

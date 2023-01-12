@@ -9,11 +9,12 @@ class UserGeneratedContentExportMixin(VirtualFieldMixin):
 
     Can be used with all suitable models, not only module items.
     """
+
     def get_virtual_fields(self, virtual):
-        if 'creator' not in virtual:
-            virtual['creator'] = _('Creator')
-        if 'created' not in virtual:
-            virtual['created'] = _('Created')
+        if "creator" not in virtual:
+            virtual["creator"] = _("Creator")
+        if "created" not in virtual:
+            virtual["created"] = _("Created")
         return super().get_virtual_fields(virtual)
 
     def get_creator_data(self, item):
@@ -29,9 +30,10 @@ class ItemExportWithLinkMixin(VirtualFieldMixin):
 
     Can be used with all suitable models, not only module items.
     """
+
     def get_virtual_fields(self, virtual):
-        if 'link' not in virtual:
-            virtual['link'] = _('Link')
+        if "link" not in virtual:
+            virtual["link"] = _("Link")
         return super().get_virtual_fields(virtual)
 
     def get_link_data(self, item):
@@ -44,34 +46,35 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
 
     Can be used with all suitable models, not only module items.
     """
+
     def get_virtual_fields(self, virtual):
-        if 'location_lon' not in virtual:
-            virtual['location_lon'] = _('Location (Longitude)')
-        if 'location_lat' not in virtual:
-            virtual['location_lat'] = _('Location (Latitude)')
-        if 'location_label' not in virtual:
-            virtual['location_label'] = _('Location label')
+        if "location_lon" not in virtual:
+            virtual["location_lon"] = _("Location (Longitude)")
+        if "location_lat" not in virtual:
+            virtual["location_lat"] = _("Location (Latitude)")
+        if "location_label" not in virtual:
+            virtual["location_label"] = _("Location label")
         return super().get_virtual_fields(virtual)
 
     def get_location_lon_data(self, item):
-        if hasattr(item, 'point'):
+        if hasattr(item, "point"):
             point = item.point
             try:
-                if 'geometry' in point:
-                    return point['geometry']['coordinates'][0]
+                if "geometry" in point:
+                    return point["geometry"]["coordinates"][0]
             except TypeError:
                 pass
-        return ''
+        return ""
 
     def get_location_lat_data(self, item):
-        if hasattr(item, 'point'):
+        if hasattr(item, "point"):
             point = item.point
             try:
-                if 'geometry' in point:
-                    return point['geometry']['coordinates'][1]
+                if "geometry" in point:
+                    return point["geometry"]["coordinates"][1]
             except TypeError:
                 pass
-        return ''
+        return ""
 
     def get_location_label_data(self, item):
-        return getattr(item, 'point_label', '')
+        return getattr(item, "point_label", "")

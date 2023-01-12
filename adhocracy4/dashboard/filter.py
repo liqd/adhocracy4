@@ -8,36 +8,29 @@ from adhocracy4.projects.models import Project
 
 
 class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
-    label = _('Search')
+    label = _("Search")
 
 
 class ArchivedWidget(filters_widgets.DropdownLinkWidget):
-    label = _('Archived')
+    label = _("Archived")
 
     def __init__(self, attrs=None):
         choices = (
-            ('', _('All')),
-            ('false', _('No')),
-            ('true', _('Yes')),
+            ("", _("All")),
+            ("false", _("No")),
+            ("true", _("Yes")),
         )
         super().__init__(attrs, choices)
 
 
 class ProjectFilterSet(DefaultsFilterSet):
 
-    defaults = {
-        'is_archived': 'false'
-    }
+    defaults = {"is_archived": "false"}
 
-    search = FreeTextFilter(
-        widget=FreeTextFilterWidget,
-        fields=['name', 'description']
-    )
+    search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name", "description"])
 
-    is_archived = django_filters.BooleanFilter(
-        widget=ArchivedWidget
-    )
+    is_archived = django_filters.BooleanFilter(widget=ArchivedWidget)
 
     class Meta:
         model = Project
-        fields = ['search', 'is_archived']
+        fields = ["search", "is_archived"]

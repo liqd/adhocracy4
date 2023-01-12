@@ -3,12 +3,12 @@ import enum
 
 # http://activitystrea.ms/registry/verbs/
 class Verbs(enum.Enum):
-    CREATE = 'create'
-    ADD = 'add'
-    UPDATE = 'update'
-    COMPLETE = 'complete'
-    SCHEDULE = 'schedule'
-    START = 'start'
+    CREATE = "create"
+    ADD = "add"
+    UPDATE = "update"
+    COMPLETE = "complete"
+    SCHEDULE = "schedule"
+    START = "start"
 
 
 def choices():

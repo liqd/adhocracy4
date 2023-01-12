@@ -15,31 +15,32 @@ from .fields import BlueprintTypeField
 
 
 class ModulesQuerySet(models.QuerySet):
-
     def annotate_module_start(self):
-        return self.annotate(module_start=models.Min('phase__start_date'))
+        return self.annotate(module_start=models.Min("phase__start_date"))
 
     def annotate_module_end(self):
-        return self.annotate(module_end=models.Max('phase__end_date'))
+        return self.annotate(module_end=models.Max("phase__end_date"))
 
     def running_modules(self):
         """Return running modules."""
         now = timezone.now()
-        return self\
-            .filter(is_draft=False)\
-            .annotate(module_start=models.Min('phase__start_date'))\
-            .annotate(module_end=models.Max('phase__end_date'))\
-            .filter(module_start__lte=now, module_end__gt=now)\
-            .order_by('module_start')
+        return (
+            self.filter(is_draft=False)
+            .annotate(module_start=models.Min("phase__start_date"))
+            .annotate(module_end=models.Max("phase__end_date"))
+            .filter(module_start__lte=now, module_end__gt=now)
+            .order_by("module_start")
+        )
 
     def past_modules(self):
         """Return past modules ordered by start."""
-        return self\
-            .filter(is_draft=False)\
-            .annotate(module_start=models.Min('phase__start_date'))\
-            .annotate(module_end=models.Max('phase__end_date'))\
-            .filter(module_end__lte=timezone.now())\
-            .order_by('module_start')
+        return (
+            self.filter(is_draft=False)
+            .annotate(module_start=models.Min("phase__start_date"))
+            .annotate(module_end=models.Max("phase__end_date"))
+            .filter(module_end__lte=timezone.now())
+            .order_by("module_start")
+        )
 
     def future_modules(self):
         """
@@ -47,43 +48,49 @@ class ModulesQuerySet(models.QuerySet):
 
         Note: Modules without a start date are assumed to start in the future.
         """
-        return self\
-            .filter(is_draft=False)\
-            .annotate(module_start=models.Min('phase__start_date'))\
-            .filter(models.Q(module_start__gt=timezone.now())
-                    | models.Q(module_start=None))\
-            .order_by('module_start')
+        return (
+            self.filter(is_draft=False)
+            .annotate(module_start=models.Min("phase__start_date"))
+            .filter(
+                models.Q(module_start__gt=timezone.now()) | models.Q(module_start=None)
+            )
+            .order_by("module_start")
+        )
 
     def past_and_running_modules(self):
         """Return past and running modules ordered by start date."""
-        return self\
-            .filter(is_draft=False)\
-            .annotate(module_start=models.Min('phase__start_date'))\
-            .filter(module_start__lte=timezone.now())\
-            .order_by('module_start')
+        return (
+            self.filter(is_draft=False)
+            .annotate(module_start=models.Min("phase__start_date"))
+            .filter(module_start__lte=timezone.now())
+            .order_by("module_start")
+        )
 
 
 class Module(models.Model):
-    slug = AutoSlugField(populate_from='name', unique=True)
+    slug = AutoSlugField(populate_from="name", unique=True)
     name = models.CharField(
         max_length=512,
-        verbose_name=_('Title of the module'),
-        help_text=_('This title will appear in the timeline and the header on '
-                    'the module and project detail pages. It should be '
-                    'max. 512 characters long')
+        verbose_name=_("Title of the module"),
+        help_text=_(
+            "This title will appear in the timeline and the header on "
+            "the module and project detail pages. It should be "
+            "max. 512 characters long"
+        ),
     )
     description = models.CharField(
         null=True,
         blank=True,
         max_length=512,
-        verbose_name=_('Short description of the module'),
-        help_text=_('This short description will appear on the header of the '
-                    'module and project detail pages. It should briefly state '
-                    'the goal of the module in max. 512 chars.')
+        verbose_name=_("Short description of the module"),
+        help_text=_(
+            "This short description will appear on the header of the "
+            "module and project detail pages. It should briefly state "
+            "the goal of the module in max. 512 chars."
+        ),
     )
     weight = models.PositiveIntegerField()
-    project = models.ForeignKey(
-        project_models.Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(project_models.Project, on_delete=models.CASCADE)
     is_draft = models.BooleanField(default=False)
 
     objects = ModulesQuerySet.as_manager()
@@ -94,16 +101,13 @@ class Module(models.Model):
     )
 
     class Meta:
-        ordering = ['weight']
+        ordering = ["weight"]
 
     def __str__(self):
-        return "{} - {:.20} ({})".format(self.name,
-                                         str(self.project),
-                                         self.weight
-                                         )
+        return "{} - {:.20} ({})".format(self.name, str(self.project), self.weight)
 
     def get_absolute_url(self):
-        return reverse('module-detail', kwargs=dict(module_slug=self.slug))
+        return reverse("module-detail", kwargs=dict(module_slug=self.slug))
 
     @cached_property
     def get_detail_url(self):
@@ -116,14 +120,18 @@ class Module(models.Model):
         if self.is_in_module_cluster:
             return self.get_absolute_url()
         elif self.project.display_timeline:
-            return '{}?initialSlide={}'.format(self.project.get_absolute_url(),
-                                               self.get_timeline_index)
+            return "{}?initialSlide={}".format(
+                self.project.get_absolute_url(), self.get_timeline_index
+            )
         return self.project.get_absolute_url()
 
     @cached_property
     def settings_instance(self):
-        settingslist = [field.name for field in self._meta.get_fields()
-                        if field.name.endswith('_settings')]
+        settingslist = [
+            field.name
+            for field in self._meta.get_fields()
+            if field.name.endswith("_settings")
+        ]
         for setting in settingslist:
             if hasattr(self, setting):
                 return getattr(self, setting)
@@ -148,9 +156,7 @@ class Module(models.Model):
         Even though this is not enforced, there should only be one phase
         active at any given time.
         """
-        return self.phase_set \
-            .active_phases() \
-            .first()
+        return self.phase_set.active_phases().first()
 
     @cached_property
     def future_phases(self):
@@ -178,12 +184,12 @@ class Module(models.Model):
     @cached_property
     def module_start(self):
         """Return the start date of the module."""
-        return self.phase_set.order_by('start_date').first().start_date
+        return self.phase_set.order_by("start_date").first().start_date
 
     @cached_property
     def module_end(self):
         """Return the end date of the module."""
-        return self.phase_set.order_by('-end_date').first().end_date
+        return self.phase_set.order_by("-end_date").first().end_date
 
     @cached_property
     def module_has_started(self):
@@ -208,28 +214,24 @@ class Module(models.Model):
         unit_totals = []
 
         unit_limits = [
-            ('days', 24 * 3600),
-            ('hours', 3600),
-            ('minutes', 60),
-            ('seconds', 1)
+            ("days", 24 * 3600),
+            ("hours", 3600),
+            ("minutes", 60),
+            ("seconds", 1),
         ]
 
         unit_names = {
-            'days': [_('day'), _('days')],
-            'hours': [_('hour'), _('hours')],
-            'minutes': [_('minute'), _('minutes')],
-            'seconds': [_('second'), _('seconds')],
+            "days": [_("day"), _("days")],
+            "hours": [_("hour"), _("hours")],
+            "minutes": [_("minute"), _("minutes")],
+            "seconds": [_("second"), _("seconds")],
         }
 
         unit_abbreviations = {
-            'days': [pgettext_lazy("abbreviation for day(s)", "D"),
-                     _('days')],
-            'hours': [pgettext_lazy("abbreviation for hour(s)", "H"),
-                      _('hours')],
-            'minutes': [pgettext_lazy("abbreviation for minute(s)", "M"),
-                        _('minutes')],
-            'seconds': [pgettext_lazy("abbreviation for second(s)", "S"),
-                        _('seconds')],
+            "days": [pgettext_lazy("abbreviation for day(s)", "D"), _("days")],
+            "hours": [pgettext_lazy("abbreviation for hour(s)", "H"), _("hours")],
+            "minutes": [pgettext_lazy("abbreviation for minute(s)", "M"), _("minutes")],
+            "seconds": [pgettext_lazy("abbreviation for second(s)", "S"), _("seconds")],
         }
 
         for unit, limit in unit_limits:
@@ -243,9 +245,9 @@ class Module(models.Model):
                     unit_totals.append((unit_names[unit][0], amount))
                 seconds = seconds - (amount * limit)
         if abbr:
-            unit_totals.append([0] + unit_abbreviations['seconds'])
+            unit_totals.append([0] + unit_abbreviations["seconds"])
         else:
-            unit_totals.append((unit_names['seconds'][1], 0))
+            unit_totals.append((unit_names["seconds"][1], 0))
 
         return unit_totals
 
@@ -258,8 +260,7 @@ class Module(models.Model):
             seconds = time_delta.total_seconds()
             time_delta_list = self.seconds_in_units(seconds)
             best_unit = time_delta_list[0]
-            time_delta_str = '{} {}'.format(str(best_unit[1]),
-                                            str(best_unit[0]))
+            time_delta_str = "{} {}".format(str(best_unit[1]), str(best_unit[0]))
             return time_delta_str
 
         return None
@@ -297,8 +298,7 @@ class Module(models.Model):
             seconds = self.module_running_seconds_left
             time_delta_list = self.seconds_in_units(seconds)
             best_unit = time_delta_list[0]
-            time_delta_str = '{} {}'.format(str(best_unit[1]),
-                                            str(best_unit[0]))
+            time_delta_str = "{} {}".format(str(best_unit[1]), str(best_unit[0]))
             return time_delta_str
 
         return None
@@ -396,7 +396,7 @@ class Module(models.Model):
     def get_timeline_index(self):
         if self.project.display_timeline:
             for count, cluster in enumerate(self.project.participation_dates):
-                if 'modules' in cluster and self in cluster['modules']:
+                if "modules" in cluster and self in cluster["modules"]:
                     return count
         return 0
 
@@ -411,9 +411,9 @@ class Module(models.Model):
         """
         warnings.warn(
             "first_phase_start_date is deprecated; use module_start.",
-            DeprecationWarning
+            DeprecationWarning,
         )
-        first_phase = self.phase_set.order_by('start_date').first()
+        first_phase = self.phase_set.order_by("start_date").first()
         return first_phase.start_date
 
 
@@ -426,8 +426,9 @@ class Item(base.UserGeneratedContentModel):
 
 
 class AbstractSettings(models.Model):
-    module = models.OneToOneField(Module, on_delete=models.CASCADE,
-                                  related_name='%(class)s_settings')
+    module = models.OneToOneField(
+        Module, on_delete=models.CASCADE, related_name="%(class)s_settings"
+    )
 
     class Meta:
         abstract = True

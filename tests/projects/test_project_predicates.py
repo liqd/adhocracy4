@@ -7,8 +7,9 @@ from adhocracy4.projects.enums import Access
 
 
 @pytest.mark.django_db
-def test_is_prj_group_member(user_factory, project_factory,
-                             group_factory, question_factory):
+def test_is_prj_group_member(
+    user_factory, project_factory, group_factory, question_factory
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -161,17 +162,17 @@ def test_has_started(user_factory, phase_factory, project_factory):
     project1 = project_factory()
     project2 = project_factory()
     phase_factory(
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-02 18:00:00 UTC'),
+        start_date=parse("2013-01-01 18:00:00 UTC"),
+        end_date=parse("2013-01-02 18:00:00 UTC"),
         module__project=project1,
     )
     phase_factory(
-        start_date=parse('2013-02-01 18:00:00 UTC'),
-        end_date=parse('2013-02-02 18:00:00 UTC'),
+        start_date=parse("2013-02-01 18:00:00 UTC"),
+        end_date=parse("2013-02-02 18:00:00 UTC"),
         module__project=project2,
     )
 
-    with freeze_time('2013-01-01 18:30:00 UTC'):
+    with freeze_time("2013-01-01 18:30:00 UTC"):
         assert predicates.has_started(user, project1)
         assert not predicates.has_started(user, project2)
         assert not predicates.has_started(user, False)
@@ -181,28 +182,29 @@ def test_has_started(user_factory, phase_factory, project_factory):
 
 
 @pytest.mark.django_db
-def test_has_context_started(user_factory, phase_factory, module_factory,
-                             project_factory, question_factory):
+def test_has_context_started(
+    user_factory, phase_factory, module_factory, project_factory, question_factory
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
 
     project1 = project_factory()
     project2 = project_factory()
     phase_factory(
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-02 18:00:00 UTC'),
+        start_date=parse("2013-01-01 18:00:00 UTC"),
+        end_date=parse("2013-01-02 18:00:00 UTC"),
         module__project=project1,
     )
     phase_factory(
-        start_date=parse('2013-02-01 18:00:00 UTC'),
-        end_date=parse('2013-02-02 18:00:00 UTC'),
+        start_date=parse("2013-02-01 18:00:00 UTC"),
+        end_date=parse("2013-02-02 18:00:00 UTC"),
         module__project=project2,
     )
 
     question1 = question_factory(module__project=project1)
     question2 = question_factory(module__project=project2)
 
-    with freeze_time('2013-01-01 18:30:00 UTC'):
+    with freeze_time("2013-01-01 18:30:00 UTC"):
         assert predicates.has_context_started(user, question1)
         assert not predicates.has_context_started(user, question2)
         assert not predicates.has_context_started(user, False)

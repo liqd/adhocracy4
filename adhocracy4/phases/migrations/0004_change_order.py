@@ -7,12 +7,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4phases', '0003_fill_weight_field'),
+        ("a4phases", "0003_fill_weight_field"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='phase',
-            options={'ordering': ['weight']},
+            name="phase",
+            options={"ordering": ["weight"]},
         ),
     ]

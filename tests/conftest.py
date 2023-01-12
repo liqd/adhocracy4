@@ -14,7 +14,7 @@ from tests.images import factories as img_factories
 
 def pytest_configure(config):
     # Patch email background_task decorators for all tests
-    helpers.patch_background_task_decorator('adhocracy4.emails.tasks')
+    helpers.patch_background_task_decorator("adhocracy4.emails.tasks")
 
 
 @pytest.fixture
@@ -32,9 +32,9 @@ register(factories.UserFactory)
 register(MemberFactory)
 register(OrganisationTermsOfUseFactory)
 register(factories.GroupFactory)
-register(factories.AdminFactory, 'admin')
-register(factories.UserFactory, 'another_user')
-register(factories.UserFactory, 'staff_user', is_staff=True)
+register(factories.AdminFactory, "admin")
+register(factories.UserFactory, "another_user")
+register(factories.UserFactory, "staff_user", is_staff=True)
 register(factories.ProjectFactory)
 register(factories.ModuleFactory)
 register(factories.PhaseFactory)

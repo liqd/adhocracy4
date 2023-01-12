@@ -7,13 +7,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0026_project_project_type'),
+        ("a4projects", "0026_project_project_type"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='result',
-            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(blank=True, help_text='Here you should explain what the expected outcome of the project will be and how you are planning to use the results. If the project is finished you should add a summary of the results.', verbose_name='Results of your project'),
+            model_name="project",
+            name="result",
+            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                blank=True,
+                help_text="Here you should explain what the expected outcome of the project will be and how you are planning to use the results. If the project is finished you should add a summary of the results.",
+                verbose_name="Results of your project",
+            ),
         ),
     ]

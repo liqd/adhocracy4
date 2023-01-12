@@ -10,7 +10,7 @@ class ExampleFilterSet(ClassBasedViewFilterSet):
 
     class Meta:
         model = Question
-        fields = ['category']
+        fields = ["category"]
 
 
 @pytest.mark.django_db
@@ -26,13 +26,11 @@ def test_category_filter(rf, module_factory, category_factory):
     class ViewDummy:
         module = another_module
 
-    request = rf.get('/')
+    request = rf.get("/")
     filterset = ExampleFilterSet(
-        request,
-        queryset=Question.objects.all(),
-        view=ViewDummy()
+        request, queryset=Question.objects.all(), view=ViewDummy()
     )
 
-    filter_queryset = filterset.filters['category'].get_queryset(request)
+    filter_queryset = filterset.filters["category"].get_queryset(request)
     assert list(filter_queryset) == [category2]
     assert category1 not in filter_queryset

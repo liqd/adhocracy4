@@ -22,7 +22,7 @@ def react_poll_form(poll, reload_on_success=False):
         (
             '<div data-a4-widget="poll-management" data-poll-id="{pollId}" '
             ' data-reloadOnSuccess="{reload_on_success}">'
-            '</div>'
+            "</div>"
         ),
         pollId=poll.pk,
         reload_on_success=reload_on_success,

@@ -12,8 +12,8 @@ def active_phase(module, phase_type):
     phase = module.phase_set.create(
         start_date=now,
         end_date=now + timedelta(days=1),
-        name='TEST PHASE',
-        description='TEST DESCRIPTION',
+        name="TEST PHASE",
+        description="TEST DESCRIPTION",
         type=phase_type().identifier,
         weight=0,
     )
@@ -30,8 +30,8 @@ def past_phase(module, phase_type):
     phase = module.phase_set.create(
         start_date=now,
         end_date=now + timedelta(days=1),
-        name='TEST PHASE',
-        description='TEST DESCRIPTION',
+        name="TEST PHASE",
+        description="TEST DESCRIPTION",
         type=phase_type().identifier,
         weight=0,
     )

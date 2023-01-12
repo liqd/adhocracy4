@@ -11,14 +11,16 @@ class IdeaFactory(factories.ItemFactory):
         model = models.Idea
 
     moderator_statement = factory.SubFactory(ModeratorStatementFactory)
-    moderator_feedback = ('CONSIDERATION', 'Under consideration')
+    moderator_feedback = ("CONSIDERATION", "Under consideration")
 
-    point_label = factory.Faker('address')
+    point_label = factory.Faker("address")
     point = {
-        'type': 'Feature',
-        'properties': {},
-        'geometry': {'type': 'Point',
-                     'coordinates': [13.447437286376953, 52.51518602243137]}
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+            "type": "Point",
+            "coordinates": [13.447437286376953, 52.51518602243137],
+        },
     }
 
     @factory.post_generation

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4test_questions', '0004_alter_category'),
+        ("a4test_questions", "0004_alter_category"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='question',
-            name='last_discussed',
+            model_name="question",
+            name="last_discussed",
             field=models.DateTimeField(blank=True, editable=False, null=True),
         ),
     ]

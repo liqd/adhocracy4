@@ -6,9 +6,14 @@ from .forms import ModuleDashboardForm
 from .forms import ModuleDashboardFormSet
 from .forms import ProjectDashboardForm
 
-__all__ = ['ProjectFormComponent', 'ProjectDashboardForm',
-           'ModuleFormComponent', 'ModuleDashboardForm',
-           'ModuleFormSetComponent', 'ModuleDashboardFormSet']
+__all__ = [
+    "ProjectFormComponent",
+    "ProjectDashboardForm",
+    "ModuleFormComponent",
+    "ModuleDashboardForm",
+    "ModuleFormSetComponent",
+    "ModuleDashboardFormSet",
+]
 
 
 class ProjectFormComponent(DashboardComponent):
@@ -36,38 +41,42 @@ class ProjectFormComponent(DashboardComponent):
 
     """
 
-    form_title = ''
+    form_title = ""
     form_class = None
-    form_template_name = ''
+    form_template_name = ""
 
     def is_effective(self, project):
         return True
 
     def get_base_url(self, project_or_module):
-        name = 'a4dashboard:dashboard-{identifier}-edit'.format(
-            identifier=self.identifier)
+        name = "a4dashboard:dashboard-{identifier}-edit".format(
+            identifier=self.identifier
+        )
         return reverse(name, args=[project_or_module.slug])
 
     def get_urls(self):
         from .views import ProjectComponentFormView
+
         view = ProjectComponentFormView.as_view(
             component=self,
             title=self.form_title,
             form_class=self.form_class,
-            form_template_name=self.form_template_name
+            form_template_name=self.form_template_name,
         )
-        return [(
-            r'^projects/(?P<project_slug>[-\w_]+)/{identifier}/$'.format(
-                identifier=self.identifier),
-            view,
-            'dashboard-{identifier}-edit'.format(identifier=self.identifier)
-        )]
+        return [
+            (
+                r"^projects/(?P<project_slug>[-\w_]+)/{identifier}/$".format(
+                    identifier=self.identifier
+                ),
+                view,
+                "dashboard-{identifier}-edit".format(identifier=self.identifier),
+            )
+        ]
 
     def get_progress(self, object):
         required_fields = self.form_class.get_required_fields()
-        if required_fields == '__all__':
-            required_fields = self._get_all_required_fields(self.form_class,
-                                                            object)
+        if required_fields == "__all__":
+            required_fields = self._get_all_required_fields(self.form_class, object)
 
         if not required_fields:
             return 0, 0
@@ -129,25 +138,30 @@ class ModuleFormComponent(ProjectFormComponent):
     """
 
     def get_base_url(self, project_or_module):
-        name = 'a4dashboard:dashboard-{identifier}-edit'.format(
-            identifier=self.identifier)
+        name = "a4dashboard:dashboard-{identifier}-edit".format(
+            identifier=self.identifier
+        )
         return reverse(name, args=[project_or_module.slug])
 
     def get_urls(self):
         from .views import ModuleComponentFormView
+
         view = ModuleComponentFormView.as_view(
             component=self,
             title=self.form_title,
             form_class=self.form_class,
-            form_template_name=self.form_template_name
+            form_template_name=self.form_template_name,
         )
 
-        return [(
-            r'^modules/(?P<module_slug>[-\w_]+)/{identifier}/$'.format(
-                identifier=self.identifier),
-            view,
-            'dashboard-{identifier}-edit'.format(identifier=self.identifier)
-        )]
+        return [
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/{identifier}/$".format(
+                    identifier=self.identifier
+                ),
+                view,
+                "dashboard-{identifier}-edit".format(identifier=self.identifier),
+            )
+        ]
 
 
 class ModuleFormSetComponent(ModuleFormComponent):
@@ -180,9 +194,10 @@ class ModuleFormSetComponent(ModuleFormComponent):
         child_model = child_form_class._meta.model
 
         required_fields = self.form_class.get_required_fields()
-        if required_fields == '__all__':
-            required_fields = self._get_all_required_fields(child_form_class,
-                                                            child_model)
+        if required_fields == "__all__":
+            required_fields = self._get_all_required_fields(
+                child_form_class, child_model
+            )
 
         if not required_fields:
             return 0, 0
@@ -194,8 +209,9 @@ class ModuleFormSetComponent(ModuleFormComponent):
         num_valid = 0
         num_required = 0
         for child in formset.queryset:
-            num_valid_obj, num_required_obj = \
-                self._get_progress_for_object(child, required_fields)
+            num_valid_obj, num_required_obj = self._get_progress_for_object(
+                child, required_fields
+            )
             num_valid = num_valid + num_valid_obj
             num_required = num_required + num_required_obj
 

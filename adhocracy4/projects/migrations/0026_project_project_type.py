@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0025_change_helptext_is_archived'),
+        ("a4projects", "0025_change_helptext_is_archived"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='project_type',
-            field=models.CharField(blank=True, default='a4projects.Project', max_length=256),
+            model_name="project",
+            name="project_type",
+            field=models.CharField(
+                blank=True, default="a4projects.Project", max_length=256
+            ),
         ),
     ]

@@ -11,7 +11,7 @@ class NormalUser(AnonymousUser):
     """
 
     def __str__(self):
-        return 'NormalUser'
+        return "NormalUser"
 
     @property
     def is_authenticated(self):

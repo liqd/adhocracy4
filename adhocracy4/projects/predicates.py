@@ -6,11 +6,11 @@ import rules
 @rules.predicate
 def is_prj_group_member(user, subject):
     if subject:
-        if hasattr(subject, 'project'):
+        if hasattr(subject, "project"):
             warnings.warn(
                 "using is_prj_group_member with an item is deprecated; "
                 "use is_context_group_member from module predicates instead.",
-                DeprecationWarning
+                DeprecationWarning,
             )
             project = subject.project
         else:
@@ -21,10 +21,7 @@ def is_prj_group_member(user, subject):
 
 @rules.predicate
 def is_member(user, project):
-    warnings.warn(
-        "is_member is deprecated; use is_project_member.",
-        DeprecationWarning
-    )
+    warnings.warn("is_member is deprecated; use is_project_member.", DeprecationWarning)
     return is_project_member(user, project)
 
 

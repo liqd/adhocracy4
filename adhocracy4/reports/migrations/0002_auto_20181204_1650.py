@@ -8,13 +8,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('contenttypes', '0002_remove_content_type_name'),
-        ('a4reports', '0001_initial'),
+        ("contenttypes", "0002_remove_content_type_name"),
+        ("a4reports", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterIndexTogether(
-            name='report',
-            index_together=set([('content_type', 'object_pk')]),
+            name="report",
+            index_together=set([("content_type", "object_pk")]),
         ),
     ]

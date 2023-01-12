@@ -13,12 +13,14 @@ from adhocracy4.rules import mixins as rules_mixins
 from . import models
 
 
-class PollDetailView(ProjectMixin,
-                     rules_mixins.PermissionRequiredMixin,
-                     generic.DetailView,
-                     DisplayProjectOrModuleMixin):
+class PollDetailView(
+    ProjectMixin,
+    rules_mixins.PermissionRequiredMixin,
+    generic.DetailView,
+    DisplayProjectOrModuleMixin,
+):
     model = models.Poll
-    permission_required = 'a4polls.view_poll'
+    permission_required = "a4polls.view_poll"
 
     def get(self, request, *args, **kwargs):
         try:
@@ -28,13 +30,11 @@ class PollDetailView(ProjectMixin,
 
         except Http404:
             self.object = None
-            context = self.get_context_data(object=None, request=self.request,)
-            return render(
-                request,
-                'a4polls/poll_404.html',
-                context=context,
-                status=404
+            context = self.get_context_data(
+                object=None,
+                request=self.request,
             )
+            return render(request, "a4polls/poll_404.html", context=context, status=404)
 
     def get_object(self):
         return get_object_or_404(models.Poll, module=self.module)
@@ -42,7 +42,7 @@ class PollDetailView(ProjectMixin,
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.object is not None:
-            context['poll'] = self.get_object()
+            context["poll"] = self.get_object()
         return context
 
     def get_permission_object(self):
@@ -51,7 +51,7 @@ class PollDetailView(ProjectMixin,
     @property
     def phase(self):
         try:
-            weight = self.request.GET.get('phase')
+            weight = self.request.GET.get("phase")
             phase = self.project.phases.filter(weight=weight).first()
         except ValueError:
             phase = None
@@ -62,24 +62,25 @@ class PollDetailView(ProjectMixin,
             return self.project.last_active_phase
 
 
-class PollDashboardView(ProjectMixin,
-                        dashboard_mixins.DashboardBaseMixin,
-                        dashboard_mixins.DashboardComponentMixin,
-                        generic.TemplateView):
-    template_name = 'a4polls/poll_dashboard.html'
-    permission_required = 'a4projects.change_project'
+class PollDashboardView(
+    ProjectMixin,
+    dashboard_mixins.DashboardBaseMixin,
+    dashboard_mixins.DashboardComponentMixin,
+    generic.TemplateView,
+):
+    template_name = "a4polls/poll_dashboard.html"
+    permission_required = "a4projects.change_project"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['poll'] = self.get_or_create_poll()
+        context["poll"] = self.get_or_create_poll()
         return context
 
     def get_or_create_poll(self):
         try:
             obj = models.Poll.objects.get(module=self.module)
         except models.Poll.DoesNotExist:
-            obj = models.Poll(module=self.module,
-                              creator=self.request.user)
+            obj = models.Poll(module=self.module, creator=self.request.user)
             obj.save()
         return obj
 
@@ -89,15 +90,15 @@ class PollDashboardView(ProjectMixin,
 
 class PollDashboardExportView(DashboardExportView):
 
-    template_name = 'a4exports/export_dashboard.html'
+    template_name = "a4exports/export_dashboard.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comment_export'] = reverse(
-            'a4dashboard:poll-comment-export',
-            kwargs={'module_slug': self.module.slug})
-        context['poll_export'] = reverse(
-            'a4dashboard:poll-export',
-            kwargs={'module_slug': self.module.slug})
+        context["comment_export"] = reverse(
+            "a4dashboard:poll-comment-export", kwargs={"module_slug": self.module.slug}
+        )
+        context["poll_export"] = reverse(
+            "a4dashboard:poll-export", kwargs={"module_slug": self.module.slug}
+        )
 
         return context

@@ -15,21 +15,23 @@ from .serializers import ThreadSerializer
 from .signals import comment_removed
 
 
-class CommentViewSet(mixins.CreateModelMixin,
-                     mixins.RetrieveModelMixin,
-                     mixins.UpdateModelMixin,
-                     mixins.DestroyModelMixin,
-                     ContentTypeMixin,
-                     viewsets.GenericViewSet):
+class CommentViewSet(
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    ContentTypeMixin,
+    viewsets.GenericViewSet,
+):
 
     """Attention: This class is deprecated, use
-     comments_async.api.CommentViewSet instead"""
+    comments_async.api.CommentViewSet instead"""
 
-    queryset = Comment.objects.all().order_by('-created')
+    queryset = Comment.objects.all().order_by("-created")
     serializer_class = ThreadSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
-    filterset_fields = ('object_pk', 'content_type')
+    filterset_fields = ("object_pk", "content_type")
     content_type_filter = settings.A4_COMMENTABLES
 
     def perform_create(self, serializer):
@@ -37,13 +39,10 @@ class CommentViewSet(mixins.CreateModelMixin,
         warnings.warn(
             "comments.api.CommentViewSet is deprecated, "
             "use comments_async.api.CommentViewSet",
-            DeprecationWarning
+            DeprecationWarning,
         )
 
-        serializer.save(
-            content_object=self.content_object,
-            creator=self.request.user
-        )
+        serializer.save(content_object=self.content_object, creator=self.request.user)
 
     def get_permission_object(self):
         return self.content_object
@@ -51,9 +50,8 @@ class CommentViewSet(mixins.CreateModelMixin,
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
-            POST='{app_label}.comment_{model}'.format(
-                app_label=self.content_type.app_label,
-                model=self.content_type.model
+            POST="{app_label}.comment_{model}".format(
+                app_label=self.content_type.app_label, model=self.content_type.model
             )
         )
 
@@ -64,24 +62,25 @@ class CommentViewSet(mixins.CreateModelMixin,
         else:
             comment.is_censored = True
         comment.save()
-        comment_removed.send(sender=type(comment),
-                             instance=comment)
+        comment_removed.send(sender=type(comment), instance=comment)
         serializer = self.get_serializer(comment)
 
         return Response(serializer.data)
 
 
-class CommentModerateSet(mixins.CreateModelMixin,
-                         mixins.RetrieveModelMixin,
-                         mixins.UpdateModelMixin,
-                         ContentTypeMixin,
-                         viewsets.GenericViewSet):
+class CommentModerateSet(
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    ContentTypeMixin,
+    viewsets.GenericViewSet,
+):
 
-    queryset = Comment.objects.all().order_by('-created')
+    queryset = Comment.objects.all().order_by("-created")
     serializer_class = CommentModerateSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
-    filterset_fields = ('object_pk', 'content_type')
+    filterset_fields = ("object_pk", "content_type")
     content_type_filter = settings.A4_COMMENTABLES
 
     def get_permission_object(self):
@@ -90,8 +89,8 @@ class CommentModerateSet(mixins.CreateModelMixin,
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
-            POST='a4_comments.moderate_comment',
-            PUT='a4_comments.moderate_comment',
-            PATCH='a4_comments.moderate_comment',
-            DELETE='a4_comments.moderate_comment'
+            POST="a4_comments.moderate_comment",
+            PUT="a4_comments.moderate_comment",
+            PATCH="a4_comments.moderate_comment",
+            DELETE="a4_comments.moderate_comment",
         )

@@ -10,18 +10,16 @@ class ChoiceInline(admin.TabularInline):
 
 
 class ProjectFilter(ProjectAdminFilter):
-    project_key = 'poll__module__project'
+    project_key = "poll__module__project"
 
 
 @admin.register(models.Question)
 class QuestionAdmin(admin.ModelAdmin):
-    inlines = [
-        ChoiceInline
-    ]
+    inlines = [ChoiceInline]
     list_filter = (
-        'poll__module__project__organisation',
-        'poll__module__project__is_archived',
-        ProjectFilter
+        "poll__module__project__organisation",
+        "poll__module__project__is_archived",
+        ProjectFilter,
     )
-    date_hierarchy = 'poll__created'
-    search_fields = ('label',)
+    date_hierarchy = "poll__created"
+    search_fields = ("label",)

@@ -20,7 +20,7 @@ def test_action_create(question_factory):
             verb=Verbs.ADD.value,
             obj=question,
             target=project,
-            description='description'
+            description="description",
         )
     assert action.actor == question.creator
     assert action.verb == Verbs.ADD.value
@@ -28,7 +28,7 @@ def test_action_create(question_factory):
     assert action.target == project
     assert action.timestamp == now
     assert action.public is True
-    assert action.description == 'description'
+    assert action.description == "description"
 
 
 @pytest.mark.django_db
@@ -41,11 +41,7 @@ def test_action_string_full(question_factory):
         obj=question,
         target=project,
     )
-    str_expected = '{} add {} to {}'.format(
-        question.creator,
-        question,
-        project
-    )
+    str_expected = "{} add {} to {}".format(question.creator, question, project)
     assert str(action) == str_expected
 
 
@@ -58,10 +54,7 @@ def test_action_string_with_target(question_factory):
         obj=question,
         target=project,
     )
-    str_expected = 'add {} to {}'.format(
-        question,
-        project
-    )
+    str_expected = "add {} to {}".format(question, project)
     assert str(action) == str_expected
 
 
@@ -73,7 +66,7 @@ def test_action_string_with_actor(question_factory):
         verb=Verbs.CREATE.value,
         obj=question,
     )
-    str_expected = '{} create {}'.format(
+    str_expected = "{} create {}".format(
         question.creator,
         question,
     )
@@ -87,7 +80,7 @@ def test_action_string_without_actor(question_factory):
         verb=Verbs.CREATE.value,
         obj=question,
     )
-    str_expected = 'create {}'.format(
+    str_expected = "create {}".format(
         question,
     )
     assert str(action) == str_expected
@@ -100,19 +93,13 @@ def test_type_property(question):
         obj=question,
     )
 
-    assert action.type == 'unknown'
+    assert action.type == "unknown"
 
-    configure_type(
-        'thing',
-        (question._meta.app_label, question._meta.model_name)
-    )
-    assert action.type == 'thing'
+    configure_type("thing", (question._meta.app_label, question._meta.model_name))
+    assert action.type == "thing"
 
-    configure_type(
-        'thong',
-        (question._meta.app_label, question._meta.model_name)
-    )
-    assert action.type == 'thong'
+    configure_type("thong", (question._meta.app_label, question._meta.model_name))
+    assert action.type == "thong"
 
 
 @pytest.mark.django_db
@@ -122,26 +109,20 @@ def test_icon_property(question):
         obj=question,
     )
 
-    assert action.icon == 'star'
+    assert action.icon == "star"
 
-    configure_type(
-        'thing',
-        (question._meta.app_label, question._meta.model_name)
-    )
-    assert action.icon == 'star'
+    configure_type("thing", (question._meta.app_label, question._meta.model_name))
+    assert action.icon == "star"
 
-    configure_icon('plus', verb=Verbs.ADD)
-    assert action.icon == 'plus'
+    configure_icon("plus", verb=Verbs.ADD)
+    assert action.icon == "plus"
 
-    other_action = Action(
-        verb=Verbs.CREATE.value,
-        obj=question
-    )
-    assert other_action.icon == 'star'
+    other_action = Action(verb=Verbs.CREATE.value, obj=question)
+    assert other_action.icon == "star"
 
-    configure_icon('circle', type='thing')
-    assert action.icon == 'plus'
-    assert other_action.icon == 'circle'
+    configure_icon("circle", type="thing")
+    assert action.icon == "plus"
+    assert other_action.icon == "circle"
 
 
 @pytest.mark.django_db

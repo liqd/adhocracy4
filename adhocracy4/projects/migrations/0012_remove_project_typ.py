@@ -8,12 +8,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0011_fix_copyright_field_desc'),
+        ("a4projects", "0011_fix_copyright_field_desc"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='project',
-            name='typ',
+            model_name="project",
+            name="typ",
         ),
     ]

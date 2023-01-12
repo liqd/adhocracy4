@@ -15,13 +15,11 @@ comment_removed = Signal()
 
 @receiver(post_save, sender=Comment)
 def update_last_discussed(sender, instance, **kwargs):
-    if hasattr(instance.content_object, 'last_discussed'):
+    if hasattr(instance.content_object, "last_discussed"):
         last_discussed = instance.created
-        if (instance.last_discussed
-                and instance.last_discussed > last_discussed):
+        if instance.last_discussed and instance.last_discussed > last_discussed:
             last_discussed = instance.last_discussed
         instance.content_object.last_discussed = last_discussed
         instance.content_object.save(
-            ignore_modified=True,
-            update_fields=['last_discussed']
+            ignore_modified=True, update_fields=["last_discussed"]
         )

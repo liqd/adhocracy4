@@ -7,12 +7,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4actions', '0002_add_START_verb'),
+        ("a4actions", "0002_add_START_verb"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='action',
-            options={'ordering': ('-timestamp',)},
+            name="action",
+            options={"ordering": ("-timestamp",)},
         ),
     ]

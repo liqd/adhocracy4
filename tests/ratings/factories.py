@@ -6,7 +6,7 @@ from tests.apps.questions import factories
 
 class RatingFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = 'a4ratings.Rating'
+        model = "a4ratings.Rating"
 
     value = 1
     creator = factory.SubFactory(a4_factories.USER_FACTORY)

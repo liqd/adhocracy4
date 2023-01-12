@@ -30,7 +30,7 @@ class ClassBasedViewFilterSet(django_filters.FilterSet):
 class PagedFilterSet(ClassBasedViewFilterSet):
     """Removes page parameters from the query when applying filters."""
 
-    page_kwarg = 'page'
+    page_kwarg = "page"
 
     def __init__(self, data, *args, **kwargs):
         if self.page_kwarg in data:
@@ -73,38 +73,36 @@ class DistinctOrderingFilter(django_filters.OrderingFilter):
 
     def filter(self, qs, value):
         if value in django_filters.constants.EMPTY_VALUES:
-            return qs.order_by('pk')
+            return qs.order_by("pk")
 
-        ordering = [self.get_ordering_value(param) for param in value] + ['pk']
+        ordering = [self.get_ordering_value(param) for param in value] + ["pk"]
         return qs.order_by(*ordering)
 
 
-class DynamicChoicesOrderingFilter(DynamicChoicesMixin,
-                                   DistinctOrderingFilter):
+class DynamicChoicesOrderingFilter(DynamicChoicesMixin, DistinctOrderingFilter):
     """Used for ordering filters with dynamic choices based on view properties.
 
     For example dynamically add the rating ordering based on the module.
     """
 
     def __init__(self, *args, **kwargs):
-        if 'widget' not in kwargs:
-            kwargs['widget'] = OrderingWidget
-        kwargs['empty_label'] = None
+        if "widget" not in kwargs:
+            kwargs["widget"] = OrderingWidget
+        kwargs["empty_label"] = None
         super().__init__(*args, **kwargs)
 
     def annotate_queryset(self, qs):
         qs = qs.annotate_comment_count()
-        if hasattr(qs, 'annotate_positive_rating_count'):
-            qs = qs.annotate_positive_rating_count() \
-                .annotate_negative_rating_count()
+        if hasattr(qs, "annotate_positive_rating_count"):
+            qs = qs.annotate_positive_rating_count().annotate_negative_rating_count()
         return qs
 
     def filter(self, qs, value):
         annotated_qs = self.annotate_queryset(qs)
-        if value == ['-comment_count']:
-            return annotated_qs.order_by('-comment_count')
-        elif value == ['-positive_rating_count']:
-            return annotated_qs.order_by('-positive_rating_count')
+        if value == ["-comment_count"]:
+            return annotated_qs.order_by("-comment_count")
+        elif value == ["-positive_rating_count"]:
+            return annotated_qs.order_by("-positive_rating_count")
 
         return super().filter(annotated_qs, value)
 
@@ -113,15 +111,12 @@ class DistinctOrderingWithDailyRandomFilter(DynamicChoicesOrderingFilter):
     """Note: order reproducability relies on string representation of seed."""
 
     def filter(self, qs, value):
-        if value == ['dailyrandom']:
-            pks = list(qs.values_list('pk', flat=True))
+        if value == ["dailyrandom"]:
+            pks = list(qs.values_list("pk", flat=True))
             random.seed(str(date.today()))
             random.shuffle(pks)
-            preserved = \
-                Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(pks)])
-            ordered_qs = qs \
-                .filter(pk__in=pks) \
-                .order_by(preserved)
+            preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(pks)])
+            ordered_qs = qs.filter(pk__in=pks).order_by(preserved)
             return self.annotate_queryset(ordered_qs)
         else:
             return super().filter(qs, value)
@@ -139,16 +134,15 @@ class FreeTextFilter(django_filters.CharFilter):
         return qs
 
     def get_q_objects(self, value):
-        q_objects = [Q(((field + '__icontains'), value))
-                     for field in self.fields]
+        q_objects = [Q(((field + "__icontains"), value)) for field in self.fields]
         return q_objects
 
     def __init__(self, *args, **kwargs):
-        kwargs['method'] = self.multi_filter
+        kwargs["method"] = self.multi_filter
 
-        if 'fields' in kwargs:
-            self.fields = kwargs.pop('fields')
+        if "fields" in kwargs:
+            self.fields = kwargs.pop("fields")
         else:
-            raise ImproperlyConfigured('set fields to search on')
+            raise ImproperlyConfigured("set fields to search on")
 
         super().__init__(*args, **kwargs)
