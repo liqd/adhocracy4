@@ -56,9 +56,12 @@ export default class QuestionUser extends React.Component {
     return (
       <div className="list-item">
         <div>
-          {this.props.is_on_shortlist &&
-            <i className="far fa-list-alt u-primary" aria-label={shortlistText} />}
           <p className="live_questions__question">
+            {this.props.is_on_shortlist &&
+              <>
+                <i className="far fa-list-alt u-primary u-icon-spacing" aria-hidden="true" />
+                <span className="visually-hidden">{shortlistText}</span>
+              </>}
             {this.props.children}
           </p>
         </div>
@@ -69,18 +72,23 @@ export default class QuestionUser extends React.Component {
         <div className="live-question__action-bar">
           {this.props.hasLikingPermission
             ? (
-              <button type="button" className={(this.state.session_like ? 'u-success ' : '') + 'btn'} onClick={this.handleLike.bind(this)}>
-                <span>{this.state.likes} </span>
+              <button
+                type="button"
+                className={'rating-button rating-up ' + (this.state.session_like ? 'u-success ' : 'u-muted')}
+                onClick={this.handleLike.bind(this)}
+                aria-label={this.state.session_like ? addLikeTag : undoLikeTag}
+              >
+                <i className="far fa-thumbs-up" />
+                {this.state.likes}
                 <span className="visually-hidden">{likesTag}</span>
-                <i className="far fa-thumbs-up" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
               </button>
               )
             : (
-              <div>
-                <span className="u-muted">{this.state.likes} </span>
-                <span className="visually-hidden">{likesTag}</span>
+              <span className="rating-button rating-up is-read-only u-muted">
                 <i className="far fa-thumbs-up u-muted" aria-hidden="true" />
-              </div>
+                {this.state.likes}
+                <span className="visually-hidden">{likesTag}</span>
+              </span>
               )}
         </div>
       </div>

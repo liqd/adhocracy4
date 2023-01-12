@@ -28,18 +28,17 @@ export default class QuestionPresent extends React.Component {
   render () {
     const likesTag = django.gettext('likes')
     return (
-      <div className="item-detail-2__content">
-        <div>
+      <div className="u-top-divider">
+        <div className="u-space-between">
           <p>{this.props.children}</p>
-        </div>
-        <div>
-          <div>
-            <div className="u-align-right">
-              <span className="u-muted">{this.state.likes} </span>
-              <i className="far fa-thumbs-up" aria-hidden="true" />
-              <span className="visually-hidden">{likesTag}</span>
-            </div>
-          </div>
+          <span
+            className="rating-button rating-up is-read-only u-no-padding"
+            title={likesTag}
+            aria-label={likesTag}
+          >
+            <i className="far fa-thumbs-up" aria-hidden="true" />
+            {this.state.likes}
+          </span>
         </div>
       </div>
     )

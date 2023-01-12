@@ -5,19 +5,28 @@
         {% spaceless %}
         {% if object|has_feature:"rate" %}
             <span class="rating">
-                <span class="rating-button rating-up is-read-only" title="{% translate 'Positive Ratings' %}">
-                    <i class="fa fa-chevron-up" aria-label="{% translate 'Positive Ratings' %}"></i>
+                <span
+                    class="rating-button rating-up is-read-only"
+                    title="{% translate 'Positive Ratings' %}">
+                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
                     {{ object.positive_rating_count }}
+                    <span class="visually-hidden">{% translate 'Positive Ratings' %}</span>
                 </span>
-                <span class="rating-button rating-down is-read-only" title="{% translate 'Negative Ratings' %}">
-                    <i class="fa fa-chevron-down" aria-label="{% translate 'Negative Ratings' %}"></i>
+                <span
+                    class="rating-button rating-down is-read-only"
+                    title="{% translate 'Negative Ratings' %}">
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     {{ object.negative_rating_count }}
+                    <span class="visually-hidden">{% translate 'Negative Ratings' %}</span>
                 </span>
             </span>
         {% endif %}
-        <span title="{% translate 'Comments' %}" class="list-item__comments">
-            <i class="far fa-comment" aria-label="{% translate 'Comments' %}"></i>
+        <span
+            class="list-item__comments"
+            title="{% translate 'Comments' %}">
+            <i class="far fa-comment u-icon-spacing" aria-hidden="true"></i>
             {{ object.comment_count }}
+            <span class="visually-hidden">{% translate 'Comments' %}</span>
         </span>
         {% endspaceless %}
     </div>

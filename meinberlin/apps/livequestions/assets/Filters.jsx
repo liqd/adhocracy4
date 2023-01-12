@@ -56,6 +56,7 @@ export default class Filter extends React.Component {
                   checked={this.props.displayOnShortlist}
                   onChange={this.props.toggleDisplayOnShortlist} // eslint-disable-line react/jsx-handler-names
                 />
+                <span className="visually-hidden">{onlyShowMarkedText}</span>
                 <i className="far fa-list-alt" aria-hidden="true" />
               </label>
             </div>
@@ -73,6 +74,7 @@ export default class Filter extends React.Component {
                   checked={this.props.displayNotHiddenOnly}
                   onChange={this.props.toggledisplayNotHiddenOnly} // eslint-disable-line react/jsx-handler-names
                 />
+                <span className="visually-hidden">{displayNotHiddenText}</span>
                 <i className="far fa-eye" aria-hidden="true" />
               </label>
             </div>
@@ -90,6 +92,7 @@ export default class Filter extends React.Component {
                   checked={this.props.orderedByLikes}
                   onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
                 />
+                <span className="visually-hidden">{orderLikesText}</span>
                 <i className="far fa-thumbs-up" aria-hidden="true" />
               </label>
             </div>

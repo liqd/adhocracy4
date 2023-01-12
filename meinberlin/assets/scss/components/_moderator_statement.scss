@@ -1,6 +1,6 @@
 .moderator-statement {
     // this block needs a bigger margin than the previous element can provide
-    margin-top: 2em;
+    margin: 2 * $spacer 0;
     padding: 0.6em;
     background-color: $bg-secondary;
 }

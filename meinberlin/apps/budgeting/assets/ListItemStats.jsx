@@ -1,6 +1,5 @@
 import React from 'react'
 import django from 'django'
-import { wrapSpaces } from './helpers'
 
 const positiveRatingsStr = django.gettext('Positive Ratings')
 const negativeRatingsStr = django.gettext('Negative Ratings')
@@ -19,9 +18,10 @@ export const ListItemStats = (props) => {
           >
             <i
               className="fa fa-chevron-up"
-              aria-label={positiveRatingsStr}
+              aria-hidden="true"
             />
-            {wrapSpaces(props.positiveCount)}
+            {props.positiveCount}
+            <span className="visually-hidden">{positiveRatingsStr}</span>
           </span>
           <span
             className="rating-button rating-down is-read-only"
@@ -29,9 +29,10 @@ export const ListItemStats = (props) => {
           >
             <i
               className="fa fa-chevron-down"
-              aria-label={negativeRatingsStr}
+              aria-hidden="true"
             />
-            {wrapSpaces(props.negativeCount)}
+            {props.negativeCount}
+            <span className="visually-hidden">{negativeRatingsStr}</span>
           </span>
         </span>
       )}
@@ -44,9 +45,10 @@ export const ListItemStats = (props) => {
           >
             <i
               className="far fa-thumbs-up"
-              aria-label={supportStr}
+              aria-hidden="true"
             />
-            {wrapSpaces(props.positiveCount)}
+            {props.positiveCount}
+            <span className="visually-hidden">{supportStr}</span>
           </span>
         </span>
       )}
@@ -56,10 +58,11 @@ export const ListItemStats = (props) => {
           className="list-item__comments"
         >
           <i
-            className="far fa-comment"
-            aria-label={commentsStr}
+            className="far fa-comment u-icon-spacing"
+            aria-hidden="true"
           />
-          {wrapSpaces(props.commentCount)}
+          {props.commentCount}
+          <span className="visually-hidden">{commentsStr}</span>
         </span>
       )}
     </div>

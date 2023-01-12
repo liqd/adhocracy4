@@ -101,6 +101,7 @@ export default class QuestionModerator extends React.Component {
     const removeLiveText = django.gettext('remove from live list')
     const addShortlistText = django.gettext('added to shortlist')
     const removeShortlistText = django.gettext('remove from shortlist')
+    const supportStr = django.gettext('Support count')
 
     return (
       <div className="list-item">
@@ -113,7 +114,14 @@ export default class QuestionModerator extends React.Component {
           </div>}
         <div className="live-question__action-bar">
           <div className="live_questions__like">
-            <span><i className="far fa-thumbs-up" /> {this.state.likes}</span>
+            <span
+              className="rating-button rating-up is-read-only"
+              title={supportStr}
+            >
+              <i className="far fa-thumbs-up" aria-hidden="true" />
+              {this.state.likes}
+              <span className="visually-hidden">{supportStr}</span>
+            </span>
           </div>
           <div>
             {this.props.displayIsOnShortlist &&
