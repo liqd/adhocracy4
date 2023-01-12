@@ -16,8 +16,8 @@ from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
-from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
-from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
+from meinberlin.apps.moderatorfeedback.forms import ModeratorFeedbackForm
+from meinberlin.apps.moderatorfeedback.models import ModeratorFeedback
 from meinberlin.apps.moderatorremark.models import ModeratorRemark
 from meinberlin.apps.notifications.emails import \
     NotifyCreatorOrContactOnModeratorFeedback
@@ -174,9 +174,9 @@ class AbstractIdeaModerateView(
                 'model': self.model,
                 'form_class': self.moderateable_form_class
             },
-            'statement': {
-                'model': ModeratorStatement,
-                'form_class': ModeratorStatementForm
+            'feedback_text': {
+                'model': ModeratorFeedback,
+                'form_class': ModeratorFeedbackForm
             }
         }
         # FIXME: use the form class directly here and remove "if"-condition

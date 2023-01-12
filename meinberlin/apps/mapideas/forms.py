@@ -34,4 +34,4 @@ class MapIdeaForm(CategorizableFieldMixin,
 class MapIdeaModerateForm(forms.ModelForm):
     class Meta:
         model = models.MapIdea
-        fields = ['moderator_feedback']
+        fields = ['moderator_status']

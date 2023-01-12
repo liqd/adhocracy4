@@ -76,4 +76,4 @@ class ProposalForm(MapIdeaForm, ContactStorageConsentMixin):
 class ProposalModerateForm(TasksAddableFieldMixin, forms.ModelForm):
     class Meta:
         model = models.Proposal
-        fields = ['moderator_feedback', 'is_archived', 'completed_tasks']
+        fields = ['moderator_status', 'is_archived', 'completed_tasks']

@@ -23,4 +23,4 @@ class IdeaForm(CategorizableFieldMixin,
 class IdeaModerateForm(forms.ModelForm):
     class Meta:
         model = models.Idea
-        fields = ['moderator_feedback']
+        fields = ['moderator_status']

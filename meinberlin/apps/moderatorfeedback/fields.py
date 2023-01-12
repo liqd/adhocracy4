@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ModeratorFeedbackField(models.CharField):
+    '''This is used for the moderator status'''
     description = _("Moderator feedback for items with fixed feedback choices")
 
     def __init__(self, *args, **kwargs):
@@ -19,8 +20,8 @@ class ModeratorFeedbackField(models.CharField):
         from which it may receive the feedback choices.
         """
         # Get the feedback choices as defined in the model
-        if hasattr(cls, 'moderator_feedback_choices'):
-            self.choices = cls.moderator_feedback_choices
+        if hasattr(cls, 'moderator_status_choices'):
+            self.choices = cls.moderator_status_choices
 
         # Call the super method at last so that choices are already initialized
         super(ModeratorFeedbackField, self) \

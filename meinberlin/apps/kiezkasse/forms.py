@@ -21,4 +21,4 @@ class ProposalForm(MapIdeaForm):
 class ProposalModerateForm(forms.ModelForm):
     class Meta:
         model = models.Proposal
-        fields = ['moderator_feedback']
+        fields = ['moderator_status']

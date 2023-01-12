@@ -75,11 +75,11 @@ class ItemBadgesPropertyMixin():
     def item_badges(self):
         """List all badges an idea item can have."""
         labels = []
-        if hasattr(self, 'moderator_feedback') and self.moderator_feedback:
+        if hasattr(self, 'moderator_status') and self.moderator_status:
             labels.append(
-                ['moderator_feedback',
-                 self.get_moderator_feedback_display(),
-                 self.moderator_feedback]
+                ['moderator_status',
+                 self.get_moderator_status_display(),
+                 self.moderator_status]
             )
         if hasattr(self, 'budget'):
             if self.budget == 0:

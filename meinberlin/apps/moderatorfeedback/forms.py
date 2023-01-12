@@ -3,7 +3,7 @@ from django import forms
 from . import models
 
 
-class ModeratorStatementForm(forms.ModelForm):
+class ModeratorFeedbackForm(forms.ModelForm):
     class Meta:
-        model = models.ModeratorStatement
-        fields = ['statement']
+        model = models.ModeratorFeedback
+        fields = ['feedback_text']
