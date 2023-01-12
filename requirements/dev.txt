@@ -1,6 +1,6 @@
 -r base.txt
 factory-boy==3.2.1
-Faker==16.3.0
+Faker==16.4.0
 flake8==6.0.0
 freezegun==1.2.2
 isort==5.11.4
