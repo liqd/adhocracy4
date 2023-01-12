@@ -28,8 +28,8 @@
                 {{ form.media }}
             {% endfor %}
 
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.moderator_feedback %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.statement.statement %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.moderator_status %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.feedback_text.feedback_text %}
             {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=forms.moderateable.is_archived %}
             {% if forms.moderateable.show_tasks %}
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.completed_tasks add_class='u-top-divider' %}

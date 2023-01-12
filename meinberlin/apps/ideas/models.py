@@ -114,7 +114,7 @@ class ItemBadgesPropertyMixin():
     def item_badges_for_detail(self):
         item_badges_for_detail = ([
             badge for badge in self.item_badges
-            if badge[0] != 'moderator_feedback'
+            if badge[0] != 'moderator_status'
         ])
         return item_badges_for_detail
 

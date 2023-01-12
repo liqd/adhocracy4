@@ -37,7 +37,7 @@
     </h3>
     <div class="list-item__labels">
         {% for badge in object.item_badges_for_list  %}
-            <span class="label label--big {% if badge.0 == 'moderator_feedback' %}label--{{badge.2|classify|lower }}{% endif %}">
+            <span class="label label--big {% if badge.0 == 'moderator_status' %}label--{{badge.2|classify|lower }}{% endif %}">
                 {% if badge.0 == 'point_label' %}
                     <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                 {% endif %}

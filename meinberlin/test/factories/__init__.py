@@ -73,12 +73,12 @@ class RatingFactory(factory.django.DjangoModelFactory):
     creator = factory.SubFactory(UserFactory)
 
 
-class ModeratorStatementFactory(factory.django.DjangoModelFactory):
+class ModeratorFeedbackFactory(factory.django.DjangoModelFactory):
 
     class Meta:
-        model = 'meinberlin_moderatorfeedback.ModeratorStatement'
+        model = 'meinberlin_moderatorfeedback.ModeratorFeedback'
 
-    statement = factory.Faker('text')
+    feedback_text = factory.Faker('text')
     creator = factory.SubFactory(UserFactory)
 
 

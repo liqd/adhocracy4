@@ -88,7 +88,7 @@ def test_item_badges_properties(
     module = category.module
     idea = idea_factory(
         module=module,
-        moderator_feedback='CHECKED',
+        moderator_status='CHECKED',
         category=category
     )
     label_1 = label_factory(module=module)
@@ -97,17 +97,17 @@ def test_item_badges_properties(
     idea.labels.set([label_1, label_2, label_3])
 
     assert idea.item_badges == \
-        [['moderator_feedback',
-          idea.get_moderator_feedback_display(),
-          idea.moderator_feedback],
+        [['moderator_status',
+          idea.get_moderator_status_display(),
+          idea.moderator_status],
          ['category', category.name],
          ['label', label_1.name],
          ['label', label_2.name],
          ['label', label_3.name]]
     assert idea.item_badges_for_list == \
-        [['moderator_feedback',
-          idea.get_moderator_feedback_display(),
-          idea.moderator_feedback],
+        [['moderator_status',
+          idea.get_moderator_status_display(),
+          idea.moderator_status],
          ['category', category.name],
          ['label', label_1.name]]
     assert idea.additional_item_badges_for_list_count == 2

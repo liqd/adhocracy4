@@ -78,8 +78,8 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
             response, 'meinberlin_kiezkasse/proposal_moderate_form.html')
 
         data = {
-            'moderator_feedback': 'test',
-            'statement': 'its a statement'
+            'moderator_status': 'test',
+            'feedback_text': 'its a moderator feedback text'
         }
         response = client.post(url, data)
         assert redirect_target(response) == 'proposal-detail'

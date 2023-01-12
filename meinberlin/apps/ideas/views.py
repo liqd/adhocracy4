@@ -197,7 +197,7 @@ class AbstractIdeaModerateView(
     def forms_save(self, forms, commit=True):
         objects = super().forms_save(forms, commit=False)
         moderateable = objects['moderateable']
-        statement = objects['statement']
+        feedback_text = objects['feedback_text']
         # FIXME: use the remark directly and remove "if"-condition
         # when used for all ideas and not only for budgeting proposals
         remark = None
@@ -206,28 +206,28 @@ class AbstractIdeaModerateView(
             if not remark.pk:
                 remark.creator = self.request.user
 
-        if not statement.pk:
-            statement.creator = self.request.user
+        if not feedback_text.pk:
+            feedback_text.creator = self.request.user
 
         with transaction.atomic():
-            statement.save()
-            moderateable.moderator_statement = statement
+            feedback_text.save()
+            moderateable.moderator_feedback_text = feedback_text
             moderateable.save()
             # FIXME: remove "if"-condition when form used for all ideas
             if remark:
                 remark.item = moderateable
                 remark.save()
 
-            if 'moderator_feedback' in forms['moderateable'].changed_data \
-                    or 'statement' in forms['statement'].changed_data:
+            if 'moderator_status' in forms['moderateable'].changed_data \
+                    or 'feedback_text' in forms['feedback_text'].changed_data:
                 NotifyCreatorOrContactOnModeratorFeedback.send(self.object)
         return objects
 
     def get_instance(self, name):
         if name == 'moderateable':
             return self.object
-        elif name == 'statement':
-            return self.object.moderator_statement
+        elif name == 'feedback_text':
+            return self.object.moderator_feedback_text
         elif name == 'remark':
             return self.object.remark
 

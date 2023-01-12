@@ -54,9 +54,9 @@ def test_proposal_serializer(apiclient, module, proposal_factory,
     assert proposal_rated_data['creator'] == proposal_rated.creator.username
     assert proposal_rated_data['is_archived'] == proposal_rated.is_archived
     assert proposal_rated_data['item_badges_for_list'] == [
-        ['moderator_feedback',
-         proposal_rated.get_moderator_feedback_display(),
-         proposal_rated.moderator_feedback],
+        ['moderator_status',
+         proposal_rated.get_moderator_status_display(),
+         proposal_rated.moderator_status],
         ['budget', '{}€'.format(proposal_rated.budget)],
         ['category', proposal_rated.category.name]
     ]
@@ -74,9 +74,9 @@ def test_proposal_serializer(apiclient, module, proposal_factory,
         == 1
     assert proposal_commented_data['comment_count'] == 1
     assert proposal_commented_data['item_badges_for_list'] == [
-        ['moderator_feedback',
-         proposal_commented.get_moderator_feedback_display(),
-         proposal_commented.moderator_feedback],
+        ['moderator_status',
+         proposal_commented.get_moderator_status_display(),
+         proposal_commented.moderator_status],
         ['budget', '{}€'.format(proposal_commented.budget)],
         ['point_label', proposal_commented.point_label]
     ]
@@ -88,9 +88,9 @@ def test_proposal_serializer(apiclient, module, proposal_factory,
     assert proposal_voted_data['additional_item_badges_for_list_count'] == 0
     assert proposal_voted_data['comment_count'] == 0
     assert proposal_voted_data['item_badges_for_list'] == [
-        ['moderator_feedback',
-         proposal_voted.get_moderator_feedback_display(),
-         proposal_voted.moderator_feedback],
+        ['moderator_status',
+         proposal_voted.get_moderator_status_display(),
+         proposal_voted.moderator_status],
         ['budget', '{}€'.format(proposal_voted.budget)],
         ['label', label.name]
     ]

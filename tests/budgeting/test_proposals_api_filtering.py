@@ -65,10 +65,10 @@ def test_proposal_list_filter_mixin(apiclient, user_factory, group_factory,
            [('', _('All')), ('false', _('No')), ('true', _('Yes'))]
     assert response.data['filters']['is_archived']['default'] == 'false'
 
-    assert 'moderator_feedback' in response.data['filters']
-    assert response.data['filters']['moderator_feedback']['label'] == \
+    assert 'moderator_status' in response.data['filters']
+    assert response.data['filters']['moderator_status']['label'] == \
         _('Status')
-    assert response.data['filters']['moderator_feedback']['choices'] == \
+    assert response.data['filters']['moderator_status']['choices'] == \
            [('', _('All')),
             ('CONSIDERATION', _('Under consideration')),
             ('QUALIFIED', _('Qualified for next phase')),
@@ -256,27 +256,27 @@ def test_proposal_archived_filter(
 
 
 @pytest.mark.django_db
-def test_proposal_moderator_feedback_filter(
+def test_proposal_moderator_status_filter(
         apiclient, module, proposal_factory):
     proposal_factory(
         module=module,
-        moderator_feedback=''
+        moderator_status=''
     )
     proposal_2 = proposal_factory(
         module=module,
-        moderator_feedback='CONSIDERATION'
+        moderator_status='CONSIDERATION'
     )
     proposal_3 = proposal_factory(
         module=module,
-        moderator_feedback='QUALIFIED'
+        moderator_status='QUALIFIED'
     )
     proposal_4 = proposal_factory(
         module=module,
-        moderator_feedback='REJECTED'
+        moderator_status='REJECTED'
     )
     proposal_5 = proposal_factory(
         module=module,
-        moderator_feedback='ACCEPTED'
+        moderator_status='ACCEPTED'
     )
 
     url = reverse('proposals-list',
@@ -285,25 +285,25 @@ def test_proposal_moderator_feedback_filter(
     response = apiclient.get(url)
     assert len(response.data['results']) == 5
 
-    querystring = '?moderator_feedback=CONSIDERATION'
+    querystring = '?moderator_status=CONSIDERATION'
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 1
     assert response.data['results'][0]['pk'] == proposal_2.pk
 
-    querystring = '?moderator_feedback=QUALIFIED'
+    querystring = '?moderator_status=QUALIFIED'
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 1
     assert response.data['results'][0]['pk'] == proposal_3.pk
 
-    querystring = '?moderator_feedback=REJECTED'
+    querystring = '?moderator_status=REJECTED'
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 1
     assert response.data['results'][0]['pk'] == proposal_4.pk
 
-    querystring = '?moderator_feedback=ACCEPTED'
+    querystring = '?moderator_status=ACCEPTED'
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data['results']) == 1

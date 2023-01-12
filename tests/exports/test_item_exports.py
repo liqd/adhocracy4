@@ -8,14 +8,14 @@ def test_moderator_feedback_mixin(proposal):
     mixin = mixins.ItemExportWithModeratorFeedback()
 
     virtual = mixin.get_virtual_fields({})
-    assert 'moderator_feedback' in virtual
-    assert 'moderator_statement' in virtual
+    assert 'moderator_status' in virtual
+    assert 'moderator_feedback_text' in virtual
 
-    assert mixin.get_moderator_feedback_data(proposal)\
-        == proposal.get_moderator_feedback_display()
+    assert mixin.get_moderator_status_data(proposal)\
+        == proposal.get_moderator_status_display()
 
-    assert mixin.get_moderator_statement_data(proposal)\
-        == proposal.moderator_statement.statement
+    assert mixin.get_moderator_feedback_text_data(proposal)\
+        == proposal.moderator_feedback_text.feedback_text
 
 
 @pytest.mark.django_db

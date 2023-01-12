@@ -113,8 +113,8 @@
 
     {% block vote_button %}{% endblock %}
 
-    {% block moderator_statement %}
-        {% if object.moderator_statement.statement or object.moderator_feedback or is_moderator  %}
+    {% block moderator_feedback %}
+        {% if object.moderator_feedback_text.feedback_text or object.moderator_status or is_moderator  %}
             <div class="offset-lg-3 col-lg-6">
                 <div class="detail-info__accordion">
                     <details class="accordion" open>
@@ -134,14 +134,14 @@
                                     </div>
                                     {% endif %}
                                 {% endif %}
-                            {% if object.moderator_statement.statement or object.moderator_feedback %}
+                            {% if object.moderator_feedback_text.feedback_text or object.moderator_status %}
                                 <i class="fa fa-chevron-down detail-info__collapse-btn" aria-hidden="true"></i>
                             {% endif %}
                         </summary>
-                        {% if object.moderator_statement.statement or object.moderator_feedback %}
+                        {% if object.moderator_feedback_text.feedback_text or object.moderator_status %}
                         <div class="detail-info__accordion-body">
-                            {% if object.moderator_feedback %}
-                                {% with feedback_classification=object.moderator_feedback|classify|lower %}
+                            {% if object.moderator_status %}
+                                {% with feedback_classification=object.moderator_status|classify|lower %}
                                     <h3 class="detail-info__section-title">{% translate 'Status' %}</h3>
                                     <div class="detail-info__status-line--{{ feedback_classification }}"></div>
                                     <div class="detail-info__status-icon--{{ feedback_classification }}">
@@ -153,25 +153,25 @@
                                             <i class="fas fa-check-circle"></i>
                                         {% endif%}
                                         <span class="detail-info__status-label">
-                                            {{ object.get_moderator_feedback_display }}
+                                            {{ object.get_moderator_status_display }}
                                         </span>
                                     </div>
                                   {% endwith %}
                             {% endif %}
-                            {% if object.moderator_statement.statement %}
+                            {% if object.moderator_feedback_text.feedback_text %}
                             <div class="detail-info__section--no-border">
                                 <strong class="u-spacer-right">
                                     {{ object.module.project.organisation.name }}
                                 </strong>
-                                {% if object.moderator_statement.modified %}
-                                {% translate 'updated on ' %}{% html_date object.moderator_statement.modified %}
+                                {% if object.moderator_feedback_text.modified %}
+                                {% translate 'updated on ' %}{% html_date object.moderator_feedback_text.modified %}
                                 {% else %}
-                                {% translate 'created on ' %}{% html_date object.moderator_statement.created %}
+                                {% translate 'created on ' %}{% html_date object.moderator_feedback_text.created %}
                                 {% endif %}
                             </div>
                             {% endif %}
                             <p class="u-spacer-top-half">
-                                {{ object.moderator_statement.statement | safe }}
+                                {{ object.moderator_feedback_text.feedback_text | safe }}
                             </p>
                         </div>
                         {% endif %}

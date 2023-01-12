@@ -11,14 +11,14 @@
 <p>
 {{ object.module.project.organisation.name }} hat auf Ihren Beitrag reagiert.
 </p>
-{% if object.moderator_feedback %}
+{% if object.moderator_status %}
 <p>
 Der Status Ihres Beitrags hat sich geändert und steht nun auf “{{ object.get_moderator_feedback_display }}”.
 </p>
 {% endif %}
-{% if object.moderator_statement.statement %}
+{% if object.moderator_feedback_text.feedback_text %}
 <p style="text-align: left;">
-Rückmeldung: {{ object.moderator_statement.statement | safe }}
+Rückmeldung: {{ object.moderator_feedback_text.feedback_text | safe }}
 </p>
 {% endif %}
 <p>

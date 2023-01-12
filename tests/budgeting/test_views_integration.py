@@ -235,7 +235,7 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
             'meinberlin_budgeting/proposal_moderate_form.html')
 
         data = {
-            'moderator_feedback': 'test',
+            'moderator_status': 'test',
             'is_archived': False,
             'statement': 'its a statement',
             'remark': 'this is a remark',
@@ -272,9 +272,9 @@ def test_moderate_view_with_tasks(
             'meinberlin_budgeting/proposal_moderate_form.html')
 
         data = {
-            'moderator_feedback': 'test',
+            'moderator_status': 'test',
             'is_archived': False,
-            'statement': 'its a statement',
+            'feedback_text': 'its a moderator feedback text',
             'remark': 'this is a remark',
             'completed_tasks': [task1.pk, task2.pk],
         }
@@ -308,9 +308,9 @@ def test_moderate_view_same_creator_contact(
             'meinberlin_budgeting/proposal_moderate_form.html')
 
         data = {
-            'moderator_feedback': 'test',
+            'moderator_status': 'test',
             'is_archived': False,
-            'statement': 'its a statement'
+            'feedback_text': 'its a moderator feedback text'
         }
         response = client.post(url, data)
         assert redirect_target(response) == 'proposal-detail'

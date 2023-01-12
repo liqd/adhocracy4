@@ -90,13 +90,13 @@ class ProposalFilterInfoMixin:
         }
 
         # moderator feedback filter
-        moderator_feedback_choices = (
+        moderator_status_choices = (
             [('', _('All'))] + [choice for choice in DEFAULT_CHOICES]
         )
 
-        filters['moderator_feedback'] = {
+        filters['moderator_status'] = {
             'label': _('Status'),
-            'choices': moderator_feedback_choices
+            'choices': moderator_status_choices
         }
 
         # moderation task filter, only show to moderators
@@ -239,7 +239,7 @@ class ProposalViewSet(ModuleMixin,
     filterset_fields = ('is_archived',
                         'category',
                         'labels',
-                        'moderator_feedback',
+                        'moderator_status',
                         'completed_tasks')
     ordering_fields = ('created',
                        'comment_count',

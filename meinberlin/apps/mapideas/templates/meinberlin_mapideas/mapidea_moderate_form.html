@@ -27,8 +27,8 @@
                 {{ form.media }}
             {% endfor %}
 
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.moderator_feedback %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.statement.statement %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.moderateable.moderator_status %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.feedback_text.feedback_text %}
 
 
             <div class="u-spacer-bottom">

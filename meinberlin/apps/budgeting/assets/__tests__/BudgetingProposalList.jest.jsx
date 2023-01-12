@@ -47,7 +47,7 @@ test('Budgeting Proposal List with one list item', async () => {
       url: '/budgeting/2021-00007/',
       additional_item_badges_for_list_count: 1,
       item_badges_for_list: [
-        ['moderator_feedback', 'wird ueberprueft', 'CONSIDERATION'],
+        ['moderator_status', 'wird ueberprueft', 'CONSIDERATION'],
         ['budget', '20€'], ['category', 'candalf']]
     }
   ]

@@ -7,10 +7,10 @@ const translated = {
 
 export const ListItemBadges = props => {
   // combine css class names to match different styling, depending
-  // on if it is moderator_feedback or on of the others (category, label etc.)
+  // on if it is moderator_status or on of the others (category, label etc.)
   const getClass = (badge) => {
     const labelClass = 'label label--big'
-    if (badge[0] !== 'moderator_feedback') {
+    if (badge[0] !== 'moderator_status') {
       return labelClass
     }
     const modTypeClass = 'label--' + badge[2].toLowerCase()

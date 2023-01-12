@@ -16,7 +16,7 @@ test('render list item with vote button', () => {
     created: '2021-11-11T15:37:19.490201+01:00',
     additional_item_badges_for_list_count: 0,
     item_badges_for_list: [
-      ['moderator_feedback', 'wird ueberprueft', 'CONSIDERATION'],
+      ['moderator_status', 'wird ueberprueft', 'CONSIDERATION'],
       ['budget', '20€'], ['category', 'candalf']],
     reference_number: '2021-12345'
   }
@@ -37,7 +37,7 @@ test('render list item with stats', () => {
     created: '2021-11-11T15:37:19.490201+01:00',
     additional_item_badges_for_list_count: 0,
     item_badges_for_list: [
-      ['moderator_feedback', 'wird ueberprueft', 'CONSIDERATION'],
+      ['moderator_status', 'wird ueberprueft', 'CONSIDERATION'],
       ['budget', '20€'], ['category', 'candalf']],
     reference_number: '2021-12345'
   }

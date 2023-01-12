@@ -118,7 +118,7 @@ class Command(BaseCommand):
 
     def _send_notifications_on_moderator_feedback(self):
         moderated_idea = Idea.objects.filter(
-            moderator_statement__isnull=False
+            moderator_feedback_text__isnull=False
         ).first()
         if not moderated_idea:
             self.stderr.write(
@@ -134,7 +134,7 @@ class Command(BaseCommand):
             NotifyCreatorOrContactOnModeratorFeedback.template_name)
 
         moderated_proposal = Proposal.objects.filter(
-            moderator_statement__isnull=False
+            moderator_feedback_text__isnull=False
         ).first()
         if not moderated_proposal:
             self.stderr.write(

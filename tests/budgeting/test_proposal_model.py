@@ -27,7 +27,7 @@ def test_proposal_badges_properties(
     module = category.module
     proposal = proposal_factory(
         module=module,
-        moderator_feedback='CHECKED',
+        moderator_status='CHECKED',
         category=category,
         budget=40,
         point_label='somewhere'
@@ -38,9 +38,9 @@ def test_proposal_badges_properties(
     proposal.labels.set([label_1, label_2, label_3])
 
     assert proposal.item_badges == \
-        [['moderator_feedback',
-          proposal.get_moderator_feedback_display(),
-          proposal.moderator_feedback],
+        [['moderator_status',
+          proposal.get_moderator_status_display(),
+          proposal.moderator_status],
          ['budget', '{}€'.format(proposal.budget)],
          ['point_label', proposal.point_label],
          ['category', category.name],
@@ -48,9 +48,9 @@ def test_proposal_badges_properties(
          ['label', label_2.name],
          ['label', label_3.name]]
     assert proposal.item_badges_for_list == \
-        [['moderator_feedback',
-          proposal.get_moderator_feedback_display(),
-          proposal.moderator_feedback],
+        [['moderator_status',
+          proposal.get_moderator_status_display(),
+          proposal.moderator_status],
          ['budget', '{}€'.format(proposal.budget)],
          ['point_label', proposal.point_label]]
     assert proposal.additional_item_badges_for_list_count == 4
