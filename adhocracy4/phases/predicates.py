@@ -13,7 +13,7 @@ def has_feature_active(module, model, feature):
 @rules.predicate
 def phase_allows_change(user, item):
     if item:
-        return has_feature_active(item.module, item.__class__, 'crud')
+        return has_feature_active(item.module, item.__class__, "crud")
     return False
 
 
@@ -21,22 +21,23 @@ def phase_allows_add(item_class):
     @rules.predicate
     def _add_predicate(user, module):
         if module:
-            return has_feature_active(module, item_class, 'crud')
+            return has_feature_active(module, item_class, "crud")
         return False
+
     return _add_predicate
 
 
 @rules.predicate
 def phase_allows_comment(user, item):
     if item:
-        return has_feature_active(item.module, item.__class__, 'comment')
+        return has_feature_active(item.module, item.__class__, "comment")
     return False
 
 
 @rules.predicate
 def phase_allows_rate(user, item):
     if item:
-        return has_feature_active(item.module, item.__class__, 'rate')
+        return has_feature_active(item.module, item.__class__, "rate")
     return False
 
 
@@ -48,7 +49,7 @@ def phase_allows_vote(user, item):
     if a given proposal can be voted on.
     """
     if item:
-        return has_feature_active(item.module, item.__class__, 'vote')
+        return has_feature_active(item.module, item.__class__, "vote")
     return False
 
 
@@ -60,9 +61,9 @@ def phase_allows_delete_vote(user, vote):
     deleting a token vote is allowed.
     """
     if vote:
-        return has_feature_active(vote.content_object.module,
-                                  vote.content_object.__class__,
-                                  'vote')
+        return has_feature_active(
+            vote.content_object.module, vote.content_object.__class__, "vote"
+        )
     return False
 
 
@@ -72,9 +73,11 @@ def phase_allows_add_vote(item_class):
     Used in meinberlin_budgeting.add_vote rule to decide if token
     voting is allowed.
     """
+
     @rules.predicate
     def _vote_predicate(user, module):
         if module:
-            return has_feature_active(module, item_class, 'vote')
+            return has_feature_active(module, item_class, "vote")
         return False
+
     return _vote_predicate

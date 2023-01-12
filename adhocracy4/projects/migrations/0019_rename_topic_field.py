@@ -9,13 +9,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0018_add_location_and_topic'),
+        ("a4projects", "0018_add_location_and_topic"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='project',
-            old_name='topic',
-            new_name='topics',
+            model_name="project",
+            old_name="topic",
+            new_name="topics",
         ),
     ]

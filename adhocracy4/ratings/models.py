@@ -11,18 +11,14 @@ class Rating(UserGeneratedContentModel):
     POSITIVE = 1
     NEGATIVE = -1
 
-    content_type = models.ForeignKey(
-        ContentType,
-        on_delete=models.CASCADE
-    )
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_pk = models.PositiveIntegerField()
-    content_object = GenericForeignKey(
-        ct_field="content_type", fk_field="object_pk")
+    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
     value = models.IntegerField()
 
     class Meta:
-        unique_together = ('content_type', 'object_pk', 'creator')
-        index_together = [('content_type', 'object_pk')]
+        unique_together = ("content_type", "object_pk", "creator")
+        index_together = [("content_type", "object_pk")]
 
     def __str__(self):
         return str(self.value)
@@ -52,11 +48,10 @@ class Rating(UserGeneratedContentModel):
     def get_meta_info(self, user):
 
         ratings = Rating.objects.filter(
-            content_type=self.content_type, object_pk=self.object_pk)
-        positive_ratings_on_same_object = ratings.filter(
-            value=self.POSITIVE).count()
-        negative_ratings_on_same_object = ratings.filter(
-            value=self.NEGATIVE).count()
+            content_type=self.content_type, object_pk=self.object_pk
+        )
+        positive_ratings_on_same_object = ratings.filter(value=self.POSITIVE).count()
+        negative_ratings_on_same_object = ratings.filter(value=self.NEGATIVE).count()
 
         try:
             user_rating_on_same_object = ratings.get(creator=user)
@@ -67,10 +62,10 @@ class Rating(UserGeneratedContentModel):
             user_rating_on_same_object_id = None
 
         result = {
-            'positive_ratings_on_same_object': positive_ratings_on_same_object,
-            'negative_ratings_on_same_object': negative_ratings_on_same_object,
-            'user_rating_on_same_object_value': user_rating_on_same_object_val,
-            'user_rating_on_same_object_id': user_rating_on_same_object_id
+            "positive_ratings_on_same_object": positive_ratings_on_same_object,
+            "negative_ratings_on_same_object": negative_ratings_on_same_object,
+            "user_rating_on_same_object_value": user_rating_on_same_object_val,
+            "user_rating_on_same_object_id": user_rating_on_same_object_id,
         }
 
         return result

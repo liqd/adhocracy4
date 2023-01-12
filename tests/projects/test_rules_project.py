@@ -2,9 +2,9 @@ import pytest
 import rules
 from django.contrib.auth.models import AnonymousUser
 
-perm_name_add = 'a4projects.add_project'
-perm_name_change = 'a4projects.change_project'
-perm_name_view = 'a4projects.view_project'
+perm_name_add = "a4projects.add_project"
+perm_name_change = "a4projects.change_project"
+perm_name_view = "a4projects.view_project"
 
 
 def test_perm_exists():
@@ -38,8 +38,7 @@ def test_add_project(user_factory, group_factory, organisation):
 
 
 @pytest.mark.django_db
-def test_change_project(user_factory, group_factory, organisation,
-                        project_factory):
+def test_change_project(user_factory, group_factory, organisation, project_factory):
     anonymous = AnonymousUser()
     user = user_factory()
     initiator = user_factory()
@@ -67,8 +66,9 @@ def test_change_project(user_factory, group_factory, organisation,
 
 
 @pytest.mark.django_db
-def test_view_project_live(user_factory, group_factory, organisation,
-                           project_factory, phase_factory):
+def test_view_project_live(
+    user_factory, group_factory, organisation, project_factory, phase_factory
+):
     anonymous = AnonymousUser()
     user = user_factory()
     initiator = user_factory()
@@ -84,9 +84,7 @@ def test_view_project_live(user_factory, group_factory, organisation,
 
     organisation.initiators.add(initiator)
     organisation.groups.add(group1)
-    project = project_factory(group=group4,
-                              organisation=organisation,
-                              is_draft=False)
+    project = project_factory(group=group4, organisation=organisation, is_draft=False)
 
     assert rules.has_perm(perm_name_view, anonymous, project)
     assert rules.has_perm(perm_name_view, user, project)
@@ -98,8 +96,9 @@ def test_view_project_live(user_factory, group_factory, organisation,
 
 
 @pytest.mark.django_db
-def test_view_project_draft(user_factory, group_factory, organisation,
-                            project_factory, phase_factory):
+def test_view_project_draft(
+    user_factory, group_factory, organisation, project_factory, phase_factory
+):
     anonymous = AnonymousUser()
     user = user_factory()
     initiator = user_factory()
@@ -115,9 +114,7 @@ def test_view_project_draft(user_factory, group_factory, organisation,
 
     organisation.initiators.add(initiator)
     organisation.groups.add(group1)
-    project = project_factory(group=group4,
-                              organisation=organisation,
-                              is_draft=True)
+    project = project_factory(group=group4, organisation=organisation, is_draft=True)
 
     assert not rules.has_perm(perm_name_view, anonymous, project)
     assert not rules.has_perm(perm_name_view, user, project)

@@ -13,24 +13,21 @@ from .models import Action
 from .verbs import Verbs
 
 # Actions resulting from the create_system_actions management call
-SYSTEM_ACTIONABLES = (
-    ('a4phases', 'Phase'),
-    ('a4projects', 'Project')
-)
+SYSTEM_ACTIONABLES = (("a4phases", "Phase"), ("a4projects", "Project"))
 
 
 def _extract_target(instance):
     target = None
-    if hasattr(instance, 'content_object'):
+    if hasattr(instance, "content_object"):
         target = instance.content_object
-    elif hasattr(instance, 'project'):
+    elif hasattr(instance, "project"):
         target = instance.project
     return target
 
 
 def _add_action(sender, instance, created, update_fields, **kwargs):
-    if not update_fields or 'last_discussed' not in update_fields:
-        actor = instance.creator if hasattr(instance, 'creator') else None
+    if not update_fields or "last_discussed" not in update_fields:
+        actor = instance.creator if hasattr(instance, "creator") else None
         target = None
         if created:
             target = _extract_target(instance)
@@ -49,7 +46,7 @@ def _add_action(sender, instance, created, update_fields, **kwargs):
             target=target,
         )
 
-        if hasattr(instance, 'project'):
+        if hasattr(instance, "project"):
             action.project = instance.project
 
         action.save()
@@ -61,9 +58,9 @@ for app, model in settings.A4_ACTIONABLES:
 
 def _delete_action(sender, instance, **kwargs):
     contenttype = ContentType.objects.get_for_model(sender)
-    Action.objects\
-        .filter(obj_content_type=contenttype, obj_object_id=instance.id)\
-        .delete()
+    Action.objects.filter(
+        obj_content_type=contenttype, obj_object_id=instance.id
+    ).delete()
 
 
 for app, model in chain(SYSTEM_ACTIONABLES, settings.A4_ACTIONABLES):

@@ -8,7 +8,7 @@ from django.urls import reverse
 
 class Organisation(models.Model):
     name = models.CharField(max_length=512)
-    slug = AutoSlugField(populate_from='name', unique=True)
+    slug = AutoSlugField(populate_from="name", unique=True)
     initiators = models.ManyToManyField(
         User,
         blank=True,
@@ -25,16 +25,14 @@ class Organisation(models.Model):
         return user in self.initiators.all()
 
     def has_org_member(self, user):
-        return (Member.objects.filter(
-            member__id=user.id,
-            organisation__id=self.id).exists())
+        return Member.objects.filter(
+            member__id=user.id, organisation__id=self.id
+        ).exists()
 
     def get_absolute_url(self):
         from django.utils.http import urlencode
-        return '%s?%s' % (
-            reverse('project-list'),
-            urlencode({'organisation': self.pk})
-        )
+
+        return "%s?%s" % (reverse("project-list"), urlencode({"organisation": self.pk}))
 
 
 class Member(models.Model):
@@ -48,7 +46,7 @@ class Member(models.Model):
     )
 
     class Meta:
-        unique_together = [('member', 'organisation')]
+        unique_together = [("member", "organisation")]
 
 
 class OrganisationTermsOfUse(models.Model):
@@ -67,4 +65,4 @@ class OrganisationTermsOfUse(models.Model):
     )
 
     class Meta:
-        unique_together = [('user', 'organisation')]
+        unique_together = [("user", "organisation")]

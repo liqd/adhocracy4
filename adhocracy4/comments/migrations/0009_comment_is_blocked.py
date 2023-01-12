@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4comments', '0008_comment_is_deleted_empty_text'),
+        ("a4comments", "0008_comment_is_deleted_empty_text"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='comment',
-            name='is_blocked',
+            model_name="comment",
+            name="is_blocked",
             field=models.BooleanField(default=False),
         ),
     ]

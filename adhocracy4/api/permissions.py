@@ -6,15 +6,11 @@ from rest_framework import permissions
 
 
 class IsModerator(permissions.BasePermission):
-
     def has_object_permission(self, request, view, obj):
-        return (
-            request.user.is_superuser
-            or obj.project.has_moderator(request.user))
+        return request.user.is_superuser or obj.project.has_moderator(request.user)
 
 
 class IsCreatorOrReadOnly(permissions.BasePermission):
-
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
@@ -22,25 +18,26 @@ class IsCreatorOrReadOnly(permissions.BasePermission):
         return (
             obj.creator == request.user
             or request.user.is_superuser
-            or obj.project.has_moderator(request.user))
+            or obj.project.has_moderator(request.user)
+        )
 
 
-RulesMethodMap = namedtuple('RulesMethodMap',
-                            ['GET', 'OPTIONS', 'HEAD', 'POST',
-                             'PUT', 'PATCH', 'DELETE'])
+RulesMethodMap = namedtuple(
+    "RulesMethodMap", ["GET", "OPTIONS", "HEAD", "POST", "PUT", "PATCH", "DELETE"]
+)
 
 
 class RulesPermission(permissions.BasePermission):
     """Combining drf permissions with django-rules."""
 
     default_rules_method_map = RulesMethodMap(
-        GET='{app_label}.view_{model_name}',
-        OPTIONS='{app_label}.view_{model_name}',
-        HEAD='{app_label}.view_{model_name}',
-        POST='{app_label}.add_{model_name}',
-        PUT='{app_label}.change_{model_name}',
-        PATCH='{app_label}.change_{model_name}',
-        DELETE='{app_label}.delete_{model_name}',
+        GET="{app_label}.view_{model_name}",
+        OPTIONS="{app_label}.view_{model_name}",
+        HEAD="{app_label}.view_{model_name}",
+        POST="{app_label}.add_{model_name}",
+        PUT="{app_label}.change_{model_name}",
+        PATCH="{app_label}.change_{model_name}",
+        DELETE="{app_label}.delete_{model_name}",
     )
 
     def get_rule(self, request, model_cls, method_map):
@@ -50,8 +47,7 @@ class RulesPermission(permissions.BasePermission):
             raise exceptions.MethodNotAllowed(request.method)
 
         return template.format(
-            app_label=model_cls._meta.app_label,
-            model_name=model_cls._meta.model_name
+            app_label=model_cls._meta.app_label, model_name=model_cls._meta.model_name
         )
 
     def get_model_cls(self, request, view):
@@ -67,7 +63,7 @@ class RulesPermission(permissions.BasePermission):
         a third time if the handler also calls get_object. This is different
         from how drf/guardian integration handles this.
         """
-        if hasattr(view, 'get_permission_object'):
+        if hasattr(view, "get_permission_object"):
             obj = view.get_permission_object()
         else:
             obj = view.get_object()
@@ -75,7 +71,7 @@ class RulesPermission(permissions.BasePermission):
         return self.has_object_permission(request, view, obj)
 
     def has_object_permission(self, request, view, obj):
-        if hasattr(view, 'rules_method_map'):
+        if hasattr(view, "rules_method_map"):
             rules_method_map = view.rules_method_map
         else:
             rules_method_map = self.default_rules_method_map
@@ -90,7 +86,7 @@ class RulesPermission(permissions.BasePermission):
 
 
 class ViewSetRulesPermission(RulesPermission):
-    non_object_actions = ['list', 'create']
+    non_object_actions = ["list", "create"]
 
     def has_permission(self, request, view):
         """
@@ -102,7 +98,7 @@ class ViewSetRulesPermission(RulesPermission):
         For list and create actions check permissions on object returned by
         get_permission_object, else on object returned by get_object.
         """
-        if view.action == 'metadata':
+        if view.action == "metadata":
             return super().has_permission(request, view)
         elif not view.action or view.action in self.non_object_actions:
             obj = view.get_permission_object()

@@ -13,10 +13,10 @@ IMAGESIZES = ((1300, 600),)
 class ProjectAutoFixture(AutoFixture):
 
     field_values = {
-        'name': generators.CallableGenerator(fake.company),
-        'slug': generators.CallableGenerator(fake.slug),
-        'image': generators.ImageGenerator(sizes=IMAGESIZES),
-        'is_draft': generators.ChoicesGenerator(values=[True, False, False]),
+        "name": generators.CallableGenerator(fake.company),
+        "slug": generators.CallableGenerator(fake.slug),
+        "image": generators.ImageGenerator(sizes=IMAGESIZES),
+        "is_draft": generators.ChoicesGenerator(values=[True, False, False]),
     }
 
 

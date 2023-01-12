@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4polls', '0002_add_fields_for_freetext_answers'),
+        ("a4polls", "0002_add_fields_for_freetext_answers"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='choice',
-            options={'ordering': ['weight', 'id']},
+            name="choice",
+            options={"ordering": ["weight", "id"]},
         ),
         migrations.AddField(
-            model_name='choice',
-            name='weight',
+            model_name="choice",
+            name="weight",
             field=models.SmallIntegerField(default=1),
             preserve_default=False,
         ),

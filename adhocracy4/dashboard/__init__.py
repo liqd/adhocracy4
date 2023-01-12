@@ -7,15 +7,19 @@ from .components.forms import ModuleFormComponent
 from .components.forms import ModuleFormSetComponent
 from .components.forms import ProjectFormComponent
 
-__all__ = ['components', 'DashboardComponent',
-           'ModuleFormComponent', 'ModuleFormSetComponent',
-           'ProjectFormComponent',
-           'get_project_dashboard']
+__all__ = [
+    "components",
+    "DashboardComponent",
+    "ModuleFormComponent",
+    "ModuleFormSetComponent",
+    "ProjectFormComponent",
+    "get_project_dashboard",
+]
 
 
 def get_project_dashboard(project):
-    key = 'PROJECT_DASHBOARD_CLASS'
-    dashboard_settings = getattr(settings, 'A4_DASHBOARD', None)
+    key = "PROJECT_DASHBOARD_CLASS"
+    dashboard_settings = getattr(settings, "A4_DASHBOARD", None)
     if dashboard_settings and key in dashboard_settings:
         dashboard_cls = import_string(dashboard_settings[key])
 
@@ -30,8 +34,11 @@ class ProjectDashboard:
         self.project = project
 
     def get_project_components(self):
-        return [component for component in components.get_project_components()
-                if component.is_effective(self.project)]
+        return [
+            component
+            for component in components.get_project_components()
+            if component.is_effective(self.project)
+        ]
 
     def get_module_components(self):
         return components.get_module_components()
@@ -80,52 +87,56 @@ class ProjectDashboard:
 
         menu_modules = []
         for module in self.project.modules:
-            menu_module = self.get_module_menu(module, current_module,
-                                               current_component)
+            menu_module = self.get_module_menu(
+                module, current_module, current_component
+            )
             num_valid, num_required = self.get_module_progress(module)
-            is_complete = (num_valid == num_required)
+            is_complete = num_valid == num_required
 
             if menu_module:
-                menu_modules.append({
-                    'module': module,
-                    'menu': menu_module,
-                    'is_complete': is_complete
-                })
+                menu_modules.append(
+                    {"module": module, "menu": menu_module, "is_complete": is_complete}
+                )
 
-        return {'project': project_menu, 'modules': menu_modules}
+        return {"project": project_menu, "modules": menu_modules}
 
     def get_project_menu(self, current_component):
         project_menu = []
         for component in self.get_project_components():
             if component.is_effective(self.project):
-                is_active = (component == current_component)
+                is_active = component == current_component
                 url = component.get_base_url(self.project)
                 num_valid, num_required = component.get_progress(self.project)
-                is_complete = (num_valid == num_required)
+                is_complete = num_valid == num_required
 
-                project_menu.append({
-                    'label': component.label,
-                    'is_active': is_active,
-                    'url': url,
-                    'is_complete': is_complete,
-                })
+                project_menu.append(
+                    {
+                        "label": component.label,
+                        "is_active": is_active,
+                        "url": url,
+                        "is_complete": is_complete,
+                    }
+                )
         return project_menu or None
 
     def get_module_menu(self, module, current_module, current_component):
         module_menu = []
         for component in self.get_module_components():
             if component.is_effective(module):
-                is_active = (component == current_component and
-                             module.pk == current_module.pk)
+                is_active = (
+                    component == current_component and module.pk == current_module.pk
+                )
                 url = component.get_base_url(module)
                 num_valid, num_required = component.get_progress(module)
-                is_complete = (num_valid == num_required)
+                is_complete = num_valid == num_required
 
-                module_menu.append({
-                    'label': component.label,
-                    'is_active': is_active,
-                    'url': url,
-                    'is_complete': is_complete,
-                    'for_superuser_only': component.for_superuser_only,
-                })
+                module_menu.append(
+                    {
+                        "label": component.label,
+                        "is_active": is_active,
+                        "url": url,
+                        "is_complete": is_complete,
+                        "for_superuser_only": component.for_superuser_only,
+                    }
+                )
         return module_menu or None

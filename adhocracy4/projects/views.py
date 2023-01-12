@@ -5,12 +5,12 @@ from . import mixins
 from . import models
 
 
-class ProjectDetailView(rules_views.PermissionRequiredMixin,
-                        mixins.PhaseDispatchMixin,
-                        generic.DetailView):
+class ProjectDetailView(
+    rules_views.PermissionRequiredMixin, mixins.PhaseDispatchMixin, generic.DetailView
+):
 
     model = models.Project
-    permission_required = 'a4projects.view_project'
+    permission_required = "a4projects.view_project"
 
     @property
     def raise_exception(self):

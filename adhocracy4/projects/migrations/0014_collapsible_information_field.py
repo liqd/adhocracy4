@@ -9,13 +9,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0013_help_texts'),
+        ("a4projects", "0013_help_texts"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='information',
-            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(blank=True, help_text='This description should tell participants what the goal of the project is, how the project’s participation will look like. It will be always visible in the „Info“ tab on your project’s page.', verbose_name='Description of your project'),
+            model_name="project",
+            name="information",
+            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                blank=True,
+                help_text="This description should tell participants what the goal of the project is, how the project’s participation will look like. It will be always visible in the „Info“ tab on your project’s page.",
+                verbose_name="Description of your project",
+            ),
         ),
     ]

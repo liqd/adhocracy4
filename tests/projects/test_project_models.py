@@ -24,30 +24,30 @@ def test_str(project):
 
 @pytest.mark.django_db
 def test_get_absolute_url(project):
-    project_url = reverse('project-detail', args=[project.slug])
+    project_url = reverse("project-detail", args=[project.slug])
     assert project.get_absolute_url() == project_url
 
 
-@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
+@override_settings(ALLOWED_UPLOAD_IMAGES=("image/jpeg"))
 @pytest.mark.django_db
 def test_image_validation_image_too_small(project_factory, image_factory):
     project = project_factory(image=image_factory((200, 200)))
     with pytest.raises(Exception) as e:
         project.full_clean()
-    assert 'Image must be at least 600 pixels high' in str(e.value)
+    assert "Image must be at least 600 pixels high" in str(e.value)
 
 
-@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
+@override_settings(ALLOWED_UPLOAD_IMAGES=("image/jpeg"))
 @pytest.mark.django_db
 def test_image_big_enough(project_factory, image_factory):
     project = project_factory(image=image_factory((1400, 1400)))
     assert project.full_clean() is None
 
 
-@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
+@override_settings(ALLOWED_UPLOAD_IMAGES=("image/jpeg"))
 @pytest.mark.django_db
 def test_delete_project(project_factory, image_factory):
-    project = project_factory(image=image_factory((1400, 1400), 'PNG'))
+    project = project_factory(image=image_factory((1400, 1400), "PNG"))
     image_path = os.path.join(settings.MEDIA_ROOT, project.image.path)
     thumbnail_path = helpers.create_thumbnail(project.image)
     assert os.path.isfile(thumbnail_path)
@@ -79,6 +79,7 @@ def test_image_deleted_after_update(project_factory, image_factory):
 
 # FIXME: add tests for has_member, is_group_member, and has_moderator
 
+
 @pytest.mark.django_db
 def test_feature_projects(project_factory):
     projects = [project_factory(is_draft=False) for i in range(10)]
@@ -89,6 +90,7 @@ def test_feature_projects(project_factory):
 # project properties
 # FIXME: add tests for topic names
 
+
 @pytest.mark.django_db
 def test_other_projects(organisation, project_factory):
     project = project_factory(organisation=organisation)
@@ -97,7 +99,7 @@ def test_other_projects(organisation, project_factory):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('project__access', [Access.PRIVATE])
+@pytest.mark.parametrize("project__access", [Access.PRIVATE])
 def test_is_private(project):
     assert not project.is_public
     assert project.is_private
@@ -112,7 +114,7 @@ def test_is_public(project):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('project__access', [Access.SEMIPUBLIC])
+@pytest.mark.parametrize("project__access", [Access.SEMIPUBLIC])
 def test_is_semipublic(project):
     assert not project.is_public
     assert not project.is_private
@@ -125,21 +127,21 @@ def test_is_archivable(project_factory, phase_factory):
     project2 = project_factory(is_archived=False)
     project3 = project_factory(is_archived=False)
     phase_factory(
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-01 19:00:00 UTC'),
+        start_date=parse("2013-01-01 18:00:00 UTC"),
+        end_date=parse("2013-01-01 19:00:00 UTC"),
         module__project=project1,
     )
     phase_factory(
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-01 19:00:00 UTC'),
+        start_date=parse("2013-01-01 18:00:00 UTC"),
+        end_date=parse("2013-01-01 19:00:00 UTC"),
         module__project=project2,
     )
     phase_factory(
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-01 18:25:00 UTC'),
+        start_date=parse("2013-01-01 18:00:00 UTC"),
+        end_date=parse("2013-01-01 18:25:00 UTC"),
         module__project=project3,
     )
-    with freeze_time(parse('2013-01-01 18:30:00 UTC')):
+    with freeze_time(parse("2013-01-01 18:30:00 UTC")):
         assert not project1.is_archivable
         assert not project2.is_archivable
         assert project3.is_archivable

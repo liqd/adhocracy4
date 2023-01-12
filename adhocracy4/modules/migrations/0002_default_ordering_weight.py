@@ -7,12 +7,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4modules', '0001_initial'),
+        ("a4modules", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='module',
-            options={'ordering': ['weight']},
+            name="module",
+            options={"ordering": ["weight"]},
         ),
     ]

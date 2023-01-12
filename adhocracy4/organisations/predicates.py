@@ -4,7 +4,7 @@ import rules
 @rules.predicate
 def is_initiator(user, subject):
     if subject:
-        if hasattr(subject, 'has_initiator'):
+        if hasattr(subject, "has_initiator"):
             organisation = subject
         else:
             organisation = subject.organisation
@@ -15,11 +15,12 @@ def is_initiator(user, subject):
 @rules.predicate
 def is_org_member(user, subject):
     if subject:
-        if hasattr(subject, 'has_org_member'):
+        if hasattr(subject, "has_org_member"):
             organisation = subject
             return organisation.has_org_member(user)
-        elif (hasattr(subject, 'organisation') and
-              hasattr(subject.organisation, 'has_org_member')):
+        elif hasattr(subject, "organisation") and hasattr(
+            subject.organisation, "has_org_member"
+        ):
             organisation = subject.organisation
             return organisation.has_org_member(user)
     return False
@@ -28,10 +29,11 @@ def is_org_member(user, subject):
 @rules.predicate
 def is_org_group_member(user, subject):
     if subject:
-        if hasattr(subject, 'has_initiator') and hasattr(subject, 'groups'):
+        if hasattr(subject, "has_initiator") and hasattr(subject, "groups"):
             organisation = subject
-        elif (hasattr(subject, 'organisation') and
-              hasattr(subject.organisation, 'groups')):
+        elif hasattr(subject, "organisation") and hasattr(
+            subject.organisation, "groups"
+        ):
             organisation = subject.organisation
         else:
             return False

@@ -18,48 +18,46 @@ class IdeaQuerySet(RateableQuerySet, CommentableQuerySet):
 
 
 class Idea(Item):
-    name = models.CharField(max_length=120,
-                            default='Can i haz cheezburger, pls?')
-    description = RichTextField(verbose_name='Description', blank=True)
+    name = models.CharField(max_length=120, default="Can i haz cheezburger, pls?")
+    description = RichTextField(verbose_name="Description", blank=True)
     moderator_feedback = models.CharField(max_length=256, blank=True)
     moderator_statement = models.OneToOneField(
         ModeratorStatement,
-        related_name='+',
+        related_name="+",
         null=True,
         blank=True,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     point = map_fields.PointField(blank=True)
     point_label = models.CharField(
         blank=True,
-        default='',
+        default="",
         max_length=255,
-        verbose_name='Label of the ideas location',
-        help_text='This could be an address or the name of a landmark.',
+        verbose_name="Label of the ideas location",
+        help_text="This could be an address or the name of a landmark.",
     )
-    comments = GenericRelation(Comment,
-                               related_query_name='question',
-                               object_id_field='object_pk')
+    comments = GenericRelation(
+        Comment, related_query_name="question", object_id_field="object_pk"
+    )
 
-    ratings = GenericRelation(Rating,
-                              related_query_name='question',
-                              object_id_field='object_pk')
+    ratings = GenericRelation(
+        Rating, related_query_name="question", object_id_field="object_pk"
+    )
     category = CategoryField()
 
-    labels = models.ManyToManyField(Label,
-                                    related_name=('%(app_label)s_'
-                                                  '%(class)s_label')
-                                    )
+    labels = models.ManyToManyField(
+        Label, related_name=("%(app_label)s_" "%(class)s_label")
+    )
 
     objects = IdeaQuerySet.as_manager()
 
     def get_absolute_url(self):
-        return '/idea/%s/' % self.pk
+        return "/idea/%s/" % self.pk
 
     @property
     def reference_number(self):
-        return '{:d}-{:05d}'.format(self.created.year, self.pk)
+        return "{:d}-{:05d}".format(self.created.year, self.pk)
 
     def get_moderator_feedback_display(self):
         return self.moderator_feedback[1]

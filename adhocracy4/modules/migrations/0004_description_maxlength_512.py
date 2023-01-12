@@ -8,13 +8,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4modules', '0003_rm_unique_name'),
+        ("a4modules", "0003_rm_unique_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='module',
-            name='description',
-            field=models.CharField(blank=True, help_text='This short description will appear on the header of the module and project detail pages. It should briefly state the goal of the module in max. 512 chars.', max_length=512, null=True, verbose_name='Short description of the module'),
+            model_name="module",
+            name="description",
+            field=models.CharField(
+                blank=True,
+                help_text="This short description will appear on the header of the module and project detail pages. It should briefly state the goal of the module in max. 512 chars.",
+                max_length=512,
+                null=True,
+                verbose_name="Short description of the module",
+            ),
         ),
     ]

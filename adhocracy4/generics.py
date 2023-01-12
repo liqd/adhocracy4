@@ -17,12 +17,10 @@ def models_to_limit(model_list):
     """
 
     if len(model_list) < 1:
-        raise ImproperlyConfigured('Need at least one model in limit')
-    limit_query = models.Q(app_label=model_list[0][0],
-                           model=model_list[0][1])
+        raise ImproperlyConfigured("Need at least one model in limit")
+    limit_query = models.Q(app_label=model_list[0][0], model=model_list[0][1])
     for model in model_list:
-        limit_query = limit_query | models.Q(app_label=model[0],
-                                             model=model[1])
+        limit_query = limit_query | models.Q(app_label=model[0], model=model[1])
     return limit_query
 
 
@@ -30,16 +28,11 @@ def setup_delete_signals(model_list, generic_model):
     """
     Ensure that generic model instance is deleted if content object was.
     """
+
     def delete_content_object_handler(sender, instance, **kwargs):
         contenttype = ContentType.objects.get_for_model(instance)
         pk = instance.pk
-        generic_model.objects\
-                     .filter(content_type=contenttype, object_pk=pk)\
-                     .delete()
+        generic_model.objects.filter(content_type=contenttype, object_pk=pk).delete()
 
     for model in model_list:
-        post_delete.connect(
-            delete_content_object_handler,
-            '.'.join(model),
-            weak=False
-        )
+        post_delete.connect(delete_content_object_handler, ".".join(model), weak=False)

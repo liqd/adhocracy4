@@ -9,14 +9,15 @@ import adhocracy4.projects.enums
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0030_remove_project_is_public'),
+        ("a4projects", "0030_remove_project_is_public"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='access',
+            model_name="project",
+            name="access",
             field=django_enumfield.db.fields.EnumField(
-                default=1, enum=adhocracy4.projects.enums.Access),
+                default=1, enum=adhocracy4.projects.enums.Access
+            ),
         ),
     ]

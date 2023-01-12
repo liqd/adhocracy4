@@ -7,8 +7,7 @@ from .models import Report
 from .serializers import ReportSerializer
 
 
-class ReportViewSet(mixins.CreateModelMixin,
-                    viewsets.GenericViewSet):
+class ReportViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
     serializer_class = ReportSerializer
     queryset = Report.objects.all()

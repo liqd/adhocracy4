@@ -9,14 +9,16 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0008_alter_user_username_max_length'),
-        ('a4projects', '0021_names_and_help_topics_and_point'),
+        ("auth", "0008_alter_user_username_max_length"),
+        ("a4projects", "0021_names_and_help_topics_and_point"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='group',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='auth.Group'),
+            model_name="project",
+            name="group",
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.CASCADE, to="auth.Group"
+            ),
         ),
     ]

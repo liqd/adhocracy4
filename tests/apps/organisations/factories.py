@@ -10,7 +10,8 @@ from tests.apps.organisations.models import OrganisationTermsOfUse
 class OrganisationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Organisation
-    name = factory.Faker('company')
+
+    name = factory.Faker("company")
 
     @factory.post_generation
     def groups(self, create, extracted, **kwargs):
@@ -24,8 +25,8 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
                 self.groups.add(group)
 
 
-USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
-ORGANISATION_FACTORY = getattr(settings, 'A4_ORGANISATION_FACTORY')
+USER_FACTORY = getattr(settings, "A4_USER_FACTORY", UserFactory)
+ORGANISATION_FACTORY = getattr(settings, "A4_ORGANISATION_FACTORY")
 
 
 class MemberFactory(factory.django.DjangoModelFactory):

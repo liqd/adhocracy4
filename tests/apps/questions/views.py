@@ -6,10 +6,9 @@ from . import models
 
 
 class QuestionFilterSet(django_filters.FilterSet):
-
     class Meta:
         model = models.Question
-        fields = ['text']
+        fields = ["text"]
 
 
 class QuestionList(FilteredListView):

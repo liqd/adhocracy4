@@ -6,32 +6,25 @@ from adhocracy4.polls.models import Question
 
 
 @pytest.mark.django_db
-def test_anonymous_user_can_not_update_poll(apiclient,
-                                            poll_factory,
-                                            question_factory,
-                                            choice_factory):
+def test_anonymous_user_can_not_update_poll(
+    apiclient, poll_factory, question_factory, choice_factory
+):
 
     poll = poll_factory()
     question = question_factory(poll=poll)
     choice_factory(question=question)
     choice_factory(question=question)
 
-    url = reverse(
-        'polls-detail',
-        kwargs={
-            'pk': poll.pk
-        })
+    url = reverse("polls-detail", kwargs={"pk": poll.pk})
 
-    response = apiclient.patch(url, {}, format='json')
+    response = apiclient.patch(url, {}, format="json")
     assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
-def test_admin_can_update_poll(apiclient,
-                               admin,
-                               poll_factory,
-                               question_factory,
-                               choice_factory):
+def test_admin_can_update_poll(
+    apiclient, admin, poll_factory, question_factory, choice_factory
+):
 
     poll = poll_factory()
     question = question_factory(poll=poll)
@@ -40,132 +33,120 @@ def test_admin_can_update_poll(apiclient,
 
     assert Question.objects.count() == 1
 
-    url = reverse(
-        'polls-detail',
-        kwargs={
-            'pk': poll.pk
-        })
+    url = reverse("polls-detail", kwargs={"pk": poll.pk})
 
     apiclient.force_authenticate(user=admin)
 
     data = {
-        'questions': [
+        "questions": [
             {
-                'id': question.id,
-                'label': 'bla',
-                'help_text': 'blubb',
-                'multiple_choice': True,
-                'is_open': False,
-                'choices': [
+                "id": question.id,
+                "label": "bla",
+                "help_text": "blubb",
+                "multiple_choice": True,
+                "is_open": False,
+                "choices": [
                     {
-                        'id': choice1.pk,
-                        'label': 'choice1',
-                        'is_other_choice': False,
-                        'count': 1,
+                        "id": choice1.pk,
+                        "label": "choice1",
+                        "is_other_choice": False,
+                        "count": 1,
                     },
                     {
-                        'id': choice2.pk,
-                        'label': 'choice2',
-                        'is_other_choice': False,
-                        'count': 2,
+                        "id": choice2.pk,
+                        "label": "choice2",
+                        "is_other_choice": False,
+                        "count": 2,
                     },
                 ],
-                'answers': [],
+                "answers": [],
             },
             {
-                'label': 'bla',
-                'help_text': 'blubb',
-                'multiple_choice': False,
-                'is_open': False,
-                'choices': [
-                    {
-                        'label': 'choice1',
-                        'is_other_choice': False,
-                        'count': 1
-                    },
-                    {
-                        'label': 'choice2',
-                        'is_other_choice': True,
-                        'count': 2
-                    },
+                "label": "bla",
+                "help_text": "blubb",
+                "multiple_choice": False,
+                "is_open": False,
+                "choices": [
+                    {"label": "choice1", "is_other_choice": False, "count": 1},
+                    {"label": "choice2", "is_other_choice": True, "count": 2},
                 ],
-                'answers': [],
-            }
+                "answers": [],
+            },
         ]
     }
 
-    response = apiclient.put(url, data, format='json')
+    response = apiclient.put(url, data, format="json")
     assert response.status_code == status.HTTP_200_OK
     assert Question.objects.count() == 2
     assert Question.objects.last().has_other_option
 
     data = {
-        'questions': [
+        "questions": [
             {
-                'id': question.id,
-                'label': 'bla',
-                'help_text': 'blubb',
-                'multiple_choice': True,
-                'is_open': False,
-                'choices': [
+                "id": question.id,
+                "label": "bla",
+                "help_text": "blubb",
+                "multiple_choice": True,
+                "is_open": False,
+                "choices": [
                     {
-                        'id': choice1.pk,
-                        'label': 'choice1',
-                        'is_other_choice': False,
-                        'count': 1
+                        "id": choice1.pk,
+                        "label": "choice1",
+                        "is_other_choice": False,
+                        "count": 1,
                     },
                     {
-                        'id': choice2.pk,
-                        'label': 'choice2',
-                        'is_other_choice': False,
-                        'count': 2
+                        "id": choice2.pk,
+                        "label": "choice2",
+                        "is_other_choice": False,
+                        "count": 2,
                     },
                 ],
-                'answers': [],
+                "answers": [],
             }
         ]
     }
 
-    response = apiclient.put(url, data, format='json')
+    response = apiclient.put(url, data, format="json")
     assert response.status_code == status.HTTP_200_OK
     assert Question.objects.count() == 1
 
     data = {
-        'questions': [
+        "questions": [
             {
-                'id': question.id,
-                'label': 'bla',
-                'help_text': 'blubb',
-                'multiple_choice': True,
-                'is_open': False,
-                'choices': [
+                "id": question.id,
+                "label": "bla",
+                "help_text": "blubb",
+                "multiple_choice": True,
+                "is_open": False,
+                "choices": [
                     {
-                        'id': choice1.pk,
-                        'label': 'choice1',
-                        'is_other_choice': False,
-                        'count': 1
+                        "id": choice1.pk,
+                        "label": "choice1",
+                        "is_other_choice": False,
+                        "count": 1,
                     },
                     {
-                        'id': choice2.pk,
-                        'label': 'choice2',
-                        'is_other_choice': False,
-                        'count': 2
+                        "id": choice2.pk,
+                        "label": "choice2",
+                        "is_other_choice": False,
+                        "count": 2,
                     },
                 ],
-                'answers': [],
+                "answers": [],
             },
             {
-                'label': 'open question',
-                'help_text': 'blubb',
-                'multiple_choice': False,
-                'is_open': True,
-                'choices': [],
-                'answers': [],
-            }
+                "label": "open question",
+                "help_text": "blubb",
+                "multiple_choice": False,
+                "is_open": True,
+                "choices": [],
+                "answers": [],
+            },
         ]
     }
 
-    response = apiclient.put(url, data, format='json')
+    response = apiclient.put(url, data, format="json")
     assert response.status_code == status.HTTP_200_OK
     assert Question.objects.count() == 2
     assert Question.objects.filter(is_open=True).count() == 1

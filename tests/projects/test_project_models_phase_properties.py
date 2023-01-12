@@ -20,13 +20,13 @@ def test_has_started(phase):
 @pytest.mark.django_db
 def test_has_finished(project, phase_factory):
     phase1 = phase_factory(
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-02 18:00:00 UTC'),
+        start_date=parse("2013-01-01 18:00:00 UTC"),
+        end_date=parse("2013-01-02 18:00:00 UTC"),
         module__project=project,
     )
     phase2 = phase_factory(
-        start_date=parse('2013-02-01 18:00:00 UTC'),
-        end_date=parse('2013-02-02 18:00:00 UTC'),
+        start_date=parse("2013-02-01 18:00:00 UTC"),
+        end_date=parse("2013-02-02 18:00:00 UTC"),
         module__project=project,
     )
 
@@ -46,8 +46,8 @@ def test_has_finished(project, phase_factory):
 @pytest.mark.django_db
 def test_phases_property(module, phase_factory):
     project = module.project
-    phase1 = phase_factory(module=module, type='fake:30:type', weight=30)
-    phase2 = phase_factory(module=module, type='fake:20:type', weight=20)
+    phase1 = phase_factory(module=module, type="fake:30:type", weight=30)
+    phase2 = phase_factory(module=module, type="fake:20:type", weight=20)
 
     assert list(project.phases) == [phase2, phase1]
 
@@ -58,20 +58,20 @@ def test_active_phase_property(project, module_factory, phase_factory):
     module2 = module_factory(project=project, weight=2)
     phase1 = phase_factory(
         module=module1,
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-10 18:00:00 UTC'),
+        start_date=parse("2013-01-01 18:00:00 UTC"),
+        end_date=parse("2013-01-10 18:00:00 UTC"),
         weight=1,
     )
     phase2 = phase_factory(
         module=module2,
-        start_date=parse('2013-01-05 18:00:00 UTC'),
-        end_date=parse('2013-01-15 18:00:00 UTC'),
+        start_date=parse("2013-01-05 18:00:00 UTC"),
+        end_date=parse("2013-01-15 18:00:00 UTC"),
         weight=1,
     )
     phase3 = phase_factory(
         module=module2,
-        start_date=parse('2013-03-01 18:00:00 UTC'),
-        end_date=parse('2013-03-02 18:00:00 UTC'),
+        start_date=parse("2013-03-01 18:00:00 UTC"),
+        end_date=parse("2013-03-02 18:00:00 UTC"),
         weight=2,
     )
 
@@ -112,26 +112,26 @@ def test_last_active_phase_property(project, module_factory, phase_factory):
     module2 = module_factory(project=project, weight=2)
     phase1 = phase_factory(
         module=module1,
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-10 18:00:00 UTC'),
+        start_date=parse("2013-01-01 18:00:00 UTC"),
+        end_date=parse("2013-01-10 18:00:00 UTC"),
         weight=1,
     )
     phase2 = phase_factory(
         module=module2,
-        start_date=parse('2013-01-05 18:00:00 UTC'),
-        end_date=parse('2013-01-15 18:00:00 UTC'),
+        start_date=parse("2013-01-05 18:00:00 UTC"),
+        end_date=parse("2013-01-15 18:00:00 UTC"),
         weight=1,
     )
     phase3 = phase_factory(
         module=module1,
-        start_date=parse('2013-01-11 18:00:00 UTC'),
-        end_date=parse('2013-01-12 18:00:00 UTC'),
+        start_date=parse("2013-01-11 18:00:00 UTC"),
+        end_date=parse("2013-01-12 18:00:00 UTC"),
         weight=2,
     )
     phase4 = phase_factory(
         module=module2,
-        start_date=parse('2013-03-01 18:00:00 UTC'),
-        end_date=parse('2013-03-02 18:00:00 UTC'),
+        start_date=parse("2013-03-01 18:00:00 UTC"),
+        end_date=parse("2013-03-02 18:00:00 UTC"),
         weight=2,
     )
 
@@ -171,26 +171,26 @@ def test_last_active_module_property(project, module_factory, phase_factory):
     module2 = module_factory(project=project, weight=2)
     phase1 = phase_factory(
         module=module1,
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-10 18:00:00 UTC'),
+        start_date=parse("2013-01-01 18:00:00 UTC"),
+        end_date=parse("2013-01-10 18:00:00 UTC"),
         weight=1,
     )
     phase2 = phase_factory(
         module=module2,
-        start_date=parse('2013-01-05 18:00:00 UTC'),
-        end_date=parse('2013-01-15 18:00:00 UTC'),
+        start_date=parse("2013-01-05 18:00:00 UTC"),
+        end_date=parse("2013-01-15 18:00:00 UTC"),
         weight=1,
     )
     phase3 = phase_factory(
         module=module1,
-        start_date=parse('2013-01-11 18:00:00 UTC'),
-        end_date=parse('2013-01-12 18:00:00 UTC'),
+        start_date=parse("2013-01-11 18:00:00 UTC"),
+        end_date=parse("2013-01-12 18:00:00 UTC"),
         weight=2,
     )
     phase4 = phase_factory(
         module=module2,
-        start_date=parse('2013-03-01 18:00:00 UTC'),
-        end_date=parse('2013-03-02 18:00:00 UTC'),
+        start_date=parse("2013-03-01 18:00:00 UTC"),
+        end_date=parse("2013-03-02 18:00:00 UTC"),
         weight=2,
     )
 
@@ -235,15 +235,15 @@ def test_active_phase_ends_next(project, module_factory, phase_factory):
     module2 = module_factory(project=project, weight=2)
     phase_factory(
         module=module1,
-        start_date=parse('2013-01-01 17:00:00 UTC'),
-        end_date=parse('2013-01-01 18:05:00 UTC')
+        start_date=parse("2013-01-01 17:00:00 UTC"),
+        end_date=parse("2013-01-01 18:05:00 UTC"),
     )
     phase2 = phase_factory(
         module=module2,
-        start_date=parse('2013-01-01 17:05:00 UTC'),
-        end_date=parse('2013-01-01 18:00:00 UTC')
+        start_date=parse("2013-01-01 17:05:00 UTC"),
+        end_date=parse("2013-01-01 18:00:00 UTC"),
     )
-    with freeze_time('2013-01-01 17:30:00 UTC'):
+    with freeze_time("2013-01-01 17:30:00 UTC"):
         assert project.active_phase_ends_next == phase2
 
 
@@ -253,25 +253,25 @@ def test_future_phases(project, module_factory, phase_factory):
     module2 = module_factory(project=project, weight=2)
     phase1 = phase_factory(
         module=module1,
-        start_date=parse('2013-01-01 17:00:00 UTC'),
-        end_date=parse('2013-01-01 18:05:00 UTC')
+        start_date=parse("2013-01-01 17:00:00 UTC"),
+        end_date=parse("2013-01-01 18:05:00 UTC"),
     )
     phase2 = phase_factory(
         module=module2,
-        start_date=parse('2013-01-01 17:05:00 UTC'),
-        end_date=parse('2013-01-01 18:00:00 UTC')
+        start_date=parse("2013-01-01 17:05:00 UTC"),
+        end_date=parse("2013-01-01 18:00:00 UTC"),
     )
     phase3 = phase_factory(
         module=module1,
-        start_date=parse('2013-01-01 19:00:00 UTC'),
-        end_date=parse('2013-01-01 20:05:00 UTC')
+        start_date=parse("2013-01-01 19:00:00 UTC"),
+        end_date=parse("2013-01-01 20:05:00 UTC"),
     )
     phase4 = phase_factory(
         module=module2,
-        start_date=parse('2013-01-01 19:05:00 UTC'),
-        end_date=parse('2013-01-01 20:00:00 UTC')
+        start_date=parse("2013-01-01 19:05:00 UTC"),
+        end_date=parse("2013-01-01 20:00:00 UTC"),
     )
-    with freeze_time('2013-01-01 18:30:00 UTC'):
+    with freeze_time("2013-01-01 18:30:00 UTC"):
         assert phase1 not in project.future_phases
         assert phase2 not in project.future_phases
         assert phase3 in project.future_phases
@@ -284,25 +284,25 @@ def test_past_phases(project, module_factory, phase_factory):
     module2 = module_factory(project=project, weight=2)
     phase1 = phase_factory(
         module=module1,
-        start_date=parse('2013-01-01 17:00:00 UTC'),
-        end_date=parse('2013-01-01 18:05:00 UTC')
+        start_date=parse("2013-01-01 17:00:00 UTC"),
+        end_date=parse("2013-01-01 18:05:00 UTC"),
     )
     phase2 = phase_factory(
         module=module2,
-        start_date=parse('2013-01-01 17:05:00 UTC'),
-        end_date=parse('2013-01-01 18:00:00 UTC')
+        start_date=parse("2013-01-01 17:05:00 UTC"),
+        end_date=parse("2013-01-01 18:00:00 UTC"),
     )
     phase3 = phase_factory(
         module=module1,
-        start_date=parse('2013-01-01 19:00:00 UTC'),
-        end_date=parse('2013-01-01 20:05:00 UTC')
+        start_date=parse("2013-01-01 19:00:00 UTC"),
+        end_date=parse("2013-01-01 20:05:00 UTC"),
     )
     phase4 = phase_factory(
         module=module2,
-        start_date=parse('2013-01-01 19:05:00 UTC'),
-        end_date=parse('2013-01-01 20:00:00 UTC')
+        start_date=parse("2013-01-01 19:05:00 UTC"),
+        end_date=parse("2013-01-01 20:00:00 UTC"),
     )
-    with freeze_time('2013-01-01 19:00:00 UTC'):
+    with freeze_time("2013-01-01 19:00:00 UTC"):
         assert phase1 in project.past_phases
         assert phase2 in project.past_phases
         assert phase3 not in project.past_phases
@@ -317,9 +317,7 @@ def test_end_date(project_factory, phase_factory):
 
     module = phase.module
 
-    phase_factory(
-        module=module,
-        end_date=parse('2013-01-01 20:00:00 UTC'))
+    phase_factory(module=module, end_date=parse("2013-01-01 20:00:00 UTC"))
     del module.project.end_date
 
-    assert str(module.project.end_date) == '2013-01-01 20:00:00+00:00'
+    assert str(module.project.end_date) == "2013-01-01 20:00:00+00:00"

@@ -17,23 +17,18 @@ class QuestionQuerySet(CommentableQuerySet, RateableQuerySet):
 
 
 class Question(Item):
-    text = models.CharField(max_length=120,
-                            default='Can i haz cheezburger, pls?')
+    text = models.CharField(max_length=120, default="Can i haz cheezburger, pls?")
 
-    comments = GenericRelation(Comment,
-                               related_query_name='question',
-                               object_id_field='object_pk')
+    comments = GenericRelation(
+        Comment, related_query_name="question", object_id_field="object_pk"
+    )
 
-    ratings = GenericRelation(Rating,
-                              related_query_name='question',
-                              object_id_field='object_pk')
+    ratings = GenericRelation(
+        Rating, related_query_name="question", object_id_field="object_pk"
+    )
     category = CategoryField()
 
-    last_discussed = models.DateTimeField(
-        blank=True,
-        null=True,
-        editable=False
-    )
+    last_discussed = models.DateTimeField(blank=True, null=True, editable=False)
 
     objects = QuestionQuerySet.as_manager()
 
@@ -41,12 +36,6 @@ class Question(Item):
 class TokenVote(TimeStampedModel):
     """Used in mB for the three phase Bürgerhaushalt."""
 
-    content_type = models.ForeignKey(
-        ContentType,
-        on_delete=models.CASCADE
-    )
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_pk = models.PositiveIntegerField()
-    content_object = GenericForeignKey(
-        ct_field="content_type",
-        fk_field="object_pk"
-    )
+    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")

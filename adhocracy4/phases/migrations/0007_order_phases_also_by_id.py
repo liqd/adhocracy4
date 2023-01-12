@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4phases', '0006_remove_weight_from_phase_type'),
+        ("a4phases", "0006_remove_weight_from_phase_type"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='phase',
-            options={'ordering': ['weight', 'id']},
+            name="phase",
+            options={"ordering": ["weight", "id"]},
         ),
     ]

@@ -11,29 +11,29 @@ class LabelForm(forms.ModelForm):
     def __init__(self, module, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['name'].label = _('Category name')
+        self.fields["name"].label = _("Category name")
 
-    name = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': _('Label')}
-    ))
+    name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": _("Label")}))
 
     class Media:
-        js = ('category_formset.js',)
+        js = ("category_formset.js",)
 
     class Meta:
         model = labels_models.Label
-        fields = ['name']
+        fields = ["name"]
 
 
 class LabelModuleDashboardFormSet(ModuleDashboardFormSet):
     def get_form_kwargs(self, index):
         form_kwargs = super().get_form_kwargs(index)
-        form_kwargs['module'] = self.instance
+        form_kwargs["module"] = self.instance
         return form_kwargs
 
 
-LabelsFormSet = inlineformset_factory(module_models.Module,
-                                      labels_models.Label,
-                                      form=LabelForm,
-                                      formset=LabelModuleDashboardFormSet,
-                                      extra=0)
+LabelsFormSet = inlineformset_factory(
+    module_models.Module,
+    labels_models.Label,
+    form=LabelForm,
+    formset=LabelModuleDashboardFormSet,
+    extra=0,
+)

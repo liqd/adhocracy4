@@ -5,9 +5,8 @@ from adhocracy4.test.factories import ModuleFactory
 
 
 class LabelFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = Label
 
-    name = factory.Faker('name')
+    name = factory.Faker("name")
     module = factory.SubFactory(ModuleFactory)

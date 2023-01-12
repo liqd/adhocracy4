@@ -12,9 +12,9 @@ from adhocracy4.projects.models import Project
 from . import verbs
 
 _ACTION_TYPES = {}
-_DEFAULT_TYPE = 'unknown'
+_DEFAULT_TYPE = "unknown"
 _ACTION_ICONS = OrderedDict()
-_DEFAULT_ICON = 'star'
+_DEFAULT_ICON = "star"
 
 
 def configure_type(type, *content_types):
@@ -33,8 +33,10 @@ class ActionQuerySet(models.QuerySet):
         return self.filter(
             (
                 models.Q(project__is_draft=False)
-                & (models.Q(project__access=Access.PUBLIC) |
-                   models.Q(project__access=Access.SEMIPUBLIC))
+                & (
+                    models.Q(project__access=Access.PUBLIC)
+                    | models.Q(project__access=Access.SEMIPUBLIC)
+                )
             )
             | models.Q(project__isnull=True)
         )
@@ -47,10 +49,7 @@ class Action(models.Model):
 
     # actor, if actor is None the action was create by the system
     actor = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True
     )
 
     # target eg. idea
@@ -59,65 +58,53 @@ class Action(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        related_name='target'
+        related_name="target",
     )
-    target_object_id = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True
-    )
+    target_object_id = models.CharField(max_length=255, blank=True, null=True)
     target = GenericForeignKey(
-        ct_field='target_content_type',
-        fk_field='target_object_id'
+        ct_field="target_content_type", fk_field="target_object_id"
     )
 
     # action object eg. comment
     obj_content_type = models.ForeignKey(
-        ContentType,
-        on_delete=models.CASCADE,
-        blank=True, null=True,
-        related_name='obj')
-    obj_object_id = models.CharField(
-        max_length=255, blank=True, null=True)
-    obj = GenericForeignKey(
-        ct_field='obj_content_type',
-        fk_field='obj_object_id')
+        ContentType, on_delete=models.CASCADE, blank=True, null=True, related_name="obj"
+    )
+    obj_object_id = models.CharField(max_length=255, blank=True, null=True)
+    obj = GenericForeignKey(ct_field="obj_content_type", fk_field="obj_object_id")
 
     project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, blank=True, null=True)
+        Project, on_delete=models.CASCADE, blank=True, null=True
+    )
 
     timestamp = models.DateTimeField(default=timezone.now)
     public = models.BooleanField(default=True, db_index=True)
-    verb = models.CharField(
-        max_length=255,
-        db_index=True,
-        choices=verbs.choices())
+    verb = models.CharField(max_length=255, db_index=True, choices=verbs.choices())
     description = models.TextField(blank=True, null=True)
 
     objects = ActionQuerySet.as_manager()
 
     class Meta:
-        ordering = ('-timestamp',)
-        index_together = [('obj_content_type', 'obj_object_id')]
+        ordering = ("-timestamp",)
+        index_together = [("obj_content_type", "obj_object_id")]
 
     def __str__(self):
 
         ctx = {
-            'actor': self.actor.username if self.actor else 'system',
-            'verb': self.verb,
-            'object': self.obj,
-            'target': self.target
+            "actor": self.actor.username if self.actor else "system",
+            "verb": self.verb,
+            "object": self.obj,
+            "target": self.target,
         }
 
         if self.target:
             if self.actor:
-                return '{actor} {verb} {object} to {target}'.format(**ctx)
+                return "{actor} {verb} {object} to {target}".format(**ctx)
             else:
-                return '{verb} {object} to {target}'.format(**ctx)
+                return "{verb} {object} to {target}".format(**ctx)
         elif self.actor:
-            return '{actor} {verb} {object}'.format(**ctx)
+            return "{actor} {verb} {object}".format(**ctx)
         else:
-            return '{verb} {object}'.format(**ctx)
+            return "{verb} {object}".format(**ctx)
 
     @property
     def type(self):

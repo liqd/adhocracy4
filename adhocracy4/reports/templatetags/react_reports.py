@@ -12,24 +12,23 @@ register = template.Library()
 def react_reports(obj, text=None, **kwargs):
     contenttype = ContentType.objects.get_for_model(obj)
 
-    mountpoint = 'report_for_{contenttype}_{pk}'.format(
-        contenttype=contenttype.pk,
-        pk=obj.pk
+    mountpoint = "report_for_{contenttype}_{pk}".format(
+        contenttype=contenttype.pk, pk=obj.pk
     )
 
-    modal_name = '{mountpoint}_modal'.format(mountpoint=mountpoint)
+    modal_name = "{mountpoint}_modal".format(mountpoint=mountpoint)
 
     attributes = {
-        'contentType': contenttype.pk,
-        'objectId': obj.pk,
-        'modalName': modal_name,
+        "contentType": contenttype.pk,
+        "objectId": obj.pk,
+        "modalName": modal_name,
     }
 
     if text is None:
-        text = _('Report')
+        text = _("Report")
 
-    if 'class' in kwargs:
-        class_names = kwargs['class']
+    if "class" in kwargs:
+        class_names = kwargs["class"]
 
     return format_html(
         (

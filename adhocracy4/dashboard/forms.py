@@ -23,13 +23,11 @@ User = get_user_model()
 
 
 class ProjectCreateForm(forms.ModelForm):
-
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'image', 'image_copyright']
+        fields = ["name", "description", "image", "image_copyright"]
 
-    def __init__(self, organisation, creator,
-                 *args, **kwargs):
+    def __init__(self, organisation, creator, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.organisation = organisation
         self.creator = creator
@@ -39,8 +37,8 @@ class ProjectCreateForm(forms.ModelForm):
         creator = self.creator
         org = self.organisation
 
-        org_has_groups = hasattr(org, 'groups')
-        creator_has_groups = hasattr(creator, 'groups')
+        org_has_groups = hasattr(org, "groups")
+        creator_has_groups = hasattr(creator, "groups")
 
         project = super().save(commit=False)
         project.organisation = self.organisation
@@ -55,27 +53,34 @@ class ProjectCreateForm(forms.ModelForm):
         if commit:
             project.save()
             project.moderators.add(self.creator)
-            if hasattr(self, 'save_m2m'):
+            if hasattr(self, "save_m2m"):
                 self.save_m2m()
 
         return project
 
 
 class ProjectBasicForm(ProjectDashboardForm):
-
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'image', 'image_copyright',
-                  'tile_image', 'tile_image_copyright',
-                  'is_archived', 'access']
-        required_for_project_publish = ['name', 'description']
+        fields = [
+            "name",
+            "description",
+            "image",
+            "image_copyright",
+            "tile_image",
+            "tile_image_copyright",
+            "is_archived",
+            "access",
+        ]
+        required_for_project_publish = ["name", "description"]
         widgets = {
-            'access': RadioSelect(
+            "access": RadioSelect(
                 choices=[
-                    (Access.PUBLIC,
-                     _('All users can participate (public).')),
-                    (Access.PRIVATE,
-                     _('Only invited users can participate (private).'))
+                    (Access.PUBLIC, _("All users can participate (public).")),
+                    (
+                        Access.PRIVATE,
+                        _("Only invited users can participate (private)."),
+                    ),
                 ]
             ),
         }
@@ -83,78 +88,82 @@ class ProjectBasicForm(ProjectDashboardForm):
 
 class ProjectInformationForm(ProjectDashboardForm):
 
-    contact_heading = _('Contact for questions')
-    contact_help = _('Please name a contact person. The user will '
-                     'then know who is carrying out this project and '
-                     'to whom they can address possible questions. '
-                     'The contact person will be shown in the '
-                     'information tab on the project page.')
-    contact_info_label = _('More contact possibilities')
+    contact_heading = _("Contact for questions")
+    contact_help = _(
+        "Please name a contact person. The user will "
+        "then know who is carrying out this project and "
+        "to whom they can address possible questions. "
+        "The contact person will be shown in the "
+        "information tab on the project page."
+    )
+    contact_info_label = _("More contact possibilities")
 
     class Meta:
         model = project_models.Project
         fields = [
-            'information', 'contact_name', 'contact_address_text',
-            'contact_phone', 'contact_email', 'contact_url'
+            "information",
+            "contact_name",
+            "contact_address_text",
+            "contact_phone",
+            "contact_email",
+            "contact_url",
         ]
-        required_for_project_publish = ['information']
+        required_for_project_publish = ["information"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['contact_address_text'].widget.attrs['rows'] = 6
+        self.fields["contact_address_text"].widget.attrs["rows"] = 6
 
 
 class ProjectResultForm(ProjectDashboardForm):
-
     class Meta:
         model = project_models.Project
-        fields = ['result']
+        fields = ["result"]
         required_for_project_publish = []
 
 
 class ModuleBasicForm(ModuleDashboardForm):
-
     class Meta:
         model = module_models.Module
-        fields = ['name', 'description']
-        required_for_project_publish = '__all__'
+        fields = ["name", "description"]
+        required_for_project_publish = "__all__"
 
         widgets = {
-            'description': forms.Textarea,
+            "description": forms.Textarea,
         }
 
 
 class PhaseForm(forms.ModelForm):
     end_date = DateTimeField(
-        time_format='%H:%M',
-        time_default=datetime.time(hour=23, minute=59,
-                                   tzinfo=timezone.get_default_timezone()),
+        time_format="%H:%M",
+        time_default=datetime.time(
+            hour=23, minute=59, tzinfo=timezone.get_default_timezone()
+        ),
         required=False,
         require_all_fields=False,
-        label=(_('End date'), _('End time'))
+        label=(_("End date"), _("End time")),
     )
     start_date = DateTimeField(
-        time_format='%H:%M',
+        time_format="%H:%M",
         required=False,
         require_all_fields=False,
-        label=(_('Start date'), _('Start time'))
+        label=(_("Start date"), _("Start time")),
     )
 
     class Meta:
         model = phase_models.Phase
-        fields = ['name', 'description', 'start_date', 'end_date',
-                  'type',  # required for get_phase_name in the tpl
-                  ]
-        required_for_project_publish = ['name', 'description', 'start_date',
-                                        'end_date']
-        widgets = {
-            'type': forms.HiddenInput(),
-            'weight': forms.HiddenInput()
-        }
+        fields = [
+            "name",
+            "description",
+            "start_date",
+            "end_date",
+            "type",  # required for get_phase_name in the tpl
+        ]
+        required_for_project_publish = ["name", "description", "start_date", "end_date"]
+        widgets = {"type": forms.HiddenInput(), "weight": forms.HiddenInput()}
 
 
-class DashboardPhaseInlineFormSet(ModuleDashboardFormSet,
-                                  PhaseInlineFormSet):
+class DashboardPhaseInlineFormSet(ModuleDashboardFormSet, PhaseInlineFormSet):
     pass
 
 
@@ -169,10 +178,9 @@ PhaseFormSet = inlineformset_factory(
 
 
 class AreaSettingsForm(ModuleDashboardForm):
-
     def __init__(self, *args, **kwargs):
-        self.module = kwargs['instance']
-        kwargs['instance'] = self.module.settings_instance
+        self.module = kwargs["instance"]
+        kwargs["instance"] = self.module.settings_instance
         super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
@@ -184,6 +192,6 @@ class AreaSettingsForm(ModuleDashboardForm):
 
     class Meta:
         model = map_models.AreaSettings
-        fields = ['polygon']
-        required_for_project_publish = ['polygon']
+        fields = ["polygon"]
+        required_for_project_publish = ["polygon"]
         widgets = map_models.AreaSettings.widgets()

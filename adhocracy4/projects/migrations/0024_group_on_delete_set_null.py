@@ -9,13 +9,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0023_groups_allow_blank'),
+        ("a4projects", "0023_groups_allow_blank"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='group',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='auth.Group'),
+            model_name="project",
+            name="group",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="auth.Group",
+            ),
         ),
     ]

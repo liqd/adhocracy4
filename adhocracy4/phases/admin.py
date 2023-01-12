@@ -10,7 +10,7 @@ class PhaseForm(forms.ModelForm):
     type = forms.ChoiceField(choices=content.as_choices)
 
     class Meta:
-        fields = '__all__'
+        fields = "__all__"
         model = models.Phase
 
 

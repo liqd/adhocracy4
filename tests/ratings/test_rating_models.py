@@ -52,24 +52,24 @@ def test_user_can_rating_once(rating_factory, rating, user):
 
 @pytest.mark.django_db
 def test_str(rating):
-    assert str(rating) == '1'
+    assert str(rating) == "1"
 
 
 @pytest.mark.django_db
 def test_get_meta_info(rating, user_factory):
     meta_info = {
-        'positive_ratings_on_same_object': 1,
-        'negative_ratings_on_same_object': 0,
-        'user_rating_on_same_object_value': None,
-        'user_rating_on_same_object_id': None,
+        "positive_ratings_on_same_object": 1,
+        "negative_ratings_on_same_object": 0,
+        "user_rating_on_same_object_value": None,
+        "user_rating_on_same_object_id": None,
     }
 
     assert rating.get_meta_info(user_factory()) == meta_info
 
     own_meta_info = {
-        'positive_ratings_on_same_object': 1,
-        'negative_ratings_on_same_object': 0,
-        'user_rating_on_same_object_value': 1,
-        'user_rating_on_same_object_id': rating.id,
+        "positive_ratings_on_same_object": 1,
+        "negative_ratings_on_same_object": 0,
+        "user_rating_on_same_object_value": 1,
+        "user_rating_on_same_object_id": rating.id,
     }
     assert rating.get_meta_info(rating.creator) == own_meta_info

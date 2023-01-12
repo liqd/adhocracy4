@@ -10,7 +10,6 @@ from adhocracy4.projects.models import Project
 
 
 class PhaseDispatchMixin(generic.DetailView):
-
     @cached_property
     def project(self):
         return self.get_object()
@@ -21,8 +20,8 @@ class PhaseDispatchMixin(generic.DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         # Choose the appropriate view for the current active phase.
-        kwargs['project'] = self.project
-        kwargs['module'] = self.module
+        kwargs["project"] = self.project
+        kwargs["module"] = self.module
 
         return self._view_by_phase()(request, *args, **kwargs)
 
@@ -37,7 +36,6 @@ class PhaseDispatchMixin(generic.DetailView):
 
 
 class ModuleDispatchMixin(PhaseDispatchMixin):
-
     @cached_property
     def project(self):
         return self.module.project
@@ -64,26 +62,23 @@ class ProjectMixin(generic.base.ContextMixin):
     not access the project and module properties.
     """
 
-    project_lookup_field = 'slug'
-    project_url_kwarg = 'project_slug'
-    module_lookup_field = 'slug'
-    module_url_kwarg = 'module_slug'
+    project_lookup_field = "slug"
+    project_url_kwarg = "project_slug"
+    module_lookup_field = "slug"
+    module_url_kwarg = "module_slug"
     get_context_from_object = False
 
     @property
     def module(self):
         """Get the module from the current object, kwargs or url."""
         if self.get_context_from_object:
-            return self._get_object(Module, 'module')
+            return self._get_object(Module, "module")
 
-        if 'module' in self.kwargs \
-                and isinstance(self.kwargs['module'], Module):
-            return self.kwargs['module']
+        if "module" in self.kwargs and isinstance(self.kwargs["module"], Module):
+            return self.kwargs["module"]
 
         if self.module_url_kwarg and self.module_url_kwarg in self.kwargs:
-            lookup = {
-                self.module_lookup_field: self.kwargs[self.module_url_kwarg]
-            }
+            lookup = {self.module_lookup_field: self.kwargs[self.module_url_kwarg]}
             return get_object_or_404(Module, **lookup)
 
     @property
@@ -93,22 +88,18 @@ class ProjectMixin(generic.base.ContextMixin):
             return self.module.project
 
         if self.get_context_from_object:
-            return self._get_object(Project, 'project')
+            return self._get_object(Project, "project")
 
-        if 'project' in self.kwargs \
-                and isinstance(self.kwargs['project'], Project):
-            return self.kwargs['project']
+        if "project" in self.kwargs and isinstance(self.kwargs["project"], Project):
+            return self.kwargs["project"]
 
         if self.project_url_kwarg and self.project_url_kwarg in self.kwargs:
-            lookup = {
-                self.project_lookup_field: self.kwargs[self.project_url_kwarg]
-            }
+            lookup = {self.project_lookup_field: self.kwargs[self.project_url_kwarg]}
             return get_object_or_404(Project, **lookup)
 
     def _get_object(self, cls, attr):
         # CreateView supplies a defect get_object method and has to be excluded
-        if hasattr(self, 'get_object') \
-                and not isinstance(self, generic.CreateView):
+        if hasattr(self, "get_object") and not isinstance(self, generic.CreateView):
             try:
                 object = self.get_object()
                 if isinstance(object, cls):
@@ -125,10 +116,10 @@ class ProjectMixin(generic.base.ContextMixin):
 
     def get_context_data(self, **kwargs):
         """Append project and module to the template context."""
-        if 'project' not in kwargs:
-            kwargs['project'] = self.project
-        if 'module' not in kwargs:
-            kwargs['module'] = self.module
+        if "project" not in kwargs:
+            kwargs["project"] = self.project
+        if "module" not in kwargs:
+            kwargs["module"] = self.module
         return super().get_context_data(**kwargs)
 
 
@@ -149,15 +140,15 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
 
     @cached_property
     def extends(self):
-        if self.url_name == 'module-detail':
-            return 'a4modules/module_detail.html'
-        return 'a4projects/project_detail.html'
+        if self.url_name == "module-detail":
+            return "a4modules/module_detail.html"
+        return "a4projects/project_detail.html"
 
     @cached_property
     def initial_slide(self):
-        initial_slide = self.request.GET.get('initialSlide')
+        initial_slide = self.request.GET.get("initialSlide")
         if initial_slide:
-            initial_slide = ''.join(i for i in initial_slide if i.isdigit())
+            initial_slide = "".join(i for i in initial_slide if i.isdigit())
             if initial_slide:
                 return int(initial_slide)
         elif self.project.get_current_participation_date():
@@ -174,32 +165,30 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['url_name'] = self.url_name
-        context['extends'] = self.extends
-        if not self.url_name == 'module-detail':
-            context['event'] = self.get_current_event()
-            context['modules'] = self.get_current_modules()
-            context['initial_slide'] = self.initial_slide
+        context["url_name"] = self.url_name
+        context["extends"] = self.extends
+        if not self.url_name == "module-detail":
+            context["event"] = self.get_current_event()
+            context["modules"] = self.get_current_modules()
+            context["initial_slide"] = self.initial_slide
         return context
 
 
 class ProjectModuleDispatchMixin(generic.DetailView):
-
     @cached_property
     def project(self):
         return self.get_object()
 
     @cached_property
     def module(self):
-        if (self.project.published_modules.count()
-                == 1 and not self.project.events):
+        if self.project.published_modules.count() == 1 and not self.project.events:
             return self.project.published_modules.first()
         elif len(self.get_current_modules()) == 1:
             return self.get_current_modules()[0]
 
     def dispatch(self, request, *args, **kwargs):
-        kwargs['project'] = self.project
-        kwargs['module'] = self.module
+        kwargs["project"] = self.project
+        kwargs["module"] = self.module
 
         return self._view_by_phase()(request, *args, **kwargs)
 

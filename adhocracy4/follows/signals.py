@@ -6,13 +6,14 @@ from . import models
 
 
 def autofollow_hook(instance, **kwargs):
-    if hasattr(instance.project, 'id'):
+    if hasattr(instance.project, "id"):
         models.Follow.objects.get_or_create(
             project=instance.project,
             creator=instance.creator,
             defaults={
-                'enabled': True,
-            })
+                "enabled": True,
+            },
+        )
 
 
 for app, model in settings.A4_AUTO_FOLLOWABLES:

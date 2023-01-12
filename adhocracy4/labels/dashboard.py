@@ -8,13 +8,13 @@ from . import forms
 
 
 class ModuleLabelsComponent(ModuleFormSetComponent):
-    identifier = 'labels'
+    identifier = "labels"
     weight = 14
-    label = _('Labels')
+    label = _("Labels")
 
-    form_title = _('Edit labels')
+    form_title = _("Edit labels")
     form_class = forms.LabelsFormSet
-    form_template_name = 'a4labels/includes/module_labels_form.html'
+    form_template_name = "a4labels/includes/module_labels_form.html"
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app

@@ -18,11 +18,12 @@ class ContentTypeMixin:
 
     Currently only numeric object_pk are supported.
     """
+
     content_type_filter = []
 
     def dispatch(self, request, *args, **kwargs):
-        content_type = kwargs.get('content_type', '')
-        object_pk = kwargs.get('object_pk', '')
+        content_type = kwargs.get("content_type", "")
+        object_pk = kwargs.get("object_pk", "")
 
         if not content_type.isdigit() or not object_pk.isdigit():
             raise Http404
@@ -49,10 +50,7 @@ class ContentTypeMixin:
 
     @property
     def content_object(self):
-        return get_object_or_404(
-            self.content_type.model_class(),
-            pk=self.object_pk
-        )
+        return get_object_or_404(self.content_type.model_class(), pk=self.object_pk)
 
 
 class ModuleMixin:
@@ -61,15 +59,12 @@ class ModuleMixin:
     """
 
     def dispatch(self, request, *args, **kwargs):
-        self.module_pk = kwargs.get('module_pk', '')
+        self.module_pk = kwargs.get("module_pk", "")
         return super().dispatch(request, *args, **kwargs)
 
     @property
     def module(self):
-        return get_object_or_404(
-            module_models.Module,
-            pk=self.module_pk
-        )
+        return get_object_or_404(module_models.Module, pk=self.module_pk)
 
 
 class OrganisationMixin:
@@ -79,14 +74,13 @@ class OrganisationMixin:
     """
 
     def dispatch(self, request, *args, **kwargs):
-        self.organisation_pk = kwargs.get('organisation_pk', '')
+        self.organisation_pk = kwargs.get("organisation_pk", "")
         return super().dispatch(request, *args, **kwargs)
 
     @property
     def organisation(self):
         return get_object_or_404(
-            apps.get_model(settings.A4_ORGANISATIONS_MODEL),
-            pk=self.organisation_pk
+            apps.get_model(settings.A4_ORGANISATIONS_MODEL), pk=self.organisation_pk
         )
 
 
@@ -94,15 +88,12 @@ class CommentMixin:
     """Use in combination with CommentRouter to fetch the comment."""
 
     def dispatch(self, request, *args, **kwargs):
-        self.comment_pk = kwargs.get('comment_pk', '')
+        self.comment_pk = kwargs.get("comment_pk", "")
         return super().dispatch(request, *args, **kwargs)
 
     @property
     def comment(self):
-        return get_object_or_404(
-            Comment,
-            pk=self.comment_pk
-        )
+        return get_object_or_404(Comment, pk=self.comment_pk)
 
 
 class AllowPUTAsCreateMixin(object):
@@ -110,12 +101,11 @@ class AllowPUTAsCreateMixin(object):
     The following mixin class may be used in order to support PUT-as-create
     behavior for incoming requests.
     """
+
     def update(self, request, *args, **kwargs):
-        partial = kwargs.pop('partial', False)
+        partial = kwargs.pop("partial", False)
         instance = self.get_object_or_none()
-        serializer = self.get_serializer(instance,
-                                         data=request.data,
-                                         partial=partial)
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
 
         if instance is None:
@@ -129,20 +119,20 @@ class AllowPUTAsCreateMixin(object):
         return Response(serializer.data)
 
     def partial_update(self, request, *args, **kwargs):
-        kwargs['partial'] = True
+        kwargs["partial"] = True
         return self.update(request, *args, **kwargs)
 
     def get_object_or_none(self):
         try:
             return self.get_object()
         except Http404:
-            if self.request.method == 'PUT':
+            if self.request.method == "PUT":
                 # For PUT-as-create operation, we need to ensure that we have
                 # relevant permissions, as if this was a POST request.  This
                 # will either raise a PermissionDenied exception, or simply
                 # return None.
                 # xi: checks permission on wrong path
-                self.check_permissions(clone_request(self.request, 'POST'))
+                self.check_permissions(clone_request(self.request, "POST"))
             else:
                 # PATCH requests where the object does not exist should still
                 # return a 404 response.

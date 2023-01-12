@@ -8,5 +8,5 @@ register = template.Library()
 def react_follows(project):
     return format_html(
         '<span data-a4-widget="follows" data-project={project}></span>',
-        project=project.slug
+        project=project.slug,
     )

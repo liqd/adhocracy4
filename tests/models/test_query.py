@@ -37,8 +37,9 @@ def test_annotate_comment(question_factory, comment_factory):
 
 @pytest.mark.django_db
 def test_combined_annotations(question, comment_factory, rating_factory):
-    qs = models.Question.objects.annotate_comment_count() \
-        .annotate_positive_rating_count()
+    qs = (
+        models.Question.objects.annotate_comment_count().annotate_positive_rating_count()
+    )
     assert qs.first().comment_count == 0
     assert qs.first().positive_rating_count == 0
 
@@ -46,15 +47,17 @@ def test_combined_annotations(question, comment_factory, rating_factory):
     rating_factory(content_object=question, value=1)
     rating_factory(content_object=question, value=1)
 
-    qs = models.Question.objects.annotate_comment_count() \
-        .annotate_positive_rating_count()
+    qs = (
+        models.Question.objects.annotate_comment_count().annotate_positive_rating_count()
+    )
     assert qs.first().comment_count == 1
     assert qs.first().positive_rating_count == 2
 
     comment_factory(content_object=question)
     comment_factory(content_object=question)
 
-    qs = models.Question.objects.annotate_comment_count() \
-        .annotate_positive_rating_count()
+    qs = (
+        models.Question.objects.annotate_comment_count().annotate_positive_rating_count()
+    )
     assert qs.first().comment_count == 3
     assert qs.first().positive_rating_count == 2

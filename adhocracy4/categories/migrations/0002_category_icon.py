@@ -9,13 +9,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4categories', '0001_initial'),
+        ("a4categories", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='category',
-            name='icon',
-            field=adhocracy4.categories.models.IconField(blank=True, default='', max_length=254),
+            model_name="category",
+            name="icon",
+            field=adhocracy4.categories.models.IconField(
+                blank=True, default="", max_length=254
+            ),
         ),
     ]

@@ -7,7 +7,6 @@ from . import UserFactory
 
 
 class FollowFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = Follow
 

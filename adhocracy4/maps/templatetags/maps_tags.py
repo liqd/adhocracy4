@@ -12,68 +12,66 @@ register = template.Library()
 
 def get_points(items):
     result = {}
-    result['type'] = 'FeatureCollection'
+    result["type"] = "FeatureCollection"
     feature_list = []
 
     for item in items:
 
-        image_url = ''
-        comment_count = ''
-        positive_rating_count = ''
-        negative_rating_count = ''
+        image_url = ""
+        comment_count = ""
+        positive_rating_count = ""
+        negative_rating_count = ""
 
-        if hasattr(item, 'image') and item.image:
-            image = get_thumbnailer(item.image)['map_thumbnail']
+        if hasattr(item, "image") and item.image:
+            image = get_thumbnailer(item.image)["map_thumbnail"]
             image_url = image.url
-        if hasattr(item, 'comment_count'):
+        if hasattr(item, "comment_count"):
             comment_count = item.comment_count
-        if hasattr(item, 'positive_rating_count'):
+        if hasattr(item, "positive_rating_count"):
             positive_rating_count = item.positive_rating_count
-        if hasattr(item, 'negative_rating_count'):
+        if hasattr(item, "negative_rating_count"):
             negative_rating_count = item.negative_rating_count
 
-        if hasattr(item, 'category') and getattr(item.category, 'icon', None):
+        if hasattr(item, "category") and getattr(item.category, "icon", None):
             category_icon = get_category_pin_url(item.category.icon)
         else:
-            category_icon = ''
+            category_icon = ""
 
         properties = {
-            'name': item.name,
-            'slug': item.slug,
-            'image': image_url,
-            'comments_count': comment_count,
-            'positive_rating_count': positive_rating_count,
-            'negative_rating_count': negative_rating_count,
-            'url': item.get_absolute_url(),
-            'category_icon': category_icon
+            "name": item.name,
+            "slug": item.slug,
+            "image": image_url,
+            "comments_count": comment_count,
+            "positive_rating_count": positive_rating_count,
+            "negative_rating_count": negative_rating_count,
+            "url": item.get_absolute_url(),
+            "category_icon": category_icon,
         }
         point_dict = item.point
-        point_dict['properties'] = properties
+        point_dict["properties"] = properties
         feature_list.append(point_dict)
 
-    result['features'] = feature_list
+    result["features"] = feature_list
     return json.dumps(result)
 
 
 @register.simple_tag()
-def map_display_points(items, polygon, hideRatings='false',
-                       hideSupport='true'):
+def map_display_points(items, polygon, hideRatings="false", hideSupport="true"):
     use_vector_map = 0
-    mapbox_token = ''
-    omt_token = ''
-    if (hasattr(settings, 'A4_USE_VECTORMAP') and
-            settings.A4_USE_VECTORMAP):
+    mapbox_token = ""
+    omt_token = ""
+    if hasattr(settings, "A4_USE_VECTORMAP") and settings.A4_USE_VECTORMAP:
         use_vector_map = 1
 
-    if hasattr(settings, 'A4_MAPBOX_TOKEN'):
+    if hasattr(settings, "A4_MAPBOX_TOKEN"):
         mapbox_token = settings.A4_MAPBOX_TOKEN
 
-    if hasattr(settings, 'A4_OPENMAPTILES_TOKEN'):
+    if hasattr(settings, "A4_OPENMAPTILES_TOKEN"):
         omt_token = settings.A4_OPENMAPTILES_TOKEN
 
     return format_html(
         (
-            '<div'
+            "<div"
             ' style="height: 300px"'
             ' data-map="display_points"'
             ' data-baseurl="{baseurl}"'
@@ -85,7 +83,7 @@ def map_display_points(items, polygon, hideRatings='false',
             ' data-polygon="{polygon}"'
             ' data-hide-ratings="{hideRatings}"'
             ' data-hide-support="{hideSupport}"'
-            '></div>'
+            "></div>"
         ),
         baseurl=settings.A4_MAP_BASEURL,
         usevectormap=use_vector_map,
@@ -95,29 +93,28 @@ def map_display_points(items, polygon, hideRatings='false',
         points=get_points(items),
         polygon=json.dumps(polygon),
         hideRatings=hideRatings,
-        hideSupport=hideSupport
+        hideSupport=hideSupport,
     )
 
 
 @register.simple_tag()
 def map_display_point(point, polygon, pin_src=None):
     use_vector_map = 0
-    mapbox_token = ''
-    omt_token = ''
+    mapbox_token = ""
+    omt_token = ""
 
-    if (hasattr(settings, 'A4_USE_VECTORMAP') and
-            settings.A4_USE_VECTORMAP):
+    if hasattr(settings, "A4_USE_VECTORMAP") and settings.A4_USE_VECTORMAP:
         use_vector_map = 1
 
-    if hasattr(settings, 'A4_MAPBOX_TOKEN'):
+    if hasattr(settings, "A4_MAPBOX_TOKEN"):
         mapbox_token = settings.A4_MAPBOX_TOKEN
 
-    if hasattr(settings, 'A4_OPENMAPTILES_TOKEN'):
+    if hasattr(settings, "A4_OPENMAPTILES_TOKEN"):
         omt_token = settings.A4_OPENMAPTILES_TOKEN
 
     return format_html(
         (
-            '<div'
+            "<div"
             ' style="height: 300px"'
             ' data-map="display_point"'
             ' data-baseurl="{baseurl}"'
@@ -128,7 +125,7 @@ def map_display_point(point, polygon, pin_src=None):
             ' data-point="{point}"'
             ' data-polygon="{polygon}"'
             ' data-pin-src="{pin_src}"'
-            '></div>'
+            "></div>"
         ),
         baseurl=settings.A4_MAP_BASEURL,
         usevectormap=use_vector_map,
@@ -137,5 +134,5 @@ def map_display_point(point, polygon, pin_src=None):
         attribution=settings.A4_MAP_ATTRIBUTION,
         point=json.dumps(point),
         polygon=json.dumps(polygon),
-        pin_src=json.dumps(pin_src)
+        pin_src=json.dumps(pin_src),
     )

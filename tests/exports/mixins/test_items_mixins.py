@@ -15,7 +15,7 @@ def test_item_categories_mixin(idea, category):
     mixin = ItemExportWithCategoriesMixin()
 
     virtual = mixin.get_virtual_fields({})
-    assert 'category' in virtual
+    assert "category" in virtual
 
     data = mixin.get_category_data(idea)
 
@@ -33,7 +33,7 @@ def test_item_labels_mixin(idea_factory, label_factory):
     mixin = ItemExportWithLabelsMixin()
 
     virtual = mixin.get_virtual_fields({})
-    assert 'labels' in virtual
+    assert "labels" in virtual
 
     data = mixin.get_labels_data(idea)
     assert label1.name in data
@@ -45,7 +45,7 @@ def test_reference_number_mixin(idea):
     mixin = ItemExportWithReferenceNumberMixin()
 
     virtual = mixin.get_virtual_fields({})
-    assert 'reference_number' in virtual
+    assert "reference_number" in virtual
 
     assert idea.reference_number == mixin.get_reference_number_data(idea)
 
@@ -55,11 +55,13 @@ def test_moderator_feedback_mixin(idea):
     mixin = ItemExportWithModeratorFeedback()
 
     virtual = mixin.get_virtual_fields({})
-    assert 'moderator_feedback' in virtual
-    assert 'moderator_statement' in virtual
+    assert "moderator_feedback" in virtual
+    assert "moderator_statement" in virtual
 
-    assert mixin.get_moderator_feedback_data(idea)\
-        == idea.get_moderator_feedback_display()
+    assert (
+        mixin.get_moderator_feedback_data(idea) == idea.get_moderator_feedback_display()
+    )
 
-    assert mixin.get_moderator_statement_data(idea)\
-        == idea.moderator_statement.statement
+    assert (
+        mixin.get_moderator_statement_data(idea) == idea.moderator_statement.statement
+    )

@@ -9,13 +9,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0016_add_verbose_for_contact'),
+        ("a4projects", "0016_add_verbose_for_contact"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='contact_phone',
-            field=models.CharField(blank=True, max_length=20, validators=[django.core.validators.RegexValidator(message='Phone numbers can only contain digits, spaces and the following characters: -, +, (, ). It has to be between 8 and 20 characters long.', regex='^[\\d\\+\\(\\)\\- ]{8,20}$')]),
+            model_name="project",
+            name="contact_phone",
+            field=models.CharField(
+                blank=True,
+                max_length=20,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        message="Phone numbers can only contain digits, spaces and the following characters: -, +, (, ). It has to be between 8 and 20 characters long.",
+                        regex="^[\\d\\+\\(\\)\\- ]{8,20}$",
+                    )
+                ],
+            ),
         ),
     ]

@@ -7,8 +7,14 @@ from adhocracy4.projects.enums import Access
 
 
 @pytest.mark.django_db
-def test_is_context_initiator(user_factory, question_factory, project_factory,
-                              organisation, member_factory, group_factory):
+def test_is_context_initiator(
+    user_factory,
+    question_factory,
+    project_factory,
+    organisation,
+    member_factory,
+    group_factory,
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -16,14 +22,14 @@ def test_is_context_initiator(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
     group1 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
+    group_member = user_factory.create(groups=(group1,))
 
-    project = project_factory(access=Access.PUBLIC,
-                              organisation=organisation,
-                              group=group1)
-    private_project = project_factory(access=Access.PRIVATE,
-                                      organisation=organisation,
-                                      group=group1)
+    project = project_factory(
+        access=Access.PUBLIC, organisation=organisation, group=group1
+    )
+    private_project = project_factory(
+        access=Access.PRIVATE, organisation=organisation, group=group1
+    )
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
     private_project.moderators.add(moderator)
@@ -56,8 +62,7 @@ def test_is_context_initiator(user_factory, question_factory, project_factory,
     assert not predicates.is_context_initiator(project_member, project)
     assert not predicates.is_context_initiator(project_member, private_project)
     assert not predicates.is_context_initiator(project_member, question)
-    assert not predicates.is_context_initiator(project_member,
-                                               question_private)
+    assert not predicates.is_context_initiator(project_member, question_private)
     assert not predicates.is_context_initiator(project_member, False)
     assert not predicates.is_context_initiator(org_member, project)
     assert not predicates.is_context_initiator(org_member, private_project)
@@ -72,8 +77,14 @@ def test_is_context_initiator(user_factory, question_factory, project_factory,
 
 
 @pytest.mark.django_db
-def test_is_context_moderator(user_factory, question_factory, project_factory,
-                              organisation, member_factory, group_factory):
+def test_is_context_moderator(
+    user_factory,
+    question_factory,
+    project_factory,
+    organisation,
+    member_factory,
+    group_factory,
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -81,14 +92,14 @@ def test_is_context_moderator(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
     group1 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
+    group_member = user_factory.create(groups=(group1,))
 
-    project = project_factory(access=Access.PUBLIC,
-                              organisation=organisation,
-                              group=group1)
-    private_project = project_factory(access=Access.PRIVATE,
-                                      organisation=organisation,
-                                      group=group1)
+    project = project_factory(
+        access=Access.PUBLIC, organisation=organisation, group=group1
+    )
+    private_project = project_factory(
+        access=Access.PRIVATE, organisation=organisation, group=group1
+    )
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
     private_project.moderators.add(moderator)
@@ -121,8 +132,7 @@ def test_is_context_moderator(user_factory, question_factory, project_factory,
     assert not predicates.is_context_moderator(project_member, project)
     assert not predicates.is_context_moderator(project_member, private_project)
     assert not predicates.is_context_moderator(project_member, question)
-    assert not predicates.is_context_moderator(project_member,
-                                               question_private)
+    assert not predicates.is_context_moderator(project_member, question_private)
     assert not predicates.is_context_moderator(project_member, False)
     assert not predicates.is_context_moderator(org_member, project)
     assert not predicates.is_context_moderator(org_member, private_project)
@@ -137,9 +147,14 @@ def test_is_context_moderator(user_factory, question_factory, project_factory,
 
 
 @pytest.mark.django_db
-def test_is_context_group_member(user_factory, question_factory,
-                                 project_factory, group_factory,
-                                 organisation, member_factory):
+def test_is_context_group_member(
+    user_factory,
+    question_factory,
+    project_factory,
+    group_factory,
+    organisation,
+    member_factory,
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -147,14 +162,14 @@ def test_is_context_group_member(user_factory, question_factory,
     project_member = user_factory()
     org_member = user_factory()
     group1 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
+    group_member = user_factory.create(groups=(group1,))
 
-    project = project_factory(access=Access.PUBLIC,
-                              organisation=organisation,
-                              group=group1)
-    private_project = project_factory(access=Access.PRIVATE,
-                                      organisation=organisation,
-                                      group=group1)
+    project = project_factory(
+        access=Access.PUBLIC, organisation=organisation, group=group1
+    )
+    private_project = project_factory(
+        access=Access.PRIVATE, organisation=organisation, group=group1
+    )
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
     private_project.moderators.add(moderator)
@@ -184,11 +199,9 @@ def test_is_context_group_member(user_factory, question_factory,
     assert not predicates.is_context_group_member(moderator, question_private)
     assert not predicates.is_context_group_member(moderator, False)
     assert not predicates.is_context_group_member(project_member, project)
-    assert not predicates.is_context_group_member(project_member,
-                                                  private_project)
+    assert not predicates.is_context_group_member(project_member, private_project)
     assert not predicates.is_context_group_member(project_member, question)
-    assert not predicates.is_context_group_member(project_member,
-                                                  question_private)
+    assert not predicates.is_context_group_member(project_member, question_private)
     assert not predicates.is_context_group_member(project_member, False)
     assert not predicates.is_context_group_member(org_member, project)
     assert not predicates.is_context_group_member(org_member, private_project)
@@ -203,8 +216,14 @@ def test_is_context_group_member(user_factory, question_factory,
 
 
 @pytest.mark.django_db
-def test_is_context_member(user_factory, question_factory, project_factory,
-                           organisation, member_factory, group_factory):
+def test_is_context_member(
+    user_factory,
+    question_factory,
+    project_factory,
+    organisation,
+    member_factory,
+    group_factory,
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -212,14 +231,14 @@ def test_is_context_member(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
     group1 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
+    group_member = user_factory.create(groups=(group1,))
 
-    project = project_factory(access=Access.PUBLIC,
-                              organisation=organisation,
-                              group=group1)
-    private_project = project_factory(access=Access.PRIVATE,
-                                      organisation=organisation,
-                                      group=group1)
+    project = project_factory(
+        access=Access.PUBLIC, organisation=organisation, group=group1
+    )
+    private_project = project_factory(
+        access=Access.PRIVATE, organisation=organisation, group=group1
+    )
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
     private_project.moderators.add(moderator)
@@ -253,8 +272,7 @@ def test_is_context_member(user_factory, question_factory, project_factory,
 
 
 @pytest.mark.django_db
-def test_is_owner(user_factory, question_factory, project_factory,
-                  organisation):
+def test_is_owner(user_factory, question_factory, project_factory, organisation):
     user = user_factory()
     owner = user_factory()
     admin = user_factory(is_superuser=True)
@@ -280,8 +298,9 @@ def test_is_owner(user_factory, question_factory, project_factory,
 
 
 @pytest.mark.django_db
-def test_is_public_context(user_factory, question_factory, project_factory,
-                           organisation, member_factory):
+def test_is_public_context(
+    user_factory, question_factory, project_factory, organisation, member_factory
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -289,15 +308,15 @@ def test_is_public_context(user_factory, question_factory, project_factory,
     org_member = user_factory()
 
     project = project_factory(is_draft=False, organisation=organisation)
-    draft_project = project_factory(is_draft=True,
-                                    access=Access.PUBLIC,
-                                    organisation=organisation)
-    semipublic_project = project_factory(is_draft=False,
-                                         access=Access.SEMIPUBLIC,
-                                         organisation=organisation)
-    private_project = project_factory(is_draft=False,
-                                      access=Access.PRIVATE,
-                                      organisation=organisation)
+    draft_project = project_factory(
+        is_draft=True, access=Access.PUBLIC, organisation=organisation
+    )
+    semipublic_project = project_factory(
+        is_draft=False, access=Access.SEMIPUBLIC, organisation=organisation
+    )
+    private_project = project_factory(
+        is_draft=False, access=Access.PRIVATE, organisation=organisation
+    )
     organisation.initiators.add(initiator)
     draft_project.moderators.add(moderator)
     project.moderators.add(moderator)
@@ -336,8 +355,9 @@ def test_is_public_context(user_factory, question_factory, project_factory,
 
 
 @pytest.mark.django_db
-def test_is_live_context(user_factory, question_factory, project_factory,
-                         organisation, member_factory):
+def test_is_live_context(
+    user_factory, question_factory, project_factory, organisation, member_factory
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -345,8 +365,7 @@ def test_is_live_context(user_factory, question_factory, project_factory,
     org_member = user_factory()
 
     project = project_factory(is_draft=False, organisation=organisation)
-    draft_project = project_factory(is_draft=True,
-                                    organisation=organisation)
+    draft_project = project_factory(is_draft=True, organisation=organisation)
     organisation.initiators.add(initiator)
     draft_project.moderators.add(moderator)
     project.moderators.add(moderator)
@@ -373,9 +392,14 @@ def test_is_live_context(user_factory, question_factory, project_factory,
 
 
 @pytest.mark.django_db
-def test_is_allowed_moderate_project(user_factory, question_factory,
-                                     project_factory, group_factory,
-                                     organisation, member_factory):
+def test_is_allowed_moderate_project(
+    user_factory,
+    question_factory,
+    project_factory,
+    group_factory,
+    organisation,
+    member_factory,
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -384,14 +408,14 @@ def test_is_allowed_moderate_project(user_factory, question_factory,
     org_member = user_factory()
     group1 = group_factory()
     group2 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
+    group_member = user_factory.create(groups=(group1,))
 
-    project = project_factory(access=Access.PUBLIC,
-                              organisation=organisation,
-                              group=group2)
-    private_project = project_factory(access=Access.PRIVATE,
-                                      organisation=organisation,
-                                      group=group1)
+    project = project_factory(
+        access=Access.PUBLIC, organisation=organisation, group=group2
+    )
+    private_project = project_factory(
+        access=Access.PRIVATE, organisation=organisation, group=group1
+    )
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
     private_project.moderators.add(moderator)
@@ -426,34 +450,33 @@ def test_is_allowed_moderate_project(user_factory, question_factory,
     assert not predicates.is_allowed_moderate_project(moderator, False)
 
     assert not predicates.is_allowed_moderate_project(project_member, project)
-    assert not predicates.is_allowed_moderate_project(project_member,
-                                                      private_project)
+    assert not predicates.is_allowed_moderate_project(project_member, private_project)
     assert not predicates.is_allowed_moderate_project(project_member, question)
-    assert not predicates.is_allowed_moderate_project(project_member,
-                                                      question_private)
+    assert not predicates.is_allowed_moderate_project(project_member, question_private)
     assert not predicates.is_allowed_moderate_project(project_member, False)
 
     assert not predicates.is_allowed_moderate_project(org_member, project)
-    assert not predicates.is_allowed_moderate_project(org_member,
-                                                      private_project)
+    assert not predicates.is_allowed_moderate_project(org_member, private_project)
     assert not predicates.is_allowed_moderate_project(org_member, question)
-    assert not predicates.is_allowed_moderate_project(org_member,
-                                                      question_private)
+    assert not predicates.is_allowed_moderate_project(org_member, question_private)
     assert not predicates.is_allowed_moderate_project(org_member, False)
 
     assert not predicates.is_allowed_moderate_project(group_member, project)
-    assert predicates.is_allowed_moderate_project(group_member,
-                                                  private_project)
+    assert predicates.is_allowed_moderate_project(group_member, private_project)
     assert not predicates.is_allowed_moderate_project(group_member, question)
-    assert predicates.is_allowed_moderate_project(group_member,
-                                                  question_private)
+    assert predicates.is_allowed_moderate_project(group_member, question_private)
     assert not predicates.is_allowed_moderate_project(group_member, False)
 
 
 @pytest.mark.django_db
-def test_is_allowed_crud_project(user_factory, question_factory,
-                                 project_factory, group_factory,
-                                 organisation, member_factory):
+def test_is_allowed_crud_project(
+    user_factory,
+    question_factory,
+    project_factory,
+    group_factory,
+    organisation,
+    member_factory,
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -461,14 +484,14 @@ def test_is_allowed_crud_project(user_factory, question_factory,
     project_member = user_factory()
     org_member = user_factory()
     group1 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
+    group_member = user_factory.create(groups=(group1,))
 
-    project = project_factory(access=Access.PUBLIC,
-                              organisation=organisation,
-                              group=group1)
-    private_project = project_factory(access=Access.PRIVATE,
-                                      organisation=organisation,
-                                      group=group1)
+    project = project_factory(
+        access=Access.PUBLIC, organisation=organisation, group=group1
+    )
+    private_project = project_factory(
+        access=Access.PRIVATE, organisation=organisation, group=group1
+    )
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
     private_project.moderators.add(moderator)
@@ -491,22 +514,25 @@ def test_is_allowed_crud_project(user_factory, question_factory,
     assert not predicates.is_allowed_crud_project(moderator, question_private)
     assert not predicates.is_allowed_crud_project(moderator, False)
     assert not predicates.is_allowed_crud_project(project_member, question)
-    assert not predicates.is_allowed_crud_project(project_member,
-                                                  question_private)
+    assert not predicates.is_allowed_crud_project(project_member, question_private)
     assert not predicates.is_allowed_crud_project(project_member, False)
     assert not predicates.is_allowed_crud_project(org_member, question)
-    assert not predicates.is_allowed_crud_project(org_member,
-                                                  question_private)
+    assert not predicates.is_allowed_crud_project(org_member, question_private)
     assert not predicates.is_allowed_crud_project(org_member, False)
     assert predicates.is_allowed_crud_project(group_member, question)
-    assert predicates.is_allowed_crud_project(group_member,
-                                              question_private)
+    assert predicates.is_allowed_crud_project(group_member, question_private)
     assert not predicates.is_allowed_crud_project(group_member, False)
 
 
 @pytest.mark.django_db
-def test_is_project_admin(user_factory, question_factory, project_factory,
-                          organisation, member_factory, group_factory):
+def test_is_project_admin(
+    user_factory,
+    question_factory,
+    project_factory,
+    organisation,
+    member_factory,
+    group_factory,
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -514,14 +540,14 @@ def test_is_project_admin(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
     group1 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
+    group_member = user_factory.create(groups=(group1,))
 
-    project = project_factory(access=Access.PUBLIC,
-                              organisation=organisation,
-                              group=group1)
-    private_project = project_factory(access=Access.PRIVATE,
-                                      organisation=organisation,
-                                      group=group1)
+    project = project_factory(
+        access=Access.PUBLIC, organisation=organisation, group=group1
+    )
+    private_project = project_factory(
+        access=Access.PRIVATE, organisation=organisation, group=group1
+    )
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
     private_project.moderators.add(moderator)
@@ -555,8 +581,14 @@ def test_is_project_admin(user_factory, question_factory, project_factory,
 
 
 @pytest.mark.django_db
-def test_is_allowed_view_item(user_factory, question_factory, project_factory,
-                              organisation, member_factory, group_factory):
+def test_is_allowed_view_item(
+    user_factory,
+    question_factory,
+    project_factory,
+    organisation,
+    member_factory,
+    group_factory,
+):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -564,14 +596,14 @@ def test_is_allowed_view_item(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
     group1 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
+    group_member = user_factory.create(groups=(group1,))
 
-    project = project_factory(access=Access.PUBLIC,
-                              organisation=organisation,
-                              group=group1)
-    private_project = project_factory(access=Access.PRIVATE,
-                                      organisation=organisation,
-                                      group=group1)
+    project = project_factory(
+        access=Access.PUBLIC, organisation=organisation, group=group1
+    )
+    private_project = project_factory(
+        access=Access.PRIVATE, organisation=organisation, group=group1
+    )
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
     private_project.moderators.add(moderator)
@@ -607,30 +639,25 @@ def test_is_allowed_view_item(user_factory, question_factory, project_factory,
 @pytest.mark.django_db
 def test_module_is_between_phases(module, phase_factory):
     phase1 = phase_factory(
-        start_date=parse('2022-01-01 16:00:00 UTC'),
-        end_date=parse('2022-01-01 18:00:00 UTC'),
-        type='phase_content_factory:first_phase',
-        module=module
+        start_date=parse("2022-01-01 16:00:00 UTC"),
+        end_date=parse("2022-01-01 18:00:00 UTC"),
+        type="phase_content_factory:first_phase",
+        module=module,
     )
     phase2 = phase_factory(
-        start_date=parse('2022-01-01 20:00:00 UTC'),
-        end_date=parse('2022-01-01 22:00:00 UTC'),
-        type='phase_content_factory:second_phase',
-        module=module
+        start_date=parse("2022-01-01 20:00:00 UTC"),
+        end_date=parse("2022-01-01 22:00:00 UTC"),
+        type="phase_content_factory:second_phase",
+        module=module,
     )
 
-    with freeze_time('2022-01-01 15:00:00 UTC'):
-        assert not predicates.module_is_between_phases(
-            phase1.type, phase2.type, module)
-    with freeze_time('2022-01-01 17:00:00 UTC'):
-        assert not predicates.module_is_between_phases(
-            phase1.type, phase2.type, module)
-    with freeze_time('2022-01-01 19:00:00 UTC'):
-        assert predicates.module_is_between_phases(
-            phase1.type, phase2.type, module)
-    with freeze_time('2022-01-01 21:00:00 UTC'):
-        assert not predicates.module_is_between_phases(
-            phase1.type, phase2.type, module)
-    with freeze_time('2022-01-01 23:00:00 UTC'):
-        assert not predicates.module_is_between_phases(
-            phase1.type, phase2.type, module)
+    with freeze_time("2022-01-01 15:00:00 UTC"):
+        assert not predicates.module_is_between_phases(phase1.type, phase2.type, module)
+    with freeze_time("2022-01-01 17:00:00 UTC"):
+        assert not predicates.module_is_between_phases(phase1.type, phase2.type, module)
+    with freeze_time("2022-01-01 19:00:00 UTC"):
+        assert predicates.module_is_between_phases(phase1.type, phase2.type, module)
+    with freeze_time("2022-01-01 21:00:00 UTC"):
+        assert not predicates.module_is_between_phases(phase1.type, phase2.type, module)
+    with freeze_time("2022-01-01 23:00:00 UTC"):
+        assert not predicates.module_is_between_phases(phase1.type, phase2.type, module)

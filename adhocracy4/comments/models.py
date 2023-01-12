@@ -14,53 +14,33 @@ from adhocracy4.ratings import models as rating_models
 
 class Comment(base.UserGeneratedContentModel):
 
-    content_type = models.ForeignKey(
-        ContentType,
-        on_delete=models.CASCADE
-    )
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_pk = models.PositiveIntegerField()
-    content_object = GenericForeignKey(
-        ct_field="content_type",
-        fk_field="object_pk"
-    )
+    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
     comment = models.TextField(max_length=4000)
     is_removed = models.BooleanField(default=False)
     is_censored = models.BooleanField(default=False)
     is_blocked = models.BooleanField(default=False)
     ratings = GenericRelation(
-        rating_models.Rating,
-        related_query_name='comment',
-        object_id_field='object_pk'
+        rating_models.Rating, related_query_name="comment", object_id_field="object_pk"
     )
     child_comments = GenericRelation(
-        'self',
-        related_query_name='parent_comment',
-        object_id_field='object_pk'
+        "self", related_query_name="parent_comment", object_id_field="object_pk"
     )
-    comment_categories = models.CharField(
-        blank=True,
-        max_length=256
-    )
-    last_discussed = models.DateTimeField(
-        blank=True,
-        null=True,
-        editable=False
-    )
-    is_moderator_marked = models.BooleanField(
-        default=False
-    )
+    comment_categories = models.CharField(blank=True, max_length=256)
+    last_discussed = models.DateTimeField(blank=True, null=True, editable=False)
+    is_moderator_marked = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = pgettext_lazy("noun", "Comment")
         verbose_name_plural = _("Comments")
-        ordering = ('created',)
-        index_together = [('content_type', 'object_pk')]
+        ordering = ("created",)
+        index_together = [("content_type", "object_pk")]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # save former comment to detect if comment text has changed
-        self._former_comment = transforms.clean_html_all(
-            self.comment)
+        self._former_comment = transforms.clean_html_all(self.comment)
 
     def __str__(self):
         if len(self.comment) > 200:
@@ -70,22 +50,24 @@ class Comment(base.UserGeneratedContentModel):
 
     def save(self, *args, **kwargs):
         """Change comment.comment if comment was marked removed or censored."""
-        self.comment = transforms.clean_html_all(
-            self.comment)
+        self.comment = transforms.clean_html_all(self.comment)
 
         if self.is_removed or self.is_censored:
-            self.comment = self._former_comment = ''
-            self.comment_categories = ''
+            self.comment = self._former_comment = ""
+            self.comment_categories = ""
 
         super(Comment, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        if hasattr(self.content_object, 'get_absolute_url'):
-            return urljoin(self.content_object.get_absolute_url(),
-                           "?comment={}".format(str(self.id)))
+        if hasattr(self.content_object, "get_absolute_url"):
+            return urljoin(
+                self.content_object.get_absolute_url(),
+                "?comment={}".format(str(self.id)),
+            )
         else:
-            return urljoin(self.module.get_absolute_url(),
-                           "?comment={}".format(str(self.id)))
+            return urljoin(
+                self.module.get_absolute_url(), "?comment={}".format(str(self.id))
+            )
 
     @property
     def notification_content(self):

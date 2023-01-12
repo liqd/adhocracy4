@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4labels', '0001_initial'),
+        ("a4labels", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='label',
-            options={'ordering': ['pk'], 'verbose_name_plural': 'labels'},
+            name="label",
+            options={"ordering": ["pk"], "verbose_name_plural": "labels"},
         ),
     ]

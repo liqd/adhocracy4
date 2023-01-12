@@ -13,8 +13,8 @@ def test_item_rates_mixin(idea, rating_factory):
     mixin = ItemExportWithRatesMixin()
 
     virtual = mixin.get_virtual_fields({})
-    assert 'ratings_positive' in virtual
-    assert 'ratings_negative' in virtual
+    assert "ratings_positive" in virtual
+    assert "ratings_negative" in virtual
 
     # Test explicit count
     assert mixin.get_ratings_positive_data({}) == 0
@@ -23,9 +23,10 @@ def test_item_rates_mixin(idea, rating_factory):
     assert mixin.get_ratings_negative_data(idea) == 1
 
     # Test annotated counting
-    idea = Idea.objects \
-        .annotate_positive_rating_count() \
-        .annotate_negative_rating_count() \
+    idea = (
+        Idea.objects.annotate_positive_rating_count()
+        .annotate_negative_rating_count()
         .first()
+    )
     assert mixin.get_ratings_positive_data(idea) == 1
     assert mixin.get_ratings_negative_data(idea) == 1

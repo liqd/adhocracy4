@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4comments', '0003_comment_comment_categories'),
+        ("a4comments", "0003_comment_comment_categories"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='comment',
-            name='comment',
+            model_name="comment",
+            name="comment",
             field=models.TextField(max_length=4000),
         ),
     ]

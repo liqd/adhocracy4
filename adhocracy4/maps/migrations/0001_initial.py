@@ -8,19 +8,34 @@ import adhocracy4.maps.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4modules', '0001_initial'),
+        ("a4modules", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AreaSettings',
+            name="AreaSettings",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
-                ('polygon', adhocracy4.maps.fields.MultiPolygonField()),
-                ('module', models.OneToOneField(related_name='areasettings_settings', to='a4modules.Module', on_delete=models.CASCADE)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        primary_key=True,
+                        serialize=False,
+                        auto_created=True,
+                    ),
+                ),
+                ("polygon", adhocracy4.maps.fields.MultiPolygonField()),
+                (
+                    "module",
+                    models.OneToOneField(
+                        related_name="areasettings_settings",
+                        to="a4modules.Module",
+                        on_delete=models.CASCADE,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

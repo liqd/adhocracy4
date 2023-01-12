@@ -19,15 +19,14 @@ from freezegun import freeze_time
 
 def create_thumbnail(imagefield):
     thumbnailer = get_thumbnailer(imagefield)
-    thumbnail = thumbnailer.generate_thumbnail(
-        {'size': (800, 400), 'crop': 'smart'})
+    thumbnail = thumbnailer.generate_thumbnail({"size": (800, 400), "crop": "smart"})
     thumbnailer.save_thumbnail(thumbnail)
     thumbnail_path = os.path.join(settings.MEDIA_ROOT, thumbnail.path)
     return thumbnail_path
 
 
 def templates_used(response):
-    if not hasattr(response, 'templates'):
+    if not hasattr(response, "templates"):
         raise Exception("Response wasn't render from template")
     names = [template.name for template in response.templates]
     return names
@@ -36,7 +35,7 @@ def templates_used(response):
 def redirect_target(response):
     if response.status_code not in [301, 302]:
         raise Exception("Response wasn't a redirect")
-    location = urlparse(response['location'])
+    location = urlparse(response["location"])
     return resolve(location.path).url_name
 
 
@@ -54,7 +53,7 @@ def patch_background_task_decorator(*decorated_modules):
     The modules on which the decorator is used have to be indicated
     because they have to be reloaded to effectively apply the patch.
     """
-    decorator = 'background_task.background'
+    decorator = "background_task.background"
 
     def decorator_mock(*args, **kwargs):
         def background_mock(task_function):
@@ -126,5 +125,6 @@ def freeze_post_phase(phase):
 def assert_template_response(response, template_name, status_code=200):
     assert response.status_code == status_code
     response_template = response.template_name[0]
-    assert response_template == template_name, \
-        '{} != {}'.format(response_template, template_name)
+    assert response_template == template_name, "{} != {}".format(
+        response_template, template_name
+    )

@@ -9,33 +9,42 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0014_collapsible_information_field'),
+        ("a4projects", "0014_collapsible_information_field"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='contact_address_text',
+            model_name="project",
+            name="contact_address_text",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='project',
-            name='contact_email',
+            model_name="project",
+            name="contact_email",
             field=models.EmailField(blank=True, max_length=254),
         ),
         migrations.AddField(
-            model_name='project',
-            name='contact_name',
+            model_name="project",
+            name="contact_name",
             field=models.CharField(blank=True, max_length=120),
         ),
         migrations.AddField(
-            model_name='project',
-            name='contact_phone',
-            field=models.CharField(blank=True, max_length=17, validators=[django.core.validators.RegexValidator(message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.", regex='^\\+?1?\\d{9,15}$')]),
+            model_name="project",
+            name="contact_phone",
+            field=models.CharField(
+                blank=True,
+                max_length=17,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",
+                        regex="^\\+?1?\\d{9,15}$",
+                    )
+                ],
+            ),
         ),
         migrations.AddField(
-            model_name='project',
-            name='contact_url',
+            model_name="project",
+            name="contact_url",
             field=models.URLField(blank=True),
         ),
     ]

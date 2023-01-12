@@ -11,24 +11,34 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4administrative_districts', '0001_initial'),
-        ('a4projects', '0017_contact_phone_regex'),
+        ("a4administrative_districts", "0001_initial"),
+        ("a4projects", "0017_contact_phone_regex"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='project',
-            name='administrative_district',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='a4administrative_districts.AdministrativeDistrict', verbose_name='Administrative district'),
+            model_name="project",
+            name="administrative_district",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="a4administrative_districts.AdministrativeDistrict",
+                verbose_name="Administrative district",
+            ),
         ),
         migrations.AddField(
-            model_name='project',
-            name='point',
-            field=adhocracy4.maps.fields.PointField(blank=True, null=True, verbose_name='Location of your Project'),
+            model_name="project",
+            name="point",
+            field=adhocracy4.maps.fields.PointField(
+                blank=True, null=True, verbose_name="Location of your Project"
+            ),
         ),
         migrations.AddField(
-            model_name='project',
-            name='topic',
-            field=adhocracy4.projects.fields.TopicField(blank=True, default='', max_length=254, verbose_name='Project topic'),
+            model_name="project",
+            name="topic",
+            field=adhocracy4.projects.fields.TopicField(
+                blank=True, default="", max_length=254, verbose_name="Project topic"
+            ),
         ),
     ]

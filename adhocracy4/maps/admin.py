@@ -6,15 +6,20 @@ from . import models
 
 @admin.register(models.AreaSettings)
 class AreaSettingsAdmin(admin.ModelAdmin):
-    list_filter = ('module__project__organisation', 'module__project')
-    list_display = ('module',)
+    list_filter = ("module__project__organisation", "module__project")
+    list_display = ("module",)
 
     fieldsets = (
-        (None, {'fields': ('module',)}),
-        (_('Polygon'), {
-            'fields': ('polygon',),
-            'description': _('Enter a valid GeoJSON object. '
-                             'To initialize a new areasetting enter the '
-                             'string "false" without quotation marks.')
-        })
+        (None, {"fields": ("module",)}),
+        (
+            _("Polygon"),
+            {
+                "fields": ("polygon",),
+                "description": _(
+                    "Enter a valid GeoJSON object. "
+                    "To initialize a new areasetting enter the "
+                    'string "false" without quotation marks.'
+                ),
+            },
+        ),
     )

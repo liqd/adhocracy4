@@ -11,36 +11,75 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('a4projects', '0001_initial'),
+        ("a4projects", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Item',
+            name="Item",
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
-                ('created', models.DateTimeField(editable=False, default=django.utils.timezone.now)),
-                ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                (
+                    "id",
+                    models.AutoField(
+                        serialize=False,
+                        verbose_name="ID",
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(
+                        editable=False, default=django.utils.timezone.now
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(blank=True, editable=False, null=True),
+                ),
+                (
+                    "creator",
+                    models.ForeignKey(
+                        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Module',
+            name="Module",
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=512, unique=True)),
-                ('slug', autoslug.fields.AutoSlugField(populate_from='name', editable=False, unique=True)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('weight', models.PositiveIntegerField()),
-                ('project', models.ForeignKey(to='a4projects.Project', on_delete=models.CASCADE)),
+                (
+                    "id",
+                    models.AutoField(
+                        serialize=False,
+                        verbose_name="ID",
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("name", models.CharField(max_length=512, unique=True)),
+                (
+                    "slug",
+                    autoslug.fields.AutoSlugField(
+                        populate_from="name", editable=False, unique=True
+                    ),
+                ),
+                ("description", models.TextField(blank=True, null=True)),
+                ("weight", models.PositiveIntegerField()),
+                (
+                    "project",
+                    models.ForeignKey(
+                        to="a4projects.Project", on_delete=models.CASCADE
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='item',
-            name='module',
-            field=models.ForeignKey(to='a4modules.Module', on_delete=models.CASCADE),
+            model_name="item",
+            name="module",
+            field=models.ForeignKey(to="a4modules.Module", on_delete=models.CASCADE),
         ),
     ]

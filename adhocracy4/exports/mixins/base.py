@@ -37,14 +37,15 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
             fields = meta.get_fields()
 
         for field in fields:
-            if field.concrete \
-                    and not (field.one_to_one
-                             and field.remote_field.parent_link) \
-                    and field.name not in exclude \
-                    and field.name not in virtual:
+            if (
+                field.concrete
+                and not (field.one_to_one and field.remote_field.parent_link)
+                and field.name not in exclude
+                and field.name not in virtual
+            ):
                 if self.related_fields and field.name in self.related_fields:
                     for attr in self.related_fields[field.name]:
-                        related_field_name = '%s_%s' % (field.name, attr)
+                        related_field_name = "%s_%s" % (field.name, attr)
                         virtual[related_field_name] = related_field_name
                 else:
                     virtual[field.name] = str(field.verbose_name)
@@ -57,16 +58,24 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
     def _setup_html_fields(self):
         html_fields = self.html_fields if self.html_fields else []
         for field in html_fields:
-            get_field_attr_name = 'get_%s_data' % field
-            setattr(self, get_field_attr_name,
-                    lambda item, field_name=field:
-                    unescape_and_strip_html(getattr(item, field_name)))
+            get_field_attr_name = "get_%s_data" % field
+            setattr(
+                self,
+                get_field_attr_name,
+                lambda item, field_name=field: unescape_and_strip_html(
+                    getattr(item, field_name)
+                ),
+            )
 
     def _setup_related_fields(self):
         related_fields = self.related_fields if self.related_fields else {}
         for field in related_fields:
             for attr in related_fields[field]:
-                get_field_attr_name = 'get_%s_%s_data' % (field, attr)
-                setattr(self, get_field_attr_name,
-                        lambda item, field=field, attr=attr:
-                        str(getattr(getattr(item, field), attr, '')))
+                get_field_attr_name = "get_%s_%s_data" % (field, attr)
+                setattr(
+                    self,
+                    get_field_attr_name,
+                    lambda item, field=field, attr=attr: str(
+                        getattr(getattr(item, field), attr, "")
+                    ),
+                )

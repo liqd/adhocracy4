@@ -8,13 +8,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('contenttypes', '0002_remove_content_type_name'),
-        ('a4comments', '0004_comment_char_limit_increase'),
+        ("contenttypes", "0002_remove_content_type_name"),
+        ("a4comments", "0004_comment_char_limit_increase"),
     ]
 
     operations = [
         migrations.AlterIndexTogether(
-            name='comment',
-            index_together=set([('content_type', 'object_pk')]),
+            name="comment",
+            index_together=set([("content_type", "object_pk")]),
         ),
     ]

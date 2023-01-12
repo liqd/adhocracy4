@@ -25,13 +25,11 @@ from .utils import get_module_clusters_dict
 
 
 class ProjectManager(models.Manager):
-
     def get_by_natural_key(self, name):
         return self.get(name=name)
 
     def featured(self):
-        return self.filter(is_draft=False, is_archived=False)\
-                   .order_by('-created')[:8]
+        return self.filter(is_draft=False, is_archived=False).order_by("-created")[:8]
 
 
 class ProjectContactDetailMixin(models.Model):
@@ -39,38 +37,29 @@ class ProjectContactDetailMixin(models.Model):
         abstract = True
 
     phone_regex = RegexValidator(
-        regex=r'^[\d\+\(\)\- ]{8,20}$',
-        message=_("Phone numbers can only contain digits, spaces and "
-                  "the following characters: -, +, (, ). "
-                  "It has to be between 8 and 20 characters long."))
+        regex=r"^[\d\+\(\)\- ]{8,20}$",
+        message=_(
+            "Phone numbers can only contain digits, spaces and "
+            "the following characters: -, +, (, ). "
+            "It has to be between 8 and 20 characters long."
+        ),
+    )
 
     contact_address_text = models.TextField(
-        blank=True,
-        verbose_name=_('Postal address')
+        blank=True, verbose_name=_("Postal address")
     )
 
-    contact_email = models.EmailField(
-        blank=True,
-        verbose_name=_('Email')
-    )
+    contact_email = models.EmailField(blank=True, verbose_name=_("Email"))
 
     contact_name = models.CharField(
-        max_length=120,
-        blank=True,
-        verbose_name=_('Contact person')
+        max_length=120, blank=True, verbose_name=_("Contact person")
     )
 
     contact_phone = models.CharField(
-        validators=[phone_regex],
-        max_length=20,
-        blank=True,
-        verbose_name=_('Phone')
+        validators=[phone_regex], max_length=20, blank=True, verbose_name=_("Phone")
     )
 
-    contact_url = models.URLField(
-        blank=True,
-        verbose_name=_('Website')
-    )
+    contact_url = models.URLField(blank=True, verbose_name=_("Website"))
 
 
 class ProjectLocationMixin(models.Model):
@@ -80,11 +69,13 @@ class ProjectLocationMixin(models.Model):
     point = PointField(
         null=True,
         blank=True,
-        verbose_name=_('Can your project be located on the map?'),
-        help_text=_('Locate your project. '
-                    'Click inside the marked area '
-                    'or type in an address to set the marker. A set '
-                    'marker can be dragged when pressed.')
+        verbose_name=_("Can your project be located on the map?"),
+        help_text=_(
+            "Locate your project. "
+            "Click inside the marked area "
+            "or type in an address to set the marker. A set "
+            "marker can be dragged when pressed."
+        ),
     )
 
     administrative_district = models.ForeignKey(
@@ -92,12 +83,11 @@ class ProjectLocationMixin(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        verbose_name=_('Administrative district')
+        verbose_name=_("Administrative district"),
     )
 
 
 class ModuleClusterPropertiesMixin:
-
     @cached_property
     def module_clusters(self):
         modules = self.module_set.filter(is_draft=False)
@@ -109,12 +99,11 @@ class ModuleClusterPropertiesMixin:
 
 
 class TimelinePropertiesMixin:
-
     def get_events_list(self):
-        if self.events and hasattr(self.events[0], 'event_type'):
-            return self.events.values('date', 'name',
-                                      'event_type',
-                                      'slug', 'description')
+        if self.events and hasattr(self.events[0], "event_type"):
+            return self.events.values(
+                "date", "name", "event_type", "slug", "description"
+            )
         return []
 
     @cached_property
@@ -122,7 +111,7 @@ class TimelinePropertiesMixin:
         module_clusters = self.module_cluster_dict
         event_list = self.get_events_list()
         full_list = module_clusters + list(event_list)
-        return sorted(full_list, key=lambda k: k['date'])
+        return sorted(full_list, key=lambda k: k["date"])
 
     @cached_property
     def display_timeline(self):
@@ -131,14 +120,14 @@ class TimelinePropertiesMixin:
     def get_current_participation_date(self):
         now = timezone.now()
         for idx, val in enumerate(self.participation_dates):
-            if 'type' in val and val['type'] == 'module':
-                start_date = val['date']
-                end_date = val['end_date']
+            if "type" in val and val["type"] == "module":
+                start_date = val["date"]
+                end_date = val["end_date"]
                 if start_date and end_date:
                     if now >= start_date and now <= end_date:
                         return idx
         for idx, val in enumerate(self.participation_dates):
-            date = val['date']
+            date = val["date"]
             if date:
                 if now <= date:
                     return idx
@@ -147,7 +136,7 @@ class TimelinePropertiesMixin:
         pd = self.participation_dates
         try:
             current_dict = pd[idx]
-            if 'type' not in current_dict:
+            if "type" not in current_dict:
                 return current_dict
         except (IndexError, KeyError):
             return []
@@ -157,117 +146,114 @@ class TimelinePropertiesMixin:
         pd = self.participation_dates
         try:
             current_dict = pd[idx]
-            if current_dict['type'] == 'module':
-                return current_dict['modules']
+            if current_dict["type"] == "module":
+                return current_dict["modules"]
         except (IndexError, KeyError):
             return []
         return []
 
 
-class Project(ProjectContactDetailMixin,
-              ProjectLocationMixin,
-              base.TimeStampedModel,
-              ModuleClusterPropertiesMixin,
-              TimelinePropertiesMixin):
-    slug = AutoSlugField(populate_from='name', unique=True, editable=True)
+class Project(
+    ProjectContactDetailMixin,
+    ProjectLocationMixin,
+    base.TimeStampedModel,
+    ModuleClusterPropertiesMixin,
+    TimelinePropertiesMixin,
+):
+    slug = AutoSlugField(populate_from="name", unique=True, editable=True)
     name = models.CharField(
         max_length=120,
-        verbose_name=_('Title of your project'),
-        help_text=_('This title will appear on the '
-                    'teaser card and on top of the project '
-                    'detail page. It should be max. 120 characters long')
+        verbose_name=_("Title of your project"),
+        help_text=_(
+            "This title will appear on the "
+            "teaser card and on top of the project "
+            "detail page. It should be max. 120 characters long"
+        ),
     )
     organisation = models.ForeignKey(
-        settings.A4_ORGANISATIONS_MODEL,
-        on_delete=models.CASCADE)
+        settings.A4_ORGANISATIONS_MODEL, on_delete=models.CASCADE
+    )
 
-    group = models.ForeignKey(
-        Group,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, blank=True, null=True)
 
     description = models.CharField(
         max_length=250,
-        verbose_name=_('Short description of your project'),
-        help_text=_('This short description will appear on '
-                    'the header of the project and in the teaser. '
-                    'It should briefly state the goal of the project '
-                    'in max. 250 chars.')
+        verbose_name=_("Short description of your project"),
+        help_text=_(
+            "This short description will appear on "
+            "the header of the project and in the teaser. "
+            "It should briefly state the goal of the project "
+            "in max. 250 chars."
+        ),
     )
     information = RichTextCollapsibleUploadingField(
         blank=True,
-        config_name='collapsible-image-editor',
-        verbose_name=_('Description of your project'),
-        help_text=_('This description should tell participants '
-                    'what the goal of the project is, how the project’s '
-                    'participation will look like. It will be always visible '
-                    'in the „Info“ tab on your project’s page.')
+        config_name="collapsible-image-editor",
+        verbose_name=_("Description of your project"),
+        help_text=_(
+            "This description should tell participants "
+            "what the goal of the project is, how the project’s "
+            "participation will look like. It will be always visible "
+            "in the „Info“ tab on your project’s page."
+        ),
     )
     result = RichTextCollapsibleUploadingField(
         blank=True,
-        config_name='collapsible-image-editor',
-        verbose_name=_('Results of your project'),
-        help_text=_('Here you should explain what the expected outcome of the '
-                    'project will be and how you are planning to use the '
-                    'results. If the project is finished you should add a '
-                    'summary of the results.')
+        config_name="collapsible-image-editor",
+        verbose_name=_("Results of your project"),
+        help_text=_(
+            "Here you should explain what the expected outcome of the "
+            "project will be and how you are planning to use the "
+            "results. If the project is finished you should add a "
+            "summary of the results."
+        ),
     )
     access = EnumField(
-        Access,
-        default=Access.PUBLIC,
-        verbose_name=_('Access to the project')
+        Access, default=Access.PUBLIC, verbose_name=_("Access to the project")
     )
     is_draft = models.BooleanField(default=True)
     image = fields.ConfiguredImageField(
-        'heroimage',
-        verbose_name=_('Header image'),
-        help_prefix=_(
-            'The image will be shown as a decorative background image.'
-        ),
-        upload_to='projects/backgrounds',
+        "heroimage",
+        verbose_name=_("Header image"),
+        help_prefix=_("The image will be shown as a decorative background image."),
+        upload_to="projects/backgrounds",
         blank=True,
-        max_length=300
+        max_length=300,
     )
-    image_copyright = fields.ImageCopyrightField(image_name=_('Header image'))
+    image_copyright = fields.ImageCopyrightField(image_name=_("Header image"))
     tile_image = fields.ConfiguredImageField(
-        'tileimage',
-        verbose_name=_('Tile image'),
-        help_prefix=_(
-            'The image will be shown in the project tile.'
-        ),
-        upload_to='projects/tiles',
+        "tileimage",
+        verbose_name=_("Tile image"),
+        help_prefix=_("The image will be shown in the project tile."),
+        upload_to="projects/tiles",
         blank=True,
-        max_length=300
+        max_length=300,
     )
-    tile_image_copyright = fields.ImageCopyrightField(
-        image_name=_('Tile image')
-    )
+    tile_image_copyright = fields.ImageCopyrightField(image_name=_("Tile image"))
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name='project_participant',
+        related_name="project_participant",
         blank=True,
     )
     moderators = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name='project_moderator',
+        related_name="project_moderator",
         blank=True,
     )
     is_archived = models.BooleanField(
         default=False,
-        verbose_name=_('Project is archived'),
-        help_text=_('Archived projects are not shown in the project overview. '
-                    'For project initiators they are still visible in the '
-                    'dashboard.'),
+        verbose_name=_("Project is archived"),
+        help_text=_(
+            "Archived projects are not shown in the project overview. "
+            "For project initiators they are still visible in the "
+            "dashboard."
+        ),
     )
     topics = TopicField(
-        verbose_name=_('Project topics'),
-        help_text=_('Add topics to your project.')
+        verbose_name=_("Project topics"), help_text=_("Add topics to your project.")
     )
     project_type = models.CharField(
-        blank=True,
-        max_length=256,
-        default='a4projects.Project'
+        blank=True, max_length=256, default="a4projects.Project"
     )
 
     is_app_accessible = models.BooleanField(default=False)
@@ -275,24 +261,23 @@ class Project(ProjectContactDetailMixin,
     objects = ProjectManager()
 
     class Meta:
-        ordering = ['-created']
+        ordering = ["-created"]
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('project-detail', kwargs=dict(slug=self.slug))
+        return reverse("project-detail", kwargs=dict(slug=self.slug))
 
     def save(self, *args, **kwargs):
         self.information = html_transforms.clean_html_field(
-            self.information, 'collapsible-image-editor')
+            self.information, "collapsible-image-editor"
+        )
         self.result = html_transforms.clean_html_field(
-            self.result, 'collapsible-image-editor')
+            self.result, "collapsible-image-editor"
+        )
         if self.pk is None:
-            project_type = '{}.{}'.format(
-                self._meta.app_label,
-                self.__class__.__name__
-            )
+            project_type = "{}.{}".format(self._meta.app_label, self.__class__.__name__)
             self.project_type = project_type
         super(Project, self).save(*args, **kwargs)
 
@@ -319,15 +304,16 @@ class Project(ProjectContactDetailMixin,
     # properties
     @cached_property
     def topic_names(self):
-        if hasattr(settings, 'A4_PROJECT_TOPICS'):
+        if hasattr(settings, "A4_PROJECT_TOPICS"):
             choices = dict(settings.A4_PROJECT_TOPICS)
             return [choices[topic] for topic in self.topics]
         return []
 
     @cached_property
     def other_projects(self):
-        other_projects = self.organisation.project_set\
-            .filter(is_draft=False, is_archived=False).exclude(slug=self.slug)
+        other_projects = self.organisation.project_set.filter(
+            is_draft=False, is_archived=False
+        ).exclude(slug=self.slug)
         return other_projects
 
     @cached_property
@@ -382,7 +368,7 @@ class Project(ProjectContactDetailMixin,
         """
         Return the currently active module that ends next.
         """
-        return self.running_modules.order_by('module_end').first()
+        return self.running_modules.order_by("module_end").first()
 
     @cached_property
     def module_running_days_left(self):
@@ -437,12 +423,13 @@ class Project(ProjectContactDetailMixin,
     def end_date(self):
         # FIXME: project properties should rely on modules, not phases.
         end_date = None
-        last_phase = self.published_phases.exclude(end_date=None)\
-            .order_by('end_date').last()
+        last_phase = (
+            self.published_phases.exclude(end_date=None).order_by("end_date").last()
+        )
         if last_phase and last_phase.end_date:
             end_date = last_phase.end_date
         if self.events:
-            last_event = self.events.order_by('date').last()
+            last_event = self.events.order_by("date").last()
             if end_date:
                 if last_event.date > end_date:
                     end_date = last_event.date
@@ -452,7 +439,7 @@ class Project(ProjectContactDetailMixin,
 
     @cached_property
     def events(self):
-        if hasattr(self, 'offlineevent_set'):
+        if hasattr(self, "offlineevent_set"):
             return self.offlineevent_set.all()
 
     @cached_property
@@ -473,10 +460,9 @@ class Project(ProjectContactDetailMixin,
         This property is used to determine which phase view is shown.
         """
         # FIXME: project properties should rely on modules, not phases.
-        return self.phases\
-            .filter(module__is_draft=False)\
-            .past_and_active_phases()\
-            .last()
+        return (
+            self.phases.filter(module__is_draft=False).past_and_active_phases().last()
+        )
 
     @cached_property
     def last_active_module(self):
@@ -498,23 +484,28 @@ class Project(ProjectContactDetailMixin,
         Return the currently active phase that ends next.
         """
         # FIXME: project properties should rely on modules, not phases.
-        return self.phases.active_phases()\
-            .filter(module__is_draft=False)\
-            .order_by('end_date').first()
+        return (
+            self.phases.active_phases()
+            .filter(module__is_draft=False)
+            .order_by("end_date")
+            .first()
+        )
 
     @cached_property
     def phases(self):
         # FIXME: project properties should rely on modules, not phases.
         from adhocracy4.phases import models as phase_models
-        return phase_models.Phase.objects\
-            .filter(module__project=self)
+
+        return phase_models.Phase.objects.filter(module__project=self)
 
     @cached_property
     def published_phases(self):
         # FIXME: project properties should rely on modules, not phases.
         from adhocracy4.phases import models as phase_models
-        return phase_models.Phase.objects\
-            .filter(module__project=self, module__is_draft=False)
+
+        return phase_models.Phase.objects.filter(
+            module__project=self, module__is_draft=False
+        )
 
     @cached_property
     def future_phases(self):
@@ -534,11 +525,13 @@ class Project(ProjectContactDetailMixin,
     @cached_property
     def has_finished(self):
         # FIXME: project properties should rely on modules, not phases.
-        return self.modules.exists()\
-            and self.published_modules.exists()\
-            and not self.published_phases.active_phases().exists()\
-            and not self.published_phases.future_phases().exists()\
+        return (
+            self.modules.exists()
+            and self.published_modules.exists()
+            and not self.published_phases.active_phases().exists()
+            and not self.published_phases.future_phases().exists()
             and not self.has_future_events
+        )
 
     # deprecated properties
     @cached_property
@@ -556,7 +549,7 @@ class Project(ProjectContactDetailMixin,
         warnings.warn(
             "active_phase is deprecated; "
             "use active_phase_ends_next or active_module_ends_next",
-            DeprecationWarning
+            DeprecationWarning,
         )
         last_active_phase = self.last_active_phase
         if last_active_phase and not last_active_phase.is_over:

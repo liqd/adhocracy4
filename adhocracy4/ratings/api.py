@@ -12,28 +12,29 @@ from .models import Rating
 from .serializers import RatingSerializer
 
 
-class RatingViewSet(mixins.CreateModelMixin,
-                    mixins.UpdateModelMixin,
-                    ContentTypeMixin,
-                    viewsets.GenericViewSet):
+class RatingViewSet(
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    ContentTypeMixin,
+    viewsets.GenericViewSet,
+):
 
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
-    filterset_fields = ('object_pk', 'content_type')
+    filterset_fields = ("object_pk", "content_type")
     content_type_filter = settings.A4_RATEABLES
 
     def perform_create(self, serializer):
-        queryset = Rating.objects.filter(content_type_id=self.content_type.pk,
-                                         creator=self.request.user,
-                                         object_pk=self.content_object.pk)
+        queryset = Rating.objects.filter(
+            content_type_id=self.content_type.pk,
+            creator=self.request.user,
+            object_pk=self.content_object.pk,
+        )
         if queryset.exists():
             raise ValidationError(queryset[0].pk)
-        serializer.save(
-            content_object=self.content_object,
-            creator=self.request.user
-        )
+        serializer.save(content_object=self.content_object, creator=self.request.user)
 
     def get_permission_object(self):
         return self.content_object
@@ -41,9 +42,8 @@ class RatingViewSet(mixins.CreateModelMixin,
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
-            POST='{app_label}.rate_{model}'.format(
-                app_label=self.content_type.app_label,
-                model=self.content_type.model
+            POST="{app_label}.rate_{model}".format(
+                app_label=self.content_type.app_label, model=self.content_type.model
             )
         )
 

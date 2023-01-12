@@ -8,7 +8,7 @@ def get_datetime_display(datetime):
     local_date = defaultfilters.date(local_datetime)
     local_time = defaultfilters.time(local_datetime)
 
-    return local_date + ', ' + local_time
+    return local_date + ", " + local_time
 
 
 def get_date_display(datetime):

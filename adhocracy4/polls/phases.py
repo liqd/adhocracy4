@@ -10,19 +10,18 @@ from . import views
 
 class VotingPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'voting'
+    phase = "voting"
     view = views.PollDetailView
 
-    name = pgettext_lazy('A4: voting phase name', 'Voting phase')
+    name = pgettext_lazy("A4: voting phase name", "Voting phase")
     description = pgettext_lazy(
-        'A4: voting phase description',
-        'Answer the questions and comment on the poll.'
+        "A4: voting phase description", "Answer the questions and comment on the poll."
     )
-    module_name = _('polls')
+    module_name = _("polls")
 
     features = {
-        'crud': (models.Vote,),
-        'comment': (models.Poll,),
+        "crud": (models.Vote,),
+        "comment": (models.Poll,),
     }
 
 

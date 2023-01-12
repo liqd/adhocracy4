@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4comments', '0005_auto_20181204_1641'),
+        ("a4comments", "0005_auto_20181204_1641"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='comment',
-            name='last_discussed',
+            model_name="comment",
+            name="last_discussed",
             field=models.DateTimeField(blank=True, editable=False, null=True),
         ),
     ]

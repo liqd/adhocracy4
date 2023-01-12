@@ -25,12 +25,16 @@ class DashboardTestComponentFactory(factory.Factory):
     class Meta:
         model = DashboardTestComponent
 
-    identifier = factory.Sequence(lambda n: 'test-component-%d' % n)
+    identifier = factory.Sequence(lambda n: "test-component-%d" % n)
     weight = factory.Sequence(lambda n: n)
-    label = factory.Faker('sentence', nb_words=2)
+    label = factory.Faker("sentence", nb_words=2)
 
     effective = True
     progress = (1, 1)
-    urls = [('^test/dashboard/component/$',
-             lambda *args: None,
-             'dashboard-component-test-url')]
+    urls = [
+        (
+            "^test/dashboard/component/$",
+            lambda *args: None,
+            "dashboard-component-test-url",
+        )
+    ]

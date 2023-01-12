@@ -15,7 +15,7 @@ class CategoryIconDict(abc.Mapping):
     @cached_property
     def _icons(self):
         return {
-            self.field.prepare_value(obj): getattr(obj, 'icon', None)
+            self.field.prepare_value(obj): getattr(obj, "icon", None)
             for obj in self.queryset.all()
         }
 
@@ -32,18 +32,17 @@ class CategoryIconDict(abc.Mapping):
 class CategorySelectWidget(widgets.Select):
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
-        current_class = context['widget']['attrs'].get('class', '')
-        new_class = current_class + ' select-dropdown'
+        current_class = context["widget"]["attrs"].get("class", "")
+        new_class = current_class + " select-dropdown"
 
-        context['widget']['attrs']['class'] = new_class
+        context["widget"]["attrs"]["class"] = new_class
         return context
 
     def create_option(self, name, value, label, selected, index, **kwargs):
-        option = super().create_option(name, value, label, selected, index,
-                                       **kwargs)
-        if hasattr(value, 'value') and value.value in self.icons:
+        option = super().create_option(name, value, label, selected, index, **kwargs)
+        if hasattr(value, "value") and value.value in self.icons:
             icon_url = get_category_icon_url(self.icons[value.value])
-            option['attrs']['data-icon-src'] = icon_url
+            option["attrs"]["data-icon-src"] = icon_url
 
         return option
 
@@ -69,11 +68,10 @@ class CategoryChoiceField(forms.ModelChoiceField):
 
 class IconSelectWidget(widgets.Select):
     def create_option(self, name, value, label, selected, index, **kwargs):
-        option = super().create_option(name, value, label, selected, index,
-                                       **kwargs)
+        option = super().create_option(name, value, label, selected, index, **kwargs)
 
         icon_url = get_category_icon_url(value)
-        option['attrs']['data-icon-src'] = icon_url
+        option["attrs"]["data-icon-src"] = icon_url
         return option
 
 

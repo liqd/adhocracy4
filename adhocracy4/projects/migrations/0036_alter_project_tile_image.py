@@ -7,13 +7,20 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0035_alter_project_slug'),
+        ("a4projects", "0035_alter_project_slug"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='tile_image',
-            field=adhocracy4.images.fields.ConfiguredImageField('tileimage', blank=True, help_prefix='The image will be shown in the project tile.', max_length=512, upload_to='projects/tiles', verbose_name='Tile image'),
+            model_name="project",
+            name="tile_image",
+            field=adhocracy4.images.fields.ConfiguredImageField(
+                "tileimage",
+                blank=True,
+                help_prefix="The image will be shown in the project tile.",
+                max_length=512,
+                upload_to="projects/tiles",
+                verbose_name="Tile image",
+            ),
         ),
     ]

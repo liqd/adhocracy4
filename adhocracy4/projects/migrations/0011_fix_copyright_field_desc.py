@@ -9,18 +9,28 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0010_image_copyrights'),
+        ("a4projects", "0010_image_copyrights"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='project',
-            name='image_copyright',
-            field=adhocracy4.images.fields.ImageCopyrightField(blank=True, help_text='Copyright shown in the Header image.', max_length=120, verbose_name='Header image copyright'),
+            model_name="project",
+            name="image_copyright",
+            field=adhocracy4.images.fields.ImageCopyrightField(
+                blank=True,
+                help_text="Copyright shown in the Header image.",
+                max_length=120,
+                verbose_name="Header image copyright",
+            ),
         ),
         migrations.AlterField(
-            model_name='project',
-            name='tile_image_copyright',
-            field=adhocracy4.images.fields.ImageCopyrightField(blank=True, help_text='Copyright shown in the Tile image.', max_length=120, verbose_name='Tile image copyright'),
+            model_name="project",
+            name="tile_image_copyright",
+            field=adhocracy4.images.fields.ImageCopyrightField(
+                blank=True,
+                help_text="Copyright shown in the Tile image.",
+                max_length=120,
+                verbose_name="Tile image copyright",
+            ),
         ),
     ]

@@ -5,10 +5,9 @@ from tests.apps.questions import factories
 
 
 class ReportFactory(factory.django.DjangoModelFactory):
-
     class Meta:
-        model = 'a4reports.Report'
+        model = "a4reports.Report"
 
-    description = factory.Faker('text')
+    description = factory.Faker("text")
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     content_object = factory.SubFactory(factories.QuestionFactory)
