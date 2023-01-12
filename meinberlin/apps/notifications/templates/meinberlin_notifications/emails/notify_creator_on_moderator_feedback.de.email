@@ -17,7 +17,7 @@ Der Status Ihres Beitrags hat sich geändert und steht nun auf “{{ object.get_
 </p>
 {% endif %}
 {% if object.moderator_statement.statement %}
-<p>
+<p style="text-align: left;">
 Rückmeldung: {{ object.moderator_statement.statement | safe }}
 </p>
 {% endif %}
