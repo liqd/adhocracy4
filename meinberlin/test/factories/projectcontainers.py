@@ -5,7 +5,6 @@ from meinberlin.apps.projectcontainers import models
 
 
 class ProjectContainerFactory(ProjectFactory):
-
     class Meta:
         model = models.ProjectContainer
 

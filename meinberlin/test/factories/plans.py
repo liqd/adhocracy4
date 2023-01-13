@@ -6,23 +6,24 @@ from meinberlin.apps.plans.models import Plan
 
 
 class PlanFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = Plan
 
-    title = factory.Faker('sentence', nb_words=4)
+    title = factory.Faker("sentence", nb_words=4)
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
     group = factory.SubFactory(a4_factories.GroupFactory)
     district = factory.SubFactory(AdministrativeDistrictFactory)
     point = {
-        'type': 'Feature',
-        'properties': {},
-        'geometry': {'type': 'Point',
-                     'coordinates': [13.447437286376953, 52.51518602243137]}
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+            "type": "Point",
+            "coordinates": [13.447437286376953, 52.51518602243137],
+        },
     }
-    contact_address_text = ''
-    topics = ''
+    contact_address_text = ""
+    topics = ""
     status = Plan.STATUS_ONGOING
     participation = Plan.PARTICIPATION_INFORMATION
     is_draft = False
