@@ -10,6 +10,6 @@ from tests.ratings import factories as rating_factories
 register(category_factories.CategoryFactory)
 register(idea_factories.IdeaFactory)
 register(label_factories.LabelFactory)
-register(moderatorfeedback_factories.ModeratorStatementFactory)
+register(moderatorfeedback_factories.ModeratorFeedbackFactory)
 register(rating_factories.RatingFactory)
 register(comment_factories.CommentFactory)

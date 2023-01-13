@@ -28,7 +28,12 @@ def test_model_fields_mixin(idea):
 def test_model_fields_mixin_exclude(idea):
     class Mixin(ExportModelFieldsMixin):
         model = Idea
-        exclude = ["moderator_feedback", "moderator_statement", "point", "point_label"]
+        exclude = [
+            "moderator_status",
+            "moderator_feedback_text",
+            "point",
+            "point_label",
+        ]
 
     mixin = Mixin()
 

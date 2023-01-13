@@ -55,13 +55,12 @@ def test_moderator_feedback_mixin(idea):
     mixin = ItemExportWithModeratorFeedback()
 
     virtual = mixin.get_virtual_fields({})
-    assert "moderator_feedback" in virtual
-    assert "moderator_statement" in virtual
+    assert "moderator_status" in virtual
+    assert "moderator_feedback_text" in virtual
+
+    assert mixin.get_moderator_status_data(idea) == idea.get_moderator_status_display()
 
     assert (
-        mixin.get_moderator_feedback_data(idea) == idea.get_moderator_feedback_display()
-    )
-
-    assert (
-        mixin.get_moderator_statement_data(idea) == idea.moderator_statement.statement
+        mixin.get_moderator_feedback_text_data(idea)
+        == idea.moderator_feedback_text.feedback_text
     )

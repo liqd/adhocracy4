@@ -2,12 +2,12 @@ import factory
 
 from adhocracy4.test.factories import UserFactory
 
-from .models import ModeratorStatement
+from .models import ModeratorFeedback
 
 
-class ModeratorStatementFactory(factory.django.DjangoModelFactory):
+class ModeratorFeedbackFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = ModeratorStatement
+        model = ModeratorFeedback
 
-    statement = factory.Faker("text")
+    feedback_text = factory.Faker("text")
     creator = factory.SubFactory(UserFactory)
