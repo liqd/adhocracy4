@@ -65,18 +65,19 @@ class ItemExportWithModeratorFeedback(VirtualFieldMixin):
     """
 
     def get_virtual_fields(self, virtual):
-        if "moderator_feedback" not in virtual:
-            virtual["moderator_feedback"] = _("Status")
-        if "moderator_statement" not in virtual:
-            virtual["moderator_statement"] = _("Feedback")
+        if "moderator_status" not in virtual:
+            virtual["moderator_status"] = _("Status")
+        if "moderator_feedback_text" not in virtual:
+            virtual["moderator_feedback_text"] = _("Feedback")
         return super().get_virtual_fields(virtual)
 
-    def get_moderator_feedback_data(self, item):
-        return item.get_moderator_feedback_display()
+    def get_moderator_status_data(self, item):
+        return item.get_moderator_status_display()
 
-    def get_moderator_statement_data(self, item):
-        if item.moderator_statement:
-            return unescape_and_strip_html(item.moderator_statement.statement)
+    def get_moderator_feedback_text_data(self, item):
+        if item.moderator_feedback_text:
+            feedback_text = item.moderator_feedback_text.feedback_text
+            return unescape_and_strip_html(feedback_text)
         return ""
 
 

@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test import factories
-from tests.apps.moderatorfeedback.factories import ModeratorStatementFactory
+from tests.apps.moderatorfeedback.factories import ModeratorFeedbackFactory
 
 from . import models
 
@@ -10,8 +10,8 @@ class IdeaFactory(factories.ItemFactory):
     class Meta:
         model = models.Idea
 
-    moderator_statement = factory.SubFactory(ModeratorStatementFactory)
-    moderator_feedback = ("CONSIDERATION", "Under consideration")
+    moderator_feedback_text = factory.SubFactory(ModeratorFeedbackFactory)
+    moderator_status = ("CONSIDERATION", "Under consideration")
 
     point_label = factory.Faker("address")
     point = {

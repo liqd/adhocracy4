@@ -10,7 +10,7 @@ from adhocracy4.models.query import CommentableQuerySet
 from adhocracy4.models.query import RateableQuerySet
 from adhocracy4.modules.models import Item
 from adhocracy4.ratings.models import Rating
-from tests.apps.moderatorfeedback.models import ModeratorStatement
+from tests.apps.moderatorfeedback.models import ModeratorFeedback
 
 
 class IdeaQuerySet(RateableQuerySet, CommentableQuerySet):
@@ -20,9 +20,9 @@ class IdeaQuerySet(RateableQuerySet, CommentableQuerySet):
 class Idea(Item):
     name = models.CharField(max_length=120, default="Can i haz cheezburger, pls?")
     description = RichTextField(verbose_name="Description", blank=True)
-    moderator_feedback = models.CharField(max_length=256, blank=True)
-    moderator_statement = models.OneToOneField(
-        ModeratorStatement,
+    moderator_status = models.CharField(max_length=256, blank=True)
+    moderator_feedback_text = models.OneToOneField(
+        ModeratorFeedback,
         related_name="+",
         null=True,
         blank=True,
@@ -59,5 +59,5 @@ class Idea(Item):
     def reference_number(self):
         return "{:d}-{:05d}".format(self.created.year, self.pk)
 
-    def get_moderator_feedback_display(self):
-        return self.moderator_feedback[1]
+    def get_moderator_status_display(self):
+        return self.moderator_status[1]
