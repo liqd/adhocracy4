@@ -8,9 +8,9 @@ from . import views
 
 
 class AdminLogComponent(DashboardComponent):
-    identifier = 'adminlog'
+    identifier = "adminlog"
     weight = 60
-    label = _('Log')
+    label = _("Log")
 
     def is_effective(self, project):
         return True
@@ -19,15 +19,20 @@ class AdminLogComponent(DashboardComponent):
         return 0, 0
 
     def get_base_url(self, project):
-        return reverse('a4dashboard:adminlog', kwargs={
-            'project_slug': project.slug,
-        })
+        return reverse(
+            "a4dashboard:adminlog",
+            kwargs={
+                "project_slug": project.slug,
+            },
+        )
 
     def get_urls(self):
         return [
-            (r'^projects/(?P<project_slug>[-\w_]+)/log/$',
-             views.AdminLogProjectDashboardView.as_view(component=self),
-             'adminlog'),
+            (
+                r"^projects/(?P<project_slug>[-\w_]+)/log/$",
+                views.AdminLogProjectDashboardView.as_view(component=self),
+                "adminlog",
+            ),
         ]
 
 

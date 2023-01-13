@@ -12,21 +12,43 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('meinberlin_budgeting', '0002_proposal_moderator_feedback'),
+        ("meinberlin_budgeting", "0002_proposal_moderator_feedback"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ModeratorStatement',
+            name="ModeratorStatement",
             fields=[
-                ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('modified', models.DateTimeField(blank=True, null=True, editable=False)),
-                ('proposal', models.OneToOneField(related_name='moderator_statement', primary_key=True, serialize=False, to='meinberlin_budgeting.Proposal', on_delete=models.CASCADE)),
-                ('statement', ckeditor.fields.RichTextField(blank=True)),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                (
+                    "created",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, editable=False
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(blank=True, null=True, editable=False),
+                ),
+                (
+                    "proposal",
+                    models.OneToOneField(
+                        related_name="moderator_statement",
+                        primary_key=True,
+                        serialize=False,
+                        to="meinberlin_budgeting.Proposal",
+                        on_delete=models.CASCADE,
+                    ),
+                ),
+                ("statement", ckeditor.fields.RichTextField(blank=True)),
+                (
+                    "creator",
+                    models.ForeignKey(
+                        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

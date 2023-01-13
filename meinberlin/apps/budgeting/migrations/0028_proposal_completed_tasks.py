@@ -6,14 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_moderationtasks', '0001_initial'),
-        ('meinberlin_budgeting', '0027_alter_proposal_moderator_feedback'),
+        ("meinberlin_moderationtasks", "0001_initial"),
+        ("meinberlin_budgeting", "0027_alter_proposal_moderator_feedback"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='proposal',
-            name='completed_tasks',
-            field=models.ManyToManyField(related_name='meinberlin_budgeting_proposal_completed', to='meinberlin_moderationtasks.ModerationTask', verbose_name='completed moderation tasks'),
+            model_name="proposal",
+            name="completed_tasks",
+            field=models.ManyToManyField(
+                related_name="meinberlin_budgeting_proposal_completed",
+                to="meinberlin_moderationtasks.ModerationTask",
+                verbose_name="completed moderation tasks",
+            ),
         ),
     ]

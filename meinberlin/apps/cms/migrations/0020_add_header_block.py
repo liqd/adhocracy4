@@ -10,13 +10,31 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_cms', '0019_add_streamfieldsimplepage'),
+        ("meinberlin_cms", "0019_add_streamfieldsimplepage"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='docspage',
-            name='body',
-            field=wagtail.fields.StreamField((('documents_list', wagtail.blocks.StructBlock((('title', wagtail.blocks.CharBlock()), ('body', wagtail.blocks.RichTextBlock(required=False))))), ('header', wagtail.blocks.CharBlock(template='meinberlin_cms/blocks/header.html')))),
+            model_name="docspage",
+            name="body",
+            field=wagtail.fields.StreamField(
+                (
+                    (
+                        "documents_list",
+                        wagtail.blocks.StructBlock(
+                            (
+                                ("title", wagtail.blocks.CharBlock()),
+                                ("body", wagtail.blocks.RichTextBlock(required=False)),
+                            )
+                        ),
+                    ),
+                    (
+                        "header",
+                        wagtail.blocks.CharBlock(
+                            template="meinberlin_cms/blocks/header.html"
+                        ),
+                    ),
+                )
+            ),
         ),
     ]

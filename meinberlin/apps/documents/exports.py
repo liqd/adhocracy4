@@ -7,37 +7,38 @@ from adhocracy4.exports import views as export_views
 
 
 class DocumentExportView(
-        PermissionRequiredMixin,
-        mixins.ExportModelFieldsMixin,
-        mixins.UserGeneratedContentExportMixin,
-        mixins.ItemExportWithLinkMixin,
-        mixins.ItemExportWithRatesMixin,
-        mixins.CommentExportWithRepliesToMixin,
-        export_views.BaseItemExportView
+    PermissionRequiredMixin,
+    mixins.ExportModelFieldsMixin,
+    mixins.UserGeneratedContentExportMixin,
+    mixins.ItemExportWithLinkMixin,
+    mixins.ItemExportWithRatesMixin,
+    mixins.CommentExportWithRepliesToMixin,
+    export_views.BaseItemExportView,
 ):
 
     model = Comment
-    permission_required = 'a4projects.change_project'
+    permission_required = "a4projects.change_project"
 
-    fields = ['id', 'comment', 'created']
+    fields = ["id", "comment", "created"]
 
     def get_permission_object(self):
         return self.module.project
 
     def get_queryset(self):
         comments = (
-            Comment.objects.filter(paragraph__chapter__module=self.module) |
-            Comment.objects.filter(chapter__module=self.module) |
-            Comment.objects.filter(
-                parent_comment__paragraph__chapter__module=self.module) |
-            Comment.objects.filter(parent_comment__chapter__module=self.module)
+            Comment.objects.filter(paragraph__chapter__module=self.module)
+            | Comment.objects.filter(chapter__module=self.module)
+            | Comment.objects.filter(
+                parent_comment__paragraph__chapter__module=self.module
+            )
+            | Comment.objects.filter(parent_comment__chapter__module=self.module)
         )
         return comments
 
     def get_virtual_fields(self, virtual):
-        virtual.setdefault('id', _('ID'))
-        virtual.setdefault('comment', _('Comment'))
-        virtual.setdefault('created', _('Created'))
+        virtual.setdefault("id", _("ID"))
+        virtual.setdefault("comment", _("Comment"))
+        virtual.setdefault("created", _("Created"))
         return super().get_virtual_fields(virtual)
 
     @property

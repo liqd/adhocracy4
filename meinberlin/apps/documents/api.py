@@ -8,9 +8,7 @@ from .models import Chapter
 from .serializers import DocumentSerializer
 
 
-class DocumentViewSet(ModuleMixin,
-                      CreateModelMixin,
-                      viewsets.GenericViewSet):
+class DocumentViewSet(ModuleMixin, CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = DocumentSerializer
     permission_classes = (ViewSetRulesPermission,)
 
@@ -19,9 +17,11 @@ class DocumentViewSet(ModuleMixin,
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
-        context.update({
-            'module_pk': int(self.module_pk),
-        })
+        context.update(
+            {
+                "module_pk": int(self.module_pk),
+            }
+        )
         return context
 
     def get_queryset(self):

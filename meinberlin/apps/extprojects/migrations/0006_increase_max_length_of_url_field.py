@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_extprojects', '0005_custom_project_types'),
+        ("meinberlin_extprojects", "0005_custom_project_types"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='externalproject',
-            name='url',
-            field=models.URLField(blank=True, help_text='Please enter a full url which starts with https:// or http://', max_length=500, verbose_name='URL'),
+            model_name="externalproject",
+            name="url",
+            field=models.URLField(
+                blank=True,
+                help_text="Please enter a full url which starts with https:// or http://",
+                max_length=500,
+                verbose_name="URL",
+            ),
         ),
     ]

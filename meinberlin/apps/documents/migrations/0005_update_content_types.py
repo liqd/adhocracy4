@@ -17,9 +17,7 @@ reverse_sql = """UPDATE django_content_type
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_documents', '0004_remove_create_document_phase'),
+        ("meinberlin_documents", "0004_remove_create_document_phase"),
     ]
 
-    operations = [
-        migrations.RunSQL(sql, reverse_sql)
-    ]
+    operations = [migrations.RunSQL(sql, reverse_sql)]

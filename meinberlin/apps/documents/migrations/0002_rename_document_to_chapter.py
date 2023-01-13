@@ -6,20 +6,20 @@ from django.db import models
 
 
 class Migration(migrations.Migration):
-    atomic=False
+    atomic = False
 
     dependencies = [
-        ('meinberlin_documents', '0001_initial'),
+        ("meinberlin_documents", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Document',
-            new_name='Chapter',
+            old_name="Document",
+            new_name="Chapter",
         ),
         migrations.RenameField(
-            model_name='paragraph',
-            old_name='document',
-            new_name='chapter',
+            model_name="paragraph",
+            old_name="document",
+            new_name="chapter",
         ),
     ]

@@ -10,13 +10,18 @@ import adhocracy4.images.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_budgeting', '0015_proposal_image'),
+        ("meinberlin_budgeting", "0015_proposal_image"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='proposal',
-            name='image',
-            field=adhocracy4.images.fields.ConfiguredImageField('idea_image', blank=True, help_prefix='Visualize your idea.', upload_to='ideas/images'),
+            model_name="proposal",
+            name="image",
+            field=adhocracy4.images.fields.ConfiguredImageField(
+                "idea_image",
+                blank=True,
+                help_prefix="Visualize your idea.",
+                upload_to="ideas/images",
+            ),
         ),
     ]

@@ -3,7 +3,7 @@ from django.views import generic
 
 
 class ComponentLibraryView(generic.base.TemplateView):
-    template_name = 'meinberlin_contrib/component_library.html'
+    template_name = "meinberlin_contrib/component_library.html"
 
 
 class CanonicalURLDetailView(generic.DetailView):
@@ -13,7 +13,7 @@ class CanonicalURLDetailView(generic.DetailView):
         self.object = self.get_object()
 
         # Redirect to the absolute url if it differs from the current path
-        if hasattr(self.object, 'get_absolute_url'):
+        if hasattr(self.object, "get_absolute_url"):
             absolute_url = self.object.get_absolute_url()
             if absolute_url != request.path:
                 return redirect(absolute_url)

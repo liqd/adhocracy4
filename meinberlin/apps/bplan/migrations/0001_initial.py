@@ -9,37 +9,66 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4modules', '0001_initial'),
-        ('meinberlin_extprojects', '0001_initial'),
+        ("a4modules", "0001_initial"),
+        ("meinberlin_extprojects", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Bplan',
+            name="Bplan",
             fields=[
-                ('externalproject_ptr', models.OneToOneField(parent_link=True, serialize=False, auto_created=True, to='meinberlin_extprojects.ExternalProject', primary_key=True, on_delete=models.CASCADE)),
-                ('office_worker_email', models.EmailField(max_length=254)),
+                (
+                    "externalproject_ptr",
+                    models.OneToOneField(
+                        parent_link=True,
+                        serialize=False,
+                        auto_created=True,
+                        to="meinberlin_extprojects.ExternalProject",
+                        primary_key=True,
+                        on_delete=models.CASCADE,
+                    ),
+                ),
+                ("office_worker_email", models.EmailField(max_length=254)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('meinberlin_extprojects.externalproject',),
+            bases=("meinberlin_extprojects.externalproject",),
         ),
         migrations.CreateModel(
-            name='Statement',
+            name="Statement",
             fields=[
-                ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
-                ('created', models.DateTimeField(editable=False, default=django.utils.timezone.now)),
-                ('modified', models.DateTimeField(editable=False, blank=True, null=True)),
-                ('name', models.CharField(max_length=255)),
-                ('email', models.EmailField(blank=True, max_length=254)),
-                ('statement', models.TextField(max_length=17500)),
-                ('street_number', models.CharField(max_length=255)),
-                ('postal_code_city', models.CharField(max_length=255)),
-                ('module', models.ForeignKey(to='a4modules.Module', on_delete=models.CASCADE)),
+                (
+                    "id",
+                    models.AutoField(
+                        primary_key=True,
+                        verbose_name="ID",
+                        auto_created=True,
+                        serialize=False,
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(
+                        editable=False, default=django.utils.timezone.now
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(editable=False, blank=True, null=True),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("email", models.EmailField(blank=True, max_length=254)),
+                ("statement", models.TextField(max_length=17500)),
+                ("street_number", models.CharField(max_length=255)),
+                ("postal_code_city", models.CharField(max_length=255)),
+                (
+                    "module",
+                    models.ForeignKey(to="a4modules.Module", on_delete=models.CASCADE),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

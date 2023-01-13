@@ -4,7 +4,7 @@ from django.db import migrations
 
 
 def disallow_contact(apps, schema_editor):
-    Proposal = apps.get_model('meinberlin_budgeting', 'Proposal')
+    Proposal = apps.get_model("meinberlin_budgeting", "Proposal")
 
     for proposal in Proposal.objects.all():
         proposal.allow_contact = False
@@ -12,7 +12,7 @@ def disallow_contact(apps, schema_editor):
 
 
 def allow_contact(apps, schema_editor):
-    Proposal = apps.get_model('meinberlin_budgeting', 'Proposal')
+    Proposal = apps.get_model("meinberlin_budgeting", "Proposal")
 
     for proposal in Proposal.objects.all():
         proposal.allow_contact = True
@@ -22,7 +22,7 @@ def allow_contact(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_budgeting', '0022_add_contact_fields'),
+        ("meinberlin_budgeting", "0022_add_contact_fields"),
     ]
 
     operations = [

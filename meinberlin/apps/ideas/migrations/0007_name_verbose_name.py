@@ -9,13 +9,13 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_ideas', '0006_auto_20170529_1302'),
+        ("meinberlin_ideas", "0006_auto_20170529_1302"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='idea',
-            name='name',
-            field=models.CharField(max_length=120, verbose_name='Title'),
+            model_name="idea",
+            name="name",
+            field=models.CharField(max_length=120, verbose_name="Title"),
         ),
     ]

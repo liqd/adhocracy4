@@ -8,13 +8,12 @@ from . import views
 
 class FaceToFacePhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'facetoface'
+    phase = "facetoface"
     view = views.ActivityView
 
-    name = _('Face to face phase')
-    description = _('Provide information about face-to-face participation '
-                    'events.')
-    module_name = _('facetoface')
+    name = _("Face to face phase")
+    description = _("Provide information about face-to-face participation " "events.")
+    module_name = _("facetoface")
 
     features = {}
 

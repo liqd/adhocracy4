@@ -11,5 +11,5 @@ class Adhocracy4Sitemap(Sitemap):
 
     def items(self):
         return Project.objects.filter(
-            Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
-            is_draft=False)
+            Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC), is_draft=False
+        )

@@ -10,48 +10,66 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4administrative_districts', '0001_initial'),
-        ('a4projects', '0018_add_location_and_topic'),
-        ('meinberlin_cms', '0023_add_accordeon_block'),
+        ("a4administrative_districts", "0001_initial"),
+        ("a4projects", "0018_add_location_and_topic"),
+        ("meinberlin_cms", "0023_add_accordeon_block"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='storefrontitem',
-            name='header_image',
+            model_name="storefrontitem",
+            name="header_image",
         ),
         migrations.RemoveField(
-            model_name='storefrontitem',
-            name='link_page',
+            model_name="storefrontitem",
+            name="link_page",
         ),
         migrations.RemoveField(
-            model_name='storefrontitem',
-            name='title',
+            model_name="storefrontitem",
+            name="title",
         ),
         migrations.AddField(
-            model_name='storefront',
-            name='image',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='meinberlin_cms.CustomImage'),
+            model_name="storefront",
+            name="image",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="meinberlin_cms.CustomImage",
+            ),
         ),
         migrations.AddField(
-            model_name='storefront',
-            name='teaser',
-            field=models.CharField(default='', max_length=100),
+            model_name="storefront",
+            name="teaser",
+            field=models.CharField(default="", max_length=100),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='storefrontitem',
-            name='district',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='a4administrative_districts.AdministrativeDistrict'),
+            model_name="storefrontitem",
+            name="district",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="+",
+                to="a4administrative_districts.AdministrativeDistrict",
+            ),
         ),
         migrations.AddField(
-            model_name='storefrontitem',
-            name='project',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='a4projects.Project'),
+            model_name="storefrontitem",
+            name="project",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="+",
+                to="a4projects.Project",
+            ),
         ),
         migrations.AddField(
-            model_name='storefrontitem',
-            name='quote',
+            model_name="storefrontitem",
+            name="quote",
             field=models.TextField(blank=True, max_length=300),
         ),
     ]

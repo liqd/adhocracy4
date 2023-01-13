@@ -8,19 +8,13 @@ class CustomImage(AbstractImage):
 
     copyright = models.CharField(max_length=255, blank=True)
 
-    admin_form_fields = Image.admin_form_fields + (
-        'copyright',
-    )
+    admin_form_fields = Image.admin_form_fields + ("copyright",)
 
 
 class CustomRendition(AbstractRendition):
     image = models.ForeignKey(
-        CustomImage,
-        related_name='renditions',
-        on_delete=models.CASCADE
+        CustomImage, related_name="renditions", on_delete=models.CASCADE
     )
 
     class Meta:
-        unique_together = (
-            ('image', 'filter_spec', 'focal_point_key'),
-        )
+        unique_together = (("image", "filter_spec", "focal_point_key"),)

@@ -10,15 +10,19 @@ from .models import LogEntry
 
 
 class ComponentFilter(admin.SimpleListFilter):
-    title = _('Component')
-    parameter_name = 'component_identifier'
+    title = _("Component")
+    parameter_name = "component_identifier"
 
     def lookups(self, request, model_admin):
         return chain(
-            ((component.identifier, component.label)
-             for component in components.projects.values()),
-            ((component.identifier, component.label)
-             for component in components.modules.values())
+            (
+                (component.identifier, component.label)
+                for component in components.projects.values()
+            ),
+            (
+                (component.identifier, component.label)
+                for component in components.modules.values()
+            ),
         )
 
     def queryset(self, request, queryset):
@@ -28,24 +32,29 @@ class ComponentFilter(admin.SimpleListFilter):
 
 @admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
-    readonly_fields = ('timestamp', 'action', 'actor', 'message',
-                       'project', 'module', 'component')
-    exclude = ('component_identifier', )
+    readonly_fields = (
+        "timestamp",
+        "action",
+        "actor",
+        "message",
+        "project",
+        "module",
+        "component",
+    )
+    exclude = ("component_identifier",)
 
     list_filter = (
-        'action',
-        'project__organisation',
+        "action",
+        "project__organisation",
         ProjectAdminFilter,
         ComponentFilter,
     )
-    list_display = ('timestamp', 'message',
-                    'actor', 'action',
-                    'project', 'component')
-    date_hierarchy = 'timestamp'
+    list_display = ("timestamp", "message", "actor", "action", "project", "component")
+    date_hierarchy = "timestamp"
 
     def component(self, instance):
         if not instance.component_identifier:
-            return ''
+            return ""
 
         if instance.component_identifier in components.projects:
             component = components.projects[instance.component_identifier]
@@ -54,5 +63,6 @@ class LogEntryAdmin(admin.ModelAdmin):
             component = components.modules[instance.component_identifier]
             return component.label
 
-        return ''
-    component.short_description = _('Component')
+        return ""
+
+    component.short_description = _("Component")

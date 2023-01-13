@@ -9,13 +9,15 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_bplan', '0004_add_verbose_name'),
+        ("meinberlin_bplan", "0004_add_verbose_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='bplan',
-            name='office_worker_email',
-            field=models.EmailField(blank=True, max_length=254, verbose_name='Office worker email'),
+            model_name="bplan",
+            name="office_worker_email",
+            field=models.EmailField(
+                blank=True, max_length=254, verbose_name="Office worker email"
+            ),
         ),
     ]

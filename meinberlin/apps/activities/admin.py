@@ -6,16 +6,16 @@ from . import models
 
 
 class ActivityAdminForm(forms.ModelForm):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['description'].widget = CKEditorUploadingWidget(
-            config_name='collapsible-image-editor', )
+        self.fields["description"].widget = CKEditorUploadingWidget(
+            config_name="collapsible-image-editor",
+        )
 
     class Meta:
         model = models.Activity
-        fields = '__all__'
+        fields = "__all__"
 
 
 class ActivityAdmin(admin.ModelAdmin):

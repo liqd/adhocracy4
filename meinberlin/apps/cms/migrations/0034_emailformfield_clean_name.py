@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_cms', '0033_update_mapteaser'),
+        ("meinberlin_cms", "0033_update_mapteaser"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='emailformfield',
-            name='clean_name',
-            field=models.CharField(blank=True, default='', help_text='Safe name of the form field, the label converted to ascii_snake_case', max_length=255, verbose_name='name'),
+            model_name="emailformfield",
+            name="clean_name",
+            field=models.CharField(
+                blank=True,
+                default="",
+                help_text="Safe name of the form field, the label converted to ascii_snake_case",
+                max_length=255,
+                verbose_name="name",
+            ),
         ),
     ]

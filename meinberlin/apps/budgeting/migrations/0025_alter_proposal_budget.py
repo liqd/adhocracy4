@@ -7,13 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_budgeting', '0024_alter_proposal_budget'),
+        ("meinberlin_budgeting", "0024_alter_proposal_budget"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='proposal',
-            name='budget',
-            field=models.PositiveIntegerField(default=0, help_text='Please enter the estimated or actual costs for your proposal. Enter 0€ if the costs are not (yet) known. In this case, the description "budget not specified" will appear in your proposal.', validators=[django.core.validators.MaxValueValidator(1000000)], verbose_name='Budget'),
+            model_name="proposal",
+            name="budget",
+            field=models.PositiveIntegerField(
+                default=0,
+                help_text='Please enter the estimated or actual costs for your proposal. Enter 0€ if the costs are not (yet) known. In this case, the description "budget not specified" will appear in your proposal.',
+                validators=[django.core.validators.MaxValueValidator(1000000)],
+                verbose_name="Budget",
+            ),
         ),
     ]

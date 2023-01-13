@@ -8,18 +8,44 @@ import wagtail.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_cms', '0037_wagtail_3_update'),
+        ("meinberlin_cms", "0037_wagtail_3_update"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='docspage',
-            name='body',
-            field=wagtail.fields.StreamField([('documents_list', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock()), ('body', wagtail.blocks.RichTextBlock(required=False))])), ('header', wagtail.blocks.CharBlock(template='meinberlin_cms/blocks/header.html'))], use_json_field=True),
+            model_name="docspage",
+            name="body",
+            field=wagtail.fields.StreamField(
+                [
+                    (
+                        "documents_list",
+                        wagtail.blocks.StructBlock(
+                            [
+                                ("title", wagtail.blocks.CharBlock()),
+                                ("body", wagtail.blocks.RichTextBlock(required=False)),
+                            ]
+                        ),
+                    ),
+                    (
+                        "header",
+                        wagtail.blocks.CharBlock(
+                            template="meinberlin_cms/blocks/header.html"
+                        ),
+                    ),
+                ],
+                use_json_field=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='streamfieldsimplepage',
-            name='body',
-            field=wagtail.fields.StreamField([('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock())], blank=True, use_json_field=True),
+            model_name="streamfieldsimplepage",
+            name="body",
+            field=wagtail.fields.StreamField(
+                [
+                    ("paragraph", wagtail.blocks.RichTextBlock()),
+                    ("html", wagtail.blocks.RawHTMLBlock()),
+                ],
+                blank=True,
+                use_json_field=True,
+            ),
         ),
     ]

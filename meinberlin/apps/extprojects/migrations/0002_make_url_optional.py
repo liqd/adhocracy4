@@ -9,13 +9,13 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_extprojects', '0001_initial'),
+        ("meinberlin_extprojects", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='externalproject',
-            name='url',
+            model_name="externalproject",
+            name="url",
             field=models.URLField(blank=True),
         ),
     ]

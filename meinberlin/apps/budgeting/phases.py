@@ -9,80 +9,82 @@ from . import views
 
 class RequestPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'submit'
+    phase = "submit"
     view = views.ProposalListView
 
-    name = _('What ideas do you suggest for funding?')
-    description = _('You can enter your proposal on the map and comment on '
-                    'and rate the proposals of the other participants.')
-    module_name = _('participatory budgeting')
+    name = _("What ideas do you suggest for funding?")
+    description = _(
+        "You can enter your proposal on the map and comment on "
+        "and rate the proposals of the other participants."
+    )
+    module_name = _("participatory budgeting")
 
     features = {
-        'crud': (models.Proposal,),
-        'comment': (models.Proposal,),
-        'rate': (models.Proposal,),
+        "crud": (models.Proposal,),
+        "comment": (models.Proposal,),
+        "rate": (models.Proposal,),
     }
 
 
 class CollectPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'collect'
+    phase = "collect"
     view = views.ProposalListView
 
-    name = _('What ideas do you suggest for funding?')
-    description = _('You can enter your proposal on the map and comment on '
-                    'the proposals of the other participants.')
-    module_name = _('participatory budgeting 2 phases')
+    name = _("What ideas do you suggest for funding?")
+    description = _(
+        "You can enter your proposal on the map and comment on "
+        "the proposals of the other participants."
+    )
+    module_name = _("participatory budgeting 2 phases")
 
     features = {
-        'crud': (models.Proposal,),
-        'comment': (models.Proposal,),
+        "crud": (models.Proposal,),
+        "comment": (models.Proposal,),
     }
 
 
 class RatingPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'rating'
+    phase = "rating"
     view = views.ProposalListView
 
-    name = _('How do you like the submitted proposals?')
-    description = _('Rate the submitted proposals for the participatory '
-                    'budget (for/against).')
-    module_name = _('participatory budgeting 2 phases')
+    name = _("How do you like the submitted proposals?")
+    description = _(
+        "Rate the submitted proposals for the participatory " "budget (for/against)."
+    )
+    module_name = _("participatory budgeting 2 phases")
 
-    features = {
-        'rate': (models.Proposal,)
-    }
+    features = {"rate": (models.Proposal,)}
 
 
 class SupportPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'support'
+    phase = "support"
     view = views.ProposalListView
 
-    name = _('Which of the submitted proposals would you like to support?')
-    description = _('The proposals with the most supporters will be '
-                    'examined and will then be put to the final vote.')
-    module_name = _('participatory budgeting 2 phases')
+    name = _("Which of the submitted proposals would you like to support?")
+    description = _(
+        "The proposals with the most supporters will be "
+        "examined and will then be put to the final vote."
+    )
+    module_name = _("participatory budgeting 2 phases")
 
-    features = {
-        'support': (models.Proposal,)
-    }
+    features = {"support": (models.Proposal,)}
 
 
 class VotingPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'voting'
+    phase = "voting"
     view = views.ProposalListView
 
-    name = _('Which of the proposals do you think should be implemented?')
-    description = _('You can vote for up to 5 proposals. '
-                    'To do so, please enter the voting code.')
-    module_name = _('participatory budgeting 3 phases')
+    name = _("Which of the proposals do you think should be implemented?")
+    description = _(
+        "You can vote for up to 5 proposals. " "To do so, please enter the voting code."
+    )
+    module_name = _("participatory budgeting 3 phases")
 
-    features = {
-        'vote': (models.Proposal,)
-    }
+    features = {"vote": (models.Proposal,)}
 
 
 phases.content.register(RequestPhase())

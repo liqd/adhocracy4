@@ -9,13 +9,17 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_extprojects', '0002_make_url_optional'),
+        ("meinberlin_extprojects", "0002_make_url_optional"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='externalproject',
-            name='url',
-            field=models.URLField(blank=True, help_text='Please enter a full url which starts with https:// or http://', verbose_name='URL'),
+            model_name="externalproject",
+            name="url",
+            field=models.URLField(
+                blank=True,
+                help_text="Please enter a full url which starts with https:// or http://",
+                verbose_name="URL",
+            ),
         ),
     ]

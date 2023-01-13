@@ -8,18 +8,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_extprojects', '0003_update_verbose_name_and_helptext'),
+        ("meinberlin_extprojects", "0003_update_verbose_name_and_helptext"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='externalproject',
-            name='end_date',
-            field=models.DateTimeField(blank=True, null=True, verbose_name='End date'),
+            model_name="externalproject",
+            name="end_date",
+            field=models.DateTimeField(blank=True, null=True, verbose_name="End date"),
         ),
         migrations.AddField(
-            model_name='externalproject',
-            name='start_date',
-            field=models.DateTimeField(blank=True, null=True, verbose_name='Start date'),
+            model_name="externalproject",
+            name="start_date",
+            field=models.DateTimeField(
+                blank=True, null=True, verbose_name="Start date"
+            ),
         ),
     ]

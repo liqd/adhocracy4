@@ -8,12 +8,12 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_budgeting', '0009_remove_feedback_phase'),
+        ("meinberlin_budgeting", "0009_remove_feedback_phase"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='proposal',
-            options={'ordering': ['-created']},
+            name="proposal",
+            options={"ordering": ["-created"]},
         ),
     ]

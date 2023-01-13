@@ -15,53 +15,123 @@ import meinberlin.apps.moderatorfeedback.fields
 
 class Migration(migrations.Migration):
 
-    replaces = [('meinberlin_budgeting', '0001_initial'), ('meinberlin_budgeting', '0002_proposal_moderator_feedback'), ('meinberlin_budgeting', '0003_moderatorstatement'), ('meinberlin_budgeting', '0004_auto_20170420_1456')]
+    replaces = [
+        ("meinberlin_budgeting", "0001_initial"),
+        ("meinberlin_budgeting", "0002_proposal_moderator_feedback"),
+        ("meinberlin_budgeting", "0003_moderatorstatement"),
+        ("meinberlin_budgeting", "0004_auto_20170420_1456"),
+    ]
 
     dependencies = [
-        ('a4categories', '__first__'),
-        ('a4modules', '0001_initial'),
+        ("a4categories", "__first__"),
+        ("a4modules", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Proposal',
+            name="Proposal",
             fields=[
-                ('item_ptr', models.OneToOneField(serialize=False, auto_created=True, to='a4modules.Item', primary_key=True, parent_link=True, on_delete=models.CASCADE)),
-                ('slug', autoslug.fields.AutoSlugField(populate_from='name', editable=False, unique=True)),
-                ('name', models.CharField(max_length=120)),
-                ('description', ckeditor.fields.RichTextField()),
-                ('budget', models.PositiveIntegerField(default=0, help_text='Required Budget')),
-                ('category', models.ForeignKey(to='a4categories.Category', null=True, on_delete=django.db.models.deletion.SET_NULL, blank=True)),
-                ('moderator_feedback', meinberlin.apps.moderatorfeedback.fields.ModeratorFeedbackField(default=None, choices=[('CONSIDERATION', 'Under consideration'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')], null=True, blank=True, max_length=254)),
+                (
+                    "item_ptr",
+                    models.OneToOneField(
+                        serialize=False,
+                        auto_created=True,
+                        to="a4modules.Item",
+                        primary_key=True,
+                        parent_link=True,
+                        on_delete=models.CASCADE,
+                    ),
+                ),
+                (
+                    "slug",
+                    autoslug.fields.AutoSlugField(
+                        populate_from="name", editable=False, unique=True
+                    ),
+                ),
+                ("name", models.CharField(max_length=120)),
+                ("description", ckeditor.fields.RichTextField()),
+                (
+                    "budget",
+                    models.PositiveIntegerField(default=0, help_text="Required Budget"),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        to="a4categories.Category",
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        blank=True,
+                    ),
+                ),
+                (
+                    "moderator_feedback",
+                    meinberlin.apps.moderatorfeedback.fields.ModeratorFeedbackField(
+                        default=None,
+                        choices=[
+                            ("CONSIDERATION", "Under consideration"),
+                            ("REJECTED", "Rejected"),
+                            ("ACCEPTED", "Accepted"),
+                        ],
+                        null=True,
+                        blank=True,
+                        max_length=254,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created'],
-                'abstract': False,
+                "ordering": ["-created"],
+                "abstract": False,
             },
-            bases=('a4modules.item', models.Model),
+            bases=("a4modules.item", models.Model),
         ),
         migrations.CreateModel(
-            name='ModeratorStatement',
+            name="ModeratorStatement",
             fields=[
-                ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('proposal', models.OneToOneField(serialize=False, related_name='moderator_statement', to='meinberlin_budgeting.Proposal', primary_key=True, on_delete=models.CASCADE)),
-                ('statement', ckeditor.fields.RichTextField(blank=True)),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                (
+                    "created",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, editable=False
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(blank=True, editable=False, null=True),
+                ),
+                (
+                    "proposal",
+                    models.OneToOneField(
+                        serialize=False,
+                        related_name="moderator_statement",
+                        to="meinberlin_budgeting.Proposal",
+                        primary_key=True,
+                        on_delete=models.CASCADE,
+                    ),
+                ),
+                ("statement", ckeditor.fields.RichTextField(blank=True)),
+                (
+                    "creator",
+                    models.ForeignKey(
+                        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.AlterModelOptions(
-            name='proposal',
+            name="proposal",
             options={},
         ),
         migrations.AddField(
-            model_name='proposal',
-            name='point',
-            field=adhocracy4.maps.fields.PointField(default=None, verbose_name='Where can your idea be located on a map?', help_text='Click inside marked area to set a marker. Drag and drop marker to change place.'),
+            model_name="proposal",
+            name="point",
+            field=adhocracy4.maps.fields.PointField(
+                default=None,
+                verbose_name="Where can your idea be located on a map?",
+                help_text="Click inside marked area to set a marker. Drag and drop marker to change place.",
+            ),
             preserve_default=False,
         ),
     ]

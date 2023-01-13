@@ -31,8 +31,8 @@ class MultiFormMixin(generic.base.ContextMixin):
         """
         Insert the forms into the context dict.
         """
-        if 'forms' not in kwargs:
-            kwargs['forms'] = self.get_forms()
+        if "forms" not in kwargs:
+            kwargs["forms"] = self.get_forms()
         return super().get_context_data(**kwargs)
 
     def get_forms(self):
@@ -55,13 +55,13 @@ class MultiFormMixin(generic.base.ContextMixin):
         """
         Returns the form class to be used with the named form.
         """
-        return self._get_from_name(name, 'form_class')
+        return self._get_from_name(name, "form_class")
 
     def get_initial(self, name):
         """
         Returns the initial data to use for the named form.
         """
-        initial = self._get_from_name(name, 'initial', {})
+        initial = self._get_from_name(name, "initial", {})
         return initial.copy()
 
     def get_prefix(self, name):
@@ -69,7 +69,7 @@ class MultiFormMixin(generic.base.ContextMixin):
         Returns the prefix to use for the named form.
         """
         if self.prefix:
-            return '{}_{}'.format(self.prefix, name)
+            return "{}_{}".format(self.prefix, name)
         return name
 
     def get_form_kwargs(self, name):
@@ -77,14 +77,16 @@ class MultiFormMixin(generic.base.ContextMixin):
         Returns the keyword arguments for instantiating the named form.
         """
         kwargs = {
-            'initial': self.get_initial(name),
-            'prefix': self.get_prefix(name),
+            "initial": self.get_initial(name),
+            "prefix": self.get_prefix(name),
         }
-        if self.request.method in ('POST', 'PUT'):
-            kwargs.update({
-                'data': self.request.POST,
-                'files': self.request.FILES,
-            })
+        if self.request.method in ("POST", "PUT"):
+            kwargs.update(
+                {
+                    "data": self.request.POST,
+                    "files": self.request.FILES,
+                }
+            )
         return kwargs
 
     def get_success_url(self):
@@ -95,8 +97,7 @@ class MultiFormMixin(generic.base.ContextMixin):
             # Forcing possible reverse_lazy evaluation
             url = force_str(self.success_url)
         else:
-            raise ImproperlyConfigured(
-                "No URL to redirect to. Provide a success_url.")
+            raise ImproperlyConfigured("No URL to redirect to. Provide a success_url.")
         return url
 
 
@@ -118,7 +119,7 @@ class MultiModelFormMixin(MultiFormMixin):
         objects = {}
         with transaction.atomic():
             for name in self.forms.keys():
-                if hasattr(forms[name], 'save'):
+                if hasattr(forms[name], "save"):
                     objects[name] = forms[name].save(commit)
         return objects
 
@@ -128,16 +129,16 @@ class MultiModelFormMixin(MultiFormMixin):
         Has to be called after the forms have been saved.
         """
         for form in forms.values():
-            if hasattr(form, 'save_m2m'):
+            if hasattr(form, "save_m2m"):
                 form.save_m2m()
 
     def get_form_class(self, name):
         """
         Returns the form class to be used with the named form.
         """
-        fields = self._get_from_name(name, 'fields')
-        form_class = self._get_from_name(name, 'form_class')
-        model = self._get_from_name(name, 'model')
+        fields = self._get_from_name(name, "fields")
+        form_class = self._get_from_name(name, "form_class")
+        model = self._get_from_name(name, "model")
 
         if fields is not None and form_class:
             raise ImproperlyConfigured(
@@ -150,8 +151,7 @@ class MultiModelFormMixin(MultiFormMixin):
             if fields is None:
                 raise ImproperlyConfigured(
                     "Using MultiModelFormMixin (base class of %s) without "
-                    "the 'fields' attribute is prohibited."
-                    % self.__class__.__name__
+                    "the 'fields' attribute is prohibited." % self.__class__.__name__
                 )
             return model_forms.modelform_factory(model, fields=fields)
 
@@ -162,7 +162,7 @@ class MultiModelFormMixin(MultiFormMixin):
         kwargs = super().get_form_kwargs(name)
         instance = self.get_instance(name)
         if instance:
-            kwargs.update({'instance': instance})
+            kwargs.update({"instance": instance})
         return kwargs
 
     def get_instance(self, name):

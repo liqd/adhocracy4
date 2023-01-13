@@ -9,13 +9,22 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_cms', '0015_adapt_to_wagtail_update'),
+        ("meinberlin_cms", "0015_adapt_to_wagtail_update"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='emailformpage',
-            name='attach_as',
-            field=models.CharField(choices=[('inc', 'Include in Email'), ('xls', 'XLSX Document'), ('txt', 'Text File')], default='inc', help_text='Form results are send in this document format', max_length=3),
+            model_name="emailformpage",
+            name="attach_as",
+            field=models.CharField(
+                choices=[
+                    ("inc", "Include in Email"),
+                    ("xls", "XLSX Document"),
+                    ("txt", "Text File"),
+                ],
+                default="inc",
+                help_text="Form results are send in this document format",
+                max_length=3,
+            ),
         ),
     ]

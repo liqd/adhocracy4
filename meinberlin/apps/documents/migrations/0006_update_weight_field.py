@@ -8,17 +8,17 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_documents', '0005_update_content_types'),
+        ("meinberlin_documents", "0005_update_content_types"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='chapter',
-            options={'ordering': ('weight',)},
+            name="chapter",
+            options={"ordering": ("weight",)},
         ),
         migrations.AlterField(
-            model_name='chapter',
-            name='weight',
+            model_name="chapter",
+            name="weight",
             field=models.PositiveIntegerField(default=0),
         ),
     ]

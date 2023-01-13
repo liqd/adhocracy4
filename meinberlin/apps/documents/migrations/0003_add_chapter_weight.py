@@ -8,13 +8,13 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_documents', '0002_rename_document_to_chapter'),
+        ("meinberlin_documents", "0002_rename_document_to_chapter"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='chapter',
-            name='weight',
+            model_name="chapter",
+            name="weight",
             field=models.PositiveIntegerField(default=0),
             preserve_default=False,
         ),

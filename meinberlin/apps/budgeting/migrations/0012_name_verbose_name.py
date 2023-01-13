@@ -11,18 +11,21 @@ import adhocracy4.maps.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_budgeting', '0011_allow_blank'),
+        ("meinberlin_budgeting", "0011_allow_blank"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='proposal',
-            name='name',
-            field=models.CharField(max_length=120, verbose_name='Title'),
+            model_name="proposal",
+            name="name",
+            field=models.CharField(max_length=120, verbose_name="Title"),
         ),
         migrations.AlterField(
-            model_name='proposal',
-            name='point',
-            field=adhocracy4.maps.fields.PointField(help_text='Click inside marked area on the map to set a marker. Drag and drop the marker to change its place. Alternatively you can use the search field to search for an address.', verbose_name='Where can your idea be located on a map?'),
+            model_name="proposal",
+            name="point",
+            field=adhocracy4.maps.fields.PointField(
+                help_text="Click inside marked area on the map to set a marker. Drag and drop the marker to change its place. Alternatively you can use the search field to search for an address.",
+                verbose_name="Where can your idea be located on a map?",
+            ),
         ),
     ]

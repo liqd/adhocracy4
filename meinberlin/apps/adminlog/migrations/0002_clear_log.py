@@ -14,9 +14,7 @@ def clear_log(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_adminlog', '0001_initial'),
+        ("meinberlin_adminlog", "0001_initial"),
     ]
 
-    operations = [
-        migrations.RunPython(clear_log)
-    ]
+    operations = [migrations.RunPython(clear_log)]

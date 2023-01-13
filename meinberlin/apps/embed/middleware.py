@@ -12,5 +12,5 @@ class AjaxPathMiddleware(MiddlewareMixin):
     """
 
     def process_response(self, request, response):
-        response['x-ajax-path'] = quote(request.path)
+        response["x-ajax-path"] = quote(request.path)
         return response

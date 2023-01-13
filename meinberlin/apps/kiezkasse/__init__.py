@@ -1,1 +1,1 @@
-default_app_config = 'meinberlin.apps.kiezkasse.apps.Config'
+default_app_config = "meinberlin.apps.kiezkasse.apps.Config"

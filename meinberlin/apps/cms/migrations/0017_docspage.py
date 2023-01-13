@@ -12,21 +12,51 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0040_page_draft_title'),
-        ('meinberlin_cms', '0016_attach_inline'),
+        ("wagtailcore", "0040_page_draft_title"),
+        ("meinberlin_cms", "0016_attach_inline"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='DocsPage',
+            name="DocsPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.fields.StreamField((('documents_list', wagtail.blocks.StructBlock((('title', wagtail.blocks.CharBlock()), ('body', wagtail.blocks.RichTextBlock(required=False))))),))),
-                ('description', wagtail.fields.RichTextField(blank=True)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "body",
+                    wagtail.fields.StreamField(
+                        (
+                            (
+                                "documents_list",
+                                wagtail.blocks.StructBlock(
+                                    (
+                                        ("title", wagtail.blocks.CharBlock()),
+                                        (
+                                            "body",
+                                            wagtail.blocks.RichTextBlock(
+                                                required=False
+                                            ),
+                                        ),
+                                    )
+                                ),
+                            ),
+                        )
+                    ),
+                ),
+                ("description", wagtail.fields.RichTextField(blank=True)),
             ],
             options={
-                'verbose_name': 'Documents',
+                "verbose_name": "Documents",
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

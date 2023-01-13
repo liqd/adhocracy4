@@ -10,13 +10,19 @@ import meinberlin.apps.moderatorfeedback.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_budgeting', '0001_initial'),
+        ("meinberlin_budgeting", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='proposal',
-            name='moderator_feedback',
-            field=meinberlin.apps.moderatorfeedback.fields.ModeratorFeedbackField(choices=[('CONSIDERATION', 'Under consideration'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')]),
+            model_name="proposal",
+            name="moderator_feedback",
+            field=meinberlin.apps.moderatorfeedback.fields.ModeratorFeedbackField(
+                choices=[
+                    ("CONSIDERATION", "Under consideration"),
+                    ("REJECTED", "Rejected"),
+                    ("ACCEPTED", "Accepted"),
+                ]
+            ),
         ),
     ]

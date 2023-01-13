@@ -9,24 +9,22 @@ from . import apps
 from . import models
 
 
-class ExternalProjectRedirectView(ProjectMixin,
-                                  generic.RedirectView):
+class ExternalProjectRedirectView(ProjectMixin, generic.RedirectView):
     permanent = True
 
     def get_redirect_url(self, *args, **kwargs):
-        extproject = get_object_or_404(models.ExternalProject,
-                                       module=self.module)
+        extproject = get_object_or_404(models.ExternalProject, module=self.module)
         return extproject.url
 
 
 class ExternalPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'external'
+    phase = "external"
     view = ExternalProjectRedirectView
 
-    name = _('External phase')
-    description = _('External phase.')
-    module_name = _('external project')
+    name = _("External phase")
+    description = _("External phase.")
+    module_name = _("external project")
 
     features = {}
 

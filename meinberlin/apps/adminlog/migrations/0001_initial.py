@@ -15,27 +15,80 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('a4modules', '0003_rm_unique_name'),
-        ('a4projects', '0013_help_texts'),
+        ("a4modules", "0003_rm_unique_name"),
+        ("a4projects", "0013_help_texts"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='LogEntry',
+            name="LogEntry",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('timestamp', models.DateTimeField(default=django.utils.timezone.now, editable=False, verbose_name='action time')),
-                ('component_identifier', models.CharField(blank=True, max_length=255)),
-                ('message', models.TextField(verbose_name='Message')),
-                ('action', models.SmallIntegerField(choices=[(1, 'Project updated'), (2, 'Module updated'), (3, 'Project created'), (4, 'Project published'), (5, 'Project unpublished')], verbose_name='Action')),
-                ('actor', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL, verbose_name='User')),
-                ('module', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='a4modules.Module', verbose_name='Module')),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to='a4projects.Project', verbose_name='Project')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "timestamp",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now,
+                        editable=False,
+                        verbose_name="action time",
+                    ),
+                ),
+                ("component_identifier", models.CharField(blank=True, max_length=255)),
+                ("message", models.TextField(verbose_name="Message")),
+                (
+                    "action",
+                    models.SmallIntegerField(
+                        choices=[
+                            (1, "Project updated"),
+                            (2, "Module updated"),
+                            (3, "Project created"),
+                            (4, "Project published"),
+                            (5, "Project unpublished"),
+                        ],
+                        verbose_name="Action",
+                    ),
+                ),
+                (
+                    "actor",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="User",
+                    ),
+                ),
+                (
+                    "module",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to="a4modules.Module",
+                        verbose_name="Module",
+                    ),
+                ),
+                (
+                    "project",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="+",
+                        to="a4projects.Project",
+                        verbose_name="Project",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'log entries',
-                'verbose_name': 'log entry',
-                'ordering': ('-timestamp',),
+                "verbose_name_plural": "log entries",
+                "verbose_name": "log entry",
+                "ordering": ("-timestamp",),
             },
         ),
     ]

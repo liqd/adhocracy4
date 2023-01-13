@@ -9,13 +9,18 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_bplan', '0006_bplan_identifier'),
+        ("meinberlin_bplan", "0006_bplan_identifier"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='bplan',
-            name='identifier',
-            field=models.CharField(blank=True, help_text='The identifier has to be identic to the identifier in the FIS-Broker, so that district and location are added automatically.', max_length=120, verbose_name='Identifier'),
+            model_name="bplan",
+            name="identifier",
+            field=models.CharField(
+                blank=True,
+                help_text="The identifier has to be identic to the identifier in the FIS-Broker, so that district and location are added automatically.",
+                max_length=120,
+                verbose_name="Identifier",
+            ),
         ),
     ]

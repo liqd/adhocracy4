@@ -9,20 +9,30 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0032_add_bulk_delete_page_permission'),
-        ('meinberlin_cms', '0006_auto_20170412_1529'),
+        ("wagtailcore", "0032_add_bulk_delete_page_permission"),
+        ("meinberlin_cms", "0006_auto_20170412_1529"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='SimplePage',
+            name="SimplePage",
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, serialize=False, auto_created=True, primary_key=True, to='wagtailcore.Page', on_delete=models.CASCADE)),
-                ('body', wagtail.fields.RichTextField(blank=True)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        parent_link=True,
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                        to="wagtailcore.Page",
+                        on_delete=models.CASCADE,
+                    ),
+                ),
+                ("body", wagtail.fields.RichTextField(blank=True)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

@@ -6,13 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_adminlog', '0002_clear_log'),
+        ("meinberlin_adminlog", "0002_clear_log"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='logentry',
-            name='action',
-            field=models.SmallIntegerField(choices=[(1, 'Project updated'), (2, 'Module updated'), (3, 'Project created'), (4, 'Project published'), (5, 'Project unpublished'), (6, 'Module created'), (7, 'Module published'), (8, 'Module unpublished')], verbose_name='Action'),
+            model_name="logentry",
+            name="action",
+            field=models.SmallIntegerField(
+                choices=[
+                    (1, "Project updated"),
+                    (2, "Module updated"),
+                    (3, "Project created"),
+                    (4, "Project published"),
+                    (5, "Project unpublished"),
+                    (6, "Module created"),
+                    (7, "Module published"),
+                    (8, "Module unpublished"),
+                ],
+                verbose_name="Action",
+            ),
         ),
     ]

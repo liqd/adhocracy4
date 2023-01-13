@@ -7,23 +7,22 @@ from wagtail.contrib.settings.models import register_setting
 @register_setting
 class HeaderPages(BaseSiteSetting):
     help_page = models.ForeignKey(
-        'wagtailcore.Page',
+        "wagtailcore.Page",
         related_name="help_page",
-        verbose_name='Help Page',
+        verbose_name="Help Page",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        help_text="Please add a link to the help page.")
+        help_text="Please add a link to the help page.",
+    )
     feedback_page = models.ForeignKey(
-        'wagtailcore.Page',
+        "wagtailcore.Page",
         related_name="feedback_page",
-        verbose_name='Feedback Form Page',
+        verbose_name="Feedback Form Page",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        help_text="Please add a link to the feedback form page.")
+        help_text="Please add a link to the feedback form page.",
+    )
 
-    panels = [
-        FieldPanel('help_page'),
-        FieldPanel('feedback_page')
-    ]
+    panels = [FieldPanel("help_page"), FieldPanel("feedback_page")]

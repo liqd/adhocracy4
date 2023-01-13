@@ -8,13 +8,16 @@ from . import forms
 from . import models
 
 
-class ActivityDashboardView(ProjectMixin, dashboard_mixins.DashboardBaseMixin,
-                            dashboard_mixins.DashboardComponentMixin,
-                            generic.UpdateView):
+class ActivityDashboardView(
+    ProjectMixin,
+    dashboard_mixins.DashboardBaseMixin,
+    dashboard_mixins.DashboardComponentMixin,
+    generic.UpdateView,
+):
     model = models.Activity
     form_class = forms.ActivityForm
-    template_name = 'meinberlin_activities/activities_dashboard.html'
-    permission_required = 'meinberlin_activities.change_activity'
+    template_name = "meinberlin_activities/activities_dashboard.html"
+    permission_required = "meinberlin_activities.change_activity"
 
     def get_permission_object(self):
         return self.module
@@ -28,16 +31,14 @@ class ActivityDashboardView(ProjectMixin, dashboard_mixins.DashboardBaseMixin,
         return models.Activity.objects.filter(module=self.module).first()
 
 
-class ActivityView(ProjectMixin,
-                   rules_mixins.PermissionRequiredMixin,
-                   generic.DetailView):
+class ActivityView(
+    ProjectMixin, rules_mixins.PermissionRequiredMixin, generic.DetailView
+):
     model = models.Activity
-    permission_required = 'meinberlin_activities.view_activity'
+    permission_required = "meinberlin_activities.view_activity"
 
     def get_object(self):
-        return models.Activity.objects \
-            .filter(module=self.module) \
-            .first()
+        return models.Activity.objects.filter(module=self.module).first()
 
     def get_permission_object(self):
         return self.module

@@ -19,76 +19,67 @@ from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.moderatorfeedback.forms import ModeratorFeedbackForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorFeedback
 from meinberlin.apps.moderatorremark.models import ModeratorRemark
-from meinberlin.apps.notifications.emails import \
-    NotifyCreatorOrContactOnModeratorFeedback
+from meinberlin.apps.notifications.emails import (
+    NotifyCreatorOrContactOnModeratorFeedback,
+)
 
 from . import forms
 from . import models
 
 
 class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
-    label = _('Search')
+    label = _("Search")
 
 
 def get_ordering_choices(view):
-    choices = (('-created', _('Most recent')),)
-    if view.module.has_feature('rate', models.Idea):
-        choices += ('-positive_rating_count', _('Most popular')),
-    choices += ('-comment_count', _('Most commented')),
+    choices = (("-created", _("Most recent")),)
+    if view.module.has_feature("rate", models.Idea):
+        choices += (("-positive_rating_count", _("Most popular")),)
+    choices += (("-comment_count", _("Most commented")),)
     return choices
 
 
 class IdeaFilterSet(a4_filters.DefaultsFilterSet):
-    defaults = {
-        'ordering': '-created'
-    }
+    defaults = {"ordering": "-created"}
     category = category_filters.CategoryFilter()
     labels = label_filters.LabelFilter()
-    ordering = a4_filters.DynamicChoicesOrderingFilter(
-        choices=get_ordering_choices
-    )
-    search = FreeTextFilter(
-        widget=FreeTextFilterWidget,
-        fields=['name']
-    )
+    ordering = a4_filters.DynamicChoicesOrderingFilter(choices=get_ordering_choices)
+    search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name"])
 
     class Meta:
         model = models.Idea
-        fields = ['search', 'category', 'labels']
+        fields = ["search", "category", "labels"]
 
 
-class AbstractIdeaListView(ProjectMixin,
-                           filter_views.FilteredListView):
+class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
     paginate_by = 15
 
 
-class IdeaListView(AbstractIdeaListView,
-                   DisplayProjectOrModuleMixin
-                   ):
+class IdeaListView(AbstractIdeaListView, DisplayProjectOrModuleMixin):
     model = models.Idea
     filter_set = IdeaFilterSet
 
     def get_queryset(self):
-        return super().get_queryset()\
-            .filter(module=self.module)
+        return super().get_queryset().filter(module=self.module)
 
 
-class AbstractIdeaDetailView(ProjectMixin,
-                             rules_mixins.PermissionRequiredMixin,
-                             CanonicalURLDetailView):
+class AbstractIdeaDetailView(
+    ProjectMixin, rules_mixins.PermissionRequiredMixin, CanonicalURLDetailView
+):
     get_context_from_object = True
 
 
 class IdeaDetailView(AbstractIdeaDetailView):
     model = models.Idea
-    queryset = models.Idea.objects.annotate_positive_rating_count()\
-        .annotate_negative_rating_count()
-    permission_required = 'meinberlin_ideas.view_idea'
+    queryset = (
+        models.Idea.objects.annotate_positive_rating_count().annotate_negative_rating_count()
+    )
+    permission_required = "meinberlin_ideas.view_idea"
 
 
-class AbstractIdeaCreateView(ProjectMixin,
-                             rules_mixins.PermissionRequiredMixin,
-                             generic.CreateView):
+class AbstractIdeaCreateView(
+    ProjectMixin, rules_mixins.PermissionRequiredMixin, generic.CreateView
+):
     """Create an idea in the context of a module."""
 
     def get_permission_object(self, *args, **kwargs):
@@ -101,90 +92,88 @@ class AbstractIdeaCreateView(ProjectMixin,
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['module'] = self.module
+        kwargs["module"] = self.module
         if self.module.settings_instance:
-            kwargs['settings_instance'] = self.module.settings_instance
+            kwargs["settings_instance"] = self.module.settings_instance
         return kwargs
 
 
 class IdeaCreateView(AbstractIdeaCreateView):
     model = models.Idea
     form_class = forms.IdeaForm
-    permission_required = 'meinberlin_ideas.add_idea'
-    template_name = 'meinberlin_ideas/idea_create_form.html'
+    permission_required = "meinberlin_ideas.add_idea"
+    template_name = "meinberlin_ideas/idea_create_form.html"
 
 
-class AbstractIdeaUpdateView(ProjectMixin,
-                             rules_mixins.PermissionRequiredMixin,
-                             generic.UpdateView):
+class AbstractIdeaUpdateView(
+    ProjectMixin, rules_mixins.PermissionRequiredMixin, generic.UpdateView
+):
     get_context_from_object = True
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        instance = kwargs.get('instance')
-        kwargs['module'] = instance.module
+        instance = kwargs.get("instance")
+        kwargs["module"] = instance.module
         if instance.module.settings_instance:
-            kwargs['settings_instance'] = \
-                instance.module.settings_instance
+            kwargs["settings_instance"] = instance.module.settings_instance
         return kwargs
 
 
 class IdeaUpdateView(AbstractIdeaUpdateView):
     model = models.Idea
     form_class = forms.IdeaForm
-    permission_required = 'meinberlin_ideas.change_idea'
-    template_name = 'meinberlin_ideas/idea_update_form.html'
+    permission_required = "meinberlin_ideas.change_idea"
+    template_name = "meinberlin_ideas/idea_update_form.html"
 
 
-class AbstractIdeaDeleteView(ProjectMixin,
-                             rules_mixins.PermissionRequiredMixin,
-                             generic.DeleteView):
+class AbstractIdeaDeleteView(
+    ProjectMixin, rules_mixins.PermissionRequiredMixin, generic.DeleteView
+):
     get_context_from_object = True
 
     def get_success_url(self):
-        return reverse(
-            'project-detail', kwargs={'slug': self.project.slug})
+        return reverse("project-detail", kwargs={"slug": self.project.slug})
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
-        return super(AbstractIdeaDeleteView, self)\
-            .delete(request, *args, **kwargs)
+        return super(AbstractIdeaDeleteView, self).delete(request, *args, **kwargs)
 
 
 class IdeaDeleteView(AbstractIdeaDeleteView):
     model = models.Idea
-    success_message = _('Your Idea has been deleted')
-    permission_required = 'meinberlin_ideas.change_idea'
-    template_name = 'meinberlin_ideas/idea_confirm_delete.html'
+    success_message = _("Your Idea has been deleted")
+    permission_required = "meinberlin_ideas.change_idea"
+    template_name = "meinberlin_ideas/idea_confirm_delete.html"
 
 
 class AbstractIdeaModerateView(
-        ProjectMixin,
-        rules_mixins.PermissionRequiredMixin,
-        generic.detail.SingleObjectMixin,
-        generic.detail.SingleObjectTemplateResponseMixin,
-        contrib_forms.BaseMultiModelFormView):
+    ProjectMixin,
+    rules_mixins.PermissionRequiredMixin,
+    generic.detail.SingleObjectMixin,
+    generic.detail.SingleObjectTemplateResponseMixin,
+    contrib_forms.BaseMultiModelFormView,
+):
 
     get_context_from_object = True
     remark_form_class = None
 
     def __init__(self):
         self.forms = {
-            'moderateable': {
-                'model': self.model,
-                'form_class': self.moderateable_form_class
+            "moderateable": {
+                "model": self.model,
+                "form_class": self.moderateable_form_class,
             },
-            'feedback_text': {
-                'model': ModeratorFeedback,
-                'form_class': ModeratorFeedbackForm
-            }
+            "feedback_text": {
+                "model": ModeratorFeedback,
+                "form_class": ModeratorFeedbackForm,
+            },
         }
         # FIXME: use the form class directly here and remove "if"-condition
         # when used for all ideas and not only for budgeting proposals
         if self.remark_form_class:
-            self.forms['remark'] = {
-                'model': ModeratorRemark,
-                'form_class': self.remark_form_class
+            self.forms["remark"] = {
+                "model": ModeratorRemark,
+                "form_class": self.remark_form_class,
             }
 
     def dispatch(self, *args, **kwargs):
@@ -196,13 +185,13 @@ class AbstractIdeaModerateView(
 
     def forms_save(self, forms, commit=True):
         objects = super().forms_save(forms, commit=False)
-        moderateable = objects['moderateable']
-        feedback_text = objects['feedback_text']
+        moderateable = objects["moderateable"]
+        feedback_text = objects["feedback_text"]
         # FIXME: use the remark directly and remove "if"-condition
         # when used for all ideas and not only for budgeting proposals
         remark = None
-        if 'remark' in objects:
-            remark = objects['remark']
+        if "remark" in objects:
+            remark = objects["remark"]
             if not remark.pk:
                 remark.creator = self.request.user
 
@@ -218,36 +207,38 @@ class AbstractIdeaModerateView(
                 remark.item = moderateable
                 remark.save()
 
-            if 'moderator_status' in forms['moderateable'].changed_data \
-                    or 'feedback_text' in forms['feedback_text'].changed_data:
+            if (
+                "moderator_status" in forms["moderateable"].changed_data
+                or "feedback_text" in forms["feedback_text"].changed_data
+            ):
                 NotifyCreatorOrContactOnModeratorFeedback.send(self.object)
         return objects
 
     def get_instance(self, name):
-        if name == 'moderateable':
+        if name == "moderateable":
             return self.object
-        elif name == 'feedback_text':
+        elif name == "feedback_text":
             return self.object.moderator_feedback_text
-        elif name == 'remark':
+        elif name == "remark":
             return self.object.remark
 
 
 class IdeaModerateView(AbstractIdeaModerateView):
     model = models.Idea
-    permission_required = 'meinberlin_ideas.moderate_idea'
-    template_name = 'meinberlin_ideas/idea_moderate_form.html'
+    permission_required = "meinberlin_ideas.moderate_idea"
+    template_name = "meinberlin_ideas/idea_moderate_form.html"
     moderateable_form_class = forms.IdeaModerateForm
 
 
 class IdeaDashboardExportView(DashboardExportView):
-    template_name = 'a4exports/export_dashboard.html'
+    template_name = "a4exports/export_dashboard.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['export'] = reverse(
-            'a4dashboard:idea-export',
-            kwargs={'module_slug': self.module.slug})
-        context['comment_export'] = reverse(
-            'a4dashboard:idea-comment-export',
-            kwargs={'module_slug': self.module.slug})
+        context["export"] = reverse(
+            "a4dashboard:idea-export", kwargs={"module_slug": self.module.slug}
+        )
+        context["comment_export"] = reverse(
+            "a4dashboard:idea-comment-export", kwargs={"module_slug": self.module.slug}
+        )
         return context

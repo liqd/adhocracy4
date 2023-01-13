@@ -8,10 +8,12 @@ from .models import Bplan
 from .serializers import BplanSerializer
 
 
-class BplanViewSet(mixins.CreateModelMixin,
-                   mixins.UpdateModelMixin,
-                   OrganisationMixin,
-                   viewsets.GenericViewSet):
+class BplanViewSet(
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    OrganisationMixin,
+    viewsets.GenericViewSet,
+):
     serializer_class = BplanSerializer
     permission_classes = (ViewSetRulesPermission,)
 
@@ -23,7 +25,9 @@ class BplanViewSet(mixins.CreateModelMixin,
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
-        context.update({
-            'organisation_pk': self.organisation_pk,
-        })
+        context.update(
+            {
+                "organisation_pk": self.organisation_pk,
+            }
+        )
         return context

@@ -8,18 +8,17 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4actions', '0001_initial'),
+        ("a4actions", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Action',
-            fields=[
-            ],
+            name="Action",
+            fields=[],
             options={
-                'ordering': ('-timestamp',),
-                'proxy': True,
+                "ordering": ("-timestamp",),
+                "proxy": True,
             },
-            bases=('a4actions.action',),
+            bases=("a4actions.action",),
         ),
     ]

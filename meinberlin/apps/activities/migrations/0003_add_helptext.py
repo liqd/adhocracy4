@@ -9,13 +9,17 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_activities', '0002_use_collapsible_ck_for_description'),
+        ("meinberlin_activities", "0002_use_collapsible_ck_for_description"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='activity',
-            name='highlight',
-            field=models.CharField(help_text='Highlight important information like the time or location of your face-to-face event', max_length=120, verbose_name='Highlighted Info'),
+            model_name="activity",
+            name="highlight",
+            field=models.CharField(
+                help_text="Highlight important information like the time or location of your face-to-face event",
+                max_length=120,
+                verbose_name="Highlighted Info",
+            ),
         ),
     ]

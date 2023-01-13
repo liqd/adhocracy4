@@ -8,11 +8,11 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_actions', '0001_initial'),
+        ("meinberlin_actions", "0001_initial"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='Action',
+            name="Action",
         ),
     ]

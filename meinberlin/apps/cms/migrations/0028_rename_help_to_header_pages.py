@@ -8,12 +8,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_cms', '0027_helppages'),
+        ("meinberlin_cms", "0027_helppages"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='HelpPages',
-            new_name='HeaderPages',
+            old_name="HelpPages",
+            new_name="HeaderPages",
         ),
     ]

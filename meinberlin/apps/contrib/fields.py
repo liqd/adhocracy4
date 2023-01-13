@@ -12,26 +12,17 @@ class ChoiceWithOtherOptionField(forms.MultiValueField):
 
     def __init__(self, choices, validators_textinput=[], **kwargs):
         fields = (
-            forms.ChoiceField(
-                required=False,
-                choices=choices
-            ),
-            forms.CharField(
-                required=False,
-                validators=validators_textinput
-            ),
+            forms.ChoiceField(required=False, choices=choices),
+            forms.CharField(required=False, validators=validators_textinput),
         )
-        super().__init__(
-            fields=fields,
-            require_all_fields=False, **kwargs
-        )
+        super().__init__(fields=fields, require_all_fields=False, **kwargs)
 
     def compress(self, value):
         if not value:
-            return ''
+            return ""
         else:
             val_option, val_text = value
-            if val_option == 'other':
+            if val_option == "other":
                 return val_text
             else:
                 return val_option

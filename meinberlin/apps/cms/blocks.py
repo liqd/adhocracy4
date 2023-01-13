@@ -16,13 +16,14 @@ class ProjectSelectionBlock(blocks.ChooserBlock):
     def field(self):
         return forms.ModelChoiceField(
             queryset=self.target_model.objects.filter(
-                Q(access=Access.PUBLIC) |
-                Q(access=Access.SEMIPUBLIC),
+                Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
                 is_draft=False,
-                is_archived=False),
+                is_archived=False,
+            ),
             widget=self.widget,
             required=self._required,
-            help_text=self._help_text)
+            help_text=self._help_text,
+        )
 
     def value_for_form(self, value):
         if isinstance(value, Project):
@@ -39,22 +40,22 @@ class ProjectSelectionBlock(blocks.ChooserBlock):
 class ProjectsWrapperBlock(blocks.StructBlock):
     title = blocks.CharBlock(max_length=80)
     projects = blocks.ListBlock(
-        ProjectSelectionBlock(label='Project'),
+        ProjectSelectionBlock(label="Project"),
     )
 
     class Meta:
-        template = 'meinberlin_cms/blocks/projects_block.html'
-        icon = 'list-ul'
+        template = "meinberlin_cms/blocks/projects_block.html"
+        icon = "list-ul"
 
 
 class CallToActionBlock(blocks.StructBlock):
     body = blocks.RichTextBlock()
     link = blocks.CharBlock()
-    link_text = blocks.CharBlock(max_length=50, label='Link Text')
+    link_text = blocks.CharBlock(max_length=50, label="Link Text")
 
     class Meta:
-        template = 'meinberlin_cms/blocks/cta_block.html'
-        icon = 'plus-inverse'
+        template = "meinberlin_cms/blocks/cta_block.html"
+        icon = "plus-inverse"
 
 
 class ImageCallToActionBlock(blocks.StructBlock):
@@ -62,27 +63,30 @@ class ImageCallToActionBlock(blocks.StructBlock):
     title = blocks.CharBlock(max_length=80)
     body = blocks.RichTextBlock()
     link = blocks.CharBlock()
-    link_text = blocks.CharBlock(max_length=50, label='Link Text')
+    link_text = blocks.CharBlock(max_length=50, label="Link Text")
 
     class Meta:
-        template = 'meinberlin_cms/blocks/image_cta_block.html'
-        icon = 'image'
+        template = "meinberlin_cms/blocks/image_cta_block.html"
+        icon = "image"
 
 
 class ColumnsBlock(blocks.StructBlock):
-    columns_count = blocks.ChoiceBlock(choices=[
-        (2, 'Two columns'),
-        (3, 'Three columns'),
-        (4, 'Four columns'),
-    ], default=2)
+    columns_count = blocks.ChoiceBlock(
+        choices=[
+            (2, "Two columns"),
+            (3, "Three columns"),
+            (4, "Four columns"),
+        ],
+        default=2,
+    )
 
     columns = blocks.ListBlock(
-        blocks.RichTextBlock(label='Column body'),
+        blocks.RichTextBlock(label="Column body"),
     )
 
     class Meta:
-        template = 'meinberlin_cms/blocks/columns_block.html'
-        icon = 'grip'
+        template = "meinberlin_cms/blocks/columns_block.html"
+        icon = "grip"
 
 
 class DocsBlock(blocks.StructBlock):
@@ -90,8 +94,8 @@ class DocsBlock(blocks.StructBlock):
     body = blocks.RichTextBlock(required=False)
 
     class Meta:
-        template = 'meinberlin_cms/blocks/docs_block.html'
-        icon = 'arrow-down'
+        template = "meinberlin_cms/blocks/docs_block.html"
+        icon = "arrow-down"
 
 
 class InfographicBlock(blocks.StructBlock):
@@ -100,8 +104,8 @@ class InfographicBlock(blocks.StructBlock):
     text_right = blocks.CharBlock(max_length=50)
 
     class Meta:
-        template = 'meinberlin_cms/blocks/infographic_block.html'
-        icon = 'success'
+        template = "meinberlin_cms/blocks/infographic_block.html"
+        icon = "success"
 
 
 class MapTeaserBlock(blocks.StructBlock):
@@ -109,5 +113,5 @@ class MapTeaserBlock(blocks.StructBlock):
     body = blocks.RichTextBlock()
 
     class Meta:
-        template = 'meinberlin_cms/blocks/map_teaser_block.html'
-        icon = 'view'
+        template = "meinberlin_cms/blocks/map_teaser_block.html"
+        icon = "view"

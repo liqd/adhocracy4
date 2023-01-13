@@ -26,14 +26,14 @@ def combined_url_parameter(request_query_dict, **kwargs):
     combined_query_dict = request_query_dict.copy()
     for key in kwargs:
         combined_query_dict.setlist(key, [kwargs[key]])
-    encoded_parameter = '?' + combined_query_dict.urlencode()
+    encoded_parameter = "?" + combined_query_dict.urlencode()
     return encoded_parameter
 
 
 @register.simple_tag
 def filter_has_perm(perm, user, objects):
     """Filter a list of objects based on user permissions."""
-    if not hasattr(user, 'has_perm'):
+    if not hasattr(user, "has_perm"):
         # If the swapped user model does not support permissions, all objects
         # will be returned. This is taken from rules.templatetags.has_perm.
         return objects
@@ -42,7 +42,7 @@ def filter_has_perm(perm, user, objects):
 
 
 @register.simple_tag()
-def html_date(value, displayfmt=None, datetimefmt='c', **kwargs):
+def html_date(value, displayfmt=None, datetimefmt="c", **kwargs):
     if value:
         """Format a date and wrap it in a html <time> element.
 
@@ -55,9 +55,7 @@ def html_date(value, displayfmt=None, datetimefmt='c', **kwargs):
         displaydate = defaultfilters.date(localtime_value, displayfmt)
         datetime = defaultfilters.date(localtime_value, datetimefmt)
         attribs = flatatt(kwargs)
-        result = '<time %s datetime="%s">%s</time>' % (attribs,
-                                                       datetime,
-                                                       displaydate)
+        result = '<time %s datetime="%s">%s</time>' % (attribs, datetime, displaydate)
         return mark_safe(result)
 
 
@@ -71,19 +69,20 @@ def classify(value):
     Also strips leading and trailing whitespace.
     """
     if value is None:
-        return 'NONE'
+        return "NONE"
 
     value = force_str(value)
-    value = unicodedata.normalize('NFKD', value) \
-        .encode('ascii', 'ignore').decode('ascii')
-    value = re.sub(r'[^\w\s-]', '', value).strip()
-    return mark_safe(re.sub(r'[-\s]+', '-', value))
+    value = (
+        unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    )
+    value = re.sub(r"[^\w\s-]", "", value).strip()
+    return mark_safe(re.sub(r"[-\s]+", "-", value))
 
 
 @register.filter
 def fa_class(icon):
-    if hasattr(icon, 'startswith') and not icon.startswith('fa'):
-        return 'fas fa-{icon}'.format(icon=icon)
+    if hasattr(icon, "startswith") and not icon.startswith("fa"):
+        return "fas fa-{icon}".format(icon=icon)
     return icon
 
 
@@ -92,27 +91,27 @@ def tracking_enabled():
     return settings.TRACKING_ENABLED
 
 
-@register.inclusion_tag('meinberlin_contrib/matomo/tracking_code.html')
+@register.inclusion_tag("meinberlin_contrib/matomo/tracking_code.html")
 def tracking_code():
     try:
         id = settings.MATOMO_SITE_ID
     except AttributeError:
-        raise ImproperlyConfigured('MATOMO_SITE_ID does not exist.')
+        raise ImproperlyConfigured("MATOMO_SITE_ID does not exist.")
     try:
         url = settings.MATOMO_URL
     except AttributeError:
-        raise ImproperlyConfigured('MATOMO_URL does not exist.')
+        raise ImproperlyConfigured("MATOMO_URL does not exist.")
     cookie_disabled = False
     try:
         cookie_disabled = settings.TRACKING_COOKIE_DISABLED
     except AttributeError:
         pass
-    return {'id': id, 'url': url, 'cookie_disabled': cookie_disabled}
+    return {"id": id, "url": url, "cookie_disabled": cookie_disabled}
 
 
 @register.simple_tag
 def get_proper_elided_page_range(p, number, on_each_side=1, on_ends=1):
     paginator = Paginator(p.object_list, p.per_page)
-    return paginator.get_elided_page_range(number=number,
-                                           on_each_side=on_each_side,
-                                           on_ends=on_ends)
+    return paginator.get_elided_page_range(
+        number=number, on_each_side=on_each_side, on_ends=on_ends
+    )

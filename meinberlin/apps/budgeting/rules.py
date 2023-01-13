@@ -10,62 +10,48 @@ from .predicates import is_allowed_view_support
 from .predicates import is_allowed_vote_proposal
 
 rules.add_perm(
-    'meinberlin_budgeting.view_proposal',
-    module_predicates.is_allowed_view_item
+    "meinberlin_budgeting.view_proposal", module_predicates.is_allowed_view_item
 )
 
 
 rules.add_perm(
-    'meinberlin_budgeting.add_proposal',
-    module_predicates.is_allowed_add_item(models.Proposal)
+    "meinberlin_budgeting.add_proposal",
+    module_predicates.is_allowed_add_item(models.Proposal),
 )
 
 # is_allowed_support_item is needed, because support also uses
 # the rating api which checks rate_proposal permission
 rules.add_perm(
-    'meinberlin_budgeting.rate_proposal',
-    module_predicates.is_allowed_rate_item | is_allowed_support_item
+    "meinberlin_budgeting.rate_proposal",
+    module_predicates.is_allowed_rate_item | is_allowed_support_item,
+)
+
+rules.add_perm("meinberlin_budgeting.support_proposal", is_allowed_support_item)
+
+rules.add_perm(
+    "meinberlin_budgeting.view_support", is_allowed_view_support(models.Proposal)
 )
 
 rules.add_perm(
-    'meinberlin_budgeting.support_proposal',
-    is_allowed_support_item
-)
-
-rules.add_perm(
-    'meinberlin_budgeting.view_support',
-    is_allowed_view_support(models.Proposal)
-)
-
-rules.add_perm(
-    'meinberlin_budgeting.comment_proposal',
-    module_predicates.is_allowed_comment_item
+    "meinberlin_budgeting.comment_proposal", module_predicates.is_allowed_comment_item
 )
 
 
 rules.add_perm(
-    'meinberlin_budgeting.change_proposal',
-    module_predicates.is_allowed_change_item
+    "meinberlin_budgeting.change_proposal", module_predicates.is_allowed_change_item
 )
 
 
 rules.add_perm(
-    'meinberlin_budgeting.moderate_proposal',
-    module_predicates.is_context_moderator |
-    module_predicates.is_context_initiator
+    "meinberlin_budgeting.moderate_proposal",
+    module_predicates.is_context_moderator | module_predicates.is_context_initiator,
 )
 
-rules.add_perm(
-    'meinberlin_budgeting.vote_proposal',
-    is_allowed_vote_proposal
-)
+rules.add_perm("meinberlin_budgeting.vote_proposal", is_allowed_vote_proposal)
 
 rules.add_perm(
-    'meinberlin_budgeting.add_vote',
-    phase_predicates.phase_allows_add_vote(models.Proposal)
+    "meinberlin_budgeting.add_vote",
+    phase_predicates.phase_allows_add_vote(models.Proposal),
 )
 
-rules.add_perm(
-    'meinberlin_budgeting.delete_vote',
-    is_allowed_delete_vote
-)
+rules.add_perm("meinberlin_budgeting.delete_vote", is_allowed_delete_vote)

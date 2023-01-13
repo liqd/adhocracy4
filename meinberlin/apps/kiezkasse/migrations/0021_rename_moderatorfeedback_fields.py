@@ -6,18 +6,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_kiezkasse', '0020_alter_proposal_moderator_feedback'),
+        ("meinberlin_kiezkasse", "0020_alter_proposal_moderator_feedback"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='proposal',
-            old_name='moderator_statement',
-            new_name='moderator_feedback_text',
+            model_name="proposal",
+            old_name="moderator_statement",
+            new_name="moderator_feedback_text",
         ),
         migrations.RenameField(
-            model_name='proposal',
-            old_name='moderator_feedback',
-            new_name='moderator_status',
+            model_name="proposal",
+            old_name="moderator_feedback",
+            new_name="moderator_status",
         ),
     ]

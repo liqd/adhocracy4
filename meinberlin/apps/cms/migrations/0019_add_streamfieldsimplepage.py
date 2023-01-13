@@ -12,20 +12,39 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0040_page_draft_title'),
-        ('meinberlin_cms', '0018_add_imgage_cta_block'),
+        ("wagtailcore", "0040_page_draft_title"),
+        ("meinberlin_cms", "0018_add_imgage_cta_block"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='StreamfieldSimplePage',
+            name="StreamfieldSimplePage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.fields.StreamField((('paragraph', wagtail.blocks.RichTextBlock()), ('html', wagtail.blocks.RawHTMLBlock())), blank=True)),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.Page",
+                    ),
+                ),
+                (
+                    "body",
+                    wagtail.fields.StreamField(
+                        (
+                            ("paragraph", wagtail.blocks.RichTextBlock()),
+                            ("html", wagtail.blocks.RawHTMLBlock()),
+                        ),
+                        blank=True,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

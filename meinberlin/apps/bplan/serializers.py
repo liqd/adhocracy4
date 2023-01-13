@@ -25,8 +25,10 @@ from adhocracy4.projects import models as project_models
 from .models import Bplan
 from .phases import StatementPhase
 
-BPLAN_EMBED = '<iframe height="500" style="width: 100%; min-height: 300px; ' \
-              'max-height: 100vh" src="{}" frameborder="0"></iframe>'
+BPLAN_EMBED = (
+    '<iframe height="500" style="width: 100%; min-height: 300px; '
+    'max-height: 100vh" src="{}" frameborder="0"></iframe>'
+)
 DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES = 10 * 1024 * 1024
 
 
@@ -43,43 +45,52 @@ class BplanSerializer(serializers.ModelSerializer):
     image_copyright = serializers.CharField(
         required=False,
         write_only=True,
-        source='tile_image_copyright',
+        source="tile_image_copyright",
         allow_blank=True,
-        max_length=(project_models.Project._meta.
-                    get_field('tile_image_copyright').max_length),
+        max_length=(
+            project_models.Project._meta.get_field("tile_image_copyright").max_length
+        ),
     )
     embed_code = serializers.SerializerMethodField()
 
     class Meta:
         model = Bplan
         fields = (
-            'id', 'name', 'identifier', 'description', 'url',
-            'office_worker_email', 'is_draft', 'start_date', 'end_date',
-            'image_url', 'image_copyright', 'embed_code'
+            "id",
+            "name",
+            "identifier",
+            "description",
+            "url",
+            "office_worker_email",
+            "is_draft",
+            "start_date",
+            "end_date",
+            "image_url",
+            "image_copyright",
+            "embed_code",
         )
         extra_kwargs = {
             # write_only for consistency reasons
-            'is_draft': {'default': False, 'write_only': True},
-            'name': {'write_only': True},
-            'description': {'write_only': True},
-            'url': {'write_only': True},
-            'office_worker_email': {'write_only': True},
-            'identifier': {'write_only': True}
+            "is_draft": {"default": False, "write_only": True},
+            "name": {"write_only": True},
+            "description": {"write_only": True},
+            "url": {"write_only": True},
+            "office_worker_email": {"write_only": True},
+            "identifier": {"write_only": True},
         }
 
     def create(self, validated_data):
-        orga_pk = self._context.get('organisation_pk', None)
+        orga_pk = self._context.get("organisation_pk", None)
         orga_model = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
         orga = orga_model.objects.get(pk=orga_pk)
-        validated_data['organisation'] = orga
+        validated_data["organisation"] = orga
 
-        start_date = validated_data['start_date']
-        end_date = validated_data['end_date']
+        start_date = validated_data["start_date"]
+        end_date = validated_data["end_date"]
 
-        image_url = validated_data.pop('image_url', None)
+        image_url = validated_data.pop("image_url", None)
         if image_url:
-            validated_data['tile_image'] = \
-                self._download_image_from_url(image_url)
+            validated_data["tile_image"] = self._download_image_from_url(image_url)
 
         bplan = super().create(validated_data)
         self._create_module_and_phase(bplan, start_date, end_date)
@@ -88,33 +99,32 @@ class BplanSerializer(serializers.ModelSerializer):
 
     def _create_module_and_phase(self, bplan, start_date, end_date):
         module = module_models.Module.objects.create(
-            name=bplan.slug + '_module',
+            name=bplan.slug + "_module",
             weight=1,
             project=bplan,
         )
 
         phase_content = StatementPhase()
         phase_models.Phase.objects.create(
-            name=_('Bplan statement phase'),
-            description=_('Bplan statement phase'),
+            name=_("Bplan statement phase"),
+            description=_("Bplan statement phase"),
             type=phase_content.identifier,
             module=module,
             start_date=start_date,
-            end_date=end_date
+            end_date=end_date,
         )
 
     def update(self, instance, validated_data):
-        start_date = validated_data.get('start_date', None)
-        end_date = validated_data.get('end_date', None)
+        start_date = validated_data.get("start_date", None)
+        end_date = validated_data.get("end_date", None)
         if start_date or end_date:
             self._update_phase(instance, start_date, end_date)
             if end_date and end_date > timezone.localtime(timezone.now()):
                 instance.is_archived = False
 
-        image_url = validated_data.pop('image_url', None)
+        image_url = validated_data.pop("image_url", None)
         if image_url:
-            validated_data['tile_image'] = \
-                self._download_image_from_url(image_url)
+            validated_data["tile_image"] = self._download_image_from_url(image_url)
 
         instance = super().update(instance, validated_data)
 
@@ -137,8 +147,13 @@ class BplanSerializer(serializers.ModelSerializer):
 
     def _get_absolute_url(self, bplan):
         site_url = Site.objects.get_current().domain
-        embed_url = reverse('embed-project', kwargs={'slug': bplan.slug, })
-        url = 'https://{}{}'.format(site_url, embed_url)
+        embed_url = reverse(
+            "embed-project",
+            kwargs={
+                "slug": bplan.slug,
+            },
+        )
+        url = "https://{}{}".format(site_url, embed_url)
         return url
 
     def _download_image_from_url(self, url):
@@ -152,7 +167,8 @@ class BplanSerializer(serializers.ModelSerializer):
                     downloaded_bytes += len(chunk)
                     if downloaded_bytes > DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES:
                         raise serializers.ValidationError(
-                            'Image too large to download {}'.format(url))
+                            "Image too large to download {}".format(url)
+                        )
                     if chunk:
                         f.write(chunk)
                 file_name = self._generate_image_filename(parsed_url.path, f)
@@ -160,8 +176,7 @@ class BplanSerializer(serializers.ModelSerializer):
         except Exception:
             if file_name:
                 self._image_storage.delete(file_name)
-            raise serializers.ValidationError(
-                'Failed to download image {}'.format(url))
+            raise serializers.ValidationError("Failed to download image {}".format(url))
 
         try:
             self._validate_image(file_name)
@@ -172,49 +187,47 @@ class BplanSerializer(serializers.ModelSerializer):
         return file_name
 
     def _validate_image(self, file_name):
-        image_file = self._image_storage.open(file_name, 'rb')
+        image_file = self._image_storage.open(file_name, "rb")
         image = ImageFile(image_file, file_name)
-        config = settings.IMAGE_ALIASES.get('*', {})
-        config.update(settings.IMAGE_ALIASES['tileimage'])
+        config = settings.IMAGE_ALIASES.get("*", {})
+        config.update(settings.IMAGE_ALIASES["tileimage"])
         validate_image(image, **config)
 
     @property
     def _image_storage(self):
-        return project_models.Project._meta.get_field('tile_image').storage
+        return project_models.Project._meta.get_field("tile_image").storage
 
     @property
     def _image_upload_to(self):
-        return project_models.Project._meta.get_field('tile_image').upload_to
+        return project_models.Project._meta.get_field("tile_image").upload_to
 
     def _generate_image_filename(self, url_path, file):
         if callable(self._image_upload_to):
-            raise Exception('Callable upload_to fields are not supported')
+            raise Exception("Callable upload_to fields are not supported")
 
         root_path, extension = posixpath.splitext(url_path)
         if file:
             # Workaround: imghdr expects the files position on 0
             file.seek(0)
-            extension = imghdr.what(file) or 'jpeg'
+            extension = imghdr.what(file) or "jpeg"
 
-        basename = 'bplan_%s' % (timezone.now().strftime('%Y%m%dT%H%M%S'))
+        basename = "bplan_%s" % (timezone.now().strftime("%Y%m%dT%H%M%S"))
 
         dirname = datetime.datetime.now().strftime(self._image_upload_to)
-        filename = posixpath.join(dirname, basename + '.' + extension)
+        filename = posixpath.join(dirname, basename + "." + extension)
 
         return self._image_storage.get_available_name(filename)
 
     def _send_project_created_signal(self, bplan):
         a4dashboard_signals.project_created.send(
-            sender=self.__class__,
-            project=bplan,
-            user=self.context['request'].user
+            sender=self.__class__, project=bplan, user=self.context["request"].user
         )
 
     def _send_component_updated_signal(self, bplan):
-        component = components.projects['bplan']
+        component = components.projects["bplan"]
         a4dashboard_signals.project_component_updated.send(
             sender=self.__class__,
             project=bplan,
             component=component,
-            user=self.context['request'].user
+            user=self.context["request"].user,
         )

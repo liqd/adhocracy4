@@ -9,77 +9,75 @@ from . import views
 
 class IssuePhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'issue'
+    phase = "issue"
     view = views.IdeaListView
 
-    name = _('Issue phase')
-    description = _('Create new ideas.')
-    module_name = _('ideas collection')
+    name = _("Issue phase")
+    description = _("Create new ideas.")
+    module_name = _("ideas collection")
 
     features = {
-        'crud': (models.Idea,),
+        "crud": (models.Idea,),
     }
 
 
 class CollectPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'collect'
+    phase = "collect"
     view = views.IdeaListView
 
-    name = _('What are your ideas?')
-    description = _('You can submit your own ideas and comment on the ideas '
-                    'of the other participants.')
-    module_name = _('ideas collection')
+    name = _("What are your ideas?")
+    description = _(
+        "You can submit your own ideas and comment on the ideas "
+        "of the other participants."
+    )
+    module_name = _("ideas collection")
 
     features = {
-        'crud': (models.Idea,),
-        'comment': (models.Idea,),
+        "crud": (models.Idea,),
+        "comment": (models.Idea,),
     }
 
 
 class RatingPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'rating'
+    phase = "rating"
     view = views.IdeaListView
 
-    name = _('Rating phase')
-    description = _('Get quantative feeback by rating the collected ideas.')
-    module_name = _('ideas collection')
+    name = _("Rating phase")
+    description = _("Get quantative feeback by rating the collected ideas.")
+    module_name = _("ideas collection")
 
-    features = {
-        'rate': (models.Idea,)
-    }
+    features = {"rate": (models.Idea,)}
 
 
 class FeedbackPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'feedback'
+    phase = "feedback"
     view = views.IdeaListView
 
-    name = _('Feedback phase')
-    description = _('Get feedback for collected ideas through rates and '
-                    'comments.')
-    module_name = _('ideas collection')
+    name = _("Feedback phase")
+    description = _("Get feedback for collected ideas through rates and " "comments.")
+    module_name = _("ideas collection")
 
-    features = {
-        'rate': (models.Idea,),
-        'comment': (models.Idea,)
-    }
+    features = {"rate": (models.Idea,), "comment": (models.Idea,)}
 
 
 class CollectFeedbackPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'collect_feedback'
+    phase = "collect_feedback"
     view = views.IdeaListView
 
-    name = _('What are your ideas?')
-    description = _('You can create your own ideas and comment on and rate '
-                    'the ideas of the other participants.')
+    name = _("What are your ideas?")
+    description = _(
+        "You can create your own ideas and comment on and rate "
+        "the ideas of the other participants."
+    )
 
     features = {
-        'crud': (models.Idea,),
-        'comment': (models.Idea,),
-        'rate': (models.Idea,),
+        "crud": (models.Idea,),
+        "comment": (models.Idea,),
+        "rate": (models.Idea,),
     }
 
 

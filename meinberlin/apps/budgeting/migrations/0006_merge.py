@@ -8,9 +8,8 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_budgeting', '0005_inherit_from_moderateable'),
-        ('meinberlin_budgeting', '0004_use_explicit_item_ptr'),
+        ("meinberlin_budgeting", "0005_inherit_from_moderateable"),
+        ("meinberlin_budgeting", "0004_use_explicit_item_ptr"),
     ]
 
-    operations = [
-    ]
+    operations = []

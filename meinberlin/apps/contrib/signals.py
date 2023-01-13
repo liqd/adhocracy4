@@ -15,9 +15,10 @@ signals = [
 
 def _make_sender_fn(model, signal):
     """Make a sender function used to connect signals."""
+
     def sender_fn(sender, **kwargs):
         # signal send method passes itself as a signal kwarg to its receivers
-        kwargs.pop('signal')
+        kwargs.pop("signal")
         signal.send(sender=model, **kwargs)
 
     return sender_fn

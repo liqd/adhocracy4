@@ -6,13 +6,15 @@ from adhocracy4.projects.mixins import ProjectMixin
 from . import models
 
 
-class AdminLogProjectDashboardView(ProjectMixin,
-                                   mixins.DashboardBaseMixin,
-                                   mixins.DashboardComponentMixin,
-                                   generic.ListView):
+class AdminLogProjectDashboardView(
+    ProjectMixin,
+    mixins.DashboardBaseMixin,
+    mixins.DashboardComponentMixin,
+    generic.ListView,
+):
     model = models.LogEntry
-    template_name = 'meinberlin_adminlog/project_adminlog_dashboard.html'
-    permission_required = 'a4projects.change_project'
+    template_name = "meinberlin_adminlog/project_adminlog_dashboard.html"
+    permission_required = "a4projects.change_project"
     paginate_by = 15
 
     def get_queryset(self):

@@ -13,19 +13,17 @@ from . import forms
 
 class AccountView(RedirectView):
     permanent = False
-    pattern_name = 'account_profile'
+    pattern_name = "account_profile"
     # Placeholder View to be replaced if we want to use a custom account
     # dashboard function overview.
 
 
-class ProfileUpdateView(SuccessMessageMixin,
-                        LoginRequiredMixin,
-                        generic.UpdateView):
+class ProfileUpdateView(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
 
     model = User
-    template_name = 'meinberlin_account/profile.html'
+    template_name = "meinberlin_account/profile.html"
     form_class = forms.ProfileForm
-    success_message = _('Your profile was successfully updated.')
+    success_message = _("Your profile was successfully updated.")
 
     def get_object(self):
         return get_object_or_404(User, pk=self.request.user.id)
@@ -34,16 +32,14 @@ class ProfileUpdateView(SuccessMessageMixin,
         return self.request.path
 
 
-class ProfileActionsView(LoginRequiredMixin,
-                         generic.ListView):
+class ProfileActionsView(LoginRequiredMixin, generic.ListView):
 
     model = Action
     paginate_by = 10
-    template_name = 'meinberlin_account/actions.html'
+    template_name = "meinberlin_account/actions.html"
 
     def get_queryset(self):
         user = get_object_or_404(User, pk=self.request.user.id)
         qs = super().get_queryset()
-        qs = qs.filter(project__follow__creator=user,
-                       project__follow__enabled=True)
+        qs = qs.filter(project__follow__creator=user, project__follow__enabled=True)
         return qs.exclude_updates()

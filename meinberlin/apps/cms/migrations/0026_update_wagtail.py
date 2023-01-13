@@ -9,18 +9,36 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_cms', '0025_shorten_quote_field'),
+        ("meinberlin_cms", "0025_shorten_quote_field"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customimage',
-            name='file_hash',
+            model_name="customimage",
+            name="file_hash",
             field=models.CharField(blank=True, editable=False, max_length=40),
         ),
         migrations.AlterField(
-            model_name='emailformfield',
-            name='field_type',
-            field=models.CharField(choices=[('singleline', 'Single line text'), ('multiline', 'Multi-line text'), ('email', 'Email'), ('number', 'Number'), ('url', 'URL'), ('checkbox', 'Checkbox'), ('checkboxes', 'Checkboxes'), ('dropdown', 'Drop down'), ('multiselect', 'Multiple select'), ('radio', 'Radio buttons'), ('date', 'Date'), ('datetime', 'Date/time'), ('hidden', 'Hidden field')], max_length=16, verbose_name='field type'),
+            model_name="emailformfield",
+            name="field_type",
+            field=models.CharField(
+                choices=[
+                    ("singleline", "Single line text"),
+                    ("multiline", "Multi-line text"),
+                    ("email", "Email"),
+                    ("number", "Number"),
+                    ("url", "URL"),
+                    ("checkbox", "Checkbox"),
+                    ("checkboxes", "Checkboxes"),
+                    ("dropdown", "Drop down"),
+                    ("multiselect", "Multiple select"),
+                    ("radio", "Radio buttons"),
+                    ("date", "Date"),
+                    ("datetime", "Date/time"),
+                    ("hidden", "Hidden field"),
+                ],
+                max_length=16,
+                verbose_name="field type",
+            ),
         ),
     ]

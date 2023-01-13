@@ -5,7 +5,7 @@ from meinberlin.apps.contrib.emails import Email
 
 
 class OfficeWorkerNotification(Email):
-    template_name = 'meinberlin_bplan/emails/office_worker_notification'
+    template_name = "meinberlin_bplan/emails/office_worker_notification"
 
     @property
     def office_worker_email(self):
@@ -22,10 +22,10 @@ class OfficeWorkerNotification(Email):
 
     def get_context(self):
         context = super().get_context()
-        context['module'] = self.object.module
-        context['project'] = self.object.module.project
-        context['contact_email'] = settings.CONTACT_EMAIL
-        context['identifier'] = self.bplan_identifier
+        context["module"] = self.object.module
+        context["project"] = self.object.module.project
+        context["contact_email"] = settings.CONTACT_EMAIL
+        context["identifier"] = self.bplan_identifier
         return context
 
     def get_attachments(self):
@@ -33,27 +33,27 @@ class OfficeWorkerNotification(Email):
 
 
 class SubmitterConfirmation(Email):
-    template_name = 'meinberlin_bplan/emails/submitter_confirmation'
+    template_name = "meinberlin_bplan/emails/submitter_confirmation"
 
     def get_receivers(self):
         return [self.object.email]
 
     def get_context(self):
         context = super().get_context()
-        context['module'] = self.object.module
-        context['project'] = self.object.module.project
-        context['contact_email'] = settings.CONTACT_EMAIL
+        context["module"] = self.object.module
+        context["project"] = self.object.module.project
+        context["contact_email"] = settings.CONTACT_EMAIL
         return context
 
 
 class OfficeWorkerUpdateConfirmation(Email):
-    template_name = 'meinberlin_bplan/emails/office_worker_update_confirmation'
+    template_name = "meinberlin_bplan/emails/office_worker_update_confirmation"
 
     def get_receivers(self):
         return [self.object.office_worker_email]
 
     def get_context(self):
         context = super().get_context()
-        context['contact_email'] = settings.CONTACT_EMAIL
-        context['project_list_url'] = reverse('meinberlin_plans:plan-list')
+        context["contact_email"] = settings.CONTACT_EMAIL
+        context["project_list_url"] = reverse("meinberlin_plans:plan-list")
         return context

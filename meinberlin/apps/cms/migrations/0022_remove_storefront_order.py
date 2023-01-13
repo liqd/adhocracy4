@@ -8,16 +8,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_cms', '0021_add_storefront'),
+        ("meinberlin_cms", "0021_add_storefront"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='storefrontcollection',
+            name="storefrontcollection",
             options={},
         ),
         migrations.RemoveField(
-            model_name='storefrontcollection',
-            name='sort_order',
+            model_name="storefrontcollection",
+            name="sort_order",
         ),
     ]

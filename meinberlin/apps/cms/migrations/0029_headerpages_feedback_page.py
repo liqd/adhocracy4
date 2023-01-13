@@ -10,14 +10,22 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailcore', '0040_page_draft_title'),
-        ('meinberlin_cms', '0028_rename_help_to_header_pages'),
+        ("wagtailcore", "0040_page_draft_title"),
+        ("meinberlin_cms", "0028_rename_help_to_header_pages"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='headerpages',
-            name='feedback_page',
-            field=models.ForeignKey(blank=True, help_text='Please add a link to the feedback form page.', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='feedback_page', to='wagtailcore.Page', verbose_name='Feedback Form Page'),
+            model_name="headerpages",
+            name="feedback_page",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Please add a link to the feedback form page.",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="feedback_page",
+                to="wagtailcore.Page",
+                verbose_name="Feedback Form Page",
+            ),
         ),
     ]

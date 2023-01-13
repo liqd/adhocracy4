@@ -12,200 +12,224 @@ from meinberlin.apps.maptopicprio import phases as maptopicprio_phases
 from meinberlin.apps.topicprio import phases as topicprio_phases
 
 blueprints = [
-    ('brainstorming',
-     ProjectBlueprint(
-         title=_('Brainstorming'),
-         description=_(
-             'Participants can submit their own ideas and discuss the ideas '
-             'of others.'
-         ),
-         content=[
-             ideas_phases.CollectPhase(),
-         ],
-         image='images/brainstorming.svg',
-         settings_model=None,
-         type='BS',
-     )),
-    ('map-brainstorming',
-     ProjectBlueprint(
-         title=_('Spatial Brainstorming'),
-         description=_(
-             'Participants can submit their own ideas and locate them on a '
-             'map. They can also discuss the ideas of others.'
-         ),
-         content=[
-             mapideas_phases.CollectPhase(),
-         ],
-         image='images/map-brainstorming.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-         type='MBS',
-     )),
-    ('idea-collection',
-     ProjectBlueprint(
-         title=_('Idea Collection'),
-         description=_(
-             'Participants can submit their own ideas and discuss and rate '
-             '(pro/contra) the ideas of others.'
-         ),
-         content=[
-             ideas_phases.CollectFeedbackPhase(),
-         ],
-         image='images/agenda-setting.svg',
-         settings_model=None,
-         type='IC',
-     )),
-    ('map-idea-collection',
-     ProjectBlueprint(
-         title=_('Spatial Idea Collection'),
-         description=_(
-             'Participants can submit their own ideas and locate them on a '
-             'map. They can also discuss and rate (pro/contra) the ideas of '
-             'others.'
-         ),
-         content=[
-             mapideas_phases.CollectFeedbackPhase(),
-         ],
-         image='images/map-idea-collection.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-         type='MIC',
-     )),
-    ('participatory-budgeting',
-     ProjectBlueprint(
-         title=_('Participatory budgeting (1 phase)'),
-         description=_(
-             'Participants can submit their own proposals, mark them on a '
-             'map, and add a budget. The proposals of others can be discussed '
-             'and rated (pro/contra).'
-         ),
-         content=[
-             budgeting_phases.RequestPhase()
-         ],
-         image='images/participatory-budgeting-1.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-         type='PB',
-     )),
-    ('participatory-budgeting-2-phases',
-     ProjectBlueprint(
-         title=_('Participatory budgeting (2 phase)'),
-         description=_(
-             'In a first phase, participants can submit their own proposals, '
-             'mark them on a map, and add a budget. The proposals of others '
-             'can be discussed and in a second phase rated (pro/contra).'
-         ),
-         content=[
-             budgeting_phases.CollectPhase(),
-             budgeting_phases.RatingPhase(),
-         ],
-         image='images/participatory-budgeting-2.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-         type='PB2',
-     )),
-    ('participatory-budgeting-3-phases',
-     ProjectBlueprint(
-         title=_('Participatory budgeting (3 phase)'),
-         description=_(
-             'In a first phase, participants can submit their own '
-             'suggestions, mark them on a map, and add a budget. The '
-             'proposals of others can be discussed. In a second phase '
-             'proposals can be supported. In the third phase, participants '
-             'vote on the shortlisted proposals.  '
-         ),
-         content=[
-             budgeting_phases.CollectPhase(),
-             budgeting_phases.SupportPhase(),
-             budgeting_phases.VotingPhase(),
-         ],
-         # The icon has to be updated:
-         image='images/participatory-budgeting-3.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-         type='PB3',
-     )),
-    ('kiezkasse',
-     ProjectBlueprint(
-         title=_('Kiezkasse'),
-         description=_(
-             'Participants can submit their own proposals, mark them on a '
-             'map, and add a budget. They can express their interest in '
-             'participating in the proposals’s implementation. The proposals '
-             'of others can be discussed and rated (pro/contra).'
-         ),
-         content=[
-             kiezkasse_phases.RequestFeedbackPhase(),
-         ],
-         image='images/kiezkasse.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-         type='KK',
-     )),
-    ('prioritization',
-     ProjectBlueprint(
-         title=_('Prioritization'),
-         description=_(
-             'Participants can discuss and rate (pro/contra) previously added '
-             'ideas and topics. Participants cannot add ideas or topics.'
-         ),
-         content=[
-             topicprio_phases.PrioritizePhase(),
-         ],
-         image='images/priorization.svg',
-         settings_model=None,
-         type='TP',
-     )),
-    ('map-topic-prioritization',
-     ProjectBlueprint(
-         title=_('Spatial Prioritization'),
-         description=_(
-             'Participants can discuss and rate (pro/contra) ideas and topics '
-             'previously added to a map. Participants cannot add ideas or '
-             'topics.'
-         ),
-         content=[
-             maptopicprio_phases.PrioritizePhase(),
-         ],
-         image='images/place-priotization.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-         type='MTP',
-     )),
-    ('text-review',
-     ProjectBlueprint(
-         title=_('Text Review'),
-         description=_(
-             'Participants can discuss the paragraphs of a text that you '
-             'added beforehand.'
-         ),
-         content=[
-             documents_phases.CommentPhase(),
-         ],
-         image='images/text-review.svg',
-         settings_model=None,
-         type='TR',
-     )),
-    ('poll',
-     ProjectBlueprint(
-         title=_('Poll'),
-         description=_(
-             'Participants can answer open and multiple choice questions '
-             'and can comment on the poll'
-         ),
-         content=[
-             poll_phases.VotingPhase(),
-         ],
-         image='images/poll.svg',
-         settings_model=None,
-         type='PO',
-     )),
-    ('interactive-event',
-     ProjectBlueprint(
-         title=_('Interactive Event'),
-         description=_(
-             'The participants of an event can ask their questions online. '
-             'Other participants can support the question. The moderator can '
-             'sort the questions by support or affiliation.'
-         ),
-         content=[
-             livequestion_phases.IssuePhase(),
-         ],
-         image='images/interactive-event.svg',
-         settings_model=None,
-         type='IE',
-     )),
+    (
+        "brainstorming",
+        ProjectBlueprint(
+            title=_("Brainstorming"),
+            description=_(
+                "Participants can submit their own ideas and discuss the ideas "
+                "of others."
+            ),
+            content=[
+                ideas_phases.CollectPhase(),
+            ],
+            image="images/brainstorming.svg",
+            settings_model=None,
+            type="BS",
+        ),
+    ),
+    (
+        "map-brainstorming",
+        ProjectBlueprint(
+            title=_("Spatial Brainstorming"),
+            description=_(
+                "Participants can submit their own ideas and locate them on a "
+                "map. They can also discuss the ideas of others."
+            ),
+            content=[
+                mapideas_phases.CollectPhase(),
+            ],
+            image="images/map-brainstorming.svg",
+            settings_model=("a4maps", "AreaSettings"),
+            type="MBS",
+        ),
+    ),
+    (
+        "idea-collection",
+        ProjectBlueprint(
+            title=_("Idea Collection"),
+            description=_(
+                "Participants can submit their own ideas and discuss and rate "
+                "(pro/contra) the ideas of others."
+            ),
+            content=[
+                ideas_phases.CollectFeedbackPhase(),
+            ],
+            image="images/agenda-setting.svg",
+            settings_model=None,
+            type="IC",
+        ),
+    ),
+    (
+        "map-idea-collection",
+        ProjectBlueprint(
+            title=_("Spatial Idea Collection"),
+            description=_(
+                "Participants can submit their own ideas and locate them on a "
+                "map. They can also discuss and rate (pro/contra) the ideas of "
+                "others."
+            ),
+            content=[
+                mapideas_phases.CollectFeedbackPhase(),
+            ],
+            image="images/map-idea-collection.svg",
+            settings_model=("a4maps", "AreaSettings"),
+            type="MIC",
+        ),
+    ),
+    (
+        "participatory-budgeting",
+        ProjectBlueprint(
+            title=_("Participatory budgeting (1 phase)"),
+            description=_(
+                "Participants can submit their own proposals, mark them on a "
+                "map, and add a budget. The proposals of others can be discussed "
+                "and rated (pro/contra)."
+            ),
+            content=[budgeting_phases.RequestPhase()],
+            image="images/participatory-budgeting-1.svg",
+            settings_model=("a4maps", "AreaSettings"),
+            type="PB",
+        ),
+    ),
+    (
+        "participatory-budgeting-2-phases",
+        ProjectBlueprint(
+            title=_("Participatory budgeting (2 phase)"),
+            description=_(
+                "In a first phase, participants can submit their own proposals, "
+                "mark them on a map, and add a budget. The proposals of others "
+                "can be discussed and in a second phase rated (pro/contra)."
+            ),
+            content=[
+                budgeting_phases.CollectPhase(),
+                budgeting_phases.RatingPhase(),
+            ],
+            image="images/participatory-budgeting-2.svg",
+            settings_model=("a4maps", "AreaSettings"),
+            type="PB2",
+        ),
+    ),
+    (
+        "participatory-budgeting-3-phases",
+        ProjectBlueprint(
+            title=_("Participatory budgeting (3 phase)"),
+            description=_(
+                "In a first phase, participants can submit their own "
+                "suggestions, mark them on a map, and add a budget. The "
+                "proposals of others can be discussed. In a second phase "
+                "proposals can be supported. In the third phase, participants "
+                "vote on the shortlisted proposals.  "
+            ),
+            content=[
+                budgeting_phases.CollectPhase(),
+                budgeting_phases.SupportPhase(),
+                budgeting_phases.VotingPhase(),
+            ],
+            # The icon has to be updated:
+            image="images/participatory-budgeting-3.svg",
+            settings_model=("a4maps", "AreaSettings"),
+            type="PB3",
+        ),
+    ),
+    (
+        "kiezkasse",
+        ProjectBlueprint(
+            title=_("Kiezkasse"),
+            description=_(
+                "Participants can submit their own proposals, mark them on a "
+                "map, and add a budget. They can express their interest in "
+                "participating in the proposals’s implementation. The proposals "
+                "of others can be discussed and rated (pro/contra)."
+            ),
+            content=[
+                kiezkasse_phases.RequestFeedbackPhase(),
+            ],
+            image="images/kiezkasse.svg",
+            settings_model=("a4maps", "AreaSettings"),
+            type="KK",
+        ),
+    ),
+    (
+        "prioritization",
+        ProjectBlueprint(
+            title=_("Prioritization"),
+            description=_(
+                "Participants can discuss and rate (pro/contra) previously added "
+                "ideas and topics. Participants cannot add ideas or topics."
+            ),
+            content=[
+                topicprio_phases.PrioritizePhase(),
+            ],
+            image="images/priorization.svg",
+            settings_model=None,
+            type="TP",
+        ),
+    ),
+    (
+        "map-topic-prioritization",
+        ProjectBlueprint(
+            title=_("Spatial Prioritization"),
+            description=_(
+                "Participants can discuss and rate (pro/contra) ideas and topics "
+                "previously added to a map. Participants cannot add ideas or "
+                "topics."
+            ),
+            content=[
+                maptopicprio_phases.PrioritizePhase(),
+            ],
+            image="images/place-priotization.svg",
+            settings_model=("a4maps", "AreaSettings"),
+            type="MTP",
+        ),
+    ),
+    (
+        "text-review",
+        ProjectBlueprint(
+            title=_("Text Review"),
+            description=_(
+                "Participants can discuss the paragraphs of a text that you "
+                "added beforehand."
+            ),
+            content=[
+                documents_phases.CommentPhase(),
+            ],
+            image="images/text-review.svg",
+            settings_model=None,
+            type="TR",
+        ),
+    ),
+    (
+        "poll",
+        ProjectBlueprint(
+            title=_("Poll"),
+            description=_(
+                "Participants can answer open and multiple choice questions "
+                "and can comment on the poll"
+            ),
+            content=[
+                poll_phases.VotingPhase(),
+            ],
+            image="images/poll.svg",
+            settings_model=None,
+            type="PO",
+        ),
+    ),
+    (
+        "interactive-event",
+        ProjectBlueprint(
+            title=_("Interactive Event"),
+            description=_(
+                "The participants of an event can ask their questions online. "
+                "Other participants can support the question. The moderator can "
+                "sort the questions by support or affiliation."
+            ),
+            content=[
+                livequestion_phases.IssuePhase(),
+            ],
+            image="images/interactive-event.svg",
+            settings_model=None,
+            type="IE",
+        ),
+    ),
 ]

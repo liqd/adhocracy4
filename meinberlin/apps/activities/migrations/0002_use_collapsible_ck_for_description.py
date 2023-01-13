@@ -10,13 +10,15 @@ import adhocracy4.ckeditor.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_activities', '0001_initial'),
+        ("meinberlin_activities", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='activity',
-            name='description',
-            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(verbose_name='Description'),
+            model_name="activity",
+            name="description",
+            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                verbose_name="Description"
+            ),
         ),
     ]

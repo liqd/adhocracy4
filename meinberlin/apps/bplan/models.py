@@ -9,15 +9,17 @@ from meinberlin.apps.extprojects.models import ExternalProject
 
 class Bplan(ExternalProject):
     identifier = models.CharField(
-        verbose_name=_('Identifier'),
-        help_text=_('The identifier has to be identic to the identifier '
-                    'in the FIS-Broker, so that district and location are '
-                    'added automatically.'),
+        verbose_name=_("Identifier"),
+        help_text=_(
+            "The identifier has to be identic to the identifier "
+            "in the FIS-Broker, so that district and location are "
+            "added automatically."
+        ),
         blank=True,
-        max_length=120
+        max_length=120,
     )
     office_worker_email = models.EmailField(
-        verbose_name=_('Office worker email'),
+        verbose_name=_("Office worker email"),
         blank=True,
     )
 
@@ -43,16 +45,16 @@ class AnonymousItem(TimeStampedModel):
 
 class Statement(AnonymousItem):
 
-    name = models.CharField(max_length=255,
-                            verbose_name=_('Your Name'))
-    email = models.EmailField(blank=True,
-                              verbose_name=_('Email address'))
-    statement = models.TextField(verbose_name=_('Statement'))
+    name = models.CharField(max_length=255, verbose_name=_("Your Name"))
+    email = models.EmailField(blank=True, verbose_name=_("Email address"))
+    statement = models.TextField(verbose_name=_("Statement"))
 
-    street_number = models.CharField(max_length=255,
-                                     verbose_name=_('Street, House number'))
-    postal_code_city = models.CharField(max_length=255,
-                                        verbose_name=_('Postal code, City'))
+    street_number = models.CharField(
+        max_length=255, verbose_name=_("Street, House number")
+    )
+    postal_code_city = models.CharField(
+        max_length=255, verbose_name=_("Postal code, City")
+    )
 
     class Meta:
-        ordering = ['-created']
+        ordering = ["-created"]

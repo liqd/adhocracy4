@@ -11,23 +11,22 @@ logger = logging.getLogger(__name__)
 
 
 def get_features_from_bplan_api(endpoint):
-    url = 'https://bplan-prod.liqd.net/api/' + endpoint
+    url = "https://bplan-prod.liqd.net/api/" + endpoint
     req = urllib.request.Request(url)
     res = urllib.request.urlopen(req)
     res_body = res.read()
     res_json = json.loads(res_body.decode("utf-8"))
 
-    return res_json.get('features')
+    return res_json.get("features")
 
 
 def get_bplan_point_and_district_pk(bplan_identifier):
-    url_poi = 'bplan/points/' + \
-        '?bplan={}'.format(bplan_identifier.replace(' ', '%20'))
+    url_poi = "bplan/points/" + "?bplan={}".format(bplan_identifier.replace(" ", "%20"))
 
     try:
         features = get_features_from_bplan_api(url_poi)
         if features:
-            district_pk = features[0]['properties']['bezirk']
+            district_pk = features[0]["properties"]["bezirk"]
             point = features[0]
 
             return point, district_pk
@@ -40,20 +39,19 @@ def get_bplan_point_and_district_pk(bplan_identifier):
 
 
 def get_bplan_api_pk_to_a4_admin_district_dict():
-    url_dis = 'bezirke/'
+    url_dis = "bezirke/"
     features = get_features_from_bplan_api(url_dis)
     dis_dict = {}
     if features:
         for district in features:
 
             dis_model = AdministrativeDistrict.objects.filter(
-                name=district['properties']['name']
+                name=district["properties"]["name"]
             )
             if dis_model:
-                dis_dict[district['properties']['pk']] = \
-                    dis_model[0]
+                dis_dict[district["properties"]["pk"]] = dis_model[0]
             else:
-                dis_dict[district['properties']['pk']] = None
+                dis_dict[district["properties"]["pk"]] = None
 
     return dis_dict
 
@@ -65,15 +63,15 @@ def get_location_information(bplan_id):
 
     if district_pk:
         dis_dict = get_bplan_api_pk_to_a4_admin_district_dict()
-        bplan.administrative_district = \
-            dis_dict[district_pk]
+        bplan.administrative_district = dis_dict[district_pk]
         bplan.point = point
     else:
         logger.error(
             "The identifier '{}' for bplan '{}' seems to be wrong. "
-            "It doesn't exist on https://bplan-prod.liqd.net/api/"
-            .format(bplan.identifier, bplan)
+            "It doesn't exist on https://bplan-prod.liqd.net/api/".format(
+                bplan.identifier, bplan
+            )
         )
 
-    bplan.topics = ['URB']
-    bplan.save(update_fields=['point', 'administrative_district', 'topics'])
+    bplan.topics = ["URB"]
+    bplan.save(update_fields=["point", "administrative_district", "topics"])

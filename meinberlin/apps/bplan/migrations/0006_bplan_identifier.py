@@ -9,13 +9,15 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_bplan', '0005_make_office_worker_email_optional'),
+        ("meinberlin_bplan", "0005_make_office_worker_email_optional"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='bplan',
-            name='identifier',
-            field=models.CharField(blank=True, max_length=120, verbose_name='Identifier'),
+            model_name="bplan",
+            name="identifier",
+            field=models.CharField(
+                blank=True, max_length=120, verbose_name="Identifier"
+            ),
         ),
     ]

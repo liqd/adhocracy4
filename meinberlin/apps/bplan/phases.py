@@ -13,18 +13,18 @@ from . import forms
 from . import models
 
 
-class BplanStatementFormView(ProjectMixin,
-                             rules_mixins.PermissionRequiredMixin,
-                             generic.CreateView):
+class BplanStatementFormView(
+    ProjectMixin, rules_mixins.PermissionRequiredMixin, generic.CreateView
+):
     model = models.Statement
     form_class = forms.StatementForm
-    permission_required = 'meinberlin_bplan.add_statement'
-    template_name = 'meinberlin_bplan/statement_create_form.html'
-    success_url = reverse_lazy('meinberlin_bplan:statement-sent')
+    permission_required = "meinberlin_bplan.add_statement"
+    template_name = "meinberlin_bplan/statement_create_form.html"
+    success_url = reverse_lazy("meinberlin_bplan:statement-sent")
 
     def dispatch(self, request, *args, **kwargs):
         if self.project.has_finished:
-            return HttpResponseRedirect(reverse('meinberlin_bplan:finished'))
+            return HttpResponseRedirect(reverse("meinberlin_bplan:finished"))
         return super().dispatch(request, *args, **kwargs)
 
     def get_permission_object(self, *args, **kwargs):
@@ -37,15 +37,15 @@ class BplanStatementFormView(ProjectMixin,
 
 class StatementPhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'statement'
+    phase = "statement"
     view = BplanStatementFormView
 
-    name = _('Statement phase')
-    description = _('Send statement to the office workers per mail.')
-    module_name = _('bplan')
+    name = _("Statement phase")
+    description = _("Send statement to the office workers per mail.")
+    module_name = _("bplan")
 
     features = {
-        'crud': (models.Statement,),
+        "crud": (models.Statement,),
     }
 
 

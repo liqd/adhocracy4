@@ -12,7 +12,7 @@ from meinberlin.apps.cms import emails
 
 
 class EmailFormField(AbstractFormField):
-    page = ParentalKey('EmailFormPage', related_name='form_fields')
+    page = ParentalKey("EmailFormPage", related_name="form_fields")
 
 
 class WagtailCaptchaFormBuilder(FormBuilder):
@@ -20,9 +20,7 @@ class WagtailCaptchaFormBuilder(FormBuilder):
     def formfields(self):
         # Add captcha to formfields property
         fields = super().formfields
-        fields['captcha'] = CaptcheckCaptchaField(
-            label=_('I am not a robot')
-        )
+        fields["captcha"] = CaptcheckCaptchaField(label=_("I am not a robot"))
 
         return fields
 
@@ -33,8 +31,8 @@ class WagtailCaptchaEmailForm(AbstractEmailForm):
     form_builder = WagtailCaptchaFormBuilder
 
     def process_form_submission(self, form):
-        form.fields.pop('captcha', None)
-        form.cleaned_data.pop('captcha', None)
+        form.fields.pop("captcha", None)
+        form.cleaned_data.pop("captcha", None)
         return super().process_form_submission(form)
 
     class Meta:
@@ -42,51 +40,55 @@ class WagtailCaptchaEmailForm(AbstractEmailForm):
 
 
 class EmailFormPage(WagtailCaptchaEmailForm):
-    intro = fields.RichTextField(
-        help_text='Introduction text shown above the form'
-    )
+    intro = fields.RichTextField(help_text="Introduction text shown above the form")
     thank_you = fields.RichTextField(
-        help_text='Text shown after form submission',
+        help_text="Text shown after form submission",
     )
     email_content = models.CharField(
         max_length=200,
-        help_text='Email content message',
+        help_text="Email content message",
     )
     attach_as = models.CharField(
         max_length=3,
         choices=(
-            ('inc', 'Include in Email'),
-            ('xls', 'XLSX Document'),
-            ('txt', 'Text File'),
+            ("inc", "Include in Email"),
+            ("xls", "XLSX Document"),
+            ("txt", "Text File"),
         ),
-        default='inc',
-        help_text='Form results are send in this document format',
+        default="inc",
+        help_text="Form results are send in this document format",
     )
 
     content_panels = AbstractEmailForm.content_panels + [
-        panels.MultiFieldPanel([
-            panels.FieldPanel('intro', classname='full'),
-            panels.FieldPanel('thank_you', classname='full'),
-        ], 'Page'),
-        panels.MultiFieldPanel([
-            panels.FieldPanel('to_address'),
-            panels.FieldPanel('subject'),
-            panels.FieldPanel('email_content', classname='full'),
-            panels.FieldPanel('attach_as'),
-        ], 'Email'),
-        panels.InlinePanel('form_fields', label='Form fields'),
+        panels.MultiFieldPanel(
+            [
+                panels.FieldPanel("intro", classname="full"),
+                panels.FieldPanel("thank_you", classname="full"),
+            ],
+            "Page",
+        ),
+        panels.MultiFieldPanel(
+            [
+                panels.FieldPanel("to_address"),
+                panels.FieldPanel("subject"),
+                panels.FieldPanel("email_content", classname="full"),
+                panels.FieldPanel("attach_as"),
+            ],
+            "Email",
+        ),
+        panels.InlinePanel("form_fields", label="Form fields"),
     ]
 
     def send_mail(self, form):
         kwargs = {
-            'title': self.title.replace(' ', '_'),
-            'to_addresses': self.to_address.split(','),
-            'field_values': self.get_field_values(form),
-            'submission_pk': self.get_submission_class().objects.last().pk
+            "title": self.title.replace(" ", "_"),
+            "to_addresses": self.to_address.split(","),
+            "field_values": self.get_field_values(form),
+            "submission_pk": self.get_submission_class().objects.last().pk,
         }
-        if self.attach_as == 'xls':
+        if self.attach_as == "xls":
             emails.XlsxFormEmail.send(self, **kwargs)
-        elif self.attach_as == 'txt':
+        elif self.attach_as == "txt":
             emails.TextFormEmail.send(self, **kwargs)
         else:
             emails.FormEmail.send(self, **kwargs)
@@ -96,6 +98,6 @@ class EmailFormPage(WagtailCaptchaEmailForm):
         for field in form:
             value = field.value()
             if isinstance(value, list):
-                value = ', '.join(value)
+                value = ", ".join(value)
             fields[field.label] = value
         return fields

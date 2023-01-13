@@ -8,17 +8,15 @@ from meinberlin.apps.bplan.models import Bplan
 def add_project_type(apps, schema_editor):
     objs = Bplan.objects.all()
     for obj in objs:
-        obj.project_type = 'meinberlin_bplan.Bplan'
-    Bplan.objects.bulk_update(objs, ['project_type'])
+        obj.project_type = "meinberlin_bplan.Bplan"
+    Bplan.objects.bulk_update(objs, ["project_type"])
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_bplan', '0007_add_helptext_to_identifier'),
-        ('meinberlin_extprojects', '0005_custom_project_types'),
+        ("meinberlin_bplan", "0007_add_helptext_to_identifier"),
+        ("meinberlin_extprojects", "0005_custom_project_types"),
     ]
 
-    operations = [
-        migrations.RunPython(add_project_type)
-    ]
+    operations = [migrations.RunPython(add_project_type)]
