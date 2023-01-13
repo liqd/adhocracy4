@@ -9,7 +9,7 @@ from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.bplan import phases
 from meinberlin.test.helpers import setup_group_members
 
-perm_name = 'meinberlin_bplan.add_statement'
+perm_name = "meinberlin_bplan.add_statement"
 
 
 def test_perm_exists():
@@ -18,11 +18,14 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(phase_factory, user, admin, user_factory, group_factory):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.StatementPhase)
+    phase, module, project, _ = setup_phase(phase_factory, None, phases.StatementPhase)
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_pre_phase(phase):
@@ -38,11 +41,14 @@ def test_pre_phase(phase_factory, user, admin, user_factory, group_factory):
 
 @pytest.mark.django_db
 def test_active(phase_factory, user, admin, user_factory, group_factory):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.StatementPhase)
+    phase, module, project, _ = setup_phase(phase_factory, None, phases.StatementPhase)
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_phase(phase):
@@ -58,11 +64,14 @@ def test_active(phase_factory, user, admin, user_factory, group_factory):
 
 @pytest.mark.django_db
 def test_post_phase(phase_factory, user, admin, user_factory, group_factory):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.StatementPhase)
+    phase, module, project, _ = setup_phase(phase_factory, None, phases.StatementPhase)
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_post_phase(phase):

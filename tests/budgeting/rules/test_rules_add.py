@@ -10,7 +10,7 @@ from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.budgeting import phases
 from meinberlin.test.helpers import setup_group_members
 
-perm_name = 'meinberlin_budgeting.add_proposal'
+perm_name = "meinberlin_budgeting.add_proposal"
 
 
 def test_perm_exists():
@@ -19,11 +19,14 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(phase_factory, user, admin, user_factory, group_factory):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.RequestPhase)
+    phase, module, project, _ = setup_phase(phase_factory, None, phases.RequestPhase)
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PUBLIC
     with freeze_pre_phase(phase):
@@ -38,13 +41,15 @@ def test_pre_phase(phase_factory, user, admin, user_factory, group_factory):
 
 
 @pytest.mark.django_db
-def test_request_phase_active(phase_factory, user, admin, user_factory,
-                              group_factory):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.RequestPhase)
+def test_request_phase_active(phase_factory, user, admin, user_factory, group_factory):
+    phase, module, project, _ = setup_phase(phase_factory, None, phases.RequestPhase)
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PUBLIC
     with freeze_phase(phase):
@@ -59,13 +64,15 @@ def test_request_phase_active(phase_factory, user, admin, user_factory,
 
 
 @pytest.mark.django_db
-def test_collect_phase_active(phase_factory, user, admin, user_factory,
-                              group_factory):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.CollectPhase)
+def test_collect_phase_active(phase_factory, user, admin, user_factory, group_factory):
+    phase, module, project, _ = setup_phase(phase_factory, None, phases.CollectPhase)
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PUBLIC
     with freeze_phase(phase):
@@ -80,13 +87,15 @@ def test_collect_phase_active(phase_factory, user, admin, user_factory,
 
 
 @pytest.mark.django_db
-def test_rating_phase_active(phase_factory, user, admin, user_factory,
-                             group_factory):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.RatingPhase)
+def test_rating_phase_active(phase_factory, user, admin, user_factory, group_factory):
+    phase, module, project, _ = setup_phase(phase_factory, None, phases.RatingPhase)
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PUBLIC
     with freeze_phase(phase):
@@ -101,14 +110,19 @@ def test_rating_phase_active(phase_factory, user, admin, user_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_private(phase_factory, user, admin,
-                                      user_factory, group_factory):
+def test_phase_active_project_private(
+    phase_factory, user, admin, user_factory, group_factory
+):
     phase, module, project, _ = setup_phase(
-        phase_factory, None, phases.RequestPhase,
-        module__project__access=Access.PRIVATE)
+        phase_factory, None, phases.RequestPhase, module__project__access=Access.PRIVATE
+    )
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     participant = user_factory()
     project.participants.add(participant)
@@ -127,14 +141,22 @@ def test_phase_active_project_private(phase_factory, user, admin,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_semipublic(phase_factory, user, admin,
-                                         user_factory, group_factory):
+def test_phase_active_project_semipublic(
+    phase_factory, user, admin, user_factory, group_factory
+):
     phase, module, project, _ = setup_phase(
-        phase_factory, None, phases.RequestPhase,
-        module__project__access=Access.SEMIPUBLIC)
+        phase_factory,
+        None,
+        phases.RequestPhase,
+        module__project__access=Access.SEMIPUBLIC,
+    )
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     participant = user_factory()
     project.participants.add(participant)
@@ -153,14 +175,19 @@ def test_phase_active_project_semipublic(phase_factory, user, admin,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_draft(phase_factory, user, admin, user_factory,
-                                    group_factory):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.RequestPhase,
-                                            module__project__is_draft=True)
+def test_phase_active_project_draft(
+    phase_factory, user, admin, user_factory, group_factory
+):
+    phase, module, project, _ = setup_phase(
+        phase_factory, None, phases.RequestPhase, module__project__is_draft=True
+    )
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_draft
     with freeze_phase(phase):
@@ -175,14 +202,19 @@ def test_phase_active_project_draft(phase_factory, user, admin, user_factory,
 
 
 @pytest.mark.django_db
-def test_post_phase_project_archived(phase_factory, user, admin, user_factory,
-                                     group_factory):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.RequestPhase,
-                                            module__project__is_archived=True)
+def test_post_phase_project_archived(
+    phase_factory, user, admin, user_factory, group_factory
+):
+    phase, module, project, _ = setup_phase(
+        phase_factory, None, phases.RequestPhase, module__project__is_archived=True
+    )
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_archived
     with freeze_post_phase(phase):

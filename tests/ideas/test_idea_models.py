@@ -12,15 +12,16 @@ from meinberlin.apps.ideas import models as idea_models
 
 @pytest.mark.django_db
 def test_absolute_url(idea):
-    url = reverse('meinberlin_ideas:idea-detail',
-                  kwargs={'pk': '{:05d}'.format(idea.pk),
-                          'year': idea.created.year})
+    url = reverse(
+        "meinberlin_ideas:idea-detail",
+        kwargs={"pk": "{:05d}".format(idea.pk), "year": idea.created.year},
+    )
     assert idea.get_absolute_url() == url
 
 
 @pytest.mark.django_db
 def test_save(idea):
-    assert '<script>' not in idea.description
+    assert "<script>" not in idea.description
 
 
 @pytest.mark.django_db
@@ -83,31 +84,32 @@ def test_image_deleted_after_update(idea_factory, ImagePNG):
 
 
 @pytest.mark.django_db
-def test_item_badges_properties(
-        idea_factory, category, label_factory):
+def test_item_badges_properties(idea_factory, category, label_factory):
     module = category.module
-    idea = idea_factory(
-        module=module,
-        moderator_status='CHECKED',
-        category=category
-    )
+    idea = idea_factory(module=module, moderator_status="CHECKED", category=category)
     label_1 = label_factory(module=module)
     label_2 = label_factory(module=module)
     label_3 = label_factory(module=module)
     idea.labels.set([label_1, label_2, label_3])
 
-    assert idea.item_badges == \
-        [['moderator_status',
-          idea.get_moderator_status_display(),
-          idea.moderator_status],
-         ['category', category.name],
-         ['label', label_1.name],
-         ['label', label_2.name],
-         ['label', label_3.name]]
-    assert idea.item_badges_for_list == \
-        [['moderator_status',
-          idea.get_moderator_status_display(),
-          idea.moderator_status],
-         ['category', category.name],
-         ['label', label_1.name]]
+    assert idea.item_badges == [
+        [
+            "moderator_status",
+            idea.get_moderator_status_display(),
+            idea.moderator_status,
+        ],
+        ["category", category.name],
+        ["label", label_1.name],
+        ["label", label_2.name],
+        ["label", label_3.name],
+    ]
+    assert idea.item_badges_for_list == [
+        [
+            "moderator_status",
+            idea.get_moderator_status_display(),
+            idea.moderator_status,
+        ],
+        ["category", category.name],
+        ["label", label_1.name],
+    ]
     assert idea.additional_item_badges_for_list_count == 2

@@ -9,26 +9,22 @@ from meinberlin.apps.maptopicprio import models
 def test_anonymous_cannot_delete(client, maptopic_factory):
     maptopic = maptopic_factory()
     url = reverse(
-        'a4dashboard:maptopic-delete',
-        kwargs={
-            'pk': maptopic.pk,
-            'year': maptopic.created.year
-        })
+        "a4dashboard:maptopic-delete",
+        kwargs={"pk": maptopic.pk, "year": maptopic.created.year},
+    )
     response = client.post(url)
     assert response.status_code == 302
-    assert redirect_target(response) == 'account_login'
+    assert redirect_target(response) == "account_login"
 
 
 @pytest.mark.django_db
 def test_user_cannot_delete(client, maptopic_factory, user):
     maptopic = maptopic_factory()
-    client.login(username=user.email, password='password')
+    client.login(username=user.email, password="password")
     url = reverse(
-        'a4dashboard:maptopic-delete',
-        kwargs={
-            'pk': maptopic.pk,
-            'year': maptopic.created.year
-        })
+        "a4dashboard:maptopic-delete",
+        kwargs={"pk": maptopic.pk, "year": maptopic.created.year},
+    )
     response = client.post(url)
     assert response.status_code == 403
 
@@ -37,13 +33,11 @@ def test_user_cannot_delete(client, maptopic_factory, user):
 def test_moderator_cannot_delete(client, maptopic_factory):
     maptopic = maptopic_factory()
     moderator = maptopic.module.project.moderators.first()
-    client.login(username=moderator.email, password='password')
+    client.login(username=moderator.email, password="password")
     url = reverse(
-        'a4dashboard:maptopic-delete',
-        kwargs={
-            'pk': maptopic.pk,
-            'year': maptopic.created.year
-        })
+        "a4dashboard:maptopic-delete",
+        kwargs={"pk": maptopic.pk, "year": maptopic.created.year},
+    )
     response = client.post(url)
     assert response.status_code == 403
 
@@ -52,16 +46,14 @@ def test_moderator_cannot_delete(client, maptopic_factory):
 def test_initator_can_delete(client, maptopic_factory):
     maptopic = maptopic_factory()
     initiator = maptopic.module.project.organisation.initiators.first()
-    client.login(username=initiator.email, password='password')
+    client.login(username=initiator.email, password="password")
     url = reverse(
-        'a4dashboard:maptopic-delete',
-        kwargs={
-            'pk': maptopic.pk,
-            'year': maptopic.created.year
-        })
+        "a4dashboard:maptopic-delete",
+        kwargs={"pk": maptopic.pk, "year": maptopic.created.year},
+    )
     response = client.post(url)
     assert response.status_code == 302
-    assert redirect_target(response) == 'maptopic-list'
+    assert redirect_target(response) == "maptopic-list"
     count = models.MapTopic.objects.all().count()
     assert count == 0
 
@@ -69,15 +61,13 @@ def test_initator_can_delete(client, maptopic_factory):
 @pytest.mark.django_db
 def test_admin_can_delete(client, maptopic_factory, admin):
     maptopic = maptopic_factory()
-    client.login(username=admin.email, password='password')
+    client.login(username=admin.email, password="password")
     url = reverse(
-        'a4dashboard:maptopic-delete',
-        kwargs={
-            'pk': maptopic.pk,
-            'year': maptopic.created.year
-        })
+        "a4dashboard:maptopic-delete",
+        kwargs={"pk": maptopic.pk, "year": maptopic.created.year},
+    )
     response = client.post(url)
     assert response.status_code == 302
-    assert redirect_target(response) == 'maptopic-list'
+    assert redirect_target(response) == "maptopic-list"
     count = models.MapTopic.objects.all().count()
     assert count == 0

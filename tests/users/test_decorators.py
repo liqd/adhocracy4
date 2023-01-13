@@ -5,8 +5,7 @@ from meinberlin.apps.users.decorators import _user_is_project_admin
 
 
 @pytest.mark.django_db
-def test_user_is_project_admin(project, user_factory, group_factory,
-                               admin):
+def test_user_is_project_admin(project, user_factory, group_factory, admin):
     anonymous, moderator, initiator = setup_users(project)
     user = user_factory()
     group = group_factory()

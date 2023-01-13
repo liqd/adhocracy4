@@ -10,8 +10,7 @@ from meinberlin.apps.maptopicprio import models as idea_models
 
 
 @pytest.mark.django_db
-def test_delete_idea(maptopic_factory, comment_factory,
-                     rating_factory, ImagePNG):
+def test_delete_idea(maptopic_factory, comment_factory, rating_factory, ImagePNG):
     idea = maptopic_factory(image=ImagePNG)
     image_path = os.path.join(settings.MEDIA_ROOT, idea.image.path)
     thumbnail_path = create_thumbnail(idea.image)

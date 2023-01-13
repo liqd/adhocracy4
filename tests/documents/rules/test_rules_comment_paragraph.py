@@ -10,7 +10,7 @@ from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.documents import phases
 from meinberlin.test.helpers import setup_group_members
 
-perm_name = 'meinberlin_documents.comment_paragraph'
+perm_name = "meinberlin_documents.comment_paragraph"
 
 
 def test_perm_exists():
@@ -18,14 +18,20 @@ def test_perm_exists():
 
 
 @pytest.mark.django_db
-def test_pre_phase(phase_factory, chapter_factory, paragraph_factory,
-                   user_factory, group_factory, user):
-    phase, _, project, item = setup_phase(phase_factory, chapter_factory,
-                                          phases.CommentPhase)
+def test_pre_phase(
+    phase_factory, chapter_factory, paragraph_factory, user_factory, group_factory, user
+):
+    phase, _, project, item = setup_phase(
+        phase_factory, chapter_factory, phases.CommentPhase
+    )
 
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
@@ -43,14 +49,20 @@ def test_pre_phase(phase_factory, chapter_factory, paragraph_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active(phase_factory, chapter_factory, paragraph_factory,
-                      user_factory, group_factory, user):
-    phase, _, project, item = setup_phase(phase_factory, chapter_factory,
-                                          phases.CommentPhase)
+def test_phase_active(
+    phase_factory, chapter_factory, paragraph_factory, user_factory, group_factory, user
+):
+    phase, _, project, item = setup_phase(
+        phase_factory, chapter_factory, phases.CommentPhase
+    )
 
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
@@ -68,18 +80,25 @@ def test_phase_active(phase_factory, chapter_factory, paragraph_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_private(phase_factory, chapter_factory,
-                                      paragraph_factory, user_factory,
-                                      group_factory, user):
+def test_phase_active_project_private(
+    phase_factory, chapter_factory, paragraph_factory, user_factory, group_factory, user
+):
     phase, _, project, item = setup_phase(
-        phase_factory, chapter_factory, phases.CommentPhase,
-        module__project__access=Access.PRIVATE)
+        phase_factory,
+        chapter_factory,
+        phases.CommentPhase,
+        module__project__access=Access.PRIVATE,
+    )
 
     anonymous, moderator, initiator = setup_users(project)
     participant = user_factory()
     project.participants.add(participant)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
@@ -98,18 +117,25 @@ def test_phase_active_project_private(phase_factory, chapter_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_semipublic(phase_factory, chapter_factory,
-                                         paragraph_factory, user_factory,
-                                         group_factory, user):
+def test_phase_active_project_semipublic(
+    phase_factory, chapter_factory, paragraph_factory, user_factory, group_factory, user
+):
     phase, _, project, item = setup_phase(
-        phase_factory, chapter_factory, phases.CommentPhase,
-        module__project__access=Access.SEMIPUBLIC)
+        phase_factory,
+        chapter_factory,
+        phases.CommentPhase,
+        module__project__access=Access.SEMIPUBLIC,
+    )
 
     anonymous, moderator, initiator = setup_users(project)
     participant = user_factory()
     project.participants.add(participant)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
@@ -128,16 +154,23 @@ def test_phase_active_project_semipublic(phase_factory, chapter_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_draft(phase_factory, chapter_factory,
-                                    paragraph_factory, user_factory,
-                                    group_factory, user):
+def test_phase_active_project_draft(
+    phase_factory, chapter_factory, paragraph_factory, user_factory, group_factory, user
+):
     phase, _, project, item = setup_phase(
-        phase_factory, chapter_factory, phases.CommentPhase,
-        module__project__is_draft=True)
+        phase_factory,
+        chapter_factory,
+        phases.CommentPhase,
+        module__project__is_draft=True,
+    )
 
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)
@@ -155,16 +188,23 @@ def test_phase_active_project_draft(phase_factory, chapter_factory,
 
 
 @pytest.mark.django_db
-def test_post_phase_project_archived(phase_factory, chapter_factory,
-                                     paragraph_factory, user_factory,
-                                     group_factory, user):
-    phase, _, project, item = setup_phase(phase_factory, chapter_factory,
-                                          phases.CommentPhase,
-                                          module__project__is_archived=True)
+def test_post_phase_project_archived(
+    phase_factory, chapter_factory, paragraph_factory, user_factory, group_factory, user
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        chapter_factory,
+        phases.CommentPhase,
+        module__project__is_archived=True,
+    )
 
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     paragraph = paragraph_factory(chapter=item)

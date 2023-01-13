@@ -5,8 +5,9 @@ from adhocracy4.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
-def test_dashboard_bplan_list_view(bplan_factory, project_factory,
-                                   organisation, client):
+def test_dashboard_bplan_list_view(
+    bplan_factory, project_factory, organisation, client
+):
     bplan_1 = bplan_factory(organisation=organisation)
     bplan_2 = bplan_factory(organisation=organisation)
     bplan_3 = bplan_factory()
@@ -14,36 +15,35 @@ def test_dashboard_bplan_list_view(bplan_factory, project_factory,
     project = project_factory(organisation=organisation)
     assert project.organisation == organisation
     initiator = organisation.initiators.first()
-    url = reverse('a4dashboard:bplan-list',
-                  kwargs={'organisation_slug': organisation.slug})
-    client.login(username=initiator.email, password='password')
+    url = reverse(
+        "a4dashboard:bplan-list", kwargs={"organisation_slug": organisation.slug}
+    )
+    client.login(username=initiator.email, password="password")
     response = client.get(url)
-    assert_template_response(
-        response,
-        'meinberlin_bplan/bplan_list_dashboard.html')
-    assert bplan_1 in response.context_data['bplan_list']
-    assert bplan_2 in response.context_data['bplan_list']
-    assert bplan_3 not in response.context_data['bplan_list']
-    assert project not in response.context_data['bplan_list']
+    assert_template_response(response, "meinberlin_bplan/bplan_list_dashboard.html")
+    assert bplan_1 in response.context_data["bplan_list"]
+    assert bplan_2 in response.context_data["bplan_list"]
+    assert bplan_3 not in response.context_data["bplan_list"]
+    assert project not in response.context_data["bplan_list"]
 
 
 @pytest.mark.django_db
-def test_dashboard_bplan_list_view_user(user, organisation,
-                                        client):
+def test_dashboard_bplan_list_view_user(user, organisation, client):
     assert user not in organisation.initiators.all()
-    url = reverse('a4dashboard:bplan-list',
-                  kwargs={'organisation_slug': organisation.slug})
-    client.login(username=user.email, password='password')
+    url = reverse(
+        "a4dashboard:bplan-list", kwargs={"organisation_slug": organisation.slug}
+    )
+    client.login(username=user.email, password="password")
     response = client.get(url)
     assert response.status_code == 403
 
 
 @pytest.mark.django_db
 def test_dashboard_bplan_list_view_group_member(
-        bplan_factory, project_factory, organisation, client,
-        user_factory, group_factory):
+    bplan_factory, project_factory, organisation, client, user_factory, group_factory
+):
     group1 = group_factory()
-    group_member = user_factory.create(groups=(group1, ))
+    group_member = user_factory.create(groups=(group1,))
     organisation.groups.add(group1)
     bplan_1 = bplan_factory(organisation=organisation)
     bplan_1.group = group1
@@ -55,14 +55,13 @@ def test_dashboard_bplan_list_view_group_member(
     project.group = group1
     project.save()
     assert project.organisation == organisation
-    url = reverse('a4dashboard:bplan-list',
-                  kwargs={'organisation_slug': organisation.slug})
-    client.login(username=group_member.email, password='password')
+    url = reverse(
+        "a4dashboard:bplan-list", kwargs={"organisation_slug": organisation.slug}
+    )
+    client.login(username=group_member.email, password="password")
     response = client.get(url)
-    assert_template_response(
-        response,
-        'meinberlin_bplan/bplan_list_dashboard.html')
-    assert bplan_1 in response.context_data['bplan_list']
-    assert bplan_2 not in response.context_data['bplan_list']
-    assert bplan_3 not in response.context_data['bplan_list']
-    assert project not in response.context_data['bplan_list']
+    assert_template_response(response, "meinberlin_bplan/bplan_list_dashboard.html")
+    assert bplan_1 in response.context_data["bplan_list"]
+    assert bplan_2 not in response.context_data["bplan_list"]
+    assert bplan_3 not in response.context_data["bplan_list"]
+    assert project not in response.context_data["bplan_list"]

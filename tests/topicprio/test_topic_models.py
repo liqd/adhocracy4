@@ -12,15 +12,16 @@ from meinberlin.apps.topicprio import models as idea_models
 
 @pytest.mark.django_db
 def test_absolute_url(topic):
-    url = reverse('meinberlin_topicprio:topic-detail',
-                  kwargs={'pk': '{:05d}'.format(topic.pk),
-                          'year': topic.created.year})
+    url = reverse(
+        "meinberlin_topicprio:topic-detail",
+        kwargs={"pk": "{:05d}".format(topic.pk), "year": topic.created.year},
+    )
     assert topic.get_absolute_url() == url
 
 
 @pytest.mark.django_db
 def test_save(topic):
-    assert '<script>' not in topic.description
+    assert "<script>" not in topic.description
 
 
 @pytest.mark.django_db

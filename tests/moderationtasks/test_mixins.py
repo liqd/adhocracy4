@@ -6,10 +6,9 @@ from meinberlin.apps.moderationtasks.mixins import TasksAddableFieldMixin
 
 
 class TaskForm(TasksAddableFieldMixin, forms.ModelForm):
-
     class Meta:
         model = Proposal
-        fields = ['completed_tasks']
+        fields = ["completed_tasks"]
 
 
 @pytest.mark.django_db
@@ -19,7 +18,7 @@ def test_choice(module, moderation_task_factory, proposal_factory):
     proposal = proposal_factory(module=module)
 
     form = TaskForm(instance=proposal)
-    choice = form.fields['completed_tasks'].queryset.all()
+    choice = form.fields["completed_tasks"].queryset.all()
     assert task1 in choice
     assert task2 not in choice
 

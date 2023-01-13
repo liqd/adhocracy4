@@ -14,7 +14,7 @@ from meinberlin.apps.offlineevents.models import OfflineEvent
 START = Verbs.START.value
 
 EVENT_STARTING_HOURS = 0
-if hasattr(settings, 'ACTIONS_OFFLINE_EVENT_STARTING_HOURS'):
+if hasattr(settings, "ACTIONS_OFFLINE_EVENT_STARTING_HOURS"):
     EVENT_STARTING_HOURS = settings.ACTIONS_OFFLINE_EVENT_STARTING_HOURS
 else:
     EVENT_STARTING_HOURS = 72
@@ -23,7 +23,7 @@ else:
 @pytest.mark.django_db
 def test_event_date_later(offline_event_factory):
 
-    EVENT_DATE = parse('2020-01-05 17:00:00 UTC')
+    EVENT_DATE = parse("2020-01-05 17:00:00 UTC")
     ACTION_DATE = EVENT_DATE - timedelta(hours=EVENT_STARTING_HOURS)
     CURRENT_DATE = ACTION_DATE - timedelta(minutes=30)
 
@@ -33,16 +33,17 @@ def test_event_date_later(offline_event_factory):
     )
 
     with freeze_time(CURRENT_DATE):
-        call_command('create_offlineevent_system_actions')
-        action_count = Action.objects \
-            .filter(verb=START, obj_content_type=content_type).count()
+        call_command("create_offlineevent_system_actions")
+        action_count = Action.objects.filter(
+            verb=START, obj_content_type=content_type
+        ).count()
         assert action_count == 0
 
 
 @pytest.mark.django_db
 def test_event_date_soon(offline_event_factory):
 
-    EVENT_DATE = parse('2020-01-05 17:00:00 UTC')
+    EVENT_DATE = parse("2020-01-05 17:00:00 UTC")
     ACTION_DATE = EVENT_DATE - timedelta(hours=EVENT_STARTING_HOURS)
     CURRENT_DATE = ACTION_DATE + timedelta(minutes=30)
 
@@ -52,16 +53,17 @@ def test_event_date_soon(offline_event_factory):
     )
     project = event.project
 
-    action_count = Action.objects \
-        .filter(verb=START, obj_content_type=content_type).count()
+    action_count = Action.objects.filter(
+        verb=START, obj_content_type=content_type
+    ).count()
     assert action_count == 0
 
     with freeze_time(CURRENT_DATE):
-        call_command('create_offlineevent_system_actions')
-        action_count = Action.objects \
-            .filter(verb=START, obj_content_type=content_type).count()
-        action = Action.objects.filter(verb=START,
-                                       obj_content_type=content_type).last()
+        call_command("create_offlineevent_system_actions")
+        action_count = Action.objects.filter(
+            verb=START, obj_content_type=content_type
+        ).count()
+        action = Action.objects.filter(verb=START, obj_content_type=content_type).last()
         assert action_count == 1
         assert action.obj == event
         assert action.verb == START
@@ -71,7 +73,7 @@ def test_event_date_soon(offline_event_factory):
 @pytest.mark.django_db
 def test_phase_reschedule(offline_event_factory):
 
-    EVENT_DATE = parse('2020-01-05 17:00:00 UTC')
+    EVENT_DATE = parse("2020-01-05 17:00:00 UTC")
     ACTION_DATE = EVENT_DATE - timedelta(hours=EVENT_STARTING_HOURS)
 
     content_type = ContentType.objects.get_for_model(OfflineEvent)
@@ -82,9 +84,10 @@ def test_phase_reschedule(offline_event_factory):
     # event happens soon
     CURRENT_DATE = ACTION_DATE + timedelta(minutes=30)
     with freeze_time(CURRENT_DATE):
-        call_command('create_offlineevent_system_actions')
-        action_count = Action.objects \
-            .filter(verb=START, obj_content_type=content_type).count()
+        call_command("create_offlineevent_system_actions")
+        action_count = Action.objects.filter(
+            verb=START, obj_content_type=content_type
+        ).count()
         assert action_count == 1
 
     # reschedule event date, but little enough so no new action will be created
@@ -95,9 +98,10 @@ def test_phase_reschedule(offline_event_factory):
     event.save()
 
     with freeze_time(CURRENT_DATE):
-        call_command('create_offlineevent_system_actions')
-        action_count = Action.objects \
-            .filter(verb=START, obj_content_type=content_type).count()
+        call_command("create_offlineevent_system_actions")
+        action_count = Action.objects.filter(
+            verb=START, obj_content_type=content_type
+        ).count()
         assert action_count == 1
 
     # reschedule event date again, benough so a new action will be created
@@ -108,7 +112,8 @@ def test_phase_reschedule(offline_event_factory):
     event.save()
 
     with freeze_time(CURRENT_DATE):
-        call_command('create_offlineevent_system_actions')
-        action_count = Action.objects \
-            .filter(verb=START, obj_content_type=content_type).count()
+        call_command("create_offlineevent_system_actions")
+        action_count = Action.objects.filter(
+            verb=START, obj_content_type=content_type
+        ).count()
         assert action_count == 2

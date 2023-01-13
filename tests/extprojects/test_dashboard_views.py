@@ -16,37 +16,37 @@ def test_extproject_create(client, organisation, user_factory, group_factory):
     organisation.groups.add(group2)
 
     project_create_url = reverse(
-        'a4dashboard:external-project-create',
+        "a4dashboard:external-project-create",
         kwargs={
-            'organisation_slug': organisation.slug,
-        }
+            "organisation_slug": organisation.slug,
+        },
     )
 
     data = {
-        'name': 'external project name',
-        'description': 'external project description'
+        "name": "external project name",
+        "description": "external project description",
     }
 
     response = client.post(project_create_url, data)
-    assert redirect_target(response) == 'account_login'
+    assert redirect_target(response) == "account_login"
 
-    client.login(username=user, password='password')
+    client.login(username=user, password="password")
     response = client.post(project_create_url, data)
     assert response.status_code == 403
 
     organisation.initiators.add(initiator)
-    client.login(username=initiator, password='password')
+    client.login(username=initiator, password="password")
     response = client.post(project_create_url, data)
-    assert redirect_target(response) == 'project-edit'
+    assert redirect_target(response) == "project-edit"
 
     assert 1 == Project.objects.all().count()
     project = Project.objects.all().first()
-    assert 'external project name' == project.name
-    assert 'external project description' == project.description
+    assert "external project name" == project.name
+    assert "external project description" == project.description
 
-    client.login(username=group_member, password='password')
+    client.login(username=group_member, password="password")
     response = client.post(project_create_url, data)
-    assert redirect_target(response) == 'project-edit'
+    assert redirect_target(response) == "project-edit"
 
     assert 2 == Project.objects.all().count()
     assert 1 == Project.objects.filter(group_id=group2.id).count()

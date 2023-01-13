@@ -10,140 +10,126 @@ from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.ideas.phases import CollectFeedbackPhase
 from meinberlin.apps.projects.models import ParticipantInvite
 
-component = components.projects.get('participants')
+component = components.projects.get("participants")
 
 
 @pytest.mark.django_db
 def test_edit_view(client, phase_factory):
     phase, module, project, idea = setup_phase(
-        phase_factory, None, CollectFeedbackPhase)
+        phase_factory, None, CollectFeedbackPhase
+    )
     initiator = module.project.organisation.initiators.first()
     url = component.get_base_url(project)
-    client.login(username=initiator.email, password='password')
+    client.login(username=initiator.email, password="password")
     response = client.get(url)
-    assert_template_response(
-        response, 'meinberlin_projects/project_participants.html')
+    assert_template_response(response, "meinberlin_projects/project_participants.html")
 
     data = {
-        'add_users': 'test1@foo.bar,test2@foo.bar',
+        "add_users": "test1@foo.bar,test2@foo.bar",
     }
     response = client.post(url, data)
-    assert redirect_target(response) == \
-        'dashboard-{}-edit'.format(component.identifier)
-    assert ParticipantInvite.objects.get(email='test1@foo.bar')
-    assert ParticipantInvite.objects.get(email='test2@foo.bar')
+    assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
+    assert ParticipantInvite.objects.get(email="test1@foo.bar")
+    assert ParticipantInvite.objects.get(email="test2@foo.bar")
     assert len(mail.outbox) == 2
 
 
 @pytest.mark.django_db
 def test_initiator_can_delete_invitation(client, phase_factory):
     phase, module, project, idea = setup_phase(
-        phase_factory, None, CollectFeedbackPhase)
+        phase_factory, None, CollectFeedbackPhase
+    )
     url = component.get_base_url(project)
     initiator = module.project.organisation.initiators.first()
-    client.login(username=initiator.email, password='password')
+    client.login(username=initiator.email, password="password")
     response = client.get(url)
-    assert_template_response(
-        response, 'meinberlin_projects/project_participants.html')
+    assert_template_response(response, "meinberlin_projects/project_participants.html")
 
     data = {
-        'add_users': 'test1@foo.bar,test2@foo.bar',
+        "add_users": "test1@foo.bar,test2@foo.bar",
     }
     response = client.post(url, data)
-    assert redirect_target(response) == \
-        'dashboard-{}-edit'.format(component.identifier)
-    assert ParticipantInvite.objects.get(email='test1@foo.bar')
-    invite_pk = int(ParticipantInvite.objects.get(email='test1@foo.bar').pk)
-    data = {
-        'submit_action': 'remove_invite',
-        'invite_pk': invite_pk
-
-    }
+    assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
+    assert ParticipantInvite.objects.get(email="test1@foo.bar")
+    invite_pk = int(ParticipantInvite.objects.get(email="test1@foo.bar").pk)
+    data = {"submit_action": "remove_invite", "invite_pk": invite_pk}
     response = client.post(url, data)
-    assert redirect_target(response) == \
-        'dashboard-{}-edit'.format(component.identifier)
+    assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
     assert response.status_code == 302
-    assert not ParticipantInvite.objects.filter(email='test1@foo.bar').exists()
+    assert not ParticipantInvite.objects.filter(email="test1@foo.bar").exists()
     response = client.post(url, data)
-    assert redirect_target(response) == \
-        'dashboard-{}-edit'.format(component.identifier)
+    assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
     assert response.status_code == 302
 
 
 @pytest.mark.django_db
 def test_initiator_can_delete_participant(client, phase_factory, user):
     phase, module, project, idea = setup_phase(
-        phase_factory, None, CollectFeedbackPhase)
+        phase_factory, None, CollectFeedbackPhase
+    )
     assert user not in module.project.participants.all()
     module.project.participants.add(user)
     url = component.get_base_url(project)
     initiator = module.project.organisation.initiators.first()
-    client.login(username=initiator.email, password='password')
+    client.login(username=initiator.email, password="password")
     user_pk = user.pk
-    data = {
-        'submit_action': 'remove_user',
-        'user_pk': user_pk
-
-    }
+    data = {"submit_action": "remove_user", "user_pk": user_pk}
     response = client.post(url, data)
-    assert redirect_target(response) == \
-        'dashboard-{}-edit'.format(component.identifier)
+    assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
     assert response.status_code == 302
     assert user not in module.project.participants.all()
     response = client.post(url, data)
-    assert redirect_target(response) == \
-        'dashboard-{}-edit'.format(component.identifier)
+    assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
     assert response.status_code == 302
 
 
 @pytest.mark.django_db
-def test_participant_can_only_be_invited_once(
-        client, phase_factory, user):
+def test_participant_can_only_be_invited_once(client, phase_factory, user):
     phase, module, project, idea = setup_phase(
-        phase_factory, None, CollectFeedbackPhase)
+        phase_factory, None, CollectFeedbackPhase
+    )
     assert user not in module.project.participants.all()
     module.project.participants.add(user)
     url = component.get_base_url(project)
     initiator = module.project.organisation.initiators.first()
-    client.login(username=initiator.email, password='password')
-    with translation.override('en_GB'):
+    client.login(username=initiator.email, password="password")
+    with translation.override("en_GB"):
         response = client.get(url)
-    assert_template_response(
-        response, 'meinberlin_projects/project_participants.html')
+    assert_template_response(response, "meinberlin_projects/project_participants.html")
 
     data = {
-        'add_users': 'test1@foo.bar, test2@foo.bar, ' + user.email,
+        "add_users": "test1@foo.bar, test2@foo.bar, " + user.email,
     }
-    with translation.override('en_GB'):
+    with translation.override("en_GB"):
         response = client.post(url, data)
-    assert redirect_target(response) == \
-        'dashboard-{}-edit'.format(component.identifier)
-    assert ParticipantInvite.objects.get(email='test1@foo.bar')
-    assert ParticipantInvite.objects.get(email='test2@foo.bar')
+    assert redirect_target(response) == "dashboard-{}-edit".format(component.identifier)
+    assert ParticipantInvite.objects.get(email="test1@foo.bar")
+    assert ParticipantInvite.objects.get(email="test2@foo.bar")
     messages = list(get_messages(response.wsgi_request))
     assert len(messages) == 2
     assert str(messages[0]) == (
-        'Following users already accepted an invitation: ' + user.email)
-    assert str(messages[1]) == ('2 participants invited.')
+        "Following users already accepted an invitation: " + user.email
+    )
+    assert str(messages[1]) == ("2 participants invited.")
     data = {
-        'add_users': 'test1@foo.bar',
+        "add_users": "test1@foo.bar",
     }
-    with translation.override('en_GB'):
+    with translation.override("en_GB"):
         response = client.post(url, data)
     messages = list(get_messages(response.wsgi_request))
     assert len(messages) == 4
-    assert str(messages[2]) == (
-        'Following users are already invited: test1@foo.bar')
-    assert str(messages[3]) == ('0 participants invited.')
+    assert str(messages[2]) == ("Following users are already invited: test1@foo.bar")
+    assert str(messages[3]) == ("0 participants invited.")
 
 
 @pytest.mark.django_db
 def test_moderator_cannot_edit(client, phase_factory):
     phase, module, project, idea = setup_phase(
-        phase_factory, None, CollectFeedbackPhase)
+        phase_factory, None, CollectFeedbackPhase
+    )
     url = component.get_base_url(project)
     moderator = project.moderators.first()
-    client.login(username=moderator.email, password='password')
+    client.login(username=moderator.email, password="password")
     response = client.get(url)
     assert response.status_code == 403
 
@@ -151,9 +137,10 @@ def test_moderator_cannot_edit(client, phase_factory):
 @pytest.mark.django_db
 def test_user_cannot_edit(client, phase_factory, user):
     phase, module, project, idea = setup_phase(
-        phase_factory, None, CollectFeedbackPhase)
+        phase_factory, None, CollectFeedbackPhase
+    )
     url = component.get_base_url(project)
-    client.login(username=user.email, password='password')
+    client.login(username=user.email, password="password")
     response = client.get(url)
     assert response.status_code == 403
 
@@ -161,8 +148,9 @@ def test_user_cannot_edit(client, phase_factory, user):
 @pytest.mark.django_db
 def test_anonymous_cannot_edit(client, phase_factory):
     phase, module, project, idea = setup_phase(
-        phase_factory, None, CollectFeedbackPhase)
+        phase_factory, None, CollectFeedbackPhase
+    )
     url = component.get_base_url(project)
     response = client.get(url)
     assert response.status_code == 302
-    assert redirect_target(response) == 'account_login'
+    assert redirect_target(response) == "account_login"

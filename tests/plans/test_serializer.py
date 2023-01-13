@@ -59,37 +59,32 @@ def test_serializer(client, plan_factory, project_factory, phase_factory):
         plan_factory.create(pk=4, projects=[project4])
         plan_factory.create(pk=5, projects=[project5], status=Plan.STATUS_DONE)
 
-        plans = Plan.objects.all().order_by('pk')
+        plans = Plan.objects.all().order_by("pk")
 
         plan_serializer = PlanSerializer(plans, many=True)
         plan_data = plan_serializer.data
         assert len(plan_data) == 5
 
-        assert plan_data[0]['type'] == 'plan'
-        assert plan_data[1]['type'] == 'plan'
-        assert plan_data[2]['type'] == 'plan'
-        assert plan_data[3]['type'] == 'plan'
-        assert plan_data[4]['type'] == 'plan'
+        assert plan_data[0]["type"] == "plan"
+        assert plan_data[1]["type"] == "plan"
+        assert plan_data[2]["type"] == "plan"
+        assert plan_data[3]["type"] == "plan"
+        assert plan_data[4]["type"] == "plan"
 
-        assert plan_data[0]['published_projects_count'] == 1
-        assert plan_data[1]['published_projects_count'] == 1
-        assert plan_data[2]['published_projects_count'] == 0
-        assert plan_data[3]['published_projects_count'] == 1
-        assert plan_data[4]['published_projects_count'] == 1
+        assert plan_data[0]["published_projects_count"] == 1
+        assert plan_data[1]["published_projects_count"] == 1
+        assert plan_data[2]["published_projects_count"] == 0
+        assert plan_data[3]["published_projects_count"] == 1
+        assert plan_data[4]["published_projects_count"] == 1
 
-        assert plan_data[0]['participation_string'] == \
-            _('running')
-        assert plan_data[1]['participation_string'] == \
-            _('running')
-        assert plan_data[2]['participation_string'] == \
-            _('done')
-        assert plan_data[3]['participation_string'] == \
-            _('running')
-        assert plan_data[4]['participation_string'] == \
-            _('done')
+        assert plan_data[0]["participation_string"] == _("running")
+        assert plan_data[1]["participation_string"] == _("running")
+        assert plan_data[2]["participation_string"] == _("done")
+        assert plan_data[3]["participation_string"] == _("running")
+        assert plan_data[4]["participation_string"] == _("done")
 
-        assert plan_data[0]['participation_active']
-        assert plan_data[1]['participation_active']
-        assert not plan_data[2]['participation_active']
-        assert plan_data[3]['participation_active']
-        assert not plan_data[4]['participation_active']
+        assert plan_data[0]["participation_active"]
+        assert plan_data[1]["participation_active"]
+        assert not plan_data[2]["participation_active"]
+        assert plan_data[3]["participation_active"]
+        assert not plan_data[4]["participation_active"]

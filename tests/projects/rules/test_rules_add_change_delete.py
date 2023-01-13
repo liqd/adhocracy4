@@ -4,9 +4,9 @@ from django.contrib.auth.models import AnonymousUser
 
 from adhocracy4.test.helpers import setup_users
 
-perm_name_add = 'a4projects.add_project'
-perm_name_change = 'a4projects.change_project'
-perm_name_delete = 'a4projects.delete_project'
+perm_name_add = "a4projects.add_project"
+perm_name_change = "a4projects.change_project"
+perm_name_delete = "a4projects.delete_project"
 
 
 def test_perm_exists():
@@ -42,8 +42,7 @@ def test_add_project(user_factory, group_factory, organisation):
 
 
 @pytest.mark.django_db
-def test_change_project(user_factory, group_factory, organisation,
-                        project_factory):
+def test_change_project(user_factory, group_factory, organisation, project_factory):
     user = user_factory()
     initiator = user_factory()
     admin = user_factory(is_superuser=True)
@@ -72,8 +71,7 @@ def test_change_project(user_factory, group_factory, organisation,
 
 
 @pytest.mark.django_db
-def test_delete_project(user_factory, group_factory, organisation,
-                        project_factory):
+def test_delete_project(user_factory, group_factory, organisation, project_factory):
     user = user_factory()
     initiator = user_factory()
     admin = user_factory(is_superuser=True)
@@ -96,16 +94,15 @@ def test_delete_project(user_factory, group_factory, organisation,
     assert not rules.has_perm(perm_name_delete, moderator, project)
     assert not rules.has_perm(perm_name_delete, group_member_in_orga, project)
     assert not rules.has_perm(perm_name_delete, group_member_out, project)
-    assert not rules.has_perm(perm_name_delete, group_member_in_project,
-                              project)
+    assert not rules.has_perm(perm_name_delete, group_member_in_project, project)
     assert rules.has_perm(perm_name_delete, initiator, project)
     assert rules.has_perm(perm_name_delete, admin, project)
 
 
 @pytest.mark.django_db
-def test_group_member_initiator_perms(group_factory,
-                                      organisation_factory,
-                                      project_factory):
+def test_group_member_initiator_perms(
+    group_factory, organisation_factory, project_factory
+):
     organisation1 = organisation_factory()
     organisation2 = organisation_factory()
     group1 = group_factory()
@@ -123,33 +120,23 @@ def test_group_member_initiator_perms(group_factory,
     project5 = project_factory(organisation=organisation1, group=group2)
     project6 = project_factory(organisation=organisation2, group=group1)
 
-    assert rules.has_perm(
-        perm_name_add, initiator, organisation1)  # group member
-    assert rules.has_perm(
-        perm_name_add, initiator, organisation2)  # initiator
+    assert rules.has_perm(perm_name_add, initiator, organisation1)  # group member
+    assert rules.has_perm(perm_name_add, initiator, organisation2)  # initiator
 
-    assert not rules.has_perm(
-        perm_name_change, initiator, project1)
+    assert not rules.has_perm(perm_name_change, initiator, project1)
+    assert rules.has_perm(perm_name_change, initiator, project2)  # initiator
+    assert rules.has_perm(perm_name_change, initiator, project3)  # group member
+    assert rules.has_perm(perm_name_change, initiator, project4)  # initiator
+    assert not rules.has_perm(perm_name_change, initiator, project5)
     assert rules.has_perm(
-        perm_name_change, initiator, project2)  # initiator
-    assert rules.has_perm(
-        perm_name_change, initiator, project3)  # group member
-    assert rules.has_perm(
-        perm_name_change, initiator, project4)  # initiator
-    assert not rules.has_perm(
-        perm_name_change, initiator, project5)
-    assert rules.has_perm(
-        perm_name_change, initiator, project6)  # initiator and group member
+        perm_name_change, initiator, project6
+    )  # initiator and group member
 
-    assert not rules.has_perm(
-        perm_name_delete, initiator, project1)
+    assert not rules.has_perm(perm_name_delete, initiator, project1)
+    assert rules.has_perm(perm_name_delete, initiator, project2)  # initiator
+    assert not rules.has_perm(perm_name_delete, initiator, project3)  # group member
+    assert rules.has_perm(perm_name_delete, initiator, project4)  # initiator
+    assert not rules.has_perm(perm_name_delete, initiator, project5)
     assert rules.has_perm(
-        perm_name_delete, initiator, project2)  # initiator
-    assert not rules.has_perm(
-        perm_name_delete, initiator, project3)  # group member
-    assert rules.has_perm(
-        perm_name_delete, initiator, project4)  # initiator
-    assert not rules.has_perm(
-        perm_name_delete, initiator, project5)
-    assert rules.has_perm(
-        perm_name_delete, initiator, project6)  # initiator and group member
+        perm_name_delete, initiator, project6
+    )  # initiator and group member

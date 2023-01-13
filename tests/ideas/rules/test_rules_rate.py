@@ -9,7 +9,7 @@ from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.ideas import phases
 
-perm_name = 'meinberlin_ideas.rate_idea'
+perm_name = "meinberlin_ideas.rate_idea"
 
 
 def test_perm_exists():
@@ -18,8 +18,9 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(phase_factory, idea_factory, user):
-    phase, _, project, item = setup_phase(phase_factory, idea_factory,
-                                          phases.RatingPhase)
+    phase, _, project, item = setup_phase(
+        phase_factory, idea_factory, phases.RatingPhase
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
@@ -32,8 +33,9 @@ def test_pre_phase(phase_factory, idea_factory, user):
 
 @pytest.mark.django_db
 def test_phase_active(phase_factory, idea_factory, user):
-    phase, _, project, item = setup_phase(phase_factory, idea_factory,
-                                          phases.RatingPhase)
+    phase, _, project, item = setup_phase(
+        phase_factory, idea_factory, phases.RatingPhase
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
@@ -45,11 +47,13 @@ def test_phase_active(phase_factory, idea_factory, user):
 
 
 @pytest.mark.django_db
-def test_phase_active_project_private(phase_factory, idea_factory,
-                                      user, user2):
+def test_phase_active_project_private(phase_factory, idea_factory, user, user2):
     phase, _, project, item = setup_phase(
-        phase_factory, idea_factory, phases.RatingPhase,
-        module__project__access=Access.PRIVATE)
+        phase_factory,
+        idea_factory,
+        phases.RatingPhase,
+        module__project__access=Access.PRIVATE,
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     participant = user2
@@ -65,11 +69,13 @@ def test_phase_active_project_private(phase_factory, idea_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_semipublic(phase_factory, idea_factory,
-                                         user, user2):
+def test_phase_active_project_semipublic(phase_factory, idea_factory, user, user2):
     phase, _, project, item = setup_phase(
-        phase_factory, idea_factory, phases.RatingPhase,
-        module__project__access=Access.SEMIPUBLIC)
+        phase_factory,
+        idea_factory,
+        phases.RatingPhase,
+        module__project__access=Access.SEMIPUBLIC,
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     participant = user2
@@ -86,9 +92,9 @@ def test_phase_active_project_semipublic(phase_factory, idea_factory,
 
 @pytest.mark.django_db
 def test_phase_active_project_draft(phase_factory, idea_factory, user):
-    phase, _, project, item = setup_phase(phase_factory, idea_factory,
-                                          phases.RatingPhase,
-                                          module__project__is_draft=True)
+    phase, _, project, item = setup_phase(
+        phase_factory, idea_factory, phases.RatingPhase, module__project__is_draft=True
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_draft
@@ -101,9 +107,12 @@ def test_phase_active_project_draft(phase_factory, idea_factory, user):
 
 @pytest.mark.django_db
 def test_post_phase_project_archived(phase_factory, idea_factory, user):
-    phase, _, project, item = setup_phase(phase_factory, idea_factory,
-                                          phases.RatingPhase,
-                                          module__project__is_archived=True)
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        idea_factory,
+        phases.RatingPhase,
+        module__project__is_archived=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_archived

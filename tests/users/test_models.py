@@ -19,13 +19,13 @@ def test_short_name(user):
 
 @pytest.mark.django_db
 def test_full_name(user):
-    assert user.get_full_name() == \
-        ('%s <%s>' % (user.username, user.email)).strip()
+    assert user.get_full_name() == ("%s <%s>" % (user.username, user.email)).strip()
 
 
 @pytest.mark.django_db
-def test_organisations(user_factory, project_factory, group_factory,
-                       organisation_factory):
+def test_organisations(
+    user_factory, project_factory, group_factory, organisation_factory
+):
     group1 = group_factory()
     group2 = group_factory()
     organisation1 = organisation_factory()
@@ -37,8 +37,8 @@ def test_organisations(user_factory, project_factory, group_factory,
     initiator2 = organisation2.initiators.first()
     initiator2.groups.add(group1)
     user = user_factory()
-    group_member1 = user_factory.create(groups=(group1, ))
-    group_member2 = user_factory.create(groups=(group2, ))
+    group_member1 = user_factory.create(groups=(group1,))
+    group_member2 = user_factory.create(groups=(group2,))
 
     assert organisation1 not in user.organisations
     assert organisation2 not in user.organisations

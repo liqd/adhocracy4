@@ -10,7 +10,7 @@ from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.documents import phases
 from meinberlin.test.helpers import setup_group_members
 
-perm_name = 'meinberlin_documents.change_chapter'
+perm_name = "meinberlin_documents.change_chapter"
 
 
 def test_perm_exists():
@@ -18,17 +18,20 @@ def test_perm_exists():
 
 
 @pytest.mark.django_db
-def test_pre_phase(phase_factory, chapter_factory,
-                   user_factory, group_factory,
-                   user):
+def test_pre_phase(phase_factory, chapter_factory, user_factory, group_factory, user):
 
-    phase, _, project, item = setup_phase(phase_factory, chapter_factory,
-                                          phases.CommentPhase)
+    phase, _, project, item = setup_phase(
+        phase_factory, chapter_factory, phases.CommentPhase
+    )
 
     creator = item.creator
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_pre_phase(phase):
@@ -43,16 +46,21 @@ def test_pre_phase(phase_factory, chapter_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active(phase_factory, chapter_factory,
-                      user_factory, group_factory,
-                      user):
-    phase, _, project, item = setup_phase(phase_factory, chapter_factory,
-                                          phases.CommentPhase)
+def test_phase_active(
+    phase_factory, chapter_factory, user_factory, group_factory, user
+):
+    phase, _, project, item = setup_phase(
+        phase_factory, chapter_factory, phases.CommentPhase
+    )
 
     creator = item.creator
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
     with freeze_phase(phase):
@@ -67,19 +75,26 @@ def test_phase_active(phase_factory, chapter_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_private(phase_factory, chapter_factory,
-                                      user_factory, group_factory,
-                                      user):
+def test_phase_active_project_private(
+    phase_factory, chapter_factory, user_factory, group_factory, user
+):
     phase, _, project, item = setup_phase(
-        phase_factory, chapter_factory, phases.CommentPhase,
-        module__project__access=Access.PRIVATE)
+        phase_factory,
+        chapter_factory,
+        phases.CommentPhase,
+        module__project__access=Access.PRIVATE,
+    )
 
     creator = item.creator
     anonymous, moderator, initiator = setup_users(project)
     participant = user_factory()
     project.participants.add(participant)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.PRIVATE
     with freeze_phase(phase):
@@ -95,19 +110,26 @@ def test_phase_active_project_private(phase_factory, chapter_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_semipublic(phase_factory, chapter_factory,
-                                         user_factory, group_factory,
-                                         user):
+def test_phase_active_project_semipublic(
+    phase_factory, chapter_factory, user_factory, group_factory, user
+):
     phase, _, project, item = setup_phase(
-        phase_factory, chapter_factory, phases.CommentPhase,
-        module__project__access=Access.SEMIPUBLIC)
+        phase_factory,
+        chapter_factory,
+        phases.CommentPhase,
+        module__project__access=Access.SEMIPUBLIC,
+    )
 
     creator = item.creator
     anonymous, moderator, initiator = setup_users(project)
     participant = user_factory()
     project.participants.add(participant)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.access == Access.SEMIPUBLIC
     with freeze_phase(phase):
@@ -123,17 +145,24 @@ def test_phase_active_project_semipublic(phase_factory, chapter_factory,
 
 
 @pytest.mark.django_db
-def test_phase_active_project_draft(phase_factory, chapter_factory,
-                                    user_factory, group_factory,
-                                    user):
-    phase, _, project, item = setup_phase(phase_factory, chapter_factory,
-                                          phases.CommentPhase,
-                                          module__project__is_draft=True)
+def test_phase_active_project_draft(
+    phase_factory, chapter_factory, user_factory, group_factory, user
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        chapter_factory,
+        phases.CommentPhase,
+        module__project__is_draft=True,
+    )
 
     creator = item.creator
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_draft
     with freeze_phase(phase):
@@ -148,17 +177,24 @@ def test_phase_active_project_draft(phase_factory, chapter_factory,
 
 
 @pytest.mark.django_db
-def test_post_phase_project_archived(phase_factory, chapter_factory,
-                                     user_factory, group_factory,
-                                     user):
-    phase, _, project, item = setup_phase(phase_factory, chapter_factory,
-                                          phases.CommentPhase,
-                                          module__project__is_archived=True)
+def test_post_phase_project_archived(
+    phase_factory, chapter_factory, user_factory, group_factory, user
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        chapter_factory,
+        phases.CommentPhase,
+        module__project__is_archived=True,
+    )
 
     creator = item.creator
     anonymous, moderator, initiator = setup_users(project)
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_archived
     with freeze_post_phase(phase):

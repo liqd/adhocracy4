@@ -9,7 +9,7 @@ from meinberlin.apps.documents.models import Chapter
 def test_paragraph_save(paragraph):
     paragraph.text = '<script>alert("hello");</script>text'
     paragraph.save()
-    assert '<script>' not in paragraph.text
+    assert "<script>" not in paragraph.text
 
 
 @pytest.mark.django_db
@@ -58,7 +58,7 @@ def test_delete_chapter(chapter, comment_factory):
     def comments_for_chapter(chapter):
         return comments_models.Comment.objects.filter(
             object_pk=chapter.pk,
-            content_type=ContentType.objects.get_for_model(chapter)
+            content_type=ContentType.objects.get_for_model(chapter),
         )
 
     assert len(comments_for_chapter(chapter)) == 5

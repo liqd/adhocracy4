@@ -7,8 +7,7 @@ from meinberlin.apps.projectcontainers.models import ProjectContainer
 
 
 @pytest.mark.django_db
-def test_container_create(
-        client, organisation, user_factory, group_factory, admin):
+def test_container_create(client, organisation, user_factory, group_factory, admin):
     group1 = group_factory()
     group2 = group_factory()
     user = user_factory()
@@ -16,37 +15,37 @@ def test_container_create(
     group_member = user_factory.create(groups=(group1, group2))
     organisation.groups.add(group2)
 
-    project_create_url = reverse('a4dashboard:container-create', kwargs={
-        'organisation_slug': organisation.slug,
-    })
+    project_create_url = reverse(
+        "a4dashboard:container-create",
+        kwargs={
+            "organisation_slug": organisation.slug,
+        },
+    )
 
-    data = {
-        'name': 'container name',
-        'description': 'container description'
-    }
+    data = {"name": "container name", "description": "container description"}
 
     response = client.post(project_create_url, data)
-    assert redirect_target(response) == 'account_login'
+    assert redirect_target(response) == "account_login"
 
-    client.login(username=user, password='password')
+    client.login(username=user, password="password")
     response = client.post(project_create_url, data)
     assert response.status_code == 403
 
     organisation.initiators.add(initiator)
-    client.login(username=initiator, password='password')
+    client.login(username=initiator, password="password")
     response = client.post(project_create_url, data)
     assert response.status_code == 403
 
-    client.login(username=admin, password='password')
+    client.login(username=admin, password="password")
     response = client.post(project_create_url, data)
-    assert redirect_target(response) == 'project-edit'
+    assert redirect_target(response) == "project-edit"
 
     assert 1 == Project.objects.all().count()
     project = Project.objects.all().first()
-    assert 'container name' == project.name
-    assert 'container description' == project.description
+    assert "container name" == project.name
+    assert "container description" == project.description
 
-    client.login(username=group_member, password='password')
+    client.login(username=group_member, password="password")
     response = client.post(project_create_url, data)
     assert response.status_code == 403
 

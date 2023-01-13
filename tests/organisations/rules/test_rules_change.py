@@ -3,7 +3,7 @@ import rules
 
 from adhocracy4.test.helpers import setup_users
 
-perm_name = 'meinberlin_organisations.change_organisation'
+perm_name = "meinberlin_organisations.change_organisation"
 
 
 def test_perm_exists():

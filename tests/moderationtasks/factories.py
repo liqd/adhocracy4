@@ -5,9 +5,8 @@ from meinberlin.apps.moderationtasks.models import ModerationTask
 
 
 class ModerationTaskFactory(factory.django.DjangoModelFactory):
-
     class Meta:
         model = ModerationTask
 
-    name = factory.Faker('name')
+    name = factory.Faker("name")
     module = factory.SubFactory(ModuleFactory)

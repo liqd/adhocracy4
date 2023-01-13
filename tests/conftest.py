@@ -19,12 +19,12 @@ from meinberlin.test.factories.projectcontainers import ProjectContainerFactory
 
 def pytest_configure(config):
     # Patch email background_task decorators for all tests
-    helpers.patch_background_task_decorator('adhocracy4.emails.tasks')
+    helpers.patch_background_task_decorator("adhocracy4.emails.tasks")
 
 
 register(factories.UserFactory)
-register(factories.UserFactory, 'user2')
-register(factories.AdminFactory, 'admin')
+register(factories.UserFactory, "user2")
+register(factories.AdminFactory, "admin")
 register(OrganisationFactory)
 register(factories.CommentFactory)
 register(factories.RatingFactory)
@@ -64,12 +64,12 @@ def bigImage():
 
 @pytest.fixture
 def ImageBMP():
-    return factory.django.ImageField(width=1400, height=1400, format='BMP')
+    return factory.django.ImageField(width=1400, height=1400, format="BMP")
 
 
 @pytest.fixture
 def ImagePNG():
-    return factory.django.ImageField(width=1400, height=1400, format='PNG')
+    return factory.django.ImageField(width=1400, height=1400, format="PNG")
 
 
 @pytest.fixture
@@ -79,14 +79,14 @@ def image_factory():
 
 @pytest.fixture
 def login_url():
-    return reverse('account_login')
+    return reverse("account_login")
 
 
 @pytest.fixture
 def logout_url():
-    return reverse('account_logout')
+    return reverse("account_logout")
 
 
 @pytest.fixture
 def signup_url():
-    return reverse('account_signup')
+    return reverse("account_signup")

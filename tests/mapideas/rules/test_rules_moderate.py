@@ -10,7 +10,7 @@ from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.mapideas import phases
 from meinberlin.test.helpers import setup_group_members
 
-perm_name = 'meinberlin_mapideas.moderate_mapidea'
+perm_name = "meinberlin_mapideas.moderate_mapidea"
 
 
 def test_perm_exists():
@@ -19,14 +19,19 @@ def test_perm_exists():
 
 @pytest.mark.django_db
 def test_pre_phase(
-        phase_factory, map_idea_factory, user, admin, user_factory,
-        group_factory):
-    phase, _, project, item = setup_phase(phase_factory, map_idea_factory,
-                                          phases.CollectPhase)
+    phase_factory, map_idea_factory, user, admin, user_factory, group_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory, map_idea_factory, phases.CollectPhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     assert project.is_public
@@ -44,14 +49,19 @@ def test_pre_phase(
 
 @pytest.mark.django_db
 def test_phase_active(
-        phase_factory, map_idea_factory, user, admin, user_factory,
-        group_factory):
-    phase, _, project, item = setup_phase(phase_factory, map_idea_factory,
-                                          phases.CollectPhase)
+    phase_factory, map_idea_factory, user, admin, user_factory, group_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory, map_idea_factory, phases.CollectPhase
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     assert project.is_public
@@ -69,15 +79,22 @@ def test_phase_active(
 
 @pytest.mark.django_db
 def test_phase_active_project_private(
-        phase_factory, map_idea_factory, user, admin, user_factory,
-        group_factory):
+    phase_factory, map_idea_factory, user, admin, user_factory, group_factory
+):
     phase, _, project, item = setup_phase(
-        phase_factory, map_idea_factory, phases.CollectPhase,
-        module__project__access=Access.PRIVATE)
+        phase_factory,
+        map_idea_factory,
+        phases.CollectPhase,
+        module__project__access=Access.PRIVATE,
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     participant = user_factory()
@@ -99,15 +116,22 @@ def test_phase_active_project_private(
 
 @pytest.mark.django_db
 def test_phase_active_project_semipublic(
-        phase_factory, map_idea_factory, user, admin, user_factory,
-        group_factory):
+    phase_factory, map_idea_factory, user, admin, user_factory, group_factory
+):
     phase, _, project, item = setup_phase(
-        phase_factory, map_idea_factory, phases.CollectPhase,
-        module__project__access=Access.SEMIPUBLIC)
+        phase_factory,
+        map_idea_factory,
+        phases.CollectPhase,
+        module__project__access=Access.SEMIPUBLIC,
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     participant = user_factory()
@@ -129,15 +153,22 @@ def test_phase_active_project_semipublic(
 
 @pytest.mark.django_db
 def test_phase_active_project_draft(
-        phase_factory, map_idea_factory, user, admin, user_factory,
-        group_factory):
-    phase, _, project, item = setup_phase(phase_factory, map_idea_factory,
-                                          phases.CollectPhase,
-                                          module__project__is_draft=True)
+    phase_factory, map_idea_factory, user, admin, user_factory, group_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        map_idea_factory,
+        phases.CollectPhase,
+        module__project__is_draft=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     assert project.is_draft
@@ -155,15 +186,22 @@ def test_phase_active_project_draft(
 
 @pytest.mark.django_db
 def test_post_phase_project_archived(
-        phase_factory, map_idea_factory, user, admin, user_factory,
-        group_factory):
-    phase, _, project, item = setup_phase(phase_factory, map_idea_factory,
-                                          phases.CollectPhase,
-                                          module__project__is_archived=True)
+    phase_factory, map_idea_factory, user, admin, user_factory, group_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory,
+        map_idea_factory,
+        phases.CollectPhase,
+        module__project__is_archived=True,
+    )
     anonymous, moderator, initiator = setup_users(project)
     creator = item.creator
-    project, group_member_in_org, group_member_in_pro, group_member_out = \
-        setup_group_members(project, group_factory, user_factory)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
     creator = item.creator
 
     assert project.is_archived
