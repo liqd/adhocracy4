@@ -24,6 +24,7 @@ from meinberlin.apps.moderationtasks.filters import ModerationTaskFilterBackend
 from meinberlin.apps.moderationtasks.models import ModerationTask
 from meinberlin.apps.moderatorfeedback.models import DEFAULT_CHOICES
 from meinberlin.apps.votes.api import VotingTokenInfoMixin
+from meinberlin.apps.votes.filters import OwnVotesFilterBackend
 
 from .models import Proposal
 from .serializers import ProposalSerializer
@@ -99,6 +100,20 @@ class ProposalFilterInfoMixin:
             "label": _("Status"),
             "choices": moderator_status_choices,
         }
+
+        # own votes filter
+        # only show during voting phase and when token is entered
+        if (
+            has_feature_active(self.module, Proposal, "vote")
+            and "voting_token" in request.session
+        ):
+            filters["own_votes"] = {
+                "label": _("Voting"),
+                "choices": [
+                    ("", _("All")),
+                    ("true", _("My votes")),
+                ],
+            }
 
         # moderation task filter, only show to moderators
         if is_allowed_moderate_project(request.user, self.module):
@@ -240,6 +255,7 @@ class ProposalViewSet(
         OrderingFilterWithDailyRandom,
         IdeaCategoryFilterBackend,
         SearchFilter,
+        OwnVotesFilterBackend,
         ModerationTaskFilterBackend,
     )
     filterset_fields = (
