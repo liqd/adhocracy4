@@ -6,7 +6,7 @@ from django.db import migrations
 
 
 def make_many_projects(apps, schema_editor):
-    Plan = apps.get_model('meinberlin_plans', 'Plan')
+    Plan = apps.get_model("meinberlin_plans", "Plan")
 
     for plan in Plan.objects.all():
         if plan.project:
@@ -16,9 +16,7 @@ def make_many_projects(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0009_plan_projects'),
+        ("meinberlin_plans", "0009_plan_projects"),
     ]
 
-    operations = [
-        migrations.RunPython(make_many_projects)
-    ]
+    operations = [migrations.RunPython(make_many_projects)]

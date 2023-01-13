@@ -6,4 +6,4 @@ from . import models
 class ModeratorFeedbackForm(forms.ModelForm):
     class Meta:
         model = models.ModeratorFeedback
-        fields = ['feedback_text']
+        fields = ["feedback_text"]

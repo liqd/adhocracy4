@@ -10,13 +10,16 @@ import adhocracy4.maps.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_maptopicprio', '0008_add_verbose_name'),
+        ("meinberlin_maptopicprio", "0008_add_verbose_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='maptopic',
-            name='point',
-            field=adhocracy4.maps.fields.PointField(help_text='Click inside the marked area or type in an address to set the marker. A set marker can be dragged when pressed.', verbose_name='Where can your idea be located on a map?'),
+            model_name="maptopic",
+            name="point",
+            field=adhocracy4.maps.fields.PointField(
+                help_text="Click inside the marked area or type in an address to set the marker. A set marker can be dragged when pressed.",
+                verbose_name="Where can your idea be located on a map?",
+            ),
         ),
     ]

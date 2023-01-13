@@ -10,14 +10,19 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0008_alter_user_username_max_length'),
-        ('meinberlin_plans', '0038_change_ongoing_display_value'),
+        ("auth", "0008_alter_user_username_max_length"),
+        ("meinberlin_plans", "0038_change_ongoing_display_value"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='plan',
-            name='group',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='auth.Group'),
+            model_name="plan",
+            name="group",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="auth.Group",
+            ),
         ),
     ]

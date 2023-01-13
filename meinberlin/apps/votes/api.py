@@ -30,18 +30,17 @@ class VotingTokenInfoMixin:
     def list(self, request, *args, **kwargs):
         response = super().list(request, args, kwargs)
         token_info = None
-        if 'voting_token' in request.session:
+        if "voting_token" in request.session:
             try:
                 token = VotingToken.objects.get(
-                    token=request.session['voting_token'],
-                    module=self.module
+                    token=request.session["voting_token"], module=self.module
                 )
                 serializer = VotingTokenSerializer(token)
                 token_info = serializer.data
             except VotingToken.DoesNotExist:
                 pass
 
-        response.data['token_info'] = token_info
+        response.data["token_info"] = token_info
         return response
 
 
@@ -52,13 +51,12 @@ class TokenVoteMixin:
     """
 
     def dispatch(self, request, *args, **kwargs):
-        self.module_pk = kwargs.get('module_pk', '')
-        self.content_type_id = kwargs.get('content_type', '')
+        self.module_pk = kwargs.get("module_pk", "")
+        self.content_type_id = kwargs.get("content_type", "")
         try:
             session = Session.objects.get(pk=request.session.session_key)
             self.token = VotingToken.objects.get(
-                token=session.get_decoded()['voting_token'],
-                module=self.module
+                token=session.get_decoded()["voting_token"], module=self.module
             )
         except ObjectDoesNotExist:
             pass
@@ -70,10 +68,7 @@ class TokenVoteMixin:
 
     @property
     def module(self):
-        return get_object_or_404(
-            Module,
-            pk=self.module_pk
-        )
+        return get_object_or_404(Module, pk=self.module_pk)
 
     @property
     def content_type(self):
@@ -84,16 +79,12 @@ class TokenVoteMixin:
 
     def check_permissions(self, request):
         """Check if valid token is there before checking other permissions."""
-        if not hasattr(self, 'token'):
+        if not hasattr(self, "token"):
             self.permission_denied(
-                request,
-                message=_('No token given or token not valid for module.')
+                request, message=_("No token given or token not valid for module.")
             )
         elif not self.token.is_active:
-            self.permission_denied(
-                request,
-                message=_('Token is inactive.')
-            )
+            self.permission_denied(request, message=_("Token is inactive."))
 
         super().check_permissions(request)
 
@@ -102,19 +93,21 @@ class TokenVotePermission(BasePermission):
     """Needs to be used in combination with TokenVoteMixin."""
 
     def has_permission(self, request, view):
-        if view.action == 'create':
+        if view.action == "create":
             return view.token.has_votes_left
-        elif view.action == 'destroy':
+        elif view.action == "destroy":
             vote = view.get_object()
             return vote.token == view.token
         else:
             return False
 
 
-class TokenVoteViewSet(mixins.CreateModelMixin,
-                       mixins.DestroyModelMixin,
-                       TokenVoteMixin,
-                       viewsets.GenericViewSet):
+class TokenVoteViewSet(
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin,
+    TokenVoteMixin,
+    viewsets.GenericViewSet,
+):
     """Api view to create or delete token votes.
 
     Uses 2 permission classes:
@@ -132,17 +125,18 @@ class TokenVoteViewSet(mixins.CreateModelMixin,
 
     serializer_class = TokenVoteSerializer
     permission_classes = (ViewSetRulesPermission, TokenVotePermission)
-    lookup_field = 'object_pk'
+    lookup_field = "object_pk"
 
     def get_queryset(self):
-        return TokenVote.objects.filter(token=self.token,
-                                        content_type=self.content_type)
+        return TokenVote.objects.filter(
+            token=self.token, content_type=self.content_type
+        )
 
     def get_permission_object(self):
         # for voting, the permission object is the item that is voted on
-        if self.action == 'create':
+        if self.action == "create":
             return self.content_type.get_object_for_this_type(
-                pk=self.request.data['object_id']
+                pk=self.request.data["object_id"]
             )
         else:
             return self.token.module
@@ -150,22 +144,25 @@ class TokenVoteViewSet(mixins.CreateModelMixin,
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
-            POST='{app_label}.vote_{model}'.format(
-                app_label=self.content_type.app_label,
-                model=self.content_type.model),
-            DELETE='{app_label}.delete_vote'.format(
-                app_label=self.content_type.app_label)
+            POST="{app_label}.vote_{model}".format(
+                app_label=self.content_type.app_label, model=self.content_type.model
+            ),
+            DELETE="{app_label}.delete_vote".format(
+                app_label=self.content_type.app_label
+            ),
         )
 
     def create(self, request, *args, **kwargs):
-        data = {'token': self.token.pk,
-                'content_type': self.content_type_id,
-                'object_pk': request.data['object_id']}
+        data = {
+            "token": self.token.pk,
+            "content_type": self.content_type_id,
+            "object_pk": request.data["object_id"],
+        }
 
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data,
-                        status=status.HTTP_201_CREATED,
-                        headers=headers)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )

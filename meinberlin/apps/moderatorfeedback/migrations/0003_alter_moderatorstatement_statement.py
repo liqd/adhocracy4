@@ -7,13 +7,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_moderatorfeedback', '0002_moderation_form_wording'),
+        ("meinberlin_moderatorfeedback", "0002_moderation_form_wording"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='moderatorstatement',
-            name='statement',
-            field=ckeditor.fields.RichTextField(blank=True, help_text='The official feedback will appear below the idea, indicating your organisation. The idea provider receives a notification.', verbose_name='Feedback on the contribution (public)'),
+            model_name="moderatorstatement",
+            name="statement",
+            field=ckeditor.fields.RichTextField(
+                blank=True,
+                help_text="The official feedback will appear below the idea, indicating your organisation. The idea provider receives a notification.",
+                verbose_name="Feedback on the contribution (public)",
+            ),
         ),
     ]

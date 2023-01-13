@@ -9,20 +9,19 @@ from django.utils.translation import gettext_lazy as _
 
 class CommaSeparatedEmailField(forms.Field):
     email_validator = EmailValidator(
-        message=_('Please enter correct email addresses, separated by '
-                  'commas.')
+        message=_("Please enter correct email addresses, separated by " "commas.")
     )
 
-    widget = widgets.TextInput(attrs={
-        'placeholder': 'maria@example.com, peter@example.com,…'
-    })
+    widget = widgets.TextInput(
+        attrs={"placeholder": "maria@example.com, peter@example.com,…"}
+    )
 
     def to_python(self, value):
         if not value:
             return []
 
         emails = []
-        for email in value.split(','):
+        for email in value.split(","):
             email = email.strip()
             self.email_validator(email)
             emails.append(email)
@@ -53,7 +52,7 @@ class EmailFileField(forms.FileField):
             # email addresses are restricted to contain only ascii letters.
             # This works for every encoding which is a superset of ascii like
             # utf-8 and latin-1. Non ascii chars are simply ignored.
-            line = byteline.decode('ascii', 'ignore')
+            line = byteline.decode("ascii", "ignore")
             for match in self.email_regex.finditer(line):
                 email = match.group(0)
                 if self.is_valid_email(email):

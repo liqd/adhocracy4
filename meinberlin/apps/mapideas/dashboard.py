@@ -9,33 +9,45 @@ from . import views
 
 
 class ExportMapIdeaComponent(DashboardComponent):
-    identifier = 'mapidea_export'
+    identifier = "mapidea_export"
     weight = 50
-    label = _('Export Excel')
+    label = _("Export Excel")
 
     def is_effective(self, module):
-        return (module.blueprint_type == 'MIC' and
-                not module.project.is_draft and not module.is_draft)
+        return (
+            module.blueprint_type == "MIC"
+            and not module.project.is_draft
+            and not module.is_draft
+        )
 
     def get_progress(self, module):
         return 0, 0
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:mapidea-export-module', kwargs={
-            'module_slug': module.slug,
-        })
+        return reverse(
+            "a4dashboard:mapidea-export-module",
+            kwargs={
+                "module_slug": module.slug,
+            },
+        )
 
     def get_urls(self):
         return [
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/mapidea/$',
-             views.MapIdeaDashboardExportView.as_view(component=self),
-             'mapidea-export-module'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/mapidea/ideas/$',
-             exports.MapIdeaExportView.as_view(),
-             'mapidea-export'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/mapidea/comments/$',
-             exports.MapIdeaCommentExportView.as_view(),
-             'mapidea-comment-export'),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/mapidea/$",
+                views.MapIdeaDashboardExportView.as_view(component=self),
+                "mapidea-export-module",
+            ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/mapidea/ideas/$",
+                exports.MapIdeaExportView.as_view(),
+                "mapidea-export",
+            ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/mapidea/comments/$",
+                exports.MapIdeaCommentExportView.as_view(),
+                "mapidea-comment-export",
+            ),
         ]
 
 

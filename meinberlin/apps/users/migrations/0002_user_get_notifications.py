@@ -8,13 +8,17 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_users', '0001_initial'),
+        ("meinberlin_users", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='get_notifications',
-            field=models.BooleanField(verbose_name='Send me email notifications', default=True, help_text='Designates whether you want to receive notifications. Unselect if you do not want to receive notifications.'),
+            model_name="user",
+            name="get_notifications",
+            field=models.BooleanField(
+                verbose_name="Send me email notifications",
+                default=True,
+                help_text="Designates whether you want to receive notifications. Unselect if you do not want to receive notifications.",
+            ),
         ),
     ]

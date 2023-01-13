@@ -5,35 +5,48 @@ import meinberlin.apps.moderatorfeedback.fields
 
 
 def moderator_feedback_checked_to_qualified(apps, schema_editor):
-    MapIdea = apps.get_model('meinberlin_mapideas', 'MapIdea')
+    MapIdea = apps.get_model("meinberlin_mapideas", "MapIdea")
 
-    for mapidea in MapIdea.objects.filter(moderator_feedback='CHECKED'):
-        mapidea.moderator_feedback = 'QUALIFIED'
+    for mapidea in MapIdea.objects.filter(moderator_feedback="CHECKED"):
+        mapidea.moderator_feedback = "QUALIFIED"
         mapidea.save()
 
 
 def moderator_feedback_qualified_to_checked(apps, schema_editor):
-    MapIdea = apps.get_model('meinberlin_mapideas', 'MapIdea')
+    MapIdea = apps.get_model("meinberlin_mapideas", "MapIdea")
 
-    for mapidea in MapIdea.objects.filter(moderator_feedback='QUALIFIED'):
-        mapidea.moderator_feedback = 'CHECKED'
+    for mapidea in MapIdea.objects.filter(moderator_feedback="QUALIFIED"):
+        mapidea.moderator_feedback = "CHECKED"
         mapidea.save()
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_mapideas', '0020_alter_mapidea_moderator_feedback'),
+        ("meinberlin_mapideas", "0020_alter_mapidea_moderator_feedback"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='mapidea',
-            name='moderator_feedback',
-            field=meinberlin.apps.moderatorfeedback.fields.ModeratorFeedbackField(blank=True, choices=[('CONSIDERATION', 'Under consideration'), ('QUALIFIED', 'Qualified for next phase'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')], default=None, help_text='The editing status appears below the title of the idea in red, yellow or green. The idea provider receives a notification.', max_length=254, null=True, verbose_name='Processing status'),
+            model_name="mapidea",
+            name="moderator_feedback",
+            field=meinberlin.apps.moderatorfeedback.fields.ModeratorFeedbackField(
+                blank=True,
+                choices=[
+                    ("CONSIDERATION", "Under consideration"),
+                    ("QUALIFIED", "Qualified for next phase"),
+                    ("REJECTED", "Rejected"),
+                    ("ACCEPTED", "Accepted"),
+                ],
+                default=None,
+                help_text="The editing status appears below the title of the idea in red, yellow or green. The idea provider receives a notification.",
+                max_length=254,
+                null=True,
+                verbose_name="Processing status",
+            ),
         ),
         migrations.RunPython(
             moderator_feedback_checked_to_qualified,
-            moderator_feedback_qualified_to_checked
+            moderator_feedback_qualified_to_checked,
         ),
     ]

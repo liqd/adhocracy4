@@ -9,13 +9,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_maptopicprio', '0009_point_helptext'),
+        ("meinberlin_maptopicprio", "0009_point_helptext"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='maptopic',
-            name='description',
-            field=ckeditor_uploader.fields.RichTextUploadingField(verbose_name='Description'),
+            model_name="maptopic",
+            name="description",
+            field=ckeditor_uploader.fields.RichTextUploadingField(
+                verbose_name="Description"
+            ),
         ),
     ]

@@ -7,13 +7,19 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_organisations', '0010_change_address_field'),
+        ("meinberlin_organisations", "0010_change_address_field"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='organisation',
-            name='logo',
-            field=adhocracy4.images.fields.ConfiguredImageField('logo', blank=True, help_prefix='The image will be shown in the newsletter in the banner, as such it should not be wider than 650 pixels.', upload_to='organisation/logos', verbose_name='Logo'),
+            model_name="organisation",
+            name="logo",
+            field=adhocracy4.images.fields.ConfiguredImageField(
+                "logo",
+                blank=True,
+                help_prefix="The image will be shown in the newsletter in the banner, as such it should not be wider than 650 pixels.",
+                upload_to="organisation/logos",
+                verbose_name="Logo",
+            ),
         ),
     ]

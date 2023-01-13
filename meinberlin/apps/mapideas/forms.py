@@ -10,28 +10,34 @@ from meinberlin.apps.contrib.widgets import Select2Widget
 from . import models
 
 
-class MapIdeaForm(CategorizableFieldMixin,
-                  LabelsAddableFieldMixin,
-                  ImageRightOfUseMixin):
-
+class MapIdeaForm(
+    CategorizableFieldMixin, LabelsAddableFieldMixin, ImageRightOfUseMixin
+):
     def __init__(self, *args, **kwargs):
-        self.settings = kwargs.pop('settings_instance')
+        self.settings = kwargs.pop("settings_instance")
         super().__init__(*args, **kwargs)
-        self.fields['point'].widget = maps_widgets.MapChoosePointWidget(
-            polygon=self.settings.polygon)
-        self.fields['point'].error_messages['required'] = _(
-            'Please locate your proposal on the map.')
+        self.fields["point"].widget = maps_widgets.MapChoosePointWidget(
+            polygon=self.settings.polygon
+        )
+        self.fields["point"].error_messages["required"] = _(
+            "Please locate your proposal on the map."
+        )
 
     class Meta:
         model = models.MapIdea
-        fields = ['name', 'description', 'image', 'category',
-                  'labels', 'point', 'point_label']
-        widgets = {
-            'category': Select2Widget(attrs={'class': 'select2__no-search'})
-        }
+        fields = [
+            "name",
+            "description",
+            "image",
+            "category",
+            "labels",
+            "point",
+            "point_label",
+        ]
+        widgets = {"category": Select2Widget(attrs={"class": "select2__no-search"})}
 
 
 class MapIdeaModerateForm(forms.ModelForm):
     class Meta:
         model = models.MapIdea
-        fields = ['moderator_status']
+        fields = ["moderator_status"]

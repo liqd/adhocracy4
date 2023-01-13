@@ -9,13 +9,18 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0022_point_label_allow_blank'),
+        ("meinberlin_plans", "0022_point_label_allow_blank"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='point_label',
-            field=models.CharField(default='', help_text='The label of the location is displayed in the detail view of the plan', max_length=255, verbose_name='Label of the location'),
+            model_name="plan",
+            name="point_label",
+            field=models.CharField(
+                default="",
+                help_text="The label of the location is displayed in the detail view of the plan",
+                max_length=255,
+                verbose_name="Label of the location",
+            ),
         ),
     ]

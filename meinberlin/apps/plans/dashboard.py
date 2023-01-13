@@ -7,13 +7,13 @@ from . import forms
 
 
 class PlanComponent(ProjectFormComponent):
-    identifier = 'plans'
+    identifier = "plans"
     weight = 33
-    label = _('Plans')
+    label = _("Plans")
 
-    form_title = _('Edit Plan')
+    form_title = _("Edit Plan")
     form_class = forms.ProjectPlansDashboardForm
-    form_template_name = 'meinberlin_plans/project_plans_form.html'
+    form_template_name = "meinberlin_plans/project_plans_form.html"
 
 
 components.register_project(PlanComponent())

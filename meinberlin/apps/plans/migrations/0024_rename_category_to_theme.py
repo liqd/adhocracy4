@@ -8,13 +8,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0023_point_label_default_value'),
+        ("meinberlin_plans", "0023_point_label_default_value"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='plan',
-            old_name='category',
-            new_name='theme',
+            model_name="plan",
+            old_name="category",
+            new_name="theme",
         ),
     ]

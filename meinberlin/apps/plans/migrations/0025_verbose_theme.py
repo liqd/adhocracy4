@@ -9,13 +9,13 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0024_rename_category_to_theme'),
+        ("meinberlin_plans", "0024_rename_category_to_theme"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='theme',
-            field=models.CharField(max_length=255, verbose_name='Theme'),
+            model_name="plan",
+            name="theme",
+            field=models.CharField(max_length=255, verbose_name="Theme"),
         ),
     ]

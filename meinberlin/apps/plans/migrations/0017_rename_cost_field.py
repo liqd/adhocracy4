@@ -8,13 +8,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0016_remove_plan_cost'),
+        ("meinberlin_plans", "0016_remove_plan_cost"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='plan',
-            old_name='cost_string',
-            new_name='cost',
+            model_name="plan",
+            old_name="cost_string",
+            new_name="cost",
         ),
     ]

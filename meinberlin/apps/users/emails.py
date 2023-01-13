@@ -5,7 +5,7 @@ from meinberlin.apps.contrib.emails import Email
 
 
 class WelcomeEmail(SyncEmailMixin, Email):
-    template_name = 'meinberlin_users/emails/welcome'
+    template_name = "meinberlin_users/emails/welcome"
 
     def get_receivers(self):
         receiver = self.object
@@ -13,5 +13,5 @@ class WelcomeEmail(SyncEmailMixin, Email):
 
     def get_context(self):
         context = super().get_context()
-        context['contact_email'] = settings.CONTACT_EMAIL
+        context["contact_email"] = settings.CONTACT_EMAIL
         return context

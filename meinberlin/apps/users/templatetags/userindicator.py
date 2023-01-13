@@ -19,13 +19,13 @@ def _is_account_url(request):
 
 def get_next_url(request):
     if _is_account_url(request):
-        return request.GET.get('next') or request.POST.get('next') or '/'
+        return request.GET.get("next") or request.POST.get("next") or "/"
     else:
         return request.get_full_path()
 
 
-@register.inclusion_tag('meinberlin_users/indicator.html', takes_context=True)
+@register.inclusion_tag("meinberlin_users/indicator.html", takes_context=True)
 def userindicator(context):
-    if hasattr(context, 'request'):
-        context['redirect_field_value'] = get_next_url(context['request'])
+    if hasattr(context, "request"):
+        context["redirect_field_value"] = get_next_url(context["request"])
     return context

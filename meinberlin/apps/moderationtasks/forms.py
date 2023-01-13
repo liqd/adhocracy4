@@ -12,24 +12,24 @@ class ModerationTaskForm(forms.ModelForm):
     def __init__(self, module, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['name'].label = _('Moderation task')
+        self.fields["name"].label = _("Moderation task")
 
-    name = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': _('Moderation tasks')}
-    ))
+    name = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Moderation tasks")})
+    )
 
     class Media:
-        js = ('category_formset.js',)
+        js = ("category_formset.js",)
 
     class Meta:
         model = ModerationTask
-        fields = ['name']
+        fields = ["name"]
 
 
 class ModerationTaskModuleDashboardFormSet(ModuleDashboardFormSet):
     def get_form_kwargs(self, index):
         form_kwargs = super().get_form_kwargs(index)
-        form_kwargs['module'] = self.instance
+        form_kwargs["module"] = self.instance
         return form_kwargs
 
 
@@ -38,5 +38,5 @@ ModerationTasksFormSet = inlineformset_factory(
     ModerationTask,
     form=ModerationTaskForm,
     formset=ModerationTaskModuleDashboardFormSet,
-    extra=0
+    extra=0,
 )

@@ -7,7 +7,7 @@ from .widgets import MapChoosePolygonWithPresetWidget
 
 class ExtendedAreaSettingsForm(AreaSettingsForm):
     class Meta(AreaSettingsForm.Meta):
-        widgets = {'polygon': MapChoosePolygonWithPresetWidget}
+        widgets = {"polygon": MapChoosePolygonWithPresetWidget}
 
 
 class ModuleExtendedAreaSettingsComponent(ModuleAreaSettingsComponent):

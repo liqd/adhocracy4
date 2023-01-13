@@ -7,7 +7,7 @@ class MapPresetCategory(models.Model):
     name = models.CharField(max_length=128)
 
     class Meta:
-        ordering = ['name']
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -16,13 +16,15 @@ class MapPresetCategory(models.Model):
 class MapPreset(models.Model):
     name = models.CharField(max_length=128)
     polygon = map_fields.MultiPolygonField()
-    category = models.ForeignKey(MapPresetCategory,
-                                 null=True,
-                                 blank=True,
-                                 on_delete=models.SET_NULL,)
+    category = models.ForeignKey(
+        MapPresetCategory,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
 
     class Meta:
-        ordering = ['name']
+        ordering = ["name"]
 
     def __str__(self):
         return self.name

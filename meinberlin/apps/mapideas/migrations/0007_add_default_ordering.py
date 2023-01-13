@@ -8,12 +8,12 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_mapideas', '0006_auto_20170529_1302'),
+        ("meinberlin_mapideas", "0006_auto_20170529_1302"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='mapidea',
-            options={'ordering': ['-created']},
+            name="mapidea",
+            options={"ordering": ["-created"]},
         ),
     ]

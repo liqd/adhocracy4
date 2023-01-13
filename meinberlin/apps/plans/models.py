@@ -27,158 +27,165 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     PARTICIPATION_COOPERATION = 2
     PARTICIPATION_DECISION_MAKING = 3
     PARTICIPATION_CHOICES = (
-        (PARTICIPATION_INFORMATION, _('information (no participation)')),
-        (PARTICIPATION_CONSULTATION, _('consultation')),
-        (PARTICIPATION_COOPERATION, _('cooperation')),
-        (PARTICIPATION_DECISION_MAKING, _('decision-making')),
+        (PARTICIPATION_INFORMATION, _("information (no participation)")),
+        (PARTICIPATION_CONSULTATION, _("consultation")),
+        (PARTICIPATION_COOPERATION, _("cooperation")),
+        (PARTICIPATION_DECISION_MAKING, _("decision-making")),
     )
 
     STATUS_ONGOING = 0
     STATUS_DONE = 1
 
-    STATUS_CHOICES = (
-        (STATUS_ONGOING, _('running')),
-        (STATUS_DONE, _('done'))
-    )
+    STATUS_CHOICES = ((STATUS_ONGOING, _("running")), (STATUS_DONE, _("done")))
 
     title = models.CharField(
         max_length=120,
-        verbose_name=_('Title of your plan'),
-        help_text=_('Enter a meaningful title with a maximum '
-                    'length of 120 characters. The title'
-                    ' will appear in the project tile and on '
-                    'top of the plan detail page.')
+        verbose_name=_("Title of your plan"),
+        help_text=_(
+            "Enter a meaningful title with a maximum "
+            "length of 120 characters. The title"
+            " will appear in the project tile and on "
+            "top of the plan detail page."
+        ),
     )
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
         on_delete=models.CASCADE,
-        verbose_name=_('Organisation'))
-    projects = models.ManyToManyField(
-        project_models.Project,
-        related_name='plans',
-        blank=True
+        verbose_name=_("Organisation"),
     )
-    group = models.ForeignKey(
-        Group,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True)
+    projects = models.ManyToManyField(
+        project_models.Project, related_name="plans", blank=True
+    )
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, blank=True, null=True)
     point = map_fields.PointField(
         blank=True,
-        verbose_name=_('Can your plan be located on the map?'),
-        help_text=_('If you locate your plan, it will be shown '
-                    'on the map in the project overview in addition '
-                    'to the list. To set a pin, click inside the '
-                    'highlighted area or enter an address. Once a '
-                    'pin is set you can move it by dragging it.')
+        verbose_name=_("Can your plan be located on the map?"),
+        help_text=_(
+            "If you locate your plan, it will be shown "
+            "on the map in the project overview in addition "
+            "to the list. To set a pin, click inside the "
+            "highlighted area or enter an address. Once a "
+            "pin is set you can move it by dragging it."
+        ),
     )
     point_label = models.CharField(
         blank=True,
-        default='',
+        default="",
         max_length=255,
-        verbose_name=_('Name of the site'),
-        help_text=_('The name of the site (e.g. name of street, '
-                    'building or park) makes it easier to locate '
-                    'the plan. The maximum length is 255 characters.'),
+        verbose_name=_("Name of the site"),
+        help_text=_(
+            "The name of the site (e.g. name of street, "
+            "building or park) makes it easier to locate "
+            "the plan. The maximum length is 255 characters."
+        ),
     )
     district = models.ForeignKey(
         AdministrativeDistrict,
-        verbose_name=_('District'),
-        help_text=_('Enter the district in which the plan is located or '
-                    'whether it is a city-wide plan. In the project '
-                    'overview projects can be filtered by district.'),
+        verbose_name=_("District"),
+        help_text=_(
+            "Enter the district in which the plan is located or "
+            "whether it is a city-wide plan. In the project "
+            "overview projects can be filtered by district."
+        ),
         null=True,
         blank=True,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     cost = models.CharField(
         max_length=255,
-        verbose_name=_('Cost'),
-        help_text=_('Enter details of the estimated or actual costs '
-                    'of the plan in no more than 255 characters.')
+        verbose_name=_("Cost"),
+        help_text=_(
+            "Enter details of the estimated or actual costs "
+            "of the plan in no more than 255 characters."
+        ),
     )
     description = RichTextCollapsibleUploadingField(
-        config_name='collapsible-image-editor',
-        verbose_name=_('Description of your plan'),
-        help_text=_('Describe the key points of your plan. You can upload '
-                    'PDFs and images, embed videos and link to external '
-                    'URLs, among other things.')
+        config_name="collapsible-image-editor",
+        verbose_name=_("Description of your plan"),
+        help_text=_(
+            "Describe the key points of your plan. You can upload "
+            "PDFs and images, embed videos and link to external "
+            "URLs, among other things."
+        ),
     )
     description_image = ConfiguredImageField(
-        'plan_image',
-        verbose_name=_('Header image'),
-        upload_to='plan/description_image',
+        "plan_image",
+        verbose_name=_("Header image"),
+        upload_to="plan/description_image",
         blank=True,
-        help_prefix=_(
-            'Visualize your plan with an image underneath the description.'
-        ),
+        help_prefix=_("Visualize your plan with an image underneath the description."),
     )
     description_image_copyright = models.CharField(
-        verbose_name=_('Header image copyright'),
+        verbose_name=_("Header image copyright"),
         blank=True,
         max_length=120,
-        help_text=_('The name is displayed in the header image.')
+        help_text=_("The name is displayed in the header image."),
     )
     tile_image = ConfiguredImageField(
-        'tileimage',
-        verbose_name=_('Tile image'),
-        help_prefix=_(
-            'The image will be shown in the project tile.'
-        ),
-        upload_to='plan/tile_images',
-        blank=True
+        "tileimage",
+        verbose_name=_("Tile image"),
+        help_prefix=_("The image will be shown in the project tile."),
+        upload_to="plan/tile_images",
+        blank=True,
     )
     tile_image_copyright = ImageCopyrightField(
-        verbose_name=_('Tile image copyright'),
-        help_text=_('The name is displayed in the tile image.')
+        verbose_name=_("Tile image copyright"),
+        help_text=_("The name is displayed in the tile image."),
     )
     topics = TopicField(
-        verbose_name=_('Topics'),
-        help_text=_('Assign your plan to 1 or 2 '
-                    'topics. In the project '
-                    'overview projects can be '
-                    'filtered according to topics.')
+        verbose_name=_("Topics"),
+        help_text=_(
+            "Assign your plan to 1 or 2 "
+            "topics. In the project "
+            "overview projects can be "
+            "filtered according to topics."
+        ),
     )
     status = models.SmallIntegerField(
         choices=STATUS_CHOICES,
-        verbose_name=_('Status'),
-        help_text=_('In the project overview projects '
-                    'can be filtered by status.')
+        verbose_name=_("Status"),
+        help_text=_("In the project overview projects " "can be filtered by status."),
     )
     participation = models.SmallIntegerField(
         choices=PARTICIPATION_CHOICES,
         default=PARTICIPATION_INFORMATION,
-        verbose_name=_('Level of participation'),
-        help_text=_('In the project overview '
-                    'projects can be filtered '
-                    'according to the level of '
-                    'participation.')
+        verbose_name=_("Level of participation"),
+        help_text=_(
+            "In the project overview "
+            "projects can be filtered "
+            "according to the level of "
+            "participation."
+        ),
     )
     participation_explanation = models.TextField(
-        verbose_name=_('Participation explanation'),
+        verbose_name=_("Participation explanation"),
         max_length=4000,
-        help_text=_('Justify your selection. '
-                    'The justification appears '
-                    'below the description of '
-                    'the project.')
+        help_text=_(
+            "Justify your selection. "
+            "The justification appears "
+            "below the description of "
+            "the project."
+        ),
     )
     duration = models.CharField(
         blank=True,
         null=True,
         max_length=255,
-        verbose_name=_('Duration'),
-        help_text=_('Provide information on the '
-                    'expected duration of the plan in '
-                    'no more than 255 characters.')
+        verbose_name=_("Duration"),
+        help_text=_(
+            "Provide information on the "
+            "expected duration of the plan in "
+            "no more than 255 characters."
+        ),
     )
     is_draft = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ['-created']
+        ordering = ["-created"]
 
     @property
     def reference_number(self):
-        return '{:d}-{:05d}'.format(self.created.year, self.pk)
+        return "{:d}-{:05d}".format(self.created.year, self.pk)
 
     @property
     def administrative_district(self):
@@ -186,7 +193,7 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
 
     @property
     def topic_names(self):
-        if hasattr(settings, 'A4_PROJECT_TOPICS'):
+        if hasattr(settings, "A4_PROJECT_TOPICS"):
             choices = dict(settings.A4_PROJECT_TOPICS)
             return [choices.get(topic, topic) for topic in self.topics]
         return []
@@ -195,38 +202,45 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     def published_projects(self):
         return self.projects.filter(
             Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
-            is_draft=False, is_archived=False)
+            is_draft=False,
+            is_archived=False,
+        )
 
     @cached_property
     def participation_string(self):
-        project_list = self.published_projects.values_list('id', flat=True)
-        phases_in_plan = Phase.objects\
-            .select_related('module__project')\
-            .filter(module__project_id__in=project_list)\
-            .order_by('-start_date')
+        project_list = self.published_projects.values_list("id", flat=True)
+        phases_in_plan = (
+            Phase.objects.select_related("module__project")
+            .filter(module__project_id__in=project_list)
+            .order_by("-start_date")
+        )
 
         if phases_in_plan.active_phases():
-            return _('running')
+            return _("running")
 
-        future_phases_with_start_date = phases_in_plan.future_phases()\
-            .exclude(start_date__isnull=True)
+        future_phases_with_start_date = phases_in_plan.future_phases().exclude(
+            start_date__isnull=True
+        )
 
         if future_phases_with_start_date:
             future_phase = future_phases_with_start_date.first()
-            return _('starts at {}')\
-                .format(future_phase.start_date.strftime('%d.%m.%Y'))
+            return _("starts at {}").format(
+                future_phase.start_date.strftime("%d.%m.%Y")
+            )
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('meinberlin_plans:plan-detail',
-                       kwargs=dict(pk='{:05d}'.format(self.pk),
-                                   year=self.created.year))
+        return reverse(
+            "meinberlin_plans:plan-detail",
+            kwargs=dict(pk="{:05d}".format(self.pk), year=self.created.year),
+        )
 
     def save(self, *args, **kwargs):
         self.description = transforms.clean_html_field(
-            self.description, 'collapsible-image-editor')
+            self.description, "collapsible-image-editor"
+        )
         super().save(*args, **kwargs)
 
     def _get_group(self, user, organisation):

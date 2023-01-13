@@ -9,18 +9,18 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_mapideas', '0005_update-strings'),
+        ("meinberlin_mapideas", "0005_update-strings"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='mapidea',
-            name='description',
-            field=ckeditor.fields.RichTextField(verbose_name='Description'),
+            model_name="mapidea",
+            name="description",
+            field=ckeditor.fields.RichTextField(verbose_name="Description"),
         ),
         migrations.AlterField(
-            model_name='mapidea',
-            name='name',
-            field=models.CharField(max_length=120, verbose_name='Name'),
+            model_name="mapidea",
+            name="name",
+            field=models.CharField(max_length=120, verbose_name="Name"),
         ),
     ]

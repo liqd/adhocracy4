@@ -8,7 +8,7 @@ from django.db import models
 
 
 def delete_plans(apps, schema_editor):
-    plan_model = apps.get_model('meinberlin_plans', 'Plan')
+    plan_model = apps.get_model("meinberlin_plans", "Plan")
     for plan in plan_model.objects.all():
         plan.delete()
 
@@ -16,14 +16,17 @@ def delete_plans(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0005_plan_district'),
+        ("meinberlin_plans", "0005_plan_district"),
     ]
 
     operations = [
         migrations.RunPython(delete_plans),
         migrations.AlterField(
-            model_name='plan',
-            name='district',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='meinberlin_maps.MapPreset'),
+            model_name="plan",
+            name="district",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="meinberlin_maps.MapPreset",
+            ),
         ),
     ]

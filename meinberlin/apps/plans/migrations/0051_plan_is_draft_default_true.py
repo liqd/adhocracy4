@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0050_plan_is_draft_set_existing_false'),
+        ("meinberlin_plans", "0050_plan_is_draft_set_existing_false"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='is_draft',
+            model_name="plan",
+            name="is_draft",
             field=models.BooleanField(default=True),
         ),
     ]

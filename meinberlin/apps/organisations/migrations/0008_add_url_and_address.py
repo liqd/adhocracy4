@@ -9,18 +9,18 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_organisations', '0007_remove_organisation_type'),
+        ("meinberlin_organisations", "0007_remove_organisation_type"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='organisation',
-            name='address',
-            field=models.TextField(blank=True, verbose_name='Unit and postal address'),
+            model_name="organisation",
+            name="address",
+            field=models.TextField(blank=True, verbose_name="Unit and postal address"),
         ),
         migrations.AddField(
-            model_name='organisation',
-            name='url',
-            field=models.URLField(blank=True, verbose_name='Website of organisation'),
+            model_name="organisation",
+            name="url",
+            field=models.URLField(blank=True, verbose_name="Website of organisation"),
         ),
     ]

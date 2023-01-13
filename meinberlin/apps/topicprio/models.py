@@ -20,69 +20,56 @@ class TopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class Topic(module_models.Item,
-            ItemBadgesPropertyMixin):
+class Topic(module_models.Item, ItemBadgesPropertyMixin):
     item_ptr = models.OneToOneField(
         to=module_models.Item,
         parent_link=True,
-        related_name='%(app_label)s_%(class)s',
-        on_delete=models.CASCADE
+        related_name="%(app_label)s_%(class)s",
+        on_delete=models.CASCADE,
     )
-    slug = AutoSlugField(
-        populate_from='name',
-        unique=True
-    )
-    name = models.CharField(
-        max_length=120,
-        verbose_name=_('Title')
-    )
+    slug = AutoSlugField(populate_from="name", unique=True)
+    name = models.CharField(max_length=120, verbose_name=_("Title"))
     description = RichTextUploadingField(
-        config_name='image-editor',
-        verbose_name=_('Description')
+        config_name="image-editor", verbose_name=_("Description")
     )
     image = ConfiguredImageField(
-        'idea_image',
-        verbose_name=_('Add image'),
-        upload_to='ideas/images',
+        "idea_image",
+        verbose_name=_("Add image"),
+        upload_to="ideas/images",
         blank=True,
     )
     ratings = GenericRelation(
-        rating_models.Rating,
-        related_query_name='topic',
-        object_id_field='object_pk'
+        rating_models.Rating, related_query_name="topic", object_id_field="object_pk"
     )
     comments = GenericRelation(
-        comment_models.Comment,
-        related_query_name='topic',
-        object_id_field='object_pk'
+        comment_models.Comment, related_query_name="topic", object_id_field="object_pk"
     )
     category = CategoryField()
 
-    labels = models.ManyToManyField(labels_models.Label,
-                                    verbose_name=_('Labels'),
-                                    related_name=('%(app_label)s_'
-                                                  '%(class)s_label')
-                                    )
+    labels = models.ManyToManyField(
+        labels_models.Label,
+        verbose_name=_("Labels"),
+        related_name=("%(app_label)s_" "%(class)s_label"),
+    )
 
     objects = TopicQuerySet.as_manager()
 
     class Meta:
-        ordering = ['-created']
+        ordering = ["-created"]
 
     @property
     def reference_number(self):
-        return '{:d}-{:05d}'.format(self.created.year, self.pk)
+        return "{:d}-{:05d}".format(self.created.year, self.pk)
 
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.description = transforms.clean_html_field(
-            self.description, 'image-editor')
+        self.description = transforms.clean_html_field(self.description, "image-editor")
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('meinberlin_topicprio:topic-detail',
-                       kwargs=dict(pk='{:05d}'.format(self.pk),
-                                   year=self.created.year)
-                       )
+        return reverse(
+            "meinberlin_topicprio:topic-detail",
+            kwargs=dict(pk="{:05d}".format(self.pk), year=self.created.year),
+        )

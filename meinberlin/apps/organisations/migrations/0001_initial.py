@@ -15,12 +15,25 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Organisation',
+            name="Organisation",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
-                ('slug', autoslug.fields.AutoSlugField(unique=True, editable=False, populate_from='name')),
-                ('name', models.CharField(max_length=512)),
-                ('initiators', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        primary_key=True,
+                        serialize=False,
+                        auto_created=True,
+                    ),
+                ),
+                (
+                    "slug",
+                    autoslug.fields.AutoSlugField(
+                        unique=True, editable=False, populate_from="name"
+                    ),
+                ),
+                ("name", models.CharField(max_length=512)),
+                ("initiators", models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

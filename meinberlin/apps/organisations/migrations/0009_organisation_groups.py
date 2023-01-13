@@ -9,14 +9,14 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0008_alter_user_username_max_length'),
-        ('meinberlin_organisations', '0008_add_url_and_address'),
+        ("auth", "0008_alter_user_username_max_length"),
+        ("meinberlin_organisations", "0008_add_url_and_address"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='organisation',
-            name='groups',
-            field=models.ManyToManyField(blank=True, to='auth.Group'),
+            model_name="organisation",
+            name="groups",
+            field=models.ManyToManyField(blank=True, to="auth.Group"),
         ),
     ]

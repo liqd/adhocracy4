@@ -9,13 +9,22 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_organisations', '0004_changed_upload_path'),
+        ("meinberlin_organisations", "0004_changed_upload_path"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='organisation',
-            name='type',
-            field=models.CharField(choices=[('DA', 'district Administrations'), ('CA', 'city administration'), ('NM', 'neighbourhood management'), ('OT', 'other')], default='OT', max_length=2),
+            model_name="organisation",
+            name="type",
+            field=models.CharField(
+                choices=[
+                    ("DA", "district Administrations"),
+                    ("CA", "city administration"),
+                    ("NM", "neighbourhood management"),
+                    ("OT", "other"),
+                ],
+                default="OT",
+                max_length=2,
+            ),
         ),
     ]

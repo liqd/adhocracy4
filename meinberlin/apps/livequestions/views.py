@@ -9,30 +9,31 @@ from . import forms
 from . import models
 
 
-class LiveQuestionModuleDetail(ProjectMixin,
-                               generic.TemplateView,
-                               DisplayProjectOrModuleMixin):
-    template_name = 'meinberlin_livequestions/question_module_detail.html'
+class LiveQuestionModuleDetail(
+    ProjectMixin, generic.TemplateView, DisplayProjectOrModuleMixin
+):
+    template_name = "meinberlin_livequestions/question_module_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['live_stream'] = \
-            models.LiveStream.objects.filter(module=self.module).first()
+        context["live_stream"] = models.LiveStream.objects.filter(
+            module=self.module
+        ).first()
         return context
 
 
-class LiveQuestionPresentationListView(ProjectMixin,
-                                       PermissionRequiredMixin,
-                                       generic.ListView):
+class LiveQuestionPresentationListView(
+    ProjectMixin, PermissionRequiredMixin, generic.ListView
+):
 
     model = models.LiveQuestion
-    permission_required = 'meinberlin_livequestions.change_livequestion'
+    permission_required = "meinberlin_livequestions.change_livequestion"
 
     def get_permission_object(self):
         return self.module
 
     def get_template_names(self):
-        return ['meinberlin_livequestions/question_present_list.html']
+        return ["meinberlin_livequestions/question_present_list.html"]
 
     def get_queryset(self):
         return super().get_queryset().filter(module=self.module)
@@ -44,13 +45,15 @@ class LiveQuestionPresentationListView(ProjectMixin,
         return full_url
 
 
-class LiveStreamDashboardView(ProjectMixin,
-                              dashboard_mixins.DashboardBaseMixin,
-                              dashboard_mixins.DashboardComponentMixin,
-                              generic.UpdateView):
+class LiveStreamDashboardView(
+    ProjectMixin,
+    dashboard_mixins.DashboardBaseMixin,
+    dashboard_mixins.DashboardComponentMixin,
+    generic.UpdateView,
+):
     model = models.LiveStream
-    template_name = 'meinberlin_livequestions/livestream_dashboard_form.html'
-    permission_required = 'a4projects.change_project'
+    template_name = "meinberlin_livequestions/livestream_dashboard_form.html"
+    permission_required = "a4projects.change_project"
     form_class = forms.LiveStreamForm
 
     def get_permission_object(self):

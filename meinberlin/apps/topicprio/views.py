@@ -18,112 +18,107 @@ from . import models
 
 
 class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
-    label = _('Search')
+    label = _("Search")
 
 
 class TopicFilterSet(a4_filters.DefaultsFilterSet):
-    defaults = {
-        'ordering': 'name'
-    }
+    defaults = {"ordering": "name"}
     category = category_filters.CategoryFilter()
     labels = label_filters.LabelFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=(
-            ('name', _('Alphabetical')),
-            ('-positive_rating_count', _('Most popular')),
-            ('-comment_count', _('Most commented'))
+            ("name", _("Alphabetical")),
+            ("-positive_rating_count", _("Most popular")),
+            ("-comment_count", _("Most commented")),
         )
     )
-    search = FreeTextFilter(
-        widget=FreeTextFilterWidget,
-        fields=['name']
-    )
+    search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name"])
 
     class Meta:
         model = models.Topic
-        fields = ['search', 'category', 'labels']
+        fields = ["search", "category", "labels"]
 
 
-class TopicListView(idea_views.AbstractIdeaListView,
-                    DisplayProjectOrModuleMixin):
+class TopicListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
     model = models.Topic
     filter_set = TopicFilterSet
 
     def get_queryset(self):
-        return super().get_queryset()\
-            .filter(module=self.module)
+        return super().get_queryset().filter(module=self.module)
 
 
 class TopicDetailView(idea_views.AbstractIdeaDetailView):
     model = models.Topic
-    queryset = models.Topic.objects.annotate_positive_rating_count()\
-        .annotate_negative_rating_count()
-    permission_required = 'meinberlin_topicprio.view_topic'
+    queryset = (
+        models.Topic.objects.annotate_positive_rating_count().annotate_negative_rating_count()
+    )
+    permission_required = "meinberlin_topicprio.view_topic"
 
 
 class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
 
-    defaults = {
-        'ordering': 'name'
-    }
+    defaults = {"ordering": "name"}
 
     category = category_filters.CategoryFilter()
     labels = label_filters.LabelFilter()
 
     ordering = a4_filters.DynamicChoicesOrderingFilter(
-        choices=(
-            ('name', _('Alphabetical')),
-        )
+        choices=(("name", _("Alphabetical")),)
     )
 
     class Meta:
         model = models.Topic
-        fields = ['category', 'labels']
+        fields = ["category", "labels"]
 
 
-class TopicListDashboardView(ProjectMixin,
-                             mixins.DashboardBaseMixin,
-                             mixins.DashboardComponentMixin,
-                             filter_views.FilteredListView):
+class TopicListDashboardView(
+    ProjectMixin,
+    mixins.DashboardBaseMixin,
+    mixins.DashboardComponentMixin,
+    filter_views.FilteredListView,
+):
     model = models.Topic
-    template_name = 'meinberlin_topicprio/topic_dashboard_list.html'
+    template_name = "meinberlin_topicprio/topic_dashboard_list.html"
     filter_set = TopicCreateFilterSet
-    permission_required = 'a4projects.change_project'
+    permission_required = "a4projects.change_project"
 
     def get_queryset(self):
-        return super().get_queryset()\
-            .filter(module=self.module)
+        return super().get_queryset().filter(module=self.module)
 
     def get_permission_object(self):
         return self.project
 
 
-class TopicCreateView(mixins.DashboardBaseMixin,
-                      mixins.DashboardComponentMixin,
-                      mixins.DashboardComponentFormSignalMixin,
-                      idea_views.AbstractIdeaCreateView):
+class TopicCreateView(
+    mixins.DashboardBaseMixin,
+    mixins.DashboardComponentMixin,
+    mixins.DashboardComponentFormSignalMixin,
+    idea_views.AbstractIdeaCreateView,
+):
     model = models.Topic
     form_class = forms.TopicForm
-    permission_required = 'meinberlin_topicprio.add_topic'
-    template_name = 'meinberlin_topicprio/topic_create_form.html'
+    permission_required = "meinberlin_topicprio.add_topic"
+    template_name = "meinberlin_topicprio/topic_create_form.html"
 
     def get_success_url(self):
         return reverse(
-            'a4dashboard:topic-list',
-            kwargs={'module_slug': self.module.slug})
+            "a4dashboard:topic-list", kwargs={"module_slug": self.module.slug}
+        )
 
     def get_permission_object(self):
         return self.module
 
 
-class TopicUpdateView(mixins.DashboardBaseMixin,
-                      mixins.DashboardComponentMixin,
-                      mixins.DashboardComponentFormSignalMixin,
-                      idea_views.AbstractIdeaUpdateView):
+class TopicUpdateView(
+    mixins.DashboardBaseMixin,
+    mixins.DashboardComponentMixin,
+    mixins.DashboardComponentFormSignalMixin,
+    idea_views.AbstractIdeaUpdateView,
+):
     model = models.Topic
     form_class = forms.TopicForm
-    permission_required = 'meinberlin_topicprio.change_topic'
-    template_name = 'meinberlin_topicprio/topic_update_form.html'
+    permission_required = "meinberlin_topicprio.change_topic"
+    template_name = "meinberlin_topicprio/topic_update_form.html"
 
     @property
     def organisation(self):
@@ -131,21 +126,23 @@ class TopicUpdateView(mixins.DashboardBaseMixin,
 
     def get_success_url(self):
         return reverse(
-            'a4dashboard:topic-list',
-            kwargs={'module_slug': self.module.slug})
+            "a4dashboard:topic-list", kwargs={"module_slug": self.module.slug}
+        )
 
     def get_permission_object(self):
         return self.get_object()
 
 
-class TopicDeleteView(mixins.DashboardBaseMixin,
-                      mixins.DashboardComponentMixin,
-                      mixins.DashboardComponentDeleteSignalMixin,
-                      idea_views.AbstractIdeaDeleteView):
+class TopicDeleteView(
+    mixins.DashboardBaseMixin,
+    mixins.DashboardComponentMixin,
+    mixins.DashboardComponentDeleteSignalMixin,
+    idea_views.AbstractIdeaDeleteView,
+):
     model = models.Topic
-    success_message = _('The topic has been deleted')
-    permission_required = 'meinberlin_topicprio.change_topic'
-    template_name = 'meinberlin_topicprio/topic_confirm_delete.html'
+    success_message = _("The topic has been deleted")
+    permission_required = "meinberlin_topicprio.change_topic"
+    template_name = "meinberlin_topicprio/topic_confirm_delete.html"
 
     @property
     def organisation(self):
@@ -153,22 +150,22 @@ class TopicDeleteView(mixins.DashboardBaseMixin,
 
     def get_success_url(self):
         return reverse(
-            'a4dashboard:topic-list',
-            kwargs={'module_slug': self.module.slug})
+            "a4dashboard:topic-list", kwargs={"module_slug": self.module.slug}
+        )
 
     def get_permission_object(self):
         return self.get_object()
 
 
 class TopicDashboardExportView(DashboardExportView):
-    template_name = 'a4exports/export_dashboard.html'
+    template_name = "a4exports/export_dashboard.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['export'] = reverse(
-            'a4dashboard:topic-export',
-            kwargs={'module_slug': self.module.slug})
-        context['comment_export'] = reverse(
-            'a4dashboard:topic-comment-export',
-            kwargs={'module_slug': self.module.slug})
+        context["export"] = reverse(
+            "a4dashboard:topic-export", kwargs={"module_slug": self.module.slug}
+        )
+        context["comment_export"] = reverse(
+            "a4dashboard:topic-comment-export", kwargs={"module_slug": self.module.slug}
+        )
         return context

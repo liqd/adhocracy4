@@ -9,18 +9,21 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0033_change_order_participation_choices'),
+        ("meinberlin_plans", "0033_change_order_participation_choices"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='participation',
-            field=models.SmallIntegerField(choices=[(0, 'with'), (1, 'without'), (2, 'undecided')], verbose_name='Participation'),
+            model_name="plan",
+            name="participation",
+            field=models.SmallIntegerField(
+                choices=[(0, "with"), (1, "without"), (2, "undecided")],
+                verbose_name="Participation",
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='status',
-            field=models.SmallIntegerField(choices=[(0, 'ongoing'), (1, 'done')]),
+            model_name="plan",
+            name="status",
+            field=models.SmallIntegerField(choices=[(0, "ongoing"), (1, "done")]),
         ),
     ]

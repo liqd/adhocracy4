@@ -9,13 +9,13 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_topicprio', '0003_inherit_abstract_idea'),
+        ("meinberlin_topicprio", "0003_inherit_abstract_idea"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='topic',
-            name='name',
-            field=models.CharField(max_length=120, verbose_name='Title'),
+            model_name="topic",
+            name="name",
+            field=models.CharField(max_length=120, verbose_name="Title"),
         ),
     ]

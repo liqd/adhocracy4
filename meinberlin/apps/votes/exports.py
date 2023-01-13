@@ -10,12 +10,14 @@ from meinberlin.apps.votes.models import VotingToken
 PAGE_SIZE = 1000000
 
 
-class TokenExportView(PermissionRequiredMixin,
-                      ProjectMixin,
-                      generic.list.MultipleObjectMixin,
-                      AbstractXlsxExportView):
+class TokenExportView(
+    PermissionRequiredMixin,
+    ProjectMixin,
+    generic.list.MultipleObjectMixin,
+    AbstractXlsxExportView,
+):
     model = VotingToken
-    permission_required = 'a4projects.change_project'
+    permission_required = "a4projects.change_project"
     paginate_by = PAGE_SIZE
 
     def get_permission_object(self):
@@ -23,24 +25,25 @@ class TokenExportView(PermissionRequiredMixin,
 
     def get_queryset(self):
         """Filter QS to only include active tokens from module."""
-        return super().get_queryset().filter(
-            module=self.module,
-            is_active=True
-        ).order_by('pk')
+        return (
+            super()
+            .get_queryset()
+            .filter(module=self.module, is_active=True)
+            .order_by("pk")
+        )
 
     def get_base_filename(self):
-        return '%s_%s' % (self.project.slug,
-                          timezone.now().strftime('%Y%m%dT%H%M%S'))
+        return "%s_%s" % (self.project.slug, timezone.now().strftime("%Y%m%dT%H%M%S"))
 
     def get_header(self):
-        return [_('Voting codes'), ]
+        return [
+            _("Voting codes"),
+        ]
 
     def export_rows(self):
         queryset = self.get_queryset()
         page_size = self.get_paginate_by(queryset)
-        _, _, queryset, _ = self.paginate_queryset(
-            queryset, page_size
-        )
+        _, _, queryset, _ = self.paginate_queryset(queryset, page_size)
         for item in queryset:
             yield [self.get_token_data(item)]
 

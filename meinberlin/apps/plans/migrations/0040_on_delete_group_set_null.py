@@ -10,13 +10,18 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0039_plan_group'),
+        ("meinberlin_plans", "0039_plan_group"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='group',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='auth.Group'),
+            model_name="plan",
+            name="group",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="auth.Group",
+            ),
         ),
     ]

@@ -14,30 +14,23 @@ from adhocracy4.modules.models import Module
 
 def get_token():
     alphabet = string.ascii_letters + string.digits
-    return ''.join(secrets.choice(alphabet) for i in range(12))
+    return "".join(secrets.choice(alphabet) for i in range(12))
 
 
 class VotingToken(models.Model):
-    token = models.CharField(
-        max_length=40,
-        default=get_token,
-        editable=False
-    )
-    module = models.ForeignKey(
-        Module,
-        on_delete=models.CASCADE
-    )
-    allowed_votes = models.PositiveSmallIntegerField(
-        default=5
-    )
+    token = models.CharField(max_length=40, default=get_token, editable=False)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    allowed_votes = models.PositiveSmallIntegerField(default=5)
     is_active = models.BooleanField(
         default=True,
-        help_text=_('Designates whether this token should be treated as '
-                    'active. Unselect this instead of deleting tokens.')
+        help_text=_(
+            "Designates whether this token should be treated as "
+            "active. Unselect this instead of deleting tokens."
+        ),
     )
 
     class Meta:
-        unique_together = ['token', 'module']
+        unique_together = ["token", "module"]
 
     # if token already exists, try to generate another one
     def save(self, *args, **kwargs):
@@ -46,7 +39,7 @@ class VotingToken(models.Model):
                 super().save(*args, **kwargs)
                 return
             except IntegrityError as e:
-                if 'UNIQUE constraint failed' in e.args[0]:
+                if "UNIQUE constraint failed" in e.args[0]:
                     if i == 3:
                         raise
                     else:
@@ -75,43 +68,28 @@ class VotingToken(models.Model):
         return item.module == self.module
 
     def __str__(self):
-        return '{}-{}-{}'.format(self.token[0:4],
-                                 self.token[4:8],
-                                 self.token[8:12])
+        return "{}-{}-{}".format(self.token[0:4], self.token[4:8], self.token[8:12])
 
 
 class TokenVote(base.TimeStampedModel):
-    token = models.ForeignKey(
-        VotingToken,
-        on_delete=models.CASCADE
-    )
-    content_type = models.ForeignKey(
-        ContentType,
-        on_delete=models.CASCADE
-    )
+    token = models.ForeignKey(VotingToken, on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_pk = models.PositiveIntegerField()
-    content_object = GenericForeignKey(
-        ct_field="content_type",
-        fk_field="object_pk"
-    )
+    content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
 
     class Meta:
-        unique_together = ('content_type', 'object_pk', 'token')
-        index_together = [('content_type', 'object_pk')]
+        unique_together = ("content_type", "object_pk", "token")
+        index_together = [("content_type", "object_pk")]
 
     def clean(self, *args, **kwargs):
         if not self.token.is_valid_for_item(self.content_object):
-            raise ValidationError({
-                'token': _('This token is not valid for this project.')
-            })
+            raise ValidationError(
+                {"token": _("This token is not valid for this project.")}
+            )
         elif not self.token.is_active:
-            raise ValidationError({
-                'token': _('This token is not active.')
-            })
+            raise ValidationError({"token": _("This token is not active.")})
         elif not self.token.has_votes_left:
-            raise ValidationError({
-                'token': _('This token has no votes left.')
-            })
+            raise ValidationError({"token": _("This token has no votes left.")})
         super().clean(*args, **kwargs)
 
     def save(self, *args, **kwargs):

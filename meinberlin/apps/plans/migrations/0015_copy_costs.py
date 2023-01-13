@@ -6,7 +6,7 @@ from django.db import migrations
 
 
 def copy_costs(apps, schema_editor):
-    Plan = apps.get_model('meinberlin_plans','Plan')
+    Plan = apps.get_model("meinberlin_plans", "Plan")
     for plan in Plan.objects.all():
         plan.cost_string = str(plan.cost)
         plan.save()
@@ -15,7 +15,7 @@ def copy_costs(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0014_plan_cost_string'),
+        ("meinberlin_plans", "0014_plan_cost_string"),
     ]
 
     operations = [

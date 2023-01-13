@@ -10,13 +10,19 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0021_district_not_required'),
+        ("meinberlin_plans", "0021_district_not_required"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='district',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='meinberlin_maps.MapPreset', verbose_name='District'),
+            model_name="plan",
+            name="district",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="meinberlin_maps.MapPreset",
+                verbose_name="District",
+            ),
         ),
     ]

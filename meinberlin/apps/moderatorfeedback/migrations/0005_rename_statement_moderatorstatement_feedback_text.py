@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_moderatorfeedback', '0004_alter_moderatorstatement_statement'),
+        ("meinberlin_moderatorfeedback", "0004_alter_moderatorstatement_statement"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='moderatorstatement',
-            old_name='statement',
-            new_name='feedback_text',
+            model_name="moderatorstatement",
+            old_name="statement",
+            new_name="feedback_text",
         ),
     ]

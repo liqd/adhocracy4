@@ -12,20 +12,20 @@ from . import models
 class LiveStreamForm(forms.ModelForm):
     class Meta:
         model = models.LiveStream
-        fields = ['live_stream']
+        fields = ["live_stream"]
 
 
 class AffiliationForm(category_forms.CategoryForm):
 
-    name = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': _('Affiliation')}
-    ))
+    name = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Affiliation")})
+    )
 
 
-AffiliationFormSet = \
-    inlineformset_factory(
-        module_models.Module,
-        category_models.Category,
-        form=AffiliationForm,
-        formset=category_forms.CategoryModuleDashboardFormSet,
-        extra=0)
+AffiliationFormSet = inlineformset_factory(
+    module_models.Module,
+    category_models.Category,
+    form=AffiliationForm,
+    formset=category_forms.CategoryModuleDashboardFormSet,
+    extra=0,
+)

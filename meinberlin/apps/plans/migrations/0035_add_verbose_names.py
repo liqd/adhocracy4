@@ -13,23 +13,48 @@ import adhocracy4.projects.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0034_choice_names'),
+        ("meinberlin_plans", "0034_choice_names"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='organisation',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.A4_ORGANISATIONS_MODEL, verbose_name='Organisation'),
+            model_name="plan",
+            name="organisation",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.A4_ORGANISATIONS_MODEL,
+                verbose_name="Organisation",
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='status',
-            field=models.SmallIntegerField(choices=[(0, 'ongoing'), (1, 'done')], verbose_name='Status'),
+            model_name="plan",
+            name="status",
+            field=models.SmallIntegerField(
+                choices=[(0, "ongoing"), (1, "done")], verbose_name="Status"
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='topics',
-            field=adhocracy4.projects.fields.TopicField(choices=[('ANT', 'Anti-discrimination'), ('WOR', 'Work & economy'), ('BUI', 'Building & living'), ('EDU', 'Education & research'), ('CHI', 'Children, youth & family'), ('FIN', 'Finances'), ('HEA', 'Health & sports'), ('INT', 'Integration'), ('CUL', 'Culture & leisure'), ('NEI', 'Neighborhood & participation'), ('URB', 'Urban development'), ('ENV', 'Environment & public green space'), ('TRA', 'Traffic')], default='', max_length=254, verbose_name='Topics'),
+            model_name="plan",
+            name="topics",
+            field=adhocracy4.projects.fields.TopicField(
+                choices=[
+                    ("ANT", "Anti-discrimination"),
+                    ("WOR", "Work & economy"),
+                    ("BUI", "Building & living"),
+                    ("EDU", "Education & research"),
+                    ("CHI", "Children, youth & family"),
+                    ("FIN", "Finances"),
+                    ("HEA", "Health & sports"),
+                    ("INT", "Integration"),
+                    ("CUL", "Culture & leisure"),
+                    ("NEI", "Neighborhood & participation"),
+                    ("URB", "Urban development"),
+                    ("ENV", "Environment & public green space"),
+                    ("TRA", "Traffic"),
+                ],
+                default="",
+                max_length=254,
+                verbose_name="Topics",
+            ),
         ),
     ]

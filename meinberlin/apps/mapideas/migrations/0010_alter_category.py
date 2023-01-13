@@ -11,13 +11,19 @@ import adhocracy4.categories.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_mapideas', '0009_name_verbose_name'),
+        ("meinberlin_mapideas", "0009_name_verbose_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='mapidea',
-            name='category',
-            field=adhocracy4.categories.fields.CategoryField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4categories.Category'),
+            model_name="mapidea",
+            name="category",
+            field=adhocracy4.categories.fields.CategoryField(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="+",
+                to="a4categories.Category",
+            ),
         ),
     ]

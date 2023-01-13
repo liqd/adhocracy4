@@ -10,13 +10,15 @@ import adhocracy4.images.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_topicprio', '0006_make_concrete'),
+        ("meinberlin_topicprio", "0006_make_concrete"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='topic',
-            name='image',
-            field=adhocracy4.images.fields.ConfiguredImageField('idea_image', blank=True, upload_to='ideas/images'),
+            model_name="topic",
+            name="image",
+            field=adhocracy4.images.fields.ConfiguredImageField(
+                "idea_image", blank=True, upload_to="ideas/images"
+            ),
         ),
     ]

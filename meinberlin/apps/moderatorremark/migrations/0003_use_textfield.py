@@ -9,13 +9,13 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_moderatorremark', '0002_unique_by_foreignobject'),
+        ("meinberlin_moderatorremark", "0002_unique_by_foreignobject"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='moderatorremark',
-            name='remark',
-            field=models.TextField(blank=True, verbose_name='Remark'),
+            model_name="moderatorremark",
+            name="remark",
+            field=models.TextField(blank=True, verbose_name="Remark"),
         ),
     ]

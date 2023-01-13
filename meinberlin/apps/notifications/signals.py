@@ -18,35 +18,32 @@ def send_notifications(instance, created, **kwargs):
     action = instance
     verb = Verbs(action.verb)
 
-    if action.type in ('item', 'comment') \
-            and verb in (Verbs.CREATE, Verbs.ADD):
+    if action.type in ("item", "comment") and verb in (Verbs.CREATE, Verbs.ADD):
         emails.NotifyCreatorEmail.send(action)
 
         if action.project:
             emails.NotifyModeratorsEmail.send(action)
 
-    elif (action.type == 'phase' and
-          action.project.project_type == 'a4projects.Project'):
+    elif action.type == "phase" and action.project.project_type == "a4projects.Project":
         if verb == Verbs.START:
             emails.NotifyFollowersOnPhaseStartedEmail.send(action)
         elif verb == Verbs.SCHEDULE:
             emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
 
-    elif action.type == 'offlineevent' and verb == Verbs.START:
+    elif action.type == "offlineevent" and verb == Verbs.START:
         emails.NotifyFollowersOnUpcommingEventEmail.send(action)
 
 
 @receiver(dashboard_signals.project_created)
 def send_project_created_notifications(**kwargs):
-    project = kwargs.get('project')
-    creator = kwargs.get('user')
-    emails.NotifyInitiatorsOnProjectCreatedEmail.send(
-        project, creator_pk=creator.pk)
+    project = kwargs.get("project")
+    creator = kwargs.get("user")
+    emails.NotifyInitiatorsOnProjectCreatedEmail.send(project, creator_pk=creator.pk)
 
 
 @receiver(signals.m2m_changed, sender=Project.moderators.through)
 def autofollow_project_moderators(instance, action, pk_set, reverse, **kwargs):
-    if action == 'post_add':
+    if action == "post_add":
         autofollow_project(instance, pk_set, reverse)
 
 
@@ -57,11 +54,7 @@ def autofollow_project(instance, pk_set, reverse):
 
         for user_pk in users_pks:
             Follow.objects.update_or_create(
-                project=project,
-                creator_id=user_pk,
-                defaults={
-                    'enabled': True
-                }
+                project=project, creator_id=user_pk, defaults={"enabled": True}
             )
     else:
         user = instance
@@ -69,9 +62,5 @@ def autofollow_project(instance, pk_set, reverse):
 
         for project_pk in project_pks:
             Follow.objects.update_or_create(
-                project_id=project_pk,
-                creator=user,
-                defaults={
-                    'enabled': True
-                }
+                project_id=project_pk, creator=user, defaults={"enabled": True}
             )

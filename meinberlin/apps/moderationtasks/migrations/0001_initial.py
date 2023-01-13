@@ -9,19 +9,33 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('a4modules', '0006_module_blueprint_type'),
+        ("a4modules", "0006_module_blueprint_type"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ModerationTask',
+            name="ModerationTask",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=120)),
-                ('module', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='a4modules.module')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=120)),
+                (
+                    "module",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="a4modules.module",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'moderation tasks',
+                "verbose_name_plural": "moderation tasks",
             },
         ),
     ]

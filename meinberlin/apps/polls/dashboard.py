@@ -6,18 +6,23 @@ from . import exports
 
 
 class ExportPollComponent(a4_poll_dashboard.ExportPollComponent):
-
     def get_urls(self):
         return [
-            (r'^modules/(?P<module_slug>[-\w_]+)/poll/export/$',
-             a4_poll_views.PollDashboardExportView.as_view(),
-             'poll-export-module'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/poll/export/comments/$',
-             exports.PollCommentExportView.as_view(),
-             'poll-comment-export'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/poll/export/poll/$',
-             exports.PollExportView.as_view(),
-             'poll-export'),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/poll/export/$",
+                a4_poll_views.PollDashboardExportView.as_view(),
+                "poll-export-module",
+            ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/poll/export/comments/$",
+                exports.PollCommentExportView.as_view(),
+                "poll-comment-export",
+            ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/poll/export/poll/$",
+                exports.PollExportView.as_view(),
+                "poll-export",
+            ),
         ]
 
 

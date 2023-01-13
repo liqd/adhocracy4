@@ -10,23 +10,36 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0007_make_plan_description_required'),
+        ("meinberlin_plans", "0007_make_plan_description_required"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='district',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='meinberlin_maps.MapPreset', verbose_name='District'),
+            model_name="plan",
+            name="district",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="meinberlin_maps.MapPreset",
+                verbose_name="District",
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='participation',
-            field=models.SmallIntegerField(choices=[(1, 'Yes'), (0, 'No'), (2, 'Still undecided')], verbose_name='Participation'),
+            model_name="plan",
+            name="participation",
+            field=models.SmallIntegerField(
+                choices=[(1, "Yes"), (0, "No"), (2, "Still undecided")],
+                verbose_name="Participation",
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='project',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='a4projects.Project', verbose_name='Project'),
+            model_name="plan",
+            name="project",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="a4projects.Project",
+                verbose_name="Project",
+            ),
         ),
     ]

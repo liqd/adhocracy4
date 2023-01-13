@@ -15,16 +15,18 @@ class AllContentTypesFilter:
         return True
 
 
-class ModeratorRemarkViewSet(mixins.CreateModelMixin,
-                             mixins.UpdateModelMixin,
-                             ContentTypeMixin,
-                             viewsets.GenericViewSet):
+class ModeratorRemarkViewSet(
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    ContentTypeMixin,
+    viewsets.GenericViewSet,
+):
 
     queryset = ModeratorRemark.objects.all()
     serializer_class = ModeratorRemarkSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
-    filterset_fields = ('item_object_id', 'item_content_type')
+    filterset_fields = ("item_object_id", "item_content_type")
     content_type_filter = AllContentTypesFilter()
 
     def get_permission_object(self):
@@ -38,7 +40,4 @@ class ModeratorRemarkViewSet(mixins.CreateModelMixin,
         return remark
 
     def perform_create(self, serializer):
-        serializer.save(
-            item=self.content_object,
-            creator=self.request.user
-        )
+        serializer.save(item=self.content_object, creator=self.request.user)

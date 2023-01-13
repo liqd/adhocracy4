@@ -8,12 +8,12 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_maps', '0001_initial'),
+        ("meinberlin_maps", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='mappreset',
-            options={'ordering': ['name']},
+            name="mappreset",
+            options={"ordering": ["name"]},
         ),
     ]

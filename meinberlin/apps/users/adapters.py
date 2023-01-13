@@ -19,42 +19,37 @@ class UserAccountEmail(SyncEmailMixin, Email):
 
     @property
     def template_name(self):
-        return self.kwargs['template_name']
+        return self.kwargs["template_name"]
 
     def get_context(self):
         context = super().get_context()
-        context['contact_email'] = settings.CONTACT_EMAIL
+        context["contact_email"] = settings.CONTACT_EMAIL
         return context
 
 
 class AccountAdapter(DefaultAccountAdapter):
     username_regex = re.compile(USERNAME_REGEX)
     error_messages = dict(
-        DefaultAccountAdapter.error_messages,
-        invalid_username=USERNAME_INVALID_MESSAGE
+        DefaultAccountAdapter.error_messages, invalid_username=USERNAME_INVALID_MESSAGE
     )
 
     def get_email_confirmation_url(self, request, emailconfirmation):
         url = super().get_email_confirmation_url(request, emailconfirmation)
-        if 'next' in request.POST and \
-                url_has_allowed_host_and_scheme(request.POST['next'],
-                                                allowed_hosts=None):
-            return '{}?next={}'.format(url, quote(request.POST['next']))
+        if "next" in request.POST and url_has_allowed_host_and_scheme(
+            request.POST["next"], allowed_hosts=None
+        ):
+            return "{}?next={}".format(url, quote(request.POST["next"]))
         else:
             return url
 
     def send_mail(self, template_prefix, email, context):
-        return UserAccountEmail.send(
-            email,
-            template_name=template_prefix,
-            **context
-        )
+        return UserAccountEmail.send(email, template_name=template_prefix, **context)
 
     def get_email_confirmation_redirect_url(self, request):
-        if 'next' in request.GET and \
-                url_has_allowed_host_and_scheme(request.GET['next'],
-                                                allowed_hosts=None):
-            return request.GET['next']
+        if "next" in request.GET and url_has_allowed_host_and_scheme(
+            request.GET["next"], allowed_hosts=None
+        ):
+            return request.GET["next"]
         else:
             return super().get_email_confirmation_redirect_url(request)
 
@@ -63,7 +58,8 @@ class AccountAdapter(DefaultAccountAdapter):
 
         user = User.objects.filter(email__iexact=username)
         if user.exists():
-            raise forms.ValidationError(User._meta.get_field('username').
-                                        error_messages['used_as_email'])
+            raise forms.ValidationError(
+                User._meta.get_field("username").error_messages["used_as_email"]
+            )
 
         return username

@@ -21,67 +21,73 @@ class MapTopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class MapTopic(module_models.Item,
-               ItemBadgesPropertyMixin):
-    item_ptr = models.OneToOneField(to=module_models.Item,
-                                    parent_link=True,
-                                    related_name='%(app_label)s_%(class)s',
-                                    on_delete=models.CASCADE)
-    slug = AutoSlugField(populate_from='name', unique=True)
-    name = models.CharField(max_length=120, verbose_name=_('Title'))
-    description = RichTextUploadingField(config_name='image-editor',
-                                         verbose_name=_('Description'))
+class MapTopic(module_models.Item, ItemBadgesPropertyMixin):
+    item_ptr = models.OneToOneField(
+        to=module_models.Item,
+        parent_link=True,
+        related_name="%(app_label)s_%(class)s",
+        on_delete=models.CASCADE,
+    )
+    slug = AutoSlugField(populate_from="name", unique=True)
+    name = models.CharField(max_length=120, verbose_name=_("Title"))
+    description = RichTextUploadingField(
+        config_name="image-editor", verbose_name=_("Description")
+    )
     image = ConfiguredImageField(
-        'idea_image',
-        upload_to='ideas/images',
+        "idea_image",
+        upload_to="ideas/images",
         blank=True,
     )
-    ratings = GenericRelation(rating_models.Rating,
-                              related_query_name='maptopic',
-                              object_id_field='object_pk')
-    comments = GenericRelation(comment_models.Comment,
-                               related_query_name='maptopic',
-                               object_id_field='object_pk')
+    ratings = GenericRelation(
+        rating_models.Rating, related_query_name="maptopic", object_id_field="object_pk"
+    )
+    comments = GenericRelation(
+        comment_models.Comment,
+        related_query_name="maptopic",
+        object_id_field="object_pk",
+    )
     category = CategoryField()
-    labels = models.ManyToManyField(labels_models.Label,
-                                    verbose_name=_('Labels'),
-                                    related_name=('%(app_label)s_'
-                                                  '%(class)s_label')
-                                    )
+    labels = models.ManyToManyField(
+        labels_models.Label,
+        verbose_name=_("Labels"),
+        related_name=("%(app_label)s_" "%(class)s_label"),
+    )
     point = map_fields.PointField(
-        verbose_name=_('Where can your idea be located on a map?'),
-        help_text=_('Click inside the marked area '
-                    'or type in an address to set the marker. A set '
-                    'marker can be dragged when pressed.'))
+        verbose_name=_("Where can your idea be located on a map?"),
+        help_text=_(
+            "Click inside the marked area "
+            "or type in an address to set the marker. A set "
+            "marker can be dragged when pressed."
+        ),
+    )
 
     point_label = models.CharField(
         blank=True,
-        default='',
+        default="",
         max_length=255,
-        verbose_name=_('Label of the ideas location'),
-        help_text=_('This could be an address or the name of a landmark.'),
+        verbose_name=_("Label of the ideas location"),
+        help_text=_("This could be an address or the name of a landmark."),
     )
 
     objects = MapTopicQuerySet.as_manager()
 
     class Meta:
-        ordering = ['-created']
-        verbose_name = 'maptopic'
+        ordering = ["-created"]
+        verbose_name = "maptopic"
 
     @property
     def reference_number(self):
-        return '{:d}-{:05d}'.format(self.created.year, self.pk)
+        return "{:d}-{:05d}".format(self.created.year, self.pk)
 
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.description = transforms.clean_html_field(
-            self.description, 'image-editor')
+        self.description = transforms.clean_html_field(self.description, "image-editor")
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('meinberlin_maptopicprio:maptopic-detail',
-                       kwargs=dict(pk='{:05d}'.format(self.pk),
-                                   year=self.created.year)
-                       )
+        return reverse(
+            "meinberlin_maptopicprio:maptopic-detail",
+            kwargs=dict(pk="{:05d}".format(self.pk), year=self.created.year),
+        )

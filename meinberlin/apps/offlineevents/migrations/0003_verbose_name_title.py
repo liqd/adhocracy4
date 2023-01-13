@@ -9,13 +9,13 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_offlineevents', '0002_require_date'),
+        ("meinberlin_offlineevents", "0002_require_date"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='offlineevent',
-            name='name',
-            field=models.CharField(max_length=120, verbose_name='Title'),
+            model_name="offlineevent",
+            name="name",
+            field=models.CharField(max_length=120, verbose_name="Title"),
         ),
     ]

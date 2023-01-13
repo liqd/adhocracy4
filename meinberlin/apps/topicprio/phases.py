@@ -9,16 +9,16 @@ from . import views
 
 class PrioritizePhase(phases.PhaseContent):
     app = apps.Config.label
-    phase = 'prioritize'
+    phase = "prioritize"
     view = views.TopicListView
 
-    name = _('What do you think about these ideas/topics?')
-    description = _('You can comment on and rate the ideas/topics.')
-    module_name = _('topic prioritization')
+    name = _("What do you think about these ideas/topics?")
+    description = _("You can comment on and rate the ideas/topics.")
+    module_name = _("topic prioritization")
 
     features = {
-        'comment': (models.Topic,),
-        'rate': (models.Topic,),
+        "comment": (models.Topic,),
+        "rate": (models.Topic,),
     }
 
 

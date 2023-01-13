@@ -16,20 +16,19 @@ from .models import PlatformEmail
 User = auth.get_user_model()
 
 
-class PlatformEmailCreateView(rules_mixins.PermissionRequiredMixin,
-                              generic.CreateView):
+class PlatformEmailCreateView(rules_mixins.PermissionRequiredMixin, generic.CreateView):
     model = PlatformEmail
     form_class = PlatformEmailForm
-    permission_required = 'is_superuser'
+    permission_required = "is_superuser"
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
 
         sender_name = settings.WAGTAIL_SITE_NAME
 
-        kwargs['initial'] = {
-            'sender_name': sender_name,
-            'sender': settings.CONTACT_EMAIL
+        kwargs["initial"] = {
+            "sender_name": sender_name,
+            "sender": settings.CONTACT_EMAIL,
         }
         return kwargs
 
@@ -43,9 +42,9 @@ class PlatformEmailCreateView(rules_mixins.PermissionRequiredMixin,
 
         emails.PlatformEmail.send(instance)
 
-        messages.success(self.request,
-                         _('Platform email has been saved and '
-                           'will be sent to the recipients.'))
+        messages.success(
+            self.request,
+            _("Platform email has been saved and " "will be sent to the recipients."),
+        )
 
-        return HttpResponseRedirect(
-            reverse('meinberlin_platformemails:create'))
+        return HttpResponseRedirect(reverse("meinberlin_platformemails:create"))

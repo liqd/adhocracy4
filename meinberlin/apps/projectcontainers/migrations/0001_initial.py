@@ -12,19 +12,34 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('a4projects', '0011_fix_copyright_field_desc'),
+        ("a4projects", "0011_fix_copyright_field_desc"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ProjectContainer',
+            name="ProjectContainer",
             fields=[
-                ('project_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='a4projects.Project')),
-                ('projects', models.ManyToManyField(related_name='containers', to='a4projects.Project')),
+                (
+                    "project_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="a4projects.Project",
+                    ),
+                ),
+                (
+                    "projects",
+                    models.ManyToManyField(
+                        related_name="containers", to="a4projects.Project"
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('a4projects.project',),
+            bases=("a4projects.project",),
         ),
     ]

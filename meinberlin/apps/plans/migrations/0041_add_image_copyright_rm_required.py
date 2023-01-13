@@ -8,28 +8,47 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0040_on_delete_group_set_null'),
+        ("meinberlin_plans", "0040_on_delete_group_set_null"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='plan',
-            name='description_image_copyright',
-            field=models.CharField(blank=True, max_length=120, verbose_name='Image copyright'),
+            model_name="plan",
+            name="description_image_copyright",
+            field=models.CharField(
+                blank=True, max_length=120, verbose_name="Image copyright"
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='district',
-            field=models.ForeignKey(blank=True, help_text='Please enter the district, in which your project is located, or whether your project is citywide.', null=True, on_delete=django.db.models.deletion.CASCADE, to='a4administrative_districts.AdministrativeDistrict', verbose_name='District'),
+            model_name="plan",
+            name="district",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Please enter the district, in which your project is located, or whether your project is citywide.",
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="a4administrative_districts.AdministrativeDistrict",
+                verbose_name="District",
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='point',
-            field=adhocracy4.maps.fields.PointField(blank=True, help_text='Click inside the marked area or type in an address to set the marker. A set marker can be dragged when pressed.', verbose_name='Where can the plan be located on a map?'),
+            model_name="plan",
+            name="point",
+            field=adhocracy4.maps.fields.PointField(
+                blank=True,
+                help_text="Click inside the marked area or type in an address to set the marker. A set marker can be dragged when pressed.",
+                verbose_name="Where can the plan be located on a map?",
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='point_label',
-            field=models.CharField(blank=True, default='', help_text='The label of the location is displayed in the detail view of the plan', max_length=255, verbose_name='Label of the location'),
+            model_name="plan",
+            name="point_label",
+            field=models.CharField(
+                blank=True,
+                default="",
+                help_text="The label of the location is displayed in the detail view of the plan",
+                max_length=255,
+                verbose_name="Label of the location",
+            ),
         ),
     ]

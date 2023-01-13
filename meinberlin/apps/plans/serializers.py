@@ -22,24 +22,35 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
 
     class Meta:
         model = Plan
-        fields = ['type', 'subtype', 'title', 'url',
-                  'organisation', 'point',
-                  'point_label', 'cost',
-                  'district', 'topics', 'status',
-                  'participation',
-                  'participation_string',
-                  'participation_active',
-                  'published_projects_count', 'created_or_modified',
-                  'tile_image', 'tile_image_copyright']
+        fields = [
+            "type",
+            "subtype",
+            "title",
+            "url",
+            "organisation",
+            "point",
+            "point_label",
+            "cost",
+            "district",
+            "topics",
+            "status",
+            "participation",
+            "participation_string",
+            "participation_active",
+            "published_projects_count",
+            "created_or_modified",
+            "tile_image",
+            "tile_image_copyright",
+        ]
 
     def get_subtype(self, instance):
-        return 'plan'
+        return "plan"
 
     def _get_participation_status_plan(self, item):
         return item.get_status_display(), not bool(item.status)
 
     def get_type(self, instance):
-        return 'plan'
+        return "plan"
 
     def get_url(self, instance):
         return instance.get_absolute_url()
@@ -48,22 +59,26 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
         return instance.published_projects.count()
 
     def get_participation_string(self, instance):
-        participation_string, participation_active = \
-            self._get_participation_status_plan(instance)
+        (
+            participation_string,
+            participation_active,
+        ) = self._get_participation_status_plan(instance)
         return str(participation_string)
 
     def get_participation_active(self, instance):
-        participation_string, participation_active = \
-            self._get_participation_status_plan(instance)
+        (
+            participation_string,
+            participation_active,
+        ) = self._get_participation_status_plan(instance)
         return participation_active
 
     def get_tile_image(self, instance):
-        image_url = ''
+        image_url = ""
         if instance.tile_image:
-            image = get_thumbnailer(instance.tile_image)['project_tile']
+            image = get_thumbnailer(instance.tile_image)["project_tile"]
             image_url = image.url
         elif instance.description_image:
-            image = get_thumbnailer(instance.description_image)['project_tile']
+            image = get_thumbnailer(instance.description_image)["project_tile"]
             image_url = image.url
         return image_url
 

@@ -12,8 +12,8 @@ class ModerationTask(models.Model):
     )
 
     class Meta:
-        verbose_name_plural = 'moderation tasks'
-        ordering = ['pk']
+        verbose_name_plural = "moderation tasks"
+        ordering = ["pk"]
 
     def __str__(self):
         return self.name

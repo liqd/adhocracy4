@@ -8,12 +8,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_mapideas', '0015_add_label_verbose_name'),
+        ("meinberlin_mapideas", "0015_add_label_verbose_name"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='mapidea',
-            options={'ordering': ['-created'], 'verbose_name': 'mapidea'},
+            name="mapidea",
+            options={"ordering": ["-created"], "verbose_name": "mapidea"},
         ),
     ]

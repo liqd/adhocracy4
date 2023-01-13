@@ -9,37 +9,25 @@ from adhocracy4.images import fields
 
 
 class Organisation(models.Model):
-    slug = AutoSlugField(
-        populate_from='name',
-        unique=True,
-        editable=True
-    )
+    slug = AutoSlugField(populate_from="name", unique=True, editable=True)
     name = models.CharField(max_length=512)
     initiators = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         blank=True,
     )
-    groups = models.ManyToManyField(
-        Group,
-        blank=True
-    )
+    groups = models.ManyToManyField(Group, blank=True)
     logo = fields.ConfiguredImageField(
-        'logo',
-        verbose_name=_('Logo'),
+        "logo",
+        verbose_name=_("Logo"),
         help_prefix=_(
-            'The image will be shown in the newsletter in the banner, '
-            'as such it should not be wider than 650 pixels.'
+            "The image will be shown in the newsletter in the banner, "
+            "as such it should not be wider than 650 pixels."
         ),
-        upload_to='organisation/logos',
-        blank=True)
-    address = models.TextField(
+        upload_to="organisation/logos",
         blank=True,
-        verbose_name=_('Postal address')
     )
-    url = models.URLField(
-        blank=True,
-        verbose_name=_('Website of organisation')
-    )
+    address = models.TextField(blank=True, verbose_name=_("Postal address"))
+    url = models.URLField(blank=True, verbose_name=_("Website of organisation"))
 
     def __str__(self):
         return self.name
@@ -48,4 +36,4 @@ class Organisation(models.Model):
         return user in self.initiators.all()
 
     def get_absolute_url(self):
-        return reverse('meinberlin_plans:plan-list')
+        return reverse("meinberlin_plans:plan-list")

@@ -10,47 +10,68 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0001_initial'),
+        ("meinberlin_plans", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='plan',
-            name='budget',
-            field=models.PositiveIntegerField(blank=True, null=True, verbose_name='Budget'),
+            model_name="plan",
+            name="budget",
+            field=models.PositiveIntegerField(
+                blank=True, null=True, verbose_name="Budget"
+            ),
         ),
         migrations.AddField(
-            model_name='plan',
-            name='category',
-            field=models.CharField(default='', max_length=255, verbose_name='Type of plan'),
+            model_name="plan",
+            name="category",
+            field=models.CharField(
+                default="", max_length=255, verbose_name="Type of plan"
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='plan',
-            name='contact',
-            field=models.TextField(default='', max_length=255, verbose_name='Contact'),
+            model_name="plan",
+            name="contact",
+            field=models.TextField(default="", max_length=255, verbose_name="Contact"),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='plan',
-            name='description',
-            field=ckeditor.fields.RichTextField(blank=True, verbose_name='Description'),
+            model_name="plan",
+            name="description",
+            field=ckeditor.fields.RichTextField(blank=True, verbose_name="Description"),
         ),
         migrations.AddField(
-            model_name='plan',
-            name='participation',
-            field=models.SmallIntegerField(choices=[(1, 'Yes'), (0, 'No'), (2, 'Still undecided')], default=2),
+            model_name="plan",
+            name="participation",
+            field=models.SmallIntegerField(
+                choices=[(1, "Yes"), (0, "No"), (2, "Still undecided")], default=2
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='plan',
-            name='point_label',
-            field=models.CharField(blank=True, default='', help_text='This could be an address or the name of a landmark.', max_length=255, verbose_name='Label of the location'),
+            model_name="plan",
+            name="point_label",
+            field=models.CharField(
+                blank=True,
+                default="",
+                help_text="This could be an address or the name of a landmark.",
+                max_length=255,
+                verbose_name="Label of the location",
+            ),
         ),
         migrations.AddField(
-            model_name='plan',
-            name='status',
-            field=models.SmallIntegerField(choices=[(0, 'Idea'), (1, 'Planning'), (2, 'Implementation'), (3, 'Done'), (4, 'Stopped')], default=0),
+            model_name="plan",
+            name="status",
+            field=models.SmallIntegerField(
+                choices=[
+                    (0, "Idea"),
+                    (1, "Planning"),
+                    (2, "Implementation"),
+                    (3, "Done"),
+                    (4, "Stopped"),
+                ],
+                default=0,
+            ),
             preserve_default=False,
         ),
     ]

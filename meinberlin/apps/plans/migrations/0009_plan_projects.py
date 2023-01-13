@@ -9,14 +9,16 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4projects', '0014_collapsible_information_field'),
-        ('meinberlin_plans', '0008_add_some_verbose_names'),
+        ("a4projects", "0014_collapsible_information_field"),
+        ("meinberlin_plans", "0008_add_some_verbose_names"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='plan',
-            name='projects',
-            field=models.ManyToManyField(blank=True, related_name='plans', to='a4projects.Project'),
+            model_name="plan",
+            name="projects",
+            field=models.ManyToManyField(
+                blank=True, related_name="plans", to="a4projects.Project"
+            ),
         ),
     ]

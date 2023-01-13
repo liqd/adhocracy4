@@ -18,40 +18,46 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         self.now = now
 
     def get_queryset(self):
-        projects = Project.objects \
-            .filter(Q(project_type='a4projects.Project') |
-                    Q(project_type='meinberlin_bplan.Bplan')) \
-            .filter(Q(access=Access.PUBLIC) |
-                    Q(access=Access.SEMIPUBLIC),
-                    is_draft=False,
-                    is_archived=False)\
-            .order_by('created') \
-            .select_related('administrative_district',
-                            'organisation') \
-            .prefetch_related('moderators',
-                              'plans',
-                              'organisation__initiators',
-                              'module_set__phase_set')
+        projects = (
+            Project.objects.filter(
+                Q(project_type="a4projects.Project")
+                | Q(project_type="meinberlin_bplan.Bplan")
+            )
+            .filter(
+                Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+                is_draft=False,
+                is_archived=False,
+            )
+            .order_by("created")
+            .select_related("administrative_district", "organisation")
+            .prefetch_related(
+                "moderators",
+                "plans",
+                "organisation__initiators",
+                "module_set__phase_set",
+            )
+        )
         return projects
 
     def get_serializer(self, *args, **kwargs):
-        if 'status' in self.request.GET:
+        if "status" in self.request.GET:
             statustype = self.request.GET["status"]
-            if statustype == 'activeParticipation':
+            if statustype == "activeParticipation":
                 return project_serializers.ActiveProjectSerializer(
-                    now=self.now, *args, **kwargs)
-            if statustype == 'futureParticipation':
+                    now=self.now, *args, **kwargs
+                )
+            if statustype == "futureParticipation":
                 return project_serializers.FutureProjectSerializer(
-                    now=self.now, *args, **kwargs)
-            if statustype == 'pastParticipation':
+                    now=self.now, *args, **kwargs
+                )
+            if statustype == "pastParticipation":
                 return project_serializers.PastProjectSerializer(
-                    now=self.now, *args, **kwargs)
-        return project_serializers.ProjectSerializer(
-            now=self.now, *args, **kwargs)
+                    now=self.now, *args, **kwargs
+                )
+        return project_serializers.ProjectSerializer(now=self.now, *args, **kwargs)
 
 
 class PrivateProjectListViewSet(viewsets.ReadOnlyModelViewSet):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         now = timezone.now()
@@ -59,18 +65,17 @@ class PrivateProjectListViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         private_projects = Project.objects.filter(
-            is_draft=False,
-            is_archived=False,
-            access=Access.PRIVATE)
+            is_draft=False, is_archived=False, access=Access.PRIVATE
+        )
         if private_projects:
-            not_allowed_projects = \
-                [project.id for project in private_projects if
-                 not self.request.user.has_perm(
-                     'a4projects.view_project', project)]
+            not_allowed_projects = [
+                project.id
+                for project in private_projects
+                if not self.request.user.has_perm("a4projects.view_project", project)
+            ]
             return private_projects.exclude(id__in=not_allowed_projects)
         else:
             return private_projects
 
     def get_serializer(self, *args, **kwargs):
-        return project_serializers.ProjectSerializer(
-            now=self.now, *args, **kwargs)
+        return project_serializers.ProjectSerializer(now=self.now, *args, **kwargs)

@@ -10,14 +10,14 @@ from . import views
 
 
 class MapTopicEditComponent(DashboardComponent):
-    identifier = 'map_topic_edit'
+    identifier = "map_topic_edit"
     weight = 20
-    label = _('Places')
+    label = _("Places")
 
     def is_effective(self, module):
-        if module.blueprint_type != 'MTP':
+        if module.blueprint_type != "MTP":
             return False
-        elif module.settings_instance.polygon == '':
+        elif module.settings_instance.polygon == "":
             return False
         else:
             return True
@@ -28,24 +28,30 @@ class MapTopicEditComponent(DashboardComponent):
         return 0, 1
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:maptopic-list', kwargs={
-            'module_slug': module.slug
-        })
+        return reverse("a4dashboard:maptopic-list", kwargs={"module_slug": module.slug})
 
     def get_urls(self):
         return [
-            (r'^maptopics/module/(?P<module_slug>[-\w_]+)/$',
-             views.MapTopicListDashboardView.as_view(component=self),
-             'maptopic-list'),
-            (r'^maptopics/create/module/(?P<module_slug>[-\w_]+)/$',
-             views.MapTopicCreateView.as_view(component=self),
-             'maptopic-create'),
-            (r'^maptopics/(?P<year>\d{4})-(?P<pk>\d+)/update/$',
-             views.MapTopicUpdateView.as_view(component=self),
-             'maptopic-update'),
-            (r'^maptopics/(?P<year>\d{4})-(?P<pk>\d+)/delete/$',
-             views.MapTopicDeleteView.as_view(component=self),
-             'maptopic-delete')
+            (
+                r"^maptopics/module/(?P<module_slug>[-\w_]+)/$",
+                views.MapTopicListDashboardView.as_view(component=self),
+                "maptopic-list",
+            ),
+            (
+                r"^maptopics/create/module/(?P<module_slug>[-\w_]+)/$",
+                views.MapTopicCreateView.as_view(component=self),
+                "maptopic-create",
+            ),
+            (
+                r"^maptopics/(?P<year>\d{4})-(?P<pk>\d+)/update/$",
+                views.MapTopicUpdateView.as_view(component=self),
+                "maptopic-update",
+            ),
+            (
+                r"^maptopics/(?P<year>\d{4})-(?P<pk>\d+)/delete/$",
+                views.MapTopicDeleteView.as_view(component=self),
+                "maptopic-delete",
+            ),
         ]
 
 
@@ -53,33 +59,45 @@ components.register_module(MapTopicEditComponent())
 
 
 class ExportMapTopicComponent(DashboardComponent):
-    identifier = 'maptopic_export'
+    identifier = "maptopic_export"
     weight = 50
-    label = _('Export Excel')
+    label = _("Export Excel")
 
     def is_effective(self, module):
-        return (module.blueprint_type == 'MTP' and
-                not module.project.is_draft and not module.is_draft)
+        return (
+            module.blueprint_type == "MTP"
+            and not module.project.is_draft
+            and not module.is_draft
+        )
 
     def get_progress(self, module):
         return 0, 0
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:maptopic-export-module', kwargs={
-            'module_slug': module.slug,
-        })
+        return reverse(
+            "a4dashboard:maptopic-export-module",
+            kwargs={
+                "module_slug": module.slug,
+            },
+        )
 
     def get_urls(self):
         return [
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/maptopic/$',
-             views.MapTopicDashboardExportView.as_view(component=self),
-             'maptopic-export-module'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/maptopic/maptopics/$',
-             exports.MapTopicExportView.as_view(),
-             'maptopic-export'),
-            (r'^modules/(?P<module_slug>[-\w_]+)/export/maptopic/comments/$',
-             exports.MapTopicCommentExportView.as_view(),
-             'maptopic-comment-export'),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/maptopic/$",
+                views.MapTopicDashboardExportView.as_view(component=self),
+                "maptopic-export-module",
+            ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/maptopic/maptopics/$",
+                exports.MapTopicExportView.as_view(),
+                "maptopic-export",
+            ),
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/export/maptopic/comments/$",
+                exports.MapTopicCommentExportView.as_view(),
+                "maptopic-comment-export",
+            ),
         ]
 
 

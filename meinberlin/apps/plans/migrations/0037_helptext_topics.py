@@ -10,13 +10,33 @@ import adhocracy4.projects.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0036_point_helptext'),
+        ("meinberlin_plans", "0036_point_helptext"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='topics',
-            field=adhocracy4.projects.fields.TopicField(choices=[('ANT', 'Anti-discrimination'), ('WOR', 'Work & economy'), ('BUI', 'Building & living'), ('EDU', 'Education & research'), ('CHI', 'Children, youth & family'), ('FIN', 'Finances'), ('HEA', 'Health & sports'), ('INT', 'Integration'), ('CUL', 'Culture & leisure'), ('NEI', 'Neighborhood & participation'), ('URB', 'Urban development'), ('ENV', 'Environment & public green space'), ('TRA', 'Traffic')], default='', help_text='Add topics to your project.', max_length=254, verbose_name='Topics'),
+            model_name="plan",
+            name="topics",
+            field=adhocracy4.projects.fields.TopicField(
+                choices=[
+                    ("ANT", "Anti-discrimination"),
+                    ("WOR", "Work & economy"),
+                    ("BUI", "Building & living"),
+                    ("EDU", "Education & research"),
+                    ("CHI", "Children, youth & family"),
+                    ("FIN", "Finances"),
+                    ("HEA", "Health & sports"),
+                    ("INT", "Integration"),
+                    ("CUL", "Culture & leisure"),
+                    ("NEI", "Neighborhood & participation"),
+                    ("URB", "Urban development"),
+                    ("ENV", "Environment & public green space"),
+                    ("TRA", "Traffic"),
+                ],
+                default="",
+                help_text="Add topics to your project.",
+                max_length=254,
+                verbose_name="Topics",
+            ),
         ),
     ]

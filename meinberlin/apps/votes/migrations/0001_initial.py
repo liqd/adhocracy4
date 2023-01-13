@@ -11,33 +11,82 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('contenttypes', '0002_remove_content_type_name'),
-        ('a4modules', '0005_module_is_draft'),
+        ("contenttypes", "0002_remove_content_type_name"),
+        ("a4modules", "0005_module_is_draft"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='VotingToken',
+            name="VotingToken",
             fields=[
-                ('token', models.CharField(default=meinberlin.apps.votes.models.get_token, editable=False, max_length=40, primary_key=True, serialize=False)),
-                ('allowed_votes', models.PositiveSmallIntegerField(default=5)),
-                ('is_active', models.BooleanField(default=True, help_text='Designates whether this token should be treated as active. Unselect this instead of deleting tokens.')),
-                ('module', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='a4modules.module')),
+                (
+                    "token",
+                    models.CharField(
+                        default=meinberlin.apps.votes.models.get_token,
+                        editable=False,
+                        max_length=40,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("allowed_votes", models.PositiveSmallIntegerField(default=5)),
+                (
+                    "is_active",
+                    models.BooleanField(
+                        default=True,
+                        help_text="Designates whether this token should be treated as active. Unselect this instead of deleting tokens.",
+                    ),
+                ),
+                (
+                    "module",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="a4modules.module",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='TokenVote',
+            name="TokenVote",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('object_pk', models.PositiveIntegerField()),
-                ('content_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contenttypes.contenttype')),
-                ('token', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='meinberlin_votes.votingtoken')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, editable=False
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(blank=True, editable=False, null=True),
+                ),
+                ("object_pk", models.PositiveIntegerField()),
+                (
+                    "content_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="contenttypes.contenttype",
+                    ),
+                ),
+                (
+                    "token",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="meinberlin_votes.votingtoken",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('content_type', 'object_pk', 'token')},
-                'index_together': {('content_type', 'object_pk')},
+                "unique_together": {("content_type", "object_pk", "token")},
+                "index_together": {("content_type", "object_pk")},
             },
         ),
     ]

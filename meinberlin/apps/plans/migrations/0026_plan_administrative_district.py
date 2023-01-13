@@ -10,14 +10,20 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4administrative_districts', '0001_initial'),
-        ('meinberlin_plans', '0025_verbose_theme'),
+        ("a4administrative_districts", "0001_initial"),
+        ("meinberlin_plans", "0025_verbose_theme"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='plan',
-            name='administrative_district',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='a4administrative_districts.AdministrativeDistrict', verbose_name='District'),
+            model_name="plan",
+            name="administrative_district",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="a4administrative_districts.AdministrativeDistrict",
+                verbose_name="District",
+            ),
         ),
     ]

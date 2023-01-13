@@ -8,17 +8,15 @@ from adhocracy4.projects.models import Project
 def add_project_type(apps, schema_editor):
     objs = Project.objects.all()
     for obj in objs:
-        obj.project_type = 'a4projects.Project'
-    Project.objects.bulk_update(objs, ['project_type'])
+        obj.project_type = "a4projects.Project"
+    Project.objects.bulk_update(objs, ["project_type"])
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_projects', '0001_initial'),
-        ('a4projects', '0026_project_project_type'),
+        ("meinberlin_projects", "0001_initial"),
+        ("a4projects", "0026_project_project_type"),
     ]
 
-    operations = [
-        migrations.RunPython(add_project_type)
-    ]
+    operations = [migrations.RunPython(add_project_type)]

@@ -9,17 +9,19 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0002_extend_model'),
+        ("meinberlin_plans", "0002_extend_model"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='plan',
-            name='budget',
+            model_name="plan",
+            name="budget",
         ),
         migrations.AddField(
-            model_name='plan',
-            name='cost',
-            field=models.PositiveIntegerField(blank=True, null=True, verbose_name='Cost'),
+            model_name="plan",
+            name="cost",
+            field=models.PositiveIntegerField(
+                blank=True, null=True, verbose_name="Cost"
+            ),
         ),
     ]

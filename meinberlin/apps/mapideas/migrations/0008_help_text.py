@@ -10,13 +10,16 @@ import adhocracy4.maps.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_mapideas', '0007_add_default_ordering'),
+        ("meinberlin_mapideas", "0007_add_default_ordering"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='mapidea',
-            name='point',
-            field=adhocracy4.maps.fields.PointField(help_text='Click inside marked area on the map to set a marker. Drag and drop the marker to change its place. Alternatively you can use the search field to search for an address.', verbose_name='Where can your idea be located on a map?'),
+            model_name="mapidea",
+            name="point",
+            field=adhocracy4.maps.fields.PointField(
+                help_text="Click inside marked area on the map to set a marker. Drag and drop the marker to change its place. Alternatively you can use the search field to search for an address.",
+                verbose_name="Where can your idea be located on a map?",
+            ),
         ),
     ]

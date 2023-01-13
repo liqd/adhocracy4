@@ -56,7 +56,8 @@ def has_activity(obj):
         return isinstance(obj.item_set.first().activity, Activity)
     except AttributeError:
         try:
-            return isinstance(obj.future_phases.first().
-                              module.item_set.first().activity, Activity)
+            return isinstance(
+                obj.future_phases.first().module.item_set.first().activity, Activity
+            )
         except AttributeError:
             return isinstance(obj, Activity)

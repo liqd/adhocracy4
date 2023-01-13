@@ -7,13 +7,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_platformemails', '0001_initial'),
+        ("meinberlin_platformemails", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='platformemail',
-            name='body',
-            field=ckeditor_uploader.fields.RichTextUploadingField(blank=True, help_text='When adding images, please ensure to set the width no larger than 650px.', verbose_name='Email body'),
+            model_name="platformemail",
+            name="body",
+            field=ckeditor_uploader.fields.RichTextUploadingField(
+                blank=True,
+                help_text="When adding images, please ensure to set the width no larger than 650px.",
+                verbose_name="Email body",
+            ),
         ),
     ]

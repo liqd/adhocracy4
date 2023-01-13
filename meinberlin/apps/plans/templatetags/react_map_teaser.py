@@ -15,28 +15,26 @@ register = template.Library()
 @register.simple_tag(takes_context=False)
 def react_map_teaser():
 
-    city_wide = _('City wide')
+    city_wide = _("City wide")
     districts = AdministrativeDistrict.objects.all()
-    district_names_list = [district.name
-                           for district in districts]
+    district_names_list = [district.name for district in districts]
     district_names_list.append(str(city_wide))
 
-    topics = getattr(settings, 'A4_PROJECT_TOPICS', None)
+    topics = getattr(settings, "A4_PROJECT_TOPICS", None)
     if topics:
         topic_dict = dict((x, str(y)) for x, y in topics)
     else:
-        raise ImproperlyConfigured('set A4_PROJECT_TOPICS in settings')
+        raise ImproperlyConfigured("set A4_PROJECT_TOPICS in settings")
 
-    url = reverse('meinberlin_plans:plan-list')
+    url = reverse("meinberlin_plans:plan-list")
 
     attributes = {
-        'districtnames': district_names_list,
-        'topicChoices': topic_dict,
-        'url': url
+        "districtnames": district_names_list,
+        "topicChoices": topic_dict,
+        "url": url,
     }
 
     return format_html(
-        '<div data-mb-widget="mapTeaser" '
-        'data-attributes="{attributes}"></div>',
-        attributes=json.dumps(attributes)
+        '<div data-mb-widget="mapTeaser" ' 'data-attributes="{attributes}"></div>',
+        attributes=json.dumps(attributes),
     )

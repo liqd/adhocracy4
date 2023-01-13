@@ -9,13 +9,16 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0032_rename_topic_field'),
+        ("meinberlin_plans", "0032_rename_topic_field"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='participation',
-            field=models.SmallIntegerField(choices=[(0, 'Yes'), (1, 'No'), (2, 'Still undecided')], verbose_name='Participation'),
+            model_name="plan",
+            name="participation",
+            field=models.SmallIntegerField(
+                choices=[(0, "Yes"), (1, "No"), (2, "Still undecided")],
+                verbose_name="Participation",
+            ),
         ),
     ]

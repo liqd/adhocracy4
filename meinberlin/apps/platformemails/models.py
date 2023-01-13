@@ -12,21 +12,19 @@ from adhocracy4.models.base import UserGeneratedContentModel
 
 class PlatformEmail(UserGeneratedContentModel):
 
-    sender_name = models.CharField(max_length=254,
-                                   verbose_name=_('Name'))
-    sender = models.EmailField(blank=True,
-                               verbose_name=_('Sender'))
-    subject = models.CharField(max_length=254,
-                               verbose_name=_('Subject'))
-    body = RichTextUploadingField(blank=True,
-                                  config_name='image-editor',
-                                  verbose_name=_('Email body'),
-                                  help_text=_(
-                                      'When adding images, please ensure to '
-                                      'set the width no larger than 650px.'))
-    sent = models.DateTimeField(blank=True,
-                                null=True,
-                                verbose_name=_('Sent'))
+    sender_name = models.CharField(max_length=254, verbose_name=_("Name"))
+    sender = models.EmailField(blank=True, verbose_name=_("Sender"))
+    subject = models.CharField(max_length=254, verbose_name=_("Subject"))
+    body = RichTextUploadingField(
+        blank=True,
+        config_name="image-editor",
+        verbose_name=_("Email body"),
+        help_text=_(
+            "When adding images, please ensure to "
+            "set the width no larger than 650px."
+        ),
+    )
+    sent = models.DateTimeField(blank=True, null=True, verbose_name=_("Sent"))
 
     @cached_property
     def body_with_absolute_urls(self):
@@ -36,24 +34,23 @@ class PlatformEmail(UserGeneratedContentModel):
         super().__setattr__(key, value)
         # Delete cached properties
         try:
-            if key == 'body':
+            if key == "body":
                 del self.body_with_absolute_urls
         except AttributeError:
             pass
 
     @staticmethod
     def replace_relative_media_urls(text):
-        if not settings.MEDIA_URL.startswith('/'):
+        if not settings.MEDIA_URL.startswith("/"):
             # Replace only if MEDIA_URL is relative
             return text
 
         # Find every occurrence of the MEDIA_URL that is either following a
         # whitespace, an equal sign or a quotation mark.
         pattern = re.compile(r'([\s="\'])(%s)' % re.escape(settings.MEDIA_URL))
-        text = re.sub(pattern, r'\1%s\2' %
-                      settings.WAGTAILADMIN_BASE_URL, text)
+        text = re.sub(pattern, r"\1%s\2" % settings.WAGTAILADMIN_BASE_URL, text)
         return text
 
     def save(self, *args, **kwargs):
-        self.body = transforms.clean_html_field(self.body, 'image-editor')
+        self.body = transforms.clean_html_field(self.body, "image-editor")
         super().save(*args, **kwargs)

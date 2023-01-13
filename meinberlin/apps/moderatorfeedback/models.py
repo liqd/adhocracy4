@@ -8,22 +8,22 @@ from adhocracy4.models.base import UserGeneratedContentModel
 from . import fields
 
 DEFAULT_CHOICES = (
-    ('CONSIDERATION', _('Under consideration')),
-    ('QUALIFIED', _('Qualified for next phase')),
-    ('REJECTED', _('Rejected')),
-    ('ACCEPTED', _('Accepted')),
+    ("CONSIDERATION", _("Under consideration")),
+    ("QUALIFIED", _("Qualified for next phase")),
+    ("REJECTED", _("Rejected")),
+    ("ACCEPTED", _("Accepted")),
 )
 
 
 class ModeratorFeedback(UserGeneratedContentModel):
     feedback_text = RichTextField(
         blank=True,
-        verbose_name=_('Feedback (public)'),
+        verbose_name=_("Feedback (public)"),
         help_text=_(
-            'The feedback appears below the idea or proposal, indicating '
-            'your organisation. The creator of the contribution receives a '
-            'notification.'
-        )
+            "The feedback appears below the idea or proposal, indicating "
+            "your organisation. The creator of the contribution receives a "
+            "notification."
+        ),
     )
 
     def save(self, *args, **kwargs):
@@ -35,19 +35,19 @@ class Moderateable(models.Model):
     moderator_status_choices = DEFAULT_CHOICES
 
     moderator_status = fields.ModeratorFeedbackField(
-        verbose_name=_('Status (public)'),
+        verbose_name=_("Status (public)"),
         help_text=_(
-            'The status appears below the idea or proposal in red, yellow or '
-            'green. The creator of the contribution receives a notification.'
-        )
+            "The status appears below the idea or proposal in red, yellow or "
+            "green. The creator of the contribution receives a notification."
+        ),
     )
 
     moderator_feedback_text = models.OneToOneField(
         ModeratorFeedback,
-        related_name='+',
+        related_name="+",
         null=True,
         blank=True,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     class Meta:

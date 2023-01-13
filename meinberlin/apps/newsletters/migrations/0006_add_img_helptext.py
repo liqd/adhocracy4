@@ -7,13 +7,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_newsletters', '0005_update_descriptions'),
+        ("meinberlin_newsletters", "0005_update_descriptions"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='newsletter',
-            name='body',
-            field=ckeditor_uploader.fields.RichTextUploadingField(blank=True, help_text='When adding images, please ensure to set the width no larger than 650px.', verbose_name='Email body'),
+            model_name="newsletter",
+            name="body",
+            field=ckeditor_uploader.fields.RichTextUploadingField(
+                blank=True,
+                help_text="When adding images, please ensure to set the width no larger than 650px.",
+                verbose_name="Email body",
+            ),
         ),
     ]

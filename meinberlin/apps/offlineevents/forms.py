@@ -9,16 +9,16 @@ from . import models
 class OfflineEventForm(forms.ModelForm):
 
     date = DateTimeField(
-        time_format='%H:%M',
+        time_format="%H:%M",
         required=True,
         require_all_fields=False,
-        label=(_('Date'), _('Time'))
+        label=(_("Date"), _("Time")),
     )
 
     class Meta:
         model = models.OfflineEvent
-        fields = ['name', 'event_type', 'date', 'description']
+        fields = ["name", "event_type", "date", "description"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['date'].label = _('Date and time')
+        self.fields["date"].label = _("Date and time")

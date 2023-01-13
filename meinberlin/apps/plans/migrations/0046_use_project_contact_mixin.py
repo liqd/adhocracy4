@@ -7,33 +7,44 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0045_plan_rename_contact_field'),
+        ("meinberlin_plans", "0045_plan_rename_contact_field"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='plan',
-            name='contact_email',
+            model_name="plan",
+            name="contact_email",
             field=models.EmailField(blank=True, max_length=254),
         ),
         migrations.AddField(
-            model_name='plan',
-            name='contact_name',
-            field=models.CharField(blank=True, max_length=120, verbose_name='Contact person'),
+            model_name="plan",
+            name="contact_name",
+            field=models.CharField(
+                blank=True, max_length=120, verbose_name="Contact person"
+            ),
         ),
         migrations.AddField(
-            model_name='plan',
-            name='contact_phone',
-            field=models.CharField(blank=True, max_length=20, validators=[django.core.validators.RegexValidator(message='Phone numbers can only contain digits, spaces and the following characters: -, +, (, ). It has to be between 8 and 20 characters long.', regex='^[\\d\\+\\(\\)\\- ]{8,20}$')]),
+            model_name="plan",
+            name="contact_phone",
+            field=models.CharField(
+                blank=True,
+                max_length=20,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        message="Phone numbers can only contain digits, spaces and the following characters: -, +, (, ). It has to be between 8 and 20 characters long.",
+                        regex="^[\\d\\+\\(\\)\\- ]{8,20}$",
+                    )
+                ],
+            ),
         ),
         migrations.AddField(
-            model_name='plan',
-            name='contact_url',
+            model_name="plan",
+            name="contact_url",
             field=models.URLField(blank=True),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='contact_address_text',
-            field=models.TextField(blank=True, verbose_name='Postal address'),
+            model_name="plan",
+            name="contact_address_text",
+            field=models.TextField(blank=True, verbose_name="Postal address"),
         ),
     ]

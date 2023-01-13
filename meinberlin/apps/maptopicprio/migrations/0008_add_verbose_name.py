@@ -8,12 +8,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_maptopicprio', '0007_add_label_verbose_name'),
+        ("meinberlin_maptopicprio", "0007_add_label_verbose_name"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='maptopic',
-            options={'ordering': ['-created'], 'verbose_name': 'maptopic'},
+            name="maptopic",
+            options={"ordering": ["-created"], "verbose_name": "maptopic"},
         ),
     ]

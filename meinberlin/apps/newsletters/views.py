@@ -20,20 +20,25 @@ from .forms import RestrictedNewsletterForm
 Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 
 
-class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
-                                    rules_mixins.PermissionRequiredMixin,
-                                    generic.CreateView):
-    menu_item = 'newsletter'
+class DashboardNewsletterCreateView(
+    a4dashboard_mixins.DashboardBaseMixin,
+    rules_mixins.PermissionRequiredMixin,
+    generic.CreateView,
+):
+    menu_item = "newsletter"
     model = models.Newsletter
     form_class = NewsletterForm
-    permission_required = 'a4projects.add_project'
+    permission_required = "a4projects.add_project"
 
     def get_permission_object(self):
         return self.organisation
 
     def _check_permission(self, organisation, user):
-        return user.is_superuser or organisation.has_initiator(user) or \
-            self._group_permission(organisation, user)
+        return (
+            user.is_superuser
+            or organisation.has_initiator(user)
+            or self._group_permission(organisation, user)
+        )
 
     def _group_permission(self, organisation, user):
         org_groups = organisation.groups.all()
@@ -42,28 +47,29 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
 
     def get_email_kwargs(self):
         kwargs = {}
-        kwargs.update({'organisation_pk': self.organisation.pk})
+        kwargs.update({"organisation_pk": self.organisation.pk})
         return kwargs
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
-        kwargs['organisation'] = self.organisation
+        kwargs["user"] = self.request.user
+        kwargs["organisation"] = self.organisation
 
-        kwargs['initial'] = {
-            'sender_name': self.organisation.name,
-            'sender': settings.CONTACT_EMAIL
+        kwargs["initial"] = {
+            "sender_name": self.organisation.name,
+            "sender": settings.CONTACT_EMAIL,
         }
 
         if not self._check_permission(self.organisation, self.request.user):
-            kwargs['initial']['receivers'] = models.PROJECT
+            kwargs["initial"]["receivers"] = models.PROJECT
 
         return kwargs
 
     def get_success_url(self):
         return reverse(
-            'a4dashboard:newsletter-create',
-            kwargs={'organisation_slug': self.organisation.slug})
+            "a4dashboard:newsletter-create",
+            kwargs={"organisation_slug": self.organisation.slug},
+        )
 
     def get_form(self):
         if self._check_permission(self.organisation, self.request.user):
@@ -74,14 +80,15 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
     def get_template_names(self):
         user = self.request.user
         if self.organisation.has_initiator(user) or user.is_superuser:
-            return ['meinberlin_newsletters/newsletter_dashboard_form.html']
+            return ["meinberlin_newsletters/newsletter_dashboard_form.html"]
         else:
-            return ['meinberlin_newsletters/'
-                    'restricted_newsletter_dashboard_form.html']
+            return [
+                "meinberlin_newsletters/" "restricted_newsletter_dashboard_form.html"
+            ]
 
     def form_valid(self, form):
         # Check if the current user is allowed to send to the selected org
-        organisation = form.cleaned_data['organisation']
+        organisation = form.cleaned_data["organisation"]
         if not self._check_permission(organisation, self.request.user):
             raise PermissionDenied
 
@@ -91,37 +98,43 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
         instance.save()
         form.save_m2m()
 
-        receivers = int(form.cleaned_data['receivers'])
+        receivers = int(form.cleaned_data["receivers"])
 
         if receivers == models.PROJECT:
             participant_ids = Follow.objects.filter(
-                project=form.cleaned_data['project'].pk,
-                enabled=True
-            ).values_list('creator', flat=True)
+                project=form.cleaned_data["project"].pk, enabled=True
+            ).values_list("creator", flat=True)
 
         elif receivers == models.ORGANISATION:
-            participant_ids = Follow.objects.filter(
-                project__organisation=organisation.pk,
-                enabled=True
-            ).values_list('creator', flat=True).distinct()
+            participant_ids = (
+                Follow.objects.filter(
+                    project__organisation=organisation.pk, enabled=True
+                )
+                .values_list("creator", flat=True)
+                .distinct()
+            )
 
         elif receivers == models.INITIATOR:
-            participant_ids = Organisation.objects.get(
-                pk=organisation.pk).initiators.all()\
-                .values_list('pk', flat=True)
+            participant_ids = (
+                Organisation.objects.get(pk=organisation.pk)
+                .initiators.all()
+                .values_list("pk", flat=True)
+            )
         else:
             participant_ids = []
 
         if receivers == models.PLATFORM:
-            emails.NewsletterEmailAll.send(instance,
-                                           **self.get_email_kwargs())
+            emails.NewsletterEmailAll.send(instance, **self.get_email_kwargs())
 
         else:
-            emails.NewsletterEmail.send(instance,
-                                        participant_ids=list(participant_ids),
-                                        **self.get_email_kwargs())
-        messages.success(self.request,
-                         _('Newsletter has been saved and '
-                           'will be sent to the recipients.'))
+            emails.NewsletterEmail.send(
+                instance,
+                participant_ids=list(participant_ids),
+                **self.get_email_kwargs()
+            )
+        messages.success(
+            self.request,
+            _("Newsletter has been saved and " "will be sent to the recipients."),
+        )
 
         return HttpResponseRedirect(self.get_success_url())

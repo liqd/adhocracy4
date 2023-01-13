@@ -9,20 +9,35 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('meinberlin_livequestions', '0001_initial'),
+        ("meinberlin_livequestions", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Like',
+            name="Like",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('session', models.CharField(max_length=255)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='question_likes', to='meinberlin_livequestions.LiveQuestion')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("session", models.CharField(max_length=255)),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                (
+                    "question",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="question_likes",
+                        to="meinberlin_livequestions.LiveQuestion",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('session', 'question')},
+                "unique_together": {("session", "question")},
             },
         ),
     ]

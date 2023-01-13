@@ -9,13 +9,17 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_users', '0004_update_help_texts'),
+        ("meinberlin_users", "0004_update_help_texts"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='get_newsletters',
-            field=models.BooleanField(default=False, help_text='Designates whether you want to receive newsletters. Unselect if you do not want to receive newsletters.', verbose_name='Send me newsletters'),
+            model_name="user",
+            name="get_newsletters",
+            field=models.BooleanField(
+                default=False,
+                help_text="Designates whether you want to receive newsletters. Unselect if you do not want to receive newsletters.",
+                verbose_name="Send me newsletters",
+            ),
         ),
     ]

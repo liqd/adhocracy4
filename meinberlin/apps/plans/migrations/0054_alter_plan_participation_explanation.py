@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0053_plan_participation_explanation'),
+        ("meinberlin_plans", "0053_plan_participation_explanation"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='participation_explanation',
-            field=models.TextField(help_text='Justify your selection. The justification appears below the description of the project.', max_length=4000, verbose_name='Participation explanation'),
+            model_name="plan",
+            name="participation_explanation",
+            field=models.TextField(
+                help_text="Justify your selection. The justification appears below the description of the project.",
+                max_length=4000,
+                verbose_name="Participation explanation",
+            ),
         ),
     ]

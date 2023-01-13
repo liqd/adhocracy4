@@ -6,18 +6,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_mapideas', '0023_alter_mapidea_moderator_feedback'),
+        ("meinberlin_mapideas", "0023_alter_mapidea_moderator_feedback"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='mapidea',
-            old_name='moderator_statement',
-            new_name='moderator_feedback_text',
+            model_name="mapidea",
+            old_name="moderator_statement",
+            new_name="moderator_feedback_text",
         ),
         migrations.RenameField(
-            model_name='mapidea',
-            old_name='moderator_feedback',
-            new_name='moderator_status',
+            model_name="mapidea",
+            old_name="moderator_feedback",
+            new_name="moderator_status",
         ),
     ]

@@ -8,33 +8,53 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0048_add_tile_image'),
+        ("meinberlin_plans", "0048_add_tile_image"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='contact_email',
-            field=models.EmailField(blank=True, max_length=254, verbose_name='Email'),
+            model_name="plan",
+            name="contact_email",
+            field=models.EmailField(blank=True, max_length=254, verbose_name="Email"),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='contact_phone',
-            field=models.CharField(blank=True, max_length=20, validators=[django.core.validators.RegexValidator(message='Phone numbers can only contain digits, spaces and the following characters: -, +, (, ). It has to be between 8 and 20 characters long.', regex='^[\\d\\+\\(\\)\\- ]{8,20}$')], verbose_name='Phone'),
+            model_name="plan",
+            name="contact_phone",
+            field=models.CharField(
+                blank=True,
+                max_length=20,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        message="Phone numbers can only contain digits, spaces and the following characters: -, +, (, ). It has to be between 8 and 20 characters long.",
+                        regex="^[\\d\\+\\(\\)\\- ]{8,20}$",
+                    )
+                ],
+                verbose_name="Phone",
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='contact_url',
-            field=models.URLField(blank=True, verbose_name='Website'),
+            model_name="plan",
+            name="contact_url",
+            field=models.URLField(blank=True, verbose_name="Website"),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='description_image_copyright',
-            field=models.CharField(blank=True, help_text='The name is displayed in the header image.', max_length=120, verbose_name='Header image copyright'),
+            model_name="plan",
+            name="description_image_copyright",
+            field=models.CharField(
+                blank=True,
+                help_text="The name is displayed in the header image.",
+                max_length=120,
+                verbose_name="Header image copyright",
+            ),
         ),
         migrations.AlterField(
-            model_name='plan',
-            name='tile_image_copyright',
-            field=adhocracy4.images.fields.ImageCopyrightField(blank=True, help_text='The name is displayed in the tile image.', max_length=120, verbose_name='Tile image copyright'),
+            model_name="plan",
+            name="tile_image_copyright",
+            field=adhocracy4.images.fields.ImageCopyrightField(
+                blank=True,
+                help_text="The name is displayed in the tile image.",
+                max_length=120,
+                verbose_name="Tile image copyright",
+            ),
         ),
     ]

@@ -9,13 +9,18 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0017_rename_cost_field'),
+        ("meinberlin_plans", "0017_rename_cost_field"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='point_label',
-            field=models.CharField(default='Label of the location', help_text='This could be an address or the name of a landmark.', max_length=255, verbose_name='Label of the location'),
+            model_name="plan",
+            name="point_label",
+            field=models.CharField(
+                default="Label of the location",
+                help_text="This could be an address or the name of a landmark.",
+                max_length=255,
+                verbose_name="Label of the location",
+            ),
         ),
     ]

@@ -9,13 +9,15 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0013_add_helptext_for_image'),
+        ("meinberlin_plans", "0013_add_helptext_for_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='plan',
-            name='cost_string',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Cost'),
+            model_name="plan",
+            name="cost_string",
+            field=models.CharField(
+                blank=True, max_length=255, null=True, verbose_name="Cost"
+            ),
         ),
     ]

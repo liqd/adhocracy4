@@ -8,12 +8,15 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('meinberlin_moderatorfeedback', '0005_rename_statement_moderatorstatement_feedback_text'),
+        (
+            "meinberlin_moderatorfeedback",
+            "0005_rename_statement_moderatorstatement_feedback_text",
+        ),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='ModeratorStatement',
-            new_name='ModeratorFeedback',
+            old_name="ModeratorStatement",
+            new_name="ModeratorFeedback",
         ),
     ]

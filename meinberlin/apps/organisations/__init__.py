@@ -1,1 +1,1 @@
-default_app_config = 'meinberlin.apps.organisations.apps.Config'
+default_app_config = "meinberlin.apps.organisations.apps.Config"

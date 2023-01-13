@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0052_alter_plan_participation'),
+        ("meinberlin_plans", "0052_alter_plan_participation"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='plan',
-            name='participation_explanation',
-            field=models.TextField(default='Bitte Begründung einfügen', help_text='Justify your selection. The justification appears below the description of the project.', max_length=4000, verbose_name='Participation explanation'),
+            model_name="plan",
+            name="participation_explanation",
+            field=models.TextField(
+                default="Bitte Begründung einfügen",
+                help_text="Justify your selection. The justification appears below the description of the project.",
+                max_length=4000,
+                verbose_name="Participation explanation",
+            ),
         ),
     ]

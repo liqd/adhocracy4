@@ -7,13 +7,15 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_offlineevents', '0005_remove_default_for_event_type'),
+        ("meinberlin_offlineevents", "0005_remove_default_for_event_type"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='offlineevent',
-            name='description',
-            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(verbose_name='Description'),
+            model_name="offlineevent",
+            name="description",
+            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                verbose_name="Description"
+            ),
         ),
     ]

@@ -6,18 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_offlineevents', '0003_verbose_name_title'),
+        ("meinberlin_offlineevents", "0003_verbose_name_title"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='offlineevent',
-            name='event_type',
-            field=models.CharField(default='Veranstaltung', help_text='The content of this field is shown in the timeline. It should have no more than 30 characters e.g. Information event or 3rd public workshop.', max_length=30, verbose_name='Event type'),
+            model_name="offlineevent",
+            name="event_type",
+            field=models.CharField(
+                default="Veranstaltung",
+                help_text="The content of this field is shown in the timeline. It should have no more than 30 characters e.g. Information event or 3rd public workshop.",
+                max_length=30,
+                verbose_name="Event type",
+            ),
         ),
         migrations.AlterField(
-            model_name='offlineevent',
-            name='name',
-            field=models.CharField(max_length=120, verbose_name='Name of event'),
+            model_name="offlineevent",
+            name="name",
+            field=models.CharField(max_length=120, verbose_name="Name of event"),
         ),
     ]

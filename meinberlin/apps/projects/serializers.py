@@ -11,9 +11,8 @@ from meinberlin.apps.plans.models import Plan
 
 
 class CommonFields:
-
     def get_district(self, instance):
-        city_wide = _('City wide')
+        city_wide = _("City wide")
         district_name = str(city_wide)
         if instance.administrative_district:
             district_name = instance.administrative_district.name
@@ -22,7 +21,7 @@ class CommonFields:
     def get_point(self, instance):
         point = instance.point
         if not point:
-            point = ''
+            point = ""
         return point
 
     def get_organisation(self, instance):
@@ -59,79 +58,100 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     created_or_modified = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
-        self.now = kwargs.pop('now')
+        self.now = kwargs.pop("now")
         super().__init__(args, kwargs)
 
     class Meta:
         model = Project
-        fields = ['type', 'subtype', 'title', 'url',
-                  'organisation', 'tile_image',
-                  'tile_image_copyright',
-                  'point', 'point_label', 'cost',
-                  'district', 'topics', 'access',
-                  'status',
-                  'participation_string',
-                  'participation_active',
-                  'participation', 'description',
-                  'future_phase', 'active_phase',
-                  'past_phase', 'plan_url', 'plan_title',
-                  'published_projects_count', 'created_or_modified']
+        fields = [
+            "type",
+            "subtype",
+            "title",
+            "url",
+            "organisation",
+            "tile_image",
+            "tile_image_copyright",
+            "point",
+            "point_label",
+            "cost",
+            "district",
+            "topics",
+            "access",
+            "status",
+            "participation_string",
+            "participation_active",
+            "participation",
+            "description",
+            "future_phase",
+            "active_phase",
+            "past_phase",
+            "plan_url",
+            "plan_title",
+            "published_projects_count",
+            "created_or_modified",
+        ]
 
     @lru_cache(maxsize=1)
     def _get_participation_status_project(self, instance):
-        if hasattr(instance, 'projectcontainer') and instance.projectcontainer:
+        if hasattr(instance, "projectcontainer") and instance.projectcontainer:
             if instance.projectcontainer.active_project_count > 0:
-                return _('running'), True
+                return _("running"), True
             elif instance.projectcontainer.future_project_count > 0:
-                return _('starts in the future'), True
+                return _("starts in the future"), True
             else:
-                return _('done'), False
+                return _("done"), False
         else:
             project_phases = instance.phases
 
             if project_phases.active_phases():
-                return _('running'), True
+                return _("running"), True
 
             if project_phases.future_phases():
                 try:
-                    return (_('starts at {}').format
-                            (project_phases.future_phases().first().
-                             start_date.strftime('%d.%m.%Y')),
-                            True)
+                    return (
+                        _("starts at {}").format(
+                            project_phases.future_phases()
+                            .first()
+                            .start_date.strftime("%d.%m.%Y")
+                        ),
+                        True,
+                    )
                 except AttributeError:
-                    return (_('starts in the future'),
-                            True)
+                    return (_("starts in the future"), True)
             else:
-                return _('done'), False
+                return _("done"), False
 
     def get_type(self, instance):
-        return 'project'
+        return "project"
 
     def get_subtype(self, instance):
-        if instance.project_type in ('meinberlin_extprojects.ExternalProject',
-                                     'meinberlin_bplan.Bplan'):
-            return 'external'
-        elif (instance.project_type
-              == 'meinberlin_projectcontainers.ProjectContainer'):
-            return 'container'
-        return 'default'
+        if instance.project_type in (
+            "meinberlin_extprojects.ExternalProject",
+            "meinberlin_bplan.Bplan",
+        ):
+            return "external"
+        elif instance.project_type == "meinberlin_projectcontainers.ProjectContainer":
+            return "container"
+        return "default"
 
     def get_title(self, instance):
         return instance.name
 
     def get_url(self, instance):
-        if instance.project_type in ('meinberlin_extprojects.ExternalProject',
-                                     'meinberlin_bplan.Bplan'):
+        if instance.project_type in (
+            "meinberlin_extprojects.ExternalProject",
+            "meinberlin_bplan.Bplan",
+        ):
             return instance.externalproject.url
         return instance.get_absolute_url()
 
     def get_tile_image(self, instance):
-        image_url = ''
+        image_url = ""
         if instance.tile_image:
-            image = get_thumbnailer(instance.tile_image)['project_tile']
+            image = get_thumbnailer(instance.tile_image)["project_tile"]
             image_url = image.url
         elif instance.image:
-            image = get_thumbnailer(instance.image)['project_tile']
+            image = get_thumbnailer(instance.image)["project_tile"]
             image_url = image.url
         return image_url
 
@@ -153,10 +173,8 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return Plan.PARTICIPATION_CONSULTATION
 
     def get_future_phase(self, instance):
-        if (instance.future_modules and
-                instance.future_modules.first().module_start):
-            return str(
-                instance.future_modules.first().module_start)
+        if instance.future_modules and instance.future_modules.first().module_start:
+            return str(instance.future_modules.first().module_start)
         return False
 
     def get_active_phase(self, instance):
@@ -168,20 +186,22 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return False
 
     def get_past_phase(self, instance):
-        if (instance.past_modules and
-                instance.past_modules.first().module_end):
-            return str(
-                instance.past_modules.first().module_end)
+        if instance.past_modules and instance.past_modules.first().module_end:
+            return str(instance.past_modules.first().module_end)
         return False
 
     def get_participation_string(self, instance):
-        participation_string, participation_active = \
-            self._get_participation_status_project(instance)
+        (
+            participation_string,
+            participation_active,
+        ) = self._get_participation_status_project(instance)
         return str(participation_string)
 
     def get_participation_active(self, instance):
-        participation_string, participation_active = \
-            self._get_participation_status_project(instance)
+        (
+            participation_string,
+            participation_active,
+        ) = self._get_participation_status_project(instance)
         return participation_active
 
     def get_plan_url(self, instance):
@@ -198,22 +218,21 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return 0
 
     def get_point_label(self, instance):
-        return ''
+        return ""
 
     def get_cost(self, instance):
-        return ''
+        return ""
 
 
 class ActiveProjectSerializer(ProjectSerializer):
-
     def seconds_in_units(self, seconds):
         unit_totals = []
 
         unit_limits = [
-            ([_('day'), _('days')], 24 * 3600),
-            ([_('hour'), _('hours')], 3600),
-            ([_('minute'), _('minutes')], 60),
-            ([_('second'), _('seconds')], 1)
+            ([_("day"), _("days")], 24 * 3600),
+            ([_("hour"), _("hours")], 3600),
+            ([_("minute"), _("minutes")], 60),
+            ([_("second"), _("seconds")], 1),
         ]
 
         for unit_name, limit in unit_limits:
@@ -242,20 +261,18 @@ class ActiveProjectSerializer(ProjectSerializer):
         return False
 
     def get_participation_string(self, instance):
-        return _('running')
+        return _("running")
 
     def get_participation_active(self, instance):
         return True
 
 
 class FutureProjectSerializer(ProjectSerializer):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._future_phases = Phase.objects\
-            .filter(start_date__gt=self.now,
-                    module__is_draft=False)\
-            .order_by('start_date')
+        self._future_phases = Phase.objects.filter(
+            start_date__gt=self.now, module__is_draft=False
+        ).order_by("start_date")
 
     def get_active_phase(self, instance):
         return False
@@ -264,29 +281,25 @@ class FutureProjectSerializer(ProjectSerializer):
         return 0
 
     def get_future_phase(self, instance):
-        future_phase = self._future_phases\
-            .filter(module__project=instance)\
-            .first()
+        future_phase = self._future_phases.filter(module__project=instance).first()
         return str(future_phase.start_date)
 
     def get_past_phase(self, instance):
         return False
 
     def get_participation_string(self, instance):
-        return _('starts in the future')
+        return _("starts in the future")
 
     def get_participation_active(self, instance):
         return True
 
 
 class PastProjectSerializer(ProjectSerializer):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._past_phases = Phase.objects\
-            .filter(end_date__lt=timezone.now(),
-                    module__is_draft=False)\
-            .order_by('start_date')
+        self._past_phases = Phase.objects.filter(
+            end_date__lt=timezone.now(), module__is_draft=False
+        ).order_by("start_date")
 
     def get_active_phase(self, instance):
         return False
@@ -302,7 +315,7 @@ class PastProjectSerializer(ProjectSerializer):
         return str(past_phase.end_date)
 
     def get_participation_string(self, instance):
-        return _('done')
+        return _("done")
 
     def get_participation_active(self, instance):
         return False

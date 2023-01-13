@@ -13,14 +13,14 @@ User = auth.get_user_model()
 
 
 class NewsletterEmail(ReportToAdminEmailMixin, Email):
-    template_name = 'meinberlin_newsletters/emails/newsletter_email'
+    template_name = "meinberlin_newsletters/emails/newsletter_email"
 
     def dispatch(self, object, *args, **kwargs):
-        organisation_pk = kwargs.pop('organisation_pk', None)
+        organisation_pk = kwargs.pop("organisation_pk", None)
         organisation = None
         if organisation_pk:
             organisation = Organisation.objects.get(pk=organisation_pk)
-        kwargs['organisation'] = organisation
+        kwargs["organisation"] = organisation
 
         return super().dispatch(object, *args, **kwargs)
 
@@ -28,37 +28,34 @@ class NewsletterEmail(ReportToAdminEmailMixin, Email):
         return [self.object.sender]
 
     def get_receivers(self):
-        verified_emails = EmailAddress.objects \
-            .filter(verified=True) \
-            .values('email')
-        return User.objects\
-            .filter(id__in=self.kwargs['participant_ids'])\
-            .filter(get_newsletters=True)\
-            .filter(is_active=True) \
-            .filter(email__in=verified_emails) \
+        verified_emails = EmailAddress.objects.filter(verified=True).values("email")
+        return (
+            User.objects.filter(id__in=self.kwargs["participant_ids"])
+            .filter(get_newsletters=True)
+            .filter(is_active=True)
+            .filter(email__in=verified_emails)
             .distinct()
+        )
 
     def get_attachments(self):
         attachments = super().get_attachments()
 
-        organisation = self.kwargs['organisation']
+        organisation = self.kwargs["organisation"]
         if organisation and organisation.logo:
-            f = open(organisation.logo.path, 'rb')
+            f = open(organisation.logo.path, "rb")
             logo = MIMEImage(f.read())
-            logo.add_header('Content-ID', '<{}>'.format('organisation_logo'))
+            logo.add_header("Content-ID", "<{}>".format("organisation_logo"))
             attachments += [logo]
 
         return attachments
 
 
 class NewsletterEmailAll(NewsletterEmail):
-
     def get_receivers(self):
-        verified_emails = EmailAddress.objects \
-            .filter(verified=True) \
-            .values('email')
-        return User.objects\
-            .filter(get_newsletters=True)\
-            .filter(is_active=True)\
-            .filter(email__in=verified_emails)\
+        verified_emails = EmailAddress.objects.filter(verified=True).values("email")
+        return (
+            User.objects.filter(get_newsletters=True)
+            .filter(is_active=True)
+            .filter(email__in=verified_emails)
             .distinct()
+        )

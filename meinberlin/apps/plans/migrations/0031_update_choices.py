@@ -9,13 +9,13 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0030_rename_theme_to_topic'),
+        ("meinberlin_plans", "0030_rename_theme_to_topic"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='status',
-            field=models.SmallIntegerField(choices=[(0, 'Ongoing'), (1, 'Done')]),
+            model_name="plan",
+            name="status",
+            field=models.SmallIntegerField(choices=[(0, "Ongoing"), (1, "Done")]),
         ),
     ]

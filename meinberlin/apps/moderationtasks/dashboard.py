@@ -7,17 +7,16 @@ from . import forms
 
 
 class ModerationTasksComponent(ModuleFormSetComponent):
-    identifier = 'moderation_tasks'
+    identifier = "moderation_tasks"
     weight = 15
-    label = _('Moderation Tasks')
+    label = _("Moderation Tasks")
 
-    form_title = _('Edit moderation tasks')
+    form_title = _("Edit moderation tasks")
     form_class = forms.ModerationTasksFormSet
-    form_template_name = \
-        'meinberlin_moderationtasks/moderation_tasks_form.html'
+    form_template_name = "meinberlin_moderationtasks/moderation_tasks_form.html"
 
     def is_effective(self, module):
-        return module.blueprint_type in ['PB', 'PB2', 'PB3']
+        return module.blueprint_type in ["PB", "PB2", "PB3"]
 
 
 components.register_module(ModerationTasksComponent())

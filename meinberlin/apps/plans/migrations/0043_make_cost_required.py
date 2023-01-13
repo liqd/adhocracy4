@@ -6,14 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0042_plan_duration'),
+        ("meinberlin_plans", "0042_plan_duration"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='cost',
-            field=models.CharField(default='Keine Angabe', max_length=255, verbose_name='Cost'),
+            model_name="plan",
+            name="cost",
+            field=models.CharField(
+                default="Keine Angabe", max_length=255, verbose_name="Cost"
+            ),
             preserve_default=False,
         ),
     ]

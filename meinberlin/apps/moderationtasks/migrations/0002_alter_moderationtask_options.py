@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_moderationtasks', '0001_initial'),
+        ("meinberlin_moderationtasks", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='moderationtask',
-            options={'ordering': ['pk'], 'verbose_name_plural': 'moderation tasks'},
+            name="moderationtask",
+            options={"ordering": ["pk"], "verbose_name_plural": "moderation tasks"},
         ),
     ]

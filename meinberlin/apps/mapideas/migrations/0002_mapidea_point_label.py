@@ -8,13 +8,19 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_mapideas', '0001_initial'),
+        ("meinberlin_mapideas", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='mapidea',
-            name='point_label',
-            field=models.CharField(max_length=255, verbose_name='Label of the ideas location', help_text='The label of the ideas location. This could be an address or the name of a landmark.', blank=True, default=''),
+            model_name="mapidea",
+            name="point_label",
+            field=models.CharField(
+                max_length=255,
+                verbose_name="Label of the ideas location",
+                help_text="The label of the ideas location. This could be an address or the name of a landmark.",
+                blank=True,
+                default="",
+            ),
         ),
     ]

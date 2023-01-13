@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_moderatorremark', '0003_use_textfield'),
+        ("meinberlin_moderatorremark", "0003_use_textfield"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='moderatorremark',
-            name='remark',
-            field=models.TextField(blank=True, help_text='Here you can write a moderation remark. It is only displayed for moderators and initiators of your project.', verbose_name='Moderation remark (internal)'),
+            model_name="moderatorremark",
+            name="remark",
+            field=models.TextField(
+                blank=True,
+                help_text="Here you can write a moderation remark. It is only displayed for moderators and initiators of your project.",
+                verbose_name="Moderation remark (internal)",
+            ),
         ),
     ]

@@ -9,13 +9,13 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_organisations', '0009_organisation_groups'),
+        ("meinberlin_organisations", "0009_organisation_groups"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='organisation',
-            name='address',
-            field=models.TextField(blank=True, verbose_name='Postal address'),
+            model_name="organisation",
+            name="address",
+            field=models.TextField(blank=True, verbose_name="Postal address"),
         ),
     ]

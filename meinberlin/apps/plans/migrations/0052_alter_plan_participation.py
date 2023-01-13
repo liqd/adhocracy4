@@ -6,7 +6,7 @@ from meinberlin.apps.plans.models import Plan
 
 
 def set_participation_to_default(apps, schema_editor):
-    plan_model = apps.get_model('meinberlin_plans', 'Plan')
+    plan_model = apps.get_model("meinberlin_plans", "Plan")
     for plan in plan_model.objects.all():
         if plan.participation != Plan.PARTICIPATION_INFORMATION:
             plan.participation = Plan.PARTICIPATION_INFORMATION
@@ -16,14 +16,24 @@ def set_participation_to_default(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0051_plan_is_draft_default_true'),
+        ("meinberlin_plans", "0051_plan_is_draft_default_true"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='participation',
-            field=models.SmallIntegerField(choices=[(0, 'information (no participation)'), (1, 'consultation'), (2, 'cooperation'), (3, 'decision-making')], default=0, help_text='In the project overview projects can be filtered according to the level of participation.', verbose_name='Level of participation'),
+            model_name="plan",
+            name="participation",
+            field=models.SmallIntegerField(
+                choices=[
+                    (0, "information (no participation)"),
+                    (1, "consultation"),
+                    (2, "cooperation"),
+                    (3, "decision-making"),
+                ],
+                default=0,
+                help_text="In the project overview projects can be filtered according to the level of participation.",
+                verbose_name="Level of participation",
+            ),
         ),
         migrations.RunPython(set_participation_to_default),
     ]

@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0041_add_image_copyright_rm_required'),
+        ("meinberlin_plans", "0041_add_image_copyright_rm_required"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='plan',
-            name='duration',
-            field=models.CharField(blank=True, max_length=255, null=True, verbose_name='Duration'),
+            model_name="plan",
+            name="duration",
+            field=models.CharField(
+                blank=True, max_length=255, null=True, verbose_name="Duration"
+            ),
         ),
     ]

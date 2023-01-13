@@ -7,13 +7,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_livequestions', '0002_livestream'),
+        ("meinberlin_livequestions", "0002_livestream"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='livestream',
-            name='live_stream',
-            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(blank=True, help_text='You can enter a livestream from YouTube or Vimeo. The livestream will be shown when the module phase is active. For description text please use module or phase description.', verbose_name='Livestream'),
+            model_name="livestream",
+            name="live_stream",
+            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
+                blank=True,
+                help_text="You can enter a livestream from YouTube or Vimeo. The livestream will be shown when the module phase is active. For description text please use module or phase description.",
+                verbose_name="Livestream",
+            ),
         ),
     ]

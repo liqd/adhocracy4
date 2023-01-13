@@ -9,14 +9,17 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4labels', '0001_initial'),
-        ('meinberlin_maptopicprio', '0005_maptopic_image'),
+        ("a4labels", "0001_initial"),
+        ("meinberlin_maptopicprio", "0005_maptopic_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='maptopic',
-            name='labels',
-            field=models.ManyToManyField(related_name='meinberlin_maptopicprio_maptopic_label', to='a4labels.Label'),
+            model_name="maptopic",
+            name="labels",
+            field=models.ManyToManyField(
+                related_name="meinberlin_maptopicprio_maptopic_label",
+                to="a4labels.Label",
+            ),
         ),
     ]

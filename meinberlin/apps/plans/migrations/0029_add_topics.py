@@ -10,13 +10,32 @@ import adhocracy4.projects.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_plans', '0028_change_name_of_field'),
+        ("meinberlin_plans", "0028_change_name_of_field"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='plan',
-            name='theme',
-            field=adhocracy4.projects.fields.TopicField(blank=True, choices=[('ANT', 'Anti-discrimination'), ('WOR', 'Work & economy'), ('BUI', 'Building & living'), ('EDU', 'Education & research'), ('CHI', 'Children, youth & family'), ('FIN', 'Finances'), ('HEA', 'Health & sports'), ('INT', 'Integration'), ('CUL', 'Culture & leisure'), ('NEI', 'Neighborhood & participation'), ('URB', 'Urban development'), ('ENV', 'Environment & public green space'), ('TRA', 'Traffic')], default='', max_length=254),
+            model_name="plan",
+            name="theme",
+            field=adhocracy4.projects.fields.TopicField(
+                blank=True,
+                choices=[
+                    ("ANT", "Anti-discrimination"),
+                    ("WOR", "Work & economy"),
+                    ("BUI", "Building & living"),
+                    ("EDU", "Education & research"),
+                    ("CHI", "Children, youth & family"),
+                    ("FIN", "Finances"),
+                    ("HEA", "Health & sports"),
+                    ("INT", "Integration"),
+                    ("CUL", "Culture & leisure"),
+                    ("NEI", "Neighborhood & participation"),
+                    ("URB", "Urban development"),
+                    ("ENV", "Environment & public green space"),
+                    ("TRA", "Traffic"),
+                ],
+                default="",
+                max_length=254,
+            ),
         ),
     ]

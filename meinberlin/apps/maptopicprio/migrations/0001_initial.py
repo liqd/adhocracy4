@@ -16,25 +16,67 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('a4modules', '0003_rm_unique_name'),
-        ('a4categories', '0001_initial'),
+        ("a4modules", "0003_rm_unique_name"),
+        ("a4categories", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='MapTopic',
+            name="MapTopic",
             fields=[
-                ('item_ptr', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, related_name='meinberlin_maptopicprio_maptopic', serialize=False, to='a4modules.Item')),
-                ('slug', autoslug.fields.AutoSlugField(editable=False, populate_from='name', unique=True)),
-                ('name', models.CharField(max_length=120, verbose_name='Name')),
-                ('description', ckeditor.fields.RichTextField(verbose_name='Description')),
-                ('point', adhocracy4.maps.fields.PointField(help_text='Click inside marked area to set a marker. Drag and drop marker to change place.', verbose_name='Where can your idea be located on a map?')),
-                ('point_label', models.CharField(blank=True, default='', help_text='This could be an address or the name of a landmark.', max_length=255, verbose_name='Label of the ideas location')),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='a4categories.Category')),
+                (
+                    "item_ptr",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        related_name="meinberlin_maptopicprio_maptopic",
+                        serialize=False,
+                        to="a4modules.Item",
+                    ),
+                ),
+                (
+                    "slug",
+                    autoslug.fields.AutoSlugField(
+                        editable=False, populate_from="name", unique=True
+                    ),
+                ),
+                ("name", models.CharField(max_length=120, verbose_name="Name")),
+                (
+                    "description",
+                    ckeditor.fields.RichTextField(verbose_name="Description"),
+                ),
+                (
+                    "point",
+                    adhocracy4.maps.fields.PointField(
+                        help_text="Click inside marked area to set a marker. Drag and drop marker to change place.",
+                        verbose_name="Where can your idea be located on a map?",
+                    ),
+                ),
+                (
+                    "point_label",
+                    models.CharField(
+                        blank=True,
+                        default="",
+                        help_text="This could be an address or the name of a landmark.",
+                        max_length=255,
+                        verbose_name="Label of the ideas location",
+                    ),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="a4categories.Category",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created'],
+                "ordering": ["-created"],
             },
-            bases=('a4modules.item', models.Model),
+            bases=("a4modules.item", models.Model),
         ),
     ]

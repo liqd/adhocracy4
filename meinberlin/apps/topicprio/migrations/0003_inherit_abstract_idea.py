@@ -11,23 +11,30 @@ from django.db import models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_topicprio', '0002_remove_category_related_name'),
+        ("meinberlin_topicprio", "0002_remove_category_related_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='topic',
-            name='description',
-            field=ckeditor.fields.RichTextField(verbose_name='Description'),
+            model_name="topic",
+            name="description",
+            field=ckeditor.fields.RichTextField(verbose_name="Description"),
         ),
         migrations.AlterField(
-            model_name='topic',
-            name='item_ptr',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, related_name='meinberlin_topicprio_topic', serialize=False, to='a4modules.Item'),
+            model_name="topic",
+            name="item_ptr",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                parent_link=True,
+                primary_key=True,
+                related_name="meinberlin_topicprio_topic",
+                serialize=False,
+                to="a4modules.Item",
+            ),
         ),
         migrations.AlterField(
-            model_name='topic',
-            name='name',
-            field=models.CharField(max_length=120, verbose_name='Name'),
+            model_name="topic",
+            name="name",
+            field=models.CharField(max_length=120, verbose_name="Name"),
         ),
     ]
