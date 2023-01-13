@@ -12,9 +12,6 @@ details summary > * {
 }
 
 details summary > i {
-    position: absolute;
-    right: $padding;
-    top: 1.2 * $padding;
     transition: transform 0.3s;
 }
 

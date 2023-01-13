@@ -111,6 +111,14 @@ class ItemBadgesPropertyMixin():
         return labels
 
     @property
+    def item_badges_for_detail(self):
+        item_badges_for_detail = ([
+            badge for badge in self.item_badges
+            if badge[0] != 'moderator_feedback'
+        ])
+        return item_badges_for_detail
+
+    @property
     def item_badges_for_list(self):
         return self.item_badges[:BADGES_LIMIT]
 

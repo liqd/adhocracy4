@@ -27,6 +27,10 @@
     margin-top: $em-spacer;
 }
 
+.u-spacer-top-half {
+    margin-top: ($spacer * 0.5);
+}
+
 .u-spacer-top-double {
     margin-top: ($em-spacer * 2);
 }

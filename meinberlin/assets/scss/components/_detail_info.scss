@@ -1,0 +1,125 @@
+.detail-info__accordion {
+    position: relative;
+}
+
+.detail-info__accordion-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding;
+    text-decoration: none;
+    color: inherit;
+}
+
+.detail-info__accordion-body {
+    padding: 0 $padding $padding $padding;
+    font-size: $font-size-sm;
+}
+
+.detail-info__section-base {
+    border-top: 1px solid $border-color;
+    padding-top: 1.4 * $padding;
+    font-size: $font-size-sm;
+    margin-top: 0;
+}
+
+.detail-info__section-title {
+    @extend .detail-info__section-base;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.detail-info__section--no-border {
+    @extend .detail-info__section-base;
+    border-top: 0;
+    padding-top: 0;
+}
+
+.detail-info__list-item {
+    border-top: 1px solid $border-color;
+    padding-top: 0.7 * $padding;
+    padding-bottom: 0.7 * $padding;
+    margin-bottom: 0;
+}
+
+.detail-info__title {
+    margin: 0;
+    flex-grow: 2;
+}
+
+.detail-info__btn {
+    font-size: $font-size-sm;
+    margin: 0 $spacer * 0.5;
+}
+
+.detail-info__status-base {
+    font-size: $font-size-sm;
+    margin-bottom: 1.4 * $padding;
+}
+
+.detail-info__status-icon {
+    &--consideration,
+    &--qualified {
+        @extend .detail-info__status-base;
+        color: $feedback-color-consideration;
+    }
+
+    &--rejected {
+        @extend .detail-info__status-base;
+        color: $feedback-color-rejected;
+    }
+
+    &--accepted {
+        @extend .detail-info__status-base;
+        color: $feedback-color-accepted;
+    }
+}
+
+.detail-info__status-label {
+    @extend .detail-info__status-base;
+    color: $text-color;
+}
+
+.detail-info__status-line-base {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    margin: ($spacer * 0.25) 0;
+}
+
+.detail-info__status-line {
+    &--consideration,
+    &--qualified {
+        @extend .detail-info__status-line-base;
+        background-color: $feedback-color-consideration;
+    }
+
+    &--rejected {
+        @extend .detail-info__status-line-base;
+        background-color: $feedback-color-rejected;
+    }
+
+    &--accepted {
+        @extend .detail-info__status-line-base;
+        background-color: $feedback-color-accepted;
+    }
+}
+
+@media screen and (max-width: $breakpoint-xs-down) {
+    .detail-info__accordion-title {
+        flex-wrap: wrap;
+    }
+
+    .detail-info__btn {
+        margin: ($spacer) 0 0 0;
+    }
+
+    .detail-info__edit-btn {
+        flex-basis: 100%;
+        order: 2;
+    }
+
+    .detail-info__collapse-btn {
+        order: 1;
+    }
+}

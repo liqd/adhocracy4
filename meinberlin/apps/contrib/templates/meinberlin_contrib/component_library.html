@@ -131,10 +131,10 @@
                         <a href="#cl-menu-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Menu Layout</a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="#cl-moderation-info" class="dashboard-nav__item dashboard-nav__item--interactive">Moderation Info</a>
+                        <a href="#cl-feedback" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail: Feedback</a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderator Statement</a>
+                        <a href="#cl-moderation-info" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail: Moderation Info</a>
                     </li>
                     <li class="dashboard-nav__page">
                         <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
@@ -1714,55 +1714,86 @@
                     </div>
                 </div>
 
-                <h2 id="cl-moderation-info">Moderation Info</h2>
+                <h2 id="cl-feedback">Item Detail: Feedback</h2>
 
                 <div class="cl-example">
                     <div class="offset-lg-3 col-lg-6">
-                        <div class="moderation-info__accordion">
+                        <div class="detail-info__accordion">
                             <details class="accordion" open>
-                                <summary class="moderation-info__accordion-title">
-                                    <h2 class="moderation-info__title">Moderation</h2>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                <summary class="detail-info__accordion-title">
+                                    <h2 class="detail-info__title">Rueckmeldung zum Beitrag</h2>
+                                    <div class="detail-info__edit-btn">
+                                        <a
+                                            href="#"
+                                            class="btn btn--small detail-info__btn"
+                                            data-embed-target="external">
+                                                <i class="fas fa-pencil" aria-hidden="true"></i>
+                                                Edit
+                                        </a>
+                                    </div>
+                                    <i class="fa fa-chevron-down detail-info__collapse-btn" aria-hidden="true"></i>
                                 </summary>
-                                <div class="moderation-info__accordion-body">
-                                    <h3 class="moderation-info__section">Moderation tasks</h3>
+                                <div class="detail-info__accordion-body">
+                                    <h3 class="detail-info__section-title">Status</h3>
+                                    <div class="detail-info__status-line--consideration"></div>
+                                    <div class="detail-info__status-icon--consideration">
+                                        <i class="fa-solid fa-circle-half-stroke fa-rotate-270"></i>
+                                        <span class="detail-info__status-label">
+                                            Under consideration
+                                        </span>
+                                    </div>
+                                    <div class="detail-info__section--no-border">
+                                        <strong class="u-spacer-right">
+                                            organame
+                                        </strong>
+                                        updated on <time datetime="2023-01-10T14:27:54.249289+01:00">10. Januar 2023</time>
+                                    </div>
+                                    <p class="u-spacer-top-half">
+                                        Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-moderation-info">Item Detail: Moderation Info</h2>
+
+                <div class="cl-example">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="detail-info__accordion">
+                            <details class="accordion" open>
+                                <summary class="detail-info__accordion-title">
+                                    <h2 class="detail-info__title">Moderation</h2>
+                                    <div class="detail-info__actions">
+                                      <a
+                                          href="#"
+                                          class="btn btn--small detail-info__btn"
+                                          data-embed-target="external">
+                                              <i class="fas fa-pencil" aria-hidden="true"></i>
+                                              Edit
+                                      </a>
+                                      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    </div>
+                                </summary>
+                                <div class="detail-info__accordion-body">
+                                    <h3 class="detail-info__section-title">Moderation tasks</h3>
                                     <ul class="u-list-reset">
-                                        <li class="moderation-info__list-item">
+                                        <li class="detail-info__list-item">
                                             <i class="fas fa-circle-check u-success" aria-role="img" aria-label="Done"></i>
                                         Task is done
                                         </li>
-                                        <li class="moderation-info__list-item">
+                                        <li class="detail-info__list-item">
                                             <i class="far fa-circle u-muted" aria-role="img" aria-label="Open"></i>
                                         Task is open
                                         </li>
                                     </ul>
-                                    <h3 class="moderation-info__section">Remark</h3>
+                                    <h3 class="detail-info__section-title">Remark</h3>
                                     <p>
                                         Here is the moderator remark.
                                     </p>
                                 </div>
                             </details>
-                                <a
-                                    href="#"
-                                    class="btn btn--light btn--small moderation-info__btn"
-                                    data-embed-target="external">
-                                        <i class="fas fa-pencil" aria-hidden="true"></i>
-                                        Edit
-                                </a>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-moderator-statement">Moderator Statement</h2>
-
-                <div class="cl-example">
-                    <div class="offset-lg-2 col-lg-8">
-                        <div class="moderator-statement">
-                            <h2 class="moderator-statement__title">Official Statement</h2>
-                            <div class="moderator-statement__subtitle">
-                                <strong class="moderator-statement__organisation">Organisation</strong>
-                            </div>
-                            <div class="moderator-statement__body">Body of statement</div>
                         </div>
                     </div>
                 </div>
