@@ -1,4 +1,0 @@
-[flake8]
-max-complexity = 10
-ignore = D100,D101,D102,D103,D104,D105,D106,D107,W503,W504
-exclude = .git,__pycache__,*/migrations/*,*/settings/*
