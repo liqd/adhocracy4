@@ -12,8 +12,17 @@ help:
 	@echo before or create a new one in the same directory.
 	@echo
 	@echo usage:
-	@echo
-	@echo   make lint	  -- lint javascript and python
+	@echo 	make clean   	 			-- delete node modules and venv
+	@echo   make lint	 				-- lint javascript and python
+	@echo   make lint-quick     		-- lint all files staged in git
+	@echo   make lint-python-files	 	-- lint python
+	@echo   make lint-fix      			-- fix linting for js files staged in git
+	@echo   make test     				-- run all tests front and backend
+	@echo   make jest    				-- run js tests with coverage
+	@echo   make jest-nocov    	 		-- run js tests without coverage
+	@echo   make jest-debug    			-- run changed tests only, no coverage
+	@echo   make jest-updateSnapshots   -- update jest snapshots
+
 
 .PHONY: install
 install:
@@ -51,9 +60,16 @@ lint-python-files:
 	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
+.PHONY: lint-fix
+lint-fix:
+	EXIT_STATUS=0; \
+	npm run lint-fix ||  EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
 .PHONY: test
 test:
 	$(VIRTUAL_ENV)/bin/pytest --reuse-db
+	npm run testNoCov
 
 .PHONY: jest
 jest:
