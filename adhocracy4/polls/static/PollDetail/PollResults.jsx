@@ -110,7 +110,7 @@ export default class PollResult extends React.Component {
                   <div className="poll-row__number">{percent}%</div>
                   <div className="poll-row__label">{choice.is_other_choice ? django.gettext('other') : choice.label}</div>
                   <div
-                    className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
+                    className={'poll-row__bar' + (highlight ? ' poll__highlight' : '')}
                     style={{ width: percent + '%' }}
                   />
                 </div>
@@ -125,7 +125,7 @@ export default class PollResult extends React.Component {
                         <Slider {...settings}>
                           {this.props.question.other_choice_answers.map((slide, index) => (
                             <div
-                              className="poll-slider__item"
+                              className={'poll-slider__item ' + (this.isUserAnswer(slide) && 'poll__highlight')}
                               data-index={index}
                               key={index}
                             >
@@ -148,7 +148,7 @@ export default class PollResult extends React.Component {
               <Slider {...settings}>
                 {this.props.question.answers.map((slide, index) => (
                   <div
-                    className="poll-slider__item"
+                    className={'poll-slider__item ' + (this.isUserAnswer(slide) && 'poll__highlight')}
                     data-index={index}
                     key={index}
                   >
