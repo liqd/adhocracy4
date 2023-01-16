@@ -74,6 +74,7 @@
   "scripts": {
     "lint": "eslint adhocracy4 --ext .js,.jsx",
     "lint-staged": "lint-staged",
+    "lint-fix": "eslint --fix --ext .js,.jsx .",
     "prepare": "husky install",
     "test": "jest",
     "testDebug": "jest -o --coverage=false",
