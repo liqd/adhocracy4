@@ -127,7 +127,7 @@ export default class PollResult extends React.Component {
                         <Slider {...settings}>
                           {this.props.question.other_choice_answers.map((slide, index) => (
                             <div
-                              className={'poll-slider__item ' + (this.isUserAnswer(slide) && 'poll__highlight')}
+                              className={'poll-slider__item' + (this.isUserAnswer(slide) && ' poll__highlight')}
                               data-index={index}
                               key={index}
                             >
@@ -150,7 +150,7 @@ export default class PollResult extends React.Component {
               <Slider {...settings}>
                 {this.props.question.answers.map((slide, index) => (
                   <div
-                    className={'poll-slider__item ' + (this.isUserAnswer(slide) && 'poll__highlight')}
+                    className={'poll-slider__item' + (this.isUserAnswer(slide) && ' poll__highlight')}
                     data-index={index}
                     key={index}
                   >

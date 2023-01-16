@@ -9,23 +9,25 @@ export const EditPollOpenQuestion = (props) => {
   return (
     <section className="editpoll__question-container">
       <div className="editpoll__question">
-        <div className="form-group editpoll__question--border">
-          <label
-            htmlFor={'id_questions-' + props.id + '-name'}
-          >
-            {django.gettext('Question')}
-            {props.question.id &&
-              <span className="editpoll__help-text"> Id: Q{props.question.id}</span>}
-            <textarea
-              id={'id_questions-' + props.id + '-name'}
-              name={'questions-' + props.id + '-name'}
-              value={props.question.label}
-              onChange={(e) => { props.onLabelChange(e.target.value) }}
-              aria-invalid={props.errors ? 'true' : 'false'}
-              aria-describedby={props.errors && 'id_error-' + props.id}
-            />
-            <FormFieldError id={'id_error-' + props.id} error={props.errors} field="label" />
-          </label>
+        <div className="editpoll__question--border">
+          <div className="form-group">
+            <label
+              htmlFor={'id_questions-' + props.id + '-name'}
+            >
+              {django.gettext('Question')}
+              {props.question.id &&
+                <span className="editpoll__help-text"> Id: Q{props.question.id}</span>}
+              <textarea
+                id={'id_questions-' + props.id + '-name'}
+                name={'questions-' + props.id + '-name'}
+                value={props.question.label}
+                onChange={(e) => { props.onLabelChange(e.target.value) }}
+                aria-invalid={props.errors ? 'true' : 'false'}
+                aria-describedby={props.errors && 'id_error-' + props.id}
+              />
+              <FormFieldError id={'id_error-' + props.id} error={props.errors} field="label" />
+            </label>
+          </div>
           {hasHelptext
             ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
             : null}
