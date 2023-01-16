@@ -58,9 +58,8 @@ class PollQuestions extends React.Component {
 
     this.loadingIndicator = (
       <div className="u-spinner__container">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
+        <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
+        <span className="visually-hidden">Loading...</span>
       </div>
     )
   }
