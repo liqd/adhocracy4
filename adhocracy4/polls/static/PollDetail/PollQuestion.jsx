@@ -29,10 +29,11 @@ export const PollQuestion = (props) => {
   const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
   const maxlength = 250
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setUserChoices(props.question.userChoices)
     setErrors(props.errors)
-  }, [props.question.userChoices, props.errors])
+  })
 
   const handleSingleChange = (event, isOther) => {
     const choiceId = parseInt(event.target.value)
@@ -49,8 +50,9 @@ export const PollQuestion = (props) => {
     setUserChoices(prevState => [...prevState, choiceId])
     props.onMultiChange(props.question.id, choiceId)
     if (!isOther) {
-      setOtherChoiceAnswer('')
       props.onOtherChange(props.question.id, '', findOtherChoice())
+    } else {
+      setOtherChoiceAnswer('')
     }
   }
 
