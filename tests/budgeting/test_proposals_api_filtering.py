@@ -11,6 +11,7 @@ from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.budgeting import phases
+from tests.votes.test_token_vote_api import add_token_to_session
 
 
 @pytest.mark.django_db
@@ -23,6 +24,7 @@ def test_proposal_list_filter_mixin(
     category_factory,
     label_factory,
     moderation_task_factory,
+    voting_token_factory,
 ):
     support_phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.SupportPhase
@@ -49,6 +51,8 @@ def test_proposal_list_filter_mixin(
     moderation_task = moderation_task_factory(module=module)
 
     url = reverse("proposals-list", kwargs={"module_pk": module.pk})
+    token = voting_token_factory(module=module)
+    add_token_to_session(apiclient, token)
 
     response = apiclient.get(url)
 
@@ -85,6 +89,8 @@ def test_proposal_list_filter_mixin(
         ("ACCEPTED", _("Accepted")),
     ]
 
+    assert "own_votes" not in response.data["filters"]
+
     assert "ordering" in response.data["filters"]
     assert response.data["filters"]["ordering"]["label"] == _("Ordering")
     assert response.data["filters"]["ordering"]["choices"] == [
@@ -109,7 +115,7 @@ def test_proposal_list_filter_mixin(
         "choices"
     ]
 
-    # ordering choices and default in different phases
+    # ordering choices and own_votes in different phases
     with freeze_phase(support_phase):
         response = apiclient.get(url)
     assert response.data["filters"]["ordering"]["choices"] == [
@@ -119,6 +125,7 @@ def test_proposal_list_filter_mixin(
         ("dailyrandom", _("Random")),
     ]
     assert response.data["filters"]["ordering"]["default"] == "dailyrandom"
+    assert "own_votes" not in response.data["filters"]
 
     with freeze_time(between_phases):
         response = apiclient.get(url)
@@ -129,6 +136,7 @@ def test_proposal_list_filter_mixin(
         ("dailyrandom", _("Random")),
     ]
     assert response.data["filters"]["ordering"]["default"] == "-positive_rating_count"
+    assert "own_votes" not in response.data["filters"]
 
     with freeze_phase(voting_phase):
         response = apiclient.get(url)
@@ -138,6 +146,10 @@ def test_proposal_list_filter_mixin(
         ("dailyrandom", _("Random")),
     ]
     assert response.data["filters"]["ordering"]["default"] == "dailyrandom"
+    assert response.data["filters"]["own_votes"]["choices"] == [
+        ("", _("All")),
+        ("true", _("My votes")),
+    ]
 
     phase_factory(phase_content=phases.RatingPhase(), module=module)
     response = apiclient.get(url)
@@ -147,6 +159,7 @@ def test_proposal_list_filter_mixin(
         ("-comment_count", _("Most commented")),
         ("dailyrandom", _("Random")),
     ]
+    assert "own_votes" not in response.data["filters"]
 
     # moderation tasks filter only added for moderators
     assert "open_task" not in response.data["filters"]
@@ -302,6 +315,42 @@ def test_proposal_moderator_status_filter(apiclient, module, proposal_factory):
     response = apiclient.get(url_tmp)
     assert len(response.data["results"]) == 1
     assert response.data["results"][0]["pk"] == proposal_5.pk
+
+
+@pytest.mark.django_db
+def test_proposal_own_vote_filter(
+    apiclient, module, proposal_factory, voting_token_factory, token_vote_factory
+):
+    token = voting_token_factory(module=module)
+    add_token_to_session(apiclient, token)
+    other_token = voting_token_factory(module=module)
+
+    proposal_factory(module=module)
+    proposal_factory(module=module)
+    proposal_factory(module=module)
+    proposal_voted = proposal_factory(module=module)
+    proposal_voted_with_other_token = proposal_factory(module=module)
+
+    token_vote_factory(token=token, content_object=proposal_voted)
+    token_vote_factory(
+        token=other_token, content_object=proposal_voted_with_other_token
+    )
+
+    url = reverse("proposals-list", kwargs={"module_pk": module.pk})
+
+    response = apiclient.get(url)
+    assert len(response.data["results"]) == 5
+
+    querystring = "?own_votes=true"
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data["results"]) == 1
+    assert response.data["results"][0]["pk"] == proposal_voted.pk
+
+    querystring = "?own_votes="
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data["results"]) == 5
 
 
 @pytest.mark.django_db
