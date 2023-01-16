@@ -529,8 +529,9 @@ export const CommentBox = (props) => {
           </div>
         )}
 
-        <div className={loadingFilter ? 'a4-comments__loading' : 'd-none'}>
-          <i className="fa fa-spinner fa-pulse" />
+        <div className={loadingFilter ? 'u-spinner__container' : 'd-none'}>
+          <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
 
@@ -556,8 +557,9 @@ export const CommentBox = (props) => {
           />
         </div>
       </div>
-      <div className={loading ? 'a4-comments__loading' : 'd-none'}>
-        <i className="fa fa-spinner fa-pulse" />
+      <div className={loading ? 'u-spinner__container' : 'd-none'}>
+        <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
+        <span className="visually-hidden">Loading...</span>
       </div>
     </div>
   )
