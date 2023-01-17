@@ -59,8 +59,6 @@ export default class PollResult extends React.Component {
     if (this.state.question.multiple_choice) {
       if (total === 1 && totalMulti === 1) {
         helpTextAnswerPlural = django.gettext('%s participant gave 1 answer.')
-      } else if (total === 1 && totalMulti > 1) {
-        helpTextAnswerPlural = django.gettext('%s participant gave %s answers.', total)
       } else {
         helpTextAnswerPlural = django.ngettext('%s participant gave %s answers.', '%s participants gave %s answers.', total)
       }
