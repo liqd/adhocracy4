@@ -13,7 +13,7 @@
 </p>
 {% if object.moderator_status %}
 <p>
-The status of your contribution has been changed and is now “{{ object.get_moderator_feedback_display }}".
+The status of your contribution has been changed and is now “{{ object.get_moderator_status_display }}".
 </p>
 {% endif %}
 {% if object.moderator_feedback_text.feedback_text %}
