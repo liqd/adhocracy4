@@ -86,3 +86,8 @@ $input-padding-x: 0.6rem !default;
 
 $form-select-border-radius: (0.3 * $spacer) !default;
 
+// set bootstrap modal variables
+$modal-inner-padding: 1.5 * $spacer !default;
+$modal-content-border-radius: 0 !default;
+$modal-header-padding-y: 0 !default;
+$modal-footer-margin-between: .5rem !default;

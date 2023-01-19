@@ -27,6 +27,10 @@
     margin-top: $spacer;
 }
 
+.u-spacer-top-one-half {
+    margin-top: ($spacer * 1.5);
+}
+
 .u-spacer-top-half {
     margin-top: ($spacer * 0.5);
 }
@@ -41,6 +45,10 @@
 
 .u-spacer-bottom-double {
     margin-bottom: ($spacer * 2);
+}
+
+.u-spacer-bottom-triple {
+    margin-bottom: ($spacer * 3);
 }
 
 .u--bg-secondary {
@@ -143,6 +151,10 @@
 
 .u-no-margin {
     margin: 0;
+}
+
+.u-no-margin-bottom {
+    margin-bottom: 0;
 }
 
 .u-no-padding {

@@ -27,7 +27,7 @@ input[type="search"] {
 }
 
 .cancel-button {
-    @extend %button-base;
+    @extend .btn;
     @extend .btn--light;
 }
 

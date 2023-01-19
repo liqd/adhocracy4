@@ -62,15 +62,20 @@
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="delete-modal{{ module_menu.module.pk }}" aria-labelledby="delete-modal-label">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title u-first-heading" id="delete-modal-label">{% translate "Are you sure you want to delete your module?" %}</h2>
+                <h2 class="u-no-margin-bottom u-spacer-top-one-half" id="delete-modal-label">{% translate 'Delete' %}</h2>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close'%}">
-                    <span aria-hidden="true">&times;</span>
+                    <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="modal-body">
+                <div class="u-spacer-bottom">
+                    {% translate "Are you sure you want to delete your module?" %}
+                </div>
+            </div>
+            <div class="modal-footer">
                 <div class="u-spacer-bottom">
                     <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post" class="u-inline">
                         {% csrf_token %}

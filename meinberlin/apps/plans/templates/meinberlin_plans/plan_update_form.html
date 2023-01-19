@@ -90,25 +90,32 @@
 </div>
 
 <div class="modal" tabindex="-1" role="dialog" id="plan-publish-modal" aria-labelledby="plan-publish-label" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title u-first-heading" id="plan-publish-label">{% translate "Are you sure you want to publish your plan?" %}</h2>
+                {% if plan.is_draft %}
+                    <h2 class="u-no-margin-bottom u-spacer-top-one-half">{% translate 'Publish' %}</h2>
+                {% else %}
+                    <h2 class="u-no-margin-bottom u-spacer-top-one-half">{% translate 'Unpublish' %}</h2>
+                {% endif %}
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% translate 'Close'%}">
-                    <span aria-hidden="true">&times;</span>
+                    <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="u-spacer-bottom">
-                    <form action="{% url 'a4dashboard:plan-publish' pk=plan.pk %}" method="post" data-ignore-submit="true" class="u-inline">
-                        {% csrf_token %}
-                        <button name="action" value="publish" class="btn btn--primary">
-                        {% translate 'Publish' %}
-                        </button>
-                    </form>
-                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% translate 'Cancel'%}
-                    </button>
+                    {% translate "Are you sure you want to publish your plan?" %}
                 </div>
+            </div>
+            <div class="modal-footer">
+                <form action="{% url 'a4dashboard:plan-publish' pk=plan.pk %}" method="post" data-ignore-submit="true" class="u-inline">
+                    {% csrf_token %}
+                    <button name="action" value="publish" class="submit-button">
+                    {% translate 'Publish' %}
+                    </button>
+                </form>
+                <button type="button" data-bs-dismiss="modal" class="cancel-button">{% translate 'Cancel'%}
+                </button>
             </div>
         </div>
     </div>

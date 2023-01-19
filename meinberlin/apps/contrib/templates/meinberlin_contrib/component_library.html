@@ -137,6 +137,9 @@
                         <a href="#cl-moderation-info" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail: Moderation Info</a>
                     </li>
                     <li class="dashboard-nav__page">
+                        <a href="#cl-modal" class="dashboard-nav__item dashboard-nav__item--interactive">Modal</a>
+                    </li>
+                    <li class="dashboard-nav__page">
                         <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
                     </li>
                     <li class="dashboard-nav__page">
@@ -638,7 +641,7 @@
                 </div>
             </div>
 
-            <h2 id="cl-commenting">Comments</h2>
+            <h2 id="cl-comments">Comments</h2>
 
             <div class="cl-example">
                 <div>
@@ -684,49 +687,6 @@
                             <div>
                                 <div>
                                     <div class="a4-comments__comment a4-comments__comment-owner"><a class="a4-comments__anchor" id="comment_20" href="./?comment=20">Comment 20</a>
-                                        <div class="modal fade" id="report_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
-                                                    <div class="modal-body undefined">
-                                                        <h3 class="modal-title u-first-heading">Sie möchten diesen Beitrag melden? Ihre Nachricht wird an die Moderation weitergeleitet. Diese prüft den gemeldeten Beitrag. Er wird gelöscht, wenn er
-                                                            nicht unseren
-                                                            Diskussionsregeln (Netiquette) entspricht.</h3>
-                                                        <div class="form-group"><textarea rows="5" class="form-control report-message" placeholder="Ihre Nachricht"></textarea></div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <div class="row"><button class="submit-button" data-bs-dismiss="false">Meldung senden</button></div>
-                                                        <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal fade" id="share_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
-                                                    <div class="modal-body undefined">
-                                                        <h3 class="modal-title u-first-heading"></h3>
-                                                        <div class="input-group"><input id="share-url-20" type="text" class="form-control" readonly="" value="http://localhost:8003/budgeting/2022-00012/?comment=20"><button
-                                                              class="btn btn--light input-group-append modal-url-bar-button" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Kopieren</button></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal fade" id="comment_delete_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header"><button class="close" aria-label="Abbrechen" data-bs-dismiss="modal"><i class="fa fa-times"></i></button></div>
-                                                    <div class="modal-body undefined">
-                                                        <h3 class="modal-title u-first-heading">Möchten Sie diesen Kommentar wirklich löschen?</h3>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <div class="row"><button class="submit-button" data-bs-dismiss="modal">Löschen</button></div>
-                                                        <div class="row"><button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="a4-comments__box">
                                             <div class="a4-comments__box--user">
                                                 <div class="row">
@@ -1794,6 +1754,73 @@
                                     </p>
                                 </div>
                             </details>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-modal">Modal</h2>
+
+                <button class="btn btn--default" data-bs-toggle="modal" data-bs-target="#report_comment_20">Open Report Modal</button>
+                <div class="modal fade" id="report_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="u-no-margin-bottom u-spacer-top-one-half">Send Report</h2>
+                                <button class="close" aria-label="Abbrechen" data-bs-dismiss="modal">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="u-spacer-bottom">Sie möchten diesen Beitrag melden? Ihre Nachricht wird an die Moderation weitergeleitet. Diese prüft den gemeldeten Beitrag. Er wird gelöscht, wenn er
+                                    nicht unseren
+                                    Diskussionsregeln (Netiquette) entspricht.</div>
+                                <div class="form-group"><textarea rows="5" class="form-control report-message" placeholder="Ihre Nachricht"></textarea></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="submit-button" data-bs-dismiss="false">Meldung senden</button>
+                                <button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn--default" data-bs-toggle="modal" data-bs-target="#share_comment_20">Open Url Modal</button>
+                <div class="modal fade" id="share_comment_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="u-no-margin-bottom u-spacer-top-one-half">Share</h2>
+                                <button class="close" aria-label="Abbrechen" data-bs-dismiss="modal">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group"><input id="share-url-20" type="text" class="form-control" readonly="" value="http://localhost:8003/budgeting/2022-00012/?comment=20"><button
+                                      class="btn btn--primary input-group-append" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Kopieren</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn--default" data-bs-toggle="modal" data-bs-target="#comment_delete_20">Open Delete Modal</button>
+                <div class="modal fade" id="comment_delete_20" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="u-no-margin-bottom u-spacer-top-one-half">Delete</h2>
+                                <button class="close" aria-label="Abbrechen" data-bs-dismiss="modal">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="u-spacer-bottom">
+                                    Möchten Sie diesen Kommentar wirklich löschen?
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="submit-button" data-bs-dismiss="modal">Löschen</button>
+                                <button class="cancel-button" data-bs-dismiss="modal">Abbrechen</button>
+                            </div>
                         </div>
                     </div>
                 </div>
