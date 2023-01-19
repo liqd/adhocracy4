@@ -10,37 +10,39 @@
     {% block dashboard_nav %}
         <div class="tablist tablist--right u--bg-secondary">
             <div class="container">
-                <div class="tablist--left tablist--mobile dropdown">
+                <div class="tablist--left">
                     {% if view.other_organisations_of_user %}
-                        <button
+                        <div class="dropdown">
+                            <button
                                 title="{% translate 'Organisations' %}"
                                 type="button"
-                                class="dropdown-toggle btn btn--small"
+                                class="dropdown-toggle btn btn--light u-bold"
                                 data-bs-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
                                 id="organisation-selection"
-                        >
-                            {{ view.organisation.name }}
-                            <i class="fa fa-caret-down" aria-hidden="true"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="organisation-selection">
-                            {% for organisation in view.other_organisations_of_user %}
-                                <li>
-                                    <a
+                            >
+                                {{ view.organisation.name }}
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="organisation-selection">
+                                {% for organisation in view.other_organisations_of_user %}
+                                    <li>
+                                        <a
                                             class="dropdown-item"
                                             href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}"
-                                    >
-                                        {{ organisation.name }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                                        >
+                                            {{ organisation.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     {% else %}
-                        <span class="btn btn--small">{{ view.organisation.name }}</span>
+                        <span class="btn--light btn--small u-bold">{{ view.organisation.name }}</span>
                     {% endif %}
                 </div>
-                <nav aria-label="{% translate 'Dashboard' %}">
+                <nav class="u-inline-flex" aria-label="{% translate 'Dashboard' %}">
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                        class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
                         {% translate 'Projects' %}

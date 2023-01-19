@@ -1,6 +1,6 @@
 {% load i18n %}
 <div class="upload-wrapper form-control-upload row">
-    <div class="upload-wrapper__fields input-group col">
+    <div class="upload-wrapper__fields input-group col-sm">
         {{ file_input }}
         {{ text_input }}
         {% if has_image_set and not is_required %}
@@ -17,7 +17,7 @@
             </label>
         {% endif %}
     </div>
-    <div class="form-{{ id }} upload-wrapper__preview col">
+    <div class="form-{{ id }} upload-wrapper__preview col-sm">
         {{ checkbox_input }}
         <img id="{{ file_id }}"
              src="{% if has_image_set %}{{ file_url }}{% else %}data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs={% endif %}"
