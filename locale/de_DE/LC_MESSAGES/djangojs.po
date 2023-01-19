@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-18 09:48+0100\n"
-"PO-Revision-Date: 2023-01-06 16:37+0000\n"
+"PO-Revision-Date: 2023-01-19 03:00+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
@@ -828,8 +828,8 @@ msgstr ""
 #, javascript-format
 msgid "you have 1 vote left."
 msgid_plural "you have %s votes left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sie haben noch 1 Stimme."
+msgstr[1] "Sie haben noch %s Stimmen."
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:18
 #: meinberlin/apps/plans/assets/PlansList.jsx:11
