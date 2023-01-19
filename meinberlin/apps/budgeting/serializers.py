@@ -16,6 +16,7 @@ class ProposalSerializer(serializers.ModelSerializer):
     session_token_voted = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
     vote_allowed = serializers.SerializerMethodField()
+    vote_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Proposal
@@ -35,6 +36,7 @@ class ProposalSerializer(serializers.ModelSerializer):
             "session_token_voted",
             "url",
             "vote_allowed",
+            "vote_count",
         )
         read_only_fields = (
             "additional_item_badges_for_list_count",
@@ -52,6 +54,7 @@ class ProposalSerializer(serializers.ModelSerializer):
             "session_token_voted",
             "url",
             "vote_allowed",
+            "vote_count",
         )
 
     def get_creator(self, proposal):
@@ -122,6 +125,12 @@ class ProposalSerializer(serializers.ModelSerializer):
             return has_voting_permission and is_three_phase_budgeting
 
         return False
+
+    def get_vote_count(self, proposal):
+        if hasattr(proposal, "token_vote_count"):
+            return proposal.token_vote_count
+        else:
+            return 0
 
     def reference_number(self, proposal):
         if hasattr(proposal, "ref_number"):

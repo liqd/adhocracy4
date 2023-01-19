@@ -31,6 +31,7 @@ export const BudgetingProposalListItem = (props) => {
         positiveCount={proposal.positive_rating_count}
         negativeCount={proposal.negative_rating_count}
         commentCount={proposal.comment_count}
+        voteCount={proposal.vote_count}
       />
       <ListItemBadges
         badges={proposal.item_badges_for_list}

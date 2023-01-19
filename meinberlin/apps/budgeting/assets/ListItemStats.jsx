@@ -73,6 +73,11 @@ export const ListItemStats = (props) => {
           <span className="visually-hidden">{commentsStr}</span>
         </span>
       )}
+      {permissions.view_vote_count && (
+        <span>
+          {props.voteCount}
+        </span>
+      )}
     </div>
   )
 }
