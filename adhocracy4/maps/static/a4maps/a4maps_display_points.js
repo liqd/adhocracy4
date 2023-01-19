@@ -1,4 +1,5 @@
 import { createMap } from './a4maps_common'
+import django from 'django'
 
 function loadMarkerCluster () {
   require('leaflet.markercluster')
@@ -94,6 +95,13 @@ function init () {
     function getSupport (feature) {
       return '<span class="map-popup-upvotes">' +
                feature.properties.positive_rating_count + ' <i class="fa fa-thumbs-up" aria-hidden="true"></i>' +
+               '<span class="visually-hidden">' +
+                  django.ngettext(
+                    'person supports this proposal.',
+                    'persons support this proposal.',
+                    feature.properties.positive_rating_count
+                  ) +
+               '</span>' +
              '</span>'
     }
 
