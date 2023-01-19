@@ -2,7 +2,7 @@ import django from 'django'
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 
-import ReportModal from './ReportModal'
+import { ReportModal } from './ReportModal'
 
 module.exports.ReportModal = ReportModal
 
@@ -19,7 +19,7 @@ module.exports.renderReports = function (el) {
   root.render(
     <ReportModal
       name={props.modalName}
-      title={django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')}
+      description={django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')}
       btnStyle="cta"
       objectId={props.objectId}
       contentType={props.contentType}

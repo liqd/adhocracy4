@@ -4,7 +4,7 @@ import django from 'django'
 
 import Modal from '../../../static/Modal'
 import { ReportModal } from '../../../reports/static/reports/react_reports'
-import UrlModal from '../modals/url_modal'
+import { UrlModal } from '../modals/UrlModal'
 import CommentEditForm from './comment_edit_form'
 import CommentCategoryEditForm from './comment_category_edit_form'
 import CommentForm from './comment_form'
@@ -26,7 +26,8 @@ const translated = {
   report: django.gettext(' Report'),
   showModStatement: django.gettext('Show moderator\'s feedback'),
   hideModStatement: django.gettext('Hide moderator\'s feedback'),
-  deleteComment: django.gettext('Do you really want to delete this comment?'),
+  deleteCommentQuestion: django.gettext('Do you really want to delete this comment?'),
+  deleteComment: django.gettext('Delete comment'),
   delete: django.gettext('Delete'),
   abort: django.gettext('Abort'),
   deletedyByCreatorOn: django.gettext('Deleted by creator on'),
@@ -272,7 +273,10 @@ export default class Comment extends React.Component {
       return (
         <Modal
           name={'comment_delete_' + this.props.id}
-          partials={{ title: translated.deleteComment }}
+          partials={{
+            title: translated.deleteComment,
+            description: translated.deleteCommentQuestion
+          }}
           handleSubmit={() => this.props.onCommentDelete(this.props.index, this.props.parentIndex)}
           action={translated.delete}
           abort={translated.abort}
@@ -325,7 +329,7 @@ export default class Comment extends React.Component {
           <a className="a4-comments__anchor" id={'comment_' + this.props.id} href={'./?comment=' + this.props.id}>{'Comment ' + this.props.id}</a>
           <ReportModal
             name={'report_comment_' + this.props.id}
-            title={translated.reportTitle}
+            description={translated.reportTitle}
             btnStyle="cta"
             objectId={this.props.id}
             contentType={this.props.comment_content_type}

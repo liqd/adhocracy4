@@ -156,7 +156,10 @@ class Comment extends React.Component {
       return (
         <Modal
           name={'comment_delete_' + this.props.id}
-          partials={{ title: confirmDeleteText }}
+          partials={{
+            title: deleteTag,
+            description: confirmDeleteText
+          }}
           handleSubmit={() => this.props.onCommentDelete(this.props.index, this.props.parentIndex)}
           action={deleteTag}
           abort={abortTag}
@@ -173,7 +176,7 @@ class Comment extends React.Component {
       <div className="comment">
         <ReportModal
           name={'report_comment_' + this.props.id}
-          title={reportText}
+          description={reportText}
           btnStyle="cta"
           objectId={this.props.id}
           contentType={this.context.comments_contenttype}
