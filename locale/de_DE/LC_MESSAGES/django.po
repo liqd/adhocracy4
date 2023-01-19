@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-18 09:48+0100\n"
-"PO-Revision-Date: 2023-01-06 16:37+0000\n"
+"POT-Creation-Date: 2023-01-05 16:43+0100\n"
+"PO-Revision-Date: 2023-01-19 03:00+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
@@ -738,7 +738,7 @@ msgstr "Status"
 #: adhocracy4/exports/mixins/items.py:71
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:122
 msgid "Feedback"
-msgstr ""
+msgstr "Rückmeldung"
 
 #: adhocracy4/exports/mixins/items.py:95
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:226
@@ -1783,11 +1783,11 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/api.py:111
 msgid "Voting"
-msgstr ""
+msgstr "Abstimmung"
 
 #: meinberlin/apps/budgeting/api.py:114
 msgid "My votes"
-msgstr ""
+msgstr "Meine Auswahl"
 
 #: meinberlin/apps/budgeting/api.py:123
 msgid "Open tasks"
@@ -2093,7 +2093,7 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:31
 msgid "Enter code"
-msgstr "Schlüssel eingeben"
+msgstr "Code eingeben"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:61
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:63
@@ -2386,7 +2386,7 @@ msgstr "Seitennummerierung"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:23
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:13
 msgid "list"
-msgstr ""
+msgstr "Liste"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:44
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:167
@@ -3344,23 +3344,28 @@ msgstr "wird umgesetzt"
 
 #: meinberlin/apps/moderatorfeedback/models.py:21
 msgid "Feedback (public)"
-msgstr ""
+msgstr "Rückmeldung (öffentlich)"
 
 #: meinberlin/apps/moderatorfeedback/models.py:23
 msgid ""
 "The feedback appears below the idea or proposal, indicating your "
 "organisation. The creator of the contribution receives a notification."
 msgstr ""
+"Die Rückmeldung erscheint unterhalb der Idee oder dem Vorschlag unter "
+"Nennung Ihrer Organisation. Der*die Verfasser*in des Beitrags erhält eine "
+"Benachrichtigung."
 
 #: meinberlin/apps/moderatorfeedback/models.py:38
 msgid "Status (public)"
-msgstr ""
+msgstr "Status (öffentlich)"
 
 #: meinberlin/apps/moderatorfeedback/models.py:40
 msgid ""
 "The status appears below the idea or proposal in red, yellow or green. The "
 "creator of the contribution receives a notification."
 msgstr ""
+"Der Status erscheint unterhalb der Idee oder dem Vorschlag in rot, gelb oder "
+"grün. Der*die Verfasser*in des Beitrags erhält eine Benachrichtigung."
 
 #: meinberlin/apps/moderatorremark/models.py:16
 msgid "Moderation remark (internal)"
