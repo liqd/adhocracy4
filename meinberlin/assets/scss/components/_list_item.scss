@@ -53,6 +53,7 @@
 }
 
 .list-item__title {
+    display: inline-block;
     margin: 0 0 0.8rem;
     font-size: $font-size-lg;
 }

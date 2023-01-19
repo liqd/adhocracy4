@@ -1,13 +1,19 @@
 import React from 'react'
 import django from 'django'
 
-const positiveRatingsStr = django.gettext('Positive Ratings')
-const negativeRatingsStr = django.gettext('Negative Ratings')
-const supportStr = django.gettext('Support')
-const commentsStr = django.gettext('Comments')
-
 export const ListItemStats = (props) => {
   const { permissions } = props
+
+  const positiveRatingsStr = django.gettext('Positive Ratings')
+  const negativeRatingsStr = django.gettext('Negative Ratings')
+  const supportStr = django.gettext('Support')
+  const commentsStr = django.gettext('Comments')
+  const supportText = django.ngettext(
+    'person supports this proposal.',
+    'persons support this proposal.',
+    props.positiveCount
+  )
+
   return (
     <div className="list-item__stats">
       {permissions.view_rate_count && (
@@ -48,7 +54,9 @@ export const ListItemStats = (props) => {
               aria-hidden="true"
             />
             {props.positiveCount}
-            <span className="visually-hidden">{supportStr}</span>
+            <span className="visually-hidden">
+              {supportText}
+            </span>
           </span>
         </span>
       )}

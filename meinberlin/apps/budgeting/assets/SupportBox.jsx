@@ -4,14 +4,26 @@ import django from 'django'
 const api = require('adhocracy4').api
 const config = require('adhocracy4').config
 
-const translations = {
-  support: django.gettext('Click to support')
-}
-
 export const SupportBox = (props) => {
   const [support, setSupport] = useState(props.support)
   const [userSupported, setUserSupported] = useState(props.userSupported)
   const [userSupportId, setUserSupportId] = useState(props.userSupportId)
+
+  const translations = {
+    support: django.ngettext(
+      'person supports this proposal.',
+      'persons support this proposal.',
+      props.support
+    ),
+    clickToSupport: django.gettext('Click to support.'),
+    clickToUnsupport: django.gettext('You support this proposal. Click to unsupport.')
+  }
+
+  const getSupportClickStr = () => {
+    return userSupported
+      ? translations.clickToUnsupport
+      : translations.clickToSupport
+  }
 
   const handleSupportCreate = (value) => {
     api.rating.add({
@@ -66,13 +78,13 @@ export const SupportBox = (props) => {
   return (
     <div className="rating">
       <button
-        aria-label={translations.support}
+        aria-label={support + ' ' + translations.support + getSupportClickStr()}
         className={'rating-button rating-up ' + (userSupported ? 'is-selected' : '')}
         disabled={props.isReadOnly}
         onClick={handleSupport}
       >
         <i className="far fa-thumbs-up" aria-hidden="true" />
-        {support}
+        <span aria-hidden="true">{support}</span>
       </button>
     </div>
   )
