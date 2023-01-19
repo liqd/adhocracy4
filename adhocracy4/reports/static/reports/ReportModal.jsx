@@ -1,89 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react'
 import django from 'django'
-
 import Modal from '../../../static/Modal'
+import api from '../../../static/api'
 
-const api = require('../../../static/api')
-
-class ReportModal extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      report: '',
-      showSuccessMessage: false,
-      showErrorMessage: false,
-      showReportForm: true
-    }
-  }
-
-  handleTextChange (e) {
-    this.setState({ report: e.target.value })
-  }
-
-  resetModal () {
-    if (!$('#' + this.props.name).is(':visible')) {
-      this.setState({
-        report: '',
-        showSuccessMessage: false,
-        showErrorMessage: false,
-        showReportForm: true,
-        errors: null
-      })
-    } else {
-      setTimeout(this.resetModal.bind(this), 500)
-    }
-  }
-
-  submitReport () {
-    api.report.submit({
-      description: this.state.report,
-      content_type: this.props.contentType,
-      object_pk: this.props.objectId
-    })
-      .done(function () {
-        this.setState({
-          report: '',
-          showSuccessMessage: true,
-          showReportForm: false,
-          showErrorMessage: false
-        })
-      }.bind(this))
-  }
-
-  render () {
-    const thankyouText = django.gettext('Thank you! We are taking care of it.')
-    const placeholderText = django.gettext('Your message')
-    const sendReportTag = django.gettext('Send Report')
-    const partials = {}
-    if (this.state.showSuccessMessage) {
-      partials.title = (<span><i className="fa fa-check" /> {thankyouText}</span>)
-      partials.hideFooter = true
-      partials.bodyClass = 'success'
-    } else if (this.state.showReportForm) {
-      partials.title = this.props.title
-      partials.body = (
-        <div className="form-group">
-          <textarea
-            rows="5" className="form-control report-message" value={this.state.report}
-            placeholder={placeholderText} onChange={this.handleTextChange.bind(this)}
-          />
-          {this.state.errors && <span className="help-block">{this.state.errors.description}</span>}
-        </div>
-      )
-    }
-
-    return (
-      <Modal
-        abort={this.props.abort}
-        name={this.props.name}
-        handleSubmit={this.submitReport.bind(this)}
-        action={sendReportTag}
-        partials={partials}
-        dismissOnSubmit={false}
-      />
-    )
-  }
+const translations = {
+  thankyouText: django.gettext('Thank you! We are taking care of it.'),
+  placeholderText: django.gettext('Your message'),
+  sendReportTag: django.gettext('Send Report')
 }
 
-module.exports = ReportModal
+export const ReportModal = (props) => {
+  const [report, setReport] = useState('')
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [showReportForm, setShowReportForm] = useState(true)
+
+  const partials = {}
+
+  const handleTextChange = (e) => {
+    setReport(e.target.value)
+  }
+
+  const submitReport = () => {
+    api.report.submit({
+      description: report,
+      content_type: props.contentType,
+      object_pk: props.objectId
+    })
+      .done(() => {
+        setReport('')
+        setShowSuccessMessage(true)
+        setShowReportForm(false)
+      })
+  }
+
+  if (showSuccessMessage) {
+    partials.body = (
+      <div className="u-spacer-bottom-triple">
+        <i className="fa fa-check" /> {translations.thankyouText}
+      </div>
+    )
+    partials.hideFooter = true
+    partials.bodyClass = 'success'
+  } else if (showReportForm) {
+    partials.title = translations.sendReportTag
+    partials.description = props.description
+    partials.body = (
+      <div className="form-group">
+        <textarea
+          rows="5" className="form-control report-message" value={report}
+          placeholder={translations.placeholderText} onChange={handleTextChange}
+        />
+      </div>
+    )
+  }
+
+  return (
+    <Modal
+      abort={props.abort}
+      name={props.name}
+      handleSubmit={submitReport}
+      action={translations.sendReportTag}
+      partials={partials}
+      dismissOnSubmit={false}
+    />
+  )
+}
