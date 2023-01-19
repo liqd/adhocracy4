@@ -1,4 +1,5 @@
 .dropdown {
+    width: fit-content; // ensure dropdowns are not super wide
     position: relative;
     text-align: left;
     margin-bottom: $em-spacer * 0.5;

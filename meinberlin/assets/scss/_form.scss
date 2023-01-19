@@ -61,7 +61,9 @@ div.cke_focus {
     margin: 0 0 $spacer;
 
     .django-ckeditor-widget,
-    %control-base {
+    input,
+    textarea,
+    select {
         width: 100%;
 
         // FIXME: Generally, we would prefer to use .form-group everywhere and

@@ -1,5 +1,6 @@
 %button-base {
     @extend %control-base; // needed for stretched dropdowns ect.
+
     text-decoration: none;
     font-weight: bold;
 }
@@ -34,7 +35,7 @@
     }
 }
 
-.btn--primary {
+.btn.btn--primary {
     @extend .btn-primary;
 
     border-color: $primary;
@@ -45,13 +46,13 @@
     }
 }
 
-.btn--secondary {
+.btn.btn--secondary {
     @extend .btn-secondary;
 
     border: none;
 }
 
-.btn--danger {
+.btn.btn--danger {
     @extend .btn-danger;
 }
 

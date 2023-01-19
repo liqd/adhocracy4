@@ -1,7 +1,12 @@
 // used for icon selection for map category
 
+.select-dropdown {
+    width: 100%;
+}
+
 .select-dropdown__btn {
     @extend .btn--light;
+    width: 100%;
 
     i {
         position: absolute;
