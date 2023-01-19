@@ -17,7 +17,7 @@ export const ControlBarListMapSwitch = () => {
     <div className="btn-group__container">
       <div className="btn-group">
         <div
-          className="btn btn--light switch--btn btn--icon active"
+          className="btn switch--btn btn--icon active"
           aria-label={django.gettext('View as list')}
         >
           <i className="fa fa-list" aria-hidden="true" />

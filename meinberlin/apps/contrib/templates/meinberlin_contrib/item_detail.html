@@ -116,14 +116,11 @@
                 </div>
             </div>
         </div>
-    </article>
+        {% block vote_button %}{% endblock %}
 
-    {% block vote_button %}{% endblock %}
-
-    {% block moderator_feedback %}
+        {% block moderator_feedback %}
         {% if object.moderator_feedback_text.feedback_text or object.moderator_status or is_moderator  %}
-            <div class="offset-lg-3 col-lg-6">
-                <div class="detail-info__accordion">
+                <section class="detail-info__accordion">
                     <details class="accordion" open>
                         <summary class="detail-info__accordion-title">
                             <h2 class="detail-info__title">{% translate 'Feedback' %}</h2>
@@ -183,15 +180,13 @@
                         </div>
                         {% endif %}
                     </details>
-                </div>
-            </div>
+                </section>
         {% endif %}
     {% endblock %}
 
     {% block moderation_info %}
         {% if is_moderator and module.blueprint_type in 'PB3,PB2,PB' %}
-        <div class="offset-lg-3 col-lg-6">
-            <div class="detail-info__accordion">
+            <section class="detail-info__accordion">
                 <details class="accordion" open>
                     <summary class="detail-info__accordion-title">
                         <h2 class="detail-info__title">{% translate 'Moderation' %}</h2>
@@ -217,7 +212,7 @@
                             {% for task in object.module.moderationtask_set.all %}
                                 <li class="detail-info__list-item">
                                 {% if task in object.completed_tasks.all %}
-                                    <i class="fas fa-circle-check u-success" aria-role="img" aria-label="{% translate 'Done' %}"></i>                                
+                                    <i class="fas fa-circle-check u-success" aria-role="img" aria-label="{% translate 'Done' %}"></i>
                                     {{ task.name }}
                                 {% else %}
                                     <span class="u-muted">{{ task.name }}</span>
@@ -243,13 +238,13 @@
                     </div>
                     {% endif %}
                 </details>
-            </div>
-        </div>
+            </section>
         {% endif %}
     {% endblock %}
-
-    <section class="offset-lg-3 col-lg-6">
-        {% react_comments_async object %}
-    </section>
+        <section>
+            <h2 class="visually-hidden">{% translate 'Comments' %}</h2>
+            {% react_comments_async object %}
+        </section>
+    </article>
 </div>
 {% endblock %}

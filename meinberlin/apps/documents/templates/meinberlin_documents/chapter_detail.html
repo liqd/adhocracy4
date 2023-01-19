@@ -84,6 +84,7 @@
     <div class="container">
         <div class="offset-lg-2 col-lg-8">
             {% if object %}
+            <h2 class="visually-hidden">{% translate 'Comments' %}</h2>
             {% react_comments_async object %}
             {% endif %}
         </div>

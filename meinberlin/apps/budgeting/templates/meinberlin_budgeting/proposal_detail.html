@@ -22,9 +22,15 @@
 
 {% block vote_button %}
 {% if module.blueprint_type == 'PB3' %}
+
+    {% has_perm 'meinberlin_budgeting.view_vote_count' request.user module as may_view_vote_count %}
+    {% if may_view_vote_count %}
+        <p class="u-bottom-divider u-align-center">{% blocktranslate with amount=object.vote_count %}This idea received a total of <span class="u-primary">1{{ amount }}</span> votes{% endblocktranslate %}</p>
+    {% endif %}
+
     {% has_perm 'meinberlin_budgeting.vote_proposal' request.user proposal as vote_allowed %}
     {% if vote_allowed %}
-    <div class="offset-lg-3 col-lg-6 u-bottom-divider">
+    <div class="u-bottom-divider">
         {% react_proposals_vote view.module proposal %}
     </div>
     {% endif %}
