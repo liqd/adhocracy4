@@ -8,6 +8,7 @@ export const ListItemStats = (props) => {
   const negativeRatingsStr = django.gettext('Negative Ratings')
   const supportStr = django.gettext('Support')
   const commentsStr = django.gettext('Comments')
+  const votesStr = django.gettext('Total votes')
   const supportText = django.ngettext(
     'person supports this proposal.',
     'persons support this proposal.',
@@ -60,10 +61,23 @@ export const ListItemStats = (props) => {
           </span>
         </span>
       )}
+      {permissions.view_vote_count && (
+        <span
+          className="list-item__icon u-primary"
+          title={votesStr}
+        >
+          <i
+            className="fa-regular fa-square-check u-icon-spacing"
+            aria-hidden="true"
+          />
+          {props.voteCount}
+          <span className="visually-hidden">{votesStr}</span>
+        </span>
+      )}
       {permissions.view_comment_count && (
         <span
           title={commentsStr}
-          className="list-item__comments"
+          className="list-item__icon"
         >
           <i
             className="far fa-comment u-icon-spacing"
@@ -71,11 +85,6 @@ export const ListItemStats = (props) => {
           />
           {props.commentCount}
           <span className="visually-hidden">{commentsStr}</span>
-        </span>
-      )}
-      {permissions.view_vote_count && (
-        <span>
-          {props.voteCount}
         </span>
       )}
     </div>
