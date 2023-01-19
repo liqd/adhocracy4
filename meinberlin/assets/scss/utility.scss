@@ -7,24 +7,24 @@
 }
 
 .u-spacer-left {
-    margin-left: $em-spacer;
+    margin-left: $spacer;
 }
 
 .u-spacer-right,
 .a4-spacer--right {
-    margin-right: $em-spacer;
+    margin-right: $spacer;
 }
 
 .u-spacer-right-half {
-    margin-right: ($em-spacer * 0.5);
+    margin-right: ($spacer * 0.5);
 }
 
 .u-spacer-bottom {
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
 }
 
 .u-spacer-top {
-    margin-top: $em-spacer;
+    margin-top: $spacer;
 }
 
 .u-spacer-top-half {
@@ -32,15 +32,15 @@
 }
 
 .u-spacer-top-double {
-    margin-top: ($em-spacer * 2);
+    margin-top: ($spacer * 2);
 }
 
 .u-spacer-bottom-half {
-    margin-bottom: ($em-spacer * 0.5);
+    margin-bottom: ($spacer * 0.5);
 }
 
 .u-spacer-bottom-double {
-    margin-bottom: ($em-spacer * 2);
+    margin-bottom: ($spacer * 2);
 }
 
 .u--bg-secondary {
@@ -231,4 +231,8 @@
     width: 100%;
     justify-content: center;
     display: flex;
+}
+
+.u-bold {
+    font-weight: bold;
 }

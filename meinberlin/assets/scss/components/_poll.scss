@@ -104,24 +104,28 @@ $checkbox-size: 20px;
 
     transition: width 0.3s;
 
+    &.poll__highlight {
+        max-width: 90%;
+
+        @media (min-width: $breakpoint) {
+            max-width: 96%;
+        }
+    }
+
     @media print {
         border: 1px solid $border-color;
     }
 }
 
-.poll-row__bar--highlight {
+.poll-row > .poll__highlight {
     background-color: $primary-tint;
-    max-width: 90%;
-
-    @media (min-width: $breakpoint) {
-        max-width: 96%;
-    }
 }
 
 .poll-row__chosen {
+    font-size: $font-size-lg;
     color: $gray-lighter;
     position: absolute;
-    top: 0.5 * $spacer;
+    top: 0.25 * $spacer;
 }
 
 .poll-row__number {
@@ -140,7 +144,8 @@ $checkbox-size: 20px;
     margin: 0.5 * $spacer 0;
 }
 
-.poll__btn--dark {
+.poll__btn--dark,
+.editpoll__btn--dark {
     @extend .btn--primary;
 }
 
@@ -210,9 +215,7 @@ $checkbox-size: 20px;
 
 .poll-slider {
     position: relative;
-    background-color: $bg-secondary;
     margin-bottom: $spacer;
-    border-radius: 0.3 * $spacer;
 
     // slick overwrites - nested for specificity
     .slick-prev {
@@ -266,6 +269,8 @@ $checkbox-size: 20px;
     .slick-slide {
         height: auto;
         position: relative;
+        border-radius: 0.3 * $spacer;
+        background-color: $bg-secondary;
     }
 
     .slick-track {

@@ -55,7 +55,7 @@ const ChapterForm = (props) => {
       </FlipMove>
 
       <button
-        className="btn btn--light btn--small"
+        className="u-spacer-top btn btn--light btn--small"
         onClick={props.onParagraphAppend}
         type="button"
       >
