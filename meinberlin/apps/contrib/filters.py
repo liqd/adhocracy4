@@ -3,20 +3,8 @@ from datetime import date
 
 from django.db.models import Case
 from django.db.models import When
-from rest_framework.filters import BaseFilterBackend
+from django_filters import rest_framework as rest_filters
 from rest_framework.filters import OrderingFilter
-
-
-class IdeaCategoryFilterBackend(BaseFilterBackend):
-    """Filter ideas for the categories in API."""
-
-    def filter_queryset(self, request, queryset, view):
-
-        if "category" in request.GET:
-            category = request.GET["category"]
-            return queryset.filter(category=category)
-
-        return queryset
 
 
 class OrderingFilterWithDailyRandom(OrderingFilter):
@@ -35,3 +23,24 @@ class OrderingFilterWithDailyRandom(OrderingFilter):
                 return queryset.order_by(*ordering)
 
         return queryset
+
+
+class DefaultsRestFilterSet(rest_filters.FilterSet):
+    """Extend to define default filter values.
+
+    Set the defaults attribute. E.g.:
+        defaults = {
+            'is_archived': 'false'
+        }
+    """
+
+    defaults = None
+
+    def __init__(self, data, *args, **kwargs):
+        data = data.copy()
+
+        # Set the defaults if they are not manually set yet
+        for key, value in self.defaults.items():
+            if key not in data:
+                data[key] = value
+        super().__init__(data, *args, **kwargs)

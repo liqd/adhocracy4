@@ -1,6 +1,5 @@
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
@@ -15,17 +14,19 @@ from adhocracy4.labels.models import Label
 from adhocracy4.modules.predicates import is_allowed_moderate_project
 from adhocracy4.modules.predicates import module_is_between_phases
 from adhocracy4.phases.predicates import has_feature_active
-from meinberlin.apps.contrib.filters import IdeaCategoryFilterBackend
 from meinberlin.apps.contrib.filters import OrderingFilterWithDailyRandom
 from meinberlin.apps.contrib.templatetags.contrib_tags import (
     get_proper_elided_page_range,
 )
-from meinberlin.apps.moderationtasks.filters import ModerationTaskFilterBackend
 from meinberlin.apps.moderationtasks.models import ModerationTask
-from meinberlin.apps.moderatorfeedback.models import DEFAULT_CHOICES
+from meinberlin.apps.moderatorfeedback.models import (
+    DEFAULT_CHOICES as moderator_status_default_choices,
+)
 from meinberlin.apps.votes.api import VotingTokenInfoMixin
 from meinberlin.apps.votes.filters import OwnVotesFilterBackend
 
+from .filters import ProposalFilterBackend
+from .filters import ProposalFilterSet
 from .models import Proposal
 from .serializers import ProposalSerializer
 
@@ -93,7 +94,7 @@ class ProposalFilterInfoMixin:
 
         # moderator feedback filter
         moderator_status_choices = [("", _("All"))] + [
-            choice for choice in DEFAULT_CHOICES
+            choice for choice in moderator_status_default_choices
         ]
 
         filters["moderator_status"] = {
@@ -251,20 +252,15 @@ class ProposalViewSet(
     serializer_class = ProposalSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (
-        DjangoFilterBackend,
+        ProposalFilterBackend,
         OrderingFilterWithDailyRandom,
-        IdeaCategoryFilterBackend,
         SearchFilter,
         OwnVotesFilterBackend,
-        ModerationTaskFilterBackend,
     )
-    filterset_fields = (
-        "is_archived",
-        "category",
-        "labels",
-        "moderator_status",
-        "completed_tasks",
-    )
+
+    # this is used by ProposalFilterBackend
+    filterset_class = ProposalFilterSet
+
     ordering_fields = (
         "created",
         "comment_count",

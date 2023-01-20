@@ -258,7 +258,8 @@ def test_proposal_archived_filter(apiclient, module, proposal_factory):
     url = reverse("proposals-list", kwargs={"module_pk": module.pk})
 
     response = apiclient.get(url)
-    assert len(response.data["results"]) == 2
+    # is_archived = false is default
+    assert len(response.data["results"]) == 1
 
     # archived filter
     querystring = "?is_archived=false"
@@ -478,7 +479,7 @@ def test_proposal_ordering_filter(
     url = reverse("proposals-list", kwargs={"module_pk": module.pk})
 
     # queryset is ordered by created
-    querystring = "?ordering=-created"
+    querystring = "?is_archived=&ordering=-created"
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data["results"]) == 8
@@ -486,7 +487,7 @@ def test_proposal_ordering_filter(
     assert response.data["results"][-1]["pk"] == proposal_old.pk
 
     # positive rating
-    querystring = "?ordering=-positive_rating_count"
+    querystring = "?is_archived=&ordering=-positive_rating_count"
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data["results"]) == 8
@@ -494,14 +495,14 @@ def test_proposal_ordering_filter(
     assert response.data["results"][1]["pk"] == proposal_2_popular.pk
 
     # most commented
-    querystring = "?ordering=-comment_count"
+    querystring = "?is_archived=&ordering=-comment_count"
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data["results"]) == 8
     assert response.data["results"][0]["pk"] == proposal_commented.pk
 
     # daily random
-    querystring = "?ordering=dailyrandom"
+    querystring = "?is_archived=&ordering=dailyrandom"
     url_tmp = url + querystring
     with freeze_time("2020-01-01 00:00:00 UTC"):
         response = apiclient.get(url_tmp)
@@ -624,27 +625,30 @@ def test_proposal_filter_combinations(
     response = apiclient.get(url_tmp)
     assert len(response.data["results"]) == 0
 
-    querystring = "?ordering=-created&search=2021-"
+    querystring = "?is_archived=&ordering=-created&search=2021-"
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data["results"]) == 7
     assert response.data["results"][6]["pk"] == proposal_old.pk
 
-    querystring = "?ordering=-positive_rating_count&category=" + str(category2.pk)
+    querystring = "?is_archived=true&ordering=-positive_rating_count&category=" + str(
+        category2.pk
+    )
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
-    assert len(response.data["results"]) == 2
-    assert response.data["results"][0]["pk"] == proposal_cat2_popular.pk
-    assert response.data["results"][1]["pk"] == proposal_cat2_archived.pk
+    assert len(response.data["results"]) == 1
+    assert response.data["results"][0]["pk"] == proposal_cat2_archived.pk
 
-    querystring = "?ordering=-positive_rating_count&labels=" + str(label1.pk)
+    querystring = "?is_archived=&ordering=-positive_rating_count&labels=" + str(
+        label1.pk
+    )
     url_tmp = url + querystring
     response = apiclient.get(url_tmp)
     assert len(response.data["results"]) == 2
     assert response.data["results"][0]["pk"] == proposal_popular_labels.pk
     assert response.data["results"][1]["pk"] == proposal_archived_labels.pk
 
-    querystring = "?ordering=dailyrandom&category=" + str(category2.pk)
+    querystring = "?is_archived=&ordering=dailyrandom&category=" + str(category2.pk)
     url_tmp = url + querystring
     with freeze_time("2020-01-01 00:00:00 UTC"):
         response = apiclient.get(url_tmp)
