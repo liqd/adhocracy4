@@ -38,11 +38,7 @@ export const ControlBar = props => {
   }
 
   const applyFilter = (filterType, filterChoice) => {
-    if (filterChoice[0] !== '') {
-      queryParams.set(filterType, filterChoice[0])
-    } else {
-      queryParams.delete(filterType)
-    }
+    queryParams.set(filterType, filterChoice[0])
 
     // to avoid empty pagination page for given
     // filter settings, always show first page,
