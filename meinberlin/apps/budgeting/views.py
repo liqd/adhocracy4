@@ -9,6 +9,7 @@ from adhocracy4.categories import filters as category_filters
 from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.labels import filters as label_filters
+from adhocracy4.modules.predicates import module_is_between_phases
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from meinberlin.apps.ideas import views as idea_views
 from meinberlin.apps.moderatorremark.forms import ModeratorRemarkForm
@@ -33,8 +34,16 @@ def get_ordering_choices(view):
     return choices
 
 
+def get_default_ordering(view):
+    if module_is_between_phases(
+        "meinberlin_budgeting:support", "meinberlin_budgeting:voting", view.module
+    ):
+        return "-positive_rating_count"
+    return "dailyrandom"
+
+
 class ProposalFilterSet(a4_filters.DefaultsFilterSet):
-    defaults = {"ordering": "-created", "is_archived": "false"}
+    defaults = {"is_archived": "false"}
     category = category_filters.CategoryFilter()
     labels = label_filters.LabelFilter()
     ordering = a4_filters.DistinctOrderingWithDailyRandomFilter(
@@ -45,6 +54,10 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
     class Meta:
         model = models.Proposal
         fields = ["category", "labels", "is_archived"]
+
+    def __init__(self, data, *args, **kwargs):
+        self.defaults["ordering"] = get_default_ordering(kwargs["view"])
+        super().__init__(data, *args, **kwargs)
 
 
 class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
