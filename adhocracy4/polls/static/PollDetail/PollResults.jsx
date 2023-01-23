@@ -75,7 +75,7 @@ export default class PollResult extends React.Component {
     if (total >= 1) {
       helpTextOpenAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
     } else {
-      helpTextOpenAnswer = django.gettext('noone has answered this question')
+      helpTextOpenAnswer = django.gettext('no one has answered this question')
     }
     return django.interpolate(helpTextOpenAnswer, [total])
   }
@@ -143,7 +143,7 @@ export default class PollResult extends React.Component {
               </div>
           }
           )}
-          {this.state.question.is_open &&
+          {this.state.question.is_open && this.state.question.userAnswer &&
             <div className="poll-slider__container">
               <Slider {...settings}>
                 {this.props.question.answers.map((slide, index) => (

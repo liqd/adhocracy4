@@ -48,11 +48,12 @@ export const PollQuestion = (props) => {
   const handleMultiChange = (event, isOther) => {
     const choiceId = parseInt(event.target.value)
     setUserChoices(prevState => [...prevState, choiceId])
+    setOtherChoiceAnswer(otherChoiceAnswer)
     props.onMultiChange(props.question.id, choiceId)
-    if (!isOther) {
-      props.onOtherChange(props.question.id, '', findOtherChoice())
-    } else {
+    if (isOther) {
       setOtherChoiceAnswer('')
+    } else {
+      props.onOtherChange(props.question.id, otherChoiceAnswer, findOtherChoice())
     }
   }
 
@@ -91,6 +92,7 @@ export const PollQuestion = (props) => {
                       disabled={!props.question.authenticated || props.question.isReadOnly}
                     />
                     <span className="radio__text">{choice.is_other_choice ? translated.other : choice.label}</span>
+
                     {choice.is_other_choice &&
                       <>
                         <input
