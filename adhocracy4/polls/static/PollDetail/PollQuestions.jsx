@@ -45,13 +45,21 @@ class PollQuestions extends React.Component {
     this.handleTermsOfUse = this.handleTermsOfUse.bind(this)
 
     this.linkToPoll = (
-      <button type="button" className="btn poll__btn--link" onClick={() => this.handleToggleResultsPage()}>
+      <button
+        type="button"
+        className="btn poll__btn--link"
+        onClick={() => { this.handleToggleResultsPage(); this.removeAlert() }}
+      >
         {django.gettext('To poll')}
       </button>
     )
 
     this.linkChangeVote = (
-      <button type="button" className="btn poll__btn--link" onClick={() => this.handleToggleResultsPage()}>
+      <button
+        type="button"
+        className="btn poll__btn--link"
+        onClick={() => { this.handleToggleResultsPage(); this.removeAlert() }}
+      >
         {django.gettext('Change answer')}
       </button>
     )
@@ -65,42 +73,42 @@ class PollQuestions extends React.Component {
   }
 
   setModified (questionId, value) {
-    const currQuestion = this.state.questions.find(q => q.id === questionId)
+    const currentQuestion = this.state.questions.find(question => question.id === questionId)
     this.setState({ hasVotes: value })
-    currQuestion.modified = value
+    currentQuestion.modified = value
   }
 
   handleVoteSingle (questionId, choiceId) {
     this.setState(prevState => {
-      const currQuestion = prevState.questions.find(q => q.id === questionId)
-      currQuestion.userChoices = [choiceId]
+      const currentQuestion = prevState.questions.find(question => question.id === questionId)
+      currentQuestion.userChoices = [choiceId]
     })
     this.setModified(questionId, true)
   }
 
   handleVoteMulti (questionId, choiceId) {
     this.setState(prevState => {
-      const currQuestion = prevState.questions.find(q => q.id === questionId)
-      const toRemove = currQuestion.userChoices.findIndex(uc => uc === choiceId)
-      toRemove !== -1 && currQuestion.userChoices.splice(toRemove, 1)
-      toRemove !== -1 || currQuestion.userChoices.push(choiceId)
+      const currentQuestion = prevState.questions.find(question => question.id === questionId)
+      const toRemove = currentQuestion.userChoices.findIndex(userChoice => userChoice === choiceId)
+      toRemove !== -1 && currentQuestion.userChoices.splice(toRemove, 1)
+      toRemove !== -1 || currentQuestion.userChoices.push(choiceId)
     })
     this.setModified(questionId, true)
   }
 
   handleVoteOther (questionId, otherAnswer, otherChoice) {
     this.setState(prevState => {
-      const currQuestion = prevState.questions.find(q => q.id === questionId)
+      const currentQuestion = prevState.questions.find(question => question.id === questionId)
       otherChoice && delete this.state.errors[otherChoice.id]
-      currQuestion.other_choice_answer = otherAnswer
+      currentQuestion.other_choice_answer = otherAnswer
     })
     this.setModified(questionId, true)
   }
 
   handleVoteOpen (questionId, openAnswer) {
     this.setState(prevState => {
-      const currQuestion = prevState.questions.find(q => q.id === questionId)
-      currQuestion.open_answer = openAnswer
+      const currentQuestion = prevState.questions.find(question => question.id === questionId)
+      currentQuestion.open_answer = openAnswer
     })
     this.setModified(questionId, true)
   }
@@ -165,7 +173,7 @@ class PollQuestions extends React.Component {
       <button
         type="button"
         className="btn poll__btn--link"
-        onClick={() => this.handleToggleResultsPage()}
+        onClick={() => { this.handleToggleResultsPage(); this.removeAlert() }}
       >
         {this.getLinkShowResultsText()}
       </button>
@@ -239,25 +247,28 @@ class PollQuestions extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
+
     this.setState({
       loading: true,
       checkedTermsOfUse: false
     })
-    const modifiedQuestions = this.state.questions.filter(q => q.modified)
-    const validatedQuestions = modifiedQuestions.filter(q => {
-      if (!q.is_open) {
-        const otherChoice = q.choices.find(c => c.is_other_choice)
-        const otherChoiceSelected = otherChoice && q.userChoices.filter(uc => uc === otherChoice.id).length > 0
+
+    const modifiedAnswers = this.state.questions.filter(question => question.modified)
+
+    const validatedQuestions = modifiedAnswers.filter(question => {
+      if (!question.is_open) {
+        const otherChoice = question.choices.find(choice => choice.is_other_choice)
+        const otherChoiceSelected = otherChoice && question.userChoices.filter(userChoice => userChoice === otherChoice.id).length > 0
         if (otherChoiceSelected) {
-          if (!q.other_choice_answer) {
+          if (!question.other_choice_answer) {
             this.addValidationError(otherChoice.id)
           } else {
             this.removeValidationError(otherChoice.id)
-            return q
+            return question
           }
         }
       }
-      return q
+      return question
     })
 
     const voteData = {}
@@ -314,31 +325,32 @@ class PollQuestions extends React.Component {
         <>{this.state.showResults
           ? (
             <div className="pollquestionlist-container">
-              {this.state.result.map((q, idx) => (
+              {this.state.result.map((question, idx) => (
                 <PollResults
                   key={idx}
-                  question={q}
+                  question={question}
                 />
               ))}
+              <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
               <div className="poll">
                 {this.state.hasUserVote ? this.linkChangeVote : this.linkToPoll}
               </div>
             </div>)
           : (
             <div className="pollquestionlist-container">
-              {this.state.questions.map((q, idx) => (
-                q.is_open
+              {this.state.questions.map((question, idx) => (
+                question.is_open
                   ? (
                     <PollOpenQuestion
                       key={idx}
-                      question={q}
+                      question={question}
                       onOpenChange={(questionId, voteData) => this.handleVoteOpen(questionId, voteData)}
                     />
                     )
                   : (
                     <PollQuestion
                       key={idx}
-                      question={q}
+                      question={question}
                       onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
                       onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
                       onOtherChange={(questionId, voteAnswer, otherChoice) => this.handleVoteOther(questionId, voteAnswer, otherChoice)}
@@ -347,8 +359,14 @@ class PollQuestions extends React.Component {
                     )
               ))}
               <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
-              {!this.isReadOnly()
+
+              {this.isReadOnly()
                 ? (
+                  <div className="poll">
+                    {this.state.loading ? this.loadingIndicator : this.linkShowResults()}
+                  </div>
+                  )
+                : (
                   <>
                     {this.state.useTermsOfUse && (this.state.agreedTermsOfUse === false) &&
                       <div className="col-12">
@@ -362,11 +380,6 @@ class PollQuestions extends React.Component {
                       {this.buttonVote}{!this.state.loading ? this.linkShowResults() : this.loadingIndicator}
                     </div>
                   </>
-                  )
-                : (
-                  <div className="poll">
-                    {!this.state.loading ? this.linkShowResults() : this.loadingIndicator}
-                  </div>
                   )}
             </div>
             )}
