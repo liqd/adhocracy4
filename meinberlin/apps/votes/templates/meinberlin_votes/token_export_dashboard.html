@@ -4,22 +4,30 @@
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{% translate 'Download voting codes' %}</h1>
 
-    <p class="form-hint u-bottom-divider">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can download the codes in packages of {{ export_size }} per excel file. To generate the codes, please contact {{ contact_email }}.{% endblocktranslate %}</p>
+    <p class="form-hint u-bottom-divider">{% blocktranslate %}For voting in the third phase, all participants need their own voting code. Here you can download the codes in packages of up to {{ export_size }} per excel file. Each file can be downloaded only once before the codes are being encrypted. To generate the codes, please contact {{ contact_email }}.{% endblocktranslate %}</p>
     <p class="u-bottom-divider">{% blocktranslate %}Number of generated codes: {{ number_of_module_tokens }}.{% endblocktranslate %}</p>
     <ul class="u-list-reset">
         {% if token_export_url %}
-            {% for page in token_export_iterator %}
+            {% for number, downloadable in token_packages %}
             <li class="u-bottom-divider u-space-between">
-              <div class="" id="id-export-tokens-hint-{{ page }}">
-                    {% translate " code package no." %} {{ page }}
+              <div class="" id="id-export-tokens-hint-{{ number }}">
+                    {% translate " code package no." %} {{ number|add:1 }}
                 </div>
                 <a
+                {% if downloadable %}
                   class="btn btn--secondary"
+                {% else %}
+                  class="btn btn--light disabled"
+                {% endif %}
                   id="download-link"
-                  aria-labelledby="id-export-tokens-hint-{{ page }} download-link"
-                  href="{{ token_export_url }}?page={{ page }}"
+                  aria-labelledby="id-export-tokens-hint-{{ number }} download-link"
+                  href="{{ token_export_url }}?package={{ number }}"
                 >
-                    {% translate "Download" %}
+                    {% if downloadable %}
+                        {% translate "Download" %}
+                    {% else %}
+                        {% translate "Encrypted" %}
+                    {% endif %}
                 </a>
             </li>
             {% endfor %}

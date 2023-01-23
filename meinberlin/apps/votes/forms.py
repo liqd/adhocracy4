@@ -46,13 +46,13 @@ class TokenForm(forms.Form):
     def clean(self):
         cleaned_data = super().clean()
         if "token" in self.cleaned_data:
-            token_queryset = VotingToken.objects.filter(
+            token = VotingToken.get_voting_token(
                 token=self.cleaned_data["token"], module_id=self.module_id
             )
-            if not token_queryset:
+            if not token:
                 self.add_error("token", _("This token is not valid"))
             else:
-                cleaned_data["token"] = token_queryset.first().token
+                cleaned_data["token"] = token.token_hash
 
         return cleaned_data
 

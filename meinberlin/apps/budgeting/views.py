@@ -73,11 +73,12 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
         if "voting_tokens" in request.session:
             module_key = str(self.module.id)
             if module_key in request.session["voting_tokens"]:
-                token_queryset = VotingToken.objects.filter(
-                    token=request.session["voting_tokens"][module_key],
-                    module=self.module,
+                return (
+                    VotingToken.get_voting_token_by_hash(
+                        token_hash=request.session["voting_tokens"][module_key], module=self.module
+                    )
+                    is not None
                 )
-                return token_queryset.exists()
         return False
 
     def dispatch(self, request, **kwargs):
