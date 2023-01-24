@@ -69,11 +69,14 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
 
         The token is valid if it is valid for the respective module.
         """
-        if "voting_token" in request.session:
-            token_queryset = VotingToken.objects.filter(
-                token=request.session["voting_token"], module=self.module
-            )
-            return token_queryset.exists()
+        if "voting_tokens" in request.session:
+            module_key = str(self.module.id)
+            if module_key in request.session["voting_tokens"]:
+                token_queryset = VotingToken.objects.filter(
+                    token=request.session["voting_tokens"][module_key],
+                    module=self.module,
+                )
+                return token_queryset.exists()
         return False
 
     def dispatch(self, request, **kwargs):
@@ -96,7 +99,15 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
         self.object_list = self.get_queryset()
         token_form = TokenForm(request.POST, module_id=self.module.id)
         if token_form.is_valid():
-            request.session["voting_token"] = token_form.cleaned_data["token"]
+            if "voting_tokens" in request.session:
+                request.session["voting_tokens"][
+                    str(self.module.id)
+                ] = token_form.cleaned_data["token"]
+                request.session.save()
+            else:
+                request.session["voting_tokens"] = {
+                    str(self.module.id): token_form.cleaned_data["token"]
+                }
             kwargs["valid_token_present"] = True
             self.mode = "list"
         kwargs["token_form"] = token_form

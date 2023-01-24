@@ -106,7 +106,8 @@ class ProposalFilterInfoMixin:
         # only show during voting phase and when token is entered
         if (
             has_feature_active(self.module, Proposal, "vote")
-            and "voting_token" in request.session
+            and "voting_tokens" in request.session
+            and str(self.module.id) in request.session["voting_tokens"]
         ):
             filters["own_votes"] = {
                 "label": _("Voting"),

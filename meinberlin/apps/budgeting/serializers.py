@@ -85,23 +85,29 @@ class ProposalSerializer(serializers.ModelSerializer):
         been voted with the token in the current session
         """
         if "request" in self.context:
-            if "voting_token" in self.context["request"].session:
-                token = None
-                try:
-                    token = VotingToken.objects.get(
-                        token=self.context["request"].session["voting_token"],
-                        module=self.context["view"].module,
-                    )
-                except VotingToken.DoesNotExist:
-                    pass
+            if "voting_tokens" in self.context["request"].session:
+                module = self.context["view"].module
+                module_key = str(module.id)
+                if module_key in self.context["request"].session["voting_tokens"]:
+                    token = None
+                    try:
+                        token = VotingToken.objects.get(
+                            token=self.context["request"].session["voting_tokens"][
+                                module_key
+                            ],
+                            module=module,
+                        )
+                    except VotingToken.DoesNotExist:
+                        pass
 
-                vote = TokenVote.objects.filter(
-                    token=token,
-                    content_type=ContentType.objects.get_for_model(proposal.__class__),
-                    object_pk=proposal.pk,
-                )
-                if vote.exists():
-                    return True
+                    vote = TokenVote.objects.filter(
+                        token=token,
+                        content_type=ContentType.objects.get_for_model(
+                            proposal.__class__
+                        ),
+                        object_pk=proposal.pk,
+                    )
+                    return vote.exists()
 
         return False
 

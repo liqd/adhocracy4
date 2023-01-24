@@ -25,18 +25,21 @@ def react_proposals_vote(context, module, proposal):
     request = context["request"]
     session_token_voted = False
     token_info = None
-    if "voting_token" in request.session:
-        try:
-            token = VotingToken.objects.get(
-                token=request.session["voting_token"], module=module
-            )
-            serializer = VotingTokenSerializer(token)
-            token_info = serializer.data
-            session_token_voted = TokenVote.objects.filter(
-                token__pk=token.pk, content_type=proposal_ct, object_pk=proposal.pk
-            ).exists()
-        except VotingToken.DoesNotExist:
-            pass
+
+    if "voting_tokens" in request.session:
+        module_key = str(module.id)
+        if module_key in request.session["voting_tokens"]:
+            try:
+                token = VotingToken.objects.get(
+                    token=request.session["voting_tokens"][module_key], module=module
+                )
+                serializer = VotingTokenSerializer(token)
+                token_info = serializer.data
+                session_token_voted = TokenVote.objects.filter(
+                    token__pk=token.pk, content_type=proposal_ct, object_pk=proposal.pk
+                ).exists()
+            except VotingToken.DoesNotExist:
+                pass
 
     attributes = {
         "tokenvote_api_url": tokenvote_api_url,
