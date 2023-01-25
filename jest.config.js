@@ -13,6 +13,11 @@ const config = {
     '**/*.jest.js',
     '**/*.jest.jsx'
   ],
+  testPathIgnorePatterns: [
+    'venv/',
+    'node_modules/',
+    'build/'
+  ],
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.jsx',
