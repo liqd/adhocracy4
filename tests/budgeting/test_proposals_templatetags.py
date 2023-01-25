@@ -13,6 +13,7 @@ from adhocracy4.test.helpers import render_template
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting import phases
 from meinberlin.apps.budgeting.models import Proposal
+from tests.votes.test_token_vote_api import add_token_to_session
 
 
 @pytest.mark.django_db
@@ -79,8 +80,7 @@ def test_react_proposals_vote(
         }
 
     token = voting_token_factory(module=module)
-    request.session["voting_token"] = token.token
-    request.session.save()
+    add_token_to_session(request.session, token)
     token_vote_factory(token=token, content_object=proposal)
 
     with freeze_phase(phase):

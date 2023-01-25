@@ -16,7 +16,7 @@ def test_proposal_list_mixins(
         phase_factory, proposal_factory, phases.SupportPhase
     )
     token = voting_token_factory(module=module)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse("proposals-list", kwargs={"module_pk": module.pk})
 

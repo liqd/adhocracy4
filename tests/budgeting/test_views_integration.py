@@ -75,7 +75,7 @@ def test_list_view_token_form(
 
         response = client.post(url, data)
         assert response.status_code == 200
-        assert "voting_token" in client.session
+        assert "voting_tokens" in client.session
         assert "token_form" in response.context
 
     other_module = module_factory()
@@ -95,7 +95,7 @@ def test_list_view_token_form(
         assert "token" in response.context_data["token_form"].errors
         msg = _("This token is not valid")
         assert msg in response.context_data["token_form"].errors["token"]
-        assert "voting_token" not in client.session
+        assert "voting_tokens" not in client.session
 
 
 @pytest.mark.django_db

@@ -10,9 +10,11 @@ from meinberlin.apps.budgeting import phases
 from meinberlin.apps.votes.models import TokenVote
 
 
-def add_token_to_session(apiclient, token):
-    session = apiclient.session
-    session["voting_token"] = token.token
+def add_token_to_session(session, token):
+    if "voting_tokens" in session:
+        session["voting_tokens"][str(token.module.id)] = token.token
+    else:
+        session["voting_tokens"] = {str(token.module.id): token.token}
     session.save()
 
 
@@ -27,7 +29,7 @@ def test_voting_phase_active_valid_token_anonymous_can_vote(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
 
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-list",
@@ -53,7 +55,7 @@ def test_voting_phase_active_valid_token_user_can_vote(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
 
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-list",
@@ -80,7 +82,7 @@ def test_voting_phase_active_valid_token_admin_can_vote(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
 
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-list",
@@ -111,7 +113,7 @@ def test_voting_phase_inactive_valid_token_anonymous_cannot_vote(
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
     data = {"object_id": proposal.pk}
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         response = apiclient.post(url, data, format="json")
@@ -135,7 +137,7 @@ def test_voting_phase_inactive_valid_token_user_cannot_vote(
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
     data = {"object_id": proposal.pk}
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         assert apiclient.login(username=user.email, password="password")
@@ -160,7 +162,7 @@ def test_voting_phase_inactive_valid_token_admin_can_vote(
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
     data = {"object_id": proposal.pk}
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         assert apiclient.login(username=admin.email, password="password")
@@ -189,7 +191,7 @@ def test_voting_phase_active_valid_token_anonymous_cannot_vote_on_archived(
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
     data = {"object_id": proposal.pk}
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         response = apiclient.post(url, data, format="json")
@@ -217,7 +219,7 @@ def test_voting_phase_active_valid_token_user_cannot_vote_on_archived(
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
     data = {"object_id": proposal.pk}
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         assert apiclient.login(username=user.email, password="password")
@@ -246,7 +248,7 @@ def test_voting_phase_active_valid_token_admin_can_vote_on_archived(
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
     data = {"object_id": proposal.pk}
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         assert apiclient.login(username=admin.email, password="password")
@@ -308,7 +310,7 @@ def test_voting_phase_active_token_wrong_module(
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
     data = {"object_id": proposal.pk}
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         with translation.override("en_GB"):
@@ -342,7 +344,7 @@ def test_voting_phase_active_token_inactive(
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
     data = {"object_id": proposal.pk}
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         with translation.override("en_GB"):
@@ -378,7 +380,7 @@ def test_voting_phase_active_token_no_votes_left(
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
     data = {"object_id": proposal.pk}
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     assert TokenVote.objects.all().count() == 5
 
@@ -409,7 +411,7 @@ def test_token_kept_in_session_on_login(
         "tokenvotes-list",
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         data = {"object_id": proposal.pk}
@@ -419,7 +421,7 @@ def test_token_kept_in_session_on_login(
         assert apiclient.login(username=admin.email, password="password")
         data = {"object_id": other_proposal.pk}
         session = apiclient.session
-        assert "voting_token" in session
+        assert "voting_tokens" in session
         response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
 
@@ -444,7 +446,7 @@ def test_token_deleted_from_session_on_logout(
         "tokenvotes-list",
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     with freeze_phase(phase):
         assert apiclient.login(username=user.email, password="password")
@@ -456,7 +458,7 @@ def test_token_deleted_from_session_on_logout(
 
         data = {"object_id": other_proposal.pk}
         session = apiclient.session
-        assert "voting_token" not in session
+        assert "voting_tokens" not in session
         response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
@@ -472,7 +474,7 @@ def test_voting_phase_active_valid_token_anonymous_can_delete_vote(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -507,7 +509,7 @@ def test_voting_phase_active_valid_token_user_can_delete_vote(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -543,7 +545,7 @@ def test_voting_phase_active_valid_token_admin_can_delete_vote(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -574,7 +576,7 @@ def test_voting_phase_inactive_valid_token_anonymous_cannot_delete_vote(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -609,7 +611,7 @@ def test_voting_phase_inactive_valid_token_user_cannot_delete_vote(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -645,7 +647,7 @@ def test_voting_phase_inactive_valid_token_admin_can_delete_vote(
     proposal_ct = ContentType.objects.get_for_model(proposal.__class__)
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -680,7 +682,7 @@ def test_voting_phase_active_valid_token_anonymous_cannot_delete_archived(
 
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -719,7 +721,7 @@ def test_voting_phase_active_valid_token_user_cannot_delete_archived(
 
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -759,7 +761,7 @@ def test_voting_phase_active_valid_token_admin_can_delete_archived(
 
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -838,7 +840,7 @@ def test_voting_phase_active_token_wrong_vote_cannot_delete(
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
     other_token = voting_token_factory(module=module)
-    add_token_to_session(apiclient, other_token)
+    add_token_to_session(apiclient.session, other_token)
 
     url = reverse(
         "tokenvotes-detail",
@@ -875,7 +877,7 @@ def test_voting_phase_active_token_inactive_cannot_delete(
 
     token = voting_token_factory(module=module)
     token_vote_factory(token=token, content_object=proposal)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     token.is_active = False
     token.save()

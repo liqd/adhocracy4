@@ -25,7 +25,7 @@ def test_proposal_serializer(
 
     url = reverse("proposals-list", kwargs={"module_pk": module.pk})
     token = voting_token_factory(module=module)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     proposal_rated = proposal_factory(
         module=module, category=category, budget=25, point_label=""

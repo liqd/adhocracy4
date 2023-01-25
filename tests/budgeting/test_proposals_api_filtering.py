@@ -52,7 +52,7 @@ def test_proposal_list_filter_mixin(
 
     url = reverse("proposals-list", kwargs={"module_pk": module.pk})
     token = voting_token_factory(module=module)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
 
     response = apiclient.get(url)
 
@@ -323,7 +323,7 @@ def test_proposal_own_vote_filter(
     apiclient, module, proposal_factory, voting_token_factory, token_vote_factory
 ):
     token = voting_token_factory(module=module)
-    add_token_to_session(apiclient, token)
+    add_token_to_session(apiclient.session, token)
     other_token = voting_token_factory(module=module)
 
     proposal_factory(module=module)
