@@ -1,0 +1,44 @@
+[
+  {
+    "model": "meinberlin_topicprio.topic",
+    "pk": 1,
+    "fields": {
+      "slug": "topic-1",
+      "name": "Topic 1",
+      "description": "<p>Topic 1</p>",
+      "image": "",
+      "category": 37,
+      "labels": []
+    }
+  },
+  {
+    "model": "meinberlin_topicprio.topic",
+    "pk": 2,
+    "fields": {
+      "slug": "topic-2",
+      "name": "Topic 2",
+      "description": "<p>Topic 2</p>",
+      "image": "",
+      "category": 38,
+      "labels": [
+        34
+      ]
+    }
+  },
+  {
+    "model": "meinberlin_topicprio.topic",
+    "pk": 3,
+    "fields": {
+      "slug": "topic-3",
+      "name": "Topic 3",
+      "description": "<p>Topic 3</p>",
+      "image": "",
+      "category": 39,
+      "labels": [
+        34,
+        35,
+        36
+      ]
+    }
+  }
+]

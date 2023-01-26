@@ -1,0 +1,146 @@
+[
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 1,
+    "fields": {
+      "name": "Task 1",
+      "module": 7
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 2,
+    "fields": {
+      "name": "Task 2",
+      "module": 7
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 3,
+    "fields": {
+      "name": "Task 3",
+      "module": 7
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 4,
+    "fields": {
+      "name": "Task 1",
+      "module": 8
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 5,
+    "fields": {
+      "name": "Task 2",
+      "module": 8
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 6,
+    "fields": {
+      "name": "Task 3",
+      "module": 8
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 7,
+    "fields": {
+      "name": "Task 1",
+      "module": 9
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 8,
+    "fields": {
+      "name": "Task 2",
+      "module": 9
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 9,
+    "fields": {
+      "name": "Task 3",
+      "module": 9
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 10,
+    "fields": {
+      "name": "Task 1",
+      "module": 10
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 11,
+    "fields": {
+      "name": "Task 2",
+      "module": 10
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 12,
+    "fields": {
+      "name": "Task 3",
+      "module": 10
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 13,
+    "fields": {
+      "name": "Task 1",
+      "module": 2
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 14,
+    "fields": {
+      "name": "Task 2",
+      "module": 2
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 15,
+    "fields": {
+      "name": "Task 3",
+      "module": 2
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 16,
+    "fields": {
+      "name": "Task 1",
+      "module": 11
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 17,
+    "fields": {
+      "name": "Task 2",
+      "module": 11
+    }
+  },
+  {
+    "model": "meinberlin_moderationtasks.moderationtask",
+    "pk": 18,
+    "fields": {
+      "name": "Task 3",
+      "module": 11
+    }
+  }
+]

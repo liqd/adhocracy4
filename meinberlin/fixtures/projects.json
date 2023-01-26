@@ -1,0 +1,38 @@
+[
+  {
+    "model": "a4projects.project",
+    "pk": 1,
+    "fields": {
+      "created": "2023-01-25T14:12:44.367Z",
+      "modified": null,
+      "contact_address_text": "",
+      "contact_email": "",
+      "contact_name": "",
+      "contact_phone": "",
+      "contact_url": "",
+      "point": "\"\"",
+      "administrative_district": null,
+      "slug": "liqd-project",
+      "name": "liqd-project",
+      "organisation": 1,
+      "group": null,
+      "description": "liqd project description",
+      "information": "<p>liqd project info</p>",
+      "result": "",
+      "access": 1,
+      "is_draft": false,
+      "image": "",
+      "image_copyright": "",
+      "tile_image": "",
+      "tile_image_copyright": "",
+      "is_archived": false,
+      "topics": "",
+      "project_type": "a4projects.Project",
+      "is_app_accessible": false,
+      "participants": [],
+      "moderators": [
+        4
+      ]
+    }
+  }
+]

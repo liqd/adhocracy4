@@ -9,6 +9,13 @@ ifneq (, $(shell command -v gsed))
 	SED = gsed
 endif
 
+START_NOW = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
+END_NOW = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+30 days")
+START_2 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+31 days")
+END_2 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+61 days")
+START_3 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+62 days")
+END_3 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+92 days")
+
 .PHONY: all
 all: help
 
@@ -63,14 +70,35 @@ clean:
 
 .PHONY: fixtures
 fixtures:
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/map-preset.json
+	# set start date of active phase to today
+	$(SED) -i "s/2022-12-31T23:00:00Z/$(START_NOW)/g" meinberlin/fixtures/phases.json
+	$(SED) -i "s/2023-01-31T22:59:00Z/$(END_NOW)/g" meinberlin/fixtures/phases.json
+	# set start date of upcoming phase to today + 31
+	$(SED) -i "s/2023-01-31T23:00:00Z/$(START_2)/g" meinberlin/fixtures/phases.json
+	$(SED) -i "s/2023-02-28T22:59:00Z/$(END_2)/g" meinberlin/fixtures/phases.json
+	# set start date of last phase to today + 62
+	$(SED) -i "s/2023-02-28T23:00:00Z/$(START_3)/g" meinberlin/fixtures/phases.json
+	$(SED) -i "s/2023-03-31T21:59:00Z/$(END_3)/g" meinberlin/fixtures/phases.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/site-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/users-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/orga-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/project-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/module-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/phase-dev.json
-	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/admin-distr.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/users.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/accounts.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/administrative_districts.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/map-preset.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/organisations.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/projects.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/modules.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/phases.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/maps.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/polls.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/live_questions.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/categories.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/documents.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/labels.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/maptopicprop.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/moderationtasks.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/topicprio.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/votes.json
+	git restore meinberlin/fixtures/phases.json
 
 .PHONY: server
 server:

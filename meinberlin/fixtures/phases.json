@@ -1,0 +1,327 @@
+[
+  {
+    "model": "a4phases.phase",
+    "pk": 1,
+    "fields": {
+      "name": "Phase zur Einreichung von Ideen",
+      "description": "Anlegen und Kommentieren neuer Ideen.",
+      "type": "meinberlin_ideas:collect",
+      "module": 1,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 2,
+    "fields": {
+      "name": "What ideas do you suggest for funding?",
+      "description": "You can enter your proposal on the map and comment on the proposals of the other participants.",
+      "type": "meinberlin_budgeting:collect",
+      "module": 2,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 3,
+    "fields": {
+      "name": "Which of the submitted proposals would you like to support?",
+      "description": "The proposals with the most supporters will be examined and will then be put to the final vote.",
+      "type": "meinberlin_budgeting:support",
+      "module": 2,
+      "start_date": "2023-01-31T23:00:00Z",
+      "end_date": "2023-02-28T22:59:00Z",
+      "weight": 1
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 4,
+    "fields": {
+      "name": "Which of the proposals do you think should be implemented?",
+      "description": "You can vote for up to 5 proposals. To do so, please enter the voting code.",
+      "type": "meinberlin_budgeting:voting",
+      "module": 2,
+      "start_date": "2023-02-28T23:00:00Z",
+      "end_date": "2023-03-31T21:59:00Z",
+      "weight": 2
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 5,
+    "fields": {
+      "name": "What are your ideas?",
+      "description": "You can enter your own ideas on the map and comment on the ideas of the other participants.",
+      "type": "meinberlin_mapideas:collect",
+      "module": 3,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 6,
+    "fields": {
+      "name": "What are your ideas?",
+      "description": "You can create your own ideas and comment on and rate the ideas of the other participants.",
+      "type": "meinberlin_ideas:collect_feedback",
+      "module": 4,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 7,
+    "fields": {
+      "name": "What are your ideas?",
+      "description": "You can enter your own ideas on the map and comment on and rate the ideas of the other participants.",
+      "type": "meinberlin_mapideas:collect_feedback",
+      "module": 5,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 8,
+    "fields": {
+      "name": "What are your ideas?",
+      "description": "You can enter your own ideas on the map and comment on and rate the ideas of the other participants.",
+      "type": "meinberlin_mapideas:collect_feedback",
+      "module": 6,
+      "start_date": "2022-11-30T23:00:00Z",
+      "end_date": "2022-12-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 9,
+    "fields": {
+      "name": "What ideas do you suggest for funding?",
+      "description": "You can enter your proposal on the map and comment on and rate the proposals of the other participants.",
+      "type": "meinberlin_budgeting:submit",
+      "module": 7,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 10,
+    "fields": {
+      "name": "What ideas do you suggest for funding?",
+      "description": "You can enter your proposal on the map and comment on the proposals of the other participants.",
+      "type": "meinberlin_budgeting:collect",
+      "module": 8,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 11,
+    "fields": {
+      "name": "How do you like the submitted proposals?",
+      "description": "Rate the submitted proposals for the participatory budget (for/against).",
+      "type": "meinberlin_budgeting:rating",
+      "module": 8,
+      "start_date": "2023-01-31T23:00:00Z",
+      "end_date": "2023-02-28T22:59:00Z",
+      "weight": 1
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 12,
+    "fields": {
+      "name": "What ideas do you suggest for funding?",
+      "description": "You can enter your proposal on the map and comment on the proposals of the other participants.",
+      "type": "meinberlin_budgeting:collect",
+      "module": 9,
+      "start_date": "2022-11-30T23:00:00Z",
+      "end_date": "2022-12-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 13,
+    "fields": {
+      "name": "How do you like the submitted proposals?",
+      "description": "Rate the submitted proposals for the participatory budget (for/against).",
+      "type": "meinberlin_budgeting:rating",
+      "module": 9,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 1
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 14,
+    "fields": {
+      "name": "What ideas do you suggest for funding?",
+      "description": "You can enter your proposal on the map and comment on the proposals of the other participants.",
+      "type": "meinberlin_budgeting:collect",
+      "module": 10,
+      "start_date": "2022-11-30T23:00:00Z",
+      "end_date": "2022-12-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 15,
+    "fields": {
+      "name": "Which of the submitted proposals would you like to support?",
+      "description": "The proposals with the most supporters will be examined and will then be put to the final vote.",
+      "type": "meinberlin_budgeting:support",
+      "module": 10,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 1
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 16,
+    "fields": {
+      "name": "Which of the proposals do you think should be implemented?",
+      "description": "You can vote for up to 5 proposals. To do so, please enter the voting code.",
+      "type": "meinberlin_budgeting:voting",
+      "module": 10,
+      "start_date": "2023-01-31T23:00:00Z",
+      "end_date": "2023-02-28T22:59:00Z",
+      "weight": 2
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 17,
+    "fields": {
+      "name": "What ideas do you suggest for funding?",
+      "description": "You can enter your proposal on the map and comment on the proposals of the other participants.",
+      "type": "meinberlin_budgeting:collect",
+      "module": 11,
+      "start_date": "2022-10-31T23:00:00Z",
+      "end_date": "2022-11-30T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 18,
+    "fields": {
+      "name": "Which of the submitted proposals would you like to support?",
+      "description": "The proposals with the most supporters will be examined and will then be put to the final vote.",
+      "type": "meinberlin_budgeting:support",
+      "module": 11,
+      "start_date": "2022-11-30T23:00:00Z",
+      "end_date": "2022-12-31T22:59:00Z",
+      "weight": 1
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 19,
+    "fields": {
+      "name": "Which of the proposals do you think should be implemented?",
+      "description": "You can vote for up to 5 proposals. To do so, please enter the voting code.",
+      "type": "meinberlin_budgeting:voting",
+      "module": 11,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 2
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 20,
+    "fields": {
+      "name": "What ideas do you suggest for funding?",
+      "description": "You can enter your proposal on the map and comment on and rate the proposals of the other participants.",
+      "type": "meinberlin_kiezkasse:request_feedback",
+      "module": 12,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 21,
+    "fields": {
+      "name": "What do you think about these ideas/topics?",
+      "description": "You can comment on and rate the ideas/topics.",
+      "type": "meinberlin_topicprio:prioritize",
+      "module": 13,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 22,
+    "fields": {
+      "name": "What do you think about these places/suggestions?",
+      "description": "You can comment and rate the places/suggestions.",
+      "type": "meinberlin_maptopicprio:prioritize",
+      "module": 14,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 23,
+    "fields": {
+      "name": "What do you think about the draft?",
+      "description": "You can comment on the draft paragraph by paragraph or as a whole.",
+      "type": "meinberlin_documents:comment",
+      "module": 15,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 24,
+    "fields": {
+      "name": "Voting phase",
+      "description": "Answer the questions and comment on the poll.",
+      "type": "a4polls:voting",
+      "module": 16,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4phases.phase",
+    "pk": 25,
+    "fields": {
+      "name": "Do you have questions?",
+      "description": "You can add your questions and support the questions of other participants. To allow different people to have their say, please indicate which group you feel you belong to.",
+      "type": "meinberlin_livequestions:issue",
+      "module": 17,
+      "start_date": "2022-12-31T23:00:00Z",
+      "end_date": "2023-01-31T22:59:00Z",
+      "weight": 0
+    }
+  }
+]

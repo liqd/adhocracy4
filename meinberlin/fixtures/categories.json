@@ -1,0 +1,407 @@
+[
+  {
+    "model": "a4categories.category",
+    "pk": 1,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 4
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 2,
+    "fields": {
+      "name": "Category 2",
+      "icon": "",
+      "module": 4
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 3,
+    "fields": {
+      "name": "Category 3",
+      "icon": "",
+      "module": 4
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 4,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 5
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 5,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 5
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 6,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 5
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 7,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 1
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 8,
+    "fields": {
+      "name": "Category 2",
+      "icon": "",
+      "module": 1
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 9,
+    "fields": {
+      "name": "Category 3",
+      "icon": "",
+      "module": 1
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 10,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 3
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 11,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 3
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 12,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 3
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 13,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 6
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 14,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 6
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 15,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 6
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 16,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 7
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 17,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 7
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 18,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 7
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 19,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 8
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 20,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 8
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 21,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 8
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 22,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 9
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 23,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 9
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 24,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 9
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 25,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 10
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 26,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 10
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 27,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 10
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 28,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 2
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 29,
+    "fields": {
+      "name": "Category 2",
+      "icon": "",
+      "module": 2
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 30,
+    "fields": {
+      "name": "Category 3",
+      "icon": "",
+      "module": 2
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 31,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 11
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 32,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 11
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 33,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 11
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 34,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 12
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 35,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 12
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 36,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 12
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 37,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 13
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 38,
+    "fields": {
+      "name": "Category 2",
+      "icon": "",
+      "module": 13
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 39,
+    "fields": {
+      "name": "Category 3",
+      "icon": "",
+      "module": 13
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 40,
+    "fields": {
+      "name": "Category 1",
+      "icon": "",
+      "module": 14
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 41,
+    "fields": {
+      "name": "Category 2",
+      "icon": "diamant",
+      "module": 14
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 42,
+    "fields": {
+      "name": "Category 3",
+      "icon": "zickzack",
+      "module": 14
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 43,
+    "fields": {
+      "name": "Affiliation 1",
+      "icon": "",
+      "module": 17
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 44,
+    "fields": {
+      "name": "Affiliation 2",
+      "icon": "",
+      "module": 17
+    }
+  },
+  {
+    "model": "a4categories.category",
+    "pk": 45,
+    "fields": {
+      "name": "Affiliation 3",
+      "icon": "",
+      "module": 17
+    }
+  }
+]

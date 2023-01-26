@@ -1,0 +1,50 @@
+[
+  {
+    "model": "meinberlin_maptopicprio.maptopic",
+    "pk": 4,
+    "fields": {
+      "slug": "place-1",
+      "name": "Place 1",
+      "description": "<p>Place 1</p>",
+      "image": "",
+      "category": 40,
+      "point": "{\n    \"type\": \"Feature\",\n    \"properties\": {},\n    \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n            13.286076,\n            52.478666\n        ]\n    }\n}",
+      "point_label": "Place 1 Label",
+      "labels": []
+    }
+  },
+  {
+    "model": "meinberlin_maptopicprio.maptopic",
+    "pk": 5,
+    "fields": {
+      "slug": "place-2",
+      "name": "Place 2",
+      "description": "<p>Place 2</p>",
+      "image": "",
+      "category": 41,
+      "point": "{\n    \"type\": \"Feature\",\n    \"properties\": {},\n    \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n            13.304958,\n            52.479607\n        ]\n    }\n}",
+      "point_label": "Place 2 Label",
+      "labels": [
+        37
+      ]
+    }
+  },
+  {
+    "model": "meinberlin_maptopicprio.maptopic",
+    "pk": 6,
+    "fields": {
+      "slug": "place-3",
+      "name": "Place 3",
+      "description": "<p>Place 3</p>",
+      "image": "",
+      "category": 42,
+      "point": "{\n    \"type\": \"Feature\",\n    \"properties\": {},\n    \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n            13.289509,\n            52.471765\n        ]\n    }\n}",
+      "point_label": "",
+      "labels": [
+        37,
+        38,
+        39
+      ]
+    }
+  }
+]

@@ -1,0 +1,145 @@
+[
+  {
+    "model": "a4polls.poll",
+    "pk": 8,
+    "fields": {}
+  },
+  {
+    "model": "a4polls.question",
+    "pk": 1,
+    "fields": {
+      "label": "Question 1",
+      "help_text": "",
+      "weight": 0,
+      "multiple_choice": false,
+      "is_open": false,
+      "poll": 8
+    }
+  },
+  {
+    "model": "a4polls.question",
+    "pk": 2,
+    "fields": {
+      "label": "Question 2 (multiple)",
+      "help_text": "",
+      "weight": 1,
+      "multiple_choice": true,
+      "is_open": false,
+      "poll": 8
+    }
+  },
+  {
+    "model": "a4polls.question",
+    "pk": 3,
+    "fields": {
+      "label": "Question 3 (multiple, own)",
+      "help_text": "",
+      "weight": 2,
+      "multiple_choice": false,
+      "is_open": false,
+      "poll": 8
+    }
+  },
+  {
+    "model": "a4polls.question",
+    "pk": 4,
+    "fields": {
+      "label": "Question 4 (open question)",
+      "help_text": "Any answer",
+      "weight": 3,
+      "multiple_choice": false,
+      "is_open": true,
+      "poll": 8
+    }
+  },
+  {
+    "model": "a4polls.choice",
+    "pk": 1,
+    "fields": {
+      "label": "Answer 1",
+      "question": 1,
+      "is_other_choice": false,
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4polls.choice",
+    "pk": 2,
+    "fields": {
+      "label": "Answer 2",
+      "question": 1,
+      "is_other_choice": false,
+      "weight": 1
+    }
+  },
+  {
+    "model": "a4polls.choice",
+    "pk": 3,
+    "fields": {
+      "label": "Answer 3",
+      "question": 1,
+      "is_other_choice": false,
+      "weight": 2
+    }
+  },
+  {
+    "model": "a4polls.choice",
+    "pk": 4,
+    "fields": {
+      "label": "Answer 1",
+      "question": 2,
+      "is_other_choice": false,
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4polls.choice",
+    "pk": 5,
+    "fields": {
+      "label": "Answer 2",
+      "question": 2,
+      "is_other_choice": false,
+      "weight": 1
+    }
+  },
+  {
+    "model": "a4polls.choice",
+    "pk": 6,
+    "fields": {
+      "label": "Answer 3",
+      "question": 2,
+      "is_other_choice": false,
+      "weight": 2
+    }
+  },
+  {
+    "model": "a4polls.choice",
+    "pk": 7,
+    "fields": {
+      "label": "Answer 1",
+      "question": 3,
+      "is_other_choice": false,
+      "weight": 0
+    }
+  },
+  {
+    "model": "a4polls.choice",
+    "pk": 8,
+    "fields": {
+      "label": "Answer 2",
+      "question": 3,
+      "is_other_choice": false,
+      "weight": 1
+    }
+  },
+  {
+    "model": "a4polls.choice",
+    "pk": 9,
+    "fields": {
+      "label": "Answer 3",
+      "question": 3,
+      "is_other_choice": false,
+      "weight": 2
+    }
+  }
+]

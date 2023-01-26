@@ -1,0 +1,313 @@
+[
+  {
+    "model": "a4modules.module",
+    "pk": 1,
+    "fields": {
+      "slug": "brainstorming",
+      "name": "Brainstorming",
+      "description": "liqd project description",
+      "weight": 1,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": ""
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 2,
+    "fields": {
+      "slug": "participatory-budgeting-3-phase",
+      "name": "Participatory budgeting (3 phase) in first phase",
+      "description": "Participatory budgeting (3 phase) in first phase",
+      "weight": 2,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "PB3"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 3,
+    "fields": {
+      "slug": "spatial-brainstorming",
+      "name": "Spatial Brainstorming",
+      "description": "Spatial Brainstorming",
+      "weight": 3,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "MBS"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 4,
+    "fields": {
+      "slug": "idea-collection",
+      "name": "Idea Collection",
+      "description": "Idea Collection",
+      "weight": 4,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "IC"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 5,
+    "fields": {
+      "slug": "spatial-idea-collection",
+      "name": "Spatial Idea Collection",
+      "description": "Spatial Idea Collection",
+      "weight": 5,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "MIC"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 6,
+    "fields": {
+      "slug": "spatial-idea-collection-2",
+      "name": "Spatial Idea Collection (Ended)",
+      "description": "Spatial Idea Collection (ended)",
+      "weight": 6,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "MIC"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 7,
+    "fields": {
+      "slug": "participatory-budgeting-1-phase",
+      "name": "Participatory budgeting (1 phase)",
+      "description": "Participatory budgeting (1 phase)",
+      "weight": 7,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "PB"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 8,
+    "fields": {
+      "slug": "participatory-budgeting-2-phase",
+      "name": "Participatory budgeting (2 phase) in first phase",
+      "description": "Participatory budgeting (2 phase) in first phase",
+      "weight": 8,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "PB2"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 9,
+    "fields": {
+      "slug": "participatory-budgeting-2-phase-2",
+      "name": "Participatory budgeting (2 phase) in second phase",
+      "description": "Participatory budgeting (2 phase) in second phase",
+      "weight": 9,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "PB2"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 10,
+    "fields": {
+      "slug": "participatory-budgeting-3-phase-2",
+      "name": "Participatory budgeting (3 phase) in phase 2",
+      "description": "Participatory budgeting (3 phase) in phase 2",
+      "weight": 10,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "PB3"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 11,
+    "fields": {
+      "slug": "participatory-budgeting-3-phase-3",
+      "name": "Participatory budgeting (3 phase) in third phase",
+      "description": "Participatory budgeting (3 phase) in third phase",
+      "weight": 11,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "PB3"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 12,
+    "fields": {
+      "slug": "kiezkasse",
+      "name": "Kiezkasse",
+      "description": "Kiezkasse",
+      "weight": 12,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "KK"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 13,
+    "fields": {
+      "slug": "prioritization",
+      "name": "Prioritization",
+      "description": "Prioritization",
+      "weight": 13,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "TP"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 14,
+    "fields": {
+      "slug": "spatial-prioritization",
+      "name": "Spatial Prioritization",
+      "description": "Spatial Prioritization",
+      "weight": 14,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "MTP"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 15,
+    "fields": {
+      "slug": "text-review",
+      "name": "Text Review",
+      "description": "Text Review",
+      "weight": 15,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "TR"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 16,
+    "fields": {
+      "slug": "poll",
+      "name": "Poll",
+      "description": "Poll",
+      "weight": 16,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "PO"
+    }
+  },
+  {
+    "model": "a4modules.module",
+    "pk": 17,
+    "fields": {
+      "slug": "interactive-event",
+      "name": "Interactive Event",
+      "description": "Interactive Event",
+      "weight": 17,
+      "project": 1,
+      "is_draft": false,
+      "blueprint_type": "IE"
+    }
+  },
+  {
+    "model": "a4modules.item",
+    "pk": 1,
+    "fields": {
+      "created": "2023-01-26T09:43:37.498Z",
+      "modified": null,
+      "creator": 1,
+      "module": 13
+    }
+  },
+  {
+    "model": "a4modules.item",
+    "pk": 2,
+    "fields": {
+      "created": "2023-01-26T09:43:53.096Z",
+      "modified": null,
+      "creator": 1,
+      "module": 13
+    }
+  },
+  {
+    "model": "a4modules.item",
+    "pk": 3,
+    "fields": {
+      "created": "2023-01-26T09:44:09.944Z",
+      "modified": null,
+      "creator": 1,
+      "module": 13
+    }
+  },
+  {
+    "model": "a4modules.item",
+    "pk": 4,
+    "fields": {
+      "created": "2023-01-26T09:46:36.184Z",
+      "modified": null,
+      "creator": 1,
+      "module": 14
+    }
+  },
+  {
+    "model": "a4modules.item",
+    "pk": 5,
+    "fields": {
+      "created": "2023-01-26T09:46:55.849Z",
+      "modified": null,
+      "creator": 1,
+      "module": 14
+    }
+  },
+  {
+    "model": "a4modules.item",
+    "pk": 6,
+    "fields": {
+      "created": "2023-01-26T09:47:19.607Z",
+      "modified": null,
+      "creator": 1,
+      "module": 14
+    }
+  },
+  {
+    "model": "a4modules.item",
+    "pk": 7,
+    "fields": {
+      "created": "2023-01-26T09:49:19.288Z",
+      "modified": null,
+      "creator": 1,
+      "module": 15
+    }
+  },
+  {
+    "model": "a4modules.item",
+    "pk": 8,
+    "fields": {
+      "created": "2023-01-26T09:49:57.522Z",
+      "modified": null,
+      "creator": 1,
+      "module": 16
+    }
+  },
+  {
+    "model": "a4modules.item",
+    "pk": 9,
+    "fields": {
+      "created": "2023-01-26T09:53:57.703Z",
+      "modified": null,
+      "creator": 1,
+      "module": 17
+    }
+  }
+]

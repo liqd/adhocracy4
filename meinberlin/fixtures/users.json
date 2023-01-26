@@ -1,0 +1,74 @@
+[
+  {
+    "model": "meinberlin_users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$PnGrTO2WwP51kG7TQ9evau$Fjxd01Jjv/tFYi9wWkw9pA9Gs+Igh+v/Yet5FYOntHU=",
+      "last_login": "2023-01-26T09:20:54.848Z",
+      "is_superuser": true,
+      "username": "admin",
+      "email": "admin@liqd.net",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-01-25T14:12:42.022Z",
+      "get_notifications": true,
+      "get_newsletters": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "meinberlin_users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$20000$qMYSzezfIiw3$w3A0xY/kOgE8yA4m3RDFItXTqWCV3N7v2CLy2fD8gyw=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user",
+      "email": "user@liqd.net",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-01-25T14:12:42.025Z",
+      "get_notifications": true,
+      "get_newsletters": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "meinberlin_users.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$cV8dNCt9KQvy$9B6aNADd5mu9icBCxH87F+5QDdI/H7JdiP06Ua16vsA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "initiator",
+      "email": "initiator@liqd.net",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-01-25T14:12:42.026Z",
+      "get_notifications": true,
+      "get_newsletters": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "meinberlin_users.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$S4eWhSbehLwc$AW8pzKRfrJZz9bO135VklnIdAPNhUfe8KzJL6FvQwLg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "moderator",
+      "email": "moderator@liqd.net",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-01-25T14:12:42.026Z",
+      "get_notifications": true,
+      "get_newsletters": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

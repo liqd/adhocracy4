@@ -1,0 +1,9 @@
+[
+  {
+    "model": "meinberlin_livequestions.livestream",
+    "pk": 9,
+    "fields": {
+      "live_stream": "<div>\n<div><iframe src=\"https://www.youtube.com/embed/Q6t-TaYzMvg?feature=oembed\" style=\"\"></iframe></div>\n</div>\n\n\n&nbsp;"
+    }
+  }
+]
