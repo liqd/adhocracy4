@@ -15,7 +15,7 @@ based on [adhocracy 4](https://github.com/liqd/adhocracy4).
 *   libpq (only if postgres should be used)
 *   gdal
 
-## Installation
+## Installation (for development and testing only!)
 
     git clone https://github.com/liqd/a4-meinberlin.git
     cd a4-meinberlin
