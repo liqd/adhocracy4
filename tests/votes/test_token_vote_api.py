@@ -900,3 +900,60 @@ def test_voting_phase_active_token_inactive_cannot_delete(
             assert "Token is inactive." in response.content.decode()
 
     assert TokenVote.objects.all().count() == 1
+
+
+@pytest.mark.django_db
+def test_voting_phase_active_two_valid_tokens_anonymous_can_vote_both(
+    apiclient, voting_token_factory, phase_factory, proposal_factory
+):
+
+    phase_1, module_1, project_1, proposal_1 = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase
+    )
+    phase_2, module_2, project_2, proposal_2 = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase
+    )
+    proposal_ct = ContentType.objects.get_for_model(proposal_1.__class__)
+    token_1 = voting_token_factory(module=module_1)
+    token_2 = voting_token_factory(module=module_2)
+
+    add_token_to_session(apiclient.session, token_1)
+
+    url_1 = reverse(
+        "tokenvotes-list",
+        kwargs={"module_pk": module_1.pk, "content_type": proposal_ct.id},
+    )
+
+    data_1 = {"object_id": proposal_1.pk}
+
+    with freeze_phase(phase_1):
+        response = apiclient.post(url_1, data_1, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        assert TokenVote.objects.all().count() == 1
+
+    url_2 = reverse(
+        "tokenvotes-list",
+        kwargs={"module_pk": module_2.pk, "content_type": proposal_ct.id},
+    )
+
+    data_2 = {"object_id": proposal_2.pk}
+
+    with freeze_phase(phase_2):
+        response = apiclient.post(url_2, data_2, format="json")
+        assert response.status_code == status.HTTP_403_FORBIDDEN
+        assert TokenVote.objects.all().count() == 1
+
+    add_token_to_session(apiclient.session, token_2)
+
+    with freeze_phase(phase_2):
+        response = apiclient.post(url_2, data_2, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        assert TokenVote.objects.all().count() == 2
+
+    proposal_3 = proposal_factory(module=module_1)
+    data_3 = {"object_id": proposal_3.pk}
+
+    with freeze_phase(phase_1):
+        response = apiclient.post(url_1, data_3, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        assert TokenVote.objects.all().count() == 3

@@ -1,10 +1,12 @@
 import pytest
+from dateutil.parser import parse
 from django.core import mail
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
+from adhocracy4.test.helpers import freeze_time
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting import models
@@ -57,11 +59,55 @@ def test_list_view_ordering_choices(client, phase_factory, proposal_factory):
 
 
 @pytest.mark.django_db
+def test_list_view_default_filters(client, module, phase_factory, proposal_factory):
+
+    support_phase = phase_factory(
+        phase_content=phases.SupportPhase(),
+        module=module,
+        start_date=parse("2022-01-01 00:00:00 UTC"),
+        end_date=parse("2022-01-01 10:00:00 UTC"),
+    )
+    voting_phase = phase_factory(
+        phase_content=phases.VotingPhase(),
+        module=module,
+        start_date=parse("2022-01-01 14:00:00 UTC"),
+        end_date=parse("2022-01-01 18:00:00 UTC"),
+    )
+
+    between_phases = parse("2022-01-01 12:00:00 UTC")
+
+    url = module.get_absolute_url()
+    with freeze_phase(support_phase):
+        response = client.get(url)
+        defaults = response.context["view"].filter_set.defaults
+        assert "is_archived" in defaults
+        assert defaults["is_archived"] == "false"
+        assert "ordering" in defaults
+        assert defaults["ordering"] == "dailyrandom"
+
+    with freeze_time(between_phases):
+        response = client.get(url)
+        defaults = response.context["view"].filter_set.defaults
+        assert "is_archived" in defaults
+        assert defaults["is_archived"] == "false"
+        assert "ordering" in defaults
+        assert defaults["ordering"] == "-positive_rating_count"
+
+    with freeze_phase(voting_phase):
+        response = client.get(url)
+        defaults = response.context["view"].filter_set.defaults
+        assert "is_archived" in defaults
+        assert defaults["is_archived"] == "false"
+        assert "ordering" in defaults
+        assert defaults["ordering"] == "dailyrandom"
+
+
+@pytest.mark.django_db
 def test_list_view_token_form(
     client, user, phase_factory, proposal_factory, voting_token_factory, module_factory
 ):
     phase, module, project, item = setup_phase(
-        phase_factory, proposal_factory, phases.RequestPhase
+        phase_factory, proposal_factory, phases.VotingPhase
     )
     url = project.get_absolute_url()
     token = voting_token_factory(module=module)
@@ -72,11 +118,15 @@ def test_list_view_token_form(
         response = client.get(url)
         assert "token_form" in response.context
         assert_template_response(response, "meinberlin_budgeting/proposal_list.html")
+        assert not response.context["valid_token_present"]
 
         response = client.post(url, data)
         assert response.status_code == 200
         assert "voting_tokens" in client.session
         assert "token_form" in response.context
+
+        response = client.get(url)
+        assert response.context["valid_token_present"]
 
     other_module = module_factory()
     other_token = voting_token_factory(module=other_module)
@@ -96,6 +146,47 @@ def test_list_view_token_form(
         msg = _("This token is not valid")
         assert msg in response.context_data["token_form"].errors["token"]
         assert "voting_tokens" not in client.session
+
+
+@pytest.mark.django_db
+def test_list_view_tokens_for_different_modules(
+    client, phase_factory, proposal_factory, voting_token_factory
+):
+    phase_1, module_1, _, _ = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase
+    )
+    url_1 = module_1.get_absolute_url()
+    token_1 = voting_token_factory(module=module_1)
+    data_1 = {"token": str(token_1)}
+
+    with freeze_phase(phase_1):
+        response = client.post(url_1, data_1)
+        assert response.status_code == 200
+        assert "voting_tokens" in client.session
+        assert str(module_1.id) in client.session["voting_tokens"]
+
+        response = client.get(url_1)
+        assert response.context["valid_token_present"]
+
+    phase_2, module_2, _, _ = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase
+    )
+    url_2 = module_2.get_absolute_url()
+    token_2 = voting_token_factory(module=module_2)
+    data_2 = {"token": str(token_2)}
+
+    with freeze_phase(phase_2):
+        response = client.post(url_2, data_2)
+        assert response.status_code == 200
+        assert "voting_tokens" in client.session
+        assert str(module_2.id) in client.session["voting_tokens"]
+        assert str(module_1.id) in client.session["voting_tokens"]
+
+        response = client.get(url_2)
+        assert response.context["valid_token_present"]
+
+        response = client.get(url_1)
+        assert response.context["valid_token_present"]
 
 
 @pytest.mark.django_db
