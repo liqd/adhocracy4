@@ -16,6 +16,7 @@ export const BudgetingProposalList = (props) => {
     return django.interpolate(countText, [votes])
   }
   const noResults = django.gettext('Nothing to show')
+  const endSessionString = django.gettext('Are you ready? End session')
   const scrolledRef = useRef(false)
 
   const fetchProposals = () => {
@@ -39,6 +40,11 @@ export const BudgetingProposalList = (props) => {
         })
       })
       .catch(error => console.log(error))
+  }
+
+  const endSession = () => {
+    const endSessionUrl = props.end_session_url
+    fetch(endSessionUrl).catch(error => console.log(error))
   }
 
   const scrollToProposal = () => {
@@ -98,6 +104,9 @@ export const BudgetingProposalList = (props) => {
                 inactiveClass="btn btn--full btn--light u-spacer-bottom btn--huge"
                 counter={meta?.token_info.num_votes_left}
               />
+              <button className="btn" onClick={endSession}>
+                {endSessionString}
+              </button>
             </div>
           </div>
         </div>}

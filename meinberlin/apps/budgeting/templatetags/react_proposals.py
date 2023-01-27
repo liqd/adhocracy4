@@ -18,10 +18,12 @@ def react_proposals(context, module):
         "tokenvotes-list",
         kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
     )
+    end_session_url = reverse("end_session")
 
     attributes = {
         "proposals_api_url": proposals_api_url,
         "tokenvote_api_url": tokenvote_api_url,
+        "end_session_url": end_session_url,
     }
 
     return format_html(

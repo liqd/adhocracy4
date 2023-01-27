@@ -36,6 +36,7 @@ def test_react_proposals(module, rf):
             "tokenvotes-list",
             kwargs={"module_pk": module.pk, "content_type": contenttype.id},
         ),
+        "end_session_url": reverse("end_session"),
     }
 
 
