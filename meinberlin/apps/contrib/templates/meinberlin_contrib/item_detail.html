@@ -12,12 +12,19 @@
                 <li>
                     {% if back %}
                     <a href="{{ back }}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% if back_string %}
+                            {{ back_string }}
+                        {% else %}
+                            {% translate 'map' %}
+                        {% endif %}
+                    </a>
                     {% else %}
                     <a href="{{ module.get_detail_url }}">
-                    {% endif %}
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% translate 'list' %}
+                        {% translate 'back' %}
                     </a>
+                    {% endif %}
                 </li>
             </ul>
         </nav>

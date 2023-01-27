@@ -1,3 +1,4 @@
+from urllib.parse import parse_qs
 from urllib.parse import urlparse
 
 import django_filters
@@ -135,13 +136,22 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
             parsed_url = urlparse(referer)
             match = resolve(parsed_url.path)
             if match.url_name == "project-detail" or match.url_name == "module-detail":
-                return referer + "#proposal_{}".format(self.object.id)
-            return None
-        return None
+                back_mode = None
+                back_string = _("map")
+                if "mode" in parse_qs(parsed_url.query):
+                    back_mode = parse_qs(parsed_url.query)["mode"][0]
+                    if back_mode == "list":
+                        back_string = _("list")
+                back_link = referer + "#proposal_{}".format(self.object.id)
+                return back_link, back_string
+            return None, None
+        return None, None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["back"] = self.get_back()
+        back_link, back_string = self.get_back()
+        context["back"] = back_link
+        context["back_string"] = back_string
         return context
 
 
