@@ -29,7 +29,7 @@
     {% endif %}
 
     {% has_perm 'meinberlin_budgeting.vote_proposal' request.user proposal as vote_allowed %}
-    {% if vote_allowed %}
+    {% if vote_allowed and has_valid_token_in_session %}
     <div class="u-bottom-divider">
         {% react_proposals_vote view.module proposal %}
     </div>

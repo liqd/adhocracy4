@@ -80,7 +80,8 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
             if module_key in request.session["voting_tokens"]:
                 return (
                     VotingToken.get_voting_token_by_hash(
-                        token_hash=request.session["voting_tokens"][module_key], module=self.module
+                        token_hash=request.session["voting_tokens"][module_key],
+                        module=self.module,
                     )
                     is not None
                 )
@@ -153,11 +154,31 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
             return None, None
         return None, None
 
+    def has_valid_token_in_session(self, request):
+        """Return whether a valid token is stored in the session.
+
+        The token is valid if it is valid for the respective module.
+        """
+        if "voting_tokens" in request.session:
+            module_key = str(self.module.id)
+            if module_key in request.session["voting_tokens"]:
+                return (
+                    VotingToken.get_voting_token_by_hash(
+                        token_hash=request.session["voting_tokens"][module_key],
+                        module=self.module,
+                    )
+                    is not None
+                )
+        return False
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         back_link, back_string = self.get_back()
         context["back"] = back_link
         context["back_string"] = back_string
+        context["has_valid_token_in_session"] = self.has_valid_token_in_session(
+            self.request
+        )
         return context
 
 

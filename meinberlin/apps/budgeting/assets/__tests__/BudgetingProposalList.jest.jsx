@@ -7,7 +7,7 @@ const permissions = {
   view_support_count: false,
   view_rate_count: true,
   view_comment_count: true,
-  view_votes_left: true
+  has_voting_permission_and_valid_token: false
 }
 
 test('Budgeting Proposal List without list item (empty)', async () => {

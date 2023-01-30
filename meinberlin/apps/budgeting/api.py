@@ -246,9 +246,12 @@ class PermissionInfoMixin:
         permissions["view_vote_count"] = user.has_perm(
             "meinberlin_budgeting.view_vote_count", self.module
         )
-        permissions["view_votes_left"] = self._has_valid_token_in_session(
-            response
-        ) and user.has_perm("meinberlin_budgeting.add_vote", self.module)
+        permissions[
+            "has_voting_permission_and_valid_token"
+        ] = self._has_valid_token_in_session(response) and user.has_perm(
+            "meinberlin_budgeting.add_vote", self.module
+        )
+
         response.data["permissions"] = permissions
         return response
 
