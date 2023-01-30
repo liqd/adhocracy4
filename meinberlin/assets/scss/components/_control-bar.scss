@@ -12,7 +12,7 @@
         & > button,
         & > div.btn-group,
         & > form {
-            margin-bottom: $spacer;
+            @extend .u-spacer-bottom-half;
         }
     }
 
