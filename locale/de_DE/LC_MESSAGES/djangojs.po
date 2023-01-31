@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-18 09:48+0100\n"
+"POT-Creation-Date: 2023-01-31 11:27+0100\n"
 "PO-Revision-Date: 2023-01-19 03:00+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
@@ -120,16 +120,16 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:70
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:75
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: adhocracy4/comments/static/comments/Comment.jsx:153
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:70
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:75
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:5
@@ -605,29 +605,29 @@ msgstr ""
 msgid "Save"
 msgstr "Speichern"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:16
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:17
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:19
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:16
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:17
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:19
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:7
 msgid "Question"
 msgstr "Frage"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:37
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:39
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:120
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:37
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:39
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:120
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
 msgstr "Erklärung"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:47
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:52
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:47
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:52
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:3
@@ -635,12 +635,12 @@ msgstr "Erklärung"
 msgid "Move up"
 msgstr "nach oben"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:59
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:64
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:59
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:64
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:4
@@ -700,40 +700,40 @@ msgstr ""
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Ihre Antwort ist ungültig oder leer. Bitte versuchen Sie es erneut."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:53
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:53
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:55
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:55
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:63
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:143
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:63
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:143
 msgid "Change answer"
 msgstr "Antwort ändern"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:143
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:143
 msgid "Submit answer"
 msgstr "Antwort senden"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:142
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:142
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:149
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:149
 msgid "Please login to answer"
 msgstr "Bitte melden Sie sich zum Antworten an."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:152
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:152
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:159
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:159
 msgid "Show results"
 msgstr "Ergebnis zeigen"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:158
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:158
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:165
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:165
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:179
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:179
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:186
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:186
 msgid "Please enter your answer in this field."
 msgstr "Bitte geben Sie hier Ihre Antwort ein."
 
@@ -781,8 +781,8 @@ msgstr[1] "%s Teilnehmer*innen haben geantwortet."
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:78
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:78
-msgid "noone has answered this question"
-msgstr "Keine Antworten"
+msgid "no one has answered this question"
+msgstr ""
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:108
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:108
@@ -1385,17 +1385,3 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
-
-#~ msgid "The poll could not be updated."
-#~ msgstr "Die Umfrage konnte nicht aktualisiert werden."
-
-#~ msgid "New question"
-#~ msgstr "Neue Frage"
-
-#~ msgid "Multiple choice question"
-#~ msgstr "Multiple-Choice-Frage"
-
-#~ msgid "you have 1 vote left"
-#~ msgid_plural "you have %s votes left"
-#~ msgstr[0] "Sie haben noch 1 Stimme."
-#~ msgstr[1] "Sie haben noch %s Stimmen."

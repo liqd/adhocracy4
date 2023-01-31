@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-05 16:43+0100\n"
+"POT-Creation-Date: 2023-01-31 11:27+0100\n"
 "PO-Revision-Date: 2023-01-19 03:00+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
@@ -36,7 +36,7 @@ msgstr "Kategorie hinzufügen"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
-#: meinberlin/templates/a4dashboard/base_dashboard.html:43
+#: meinberlin/templates/a4dashboard/base_dashboard.html:45
 msgid "Dashboard"
 msgstr "Organisationsverwaltung"
 
@@ -231,7 +231,7 @@ msgstr "Abbrechen"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:4
 #: meinberlin/apps/projectcontainers/dashboard.py:62
 #: meinberlin/apps/projectcontainers/models.py:12
-#: meinberlin/templates/a4dashboard/base_dashboard.html:46
+#: meinberlin/templates/a4dashboard/base_dashboard.html:48
 #: meinberlin/templates/a4dashboard/base_project_list.html:10
 #: meinberlin/templates/a4dashboard/project_list.html:4
 msgid "Projects"
@@ -257,8 +257,8 @@ msgstr "privat"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:132
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:199
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:139
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:206
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:52
@@ -432,7 +432,7 @@ msgstr "Kategorien bearbeiten"
 #: adhocracy4/categories/filters.py:16
 #: adhocracy4/categories/forms.py:43
 #: adhocracy4/exports/mixins/items.py:15
-#: meinberlin/apps/budgeting/api.py:69
+#: meinberlin/apps/budgeting/api.py:70
 msgid "Category"
 msgstr "Kategorie"
 
@@ -541,26 +541,26 @@ msgid "Edit area settings"
 msgstr "Kartenbereich bearbeiten"
 
 #: adhocracy4/dashboard/filter.py:15
-#: meinberlin/apps/budgeting/api.py:85 meinberlin/apps/projects/views.py:57
+#: meinberlin/apps/budgeting/api.py:86 meinberlin/apps/projects/views.py:57
 msgid "Archived"
 msgstr "Archiviert"
 
 #: adhocracy4/dashboard/filter.py:19
 #: adhocracy4/filters/widgets.py:33
-#: meinberlin/apps/budgeting/api.py:87 meinberlin/apps/budgeting/api.py:95
-#: meinberlin/apps/budgeting/api.py:113 meinberlin/apps/budgeting/api.py:145
-#: meinberlin/apps/budgeting/api.py:162 meinberlin/apps/budgeting/api.py:174
+#: meinberlin/apps/budgeting/api.py:88 meinberlin/apps/budgeting/api.py:96
+#: meinberlin/apps/budgeting/api.py:115 meinberlin/apps/budgeting/api.py:147
+#: meinberlin/apps/budgeting/api.py:164 meinberlin/apps/budgeting/api.py:176
 #: meinberlin/apps/projects/views.py:61
 msgid "All"
 msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
-#: meinberlin/apps/budgeting/api.py:88 meinberlin/apps/projects/views.py:62
+#: meinberlin/apps/budgeting/api.py:89 meinberlin/apps/projects/views.py:62
 msgid "No"
 msgstr "Nein"
 
 #: adhocracy4/dashboard/filter.py:21
-#: meinberlin/apps/budgeting/api.py:89
+#: meinberlin/apps/budgeting/api.py:90
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:13
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:13
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:13
@@ -721,7 +721,7 @@ msgid "Labels"
 msgstr "Merkmale"
 
 #: adhocracy4/exports/mixins/items.py:49
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:50
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:57
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:50
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:92
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:34
@@ -729,19 +729,19 @@ msgid "Reference No."
 msgstr "Referenznr."
 
 #: adhocracy4/exports/mixins/items.py:69
-#: meinberlin/apps/budgeting/api.py:100
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:145
+#: meinberlin/apps/budgeting/api.py:101
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:152
 #: meinberlin/apps/plans/models.py:146
 msgid "Status"
 msgstr "Status"
 
 #: adhocracy4/exports/mixins/items.py:71
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:122
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:129
 msgid "Feedback"
 msgstr "Rückmeldung"
 
 #: adhocracy4/exports/mixins/items.py:95
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:226
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:233
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:5
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:21
 msgid "Remark"
@@ -756,7 +756,7 @@ msgid "Negative ratings"
 msgstr "Negative Bewertungen"
 
 #: adhocracy4/filters/widgets.py:76
-#: meinberlin/apps/budgeting/api.py:131 meinberlin/apps/projects/views.py:40
+#: meinberlin/apps/budgeting/api.py:133 meinberlin/apps/projects/views.py:40
 msgid "Ordering"
 msgstr "Sortierung"
 
@@ -830,7 +830,7 @@ msgstr "Merkmale bearbeiten"
 
 #: adhocracy4/labels/filters.py:10
 #: adhocracy4/labels/forms.py:16
-#: meinberlin/apps/budgeting/api.py:79
+#: meinberlin/apps/budgeting/api.py:80
 msgid "Label"
 msgstr "Merkmal"
 
@@ -1781,19 +1781,19 @@ msgstr ""
 "Legen Sie ein Formular zur Stellungnahme zu den Bebauungsplänen an. Dieses "
 "Formular wird dann auf externen Seiten eingebunden."
 
-#: meinberlin/apps/budgeting/api.py:111
+#: meinberlin/apps/budgeting/api.py:113
 msgid "Voting"
 msgstr "Abstimmung"
 
-#: meinberlin/apps/budgeting/api.py:114
+#: meinberlin/apps/budgeting/api.py:116
 msgid "My votes"
 msgstr "Meine Auswahl"
 
-#: meinberlin/apps/budgeting/api.py:123
+#: meinberlin/apps/budgeting/api.py:125
 msgid "Open tasks"
 msgstr "offene Aufgaben"
 
-#: meinberlin/apps/budgeting/api.py:183 meinberlin/apps/budgeting/views.py:24
+#: meinberlin/apps/budgeting/api.py:185 meinberlin/apps/budgeting/views.py:26
 #: meinberlin/apps/ideas/views.py:35 meinberlin/apps/kiezkasse/views.py:16
 #: meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
@@ -1801,7 +1801,7 @@ msgstr "offene Aufgaben"
 msgid "Most recent"
 msgstr "am aktuellsten"
 
-#: meinberlin/apps/budgeting/api.py:188 meinberlin/apps/budgeting/views.py:26
+#: meinberlin/apps/budgeting/api.py:190 meinberlin/apps/budgeting/views.py:28
 #: meinberlin/apps/ideas/views.py:37 meinberlin/apps/kiezkasse/views.py:18
 #: meinberlin/apps/mapideas/views.py:18
 #: meinberlin/apps/maptopicprio/views.py:21
@@ -1809,11 +1809,11 @@ msgstr "am aktuellsten"
 msgid "Most popular"
 msgstr "am beliebtesten"
 
-#: meinberlin/apps/budgeting/api.py:195 meinberlin/apps/budgeting/views.py:28
+#: meinberlin/apps/budgeting/api.py:197 meinberlin/apps/budgeting/views.py:30
 msgid "Most support"
 msgstr "meist unterstützt"
 
-#: meinberlin/apps/budgeting/api.py:197 meinberlin/apps/budgeting/views.py:30
+#: meinberlin/apps/budgeting/api.py:199 meinberlin/apps/budgeting/views.py:32
 #: meinberlin/apps/ideas/views.py:38 meinberlin/apps/kiezkasse/views.py:19
 #: meinberlin/apps/mapideas/views.py:19
 #: meinberlin/apps/maptopicprio/views.py:22
@@ -1821,7 +1821,7 @@ msgstr "meist unterstützt"
 msgid "Most commented"
 msgstr "meist kommentiert"
 
-#: meinberlin/apps/budgeting/api.py:198 meinberlin/apps/budgeting/views.py:31
+#: meinberlin/apps/budgeting/api.py:200 meinberlin/apps/budgeting/views.py:33
 msgid "Random"
 msgstr "zufällig"
 
@@ -2163,7 +2163,18 @@ msgstr "%(title)s bearbeiten"
 msgid "Edit proposal"
 msgstr "Vorschlag bearbeiten"
 
-#: meinberlin/apps/budgeting/views.py:150 meinberlin/apps/kiezkasse/views.py:72
+#: meinberlin/apps/budgeting/views.py:140
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:19
+msgid "map"
+msgstr ""
+
+#: meinberlin/apps/budgeting/views.py:144
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:23
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:13
+msgid "list"
+msgstr "Liste"
+
+#: meinberlin/apps/budgeting/views.py:184 meinberlin/apps/kiezkasse/views.py:72
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
@@ -2382,63 +2393,61 @@ msgstr "Karte"
 msgid "Page navigation"
 msgstr "Seitennummerierung"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:19
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:23
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:13
-msgid "list"
-msgstr "Liste"
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:25
+msgid "back"
+msgstr ""
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:44
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:167
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:51
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:174
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:61
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:95
 msgid "updated on "
 msgstr "bearbeitet am "
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:46
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:169
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:53
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:176
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:63
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:97
 msgid "created on "
 msgstr "erstellt am "
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:78
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:87
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:85
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:94
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:206
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:215
 msgid "Actions"
 msgstr "Aktionen"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:92
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:99
 msgid "edit"
 msgstr "bearbeiten"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:94
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:101
 msgid "delete"
 msgstr "löschen"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:98
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:105
 msgid "moderate"
 msgstr "moderieren"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:103
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:110
 msgid "report"
 msgstr "melden"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:190
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:197
 msgid "Moderation"
 msgstr "Moderation"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:207
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:214
 #: meinberlin/apps/moderationtasks/forms.py:18
 msgid "Moderation tasks"
 msgstr "Moderationsaufgaben"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:213
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:220
 msgid "Done"
 msgstr ""
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:223
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:230
 msgid ""
 "If you want to add moderation tasks here, you can do so in the module "
 "settings."
@@ -2446,7 +2455,7 @@ msgstr ""
 "Wenn Sie an dieser Stelle Moderationsaufgaben hinzufügen möchten, können sie "
 "dies in den Moduleinstellungen tun."
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:233
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:240
 msgid "No moderation remark has been filled yet."
 msgstr "Es wurde noch keine Moderationsnotiz hinterlegt."
 
@@ -2978,7 +2987,7 @@ msgstr "Ihre Idee wurde gelöscht"
 #: meinberlin/apps/newsletters/forms.py:48
 #: meinberlin/apps/newsletters/forms.py:98 meinberlin/apps/plans/models.py:54
 #: meinberlin/apps/projects/views.py:45
-#: meinberlin/templates/a4dashboard/base_dashboard.html:55
+#: meinberlin/templates/a4dashboard/base_dashboard.html:57
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -3452,7 +3461,7 @@ msgstr "Senden"
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:4
 #: meinberlin/apps/users/forms.py:85 meinberlin/apps/users/forms.py:124
 #: meinberlin/apps/users/models.py:67
-#: meinberlin/templates/a4dashboard/base_dashboard.html:50
+#: meinberlin/templates/a4dashboard/base_dashboard.html:52
 msgid "Newsletter"
 msgstr "Newsletter"
 
@@ -4664,11 +4673,11 @@ msgstr "Nutzerkonto Einstellungen"
 msgid "Platform Email"
 msgstr "Plattform-Mail"
 
-#: meinberlin/apps/votes/api.py:84
+#: meinberlin/apps/votes/api.py:85
 msgid "No token given or token not valid for module."
 msgstr "Fehlender oder für das Modul ungültiger Abstimmungsschlüssel."
 
-#: meinberlin/apps/votes/api.py:87
+#: meinberlin/apps/votes/api.py:88
 msgid "Token is inactive."
 msgstr "Abstimmungsschlüssel ist nicht aktiviert."
 
@@ -4968,7 +4977,7 @@ msgstr ""
 "automatisch in der Darstellung der Ideen. Außerdem kann die Liste aller "
 "Ideen nach Kategorien gefiltert werden."
 
-#: meinberlin/templates/a4dashboard/base_dashboard.html:16
+#: meinberlin/templates/a4dashboard/base_dashboard.html:17
 msgid "Organisations"
 msgstr "Organisationen"
 
@@ -5501,129 +5510,3 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
-
-#~ msgid "Moderator feedback"
-#~ msgstr "Rückmeldung der Moderation"
-
-#~ msgid "Official Statement"
-#~ msgstr "Offizielle Rückmeldung"
-
-#~ msgid "Feedback on the contribution (public)"
-#~ msgstr "Rückmeldung zum Beitrag (öffentlich)"
-
-#~ msgid ""
-#~ "The official feedback will appear below the idea, indicating your "
-#~ "organisation. The idea provider receives a notification."
-#~ msgstr ""
-#~ "Die offizielle Rückmeldung erscheint unterhalb der Idee unter Angabe "
-#~ "Ihrer Organisation. Der oder die Ideengeber*in erhält eine "
-#~ "Benachrichtigung."
-
-#~ msgid "Processing status (public)"
-#~ msgstr "Bearbeitungsstatus (öffentlich)"
-
-#~ msgid ""
-#~ "The editing status appears below the title of the idea in red, yellow or "
-#~ "green. The idea provider receives a notification."
-#~ msgstr ""
-#~ "Der Bearbeitungsstatus erscheint unterhalb des Titels der Idee in den "
-#~ "Farben rot, gelb oder grün. Der oder die Ideengeber*in erhält eine "
-#~ "Benachrichtigung."
-
-#~ msgid "Proposal is archived"
-#~ msgstr "Vorschlag ist archiviert"
-
-#~ msgid "give feedback"
-#~ msgstr "zurück melden"
-
-#~ msgid "Official feedback"
-#~ msgstr "Offizielle Rückmeldung"
-
-#~ msgid "Processing status"
-#~ msgstr "Bearbeitungsstatus"
-
-#~ msgid "Checked"
-#~ msgstr "geprüft"
-
-#~ msgid ""
-#~ "If you define labels, participants can assign their ideas accordingly "
-#~ "(multiple choice, not obligatory). Labels automatically appear in the "
-#~ "display of ideas. In the module participatory budgeting, the list of all "
-#~ "ideas can be filtered by labels."
-#~ msgstr ""
-#~ "Wenn Sie Merkmale definieren, können die Teilnehmer:innen ihre Ideen "
-#~ "entsprechend zuordnen (Multiple-Choice, nicht verpflichtend). Merkmale "
-#~ "erscheinen automatisch in der Darstellung der Ideen. Im Modul "
-#~ "Bürger*innenhaushalt kann die Liste aller Ideen nach Merkmalen gefiltert "
-#~ "werden."
-
-#~ msgid ""
-#~ "In a first phase, participants can submit their own proposals, mark them "
-#~ "on a map, and add a budget. The proposals of others can be discussed and "
-#~ "in a second phase rated (pro/contra). In the third phase, participants "
-#~ "vote on the shortlisted proposals."
-#~ msgstr ""
-#~ "Die Teilnehmenden können in einer ersten Phase eigene Vorschläge auf "
-#~ "einer Karte eintragen und mit einem Budget versehen. Die Ideen Anderer "
-#~ "können diskutiert und in einer zweiten Phase bewertet (dafür/dagegen) "
-#~ "werden. In der dritten Phase stimmen die Teilnehmenden über die "
-#~ "Vorschläge in der engeren Auswahl ab.  "
-
-#~ msgid ""
-#~ "For voting in the third phase, all participants need their own voting "
-#~ "code. Here you can generate up to %(tokens_per_module)s codes. Depending "
-#~ "on the number this may take a few minutes.\n"
-#~ msgstr ""
-#~ "Für die Abstimmung in der dritten Phase benötigen alle Teilnehmer*innen "
-#~ "einen eigenen Abstimmungscode. Hier können Sie bis zu "
-#~ "%(tokens_per_module)s Codes erstellen. Je nach Anzahl kann dies ein paar "
-#~ "Minuten dauern.\n"
-
-#~ msgid ""
-#~ "For voting in the third phase, all participants need their own voting "
-#~ "code. Here you can download the codes in packages of %(export_size)s per "
-#~ "excel file. To generate the codes, please contact %(contact_email)s"
-#~ msgstr ""
-#~ "Für die Abstimmung in der dritten Phase benötigen alle Teilnehmer*innen "
-#~ "einen eigenen Abstimmungscode. Hier können Sie die Codes in Paketen von "
-#~ "%(export_size)s pro Excel-Datei herunterladen. Um die Codes zu erstellen, "
-#~ "wenden Sie sich bitte an %(contact_email)s."
-
-#~ msgid ""
-#~ "For questions or in case of implementation of my proposal you can contact "
-#~ "me."
-#~ msgstr ""
-#~ "Für Rückfragen bzw. im Falle einer Umsetzung meines Vorschlags können Sie "
-#~ "mich kontaktieren."
-
-#~ msgid ""
-#~ "In this section, you can create categories. If you create any, each "
-#~ "contribution has to be assigned to one of them. This way, content can be "
-#~ "classified."
-#~ msgstr ""
-#~ "Hier können Sie Kategorien anlegen. Dadurch können alle Beiträge einer "
-#~ "Kategorie zugeordnet und entsprechend gefiltert werden."
-
-#~ msgid ""
-#~ "In this section, you can create labels. If you create any, each "
-#~ "contribution can be assigned to one or more of them. This way, content "
-#~ "can be classified."
-#~ msgstr ""
-#~ "Hier können Sie Kategorien anlegen. Dadurch können alle Beiträge einer "
-#~ "Kategorie zugeordnet und entsprechend gefiltert werden."
-
-#~ msgid ""
-#~ "We have sent an e-mail to you for verification. Follow the link provided "
-#~ "to finalize the signup process. Please contact us if you do not receive "
-#~ "it within a few minutes."
-#~ msgstr ""
-#~ "Wir haben Ihnen eine E-Mail geschickt, um Ihre Adresse zu verifizieren. "
-#~ "Bitte folgen Sie dem Link in der E-Mail um den Anmeldeprozess "
-#~ "abzuschließen. Bitte kontaktieren Sie uns, falls die E-Mail nicht in ein "
-#~ "paar Minuten angekommen ist."
-
-#~ msgid "Read more"
-#~ msgstr "Weiterlesen"
-
-#~ msgid "Read Less"
-#~ msgstr "Weniger anzeigen"

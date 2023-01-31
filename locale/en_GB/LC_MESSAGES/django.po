@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-18 09:48+0100\n"
+"POT-Creation-Date: 2023-01-31 11:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgid "Add category"
 msgstr "Add category"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
-#: meinberlin/templates/a4dashboard/base_dashboard.html:43
+#: meinberlin/templates/a4dashboard/base_dashboard.html:45
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -201,7 +201,7 @@ msgstr "Cancel"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:4
 #: meinberlin/apps/projectcontainers/dashboard.py:62
 #: meinberlin/apps/projectcontainers/models.py:12
-#: meinberlin/templates/a4dashboard/base_dashboard.html:46
+#: meinberlin/templates/a4dashboard/base_dashboard.html:48
 #: meinberlin/templates/a4dashboard/base_project_list.html:10
 #: meinberlin/templates/a4dashboard/project_list.html:4
 msgid "Projects"
@@ -223,8 +223,8 @@ msgid "private"
 msgstr "private"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:48
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:132
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:199
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:139
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:206
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:52
@@ -369,7 +369,7 @@ msgstr "Edit categories"
 
 #: adhocracy4/categories/fields.py:11 adhocracy4/categories/filters.py:16
 #: adhocracy4/categories/forms.py:43 adhocracy4/exports/mixins/items.py:15
-#: meinberlin/apps/budgeting/api.py:69
+#: meinberlin/apps/budgeting/api.py:70
 msgid "Category"
 msgstr "Category"
 
@@ -471,25 +471,25 @@ msgstr "Area settings"
 msgid "Edit area settings"
 msgstr "Edit area settings"
 
-#: adhocracy4/dashboard/filter.py:15 meinberlin/apps/budgeting/api.py:85
+#: adhocracy4/dashboard/filter.py:15 meinberlin/apps/budgeting/api.py:86
 #: meinberlin/apps/projects/views.py:57
 msgid "Archived"
 msgstr "Archived"
 
 #: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:33
-#: meinberlin/apps/budgeting/api.py:87 meinberlin/apps/budgeting/api.py:95
-#: meinberlin/apps/budgeting/api.py:113 meinberlin/apps/budgeting/api.py:145
-#: meinberlin/apps/budgeting/api.py:162 meinberlin/apps/budgeting/api.py:174
+#: meinberlin/apps/budgeting/api.py:88 meinberlin/apps/budgeting/api.py:96
+#: meinberlin/apps/budgeting/api.py:115 meinberlin/apps/budgeting/api.py:147
+#: meinberlin/apps/budgeting/api.py:164 meinberlin/apps/budgeting/api.py:176
 #: meinberlin/apps/projects/views.py:61
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/budgeting/api.py:88
+#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/budgeting/api.py:89
 #: meinberlin/apps/projects/views.py:62
 msgid "No"
 msgstr "No"
 
-#: adhocracy4/dashboard/filter.py:21 meinberlin/apps/budgeting/api.py:89
+#: adhocracy4/dashboard/filter.py:21 meinberlin/apps/budgeting/api.py:90
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:13
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:13
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:13
@@ -642,26 +642,26 @@ msgid "Labels"
 msgstr "Labels"
 
 #: adhocracy4/exports/mixins/items.py:49
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:50
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:57
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:50
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:92
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:34
 msgid "Reference No."
 msgstr "Reference No."
 
-#: adhocracy4/exports/mixins/items.py:69 meinberlin/apps/budgeting/api.py:100
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:145
+#: adhocracy4/exports/mixins/items.py:69 meinberlin/apps/budgeting/api.py:101
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:152
 #: meinberlin/apps/plans/models.py:146
 msgid "Status"
 msgstr "Status"
 
 #: adhocracy4/exports/mixins/items.py:71
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:122
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:129
 msgid "Feedback"
 msgstr "Feedback"
 
 #: adhocracy4/exports/mixins/items.py:95
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:226
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:233
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:5
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:21
 msgid "Remark"
@@ -675,7 +675,7 @@ msgstr "Positive ratings"
 msgid "Negative ratings"
 msgstr "Negative ratings"
 
-#: adhocracy4/filters/widgets.py:76 meinberlin/apps/budgeting/api.py:131
+#: adhocracy4/filters/widgets.py:76 meinberlin/apps/budgeting/api.py:133
 #: meinberlin/apps/projects/views.py:40
 msgid "Ordering"
 msgstr "Ordering"
@@ -749,7 +749,7 @@ msgid "Edit labels"
 msgstr "Edit labels"
 
 #: adhocracy4/labels/filters.py:10 adhocracy4/labels/forms.py:16
-#: meinberlin/apps/budgeting/api.py:79
+#: meinberlin/apps/budgeting/api.py:80
 msgid "Label"
 msgstr "Label"
 
@@ -1660,19 +1660,19 @@ msgstr ""
 "Create a statement formular for development plans to be embedded on external "
 "sites."
 
-#: meinberlin/apps/budgeting/api.py:111
+#: meinberlin/apps/budgeting/api.py:113
 msgid "Voting"
 msgstr "Voting"
 
-#: meinberlin/apps/budgeting/api.py:114
+#: meinberlin/apps/budgeting/api.py:116
 msgid "My votes"
 msgstr "My votes"
 
-#: meinberlin/apps/budgeting/api.py:123
+#: meinberlin/apps/budgeting/api.py:125
 msgid "Open tasks"
 msgstr "Open tasks"
 
-#: meinberlin/apps/budgeting/api.py:183 meinberlin/apps/budgeting/views.py:24
+#: meinberlin/apps/budgeting/api.py:185 meinberlin/apps/budgeting/views.py:26
 #: meinberlin/apps/ideas/views.py:35 meinberlin/apps/kiezkasse/views.py:16
 #: meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
@@ -1680,7 +1680,7 @@ msgstr "Open tasks"
 msgid "Most recent"
 msgstr "Most recent"
 
-#: meinberlin/apps/budgeting/api.py:188 meinberlin/apps/budgeting/views.py:26
+#: meinberlin/apps/budgeting/api.py:190 meinberlin/apps/budgeting/views.py:28
 #: meinberlin/apps/ideas/views.py:37 meinberlin/apps/kiezkasse/views.py:18
 #: meinberlin/apps/mapideas/views.py:18
 #: meinberlin/apps/maptopicprio/views.py:21
@@ -1688,11 +1688,11 @@ msgstr "Most recent"
 msgid "Most popular"
 msgstr "Most popular"
 
-#: meinberlin/apps/budgeting/api.py:195 meinberlin/apps/budgeting/views.py:28
+#: meinberlin/apps/budgeting/api.py:197 meinberlin/apps/budgeting/views.py:30
 msgid "Most support"
 msgstr "Most support"
 
-#: meinberlin/apps/budgeting/api.py:197 meinberlin/apps/budgeting/views.py:30
+#: meinberlin/apps/budgeting/api.py:199 meinberlin/apps/budgeting/views.py:32
 #: meinberlin/apps/ideas/views.py:38 meinberlin/apps/kiezkasse/views.py:19
 #: meinberlin/apps/mapideas/views.py:19
 #: meinberlin/apps/maptopicprio/views.py:22
@@ -1700,7 +1700,7 @@ msgstr "Most support"
 msgid "Most commented"
 msgstr "Most commented"
 
-#: meinberlin/apps/budgeting/api.py:198 meinberlin/apps/budgeting/views.py:31
+#: meinberlin/apps/budgeting/api.py:200 meinberlin/apps/budgeting/views.py:33
 msgid "Random"
 msgstr "Random"
 
@@ -2037,7 +2037,18 @@ msgstr "Edit %(title)s"
 msgid "Edit proposal"
 msgstr "Edit proposal"
 
-#: meinberlin/apps/budgeting/views.py:150 meinberlin/apps/kiezkasse/views.py:72
+#: meinberlin/apps/budgeting/views.py:140
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:19
+msgid "map"
+msgstr "map"
+
+#: meinberlin/apps/budgeting/views.py:144
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:23
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:13
+msgid "list"
+msgstr "list"
+
+#: meinberlin/apps/budgeting/views.py:184 meinberlin/apps/kiezkasse/views.py:72
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
@@ -2253,63 +2264,61 @@ msgstr "Map"
 msgid "Page navigation"
 msgstr "Page navigation"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:19
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:23
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:13
-msgid "list"
-msgstr "list"
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:25
+msgid "back"
+msgstr "back"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:44
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:167
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:51
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:174
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:61
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:95
 msgid "updated on "
 msgstr "updated on "
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:46
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:169
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:53
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:176
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:63
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:97
 msgid "created on "
 msgstr "created on "
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:78
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:87
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:85
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:94
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:206
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:215
 msgid "Actions"
 msgstr "Actions"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:92
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:99
 msgid "edit"
 msgstr "edit"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:94
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:101
 msgid "delete"
 msgstr "delete"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:98
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:105
 msgid "moderate"
 msgstr "moderate"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:103
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:110
 msgid "report"
 msgstr "report"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:190
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:197
 msgid "Moderation"
 msgstr "Moderation"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:207
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:214
 #: meinberlin/apps/moderationtasks/forms.py:18
 msgid "Moderation tasks"
 msgstr "Moderation tasks"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:213
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:220
 msgid "Done"
 msgstr "Done"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:223
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:230
 msgid ""
 "If you want to add moderation tasks here, you can do so in the module "
 "settings."
@@ -2317,7 +2326,7 @@ msgstr ""
 "If you want to add moderation tasks here, you can do so in the module "
 "settings."
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:233
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:240
 msgid "No moderation remark has been filled yet."
 msgstr "No moderation remark has been filled yet."
 
@@ -2829,7 +2838,7 @@ msgstr "Your Idea has been deleted"
 #: meinberlin/apps/newsletters/forms.py:48
 #: meinberlin/apps/newsletters/forms.py:98 meinberlin/apps/plans/models.py:54
 #: meinberlin/apps/projects/views.py:45
-#: meinberlin/templates/a4dashboard/base_dashboard.html:55
+#: meinberlin/templates/a4dashboard/base_dashboard.html:57
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -3300,7 +3309,7 @@ msgstr "Sent"
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:4
 #: meinberlin/apps/users/forms.py:85 meinberlin/apps/users/forms.py:124
 #: meinberlin/apps/users/models.py:67
-#: meinberlin/templates/a4dashboard/base_dashboard.html:50
+#: meinberlin/templates/a4dashboard/base_dashboard.html:52
 msgid "Newsletter"
 msgstr "Newsletter"
 
@@ -4494,11 +4503,11 @@ msgstr "Account Settings"
 msgid "Platform Email"
 msgstr "Platform Email"
 
-#: meinberlin/apps/votes/api.py:84
+#: meinberlin/apps/votes/api.py:85
 msgid "No token given or token not valid for module."
 msgstr "No token given or token not valid for module."
 
-#: meinberlin/apps/votes/api.py:87
+#: meinberlin/apps/votes/api.py:88
 msgid "Token is inactive."
 msgstr "Token is inactive."
 
@@ -4795,7 +4804,7 @@ msgstr ""
 "(single choice, mandatory). Categories automatically appear in the display "
 "of ideas. In addition, the list of all ideas can be filtered by category."
 
-#: meinberlin/templates/a4dashboard/base_dashboard.html:16
+#: meinberlin/templates/a4dashboard/base_dashboard.html:17
 msgid "Organisations"
 msgstr "Organisations"
 
@@ -5318,646 +5327,3 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to "
 "%(site_name)s. As a final step, please complete the following form:"
-
-#~ msgid "Moderator feedback"
-#~ msgstr "Moderator feedback"
-
-#~ msgid "Official Statement"
-#~ msgstr "Official Statement"
-
-#~ msgid "Open"
-#~ msgstr "Open"
-
-#~ msgid "Feedback on the contribution (public)"
-#~ msgstr "Feedback on the contribution (public)"
-
-#~ msgid ""
-#~ "The official feedback will appear below the idea, indicating your "
-#~ "organisation. The idea provider receives a notification."
-#~ msgstr ""
-#~ "The official feedback will appear below the idea, indicating your "
-#~ "organisation. The idea provider receives a notification."
-
-#~ msgid "Processing status (public)"
-#~ msgstr "Processing status (public)"
-
-#~ msgid ""
-#~ "The editing status appears below the title of the idea in red, yellow or "
-#~ "green. The idea provider receives a notification."
-#~ msgstr ""
-#~ "The editing status appears below the title of the idea in red, yellow or "
-#~ "green. The idea provider receives a notification."
-
-#~ msgid "Proposal is archived"
-#~ msgstr "Proposal is archived"
-
-#~ msgid "give feedback"
-#~ msgstr "give feedback"
-
-#~ msgid "Official feedback"
-#~ msgstr "Official feedback"
-
-#~ msgid "Processing status"
-#~ msgstr "Processing status"
-
-#~ msgid "Checked"
-#~ msgstr "Checked"
-
-#~ msgid ""
-#~ "If you define labels, participants can assign their ideas accordingly "
-#~ "(multiple choice, not obligatory). Labels automatically appear in the "
-#~ "display of ideas. In the module participatory budgeting, the list of all "
-#~ "ideas can be filtered by labels."
-#~ msgstr ""
-#~ "If you define labels, participants can assign their ideas accordingly "
-#~ "(multiple choice, not obligatory). Labels automatically appear in the "
-#~ "display of ideas. In the module participatory budgeting, the list of all "
-#~ "ideas can be filtered by labels."
-
-#~ msgid ""
-#~ "In a first phase, participants can submit their own proposals, mark them "
-#~ "on a map, and add a budget. The proposals of others can be discussed and "
-#~ "in a second phase rated (pro/contra). In the third phase, participants "
-#~ "vote on the shortlisted proposals."
-#~ msgstr ""
-#~ "In a first phase, participants can submit their own proposals, mark them "
-#~ "on a map, and add a budget. The proposals of others can be discussed and "
-#~ "in a second phase rated (pro/contra). In the third phase, participants "
-#~ "vote on the shortlisted proposals."
-
-#~ msgid ""
-#~ "For voting in the third phase, all participants need their own voting "
-#~ "code. Here you can generate up to %(tokens_per_module)s codes. Depending "
-#~ "on the number this may take a few minutes.\n"
-#~ msgstr ""
-#~ "For voting in the third phase, all participants need their own voting "
-#~ "code. Here you can generate up to %(tokens_per_module)s codes. Depending "
-#~ "on the number this may take a few minutes.\n"
-
-#~ msgid ""
-#~ "For voting in the third phase, all participants need their own voting "
-#~ "code. Here you can download the codes in packages of %(export_size)s per "
-#~ "excel file. To generate the codes, please contact %(contact_email)s"
-#~ msgstr ""
-#~ "For voting in the third phase, all participants need their own voting "
-#~ "code. Here you can download the codes in packages of %(export_size)s per "
-#~ "excel file. To generate the codes, please contact %(contact_email)s"
-
-#~ msgid ""
-#~ "For questions or in case of implementation of my proposal you can contact "
-#~ "me."
-#~ msgstr ""
-#~ "For questions or in case of implementation of my proposal you can contact "
-#~ "me."
-
-#~ msgid ""
-#~ "For voting in the third phase, participants need a voting code. You can "
-#~ "generate and download the codes here. "
-#~ msgstr ""
-#~ "For voting in the third phase, participants need a voting code. You can "
-#~ "generate and download the codes here. "
-
-#~ msgid ""
-#~ "\n"
-#~ "One code has been generated for this module so far.\n"
-#~ msgid_plural ""
-#~ "\n"
-#~ "%(counter)s codes have been generated for this module so far.\n"
-#~ msgstr[0] ""
-#~ "\n"
-#~ "One code has been generated for this module so far.\n"
-#~ msgstr[1] ""
-#~ "\n"
-#~ "%(counter)s codes have been generated for this module so far.\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "    One code has been generated for this module so far.\n"
-#~ "    "
-#~ msgid_plural ""
-#~ "\n"
-#~ "    %(counter)s codes have been generated for this module so far.\n"
-#~ "    "
-#~ msgstr[0] ""
-#~ "\n"
-#~ "    One code has been generated for this module so far.\n"
-#~ "    "
-#~ msgstr[1] ""
-#~ "\n"
-#~ "    %(counter)s codes have been generated for this module so far.\n"
-#~ "    "
-
-#~ msgid " here you can download the voting codes (Excel file)"
-#~ msgstr " here you can download the voting codes (Excel file)"
-
-#~ msgid ""
-#~ "{} code will be generated in the background. Please come back later to "
-#~ "check if it is finished"
-#~ msgstr ""
-#~ "{} code will be generated in the background. Please come back later to "
-#~ "check if it is finished"
-
-#~ msgid ""
-#~ "{} codes will be generated in the background. Please come back later to "
-#~ "check if they are finished"
-#~ msgstr ""
-#~ "{} codes will be generated in the background. Please come back later to "
-#~ "check if they are finished"
-
-#~ msgid ""
-#~ "Only {} tokens are allowed per module. You are allowed to generate {} "
-#~ "more."
-#~ msgstr ""
-#~ "Only {} tokens are allowed per module. You are allowed to generate {} "
-#~ "more."
-
-#~ msgid ""
-#~ "In this section, you can create categories. If you create any, each "
-#~ "contribution has to be assigned to one of them. This way, content can be "
-#~ "classified."
-#~ msgstr ""
-#~ "In this section, you can create categories. If you create any, each "
-#~ "contribution has to be assigned to one of them. This way, content can be "
-#~ "classified."
-
-#~ msgid ""
-#~ "In this section, you can create labels. If you create any, each "
-#~ "contribution can be assigned to one or more of them. This way, content "
-#~ "can be classified."
-#~ msgstr ""
-#~ "In this section, you can create labels. If you create any, each "
-#~ "contribution can be assigned to one or more of them. This way, content "
-#~ "can be classified."
-
-#~ msgid ""
-#~ "We have sent an e-mail to you for verification. Follow the link provided "
-#~ "to finalize the signup process. Please contact us if you do not receive "
-#~ "it within a few minutes."
-#~ msgstr ""
-#~ "We have sent an e-mail to you for verification. Follow the link provided "
-#~ "to finalize the signup process. Please contact us if you do not receive "
-#~ "it within a few minutes."
-
-#~ msgid "Read more"
-#~ msgstr "Read more"
-
-#~ msgid "Read Less"
-#~ msgstr "Read Less"
-
-#~ msgid "Areasettings"
-#~ msgstr "Areasettings"
-
-#~ msgid "Edit areasettings"
-#~ msgstr "Edit areasettings"
-
-#~ msgid "see participation plans"
-#~ msgstr "see participation plans"
-
-#~ msgid "with"
-#~ msgstr "with"
-
-#~ msgid "without"
-#~ msgstr "without"
-
-#~ msgid "undecided"
-#~ msgstr "undecided"
-
-#~ msgid ""
-#~ "In the project overview projects can be filtered according to "
-#~ "participation status."
-#~ msgstr ""
-#~ "In the project overview projects can be filtered according to "
-#~ "participation status."
-
-#~ msgid "No token given."
-#~ msgstr "No token given."
-
-#~ msgid "Token not valid for module."
-#~ msgstr "Token not valid for module."
-
-#~ msgid ""
-#~ "This token is not valid. It might be expired or not valid for this "
-#~ "project."
-#~ msgstr ""
-#~ "This token is not valid. It might be expired or not valid for this "
-#~ "project."
-
-#~ msgid " %(time_left)s remaining "
-#~ msgstr " %(time_left)s remaining "
-
-#~ msgid " Participation: from %(date)s"
-#~ msgstr " Participation: from %(date)s"
-
-#~ msgid " What is your opinion on this: %(name)s?"
-#~ msgstr " What is your opinion on this: %(name)s?"
-
-#~ msgid ""
-#~ "Here you can specify affiliations. Users must classify\n"
-#~ "    questions accordingly. The questions can be filtered by affiliation "
-#~ "and evaluated in the\n"
-#~ "    statistics."
-#~ msgstr ""
-#~ "Here you can specify affiliations. Users must classify\n"
-#~ "    questions accordingly. The questions can be filtered by affiliation "
-#~ "and evaluated in the\n"
-#~ "    statistics."
-
-#~ msgid ""
-#~ "\n"
-#~ "Please select the plan your project belongs to. Your project will be "
-#~ "shown in the list of plans accordingly.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Please select the plan your project belongs to. Your project will be "
-#~ "shown in the list of plans accordingly.\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "    No plan has been created yet. You can do that <a "
-#~ "href=\"%(plan_create_url)s\">here</a>.\n"
-#~ "    "
-#~ msgstr ""
-#~ "\n"
-#~ "    No plan has been created yet. You can do that <a "
-#~ "href=\"%(plan_create_url)s\">here</a>.\n"
-#~ "    "
-
-#~ msgid ""
-#~ "\n"
-#~ "                You were invited by the initiator of the project. If you "
-#~ "accept you will be able to participate in the project with your username "
-#~ "\"%(user)s\".\n"
-#~ "                If you want to join with a different profile please login "
-#~ "with your other profile and follow the invitation link again. If you "
-#~ "decline the invitation the link is not valid anymore.\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ "                You were invited by the initiator of the project. If you "
-#~ "accept you will be able to participate in the project with your username "
-#~ "\"%(user)s\".\n"
-#~ "                If you want to join with a different profile please login "
-#~ "with your other profile and follow the invitation link again. If you "
-#~ "decline the invitation the link is not valid anymore.\n"
-#~ "                "
-
-#~ msgid ""
-#~ "\n"
-#~ "            <p>To sign in via Service-Konto on meinBerlin you will be "
-#~ "redirected to the Service-Konto.</p>\n"
-#~ "            <p>\n"
-#~ "                There you have to sign in with your credentials first, "
-#~ "find the Service <strong>mein.Berlin</strong> and\n"
-#~ "                finally click on <strong>Hier starten</strong> to return "
-#~ "to the meinBerlin platform.\n"
-#~ "            </p>\n"
-#~ "        "
-#~ msgstr ""
-#~ "\n"
-#~ "            <p>To sign in via Service-Konto on meinBerlin you will be "
-#~ "redirected to the Service-Konto.</p>\n"
-#~ "            <p>\n"
-#~ "                There you have to sign in with your credentials first, "
-#~ "find the Service <strong>mein.Berlin</strong> and\n"
-#~ "                finally click on <strong>Hier starten</strong> to return "
-#~ "to the meinBerlin platform.\n"
-#~ "            </p>\n"
-#~ "        "
-
-#~ msgid ""
-#~ "Depending on the selected module, the participation\n"
-#~ "    process has one or two phases. The name and description of the "
-#~ "phase(s)\n"
-#~ "    should encourage the users to participate and let them know how\n"
-#~ "    they can participate."
-#~ msgstr ""
-#~ "Depending on the selected module, the participation\n"
-#~ "    process has one or two phases. The name and description of the "
-#~ "phase(s)\n"
-#~ "    should encourage the users to participate and let them know how\n"
-#~ "    they can participate."
-
-#~ msgid ""
-#~ "Please\n"
-#~ "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is "
-#~ "an\n"
-#~ "            email address for user %(user_display)s."
-#~ msgstr ""
-#~ "Please\n"
-#~ "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is "
-#~ "an\n"
-#~ "            email address for user %(user_display)s."
-
-#~ msgid ""
-#~ "This email confirmation link expired or is invalid.\n"
-#~ "            Please <a href=\"%(email_url)s\">issue a new email "
-#~ "confirmation\n"
-#~ "                request</a>."
-#~ msgstr ""
-#~ "This email confirmation link expired or is invalid.\n"
-#~ "            Please <a href=\"%(email_url)s\">issue a new email "
-#~ "confirmation\n"
-#~ "                request</a>."
-
-#~ msgid ""
-#~ "Already have an account? Then please\n"
-#~ "        <a href=\"%(login_url)s\">login</a>."
-#~ msgstr ""
-#~ "Already have an account? Then please\n"
-#~ "        <a href=\"%(login_url)s\">login</a>."
-
-#~ msgid ""
-#~ "\n"
-#~ "                 I hereby expressly consent to the collection and "
-#~ "processing (storage) of my data and expressly consent to the processing "
-#~ "and publication of my ideas, comments and contributions as described in "
-#~ "the privacy policy. I also confirm that I have read and accept the <a "
-#~ "href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the "
-#~ "<a href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>.\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ "                 I hereby expressly consent to the collection and "
-#~ "processing (storage) of my data and expressly consent to the processing "
-#~ "and publication of my ideas, comments and contributions as described in "
-#~ "the privacy policy. I also confirm that I have read and accept the <a "
-#~ "href=\"%(terms_of_use_url)s\" target=\"_blank\">terms of use</a> and the "
-#~ "<a href=\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>.\n"
-#~ "                "
-
-#~ msgid ""
-#~ "You are about to use your %(provider_name)s account to login to\n"
-#~ "%(site_name)s. As a final step, please complete the following form:"
-#~ msgstr ""
-#~ "You are about to use your %(provider_name)s account to login to\n"
-#~ "%(site_name)s. As a final step, please complete the following form:"
-
-#~ msgid "deleted by creator"
-#~ msgstr "deleted by creator"
-
-#~ msgid "deleted by moderator"
-#~ msgstr "deleted by moderator"
-
-#~ msgid "This project is in not published yet."
-#~ msgstr "This project is in not published yet."
-
-#~ msgid "This plan is in not published yet."
-#~ msgstr "This plan is in not published yet."
-
-#~ msgid "The plan has been published"
-#~ msgstr "The plan has been published"
-
-#~ msgid "Address"
-#~ msgstr "Address"
-
-#~ msgid "Empty choices detected."
-#~ msgstr "Empty choices detected."
-
-#~ msgid "Contact for queries"
-#~ msgstr "Contact for queries"
-
-#~ msgid ""
-#~ "Describe the cornerstones of your plan. You can upload PDFs and images, "
-#~ "embed videos and link to external URLs."
-#~ msgstr ""
-#~ "Describe the cornerstones of your plan. You can upload PDFs and images, "
-#~ "embed videos and link to external URLs."
-
-#~ msgid "Visualize your plan."
-#~ msgstr "Visualize your plan."
-
-#~ msgid "Image copyright"
-#~ msgstr "Image copyright"
-
-#~ msgid ""
-#~ "Enter the district in which the plan is located or whether it is a city-"
-#~ "wide plan. In the project overview projects can be filtered by district. "
-#~ msgstr ""
-#~ "Enter the district in which the plan is located or whether it is a city-"
-#~ "wide plan. In the project overview projects can be filtered by district. "
-
-#~ msgid ""
-#~ "In the project overview projects can be filtered according to "
-#~ "participation status. "
-#~ msgstr ""
-#~ "In the project overview projects can be filtered according to "
-#~ "participation status. "
-
-#~ msgid ""
-#~ "Enter a meaningful title with a maximum length of 255 characters. The "
-#~ "title will appear in the project tile and on top of the plan detail page."
-#~ msgstr ""
-#~ "Enter a meaningful title with a maximum length of 255 characters. The "
-#~ "title will appear in the project tile and on top of the plan detail page."
-
-#~ msgid "Where can the plan be located on a map?"
-#~ msgstr "Where can the plan be located on a map?"
-
-#~ msgid "Label of the location"
-#~ msgstr "Label of the location"
-
-#~ msgid ""
-#~ "The label of the location is displayed in the detail view of the plan"
-#~ msgstr ""
-#~ "The label of the location is displayed in the detail view of the plan"
-
-#~ msgid ""
-#~ "Please enter the district, in which your project is located, or whether "
-#~ "your project is citywide."
-#~ msgstr ""
-#~ "Please enter the district, in which your project is located, or whether "
-#~ "your project is citywide."
-
-#~ msgid "Only one vote per question is allowed per user."
-#~ msgstr "Only one vote per question is allowed per user."
-
-#~ msgid ""
-#~ "Participants can answer one or more questions with predefined choices and "
-#~ "comment on the poll."
-#~ msgstr ""
-#~ "Participants can answer one or more questions with predefined choices and "
-#~ "comment on the poll."
-
-#~ msgid "Help text"
-#~ msgstr "Help text"
-
-#~ msgid "Voting phase"
-#~ msgstr "Voting phase"
-
-#~ msgid "Cast votes and discuss the poll."
-#~ msgstr "Cast votes and discuss the poll."
-
-#~ msgid "replies to comment"
-#~ msgstr "replies to comment"
-
-#~ msgid "comment on reference"
-#~ msgstr "comment on reference"
-
-#~ msgid "Please take part in our poll!"
-#~ msgstr "Please take part in our poll!"
-
-#~ msgid ""
-#~ "Help us by answering the questions below. There is space for your "
-#~ "comments at the end of the questionnaire."
-#~ msgstr ""
-#~ "Help us by answering the questions below. There is space for your "
-#~ "comments at the end of the questionnaire."
-
-#~ msgid "replies to"
-#~ msgstr "replies to"
-
-#~ msgid "Participants can submit proposals, comment on and rate them."
-#~ msgstr "Participants can submit proposals, comment on and rate them."
-
-#~ msgid "Proposal phase"
-#~ msgstr "Proposal phase"
-
-#~ msgid "Participants can submit proposals and comment on them."
-#~ msgstr "Participants can submit proposals and comment on them."
-
-#~ msgid "Participants can vote on the proposals."
-#~ msgstr "Participants can vote on the proposals."
-
-#~ msgid "Collect first ideas for a specific topic and comment on them."
-#~ msgstr "Collect first ideas for a specific topic and comment on them."
-
-#~ msgid "Collect location specific ideas for a topic and comment on them."
-#~ msgstr "Collect location specific ideas for a topic and comment on them."
-
-#~ msgid "Collect location specific ideas that can be rated and commented."
-#~ msgstr "Collect location specific ideas that can be rated and commented."
-
-#~ msgid "Agenda Setting"
-#~ msgstr "Agenda Setting"
-
-#~ msgid ""
-#~ "With Agenda-Setting it’s possible to identify topics and to define "
-#~ "mission statements. Anyone can submit topics that can be commented and "
-#~ "rated."
-#~ msgstr ""
-#~ "With Agenda-Setting it’s possible to identify topics and to define "
-#~ "mission statements. Anyone can submit topics that can be commented and "
-#~ "rated."
-
-#~ msgid ""
-#~ "In the text-review it’s possible to structure draft texts that can be "
-#~ "commented."
-#~ msgstr ""
-#~ "In the text-review it’s possible to structure draft texts that can be "
-#~ "commented."
-
-#~ msgid ""
-#~ "Proposals can be located on a map and a budget can be added. Proposals "
-#~ "can be commented and rated."
-#~ msgstr ""
-#~ "Proposals can be located on a map and a budget can be added. Proposals "
-#~ "can be commented and rated."
-
-#~ msgid ""
-#~ "Proposals can be located on a map and a budget can be added. Proposals "
-#~ "can be commented and rated in 2 phases."
-#~ msgstr ""
-#~ "Proposals can be located on a map and a budget can be added. Proposals "
-#~ "can be commented and rated in 2 phases."
-
-#~ msgid ""
-#~ "Create a poll with multiple questions and possible answers. Anyone can "
-#~ "cast votes and comment on the poll."
-#~ msgstr ""
-#~ "Create a poll with multiple questions and possible answers. Anyone can "
-#~ "cast votes and comment on the poll."
-
-#~ msgid "Topic Priorization"
-#~ msgstr "Topic Priorization"
-
-#~ msgid "Comment and prioritize topics."
-#~ msgstr "Comment and prioritize topics."
-
-#~ msgid "Place Prioritization"
-#~ msgstr "Place Prioritization"
-
-#~ msgid "Comment and prioritize places located on a map."
-#~ msgstr "Comment and prioritize places located on a map."
-
-#~ msgid ""
-#~ "With kiezkasse it’s possible to make proposals with budget specifications "
-#~ "and locate them. The proposals can be commented and rated."
-#~ msgstr ""
-#~ "With kiezkasse it’s possible to make proposals with budget specifications "
-#~ "and locate them. The proposals can be commented and rated."
-
-#~ msgid ""
-#~ "The participants of an event can ask their questions online. Other "
-#~ "participants can support the question. You as the moderator can sort the "
-#~ "questions by support or characteristic."
-#~ msgstr ""
-#~ "The participants of an event can ask their questions online. Other "
-#~ "participants can support the question. You as the moderator can sort the "
-#~ "questions by support or characteristic."
-
-#~ msgid "Comment phase"
-#~ msgstr "Comment phase"
-
-#~ msgid "Collect comments for the text."
-#~ msgstr "Collect comments for the text."
-
-#~ msgid "Collect phase"
-#~ msgstr "Collect phase"
-
-#~ msgid "Create and comment new ideas."
-#~ msgstr "Create and comment new ideas."
-
-#~ msgid "Collect ideas and get feedback"
-#~ msgstr "Collect ideas and get feedback"
-
-#~ msgid "Create new ideas and get feedback through rates and comments."
-#~ msgstr "Create new ideas and get feedback through rates and comments."
-
-#~ msgid "Request and feedback phase"
-#~ msgstr "Request and feedback phase"
-
-#~ msgid "Request budgeting and get feedback through rates and comments."
-#~ msgstr "Request budgeting and get feedback through rates and comments."
-
-#~ msgid "Add questions and support."
-#~ msgstr "Add questions and support."
-
-#~ msgid "Create new ideas located on a map and comment them."
-#~ msgstr "Create new ideas located on a map and comment them."
-
-#~ msgid ""
-#~ "Create new ideas located on a map and get feedback through rates and "
-#~ "comments."
-#~ msgstr ""
-#~ "Create new ideas located on a map and get feedback through rates and "
-#~ "comments."
-
-#~ msgid "Prioritize phase"
-#~ msgstr "Prioritize phase"
-
-#~ msgid "Prioritize and comment places located on a map."
-#~ msgstr "Prioritize and comment places located on a map."
-
-#~ msgid "Prioritize and comment topics."
-#~ msgstr "Prioritize and comment topics."
-
-#~ msgid "Participatory budgeting"
-#~ msgstr "Participatory budgeting"
-
-#~ msgid ""
-#~ "With participatory-budgeting it’s possible to make proposals with budget "
-#~ "specifications and locate them. Anyone can comment and rate on different "
-#~ "proposals."
-#~ msgstr ""
-#~ "With participatory-budgeting it’s possible to make proposals with budget "
-#~ "specifications and locate them. Anyone can comment and rate on different "
-#~ "proposals."
-
-#~ msgid ""
-#~ "Please indicate whether this project should be public or restricted to "
-#~ "invited users. Teasers for your project including title and short "
-#~ "description will always be visible to everyone"
-#~ msgstr ""
-#~ "Please indicate whether this project should be public or restricted to "
-#~ "invited users. Teasers for your project including title and short "
-#~ "description will always be visible to everyone"

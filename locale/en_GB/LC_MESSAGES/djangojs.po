@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-18 09:48+0100\n"
+"POT-Creation-Date: 2023-01-31 11:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,8 +98,8 @@ msgstr "Do you really want to delete this comment?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:70
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:75
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:154
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:5
@@ -467,20 +467,20 @@ msgstr ""
 msgid "Save"
 msgstr "Save"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:16
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:17
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:19
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:7
 msgid "Question"
 msgstr "Question"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:37
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:39
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:120
 #: adhocracy4/polls/static/PollDashboard/HelptextForm.jsx:11
 msgid "Explanation"
 msgstr "Explanation"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:47
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:52
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:49
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:54
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:131
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:136
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:3
@@ -488,8 +488,8 @@ msgstr "Explanation"
 msgid "Move up"
 msgstr "Move up"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:59
-#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:64
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:61
+#: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:66
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:143
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:148
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:4
@@ -537,32 +537,32 @@ msgstr ""
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Your answer is invalid or empty. Please try again."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:49
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:53
 msgid "To poll"
 msgstr "To poll"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:55
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:63
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:143
 msgid "Change answer"
 msgstr "Change answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:136
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:143
 msgid "Submit answer"
 msgstr "Submit answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:142
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:149
 msgid "Please login to answer"
 msgstr "Please login to answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:152
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:159
 msgid "Show results"
 msgstr "Show results"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:158
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:165
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:179
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:186
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 
@@ -601,8 +601,8 @@ msgstr[0] "1 person has answered."
 msgstr[1] "%s people have answered."
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:78
-msgid "noone has answered this question"
-msgstr "noone has answered this question"
+msgid "no one has answered this question"
+msgstr "no one has answered this question"
 
 #: adhocracy4/polls/static/PollDetail/PollResults.jsx:108
 msgid "Your choice"
@@ -1193,180 +1193,3 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
-
-#~ msgid "The poll could not be updated."
-#~ msgstr "The poll could not be updated."
-
-#~ msgid "New question"
-#~ msgstr "New question"
-
-#~ msgid "Multiple choice question"
-#~ msgstr "Multiple choice question"
-
-#~ msgid "you have 1 vote left"
-#~ msgid_plural "you have %s votes left"
-#~ msgstr[0] "you have 1 vote left"
-#~ msgstr[1] "you have %s votes left"
-
-#~ msgid ""
-#~ "Your answer could not be saved due to a server error. Please try again "
-#~ "later."
-#~ msgstr ""
-#~ "Your answer could not be saved due to a server error. Please try again "
-#~ "later."
-
-#~ msgid "Filter bar"
-#~ msgstr "Filter bar"
-
-#~ msgid "hide comments"
-#~ msgstr "hide comments"
-
-#~ msgid "1 comment"
-#~ msgid_plural "%s comments"
-#~ msgstr[0] "1 comment"
-#~ msgstr[1] "%s comments"
-
-#~ msgctxt "verb"
-#~ msgid "Comment"
-#~ msgstr "Comment"
-
-#~ msgid "Write contribution"
-#~ msgstr "Write contribution"
-
-#~ msgid "Hide Filters"
-#~ msgstr "Hide Filters"
-
-#~ msgid "Participation"
-#~ msgstr "Participation"
-
-#~ msgid "with"
-#~ msgstr "with"
-
-#~ msgid "without"
-#~ msgstr "without"
-
-#~ msgid "undecided"
-#~ msgstr "undecided"
-
-#~ msgid "with participation"
-#~ msgstr "with participation"
-
-#~ msgid "without participation"
-#~ msgstr "without participation"
-
-#~ msgid "participation undecided"
-#~ msgstr "participation undecided"
-
-#~ msgid " in the area of "
-#~ msgstr " in the area of "
-
-#~ msgid "modified on"
-#~ msgstr "modified on"
-
-#~ msgid ""
-#~ "Thanks for the feedback. It will be checked by the moderators as soon as "
-#~ "possible."
-#~ msgstr ""
-#~ "Thanks for the feedback. It will be checked by the moderators as soon as "
-#~ "possible."
-
-#~ msgid "January"
-#~ msgstr "January"
-
-#~ msgid "February"
-#~ msgstr "February"
-
-#~ msgid "March"
-#~ msgstr "March"
-
-#~ msgid "April"
-#~ msgstr "April"
-
-#~ msgid "May"
-#~ msgstr "May"
-
-#~ msgid "June"
-#~ msgstr "June"
-
-#~ msgid "July"
-#~ msgstr "July"
-
-#~ msgid "August"
-#~ msgstr "August"
-
-#~ msgid "September"
-#~ msgstr "September"
-
-#~ msgid "October"
-#~ msgstr "October"
-
-#~ msgid "November"
-#~ msgstr "November"
-
-#~ msgid "December"
-#~ msgstr "December"
-
-#~ msgid "Helptext"
-#~ msgstr "Helptext"
-
-#~ msgid "Add Helptext"
-#~ msgstr "Add Helptext"
-
-#~ msgid "Add a new question"
-#~ msgstr "Add a new question"
-
-#~ msgid "predefined answers"
-#~ msgstr "predefined answers"
-
-#~ msgid "open answers"
-#~ msgstr "open answers"
-
-#~ msgid "Vote counted"
-#~ msgstr "Vote counted"
-
-#~ msgid "Vote has not been counted due to a server error."
-#~ msgstr "Vote has not been counted due to a server error."
-
-#~ msgid "Vote"
-#~ msgstr "Vote"
-
-#~ msgid "Please login to vote"
-#~ msgstr "Please login to vote"
-
-#~ msgid "Change vote"
-#~ msgstr "Change vote"
-
-#~ msgid "Users can select more than one answer."
-#~ msgstr "Users can select more than one answer."
-
-#~ msgid "Users can answer openly."
-#~ msgstr "Users can answer openly."
-
-#~ msgid "Choice"
-#~ msgstr "Choice"
-
-#~ msgid "Add a new choice"
-#~ msgstr "Add a new choice"
-
-#~ msgid "Multiple answers are possible for this question"
-#~ msgstr "Multiple answers are possible for this question"
-
-#~ msgid "vote"
-#~ msgid_plural "votes"
-#~ msgstr[0] "vote"
-#~ msgstr[1] "votes"
-
-#~ msgid "Show List"
-#~ msgstr "Show List"
-
-#~ msgid "Show Map"
-#~ msgstr "Show Map"
-
-#~ msgid "select characteristic"
-#~ msgstr "select characteristic"
-
-#~ msgid "Add Question"
-#~ msgstr "Add Question"
-
-#~ msgid "Categories Answered"
-#~ msgstr "Categories Answered"
