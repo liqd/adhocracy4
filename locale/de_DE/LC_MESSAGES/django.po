@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-31 11:27+0100\n"
-"PO-Revision-Date: 2023-01-19 03:00+0000\n"
+"PO-Revision-Date: 2023-02-01 15:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
@@ -2166,7 +2166,7 @@ msgstr "Vorschlag bearbeiten"
 #: meinberlin/apps/budgeting/views.py:140
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:19
 msgid "map"
-msgstr ""
+msgstr "Karte"
 
 #: meinberlin/apps/budgeting/views.py:144
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:23
@@ -2395,7 +2395,7 @@ msgstr "Seitennummerierung"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:25
 msgid "back"
-msgstr ""
+msgstr "Zurück"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:51
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:174
