@@ -88,7 +88,7 @@ export const BudgetingProposalList = (props) => {
 
   return (
     <>
-      {(meta?.permissions.view_vote_count && meta?.token_info) &&
+      {(meta?.permissions.view_votes_left && meta?.token_info) &&
         <div className="module-content--light">
           <div className="container">
             <div className="offset-lg-3 col-lg-6">

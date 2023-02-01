@@ -63,11 +63,32 @@ def is_allowed_view_support(item_class):
     @rules.predicate
     def _view_support(user, module):
         if module:
-            return is_allowed_moderate_project(user, module) | (
-                (is_public_context(user, module) | is_context_member(user, module))
-                & is_live_context(user, module)
-                & phase_allows_view_support(module, item_class)
+            return module.has_feature("support", item_class) & (
+                is_allowed_moderate_project(user, module)
+                | (
+                    (is_public_context(user, module) | is_context_member(user, module))
+                    & is_live_context(user, module)
+                    & phase_allows_view_support(module, item_class)
+                )
             )
         return False
 
     return _view_support
+
+
+@rules.predicate
+def is_allowed_view_vote_count(item_class):
+    @rules.predicate
+    def _view_vote_count(user, module):
+        if module:
+            return module.has_feature("vote", item_class) & (
+                rules_predicates.is_superuser(user)
+                | (
+                    (is_public_context(user, module) | is_context_member(user, module))
+                    & is_live_context(user, module)
+                    & module.module_has_finished
+                )
+            )
+        return False
+
+    return _view_vote_count

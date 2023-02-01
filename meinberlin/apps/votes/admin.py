@@ -22,7 +22,10 @@ class TokenVoteAdmin(admin.ModelAdmin):
     fields = ("token", "content_type", "content_object")
     readonly_fields = ("token", "content_type", "content_object")
     list_display = ("content_object", "token_project", "token_module", "created")
-    list_filter = ("token__module__project",)
+    list_filter = (
+        "token__module",
+        "token__module__project",
+    )
     date_hierarchy = "created"
 
     def token_module(self, token_vote):

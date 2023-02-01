@@ -7,6 +7,7 @@ from . import models
 from .predicates import is_allowed_delete_vote
 from .predicates import is_allowed_support_item
 from .predicates import is_allowed_view_support
+from .predicates import is_allowed_view_vote_count
 from .predicates import is_allowed_vote_proposal
 
 rules.add_perm(
@@ -55,3 +56,7 @@ rules.add_perm(
 )
 
 rules.add_perm("meinberlin_budgeting.delete_vote", is_allowed_delete_vote)
+
+rules.add_perm(
+    "meinberlin_budgeting.view_vote_count", is_allowed_view_vote_count(models.Proposal)
+)

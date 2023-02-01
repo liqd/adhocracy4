@@ -40,6 +40,11 @@ def get_default_ordering(view):
         "meinberlin_budgeting:support", "meinberlin_budgeting:voting", view.module
     ):
         return "-positive_rating_count"
+    elif (
+        view.module.has_feature("vote", models.Proposal)
+        and view.module.module_has_finished
+    ):
+        return "-token_vote_count"
     return "dailyrandom"
 
 

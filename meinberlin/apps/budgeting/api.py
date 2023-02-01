@@ -195,10 +195,17 @@ class ProposalFilterInfoMixin:
         )
         if show_support_option:
             ordering_choices += (("-positive_rating_count", _("Most support")),)
+
         ordering_choices += (
             ("-comment_count", _("Most commented")),
             ("dailyrandom", _("Random")),
         )
+
+        show_most_votes_option = request.user.has_perm(
+            "meinberlin_budgeting.view_vote_count", self.module
+        )
+        if show_most_votes_option:
+            ordering_choices += (("-token_vote_count", _("Most votes")),)
 
         return ordering_choices
 
@@ -212,6 +219,11 @@ class ProposalFilterInfoMixin:
             "meinberlin_budgeting:support", "meinberlin_budgeting:voting", self.module
         ):
             return "-positive_rating_count"
+        elif (
+            self.module.has_feature("vote", Proposal)
+            and self.module.module_has_finished
+        ):
+            return "-token_vote_count"
         return "dailyrandom"
 
 
@@ -223,20 +235,27 @@ class PermissionInfoMixin:
         and adhocracy4.api.mixins.ModuleMixin or some other mixin that
         fetches the module
         """
+        response = super().list(request, args, kwargs)
         permissions = {}
         user = request.user
+        permissions["view_comment_count"] = self.module.has_feature("comment", Proposal)
+        permissions["view_rate_count"] = self.module.has_feature("rate", Proposal)
         permissions["view_support_count"] = user.has_perm(
             "meinberlin_budgeting.view_support", self.module
         )
-        permissions["view_rate_count"] = self.module.has_feature("rate", Proposal)
-        permissions["view_comment_count"] = self.module.has_feature("comment", Proposal)
-        permissions["view_vote_count"] = has_feature_active(
-            self.module, Proposal, "vote"
+        permissions["view_vote_count"] = user.has_perm(
+            "meinberlin_budgeting.view_vote_count", self.module
         )
-
-        response = super().list(request, args, kwargs)
+        permissions["view_votes_left"] = self._has_valid_token_in_session(
+            response
+        ) and user.has_perm("meinberlin_budgeting.add_vote", self.module)
         response.data["permissions"] = permissions
         return response
+
+    def _has_valid_token_in_session(self, response):
+        if "token_info" in response.data and response.data["token_info"]:
+            return True
+        return False
 
 
 class ProposalViewSet(
@@ -267,6 +286,7 @@ class ProposalViewSet(
         "comment_count",
         "positive_rating_count",
         "dailyrandom",
+        "token_vote_count",
     )
     search_fields = ("name", "ref_number")
 
@@ -276,6 +296,11 @@ class ProposalViewSet(
             "meinberlin_budgeting:support", "meinberlin_budgeting:voting", self.module
         ):
             return ["-positive_rating_count"]
+        elif (
+            self.module.has_feature("vote", Proposal)
+            and self.module.module_has_finished
+        ):
+            return "-token_vote_count"
         return ["dailyrandom"]
 
     def get_permission_object(self):
@@ -287,6 +312,7 @@ class ProposalViewSet(
             .annotate_comment_count()
             .annotate_positive_rating_count()
             .annotate_reference_number()
+            .annotate_token_vote_count()
             .order_by("-created")
         )
         return proposals

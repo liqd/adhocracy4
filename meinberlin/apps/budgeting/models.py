@@ -7,8 +7,20 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.comments import models as comment_models
 from adhocracy4.projects.models import ProjectContactDetailMixin as contact_mixin
 from adhocracy4.ratings import models as rating_models
+from meinberlin.apps.ideas import models as idea_models
 from meinberlin.apps.mapideas import models as mapidea_models
 from meinberlin.apps.moderationtasks.models import ModerationTask
+from meinberlin.apps.votes.models import TokenVote
+
+
+class ProposalQuerySet(idea_models.IdeaQuerySet):
+    def annotate_token_vote_count(self):
+        return self.annotate(
+            token_vote_count=models.Count(
+                "token_votes",
+                distinct=True,  # needed to combine with other count annotations
+            )
+        )
 
 
 class Proposal(mapidea_models.AbstractMapIdea):
@@ -19,6 +31,11 @@ class Proposal(mapidea_models.AbstractMapIdea):
     )
     comments = GenericRelation(
         comment_models.Comment,
+        related_query_name="budget_proposal",
+        object_id_field="object_pk",
+    )
+    token_votes = GenericRelation(
+        TokenVote,
         related_query_name="budget_proposal",
         object_id_field="object_pk",
     )
@@ -56,6 +73,8 @@ class Proposal(mapidea_models.AbstractMapIdea):
         verbose_name=_("completed moderation tasks"),
         related_name=("%(app_label)s_" "%(class)s" "_completed"),
     )
+
+    objects = ProposalQuerySet.as_manager()
 
     def get_absolute_url(self):
         return reverse(
