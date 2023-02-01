@@ -1,11 +1,13 @@
 import pytest
 from django.urls import reverse
 
+from meinberlin.apps.budgeting import phases
 from meinberlin.apps.budgeting.models import Proposal
 
 
 @pytest.mark.django_db
-def test_proposal_list_pagination(apiclient, module, proposal_factory):
+def test_proposal_list_pagination(apiclient, module, proposal_factory, phase_factory):
+    phase_factory(phase_content=phases.VotingPhase(), module=module)
 
     url = reverse("proposals-list", kwargs={"module_pk": module.pk})
     response = apiclient.get(url)

@@ -90,15 +90,8 @@ def test_proposal_list_filter_mixin(
     ]
 
     assert "own_votes" not in response.data["filters"]
-
     assert "ordering" in response.data["filters"]
     assert response.data["filters"]["ordering"]["label"] == _("Ordering")
-    assert response.data["filters"]["ordering"]["choices"] == [
-        ("-created", _("Most recent")),
-        ("-comment_count", _("Most commented")),
-        ("dailyrandom", _("Random")),
-    ]
-    assert response.data["filters"]["ordering"]["default"] == "dailyrandom"
     assert "labels" not in response.data["filters"]
 
     # with labels
@@ -116,6 +109,16 @@ def test_proposal_list_filter_mixin(
     ]
 
     # ordering choices and own_votes in different phases
+
+    # module has already finished without freeze_time
+    assert response.data["filters"]["ordering"]["choices"] == [
+        ("-created", _("Most recent")),
+        ("-comment_count", _("Most commented")),
+        ("dailyrandom", _("Random")),
+        ("-token_vote_count", _("Most votes")),
+    ]
+    assert response.data["filters"]["ordering"]["default"] == "-token_vote_count"
+
     with freeze_phase(support_phase):
         response = apiclient.get(url)
     assert response.data["filters"]["ordering"]["choices"] == [
@@ -146,6 +149,7 @@ def test_proposal_list_filter_mixin(
         ("dailyrandom", _("Random")),
     ]
     assert response.data["filters"]["ordering"]["default"] == "dailyrandom"
+    assert "own_votes" in response.data["filters"]
     assert response.data["filters"]["own_votes"]["choices"] == [
         ("", _("All")),
         ("true", _("My votes")),
@@ -158,6 +162,7 @@ def test_proposal_list_filter_mixin(
         ("-positive_rating_count", _("Most popular")),
         ("-comment_count", _("Most commented")),
         ("dailyrandom", _("Random")),
+        ("-token_vote_count", _("Most votes")),
     ]
     assert "own_votes" not in response.data["filters"]
 
@@ -195,8 +200,10 @@ def test_proposal_list_filter_mixin(
 
 @pytest.mark.django_db
 def test_proposal_category_filter(
-    apiclient, module, proposal_factory, category_factory
+    apiclient, module, proposal_factory, category_factory, phase_factory
 ):
+    phase_factory(phase_content=phases.SupportPhase(), module=module)
+
     category1 = category_factory(module=module)
     category2 = category_factory(module=module)
 
@@ -222,7 +229,11 @@ def test_proposal_category_filter(
 
 
 @pytest.mark.django_db
-def test_proposal_label_filter(apiclient, module, proposal_factory, label_factory):
+def test_proposal_label_filter(
+    apiclient, module, proposal_factory, label_factory, phase_factory
+):
+    phase_factory(phase_content=phases.SupportPhase(), module=module)
+
     label1 = label_factory(module=module)
     label2 = label_factory(module=module)
 
@@ -250,7 +261,8 @@ def test_proposal_label_filter(apiclient, module, proposal_factory, label_factor
 
 
 @pytest.mark.django_db
-def test_proposal_archived_filter(apiclient, module, proposal_factory):
+def test_proposal_archived_filter(apiclient, module, proposal_factory, phase_factory):
+    phase_factory(phase_content=phases.SupportPhase(), module=module)
 
     proposal_archived = proposal_factory(module=module, is_archived=True)
     proposal = proposal_factory(module=module)
@@ -281,7 +293,11 @@ def test_proposal_archived_filter(apiclient, module, proposal_factory):
 
 
 @pytest.mark.django_db
-def test_proposal_moderator_status_filter(apiclient, module, proposal_factory):
+def test_proposal_moderator_status_filter(
+    apiclient, module, proposal_factory, phase_factory
+):
+    phase_factory(phase_content=phases.SupportPhase(), module=module)
+
     proposal_factory(module=module, moderator_status="")
     proposal_2 = proposal_factory(module=module, moderator_status="CONSIDERATION")
     proposal_3 = proposal_factory(module=module, moderator_status="QUALIFIED")
@@ -320,8 +336,15 @@ def test_proposal_moderator_status_filter(apiclient, module, proposal_factory):
 
 @pytest.mark.django_db
 def test_proposal_own_vote_filter(
-    apiclient, module, proposal_factory, voting_token_factory, token_vote_factory
+    apiclient,
+    module,
+    proposal_factory,
+    voting_token_factory,
+    token_vote_factory,
+    phase_factory,
 ):
+    phase_factory(phase_content=phases.VotingPhase(), module=module)
+
     token = voting_token_factory(module=module)
     add_token_to_session(apiclient.session, token)
     other_token = voting_token_factory(module=module)
@@ -356,8 +379,10 @@ def test_proposal_own_vote_filter(
 
 @pytest.mark.django_db
 def test_proposal_open_task_filter(
-    apiclient, module, proposal_factory, moderation_task_factory
+    apiclient, module, proposal_factory, moderation_task_factory, phase_factory
 ):
+    phase_factory(phase_content=phases.SupportPhase(), module=module)
+
     task1 = moderation_task_factory(module=module)
     task2 = moderation_task_factory(module=module)
 
@@ -390,7 +415,8 @@ def test_proposal_open_task_filter(
 
 
 @pytest.mark.django_db
-def test_proposal_search_filter(apiclient, module, proposal_factory):
+def test_proposal_search_filter(apiclient, module, proposal_factory, phase_factory):
+    phase_factory(phase_content=phases.SupportPhase(), module=module)
 
     now = parse("2022-01-02 18:00:00 UTC")
     yesterday = now - timezone.timedelta(days=1)
@@ -449,8 +475,9 @@ def test_proposal_search_filter(apiclient, module, proposal_factory):
 
 @pytest.mark.django_db
 def test_proposal_ordering_filter(
-    apiclient, module, proposal_factory, comment_factory, rating_factory
+    apiclient, module, proposal_factory, comment_factory, rating_factory, phase_factory
 ):
+    phase_factory(phase_content=phases.SupportPhase(), module=module)
 
     now = parse("2022-01-01 18:00:00 UTC")
     yesterday = now - timezone.timedelta(days=1)
@@ -516,7 +543,13 @@ def test_proposal_ordering_filter(
 
 @pytest.mark.django_db
 def test_proposal_default_ordering_filter(
-    apiclient, module, phase_factory, proposal_factory, rating_factory
+    apiclient,
+    module,
+    phase_factory,
+    proposal_factory,
+    rating_factory,
+    voting_token_factory,
+    token_vote_factory,
 ):
 
     support_phase = phase_factory(
@@ -533,16 +566,23 @@ def test_proposal_default_ordering_filter(
     )
 
     between_phases = parse("2022-01-01 12:00:00 UTC")
+    module_ended = parse("2022-01-01 19:00:00 UTC")
 
     url = reverse("proposals-list", kwargs={"module_pk": module.pk})
 
-    proposal_factory(pk=1, module=module)
+    proposal_1 = proposal_factory(pk=1, module=module)
     proposal_2 = proposal_factory(pk=2, module=module)
     proposal_3 = proposal_factory(pk=3, module=module)
 
     rating_factory(content_object=proposal_2, value=1)
     rating_factory(content_object=proposal_2, value=1)
     rating_factory(content_object=proposal_3, value=1)
+
+    token_1 = voting_token_factory(module=module)
+    token_2 = voting_token_factory(module=module)
+    token_vote_factory(token=token_1, content_object=proposal_1)
+    token_vote_factory(token=token_1, content_object=proposal_3)
+    token_vote_factory(token=token_2, content_object=proposal_3)
 
     # dailyrandom is default during support
     # dailyrandom order for '2022-01-01' is [2, 1, 3]
@@ -563,6 +603,12 @@ def test_proposal_default_ordering_filter(
     ordered_pks = [proposal["pk"] for proposal in response.data["results"]]
     assert ordered_pks == [2, 1, 3]
 
+    # most votes is default after voting phase/module ended
+    with freeze_time(module_ended):
+        response = apiclient.get(url)
+    ordered_pks = [proposal["pk"] for proposal in response.data["results"]]
+    assert ordered_pks == [3, 1, 2]
+
 
 @pytest.mark.django_db
 def test_proposal_filter_combinations(
@@ -573,7 +619,10 @@ def test_proposal_filter_combinations(
     comment_factory,
     rating_factory,
     label_factory,
+    phase_factory,
 ):
+    phase_factory(phase_content=phases.SupportPhase(), module=module)
+
     category1 = category_factory(module=module)
     category2 = category_factory(module=module)
     label1 = label_factory(module=module)

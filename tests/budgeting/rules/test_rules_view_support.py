@@ -7,7 +7,6 @@ from freezegun import freeze_time
 from adhocracy4.projects.enums import Access
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import freeze_post_phase
-from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import setup_phase
 from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.budgeting import phases
@@ -21,7 +20,7 @@ def test_perm_exists():
 
 
 @pytest.mark.django_db
-def test_pre_phase(
+def test_module_no_support_phase(
     phase_factory, proposal_factory, user, admin, user_factory, group_factory
 ):
     phase, module, project, item = setup_phase(
@@ -36,7 +35,34 @@ def test_pre_phase(
     ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
-    with freeze_pre_phase(phase):
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, module)
+        assert not rules.has_perm(perm_name, user, module)
+        assert not rules.has_perm(perm_name, group_member_out, module)
+        assert not rules.has_perm(perm_name, group_member_in_org, module)
+        assert not rules.has_perm(perm_name, group_member_in_pro, module)
+        assert not rules.has_perm(perm_name, moderator, module)
+        assert not rules.has_perm(perm_name, initiator, module)
+        assert not rules.has_perm(perm_name, admin, module)
+
+
+@pytest.mark.django_db
+def test_pre_phase(
+    phase_factory, proposal_factory, user, admin, user_factory, group_factory
+):
+    support_phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.SupportPhase
+    )
+    anonymous, moderator, initiator = setup_users(project)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
+
+    assert project.is_public
+    with freeze_time(support_phase.start_date - timedelta(hours=1)):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
         assert not rules.has_perm(perm_name, group_member_out, module)
@@ -114,8 +140,14 @@ def test_between_support_and_voting_phase(
 def test_voting_phase_active(
     phase_factory, proposal_factory, user, admin, user_factory, group_factory
 ):
-    phase, module, project, item = setup_phase(
-        phase_factory, proposal_factory, phases.VotingPhase
+    support_phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.SupportPhase
+    )
+    voting_phase = phase_factory(
+        phase_content=phases.VotingPhase(),
+        module=module,
+        start_date=support_phase.end_date + timedelta(hours=2),
+        end_date=support_phase.end_date + timedelta(hours=3),
     )
     anonymous, moderator, initiator = setup_users(project)
     (
@@ -126,34 +158,7 @@ def test_voting_phase_active(
     ) = setup_group_members(project, group_factory, user_factory)
 
     assert project.is_public
-    with freeze_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, module)
-        assert not rules.has_perm(perm_name, user, module)
-        assert not rules.has_perm(perm_name, group_member_out, module)
-        assert not rules.has_perm(perm_name, group_member_in_org, module)
-        assert rules.has_perm(perm_name, group_member_in_pro, module)
-        assert rules.has_perm(perm_name, moderator, module)
-        assert rules.has_perm(perm_name, initiator, module)
-        assert rules.has_perm(perm_name, admin, module)
-
-
-@pytest.mark.django_db
-def test_rating_phase_active(
-    phase_factory, proposal_factory, user, admin, user_factory, group_factory
-):
-    phase, module, project, item = setup_phase(
-        phase_factory, proposal_factory, phases.RatingPhase
-    )
-    anonymous, moderator, initiator = setup_users(project)
-    (
-        project,
-        group_member_in_org,
-        group_member_in_pro,
-        group_member_out,
-    ) = setup_group_members(project, group_factory, user_factory)
-
-    assert project.is_public
-    with freeze_phase(phase):
+    with freeze_phase(voting_phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
         assert not rules.has_perm(perm_name, group_member_out, module)

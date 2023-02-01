@@ -19,6 +19,7 @@ def test_proposal_serializer(
     category_factory,
     label_factory,
 ):
+    voting_phase = phase_factory(phase_content=phases.VotingPhase(), module=module)
 
     category = category_factory(module=module)
     label = label_factory(module=module)
@@ -105,8 +106,6 @@ def test_proposal_serializer(
     assert not proposal_voted_data["vote_allowed"]
 
     # test that vote allowed is only true for 3 phase budgeting
-    voting_phase = phase_factory(phase_content=phases.VotingPhase(), module=module)
-
     with freeze_phase(voting_phase):
         response = apiclient.get(url)
 
