@@ -44,7 +44,9 @@ export const BudgetingProposalList = (props) => {
 
   const endSession = () => {
     const endSessionUrl = props.end_session_url
-    fetch(endSessionUrl).catch(error => console.log(error))
+    fetch(endSessionUrl)
+      .then(() => window.location.reload(true))
+      .catch(error => console.log(error))
   }
 
   const scrollToProposal = () => {
