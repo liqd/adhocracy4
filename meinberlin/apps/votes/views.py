@@ -1,3 +1,5 @@
+from math import ceil
+
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.humanize.templatetags.humanize import intcomma
@@ -11,9 +13,9 @@ from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.votes.forms import TokenBatchCreateForm
 from meinberlin.apps.votes.models import VotingToken
-from meinberlin.apps.votes.tasks import PACKAGE_SIZE
 from meinberlin.apps.votes.tasks import generate_voting_tokens
 
+PAGE_SIZE = 1000000
 TOKENS_PER_MODULE = int(5e6)
 
 
@@ -27,25 +29,12 @@ class ExportTokenDashboardView(
     template_name = "meinberlin_votes/token_export_dashboard.html"
 
     def _get_number_of_tokens(self):
-        """Return total and downloadable token count for module."""
         return VotingToken.objects.filter(module=self.module, is_active=True).count()
 
-    def _get_packages(self):
-        downloadable_tokens = (
-            VotingToken.objects.filter(module=self.module, is_active=True)
-            .exclude(token="")
-            .values("package_number")
-            .distinct()
-        )
-        downloaded_tokens = VotingToken.objects.filter(
-            module=self.module, is_active=True, token=""
-        ).values("package_number")
-        tokens = {}
-        for token in downloadable_tokens:
-            tokens[token["package_number"]] = True
-        for token in downloaded_tokens:
-            tokens[token["package_number"]] = False
-        return sorted(tokens.items())
+    def _get_page_range(self):
+        number_of_tokens = self._get_number_of_tokens()
+        number_of_pages = ceil(number_of_tokens / PAGE_SIZE)
+        return range(1, number_of_pages + 1)
 
     def get_permission_object(self):
         return self.project
@@ -55,10 +44,10 @@ class ExportTokenDashboardView(
         context["token_export_url"] = reverse(
             "a4dashboard:token-export", kwargs={"module_slug": self.module.slug}
         )
+        context["token_export_iterator"] = self._get_page_range()
         context["number_of_module_tokens"] = intcomma(self._get_number_of_tokens())
-        context["token_packages"] = self._get_packages()
-        context["export_size"] = intcomma(PACKAGE_SIZE)
         context["contact_email"] = settings.CONTACT_EMAIL
+        context["export_size"] = intcomma(PAGE_SIZE)
         return context
 
 

@@ -31,12 +31,15 @@ class VotingTokenInfoMixin:
         if "voting_tokens" in request.session:
             module_key = str(self.module.id)
             if module_key in request.session["voting_tokens"]:
-                token = VotingToken.get_voting_token_by_hash(
-                    token_hash=request.session["voting_tokens"][module_key], module=self.module
-                )
-                if token:
+                try:
+                    token = VotingToken.objects.get(
+                        token=request.session["voting_tokens"][module_key],
+                        module=self.module,
+                    )
                     serializer = VotingTokenSerializer(token)
                     token_info = serializer.data
+                except VotingToken.DoesNotExist:
+                    pass
 
         response.data["token_info"] = token_info
         return response
@@ -54,11 +57,14 @@ class TokenVoteMixin:
         if "voting_tokens" in request.session:
             module_key = str(self.module.id)
             if module_key in request.session["voting_tokens"]:
-                token = VotingToken.get_voting_token_by_hash(
-                    token_hash=request.session["voting_tokens"][module_key], module=self.module
-                )
-                if token:
-                    self.token = token
+                try:
+                    self.token = VotingToken.objects.get(
+                        token=request.session["voting_tokens"][module_key],
+                        module=self.module,
+                    )
+                except VotingToken.DoesNotExist:
+                    pass
+
         return super().dispatch(request, *args, **kwargs)
 
     @property

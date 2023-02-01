@@ -1,4 +1,3 @@
-import hashlib
 import secrets
 import string
 
@@ -13,56 +12,15 @@ from adhocracy4.models import base
 from adhocracy4.modules.models import Module
 
 
-def get_token(length):
+def get_token():
     alphabet = string.ascii_letters + string.digits
-    return "".join(secrets.choice(alphabet) for i in range(length))
-
-
-def get_token_12():
-    return get_token(12)
-
-
-def get_token_16():
-    return get_token(16)
-
-
-class TokenSalt(models.Model):
-    salt = models.CharField(
-        default=get_token_16, max_length=16, editable=False, unique=True
-    )
-    module = models.ForeignKey(Module, on_delete=models.CASCADE)
-
-    def save(self, *args, **kwargs):
-        for i in range(4):
-            try:
-                super().save(*args, **kwargs)
-                return
-            except IntegrityError as e:
-                if "UNIQUE constraint failed" in e.args[0]:
-                    if i == 3:
-                        raise
-                    else:
-                        self.salt = get_token_16()
-                else:
-                    raise
-
-    @staticmethod
-    def get_or_create_salt_for_module(module):
-        try:
-            token_salt = TokenSalt.objects.get(module=module)
-        except TokenSalt.DoesNotExist:
-            token_salt = TokenSalt.objects.create(module=module)
-        return token_salt.salt
+    return "".join(secrets.choice(alphabet) for i in range(12))
 
 
 class VotingToken(models.Model):
-    token = models.CharField(
-        max_length=40, default=get_token_12, blank=True, editable=False
-    )
-    token_hash = models.CharField(max_length=128, editable=False, unique=True)
+    token = models.CharField(max_length=40, default=get_token, editable=False)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     allowed_votes = models.PositiveSmallIntegerField(default=5)
-    package_number = models.PositiveIntegerField()
     is_active = models.BooleanField(
         default=True,
         help_text=_(
@@ -70,6 +28,9 @@ class VotingToken(models.Model):
             "active. Unselect this instead of deleting tokens."
         ),
     )
+
+    class Meta:
+        unique_together = ["token", "module"]
 
     # if token already exists, try to generate another one
     def save(self, *args, **kwargs):
@@ -82,8 +43,7 @@ class VotingToken(models.Model):
                     if i == 3:
                         raise
                     else:
-                        self.token = get_token_12()
-                        self.token_hash = self.hash_token(self.token, self.module)
+                        self.token = get_token()
                 else:
                     raise
 
@@ -106,44 +66,6 @@ class VotingToken(models.Model):
 
     def is_valid_for_item(self, item):
         return item.module == self.module
-
-    @staticmethod
-    def next_package_number(module):
-        token = (
-            VotingToken.objects.filter(module=module)
-            .order_by("-package_number")
-            .first()
-        )
-        if token:
-            return token.package_number + 1
-        return 0
-
-    @staticmethod
-    def hash_token(token, module):
-        salt = TokenSalt.get_or_create_salt_for_module(module)
-        token_hash = hashlib.sha3_512((salt + token).encode()).hexdigest()
-        return token_hash
-
-    @staticmethod
-    def get_voting_token(token, module_id):
-        try:
-            module = Module.objects.get(id=module_id)
-            token_hash = VotingToken.hash_token(token, module)
-            return VotingToken.objects.get(token_hash=token_hash)
-        except (
-            Module.DoesNotExist,
-            Module.MultipleObjectsReturned,
-            VotingToken.DoesNotExist,
-            VotingToken.MultipleObjectsReturned,
-        ):
-            return None
-
-    @staticmethod
-    def get_voting_token_by_hash(token_hash, module):
-        try:
-            return VotingToken.objects.get(token_hash=token_hash, module=module)
-        except (VotingToken.DoesNotExist, VotingToken.MultipleObjectsReturned):
-            return None
 
     def __str__(self):
         return "{}-{}-{}".format(self.token[0:4], self.token[4:8], self.token[8:12])

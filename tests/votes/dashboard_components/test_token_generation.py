@@ -1,4 +1,3 @@
-import hashlib
 from unittest.mock import patch
 
 import pytest
@@ -12,7 +11,6 @@ from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.budgeting.phases import VotingPhase
-from meinberlin.apps.votes.models import TokenSalt
 from meinberlin.apps.votes.models import VotingToken
 from meinberlin.apps.votes.tasks import generate_voting_tokens_batch
 
@@ -20,7 +18,6 @@ component = components.modules.get("voting_token_generation")
 
 
 @patch("meinberlin.apps.votes.tasks.BATCH_SIZE", 10)
-@patch("meinberlin.apps.votes.tasks.PACKAGE_SIZE", 10)
 @pytest.mark.django_db
 def test_token_generate_view(
     client, phase_factory, module_factory, voting_token_factory, admin
@@ -64,7 +61,7 @@ def test_token_generate_view(
     assert task_1.task_params == (
         "[["
         + str(module.id)
-        + ', 10, 1, 12, "'
+        + ', 10, 12, "'
         + str(module.name)
         + '", '
         + str(module.project.id)
@@ -75,7 +72,7 @@ def test_token_generate_view(
     assert task_2.task_params == (
         "[["
         + str(module.id)
-        + ', 2, 2, 12, "'
+        + ', 2, 12, "'
         + str(module.name)
         + '", '
         + str(module.project.id)
@@ -119,7 +116,6 @@ def test_token_batch_generation_not_unique(phase_factory):
                 generate_voting_tokens_batch.now(
                     module.id,
                     2,
-                    0,
                     2,
                     module.name,
                     module.project.id,
@@ -130,21 +126,7 @@ def test_token_batch_generation_not_unique(phase_factory):
     assert tokens.count() == 0
 
     generate_voting_tokens_batch.now(
-        module.id, 2, 0, 2, module.name, module.project.id, module.project.name, 0
+        module.id, 2, 2, module.name, module.project.id, module.project.name, 0
     )
     tokens = VotingToken.objects.all()
     assert tokens.count() == 2
-
-
-@pytest.mark.django_db
-def test_token_batch_generation_correct_hash(phase_factory):
-    phase, module, project, item = setup_phase(phase_factory, None, VotingPhase)
-    generate_voting_tokens_batch.now(
-        module.id, 2, 0, 2, module.name, module.project.id, module.project.name, 0
-    )
-    tokens = VotingToken.objects.all()
-    salt = TokenSalt.get_or_create_salt_for_module(module)
-    assert tokens.count() == 2
-    for t in tokens:
-        token_hash = hashlib.sha3_512((salt + t.token).encode()).hexdigest()
-        assert token_hash == t.token_hash

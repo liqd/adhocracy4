@@ -12,9 +12,9 @@ from meinberlin.apps.votes.models import TokenVote
 
 def add_token_to_session(session, token):
     if "voting_tokens" in session:
-        session["voting_tokens"][str(token.module.id)] = token.token_hash
+        session["voting_tokens"][str(token.module.id)] = token.token
     else:
-        session["voting_tokens"] = {str(token.module.id): token.token_hash}
+        session["voting_tokens"] = {str(token.module.id): token.token}
     session.save()
 
 
