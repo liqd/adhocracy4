@@ -1,9 +1,9 @@
-/* This code is used to save closed accordeons in the dashboard in a cookie */
+/* This code is used to save closed accordions in the dashboard in a cookie */
 
 import Cookies from 'js-cookie'
 
-$(function () {
-  const cookieName = 'dashboard_projects_closed_accordeons'
+function init () {
+  const cookieName = 'dashboard_projects_closed_accordions'
 
   if (Cookies.get(cookieName) === undefined) {
     Cookies.set(cookieName, '[]')
@@ -26,4 +26,6 @@ $(function () {
       Cookies.set(cookieName, JSON.stringify(currentList))
     }
   })
-})
+}
+
+document.addEventListener('DOMContentLoaded', init)

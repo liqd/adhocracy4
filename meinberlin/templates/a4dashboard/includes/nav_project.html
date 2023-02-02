@@ -1,9 +1,9 @@
 {% load i18n static meinberlin_dashboard_tags meinberlin_project_tags rules %}
-{% closed_accordeons project.id as closed_accordeons %}
+{% closed_accordions project.id as closed_accordions %}
 
 <div class="dashboard-nav">
     <div class="dashboard-nav__collapsible-menu">
-        <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__project--{{ project.id }}" {% if not -1 in closed_accordeons %}checked{% endif %} aria-label="{% translate 'Toggle menu' %}">
+        <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__project--{{ project.id }}" {% if not -1 in closed_accordions %}checked{% endif %} aria-label="{% translate 'Toggle menu' %}">
         <label class="dashboard-nav__dropdown" for="dashboard-nav__project--{{ project.id }}" tabindex="0">
             <div class="dashboard-nav__item">
                 <div class="dashboard-nav__header">

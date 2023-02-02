@@ -7,7 +7,6 @@ import 'slick-carousel'
 import '../../apps/actions/assets/timestamps.js'
 import '../../apps/moderatorremark/assets/idea_remarks.js'
 import '../../apps/newsletters/assets/dynamic_fields.js'
-import '../../apps/dashboard/assets/init_accordeons_cookie.js'
 
 // map search function
 import 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_address.js'
