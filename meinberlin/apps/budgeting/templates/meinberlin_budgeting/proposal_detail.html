@@ -25,7 +25,7 @@
 
     {% has_perm 'meinberlin_budgeting.view_vote_count' request.user module as may_view_vote_count %}
     {% if may_view_vote_count %}
-        <p class="u-bottom-divider u-align-center">{% blocktranslate with amount=object.vote_count %}This idea received a total of <span class="u-primary">1{{ amount }}</span> votes{% endblocktranslate %}</p>
+        <p class="u-bottom-divider u-align-center">{% blocktranslate with amount=object.token_vote_count %}This idea received a total of <span class="u-primary">{{ amount }}</span> votes{% endblocktranslate %}</p>
     {% endif %}
 
     {% has_perm 'meinberlin_budgeting.vote_proposal' request.user proposal as vote_allowed %}

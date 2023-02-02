@@ -126,7 +126,9 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
 class ProposalDetailView(idea_views.AbstractIdeaDetailView):
     model = models.Proposal
     queryset = (
-        models.Proposal.objects.annotate_positive_rating_count().annotate_negative_rating_count()
+        models.Proposal.objects.annotate_positive_rating_count()
+        .annotate_negative_rating_count()
+        .annotate_token_vote_count()
     )
     permission_required = "meinberlin_budgeting.view_proposal"
 
