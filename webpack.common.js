@@ -86,6 +86,10 @@ module.exports = {
     swiper_phases: {
       import: './meinberlin/assets/js/swiper_phases.js'
     },
+    token_download_button: {
+      import: './meinberlin/apps/votes/assets/token_download_button.js'
+    },
+
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: {
       import: [

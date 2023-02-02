@@ -1,5 +1,5 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{% translate 'Download voting codes' %}</h1>
@@ -19,8 +19,8 @@
                 {% else %}
                   class="btn btn--light disabled"
                 {% endif %}
-                  id="download-link"
-                  aria-labelledby="id-export-tokens-hint-{{ number }} download-link"
+                  id="download-link-{{ number }}"
+                  aria-labelledby="id-export-tokens-hint-{{ number }} download-link--{{ number }}"
                   href="{{ token_export_url }}?package={{ number }}"
                 >
                     {% if downloadable %}
@@ -33,4 +33,9 @@
             {% endfor %}
         {% endif %}
     </ul>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'token_download_button.js' %}"></script>
 {% endblock %}
