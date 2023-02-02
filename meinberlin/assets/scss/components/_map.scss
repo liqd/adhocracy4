@@ -33,7 +33,7 @@
 }
 
 .maps-popups-popup-meta {
-    padding: 1em;
+    padding-bottom: 0.5 * $spacer;
 }
 
 .map-popup-upvotes i {
@@ -44,10 +44,15 @@
     color: $danger;
 }
 
+.map-popup-vote-count i {
+    color: $primary;
+}
+
 .map-popup-upvotes,
 .map-popup-downvotes,
+.map-popup-vote-count,
 .map-popup-comments-count {
-    margin-right: 2em;
+    margin-right: $spacer;
 }
 
 .maps-popups-popup-image {

@@ -35,17 +35,20 @@ def test_proposal_list_mixins(
     assert "permissions" in response.data
     assert not response.data["permissions"]["view_support_count"]
     assert not response.data["permissions"]["view_rate_count"]
+    assert not response.data["permissions"]["view_vote_count"]
     assert not response.data["permissions"]["view_comment_count"]
 
     with freeze_phase(phase):
         response = apiclient.get(url)
         assert response.data["permissions"]["view_support_count"]
         assert not response.data["permissions"]["view_rate_count"]
+        assert not response.data["permissions"]["view_vote_count"]
         assert not response.data["permissions"]["view_comment_count"]
 
     phase_factory(phase_content=phases.CollectPhase(), module=module)
     phase_factory(phase_content=phases.RatingPhase(), module=module)
     response = apiclient.get(url)
     assert not response.data["permissions"]["view_support_count"]
+    assert not response.data["permissions"]["view_vote_count"]
     assert response.data["permissions"]["view_rate_count"]
     assert response.data["permissions"]["view_comment_count"]

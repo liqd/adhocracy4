@@ -80,7 +80,8 @@
             </div>
             {% if module.blueprint_type == 'PB3' %}
                 {% has_or_would_have_perm 'meinberlin_budgeting.view_support' request.user module as may_view_support %}
-                {% map_display_points object_list module.settings_instance.polygon 'true' may_view_support|yesno:"false,true" %}
+                {% has_or_would_have_perm 'meinberlin_budgeting.view_vote_count' request.user module as may_view_vote_count %}
+                {% map_display_points object_list module.settings_instance.polygon 'true' may_view_support|yesno:"false,true" may_view_vote_count|yesno:"false,true" %}
             {% else %}
                 {% map_display_points object_list module.settings_instance.polygon %}
             {% endif %}
