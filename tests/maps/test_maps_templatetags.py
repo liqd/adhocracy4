@@ -41,6 +41,7 @@ def test_get_points_one(location_factory):
                     "comments_count": "",
                     "positive_rating_count": "",
                     "negative_rating_count": "",
+                    "vote_count": "",
                 },
             }
         ],
@@ -63,6 +64,7 @@ def test_get_points_with_properties(location_factory):
     items[0].comment_count = 2
     items[0].positive_rating_count = 3
     items[0].negative_rating_count = 4
+    items[0].token_vote_count = 2
 
     result = json.loads(maps_tags.get_points(items))
 
@@ -81,6 +83,7 @@ def test_get_points_with_properties(location_factory):
                     "comments_count": 2,
                     "positive_rating_count": 3,
                     "negative_rating_count": 4,
+                    "vote_count": 2,
                 },
             }
         ],
@@ -106,6 +109,7 @@ def test_map_display_points(area_settings, location_factory):
                     "image": "",
                     "category_icon": "",
                     "negative_rating_count": "",
+                    "vote_count": "",
                 },
                 "type": "Feature",
                 "geometry": {"type": "Point", "coordinates": [1.0, 1.0]},
@@ -129,6 +133,7 @@ def test_map_display_points(area_settings, location_factory):
         r' data-polygon="(?P<polygon>{{.+}})"'
         ' data-hide-ratings="false"'
         ' data-hide-support="true"'
+        ' data-hide-vote-count="true"'
         r"></div>$"
     ).format(
         baseurl=escape(settings.A4_MAP_BASEURL),

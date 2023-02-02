@@ -21,6 +21,7 @@ def get_points(items):
         comment_count = ""
         positive_rating_count = ""
         negative_rating_count = ""
+        vote_count = ""
 
         if hasattr(item, "image") and item.image:
             image = get_thumbnailer(item.image)["map_thumbnail"]
@@ -31,6 +32,8 @@ def get_points(items):
             positive_rating_count = item.positive_rating_count
         if hasattr(item, "negative_rating_count"):
             negative_rating_count = item.negative_rating_count
+        if hasattr(item, "token_vote_count"):
+            vote_count = item.token_vote_count
 
         if hasattr(item, "category") and getattr(item.category, "icon", None):
             category_icon = get_category_pin_url(item.category.icon)
@@ -44,6 +47,7 @@ def get_points(items):
             "comments_count": comment_count,
             "positive_rating_count": positive_rating_count,
             "negative_rating_count": negative_rating_count,
+            "vote_count": vote_count,
             "url": item.get_absolute_url(),
             "category_icon": category_icon,
         }
@@ -56,7 +60,9 @@ def get_points(items):
 
 
 @register.simple_tag()
-def map_display_points(items, polygon, hideRatings="false", hideSupport="true"):
+def map_display_points(
+    items, polygon, hideRatings="false", hideSupport="true", hideVoteCount="true"
+):
     use_vector_map = 0
     mapbox_token = ""
     omt_token = ""
@@ -83,6 +89,7 @@ def map_display_points(items, polygon, hideRatings="false", hideSupport="true"):
             ' data-polygon="{polygon}"'
             ' data-hide-ratings="{hideRatings}"'
             ' data-hide-support="{hideSupport}"'
+            ' data-hide-vote-count="{hideVoteCount}"'
             "></div>"
         ),
         baseurl=settings.A4_MAP_BASEURL,
@@ -94,6 +101,7 @@ def map_display_points(items, polygon, hideRatings="false", hideSupport="true"):
         polygon=json.dumps(polygon),
         hideRatings=hideRatings,
         hideSupport=hideSupport,
+        hideVoteCount=hideVoteCount,
     )
 
 
