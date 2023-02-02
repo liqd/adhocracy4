@@ -22,6 +22,7 @@ function init () {
     const points = JSON.parse(e.getAttribute('data-points'))
     const hideRatings = e.getAttribute('data-hide-ratings')
     const hideSupport = e.getAttribute('data-hide-support')
+    const hideVoteCount = e.getAttribute('data-hide-vote-count')
     let initial = 0
 
     const map = createMap(L, e, {
@@ -105,9 +106,29 @@ function init () {
              '</span>'
     }
 
+    function getVoteCount (feature) {
+      return '<span class="map-popup-vote-count">' +
+               feature.properties.vote_count + ' <i class="fa-regular fa-square-check" aria-hidden="true"></i>' +
+               '<span class="visually-hidden">' +
+                  django.ngettext(
+                    'person voted for this proposal.',
+                    'persons voted for this proposal.',
+                    feature.properties.vote_count
+                  ) +
+                '</span>' +
+             '</span>'
+    }
+
     function getCommentCount (feature) {
       return '<span class="map-popup-comments-count">' +
                feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
+               '<span class="visually-hidden">' +
+                  django.ngettext(
+                    'person commented on this proposal.',
+                    'persons commented on this proposal.',
+                    feature.properties.comments_count
+                  ) +
+                '</span>' +
              '</span>'
     }
 
@@ -119,6 +140,9 @@ function init () {
         popupContent += getRatings(feature)
       } else if (hideSupport === 'false') {
         popupContent += getSupport(feature)
+      }
+      if (hideVoteCount === 'false' || hideVoteCount === null) {
+        popupContent += getVoteCount(feature)
       }
       popupContent += getCommentCount(feature) +
                       '</div>' +
