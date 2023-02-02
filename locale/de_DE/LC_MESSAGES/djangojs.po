@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-31 11:27+0100\n"
+"POT-Creation-Date: 2023-02-02 16:19+0100\n"
 "PO-Revision-Date: 2023-01-19 03:00+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
@@ -557,6 +557,15 @@ msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
 "entfernen?"
 
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:100
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:100
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:12
+#: meinberlin/apps/budgeting/assets/SupportBox.jsx:14
+msgid "person supports this proposal."
+msgid_plural "persons support this proposal."
+msgstr[0] ""
+msgstr[1] ""
+
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
@@ -890,19 +899,19 @@ msgstr ""
 msgid "More"
 msgstr "Mehr"
 
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:4
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:7
 msgid "Positive Ratings"
 msgstr "Positive Bewertungen"
 
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:5
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:8
 msgid "Negative Ratings"
 msgstr "Negative Bewertungen"
 
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:6
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:9
 msgid "Support"
 msgstr "Unterstützung"
 
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:7
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:10
 msgid "Comments"
 msgstr "Kommentare"
 
@@ -918,9 +927,13 @@ msgstr ""
 msgid "prev page"
 msgstr ""
 
-#: meinberlin/apps/budgeting/assets/SupportBox.jsx:8
-msgid "Click to support"
-msgstr "Zum Unterstützen klicken"
+#: meinberlin/apps/budgeting/assets/SupportBox.jsx:18
+msgid "Click to support."
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/SupportBox.jsx:19
+msgid "You support this proposal. Click to unsupport."
+msgstr ""
 
 #: meinberlin/apps/budgeting/assets/VoteButton.jsx:40
 msgid "Voted"
@@ -1316,6 +1329,10 @@ msgstr "Karte ausblenden"
 #: meinberlin/apps/plans/assets/Toggles.jsx:15
 msgid "show list"
 msgstr "Liste anzeigen"
+
+#: meinberlin/apps/votes/assets/token_download_button.js:14
+msgid "Encrypted"
+msgstr ""
 
 #: meinberlin/assets/js/swiper_phases.js:27
 msgid "Slider to go back and forth between phases."

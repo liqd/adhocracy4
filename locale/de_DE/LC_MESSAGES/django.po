@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-31 11:27+0100\n"
+"POT-Creation-Date: 2023-02-02 16:18+0100\n"
 "PO-Revision-Date: 2023-02-01 15:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
@@ -1813,7 +1813,7 @@ msgstr "am beliebtesten"
 msgid "Most support"
 msgstr "meist unterstützt"
 
-#: meinberlin/apps/budgeting/api.py:199 meinberlin/apps/budgeting/views.py:32
+#: meinberlin/apps/budgeting/api.py:200 meinberlin/apps/budgeting/views.py:32
 #: meinberlin/apps/ideas/views.py:38 meinberlin/apps/kiezkasse/views.py:19
 #: meinberlin/apps/mapideas/views.py:19
 #: meinberlin/apps/maptopicprio/views.py:22
@@ -1821,9 +1821,13 @@ msgstr "meist unterstützt"
 msgid "Most commented"
 msgstr "meist kommentiert"
 
-#: meinberlin/apps/budgeting/api.py:200 meinberlin/apps/budgeting/views.py:33
+#: meinberlin/apps/budgeting/api.py:201 meinberlin/apps/budgeting/views.py:33
 msgid "Random"
 msgstr "zufällig"
+
+#: meinberlin/apps/budgeting/api.py:208
+msgid "Most votes"
+msgstr ""
 
 #: meinberlin/apps/budgeting/exports.py:46
 msgid "Contact E-Mail"
@@ -1897,11 +1901,11 @@ msgstr "neue E-Mail-Adresse"
 msgid "Please enter an email address."
 msgstr "Bitte geben Sie eine E-Mail-Adresse an."
 
-#: meinberlin/apps/budgeting/models.py:28
+#: meinberlin/apps/budgeting/models.py:45
 msgid "Budget"
 msgstr "Kosten"
 
-#: meinberlin/apps/budgeting/models.py:30
+#: meinberlin/apps/budgeting/models.py:47
 msgid ""
 "Please enter the estimated or actual costs for your proposal. Enter 0€ if "
 "the costs are not (yet) known. In this case, the description \"budget not "
@@ -1911,11 +1915,11 @@ msgstr ""
 "ein. Tragen Sie 0€ ein, wenn die Kosten (noch) nicht bekannt sind. In diesem "
 "Fall erscheint in Ihrem Vorschlag die Beschreibung \"Kosten: keine Angabe\"."
 
-#: meinberlin/apps/budgeting/models.py:39
+#: meinberlin/apps/budgeting/models.py:56
 msgid "Proposal is archived (public)"
 msgstr "Vorschlag ist archiviert (öffentlich)"
 
-#: meinberlin/apps/budgeting/models.py:41
+#: meinberlin/apps/budgeting/models.py:58
 msgid ""
 "Exclude this proposal from all listings by default. You can still access "
 "this proposal by using filters."
@@ -1923,7 +1927,7 @@ msgstr ""
 "Diesen Vorschlag standardmäßig von allen Listen ausschließen. Sie können den "
 "Vorschlag weiterhin über die Filter erreichen."
 
-#: meinberlin/apps/budgeting/models.py:56
+#: meinberlin/apps/budgeting/models.py:73
 msgid "completed moderation tasks"
 msgstr ""
 
@@ -2163,18 +2167,18 @@ msgstr "%(title)s bearbeiten"
 msgid "Edit proposal"
 msgstr "Vorschlag bearbeiten"
 
-#: meinberlin/apps/budgeting/views.py:140
+#: meinberlin/apps/budgeting/views.py:146
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:19
 msgid "map"
 msgstr "Karte"
 
-#: meinberlin/apps/budgeting/views.py:144
+#: meinberlin/apps/budgeting/views.py:150
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:23
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:13
 msgid "list"
 msgstr "Liste"
 
-#: meinberlin/apps/budgeting/views.py:184 meinberlin/apps/kiezkasse/views.py:72
+#: meinberlin/apps/budgeting/views.py:190 meinberlin/apps/kiezkasse/views.py:72
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
@@ -4673,11 +4677,11 @@ msgstr "Nutzerkonto Einstellungen"
 msgid "Platform Email"
 msgstr "Plattform-Mail"
 
-#: meinberlin/apps/votes/api.py:85
+#: meinberlin/apps/votes/api.py:79
 msgid "No token given or token not valid for module."
 msgstr "Fehlender oder für das Modul ungültiger Abstimmungsschlüssel."
 
-#: meinberlin/apps/votes/api.py:88
+#: meinberlin/apps/votes/api.py:82
 msgid "Token is inactive."
 msgstr "Abstimmungsschlüssel ist nicht aktiviert."
 
@@ -4689,7 +4693,7 @@ msgstr "Codes erstellen"
 msgid "Code download"
 msgstr "Codes herunterladen"
 
-#: meinberlin/apps/votes/exports.py:40
+#: meinberlin/apps/votes/exports.py:52
 msgid "Voting codes"
 msgstr "Abstimmungscodes"
 
@@ -4717,7 +4721,7 @@ msgstr ""
 "Bitte geben Sie an, wie viele Teilnehmer*innen zur Abstimmung eingeladen "
 "werden sollen. Pro Teilnehmer*in wird ein Code erstellt."
 
-#: meinberlin/apps/votes/models.py:27
+#: meinberlin/apps/votes/models.py:69
 msgid ""
 "Designates whether this token should be treated as active. Unselect this "
 "instead of deleting tokens."
@@ -4725,15 +4729,15 @@ msgstr ""
 "Legt fest, ob dieser Schlüssel aktiviert ist. Entfernen Sie die Auswahl, "
 "anstatt den Schlüssel zu löschen."
 
-#: meinberlin/apps/votes/models.py:87
+#: meinberlin/apps/votes/models.py:165
 msgid "This token is not valid for this project."
 msgstr "Der Abstimmungsschlüssel ist nicht gültig für dieses Projekt."
 
-#: meinberlin/apps/votes/models.py:90
+#: meinberlin/apps/votes/models.py:168
 msgid "This token is not active."
 msgstr "Dieser Abstimmungsschlüssel ist nicht aktiviert."
 
-#: meinberlin/apps/votes/models.py:92
+#: meinberlin/apps/votes/models.py:170
 msgid "This token has no votes left."
 msgstr "Dieser Abstimmungsschlüssel hat keine weiteren Stimmen."
 
@@ -4745,13 +4749,10 @@ msgstr "Abstimmungscodes herunterladen"
 #, python-format
 msgid ""
 "For voting in the third phase, all participants need their own voting code. "
-"Here you can download the codes in packages of %(export_size)s per excel "
-"file. To generate the codes, please contact %(contact_email)s."
+"Here you can download the codes in packages of up to %(export_size)s per "
+"excel file. Each file can be downloaded only once before the codes are being "
+"encrypted. To generate the codes, please contact %(contact_email)s."
 msgstr ""
-"Für die Abstimmung in der dritten Phase benötigen alle Teilnehmer*innen "
-"einen eigenen Abstimmungscode. Hier können Sie die Codes in Paketen von "
-"%(export_size)s pro Excel-Datei herunterladen. Um die Codes zu erstellen, "
-"wenden Sie sich bitte an %(contact_email)s."
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:8
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:8
@@ -4763,9 +4764,13 @@ msgstr "Anzahl der erstellten Codes: %(number_of_module_tokens)s."
 msgid " code package no."
 msgstr " Code-Paket Nr."
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:22
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:27
 msgid "Download"
 msgstr "Herunterladen"
+
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:29
+msgid "Encrypted"
+msgstr ""
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:5
 msgid "Generate voting codes"
@@ -4790,19 +4795,19 @@ msgstr "Um die Codes herunterzuladen gehen Sie bitte zum Code-Download."
 msgid "Generate codes"
 msgstr "Codes erstellen"
 
-#: meinberlin/apps/votes/views.py:66
+#: meinberlin/apps/votes/views.py:77
 msgid ""
 "{} code will be generated in the background. This may take a few minutes."
 msgstr ""
 "{} Code wird im Hintergrund erstellt. Dies kann ein paar Minuten dauern."
 
-#: meinberlin/apps/votes/views.py:70
+#: meinberlin/apps/votes/views.py:81
 msgid ""
 "{} codes will be generated in the background. This may take a few minutes."
 msgstr ""
 "{} Codes werden im Hintergrund erstellt. Dies kann ein paar Minuten dauern."
 
-#: meinberlin/apps/votes/views.py:75
+#: meinberlin/apps/votes/views.py:86
 msgid ""
 "Please adjust your number of codes. Per module you can generate up to {} "
 "codes."
