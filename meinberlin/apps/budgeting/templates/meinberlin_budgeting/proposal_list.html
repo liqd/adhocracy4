@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags static maps_tags react_proposals widget_tweaks rules %}
+{% load i18n discovery_tags static maps_tags react_proposals widget_tweaks rules contrib_tags %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
@@ -23,7 +23,8 @@
         {% has_perm 'meinberlin_budgeting.add_vote' request.user module as vote_allowed %}
         {% if vote_allowed %}
             {% if not valid_token_present %}
-                <form action="{{ request.path }}" autocomplete="off" method="post">
+                {% combined_url_parameter request.GET as url_params %}
+                <form action="{{ request.path }}{{ url_params }}" autocomplete="off" method="post">
                   {% csrf_token %}
                     <div class="input-group input-group-lg">
                         <label for="id_token" class="visually-hidden-focusable">{% translate 'Voting token form fields' %}</label>
