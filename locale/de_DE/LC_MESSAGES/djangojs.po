@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-02 16:19+0100\n"
-"PO-Revision-Date: 2023-01-19 03:00+0000\n"
+"PO-Revision-Date: 2023-02-04 11:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
@@ -563,8 +563,8 @@ msgstr ""
 #: meinberlin/apps/budgeting/assets/SupportBox.jsx:14
 msgid "person supports this proposal."
 msgid_plural "persons support this proposal."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Person unterstützt diesen Vorschlag."
+msgstr[1] "Personen unterstützen diesen Vorschlag."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
@@ -929,11 +929,12 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/assets/SupportBox.jsx:18
 msgid "Click to support."
-msgstr ""
+msgstr "Zum Unterstützen klicken."
 
 #: meinberlin/apps/budgeting/assets/SupportBox.jsx:19
 msgid "You support this proposal. Click to unsupport."
 msgstr ""
+"Sie unterstützen diesen Vorschlag. Zum Entziehen der Unterstützung klicken."
 
 #: meinberlin/apps/budgeting/assets/VoteButton.jsx:40
 msgid "Voted"
@@ -1142,7 +1143,7 @@ msgstr "von der Redeliste entfernen"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:104
 msgid "Support count"
-msgstr ""
+msgstr "Anzahl der Unterstützenden"
 
 #: meinberlin/apps/livequestions/assets/QuestionPresent.jsx:29
 #: meinberlin/apps/livequestions/assets/QuestionUser.jsx:52
@@ -1332,7 +1333,7 @@ msgstr "Liste anzeigen"
 
 #: meinberlin/apps/votes/assets/token_download_button.js:14
 msgid "Encrypted"
-msgstr ""
+msgstr "Verschlüsselt"
 
 #: meinberlin/assets/js/swiper_phases.js:27
 msgid "Slider to go back and forth between phases."
