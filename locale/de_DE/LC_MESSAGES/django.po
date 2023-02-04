@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-02 16:18+0100\n"
-"PO-Revision-Date: 2023-02-01 15:43+0000\n"
+"PO-Revision-Date: 2023-02-04 11:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
@@ -2093,7 +2093,7 @@ msgstr "Vorschlag anlegen"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:29
 msgid "Voting token form fields"
-msgstr ""
+msgstr "Eingabefeld für Abstimmungscode"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:31
 msgid "Enter code"
@@ -4753,6 +4753,11 @@ msgid ""
 "excel file. Each file can be downloaded only once before the codes are being "
 "encrypted. To generate the codes, please contact %(contact_email)s."
 msgstr ""
+"Für die Abstimmung in der dritten Phase benötigen alle Teilnehmer*innen "
+"einen eigenen Abstimmungscode. Hier können Sie die Codes in Paketen von "
+"%(export_size)s pro Excel-Datei herunterladen. Jede Datei kann nur ein Mal "
+"heruntergeladen werden, danach werden die Codes verschlüsselt. Um die Codes "
+"zu erstellen, wenden Sie sich bitte an %(contact_email)s."
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:8
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:8
@@ -4770,7 +4775,7 @@ msgstr "Herunterladen"
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:29
 msgid "Encrypted"
-msgstr ""
+msgstr "Verschlüsselt"
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:5
 msgid "Generate voting codes"
