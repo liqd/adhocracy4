@@ -21,12 +21,11 @@ export default class PollResult extends React.Component {
     }
   }
 
-  // FIXME - should add animation for poll results but not current priority
-  // doBarTransition (node, style) {
-  //   if (node && node.style) {
-  //     window.requestAnimationFrame(() => Object.assign(node.style, style))
-  //   }
-  // }
+  doBarTransition (node, style) {
+    if (node && node.style) {
+      window.requestAnimationFrame(() => Object.assign(node.style, style))
+    }
+  }
 
   isUserAnswer (slide) {
     const matchedId = this.state.question.is_open
@@ -111,7 +110,7 @@ export default class PollResult extends React.Component {
                   <div className="poll-row__label">{choice.is_other_choice ? django.gettext('other') : choice.label}</div>
                   <div
                     className={'poll-row__bar' + (highlight ? ' poll__highlight' : '')}
-                    style={{ width: percent + '%' }}
+                    ref={node => this.doBarTransition(node, { width: percent + '%' })}
                   />
                 </div>
                 {choice.is_other_choice &&
@@ -143,7 +142,7 @@ export default class PollResult extends React.Component {
               </div>
           }
           )}
-          {this.state.question.is_open && this.state.question.userAnswer &&
+          {this.state.question.is_open && this.state.question.answers.length > 0 &&
             <div className="poll-slider__container">
               <Slider {...settings}>
                 {this.props.question.answers.map((slide, index) => (
