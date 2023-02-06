@@ -15,7 +15,7 @@ class ExportIdeaComponent(DashboardComponent):
 
     def is_effective(self, module):
         return (
-            module.blueprint_type == "IC"
+            module.blueprint_type in ["IC", "BS"]
             and not module.project.is_draft
             and not module.is_draft
         )

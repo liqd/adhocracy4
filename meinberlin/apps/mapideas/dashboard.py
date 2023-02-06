@@ -15,7 +15,7 @@ class ExportMapIdeaComponent(DashboardComponent):
 
     def is_effective(self, module):
         return (
-            module.blueprint_type == "MIC"
+            module.blueprint_type in ["MIC", "MBS"]
             and not module.project.is_draft
             and not module.is_draft
         )
