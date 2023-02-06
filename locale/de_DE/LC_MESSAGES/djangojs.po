@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 16:19+0100\n"
-"PO-Revision-Date: 2023-02-04 11:43+0000\n"
+"POT-Creation-Date: 2023-02-06 12:47+0100\n"
+"PO-Revision-Date: 2023-01-19 03:00+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
@@ -82,30 +82,30 @@ msgstr ""
 "er nicht unseren Diskussionsregeln (Netiquette) entspricht."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:95
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 #: adhocracy4/comments/static/comments/Comment.jsx:95
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 msgid "Moderator"
 msgstr "Moderation"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:104
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 #: adhocracy4/comments/static/comments/Comment.jsx:104
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 msgid "Latest edit on"
 msgstr "Letzte Änderung am"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:109
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 #: adhocracy4/comments/static/comments/Comment.jsx:109
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "Deleted by creator on"
 msgstr "Von Ersteller*in gelöscht"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:111
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 #: adhocracy4/comments/static/comments/Comment.jsx:111
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 msgid "Deleted by moderator on"
 msgstr "Von Moderation gelöscht"
 
@@ -118,7 +118,7 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:153
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
@@ -126,7 +126,7 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:159
 #: adhocracy4/comments/static/comments/Comment.jsx:153
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
@@ -138,12 +138,10 @@ msgid "Delete"
 msgstr "Löschen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:154
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
-#: adhocracy4/static/Modal.jsx:53
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
+#: adhocracy4/static/Modal.jsx:6
 #: adhocracy4/comments/static/comments/Comment.jsx:154
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 msgid "Abort"
 msgstr "Abbrechen"
 
@@ -269,24 +267,29 @@ msgstr ""
 msgid "Hide moderator's feedback"
 msgstr ""
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
+msgid "Delete comment"
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
 msgid "Blocked by moderator on"
 msgstr "Von Moderation gesperrt"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
 msgid "hide replies"
 msgstr "Antworten ausblenden"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:39
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:39
 msgctxt "verb"
 msgid "Reply"
 msgstr "Antworten"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:47
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:47
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:48
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:48
 #, javascript-format
 msgid "1 reply"
 msgid_plural "%s replies"
@@ -417,28 +420,13 @@ msgstr " Zeichen"
 msgid "Comment"
 msgstr "Kommentar"
 
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:31
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:31
-msgid "Recommend comment"
-msgstr "Kommentar empfehlen"
-
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:35
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:35
-msgid "Is recommended"
-msgstr "Wird empfohlen"
-
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
-#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
-msgid "Submit"
-msgstr "Einreichen"
-
-#: adhocracy4/comments_async/static/modals/url_modal.jsx:23
-#: adhocracy4/comments_async/static/modals/url_modal.jsx:23
+#: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
+#: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 msgid "Copy"
 msgstr "Kopieren"
 
-#: adhocracy4/comments_async/static/modals/url_modal.jsx:24
-#: adhocracy4/comments_async/static/modals/url_modal.jsx:24
+#: adhocracy4/comments_async/static/modals/UrlModal.jsx:9
+#: adhocracy4/comments_async/static/modals/UrlModal.jsx:9
 msgid "Copied"
 msgstr "Kopiert"
 
@@ -525,6 +513,7 @@ msgstr "Hochladen"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:26
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -559,7 +548,7 @@ msgstr ""
 
 #: adhocracy4/maps/static/a4maps/a4maps_display_points.js:100
 #: adhocracy4/maps/static/a4maps/a4maps_display_points.js:100
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:12
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:13
 #: meinberlin/apps/budgeting/assets/SupportBox.jsx:14
 msgid "person supports this proposal."
 msgid_plural "persons support this proposal."
@@ -808,18 +797,18 @@ msgstr "Für eine positive Bewertung hier klicken"
 msgid "Click to vote down"
 msgstr "Für eine negative Bewertung hier klicken"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:55
-#: adhocracy4/reports/static/reports/ReportModal.jsx:55
+#: adhocracy4/reports/static/reports/ReportModal.jsx:7
+#: adhocracy4/reports/static/reports/ReportModal.jsx:7
 msgid "Thank you! We are taking care of it."
 msgstr "Vielen Dank! Wir werden uns darum kümmern."
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:56
-#: adhocracy4/reports/static/reports/ReportModal.jsx:56
+#: adhocracy4/reports/static/reports/ReportModal.jsx:8
+#: adhocracy4/reports/static/reports/ReportModal.jsx:8
 msgid "Your message"
 msgstr "Ihre Nachricht"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:57
-#: adhocracy4/reports/static/reports/ReportModal.jsx:57
+#: adhocracy4/reports/static/reports/ReportModal.jsx:9
+#: adhocracy4/reports/static/reports/ReportModal.jsx:9
 msgid "Send Report"
 msgstr "Meldung senden"
 
@@ -833,18 +822,37 @@ msgstr ""
 msgid "You can still manage all your preferences on User Agreements."
 msgstr ""
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:15
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:16
 #, javascript-format
 msgid "you have 1 vote left."
 msgid_plural "you have %s votes left."
 msgstr[0] "Sie haben noch 1 Stimme."
 msgstr[1] "Sie haben noch %s Stimmen."
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:18
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:21
 #: meinberlin/apps/plans/assets/PlansList.jsx:11
 #: meinberlin/apps/plans/assets/PlansMap.jsx:11
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:22
+msgid "Are you finished?"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:23
+msgid "End session"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:24
+msgid ""
+"To save your votes you do not need to do anything else. End the session to "
+"enter a new code. If you want to change the votes you have already cast, you "
+"can re-enter your code as long as the voting phase is running. "
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:25
+msgid "Do you want to end the session?"
+msgstr ""
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:8
 msgid "updated on"
@@ -914,6 +922,10 @@ msgstr "Unterstützung"
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:10
 msgid "Comments"
 msgstr "Kommentare"
+
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:11
+msgid "Total votes"
+msgstr ""
 
 #: meinberlin/apps/budgeting/assets/Pagination.jsx:6
 msgid "Page navigation"

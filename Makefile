@@ -3,9 +3,9 @@ NODE_BIN = node_modules/.bin
 SOURCE_DIRS = meinberlin tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
-# for mac os gsed is needed (brew install gnu-sed)
+# for mac os gsed is needed (brew install gnu-sed and brew install gsed)
 SED = sed
-ifneq (, $(shell command -v gsed))
+ifneq (, $(shell command -v gsed;))
 	SED = gsed
 endif
 
