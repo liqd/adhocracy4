@@ -54,6 +54,20 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
 class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
     paginate_by = 15
 
+    def get_queryset(self):
+        qs = super().get_queryset().filter(module=self.module)
+        if qs and not hasattr(qs.first(), "comment_count"):
+            return self.annotate_queryset(qs)
+        return qs
+
+    def annotate_queryset(self, qs):
+        qs = qs.annotate_comment_count()
+        if hasattr(qs, "annotate_positive_rating_count"):
+            qs = qs.annotate_positive_rating_count().annotate_negative_rating_count()
+        if hasattr(qs, "annotate_token_vote_count"):
+            qs = qs.annotate_token_vote_count()
+        return qs
+
 
 class IdeaListView(AbstractIdeaListView, DisplayProjectOrModuleMixin):
     model = models.Idea
