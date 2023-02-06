@@ -208,7 +208,7 @@ def test_detail_view_back_link(client, phase_factory, proposal_factory):
     url = item.get_absolute_url()
     project_referer = reverse("project-detail", kwargs={"slug": item.project.slug})
     module_referer = reverse("module-detail", kwargs={"module_slug": item.module.slug})
-    filter_string = "?is_archived=&page=1&search="
+    filter_string = "?mode=list&is_archived=&page=1&search="
     filtered_project_referer = project_referer + filter_string
     filtered_module_referer = module_referer + filter_string
     with freeze_phase(phase):
@@ -216,24 +216,30 @@ def test_detail_view_back_link(client, phase_factory, proposal_factory):
         assert response.context["back"] == "{}#proposal_{}".format(
             project_referer, item.id
         )
+        assert response.context["back_string"] == "map"
         response = client.get(url, HTTP_referer=module_referer)
         assert response.context["back"] == "{}#proposal_{}".format(
             module_referer, item.id
         )
+        assert response.context["back_string"] == "map"
 
         response = client.get(url, HTTP_referer=filtered_project_referer)
         assert response.context["back"] == "{}#proposal_{}".format(
             filtered_project_referer, item.id
         )
+        assert response.context["back_string"] == "list"
         response = client.get(url, HTTP_referer=filtered_module_referer)
         assert response.context["back"] == "{}#proposal_{}".format(
             filtered_module_referer, item.id
         )
+        assert response.context["back_string"] == "list"
 
         response = client.get(url, HTTP_referer="/")
-        assert not response.context["back"]
+        assert response.context["back"] == module.get_detail_url
+        assert response.context["back_string"] == "map"
         response = client.get(url)
-        assert not response.context["back"]
+        assert response.context["back"] == module.get_detail_url
+        assert response.context["back_string"] == "map"
 
 
 @pytest.mark.django_db

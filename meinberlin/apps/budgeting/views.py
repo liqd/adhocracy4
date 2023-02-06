@@ -140,21 +140,22 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
         are remembered when going back, we check if the referer is a
         module or project detail view and add the appropriate back url.
         """
+        back_link = self.module.get_detail_url
+        back_string = _("map")
         if "Referer" in self.request.headers:
             referer = self.request.headers["Referer"]
             parsed_url = urlparse(referer)
             match = resolve(parsed_url.path)
             if match.url_name == "project-detail" or match.url_name == "module-detail":
                 back_mode = None
-                back_string = _("map")
                 if "mode" in parse_qs(parsed_url.query):
                     back_mode = parse_qs(parsed_url.query)["mode"][0]
                     if back_mode == "list":
                         back_string = _("list")
                 back_link = referer + "#proposal_{}".format(self.object.id)
                 return back_link, back_string
-            return None, None
-        return None, None
+            return back_link, back_string
+        return back_link, back_string
 
     def has_valid_token_in_session(self, request):
         """Return whether a valid token is stored in the session.
