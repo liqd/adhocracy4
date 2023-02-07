@@ -1,5 +1,5 @@
 # A4
-git+https://github.com/liqd/adhocracy4.git@984611cbafce5752803a5a231f26059690a99102#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@599289240b53700121eaa49443fba82f970c9c77#egg=adhocracy4
 
 # Additional requirements
 brotli==1.0.9
