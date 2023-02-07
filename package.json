@@ -43,7 +43,7 @@
     "leaflet": "1.9.3",
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "git+https://github.com/liqd/Leaflet.markercluster#liqd2212",
-    "lint-staged": "13.1.0",
+    "lint-staged": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-flip-move": "3.0.5",
