@@ -1,29 +1,31 @@
 {% load i18n contrib_tags %}
 
 <div class="phase-info__item u-spacer-top">
-    <div class="phase-info__item__title">
-        <span class="lr-bar__left">{{ phase.name }}</span>
+    <div class="u-align-right">
         {% if phase == module.active_phase %}
             <span
-                class="lr-bar__right phase-info__highlight"
+                class="phase-info__highlight u-bold"
                 id="active-phase"
             >
                 {% translate 'active' %}
             </span>
         {% elif phase in module.future_phases %}
             <span
-                class="lr-bar__right phase-info__highlight"
+                class="phase-info__highlight u-secondary u-bold"
                 id="upcoming-phase"
             >
                 {% translate 'upcoming' %}
             </span>
         {% else %}
             <span
-                class="lr-bar__right phase-info__highlight"
+                class="phase-info__highlight u-secondary u-bold"
             >
                 {% translate 'finished' %}
             </span>
         {% endif %}
+    </div>
+    <div class="phase-info__item__title">
+        <span class="lr-bar__left">{{ phase.name }}</span>
     </div>
     <div class="phase-info__item__subtitle">
         {% html_date phase.start_date 'DATETIME_FORMAT' %}
