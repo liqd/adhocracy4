@@ -39,6 +39,7 @@
     @extend .btn-primary;
 
     border-color: $primary;
+    font-size: $font-size-base;
 
     // see above
     &:focus-within {
