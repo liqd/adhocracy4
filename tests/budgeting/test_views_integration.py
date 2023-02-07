@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
+from adhocracy4.test.helpers import freeze_post_phase
 from adhocracy4.test.helpers import freeze_time
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
@@ -60,7 +61,6 @@ def test_list_view_ordering_choices(client, phase_factory, proposal_factory):
 
 @pytest.mark.django_db
 def test_list_view_default_filters(client, module, phase_factory, proposal_factory):
-
     support_phase = phase_factory(
         phase_content=phases.SupportPhase(),
         module=module,
@@ -100,6 +100,14 @@ def test_list_view_default_filters(client, module, phase_factory, proposal_facto
         assert defaults["is_archived"] == "false"
         assert "ordering" in defaults
         assert defaults["ordering"] == "dailyrandom"
+
+    with freeze_post_phase(voting_phase):
+        response = client.get(url)
+        defaults = response.context["view"].filter_set.defaults
+        assert "is_archived" in defaults
+        assert defaults["is_archived"] == "false"
+        assert "ordering" in defaults
+        assert defaults["ordering"] == "-token_vote_count"
 
 
 @pytest.mark.django_db
