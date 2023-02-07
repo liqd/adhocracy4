@@ -22,7 +22,6 @@ def add_token_to_session(session, token):
 def test_voting_phase_active_valid_token_anonymous_can_vote(
     apiclient, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -48,7 +47,6 @@ def test_voting_phase_active_valid_token_anonymous_can_vote(
 def test_voting_phase_active_valid_token_user_can_vote(
     apiclient, user, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -75,7 +73,6 @@ def test_voting_phase_active_valid_token_user_can_vote(
 def test_voting_phase_active_valid_token_admin_can_vote(
     apiclient, admin, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -101,7 +98,6 @@ def test_voting_phase_active_valid_token_admin_can_vote(
 def test_voting_phase_inactive_valid_token_anonymous_cannot_vote(
     apiclient, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.CollectPhase
     )
@@ -125,7 +121,6 @@ def test_voting_phase_inactive_valid_token_anonymous_cannot_vote(
 def test_voting_phase_inactive_valid_token_user_cannot_vote(
     apiclient, user, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.CollectPhase
     )
@@ -150,7 +145,6 @@ def test_voting_phase_inactive_valid_token_user_cannot_vote(
 def test_voting_phase_inactive_valid_token_admin_can_vote(
     apiclient, admin, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.CollectPhase
     )
@@ -175,7 +169,6 @@ def test_voting_phase_inactive_valid_token_admin_can_vote(
 def test_voting_phase_active_valid_token_anonymous_cannot_vote_on_archived(
     apiclient, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -203,7 +196,6 @@ def test_voting_phase_active_valid_token_anonymous_cannot_vote_on_archived(
 def test_voting_phase_active_valid_token_user_cannot_vote_on_archived(
     apiclient, user, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -232,7 +224,6 @@ def test_voting_phase_active_valid_token_user_cannot_vote_on_archived(
 def test_voting_phase_active_valid_token_admin_can_vote_on_archived(
     apiclient, admin, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -264,7 +255,6 @@ def test_voting_phase_active_no_token(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -297,7 +287,6 @@ def test_voting_phase_active_token_wrong_module(
     proposal_factory,
     module_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -332,7 +321,6 @@ def test_voting_phase_active_token_inactive(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -364,7 +352,6 @@ def test_voting_phase_active_token_no_votes_left(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -399,7 +386,6 @@ def test_token_kept_in_session_on_login(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -434,7 +420,6 @@ def test_token_deleted_from_session_on_logout(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -467,7 +452,6 @@ def test_token_deleted_from_session_on_logout(
 def test_voting_phase_active_valid_token_anonymous_can_delete_vote(
     apiclient, voting_token_factory, token_vote_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -502,7 +486,6 @@ def test_voting_phase_active_valid_token_user_can_delete_vote(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -538,7 +521,6 @@ def test_voting_phase_active_valid_token_admin_can_delete_vote(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -569,7 +551,6 @@ def test_voting_phase_active_valid_token_admin_can_delete_vote(
 def test_voting_phase_inactive_valid_token_anonymous_cannot_delete_vote(
     apiclient, voting_token_factory, token_vote_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.CollectPhase
     )
@@ -604,7 +585,6 @@ def test_voting_phase_inactive_valid_token_user_cannot_delete_vote(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.CollectPhase
     )
@@ -640,7 +620,6 @@ def test_voting_phase_inactive_valid_token_admin_can_delete_vote(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.CollectPhase
     )
@@ -671,7 +650,6 @@ def test_voting_phase_inactive_valid_token_admin_can_delete_vote(
 def test_voting_phase_active_valid_token_anonymous_cannot_delete_archived(
     apiclient, voting_token_factory, token_vote_factory, phase_factory, proposal_factory
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -710,7 +688,6 @@ def test_voting_phase_active_valid_token_user_cannot_delete_archived(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -750,7 +727,6 @@ def test_voting_phase_active_valid_token_admin_can_delete_archived(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -790,7 +766,6 @@ def test_voting_phase_active_no_token_cannot_delete(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -831,7 +806,6 @@ def test_voting_phase_active_token_wrong_vote_cannot_delete(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -869,7 +843,6 @@ def test_voting_phase_active_token_inactive_cannot_delete(
     phase_factory,
     proposal_factory,
 ):
-
     phase, module, project, proposal = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -906,7 +879,6 @@ def test_voting_phase_active_token_inactive_cannot_delete(
 def test_voting_phase_active_two_valid_tokens_anonymous_can_vote_both(
     apiclient, voting_token_factory, phase_factory, proposal_factory
 ):
-
     phase_1, module_1, project_1, proposal_1 = setup_phase(
         phase_factory, proposal_factory, phases.VotingPhase
     )
@@ -957,3 +929,39 @@ def test_voting_phase_active_two_valid_tokens_anonymous_can_vote_both(
         response = apiclient.post(url_1, data_3, format="json")
         assert response.status_code == status.HTTP_201_CREATED
         assert TokenVote.objects.all().count() == 3
+
+
+@pytest.mark.django_db
+def test_voting_not_possible_after_session_ended(
+    apiclient, voting_token_factory, phase_factory, proposal_factory
+):
+    phase, module, project, proposal_1 = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase
+    )
+    proposal_2 = proposal_factory(module=module)
+    proposal_ct = ContentType.objects.get_for_model(proposal_1.__class__)
+
+    token = voting_token_factory(module=module)
+    add_token_to_session(apiclient.session, token)
+
+    url = reverse(
+        "tokenvotes-list",
+        kwargs={"module_pk": module.pk, "content_type": proposal_ct.id},
+    )
+
+    data = {"object_id": proposal_1.pk}
+
+    with freeze_phase(phase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        assert TokenVote.objects.all().count() == 1
+
+    end_session_url = reverse("end_session")
+    apiclient.get(end_session_url)
+
+    data = {"object_id": proposal_2.pk}
+
+    with freeze_phase(phase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_403_FORBIDDEN
+        assert TokenVote.objects.all().count() == 1
