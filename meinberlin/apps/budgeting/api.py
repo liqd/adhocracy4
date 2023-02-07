@@ -314,6 +314,7 @@ class ProposalViewSet(
             Proposal.objects.filter(module=self.module)
             .annotate_comment_count()
             .annotate_positive_rating_count()
+            .annotate_negative_rating_count()
             .annotate_reference_number()
             .annotate_token_vote_count()
             .order_by("-created")
