@@ -45,19 +45,17 @@ export const ListItemStats = (props) => {
       )}
 
       {permissions.view_support_count && (
-        <span className="support">
-          <span
-            className="rating-button rating-up is-read-only"
-            title={supportStr}
-          >
-            <i
-              className="far fa-thumbs-up"
-              aria-hidden="true"
-            />
-            {props.positiveCount}
-            <span className="visually-hidden">
-              {supportText}
-            </span>
+        <span
+          className="list-item__icon u-success"
+          title={supportStr}
+        >
+          <i
+            className="far fa-thumbs-up u-icon-spacing"
+            aria-hidden="true"
+          />
+          {props.positiveCount}
+          <span className="visually-hidden">
+            {supportText}
           </span>
         </span>
       )}

@@ -40,7 +40,7 @@ export const BudgetingProposalListItem = (props) => {
       />
       <div className="list-item__vote">
         <div>
-          <span className="list-item__author test">{proposal.creator}</span>
+          <span className="list-item__author">{proposal.creator}</span>
           {date + ' - ' + proposal.reference_number}
         </div>
         {permissions.has_voting_permission_and_valid_token && proposal.vote_allowed && (

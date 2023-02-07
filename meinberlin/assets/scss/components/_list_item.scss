@@ -93,7 +93,7 @@
 
 .list-item__stats {
     float: right;
-    margin-left: 0.5em;
+    margin-left: 0.5 * $spacer;
 }
 
 .list-item__action {
@@ -113,7 +113,7 @@
 }
 
 .list-item__icon {
-    margin-left: 0.7em;
+    margin-left: 0.75 * $spacer;
 }
 
 .list-item-empty {

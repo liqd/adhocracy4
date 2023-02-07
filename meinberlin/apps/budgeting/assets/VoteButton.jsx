@@ -56,7 +56,7 @@ export default class VoteButton extends React.Component {
             disabled={this.props.disabled}
             checked={this.props.isChecked}
             onChange={e => this.handleOnChange(e)}
-            onKeyPress={e => event.key === 'Enter' && this.handleOnChange(e)}
+            onKeyDown={e => event.key === 'Enter' && this.handleOnChange(e)}
           />
           <span>{this.props.isChecked ? checkedText : uncheckedText}</span>
         </label>
