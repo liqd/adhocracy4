@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-06 12:47+0100\n"
-"PO-Revision-Date: 2023-01-19 03:00+0000\n"
+"PO-Revision-Date: 2023-02-08 10:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
@@ -837,11 +837,11 @@ msgstr "Keine Ergebnisse"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:22
 msgid "Are you finished?"
-msgstr ""
+msgstr "Sind sie fertig?"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:23
 msgid "End session"
-msgstr ""
+msgstr "Sitzung beenden"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:24
 msgid ""
@@ -849,10 +849,13 @@ msgid ""
 "enter a new code. If you want to change the votes you have already cast, you "
 "can re-enter your code as long as the voting phase is running. "
 msgstr ""
+"Um Ihre abgegebene Stimme zu speichern müssen Sie nichts weiter tun. Beenden "
+"Sie die Sitzung, um einen neuen Code einzugeben. Um Ihre Stimme zu ändern, "
+"können Sie Ihren Code erneut eingeben, solange die Abstimmungsphase läuft. "
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:25
 msgid "Do you want to end the session?"
-msgstr ""
+msgstr "Möchten Sie diese Sitzung beenden?"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:8
 msgid "updated on"
@@ -864,7 +867,7 @@ msgstr "erstellt am"
 
 #: meinberlin/apps/budgeting/assets/ControlBar.jsx:14
 msgid "Search, filter and sort the ideas list"
-msgstr ""
+msgstr "Suchen, Filtern und Sortieren der Vorschläge in der Liste"
 
 #: meinberlin/apps/budgeting/assets/ControlBar.jsx:19
 #, javascript-format
@@ -901,7 +904,7 @@ msgstr "Vorschläge durchsuchen"
 
 #: meinberlin/apps/budgeting/assets/ControlBarSearchTerm.jsx:5
 msgid "Remove filters"
-msgstr ""
+msgstr "Filter entfernen"
 
 #: meinberlin/apps/budgeting/assets/ListItemBadges.jsx:5
 msgid "More"
@@ -925,7 +928,7 @@ msgstr "Kommentare"
 
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:11
 msgid "Total votes"
-msgstr ""
+msgstr "Gesamtzahl der Stimmen"
 
 #: meinberlin/apps/budgeting/assets/Pagination.jsx:6
 msgid "Page navigation"
