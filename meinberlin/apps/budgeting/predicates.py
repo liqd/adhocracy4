@@ -60,6 +60,8 @@ def phase_allows_view_support(module, item_class):
 
 @rules.predicate
 def is_allowed_view_support(item_class):
+    """Admins, moderators, initiators and group members can see support at any time."""
+
     @rules.predicate
     def _view_support(user, module):
         if module:
@@ -78,6 +80,8 @@ def is_allowed_view_support(item_class):
 
 @rules.predicate
 def is_allowed_view_vote_count(item_class):
+    """Admins are allowed to view vote count at any time, all others only after voting phase."""
+
     @rules.predicate
     def _view_vote_count(user, module):
         if module:
