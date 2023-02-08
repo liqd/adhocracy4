@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-06 12:46+0100\n"
-"PO-Revision-Date: 2023-02-01 15:43+0000\n"
+"PO-Revision-Date: 2023-02-08 10:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
@@ -1835,7 +1835,7 @@ msgstr "zufällig"
 
 #: meinberlin/apps/budgeting/api.py:208
 msgid "Most votes"
-msgstr ""
+msgstr "meiste Stimmen"
 
 #: meinberlin/apps/budgeting/exports.py:46
 msgid "Contact E-Mail"
@@ -2100,6 +2100,8 @@ msgid ""
 "This idea received a total of <span class=\"u-primary\">%(amount)s</span> "
 "votes"
 msgstr ""
+"Dieser Vorschlag hat <span class=\"u-primary\">%(amount)s</span> Stimmen "
+"erhalten"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:19
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:18
@@ -4770,10 +4772,10 @@ msgid ""
 "encrypted. To generate the codes, please contact %(contact_email)s."
 msgstr ""
 "Für die Abstimmung in der dritten Phase benötigen alle Teilnehmer*innen "
-"einen eigenen Abstimmungscode. Hier können Sie die Codes in Paketen von "
-"%(export_size)s pro Excel-Datei herunterladen. Jede Datei kann nur ein Mal "
-"heruntergeladen werden, danach werden die Codes verschlüsselt. Um die Codes "
-"zu erstellen, wenden Sie sich bitte an %(contact_email)s."
+"einen eigenen Abstimmungscode. Hier können Sie die Codes in Paketen von bis "
+"zu %(export_size)s pro Excel-Datei herunterladen. Jede Datei kann nur ein "
+"Mal heruntergeladen werden, danach werden die Codes verschlüsselt. Um die "
+"Codes zu erstellen, wenden Sie sich bitte an %(contact_email)s."
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:8
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:8
