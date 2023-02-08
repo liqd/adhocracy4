@@ -1,5 +1,4 @@
 from django.core.exceptions import BadRequest
-from django.db import transaction
 from django.utils.translation import gettext as _
 from django.views import generic
 from rules.contrib.views import PermissionRequiredMixin
@@ -60,10 +59,7 @@ class TokenExportView(
             raise BadRequest
         for item in queryset:
             yield [self.get_token_data(item)]
-        with transaction.atomic():
-            for item in queryset:
-                item.token = ""
-                item.save()
+        queryset.update(token="")
 
     def get_token_data(self, item):
         """Add dashes like in string method."""

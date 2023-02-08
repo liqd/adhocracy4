@@ -5,20 +5,23 @@ from meinberlin.apps.votes.models import VotingToken
 from meinberlin.apps.votes.models import get_token_12
 
 # Number of tokens to insert into database per bulk_create
-BATCH_SIZE = 100
+BATCH_SIZE = int(1e5)
 # Max number of tokens in one download / package
-PACKAGE_SIZE = 100
+PACKAGE_SIZE = int(1e6)
 
 
 def generate_voting_tokens(module_id, number_of_tokens, existing_tokens):
     module = Module.objects.get(pk=module_id)
-    package_number = VotingToken.next_package_number(module)
     module_name = module.name
     project_id = module.project.id
     project_name = module.project.name
 
     number_to_generate = number_of_tokens
+    # for votes.models.VotingToken.package_number, used for download
+    package_number = VotingToken.next_package_number(module)
+    # determine when to go to next package_number
     package_number_limit = 0
+
     if number_of_tokens > PACKAGE_SIZE:
         package_number_limit = number_of_tokens - PACKAGE_SIZE
     while number_to_generate > 0:
@@ -48,7 +51,7 @@ def generate_voting_tokens(module_id, number_of_tokens, existing_tokens):
             number_to_generate = 0
         if package_number_limit >= number_to_generate:
             package_number += 1
-            package_number_limit - PACKAGE_SIZE
+            package_number_limit = package_number_limit - PACKAGE_SIZE
 
 
 @background(schedule=1)

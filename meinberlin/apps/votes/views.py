@@ -14,7 +14,7 @@ from meinberlin.apps.votes.models import VotingToken
 from meinberlin.apps.votes.tasks import PACKAGE_SIZE
 from meinberlin.apps.votes.tasks import generate_voting_tokens
 
-TOKENS_PER_MODULE = 100
+TOKENS_PER_MODULE = int(5e6)
 
 
 class ExportTokenDashboardView(
