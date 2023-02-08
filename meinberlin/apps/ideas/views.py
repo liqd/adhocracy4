@@ -56,16 +56,19 @@ class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
 
     def get_queryset(self):
         qs = super().get_queryset().filter(module=self.module)
-        if qs and not hasattr(qs.first(), "comment_count"):
-            return self.annotate_queryset(qs)
-        return qs
-
-    def annotate_queryset(self, qs):
-        qs = qs.annotate_comment_count()
-        if hasattr(qs, "annotate_positive_rating_count"):
-            qs = qs.annotate_positive_rating_count().annotate_negative_rating_count()
-        if hasattr(qs, "annotate_token_vote_count"):
-            qs = qs.annotate_token_vote_count()
+        if qs:
+            if not hasattr(qs.first(), "comment_count"):
+                qs = qs.annotate_comment_count()
+            if hasattr(qs, "annotate_positive_rating_count") and not hasattr(
+                qs.first(), "positive_rating_count"
+            ):
+                qs = (
+                    qs.annotate_positive_rating_count().annotate_negative_rating_count()
+                )
+            if hasattr(qs, "annotate_token_vote_count") and not hasattr(
+                qs.first(), "token_vote_count"
+            ):
+                qs = qs.annotate_token_vote_count()
         return qs
 
 
@@ -167,7 +170,6 @@ class AbstractIdeaModerateView(
     generic.detail.SingleObjectTemplateResponseMixin,
     contrib_forms.BaseMultiModelFormView,
 ):
-
     get_context_from_object = True
     remark_form_class = None
 
