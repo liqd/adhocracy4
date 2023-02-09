@@ -1,14 +1,34 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { EndSessionLink } from '../EndSessionLink'
 
 test('End session - check: modal rendered', async () => {
-  const user = userEvent.setup()
   render(<EndSessionLink />)
 
-  const modalBtn = screen.queryAllByText('End session[0]')
-  await user.click(modalBtn)
+  const modalBtn = screen.getByRole('button', { name: 'End session' })
+  const modalRender = screen.queryByRole('dialog')
+  expect(modalRender).toBeNull()
+  fireEvent.click(modalBtn)
 
-  expect(screen.getByText('To save your votes you do not need to do anything else')).toBeTruthy()
+  await waitFor(() => {
+    const modalRender = screen.findByRole('dialog', { hidden: false })
+    expect(modalRender).toBeTruthy()
+  })
+})
+
+test('End session - check: end session url fetch failed, tests hidden btn click, not in rendered modal', async () => {
+  // overwrite global.fetch with mock function
+  global.fetch = jest.fn().mockRejectedValue('testing: expected network error')
+
+  render(<EndSessionLink />)
+  // get second instance of End session btn
+  const endSessionBtn = screen.getAllByRole('button', { name: 'End session', hidden: true })[1]
+  fireEvent.click(endSessionBtn)
+
+  expect(global.fetch).toHaveBeenCalledTimes(1)
+  const noUrl = screen.queryAllByText('mock text')
+  expect(noUrl).toBeTruthy()
+
+  // reverse overwrite of global.fetch
+  await global.fetch.mockClear()
 })

@@ -29,6 +29,7 @@ export const EndSessionLink = (props) => {
       <div className="u-spacer-bottom u-align-center">
         <span>{translations.finished} </span>
         <button
+          id="session-modal-toggle"
           type="button"
           className="btn--link"
           data-bs-toggle="modal"
