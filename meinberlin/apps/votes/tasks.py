@@ -5,9 +5,9 @@ from meinberlin.apps.votes.models import VotingToken
 from meinberlin.apps.votes.models import get_token_12
 
 # Number of tokens to insert into database per bulk_create
-BATCH_SIZE = int(1e5)
+BATCH_SIZE = int(1e3)
 # Max number of tokens in one download / package
-PACKAGE_SIZE = int(1e6)
+PACKAGE_SIZE = int(1e4)
 
 
 def generate_voting_tokens(module_id, number_of_tokens, existing_tokens):
