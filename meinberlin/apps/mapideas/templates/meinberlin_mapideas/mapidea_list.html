@@ -69,6 +69,7 @@
             <div class="container">
                 <div class="offset-lg-2 col-lg-8">
                     {% if object_list.count > 0 %}
+                        <h2 class="visually-hidden">{% translate "Idea list" %}</h2>
                         <ul class="u-list-reset">
                             {% for object in object_list %}
                                 {% include "meinberlin_ideas/includes/idea_list_item.html" with object=object %}

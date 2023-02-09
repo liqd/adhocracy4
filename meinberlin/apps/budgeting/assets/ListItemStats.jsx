@@ -17,31 +17,32 @@ export const ListItemStats = (props) => {
 
   return (
     <div className="list-item__stats">
+      {/* ratings visible to admins in 1 and 2 phase budgeting due to `has_perm`  */}
       {permissions.view_rate_count && (
-        <span className="rating">
+        <>
           <span
-            className="rating-button rating-up is-read-only"
+            className="list-item__icon u-success"
             title={positiveRatingsStr}
           >
             <i
-              className="fa fa-chevron-up"
+              className="fa fa-chevron-up u-icon-spacing"
               aria-hidden="true"
             />
             {props.positiveCount}
             <span className="visually-hidden">{positiveRatingsStr}</span>
           </span>
           <span
-            className="rating-button rating-down is-read-only"
+            className="list-item__icon u-danger"
             title={negativeRatingsStr}
           >
             <i
-              className="fa fa-chevron-down"
+              className="fa fa-chevron-down u-icon-spacing"
               aria-hidden="true"
             />
             {props.negativeCount}
             <span className="visually-hidden">{negativeRatingsStr}</span>
           </span>
-        </span>
+        </>
       )}
 
       {permissions.view_support_count && (

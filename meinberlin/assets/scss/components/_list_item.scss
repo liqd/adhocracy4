@@ -92,7 +92,7 @@
 }
 
 .list-item__stats {
-    float: right;
+    display: flex;
     margin-left: 0.5 * $spacer;
 }
 
@@ -113,6 +113,7 @@
 }
 
 .list-item__icon {
+    display: flex;
     margin-left: 0.75 * $spacer;
 }
 

@@ -1,40 +1,41 @@
 {% load i18n module_tags contrib_tags %}
 
 <li class="list-item">
-    <div class="list-item__stats">
-        {% spaceless %}
-        {% if object|has_feature:"rate" %}
-            <span class="rating">
+    <div class="u-space-between">
+        <h3 class="list-item__title">
+            <a href="{{ object.get_absolute_url }}">
+            {{ object.name }}
+            </a>
+        </h3>
+        <div class="list-item__stats">
+            {% spaceless %}
+            {% if object|has_feature:"rate" %}
                 <span
-                    class="rating-button rating-up is-read-only"
+                    class="list-item__icon u-success"
                     title="{% translate 'Positive Ratings' %}">
-                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-up u-icon-spacing" aria-hidden="true"></i>
                     {{ object.positive_rating_count }}
                     <span class="visually-hidden">{% translate 'Positive Ratings' %}</span>
                 </span>
                 <span
-                    class="rating-button rating-down is-read-only"
+                    class="list-item__icon u-danger"
                     title="{% translate 'Negative Ratings' %}">
-                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    <i class="fa fa-chevron-down u-icon-spacing" aria-hidden="true"></i>
                     {{ object.negative_rating_count }}
                     <span class="visually-hidden">{% translate 'Negative Ratings' %}</span>
                 </span>
+            {% endif %}
+            <span
+                class="list-item__icon"
+                title="{% translate 'Comments' %}">
+                <i class="far fa-comment u-icon-spacing" aria-hidden="true"></i>
+                {{ object.comment_count }}
+                <span class="visually-hidden">{% translate 'Comments' %}</span>
             </span>
-        {% endif %}
-        <span
-            class="list-item__icon"
-            title="{% translate 'Comments' %}">
-            <i class="far fa-comment u-icon-spacing" aria-hidden="true"></i>
-            {{ object.comment_count }}
-            <span class="visually-hidden">{% translate 'Comments' %}</span>
-        </span>
-        {% endspaceless %}
+            {% endspaceless %}
+        </div>
     </div>
-    <h3 class="list-item__title">
-        <a href="{{ object.get_absolute_url }}">
-        {{ object.name }}
-        </a>
-    </h3>
+
     <div class="list-item__labels">
         {% for badge in object.item_badges_for_list  %}
             <span class="label label--big {% if badge.0 == 'moderator_status' %}label--{{badge.2|classify|lower }}{% endif %}">

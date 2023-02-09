@@ -71,7 +71,7 @@
                       <span class="label label--active">•{% translate ' Live now' %}</span>
                   {% endif %}
                 {% endfor %}
-    
+
                 <h1 class="project-header__title">{{ module.name }}</h1>
                 <p class="project-header__description">{{ module.description }}</p>
             </div>
@@ -90,7 +90,7 @@
         <div class="participation-tile__wrapper">
             <div class="participation-tile__list-container">
                 <ul class="u-list-reset participation-tile__list">
-                    <h3 class="participation-tile__list-header">{% translate 'More from this online participation:' %}</h3>
+                    <h2 class="participation-tile__list-header">{% translate 'More from this online participation:' %}</h2>
                     {% for other_module in module.module_cluster %}
                         {% if not other_module == module %}
                             {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=other_module %}

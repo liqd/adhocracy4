@@ -18,6 +18,7 @@ export const BudgetingProposalList = (props) => {
   }
 
   const translations = {
+    list: django.gettext('Proposals list'),
     noResults: django.gettext('Nothing to show'),
     finished: django.gettext('Are you finished?'),
     endSession: django.gettext('End session'),
@@ -81,6 +82,7 @@ export const BudgetingProposalList = (props) => {
   const renderList = (data) => {
     return (
       <>
+        <h2 className="visually-hidden">{translations.list}</h2>
         <ul className="u-list-reset">
           {data.map((proposal, idx) =>
             <BudgetingProposalListItem
@@ -122,7 +124,7 @@ export const BudgetingProposalList = (props) => {
                 counter={meta?.token_info.num_votes_left}
               />
               <div className="u-spacer-bottom u-align-center">
-                <span>{translations.finished} </span>
+                <span>{translations.finished}</span>
                 <a
                   className="btn--link"
                   href="something"

@@ -23,16 +23,18 @@ export const BudgetingProposalListItem = (props) => {
 
   return (
     <li id={'proposal_' + proposal.pk} className="list-item">
-      <h2 className="list-item__title">
-        <a href={proposal.url}>{proposal.name}</a>
-      </h2>
-      <ListItemStats
-        permissions={permissions}
-        positiveCount={proposal.positive_rating_count}
-        negativeCount={proposal.negative_rating_count}
-        commentCount={proposal.comment_count}
-        voteCount={proposal.vote_count}
-      />
+      <div className="u-space-between">
+        <h3 className="list-item__title">
+          <a href={proposal.url}>{proposal.name}</a>
+        </h3>
+        <ListItemStats
+          permissions={permissions}
+          positiveCount={proposal.positive_rating_count}
+          negativeCount={proposal.negative_rating_count}
+          commentCount={proposal.comment_count}
+          voteCount={proposal.vote_count}
+        />
+      </div>
       <ListItemBadges
         badges={proposal.item_badges_for_list}
         numOfMoreBadges={proposal.additional_item_badges_for_list_count}
