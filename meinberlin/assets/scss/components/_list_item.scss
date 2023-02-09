@@ -78,6 +78,13 @@
         max-width: 25ch; // cuts label text after approx 30char
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        &.label--consideration,
+        &.label--qualified,
+        &.label--rejected,
+        &.label--accepted {
+            max-width: none;
+        }
     }
 }
 
