@@ -43,6 +43,7 @@ class StorefrontItem(models.Model):
         limit_choices_to=project_choice_limit,
     )
     quote = models.TextField(blank=True, max_length=150)
+    district_project_count = models.PositiveIntegerField()
 
     def __str__(self):
         return str(self.pk)
@@ -62,26 +63,53 @@ class StorefrontItem(models.Model):
             return self.project.externalproject.url
         return self.project.get_absolute_url()
 
-    @cached_property
-    def district_project_count(self):
+    def get_district_project_count(self):
         projects = Project.objects.filter(
             Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
             administrative_district=self.district,
             is_draft=False,
             is_archived=False,
         )
-        plans = Plan.objects.filter(district=self.district, status=0)
+        plans = Plan.objects.filter(
+            district=self.district,
+            status=0,
+            is_draft=False,
+        )
         active_project_count = plans.count()
         for project in projects:
             if project.active_phase or project.future_phases:
                 active_project_count += 1
         return active_project_count
 
+    def save(self, *args, **kwargs):
+        if not self.district_project_count:
+            self.district_project_count = self.get_district_project_count()
+        super().save(*args, **kwargs)
+
     panels = [
         FieldPanel("district"),
         FieldPanel("project"),
         FieldPanel("quote"),
     ]
+
+
+def get_num_entries_count():
+    num_comments = Comment.objects.all().count()
+    num_items = Item.objects.all().count()
+    return num_comments + num_items
+
+
+def get_num_projects_count():
+    projects = Project.objects.all().filter(
+        Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+        is_draft=False,
+        is_archived=False,
+    )
+    active_project_count = 0
+    for project in projects:
+        if project.active_phase or project.future_phases:
+            active_project_count += 1
+    return active_project_count
 
 
 @register_snippet
@@ -95,28 +123,11 @@ class Storefront(ClusterableModel):
         related_name="+",
     )
     teaser = models.CharField(max_length=100)
+    num_entries = models.PositiveIntegerField(default=get_num_entries_count)
+    num_projects = models.PositiveIntegerField(default=get_num_projects_count)
 
     def __str__(self):
         return self.title
-
-    @cached_property
-    def num_entries(self):
-        num_comments = Comment.objects.all().count()
-        num_items = Item.objects.all().count()
-        return num_comments + num_items
-
-    @cached_property
-    def num_projects(self):
-        projects = Project.objects.all().filter(
-            Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
-            is_draft=False,
-            is_archived=False,
-        )
-        active_project_count = 0
-        for project in projects:
-            if project.active_phase or project.future_phases:
-                active_project_count += 1
-        return active_project_count
 
     @cached_property
     def random_items(self):
