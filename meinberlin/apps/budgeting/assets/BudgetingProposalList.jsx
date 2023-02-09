@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
 import django from 'django'
 import { BudgetingProposalListItem } from './BudgetingProposalListItem'
+import { EndSessionLink } from './EndSessionLink'
 import { Pagination } from './Pagination'
 import { CountDown } from '../../contrib/assets/CountDown'
 import { ControlBar } from './ControlBar'
 import { useLocation, useSearchParams } from 'react-router-dom'
-import Modal from 'adhocracy4/adhocracy4/static/Modal'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])
@@ -19,18 +19,7 @@ export const BudgetingProposalList = (props) => {
 
   const translations = {
     list: django.gettext('Proposals list'),
-    noResults: django.gettext('Nothing to show'),
-    finished: django.gettext('Are you finished?'),
-    endSession: django.gettext('End session'),
-    modalDescription: django.gettext('To save your votes you do not need to do anything else. End the session to enter a new code. If you want to change the votes you have already cast, you can re-enter your code as long as the voting phase is running. '),
-    modalBodyQuestion: django.gettext('Do you want to end the session?'),
-    modalCancel: django.gettext('Cancel')
-  }
-
-  const modalPartials = {
-    title: translations.endSession,
-    description: translations.modalDescription,
-    abort: translations.modalCancel
+    noResults: django.gettext('Nothing to show')
   }
 
   const scrolledRef = useRef(false)
@@ -55,13 +44,6 @@ export const BudgetingProposalList = (props) => {
           page_elided_range: json.page_elided_range
         })
       })
-      .catch(error => console.log(error))
-  }
-
-  const handleEndSession = () => {
-    const endSessionUrl = props.end_session_url
-    fetch(endSessionUrl)
-      .then(() => window.location.reload(true))
       .catch(error => console.log(error))
   }
 
@@ -123,23 +105,8 @@ export const BudgetingProposalList = (props) => {
                 inactiveClass="btn btn--full btn--light u-spacer-bottom btn--huge"
                 counter={meta?.token_info.num_votes_left}
               />
-              <div className="u-spacer-bottom u-align-center">
-                <span>{translations.finished} </span>
-                <a
-                  className="btn--link"
-                  href="something"
-                  data-bs-toggle="modal"
-                  data-bs-target="#end-session_modal"
-                >
-                  {translations.endSession}
-                </a>
-              </div>
-              <Modal
-                name="end-session_modal"
-                abort={translations.modalCancel}
-                action={translations.endSession}
-                partials={modalPartials}
-                handleSubmit={handleEndSession}
+              <EndSessionLink
+                endSessionUrl={props.end_session_url}
               />
             </div>
           </div>

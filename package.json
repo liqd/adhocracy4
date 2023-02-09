@@ -15,6 +15,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.3.0",
     "@maplibre/maplibre-gl-leaflet": "0.0.19",
+    "@testing-library/user-event": "^14.4.3",
     "acorn": "8.8.2",
     "adhocracy4": "liqd/adhocracy4#742aceea9c86448697e734e072958eb0ee9c968a",
     "autoprefixer": "10.4.13",

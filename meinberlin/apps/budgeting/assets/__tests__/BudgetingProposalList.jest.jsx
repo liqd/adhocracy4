@@ -127,7 +127,7 @@ test('Budgeting Proposal List (3) - voting phase - user with token 2 votes - che
     expect(screen.getByText('erster vorschlag')).toBeTruthy()
     // FIXME figure out how to deal with plurals
     expect(screen.getByText('you have 1 vote left.you have %s votes left.2')).toBeTruthy()
-    expect(screen.getByText('End session', { selector: 'button' })).toBeTruthy()
+    expect(screen.getAllByText('End session')).toBeTruthy()
 
     // reverse overwrite of global.fetch
     await global.fetch.mockClear()
