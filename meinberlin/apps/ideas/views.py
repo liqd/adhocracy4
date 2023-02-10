@@ -55,6 +55,11 @@ class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
     paginate_by = 15
 
     def get_queryset(self):
+        """Annotations normally happen in the filters, but if e.g. filtering is called with an invalid
+        value, it doesn't get there, this is why we need to check here again.
+        Also, token vote annotation only happens here as we did not add it to the django filters (we only
+        use them in the api).
+        """
         qs = super().get_queryset().filter(module=self.module)
         if qs:
             if not hasattr(qs.first(), "comment_count"):

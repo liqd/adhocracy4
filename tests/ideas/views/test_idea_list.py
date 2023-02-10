@@ -24,3 +24,25 @@ def test_list_view(client, phase_factory, idea_factory):
         assert response.context_data["idea_list"][0].comment_count == 0
         assert response.context_data["idea_list"][0].positive_rating_count == 0
         assert response.context_data["idea_list"][0].negative_rating_count == 0
+
+
+@pytest.mark.django_db
+def test_list_view_qs_gets_annotated(client, phase_factory, idea_factory):
+    phase, module, project, idea = setup_phase(
+        phase_factory, idea_factory, phases.FeedbackPhase
+    )
+    url = project.get_absolute_url()
+
+    with freeze_phase(phase):
+        response = client.get(url)
+        annotated_idea = response.context_data["idea_list"][0]
+        assert hasattr(annotated_idea, "comment_count")
+        assert hasattr(annotated_idea, "positive_rating_count")
+        assert hasattr(annotated_idea, "negative_rating_count")
+
+        # test that qs still gets annotated for invalid filter values
+        response = client.get(url + "?ordering=invalid_ordering")
+        annotated_idea = response.context_data["idea_list"][0]
+        assert hasattr(annotated_idea, "comment_count")
+        assert hasattr(annotated_idea, "positive_rating_count")
+        assert hasattr(annotated_idea, "negative_rating_count")

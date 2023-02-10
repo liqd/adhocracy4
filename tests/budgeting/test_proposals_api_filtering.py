@@ -475,13 +475,23 @@ def test_proposal_search_filter(apiclient, module, proposal_factory, phase_facto
 
 @pytest.mark.django_db
 def test_proposal_ordering_filter(
-    apiclient, module, proposal_factory, comment_factory, rating_factory, phase_factory
+    apiclient,
+    module,
+    proposal_factory,
+    comment_factory,
+    rating_factory,
+    phase_factory,
+    voting_token_factory,
+    token_vote_factory,
 ):
     phase_factory(phase_content=phases.SupportPhase(), module=module)
 
     now = parse("2022-01-01 18:00:00 UTC")
     yesterday = now - timezone.timedelta(days=1)
     last_week = now - timezone.timedelta(days=7)
+
+    token_1 = voting_token_factory(module=module)
+    token_2 = voting_token_factory(module=module)
 
     proposal_new = proposal_factory(pk=1, module=module, created=now)
     proposal_old = proposal_factory(
@@ -492,6 +502,7 @@ def test_proposal_ordering_filter(
     proposal_popular = proposal_factory(pk=4, module=module, created=yesterday)
     rating_factory(content_object=proposal_popular)
     rating_factory(content_object=proposal_popular)
+    token_vote_factory(token=token_1, content_object=proposal_popular)
 
     proposal_commented = proposal_factory(pk=5, module=module, created=yesterday)
     comment_factory(content_object=proposal_commented)
@@ -500,6 +511,8 @@ def test_proposal_ordering_filter(
 
     proposal_2_popular = proposal_factory(pk=7, module=module, created=yesterday)
     rating_factory(content_object=proposal_2_popular)
+    token_vote_factory(token=token_1, content_object=proposal_2_popular)
+    token_vote_factory(token=token_2, content_object=proposal_2_popular)
 
     proposal_factory(pk=8, module=module, created=yesterday, is_archived=True)
 
@@ -540,6 +553,14 @@ def test_proposal_ordering_filter(
     ordered_pks = [proposal["pk"] for proposal in response.data["results"]]
     assert ordered_pks == [8, 2, 4, 7, 6, 5, 1, 3]
 
+    # token vote count
+    querystring = "?ordering=-token_vote_count"
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data["results"]) == 6
+    assert response.data["results"][0]["pk"] == proposal_2_popular.pk
+    assert response.data["results"][1]["pk"] == proposal_popular.pk
+
 
 @pytest.mark.django_db
 def test_proposal_default_ordering_filter(
@@ -551,7 +572,6 @@ def test_proposal_default_ordering_filter(
     voting_token_factory,
     token_vote_factory,
 ):
-
     support_phase = phase_factory(
         phase_content=phases.SupportPhase(),
         module=module,

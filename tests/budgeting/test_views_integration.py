@@ -27,6 +27,22 @@ def test_list_view(client, phase_factory, proposal_factory):
 
 
 @pytest.mark.django_db
+def test_list_view_qs_gets_annotated(client, phase_factory, proposal_factory):
+    phase, module, project, proposal = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase
+    )
+    url = project.get_absolute_url()
+
+    with freeze_phase(phase):
+        response = client.get(url)
+        annotated_proposal = response.context_data["proposal_list"][0]
+        assert hasattr(annotated_proposal, "comment_count")
+        assert hasattr(annotated_proposal, "positive_rating_count")
+        assert hasattr(annotated_proposal, "negative_rating_count")
+        assert hasattr(annotated_proposal, "token_vote_count")
+
+
+@pytest.mark.django_db
 def test_list_view_ordering_choices(client, phase_factory, proposal_factory):
     phase, module, project, item = setup_phase(
         phase_factory, proposal_factory, phases.RatingPhase
