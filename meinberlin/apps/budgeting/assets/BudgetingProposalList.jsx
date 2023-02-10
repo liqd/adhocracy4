@@ -124,7 +124,7 @@ export const BudgetingProposalList = (props) => {
                 counter={meta?.token_info.num_votes_left}
               />
               <div className="u-spacer-bottom u-align-center">
-                <span>{translations.finished}</span>
+                <span>{translations.finished} </span>
                 <a
                   className="btn--link"
                   href="something"
