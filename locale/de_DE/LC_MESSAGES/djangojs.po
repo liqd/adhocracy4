@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-06 12:47+0100\n"
+"POT-Creation-Date: 2023-02-10 15:04+0100\n"
 "PO-Revision-Date: 2023-02-10 13:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
@@ -513,7 +513,7 @@ msgstr "Hochladen"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:26
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:27
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -546,14 +546,28 @@ msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
 "entfernen?"
 
-#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:100
-#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:100
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:101
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:101
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:13
 #: meinberlin/apps/budgeting/assets/SupportBox.jsx:14
 msgid "person supports this proposal."
 msgid_plural "persons support this proposal."
 msgstr[0] "Person unterstützt diesen Vorschlag."
 msgstr[1] "Personen unterstützen diesen Vorschlag."
+
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:114
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:114
+msgid "person voted for this proposal."
+msgid_plural "persons voted for this proposal."
+msgstr[0] ""
+msgstr[1] ""
+
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:127
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:127
+msgid "person commented on this proposal."
+msgid_plural "persons commented on this proposal."
+msgstr[0] ""
+msgstr[1] ""
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
@@ -674,9 +688,9 @@ msgid "Multiple answers are possible."
 msgstr "Mehrfachantworten sind möglich."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestion.jsx:8
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:111
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:110
 #: adhocracy4/polls/static/PollDetail/PollQuestion.jsx:8
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:111
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:110
 msgid "other"
 msgstr "sonstige"
 
@@ -735,55 +749,55 @@ msgstr "Vorläufiges Ergebnis zeigen"
 msgid "Please enter your answer in this field."
 msgstr "Bitte geben Sie hier Ihre Antwort ein."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:45
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:45
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:44
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:44
 msgid "Hide other answers"
 msgstr "Sonstige Antworten ausblenden"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:47
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:47
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:46
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:46
 msgid "Show other answers"
 msgstr "Sonstige Antworten einblenden"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:61
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:61
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:60
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:60
 #, javascript-format
 msgid "%s participant gave 1 answer."
 msgstr "%s Teilnehmer*in hat 1 Antwort gegeben."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:63
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:63
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:62
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:62
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
 msgstr[0] "%s Teilnehmer*in hat %s Antworten gegeben."
 msgstr[1] "%s Teilnehmer*innen haben %s Antworten gegeben."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:65
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:65
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:64
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:64
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
 " Aufgrund von Mehrfachantworten kann die Summe der Prozentangaben über 100% "
 "ergeben."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:67
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:76
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:67
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:76
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:66
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:75
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:66
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:75
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
 msgstr[0] "1 Teilnehmer*in hat geantwortet."
 msgstr[1] "%s Teilnehmer*innen haben geantwortet."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:78
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:78
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:77
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:77
 msgid "no one has answered this question"
 msgstr ""
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:108
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:108
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:107
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:107
 msgid "Your choice"
 msgstr "Ihre Wahl"
 
@@ -830,20 +844,24 @@ msgstr[0] "Sie haben noch 1 Stimme."
 msgstr[1] "Sie haben noch %s Stimmen."
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:21
+msgid "Proposals list"
+msgstr ""
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:22
 #: meinberlin/apps/plans/assets/PlansList.jsx:11
 #: meinberlin/apps/plans/assets/PlansMap.jsx:11
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:22
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:23
 msgid "Are you finished?"
 msgstr "Sind Sie fertig?"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:23
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:24
 msgid "End session"
 msgstr "Sitzung beenden"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:24
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:25
 msgid ""
 "To save your votes you do not need to do anything else. End the session to "
 "enter a new code. If you want to change the votes you have already cast, you "
@@ -853,7 +871,7 @@ msgstr ""
 "Sie die Sitzung, um einen neuen Code einzugeben. Um Ihre Stimme zu ändern, "
 "können Sie Ihren Code erneut eingeben, solange die Abstimmungsphase läuft. "
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:25
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:26
 msgid "Do you want to end the session?"
 msgstr "Möchten Sie diese Sitzung beenden?"
 

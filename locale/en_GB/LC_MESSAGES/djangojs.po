@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-06 12:47+0100\n"
+"POT-Creation-Date: 2023-02-10 15:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -397,7 +397,7 @@ msgid "Upload"
 msgstr "Upload"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:26
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:27
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -422,13 +422,25 @@ msgstr "Invalid file format."
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:100
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:101
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:13
 #: meinberlin/apps/budgeting/assets/SupportBox.jsx:14
 msgid "person supports this proposal."
 msgid_plural "persons support this proposal."
 msgstr[0] "person supports this proposal."
 msgstr[1] "persons support this proposal."
+
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:114
+msgid "person voted for this proposal."
+msgid_plural "persons voted for this proposal."
+msgstr[0] "person voted for this proposal."
+msgstr[1] "persons voted for this proposal."
+
+#: adhocracy4/maps/static/a4maps/a4maps_display_points.js:127
+msgid "person commented on this proposal."
+msgid_plural "persons commented on this proposal."
+msgstr[0] "person commented on this proposal."
+msgstr[1] "persons commented on this proposal."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
@@ -519,7 +531,7 @@ msgid "Multiple answers are possible."
 msgstr "Multiple answers are possible."
 
 #: adhocracy4/polls/static/PollDetail/PollQuestion.jsx:8
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:111
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:110
 msgid "other"
 msgstr "other"
 
@@ -566,45 +578,45 @@ msgstr "Show preliminary results"
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:45
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:44
 msgid "Hide other answers"
 msgstr "Hide other answers"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:47
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:46
 msgid "Show other answers"
 msgstr "Show other answers"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:61
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:60
 #, javascript-format
 msgid "%s participant gave 1 answer."
 msgstr "%s participant gave 1 answer."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:63
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:62
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
 msgstr[0] "%s participant gave %s answers."
 msgstr[1] "%s participants gave %s answers."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:65
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:64
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
 " For multiple choice questions the percentages may add up to more than 100%."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:67
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:76
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:66
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:75
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
 msgstr[0] "1 person has answered."
 msgstr[1] "%s people have answered."
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:78
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:77
 msgid "no one has answered this question"
 msgstr "no one has answered this question"
 
-#: adhocracy4/polls/static/PollDetail/PollResults.jsx:108
+#: adhocracy4/polls/static/PollDetail/PollResults.jsx:107
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -648,20 +660,24 @@ msgstr[0] "you have 1 vote left."
 msgstr[1] "you have %s votes left."
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:21
+msgid "Proposals list"
+msgstr "Proposals list"
+
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:22
 #: meinberlin/apps/plans/assets/PlansList.jsx:11
 #: meinberlin/apps/plans/assets/PlansMap.jsx:11
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:22
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:23
 msgid "Are you finished?"
 msgstr "Are you finished?"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:23
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:24
 msgid "End session"
 msgstr "End session"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:24
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:25
 msgid ""
 "To save your votes you do not need to do anything else. End the session to "
 "enter a new code. If you want to change the votes you have already cast, you "
@@ -671,7 +687,7 @@ msgstr ""
 "enter a new code. If you want to change the votes you have already cast, you "
 "can re-enter your code as long as the voting phase is running. "
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:25
+#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:26
 msgid "Do you want to end the session?"
 msgstr "Do you want to end the session?"
 
