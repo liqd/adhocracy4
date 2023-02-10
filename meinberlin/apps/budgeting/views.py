@@ -147,7 +147,6 @@ class ProposalDetailView(idea_views.AbstractIdeaDetailView):
             parsed_url = urlparse(referer)
             match = resolve(parsed_url.path)
             if match.url_name == "project-detail" or match.url_name == "module-detail":
-                back_mode = None
                 if "mode" in parse_qs(parsed_url.query):
                     back_mode = parse_qs(parsed_url.query)["mode"][0]
                     if back_mode == "list":

@@ -251,6 +251,39 @@ def test_detail_view_back_link(client, phase_factory, proposal_factory):
 
 
 @pytest.mark.django_db
+def test_detail_view_token_in_session(
+    client, phase_factory, proposal_factory, voting_token_factory
+):
+    phase_1, module_1, project_1, proposal_1 = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase
+    )
+
+    phase_2, module_2, project_2, proposal_2 = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase
+    )
+
+    token_1 = voting_token_factory(module=module_1)
+    project_url = project_1.get_absolute_url()
+    data = {"token": str(token_1)}
+
+    proposal_1_url = proposal_1.get_absolute_url()
+    proposal_2_url = proposal_2.get_absolute_url()
+
+    with freeze_phase(phase_1):
+        response = client.get(proposal_1_url)
+        assert not response.context_data["has_valid_token_in_session"]
+
+        client.post(project_url, data)
+
+        response = client.get(proposal_1_url)
+        assert response.context_data["has_valid_token_in_session"]
+
+    with freeze_phase(phase_2):
+        response = client.get(proposal_2_url)
+        assert not response.context_data["has_valid_token_in_session"]
+
+
+@pytest.mark.django_db
 def test_create_view(
     client,
     phase_factory,
