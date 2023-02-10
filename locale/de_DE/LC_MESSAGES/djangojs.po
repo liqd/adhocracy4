@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-06 12:47+0100\n"
-"PO-Revision-Date: 2023-02-08 10:43+0000\n"
+"PO-Revision-Date: 2023-02-10 13:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
@@ -837,7 +837,7 @@ msgstr "Keine Ergebnisse"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:22
 msgid "Are you finished?"
-msgstr "Sind sie fertig?"
+msgstr "Sind Sie fertig?"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:23
 msgid "End session"
