@@ -1,0 +1,20 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Konto existiert bereits{% endblock %}
+
+{% block content %}
+<p>
+    Sie erhalten diese E-Mail, weil Sie oder jemand anderes versucht haben,
+    sich für ein Konto mit folgender E-Mail-Adresse anzumelden:
+</p>
+<p>
+    {{ email }}
+</p>
+<p>
+    Es existiert jedoch bereits ein Konto mit dieser E-Mail-Adresse.
+    Falls Sie dies vergessen haben, verwenden Sie bitte das Verfahren "Passwort vergessen",
+    um Ihr Konto wiederherzustellen:
+</p>
+{% block cta_url %}{{ password_reset_url }}{% endblock %}
+{% block cta_label %}Passwort zurücksetzen{% endblock %}
+{% endblock %}

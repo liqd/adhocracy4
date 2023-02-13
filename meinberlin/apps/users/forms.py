@@ -38,7 +38,6 @@ class UserAdminForm(auth_forms.UserChangeForm):
         return self.cleaned_data
 
     def clean_username(self):
-
         username = self.cleaned_data["username"]
         try:
             user = User.objects.get(username__iexact=username)
@@ -63,7 +62,6 @@ class UserAdminForm(auth_forms.UserChangeForm):
 
 class AddUserAdminForm(auth_forms.UserCreationForm):
     def clean_username(self):
-
         username = self.cleaned_data["username"]
         user = User.objects.filter(username__iexact=username)
         if user.exists():
@@ -112,10 +110,11 @@ class TermsSignupForm(SignupForm):
 
     def save(self, request):
         user = super(TermsSignupForm, self).save(request)
-        user.get_newsletters = self.cleaned_data["get_newsletters"]
-        user.get_notifications = self.cleaned_data["get_notifications"]
-        user.save()
-        return user
+        if user:
+            user.get_newsletters = self.cleaned_data["get_newsletters"]
+            user.get_notifications = self.cleaned_data["get_notifications"]
+            user.save()
+            return user
 
 
 class SocialTermsSignupForm(SocialSignupForm):

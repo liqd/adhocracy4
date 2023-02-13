@@ -79,6 +79,7 @@ class Command(BaseCommand):
         self._send_allauth_email_confirmation()
         self._send_allauth_password_reset()
         self._send_allauth_unknown_account()
+        self._send_allauth_account_already_exists()
 
     def _send_notifications_create_idea(self):
         # Send notification for a newly created item
@@ -319,6 +320,19 @@ class Command(BaseCommand):
             field_values=fields,
             receiver=[self.user],
             template_name="meinberlin_cms/emails/form_submission",
+        )
+
+    def _send_allauth_account_already_exists(self):
+        context = {
+            "user": self.user,
+            "password_reset_url": "http://example.com/...",
+        }
+
+        TestEmail.send(
+            self.user,
+            receiver=[self.user],
+            template_name="account/email/account_already_exists",
+            **context
         )
 
     def _send_allauth_password_reset(self):
