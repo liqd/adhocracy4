@@ -1,5 +1,5 @@
 -r base.txt
 django-redis==5.2.0
-hiredis==2.1.1
+hiredis==2.2.2
 gunicorn==20.1.0
 psycopg2==2.9.5
