@@ -5,9 +5,14 @@
 {% block headline %}Rückmeldung zu Ihrem Beitrag{% endblock  %}
 {% block sub-headline %}{{ object.project.name }}{% endblock  %}
 
-{% block greeting %}{% if send_to_creator %}Hallo {{ receiver.username }},{% else %}Guten Tag,{% endif %}{% endblock %}
+{% block greeting %}
+<div {% if object.moderator_feedback_text.feedback_text %}style="text-align: left;"{% endif %}>
+{% if send_to_creator %}Hallo {{ receiver.username }},{% else %}Guten Tag,{% endif %}
+</div>
+{% endblock %}
 
 {% block content %}
+<div {% if object.moderator_feedback_text.feedback_text %}style="text-align: left;"{% endif %}>
 <p>
 {{ object.module.project.organisation.name }} hat auf Ihren Beitrag reagiert.
 </p>
@@ -17,13 +22,13 @@ Der Status Ihres Beitrags hat sich geändert und steht nun auf “{{ object.get_
 </p>
 {% endif %}
 {% if object.moderator_feedback_text.feedback_text %}
-<p style="text-align: left;">
-Rückmeldung: {{ object.moderator_feedback_text.feedback_text | safe }}
-</p>
+<p>Rückmeldung:</p>
+{{ object.moderator_feedback_text.feedback_text | safe }}
 {% endif %}
 <p>
 Möchten Sie antworten?
 </p>
+</div>
 {% endblock %}
 
 {% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}

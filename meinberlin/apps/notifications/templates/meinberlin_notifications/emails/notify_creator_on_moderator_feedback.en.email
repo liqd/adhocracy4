@@ -5,9 +5,14 @@
 {% block headline %}Feedback for your contribution{% endblock  %}
 {% block sub-headline %}{{ object.project.name }}{% endblock  %}
 
-{% block greeting %}{% if send_to_creator %}Hello {{ receiver.username }},{% else %}Hello,{% endif %}{% endblock %}
+{% block greeting %}
+<div {% if object.moderator_feedback_text.feedback_text %}style="text-align: left;"{% endif %}>
+{% if send_to_creator %}Hello {{ receiver.username }},{% else %}Hello,{% endif %}
+</div>
+{% endblock %}
 
 {% block content %}
+<div {% if object.moderator_feedback_text.feedback_text %}style="text-align: left;"{% endif %}>
 <p>
 {{ object.module.project.organisation.name }} reacted on your contribution.
 </p>
@@ -17,13 +22,14 @@ The status of your contribution has been changed and is now “{{ object.get_mod
 </p>
 {% endif %}
 {% if object.moderator_feedback_text.feedback_text %}
-<p style="text-align: left;">
+<p>
 Feedback: {{ object.moderator_feedback_text.feedback_text | safe }}
 </p>
 {% endif %}
 <p>
 Do you want to answer?
 </p>
+</div>
 {% endblock %}
 
 {% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}
