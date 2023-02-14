@@ -4,9 +4,10 @@ import Modal from '../../../static/Modal'
 import api from '../../../static/api'
 
 const translations = {
+  reportSent: django.gettext('Report sent'),
   thankyouText: django.gettext('Thank you! We are taking care of it.'),
   placeholderText: django.gettext('Your message'),
-  sendReportTag: django.gettext('Send Report')
+  sendReport: django.gettext('Send Report')
 }
 
 export const ReportModal = (props) => {
@@ -34,6 +35,7 @@ export const ReportModal = (props) => {
   }
 
   if (showSuccessMessage) {
+    partials.title = translations.reportSent
     partials.body = (
       <div className="u-spacer-bottom-triple">
         <i className="fa fa-check" /> {translations.thankyouText}
@@ -42,7 +44,7 @@ export const ReportModal = (props) => {
     partials.hideFooter = true
     partials.bodyClass = 'success'
   } else if (showReportForm) {
-    partials.title = translations.sendReportTag
+    partials.title = translations.sendReport
     partials.description = props.description
     partials.body = (
       <div className="form-group">
@@ -59,7 +61,7 @@ export const ReportModal = (props) => {
       abort={props.abort}
       name={props.name}
       handleSubmit={submitReport}
-      action={translations.sendReportTag}
+      action={translations.sendReport}
       partials={partials}
       dismissOnSubmit={false}
     />
