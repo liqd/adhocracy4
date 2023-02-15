@@ -1,10 +1,8 @@
 from django.utils import timezone
-from django.utils.translation import gettext
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.exports import mixins
-from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.exports import views as export_views
 
 from . import models
@@ -19,7 +17,6 @@ class DashboardPlanExportView(
     export_views.BaseExport,
     export_views.AbstractXlsxExportView,
 ):
-
     permission_required = "meinberlin_plans.export_plan"
     model = models.Plan
     fields = [
@@ -38,8 +35,13 @@ class DashboardPlanExportView(
         "participation",
         "participation_explanation",
         "organisation",
+        "created",
+        "modified",
+        "is_draft",
     ]
-    html_fields = ["description"]
+    html_fields = ["description", "contact_address_text"]
+    related_fields = {"organisation": ["name"]}
+    choice_fields = ["status", "participation"]
 
     def get_object_list(self):
         if self.organisation.has_initiator(self.request.user):
@@ -62,29 +64,14 @@ class DashboardPlanExportView(
 
     def get_virtual_fields(self, virtual):
         virtual = super().get_virtual_fields(virtual)
-        virtual["projects"] = gettext("Projects")
-        virtual["projects_links"] = gettext("Project Links")
-        virtual["created"] = gettext("Created")
-        virtual["modified"] = gettext("Modified")
+        virtual["projects"] = _("Projects")
+        virtual["projects_links"] = _("Project Links")
+        virtual["is_draft"] = _("Draft")
+        virtual["organisation_name"] = _("Organisation")
         return virtual
-
-    def get_description_data(self, item):
-        return unescape_and_strip_html(item.description)
-
-    def get_contact_address_text_data(self, item):
-        return unescape_and_strip_html(item.contact_address_text)
 
     def get_district_data(self, item):
         return item.district.name if item.district else str(_("City wide"))
-
-    def get_status_data(self, item):
-        return item.get_status_display()
-
-    def get_participation_data(self, item):
-        return item.get_participation_display()
-
-    def get_organisation_data(self, item):
-        return item.organisation.name
 
     def get_projects_data(self, item):
         if item.projects.all():
@@ -99,12 +86,4 @@ class DashboardPlanExportView(
                     for project in item.projects.all()
                 ]
             )
-        return ""
-
-    def get_created_data(self, item):
-        return item.created.astimezone().isoformat()
-
-    def get_modified_data(self, item):
-        if item.modified:
-            return item.modified.astimezone().isoformat()
         return ""

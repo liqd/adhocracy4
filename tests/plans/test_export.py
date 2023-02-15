@@ -2,6 +2,7 @@ import json
 
 import pytest
 from django.conf import settings
+from django.utils.translation import gettext as _
 
 from adhocracy4.exports import unescape_and_strip_html
 from meinberlin.apps.plans.exports import DashboardPlanExportView
@@ -29,7 +30,10 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
     assert "status" in virtual
     assert "participation" in virtual
     assert "participation_explanation" in virtual
-    assert "organisation" in virtual
+    assert "organisation_name" in virtual
+    assert "created" in virtual
+    assert "modified" in virtual
+    assert "is_draft" in virtual
     # ItemExportWithLocationMixin
     assert "location_lon" in virtual
     assert "location_lat" in virtual
@@ -37,8 +41,6 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
     # defined directly in DashboardPlanExportView
     assert "projects" in virtual
     assert "projects_links" in virtual
-    assert "created" in virtual
-    assert "modified" in virtual
 
     plan = plan_factory(point="")
 
@@ -73,19 +75,21 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
     assert plan.participation_explanation == export.get_field_data(
         plan, "participation_explanation"
     )
-    assert plan.organisation.name == export.get_organisation_data(plan)
+    assert plan.organisation.name == export.get_organisation_name_data(plan)
+    assert plan.created.astimezone().isoformat() == export.get_field_data(
+        plan, "created"
+    )
+    assert plan.modified.astimezone().isoformat() == export.get_field_data(
+        plan, "modified"
+    )
+    assert _("no") == export.get_field_data(plan, "is_draft")
     # ItemExportWithLocationMixin
     assert "" == export.get_location_lon_data(plan)
     assert "" == export.get_location_lat_data(plan)
     assert plan.point_label == export.get_location_label_data(plan)
     # defined directly in DashboardPlanExportView
-    projects = ""
-    if plan.projects.all():
-        projects = ", \n".join([project.name for project in plan.projects.all()])
-    assert projects == export.get_projects_data(plan)
-
-    assert plan.created.astimezone().isoformat() == export.get_created_data(plan)
-    assert plan.modified.astimezone().isoformat() == export.get_modified_data(plan)
+    assert "" == export.get_projects_data(plan)
+    assert "" == export.get_projects_links_data(plan)
 
     choices = settings.A4_PROJECT_TOPICS
     project_1 = project_factory()
@@ -109,6 +113,7 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
             '"geometry":{"type":"Point",'
             '"coordinates":[13.382721,52.512121]}}'
         ),
+        is_draft=True,
     )
 
     # ItemExportWithReferenceNumberMixin and ItemExportWithLinkMixin
@@ -142,7 +147,14 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
     assert plan.participation_explanation == export.get_field_data(
         plan, "participation_explanation"
     )
-    assert plan.organisation.name == export.get_organisation_data(plan)
+    assert plan.organisation.name == export.get_organisation_name_data(plan)
+    assert plan.created.astimezone().isoformat() == export.get_field_data(
+        plan, "created"
+    )
+    assert plan.modified.astimezone().isoformat() == export.get_field_data(
+        plan, "modified"
+    )
+    assert _("yes") == export.get_field_data(plan, "is_draft")
     # ItemExportWithLocationMixin
     assert 13.382721 == export.get_location_lon_data(plan)
     assert 52.512121 == export.get_location_lat_data(plan)
@@ -153,6 +165,3 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
     if plan.projects.all():
         projects = ", \n".join([project.name for project in plan.projects.all()])
     assert projects == export.get_projects_data(plan)
-
-    assert plan.created.astimezone().isoformat() == export.get_created_data(plan)
-    assert plan.modified.astimezone().isoformat() == export.get_modified_data(plan)
