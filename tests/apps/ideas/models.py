@@ -49,6 +49,7 @@ class Idea(Item):
     labels = models.ManyToManyField(
         Label, related_name=("%(app_label)s_" "%(class)s_label")
     )
+    is_bool_test = models.BooleanField(default=True)
 
     objects = IdeaQuerySet.as_manager()
 

@@ -33,6 +33,7 @@ def test_model_fields_mixin_exclude(idea):
             "moderator_feedback_text",
             "point",
             "point_label",
+            "is_bool_test",
         ]
 
     mixin = Mixin()
@@ -64,3 +65,18 @@ def test_model_fields_mixin_related_fields(idea):
     virtual = mixin.get_virtual_fields({})
 
     assert sorted(virtual.keys()) == ["module_description", "module_name", "name"]
+
+
+@pytest.mark.django_db
+def test_model_fields_mixin_choice_fields(idea):
+    class Mixin(ExportModelFieldsMixin):
+        model = Idea
+        fields = ["name", "moderator_status"]
+        choice_fields = ["moderator_status"]
+
+    mixin = Mixin()
+
+    virtual = mixin.get_virtual_fields(OrderedDict())
+    assert sorted(virtual.keys()) == ["moderator_status", "name"]
+
+    assert mixin.get_moderator_status_data(idea) == idea.get_moderator_status_display()

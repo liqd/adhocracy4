@@ -1,9 +1,11 @@
+import datetime
 import numbers
 from collections import OrderedDict
 
 import xlsxwriter
 from django.http import HttpResponse
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from django.views import generic
 
 from adhocracy4.dashboard import mixins as dashboard_mixins
@@ -84,8 +86,15 @@ class BaseExport(VirtualFieldMixin):
 
         # Finally try to get the fields data as a property
         value = getattr(item, name, "")
-        if isinstance(value, numbers.Number) and not isinstance(value, bool):
+        if isinstance(value, bool):
+            if value:
+                return _("yes")
+            return _("no")
+        elif isinstance(value, numbers.Number):
+            # careful: bool is a subset of numbers.Number
             return value
+        elif isinstance(value, datetime.datetime):
+            return value.astimezone().isoformat()
         elif value is None:
             return ""
         return str(value)
