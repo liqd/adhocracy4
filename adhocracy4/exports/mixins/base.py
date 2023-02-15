@@ -26,6 +26,7 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
     exclude = None
     html_fields = None
     related_fields = None
+    choice_fields = None
 
     def get_virtual_fields(self, virtual):
         meta = self.model._meta
@@ -52,6 +53,7 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
 
         self._setup_html_fields()
         self._setup_related_fields()
+        self._setup_choice_fields()
 
         return super().get_virtual_fields(virtual)
 
@@ -79,3 +81,15 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
                         getattr(getattr(item, field), attr, "")
                     ),
                 )
+
+    def _setup_choice_fields(self):
+        choice_fields = self.choice_fields if self.choice_fields else []
+        for field in choice_fields:
+            get_field_attr_name = "get_%s_data" % field
+            setattr(
+                self,
+                get_field_attr_name,
+                lambda item, field_name_display="get_%s_display" % field: str(
+                    getattr(item, field_name_display)()
+                ),
+            )

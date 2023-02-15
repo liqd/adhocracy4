@@ -7,10 +7,9 @@ from adhocracy4.exports.mixins import ItemExportWithReferenceNumberMixin
 
 
 @pytest.mark.django_db
-def test_item_categories_mixin(idea, category):
-
-    idea.category = category
-    idea.save()
+def test_item_categories_mixin(idea_factory, category):
+    idea = idea_factory(category=category)
+    idea_wo_category = idea_factory()
 
     mixin = ItemExportWithCategoriesMixin()
 
@@ -18,17 +17,19 @@ def test_item_categories_mixin(idea, category):
     assert "category" in virtual
 
     data = mixin.get_category_data(idea)
-
     assert category.name in data
+
+    data_wo_category = mixin.get_category_data(idea_wo_category)
+    assert "" == data_wo_category
 
 
 @pytest.mark.django_db
 def test_item_labels_mixin(idea_factory, label_factory):
-
     label1 = label_factory()
     label2 = label_factory(module=label1.module)
     idea = idea_factory.create(labels=(label1, label2))
     idea.save()
+    idea_wo_label = idea_factory()
 
     mixin = ItemExportWithLabelsMixin()
 
@@ -39,15 +40,19 @@ def test_item_labels_mixin(idea_factory, label_factory):
     assert label1.name in data
     assert label2.name in data
 
+    data_wo_label = mixin.get_labels_data(idea_wo_label)
+    assert "" == data_wo_label
+
 
 @pytest.mark.django_db
-def test_reference_number_mixin(idea):
+def test_reference_number_mixin(idea, question):
     mixin = ItemExportWithReferenceNumberMixin()
 
     virtual = mixin.get_virtual_fields({})
     assert "reference_number" in virtual
 
     assert idea.reference_number == mixin.get_reference_number_data(idea)
+    assert "" == mixin.get_reference_number_data(question)
 
 
 @pytest.mark.django_db
