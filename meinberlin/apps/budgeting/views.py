@@ -1,3 +1,4 @@
+import datetime
 from urllib.parse import parse_qs
 from urllib.parse import urlparse
 
@@ -20,6 +21,8 @@ from meinberlin.apps.votes.models import VotingToken
 
 from . import forms
 from . import models
+
+TOKEN_SESSION_EXPIRE = datetime.timedelta(minutes=1)
 
 
 def get_ordering_choices(view):
@@ -111,11 +114,14 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
                 request.session["voting_tokens"][
                     str(self.module.id)
                 ] = token_form.cleaned_data["token"]
-                request.session.save()
+                request.session.modified = True
             else:
                 request.session["voting_tokens"] = {
                     str(self.module.id): token_form.cleaned_data["token"]
                 }
+            request.session["token_expire_date"] = (
+                datetime.datetime.now() + TOKEN_SESSION_EXPIRE
+            ).timestamp()
             kwargs["valid_token_present"] = True
             self.mode = "list"
         kwargs["token_form"] = token_form

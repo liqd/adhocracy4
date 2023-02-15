@@ -139,6 +139,7 @@ MIDDLEWARE = (
     "django.contrib.messages.middleware.MessageMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "meinberlin.apps.embed.middleware.AjaxPathMiddleware",
+    "meinberlin.apps.votes.middleware.VotingTokenSessionMiddleware",
 )
 
 SITE_ID = 1
@@ -282,6 +283,8 @@ SOCIALACCOUNT_FORMS = {"signup": "meinberlin.apps.users.forms.SocialTermsSignupF
 SOCIALACCOUNT_QUERY_EMAIL = True
 # This is currently needed for servicekonto account connection
 SESSION_COOKIE_SAMESITE = None
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "/"

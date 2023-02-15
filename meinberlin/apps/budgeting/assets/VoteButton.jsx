@@ -7,12 +7,18 @@ export default class VoteButton extends React.Component {
     const data = {
       object_id: this.props.objectID
     }
-    await updateItem(data, this.props.tokenvoteApiUrl, 'POST')
+    const response = await updateItem(data, this.props.tokenvoteApiUrl, 'POST')
+    if (response.status === 403) {
+      window.location.reload()
+    }
   }
 
   async deleteVote () {
     const url = this.props.tokenvoteApiUrl + this.props.objectID + '/'
-    await updateItem({}, url, 'DELETE')
+    const response = await updateItem({}, url, 'DELETE')
+    if (response.status === 403) {
+      window.location.reload()
+    }
   }
 
   triggerRender = () => {
