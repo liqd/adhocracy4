@@ -1,5 +1,5 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
-{% load i18n static %}
+{% load i18n static humanize %}
 
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{% translate 'Download voting codes' %}</h1>
@@ -8,26 +8,26 @@
     <p class="u-bottom-divider">{% blocktranslate %}Number of generated codes: {{ number_of_module_tokens }}.{% endblocktranslate %}</p>
     <ul class="u-list-reset">
         {% if token_export_url %}
-            {% for number, downloadable in token_packages %}
+            {% for package, downloaded, size in token_packages %}
             <li class="u-bottom-divider u-space-between">
-              <div class="" id="id-export-tokens-hint-{{ number }}">
-                    {% translate " code package no." %} {{ number|add:1 }}
+              <div class="" id="id-export-tokens-hint-{{ forloop.counter }}">
+                    {% translate " code package no." %}  {{ forloop.counter }} ({% blocktranslate with count_int=size|intcomma count counter=size %}{{ count_int }} Code{% plural %}{{ count_int }} Codes{% endblocktranslate %})
                 </div>
                 <a
-                {% if downloadable %}
-                  class="btn btn--secondary"
+                {% if downloaded %}
+                    class="btn btn--light disabled"
                 {% else %}
-                  class="btn btn--light disabled"
+                    class="btn btn--secondary"
                 {% endif %}
-                  id="download-link-{{ number }}"
-                  aria-labelledby="id-export-tokens-hint-{{ number }} download-link--{{ number }}"
-                  href="{{ token_export_url }}?package={{ number }}"
+                  id="download-link-{{ forloop.counter }}"
+                  aria-labelledby="id-export-tokens-hint-{{ forloop.counter }} download-link--{{ forloop.counter }}"
+                  href="{{ token_export_url }}?package={{ package }}"
                 >
-                    {% if downloadable %}
-                        {% translate "Download" %}
-                    {% else %}
-                        {% translate "Encrypted" %}
-                    {% endif %}
+                {% if downloaded %}
+                    {% translate "Encrypted" %}
+                {% else %}
+                    {% translate "Download" %}
+                {% endif %}
                 </a>
             </li>
             {% endfor %}

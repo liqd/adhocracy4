@@ -1,4 +1,5 @@
 import pytest
+from background_task.models import Task
 from django.urls import reverse
 
 from adhocracy4.dashboard import components
@@ -12,13 +13,19 @@ component = components.modules.get("voting_token_export")
 
 
 @pytest.mark.django_db
-def test_token_vote_view(client, phase_factory, module_factory, voting_token_factory):
+def test_token_vote_view(
+    client, phase_factory, module_factory, token_package_factory, voting_token_factory
+):
     phase, module, project, item = setup_phase(phase_factory, None, VotingPhase)
     other_module = module_factory()
-    voting_token_factory(module=module)
-    voting_token_factory(module=module, package_number=1)
-    voting_token_factory(module=module, package_number=2)
-    voting_token_factory(module=module, package_number=3, is_active=False)
+    package0 = token_package_factory(module=module)
+    package1 = token_package_factory(module=module)
+    package2 = token_package_factory(module=module)
+    package3 = token_package_factory(module=module)
+    voting_token_factory(module=module, package=package0)
+    voting_token_factory(module=module, package=package1)
+    voting_token_factory(module=module, package=package2)
+    voting_token_factory(module=module, package=package3, is_active=False)
     voting_token_factory(module=other_module)
 
     initiator = module.project.organisation.initiators.first()
@@ -33,31 +40,32 @@ def test_token_vote_view(client, phase_factory, module_factory, voting_token_fac
     token_packages = response.context["token_packages"]
     number_of_module_tokens = response.context["number_of_module_tokens"]
 
-    assert len(token_packages) == 3
-    # assert packages are downloadable and have right package_number
+    assert len(token_packages) == 4
+    # assert packages are downloadable and have right package_number and size
+    packages = [package0, package1, package2, package3]
     for count, package in enumerate(token_packages):
-        assert package[0] == count
-        assert package[1]
+        assert package[0] == packages[count].pk
+        assert package[1] is False
+        assert package[2] == 1
 
-    response = client.get(export_url)
+    print(export_url)
+    response = client.get(export_url + "?package=" + str(package0.pk))
     assert response.status_code == 200
     assert (
         response.get("Content-Type")
         == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
-    assert number_of_module_tokens == "3"
+    assert number_of_module_tokens == "4"
 
     response = client.get(url)
     assert response.status_code == 200
     token_packages = response.context["token_packages"]
-    assert len(token_packages) == 3
-    # assert that first package is no longer downloadable
-    for count, package in enumerate(token_packages):
-        assert package[0] == count
-        if count == 0:
-            assert not package[1]
-        else:
-            assert package[1]
+    assert len(token_packages) == 4
+    # assert that a delete task for the first package has been created
+    assert Task.objects.all().count() == 1
+    task_1 = Task.objects.first()
+    assert task_1.task_name == "meinberlin.apps.votes.tasks.delete_plain_codes"
+    assert task_1.task_params == "[[" + str(package0.pk) + "], {}]"
 
 
 @pytest.mark.django_db
@@ -67,12 +75,13 @@ def test_export(voting_token, rf):
     token_export_url = reverse(
         "a4dashboard:token-export", kwargs={"module_slug": module.slug}
     )
-    request = rf.get(token_export_url)
+    request = rf.get(token_export_url + "?package=" + str(voting_token.package.pk))
     request.user = initiator
     response, view = dispatch_view(TokenExportView, request, module=module)
     voting_token = VotingToken.objects.get(id=voting_token.id)
-    # token should no longer be in the queryset
-    assert voting_token not in view.get_queryset()
-    assert not voting_token.token
+    assert Task.objects.all().count() == 1
+    task_1 = Task.objects.first()
+    assert task_1.task_name == "meinberlin.apps.votes.tasks.delete_plain_codes"
+    assert task_1.task_params == ("[[" + str(voting_token.package.pk) + "], {}]")
     assert module.project.slug in view.get_base_filename()
     assert view.get_token_data(voting_token) == str(voting_token)

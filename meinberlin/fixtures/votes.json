@@ -24,14 +24,41 @@
     }
   },
   {
+    "model": "meinberlin_votes.tokenpackage",
+    "pk": 1,
+    "fields": {
+      "module": 11,
+      "size": 1,
+      "downloaded": false
+    }
+  },
+  {
+    "model": "meinberlin_votes.tokenpackage",
+    "pk": 2,
+    "fields": {
+      "module": 10,
+      "size": 1,
+      "downloaded": false
+    }
+  },
+  {
+    "model": "meinberlin_votes.tokenpackage",
+    "pk": 3,
+    "fields": {
+      "module": 2,
+      "size": 1,
+      "downloaded": false
+    }
+  },
+  {
     "model": "meinberlin_votes.votingtoken",
     "pk": 1,
     "fields": {
       "token": "votingtoken1",
       "token_hash": "09fb33ef7a5a39c6e97e3f3878f052bf824921e6bd6926b5706c0dee65e26c58de28336991138c7094938b9acdb9d5d490cea7690297006b2cf7d28a8514f0f6",
-      "module": 10,
+      "module": 11,
       "allowed_votes": 5,
-      "package_number": 0,
+      "package": 1,
       "is_active": true
     }
   },
@@ -41,9 +68,9 @@
     "fields": {
       "token": "votingtoken1",
       "token_hash": "1e63f9521e1d857640c88c2d060d40d34022d47198a610af86f95b61cb54171d5cd7329fbceebfc7e609d253c500db5ed5f0f512d16fa6210219f3cb5a756f1c",
-      "module": 2,
+      "module": 10,
       "allowed_votes": 5,
-      "package_number": 0,
+      "package": 2,
       "is_active": true
     }
   },
@@ -53,9 +80,9 @@
     "fields": {
       "token": "votingtoken1",
       "token_hash": "31303469863c7231782709b020bb8921c238ea241404517910394a7f377efd8456a916cbfc9aac5df63125971e5b6baf96120b89580ca9e1574815d6616c71c0",
-      "module": 11,
+      "module": 2,
       "allowed_votes": 5,
-      "package_number": 0,
+      "package": 3,
       "is_active": true
     }
   }

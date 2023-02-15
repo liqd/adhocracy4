@@ -5,7 +5,9 @@ from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.exports.views import AbstractXlsxExportView
 from adhocracy4.projects.mixins import ProjectMixin
+from meinberlin.apps.votes.models import TokenPackage
 from meinberlin.apps.votes.models import VotingToken
+from meinberlin.apps.votes.tasks import delete_plain_codes
 
 
 class TokenExportView(
@@ -20,30 +22,36 @@ class TokenExportView(
     def get_permission_object(self):
         return self.module.project
 
-    def get_package_number(self):
-        package_number = self.request.GET.get("package") or 0
+    def get_package(self):
         try:
-            return int(package_number)
+            pk = int(self.request.GET.get("package"))
+            return TokenPackage.objects.get(pk=pk)
         except ValueError:
             return None
 
     def get_queryset(self):
         """Filter QS to only include active tokens from module."""
-        package_number = self.get_package_number()
-        if package_number is None:
+        package = self.get_package()
+        if package is None:
             return None
         return (
             super()
             .get_queryset()
-            .filter(module=self.module, is_active=True, package_number=package_number)
+            .filter(
+                module=self.module,
+                is_active=True,
+                package=package,
+            )
             .exclude(token="")
             .order_by("pk")
         )
 
     def get_base_filename(self):
-        package_number = self.get_package_number()
-        if not package_number:
-            package_number = 0
+        package = self.get_package()
+        package_number = (
+            TokenPackage.objects.filter(module=self.module, pk__lt=package.pk).count()
+            + 1
+        )
         return "%s_package_%s" % (self.project.slug, package_number)
 
     def get_header(self):
@@ -55,11 +63,14 @@ class TokenExportView(
         queryset = self.get_queryset()
         # raise BadRequest as either package has been downloaded
         # already or wrong package number
-        if queryset is None or queryset.count() == 0:
+        package = self.get_package()
+        if queryset is None or queryset.count() == 0 or not package.is_created:
             raise BadRequest
         for item in queryset:
             yield [self.get_token_data(item)]
-        queryset.update(token="")
+        package.downloaded = True
+        package.save()
+        delete_plain_codes(package.pk)
 
     def get_token_data(self, item):
         """Add dashes like in string method."""

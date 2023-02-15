@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from .models import TokenPackage
 from .models import TokenVote
 from .models import VotingToken
 
@@ -11,19 +12,25 @@ class VotingTokenAdmin(admin.ModelAdmin):
         "token_hash",
         "module",
         "is_active",
-        "package_number",
+        "package",
         "allowed_votes",
     )
-    readonly_fields = ("token", "token_hash", "package_number")
+    readonly_fields = ("token", "token_hash", "package")
     list_display = ("pk", "__str__", "project", "module", "module_name", "is_active")
     list_filter = ("module__project",)
+
+    def delete_model(self, request, obj):
+        obj.package.size -= 1
+        obj.package.save()
+        super().delete_model(request, obj)
 
     def module_name(self, token):
         return token.module.name
 
     def save_model(self, request, obj, form, change):
-        if obj.package_number is None:
-            obj.package_number = VotingToken.next_package_number(obj.module)
+        if not hasattr(obj, "package"):
+            obj.package = TokenPackage.objects.create(module=obj.module, size=1)
+
         if not obj.token_hash:
             obj.token_hash = VotingToken.hash_token(obj.token, obj.module)
         super().save_model(request, obj, form, change)

@@ -6,6 +6,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models import Sum
 from django.db.utils import IntegrityError
 from django.utils.translation import gettext_lazy as _
 
@@ -56,6 +57,34 @@ class TokenSalt(models.Model):
         return token_salt.salt
 
 
+class TokenPackage(models.Model):
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    size = models.PositiveIntegerField()
+    downloaded = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["pk"]
+
+    @property
+    def num_tokens(self):
+        return VotingToken.objects.filter(package=self).count()
+
+    @property
+    def is_created(self):
+        return self.num_tokens == self.size
+
+    @staticmethod
+    def get_sum_token(module):
+        num_tokens = (
+            TokenPackage.objects.filter(module=module)
+            .aggregate(Sum("size"))
+            .get("size__sum")
+        )
+        if num_tokens is None:
+            num_tokens = 0
+        return num_tokens
+
+
 class VotingToken(models.Model):
     token = models.CharField(
         max_length=40, default=get_token_16, blank=True, editable=False
@@ -63,7 +92,7 @@ class VotingToken(models.Model):
     token_hash = models.CharField(max_length=128, editable=False, unique=True)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     allowed_votes = models.PositiveSmallIntegerField(default=5)
-    package_number = models.PositiveIntegerField()
+    package = models.ForeignKey(TokenPackage, on_delete=models.CASCADE)
     is_active = models.BooleanField(
         default=True,
         help_text=_(
@@ -107,17 +136,6 @@ class VotingToken(models.Model):
 
     def is_valid_for_item(self, item):
         return item.module == self.module
-
-    @staticmethod
-    def next_package_number(module):
-        token = (
-            VotingToken.objects.filter(module=module)
-            .order_by("-package_number")
-            .first()
-        )
-        if token:
-            return token.package_number + 1
-        return 0
 
     @staticmethod
     def hash_token(token, module):

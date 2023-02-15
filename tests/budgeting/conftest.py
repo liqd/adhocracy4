@@ -6,5 +6,6 @@ from meinberlin.test.factories import votes
 
 register(budgeting.ProposalFactory)
 register(ModerationTaskFactory)
+register(votes.TokenPackageFactory)
 register(votes.TokenVoteFactory)
 register(votes.VotingTokenFactory)

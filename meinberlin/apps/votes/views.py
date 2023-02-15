@@ -10,11 +10,12 @@ from django.views import generic
 from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.votes.forms import TokenBatchCreateForm
+from meinberlin.apps.votes.models import TokenPackage
 from meinberlin.apps.votes.models import VotingToken
 from meinberlin.apps.votes.tasks import PACKAGE_SIZE
 from meinberlin.apps.votes.tasks import generate_voting_tokens
 
-TOKENS_PER_MODULE = int(1e5)
+TOKENS_PER_MODULE = int(5e6)
 
 
 class ExportTokenDashboardView(
@@ -26,26 +27,13 @@ class ExportTokenDashboardView(
     permission_required = "a4projects.change_project"
     template_name = "meinberlin_votes/token_export_dashboard.html"
 
-    def _get_number_of_tokens(self):
-        """Return total and downloadable token count for module."""
-        return VotingToken.objects.filter(module=self.module, is_active=True).count()
-
     def _get_packages(self):
-        downloadable_tokens = (
-            VotingToken.objects.filter(module=self.module, is_active=True)
-            .exclude(token="")
-            .values("package_number")
-            .distinct()
-        )
-        downloaded_tokens = VotingToken.objects.filter(
-            module=self.module, is_active=True, token=""
-        ).values("package_number")
-        tokens = {}
-        for token in downloadable_tokens:
-            tokens[token["package_number"]] = True
-        for token in downloaded_tokens:
-            tokens[token["package_number"]] = False
-        return sorted(tokens.items())
+        packages = TokenPackage.objects.filter(module=self.module)
+        result = []
+        for package in packages:
+            if package.is_created:
+                result.append((package.pk, package.downloaded, package.num_tokens))
+        return result
 
     def get_permission_object(self):
         return self.project
@@ -55,7 +43,9 @@ class ExportTokenDashboardView(
         context["token_export_url"] = reverse(
             "a4dashboard:token-export", kwargs={"module_slug": self.module.slug}
         )
-        context["number_of_module_tokens"] = intcomma(self._get_number_of_tokens())
+        context["number_of_module_tokens"] = intcomma(
+            TokenPackage.get_sum_token(self.module)
+        )
         context["token_packages"] = self._get_packages()
         context["export_size"] = intcomma(PACKAGE_SIZE)
         context["contact_email"] = settings.CONTACT_EMAIL
@@ -89,15 +79,14 @@ class TokenGenerationDashboardView(
     permission_required = "is_superuser"
     template_name = "meinberlin_votes/token_generation_dashboard.html"
 
-    def _get_number_of_tokens(self):
-        return VotingToken.objects.filter(module=self.module, is_active=True).count()
-
     def get_permission_object(self):
         return self.project
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["number_of_module_tokens"] = intcomma(self._get_number_of_tokens())
+        context["number_of_module_tokens"] = intcomma(
+            TokenPackage.get_sum_token(self.module)
+        )
         context["tokens_per_module"] = intcomma(TOKENS_PER_MODULE)
         return context
 
@@ -110,7 +99,7 @@ class TokenGenerationDashboardView(
     def form_valid(self, form):
         number_of_tokens = form.cleaned_data["number_of_tokens"]
         # check that no more than 5 Million codes are added per module
-        existing_tokens = self._get_number_of_tokens()
+        existing_tokens = TokenPackage.get_sum_token(self.module)
         if existing_tokens + number_of_tokens > TOKENS_PER_MODULE:
             messages.error(
                 self.request,
@@ -118,7 +107,7 @@ class TokenGenerationDashboardView(
             )
         else:
             # make tasks to generate the tokens
-            generate_voting_tokens(self.module.pk, number_of_tokens, existing_tokens)
+            generate_voting_tokens(self.module.pk, number_of_tokens)
 
             messages.success(
                 self.request,
