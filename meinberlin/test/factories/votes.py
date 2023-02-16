@@ -12,7 +12,7 @@ class VotingTokenFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = voting_models.VotingToken
 
-    token = fuzzy.FuzzyText(length=12, chars=string.ascii_letters + string.digits)
+    token = fuzzy.FuzzyText(length=16, chars=string.ascii_letters + string.digits)
     module = factory.SubFactory(a4_factories.ModuleFactory)
     allowed_votes = 5
     package_number = 0

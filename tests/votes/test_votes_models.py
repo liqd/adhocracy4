@@ -8,8 +8,11 @@ from meinberlin.apps.votes.models import TokenVote
 @pytest.mark.django_db
 def test_voting_token_str(voting_token):
     voting_token_string = voting_token.__str__()
-    assert voting_token_string == "{}-{}-{}".format(
-        voting_token.token[0:4], voting_token.token[4:8], voting_token.token[8:12]
+    assert voting_token_string == "{}-{}-{}-{}".format(
+        voting_token.token[0:4],
+        voting_token.token[4:8],
+        voting_token.token[8:12],
+        voting_token.token[12:16],
     )
 
 

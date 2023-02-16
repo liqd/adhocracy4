@@ -18,6 +18,7 @@ def get_token(length):
     return "".join(secrets.choice(alphabet) for i in range(length))
 
 
+# only used by migration
 def get_token_12():
     return get_token(12)
 
@@ -57,7 +58,7 @@ class TokenSalt(models.Model):
 
 class VotingToken(models.Model):
     token = models.CharField(
-        max_length=40, default=get_token_12, blank=True, editable=False
+        max_length=40, default=get_token_16, blank=True, editable=False
     )
     token_hash = models.CharField(max_length=128, editable=False, unique=True)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
@@ -82,7 +83,7 @@ class VotingToken(models.Model):
                     if i == 3:
                         raise
                     else:
-                        self.token = get_token_12()
+                        self.token = get_token_16()
                         self.token_hash = self.hash_token(self.token, self.module)
                 else:
                     raise
@@ -146,7 +147,9 @@ class VotingToken(models.Model):
             return None
 
     def __str__(self):
-        return "{}-{}-{}".format(self.token[0:4], self.token[4:8], self.token[8:12])
+        return "{}-{}-{}-{}".format(
+            self.token[0:4], self.token[4:8], self.token[8:12], self.token[12:16]
+        )
 
 
 class TokenVote(base.TimeStampedModel):

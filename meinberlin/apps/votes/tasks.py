@@ -2,7 +2,7 @@ from background_task import background
 
 from adhocracy4.modules.models import Module
 from meinberlin.apps.votes.models import VotingToken
-from meinberlin.apps.votes.models import get_token_12
+from meinberlin.apps.votes.models import get_token_16
 
 # Number of tokens to insert into database per bulk_create
 BATCH_SIZE = int(1e3)
@@ -72,7 +72,7 @@ def generate_voting_tokens_batch(
 
 
 def get_token_and_hash(module, package_number):
-    token = get_token_12()
+    token = get_token_16()
     token_hash = VotingToken.hash_token(token, module)
     return VotingToken(
         token=token, token_hash=token_hash, module=module, package_number=package_number

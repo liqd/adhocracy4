@@ -10,8 +10,8 @@ class VotingTokenField(forms.CharField):
         widget = TextInput(
             attrs={
                 "class": "form-control",
-                "minlength": 12,
-                "maxlength": 14,
+                "minlength": 16,
+                "maxlength": 19,
                 "placeholder": placeholder,
             }
         )
@@ -23,21 +23,20 @@ class VotingTokenField(forms.CharField):
     }
 
     def clean(self, value):
-
         # ensure no spaces or dashes
         value = value.replace(" ", "").replace("-", "")
 
         # check the value is not too short or too long
-        if len(value) < 12:
+        if len(value) < 16:
             raise forms.ValidationError(self.error_messages["invalid_short"])
-        elif len(value) > 12:
+        elif len(value) > 16:
             raise forms.ValidationError(self.error_messages["invalid_long"])
 
         return value
 
 
 class TokenForm(forms.Form):
-    token = VotingTokenField(placeholder="0000-0000-0000")
+    token = VotingTokenField(placeholder="0000-0000-0000-0000")
 
     def __init__(self, *args, **kwargs):
         self.module_id = kwargs.pop("module_id")
