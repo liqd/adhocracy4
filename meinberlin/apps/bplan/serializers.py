@@ -80,6 +80,8 @@ class BplanSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
+        # FIXME: remove once debugged
+        print(validated_data)
         orga_pk = self._context.get("organisation_pk", None)
         orga_model = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
         orga = orga_model.objects.get(pk=orga_pk)
@@ -115,6 +117,8 @@ class BplanSerializer(serializers.ModelSerializer):
         )
 
     def update(self, instance, validated_data):
+        # FIXME: remove once debugged
+        print(validated_data)
         start_date = validated_data.get("start_date", None)
         end_date = validated_data.get("end_date", None)
         if start_date or end_date:
