@@ -147,6 +147,7 @@ def test_list_view_token_form(
         response = client.post(url, data)
         assert response.status_code == 200
         assert "voting_tokens" in client.session
+        assert "token_expire_date" in client.session
         assert "token_form" in response.context
 
         response = client.get(url)
