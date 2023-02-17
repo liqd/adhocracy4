@@ -24,7 +24,7 @@
     "@babel/preset-env": "7.21.4",
     "@babel/preset-react": "7.18.6",
     "@maplibre/maplibre-gl-leaflet": "0.0.19",
-    "@testing-library/react": "13.4.0",
+    "@testing-library/react": "14.0.0",
     "eslint": "8.33.0",
     "eslint-config-standard": "17.0.0",
     "eslint-config-standard-jsx": "11.0.0",
