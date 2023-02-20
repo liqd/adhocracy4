@@ -22,7 +22,7 @@ from meinberlin.apps.votes.models import VotingToken
 from . import forms
 from . import models
 
-TOKEN_SESSION_EXPIRE = datetime.timedelta(minutes=1)
+TOKEN_SESSION_EXPIRE = datetime.timedelta(hours=12)
 
 
 def get_ordering_choices(view):
