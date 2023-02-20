@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-10 15:04+0100\n"
+"POT-Creation-Date: 2023-02-20 13:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -629,14 +629,18 @@ msgid "Click to vote down"
 msgstr "Click to vote down"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
+msgid "Report sent"
+msgstr "Report sent"
+
+#: adhocracy4/reports/static/reports/ReportModal.jsx:8
 msgid "Thank you! We are taking care of it."
 msgstr "Thank you! We are taking care of it."
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:8
+#: adhocracy4/reports/static/reports/ReportModal.jsx:9
 msgid "Your message"
 msgstr "Your message"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:9
+#: adhocracy4/reports/static/reports/ReportModal.jsx:10
 msgid "Send Report"
 msgstr "Send Report"
 
@@ -784,11 +788,11 @@ msgstr "Click to support."
 msgid "You support this proposal. Click to unsupport."
 msgstr "You support this proposal. Click to unsupport."
 
-#: meinberlin/apps/budgeting/assets/VoteButton.jsx:40
+#: meinberlin/apps/budgeting/assets/VoteButton.jsx:46
 msgid "Voted"
 msgstr "Voted"
 
-#: meinberlin/apps/budgeting/assets/VoteButton.jsx:41
+#: meinberlin/apps/budgeting/assets/VoteButton.jsx:47
 msgid "Give my vote"
 msgstr "Give my vote"
 

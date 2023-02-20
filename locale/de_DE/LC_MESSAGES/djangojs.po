@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-10 15:04+0100\n"
+"POT-Creation-Date: 2023-02-20 13:22+0100\n"
 "PO-Revision-Date: 2023-02-10 13:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
@@ -813,16 +813,21 @@ msgstr "Für eine negative Bewertung hier klicken"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
+msgid "Report sent"
+msgstr ""
+
+#: adhocracy4/reports/static/reports/ReportModal.jsx:8
+#: adhocracy4/reports/static/reports/ReportModal.jsx:8
 msgid "Thank you! We are taking care of it."
 msgstr "Vielen Dank! Wir werden uns darum kümmern."
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:8
-#: adhocracy4/reports/static/reports/ReportModal.jsx:8
+#: adhocracy4/reports/static/reports/ReportModal.jsx:9
+#: adhocracy4/reports/static/reports/ReportModal.jsx:9
 msgid "Your message"
 msgstr "Ihre Nachricht"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:9
-#: adhocracy4/reports/static/reports/ReportModal.jsx:9
+#: adhocracy4/reports/static/reports/ReportModal.jsx:10
+#: adhocracy4/reports/static/reports/ReportModal.jsx:10
 msgid "Send Report"
 msgstr "Meldung senden"
 
@@ -969,11 +974,11 @@ msgid "You support this proposal. Click to unsupport."
 msgstr ""
 "Sie unterstützen diesen Vorschlag. Zum Entziehen der Unterstützung klicken."
 
-#: meinberlin/apps/budgeting/assets/VoteButton.jsx:40
+#: meinberlin/apps/budgeting/assets/VoteButton.jsx:46
 msgid "Voted"
 msgstr "Gewählt"
 
-#: meinberlin/apps/budgeting/assets/VoteButton.jsx:41
+#: meinberlin/apps/budgeting/assets/VoteButton.jsx:47
 msgid "Give my vote"
 msgstr "Meine Stimme geben"
 
