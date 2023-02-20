@@ -41,10 +41,10 @@ def test_pre_phase(
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, group_member_out, item)
         assert not rules.has_perm(perm_name, group_member_in_org, item)
-        assert not rules.has_perm(perm_name, group_member_in_pro, item)
+        assert rules.has_perm(perm_name, group_member_in_pro, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
-        assert not rules.has_perm(perm_name, admin, item)
+        assert rules.has_perm(perm_name, admin, item)
 
 
 @pytest.mark.django_db
@@ -71,10 +71,10 @@ def test_phase_active(
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, group_member_out, item)
         assert not rules.has_perm(perm_name, group_member_in_org, item)
-        assert not rules.has_perm(perm_name, group_member_in_pro, item)
+        assert rules.has_perm(perm_name, group_member_in_pro, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
-        assert not rules.has_perm(perm_name, admin, item)
+        assert rules.has_perm(perm_name, admin, item)
 
 
 @pytest.mark.django_db
@@ -108,10 +108,10 @@ def test_phase_active_project_private(
         assert not rules.has_perm(perm_name, participant, item)
         assert not rules.has_perm(perm_name, group_member_out, item)
         assert not rules.has_perm(perm_name, group_member_in_org, item)
-        assert not rules.has_perm(perm_name, group_member_in_pro, item)
+        assert rules.has_perm(perm_name, group_member_in_pro, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
-        assert not rules.has_perm(perm_name, admin, item)
+        assert rules.has_perm(perm_name, admin, item)
 
 
 @pytest.mark.django_db
@@ -145,10 +145,10 @@ def test_phase_active_project_semipublic(
         assert not rules.has_perm(perm_name, participant, item)
         assert not rules.has_perm(perm_name, group_member_out, item)
         assert not rules.has_perm(perm_name, group_member_in_org, item)
-        assert not rules.has_perm(perm_name, group_member_in_pro, item)
+        assert rules.has_perm(perm_name, group_member_in_pro, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
-        assert not rules.has_perm(perm_name, admin, item)
+        assert rules.has_perm(perm_name, admin, item)
 
 
 @pytest.mark.django_db
@@ -178,10 +178,10 @@ def test_phase_active_project_draft(
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, group_member_out, item)
         assert not rules.has_perm(perm_name, group_member_in_org, item)
-        assert not rules.has_perm(perm_name, group_member_in_pro, item)
+        assert rules.has_perm(perm_name, group_member_in_pro, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
-        assert not rules.has_perm(perm_name, admin, item)
+        assert rules.has_perm(perm_name, admin, item)
 
 
 @pytest.mark.django_db
@@ -211,7 +211,7 @@ def test_post_phase_project_archived(
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, group_member_out, item)
         assert not rules.has_perm(perm_name, group_member_in_org, item)
-        assert not rules.has_perm(perm_name, group_member_in_pro, item)
+        assert rules.has_perm(perm_name, group_member_in_pro, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
-        assert not rules.has_perm(perm_name, admin, item)
+        assert rules.has_perm(perm_name, admin, item)

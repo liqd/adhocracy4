@@ -27,5 +27,5 @@ rules.add_perm(
 
 rules.add_perm(
     "meinberlin_mapideas.moderate_mapidea",
-    module_predicates.is_context_moderator | module_predicates.is_context_initiator,
+    module_predicates.is_allowed_moderate_project,
 )
