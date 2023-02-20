@@ -2,7 +2,10 @@ import rules
 from rules import predicates as rules_predicates
 
 from adhocracy4.modules.predicates import is_allowed_moderate_project
+from adhocracy4.modules.predicates import is_context_group_member
+from adhocracy4.modules.predicates import is_context_initiator
 from adhocracy4.modules.predicates import is_context_member
+from adhocracy4.modules.predicates import is_context_moderator
 from adhocracy4.modules.predicates import is_live_context
 from adhocracy4.modules.predicates import is_public_context
 from adhocracy4.modules.predicates import module_is_between_phases
@@ -88,7 +91,13 @@ def is_allowed_view_vote_count(item_class):
             return module.has_feature("vote", item_class) & (
                 rules_predicates.is_superuser(user)
                 | (
-                    (is_public_context(user, module) | is_context_member(user, module))
+                    (
+                        is_public_context(user, module)
+                        | is_context_member(user, module)
+                        | is_context_group_member(user, module)
+                        | is_context_moderator(user, module)
+                        | is_context_initiator(user, module)
+                    )
                     & is_live_context(user, module)
                     & module.module_has_finished
                 )

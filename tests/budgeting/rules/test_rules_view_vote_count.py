@@ -234,10 +234,10 @@ def test_voting_phase_over_project_private(
         assert not rules.has_perm(perm_name, user, module)
         assert not rules.has_perm(perm_name, group_member_out, module)
         assert not rules.has_perm(perm_name, group_member_in_org, module)
-        assert not rules.has_perm(perm_name, group_member_in_pro, module)
+        assert rules.has_perm(perm_name, group_member_in_pro, module)
         assert rules.has_perm(perm_name, participant, module)
         assert rules.has_perm(perm_name, moderator, module)
-        assert not rules.has_perm(perm_name, initiator, module)
+        assert rules.has_perm(perm_name, initiator, module)
         assert rules.has_perm(perm_name, admin, module)
 
 
