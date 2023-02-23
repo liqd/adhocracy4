@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-20 13:22+0100\n"
+"POT-Creation-Date: 2023-02-23 11:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -397,7 +397,7 @@ msgid "Upload"
 msgstr "Upload"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:27
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:11
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -673,28 +673,6 @@ msgstr "Proposals list"
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:23
-msgid "Are you finished?"
-msgstr "Are you finished?"
-
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:24
-msgid "End session"
-msgstr "End session"
-
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:25
-msgid ""
-"To save your votes you do not need to do anything else. End the session to "
-"enter a new code. If you want to change the votes you have already cast, you "
-"can re-enter your code as long as the voting phase is running. "
-msgstr ""
-"To save your votes you do not need to do anything else. End the session to "
-"enter a new code. If you want to change the votes you have already cast, you "
-"can re-enter your code as long as the voting phase is running. "
-
-#: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:26
-msgid "Do you want to end the session?"
-msgstr "Do you want to end the session?"
-
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:8
 msgid "updated on"
 msgstr "updated on"
@@ -743,6 +721,28 @@ msgstr "Search for Proposals"
 #: meinberlin/apps/budgeting/assets/ControlBarSearchTerm.jsx:5
 msgid "Remove filters"
 msgstr "Remove filters"
+
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:7
+msgid "Are you finished?"
+msgstr "Are you finished?"
+
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:8
+msgid "End session"
+msgstr "End session"
+
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:9
+msgid ""
+"To save your votes you do not need to do anything else. End the session to "
+"enter a new code. If you want to change the votes you have already cast, you "
+"can re-enter your code as long as the voting phase is running. "
+msgstr ""
+"To save your votes you do not need to do anything else. End the session to "
+"enter a new code. If you want to change the votes you have already cast, you "
+"can re-enter your code as long as the voting phase is running. "
+
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:10
+msgid "Do you want to end the session?"
+msgstr "Do you want to end the session?"
 
 #: meinberlin/apps/budgeting/assets/ListItemBadges.jsx:5
 msgid "More"

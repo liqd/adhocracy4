@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-20 13:22+0100\n"
+"POT-Creation-Date: 2023-02-23 11:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4574,7 +4574,7 @@ msgstr "Code generation"
 msgid "Code download"
 msgstr "Code download"
 
-#: meinberlin/apps/votes/exports.py:51
+#: meinberlin/apps/votes/exports.py:59
 msgid "Voting codes"
 msgstr "Voting codes"
 
@@ -4602,7 +4602,7 @@ msgstr ""
 "Please indicate how many participants should be invited to vote. One code "
 "will be generated per participant."
 
-#: meinberlin/apps/votes/models.py:70
+#: meinberlin/apps/votes/models.py:99
 msgid ""
 "Designates whether this token should be treated as active. Unselect this "
 "instead of deleting tokens."
@@ -4610,15 +4610,15 @@ msgstr ""
 "Designates whether this token should be treated as active. Unselect this "
 "instead of deleting tokens."
 
-#: meinberlin/apps/votes/models.py:168
+#: meinberlin/apps/votes/models.py:186
 msgid "This token is not valid for this project."
 msgstr "This token is not valid for this project."
 
-#: meinberlin/apps/votes/models.py:171
+#: meinberlin/apps/votes/models.py:189
 msgid "This token is not active."
 msgstr "This token is not active."
 
-#: meinberlin/apps/votes/models.py:173
+#: meinberlin/apps/votes/models.py:191
 msgid "This token has no votes left."
 msgstr "This token has no votes left."
 
@@ -4649,13 +4649,20 @@ msgstr "Number of generated codes: %(number_of_module_tokens)s."
 msgid " code package no."
 msgstr " code package no."
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:27
-msgid "Download"
-msgstr "Download"
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:14
+#, python-format
+msgid "%(count_int)s Code"
+msgid_plural "%(count_int)s Codes"
+msgstr[0] "%(count_int)s Code"
+msgstr[1] "%(count_int)s Codes"
 
-#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:29
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:27
 msgid "Encrypted"
 msgstr "Encrypted"
+
+#: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:29
+msgid "Download"
+msgstr "Download"
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_generation_dashboard.html:5
 msgid "Generate voting codes"
@@ -4680,19 +4687,19 @@ msgstr "To download them please go to code download."
 msgid "Generate codes"
 msgstr "Generate codes"
 
-#: meinberlin/apps/votes/views.py:77
+#: meinberlin/apps/votes/views.py:67
 msgid ""
 "{} code will be generated in the background. This may take a few minutes."
 msgstr ""
 "{} code will be generated in the background. This may take a few minutes."
 
-#: meinberlin/apps/votes/views.py:81
+#: meinberlin/apps/votes/views.py:71
 msgid ""
 "{} codes will be generated in the background. This may take a few minutes."
 msgstr ""
 "{} codes will be generated in the background. This may take a few minutes."
 
-#: meinberlin/apps/votes/views.py:86
+#: meinberlin/apps/votes/views.py:76
 msgid ""
 "Please adjust your number of codes. Per module you can generate up to {} "
 "codes."
