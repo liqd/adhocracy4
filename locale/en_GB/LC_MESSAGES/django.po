@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-23 11:25+0100\n"
+"POT-Creation-Date: 2023-02-24 12:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1935,19 +1935,11 @@ msgid "Create a new proposal"
 msgstr "Create a new proposal"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:13
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:13
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:14
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:13
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:13
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:14
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:13
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:13
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:14
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:13
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:13
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:14
-msgid "go back"
-msgstr "go back"
+#: meinberlin/apps/budgeting/views.py:150
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:19
+msgid "map"
+msgstr "map"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:18
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:18
@@ -2033,8 +2025,20 @@ msgstr "Zoom out"
 msgid "Moderate"
 msgstr "Moderate"
 
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:13
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:13
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:13
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:14
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:13
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:13
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:14
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:13
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:13
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:14
+msgid "go back"
+msgstr "go back"
+
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:18
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:19
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:18
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:19
 msgid "back to proposal"
@@ -2057,15 +2061,14 @@ msgstr "Moderate proposal"
 msgid "Edit %(title)s"
 msgstr "Edit %(title)s"
 
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:19
+msgid "proposal"
+msgstr "proposal"
+
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:24
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:24
 msgid "Edit proposal"
 msgstr "Edit proposal"
-
-#: meinberlin/apps/budgeting/views.py:150
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:19
-msgid "map"
-msgstr "map"
 
 #: meinberlin/apps/budgeting/views.py:159
 msgid "list"
