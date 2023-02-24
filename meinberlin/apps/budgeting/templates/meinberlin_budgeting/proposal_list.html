@@ -23,7 +23,7 @@
         {% has_perm 'meinberlin_budgeting.add_vote' request.user module as vote_allowed %}
         {% if vote_allowed %}
             {% if not valid_token_present %}
-                {% combined_url_parameter request.GET as url_params %}
+                {% combined_url_parameter request.GET mode='list' as url_params %}
                 <form action="{{ request.path }}{{ url_params }}" autocomplete="off" method="post">
                   {% csrf_token %}
                     <div class="input-group input-group-lg">

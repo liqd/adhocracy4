@@ -123,7 +123,6 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
                 datetime.datetime.now() + TOKEN_SESSION_EXPIRE
             ).timestamp()
             kwargs["valid_token_present"] = True
-            self.mode = "list"
         kwargs["token_form"] = token_form
         context = super().get_context_data(**kwargs)
         return self.render_to_response(context)
