@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-24 12:59+0100\n"
-"PO-Revision-Date: 2023-02-17 16:43+0000\n"
-"Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
+"PO-Revision-Date: 2023-02-25 15:52+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -2017,7 +2017,7 @@ msgid ""
 "You can vote for up to 5 proposals. To do so, please enter the voting code."
 msgstr ""
 "Sie können bis zu 5 Vorschlägen Ihre Stimme geben. Tragen Sie hierzu bitte "
-"den Abstimmungs-Code ein."
+"den Abstimmungscode ein."
 
 #: meinberlin/apps/budgeting/phases.py:85
 msgid "participatory budgeting 3 phases"
@@ -2190,7 +2190,7 @@ msgstr "%(title)s bearbeiten"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:19
 msgid "proposal"
-msgstr ""
+msgstr "Vorschlag"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:24
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:24
@@ -4754,7 +4754,7 @@ msgstr "Abstimmungscodes"
 
 #: meinberlin/apps/votes/forms.py:21
 msgid "The token is too short"
-msgstr ""
+msgstr "Der Abstimmungscode ist zu kurz"
 
 #: meinberlin/apps/votes/forms.py:22
 msgid "The token is too long"
@@ -4762,7 +4762,7 @@ msgstr ""
 
 #: meinberlin/apps/votes/forms.py:52
 msgid "This token is not valid"
-msgstr "Dieser Abstimmungsschlüssel ist ungültig"
+msgstr "Dieser Abstimmungscode ist ungültig"
 
 #: meinberlin/apps/votes/forms.py:62
 msgid "Number of codes needed"
@@ -4828,8 +4828,8 @@ msgstr " Code-Paket Nr."
 #, python-format
 msgid "%(count_int)s Code"
 msgid_plural "%(count_int)s Codes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count_int)s Code"
+msgstr[1] "%(count_int)s Codes"
 
 #: meinberlin/apps/votes/templates/meinberlin_votes/token_export_dashboard.html:27
 msgid "Encrypted"
