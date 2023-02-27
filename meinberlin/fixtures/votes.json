@@ -54,8 +54,8 @@
     "model": "meinberlin_votes.votingtoken",
     "pk": 1,
     "fields": {
-      "token": "votingtoken1",
-      "token_hash": "09fb33ef7a5a39c6e97e3f3878f052bf824921e6bd6926b5706c0dee65e26c58de28336991138c7094938b9acdb9d5d490cea7690297006b2cf7d28a8514f0f6",
+      "token": "votingtoken123456",
+      "token_hash": "f011068aa15f5731448d6f28d663a6e30edaf4eee27182018e42597f396bb52c4b1ce264b8d4b102138860ec12b8b243ae909902cdbcf32a7b0c20b37bf17d41",
       "module": 11,
       "allowed_votes": 5,
       "package": 1,
@@ -66,8 +66,8 @@
     "model": "meinberlin_votes.votingtoken",
     "pk": 2,
     "fields": {
-      "token": "votingtoken1",
-      "token_hash": "1e63f9521e1d857640c88c2d060d40d34022d47198a610af86f95b61cb54171d5cd7329fbceebfc7e609d253c500db5ed5f0f512d16fa6210219f3cb5a756f1c",
+      "token": "votingtoken12345",
+      "token_hash": "09c2b18a6fa248171567e7a2022bae94791b5a05f0403c725a011dce831b49ac532d04e0cd3472c8470c76dd2c9047428e34fb67ae90e562337d1712495af50c",
       "module": 10,
       "allowed_votes": 5,
       "package": 2,
@@ -78,8 +78,8 @@
     "model": "meinberlin_votes.votingtoken",
     "pk": 3,
     "fields": {
-      "token": "votingtoken1",
-      "token_hash": "31303469863c7231782709b020bb8921c238ea241404517910394a7f377efd8456a916cbfc9aac5df63125971e5b6baf96120b89580ca9e1574815d6616c71c0",
+      "token": "votingtoken12345",
+      "token_hash": "9c03253b5389964656a682388b210d7e407a427a0ce3ef179df0cf8d1c727afffbf5cbf0c36ce19d31fef2c5115da2e68e1ebe19262a7116c906b583ea7be2e6",
       "module": 2,
       "allowed_votes": 5,
       "package": 3,
