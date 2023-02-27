@@ -37,6 +37,16 @@
     }
 }
 
+// input-group btn full width on small screen
+@media (max-width: $breakpoint-xs) {
+    .input-group__xs-bottom {
+        width: 100%;
+        border-top-right-radius: 0 !important;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0.3em !important;
+    }
+}
+
 .input-group__input:focus,
 .input-group__before:focus,
 .input-group__after:focus {

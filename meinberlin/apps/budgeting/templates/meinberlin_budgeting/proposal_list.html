@@ -29,7 +29,7 @@
                     <div class="input-group input-group-lg">
                         <label for="id_token" class="visually-hidden-focusable">{% translate 'Voting token form fields' %}</label>
                         {{ token_form.token|add_error_attr:"aria-invalid:true" }}
-                        <button type="submit" class="btn btn--primary">{% translate 'Enter code' %}</button>
+                        <button type="submit" class="btn btn--primary input-group__xs-bottom">{% translate 'Enter code' %}</button>
                     </div>
                     {% if token_form.token.errors %}
                         <ul class="errorlist" aria-live="assertive" aria-atomic="true">
