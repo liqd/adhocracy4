@@ -97,8 +97,8 @@ class PlansListMapBox extends Component {
 
     const sortByPhase = (phase1, phase2, earliestFirst) => {
       if (phase1 && phase2) {
-        const date1 = Date.parse(phase1.replace(/ /g, 'T'))
-        const date2 = Date.parse(phase2.replace(/ /g, 'T'))
+        const date1 = Date.parse(phase1)
+        const date2 = Date.parse(phase2)
         if (earliestFirst) {
           return date1 <= date2 ? -1 : 1
         } else {

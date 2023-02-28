@@ -3,6 +3,7 @@ from functools import lru_cache
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
+from rest_framework import fields
 from rest_framework import serializers
 
 from adhocracy4.phases.models import Phase
@@ -11,26 +12,30 @@ from meinberlin.apps.plans.models import Plan
 
 
 class CommonFields:
-    def get_district(self, instance):
+    @staticmethod
+    def get_district(instance):
         city_wide = _("City wide")
         district_name = str(city_wide)
         if instance.administrative_district:
             district_name = instance.administrative_district.name
         return district_name
 
-    def get_point(self, instance):
+    @staticmethod
+    def get_point(instance):
         point = instance.point
         if not point:
             point = ""
         return point
 
-    def get_organisation(self, instance):
+    @staticmethod
+    def get_organisation(instance):
         return instance.organisation.name
 
-    def get_created_or_modified(self, instance):
+    @staticmethod
+    def get_created_or_modified(instance):
         if instance.modified:
-            return str(instance.modified)
-        return str(instance.created)
+            return fields.DateTimeField().to_representation(instance.modified)
+        return fields.DateTimeField().to_representation(instance.created)
 
 
 class ProjectSerializer(serializers.ModelSerializer, CommonFields):
@@ -174,20 +179,26 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
     def get_future_phase(self, instance):
         if instance.future_modules and instance.future_modules.first().module_start:
-            return str(instance.future_modules.first().module_start)
+            return fields.DateTimeField().to_representation(
+                instance.future_modules.first().module_start
+            )
         return False
 
     def get_active_phase(self, instance):
         if instance.active_phase_ends_next:
             progress = instance.module_running_progress
             time_left = instance.module_running_time_left
-            end_date = str(instance.running_module_ends_next.module_end)
+            end_date = fields.DateTimeField().to_representation(
+                instance.running_module_ends_next.module_end
+            )
             return [progress, time_left, end_date]
         return False
 
     def get_past_phase(self, instance):
         if instance.past_modules and instance.past_modules.first().module_end:
-            return str(instance.past_modules.first().module_end)
+            return fields.DateTimeField().to_representation(
+                instance.past_modules.first().module_end
+            )
         return False
 
     def get_participation_string(self, instance):
@@ -248,7 +259,9 @@ class ActiveProjectSerializer(ProjectSerializer):
     def get_active_phase(self, instance):
         progress = instance.module_running_progress
         time_left = instance.module_running_time_left
-        end_date = str(instance.running_module_ends_next.module_end)
+        end_date = fields.DateTimeField().to_representation(
+            instance.running_module_ends_next.module_end
+        )
         return [progress, time_left, end_date]
 
     def get_status(self, instance):
@@ -282,7 +295,7 @@ class FutureProjectSerializer(ProjectSerializer):
 
     def get_future_phase(self, instance):
         future_phase = self._future_phases.filter(module__project=instance).first()
-        return str(future_phase.start_date)
+        return fields.DateTimeField().to_representation(future_phase.start_date)
 
     def get_past_phase(self, instance):
         return False
@@ -312,7 +325,7 @@ class PastProjectSerializer(ProjectSerializer):
 
     def get_past_phase(self, instance):
         past_phase = self._past_phases.filter(module__project=instance).first()
-        return str(past_phase.end_date)
+        return fields.DateTimeField().to_representation(past_phase.end_date)
 
     def get_participation_string(self, instance):
         return _("done")

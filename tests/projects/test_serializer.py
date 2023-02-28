@@ -17,7 +17,6 @@ def test_project_serializer(
     bplan_factory,
     phase_factory,
 ):
-
     project_active = project_factory(name="active")
     project_future = project_factory(name="future")
     project_active_and_future = project_factory(name="active and future")
@@ -26,7 +25,7 @@ def test_project_serializer(
     external_project_factory()
     bplan_factory()
 
-    now = parse("2013-01-01 18:00:00 UTC")
+    now = parse("2013-01-01 18:00:00+01:00")
     yesterday = now - timezone.timedelta(days=1)
     last_week = now - timezone.timedelta(days=7)
     tomorrow = now + timezone.timedelta(days=1)
@@ -68,7 +67,6 @@ def test_project_serializer(
     )
 
     with freeze_time(now):
-
         projects = Project.objects.all().order_by("created")
 
         project_serializer = ProjectSerializer(projects, many=True, now=now)
@@ -107,18 +105,18 @@ def test_project_serializer(
 
         assert project_data[0]["active_phase"][0] == 50
         assert "7" in project_data[0]["active_phase"][1]
-        assert project_data[0]["active_phase"][2] == str(next_week)
+        assert project_data[0]["active_phase"][2] == str(next_week.isoformat())
         assert not project_data[1]["active_phase"]
         assert project_data[2]["active_phase"][0] == 50
         assert "1" in project_data[2]["active_phase"][1]
-        assert project_data[2]["active_phase"][2] == str(tomorrow)
+        assert project_data[2]["active_phase"][2] == str(tomorrow.isoformat())
         assert not project_data[3]["active_phase"]
         assert not project_data[4]["active_phase"]
         assert not project_data[5]["active_phase"]
 
         assert not project_data[0]["future_phase"]
-        assert project_data[1]["future_phase"] == str(tomorrow)
-        assert project_data[2]["future_phase"] == str(tomorrow)
+        assert project_data[1]["future_phase"] == str(tomorrow.isoformat())
+        assert project_data[2]["future_phase"] == str(tomorrow.isoformat())
         assert not project_data[3]["future_phase"]
         assert not project_data[4]["future_phase"]
         assert not project_data[5]["future_phase"]
@@ -126,7 +124,7 @@ def test_project_serializer(
         assert not project_data[0]["past_phase"]
         assert not project_data[1]["past_phase"]
         assert not project_data[2]["past_phase"]
-        assert project_data[3]["past_phase"] == str(yesterday)
+        assert project_data[3]["past_phase"] == str(yesterday.isoformat())
         assert not project_data[4]["past_phase"]
         assert not project_data[5]["past_phase"]
 
