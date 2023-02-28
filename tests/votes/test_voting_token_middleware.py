@@ -45,7 +45,7 @@ def test_token_deleted_from_session(
     with freeze_time(phase_started):
         # post token
         response = apiclient.post(url_project, token_data)
-        assert response.status_code == 200
+        assert response.status_code == 302
 
         # post and delete token vote
         response = apiclient.post(url_post, proposal_data, format="json")
@@ -66,7 +66,7 @@ def test_token_deleted_from_session(
 
         # post token again
         response = apiclient.post(url_project, token_data)
-        assert response.status_code == 200
+        assert response.status_code == 302
 
         response = apiclient.post(url_post, proposal_data, format="json")
         assert response.status_code == status.HTTP_201_CREATED
@@ -103,8 +103,7 @@ def test_token_expire_date_renewed(
 
     with freeze_time(phase_1_started):
         response = apiclient.post(url_module_1, token_data_1)
-        assert response.status_code == 200
-        response.context_data["token_form"].is_valid()
+        assert response.status_code == 302
 
         assert "voting_tokens" in apiclient.session
         assert str(module_1.id) in apiclient.session["voting_tokens"]
@@ -116,8 +115,7 @@ def test_token_expire_date_renewed(
 
     with freeze_time(phase_2_started):
         response = apiclient.post(url_module_2, token_data_2)
-        response.context_data["token_form"].is_valid()
-        assert response.status_code == 200
+        assert response.status_code == 302
 
         assert "voting_tokens" in apiclient.session
         assert str(module_1.id) in apiclient.session["voting_tokens"]

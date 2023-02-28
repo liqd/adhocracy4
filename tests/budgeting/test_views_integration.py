@@ -145,12 +145,12 @@ def test_list_view_token_form(
         assert not response.context["valid_token_present"]
 
         response = client.post(url, data)
-        assert response.status_code == 200
+        assert response.status_code == 302
         assert "voting_tokens" in client.session
         assert "token_expire_date" in client.session
-        assert "token_form" in response.context
 
         response = client.get(url)
+        assert "token_form" in response.context
         assert response.context["valid_token_present"]
 
     other_module = module_factory()
@@ -174,6 +174,65 @@ def test_list_view_token_form(
 
 
 @pytest.mark.django_db
+def test_list_view_token_form_redirect(
+    client, user, phase_factory, proposal_factory, voting_token_factory, module_factory
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.VotingPhase
+    )
+    url = project.get_absolute_url()
+    token = voting_token_factory(module=module)
+
+    data = {"token": str(token)}
+    invalid_data = {"token": "madeupandinvalid"}
+
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert "token_form" in response.context
+
+        # valid token should trigger redirect to list
+        response = client.post(url, data)
+        assert response.status_code == 302
+        assert response.url == url + "?mode=list"
+        # end session to remove token
+        client.session.flush()
+
+        parameter = "?bli=blub"
+        response = client.post(url + parameter, data)
+        assert response.status_code == 302
+        assert response.url == url + parameter + "&mode=list"
+        # end session to remove token
+        client.session.flush()
+
+        parameter = "?mode=map&bli=blub"
+        response = client.post(url + parameter, data)
+        assert response.status_code == 302
+        assert response.url == url + "?mode=list&bli=blub"
+        # end session to remove token
+        client.session.flush()
+
+        parameter = "?mode=list&bli=blub"
+        response = client.post(url + parameter, data)
+        assert response.status_code == 302
+        assert response.url == url + "?mode=list&bli=blub"
+        # end session to remove token
+        client.session.flush()
+
+        # posting invalid token should stay on map
+        parameter = "?bli=blub"
+        response = client.post(url + parameter, invalid_data)
+        assert response.status_code == 200
+        assert response.request["QUERY_STRING"] == parameter.lstrip("?")
+        # end session to remove token
+        client.session.flush()
+
+        parameter = "?mode=map&bli=blub"
+        response = client.post(url + parameter, invalid_data)
+        assert response.status_code == 200
+        assert response.request["QUERY_STRING"] == parameter.lstrip("?")
+
+
+@pytest.mark.django_db
 def test_list_view_tokens_for_different_modules(
     client, phase_factory, proposal_factory, voting_token_factory
 ):
@@ -186,7 +245,7 @@ def test_list_view_tokens_for_different_modules(
 
     with freeze_phase(phase_1):
         response = client.post(url_1, data_1)
-        assert response.status_code == 200
+        assert response.status_code == 302
         assert "voting_tokens" in client.session
         assert str(module_1.id) in client.session["voting_tokens"]
 
@@ -202,7 +261,7 @@ def test_list_view_tokens_for_different_modules(
 
     with freeze_phase(phase_2):
         response = client.post(url_2, data_2)
-        assert response.status_code == 200
+        assert response.status_code == 302
         assert "voting_tokens" in client.session
         assert str(module_2.id) in client.session["voting_tokens"]
         assert str(module_1.id) in client.session["voting_tokens"]

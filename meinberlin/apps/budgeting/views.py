@@ -3,6 +3,7 @@ from urllib.parse import parse_qs
 from urllib.parse import urlparse
 
 import django_filters
+from django.shortcuts import redirect
 from django.urls import resolve
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -123,6 +124,16 @@ class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMi
                 datetime.datetime.now() + TOKEN_SESSION_EXPIRE
             ).timestamp()
             kwargs["valid_token_present"] = True
+            # redirect to the list view, but keep filters after successful
+            # token addition
+            list_url = request.path
+            parameter = request.GET.copy()
+            if not parameter.get("mode") or "list" not in parameter.get("mode"):
+                parameter.setlist("mode", ["list"])
+            encoded_parameter = "?" + parameter.urlencode()
+            return redirect(list_url + encoded_parameter)
+        # stay on the same page if the token form has errors,
+        # add the form including errors so that they are displayed.
         kwargs["token_form"] = token_form
         context = super().get_context_data(**kwargs)
         return self.render_to_response(context)
