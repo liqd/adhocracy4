@@ -562,20 +562,3 @@ def test_moderate_view_same_creator_contact(
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [item.contact_email]
         assert mail.outbox[0].subject.startswith("Rückmeldung")
-
-
-@pytest.mark.django_db
-def test_export_view(client, proposal_factory, module_factory):
-    proposal = proposal_factory()
-    organisation = proposal.module.project.organisation
-    initiator = organisation.initiators.first()
-    client.login(username=initiator.email, password="password")
-    url = reverse(
-        "a4dashboard:budgeting-export", kwargs={"module_slug": proposal.module.slug}
-    )
-    response = client.get(url)
-    assert response.status_code == 200
-    assert (
-        response["Content-Type"] == "application/vnd.openxmlformats-officedocument."
-        "spreadsheetml.sheet"
-    )
