@@ -1,6 +1,7 @@
 import React from 'react'
 import django from 'django'
 import Modal from 'adhocracy4/adhocracy4/static/Modal'
+import { useSearchParams } from 'react-router-dom'
 
 export const EndSessionLink = (props) => {
   const translations = {
@@ -10,6 +11,7 @@ export const EndSessionLink = (props) => {
     modalBodyQuestion: django.gettext('Do you want to end the session?'),
     modalCancel: django.gettext('Cancel')
   }
+  const [queryParams, setQueryParams] = useSearchParams()
 
   const modalPartials = {
     title: translations.endSession,
@@ -18,6 +20,10 @@ export const EndSessionLink = (props) => {
   }
 
   const handleEndSession = () => {
+    // remove own_votes from url parameters when session is ended
+    queryParams.delete('own_votes')
+    setQueryParams(queryParams)
+
     const endSessionUrl = props.endSessionUrl
     fetch(endSessionUrl)
       .then(() => window.location.reload(true))
