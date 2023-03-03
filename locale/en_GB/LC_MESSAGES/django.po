@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-24 12:59+0100\n"
+"POT-Creation-Date: 2023-03-03 13:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -617,7 +617,7 @@ msgid "Creator"
 msgstr "Creator"
 
 #: adhocracy4/exports/mixins/general.py:17 adhocracy4/models/base.py:9
-#: adhocracy4/polls/exports.py:41 meinberlin/apps/budgeting/exports.py:84
+#: adhocracy4/polls/exports.py:41 meinberlin/apps/budgeting/exports.py:85
 #: meinberlin/apps/documents/exports.py:41 meinberlin/apps/ideas/exports.py:78
 #: meinberlin/apps/kiezkasse/exports.py:80
 #: meinberlin/apps/mapideas/exports.py:78
@@ -827,39 +827,39 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:224 meinberlin/apps/projects/serializers.py:232
+#: adhocracy4/modules/models.py:224 meinberlin/apps/projects/serializers.py:243
 msgid "day"
 msgstr "day"
 
 #: adhocracy4/modules/models.py:224 adhocracy4/modules/models.py:231
-#: meinberlin/apps/projects/serializers.py:232
+#: meinberlin/apps/projects/serializers.py:243
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:233
+#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:244
 msgid "hour"
 msgstr "hour"
 
 #: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
-#: meinberlin/apps/projects/serializers.py:233
+#: meinberlin/apps/projects/serializers.py:244
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:226 meinberlin/apps/projects/serializers.py:234
+#: adhocracy4/modules/models.py:226 meinberlin/apps/projects/serializers.py:245
 msgid "minute"
 msgstr "minute"
 
 #: adhocracy4/modules/models.py:226 adhocracy4/modules/models.py:233
-#: meinberlin/apps/projects/serializers.py:234
+#: meinberlin/apps/projects/serializers.py:245
 msgid "minutes"
 msgstr "minutes"
 
-#: adhocracy4/modules/models.py:227 meinberlin/apps/projects/serializers.py:235
+#: adhocracy4/modules/models.py:227 meinberlin/apps/projects/serializers.py:246
 msgid "second"
 msgstr "second"
 
 #: adhocracy4/modules/models.py:227 adhocracy4/modules/models.py:234
-#: meinberlin/apps/projects/serializers.py:235
+#: meinberlin/apps/projects/serializers.py:246
 msgid "seconds"
 msgstr "seconds"
 
@@ -938,6 +938,7 @@ msgid "Poll"
 msgstr "Poll"
 
 #: adhocracy4/polls/dashboard.py:44 meinberlin/apps/budgeting/dashboard.py:14
+#: meinberlin/apps/budgeting/dashboard.py:57
 #: meinberlin/apps/documents/dashboard.py:47
 #: meinberlin/apps/ideas/dashboard.py:14
 #: meinberlin/apps/kiezkasse/dashboard.py:14
@@ -947,7 +948,7 @@ msgstr "Poll"
 msgid "Export Excel"
 msgstr "Export Excel"
 
-#: adhocracy4/polls/exports.py:39 meinberlin/apps/budgeting/exports.py:82
+#: adhocracy4/polls/exports.py:39 meinberlin/apps/budgeting/exports.py:83
 #: meinberlin/apps/documents/exports.py:39 meinberlin/apps/ideas/exports.py:76
 #: meinberlin/apps/kiezkasse/exports.py:78
 #: meinberlin/apps/mapideas/exports.py:76
@@ -1692,7 +1693,7 @@ msgstr "My votes"
 msgid "Open tasks"
 msgstr "Open tasks"
 
-#: meinberlin/apps/budgeting/api.py:185 meinberlin/apps/budgeting/views.py:29
+#: meinberlin/apps/budgeting/api.py:185 meinberlin/apps/budgeting/views.py:30
 #: meinberlin/apps/ideas/views.py:35 meinberlin/apps/kiezkasse/views.py:16
 #: meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
@@ -1700,7 +1701,7 @@ msgstr "Open tasks"
 msgid "Most recent"
 msgstr "Most recent"
 
-#: meinberlin/apps/budgeting/api.py:190 meinberlin/apps/budgeting/views.py:31
+#: meinberlin/apps/budgeting/api.py:190 meinberlin/apps/budgeting/views.py:32
 #: meinberlin/apps/ideas/views.py:37 meinberlin/apps/kiezkasse/views.py:18
 #: meinberlin/apps/mapideas/views.py:18
 #: meinberlin/apps/maptopicprio/views.py:21
@@ -1708,11 +1709,11 @@ msgstr "Most recent"
 msgid "Most popular"
 msgstr "Most popular"
 
-#: meinberlin/apps/budgeting/api.py:197 meinberlin/apps/budgeting/views.py:33
+#: meinberlin/apps/budgeting/api.py:197 meinberlin/apps/budgeting/views.py:34
 msgid "Most support"
 msgstr "Most support"
 
-#: meinberlin/apps/budgeting/api.py:200 meinberlin/apps/budgeting/views.py:35
+#: meinberlin/apps/budgeting/api.py:200 meinberlin/apps/budgeting/views.py:36
 #: meinberlin/apps/ideas/views.py:38 meinberlin/apps/kiezkasse/views.py:19
 #: meinberlin/apps/mapideas/views.py:19
 #: meinberlin/apps/maptopicprio/views.py:22
@@ -1720,7 +1721,7 @@ msgstr "Most support"
 msgid "Most commented"
 msgstr "Most commented"
 
-#: meinberlin/apps/budgeting/api.py:201 meinberlin/apps/budgeting/views.py:36
+#: meinberlin/apps/budgeting/api.py:201 meinberlin/apps/budgeting/views.py:37
 msgid "Random"
 msgstr "Random"
 
@@ -1728,15 +1729,17 @@ msgstr "Random"
 msgid "Most votes"
 msgstr "Most votes"
 
-#: meinberlin/apps/budgeting/exports.py:46
+#: meinberlin/apps/budgeting/exports.py:48
+#: meinberlin/apps/budgeting/exports.py:173
 msgid "Contact E-Mail"
 msgstr "Contact E-Mail"
 
-#: meinberlin/apps/budgeting/exports.py:47
+#: meinberlin/apps/budgeting/exports.py:49
+#: meinberlin/apps/budgeting/exports.py:174
 msgid "Contact Phone"
 msgstr "Contact Phone"
 
-#: meinberlin/apps/budgeting/exports.py:83
+#: meinberlin/apps/budgeting/exports.py:84
 #: meinberlin/apps/documents/exports.py:40 meinberlin/apps/ideas/exports.py:77
 #: meinberlin/apps/kiezkasse/exports.py:79
 #: meinberlin/apps/mapideas/exports.py:77
@@ -1744,6 +1747,14 @@ msgstr "Contact Phone"
 #: meinberlin/apps/topicprio/exports.py:74
 msgid "Comment"
 msgstr "Comment"
+
+#: meinberlin/apps/budgeting/exports.py:102
+msgid "Support"
+msgstr "Support"
+
+#: meinberlin/apps/budgeting/exports.py:128
+msgid "Votes"
+msgstr "Votes"
 
 #: meinberlin/apps/budgeting/forms.py:35
 msgid ""
@@ -1935,8 +1946,9 @@ msgid "Create a new proposal"
 msgstr "Create a new proposal"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:13
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:13
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:14
-#: meinberlin/apps/budgeting/views.py:150
+#: meinberlin/apps/budgeting/views.py:160
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:19
 msgid "map"
 msgstr "map"
@@ -1986,21 +1998,21 @@ msgstr ""
 msgid "Submit proposal"
 msgstr "Submit proposal"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:30
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:29
 msgid "Voting token form fields"
 msgstr "Voting token form fields"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:32
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:31
 msgid "Enter code"
 msgstr "Enter code"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:50
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:49
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:31
 msgid "Map of proposals"
 msgstr "Map of proposals"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:63
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:65
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:62
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:64
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:39
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:41
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:39
@@ -2010,8 +2022,8 @@ msgstr "Map of proposals"
 msgid "Zoom in"
 msgstr "Zoom in"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:73
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:75
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:72
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:74
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:49
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:51
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:49
@@ -2025,24 +2037,10 @@ msgstr "Zoom out"
 msgid "Moderate"
 msgstr "Moderate"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:13
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:13
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:13
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:14
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:13
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:13
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:14
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:13
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:13
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:14
-msgid "go back"
-msgstr "go back"
-
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:18
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:18
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:19
-msgid "back to proposal"
-msgstr "back to proposal"
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:19
+msgid "proposal"
+msgstr "proposal"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:23
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:23
@@ -2061,20 +2059,16 @@ msgstr "Moderate proposal"
 msgid "Edit %(title)s"
 msgstr "Edit %(title)s"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:19
-msgid "proposal"
-msgstr "proposal"
-
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:24
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:24
 msgid "Edit proposal"
 msgstr "Edit proposal"
 
-#: meinberlin/apps/budgeting/views.py:159
+#: meinberlin/apps/budgeting/views.py:169
 msgid "list"
 msgstr "list"
 
-#: meinberlin/apps/budgeting/views.py:219 meinberlin/apps/kiezkasse/views.py:72
+#: meinberlin/apps/budgeting/views.py:229 meinberlin/apps/kiezkasse/views.py:72
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
@@ -2143,7 +2137,7 @@ msgstr[1] "display %(counter)s projects"
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
 #: meinberlin/apps/plans/views.py:78 meinberlin/apps/projects/admin.py:100
 #: meinberlin/apps/projects/forms.py:93
-#: meinberlin/apps/projects/serializers.py:15
+#: meinberlin/apps/projects/serializers.py:17
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
 msgid "City wide"
 msgstr "City wide"
@@ -2814,6 +2808,18 @@ msgstr "Confirm Idea Deletion"
 msgid "Are you sure you want to delete the idea?"
 msgstr "Are you sure you want to delete the idea?"
 
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:13
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:13
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:14
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:13
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:13
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:14
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:13
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:13
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:14
+msgid "go back"
+msgstr "go back"
+
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:19
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:18
 msgid "Submit a new idea for this project"
@@ -2951,6 +2957,11 @@ msgstr "Proposal list"
 #, python-format
 msgid "Moderate %(name)s"
 msgstr "Moderate %(name)s"
+
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:18
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:19
+msgid "back to proposal"
+msgstr "back to proposal"
 
 #: meinberlin/apps/livequestions/dashboard.py:15
 msgid "Livestream"
@@ -3533,17 +3544,17 @@ msgstr "decision-making"
 
 #: meinberlin/apps/plans/models.py:39 meinberlin/apps/plans/models.py:219
 #: meinberlin/apps/projectcontainers/serializers.py:43
-#: meinberlin/apps/projects/serializers.py:98
-#: meinberlin/apps/projects/serializers.py:107
-#: meinberlin/apps/projects/serializers.py:264
+#: meinberlin/apps/projects/serializers.py:103
+#: meinberlin/apps/projects/serializers.py:112
+#: meinberlin/apps/projects/serializers.py:277
 msgid "running"
 msgstr "running"
 
 #: meinberlin/apps/plans/models.py:39
 #: meinberlin/apps/projectcontainers/serializers.py:47
-#: meinberlin/apps/projects/serializers.py:102
-#: meinberlin/apps/projects/serializers.py:122
-#: meinberlin/apps/projects/serializers.py:318
+#: meinberlin/apps/projects/serializers.py:107
+#: meinberlin/apps/projects/serializers.py:127
+#: meinberlin/apps/projects/serializers.py:331
 msgid "done"
 msgstr "done"
 
@@ -3701,7 +3712,7 @@ msgstr ""
 "characters."
 
 #: meinberlin/apps/plans/models.py:227
-#: meinberlin/apps/projects/serializers.py:112
+#: meinberlin/apps/projects/serializers.py:117
 msgid "starts at {}"
 msgstr "starts at {}"
 
@@ -3978,9 +3989,9 @@ msgid "Description of your container"
 msgstr "Description of your container"
 
 #: meinberlin/apps/projectcontainers/serializers.py:45
-#: meinberlin/apps/projects/serializers.py:100
-#: meinberlin/apps/projects/serializers.py:120
-#: meinberlin/apps/projects/serializers.py:291
+#: meinberlin/apps/projects/serializers.py:105
+#: meinberlin/apps/projects/serializers.py:125
+#: meinberlin/apps/projects/serializers.py:304
 msgid "starts in the future"
 msgstr "starts in the future"
 

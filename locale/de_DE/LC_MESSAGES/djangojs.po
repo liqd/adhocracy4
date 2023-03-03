@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-23 11:25+0100\n"
+"POT-Creation-Date: 2023-03-03 13:24+0100\n"
 "PO-Revision-Date: 2023-02-10 13:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
@@ -513,7 +513,7 @@ msgstr "Hochladen"
 
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:11
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:12
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -907,15 +907,15 @@ msgstr "Vorschläge durchsuchen"
 msgid "Remove filters"
 msgstr "Filter entfernen"
 
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:7
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:8
 msgid "Are you finished?"
 msgstr "Sind Sie fertig?"
 
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:8
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:9
 msgid "End session"
 msgstr "Sitzung beenden"
 
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:9
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:10
 msgid ""
 "To save your votes you do not need to do anything else. End the session to "
 "enter a new code. If you want to change the votes you have already cast, you "
@@ -925,7 +925,7 @@ msgstr ""
 "Sie die Sitzung, um einen neuen Code einzugeben. Um Ihre Stimme zu ändern, "
 "können Sie Ihren Code erneut eingeben, solange die Abstimmungsphase läuft. "
 
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:10
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:11
 msgid "Do you want to end the session?"
 msgstr "Möchten Sie diese Sitzung beenden?"
 
