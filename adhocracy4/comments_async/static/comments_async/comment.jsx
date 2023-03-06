@@ -192,6 +192,7 @@ export default class Comment extends React.Component {
             subjectType={this.props.content_type}
             subjectId={this.props.object_pk}
             comment={this.props.children}
+            commentId={this.props.id}
             commentCategoryChoices={this.props.commentCategoryChoices}
             comment_categories={this.props.comment_categories}
             useTermsOfUse={this.props.useTermsOfUse}

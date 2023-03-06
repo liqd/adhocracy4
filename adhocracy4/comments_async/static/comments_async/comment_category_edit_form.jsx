@@ -81,7 +81,7 @@ export default class CommentCategoryEditForm extends React.Component {
         {this.props.error &&
           <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
         <CategoryList
-          idPrefix={this.props.comment.id}
+          idPrefix={this.props.commentId}
           categoriesChecked={this.state.selectedCategories}
           categoryChoices={this.props.commentCategoryChoices}
           handleControlFunc={this.handleCategorySelection.bind(this)}
