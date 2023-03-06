@@ -32,7 +32,7 @@ const translated = {
   abort: django.gettext('Abort'),
   deletedyByCreatorOn: django.gettext('Deleted by creator on'),
   deletedByModeratorOn: django.gettext('Deleted by moderator on'),
-  blockedByModeratorOn: django.gettext('Blocked by moderator on'),
+  blockedByModerator: django.gettext('Blocked by moderator'),
   lastEditOn: django.gettext('Latest edit on'),
   moderator: django.gettext('Moderator'),
   hideReplies: django.gettext('hide replies'),
@@ -293,14 +293,14 @@ export default class Comment extends React.Component {
 
   render () {
     let lastDate
-    if (this.props.modified === null) {
+    if (this.props.is_blocked) {
+      lastDate = translated.blockedByModerator
+    } else if (this.props.modified === null) {
       lastDate = this.props.created
     } else if (this.props.is_removed) {
       lastDate = translated.deletedyByCreatorOn + ' ' + this.props.modified
     } else if (this.props.is_censored) {
       lastDate = translated.deletedByModeratorOn + ' ' + this.props.modified
-    } else if (this.props.is_blocked) {
-      lastDate = translated.blockedByModeratorOn + ' ' + this.props.modified
     } else {
       lastDate = translated.lastEditOn + ' ' + this.props.modified
     }
