@@ -554,6 +554,7 @@ export const CommentBox = (props) => {
             projectIsPublic={projectIsPublic}
             useTermsOfUse={useTermsOfUse}
             agreedTermsOfUse={agreedTermsOfUse}
+            orgTermsUrl={orgTermsUrl}
           />
         </div>
       </div>
