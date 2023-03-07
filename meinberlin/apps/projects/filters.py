@@ -3,7 +3,6 @@ from rest_framework import filters
 
 class StatusFilter(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
-
         now = view.now
 
         if "status" in request.GET:

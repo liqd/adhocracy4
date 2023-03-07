@@ -1,6 +1,7 @@
 import factory
 import pytest
 from celery import Celery
+from django.core.cache import cache
 from django.urls import reverse
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
@@ -91,3 +92,9 @@ def logout_url():
 @pytest.fixture
 def signup_url():
     return reverse("account_signup")
+
+
+@pytest.fixture(scope="module", autouse=True)
+def cache_clear():
+    yield cache
+    cache.clear()

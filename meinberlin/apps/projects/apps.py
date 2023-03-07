@@ -6,6 +6,7 @@ class Config(AppConfig):
     label = "meinberlin_projects"
 
     def ready(self):
-        from . import overwrites
+        import meinberlin.apps.projects.signals  # noqa:F401
+        from meinberlin.apps.projects import overwrites
 
         overwrites.overwrite_access_enum_label()
