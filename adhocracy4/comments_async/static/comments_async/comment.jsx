@@ -10,7 +10,7 @@ import CommentCategoryEditForm from './comment_category_edit_form'
 import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
-import { ModeratorStatement } from './moderator_statement'
+import { ModeratorFeedback } from './moderator_feedback'
 
 import { RatingBox } from '../../../ratings/static/ratings/react_ratings'
 
@@ -65,7 +65,7 @@ export default class Comment extends React.Component {
       shorten: true,
       anchored: false,
       showModStatement: true,
-      moderatorStatement: this.props.moderatorStatement
+      moderatorFeedback: this.props.moderatorFeedback
     }
 
     setTimeout(
@@ -396,7 +396,7 @@ export default class Comment extends React.Component {
                 {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showMore.bind(this)}>{translated.readMore}</button>}
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0 a4-comments__read-btn" onClick={this.showLess.bind(this)}>{translated.readLess}</button>}
               </div>
-              {this.state.moderatorStatement &&
+              {this.state.moderatorFeedback &&
                 <div className="col-6 text-end">
                   <button
                     className="btn btn--none text-muted px-0 a4-comments__read-btn"
@@ -412,10 +412,10 @@ export default class Comment extends React.Component {
                   </button>
                 </div>}
             </div>
-            {this.state.showModStatement && this.state.moderatorStatement &&
-              <ModeratorStatement
-                lastEdit={this.state.moderatorStatement.last_edit}
-                statement={this.state.moderatorStatement.statement}
+            {this.state.showModStatement && this.state.moderatorFeedback &&
+              <ModeratorFeedback
+                lastEdit={this.state.moderatorFeedback.last_edit}
+                feedbackText={this.state.moderatorFeedback.feedback_text}
               />}
             <div className="row">
               <div className="col-12 a4-comments__action-bar-container">
