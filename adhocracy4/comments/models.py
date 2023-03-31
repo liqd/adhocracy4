@@ -10,6 +10,7 @@ from django.utils.translation import pgettext_lazy
 from adhocracy4 import transforms
 from adhocracy4.models import base
 from adhocracy4.ratings import models as rating_models
+from adhocracy4.reports import models as report_models
 
 
 class Comment(base.UserGeneratedContentModel):
@@ -23,6 +24,9 @@ class Comment(base.UserGeneratedContentModel):
     is_blocked = models.BooleanField(default=False)
     ratings = GenericRelation(
         rating_models.Rating, related_query_name="comment", object_id_field="object_pk"
+    )
+    reports = GenericRelation(
+        report_models.Report, related_query_name="comment", object_id_field="object_pk"
     )
     child_comments = GenericRelation(
         "self", related_query_name="parent_comment", object_id_field="object_pk"
