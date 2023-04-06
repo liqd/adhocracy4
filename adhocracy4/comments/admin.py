@@ -13,6 +13,7 @@ class CommentAdmin(admin.ModelAdmin):
         "is_censored",
         "is_blocked",
         "is_moderator_marked",
+        "is_reviewed",
         "creator",
         "comment_categories",
     )

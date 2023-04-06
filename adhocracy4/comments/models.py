@@ -19,8 +19,11 @@ class Comment(base.UserGeneratedContentModel):
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
     comment = models.TextField(max_length=4000)
+    # true if deleted by creator, comment text is set to ''
     is_removed = models.BooleanField(default=False)
+    # true if deleted by moderator/initiator/admin, comment text is set to ''
     is_censored = models.BooleanField(default=False)
+    # true if blocked by moderator, comment text is kept, but not shown in discussion
     is_blocked = models.BooleanField(default=False)
     ratings = GenericRelation(
         rating_models.Rating, related_query_name="comment", object_id_field="object_pk"
@@ -34,6 +37,8 @@ class Comment(base.UserGeneratedContentModel):
     comment_categories = models.CharField(blank=True, max_length=256)
     last_discussed = models.DateTimeField(blank=True, null=True, editable=False)
     is_moderator_marked = models.BooleanField(default=False)
+    # used in moderation dashboard, indicates if comment is marked as read by moderator
+    is_reviewed = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = pgettext_lazy("noun", "Comment")
