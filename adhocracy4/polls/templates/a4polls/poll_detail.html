@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load react_polls react_comments_async %}
+{% load static react_polls react_comments_async %}
 
 
 {% block phase_content %}
@@ -15,4 +15,9 @@
             {% react_comments_async object %}
         </div>
     </div>
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'polls.js' %}"></script>
 {% endblock %}

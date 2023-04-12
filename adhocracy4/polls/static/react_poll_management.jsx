@@ -2,16 +2,18 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { initialise as ReactWidgetInit } from '../../static/widget'
 
-import PollQuestions from './PollDetail/PollQuestions'
+import { EditPollManagement } from './PollDashboard/EditPollManagement'
 
 function init () {
-  ReactWidgetInit('a4', 'polls',
+  ReactWidgetInit('a4', 'poll-management',
     function (el) {
       const pollId = el.dataset.pollId
-      const container = el
-      const root = createRoot(container)
+      const root = createRoot(el)
+
+      const reloadOnSuccess = JSON.parse(el.getAttribute('data-reloadOnSuccess'))
+
       root.render(
-        <PollQuestions pollId={pollId} />
+        <EditPollManagement pollId={pollId} reloadOnSuccess={reloadOnSuccess} />
       )
     }
   )
