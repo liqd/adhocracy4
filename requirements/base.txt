@@ -5,7 +5,7 @@ git+https://github.com/liqd/django-autoslug.git@liqd2212#egg=django-autoslug
 django-background-tasks==1.2.5
 django-ckeditor==6.5.1
 django-enumfield==3.1
-django-filter==23.1
+django-filter==22.1
 django-multiselectfield==0.1.12
 django-widget-tweaks==1.4.12
 djangorestframework==3.14.0
