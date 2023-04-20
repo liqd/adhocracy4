@@ -12,7 +12,7 @@
 
         {% if not form.name.value %}
             <button type="button" class="category-formset__delete-label js-remove-form" title="{% translate 'Remove category' %}">
-                <i class="fa fa-xmark" aria-label="{% translate 'Remove category' %}"></i>
+                <i class="fa-solid fa-xmark" aria-label="{% translate 'Remove category' %}"></i>
             </button>
         {% elif can_delete %}
             <label for="{{ form.DELETE.id_for_label }}" class="category-formset__delete-label" title="{% translate 'Remove category' %}">

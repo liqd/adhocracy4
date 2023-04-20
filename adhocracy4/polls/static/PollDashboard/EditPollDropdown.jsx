@@ -17,7 +17,7 @@ const EditPollDropdown = (props) => {
         aria-expanded="false"
         data-bs-toggle="dropdown"
       >
-        <i className="fa fa-plus" />
+        <i className="fa-solid fa-plus" />
         {translated.new}
       </button>
       <div className="dropdown-menu">

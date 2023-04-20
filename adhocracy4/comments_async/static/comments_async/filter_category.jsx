@@ -21,7 +21,7 @@ export const FilterCategory = ({
           <span className={filter === 'all' ? 'a4-comments__filters__btn-text' : 'd-none'}>{translated.display}{filterDisplay}</span>
           <span className={filter !== 'all' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{filterDisplay}</span>
 
-          <i className={filter === 'all' ? 'fa fa-caret-down' : 'fa-solid fa-check'} aria-hidden="true" />
+          <i className={filter === 'all' ? 'fa-solid fa-caret-down' : 'fa-solid fa-check'} aria-hidden="true" />
         </button>
         <div className="dropdown-menu dropend" aria-labelledby="categoryDropdownBtn">
           {filter !== 'all' &&

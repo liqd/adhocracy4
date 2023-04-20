@@ -425,7 +425,7 @@ export default class Comment extends React.Component {
                   {((this.allowForm() && !this.props.is_deleted) || (this.props.child_comments && this.props.child_comments.length > 0)) &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
                       <a href="#child-comment-form">
-                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'fa-regular fa-comment'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
+                        <i className={this.state.showChildComments ? 'fa-solid fa-minus' : 'fa-regular fa-comment'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
                       </a>
                     </button>}
 

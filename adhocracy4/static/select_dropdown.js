@@ -43,7 +43,7 @@ The following classes are available:
       const btnClasses = 'btn select-dropdown__btn ' + this.settings.style
       const $button = $('<button class="' + btnClasses + '" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">').appendTo($dropdown)
       const $buttonLabel = $('<span class="select-dropdown__btn__label">').appendTo($button)
-      $('<i class="fa fa-caret-down" aria-hidden="true"></i>').appendTo($button)
+      $('<i class="fa-solid fa-caret-down" aria-hidden="true"></i>').appendTo($button)
 
       const $menu = $('<div class="dropdown-menu select-dropdown__menu">').appendTo($dropdown)
 

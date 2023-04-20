@@ -530,7 +530,7 @@ export const CommentBox = (props) => {
         )}
 
         <div className={loadingFilter ? 'u-spinner__container' : 'd-none'}>
-          <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
+          <i className="fa-solid fa-spinner fa-pulse" aria-hidden="true" />
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
@@ -559,7 +559,7 @@ export const CommentBox = (props) => {
         </div>
       </div>
       <div className={loading ? 'u-spinner__container' : 'd-none'}>
-        <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
+        <i className="fa-solid fa-spinner fa-pulse" aria-hidden="true" />
         <span className="visually-hidden">Loading...</span>
       </div>
     </div>

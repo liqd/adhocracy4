@@ -64,7 +64,7 @@ class FollowButton extends React.Component {
     return (
       <span className="follow">
         <button className={this.state.followed ? 'btn btn--following' : 'btn btn--follow'} type="button" onClick={this.toggleFollow.bind(this)}>
-          <i className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? followingTag : followTag}</span>
+          <i className={this.state.followed ? 'fa-solid fa-check' : 'fa-solid fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? followingTag : followTag}</span>
         </button>
         <span className="follow__notification">
           <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />

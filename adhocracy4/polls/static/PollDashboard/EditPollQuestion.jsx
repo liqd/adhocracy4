@@ -110,7 +110,7 @@ export const EditPollQuestion = (props) => {
               onClick={() => props.onAppendChoice(hasOtherOption)}
               type="button"
             >
-              <i className="fa fa-plus" /> {django.gettext('New answer')}
+              <i className="fa-solid fa-plus" /> {django.gettext('New answer')}
             </button>
             <button
               className={'btn ' + (hasHelptext ? 'editpoll__btn--dark' : 'editpoll__btn--question')}
@@ -132,7 +132,7 @@ export const EditPollQuestion = (props) => {
           type="button"
         >
           <i
-            className="fa fa-chevron-up"
+            className="fa-solid fa-chevron-up"
             aria-label={django.gettext('Move up')}
           />
         </button>
@@ -144,7 +144,7 @@ export const EditPollQuestion = (props) => {
           type="button"
         >
           <i
-            className="fa fa-chevron-down"
+            className="fa-solid fa-chevron-down"
             aria-label={django.gettext('Move down')}
           />
         </button>

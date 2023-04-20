@@ -31,7 +31,7 @@ export const EditPollChoice = (props) => {
           disabled={props.undeletable}
         >
           <i
-            className="fa fa-xmark"
+            className="fa-solid fa-xmark"
             aria-label={django.gettext('remove')}
           />
         </button>
