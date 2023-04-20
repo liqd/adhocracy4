@@ -325,7 +325,7 @@ export default class Comment extends React.Component {
     return (
       <div>
         {this.state.displayNotification &&
-          <div className="alert alert--success a4-comments__success-notification"><i className="fas fa-check" /> {translated.successMessage}</div>}
+          <div className="alert alert--success a4-comments__success-notification"><i className="fa-solid fa-check" /> {translated.successMessage}</div>}
         <div className={(this.props.is_users_own_comment ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
           <a className="a4-comments__anchor" id={'comment_' + this.props.id} href={'./?comment=' + this.props.id}>{'Comment ' + this.props.id}</a>
           <ReportModal
@@ -425,7 +425,7 @@ export default class Comment extends React.Component {
                   {((this.allowForm() && !this.props.is_deleted) || (this.props.child_comments && this.props.child_comments.length > 0)) &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
                       <a href="#child-comment-form">
-                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
+                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'fa-regular fa-comment'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
                       </a>
                     </button>}
 
@@ -433,14 +433,14 @@ export default class Comment extends React.Component {
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={'?comment_' + this.props.id}
                       data-bs-toggle="modal" data-bs-target={'#share_comment_' + this.props.id}
-                    ><i className="fas fa-share" /> {translated.share}
+                    ><i className="fa-solid fa-share" /> {translated.share}
                     </a>}
 
                   {!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={'#report_comment_' + this.props.id}
                       data-bs-toggle="modal"
-                    ><i className="fas fa-exclamation-triangle" />{translated.report}
+                    ><i className="fa-solid fa-triangle-exclamation" />{translated.report}
                     </a>}
 
                 </div>

@@ -40,8 +40,8 @@ export const FilterSearch = ({
         onClick={handleClearQuery}
       >
         <span className="fa-stack fa-2x">
-          <i className="far fa-circle fa-stack-2x" />
-          <i className="fas fa-times fa-stack-1x" aria-label={translated.clearSearch} />
+          <i className="fa-regular fa-circle fa-stack-2x" />
+          <i className="fa-solid fa-xmark fa-stack-1x" aria-label={translated.clearSearch} />
         </span>
       </button>
 
@@ -50,7 +50,7 @@ export const FilterSearch = ({
         type="button"
         onClick={() => onSearch(query)}
       >
-        <i className="fas fa-search" aria-label={translated.searchContrib} />
+        <i className="fa-solid fa-magnifying-glass" aria-label={translated.searchContrib} />
       </button>
     </div>
   )

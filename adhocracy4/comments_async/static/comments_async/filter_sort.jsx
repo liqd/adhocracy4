@@ -19,7 +19,7 @@ export const FilterSort = ({
         >
           <span className={sort === 'new' ? 'a4-comments__filters__btn-text' : 'd-none'}>{translated.sortedBy}{sorts[sort]}</span>
           <span className={sort !== 'new' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{sorts[sort]}</span>
-          <i className={sort === 'new' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
+          <i className={sort === 'new' ? 'fa fa-caret-down' : 'fa-solid fa-check'} aria-hidden="true" />
         </button>
         <div className="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdownBtn">
           {Object.keys(sorts).map(objectKey => {

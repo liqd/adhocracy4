@@ -16,7 +16,7 @@ const CommentManageDropdown = (props) => {
         aria-expanded="false"
         data-bs-toggle="dropdown"
       >
-        <i className="fas fa-ellipsis-h" aria-hidden="true" />
+        <i className="fa-solid fa-ellipsis" aria-hidden="true" />
       </button>
       <div className="dropdown-menu dropdown-menu-end">
         {props.has_changing_permission && [

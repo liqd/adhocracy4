@@ -121,7 +121,7 @@ function init () {
 
     function getCommentCount (feature) {
       return '<span class="map-popup-comments-count">' +
-               feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
+               feature.properties.comments_count + ' <i class="fa-regular fa-comment" aria-hidden="true"></i>' +
                '<span class="visually-hidden">' +
                   django.ngettext(
                     'person commented on this proposal.',

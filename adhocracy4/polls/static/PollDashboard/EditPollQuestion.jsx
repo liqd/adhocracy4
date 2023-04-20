@@ -155,7 +155,7 @@ export const EditPollQuestion = (props) => {
           type="button"
         >
           <i
-            className="fas fa-trash-alt"
+            className="fa-solid fa-trash-can"
             aria-label={django.gettext('Delete')}
           />
         </button>

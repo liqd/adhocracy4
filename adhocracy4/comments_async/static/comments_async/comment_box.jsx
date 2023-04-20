@@ -479,7 +479,7 @@ export const CommentBox = (props) => {
               onClick={handleToggleFilters}
             >
               <i
-                className="fas fa-sliders-h ms-2"
+                className="fa-solid fa-sliders ms-2"
                 aria-label={translated.showFilters}
               />
               {translated.filters}
@@ -492,7 +492,7 @@ export const CommentBox = (props) => {
               onClick={handleToggleFilters}
             >
               <i
-                className="fas fa-times ms-2"
+                className="fa-solid fa-xmark ms-2"
                 aria-label={translated.hideFilters}
               />
               {translated.hideFilters}

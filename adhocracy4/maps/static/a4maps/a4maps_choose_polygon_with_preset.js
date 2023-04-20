@@ -85,7 +85,7 @@ function init () {
             '<div class="modal-content">' +
               '<div class="modal-header">' +
                 '<h2 class="modal-title u-first-heading">' + modalTitle + '</h2>' +
-                '<button class="close" aria-label="' + django.gettext('Close') + '" data-bs-dismiss="modal"><i class="fa fa-times"></i></button>' +
+                '<button class="close" aria-label="' + django.gettext('Close') + '" data-bs-dismiss="modal"><i class="fa fa-xmark"></i></button>' +
               '</div>' +
               '<div class="modal-body">' +
                 '<form id="map-import-form" data-ignore-submit="true">' +

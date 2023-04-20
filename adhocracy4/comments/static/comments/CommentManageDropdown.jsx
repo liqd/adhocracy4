@@ -12,7 +12,7 @@ const CommentManageDropdown = (props) => {
           type="button" className="dropdown-toggle" aria-haspopup="true"
           aria-expanded="false" data-bs-toggle="dropdown"
         >
-          <i className="fa fa-ellipsis-h" aria-hidden="true" />
+          <i className="fa fa-ellipsis" aria-hidden="true" />
         </button>
         <ul className="dropdown-menu">
           {props.renderModeratorOptions && [
