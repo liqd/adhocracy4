@@ -15,7 +15,7 @@
   "dependencies": {
     "@popperjs/core": "2.11.7",
     "file-saver": "2.0.5",
-    "js-cookie": "3.0.1",
+    "js-cookie": "3.0.5",
     "maplibregl-mapbox-request-transformer": "0.0.2"
   },
   "devDependencies": {
@@ -55,7 +55,7 @@
   "peerDependencies": {
     "immutability-helper": "3.1.1",
     "jquery": "3.6.4",
-    "js-cookie": "3.0.1",
+    "js-cookie": "3.0.5",
     "leaflet": "1.9.3",
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "git+https://github.com/liqd/Leaflet.markercluster#liqd2212",
