@@ -416,7 +416,7 @@ export const CommentBox = (props) => {
   }
 
   function updateAgreedTOS () {
-    if (agreedTermsOfUse) {
+    if (useTermsOfUse && !agreedTermsOfUse) {
       setAgreedTermsOfUse(true)
       const event = new Event('agreedTos')
       dispatchEvent(event)
