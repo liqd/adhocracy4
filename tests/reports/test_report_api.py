@@ -52,3 +52,26 @@ def test_authenticated_user_can_post_valid_data(user, apiclient, question, admin
     assert response.data["description"] == "This comment sucks"
     assert len(mail.outbox) == 1
     assert mail.outbox[0].subject.startswith("Moderation request in")
+
+
+@pytest.mark.django_db
+def test_reported_comment_is_marked_not_reviewed(
+    user, apiclient, question, comment_factory
+):
+    comment = comment_factory(content_object=question, is_reviewed=True)
+    assert comment.is_reviewed
+    assert not comment.modified
+    apiclient.force_authenticate(user=user)
+    url = reverse("reports-list")
+    comment_ct = ContentType.objects.get_for_model(comment)
+    data = {
+        "content_type": comment_ct.pk,
+        "object_pk": comment.pk,
+        "description": "This comment sucks",
+    }
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+
+    comment.refresh_from_db()
+    assert not comment.is_reviewed
+    assert not comment.modified
