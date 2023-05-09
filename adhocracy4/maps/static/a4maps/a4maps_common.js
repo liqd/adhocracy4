@@ -31,17 +31,17 @@ export function createMap (L, e, {
     }
     return { url }
   }
-
   if (useVectorMap === '1') {
+    let maplibreMap
     if (mapboxToken !== '') {
-      L.maplibreGL({
+      maplibreMap = L.maplibreGL({
         accessToken: mapboxToken,
         style: baseUrl,
         transformRequest
       }).addTo(map)
     } else {
       if (omtToken !== '') {
-        L.maplibreGL({
+        maplibreMap = L.maplibreGL({
           style: baseUrl,
           transformRequest: function (url, resourceType) {
             if (resourceType === 'Tile' && url.indexOf('https://') === 0) {
@@ -57,8 +57,38 @@ export function createMap (L, e, {
         }).addTo(map)
       }
     }
-    const attributionLayer = L.tileLayer('', { attribution })
-    attributionLayer.addTo(map)
+    if (!attribution) {
+      // for some reason getMaplibreMap returns null if executed immediately.
+      // setTimeout is kinda hacky.
+      setTimeout(() => {
+        const mm = maplibreMap.getMaplibreMap()
+        if (mm == null) {
+          console.warn("a4: couldn't load maplibreMap to set attribution")
+          return
+        }
+        const loadAttribution = () => {
+          const sources = mm.getStyle().sources
+          const keys = Object.keys(sources)
+          const noAttribution = keys.every((key, index) => {
+            if ('attribution' in sources[key]) {
+              map.attributionControl.addAttribution(sources[key].attribution)
+              return false
+            }
+            return true
+          })
+          if (noAttribution) {
+            console.warn("couldn't find map attribution in style")
+          }
+        }
+        if (mm.isStyleLoaded()) {
+          loadAttribution()
+        } else {
+          mm.once('styledata', function () {
+            loadAttribution()
+          })
+        }
+      }, 100)
+    }
   } else {
     let basemap = baseUrl + '{z}/{x}/{y}.png'
     let accessToken = ''
@@ -69,9 +99,9 @@ export function createMap (L, e, {
       basemap = baseUrl + '{z}/{x}/{y}.png?token={accessToken}'
       accessToken = omtToken
     }
-    const baselayer = L.tileLayer(basemap, { attribution, accessToken })
+    const baselayer = L.tileLayer(basemap, { accessToken })
     baselayer.addTo(map)
+    map.attributionControl.addAttribution(attribution)
   }
-
   return map
 }
