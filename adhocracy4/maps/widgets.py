@@ -12,10 +12,13 @@ class MapChoosePolygonWidget(Widget):
         css = {"all": ["a4maps_choose_polygon.css"]}
 
     def render(self, name, value, attrs, renderer=None):
-
         use_vector_map = 0
         mapbox_token = ""
         omt_token = ""
+        attribution = ""
+
+        if hasattr(settings, "A4_MAP_ATTRIBUTION"):
+            attribution = settings.A4_MAP_ATTRIBUTION
 
         if hasattr(settings, "A4_USE_VECTORMAP") and settings.A4_USE_VECTORMAP:
             use_vector_map = 1
@@ -31,7 +34,7 @@ class MapChoosePolygonWidget(Widget):
             "usevectormap": use_vector_map,
             "mapbox_token": mapbox_token,
             "omt_token": omt_token,
-            "attribution": settings.A4_MAP_ATTRIBUTION,
+            "attribution": attribution,
             "bbox": json.dumps(settings.A4_MAP_BOUNDING_BOX),
             "name": name,
             "polygon": value,
@@ -51,10 +54,13 @@ class MapChoosePointWidget(Widget):
         css = {"all": ["a4maps_choose_point.css"]}
 
     def render(self, name, value, attrs, renderer=None):
-
         use_vector_map = 0
         mapbox_token = ""
         omt_token = ""
+        attribution = ""
+
+        if hasattr(settings, "A4_MAP_ATTRIBUTION"):
+            attribution = settings.A4_MAP_ATTRIBUTION
 
         if hasattr(settings, "A4_USE_VECTORMAP") and settings.A4_USE_VECTORMAP:
             use_vector_map = 1
@@ -70,7 +76,7 @@ class MapChoosePointWidget(Widget):
             "usevectormap": use_vector_map,
             "mapbox_token": mapbox_token,
             "omt_token": omt_token,
-            "attribution": settings.A4_MAP_ATTRIBUTION,
+            "attribution": attribution,
             "name": name,
             "point": value,
             # .dumps is required here because we pass it directly instead of

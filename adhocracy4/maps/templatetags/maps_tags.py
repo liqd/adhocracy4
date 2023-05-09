@@ -16,7 +16,6 @@ def get_points(items):
     feature_list = []
 
     for item in items:
-
         image_url = ""
         comment_count = ""
         positive_rating_count = ""
@@ -66,6 +65,11 @@ def map_display_points(
     use_vector_map = 0
     mapbox_token = ""
     omt_token = ""
+    attribution = ""
+
+    if hasattr(settings, "A4_MAP_ATTRIBUTION"):
+        attribution = settings.A4_MAP_ATTRIBUTION
+
     if hasattr(settings, "A4_USE_VECTORMAP") and settings.A4_USE_VECTORMAP:
         use_vector_map = 1
 
@@ -96,7 +100,7 @@ def map_display_points(
         usevectormap=use_vector_map,
         mapbox_token=mapbox_token,
         omt_token=omt_token,
-        attribution=settings.A4_MAP_ATTRIBUTION,
+        attribution=attribution,
         points=get_points(items),
         polygon=json.dumps(polygon),
         hideRatings=hideRatings,
@@ -110,6 +114,10 @@ def map_display_point(point, polygon, pin_src=None):
     use_vector_map = 0
     mapbox_token = ""
     omt_token = ""
+    attribution = ""
+
+    if hasattr(settings, "A4_MAP_ATTRIBUTION"):
+        attribution = settings.A4_MAP_ATTRIBUTION
 
     if hasattr(settings, "A4_USE_VECTORMAP") and settings.A4_USE_VECTORMAP:
         use_vector_map = 1
@@ -139,7 +147,7 @@ def map_display_point(point, polygon, pin_src=None):
         usevectormap=use_vector_map,
         mapbox_token=mapbox_token,
         omt_token=omt_token,
-        attribution=settings.A4_MAP_ATTRIBUTION,
+        attribution=attribution,
         point=json.dumps(point),
         polygon=json.dumps(polygon),
         pin_src=json.dumps(pin_src),
