@@ -520,7 +520,7 @@ A4_CATEGORY_ICONS = (
 )
 
 A4_USE_VECTORMAP = True
-A4_MAP_BASEURL = "https://maps.berlinonline.de/styles/klokantech-basic/style.json"
+A4_MAP_BASEURL = "https://basemap.berlin.de/gdz_basemapde_vektor/styles/bm_web_col.json"
 A4_OPENMAPTILES_TOKEN = "9aVUrssbx7PKNUKo3WtXY6MqETI6Q336u5D142QS"
 A4_MAPBOX_TOKEN = ""
 
@@ -559,9 +559,6 @@ A4_BLUEPRINT_TYPES = [
     ("PC", "project container"),
 ]
 
-A4_MAP_ATTRIBUTION = (
-    '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-)
 A4_MAP_BOUNDING_BOX = [[52.3517, 13.8229], [52.6839, 12.9543]]
 
 A4_DASHBOARD = {

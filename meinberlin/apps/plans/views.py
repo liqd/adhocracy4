@@ -122,7 +122,10 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         context["mapbox_token"] = mapbox_token
         context["omt_token"] = omt_token
         context["use_vector_map"] = use_vector_map
-        context["attribution"] = settings.A4_MAP_ATTRIBUTION
+        attribution = ""
+        if hasattr(settings, "A4_MAP_ATTRIBUTION"):
+            attribution = settings.A4_MAP_ATTRIBUTION
+        context["attribution"] = attribution
         context["bounds"] = json.dumps(settings.A4_MAP_BOUNDING_BOX)
         context["district"] = self.request.GET.get("district", -1)
         context["topic"] = self.request.GET.get("topic", -1)
