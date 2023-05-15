@@ -7,6 +7,7 @@ django-cloudflare-push==0.2.2
 django_csp==3.7
 sentry-sdk==1.16.0
 requests==2.28.2
+urllib3==1.26.15
 wagtail==4.1.2
 whitenoise==6.4.0
 zeep==4.2.1
