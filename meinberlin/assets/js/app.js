@@ -15,7 +15,6 @@ import 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_address.js'
 import {
   commentsAsync as ReactCommentsAsync,
   follows as ReactFollows,
-  polls as ReactPolls,
   ratings as ReactRatings,
   reports as ReactReports,
   widget as ReactWidget
@@ -35,8 +34,6 @@ function init () {
 
   ReactWidget.initialise('a4', 'comment_async', ReactCommentsAsync.renderComment)
   ReactWidget.initialise('a4', 'follows', ReactFollows.renderFollow)
-  ReactWidget.initialise('a4', 'polls', ReactPolls.renderPolls)
-  ReactWidget.initialise('a4', 'poll-management', ReactPolls.renderPollManagement)
   ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
   ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 
