@@ -46,10 +46,17 @@ class ActionQuerySet(models.QuerySet):
 
 
 class Action(models.Model):
-
     # actor, if actor is None the action was create by the system
     actor = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True
+    )
+
+    target_creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="target_creator",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
     )
 
     # target eg. idea
@@ -88,7 +95,6 @@ class Action(models.Model):
         index_together = [("obj_content_type", "obj_object_id")]
 
     def __str__(self):
-
         ctx = {
             "actor": self.actor.username if self.actor else "system",
             "verb": self.verb,

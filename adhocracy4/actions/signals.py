@@ -29,10 +29,13 @@ def _add_action(sender, instance, created, update_fields, **kwargs):
     if not update_fields or "last_discussed" not in update_fields:
         actor = instance.creator if hasattr(instance, "creator") else None
         target = None
+        target_creator = None
         if created:
             target = _extract_target(instance)
             if target:
                 verb = Verbs.ADD.value
+                if hasattr(target, "creator"):
+                    target_creator = target.creator
             else:
                 verb = Verbs.CREATE.value
 
@@ -41,6 +44,7 @@ def _add_action(sender, instance, created, update_fields, **kwargs):
 
         action = Action(
             actor=actor,
+            target_creator=target_creator,
             verb=verb,
             obj=instance,
             target=target,
