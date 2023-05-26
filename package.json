@@ -13,7 +13,7 @@
     "adhocracy4"
   ],
   "dependencies": {
-    "@popperjs/core": "2.11.7",
+    "@popperjs/core": "2.11.8",
     "file-saver": "2.0.5",
     "js-cookie": "3.0.5",
     "maplibregl-mapbox-request-transformer": "0.0.2"
