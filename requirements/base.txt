@@ -5,7 +5,7 @@ git+https://github.com/liqd/adhocracy4.git@a12823939aaebde74f62af7dc783896e0cf75
 brotli==1.0.9
 django-cloudflare-push==0.2.2
 django_csp==3.7
-sentry-sdk==1.16.0
+sentry-sdk==1.24.0
 requests==2.31.0
 urllib3==1.26.16
 wagtail==4.1.4
