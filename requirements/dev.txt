@@ -1,6 +1,6 @@
 -r base.txt
 black==23.3.0
-django-debug-toolbar==3.8.1
+django-debug-toolbar==4.1.0
 factory-boy==3.2.1
 Faker==18.9.0
 flake8==6.0.0
