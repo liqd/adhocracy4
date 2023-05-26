@@ -45,7 +45,7 @@
     "react-markdown": "8.0.7",
     "react-router-dom": "6.9.0",
     "react-slick": "0.29.0",
-    "react-sticky-box": "2.0.0",
+    "react-sticky-box": "2.0.4",
     "sass": "1.60.0",
     "sass-loader": "13.2.2",
     "select2": "4.0.13",
