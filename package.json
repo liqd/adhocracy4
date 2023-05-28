@@ -78,7 +78,7 @@
     "jest": "29.5.0",
     "jest-environment-jsdom": "29.5.0",
     "lint-staged": "13.2.2",
-    "postcss": "8.4.23",
+    "postcss": "8.4.24",
     "stylelint": "15.2.0",
     "stylelint-config-standard-scss": "7.0.1",
     "stylelint-declaration-strict-value": "1.9.2",
