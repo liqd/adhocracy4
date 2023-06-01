@@ -30,6 +30,15 @@ class CategorizableFieldMixin:
         return module_has_categories
 
 
+class CategoryAliasForm(forms.ModelForm):
+    class Meta:
+        fields = ["title", "description"]
+        widgets = {
+            "description": forms.Textarea,
+        }
+        model = category_models.CategoryAlias
+
+
 class CategoryForm(forms.ModelForm):
     def __init__(self, module, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -7,6 +7,15 @@ from adhocracy4.labels import models as labels_models
 from adhocracy4.modules import models as module_models
 
 
+class LabelAliasForm(forms.ModelForm):
+    class Meta:
+        fields = ["title", "description"]
+        widgets = {
+            "description": forms.Textarea,
+        }
+        model = labels_models.LabelAlias
+
+
 class LabelForm(forms.ModelForm):
     def __init__(self, module, *args, **kwargs):
         super().__init__(*args, **kwargs)
