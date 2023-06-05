@@ -30,6 +30,7 @@ def _add_action(sender, instance, created, update_fields, **kwargs):
         actor = instance.creator if hasattr(instance, "creator") else None
         target = None
         target_creator = None
+        obj_comment_creator = None
         if created:
             target = _extract_target(instance)
             if target:
@@ -42,9 +43,13 @@ def _add_action(sender, instance, created, update_fields, **kwargs):
         else:
             verb = Verbs.UPDATE.value
 
+        # for ModeratorCommentFeedback
+        if hasattr(instance, "comment") and hasattr(instance.comment, "creator"):
+            obj_comment_creator = instance.comment.creator
         action = Action(
             actor=actor,
             target_creator=target_creator,
+            obj_comment_creator=obj_comment_creator,
             verb=verb,
             obj=instance,
             target=target,

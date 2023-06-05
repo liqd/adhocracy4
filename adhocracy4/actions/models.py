@@ -72,6 +72,13 @@ class Action(models.Model):
         ct_field="target_content_type", fk_field="target_object_id"
     )
 
+    obj_comment_creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="obj_comment_creator",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
     # action object eg. comment
     obj_content_type = models.ForeignKey(
         ContentType, on_delete=models.CASCADE, blank=True, null=True, related_name="obj"
