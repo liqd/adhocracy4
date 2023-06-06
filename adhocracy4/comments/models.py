@@ -9,12 +9,12 @@ from django.utils.translation import pgettext_lazy
 
 from adhocracy4 import transforms
 from adhocracy4.models import base
+from adhocracy4.projects.models import Project
 from adhocracy4.ratings import models as rating_models
 from adhocracy4.reports import models as report_models
 
 
 class Comment(base.UserGeneratedContentModel):
-
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
@@ -39,6 +39,9 @@ class Comment(base.UserGeneratedContentModel):
     is_moderator_marked = models.BooleanField(default=False)
     # used in moderation dashboard, indicates if comment is marked as read by moderator
     is_reviewed = models.BooleanField(default=False)
+    project = models.ForeignKey(
+        Project, on_delete=models.SET_NULL, blank=True, null=True
+    )
 
     class Meta:
         verbose_name = pgettext_lazy("noun", "Comment")
@@ -60,6 +63,8 @@ class Comment(base.UserGeneratedContentModel):
     def save(self, *args, **kwargs):
         """Change comment.comment if comment was marked removed or censored."""
         self.comment = transforms.clean_html_all(self.comment)
+        if not self.project:
+            self.project = self.content_object.module.project
 
         if self.is_removed or self.is_censored:
             self.comment = self._former_comment = ""
@@ -81,10 +86,6 @@ class Comment(base.UserGeneratedContentModel):
     @property
     def notification_content(self):
         return self.comment
-
-    @property
-    def project(self):
-        return self.module.project
 
     @property
     def module(self):
