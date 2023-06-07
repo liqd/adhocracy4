@@ -15,6 +15,7 @@ def test_project_create(project_factory):
     assert action.obj == project
     assert action.verb == Verbs.CREATE.value
     assert action.target is None
+    assert action.target_creator is None
 
 
 @pytest.mark.django_db
@@ -27,6 +28,7 @@ def test_item_add(question_factory):
     assert action.verb == Verbs.ADD.value
     assert action.target == question.project
     assert action.project == question.project
+    assert action.target_creator is None
 
 
 @pytest.mark.django_db
@@ -39,6 +41,7 @@ def test_item_update(question_factory):
     assert action.verb == Verbs.UPDATE.value
     assert action.target is None
     assert action.project == question.project
+    assert action.target_creator is None
 
 
 @pytest.mark.django_db
@@ -60,6 +63,7 @@ def test_content_object_create(question_factory, comment_factory):
     assert action.verb == Verbs.ADD.value
     assert action.target == question
     assert action.project == comment.project
+    assert action.target_creator == question.creator
 
 
 @pytest.mark.django_db
@@ -73,3 +77,4 @@ def test_content_object_update(question_factory, comment_factory):
     assert action.verb == Verbs.UPDATE.value
     assert action.target is None
     assert action.project == comment.project
+    assert action.target_creator is None
