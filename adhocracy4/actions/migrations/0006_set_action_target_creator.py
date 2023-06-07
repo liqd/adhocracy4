@@ -14,11 +14,14 @@ def set_action_target_creator(apps, schema_editor):
             app_label=action.target_content_type.app_label,
             model_name=action.target_content_type.model,
         )
-        content_object = model.objects.get(id=action.target_object_id)
-        if hasattr(content_object, "creator"):
-            action.target_creator = content_object.creator
-            actions.append(action)
-            count += 1
+        try:
+            content_object = model.objects.get(id=action.target_object_id)
+            if hasattr(content_object, "creator"):
+                action.target_creator = content_object.creator
+                actions.append(action)
+                count += 1
+        except model.DoesNotExist:
+            pass
         if count == BATCH_SIZE:
             Action.objects.bulk_update(actions, ["target_creator"])
             count = 0
