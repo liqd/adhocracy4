@@ -26,6 +26,25 @@ class RequestPhase(phases.PhaseContent):
     }
 
 
+class RequestSupportPhase(phases.PhaseContent):
+    app = apps.Config.label
+    phase = "submit_support"
+    view = views.ProposalListView
+
+    name = _("What ideas do you suggest for funding?")
+    description = _(
+        "You can enter your proposal on the map and comment on "
+        "and support the proposals of the other participants."
+    )
+    module_name = _("participatory budgeting")
+
+    features = {
+        "crud": (models.Proposal,),
+        "comment": (models.Proposal,),
+        "support": (models.Proposal,),
+    }
+
+
 class CollectPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = "collect"
@@ -88,6 +107,7 @@ class VotingPhase(phases.PhaseContent):
 
 
 phases.content.register(RequestPhase())
+phases.content.register(RequestSupportPhase())
 phases.content.register(CollectPhase())
 phases.content.register(RatingPhase())
 phases.content.register(SupportPhase())

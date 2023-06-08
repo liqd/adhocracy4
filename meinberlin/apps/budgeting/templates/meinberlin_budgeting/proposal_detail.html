@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block ratings %}
-    {% if module.blueprint_type == 'PB3' and proposal|has_feature:"support" %}
+    {% if proposal|has_feature:"support" %}
         {% has_or_would_have_perm 'meinberlin_budgeting.view_support' request.user module as may_view_support %}
         {% if may_view_support %}
         <div class="lr-bar__left">

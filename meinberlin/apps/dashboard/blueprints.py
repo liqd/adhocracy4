@@ -84,9 +84,9 @@ blueprints = [
             description=_(
                 "Participants can submit their own proposals, mark them on a "
                 "map, and add a budget. The proposals of others can be discussed "
-                "and rated (pro/contra)."
+                "and supported."
             ),
-            content=[budgeting_phases.RequestPhase()],
+            content=[budgeting_phases.RequestSupportPhase()],
             image="images/participatory-budgeting-1.svg",
             settings_model=("a4maps", "AreaSettings"),
             type="PB",
@@ -99,11 +99,11 @@ blueprints = [
             description=_(
                 "In a first phase, participants can submit their own proposals, "
                 "mark them on a map, and add a budget. The proposals of others "
-                "can be discussed and in a second phase rated (pro/contra)."
+                "can be discussed and in a second phase supported."
             ),
             content=[
                 budgeting_phases.CollectPhase(),
-                budgeting_phases.RatingPhase(),
+                budgeting_phases.SupportPhase(),
             ],
             image="images/participatory-budgeting-2.svg",
             settings_model=("a4maps", "AreaSettings"),

@@ -73,7 +73,13 @@ def is_allowed_view_support(item_class):
                 | (
                     (is_public_context(user, module) | is_context_member(user, module))
                     & is_live_context(user, module)
-                    & phase_allows_view_support(module, item_class)
+                    & (
+                        phase_allows_view_support(module, item_class)
+                        | (
+                            module.module_has_finished
+                            and not module.has_feature("vote", item_class)
+                        )
+                    )
                 )
             )
         return False

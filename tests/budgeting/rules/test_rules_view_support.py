@@ -268,6 +268,40 @@ def test_phase_active_project_draft(
 
 
 @pytest.mark.django_db
+def test_post_voting_phase(
+    phase_factory, proposal_factory, user, admin, user_factory, group_factory
+):
+    phase, module, project, item = setup_phase(
+        phase_factory,
+        proposal_factory,
+        phases.SupportPhase,
+    )
+    voting_phase = phase_factory(
+        phase_content=phases.VotingPhase(),
+        module=module,
+        start_date=phase.end_date + timedelta(hours=2),
+        end_date=phase.end_date + timedelta(hours=3),
+    )
+    anonymous, moderator, initiator = setup_users(project)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
+
+    with freeze_post_phase(voting_phase):
+        assert not rules.has_perm(perm_name, anonymous, module)
+        assert not rules.has_perm(perm_name, user, module)
+        assert not rules.has_perm(perm_name, group_member_out, module)
+        assert not rules.has_perm(perm_name, group_member_in_org, module)
+        assert rules.has_perm(perm_name, group_member_in_pro, module)
+        assert rules.has_perm(perm_name, moderator, module)
+        assert rules.has_perm(perm_name, initiator, module)
+        assert rules.has_perm(perm_name, admin, module)
+
+
+@pytest.mark.django_db
 def test_post_voting_phase_project_archived(
     phase_factory, proposal_factory, user, admin, user_factory, group_factory
 ):
@@ -297,6 +331,34 @@ def test_post_voting_phase_project_archived(
         assert not rules.has_perm(perm_name, user, module)
         assert not rules.has_perm(perm_name, group_member_out, module)
         assert not rules.has_perm(perm_name, group_member_in_org, module)
+        assert rules.has_perm(perm_name, group_member_in_pro, module)
+        assert rules.has_perm(perm_name, moderator, module)
+        assert rules.has_perm(perm_name, initiator, module)
+        assert rules.has_perm(perm_name, admin, module)
+
+
+@pytest.mark.django_db
+def test_module_finished_no_voting_phase(
+    phase_factory, proposal_factory, user, admin, user_factory, group_factory
+):
+    phase, module, project, item = setup_phase(
+        phase_factory,
+        proposal_factory,
+        phases.RequestSupportPhase,
+    )
+    anonymous, moderator, initiator = setup_users(project)
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
+
+    with freeze_post_phase(phase):
+        assert rules.has_perm(perm_name, anonymous, module)
+        assert rules.has_perm(perm_name, user, module)
+        assert rules.has_perm(perm_name, group_member_out, module)
+        assert rules.has_perm(perm_name, group_member_in_org, module)
         assert rules.has_perm(perm_name, group_member_in_pro, module)
         assert rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)
