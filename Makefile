@@ -9,12 +9,24 @@ ifneq (, $(shell command -v gsed;))
 	SED = gsed
 endif
 
-START_NOW = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
-END_NOW = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+30 days")
-START_2 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+31 days")
-END_2 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+61 days")
-START_3 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+62 days")
-END_3 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+92 days")
+# checks the OS uname respones (mac will respond with Darwin)
+OS := $(shell uname)
+
+	START_NOW := $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+ifeq ($(OS),Darwin)
+	END_NOW = $(shell date -u -v+30d +"%Y-%m-%dT%H:%M:%SZ")
+	START_2 = $(shell date -u -v+30d +"%Y-%m-%dT%H:%M:%SZ")
+	END_2 = $(shell date -u -v+30d +"%Y-%m-%dT%H:%M:%SZ")
+	START_3 = $(shell date -u -v+30d +"%Y-%m-%dT%H:%M:%SZ")
+	END_3 = $(shell date -u -v+30d +"%Y-%m-%dT%H:%M:%SZ")
+else
+	END_NOW = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+30 days")
+	START_2 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+31 days")
+	END_2 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+61 days")
+	START_3 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+62 days")
+	END_3 = $(shell date -u +"%Y-%m-%dT%H:%M:%SZ" -d "+92 days")
+endif
 
 .PHONY: all
 all: help
