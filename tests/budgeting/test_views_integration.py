@@ -562,3 +562,67 @@ def test_moderate_view_same_creator_contact(
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [item.contact_email]
         assert mail.outbox[0].subject.startswith("Rückmeldung")
+
+
+@pytest.mark.django_db
+def test_proposal_dashboard_export_view(
+    client, project, module_factory, phase_factory, user
+):
+    module_pb = module_factory(project=project, blueprint_type="PB")
+    phase_factory(phase_content=phases.RequestSupportPhase(), module=module_pb)
+    module_pb2 = module_factory(project=project, blueprint_type="PB2")
+    module_pb2_rate = module_factory(project=project, blueprint_type="PB2")
+    phase_factory(phase_content=phases.RatingPhase(), module=module_pb2_rate)
+    phase_factory(phase_content=phases.SupportPhase(), module=module_pb2)
+    module_pb3 = module_factory(project=project, blueprint_type="PB3")
+    phase_factory(phase_content=phases.VotingPhase(), module=module_pb3)
+
+    organisation = project.organisation
+    initiator = organisation.initiators.first()
+
+    url = reverse(
+        "a4dashboard:budgeting-export-module", kwargs={"module_slug": module_pb.slug}
+    )
+
+    client.login(username=user.email, password="password")
+    response = client.get(url)
+    assert response.status_code == 403
+    client.login(username=initiator.email, password="password")
+    response = client.get(url)
+    assert response.status_code == 200
+    assert "export" in response.context
+    assert response.context["export"] == reverse(
+        "a4dashboard:budgeting-export", kwargs={"module_slug": module_pb.slug}
+    )
+
+    url = reverse(
+        "a4dashboard:budgeting-export-module", kwargs={"module_slug": module_pb2.slug}
+    )
+    response = client.get(url)
+    assert response.status_code == 200
+    assert "export" in response.context
+    assert response.context["export"] == reverse(
+        "a4dashboard:budgeting-export", kwargs={"module_slug": module_pb2.slug}
+    )
+
+    url = reverse(
+        "a4dashboard:budgeting-export-module",
+        kwargs={"module_slug": module_pb2_rate.slug},
+    )
+    response = client.get(url)
+    assert response.status_code == 200
+    assert "export" in response.context
+    assert response.context["export"] == reverse(
+        "a4dashboard:budgeting-export-with-rates",
+        kwargs={"module_slug": module_pb2_rate.slug},
+    )
+
+    url = reverse(
+        "a4dashboard:budgeting-export-module", kwargs={"module_slug": module_pb3.slug}
+    )
+    response = client.get(url)
+    assert response.status_code == 200
+    assert "export" in response.context
+    assert response.context["export"] == reverse(
+        "a4dashboard:3-phase-budgeting-export", kwargs={"module_slug": module_pb3.slug}
+    )

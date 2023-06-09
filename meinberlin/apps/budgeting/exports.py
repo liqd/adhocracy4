@@ -10,12 +10,11 @@ from adhocracy4.ratings.models import Rating
 from . import models
 
 
-class ProposalExportView(
+class BaseProposalExportView(
     PermissionRequiredMixin,
     mixins.ItemExportWithReferenceNumberMixin,
     mixins.ItemExportWithLinkMixin,
     mixins.ExportModelFieldsMixin,
-    mixins.ItemExportWithRatesMixin,
     mixins.ItemExportWithCategoriesMixin,
     mixins.ItemExportWithLabelsMixin,
     mixins.ItemExportWithCommentCountMixin,
@@ -52,6 +51,42 @@ class ProposalExportView(
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
+
+
+class ItemExportWithSupportMixin(mixins.base.VirtualFieldMixin):
+    """
+    Adds support (i.e. positive rating) count to an item.
+
+    Used in participatory 3 phase budgeting.
+    """
+
+    def get_virtual_fields(self, virtual):
+        if "support" not in virtual:
+            virtual["support"] = _("Support")
+        return super().get_virtual_fields(virtual)
+
+    def get_support_data(self, item):
+        if hasattr(item, "positive_rating_count"):
+            return item.positive_rating_count
+        if hasattr(item, "ratings"):
+            return self._count_ratings(item, Rating.POSITIVE)
+        return 0
+
+    def _count_ratings(self, item, value):
+        ct = ContentType.objects.get_for_model(item)
+        return Rating.objects.filter(
+            content_type=ct, object_pk=item.pk, value=value
+        ).count()
+
+
+class ProposalExportView(BaseProposalExportView, ItemExportWithSupportMixin):
+    pass
+
+
+class ProposalExportWithRatingsView(
+    BaseProposalExportView, mixins.ItemExportWithRatesMixin
+):
+    pass
 
 
 class ProposalCommentExportView(
