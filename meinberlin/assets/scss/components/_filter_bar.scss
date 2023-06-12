@@ -354,10 +354,7 @@ $divider-margin: 1.25rem;
 // to close primary filter on click away
 .outer-handler {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     opacity: 0;
     display: none;
 }

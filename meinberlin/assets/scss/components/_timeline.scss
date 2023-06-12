@@ -1,4 +1,4 @@
-$circle-size: 0.8em;
+$circle-size: 12px;
 
 .timeline {
     font-size: $font-size-sm;
@@ -71,7 +71,7 @@ $circle-size: 0.8em;
     .timeline li {
         display: inline-block;
         margin-right: 5px;
-        margin-bottom: 2.5em + $circle-size;
+        margin-bottom: 40px + $circle-size;
 
         &:before,
         &:first-child:before,
@@ -79,10 +79,8 @@ $circle-size: 0.8em;
             width: auto;
             height: 1px;
 
-            left: -15px;
-            right: -15px;
-            top: auto;
-            bottom: -$circle-size;
+            // stylelint-disable-next-line scss/operator-no-unspaced
+            inset: auto -15px -$circle-size -15px;
         }
 
         &:first-child:before {
@@ -107,7 +105,7 @@ $circle-size: 0.8em;
 
     .timeline__active {
         position: absolute;
-        bottom: (-$circle-size * 1.5 - 1.5em);
+        bottom: (-$circle-size * 1.5 - 24px);
         left: 0;
         right: 0;
         text-align: center;
