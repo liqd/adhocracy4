@@ -14,8 +14,6 @@
     "value-keyword-case": "lower",
     "value-no-vendor-prefix": true,
 
-    "block-opening-brace-newline-after": "always",
-
     "selector-class-pattern": "^([a-z][a-z0-9]*)((-|--|_|__)[a-z0-9]+)*$",
     "selector-attribute-quotes": "always",
     "selector-max-id": 0,
@@ -26,7 +24,6 @@
 
     "scss/no-global-function-names": null,
 
-    "no-extra-semicolons": true,
     "scss/dollar-variable-pattern": "^([a-z][a-z0-9]*)((-|--|_|__)[a-z0-9]+)*$",
     "declaration-colon-newline-after": null,
     "scss/at-extend-no-missing-placeholder": null,
@@ -49,7 +46,6 @@
       ]
     }],
 
-    "indentation": 4,
     "max-nesting-depth": 2,
 
     "scale-unlimited/declaration-strict-value": ["/color/", {
