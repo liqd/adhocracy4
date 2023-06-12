@@ -108,8 +108,8 @@
     "pk": 9,
     "fields": {
       "name": "What ideas do you suggest for funding?",
-      "description": "You can enter your proposal on the map and comment on and rate the proposals of the other participants.",
-      "type": "meinberlin_budgeting:submit",
+      "description": "You can enter your proposal on the map and comment on and support the proposals of the other participants.",
+      "type": "meinberlin_budgeting:submit_support",
       "module": 7,
       "start_date": "2022-12-31T23:00:00Z",
       "end_date": "2023-01-31T22:59:00Z",
@@ -134,8 +134,8 @@
     "pk": 11,
     "fields": {
       "name": "How do you like the submitted proposals?",
-      "description": "Rate the submitted proposals for the participatory budget (for/against).",
-      "type": "meinberlin_budgeting:rating",
+      "description": "The proposals with the most supporters will be examined and will then be put to the final vote.",
+      "type": "meinberlin_budgeting:support",
       "module": 8,
       "start_date": "2023-01-31T23:00:00Z",
       "end_date": "2023-02-28T22:59:00Z",
@@ -160,8 +160,8 @@
     "pk": 13,
     "fields": {
       "name": "How do you like the submitted proposals?",
-      "description": "Rate the submitted proposals for the participatory budget (for/against).",
-      "type": "meinberlin_budgeting:rating",
+      "description": "The proposals with the most supporters will be examined and will then be put to the final vote.",
+      "type": "meinberlin_budgeting:support",
       "module": 9,
       "start_date": "2022-12-31T23:00:00Z",
       "end_date": "2023-01-31T22:59:00Z",
