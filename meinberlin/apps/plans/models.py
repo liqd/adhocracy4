@@ -10,6 +10,7 @@ from adhocracy4 import transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images.fields import ConfiguredImageField
+from adhocracy4.images.fields import ImageAltTextField
 from adhocracy4.images.fields import ImageCopyrightField
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
@@ -21,7 +22,6 @@ from adhocracy4.projects.models import ProjectContactDetailMixin
 
 
 class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
-
     PARTICIPATION_INFORMATION = 0
     PARTICIPATION_CONSULTATION = 1
     PARTICIPATION_COOPERATION = 2
@@ -108,14 +108,15 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
             "URLs, among other things."
         ),
     )
-    description_image = ConfiguredImageField(
+    image = ConfiguredImageField(
         "plan_image",
         verbose_name=_("Header image"),
         upload_to="plan/description_image",
         blank=True,
         help_prefix=_("Visualize your plan with an image underneath the description."),
     )
-    description_image_copyright = models.CharField(
+    image_alt_text = ImageAltTextField(image_name=_("Header image"))
+    image_copyright = models.CharField(
         verbose_name=_("Header image copyright"),
         blank=True,
         max_length=120,
@@ -128,6 +129,7 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
         upload_to="plan/tile_images",
         blank=True,
     )
+    tile_image_alt_text = ImageAltTextField(image_name=_("Tile image"))
     tile_image_copyright = ImageCopyrightField(
         verbose_name=_("Tile image copyright"),
         help_text=_("The name is displayed in the tile image."),

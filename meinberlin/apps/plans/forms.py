@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard.components.forms import ProjectDashboardForm
+from adhocracy4.images.mixins import ImageMetadataMixin
 from adhocracy4.maps import widgets as maps_widgets
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib.widgets import Select2Widget
@@ -10,13 +11,14 @@ from meinberlin.apps.contrib.widgets import Select2Widget
 from . import models
 
 
-class PlanForm(forms.ModelForm):
+class PlanForm(ImageMetadataMixin, forms.ModelForm):
     class Meta:
         model = models.Plan
         fields = [
             "title",
-            "description_image",
-            "description_image_copyright",
+            "image",
+            "image_alt_text",
+            "image_copyright",
             "point",
             "point_label",
             "district",
@@ -33,6 +35,7 @@ class PlanForm(forms.ModelForm):
             "participation_explanation",
             "duration",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
         ]
         widgets = {
@@ -59,7 +62,6 @@ class PlanForm(forms.ModelForm):
 
 
 class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
-
     widget = forms.Select
 
     def clean(self, value):

@@ -18,6 +18,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     organisation = serializers.SerializerMethodField()
     created_or_modified = serializers.SerializerMethodField()
     tile_image = serializers.SerializerMethodField()
+    tile_image_alt_text = serializers.SerializerMethodField()
     tile_image_copyright = serializers.SerializerMethodField()
 
     class Meta:
@@ -40,6 +41,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
             "published_projects_count",
             "created_or_modified",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
         ]
 
@@ -77,15 +79,23 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
         if instance.tile_image:
             image = get_thumbnailer(instance.tile_image)["project_tile"]
             image_url = image.url
-        elif instance.description_image:
-            image = get_thumbnailer(instance.description_image)["project_tile"]
+        elif instance.image:
+            image = get_thumbnailer(instance.image)["project_tile"]
             image_url = image.url
         return image_url
+
+    def get_tile_image_alt_text(self, instance):
+        if instance.tile_image:
+            return instance.tile_image_alt_text
+        elif instance.image_alt_text:
+            return instance.image_alt_text
+        else:
+            return None
 
     def get_tile_image_copyright(self, instance):
         if instance.tile_image:
             return instance.tile_image_copyright
-        elif instance.description_image_copyright:
-            return instance.description_image_copyright
+        elif instance.image_copyright:
+            return instance.image_copyright
         else:
             return None

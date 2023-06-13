@@ -27,8 +27,9 @@
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.participation %}
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.participation_explanation %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description_image %}
-    {% include 'a4forms/includes/form_field.html' with field=form.description_image_copyright %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
+    {% include 'a4forms/includes/form_field.html' with field=form.image_alt_text %}
+    {% include 'a4forms/includes/form_field.html' with field=form.image_copyright %}
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
@@ -49,6 +50,8 @@
     </p>
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.tile_image %}
+
+    {% include 'a4forms/includes/form_field.html' with field=form.tile_image_alt_text %}
 
     {% include 'a4forms/includes/form_field.html' with field=form.tile_image_copyright %}
 
