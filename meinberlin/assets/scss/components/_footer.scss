@@ -43,11 +43,11 @@ body {
     }
 
     // found this value by experiment
-    @media (min-width: 386px) {
+    @media (width >= 386px) {
         min-width: 386px;
     }
 
-    @media (min-width: $breakpoint) {
+    @media (width >= $breakpoint) {
         float: left;
     }
 }
