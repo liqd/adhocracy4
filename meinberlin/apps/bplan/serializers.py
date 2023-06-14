@@ -42,6 +42,16 @@ class BplanSerializer(serializers.ModelSerializer):
         required=False,
         write_only=True,
     )
+    # can't use a4 field as must be serilizer field
+    image_alt_text = serializers.CharField(
+        required=False,
+        write_only=True,
+        allow_blank=True,
+        source="tile_image_alt_text",
+        max_length=(
+            project_models.Project._meta.get_field("tile_image_alt_text").max_length
+        ),
+    )
     image_copyright = serializers.CharField(
         required=False,
         write_only=True,
@@ -66,6 +76,7 @@ class BplanSerializer(serializers.ModelSerializer):
             "start_date",
             "end_date",
             "image_url",
+            "image_alt_text",
             "image_copyright",
             "embed_code",
         )

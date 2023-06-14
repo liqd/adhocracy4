@@ -15,7 +15,7 @@ class StatementForm(forms.ModelForm):
 class BplanProjectCreateForm(ExternalProjectCreateForm):
     class Meta:
         model = models.Bplan
-        fields = ["name", "description", "tile_image", "tile_image_copyright"]
+        fields = ["name", "description", "tile_image", "tile_image_alt_text", "tile_image_copyright"]
 
 
 class BplanProjectForm(ExternalProjectForm):
@@ -27,6 +27,7 @@ class BplanProjectForm(ExternalProjectForm):
             "url",
             "description",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
             "is_archived",
             "office_worker_email",
