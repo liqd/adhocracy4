@@ -10,6 +10,7 @@ class ProjectContainerAdmin(admin.ModelAdmin):
         "organisation",
         "description",
         "tile_image",
+        "tile_image_alt_text",
         "tile_image_copyright",
         "is_draft",
         "is_archived",

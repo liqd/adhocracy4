@@ -33,7 +33,7 @@ HELP_TEXTS = {
 class ContainerCreateForm(ProjectCreateForm):
     class Meta:
         model = models.ProjectContainer
-        fields = ["name", "description", "tile_image", "tile_image_copyright"]
+        fields = ["name", "description", "tile_image", "tile_image_alt_text", "tile_image_copyright"]
         labels = LABELS
         help_texts = HELP_TEXTS
 
@@ -45,6 +45,7 @@ class ContainerBasicForm(ProjectDashboardForm):
             "name",
             "description",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
             "is_archived",
         ]
