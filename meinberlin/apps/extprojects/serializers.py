@@ -12,6 +12,7 @@ class ExternalProjectSerializer(ProjectSerializer):
             "url",
             "organisation",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
             "point",
             "point_label",

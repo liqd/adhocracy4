@@ -11,6 +11,7 @@ class ExternalProjectAdmin(admin.ModelAdmin):
         "description",
         "is_draft",
         "tile_image",
+        "tile_image_alt_text",
         "tile_image_copyright",
         "is_archived",
     )

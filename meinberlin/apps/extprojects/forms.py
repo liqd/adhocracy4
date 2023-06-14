@@ -10,11 +10,16 @@ from meinberlin.apps.extprojects import models as extproject_models
 class ExternalProjectCreateForm(ProjectCreateForm):
     class Meta:
         model = extproject_models.ExternalProject
-        fields = ["name", "description", "tile_image", "tile_image_copyright"]
+        fields = [
+            "name",
+            "description",
+            "tile_image",
+            "tile_image_alt_text",
+            "tile_image_copyright",
+        ]
 
 
 class ExternalProjectForm(ProjectDashboardForm):
-
     start_date = DateTimeField(
         time_format="%H:%M",
         required=False,
@@ -35,6 +40,7 @@ class ExternalProjectForm(ProjectDashboardForm):
             "url",
             "description",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
             "is_archived",
             "start_date",
