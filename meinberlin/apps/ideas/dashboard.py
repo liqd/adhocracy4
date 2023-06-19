@@ -80,5 +80,34 @@ class ModuleCategoriesComponent(DashboardComponent):
         ]
 
 
+class ModuleLabelsComponent(DashboardComponent):
+    identifier = "labels"
+    weight = 14
+    label = _("Labels")
+
+    def is_effective(self, module):
+        module_app = module.phases[0].content().app
+        for app, name in settings.A4_LABELS_ADDABLE:
+            if app == module_app:
+                return True
+        return False
+
+    def get_base_url(self, module):
+        return reverse(
+            "a4dashboard:dashboard-labels-edit",
+            kwargs={"module_slug": module.slug},
+        )
+
+    def get_urls(self):
+        return [
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/labels/$",
+                views.DashboardLabelsWithAliasView.as_view(component=self),
+                "dashboard-labels-edit",
+            )
+        ]
+
+
 components.register_module(ExportIdeaComponent())
 components.replace_module(ModuleCategoriesComponent())
+components.replace_module(ModuleLabelsComponent())

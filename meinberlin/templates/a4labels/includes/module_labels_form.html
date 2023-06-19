@@ -1,23 +1,57 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n %}
 
-<p class="form-hint">{% blocktranslate %}If you define labels, participants can assign their ideas accordingly (multiple choice, not obligatory). Labels automatically appear in the display of ideas. The list of all ideas can be filtered by labels.{% endblocktranslate %}</p>
 
-<div class="js-formset category-formset"
-     data-prefix="{{ form.prefix }}">
-    {{ form.management_form }}
+{% block dashboard_project_content %}
+<h1 class="u-first-heading">{% translate 'Edit labels' %}</h1>
 
-    {% for label_form in form %}
-        {% include 'a4forms/includes/inline_form.html' with form=label_form can_delete=form.can_delete %}
+{% if form.non_field_errors %}
+    <ul class="errorlist" aria-live="assertive" aria-atomic="true">
+    {% for error in form.non_field_errors %}
+        <li>{{ error|escape }}</li>
     {% endfor %}
-    <div class="js-form-template category-formset__template">
-        {% include 'a4forms/includes/inline_form.html' with form=form.empty_form can_delete=form.can_delete %}
-    </div>
+    </ul>
+{% endif %}
 
-    <div class="category-formset__btn">
-        <button class="btn btn--secondary btn--small btn--full u-spacer-bottom js-add-form" type="button">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            {% translate 'Add label' %}
-        </button>
-    </div>
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    {% csrf_token %}
 
-</div>
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.title %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+
+    <p class="form-hint">{% blocktranslate %}If you define labels, participants can assign their ideas accordingly (multiple choice, not obligatory). Labels automatically appear in the display of ideas. The list of all ideas can be filtered by labels.{% endblocktranslate %}</p>
+
+    <div class="js-formset category-formset"
+     data-prefix="{{ formset.prefix }}">
+        {{ formset.management_form }}
+
+        {% for label_form in formset %}
+            {% include 'a4forms/includes/inline_form.html' with form=label_form can_delete=formset.can_delete %}
+        {% endfor %}
+        <div class="js-form-template category-formset__template">
+            {% include 'a4forms/includes/inline_form.html' with form=formset.empty_form can_delete=formset.can_delete %}
+        </div>
+
+        <div class="category-formset__btn">
+            <button class="btn btn--secondary btn--small btn--full u-spacer-bottom js-add-form" type="button">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                {% translate 'Add label' %}
+            </button>
+        </div>
+    </div>
+    <div class="u-spacer-bottom">
+        <input type="submit" class="btn btn--primary" value="{% translate 'Save'%}" />
+    </div>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    {{ form.media.js }}
+    {{ label_form.media.js }}
+{% endblock %}
+{% block extra_css %}
+    {{ form.media.css }}
+    {{ label_form.media.css }}
+{% endblock %}

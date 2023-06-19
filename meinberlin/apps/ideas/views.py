@@ -14,6 +14,8 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.labels import filters as label_filters
+from adhocracy4.labels import forms as label_forms
+from adhocracy4.labels import models as label_models
 from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
@@ -294,6 +296,45 @@ class DashboardCategoriesWithAliasView(
         else:
             context["formset"] = category_forms.CategoryFormSet(instance=self.module)
         context["category_form"] = category_forms.CategoryForm(module=self.module)
+        return context
+
+    def form_valid(self, form):
+        form.instance.module = self.module
+        context = self.get_context_data()
+        formset = context["formset"]
+        with transaction.atomic():
+            if formset.is_valid():
+                formset.instance = self.module
+                formset.save()
+        return super().form_valid(form)
+
+
+class DashboardLabelsWithAliasView(
+    ProjectMixin,
+    a4dashboard_mixins.DashboardBaseMixin,
+    a4dashboard_mixins.DashboardComponentMixin,
+    generic.UpdateView,
+):
+    model = label_models.LabelAlias
+    template_name = "a4labels/includes/module_labels_form.html"
+    form_class = label_forms.LabelAliasForm
+    permission_required = "a4projects.change_project"
+
+    def get_permission_object(self):
+        return self.project
+
+    def get_object(self):
+        return label_models.LabelAlias.objects.filter(module=self.module).first()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context["formset"] = label_forms.LabelsFormSet(
+                self.request.POST, instance=self.module
+            )
+        else:
+            context["formset"] = label_forms.LabelsFormSet(instance=self.module)
+        context["label_form"] = label_forms.LabelForm(module=self.module)
         return context
 
     def form_valid(self, form):
