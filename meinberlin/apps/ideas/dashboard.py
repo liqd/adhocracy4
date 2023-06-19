@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -51,4 +52,33 @@ class ExportIdeaComponent(DashboardComponent):
         ]
 
 
+class ModuleCategoriesComponent(DashboardComponent):
+    identifier = "categories"
+    weight = 13
+    label = _("Categories")
+
+    def is_effective(self, module):
+        module_app = module.phases[0].content().app
+        for app, name in settings.A4_CATEGORIZABLE:
+            if app == module_app:
+                return True
+        return False
+
+    def get_base_url(self, module):
+        return reverse(
+            "a4dashboard:dashboard-categories-edit",
+            kwargs={"module_slug": module.slug},
+        )
+
+    def get_urls(self):
+        return [
+            (
+                r"^modules/(?P<module_slug>[-\w_]+)/categories/$",
+                views.DashboardCategoriesWithAliasView.as_view(component=self),
+                "dashboard-categories-edit",
+            )
+        ]
+
+
 components.register_module(ExportIdeaComponent())
+components.replace_module(ModuleCategoriesComponent())

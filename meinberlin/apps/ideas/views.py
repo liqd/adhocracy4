@@ -5,6 +5,9 @@ from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
 from adhocracy4.categories import filters as category_filters
+from adhocracy4.categories import forms as category_forms
+from adhocracy4.categories import models as category_models
+from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.exports.views import DashboardExportView
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
@@ -263,3 +266,42 @@ class IdeaDashboardExportView(DashboardExportView):
             "a4dashboard:idea-comment-export", kwargs={"module_slug": self.module.slug}
         )
         return context
+
+
+class DashboardCategoriesWithAliasView(
+    ProjectMixin,
+    a4dashboard_mixins.DashboardBaseMixin,
+    a4dashboard_mixins.DashboardComponentMixin,
+    generic.UpdateView,
+):
+    model = category_models.CategoryAlias
+    template_name = "a4categories/includes/module_categories_form.html"
+    form_class = category_forms.CategoryAliasForm
+    permission_required = "a4projects.change_project"
+
+    def get_permission_object(self):
+        return self.project
+
+    def get_object(self):
+        return category_models.CategoryAlias.objects.filter(module=self.module).first()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context["formset"] = category_forms.CategoryFormSet(
+                self.request.POST, instance=self.module
+            )
+        else:
+            context["formset"] = category_forms.CategoryFormSet(instance=self.module)
+        context["category_form"] = category_forms.CategoryForm(module=self.module)
+        return context
+
+    def form_valid(self, form):
+        form.instance.module = self.module
+        context = self.get_context_data()
+        formset = context["formset"]
+        with transaction.atomic():
+            if formset.is_valid():
+                formset.instance = self.module
+                formset.save()
+        return super().form_valid(form)
