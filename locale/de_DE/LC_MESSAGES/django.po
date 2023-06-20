@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-20 14:43+0200\n"
-"PO-Revision-Date: 2023-03-03 12:42+0000\n"
-"Last-Translator: SandisStudi <s.uscins@liqd.net>\n"
-"Language-Team: German <https://trans.liqd.net/projects/meinberlin/main/de/>\n"
+"PO-Revision-Date: 2023-06-20 17:32+0000\n"
+"Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16\n"
+"X-Generator: Weblate 4.17\n"
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
@@ -456,13 +457,15 @@ msgstr "Kategorieicon"
 
 #: adhocracy4/categories/models.py:36
 msgid "Type of category"
-msgstr ""
+msgstr "Art der Kategorie"
 
 #: adhocracy4/categories/models.py:38
 msgid ""
 "You can individualise the term category. The character limit is max. 25 "
 "characters (with spaces)."
 msgstr ""
+"Sie können die Begriffsbezeichnung für Kategorie individuell gestalten. Die "
+"Zeichenbegrenzung liegt bei maximal 25 Zeichen (mit Leerzeichen)."
 
 #: adhocracy4/categories/models.py:46
 #: meinberlin/apps/budgeting/forms.py:45
@@ -478,7 +481,7 @@ msgstr ""
 #: adhocracy4/categories/models.py:52
 #: adhocracy4/labels/models.py:29
 msgid "Description/Helptext"
-msgstr ""
+msgstr "Beschreibung/Hilfstext"
 
 #: adhocracy4/categories/models.py:54
 #: adhocracy4/labels/models.py:31
@@ -487,6 +490,10 @@ msgid ""
 "displayed to the participants as help text when they have to assign their "
 "ideas. The character limit is max. 300 characters (with spaces)."
 msgstr ""
+"Sie können den Beschreibungstext individuell gestalten. Der "
+"Beschreibungstext wird den Teilnehmenden als Hilfstext angezeigt, wenn sie "
+"ihre Ideen zuordnen müssen. Die Zeichenbegrenzung liegt bei maximal 300 "
+"Zeichen (mit Leerzeichen)."
 
 #: adhocracy4/comments/models.py:47
 #: adhocracy4/polls/exports.py:40
@@ -894,13 +901,15 @@ msgstr "Merkmal"
 
 #: adhocracy4/labels/models.py:12
 msgid "Type of label"
-msgstr ""
+msgstr "Art des Merkmals"
 
 #: adhocracy4/labels/models.py:14
 msgid ""
 "You can individualise the term label. The character limit is max. 25 "
 "characters (with spaces)."
 msgstr ""
+"Sie können die Begriffsbezeichnung für Merkmal individuell gestalten. Die "
+"Zeichenbegrenzung liegt bei maximal 25 Zeichen (mit Leerzeichen)."
 
 #: adhocracy4/labels/models.py:22
 #: meinberlin/apps/budgeting/forms.py:51
@@ -2020,6 +2029,8 @@ msgid ""
 "You can enter your proposal on the map and comment on and support the "
 "proposals of the other participants."
 msgstr ""
+"Sie können Ihren Vorschlag auf der Karte eintragen und die Vorschläge der "
+"anderen Teilnehmer*innen kommentieren und unterstützen."
 
 #: meinberlin/apps/budgeting/phases.py:55
 msgid ""
@@ -2529,7 +2540,7 @@ msgstr "Brainstorming"
 msgid ""
 "Participants can submit their own ideas and discuss the ideas of others."
 msgstr ""
-"Die Teilnehmenden können eigene Ideen anlegen und die Ideen Anderer "
+"Die Teilnehmenden können eigene Ideen anlegen und die Ideen anderer "
 "diskutieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:34
@@ -2542,7 +2553,7 @@ msgid ""
 "also discuss the ideas of others."
 msgstr ""
 "Die Teilnehmenden können eigene Ideen auf einer Karte eintragen und die "
-"Ideen Anderer diskutieren."
+"Ideen anderer diskutieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:50
 msgid "Idea Collection"
@@ -2553,7 +2564,7 @@ msgid ""
 "Participants can submit their own ideas and discuss and rate (pro/contra) "
 "the ideas of others."
 msgstr ""
-"Die Teilnehmenden können eigene Ideen anlegen und die Ideen Anderer "
+"Die Teilnehmenden können eigene Ideen anlegen und die Ideen anderer "
 "diskutieren und bewerten (dafür/dagegen)."
 
 #: meinberlin/apps/dashboard/blueprints.py:66
@@ -2566,7 +2577,7 @@ msgid ""
 "also discuss and rate (pro/contra) the ideas of others."
 msgstr ""
 "Die Teilnehmenden können eigene Ideen auf einer Karte eintragen und die "
-"Ideen Anderer diskutieren und bewerten (dafür/dagegen)."
+"Ideen anderer diskutieren und bewerten (dafür/dagegen)."
 
 #: meinberlin/apps/dashboard/blueprints.py:83
 msgid "Participatory budgeting (1 phase)"
@@ -2577,6 +2588,9 @@ msgid ""
 "Participants can submit their own proposals, mark them on a map, and add a "
 "budget. The proposals of others can be discussed and supported."
 msgstr ""
+"Die Teilnehmenden können eigene Vorschläge auf einer Karte eintragen und mit "
+"einem Budget versehen. Die Vorschläge anderer können diskutiert und "
+"unterstützt werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:98
 msgid "Participatory budgeting (2 phase)"
@@ -2588,6 +2602,9 @@ msgid ""
 "a map, and add a budget. The proposals of others can be discussed and in a "
 "second phase supported."
 msgstr ""
+"Die Teilnehmenden können in einer ersten Phase eigene Vorschläge auf einer "
+"Karte eintragen und mit einem Budget versehen. Die Vorschläge anderer können "
+"diskutiert und in einer zweiten Phase unterstützt werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:116
 msgid "Participatory budgeting (3 phase)"
@@ -2601,7 +2618,7 @@ msgid ""
 "vote on the shortlisted proposals.  "
 msgstr ""
 "Die Teilnehmenden können in einer ersten Phase eigene Vorschläge auf einer "
-"Karte eintragen und mit einem Budget versehen. Die Vorschläge Anderer können "
+"Karte eintragen und mit einem Budget versehen. Die Vorschläge anderer können "
 "diskutiert werden. In einer zweiten Phase können Vorschläge unterstützt "
 "werden. In der dritten Phase stimmen die Teilnehmenden über die Vorschläge "
 "in der engeren Auswahl ab.  "
@@ -2619,8 +2636,8 @@ msgid ""
 msgstr ""
 "Die Teilnehmenden können eigene Vorschläge auf einer Karte eintragen, mit "
 "einem Budget versehen und ihr Interesse bekunden, an der Projektumsetzung "
-"mitzuwirken. Die Ideen Anderer können diskutiert und bewertet (dafür/"
-"dagegen) werden."
+"mitzuwirken. Die Ideen anderer können diskutiert und bewertet (dafür/dagegen)"
+" werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:156
 msgid "Prioritization"
@@ -5089,9 +5106,10 @@ msgid ""
 "of ideas. In addition, the list of all ideas can be filtered by category."
 msgstr ""
 "Wenn Sie Kategorien definieren, müssen die Teilnehmer:innen ihre Ideen "
-"entsprechend zuordnen (Single-Choice, verpflichtend). Kategorien erscheinen "
-"automatisch in der Darstellung der Ideen. Außerdem kann die Liste aller "
-"Ideen nach Kategorien gefiltert werden."
+"entsprechend zuordnen (Single-Choice, verpflichtend). Sie müssen mindestens "
+"eine Kategorie hinzufügen, damit Kategorien automatisch in der Anzeige der "
+"Ideen erscheinen. Die Liste aller Ideen kann nach Kategorien gefiltert "
+"werden."
 
 #: meinberlin/templates/a4dashboard/base_dashboard.html:17
 msgid "Organisations"
@@ -5307,10 +5325,10 @@ msgid ""
 "(multiple choice, not obligatory). Labels automatically appear in the "
 "display of ideas. The list of all ideas can be filtered by labels."
 msgstr ""
-"Wenn Sie Merkmale definieren, können die Teilnehmer:innen ihre Ideen "
-"entsprechend zuordnen (Multiple-Choice, nicht verpflichtend). Merkmale "
-"erscheinen automatisch in der Darstellung der Ideen. Die Liste aller Ideen "
-"kann nach Merkmalen gefiltert werden."
+"Wenn Sie Merkmal hinzufügen, können Teilnehmende ihre Ideen entsprechend "
+"zuordnen (Mehrfachauswahl, nicht obligatorisch). Sie müssen mindestens ein "
+"Merkmal hinzufügen, damit Merkmale automatisch in der Anzeige der Ideen "
+"erscheinen. Die Liste aller Ideen kann nach Merkmalen gefiltert werden."
 
 #: meinberlin/templates/a4modules/includes/module_detail_phase.html:18
 msgid ""
