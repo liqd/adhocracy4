@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-03 13:24+0100\n"
+"POT-Creation-Date: 2023-06-20 14:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,8 +210,8 @@ msgid "Delete comment"
 msgstr "Delete comment"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:35
-msgid "Blocked by moderator on"
-msgstr "Blocked by moderator on"
+msgid "Blocked by moderator"
+msgstr "Blocked by moderator"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:38
 msgid "hide replies"
