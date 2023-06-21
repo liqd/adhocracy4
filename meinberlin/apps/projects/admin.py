@@ -76,6 +76,7 @@ class ProjectAdmin(admin.ModelAdmin):
                     "image",
                     "image_copyright",
                     "tile_image",
+                    "tile_image_alt_text",
                     "tile_image_copyright",
                 ),
             },

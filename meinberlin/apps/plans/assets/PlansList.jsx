@@ -63,12 +63,14 @@ class LazyBackground extends React.Component {
     return (
       <div
         ref={(el) => (this.lazyBackground = el)}
-        className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'} style={{
+        className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'}
+        style={{
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundImage: this.state.source ? 'url(' + this.state.source + ')' : 'none'
         }}
-        alt=""
+        role={this.props.item.tile_image_alt_text ? 'img' : null}
+        aria-label={this.props.item.tile_image_alt_text}
       >
         {!this.props.isHorizontal && this.props.renderTopics(this.props.item)}
         {this.props.item.tile_image_copyright &&

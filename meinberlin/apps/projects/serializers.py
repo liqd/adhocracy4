@@ -56,6 +56,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     active_phase = serializers.SerializerMethodField()
     past_phase = serializers.SerializerMethodField()
     tile_image = serializers.SerializerMethodField()
+    tile_image_alt_text = serializers.SerializerMethodField()
     tile_image_copyright = serializers.SerializerMethodField()
     plan_url = serializers.SerializerMethodField()
     plan_title = serializers.SerializerMethodField()
@@ -75,6 +76,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             "url",
             "organisation",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
             "point",
             "point_label",
@@ -159,6 +161,14 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             image = get_thumbnailer(instance.image)["project_tile"]
             image_url = image.url
         return image_url
+
+    def get_tile_image_alt_text(self, instance):
+        if instance.tile_image:
+            return instance.tile_image_alt_text
+        elif instance.image:
+            return instance.image_alt_text
+        else:
+            return None
 
     def get_tile_image_copyright(self, instance):
         if instance.tile_image:
