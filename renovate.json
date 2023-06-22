@@ -26,10 +26,6 @@
         "groupName": "eslint packages"
       },
       {
-        "matchPackageNames": ["mapbox-gl"],
-        "enabled": false
-      },
-      {
         "matchPackageNames": ["Django"],
         "allowedVersions": "/(^3\\.2\\.[0-9]+$)|(^4\\.2\\.[0-9]+$)|(^5\\.2\\.[0-9]+$)/"
       },
