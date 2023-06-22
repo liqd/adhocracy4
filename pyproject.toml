@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adhocracy4"
+authors = [
+    {name = "Liquid Democracy e.V.", email = "info@liqd.net"},
+]
+description = "Adhocracy 4 core library"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["digital participation"]
+license = {text = "AGPL-3"}
+classifiers = [
+    "Framework :: Django",
+    "Programming Language :: Python :: 3",
+    "Development Status :: 5 - Production/Stable",
+]
+dependencies = [
+    "bleach[css]",
+    "Django >= 3.2, < 4.3",
+    "django-allauth",
+    "django-autoslug",
+    "django-background-tasks",
+    "django-ckeditor",
+    "django-enumfield",
+    "django-filter",
+    "django-multiselectfield",
+    "django-widget-tweaks",
+    "djangorestframework >= 3.5",
+    "easy-thumbnails[svg]",
+    "html5lib",
+    "jsonfield",
+    "python-dateutil",
+    "python-magic",
+    "rules",
+    "XlsxWriter",
+]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/liqd/adhocracy4"
+"Bug Tracker" = "https://github.com/liqd/adhocracy4/issues"
+
+[tool.setuptools.packages.find]
+include = ["adhocracy4"]
+
+[tool.setuptools_scm]
+
+[tool.isort]
+profile = "black"
+skip = ["node_modules", "venv"]
+skip_glob = ["*/migrations/*.py"]
+known_first_party = ["adhocracy4", "tests"]
+force_single_line = true

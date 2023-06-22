@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 88
+ignore = D10,E203,E501,W503,W504
+exclude = .git,__pycache__,*/migrations/*,*/settings/*
+
