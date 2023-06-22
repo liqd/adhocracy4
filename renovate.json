@@ -31,7 +31,7 @@
       },
       {
         "matchPackageNames": ["Django"],
-        "allowedVersions": "<3.3"
+        "allowedVersions": "/(^3\\.2\\.[0-9]+$)|(^4\\.2\\.[0-9]+$)|(^5\\.2\\.[0-9]+$)/"
       },
       {
         "matchPackageNames": ["wagtail"],
