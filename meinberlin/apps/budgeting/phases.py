@@ -77,6 +77,20 @@ class RatingPhase(phases.PhaseContent):
     features = {"rate": (models.Proposal,)}
 
 
+class BudgetingTwoSupportPhase(phases.PhaseContent):
+    app = apps.Config.label
+    phase = "support_budgeting_two"
+    view = views.ProposalListView
+
+    name = _("Which of the submitted proposals would you like to support?")
+    description = _(
+        "Support the submitted proposals for the participatory budgeting that you like."
+    )
+    module_name = _("participatory budgeting 2 phases")
+
+    features = {"support": (models.Proposal,)}
+
+
 class SupportPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = "support"
@@ -87,7 +101,7 @@ class SupportPhase(phases.PhaseContent):
         "The proposals with the most supporters will be "
         "examined and will then be put to the final vote."
     )
-    module_name = _("participatory budgeting 2 phases")
+    module_name = _("participatory budgeting 3 phases")
 
     features = {"support": (models.Proposal,)}
 
@@ -110,5 +124,6 @@ phases.content.register(RequestPhase())
 phases.content.register(RequestSupportPhase())
 phases.content.register(CollectPhase())
 phases.content.register(RatingPhase())
+phases.content.register(BudgetingTwoSupportPhase())
 phases.content.register(SupportPhase())
 phases.content.register(VotingPhase())

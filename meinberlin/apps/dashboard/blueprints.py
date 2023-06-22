@@ -103,7 +103,7 @@ blueprints = [
             ),
             content=[
                 budgeting_phases.CollectPhase(),
-                budgeting_phases.SupportPhase(),
+                budgeting_phases.BudgetingTwoSupportPhase(),
             ],
             image="images/participatory-budgeting-2.svg",
             settings_model=("a4maps", "AreaSettings"),
