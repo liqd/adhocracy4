@@ -35,7 +35,7 @@
       },
       {
         "matchPackageNames": ["wagtail"],
-        "allowedVersions": "<4.2"
+        "allowedVersions": "/(^4\\.1(\\.[0-9]+)?$)|(^5\\.2(\\.[0-9]+)?$)/"
       }
     ],
 
