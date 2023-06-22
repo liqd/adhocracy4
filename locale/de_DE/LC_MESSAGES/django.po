@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 14:43+0200\n"
+"POT-Creation-Date: 2023-06-26 09:03+0200\n"
 "PO-Revision-Date: 2023-06-20 17:32+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
-"\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/"
+">\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2042,7 +2042,7 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/phases.py:58
 #: meinberlin/apps/budgeting/phases.py:75
-#: meinberlin/apps/budgeting/phases.py:90
+#: meinberlin/apps/budgeting/phases.py:89
 msgid "participatory budgeting 2 phases"
 msgstr "Bürgerhaushalt 2 Phasen"
 
@@ -2058,10 +2058,17 @@ msgstr ""
 "(dafür/dagegen)."
 
 #: meinberlin/apps/budgeting/phases.py:85
+#: meinberlin/apps/budgeting/phases.py:99
 msgid "Which of the submitted proposals would you like to support?"
 msgstr "Welche der eingereichten Vorschläge möchten Sie unterstützen?"
 
 #: meinberlin/apps/budgeting/phases.py:87
+msgid ""
+"Support the submitted proposals for the participatory budgeting that you "
+"like."
+msgstr ""
+
+#: meinberlin/apps/budgeting/phases.py:101
 msgid ""
 "The proposals with the most supporters will be examined and will then be put "
 "to the final vote."
@@ -2069,20 +2076,21 @@ msgstr ""
 "Die Vorschläge mit den meisten Unterstützer*innen werden geprüft und kommen "
 "anschließend in die finale Abstimmung."
 
-#: meinberlin/apps/budgeting/phases.py:100
+#: meinberlin/apps/budgeting/phases.py:104
+#: meinberlin/apps/budgeting/phases.py:118
+msgid "participatory budgeting 3 phases"
+msgstr "Bürger*innenhaushalt (3 Phasen)"
+
+#: meinberlin/apps/budgeting/phases.py:114
 msgid "Which of the proposals do you think should be implemented?"
 msgstr "Welche der Vorschläge sollen Ihrer Meinung nach umgesetzt werden?"
 
-#: meinberlin/apps/budgeting/phases.py:102
+#: meinberlin/apps/budgeting/phases.py:116
 msgid ""
 "You can vote for up to 5 proposals. To do so, please enter the voting code."
 msgstr ""
 "Sie können bis zu 5 Vorschlägen Ihre Stimme geben. Tragen Sie hierzu bitte "
 "den Abstimmungscode ein."
-
-#: meinberlin/apps/budgeting/phases.py:104
-msgid "participatory budgeting 3 phases"
-msgstr "Bürger*innenhaushalt (3 Phasen)"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:28
 msgid "Contact Information"
@@ -2636,8 +2644,8 @@ msgid ""
 msgstr ""
 "Die Teilnehmenden können eigene Vorschläge auf einer Karte eintragen, mit "
 "einem Budget versehen und ihr Interesse bekunden, an der Projektumsetzung "
-"mitzuwirken. Die Ideen anderer können diskutiert und bewertet (dafür/dagegen)"
-" werden."
+"mitzuwirken. Die Ideen anderer können diskutiert und bewertet (dafür/"
+"dagegen) werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:156
 msgid "Prioritization"

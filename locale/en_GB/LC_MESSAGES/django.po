@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 14:43+0200\n"
+"POT-Creation-Date: 2023-06-26 09:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1910,7 +1910,7 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/phases.py:58
 #: meinberlin/apps/budgeting/phases.py:75
-#: meinberlin/apps/budgeting/phases.py:90
+#: meinberlin/apps/budgeting/phases.py:89
 msgid "participatory budgeting 2 phases"
 msgstr "participatory budgeting 2 phases"
 
@@ -1925,30 +1925,40 @@ msgstr ""
 "Rate the submitted proposals for the participatory budget (for/against)."
 
 #: meinberlin/apps/budgeting/phases.py:85
+#: meinberlin/apps/budgeting/phases.py:99
 msgid "Which of the submitted proposals would you like to support?"
 msgstr "Which of the submitted proposals would you like to support?"
 
 #: meinberlin/apps/budgeting/phases.py:87
 msgid ""
+"Support the submitted proposals for the participatory budgeting that you "
+"like."
+msgstr ""
+"Support the submitted proposals for the participatory budgeting that you "
+"like."
+
+#: meinberlin/apps/budgeting/phases.py:101
+msgid ""
 "The proposals with the most supporters will be examined and will then be put "
 "to the final vote."
 msgstr ""
 "The proposals with the most supporters will be examined and will then be put "
 "to the final vote."
 
-#: meinberlin/apps/budgeting/phases.py:100
+#: meinberlin/apps/budgeting/phases.py:104
+#: meinberlin/apps/budgeting/phases.py:118
+msgid "participatory budgeting 3 phases"
+msgstr "participatory budgeting 3 phases"
+
+#: meinberlin/apps/budgeting/phases.py:114
 msgid "Which of the proposals do you think should be implemented?"
 msgstr "Which of the proposals do you think should be implemented?"
 
-#: meinberlin/apps/budgeting/phases.py:102
+#: meinberlin/apps/budgeting/phases.py:116
 msgid ""
 "You can vote for up to 5 proposals. To do so, please enter the voting code."
 msgstr ""
 "You can vote for up to 5 proposals. To do so, please enter the voting code."
-
-#: meinberlin/apps/budgeting/phases.py:104
-msgid "participatory budgeting 3 phases"
-msgstr "participatory budgeting 3 phases"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:28
 msgid "Contact Information"
