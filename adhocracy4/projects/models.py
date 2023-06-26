@@ -221,6 +221,7 @@ class Project(
         max_length=300,
     )
     image_copyright = fields.ImageCopyrightField(image_name=_("Header image"))
+    image_alt_text = fields.ImageAltTextField(image_name=_("Header image"))
     tile_image = fields.ConfiguredImageField(
         "tileimage",
         verbose_name=_("Tile image"),
@@ -230,6 +231,7 @@ class Project(
         max_length=300,
     )
     tile_image_copyright = fields.ImageCopyrightField(image_name=_("Tile image"))
+    tile_image_alt_text = fields.ImageAltTextField(image_name=_("Tile image"))
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name="project_participant",

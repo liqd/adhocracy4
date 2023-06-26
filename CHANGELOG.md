@@ -7,3 +7,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 
 ## Unreleased
+### Added
+* image alt-text field to project model and form. (!1425)
+* image mixin to ensure all images added in projects and related models require meta data in form of alt-text and copyright. (!1425)

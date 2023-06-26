@@ -1,5 +1,7 @@
 from django import forms
 
+from adhocracy4.images.mixins import ImageMetadataMixin
+
 
 def _make_fields_required(fields, required):
     """Set the required attributes on all fields who's key is in required."""
@@ -17,7 +19,7 @@ def _make_fields_required_for_publish(fields, required):
                 field.required_for_publish = True
 
 
-class ProjectDashboardForm(forms.ModelForm):
+class ProjectDashboardForm(ImageMetadataMixin, forms.ModelForm):
     """
     Base form for project related dashboard forms.
 
