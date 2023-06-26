@@ -15,6 +15,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - use CategoryAliasFilter from A4 instead of CategoryFilter to allow custom labels, also get custom labels in api (#5156)
 - docs: add more examples on how to test the bplan api
 - add script to check in CI that a4 hashes for pip and npm match
+- budgeting: added semantic time tag to react list item and updated component library
 
 ### Changed
 

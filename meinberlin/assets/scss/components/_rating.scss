@@ -51,6 +51,18 @@
         background: none;
         border: 0;
     }
+
+    &.is-selected.is-archived,
+    &.is-archived {
+        border-color: $border-color;
+        color: $gray-lighter;
+        background: unset;
+
+        &:hover,
+        &:focus {
+            cursor: default;
+        }
+    }
 }
 
 .rating-up {

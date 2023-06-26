@@ -42,6 +42,7 @@ def react_support(context, obj):
         "isReadOnly": (
             not has_support_permission and not would_have_support_permission
         ),
+        "isArchived": obj.is_archived,
     }
 
     return format_html(

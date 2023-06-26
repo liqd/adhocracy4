@@ -16,10 +16,14 @@ export const SupportBox = (props) => {
       props.support
     ),
     clickToSupport: django.gettext('Click to support.'),
-    clickToUnsupport: django.gettext('You support this proposal. Click to unsupport.')
+    clickToUnsupport: django.gettext('You support this proposal. Click to unsupport.'),
+    supportButtonDisabled: django.gettext('Support button inactive.')
   }
 
   const getSupportClickStr = () => {
+    if (props.isReadOnly) {
+      return translations.supportButtonDisabled
+    }
     return userSupported
       ? translations.clickToUnsupport
       : translations.clickToSupport
@@ -63,9 +67,13 @@ export const SupportBox = (props) => {
       })
   }
 
-  const handleSupport = () => {
+  const handleSupport = (e) => {
     if (!props.authenticated) {
       window.location.href = config.getLoginUrl()
+      return
+    }
+    if (props.isReadOnly) {
+      e.preventDefault()
       return
     }
     if (userSupportId >= 0) {
@@ -75,13 +83,23 @@ export const SupportBox = (props) => {
     }
   }
 
+  const getSupportClass = () => {
+    if (props.isArchived) {
+      return 'is-archived'
+    }
+    if (userSupported) {
+      return 'is-selected'
+    }
+  }
+
   return (
     <div className="rating">
       <button
-        aria-label={support + ' ' + translations.support + getSupportClickStr()}
-        className={'rating-button rating-up ' + (userSupported ? 'is-selected' : '')}
-        disabled={props.isReadOnly}
+        aria-label={support + ' ' + translations.support + ' ' + getSupportClickStr()}
+        className={'rating-button rating-up ' + getSupportClass()}
+        aria-disabled={props.isReadOnly}
         onClick={handleSupport}
+        title={getSupportClickStr}
       >
         <i className="far fa-thumbs-up" aria-hidden="true" />
         <span aria-hidden="true">{support}</span>

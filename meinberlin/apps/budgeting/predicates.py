@@ -43,7 +43,8 @@ def phase_allows_support(user, item):
 def is_allowed_support_item(user, item):
     if item:
         return is_allowed_moderate_project(user, item) | (
-            is_context_member(user, item)
+            (not item.is_archived)
+            & is_context_member(user, item)
             & is_live_context(user, item)
             & phase_allows_support(user, item)
         )

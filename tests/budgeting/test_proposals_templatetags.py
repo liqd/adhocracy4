@@ -18,7 +18,6 @@ from tests.votes.test_token_vote_api import add_token_to_session
 
 @pytest.mark.django_db
 def test_react_proposals(module, rf):
-
     request = rf.get("/")
     template = "{% load react_proposals %}{% react_proposals module %}"
     contenttype = ContentType.objects.get_for_model(Proposal)
@@ -133,6 +132,7 @@ def test_react_support(phase_factory, proposal_factory, rating_factory, user, rf
             "userSupported": False,
             "userSupportId": -1,
             "isReadOnly": False,
+            "isArchived": False,
         }
 
     rating = rating_factory(content_object=proposal, creator=user)
@@ -150,6 +150,7 @@ def test_react_support(phase_factory, proposal_factory, rating_factory, user, rf
             "userSupported": True,
             "userSupportId": rating.pk,
             "isReadOnly": True,
+            "isArchived": False,
         }
 
 
