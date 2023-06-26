@@ -25,7 +25,7 @@ User = get_user_model()
 class ProjectCreateForm(forms.ModelForm):
     class Meta:
         model = project_models.Project
-        fields = ["name", "description", "image", "image_copyright"]
+        fields = ["name", "description", "image", "image_alt_text", "image_copyright"]
 
     def __init__(self, organisation, creator, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -33,7 +33,6 @@ class ProjectCreateForm(forms.ModelForm):
         self.creator = creator
 
     def save(self, commit=True):
-
         creator = self.creator
         org = self.organisation
 
@@ -66,8 +65,10 @@ class ProjectBasicForm(ProjectDashboardForm):
             "name",
             "description",
             "image",
+            "image_alt_text",
             "image_copyright",
             "tile_image",
+            "tile_image_alt_text",
             "tile_image_copyright",
             "is_archived",
             "access",
@@ -87,7 +88,6 @@ class ProjectBasicForm(ProjectDashboardForm):
 
 
 class ProjectInformationForm(ProjectDashboardForm):
-
     contact_heading = _("Contact for questions")
     contact_help = _(
         "Please name a contact person. The user will "

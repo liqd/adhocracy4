@@ -75,7 +75,7 @@ class ConfiguredImageField(models.ImageField):
             help_prefix=self.help_prefix,
             max_size_mb=int(self.image_config["max_size"] / (10**6)),
             fileformats_str=", ".join(f.split("/")[1] for f in config["fileformats"]),
-            **config
+            **config,
         )
         return help_text
 
@@ -90,6 +90,25 @@ class ImageCopyrightField(models.CharField):
                 _("Copyright shown in the {image_name}."), image_name=image_name
             ),
             "max_length": 120,
+            "blank": True,
+        }
+        defaults.update(kwargs)
+        super().__init__(*args, **defaults)
+
+
+class ImageAltTextField(models.CharField):
+    def __init__(self, *args, image_name="image", **kwargs):
+        defaults = {
+            "verbose_name": format_lazy(
+                _("{image_name} alt text"), image_name=image_name
+            ),
+            "help_text": _(
+                "An alternate text serves as a textual description "
+                "of the image content and is read out by screen "
+                "readers. Describe the image in max. 80 characters. "
+                "Example: A busy square with people in summer."
+            ),
+            "max_length": 80,
             "blank": True,
         }
         defaults.update(kwargs)
