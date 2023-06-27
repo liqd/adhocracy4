@@ -10,7 +10,9 @@ from adhocracy4.api.permissions import ViewSetRulesPermission
 from adhocracy4.categories import get_category_icon_url
 from adhocracy4.categories import has_icons
 from adhocracy4.categories.models import Category
+from adhocracy4.categories.models import CategoryAlias
 from adhocracy4.labels.models import Label
+from adhocracy4.labels.models import LabelAlias
 from adhocracy4.modules.predicates import is_allowed_moderate_project
 from adhocracy4.modules.predicates import module_is_between_phases
 from adhocracy4.phases.predicates import has_feature_active
@@ -67,7 +69,7 @@ class ProposalFilterInfoMixin:
         category_choices, category_icons = self.get_category_choices_and_icons()
         if category_choices:
             filters["category"] = {
-                "label": _("Category"),
+                "label": self.get_category_label(),
                 "choices": category_choices,
             }
             if category_icons:
@@ -77,7 +79,7 @@ class ProposalFilterInfoMixin:
         label_choices = self.get_label_choices()
         if label_choices:
             filters["labels"] = {
-                "label": _("Label"),
+                "label": self.get_label_label(),
                 "choices": label_choices,
             }
 
@@ -156,6 +158,12 @@ class ProposalFilterInfoMixin:
                     category_icons += ((str(category.pk), icon_url),)
         return category_choices, category_icons
 
+    def get_category_label(self):
+        category_alias = CategoryAlias.get_category_alias(self.module)
+        if category_alias:
+            return category_alias.title
+        return _("Category")
+
     def get_label_choices(self):
         label_choices = None
         labels = Label.objects.filter(module=self.module)
@@ -167,6 +175,12 @@ class ProposalFilterInfoMixin:
                 label_choices += ((str(label.pk), label.name),)
 
         return label_choices
+
+    def get_label_label(self):
+        label_alias = LabelAlias.get_label_alias(self.module)
+        if label_alias:
+            return label_alias.title
+        return _("Label")
 
     def get_moderation_task_choices(self):
         moderation_task_choices = None
@@ -270,7 +284,6 @@ class ProposalViewSet(
     mixins.ListModelMixin,
     viewsets.GenericViewSet,
 ):
-
     pagination_class = ProposalPagination
     serializer_class = ProposalSerializer
     permission_classes = (ViewSetRulesPermission,)
