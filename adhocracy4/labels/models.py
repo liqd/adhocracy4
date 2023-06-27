@@ -45,7 +45,14 @@ class LabelAlias(models.Model):
         ordering = ["pk"]
 
     def __str__(self):
-        return self.name
+        return self.title
+
+    @staticmethod
+    def get_label_alias(module):
+        try:
+            return LabelAlias.objects.get(module=module)
+        except LabelAlias.DoesNotExist:
+            return None
 
 
 class Label(models.Model):
