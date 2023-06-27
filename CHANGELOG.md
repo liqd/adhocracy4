@@ -6,6 +6,8 @@ Since version <unreleased> the format is based on [Keep a Changelog](https://kee
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
+### Fixed
+* add a missing translation for the char limit error from django-rest-framework (#4973)
 
 ## 2303
 ### What's Changed

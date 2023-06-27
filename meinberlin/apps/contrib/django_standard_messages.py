@@ -28,4 +28,5 @@ django_standard_messages_to_override = [
     _("You must select a minimum of  %(limit_value)d choices."),
     _("You must select a maximum of  %(limit_value)d choices."),
     _("Enter a valid email address."),
+    _("Ensure this field has no more than {max_length} characters."),
 ]
