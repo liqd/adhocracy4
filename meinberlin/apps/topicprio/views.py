@@ -23,8 +23,6 @@ class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
 
 class TopicFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {"ordering": "name"}
-    category = category_filters.CategoryFilter()
-    labels = label_filters.LabelFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=(
             ("name", _("Alphabetical")),
@@ -37,6 +35,15 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
     class Meta:
         model = models.Topic
         fields = ["search", "category", "labels"]
+
+    def __init__(self, data, *args, **kwargs):
+        self.base_filters["category"] = category_filters.CategoryAliasFilter(
+            module=kwargs["view"].module, field_name="category"
+        )
+        self.base_filters["labels"] = label_filters.LabelAliasFilter(
+            module=kwargs["view"].module, field_name="labels"
+        )
+        super().__init__(data, *args, **kwargs)
 
 
 class TopicListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):
@@ -56,12 +63,7 @@ class TopicDetailView(idea_views.AbstractIdeaDetailView):
 
 
 class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
-
     defaults = {"ordering": "name"}
-
-    category = category_filters.CategoryFilter()
-    labels = label_filters.LabelFilter()
-
     ordering = a4_filters.DynamicChoicesOrderingFilter(
         choices=(("name", _("Alphabetical")),)
     )
@@ -69,6 +71,15 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
     class Meta:
         model = models.Topic
         fields = ["category", "labels"]
+
+    def __init__(self, data, *args, **kwargs):
+        self.base_filters["category"] = category_filters.CategoryAliasFilter(
+            module=kwargs["view"].module, field_name="category"
+        )
+        self.base_filters["labels"] = label_filters.LabelAliasFilter(
+            module=kwargs["view"].module, field_name="labels"
+        )
+        super().__init__(data, *args, **kwargs)
 
 
 class TopicListDashboardView(

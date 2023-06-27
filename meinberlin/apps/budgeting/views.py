@@ -54,8 +54,6 @@ def get_default_ordering(view):
 
 class ProposalFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {"is_archived": "false"}
-    category = category_filters.CategoryFilter()
-    labels = label_filters.LabelFilter()
     ordering = a4_filters.DistinctOrderingWithDailyRandomFilter(
         choices=get_ordering_choices
     )
@@ -67,6 +65,12 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
 
     def __init__(self, data, *args, **kwargs):
         self.defaults["ordering"] = get_default_ordering(kwargs["view"])
+        self.base_filters["category"] = category_filters.CategoryAliasFilter(
+            module=kwargs["view"].module, field_name="category"
+        )
+        self.base_filters["labels"] = label_filters.LabelAliasFilter(
+            module=kwargs["view"].module, field_name="labels"
+        )
         super().__init__(data, *args, **kwargs)
 
 

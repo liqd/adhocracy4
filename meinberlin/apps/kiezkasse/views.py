@@ -22,13 +22,20 @@ def get_ordering_choices(view):
 
 class ProposalFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {"ordering": "-created"}
-    category = category_filters.CategoryFilter()
-    labels = label_filters.LabelFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(choices=get_ordering_choices)
 
     class Meta:
         model = models.Proposal
         fields = ["category", "labels"]
+
+    def __init__(self, data, *args, **kwargs):
+        self.base_filters["category"] = category_filters.CategoryAliasFilter(
+            module=kwargs["view"].module, field_name="category"
+        )
+        self.base_filters["labels"] = label_filters.LabelAliasFilter(
+            module=kwargs["view"].module, field_name="labels"
+        )
+        super().__init__(data, *args, **kwargs)
 
 
 class ProposalListView(idea_views.AbstractIdeaListView, DisplayProjectOrModuleMixin):

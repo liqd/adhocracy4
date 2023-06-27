@@ -46,14 +46,21 @@ def get_ordering_choices(view):
 
 class IdeaFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {"ordering": "-created"}
-    category = category_filters.CategoryFilter()
-    labels = label_filters.LabelFilter()
     ordering = a4_filters.DynamicChoicesOrderingFilter(choices=get_ordering_choices)
     search = FreeTextFilter(widget=FreeTextFilterWidget, fields=["name"])
 
     class Meta:
         model = models.Idea
         fields = ["search", "category", "labels"]
+
+    def __init__(self, data, *args, **kwargs):
+        self.base_filters["category"] = category_filters.CategoryAliasFilter(
+            module=kwargs["view"].module, field_name="category"
+        )
+        self.base_filters["labels"] = label_filters.LabelAliasFilter(
+            module=kwargs["view"].module, field_name="labels"
+        )
+        super().__init__(data, *args, **kwargs)
 
 
 class AbstractIdeaListView(ProjectMixin, filter_views.FilteredListView):
