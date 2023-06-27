@@ -64,11 +64,19 @@ class CategoryAlias(models.Model):
     )
 
     class Meta:
+        # fixme: change to category with next migration
         verbose_name_plural = "categorie alias"
         ordering = ["pk"]
 
     def __str__(self):
-        return self.name
+        return self.title
+
+    @staticmethod
+    def get_category_alias(module):
+        try:
+            return CategoryAlias.objects.get(module=module)
+        except CategoryAlias.DoesNotExist:
+            return None
 
 
 class Category(models.Model):

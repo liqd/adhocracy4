@@ -15,6 +15,11 @@ from . import models
 class CategoryFilterWidget(DropdownLinkWidget):
     label = _("Category")
 
+    def __init__(self, *args, **kwargs):
+        if "alias" in kwargs:
+            self.label = kwargs.pop("alias")
+        super().__init__(*args, **kwargs)
+
 
 class CategoryChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
@@ -57,3 +62,14 @@ class CategoryFilter(django_filters.ModelChoiceFilter):
             return models.Category.objects.filter(module=self.view.module)
         else:
             return super().get_queryset(request)
+
+
+class CategoryAliasFilter(CategoryFilter):
+    def __init__(self, *args, **kwargs):
+        if "widget" not in kwargs:
+            if "module" in kwargs:
+                module = kwargs.pop("module")
+                category_alias = models.CategoryAlias.get_category_alias(module)
+                if category_alias:
+                    kwargs["widget"] = CategoryFilterWidget(alias=category_alias.title)
+        super().__init__(*args, **kwargs)
