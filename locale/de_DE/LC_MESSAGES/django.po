@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-26 09:03+0200\n"
+"POT-Creation-Date: 2023-06-27 12:05+0200\n"
 "PO-Revision-Date: 2023-06-20 17:32+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/"
@@ -269,7 +269,7 @@ msgstr "privat"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:52
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:224
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:229
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:73
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
@@ -638,7 +638,7 @@ msgstr ""
 
 #: adhocracy4/dashboard/forms.py:91
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:35
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:156
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:161
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:126
 msgid "Contact for questions"
 msgstr "Kontakt für Rückfragen"
@@ -690,7 +690,7 @@ msgid "Project successfully created."
 msgstr "Projekt erfolgreich erstellt."
 
 #: adhocracy4/dashboard/views.py:164
-#: meinberlin/apps/dashboard/views.py:129 meinberlin/apps/plans/views.py:234
+#: meinberlin/apps/dashboard/views.py:129 meinberlin/apps/plans/views.py:239
 msgid "Invalid action"
 msgstr "Ungültige Aktion"
 
@@ -1262,7 +1262,7 @@ msgid "Postal address"
 msgstr "Postadresse"
 
 #: adhocracy4/projects/models.py:52
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:169
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:174
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:139
 msgid "Email"
@@ -1277,8 +1277,8 @@ msgid "Phone"
 msgstr "Telefon"
 
 #: adhocracy4/projects/models.py:62
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:174
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:191
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:179
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:196
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:144
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:161
 msgid "Website"
@@ -2320,7 +2320,7 @@ msgstr[1] "%(counter)s Projekte anzeigen"
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
 #: meinberlin/apps/plans/exports.py:74 meinberlin/apps/plans/forms.py:47
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
-#: meinberlin/apps/plans/views.py:78 meinberlin/apps/projects/admin.py:100
+#: meinberlin/apps/plans/views.py:83 meinberlin/apps/projects/admin.py:100
 #: meinberlin/apps/projects/forms.py:93
 #: meinberlin/apps/projects/serializers.py:17
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
@@ -2417,6 +2417,11 @@ msgstr "Sie können max. %(limit_value)d Felder auswählen."
 msgid "Enter a valid email address."
 msgstr "Bitte geben Sie eine gültige E-Mail-Adresse an."
 
+#: meinberlin/apps/contrib/django_standard_messages.py:31
+#, python-brace-format
+msgid "Ensure this field has no more than {max_length} characters."
+msgstr ""
+
 #: meinberlin/apps/contrib/mixins.py:5
 msgid ""
 "I hereby confirm that the copyrights for this photo are with me or that I "
@@ -2494,8 +2499,8 @@ msgstr "erstellt am "
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:85
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:94
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:206
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:215
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:211
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:220
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -4059,17 +4064,17 @@ msgstr "Weiterlesen..."
 msgid "Read less"
 msgstr "Weniger anzeigen"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:165
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:170
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:135
 msgid "Telephone"
 msgstr "Telefon"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:183
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:188
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:153
 msgid "Responsible body"
 msgstr "Verantwortliche Stelle"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:241
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:246
 #: meinberlin/templates/a4dashboard/base_project_list.html:7
 #: meinberlin/templates/a4dashboard/base_project_list.html:16
 #: meinberlin/templates/a4dashboard/project_list.html:9
@@ -4121,31 +4126,31 @@ msgstr ""
 "Es wurde noch kein Vorhaben angelegt, dies können Sie <a "
 "href=\"%(plan_create_url)s\">hier</a> tun."
 
-#: meinberlin/apps/plans/views.py:164
+#: meinberlin/apps/plans/views.py:169
 msgid "The plan was created"
 msgstr "Das Vorhaben wurde angelegt"
 
-#: meinberlin/apps/plans/views.py:189
+#: meinberlin/apps/plans/views.py:194
 msgid "The plan has been updated"
 msgstr "Das Vorhaben wurde aktualisiert"
 
-#: meinberlin/apps/plans/views.py:199
+#: meinberlin/apps/plans/views.py:204
 msgid "The plan has been deleted"
 msgstr "Das Vorhaben wurde gelöscht"
 
-#: meinberlin/apps/plans/views.py:249
+#: meinberlin/apps/plans/views.py:254
 msgid "The plan is already published"
 msgstr "Das Vorhaben wurde bereits veröffentlicht"
 
-#: meinberlin/apps/plans/views.py:255
+#: meinberlin/apps/plans/views.py:260
 msgid "The plan is published."
 msgstr "Das Vorhaben wurde veröffentlicht."
 
-#: meinberlin/apps/plans/views.py:260
+#: meinberlin/apps/plans/views.py:265
 msgid "The plan is already unpublished"
 msgstr "Das Vorhaben wurde bereits depubliziert."
 
-#: meinberlin/apps/plans/views.py:266
+#: meinberlin/apps/plans/views.py:271
 msgid "The plan is unpublished."
 msgstr "Das Vorhaben wurde depubliziert."
 
