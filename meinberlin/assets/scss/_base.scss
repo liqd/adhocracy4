@@ -4,6 +4,10 @@
     box-sizing: inherit;
 }
 
+address {
+    font-style: normal;
+}
+
 p,
 address,
 blockquote,
@@ -102,7 +106,8 @@ img {
     height: auto;
 
     .rich-text,
-    .block & { // to test on dev
+    .block & {
+        // to test on dev
         height: auto !important;
     }
 }
