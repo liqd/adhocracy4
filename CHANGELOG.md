@@ -10,7 +10,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 * add a missing translation for the char limit error from django-rest-framework (#4973)
 * budgeting: fix control bar not shown if list is empty (#5043)
 
-## 2303
+### Added
+* image and tile image alt-text field to projects, bplan, plan, container and extprojects serializers, admin and forms and display it in templates (!5121)
+
+### Changed
+* in plans changed name of description_image to image to be consistent with other project types and ensure image mixin works with all models (!5121)
+* deps: update a4 to !1425 (!5121)
+
 ### What's Changed
 * Ks 2021 09 move poll export to a4 by @Rineee in https://github.com/liqd/a4-meinberlin/pull/3882
 * fix(deps): update dependency autoprefixer to v10.3.6 by @renovate in https://github.com/liqd/a4-meinberlin/pull/3885
@@ -1029,7 +1035,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 **Full Changelog**: https://github.com/liqd/a4-meinberlin/compare/v2212...v2212.1
 
-### Notes: 
+### Notes:
 
 -  last two commits only for release and can be dropped if all features are released
 
@@ -2075,7 +2081,7 @@ Note:
 - polls: translate label of other choice to browser language
 - polls: validate that there can only be one vote per choice per user
 - polls: allow to remove answer for multiple choice
-- projects: align dashboard contact form with other forms 
+- projects: align dashboard contact form with other forms
 - polls: adapt link/button text to whether user has already voted and disable vote button when no changes are made
 - polls: use module.get_detail_url in for absoulte_url
 - many updates
@@ -2095,7 +2101,7 @@ Note:
 - update bootstrap to v5
 - lots of smaller updates
 ## 2105.1
-update styling to text commenting 
+update styling to text commenting
 small updates
 add test for moderation and participant invitation
 ## 2105
@@ -2179,7 +2185,7 @@ add test for moderation and participant invitation
 - interactive event: padding and margin fixes
 - new translations
 ## 2.6.2
-Updates and small issue fixes 
+Updates and small issue fixes
 incl:
 - ck editor embed fixes and use optimized files
 - updates
