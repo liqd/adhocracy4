@@ -22,6 +22,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - add a missing translation for the char limit error from django-rest-framework (#4973)
 - budgeting: fix control bar not shown if list is empty (#5043)
+- notifications: fix typo in NotifyFollowersOnUpcomingEventEmail
 
 ### What's Changed
 

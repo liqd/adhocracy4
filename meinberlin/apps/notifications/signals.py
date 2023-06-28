@@ -31,7 +31,7 @@ def send_notifications(instance, created, **kwargs):
             emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
 
     elif action.type == "offlineevent" and verb == Verbs.START:
-        emails.NotifyFollowersOnUpcommingEventEmail.send(action)
+        emails.NotifyFollowersOnUpcomingEventEmail.send(action)
 
 
 @receiver(dashboard_signals.project_created)

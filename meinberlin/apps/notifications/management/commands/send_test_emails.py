@@ -205,7 +205,7 @@ class Command(BaseCommand):
         TestEmail.send(
             action,
             receiver=[self.user],
-            template_name=notification_emails.NotifyFollowersOnUpcommingEventEmail.template_name,
+            template_name=notification_emails.NotifyFollowersOnUpcomingEventEmail.template_name,
         )
         action.delete()
 

@@ -130,10 +130,8 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
         return receivers
 
 
-class NotifyFollowersOnUpcommingEventEmail(Email):
-    template_name = (
-        "meinberlin_notifications/emails" "/notify_followers_event_upcomming"
-    )
+class NotifyFollowersOnUpcomingEventEmail(Email):
+    template_name = "meinberlin_notifications/emails/notify_followers_event_upcoming"
 
     def get_receivers(self):
         action = self.object
