@@ -17,6 +17,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - in plans changed name of description_image to image to be consistent with other project types and ensure image mixin works with all models (!5121)
 - deps: update a4 to !1425 (!5121)
 - reformat CHANGELOG.md
+- offlineevents: only send a notification about event start if project is not a draft (#4922)
 
 ### Fixed
 

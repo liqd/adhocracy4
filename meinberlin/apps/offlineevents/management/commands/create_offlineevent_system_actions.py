@@ -24,7 +24,9 @@ class Command(BaseCommand):
     def _event_starting(self):
         event_ct = ContentType.objects.get_for_model(OfflineEvent)
 
-        events = OfflineEvent.objects.starts_within(hours=self.event_starting_hours)
+        events = OfflineEvent.objects.starts_within(
+            hours=self.event_starting_hours
+        ).exclude(project__is_draft=True)
         for event in events:
             existing_action = Action.objects.filter(
                 project=event.project,
