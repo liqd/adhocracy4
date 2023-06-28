@@ -16,7 +16,6 @@ START = Verbs.START.value
 
 @pytest.mark.django_db
 def test_phase_started(phase_factory):
-
     phase = phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
         end_date=parse("2013-01-01 18:00:00 UTC"),
@@ -43,8 +42,28 @@ def test_phase_started(phase_factory):
 
 
 @pytest.mark.django_db
-def test_draft_phase_started(phase_factory, module_factory):
+def test_phase_started_project_is_draft(phase_factory):
+    phase = phase_factory(
+        start_date=parse("2013-01-01 17:00:00 UTC"),
+        end_date=parse("2013-01-01 18:00:00 UTC"),
+    )
 
+    project = phase.module.project
+    project.is_draft = True
+    project.save()
+    project.refresh_from_db()
+
+    action_count = Action.objects.filter(verb=START).count()
+    assert action_count == 0
+
+    with freeze_time("2013-01-01 17:30:00 UTC"):
+        call_command("create_system_actions")
+        action_count = Action.objects.filter(verb=START).count()
+        assert action_count == 0
+
+
+@pytest.mark.django_db
+def test_draft_phase_started(phase_factory, module_factory):
     module = module_factory(is_draft=True)
     phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
@@ -63,7 +82,6 @@ def test_draft_phase_started(phase_factory, module_factory):
 
 @pytest.mark.django_db
 def test_phase_end_later(phase_factory):
-
     phase_factory(
         start_date=parse("2013-01-02 17:00:00 UTC"),
         end_date=parse("2013-01-02 18:00:00 UTC"),
@@ -77,7 +95,6 @@ def test_phase_end_later(phase_factory):
 
 @pytest.mark.django_db
 def test_phase_end_tomorrow(phase_factory):
-
     phase = phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
         end_date=parse("2013-01-01 18:00:00 UTC"),
@@ -99,8 +116,28 @@ def test_phase_end_tomorrow(phase_factory):
 
 
 @pytest.mark.django_db
-def test_draft_phase_end_tomorrow(phase_factory, module_factory):
+def test_phase_end_tomorrow_project_is_draft(phase_factory):
+    phase = phase_factory(
+        start_date=parse("2013-01-01 17:00:00 UTC"),
+        end_date=parse("2013-01-01 18:00:00 UTC"),
+    )
 
+    project = phase.module.project
+    project.is_draft = True
+    project.save()
+    project.refresh_from_db()
+
+    action_count = Action.objects.filter(verb=SCHEDULE).count()
+    assert action_count == 0
+
+    with freeze_time("2013-01-01 17:30:00 UTC"):
+        call_command("create_system_actions")
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
+        assert action_count == 0
+
+
+@pytest.mark.django_db
+def test_draft_phase_end_tomorrow(phase_factory, module_factory):
     module = module_factory(is_draft=True)
     phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
@@ -119,7 +156,6 @@ def test_draft_phase_end_tomorrow(phase_factory, module_factory):
 
 @pytest.mark.django_db
 def test_next_phase_end_tomorrow(phase_factory):
-
     phase1 = phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
         end_date=parse("2013-01-01 18:00:00 UTC"),
@@ -164,7 +200,6 @@ def test_next_phase_end_tomorrow(phase_factory):
 
 @pytest.mark.django_db
 def test_phase_reschedule(phase_factory):
-
     phase = phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
         end_date=parse("2013-01-03 18:00:00 UTC"),
@@ -188,7 +223,6 @@ def test_phase_reschedule(phase_factory):
 
 @pytest.mark.django_db
 def test_project_starts_later_or_earlier(phase_factory):
-
     phase = phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
         end_date=parse("2013-01-02 18:00:00 UTC"),
@@ -207,7 +241,6 @@ def test_project_starts_later_or_earlier(phase_factory):
 
 @pytest.mark.django_db
 def test_project_start_last_hour(phase_factory):
-
     phase = phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
         end_date=parse("2013-01-01 18:00:00 UTC"),
@@ -250,7 +283,6 @@ def test_project_start_last_hour(phase_factory):
 
 @pytest.mark.django_db
 def test_project_start_single_action(phase_factory):
-
     phase = phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
         end_date=parse("2013-01-01 18:00:00 UTC"),
@@ -281,7 +313,6 @@ def test_project_start_single_action(phase_factory):
 
 @pytest.mark.django_db
 def test_project_start_reschedule(phase_factory):
-
     phase = phase_factory(
         start_date=parse("2013-01-01 17:00:00 UTC"),
         end_date=parse("2013-01-01 18:00:00 UTC"),
@@ -315,7 +346,6 @@ def test_project_start_reschedule(phase_factory):
 
 @pytest.mark.django_db
 def test_project_start_multi_module(phase_factory, module_factory, project):
-
     module1 = module_factory(weight=1, project=project)
     module2 = module_factory(weight=2, project=project)
 

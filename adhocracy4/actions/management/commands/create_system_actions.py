@@ -44,8 +44,10 @@ class Command(BaseCommand):
         """
         phase_ct = ContentType.objects.get_for_model(Phase)
 
-        phases = Phase.objects.filter(module__is_draft=False).start_last(
-            hours=self.phase_started_hours
+        phases = (
+            Phase.objects.filter(module__is_draft=False)
+            .filter(module__project__is_draft=False)
+            .start_last(hours=self.phase_started_hours)
         )
         for phase in phases:
             project = phase.module.project
@@ -80,8 +82,10 @@ class Command(BaseCommand):
         """
         phase_ct = ContentType.objects.get_for_model(Phase)
 
-        phases = Phase.objects.filter(module__is_draft=False).finish_next(
-            hours=self.phase_ends_hours
+        phases = (
+            Phase.objects.filter(module__is_draft=False)
+            .filter(module__project__is_draft=False)
+            .finish_next(hours=self.phase_ends_hours)
         )
         for phase in phases:
             project = phase.module.project
@@ -99,7 +103,6 @@ class Command(BaseCommand):
                 or (existing_action.timestamp + timedelta(hours=self.phase_ends_hours))
                 < phase.end_date
             ):
-
                 Action.objects.create(
                     project=project,
                     verb=Verbs.SCHEDULE.value,
@@ -116,7 +119,9 @@ class Command(BaseCommand):
         """
         project_ct = ContentType.objects.get_for_model(Project)
 
-        phases = Phase.objects.start_last(hours=self.project_started_hours)
+        phases = Phase.objects.start_last(hours=self.project_started_hours).exclude(
+            module__project__is_draft=True
+        )
         for phase in phases:
             if phase.starts_first_of_project():
                 project = phase.module.project
