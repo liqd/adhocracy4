@@ -71,60 +71,54 @@ export const ControlBar = (props) => {
     >
       <div className="offset-lg-2 col-lg-8">
         <ControlBarListMapSwitch query={queryParams} />
-
-        {/* only show filters if no filter selected or list isn't empty */}
-        {(Array.from(queryParams.values()).length > 1 ||
-          props.numOfResults > 0) && (
+        <>
+          <div className="control-bar">
+            <div className="control-bar__item">
+              <ControlBarSearch
+                term={term}
+                onSearch={(value) => applySearch(value)}
+              />
+            </div>
+            {props.filters?.ordering && (
+              <ControlBarDropdown
+                key="ordering_dropdown"
+                filter={props.filters.ordering}
+                current={queryParams.get('ordering')}
+                filterId="id_ordering"
+                onSelectFilter={(choice) => applyFilter('ordering', choice)}
+              />
+            )}
+            <div className="control-bar__item control-bar__right">
+              <FilterToggle
+                showFilters={expandFilters}
+                onClickToggleFilter={handleToggleFilters}
+                btnString={translated.filters}
+                showFiltersString={translated.showFilters}
+                hideFiltersString={translated.hideFilters}
+              />
+            </div>
+          </div>
+          {props.filters && expandFilters && (
             <>
               <div className="control-bar">
-                <div className="control-bar__item">
-                  <ControlBarSearch
-                    term={term}
-                    onSearch={(value) => applySearch(value)}
-                  />
-                </div>
-                {props.filters?.ordering && (
-                  <ControlBarDropdown
-                    key="ordering_dropdown"
-                    filter={props.filters.ordering}
-                    current={queryParams.get('ordering')}
-                    filterId="id_ordering"
-                    onSelectFilter={(choice) => applyFilter('ordering', choice)}
-                  />
-                )}
-                <div className="control-bar__item control-bar__right">
-                  <FilterToggle
-                    showFilters={expandFilters}
-                    onClickToggleFilter={handleToggleFilters}
-                    btnString={translated.filters}
-                    showFiltersString={translated.showFilters}
-                    hideFiltersString={translated.hideFilters}
-                  />
-                </div>
+                {Object.keys(props.filters).map((type, idx) => {
+                  const filterItem = props.filters[type]
+                  return (
+                    type !== 'ordering' && (
+                      <ControlBarDropdown
+                        key={'filter_' + idx}
+                        filter={filterItem}
+                        current={queryParams.get(type)}
+                        filterId={'id_' + type}
+                        onSelectFilter={(choice) => applyFilter(type, choice)}
+                      />
+                    )
+                  )
+                })}
               </div>
-              {props.filters && expandFilters && (
-                <>
-                  <div className="control-bar">
-                    {Object.keys(props.filters).map((type, idx) => {
-                      const filterItem = props.filters[type]
-                      return (
-                        type !== 'ordering' && (
-                          <ControlBarDropdown
-                            key={'filter_' + idx}
-                            filter={filterItem}
-                            current={queryParams.get(type)}
-                            filterId={'id_' + type}
-                            onSelectFilter={(choice) => applyFilter(type, choice)}
-                          />
-                        )
-                      )
-                    })}
-                  </div>
-                </>
-              )}
             </>
-        )}
-
+          )}
+        </>
         {/* only show result string if list filtered or searched not just ordered */}
         {resultString && (
           <div className="control-bar">

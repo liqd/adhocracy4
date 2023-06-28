@@ -8,6 +8,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 ### Fixed
 * add a missing translation for the char limit error from django-rest-framework (#4973)
+* budgeting: fix control bar not shown if list is empty (#5043)
 
 ## 2303
 ### What's Changed
