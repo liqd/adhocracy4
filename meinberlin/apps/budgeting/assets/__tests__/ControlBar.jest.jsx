@@ -17,6 +17,23 @@ const filters = {
   }
 }
 
+test('ControlBar shown when list is empty', () => {
+  const onChangeFiltersFn = jest.fn()
+  render(
+    <BrowserRouter>
+      <ControlBar
+        filters={filters}
+        onChangeFilters={() => onChangeFiltersFn()}
+        numOfResults={0}
+      />
+    </BrowserRouter>
+  )
+  const numOfResultsElement = screen.queryByText(/2/)
+  expect(numOfResultsElement).toBeFalsy()
+  const orderingFilterElement = screen.getByText('ordering: Most recent')
+  expect(orderingFilterElement).toBeTruthy()
+})
+
 test('ControlBar collapsed bar', () => {
   const onChangeFiltersFn = jest.fn()
   render(
