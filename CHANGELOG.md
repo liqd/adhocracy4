@@ -11,6 +11,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - image and tile image alt-text field to projects, bplan, plan, container and extprojects serializers, admin and forms and display it in templates (!5121)
 - add markdown rules to editorconfig
+- add CategoryAndLabelAliasMixin and use in forms (#5156)
+- use CategoryAliasFilter from A4 instead of CategoryFilter to allow custom labels, also get custom labels in api (#5156)
 
 ### Changed
 
@@ -19,12 +21,14 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - reformat CHANGELOG.md
 - offlineevents: only send a notification about event start if project is not a draft (#4922)
 - deps: update a4 to commit f07f9c5
+- change inheritance order to move ModelForm class from ImageRightOfUseMixin and ContactStorageConsentMixin to forms (#5156)
 
 ### Fixed
 
 - add a missing translation for the char limit error from django-rest-framework (#4973)
 - budgeting: fix control bar not shown if list is empty (#5043)
 - notifications: fix typo in NotifyFollowersOnUpcomingEventEmail
+- add a missing translation for the char limit error from django-rest-framework (#4973)
 
 ### What's Changed
 
@@ -1342,7 +1346,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 **Full Changelog**: https://github.com/liqd/a4-meinberlin/compare/v2206.1...v2212
 
 ### Notes:
-
 - last two commits only for release and can be dropped if all features are released
 
 # demo-v2211
