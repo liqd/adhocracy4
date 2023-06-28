@@ -2,6 +2,7 @@ from django import forms
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
+from meinberlin.apps.contrib.mixins import CategoryAndLabelAliasMixin
 from meinberlin.apps.contrib.mixins import ImageRightOfUseMixin
 from meinberlin.apps.contrib.widgets import Select2Widget
 
@@ -12,6 +13,7 @@ class IdeaForm(
     CategorizableFieldMixin,
     LabelsAddableFieldMixin,
     ImageRightOfUseMixin,
+    CategoryAndLabelAliasMixin,
     forms.ModelForm,
 ):
     class Meta:

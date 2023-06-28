@@ -5,12 +5,17 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
+from meinberlin.apps.contrib.mixins import CategoryAndLabelAliasMixin
 
 from . import models
 
 
-class MapTopicForm(CategorizableFieldMixin, LabelsAddableFieldMixin, forms.ModelForm):
-
+class MapTopicForm(
+    CategorizableFieldMixin,
+    LabelsAddableFieldMixin,
+    CategoryAndLabelAliasMixin,
+    forms.ModelForm,
+):
     description = fields.RichTextUploadingFormField(
         config_name="image-editor", required=True, label=_("Description")
     )

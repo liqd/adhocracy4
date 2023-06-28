@@ -4,13 +4,18 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
+from meinberlin.apps.contrib.mixins import CategoryAndLabelAliasMixin
 from meinberlin.apps.contrib.widgets import Select2Widget
 
 from . import models
 
 
-class TopicForm(CategorizableFieldMixin, LabelsAddableFieldMixin, forms.ModelForm):
-
+class TopicForm(
+    CategorizableFieldMixin,
+    LabelsAddableFieldMixin,
+    CategoryAndLabelAliasMixin,
+    forms.ModelForm,
+):
     description = fields.RichTextUploadingFormField(
         config_name="image-editor", required=True, label=_("Description")
     )

@@ -1,6 +1,9 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.categories.models import CategoryAlias
+from adhocracy4.labels.models import LabelAlias
+
 RIGHT_OF_USE_LABEL = _(
     "I hereby confirm that the copyrights for this "
     "photo are with me or that I have received "
@@ -54,3 +57,18 @@ class ContactStorageConsentMixin:
                 _("Please consent to the storage of your contact " "information."),
             )
         return cleaned_data
+
+
+class CategoryAndLabelAliasMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        category_alias = CategoryAlias.get_category_alias(self.module)
+        if category_alias:
+            self.fields["category"].help_text = category_alias.description
+            self.fields["category"].label = category_alias.title
+
+        label_alias = LabelAlias.get_label_alias(self.module)
+        if label_alias:
+            self.fields["labels"].help_text = label_alias.description
+            self.fields["labels"].label = label_alias.title
