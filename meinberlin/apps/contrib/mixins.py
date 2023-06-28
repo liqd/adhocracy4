@@ -10,11 +10,12 @@ RIGHT_OF_USE_LABEL = _(
 )
 
 
-class ImageRightOfUseMixin(forms.ModelForm):
-    right_of_use = forms.BooleanField(required=False, label=RIGHT_OF_USE_LABEL)
-
+class ImageRightOfUseMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["right_of_use"] = forms.BooleanField(
+            required=False, label=RIGHT_OF_USE_LABEL
+        )
         if self.instance.image:
             self.initial["right_of_use"] = True
 
@@ -34,14 +35,12 @@ class ImageRightOfUseMixin(forms.ModelForm):
         return cleaned_data
 
 
-class ContactStorageConsentMixin(forms.ModelForm):
-
-    contact_storage_consent = forms.BooleanField(
-        required=False, label=_("contact storage " "consent")
-    )
-
+class ContactStorageConsentMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["contact_storage_consent"] = forms.BooleanField(
+            required=False, label=_("contact storage " "consent")
+        )
         if self.instance.allow_contact and not self.instance.contact_email == "":
             self.initial["contact_storage_consent"] = True
 

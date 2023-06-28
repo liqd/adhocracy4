@@ -11,7 +11,7 @@ from meinberlin.apps.moderationtasks.mixins import TasksAddableFieldMixin
 from . import models
 
 
-class ProposalForm(MapIdeaForm, ContactStorageConsentMixin):
+class ProposalForm(ContactStorageConsentMixin, MapIdeaForm):
     class Meta:
         model = models.Proposal
         fields = [

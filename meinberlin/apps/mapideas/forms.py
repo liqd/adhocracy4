@@ -11,7 +11,10 @@ from . import models
 
 
 class MapIdeaForm(
-    CategorizableFieldMixin, LabelsAddableFieldMixin, ImageRightOfUseMixin
+    CategorizableFieldMixin,
+    LabelsAddableFieldMixin,
+    ImageRightOfUseMixin,
+    forms.ModelForm,
 ):
     def __init__(self, *args, **kwargs):
         self.settings = kwargs.pop("settings_instance")

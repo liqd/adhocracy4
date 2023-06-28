@@ -8,7 +8,12 @@ from meinberlin.apps.contrib.widgets import Select2Widget
 from . import models
 
 
-class IdeaForm(CategorizableFieldMixin, LabelsAddableFieldMixin, ImageRightOfUseMixin):
+class IdeaForm(
+    CategorizableFieldMixin,
+    LabelsAddableFieldMixin,
+    ImageRightOfUseMixin,
+    forms.ModelForm,
+):
     class Meta:
         model = models.Idea
         fields = ["name", "description", "image", "category", "labels"]
