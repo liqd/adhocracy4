@@ -15,12 +15,15 @@ const translated = {
 }
 
 const getResultCountText = (count) => {
-  const foundProposalsText =
-    django.ngettext('1 proposal found.', '%s proposals found.', count)
+  const foundProposalsText = django.ngettext(
+    '1 proposal found.',
+    '%s proposals found.',
+    count
+  )
   return django.interpolate(foundProposalsText, [count])
 }
 
-export const ControlBar = props => {
+export const ControlBar = (props) => {
   const [expandFilters, setExpandFilters] = useState()
   const [resultString, setResultString] = useState(false)
   const [queryParams, setQueryParams] = useSearchParams()
@@ -30,7 +33,10 @@ export const ControlBar = props => {
   // else needed for search term deletion
   const handleResultString = () => {
     const entryArray = Array.from(queryParams.keys())
-    if ((entryArray.length === 2 && entryArray[1] !== 'ordering') || (entryArray.length > 2)) {
+    if (
+      (entryArray.length === 2 && entryArray[1] !== 'ordering') ||
+      entryArray.length > 2
+    ) {
       setResultString(true)
     } else {
       setResultString(false)
@@ -59,68 +65,75 @@ export const ControlBar = props => {
   }
 
   return (
-    <nav className="container u-spacer-bottom u-spacer-top-double" aria-label={translated.nav}>
+    <nav
+      className="container u-spacer-bottom u-spacer-top-double"
+      aria-label={translated.nav}
+    >
       <div className="offset-lg-2 col-lg-8">
         <ControlBarListMapSwitch query={queryParams} />
 
         {/* only show filters if no filter selected or list isn't empty */}
-        {(Array.from(queryParams.values()).length > 1 || props.numOfResults > 0) &&
-          <>
-            <div className="control-bar">
-              <div className="control-bar__item">
-                <ControlBarSearch
-                  term={term}
-                  onSearch={value => applySearch(value)}
-                />
-              </div>
-              {props.filters?.ordering && (
-                <ControlBarDropdown
-                  key="ordering_dropdown"
-                  filter={props.filters.ordering}
-                  current={queryParams.get('ordering')}
-                  filterId="id_ordering"
-                  onSelectFilter={choice => applyFilter('ordering', choice)}
-                />
-              )}
-              <div className="control-bar__item control-bar__right">
-                <FilterToggle
-                  showFilters={expandFilters}
-                  onClickToggleFilter={handleToggleFilters}
-                  btnString={translated.filters}
-                  showFiltersString={translated.showFilters}
-                  hideFiltersString={translated.hideFilters}
-                />
-              </div>
-            </div>
-            {props.filters && expandFilters &&
-              <>
-                <div className="control-bar">
-                  {Object.keys(props.filters).map((type, idx) => {
-                    const filterItem = props.filters[type]
-                    return type !== 'ordering' && (
-                      <ControlBarDropdown
-                        key={'filter_' + idx}
-                        filter={filterItem}
-                        current={queryParams.get(type)}
-                        filterId={'id_' + type}
-                        onSelectFilter={choice => applyFilter(type, choice)}
-                      />
-                    )
-                  })}
+        {(Array.from(queryParams.values()).length > 1 ||
+          props.numOfResults > 0) && (
+            <>
+              <div className="control-bar">
+                <div className="control-bar__item">
+                  <ControlBarSearch
+                    term={term}
+                    onSearch={(value) => applySearch(value)}
+                  />
                 </div>
-              </>}
-          </>}
+                {props.filters?.ordering && (
+                  <ControlBarDropdown
+                    key="ordering_dropdown"
+                    filter={props.filters.ordering}
+                    current={queryParams.get('ordering')}
+                    filterId="id_ordering"
+                    onSelectFilter={(choice) => applyFilter('ordering', choice)}
+                  />
+                )}
+                <div className="control-bar__item control-bar__right">
+                  <FilterToggle
+                    showFilters={expandFilters}
+                    onClickToggleFilter={handleToggleFilters}
+                    btnString={translated.filters}
+                    showFiltersString={translated.showFilters}
+                    hideFiltersString={translated.hideFilters}
+                  />
+                </div>
+              </div>
+              {props.filters && expandFilters && (
+                <>
+                  <div className="control-bar">
+                    {Object.keys(props.filters).map((type, idx) => {
+                      const filterItem = props.filters[type]
+                      return (
+                        type !== 'ordering' && (
+                          <ControlBarDropdown
+                            key={'filter_' + idx}
+                            filter={filterItem}
+                            current={queryParams.get(type)}
+                            filterId={'id_' + type}
+                            onSelectFilter={(choice) => applyFilter(type, choice)}
+                          />
+                        )
+                      )
+                    })}
+                  </div>
+                </>
+              )}
+            </>
+        )}
 
         {/* only show result string if list filtered or searched not just ordered */}
-        {resultString &&
+        {resultString && (
           <div className="control-bar">
             {props.numOfResults >= 0 && getResultCountText(props.numOfResults)}
-          </div>}
-        {term &&
-          <ControlBarSearchTerm
-            term={term}
-            onDismiss={() => applySearch('')}
-          />}
+          </div>
+        )}
+        {term && (
+          <ControlBarSearchTerm term={term} onDismiss={() => applySearch('')} />
+        )}
       </div>
     </nav>
   )
