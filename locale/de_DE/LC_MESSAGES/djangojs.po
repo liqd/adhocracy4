@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 12:05+0200\n"
+"POT-Creation-Date: 2023-06-29 18:11+0200\n"
 "PO-Revision-Date: 2023-02-10 13:43+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
 "Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
@@ -142,6 +142,7 @@ msgstr "Löschen"
 #: adhocracy4/static/Modal.jsx:6
 #: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:32
+#: adhocracy4/static/Modal.jsx:6
 msgid "Abort"
 msgstr "Abbrechen"
 
@@ -477,6 +478,7 @@ msgstr "Polygon aus Datei importieren"
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
 #: adhocracy4/static/Alert.jsx:6
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:88
+#: adhocracy4/static/Alert.jsx:6
 #: meinberlin/apps/embed/assets/embed.js:59
 #: meinberlin/apps/embed/assets/embed.js:60
 #: meinberlin/apps/plans/assets/FilterNav.jsx:15
@@ -832,11 +834,13 @@ msgid "Send Report"
 msgstr "Meldung senden"
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
+#: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 msgid ""
 "Yes, I have read and agree to this organisation's %(linkStart)s terms of use "
 "%(linkEnd)s."
 msgstr ""
 
+#: adhocracy4/static/TermsOfUseCheckbox.jsx:6
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:6
 msgid "You can still manage all your preferences on User Agreements."
 msgstr ""
@@ -1387,13 +1391,11 @@ msgstr ""
 "Wenn Sie diese Seite verlassen ohne zu speichern, gehen die von Ihnen "
 "vorgenommenen Änderungen verloren."
 
-#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:13
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "External Video"
 msgstr "Externes Video"
 
-#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:14
 msgid ""
 "Here you can find a video from Google (YouTube). To protect your data the "
@@ -1405,26 +1407,22 @@ msgstr ""
 "dann werden vom Anbieter Cookies gesetzt, die Hinweise über das "
 "Nutzerverhalten sammeln."
 
-#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "More information can be found in the privacy policy of Google under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Google "
 "unter: "
 
-#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Link to Video: "
 msgstr "Link zum Video: "
 
-#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Play video"
 msgstr "Video abspielen"
 
-#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:19
 msgid ""
 "Here you can find a video from Vimeo. To protect your data the content will "
@@ -1435,7 +1433,6 @@ msgstr ""
 "schützen, laden wir dieses Video nur mit Ihrer Zustimmung. Erst dann werden "
 "vom Anbieter Cookies gesetzt, die Hinweise über das Nutzerverhalten sammeln."
 
-#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 12:05+0200\n"
+"POT-Creation-Date: 2023-06-29 18:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgstr "Missing fields for publication"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:25
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:27
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:14
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:64
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:67
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_create_dashboard.html:45
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:21
 #: meinberlin/templates/a4categories/includes/module_categories_form.html:44
@@ -101,10 +101,10 @@ msgstr "Missing field for publication"
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:39
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_create_dashboard.html:56
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:44
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:57
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:68
 #: meinberlin/templates/a4dashboard/includes/preview.html:8
-#: meinberlin/templates/a4dashboard/includes/project_list_item.html:36
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:49
 msgid "Preview"
 msgstr "Preview"
 
@@ -112,11 +112,11 @@ msgstr "Preview"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:14
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:15
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:46
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:59
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:70
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:14
 #: meinberlin/templates/a4dashboard/includes/preview.html:10
-#: meinberlin/templates/a4dashboard/includes/project_list_item.html:38
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:51
 msgid "View"
 msgstr "View"
 
@@ -188,7 +188,7 @@ msgstr "Create draft"
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:25
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:15
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:15
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:65
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:68
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:14
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:117
 #: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:25
@@ -214,7 +214,7 @@ msgid "Projects"
 msgstr "Projects"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:24
-#: meinberlin/templates/a4dashboard/includes/project_list_item.html:18
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:31
 msgid "Finished"
 msgstr "Finished"
 
@@ -233,17 +233,17 @@ msgstr "private"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:201
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:52
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:229
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:65
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:236
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:73
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:84
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
-#: meinberlin/templates/a4dashboard/includes/project_list_item.html:44
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:57
 msgid "Edit"
 msgstr "Edit"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:57
-#: meinberlin/templates/a4dashboard/includes/project_list_item.html:68
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:81
 msgid "Duplicate"
 msgstr "Duplicate"
 
@@ -486,7 +486,7 @@ msgid "Edit project information"
 msgstr "Edit project information"
 
 #: adhocracy4/dashboard/dashboard.py:33
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:107
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:118
 msgid "Result"
 msgstr "Result"
 
@@ -549,18 +549,18 @@ msgstr "No"
 msgid "Yes"
 msgstr "Yes"
 
-#: adhocracy4/dashboard/forms.py:79
+#: adhocracy4/dashboard/forms.py:80
 msgid "All users can participate (public)."
 msgstr "All users can participate (public)."
 
-#: adhocracy4/dashboard/forms.py:82
+#: adhocracy4/dashboard/forms.py:83
 msgid "Only invited users can participate (private)."
 msgstr "Only invited users can participate (private)."
 
 #: adhocracy4/dashboard/forms.py:91
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:35
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:161
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:126
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:36
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:168
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:137
 msgid "Contact for questions"
 msgstr "Contact for questions"
 
@@ -579,22 +579,22 @@ msgid "More contact possibilities"
 msgstr "More contact possibilities"
 
 #: adhocracy4/dashboard/forms.py:144 adhocracy4/phases/models.py:66
-#: meinberlin/apps/extprojects/forms.py:28
+#: meinberlin/apps/extprojects/forms.py:33
 #: meinberlin/apps/extprojects/models.py:20
 msgid "End date"
 msgstr "End date"
 
-#: adhocracy4/dashboard/forms.py:144 meinberlin/apps/extprojects/forms.py:28
+#: adhocracy4/dashboard/forms.py:144 meinberlin/apps/extprojects/forms.py:33
 msgid "End time"
 msgstr "End time"
 
 #: adhocracy4/dashboard/forms.py:150 adhocracy4/phases/models.py:64
-#: meinberlin/apps/extprojects/forms.py:22
+#: meinberlin/apps/extprojects/forms.py:27
 #: meinberlin/apps/extprojects/models.py:18
 msgid "Start date"
 msgstr "Start date"
 
-#: adhocracy4/dashboard/forms.py:150 meinberlin/apps/extprojects/forms.py:22
+#: adhocracy4/dashboard/forms.py:150 meinberlin/apps/extprojects/forms.py:27
 msgid "Start time"
 msgstr "Start time"
 
@@ -698,7 +698,7 @@ msgstr "Reference No."
 
 #: adhocracy4/exports/mixins/items.py:69 meinberlin/apps/budgeting/api.py:101
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:149
-#: meinberlin/apps/plans/models.py:146
+#: meinberlin/apps/plans/models.py:148
 msgid "Status"
 msgstr "Status"
 
@@ -760,6 +760,29 @@ msgstr "{image_name} copyright"
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
 msgstr "Copyright shown in the {image_name}."
+
+#: adhocracy4/images/fields.py:103
+#, python-brace-format
+msgid "{image_name} alt text"
+msgstr "{image_name} alt text"
+
+#: adhocracy4/images/fields.py:106
+msgid ""
+"An alternate text serves as a textual description of the image content and "
+"is read out by screen readers. Describe the image in max. 80 characters. "
+"Example: A busy square with people in summer."
+msgstr ""
+"An alternate text serves as a textual description of the image content and "
+"is read out by screen readers. Describe the image in max. 80 characters. "
+"Example: A busy square with people in summer."
+
+#: adhocracy4/images/mixins.py:30 adhocracy4/images/mixins.py:35
+msgid "Please add copyright information."
+msgstr "Please add copyright information."
+
+#: adhocracy4/images/mixins.py:40 adhocracy4/images/mixins.py:45
+msgid "Please add an alternative text for this image"
+msgstr "Please add an alternative text for this image"
 
 #: adhocracy4/images/validators.py:26
 msgid "Unsupported file format. Supported formats are {}."
@@ -889,39 +912,39 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:224 meinberlin/apps/projects/serializers.py:243
+#: adhocracy4/modules/models.py:224 meinberlin/apps/projects/serializers.py:253
 msgid "day"
 msgstr "day"
 
 #: adhocracy4/modules/models.py:224 adhocracy4/modules/models.py:231
-#: meinberlin/apps/projects/serializers.py:243
+#: meinberlin/apps/projects/serializers.py:253
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:244
+#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:254
 msgid "hour"
 msgstr "hour"
 
 #: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
-#: meinberlin/apps/projects/serializers.py:244
+#: meinberlin/apps/projects/serializers.py:254
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:226 meinberlin/apps/projects/serializers.py:245
+#: adhocracy4/modules/models.py:226 meinberlin/apps/projects/serializers.py:255
 msgid "minute"
 msgstr "minute"
 
 #: adhocracy4/modules/models.py:226 adhocracy4/modules/models.py:233
-#: meinberlin/apps/projects/serializers.py:245
+#: meinberlin/apps/projects/serializers.py:255
 msgid "minutes"
 msgstr "minutes"
 
-#: adhocracy4/modules/models.py:227 meinberlin/apps/projects/serializers.py:246
+#: adhocracy4/modules/models.py:227 meinberlin/apps/projects/serializers.py:256
 msgid "second"
 msgstr "second"
 
 #: adhocracy4/modules/models.py:227 adhocracy4/modules/models.py:234
-#: meinberlin/apps/projects/serializers.py:246
+#: meinberlin/apps/projects/serializers.py:256
 msgid "seconds"
 msgstr "seconds"
 
@@ -1116,9 +1139,8 @@ msgstr "Settings"
 msgid "Images"
 msgstr "Images"
 
-#: adhocracy4/projects/admin.py:93 meinberlin/apps/projects/admin.py:84
+#: adhocracy4/projects/admin.py:93 meinberlin/apps/projects/admin.py:85
 #: meinberlin/templates/email_base.html:81
-#: meinberlin/templates/email_base.txt:17
 msgid "Contact"
 msgstr "Contact"
 
@@ -1139,9 +1161,9 @@ msgid "Postal address"
 msgstr "Postal address"
 
 #: adhocracy4/projects/models.py:52
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:174
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:181
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:139
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:150
 msgid "Email"
 msgstr "Email"
 
@@ -1154,10 +1176,10 @@ msgid "Phone"
 msgstr "Phone"
 
 #: adhocracy4/projects/models.py:62
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:179
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:196
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:144
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:161
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:186
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:203
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:155
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:172
 msgid "Website"
 msgstr "Website"
 
@@ -1234,7 +1256,8 @@ msgid "Access to the project"
 msgstr "Access to the project"
 
 #: adhocracy4/projects/models.py:217 adhocracy4/projects/models.py:223
-#: meinberlin/apps/plans/models.py:113
+#: adhocracy4/projects/models.py:224 meinberlin/apps/plans/models.py:113
+#: meinberlin/apps/plans/models.py:118
 msgid "Header image"
 msgstr "Header image"
 
@@ -1242,20 +1265,21 @@ msgstr "Header image"
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:226 adhocracy4/projects/models.py:232
-#: meinberlin/apps/plans/models.py:126
+#: adhocracy4/projects/models.py:227 adhocracy4/projects/models.py:233
+#: adhocracy4/projects/models.py:234 meinberlin/apps/plans/models.py:127
+#: meinberlin/apps/plans/models.py:132
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:227 meinberlin/apps/plans/models.py:127
+#: adhocracy4/projects/models.py:228 meinberlin/apps/plans/models.py:128
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:245
+#: adhocracy4/projects/models.py:247
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:247
+#: adhocracy4/projects/models.py:249
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
@@ -1263,11 +1287,11 @@ msgstr ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
 
-#: adhocracy4/projects/models.py:253
+#: adhocracy4/projects/models.py:255
 msgid "Project topics"
 msgstr "Project topics"
 
-#: adhocracy4/projects/models.py:253
+#: adhocracy4/projects/models.py:255
 msgid "Add topics to your project."
 msgstr "Add topics to your project."
 
@@ -1603,8 +1627,8 @@ msgstr "Send statement to the office workers per mail."
 msgid "bplan"
 msgstr "bplan"
 
-#: meinberlin/apps/bplan/serializers.py:111
-#: meinberlin/apps/bplan/serializers.py:112
+#: meinberlin/apps/bplan/serializers.py:122
+#: meinberlin/apps/bplan/serializers.py:123
 msgid "Bplan statement phase"
 msgstr "Bplan statement phase"
 
@@ -1639,7 +1663,7 @@ msgstr "Create project"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:35
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:7
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_create_dashboard.html:9
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:38
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:43
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:8
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:7
 #: meinberlin/templates/a4dashboard/project_create_form.html:9
@@ -2184,12 +2208,12 @@ msgstr[0] "display %(counter)s project"
 msgstr[1] "display %(counter)s projects"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
-#: meinberlin/apps/plans/exports.py:74 meinberlin/apps/plans/forms.py:47
+#: meinberlin/apps/plans/exports.py:74 meinberlin/apps/plans/forms.py:50
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
-#: meinberlin/apps/plans/views.py:83 meinberlin/apps/projects/admin.py:100
+#: meinberlin/apps/plans/views.py:83 meinberlin/apps/projects/admin.py:101
 #: meinberlin/apps/projects/forms.py:93
 #: meinberlin/apps/projects/serializers.py:17
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:50
 msgid "City wide"
 msgstr "City wide"
 
@@ -2199,7 +2223,7 @@ msgid "%(time_left)s remaining"
 msgstr "%(time_left)s remaining"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:54
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:67
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:77
 msgid "more than 1 year remaining"
 msgstr "more than 1 year remaining"
 
@@ -2362,8 +2386,8 @@ msgstr "created on "
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:85
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:94
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:211
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:220
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:218
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:227
 msgid "Actions"
 msgstr "Actions"
 
@@ -2741,11 +2765,11 @@ msgstr "Embed Code"
 msgid "External project settings"
 msgstr "External project settings"
 
-#: meinberlin/apps/extprojects/forms.py:58
+#: meinberlin/apps/extprojects/forms.py:64
 msgid "Either both start and end date have to be provided or none of them."
 msgstr "Either both start and end date have to be provided or none of them."
 
-#: meinberlin/apps/extprojects/forms.py:64
+#: meinberlin/apps/extprojects/forms.py:70
 msgid "End date can not be smaller than the start date."
 msgstr "End date can not be smaller than the start date."
 
@@ -2896,7 +2920,7 @@ msgstr "Idea list"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:26
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:62
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:27
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:84
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:97
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:26
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_list.html:20
 msgid "Nothing to show"
@@ -3220,7 +3244,7 @@ msgstr "place prioritization"
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:24
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:72
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:85
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:57
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:68
@@ -3559,7 +3583,7 @@ msgstr "Edit your organisation information"
 msgid "Organisation successfully updated."
 msgstr "Organisation successfully updated."
 
-#: meinberlin/apps/plans/dashboard.py:12 meinberlin/apps/plans/forms.py:72
+#: meinberlin/apps/plans/dashboard.py:12 meinberlin/apps/plans/forms.py:74
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:4
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:9
 #: meinberlin/templates/a4dashboard/base_project_list.html:34
@@ -3578,7 +3602,7 @@ msgstr "Project Links"
 msgid "Draft"
 msgstr "Draft"
 
-#: meinberlin/apps/plans/forms.py:42
+#: meinberlin/apps/plans/forms.py:45
 msgid "Please locate the plan on the map."
 msgstr "Please locate the plan on the map."
 
@@ -3598,19 +3622,19 @@ msgstr "cooperation"
 msgid "decision-making"
 msgstr "decision-making"
 
-#: meinberlin/apps/plans/models.py:39 meinberlin/apps/plans/models.py:219
-#: meinberlin/apps/projectcontainers/serializers.py:43
-#: meinberlin/apps/projects/serializers.py:103
-#: meinberlin/apps/projects/serializers.py:112
-#: meinberlin/apps/projects/serializers.py:277
+#: meinberlin/apps/plans/models.py:39 meinberlin/apps/plans/models.py:221
+#: meinberlin/apps/projectcontainers/serializers.py:44
+#: meinberlin/apps/projects/serializers.py:105
+#: meinberlin/apps/projects/serializers.py:114
+#: meinberlin/apps/projects/serializers.py:287
 msgid "running"
 msgstr "running"
 
 #: meinberlin/apps/plans/models.py:39
-#: meinberlin/apps/projectcontainers/serializers.py:47
-#: meinberlin/apps/projects/serializers.py:107
-#: meinberlin/apps/projects/serializers.py:127
-#: meinberlin/apps/projects/serializers.py:331
+#: meinberlin/apps/projectcontainers/serializers.py:48
+#: meinberlin/apps/projects/serializers.py:109
+#: meinberlin/apps/projects/serializers.py:129
+#: meinberlin/apps/projects/serializers.py:341
 msgid "done"
 msgstr "done"
 
@@ -3693,30 +3717,30 @@ msgstr ""
 msgid "Visualize your plan with an image underneath the description."
 msgstr "Visualize your plan with an image underneath the description."
 
-#: meinberlin/apps/plans/models.py:119
+#: meinberlin/apps/plans/models.py:120
 msgid "Header image copyright"
 msgstr "Header image copyright"
 
-#: meinberlin/apps/plans/models.py:122
+#: meinberlin/apps/plans/models.py:123
 msgid "The name is displayed in the header image."
 msgstr "The name is displayed in the header image."
 
-#: meinberlin/apps/plans/models.py:132
+#: meinberlin/apps/plans/models.py:134
 msgid "Tile image copyright"
 msgstr "Tile image copyright"
 
-#: meinberlin/apps/plans/models.py:133
+#: meinberlin/apps/plans/models.py:135
 msgid "The name is displayed in the tile image."
 msgstr "The name is displayed in the tile image."
 
-#: meinberlin/apps/plans/models.py:136 meinberlin/apps/projects/dashboard.py:63
+#: meinberlin/apps/plans/models.py:138 meinberlin/apps/projects/dashboard.py:63
 #: meinberlin/apps/topicprio/dashboard.py:15
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:4
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:9
 msgid "Topics"
 msgstr "Topics"
 
-#: meinberlin/apps/plans/models.py:138
+#: meinberlin/apps/plans/models.py:140
 msgid ""
 "Assign your plan to 1 or 2 topics. In the project overview projects can be "
 "filtered according to topics."
@@ -3724,17 +3748,17 @@ msgstr ""
 "Assign your plan to 1 or 2 topics. In the project overview projects can be "
 "filtered according to topics."
 
-#: meinberlin/apps/plans/models.py:147
+#: meinberlin/apps/plans/models.py:149
 msgid "In the project overview projects can be filtered by status."
 msgstr "In the project overview projects can be filtered by status."
 
-#: meinberlin/apps/plans/models.py:152
+#: meinberlin/apps/plans/models.py:154
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:81
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:122
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:129
 msgid "Level of participation"
 msgstr "Level of participation"
 
-#: meinberlin/apps/plans/models.py:154
+#: meinberlin/apps/plans/models.py:156
 msgid ""
 "In the project overview projects can be filtered according to the level of "
 "participation."
@@ -3742,11 +3766,11 @@ msgstr ""
 "In the project overview projects can be filtered according to the level of "
 "participation."
 
-#: meinberlin/apps/plans/models.py:161
+#: meinberlin/apps/plans/models.py:163
 msgid "Participation explanation"
 msgstr "Participation explanation"
 
-#: meinberlin/apps/plans/models.py:164
+#: meinberlin/apps/plans/models.py:166
 msgid ""
 "Justify your selection. The justification appears below the description of "
 "the project."
@@ -3754,12 +3778,12 @@ msgstr ""
 "Justify your selection. The justification appears below the description of "
 "the project."
 
-#: meinberlin/apps/plans/models.py:174
+#: meinberlin/apps/plans/models.py:176
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:71
 msgid "Duration"
 msgstr "Duration"
 
-#: meinberlin/apps/plans/models.py:176
+#: meinberlin/apps/plans/models.py:178
 msgid ""
 "Provide information on the expected duration of the plan in no more than 255 "
 "characters."
@@ -3767,8 +3791,8 @@ msgstr ""
 "Provide information on the expected duration of the plan in no more than 255 "
 "characters."
 
-#: meinberlin/apps/plans/models.py:227
-#: meinberlin/apps/projects/serializers.py:117
+#: meinberlin/apps/plans/models.py:229
+#: meinberlin/apps/projects/serializers.py:119
 msgid "starts at {}"
 msgstr "starts at {}"
 
@@ -3784,7 +3808,7 @@ msgstr ""
 "The description of the plan is divided into title, profile, header image and "
 "description text."
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:37
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:38
 msgid ""
 "Please name a contact person so users know who to contact with any questions "
 "they may have."
@@ -3792,11 +3816,11 @@ msgstr ""
 "Please name a contact person so users know who to contact with any questions "
 "they may have."
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:46
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:47
 msgid "Presentation in Project Overview"
 msgstr "Presentation in Project Overview"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:48
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:49
 msgid ""
 "The following information affects the presentation of the project in the "
 "general project overview."
@@ -3853,10 +3877,26 @@ msgstr "Download list"
 msgid "New Plan"
 msgstr "New Plan"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:63
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:65
-#: meinberlin/templates/a4dashboard/includes/project_list_item.html:56
-#: meinberlin/templates/a4dashboard/includes/project_list_item.html:58
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:33
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:107
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:16
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:36
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:12
+msgid "Here you can find a decorative picture."
+msgstr "Here you can find a decorative picture."
+
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:39
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:113
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:31
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:69
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:18
+msgid "copyright missing"
+msgstr "copyright missing"
+
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:76
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:78
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:69
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:71
 msgid "more"
 msgstr "more"
 
@@ -3884,30 +3924,30 @@ msgstr "Topic"
 msgid "see participation projects"
 msgstr "see participation projects"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:139
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:143
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:146
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:150
 msgid "toggle to"
 msgstr "toggle to"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:140
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:147
 msgid "Read more..."
 msgstr "Read more..."
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:144
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:151
 msgid "Read less"
 msgstr "Read less"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:170
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:135
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:177
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:146
 msgid "Telephone"
 msgstr "Telephone"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:188
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:153
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:195
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:164
 msgid "Responsible body"
 msgstr "Responsible body"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:246
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:253
 #: meinberlin/templates/a4dashboard/base_project_list.html:7
 #: meinberlin/templates/a4dashboard/base_project_list.html:16
 #: meinberlin/templates/a4dashboard/project_list.html:9
@@ -4040,14 +4080,14 @@ msgstr ""
 msgid "The image will be shown in the container tile."
 msgstr "The image will be shown in the container tile."
 
-#: meinberlin/apps/projectcontainers/forms.py:62
+#: meinberlin/apps/projectcontainers/forms.py:63
 msgid "Description of your container"
 msgstr "Description of your container"
 
-#: meinberlin/apps/projectcontainers/serializers.py:45
-#: meinberlin/apps/projects/serializers.py:105
-#: meinberlin/apps/projects/serializers.py:125
-#: meinberlin/apps/projects/serializers.py:304
+#: meinberlin/apps/projectcontainers/serializers.py:46
+#: meinberlin/apps/projects/serializers.py:107
+#: meinberlin/apps/projects/serializers.py:127
+#: meinberlin/apps/projects/serializers.py:314
 msgid "starts in the future"
 msgstr "starts in the future"
 
@@ -4102,7 +4142,7 @@ msgid "projects are currently active."
 msgstr "projects are currently active."
 
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:97
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:108
 msgid "Participation"
 msgstr "Participation"
 
@@ -4183,13 +4223,13 @@ msgid "remaining %(time_left)s"
 msgstr "remaining %(time_left)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:27
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:74
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:84
 #, python-format
 msgid "Participation: starts on %(date)s"
 msgstr "Participation: starts on %(date)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:32
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:80
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:90
 msgid "Participation ended. Read result"
 msgstr "Participation ended. Read result"
 
@@ -4201,11 +4241,11 @@ msgstr "Join now"
 msgid "Read now"
 msgstr "Read now"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:52
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:62
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:65
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:75
 #, python-format
 msgid "%(time_left)s remaining "
 msgstr "%(time_left)s remaining "
@@ -4381,16 +4421,16 @@ msgstr ""
 msgid "This project is not published yet."
 msgstr "This project is not published yet."
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:43
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:48
 #, python-format
 msgid "to project collection %(name)s"
 msgstr "to project collection %(name)s"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:87
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:98
 msgid "About the Project"
 msgstr "About the Project"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:225
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:236
 msgid "No results yet."
 msgstr "No results yet."
 
@@ -4554,7 +4594,6 @@ msgstr[1] ""
 
 #: meinberlin/apps/users/forms.py:81 meinberlin/apps/users/forms.py:121
 #: meinberlin/templates/email_base.html:82
-#: meinberlin/templates/email_base.txt:18
 msgid "Terms of use"
 msgstr "Terms of use"
 
@@ -5125,11 +5164,11 @@ msgstr "The container has been published."
 msgid "The project has been published. You can add further modules."
 msgstr "The project has been published. You can add further modules."
 
-#: meinberlin/templates/a4dashboard/includes/project_list_item.html:21
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:34
 msgid "Semipublic"
 msgstr "Semipublic"
 
-#: meinberlin/templates/a4dashboard/includes/project_list_item.html:23
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:36
 msgid "Private"
 msgstr "Private"
 
@@ -5383,12 +5422,10 @@ msgid "Error"
 msgstr "Error"
 
 #: meinberlin/templates/email_base.html:35
-#: meinberlin/templates/email_base.txt:5
 msgid "Hello"
 msgstr "Hello"
 
 #: meinberlin/templates/email_base.html:77
-#: meinberlin/templates/email_base.txt:14
 msgid "meinBerlin is a participation platform operated by"
 msgstr "meinBerlin is a participation platform operated by"
 
