@@ -13,6 +13,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - add markdown rules to editorconfig
 - add CategoryAndLabelAliasMixin and use in forms (#5156)
 - use CategoryAliasFilter from A4 instead of CategoryFilter to allow custom labels, also get custom labels in api (#5156)
+- docs: add more examples on how to test the bplan api
 
 ### Changed
 

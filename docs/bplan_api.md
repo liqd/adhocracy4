@@ -74,15 +74,53 @@ Example:
             </iframe>"
     }
 
-Example for `curl`:
+### Examples
+#### Example for `curl`
 
-```sh
-curl -d '{"name":"Luisenblock Ost - Bebauungsplan 1-70", "identifier": \
-"VI - 96a", "description": "Test", "url": "https://mein.berlin.de", \
-"office_worker_email": "test@example.com", "start_date": "2019-01-01T00:00", \
-"end_date": "2022-01-01T00:00"}' -H "Content-Type: application/json" -X POST \
-https://mein.berlin.de/api/organisations/5/bplan/ --user \
-'test@example.com':'password'
+```bash
+curl \
+ -X POST https://mein.berlin.de/api/organisations/5/bplan/ \
+ --user 'test@example.com':'password' \
+ -H "Content-Type: application/json" \
+ -d \
+ "
+ {
+   \"name\":\"Luisenblock Ost - Bebauungsplan 1-70\",
+   \"identifier\": \"VI - 96a\", \"description\": \"Test\",
+   \"url\": \"https://mein.berlin.de\",
+   \"office_worker_email\": \"test@example.com\",
+   \"start_date\": \"2019-01-01T00:00\",
+   \"end_date\": \"2022-01-01T00:00\"
+ }
+"
+```
+
+#### Example for `httpie`
+```bash
+http \
+   -a test@example:password \
+   -f POST https://mein.berlin.de/api/organisations/5/bplan/ \
+   name="Luisenblock Ost - Bebauungsplan 1-70" \
+   identifier="VI - 96a" \
+   description="Test" \
+   url="https://mein.berlin.de" \
+   office_worker_email="test@example.com" \
+   start_date="2019-01-01T00:00" \
+   end_date="2022-01-01T00:00"
+```
+
+#### Example for `httpie` and local testing
+```bash
+http \
+   -a admin@liqd.net:password \
+   -f POST http://127.0.0.1:8003/api/organisations/1/bplan/ \
+   name="Luisenblock Ost - Bebauungsplan 1-70" \
+   identifier="VI - 96a" \
+   description="Test" \
+   url="https://mein.berlin.de" \
+   office_worker_email="test@example.com" \
+   start_date="2019-01-01T00:00" \
+   end_date="2022-01-01T00:00"
 ```
 
 The participation will start end end automatically at the scheduled time.
@@ -90,7 +128,7 @@ The participation will start end end automatically at the scheduled time.
 ## Updating a BPLAN Project
 
 To update a BPLAN setting send a PATCH request with the field to update using
-the *id* of the BPLAN from the create response. If you update an archived BPLAN it will only be unarchived if you set the end_date to a date in the future. Archived BPLANS are not shown in any lists on the platform. 
+the *id* of the BPLAN from the create response. If you update an archived BPLAN it will only be unarchived if you set the end_date to a date in the future. Archived BPLANS are not shown in any lists on the platform.
 
 API endpoint for PATCH:
 
