@@ -28,9 +28,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
-                   background-image: url({{ project.image |thumbnail_url:'heroimage' }});
-                   {% endif %}">
+    <div
+        class="project-header{% if project.image %} project-header--image{% endif %}"
+        {% if view.project.image %}
+            style="background-image: url({{ project.image |thumbnail_url:'heroimage' }});"
+            role="img"
+            aria-label="{% if project.image_alt_text %}{{ project.image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
+        {% endif %}
+    >
         <div class="container">
             <div class="offset-lg-3 col-lg-6">
                 {% with container=project.containers.first %}
@@ -56,8 +61,14 @@
                 </div>
             </div>
         </div>
-        {% if project.image_copyright %}
-            <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
+        {% if view.project.image %}
+            <p class="project-header__copyright copyright">
+                {% if project.image_copyright %}
+                    © {{ project.image_copyright }}
+                {% else %}
+                    {% translate 'copyright missing' %}
+                {% endif %}
+            </p>
         {% endif %}
     </div>
 

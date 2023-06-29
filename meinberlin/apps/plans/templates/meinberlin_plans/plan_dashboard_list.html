@@ -25,11 +25,24 @@
         {% for plan in object_list %}
             <li class="list-item list-item--has-image">
                 <div class="list-item--has-image__wrapper">
-                    <div class="list-item--has-image__image" {% if plan.tile_image %}style="background-image: url({% thumbnail plan.tile_image '170x170' crop %})"{% endif %}>
-                        {% if plan.tile_image_copyright %}
-                            <div class="list-item--has-image__copyright copyright">© {{ plan.tile_image_copyright }}</div>
-                        {% endif %}
-                    </div>
+                    {% if plan.tile_image %}
+                        <div
+                            class="list-item--has-image__image test"
+                            style="background-image: url({% thumbnail plan.tile_image '170x170' crop %})"
+                            role="img"
+                            aria-label="{% if plan.tile_image_alt_text %}{{ plan.tile_image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
+                        >
+                            <div class="list-item--has-image__copyright copyright">
+                                {% if plan.tile_image_copyright %}
+                                    © {{ plan.tile_image_copyright }}
+                                {% else %}
+                                    {% translate 'copyright missing' %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="list-item--has-image__bg-colour"></div>
+                    {% endif %}
                     <div class="lr-bar list-item--has-image__body">
                         <div class="lr-bar__left">
                             <h3 class="list-item__title">{{ plan.title }}</h3>

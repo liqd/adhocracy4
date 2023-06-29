@@ -99,13 +99,20 @@
                           </dd>
                         </div>
                     </dl>
-                    {% if object.description_image %}
-                        <div class="item-detail__background-image" style="background-image: url({% thumbnail object.description_image 'plan_image' %})">
-                        {% if object.description_image_copyright %}
-                            <span class="item-detail__copyright copyright">
-                                © {{ object.description_image_copyright }}
-                            </span>
-                        {% endif %}
+                    {% if object.image %}
+                        <div
+                            class="item-detail__background-image"
+                            style="background-image: url({% thumbnail object.image 'plan_image' %})"
+                            role="img"
+                            aria-label="{% if plan.image_alt_text %}{{ plan.image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
+                        >
+                            <p class="item-detail__copyright copyright">
+                                {% if object.image_copyright %}
+                                    © {{ object.image_copyright }}
+                                {% else %}
+                                    {% translate 'copyright missing' %}
+                                {% endif %}
+                            </p>
                         </div>
                     {% endif %}
                 </section>

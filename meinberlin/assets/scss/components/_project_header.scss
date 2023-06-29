@@ -13,8 +13,11 @@
 
 .project-header--image {
     min-height: $hero-height-mobile;
-    background-size: cover;
     color: $text-color-inverted;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-attachment: fixed;
 
     @media (min-width: $breakpoint) {
         min-height: ($hero-height-mobile + $hero-height-secondary) * 0.5;
@@ -54,6 +57,7 @@
 }
 
 .project-header__copyright {
+    margin-bottom: 0;
     position: absolute;
     bottom: 0;
     right: 0;

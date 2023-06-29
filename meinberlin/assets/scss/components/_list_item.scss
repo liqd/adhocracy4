@@ -31,15 +31,20 @@
     }
 }
 
+.list-item--has-image__bg-colour,
 .list-item--has-image__image {
-    position: relative;
     min-height: 7.5em;
     flex: 0 0 7.5em;
+    background-color: $secondary;
+}
+
+
+.list-item--has-image__image {
+    position: relative;
 
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
-    background-color: $secondary;
 }
 
 .list-item--has-image__copyright {

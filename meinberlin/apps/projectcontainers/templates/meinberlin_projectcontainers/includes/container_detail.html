@@ -4,7 +4,7 @@
     <div class="container">
         <div class="offset-lg-2 col-lg-8">
             <div class="project-header__logo-wrapper">
-                <img class="project-header__logo" src="{% thumbnail container.tile_image 'logo' %}" alt="" />
+                <img class="project-header__logo" src="{% thumbnail container.tile_image 'logo' %}" alt="{{ container.tile_image_alt_text }}" />
                 <div class="project-header__logo-body">
                     <h1 class="project-header__title">{{ container.name }}</h1>
                     <div class="project-header__description">
