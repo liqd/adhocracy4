@@ -11,6 +11,9 @@ const createdOnStr = django.gettext('created on')
 export const BudgetingProposalListItem = (props) => {
   const { proposal, permissions, tokenvoteApiUrl } = props
   const safeLocale = props.locale ? props.locale : undefined
+  const dateTime = proposal.modified
+    ? proposal.modified
+    : proposal.created
   const date = proposal.modified
     ? updatedOnStr + ' ' + toLocaleDate(
       proposal.modified,
@@ -43,7 +46,7 @@ export const BudgetingProposalListItem = (props) => {
       <div className="list-item__vote">
         <div>
           <span className="list-item__author">{proposal.creator}</span>
-          {date + ' - ' + proposal.reference_number}
+          <time dateTime={dateTime}>{date + ' - ' + proposal.reference_number}</time>
         </div>
         {permissions.has_voting_permission_and_valid_token && proposal.vote_allowed && (
           <VoteButton

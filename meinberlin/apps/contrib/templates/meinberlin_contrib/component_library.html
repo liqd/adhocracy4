@@ -732,11 +732,15 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 a4-comments__action-bar-container">
-                                                    <div class="rating"><button aria-label="Click to vote up" class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button><button aria-label="Click to vote down"
-                                                          class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button></div>
+                                                    <div class="rating">
+                                                        <button aria-label="Click to vote up" class="rating-button rating-up">
+                                                            <i class="fa fa-chevron-up" aria-hidden="true"></i>0</button>
+                                                        <button aria-label="Click to vote down" class="rating-button rating-down">
+                                                            <i class="fa fa-chevron-down" aria-hidden="true"></i>0</button></div>
                                                     <div class="a4-comments__action-bar"><button class="btn btn--no-border a4-comments__action-bar__btn" type="button"><a href="#child-comment-form"><i class="fa fa-minus" aria-hidden="true"></i>
                                                                 Antworten ausblenden</a></button><a class="btn btn--no-border a4-comments__action-bar__btn" href="?comment_20" data-bs-toggle="modal" data-bs-target="#share_comment_20"><i
-                                                              class="fas fa-share"></i> Teilen</a></div>
+                                                              class="fas fa-share"></i> Teilen</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1425,119 +1429,109 @@
             <h2 id="cl-list_item">List Item</h2>
 
             <div class="cl-example">
-                <div class="module-content">
-                    <div class="container">
-                        <div class="offset-lg-2 col-lg-8">
-                            <ul class="u-list-reset">
-                                <li class="list-item list-item--squashed">
-                                    <div class="list-item__stats">
-                                        <span class="rating">
-                                            <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
-                                                <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
-                                            </span>
-                                            <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
-                                                <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
-                                            </span>
-                                        </span>
-                                        <span title="Comments">0
-                                            <i class="far fa-comment" aria-label="Comments"></i></span>
-                                    </div>
-
-                                    <h3 class="list-item__title"><a href="#cl-list_item">My Idea</a></h3>
-                                    <div class="list-item__labels">
-                                        <span class="label label--big">This is a category</span>
-                                    </div>
-                                    <span class="list-item__author">Author</span>
-                                    <time class="list-item__date">Date 2018</time>
-                                </li>
-
-                                <li class="list-item list-item--squashed">
-                                    <div class="list-item__stats">
-                                        <span class="rating">
-                                            <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
-                                                <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i></span>
-                                            <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
-                                                <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
-                                            </span>
-                                        </span>
-                                        <span title="Comments">0
-                                            <i class="far fa-comment" aria-label="Comments"></i>
-                                        </span>
-                                    </div>
-
-                                    <h3 class="list-item__title"><a href="#cl-list_item">My Idea 2</a></h3>
-                                    <div class="list-item__labels">
-                                        <span class="label label--big">
-                                            <i class="fas fa-map-marker-alt u-icon-spacing" aria-hidden="true"></i>
-                                            This is a point string
-                                        </span>
-                                    </div>
-                                    <span class="list-item__author">Author</span>
-                                    <time class="list-item__date">Date 2018</time>
-                                </li>
-                            </ul>
+                <ul class="u-list-reset">
+                    <li id="proposal_12" class="list-item">
+                        <div class="u-space-between">
+                            <h3 class="list-item__title"><a href="/budgeting/2023-00012/">This is a proposal, budgeting module list items are written in React and have support</a></h3>
+                            <div class="list-item__stats">
+                                <span class="list-item__icon u-success" title="Positive Bewertungen">
+                                  <i class="fa fa-chevron-up u-icon-spacing" aria-hidden="true"></i>
+                                  0
+                                  <span class="visually-hidden">Positive Bewertungen</span>
+                                </span>
+                                <span class="list-item__icon u-danger" title="Negative Bewertungen">
+                                  <i class="fa fa-chevron-down u-icon-spacing" aria-hidden="true"></i>
+                                  0
+                                  <span class="visually-hidden">Negative Bewertungen</span>
+                                </span>
+                                <span class="list-item__icon u-success" title="Unterstützung">
+                                  <i class="far fa-thumbs-up u-icon-spacing" aria-hidden="true"></i>
+                                  0
+                                  <span class="visually-hidden">Personen unterstützen diesen Vorschlag.</span>
+                                </span>
+                                <span class="list-item__icon u-primary" title="Gesamtzahl der Stimmen">
+                                  <i class="fa-regular fa-square-check u-icon-spacing" aria-hidden="true"></i>
+                                  0
+                                  <span class="visually-hidden">Gesamtzahl der Stimmen</span>
+                                </span>
+                                <span title="Kommentare" class="list-item__icon">
+                                  <i class="far fa-comment u-icon-spacing" aria-hidden="true"></i>
+                                  0
+                                  <span class="visually-hidden">Kommentare</span>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="module-content--light">
-                    <div class="container">
-                        <div class="offset-lg-2 col-lg-8">
-                            <ul class="u-list-reset">
-                                <li class="list-item">
-                                    <div class="list-item__stats">
-                                        <span class="rating"><span class="rating-button rating-up is-read-only" title="Positive Bewertungen">
-                                                1
-                                                <i class="fa fa-chevron-up" aria-label="Positive Bewertungen"></i></span><span class="rating-button rating-down is-read-only" title="Negative Bewertungen">
-                                                0
-                                                <i class="fa fa-chevron-down" aria-label="Negative Bewertungen"></i></span></span><span title="Kommentare">
-                                            1
-                                            <i class="far fa-comment" aria-label="Kommentare"></i></span>
-                                    </div>
-                                    <h3 class="list-item__title">
-                                        <a href="/mapideas/2021-00053/">
-                                            this is an idea
-                                        </a>
-                                    </h3>
-                                    <div class="list-item__labels">
-                                        <span class="label label--big">Only 3</span>
-                                        <span class="label label--big">labels</span>
-                                        <span class="label label--big">displayed</span>
-                                        <span class="label__link label--big">
-                                            <a href="" class="list-item__link">3 More</a>
-                                        </span>
-                                    </div>
-                                    <span class="list-item__author">
-                                        admin
-                                    </span>
-                                    <time class="list-item__date" datetime="2021-02-25T09:03:56.035407+01:00">25. Februar 2021</time>
-                                </li>
-                                <li class="list-item">
-                                    <div class="list-item__stats">
-                                        <span class="rating"><span class="rating-button rating-up is-read-only" title="Positive Bewertungen">
-                                                1
-                                                <i class="fa fa-chevron-up" aria-label="Positive Bewertungen"></i></span><span class="rating-button rating-down is-read-only" title="Negative Bewertungen">
-                                                0
-                                                <i class="fa fa-chevron-down" aria-label="Negative Bewertungen"></i></span></span><span title="Kommentare">
-                                            1
-                                            <i class="far fa-comment" aria-label="Kommentare"></i></span>
-                                    </div>
-                                    <h3 class="list-item__title">
-                                        <a href="/mapideas/2021-00053/">
-                                            this is an idea
-                                        </a>
-                                    </h3>
-                                    <div class="list-item__labels">
-                                        <span class="label label--big">This is a category</span>
-                                    </div>
-                                    <span class="list-item__author">
-                                        admin
-                                    </span>
-                                    <time class="list-item__date" datetime="2021-02-25T09:03:56.035407+01:00">25. Februar 2021</time>
-                                </li>
-                            </ul>
+
+                        <div class="list-item__labels">
+                            <div class="label label--big">Kosten: keine Angabe</div>
+                            <div class="label label--big">Category 3</div>
+                            <div class="label label--big">Label 2</div>
                         </div>
-                    </div>
-                </div>
+                        <div>
+                            <span class="list-item__author">admin</span>
+                            <time datetime="2023-06-29T15:22:49.241795+02:00">erstellt am 29. Juni 2023 - 2023-00016</time>
+                        </div>
+                    </li>
+                    <li class="list-item">
+                        <div class="u-space-between">
+                            <h3 class="list-item__title">
+                                <a href="/mapideas/2022-00695/">
+                                This is an idea from a brainstorming which is a html template
+                                </a>
+                            </h3>
+                            <div class="list-item__stats">
+                                <span class="list-item__icon" title="Kommentare"><i class="far fa-comment u-icon-spacing" aria-hidden="true"></i>
+                                3
+                                <span class="visually-hidden">Kommentare</span></span>
+                            </div>
+                        </div>
+                        <div class="list-item__labels">
+                            <span class="label label--big ">
+                                Fabulous category
+                            </span>
+                        </div>
+                        <span class="list-item__author">
+                            Philli Admin
+                        </span> erstellt am <time class="list-item__date" datetime="2022-02-14T15:45:59.574623+01:00">14. Februar 2022</time>
+                    </li>
+                    <li id="proposal_12" class="list-item">
+                        <div class="u-space-between">
+                            <h3 class="list-item__title"><a href="/budgeting/2023-00012/">This is an idea, it only has rating and comments</a></h3>
+                            <div class="list-item__stats">
+                                <span class="list-item__icon u-success is-read-only" title="Positive Bewertungen">
+                                    <i class="fa fa-chevron-up u-icon-spacing" aria-hidden="true"></i>
+                                    0
+                                    <span class="visually-hidden">Positive Bewertungen</span>
+                                </span>
+                                <span class="list-item__icon u-danger is-read-only" title="Negative Bewertungen">
+                                    <i class="fa fa-chevron-down u-icon-spacing" aria-hidden="true"></i>
+                                    0
+                                    <span class="visually-hidden">Negative Bewertungen</span>
+                                </span>
+                                <span title="Kommentare" class="list-item__icon is-read-only">
+                                    <i class="far fa-comment u-icon-spacing" aria-hidden="true"></i>
+                                    0
+                                    <span class="visually-hidden">Kommentare</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="list-item__labels">
+                            <div class="label label--big">Kosten: keine Angabe</div>
+                            <div class="label label--big">Category 3</div>
+                            <div class="label label--big">Label 2</div>
+                            <span class="label__link label--big">
+                                <a href="" class="list-item__link">3 More</a>
+                            </span>
+                        </div>
+                        <div class="list-item__vote">
+                            <div>
+                                <span class="list-item__author">admin</span>
+                                <time datetime="2023-06-29T15:22:49.241795+02:00">erstellt am 29. Juni 2023 - 2023-00016</time>
+                            </div>
+                        </div>                    </li>
+                </ul>
+
             </div>
 
             <h2 id="cl-maplist-item">Map List Item Horizontal - no image</h2>
@@ -2057,33 +2051,17 @@
                     </div>
                 </div>
 
-                <h2 id="cl-rating">Rating</h2>
+                <h2 id="cl-rating">Rating and support</h2>
 
                 <div class="cl-example">
-                    <div class="module-content">
-                        <div class="container">
-                            <div class="offset-lg-2 col-lg-8">
-                                <ul class="u-list-reset">
-                                    <li class="list-item list-item--squashed">
-                                        <div class="list-item__stats">
-                                            <span class="rating">
-                                                <span class="rating-button rating-up is-read-only" title="Positive Ratings">
-                                                    0
-                                                    <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
-                                                </span>
-                                                <span class="rating-button rating-down is-read-only" title="Negative Ratings">
-                                                    0
-                                                    <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
-                                                </span>
-                                            </span>
-                                            <span title="Comments">
-                                                0
-                                                <i class="far fa-comment" aria-label="Comments"></i>
-                                            </span>
-                                        </div>
-                                        <h3 class="list-item__title">Rated comment</h3>
-                                    </li>
-                                </ul>
+                    <div class="item-detail__actions lr-bar">
+                        <div class="lr-bar__left">
+                            <div
+                                data-attributes="{&quot;contentType&quot;: 111, &quot;objectId&quot;: 13, &quot;authenticatedAs&quot;: &quot;admin&quot;, &quot;positiveRatings&quot;: 1, &quot;negativeRatings&quot;: 0, &quot;userRating&quot;: 1, &quot;userRatingId&quot;: 3, &quot;isReadOnly&quot;: false, &quot;style&quot;: &quot;ideas&quot;}">
+                                <div class="rating"><button aria-label="Für eine positive Bewertung hier klicken"
+                                        class="rating-button rating-up is-selected"><i class="fa fa-chevron-up"
+                                            aria-hidden="true"></i>1</button><button aria-label="Für eine negative Bewertung hier klicken"
+                                        class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button></div>
                             </div>
                         </div>
                     </div>

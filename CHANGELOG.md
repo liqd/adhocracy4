@@ -25,6 +25,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - offlineevents: only send a notification about event start if project is not a draft (#4922)
 - deps: update a4 to commit f07f9c5
 - change inheritance order to move ModelForm class from ImageRightOfUseMixin and ContactStorageConsentMixin to forms (#5156)
+- budegting: made support button inactive when proposal is archived (!5150) updated component library (!5150)
 
 ### Fixed
 
