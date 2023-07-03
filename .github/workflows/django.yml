@@ -60,6 +60,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: check a4 hashes equal
+        run: |
+          ./scripts/a4-check.sh
       - name: Install Dependencies
         run: |
           npm install
