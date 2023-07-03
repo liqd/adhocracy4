@@ -18,6 +18,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - deps: update a4 to !1425 (!5121)
 - reformat CHANGELOG.md
 - offlineevents: only send a notification about event start if project is not a draft (#4922)
+- deps: update a4 to commit f07f9c5
 
 ### Fixed
 
