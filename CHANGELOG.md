@@ -11,6 +11,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 * image alt-text field to project model and form. (!1425)
 * image mixin to ensure all images added in projects and related models require meta data in form of alt-text and copyright. (!1425)
 * add CategoryAliasFilter and LabelAliasFilter for category and label filters with custom label (#1436)
+* add markdown rules to editorconfig
 
 ### Changed
 * actions: only create actions for phases and projects if the project is not
