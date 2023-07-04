@@ -48,7 +48,7 @@ class PopUp extends React.Component {
     if (this.props.itemTopics) {
       return (
         <div className="maplist-item__labels">
-          {this.props.itemTopics.map(topic => <span key={topic} className="label label--secondary maplist-item__label u-spacer-bottom-half">{topic}</span>)}
+          {this.props.itemTopics.map(topic => <span key={topic} className="label label--secondary maplist-item__label">{topic}</span>)}
         </div>
       )
     }

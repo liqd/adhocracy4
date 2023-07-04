@@ -1,5 +1,6 @@
 .participation-tile__list {
     max-width: calc(100% + 2rem); // this is all to fit within the frame to be inline with above items
+    margin: 0.5 * $spacer !important;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -28,8 +29,8 @@
 }
 
 .maplist-item__label {
-    font-size: $font-size-sm;
     margin-right: 0.5 * $spacer;
+    margin-bottom: 0.5 * $spacer;
 }
 
 .maplist-item__roofline {
@@ -38,7 +39,7 @@
 }
 
 .maplist-item__title {
-    margin-top: $spacer;
+    margin-top: 0.5 * $spacer;
 }
 
 .maplist-item__description {
@@ -115,7 +116,7 @@
     }
 
     .maplist-item__label-img {
-        margin-top: $spacer;
+        margin-top: 0.5 * $spacer;
         margin-left: $spacer;
     }
 }

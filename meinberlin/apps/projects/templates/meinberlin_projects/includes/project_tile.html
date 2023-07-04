@@ -18,7 +18,7 @@
                 {% if project.topics %}
                     <div class="maplist-item__label-img">
                         {% for topic in project.topic_names %}
-                        <span class="label label--secondary maplist-item__label u-spacer-bottom-half">
+                        <span class="label label--secondary maplist-item__label">
                         {{ topic }}
                         </span>
                         {% endfor %}
@@ -37,7 +37,7 @@
                 {% if project.topics and not project_image %}
                 <div class="maplist-item__label-spacer">
                     {% for topic in project.topic_names %}
-                    <span class="label label--secondary maplist-item__label u-spacer-bottom-half">
+                    <span class="label label--secondary maplist-item__label">
                     {{ topic }}
                     </span>
                     {% endfor %}

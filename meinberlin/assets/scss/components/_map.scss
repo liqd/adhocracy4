@@ -195,10 +195,11 @@
     @media (min-width: $breakpoint-xs) {
         flex-grow: 2;
         min-height: 100vh;
+        margin-top: $spacer;
     }
 
-    @media (max-width: $breakpoint-md-down) {
-        margin-top: $spacer;
+    @media (min-width: $breakpoint-md) {
+        margin-top: 0.25 * $spacer;
     }
 }
 
