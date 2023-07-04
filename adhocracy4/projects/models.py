@@ -152,6 +152,14 @@ class TimelinePropertiesMixin:
             return []
         return []
 
+    def get_module_cluster_index(self, module):
+        for idx, val in enumerate(self.participation_dates):
+            if "modules" in val and module in val["modules"]:
+                return idx
+        if self.project.get_current_participation_date():
+            return self.project.get_current_participation_date()
+        return 0
+
 
 class Project(
     ProjectContactDetailMixin,
