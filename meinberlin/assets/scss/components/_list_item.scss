@@ -105,19 +105,12 @@
 
 .list-item__stats {
     display: flex;
+    justify-content: flex-end;
     margin-left: 0.5 * $spacer;
 }
 
 .list-item__action {
     display: inline;
-}
-
-.list-item__vote {
-    @media screen and (min-width: $breakpoint-xs) {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
 }
 
 .list-item .is-read-only {
@@ -136,4 +129,22 @@
 
 .list-item__status--active {
     color: $primary;
+}
+
+.list-item__header {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+@media screen and (min-width: $breakpoint-xs) {
+    .list-item__vote {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .list-item__header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }

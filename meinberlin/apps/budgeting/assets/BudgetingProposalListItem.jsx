@@ -26,7 +26,7 @@ export const BudgetingProposalListItem = (props) => {
 
   return (
     <li id={'proposal_' + proposal.pk} className="list-item">
-      <div className="u-space-between">
+      <div className="list-item__header">
         <h3 className="list-item__title">
           <a href={proposal.url}>{proposal.name}</a>
         </h3>
