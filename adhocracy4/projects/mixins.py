@@ -171,6 +171,10 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
             context["event"] = self.get_current_event()
             context["modules"] = self.get_current_modules()
             context["initial_slide"] = self.initial_slide
+        else:
+            context["initial_slide"] = self.project.get_module_cluster_index(
+                self.module
+            )
         return context
 
 
