@@ -26,10 +26,10 @@ authorization from Netsyms Technologies.
 */
 
 /* global django */
-
+const ariaLabelImage = django.gettext('Click for image-based question')
+const ariaLabelText = django.gettext('Click for text-based question')
 const textImageMode = '&gt; ' + django.gettext('Image mode')
 const textTextMode = '&gt; ' + django.gettext('Text mode')
-const textLabel = django.gettext('Switch between image and text question')
 
 window.onload = function () {
   function chooseAnswer (idp, ans, session, combinedAnswerId) {
@@ -62,13 +62,14 @@ window.onload = function () {
     clearAnswer(idp, combinedAnswerId)
 
     if (switchLabel.innerHTML === textTextMode) {
+      switchLabel.setAttribute('aria-label', ariaLabelImage)
       switchLabel.innerHTML = textImageMode
       imgQ.style.display = 'none'
       accQ.style.display = 'initial'
       imgA.style.display = 'none'
       accA.style.display = 'initial'
 
-      accA.innerHTML = "<input type='text' name='captcheck_selected_answer' aria-label='Type your answer here.' autocomplete='off' autofill='off'/>"
+      accA.innerHTML = "<input id='captcheck_" + idp + "_question_access-answer' type='text' name='captcheck_selected_answer' aria-label='Type your answer here.' autocomplete='off' autofill='off'/>"
       accA.firstElementChild.addEventListener('input', function (ev) {
         ev.preventDefault()
         chooseAnswer(idp, this.value, session, combinedAnswerId)
@@ -83,12 +84,8 @@ window.onload = function () {
     }
   }
 
-  let nonce = ''
   /* Loop over all the CAPTCHA containers on the page, setting up a different CAPTCHA in each */
   Array.prototype.forEach.call(document.getElementsByClassName('captcheck_container'), function (container) {
-    if (container.dataset.stylenonce) {
-      nonce = container.dataset.stylenonce
-    }
     const apiUrl = container.getAttribute('data-api_url')
     const combinedAnswerId = container.getAttribute('combined_answer_id')
     const xhr = new XMLHttpRequest()
@@ -114,7 +111,10 @@ window.onload = function () {
           let answers = "<div class='captcheck_answer_images' id='captcheck_" + idp + "_answer_images'>"
           for (let i = 0, len = data.answers.length; i < len; i++) {
             const src = apiUrl + '?action=img&s=' + data.session + '&c=' + data.answers[i]
-            answers += "<a class='captcheck_answer_label' href='' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' tabindex='0' aria-role='button'><input id='captcheck_" + idp + '_answer_' + data.answers[i] + "' type='radio' name='captcheck_selected_answer' value='" + data.answers[i] + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' /><img src='" + src + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'/></a>"
+            answers +=
+            "<a class='captcheck_answer_label' href='' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' tabindex='0' aria-role='button'>" +
+            "<input id='captcheck_" + idp + '_answer_' + data.answers[i] + "' aria-labelledby='captcheck_" + idp + "_question_image' type='radio' name='captcheck_selected_answer' value='" + data.answers[i] + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' />" +
+            "<img src='" + src + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'/></a>"
           }
           answers += '</div>'
           const answerDiv = document.createElement('div')
@@ -123,7 +123,10 @@ window.onload = function () {
           const questionDiv = document.createElement('div')
           questionDiv.setAttribute('class', 'captcheck_label_message')
           questionDiv.setAttribute('id', 'captcheck_' + idp + '_label_message')
-          questionDiv.innerHTML = "<span class='captcheck_question_image' id='captcheck_" + idp + "_question_image'>" + data.question_i + "</span><span class='captcheck_question_access' id='captcheck_" + idp + "_question_access'>" + data.question_a + "</span><a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' aria-label='" + textLabel + "' tabindex='0'>" + textTextMode + '</a>'
+          questionDiv.innerHTML =
+          "<label class='captcheck_question_image' id='captcheck_" + idp + "_question_image' tabindex='0'>" + data.question_i + '</label>' +
+          "<label class='captcheck_question_access' id='captcheck_" + idp + "_question_access' tabindex='0'>" + data.question_a + '</label>' +
+          "<a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' tabindex='0' aria-label='" + ariaLabelText + "'>" + textTextMode + '</a>'
 
           /* Add question and answers */
           captcha.appendChild(questionDiv)
@@ -165,13 +168,4 @@ window.onload = function () {
     }
     xhr.send()
   })
-
-  /* Add custom styles */
-  const styles = document.createElement('style')
-  if (nonce !== '') {
-    styles.setAttribute('nonce', nonce)
-  }
-  /* Remove newlines/comments from captcheck.css and put it here */
-  styles.innerHTML = '.captcheck_box{font-family:Ubuntu,Arial,sans-serif;color:black;border:1px solid #e0e0e0;border-radius:3px;display:inline-block;padding:3px;margin:5px 2px 5px 1px;background-color:#f5f5f5;text-decoration:none}.captcheck_label_message,.captcheck_label_message b{color:black;font-family:Ubuntu,Roboto,Arial,sans-serif}.captcheck_answer_label{border:0}.captcheck_answer_label>input{visibility:hidden;position:absolute}.captcheck_answer_label>input+img{cursor:pointer;border:2px solid transparent;border-radius:3px;min-width:32px;width:18%;max-width:64px}.captcheck_answer_label>input:checked+img{cursor:pointer;border:2px solid #424242;border-radius:3px}.captcheck_error_message{color:red}.captcheck_question_image{display:initial}.captcheck_question_access{display:none}.captcheck_alt_question_button{float:right;font-size:80%;cursor:pointer;color:inherit;text-decoration:inherit;border:0}.captcheck_answer_images{display:initial}.captcheck_answer_access{display:none}'
-  document.body.appendChild(styles)
 }

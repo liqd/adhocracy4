@@ -45,7 +45,9 @@
             {% endif %}
         </div>
 
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.captcha %}
+        {% with tabindex="0" %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.captcha %}
+        {% endwith %}
 
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
