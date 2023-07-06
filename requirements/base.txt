@@ -13,7 +13,7 @@ whitenoise==6.4.0
 zeep==4.2.1
 
 # Inherited a4-core requirements
-Django==3.2.19
+Django==3.2.20
 django-allauth==0.54.0
 git+https://github.com/liqd/django-autoslug.git@liqd2212#egg=django-autoslug
 django-background-tasks==1.2.5
