@@ -9,6 +9,8 @@ const futureParticipationStr = django.gettext('Participation: from ')
 const endedParticipationStr = django.gettext('Participation ended. Read result.')
 const statusStr = django.gettext('Status: ')
 const nothingStr = django.gettext('Nothing to show')
+const copyrightStr = django.gettext('copyright missing')
+const altImgStr = django.gettext('Here you can find a decorative picture.')
 
 class LazyBackground extends React.Component {
   constructor (props) {
@@ -70,11 +72,10 @@ class LazyBackground extends React.Component {
           backgroundImage: this.state.source ? 'url(' + this.state.source + ')' : 'none'
         }}
         role={this.props.item.tile_image_alt_text ? 'img' : null}
-        aria-label={this.props.item.tile_image_alt_text}
+        aria-label={this.props.item.tile_image_alt_text ? this.props.item.tile_image_alt_text : altImgStr}
       >
         {!this.props.isHorizontal && this.props.renderTopics(this.props.item)}
-        {this.props.item.tile_image_copyright &&
-          <span className="maplist-item__img-copyright copyright">© {this.props.item.tile_image_copyright}</span>}
+        <span className="maplist-item__img-copyright copyright">© {this.props.item.tile_image_copyright ? this.props.item.tile_image_copyright : copyrightStr}</span>
       </div>
     )
   }
