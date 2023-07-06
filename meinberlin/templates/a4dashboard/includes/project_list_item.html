@@ -9,7 +9,7 @@
             class="list-item--has-image__image"
             style="background-image: url({% thumbnail project_image '170x170' crop %})"
             role="img"
-            aria-label="{% if project.tile_image_alt_text %}{{ project.tile_image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
+            aria-label="{% if project.image_alt_text %}{{ project.image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
         >
             <div class="list-item--has-image__copyright copyright">
                 {% if project_image_copyright %}
