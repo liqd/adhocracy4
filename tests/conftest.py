@@ -6,6 +6,8 @@ from rest_framework.test import APIClient
 
 from adhocracy4.test import factories as a4_factories
 from adhocracy4.test import helpers
+from adhocracy4.test.factories import categories as a4_category_factories
+from adhocracy4.test.factories import labels as a4_label_factories
 from adhocracy4.test.factories.maps import AreaSettingsFactory
 from meinberlin.test import factories
 from meinberlin.test.factories.activities import ActivityFactory
@@ -29,10 +31,12 @@ register(OrganisationFactory)
 register(factories.CommentFactory)
 register(factories.RatingFactory)
 register(factories.ModeratorFeedbackFactory)
-register(factories.CategoryFactory)
+register(a4_category_factories.CategoryFactory)
+register(a4_category_factories.CategoryAliasFactory)
 register(factories.AdministrativeDistrictFactory)
 register(factories.LiveStreamFactory)
-register(factories.LabelFactory)
+register(a4_label_factories.LabelFactory)
+register(a4_label_factories.LabelAliasFactory)
 register(ActivityFactory)
 register(ProjectContainerFactory)
 register(PlanFactory)

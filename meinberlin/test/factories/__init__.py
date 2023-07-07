@@ -44,7 +44,6 @@ class ImageFactory:
     """Create a django file object containg an image."""
 
     def __call__(self, resolution, image_format="JPEG", name=None):
-
         filename = name or "default.{}".format(image_format.lower())
         color = "blue"
         image = Image.new("RGB", resolution, color)
@@ -78,14 +77,6 @@ class ModeratorFeedbackFactory(factory.django.DjangoModelFactory):
     creator = factory.SubFactory(UserFactory)
 
 
-class CategoryFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = "a4categories.Category"
-
-    name = factory.Faker("job")
-    module = factory.SubFactory(factories.ModuleFactory)
-
-
 class AdministrativeDistrictFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = "a4administrative_districts.AdministrativeDistrict"
@@ -97,14 +88,6 @@ class LiveStreamFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = "meinberlin_livequestions.LiveStream"
 
-    module = factory.SubFactory(factories.ModuleFactory)
-
-
-class LabelFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = "a4labels.Label"
-
-    name = factory.Faker("name")
     module = factory.SubFactory(factories.ModuleFactory)
 
 
