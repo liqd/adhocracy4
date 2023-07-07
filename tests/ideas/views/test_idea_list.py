@@ -1,5 +1,8 @@
 import pytest
 
+from adhocracy4.categories import filters as a4_category_filters
+from adhocracy4.filters import filters as a4_filters
+from adhocracy4.labels import filters as a4_label_filters
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import setup_phase
@@ -46,3 +49,38 @@ def test_list_view_qs_gets_annotated(client, phase_factory, idea_factory):
         assert hasattr(annotated_idea, "comment_count")
         assert hasattr(annotated_idea, "positive_rating_count")
         assert hasattr(annotated_idea, "negative_rating_count")
+
+
+@pytest.mark.django_db
+def test_list_view_filter_set(client, phase_factory, idea_factory):
+    phase, module, project, idea = setup_phase(
+        phase_factory, idea_factory, phases.FeedbackPhase
+    )
+    url = project.get_absolute_url()
+    response = client.get(url)
+
+    assert len(response.context["view"].filter_set.base_filters)
+
+    assert "ordering" in response.context["view"].filter_set.base_filters
+    assert isinstance(
+        response.context["view"].filter_set.base_filters["ordering"],
+        a4_filters.DynamicChoicesOrderingFilter,
+    )
+
+    assert "search" in response.context["view"].filter_set.base_filters
+    assert isinstance(
+        response.context["view"].filter_set.base_filters["search"],
+        a4_filters.FreeTextFilter,
+    )
+
+    assert "category" in response.context["view"].filter_set.base_filters
+    assert isinstance(
+        response.context["view"].filter_set.base_filters["category"],
+        a4_category_filters.CategoryAliasFilter,
+    )
+
+    assert "labels" in response.context["view"].filter_set.base_filters
+    assert isinstance(
+        response.context["view"].filter_set.base_filters["labels"],
+        a4_label_filters.LabelAliasFilter,
+    )

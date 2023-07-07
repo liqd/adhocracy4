@@ -22,7 +22,9 @@ def test_proposal_list_filter_mixin(
     phase_factory,
     proposal_factory,
     category_factory,
+    category_alias_factory,
     label_factory,
+    label_alias_factory,
     moderation_task_factory,
     voting_token_factory,
 ):
@@ -69,6 +71,11 @@ def test_proposal_list_filter_mixin(
     assert (str(category2.pk), category2.name) in response.data["filters"]["category"][
         "choices"
     ]
+    # with category alias
+    category_alias = category_alias_factory(module=module)
+    response = apiclient.get(url)
+    assert "category" in response.data["filters"]
+    assert response.data["filters"]["category"]["label"] == category_alias.title
 
     assert "is_archived" in response.data["filters"]
     assert response.data["filters"]["is_archived"]["label"] == _("Archived")
@@ -101,12 +108,18 @@ def test_proposal_list_filter_mixin(
     assert "filters" in response.data
     assert len(response.data["filters"]) == 5
     assert "labels" in response.data["filters"]
+    assert response.data["filters"]["labels"]["label"] == _("Label")
     assert (str(label1.pk), label1.name) in response.data["filters"]["labels"][
         "choices"
     ]
     assert (str(label2.pk), label2.name) in response.data["filters"]["labels"][
         "choices"
     ]
+    # with label_alias
+    label_alias = label_alias_factory(module=module)
+    response = apiclient.get(url)
+    assert "labels" in response.data["filters"]
+    assert response.data["filters"]["labels"]["label"] == label_alias.title
 
     # ordering choices and own_votes in different phases
 
@@ -214,6 +227,45 @@ def test_proposal_category_filter(
     url = reverse("proposals-list", kwargs={"module_pk": module.pk})
 
     response = apiclient.get(url)
+    assert len(response.data["results"]) == 3
+
+    querystring = "?category=" + str(category1.pk)
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data["results"]) == 1
+    assert response.data["results"][0]["pk"] == proposal_cat1.pk
+
+    querystring = "?category=" + str(category2.pk)
+    url_tmp = url + querystring
+    response = apiclient.get(url_tmp)
+    assert len(response.data["results"]) == 2
+
+
+@pytest.mark.django_db
+def test_proposal_category_alias_filter(
+    apiclient,
+    module,
+    proposal_factory,
+    category_factory,
+    category_alias_factory,
+    phase_factory,
+):
+    phase_factory(phase_content=phases.SupportPhase(), module=module)
+
+    category_alias = category_alias_factory(module=module)
+    category1 = category_factory(module=module)
+    category2 = category_factory(module=module)
+
+    proposal_cat1 = proposal_factory(module=module, category=category1)
+    proposal_factory(module=module, category=category2)
+    proposal_factory(module=module, category=category2)
+
+    url = reverse("proposals-list", kwargs={"module_pk": module.pk})
+
+    response = apiclient.get(url)
+    "category" in response.data["filters"]
+    assert response.data["filters"]["category"]["label"] == category_alias.title
+
     assert len(response.data["results"]) == 3
 
     querystring = "?category=" + str(category1.pk)
