@@ -1,34 +1,33 @@
 {% load i18n contrib_tags %}
 
+{% if mode == 'map' %}
+{% combined_url_parameter request.GET mode='list' as url_par %}
+<div class="btn-group__container control-bar__item">
+    <div class="btn-group" role="group">
+        <a class="btn btn--light" href="{{ url_par }}" aria-label="{% translate 'View as list' %}">
+          <i class="fa fa-list" aria-hidden="true"></i>
+          <span>{% translate 'List' %}</span>
+        </a><div class="btn switch--btn active" aria-label="{% translate 'View as map' %}">
+          <i class="fa fa-map" aria-hidden="true"></i>
+          <span>{% translate 'Map' %}</span>
+        </div>
+    </div>
+</div>
+{% else %}
+{% combined_url_parameter request.GET mode='map' as url_par %}
+<div class="btn-group__container control-bar__item">
+    <div class="btn-group" role="group">
+        <div class="btn switch--btn active" aria-label="{% translate 'View as list' %}">
+          <i class="fa fa-list" aria-hidden="true"></i>
+          <span>{% translate 'List' %}</span>
+        </div><a class="btn btn--light" href="{{ url_par }}" aria-label="{% translate 'View as map' %}">
+          <i class="fa fa-map" aria-hidden="true"></i>
+          <span>{% translate 'Map' %}</span>
+        </a>
+    </div>
+</div>
+{% endif %}
 <div class="control-bar">
-    {% if mode == 'map' %}
-        {% combined_url_parameter request.GET mode='list' as url_par %}
-        <div class="btn-group__container control-bar__item">
-            <div class="btn-group" role="group">
-                <a class="btn btn--light" href="{{ url_par }}" aria-label="{% translate 'View as list' %}">
-                  <i class="fa fa-list" aria-hidden="true"></i>
-                  <span>{% translate 'List' %}</span>
-                </a><div class="btn switch--btn active" aria-label="{% translate 'View as map' %}">
-                  <i class="fa fa-map" aria-hidden="true"></i>
-                  <span>{% translate 'Map' %}</span>
-                </div>
-            </div>
-        </div>
-    {% else %}
-        {% combined_url_parameter request.GET mode='map' as url_par %}
-        <div class="btn-group__container control-bar__item">
-            <div class="btn-group" role="group">
-                <div class="btn switch--btn active" aria-label="{% translate 'View as list' %}">
-                  <i class="fa fa-list" aria-hidden="true"></i>
-                  <span>{% translate 'List' %}</span>
-                </div><a class="btn btn--light" href="{{ url_par }}" aria-label="{% translate 'View as map' %}">
-                  <i class="fa fa-map" aria-hidden="true"></i>
-                  <span>{% translate 'Map' %}</span>
-                </a>
-            </div>
-        </div>
-    {% endif %}
-
     {% for field in filter.form %}
         {% if field.name != 'ordering' %}
             {{ field }}

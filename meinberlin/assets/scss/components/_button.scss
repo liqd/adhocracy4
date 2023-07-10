@@ -105,7 +105,7 @@
 
 .btn--select {
     @include text-truncate;
-    max-width: 15em;
+    max-width: 17rem;
 
     // leave space for caret
     padding-right: 2.2em;
