@@ -21,6 +21,11 @@
         }
     }
 
+    // ensure long entries wrap
+    .dropdown-item {
+        white-space: inherit;
+    }
+
     @media (max-width: $breakpoint) {
         .dropdown-toggle,
         .control-bar__item,
