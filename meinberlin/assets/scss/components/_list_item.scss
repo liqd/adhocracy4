@@ -26,7 +26,7 @@
     display: flex;
     flex-direction: column;
 
-    @media (width >= 30em) {
+    @media screen and (min-width: $breakpoint-xs) {
         flex-direction: row;
     }
 }
