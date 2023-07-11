@@ -1,6 +1,8 @@
 from django.utils.translation import gettext as _
 
+from adhocracy4.categories.models import CategoryAlias
 from adhocracy4.exports import unescape_and_strip_html
+from adhocracy4.labels.models import LabelAlias
 
 from .base import VirtualFieldMixin
 
@@ -12,7 +14,14 @@ class ItemExportWithCategoriesMixin(VirtualFieldMixin):
 
     def get_virtual_fields(self, virtual):
         if "category" not in virtual:
-            virtual["category"] = _("Category")
+            if hasattr(self, "module") and CategoryAlias.get_category_alias(
+                self.module
+            ):
+                virtual["category"] = CategoryAlias.get_category_alias(
+                    self.module
+                ).title
+            else:
+                virtual["category"] = _("Category")
         return super().get_virtual_fields(virtual)
 
     def get_category_data(self, item):
@@ -28,7 +37,10 @@ class ItemExportWithLabelsMixin(VirtualFieldMixin):
 
     def get_virtual_fields(self, virtual):
         if "labels" not in virtual:
-            virtual["labels"] = _("Labels")
+            if hasattr(self, "module") and LabelAlias.get_label_alias(self.module):
+                virtual["labels"] = LabelAlias.get_label_alias(self.module).title
+            else:
+                virtual["labels"] = _("Labels")
         return super().get_virtual_fields(virtual)
 
     def get_labels_data(self, item):

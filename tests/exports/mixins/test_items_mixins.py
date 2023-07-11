@@ -1,13 +1,16 @@
 import pytest
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.exports.mixins import ItemExportWithCategoriesMixin
 from adhocracy4.exports.mixins import ItemExportWithLabelsMixin
 from adhocracy4.exports.mixins import ItemExportWithModeratorFeedback
 from adhocracy4.exports.mixins import ItemExportWithReferenceNumberMixin
+from adhocracy4.exports.views import BaseExport
+from adhocracy4.exports.views import ProjectMixin
 
 
 @pytest.mark.django_db
-def test_item_categories_mixin(idea_factory, category):
+def test_item_categories_mixin(idea_factory, category, category_alias_factory):
     idea = idea_factory(category=category)
     idea_wo_category = idea_factory()
 
@@ -15,6 +18,7 @@ def test_item_categories_mixin(idea_factory, category):
 
     virtual = mixin.get_virtual_fields({})
     assert "category" in virtual
+    assert virtual["category"] == _("Category")
 
     data = mixin.get_category_data(idea)
     assert category.name in data
@@ -22,9 +26,18 @@ def test_item_categories_mixin(idea_factory, category):
     data_wo_category = mixin.get_category_data(idea_wo_category)
     assert "" == data_wo_category
 
+    class ExampleExport(BaseExport, ProjectMixin, ItemExportWithCategoriesMixin):
+        module = idea.module
+
+    category_alias = category_alias_factory(module=idea.module)
+    export = ExampleExport()
+    virtual = export.get_virtual_fields({})
+    assert "category" in virtual
+    assert virtual["category"] == category_alias.title
+
 
 @pytest.mark.django_db
-def test_item_labels_mixin(idea_factory, label_factory):
+def test_item_labels_mixin(idea_factory, label_factory, label_alias_factory):
     label1 = label_factory()
     label2 = label_factory(module=label1.module)
     idea = idea_factory.create(labels=(label1, label2))
@@ -35,6 +48,7 @@ def test_item_labels_mixin(idea_factory, label_factory):
 
     virtual = mixin.get_virtual_fields({})
     assert "labels" in virtual
+    assert virtual["labels"] == _("Labels")
 
     data = mixin.get_labels_data(idea)
     assert label1.name in data
@@ -42,6 +56,15 @@ def test_item_labels_mixin(idea_factory, label_factory):
 
     data_wo_label = mixin.get_labels_data(idea_wo_label)
     assert "" == data_wo_label
+
+    class ExampleExport(BaseExport, ProjectMixin, ItemExportWithLabelsMixin):
+        module = idea.module
+
+    label_alias = label_alias_factory(module=idea.module)
+    export = ExampleExport()
+    virtual = export.get_virtual_fields({})
+    assert "labels" in virtual
+    assert virtual["labels"] == label_alias.title
 
 
 @pytest.mark.django_db
