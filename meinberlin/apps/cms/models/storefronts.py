@@ -18,9 +18,12 @@ from meinberlin.apps.plans.models import Plan
 
 
 def project_choice_limit():
+    """Return project that are either active or are currently chosen (and possibly finished in meantime)"""
     now = timezone.now()
+    chosen_projects = StorefrontItem.objects.values("project__id")
     limit_ids = Project.objects.filter(
-        is_draft=False, is_archived=False, module__phase__end_date__gte=now
+        Q(is_draft=False, is_archived=False, module__phase__end_date__gte=now)
+        | Q(id__in=chosen_projects)
     ).values_list("id", flat=True)
     limit = {"id__in": limit_ids}
     return limit
