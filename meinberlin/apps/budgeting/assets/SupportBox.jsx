@@ -87,6 +87,9 @@ export const SupportBox = (props) => {
     if (props.isArchived) {
       return 'is-archived'
     }
+    if (props.isReadOnly) {
+      return 'is-read-only'
+    }
     if (userSupported) {
       return 'is-selected'
     }
@@ -99,7 +102,7 @@ export const SupportBox = (props) => {
         className={'rating-button rating-up ' + getSupportClass()}
         aria-disabled={props.isReadOnly}
         onClick={handleSupport}
-        title={getSupportClickStr}
+        title={getSupportClickStr()}
       >
         <i className="far fa-thumbs-up" aria-hidden="true" />
         <span aria-hidden="true">{support}</span>
