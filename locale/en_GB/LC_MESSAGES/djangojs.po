@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-29 18:11+0200\n"
+"POT-Creation-Date: 2023-07-11 09:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -787,6 +787,10 @@ msgstr "Click to support."
 #: meinberlin/apps/budgeting/assets/SupportBox.jsx:19
 msgid "You support this proposal. Click to unsupport."
 msgstr "You support this proposal. Click to unsupport."
+
+#: meinberlin/apps/budgeting/assets/SupportBox.jsx:20
+msgid "Support button inactive."
+msgstr "Support button inactive."
 
 #: meinberlin/apps/budgeting/assets/VoteButton.jsx:46
 msgid "Voted"
