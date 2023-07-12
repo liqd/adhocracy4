@@ -84,3 +84,9 @@ input[type="search"] {
 .modal-open {
     padding-right: 0 !important;
 }
+
+// FIXME needed for safari as break-word does not work in tile elements, reasons unknown
+// issue ref #5193
+.l-tiles-2 address {
+    overflow-wrap: anywhere;
+}
