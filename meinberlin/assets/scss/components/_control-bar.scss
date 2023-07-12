@@ -14,6 +14,11 @@
         & > form {
             @extend .u-spacer-bottom-half;
         }
+
+        & .dropdown-menu {
+            max-height: 400px; // same as 10 items
+            overflow-y: auto;
+        }
     }
 
     @media (max-width: $breakpoint) {
