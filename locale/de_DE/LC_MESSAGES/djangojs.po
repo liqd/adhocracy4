@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-11 09:35+0200\n"
-"PO-Revision-Date: 2023-02-10 13:43+0000\n"
+"PO-Revision-Date: 2023-07-12 12:26+0000\n"
 "Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
-"Language-Team: German <https://trans.liqd.net/projects/meinberlin/js/de/>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
@@ -980,7 +980,7 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/assets/SupportBox.jsx:20
 msgid "Support button inactive."
-msgstr ""
+msgstr "Button zum Unterstützen inaktiv."
 
 #: meinberlin/apps/budgeting/assets/VoteButton.jsx:46
 msgid "Voted"
