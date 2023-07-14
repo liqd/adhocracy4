@@ -9,9 +9,11 @@ from adhocracy4.dashboard.components.forms import ModuleFormComponent
 from adhocracy4.dashboard.components.forms import ModuleFormSetComponent
 from adhocracy4.dashboard.components.forms import ProjectDashboardForm
 from adhocracy4.dashboard.components.forms import ProjectFormComponent
+from adhocracy4.dashboard.forms import ProjectBasicForm
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.enums import Access
 
 
 @pytest.mark.django_db
@@ -80,6 +82,35 @@ def test_project_form_component(project_factory):
 
     project.information = "some information"
     assert component.get_progress(project) == (1, 1)
+
+
+@pytest.mark.django_db
+def test_project_basic_form_image_metadata_mixin(project_factory, image_factory):
+    image = image_factory((1440, 1400))
+    project = project_factory(is_draft=False, image=image)
+    project_form = ProjectBasicForm(
+        instance=project,
+        data={
+            "name": "my project",
+            "description": "my project description",
+            "access": Access.PUBLIC.value,
+        },
+    )
+    assert not project_form.is_valid()
+    assert "image_copyright" in project_form.errors
+    assert "image_alt_text" in project_form.errors
+
+    project_form = ProjectBasicForm(
+        instance=project,
+        data={
+            "name": "my project",
+            "description": "my project description",
+            "access": Access.PUBLIC.value,
+            "image_copyright": "my copyright",
+            "image_alt_text": "my alt text",
+        },
+    )
+    assert project_form.is_valid()
 
 
 @pytest.mark.django_db
