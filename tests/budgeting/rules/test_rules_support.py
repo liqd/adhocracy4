@@ -279,6 +279,37 @@ def test_phase_active_project_draft(
 
 
 @pytest.mark.django_db
+def test_phase_active_proposal_archived(
+    phase_factory, proposal_factory, user, admin, user_factory, group_factory
+):
+    phase, _, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.SupportPhase
+    )
+    anonymous, moderator, initiator = setup_users(project)
+    creator = item.creator
+    (
+        project,
+        group_member_in_org,
+        group_member_in_pro,
+        group_member_out,
+    ) = setup_group_members(project, group_factory, user_factory)
+
+    item.is_archived = True
+    item.save()
+
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, item)
+        assert not rules.has_perm(perm_name, user, item)
+        assert not rules.has_perm(perm_name, creator, item)
+        assert not rules.has_perm(perm_name, group_member_out, item)
+        assert not rules.has_perm(perm_name, group_member_in_org, item)
+        assert rules.has_perm(perm_name, group_member_in_pro, item)
+        assert rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, initiator, item)
+        assert rules.has_perm(perm_name, admin, item)
+
+
+@pytest.mark.django_db
 def test_post_phase_project_archived(
     phase_factory, proposal_factory, user, admin, user_factory, group_factory
 ):
