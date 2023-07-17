@@ -16,11 +16,22 @@ def test_project_serializer(
     external_project_factory,
     bplan_factory,
     phase_factory,
+    ImagePNG,
 ):
-    project_active = project_factory(name="active")
+    project_active = project_factory(
+        name="active",
+        image=ImagePNG,
+        image_copyright="copyright",
+        image_alt_text="img_alt",
+    )
     project_future = project_factory(name="future")
     project_active_and_future = project_factory(name="active and future")
-    project_past = project_factory(name="past")
+    project_past = project_factory(
+        name="past",
+        tile_image=ImagePNG,
+        tile_image_copyright="copyright",
+        tile_image_alt_text="img_alt",
+    )
     project_container_factory()
     external_project_factory()
     bplan_factory()
@@ -134,3 +145,24 @@ def test_project_serializer(
         assert not project_data[3]["participation_active"]
         assert not project_data[4]["participation_active"]
         assert not project_data[5]["participation_active"]
+
+        assert project_data[0]["tile_image"]
+        assert not project_data[1]["tile_image"]
+        assert not project_data[2]["tile_image"]
+        assert project_data[3]["tile_image"]
+        assert not project_data[4]["tile_image"]
+        assert not project_data[5]["tile_image"]
+
+        assert project_data[0]["tile_image_copyright"]
+        assert not project_data[1]["tile_image_copyright"]
+        assert not project_data[2]["tile_image_copyright"]
+        assert project_data[3]["tile_image_copyright"]
+        assert not project_data[4]["tile_image_copyright"]
+        assert not project_data[5]["tile_image_copyright"]
+
+        assert project_data[0]["tile_image_alt_text"]
+        assert not project_data[1]["tile_image_alt_text"]
+        assert not project_data[2]["tile_image_alt_text"]
+        assert project_data[3]["tile_image_alt_text"]
+        assert not project_data[4]["tile_image_alt_text"]
+        assert not project_data[5]["tile_image_alt_text"]

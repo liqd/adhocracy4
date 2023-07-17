@@ -8,8 +8,7 @@ from meinberlin.apps.plans.serializers import PlanSerializer
 
 
 @pytest.mark.django_db
-def test_serializer(client, plan_factory, project_factory, phase_factory):
-
+def test_serializer(client, plan_factory, project_factory, phase_factory, ImagePNG):
     project1 = project_factory()
     project2 = project_factory()
     project3 = project_factory(is_draft=True)
@@ -53,12 +52,23 @@ def test_serializer(client, plan_factory, project_factory, phase_factory):
     )
 
     with freeze_time(now):
-        plan_factory.create(pk=1, projects=[project1])
-        plan_factory.create(pk=2, projects=[project2])
+        plan_factory.create(
+            pk=1,
+            projects=[project1],
+            image=ImagePNG,
+            image_copyright="copyright",
+            image_alt_text="img_alt",
+        )
+        plan_factory.create(
+            pk=2,
+            projects=[project2],
+            tile_image=ImagePNG,
+            tile_image_copyright="copyright",
+            tile_image_alt_text="img_alt",
+        )
         plan_factory.create(pk=3, projects=[project3], status=Plan.STATUS_DONE)
         plan_factory.create(pk=4, projects=[project4])
         plan_factory.create(pk=5, projects=[project5], status=Plan.STATUS_DONE)
-
         plans = Plan.objects.all().order_by("pk")
 
         plan_serializer = PlanSerializer(plans, many=True)
@@ -88,3 +98,21 @@ def test_serializer(client, plan_factory, project_factory, phase_factory):
         assert not plan_data[2]["participation_active"]
         assert plan_data[3]["participation_active"]
         assert not plan_data[4]["participation_active"]
+
+        assert plan_data[0]["tile_image"]
+        assert plan_data[1]["tile_image"]
+        assert not plan_data[2]["tile_image"]
+        assert not plan_data[3]["tile_image"]
+        assert not plan_data[4]["tile_image"]
+
+        assert plan_data[0]["tile_image_copyright"]
+        assert plan_data[1]["tile_image_copyright"]
+        assert not plan_data[2]["tile_image_copyright"]
+        assert not plan_data[3]["tile_image_copyright"]
+        assert not plan_data[4]["tile_image_copyright"]
+
+        assert plan_data[0]["tile_image_alt_text"]
+        assert plan_data[1]["tile_image_alt_text"]
+        assert not plan_data[2]["tile_image_alt_text"]
+        assert not plan_data[3]["tile_image_alt_text"]
+        assert not plan_data[4]["tile_image_alt_text"]
