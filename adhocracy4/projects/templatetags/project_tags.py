@@ -16,3 +16,13 @@ def project_tile_image_copyright(project):
         return project.image_copyright
     else:
         return None
+
+
+@register.simple_tag
+def project_tile_image_alt_text(project):
+    if project.tile_image:
+        return project.tile_image_alt_text
+    elif project.image:
+        return project.image_alt_text
+    else:
+        return None
