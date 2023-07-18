@@ -7,8 +7,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## Unreleased
 
+## v2307
+
 ### Added
 
+- add a changelog folder and readme with guideline for new changelog system
 - image and tile image alt-text field to projects, bplan, plan, container and extprojects serializers, admin and forms and display it in templates (!5121)
 - add markdown rules to editorconfig
 - add CategoryAndLabelAliasMixin and use in forms (#5156)
@@ -16,16 +19,71 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - docs: add more examples on how to test the bplan api
 - add script to check in CI that a4 hashes for pip and npm match
 - budgeting: added semantic time tag to react list item and updated component library
+- added class and styles to ensure ratings and title can be displayed correctly on mobiles fixes #5098
+- updated styling for horizontal tiles to ensure long titles work on all screens and rm uneeded classes to add to the class fixes #5097
+- add class for is-read-only to support button in budgeting (!7411)
+- add max height to control-bar dropdowns so users can scroll when more then 10 categories/labels (#5191)
+- add template tag in list and tile project images to ensure correct alt text is served
+- tests for category/label alias in budgeting api filtering, ideas list view filters and idea form
+- tests for image metadata required in bplan and plan form, testing !1425
+- testing tile_image_copyright, tile_image_alt_text in updated plan and project serializers, testing !1425
+- test archived projects cannot be supported by testing updated rule 'meinberlin_budgeting.support_proposal'
 
 ### Changed
 
 - in plans changed name of description_image to image to be consistent with other project types and ensure image mixin works with all models (!5121)
-- deps: update a4 to !1425 (!5121)
 - reformat CHANGELOG.md
 - offlineevents: only send a notification about event start if project is not a draft (#4922)
-- deps: update a4 to commit f07f9c5
 - change inheritance order to move ModelForm class from ImageRightOfUseMixin and ContactStorageConsentMixin to forms (#5156)
-- budegting: made support button inactive when proposal is archived (!5150) updated component library (!5150)
+- budgeting: made support button inactive when proposal is archived (!5150) updated component library (!5150)
+- updated captcheck js to be inline with DS improvements and move inline css to own file
+- use category and label factories from a4
+- allow already selected projects as possible choice for StoreFrontItem to avoid that they disappear once finished, fixes #5178
+- deps: update a4 to mb-v2307
+- update babel monorepo by @renovate in https://github.com/liqd/a4-meinberlin/pull/5179
+- update dependency @fortawesome/fontawesome-free to v6.4.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5047
+- update dependency acorn to v8.10.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5198
+- update dependency autoprefixer to v10.4.14 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5020
+- update dependency babel-loader to v9.1.3 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5189
+- update dependency black to v23.7.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5190
+- update dependency bootstrap to v5.3.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5110
+- update dependency css-loader to v6.8.1 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5111
+- update dependency django to v3.2.20 [security] by @renovate in https://github.com/liqd/a4-meinberlin/pull/5176
+- update dependency django-allauth to v0.54.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5033
+- update dependency django-debug-toolbar to v4 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5072
+- update dependency django-redis to v5.3.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5126
+- update dependency eslint to v8.45.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5207
+- update dependency eslint-plugin-jest to v27.2.3 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5201
+- update dependency faker to v18.11.2 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5134
+- update dependency hiredis to v2.2.3 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5055
+- update dependency js-cookie to v3.0.5 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5078
+- update dependency lint-staged to v13.2.3 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5177
+- update dependency mini-css-extract-plugin to v2.7.6 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5080
+- update dependency postcss to v8.4.26 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5202
+- update dependency postcss-loader to v7.3.3 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5103
+- update dependency psycopg2 to v2.9.6 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5058
+- update dependency psycopg2-binary to v2.9.6 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5064
+- update dependency pytest to v7.3.2 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5101
+- update dependency pytest-cov to v4.1.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5070
+- update dependency react-bootstrap-typeahead to v6.2.3 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5104
+- update dependency react-router-dom to v6.9.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5022
+- update dependency react-sticky-box to v2.0.4 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5081
+- update dependency requests to v2.31.0 [security] by @renovate in https://github.com/liqd/a4-meinberlin/pull/5062
+- update dependency sass to v1.63.6 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5138
+- update dependency sass-loader to v13.3.2 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5105
+- update dependency sentry-sdk to v1.28.1 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5197
+- update dependency stylelint to v15.10.1 [security] by @renovate in https://github.com/liqd/a4-meinberlin/pull/5186
+- update dependency stylelint-config-standard-scss to v9 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5074
+- update dependency swiper to v9.4.1 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5117
+- update dependency urllib3 to v2 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5088
+- update dependency wagtail to v4.1.6 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5066
+- update dependency webpack to v5.88.2 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5205
+- update dependency webpack-cli to v5.1.4 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5102
+- update dependency webpack-merge to v5.9.0 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5077
+- update dependency whatwg-fetch to v3.6.16 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5209
+- update dependency xlsxwriter to v3.1.2 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5094
+- update eslint packages by @renovate in https://github.com/liqd/a4-meinberlin/pull/5109
+- update jest monorepo to v29.6.1 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5196
 
 ### Fixed
 
@@ -33,6 +91,17 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - budgeting: fix control bar not shown if list is empty (#5043)
 - notifications: fix typo in NotifyFollowersOnUpcomingEventEmail
 - add a missing translation for the char limit error from django-rest-framework (#4973)
+- fixed media query for list items aspect on larger screens, should fix #5171
+- temp fix for safari not breaking word when element is within grid element (#5193)
+- add missing default values to the copyright alt text partial fix for #5174
+- add correct path for alt text to ensure either tile or header alt is present depending on image displayed fixes #5174
+- increas max width templates/mapy_filter_and_sort: mv map switch to first line to match budgeting fixes #5170
+- add styling to ensure control bar dropsdowns wrap at max width fixes #5169
+- fix sass warning about negative inset variable
+
+### Removed
+
+- remove CategoryFactory and LabelFactory
 
 ### What's Changed
 
@@ -1350,6 +1419,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 **Full Changelog**: https://github.com/liqd/a4-meinberlin/compare/v2206.1...v2212
 
 ### Notes:
+
 - last two commits only for release and can be dropped if all features are released
 
 # demo-v2211
