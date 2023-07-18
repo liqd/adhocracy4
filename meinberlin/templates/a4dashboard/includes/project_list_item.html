@@ -1,6 +1,7 @@
 {% load i18n project_tags meinberlin_project_tags thumbnail %}
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
+{% project_tile_image_alt_text project as project_image_alt_text %}
 
 <li class="list-item list-item--has-image">
     <div class="list-item--has-image__wrapper">
@@ -9,7 +10,7 @@
             class="list-item--has-image__image"
             style="background-image: url({% thumbnail project_image '170x170' crop %})"
             role="img"
-            aria-label="{% if project.image_alt_text %}{{ project.image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
+            aria-label="{% if project_image_alt_text %}{{ project_image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
         >
             <div class="list-item--has-image__copyright copyright">
                 {% if project_image_copyright %}

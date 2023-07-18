@@ -2,6 +2,7 @@
 {% project_tile_image project as project_image %}
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
+{% project_tile_image_alt_text project as project_image_alt_text %}
 
 <!-- This tile is only used in plans and containers, not in project list or projects -->
 <li class="participation-tile__vertical">
@@ -13,7 +14,7 @@
                     class="maplist-item__img"
                     style="background-image: url({{ project_image|thumbnail_url:'project_tile' }})"
                     role="img"
-                    aria-label="{% if project.image_alt_text %}{{ project.image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
+                    aria-label="{% if project_image_alt_text %}{{ project_image_alt_text }}{% else %}{% translate 'Here you can find a decorative picture.' %}{% endif %}"
                 >
                 {% if project.topics %}
                     <div class="maplist-item__label-img">
