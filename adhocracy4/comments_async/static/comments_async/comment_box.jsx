@@ -64,9 +64,6 @@ export const CommentBox = (props) => {
   const [anchorRendered, setAnchorRendered] = useState(false)
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('agreedTos', handleTermsOfUse)
-
     if (props.useModeratorMarked) {
       sorts.mom = django.gettext('Highlighted')
     }
@@ -77,12 +74,24 @@ export const CommentBox = (props) => {
       params.commentID = props.anchoredCommentId
     }
     api.comments.get(params).done(handleComments).fail()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, nextComments])
+
+  useEffect(() => {
+    window.addEventListener('agreedTos', handleTermsOfUse)
+    return () => {
       window.removeEventListener('agreedTos', handleTermsOfUse)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [agreedTermsOfUse])
 
   useEffect(() => {
     if (anchorRendered === true) {
