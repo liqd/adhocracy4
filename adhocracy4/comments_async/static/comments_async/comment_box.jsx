@@ -109,7 +109,7 @@ export const CommentBox = (props) => {
     translated.entries = django.ngettext('entry', 'entries', data.count)
     setComments(data.results)
     setNextComments(data.next)
-    setCommentCount(data.count)
+    setCommentCount(calculateCommentCount(data.results))
     setHasCommentingPermission(data.has_commenting_permission)
     setProjectIsPublic(data.project_is_public)
     setUseTermsOfUse(data.use_org_terms_of_use)
@@ -149,7 +149,6 @@ export const CommentBox = (props) => {
 
   function addComment (parentIndex, comment) {
     let diff = {}
-    let newCommentCount = commentCount
     if (parentIndex !== undefined) {
       diff[parentIndex] = {
         child_comments: { $push: [comment] },
@@ -160,11 +159,10 @@ export const CommentBox = (props) => {
       }
     } else {
       diff = { $unshift: [comment] }
-      newCommentCount++
       setMainError(undefined)
     }
     setComments(update(comments, diff))
-    setCommentCount(newCommentCount)
+    setCommentCount(commentCount + 1)
   }
 
   function setReplyError (parentIndex, index, message) {
@@ -295,7 +293,7 @@ export const CommentBox = (props) => {
       const data = result
       setComments(data.results)
       setNextComments(data.next)
-      setCommentCount(data.count)
+      setCommentCount(calculateCommentCount(data.results))
       setFilter(filter)
       setFilterDisplay(displayFilter)
       setLoadingFilter(false)
@@ -324,7 +322,7 @@ export const CommentBox = (props) => {
       const data = result
       setComments(data.results)
       setNextComments(data.next)
-      setCommentCount(data.count)
+      setCommentCount(calculateCommentCount(data.results))
       setSort(order)
       setLoadingFilter(false)
     })
@@ -350,7 +348,7 @@ export const CommentBox = (props) => {
       const data = result
       setComments(data.results)
       setNextComments(data.next)
-      setCommentCount(data.count)
+      setCommentCount(calculateCommentCount(data.results))
       setSearch(search)
       setLoadingFilter(false)
     })
@@ -379,7 +377,7 @@ export const CommentBox = (props) => {
         const newComments = comments.concat(data.results)
         setComments(newComments)
         setNextComments(data.next)
-        setCommentCount(data.count)
+        setCommentCount(commentCount + calculateCommentCount(data.results))
         if (findAnchoredComment(newComments, anchoredCommentParentId)) {
           setLoading(false)
         } else {
@@ -389,6 +387,17 @@ export const CommentBox = (props) => {
       }).catch(error => {
         console.warn(error)
       })
+  }
+
+  function calculateCommentCount (comments) {
+    let count = 0
+    comments.forEach((comment) => {
+      count++
+      if (comment.child_comments.length > 0) {
+        count += comment.child_comments.length
+      }
+    })
+    return count
   }
 
   function handleScroll () {
