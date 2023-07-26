@@ -1,8 +1,11 @@
+from django.apps import apps
+from django.conf import settings
 from django.http import Http404
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import resolve
 from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
 from adhocracy4.modules.models import Module
@@ -167,6 +170,7 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
         context = super().get_context_data(**kwargs)
         context["url_name"] = self.url_name
         context["extends"] = self.extends
+        context["result_title"] = _("Final Results")
         if not self.url_name == "module-detail":
             context["event"] = self.get_current_event()
             context["modules"] = self.get_current_modules()
@@ -175,6 +179,9 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
             context["initial_slide"] = self.project.get_module_cluster_index(
                 self.module
             )
+        if hasattr(settings, "INSIGHT_MODEL"):
+            insight_model = apps.get_model(settings.INSIGHT_MODEL)
+            insight_model.update_context(self.project, context)
         return context
 
 
