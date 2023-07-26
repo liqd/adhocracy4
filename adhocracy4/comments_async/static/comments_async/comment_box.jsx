@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import django from 'django'
 import update from 'immutability-helper'
 
@@ -37,11 +37,11 @@ export const CommentBox = (props) => {
     objectPk: props.subjectId,
     contentTypeId: props.subjectType
   }
+
   const anchoredCommentId = props.anchoredCommentId
     ? parseInt(props.anchoredCommentId)
     : null
   const [comments, setComments] = useState([])
-  const [nextComments, setNextComments] = useState(null)
   const [commentCount, setCommentCount] = useState(0)
   const [showFilters, setShowFilters] = useState(false)
   const [filter, setFilter] = useState([])
@@ -51,7 +51,6 @@ export const CommentBox = (props) => {
   const [loadingFilter, setLoadingFilter] = useState(false)
   const [search, setSearch] = useState('')
   const [anchoredCommentParentId, setAnchoredCommentParentId] = useState(0)
-  const [anchoredCommentFound, setAnchoredCommentFound] = useState(false)
   const [hasCommentingPermission, setHasCommentingPermission] = useState(false)
   const [wouldHaveCommentingPermission, setWouldHaveCommentingPermission] =
     useState(false)
@@ -62,6 +61,49 @@ export const CommentBox = (props) => {
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [anchorRendered, setAnchorRendered] = useState(false)
+
+  const anchoredCommentFound = useRef(false)
+  const loadingRef = useRef(loading)
+  const nextComments = useRef(null)
+
+  // findAnchoredComment and fetchComments are both called from event listeners,
+  // so they need to be wrapped with useCallback so they get recreated when
+  // any of the used states change.
+  const findAnchoredComment = useCallback((newComments, parentId) => {
+    if (anchoredCommentId && !anchoredCommentFound.current) {
+      let found = false
+
+      for (const comment of newComments) {
+        if (comment.id === anchoredCommentId || comment.id === parentId) {
+          anchoredCommentFound.current = true
+          found = true
+          break
+        }
+      }
+      return found
+    }
+    return true
+  }, [anchoredCommentId])
+
+  const fetchComments = useCallback(() => {
+    fetch(nextComments.current)
+      .then((response) => response.json())
+      .then((data) => {
+        const newComments = comments.concat(data.results)
+        setComments(newComments)
+        nextComments.current = data.next
+        setCommentCount(getCommentCount(newComments))
+        if (findAnchoredComment(newComments, anchoredCommentParentId)) {
+          setLoading(false)
+          loadingRef.current = false
+        } else {
+          fetchComments()
+        }
+        return null
+      }).catch(error => {
+        console.warn(error)
+      })
+  }, [comments, anchoredCommentParentId, findAnchoredComment])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -85,22 +127,39 @@ export const CommentBox = (props) => {
   }, [])
 
   useEffect(() => {
+    if (loadingRef.current && nextComments.current) {
+      fetchComments()
+    }
+  }, [loading, nextComments, fetchComments])
+
+  useEffect(() => {
     if (anchorRendered === true) {
-      const el = document.getElementById('comment_' + anchoredCommentId)
+      const el = document.getElementById('comment_' + props.anchoredCommentId)
       if (el !== null) {
         const top = el.getBoundingClientRect().top
         window.scrollTo(0, top)
       }
     }
-  }, [anchorRendered, anchoredCommentId])
+  }, [anchorRendered, props.anchoredCommentId])
+
+  function getCommentCount (comments) {
+    let count = 0
+    comments.forEach((comment) => {
+      count++
+      if (comment.child_comments.length > 0) {
+        count += comment.child_comments.length
+      }
+    })
+    return count
+  }
 
   function handleComments (result) {
     const data = result
 
     translated.entries = django.ngettext('entry', 'entries', data.count)
     setComments(data.results)
-    setNextComments(data.next)
-    setCommentCount(data.count)
+    nextComments.current = data.next
+    setCommentCount(getCommentCount(data.results))
     setHasCommentingPermission(data.has_commenting_permission)
     setProjectIsPublic(data.project_is_public)
     setUseTermsOfUse(data.use_org_terms_of_use)
@@ -110,6 +169,7 @@ export const CommentBox = (props) => {
       setAnchoredCommentParentId(data.comment_parent)
       if (findAnchoredComment(data.results, data.comment_parent)) {
         setLoading(false)
+        loadingRef.current = false
       } else {
         fetchComments()
       }
@@ -120,6 +180,7 @@ export const CommentBox = (props) => {
          */
       }
       setLoading(false)
+      loadingRef.current = false
       setWouldHaveCommentingPermission(data.would_have_commenting_permission)
     }
   }
@@ -140,7 +201,6 @@ export const CommentBox = (props) => {
 
   function addComment (parentIndex, comment) {
     let diff = {}
-    let newCommentCount = commentCount
     if (parentIndex !== undefined) {
       diff[parentIndex] = {
         child_comments: { $push: [comment] },
@@ -151,11 +211,10 @@ export const CommentBox = (props) => {
       }
     } else {
       diff = { $unshift: [comment] }
-      newCommentCount++
       setMainError(undefined)
     }
     setComments(update(comments, diff))
-    setCommentCount(newCommentCount)
+    setCommentCount(commentCount + 1)
   }
 
   function setReplyError (parentIndex, index, message) {
@@ -285,8 +344,8 @@ export const CommentBox = (props) => {
     api.comments.get(params).done((result) => {
       const data = result
       setComments(data.results)
-      setNextComments(data.next)
-      setCommentCount(data.count)
+      nextComments.current = data.next
+      setCommentCount(getCommentCount(data.results))
       setFilter(filter)
       setFilterDisplay(displayFilter)
       setLoadingFilter(false)
@@ -314,8 +373,8 @@ export const CommentBox = (props) => {
     api.comments.get(params).done((result) => {
       const data = result
       setComments(data.results)
-      setNextComments(data.next)
-      setCommentCount(data.count)
+      nextComments.current = data.next
+      setCommentCount(getCommentCount(data.results))
       setSort(order)
       setLoadingFilter(false)
     })
@@ -340,46 +399,11 @@ export const CommentBox = (props) => {
     api.comments.get(params).done((result) => {
       const data = result
       setComments(data.results)
-      setNextComments(data.next)
-      setCommentCount(data.count)
+      nextComments.current = data.next
+      setCommentCount(getCommentCount(data.results))
       setSearch(search)
       setLoadingFilter(false)
     })
-  }
-
-  function findAnchoredComment (newComments, parentId) {
-    if (props.anchoredCommentId && !anchoredCommentFound) {
-      let found = false
-
-      for (const comment of newComments) {
-        if (comment.id === anchoredCommentId || comment.id === parentId) {
-          setAnchoredCommentFound(true)
-          found = true
-          break
-        }
-      }
-      return found
-    }
-    return true
-  }
-
-  function fetchComments () {
-    fetch(nextComments)
-      .then((response) => response.json())
-      .then((data) => {
-        const newComments = comments.concat(data.results)
-        setComments(newComments)
-        setNextComments(data.next)
-        setCommentCount(data.count)
-        if (findAnchoredComment(newComments, anchoredCommentParentId)) {
-          setLoading(false)
-        } else {
-          fetchComments()
-        }
-        return null
-      }).catch(error => {
-        console.warn(error)
-      })
   }
 
   function handleScroll () {
@@ -388,9 +412,9 @@ export const CommentBox = (props) => {
       html.scrollTop + html.clientHeight >
       getDocumentHeight() - autoScrollThreshold
     ) {
-      if (nextComments && !loading) {
+      if (!loadingRef.current && nextComments.current) {
         setLoading(true)
-        fetchComments()
+        loadingRef.current = true
       }
     }
   }
