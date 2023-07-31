@@ -26,7 +26,7 @@ from .serializers import ThreadSerializer
 
 
 class CommentSetPagination(PageNumberPagination):
-    page_size = 100
+    page_size = 20
 
 
 class PaginationCommentLinkMixin:
