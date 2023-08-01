@@ -1,6 +1,7 @@
 from django.apps import apps
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Count
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
 from django.utils.translation import gettext_lazy as _
@@ -37,10 +38,18 @@ class PaginationCommentLinkMixin:
         Attention: No super, be careful with order of inheritance!
         """
         queryset = self.filter_queryset(self.get_queryset())
+        child_comment_count = queryset.aggregate(
+            child_comment_count=Count("child_comments")
+        )
         page = self.paginate_queryset(queryset)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             response = self.get_paginated_response(serializer.data)
+            # add a comment count including the child comments as the paginator doesn't
+            # include them
+            response.data["comment_count"] = (
+                response.data["count"] + child_comment_count["child_comment_count"]
+            )
             if "commentID" in request.query_params:
                 try:
                     commentID = int(request.query_params["commentID"])
