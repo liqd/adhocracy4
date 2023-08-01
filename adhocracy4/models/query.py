@@ -32,4 +32,5 @@ class CommentableQuerySet(models.QuerySet):
                 "comments",
                 distinct=True,  # needed to combine with other count annotations
             )
+            + models.Count("comments__child_comments", distinct=True)
         )

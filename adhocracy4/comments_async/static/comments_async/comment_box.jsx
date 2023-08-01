@@ -83,7 +83,7 @@ export const CommentBox = (props) => {
       window.removeEventListener('scroll', handleScroll)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading, nextComments])
+  }, [loading, nextComments, comments, anchoredCommentParentId])
 
   useEffect(() => {
     window.addEventListener('agreedTos', handleTermsOfUse)
@@ -109,7 +109,7 @@ export const CommentBox = (props) => {
     translated.entries = django.ngettext('entry', 'entries', data.count)
     setComments(data.results)
     setNextComments(data.next)
-    setCommentCount(calculateCommentCount(data.results))
+    setCommentCount(data.comment_count)
     setHasCommentingPermission(data.has_commenting_permission)
     setProjectIsPublic(data.project_is_public)
     setUseTermsOfUse(data.use_org_terms_of_use)
@@ -117,10 +117,10 @@ export const CommentBox = (props) => {
     setOrgTermsUrl(data.org_terms_url)
     if (props.anchoredCommentId && data.comment_found) {
       setAnchoredCommentParentId(data.comment_parent)
-      if (findAnchoredComment(data.results, data.comment_parent)) {
+      if (findAnchoredComment(data.results, data.comment_parent) || !data.next) {
         setLoading(false)
       } else {
-        fetchComments()
+        fetchComments(data.next, data.results, data.comment_parent)
       }
     } else {
       if (props.anchoredCommentId) {
@@ -293,7 +293,7 @@ export const CommentBox = (props) => {
       const data = result
       setComments(data.results)
       setNextComments(data.next)
-      setCommentCount(calculateCommentCount(data.results))
+      setCommentCount(data.comment_count)
       setFilter(filter)
       setFilterDisplay(displayFilter)
       setLoadingFilter(false)
@@ -322,7 +322,7 @@ export const CommentBox = (props) => {
       const data = result
       setComments(data.results)
       setNextComments(data.next)
-      setCommentCount(calculateCommentCount(data.results))
+      setCommentCount(data.comment_count)
       setSort(order)
       setLoadingFilter(false)
     })
@@ -348,7 +348,7 @@ export const CommentBox = (props) => {
       const data = result
       setComments(data.results)
       setNextComments(data.next)
-      setCommentCount(calculateCommentCount(data.results))
+      setCommentCount(data.comment_count)
       setSearch(search)
       setLoadingFilter(false)
     })
@@ -370,34 +370,23 @@ export const CommentBox = (props) => {
     return true
   }
 
-  function fetchComments () {
+  function fetchComments (nextComments, comments, anchoredCommentParentId) {
     fetch(nextComments)
       .then((response) => response.json())
       .then((data) => {
         const newComments = comments.concat(data.results)
         setComments(newComments)
         setNextComments(data.next)
-        setCommentCount(commentCount + calculateCommentCount(data.results))
-        if (findAnchoredComment(newComments, anchoredCommentParentId)) {
+        setCommentCount(data.comment_count)
+        if (findAnchoredComment(newComments, anchoredCommentParentId) || !data.next) {
           setLoading(false)
         } else {
-          fetchComments()
+          fetchComments(data.next, newComments, anchoredCommentParentId)
         }
         return null
       }).catch(error => {
         console.warn(error)
       })
-  }
-
-  function calculateCommentCount (comments) {
-    let count = 0
-    comments.forEach((comment) => {
-      count++
-      if (comment.child_comments.length > 0) {
-        count += comment.child_comments.length
-      }
-    })
-    return count
   }
 
   function handleScroll () {
@@ -408,7 +397,7 @@ export const CommentBox = (props) => {
     ) {
       if (nextComments && !loading) {
         setLoading(true)
-        fetchComments()
+        fetchComments(nextComments, comments, anchoredCommentParentId)
       }
     }
   }
