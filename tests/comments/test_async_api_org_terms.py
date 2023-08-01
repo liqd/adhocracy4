@@ -245,7 +245,7 @@ def test_agreement_info(
     )
 
     response = apiclient.get(url)
-    assert len(response.data) == 10
+    assert len(response.data) == 11
     assert "use_org_terms_of_use" in response.data
     assert response.data["use_org_terms_of_use"]
     assert "user_has_agreed" in response.data
@@ -256,13 +256,13 @@ def test_agreement_info(
     # user has agreed
     apiclient.force_authenticate(user=user)
     response = apiclient.get(url)
-    assert len(response.data) == 10
+    assert len(response.data) == 11
     assert response.data["user_has_agreed"]
 
     # another_user has not agreed
     apiclient.force_authenticate(user=another_user)
     response = apiclient.get(url)
-    assert len(response.data) == 10
+    assert len(response.data) == 11
     assert not response.data["user_has_agreed"]
 
 
