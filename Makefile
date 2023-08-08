@@ -18,10 +18,13 @@ help:
 	@echo   make lint-python-files	 	-- lint python
 	@echo   make lint-fix      			-- fix linting for js files staged in git
 	@echo   make test     				-- run all tests front and backend
-	@echo   make jest    				-- run js tests with coverage
-	@echo   make jest-nocov    	 		-- run js tests without coverage
-	@echo   make jest-debug    			-- run changed tests only, no coverage
-	@echo   make jest-updateSnapshots   -- update jest snapshots
+	@echo   make pytest					-- run all test cases with pytest
+	@echo   make pytest-lastfailed		-- run test that failed last
+	@echo   make pytest-clean			-- test on new database
+	@echo   make jstest    				-- run js tests with coverage
+	@echo   make jstest-nocov    	 	-- run js tests without coverage
+	@echo   make jstest-debug    		-- run changed tests only, no coverage
+	@echo   make jstest-updateSnapshots -- update jest snapshots
 
 
 .PHONY: install
@@ -71,18 +74,31 @@ test:
 	$(VIRTUAL_ENV)/bin/pytest --reuse-db
 	npm run testNoCov
 
-.PHONY: jest
-jest:
+.PHONY: pytest
+pytest:
+	$(VIRTUAL_ENV)/bin/py.test --reuse-db
+
+.PHONY: pytest-lastfailed
+test-lastfailed:
+	$(VIRTUAL_ENV)/bin/py.test --reuse-db --last-failed
+
+.PHONY: pytest-clean
+pytest-clean:
+	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
+	$(VIRTUAL_ENV)/bin/py.test
+
+.PHONY: jstest
+jstest:
 	npm run test
 
-.PHONY: jest-nocov
-jest-nocov:
+.PHONY: jstest-nocov
+jstest-nocov:
 	npm run testNoCov
 
-.PHONY: jest-debug
-jest-debug:
+.PHONY: jstest-debug
+jstest-debug:
 	npm run testDebug
 
-.PHONY: jest-updateSnapshots
-jest-updateSnapshots:
+.PHONY: jstest-updateSnapshots
+jstest-updateSnapshots:
 	npm run updateSnapshots
