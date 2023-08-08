@@ -15,7 +15,7 @@ exports[`render <PollQuestion> with... -> multiple-choice -> non-open-asnwers 1`
           <div
             class="poll__help-text"
           >
-            mock text
+            Multiple answers are possible.
           </div>
           <div
             class="poll__rows"
@@ -70,7 +70,7 @@ exports[`render <PollQuestion> with... -> multiple-choice -> non-open-asnwers 1`
         <div
           class="poll__help-text"
         >
-          mock text
+          Multiple answers are possible.
         </div>
         <div
           class="poll__rows"
@@ -182,7 +182,7 @@ exports[`render <PollQuestion> with... -> multiple-choice -> open-asnwers 1`] = 
           <div
             class="poll__help-text"
           >
-            mock text
+            Multiple answers are possible.
           </div>
           <div
             class="poll__rows"
@@ -237,7 +237,7 @@ exports[`render <PollQuestion> with... -> multiple-choice -> open-asnwers 1`] = 
         <div
           class="poll__help-text"
         >
-          mock text
+          Multiple answers are possible.
         </div>
         <div
           class="poll__rows"

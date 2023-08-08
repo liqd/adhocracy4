@@ -1,11 +1,10 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { TermsOfUseCheckbox } from '../TermsOfUseCheckbox'
-import django from 'django'
 
 test('One TermsOfUseCheckbox is showing', () => {
   render(<TermsOfUseCheckbox id="test-checkbox" />)
-  const component = screen.getByLabelText(django.interpolate(), /mock text/)
+  const component = screen.getByLabelText('Yes, I have read and agree to this organisation\'s %(linkStart)s terms of use %(linkEnd)s.')
   expect(component).toBeTruthy()
 })
 
