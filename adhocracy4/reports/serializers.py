@@ -1,9 +1,24 @@
 from rest_framework import serializers
 
+from adhocracy4.api.dates import get_datetime_display
+
 from .models import Report
 
 
 class ReportSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(required=False, source="creator.username")
+    created = serializers.SerializerMethodField(required=False)
+
+    @staticmethod
+    def get_created(report):
+        return get_datetime_display(datetime=report.created)
+
     class Meta:
         model = Report
-        exclude = ("creator", "modified", "created")
+        fields = [
+            "username",
+            "created",
+            "object_pk",
+            "description",
+            "content_type",
+        ]
