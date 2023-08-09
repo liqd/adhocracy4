@@ -11,7 +11,6 @@ from .serializers import ReportSerializer
 
 
 class ReportViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
-
     serializer_class = ReportSerializer
     queryset = Report.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
@@ -19,6 +18,7 @@ class ReportViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     def perform_create(self, serializer):
         report = serializer.save(creator=self.request.user)
         emails.ReportModeratorEmail.send(report)
+
         if serializer.instance.content_type == ContentType.objects.get_for_model(
             Comment
         ):
