@@ -5,7 +5,21 @@ All notable changes to this project will be documented in this file.
 Since version <unreleased> the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## v2308
+
+### Changed
+
+- update a4 to mB-v2308
+- update translations
+- update dependency stylelint to v15.10.2 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5212
+- update dependency bootstrap to v5.3.1 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5122
+- update dependency postcss to v8.4.27 by @renovate in https://github.com/liqd/a4-meinberlin/pull/5215
+- Revert "fix(deps): update dependency bootstrap to v5.3.1" by @philli-m in https://github.com/liqd/a4-meinberlin/pull/5219
+
+### Fixed
+
+- fixed inconsistent comment count
+- fixed infinite comment scrolling
 
 ## v2307
 
