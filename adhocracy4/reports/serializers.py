@@ -9,8 +9,7 @@ class ReportSerializer(serializers.ModelSerializer):
     username = serializers.CharField(required=False, source="creator.username")
     created = serializers.SerializerMethodField(required=False)
 
-    @staticmethod
-    def get_created(report):
+    def get_created(self, report):
         return get_datetime_display(datetime=report.created)
 
     class Meta:
