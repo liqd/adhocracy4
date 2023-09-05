@@ -11,6 +11,7 @@ import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
 import { ModeratorFeedback } from './moderator_feedback'
+import AiReport from './ai_report'
 
 import { RatingBox } from '../../../ratings/static/ratings/react_ratings'
 
@@ -412,6 +413,10 @@ export default class Comment extends React.Component {
                   </button>
                 </div>}
             </div>
+            {this.props.aiReport && this.props.aiReport.show_in_discussion &&
+              <AiReport
+                Report={this.props.aiReport}
+              />}
             {this.state.showModStatement && this.state.moderatorFeedback &&
               <ModeratorFeedback
                 lastEdit={this.state.moderatorFeedback.last_edit}
@@ -420,7 +425,6 @@ export default class Comment extends React.Component {
             <div className="row">
               <div className="col-12 a4-comments__action-bar-container">
                 {this.renderRatingBox()}
-
                 <div className="a4-comments__action-bar">
                   {((this.allowForm() && !this.props.is_deleted) || (this.props.child_comments && this.props.child_comments.length > 0)) &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
