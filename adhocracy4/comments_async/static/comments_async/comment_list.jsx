@@ -59,6 +59,7 @@ const CommentList = (props) => {
               wouldHaveCommentingPermission={props.wouldHaveCommentingPermission}
               projectIsPublic={props.projectIsPublic}
               moderatorFeedback={comment.moderator_feedback ? comment.moderator_feedback : null}
+              aiReport={comment.ai_report ? comment.ai_report : null}
               useTermsOfUse={props.useTermsOfUse}
               agreedTermsOfUse={props.agreedTermsOfUse}
               orgTermsUrl={props.orgTermsUrl}

@@ -15,4 +15,5 @@ export { default as reports } from './adhocracy4/reports/static/reports/react_re
 export { default as selectDropdown } from './adhocracy4/static/select_dropdown'
 export { default as errorList } from './adhocracy4/static/ErrorList'
 export { default as formFieldError } from './adhocracy4/static/FormFieldError'
+export { default as aiReport } from './adhocracy4/comments_async/static/comments_async/ai_report'
 export * as widget from './adhocracy4/static/widget'
