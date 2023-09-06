@@ -20,6 +20,7 @@ const sorts = {
 }
 
 const translated = {
+  comments: django.gettext('Comments'),
   showFilters: django.gettext('Show filters'),
   filters: django.gettext('Filters'),
   hideFilters: django.gettext('Hide filters'),
@@ -435,7 +436,8 @@ export const CommentBox = (props) => {
   }
 
   return (
-    <div>
+    <section>
+      <h2 className="visually-hidden">{translated.comments}</h2>
       <div className="a4-comments__commentbox__form">
         <CommentForm
           subjectType={props.subjectType}
@@ -487,7 +489,7 @@ export const CommentBox = (props) => {
             >
               <i
                 className="fas fa-sliders-h ms-2"
-                aria-label={translated.showFilters}
+                aria-hidden="true"
               />
               {translated.filters}
             </button>
@@ -500,7 +502,7 @@ export const CommentBox = (props) => {
             >
               <i
                 className="fas fa-times ms-2"
-                aria-label={translated.hideFilters}
+                aria-hidden="true"
               />
               {translated.hideFilters}
             </button>
@@ -542,34 +544,30 @@ export const CommentBox = (props) => {
         </div>
       </div>
 
-      <div className="a4-comments__box">
-        <div className="a4-comments__list">
-          <CommentList
-            comments={comments}
-            anchoredCommentId={anchoredCommentId}
-            anchoredCommentParentId={anchoredCommentParentId}
-            onCommentDelete={handleCommentDelete}
-            onCommentSubmit={handleCommentSubmit}
-            onCommentModify={handleCommentModify}
-            commentCategoryChoices={commentCategoryChoices()}
-            onReplyErrorClick={handleHideReplyError}
-            onEditErrorClick={handleHideEditError}
-            onRenderFinished={onRenderFinished}
-            withCategories={props.withCategories}
-            hasCommentingPermission={hasCommentingPermission}
-            wouldHaveCommentingPermission={wouldHaveCommentingPermission}
-            projectIsPublic={projectIsPublic}
-            useTermsOfUse={useTermsOfUse}
-            agreedTermsOfUse={agreedTermsOfUse}
-            orgTermsUrl={orgTermsUrl}
-          />
-        </div>
-      </div>
+      <CommentList
+        comments={comments}
+        anchoredCommentId={anchoredCommentId}
+        anchoredCommentParentId={anchoredCommentParentId}
+        onCommentDelete={handleCommentDelete}
+        onCommentSubmit={handleCommentSubmit}
+        onCommentModify={handleCommentModify}
+        commentCategoryChoices={commentCategoryChoices()}
+        onReplyErrorClick={handleHideReplyError}
+        onEditErrorClick={handleHideEditError}
+        onRenderFinished={onRenderFinished}
+        withCategories={props.withCategories}
+        hasCommentingPermission={hasCommentingPermission}
+        wouldHaveCommentingPermission={wouldHaveCommentingPermission}
+        projectIsPublic={projectIsPublic}
+        useTermsOfUse={useTermsOfUse}
+        agreedTermsOfUse={agreedTermsOfUse}
+        orgTermsUrl={orgTermsUrl}
+      />
       <div className={loading ? 'u-spinner__container' : 'd-none'}>
         <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
         <span className="visually-hidden">Loading...</span>
       </div>
-    </div>
+    </section>
   )
 }
 
