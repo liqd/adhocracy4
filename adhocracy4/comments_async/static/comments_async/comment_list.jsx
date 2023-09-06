@@ -4,7 +4,7 @@ import Comment from './comment'
 
 const CommentList = (props) => {
   return (
-    <div>
+    <ul className="u-list-reset">
       {
         props.comments.map((comment, index) => {
           return (
@@ -68,7 +68,7 @@ const CommentList = (props) => {
           )
         })
       }
-    </div>
+    </ul>
   )
 }
 

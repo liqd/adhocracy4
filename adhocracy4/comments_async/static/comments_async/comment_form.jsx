@@ -114,48 +114,46 @@ export default class CommentForm extends React.Component {
 
     if (this.props.hasCommentingPermission) {
       return (
-        <div>
-          <form id="id-comment-form" className="general-form" onSubmit={this.handleSubmit.bind(this)}>
-            {this.props.error &&
-              <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
-            {this.props.commentCategoryChoices &&
-              <CategoryList
-                idPrefix="new"
-                categoriesChecked={this.state.selectedCategories}
-                categoryChoices={this.props.commentCategoryChoices}
-                handleControlFunc={this.handleCategorySelection.bind(this)}
-              />}
-            <textarea
-              id="textarea-top"
-              className={this.props.commentCategoryChoices ? 'a4-comments__textarea--small form-group' : 'a4-comments__textarea--big form-group'}
-              placeholder={hasParent ? translated.yourReply : translated.yourComment}
-              onChange={this.handleTextChange.bind(this)}
-              required="required"
-              value={this.state.comment}
-              onInput={this.handleTextareaGrow.bind(this)}
-              style={textareaStyle}
-            />
-            <div className="row">
-              <div className="col-12 col-sm-9 col-lg-10">
-                <label
-                  htmlFor="id-comment-form"
-                  className="a4-comments__char-count"
-                >
-                  {this.state.commentCharCount}/4000{translated.characters}
-                </label>
-                {this.props.useTermsOfUse && !this.state.agreedTermsOfUse &&
-                  <TermsOfUseCheckbox
-                    id={'terms-of-use-checkbox-' + (typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm')}
-                    onChange={val => this.setState({ checkedTermsOfUse: val })}
-                    orgTermsUrl={this.props.orgTermsUrl}
-                  />}
-              </div>
-              <div className="d-flex col-12 col-sm-3 col-lg-2 align-items-center">
-                {actionButton}
-              </div>
+        <form id="id-comment-form" className="general-form" onSubmit={this.handleSubmit.bind(this)}>
+          {this.props.error &&
+            <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
+          {this.props.commentCategoryChoices &&
+            <CategoryList
+              idPrefix="new"
+              categoriesChecked={this.state.selectedCategories}
+              categoryChoices={this.props.commentCategoryChoices}
+              handleControlFunc={this.handleCategorySelection.bind(this)}
+            />}
+          <textarea
+            id="textarea-top"
+            className={this.props.commentCategoryChoices ? 'a4-comments__textarea--small form-group' : 'a4-comments__textarea--big form-group'}
+            placeholder={hasParent ? translated.yourReply : translated.yourComment}
+            onChange={this.handleTextChange.bind(this)}
+            required="required"
+            value={this.state.comment}
+            onInput={this.handleTextareaGrow.bind(this)}
+            style={textareaStyle}
+          />
+          <div className="row">
+            <div className="col-12 col-sm-9 col-lg-10">
+              <label
+                htmlFor="id-comment-form"
+                className="a4-comments__char-count"
+              >
+                {this.state.commentCharCount}/4000{translated.characters}
+              </label>
+              {this.props.useTermsOfUse && !this.state.agreedTermsOfUse &&
+                <TermsOfUseCheckbox
+                  id={'terms-of-use-checkbox-' + (typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm')}
+                  onChange={val => this.setState({ checkedTermsOfUse: val })}
+                  orgTermsUrl={this.props.orgTermsUrl}
+                />}
             </div>
-          </form>
-        </div>
+            <div className="d-flex col-12 col-sm-3 col-lg-2 align-items-center">
+              {actionButton}
+            </div>
+          </div>
+        </form>
       )
     } else if (this.props.wouldHaveCommentingPermission) {
       return (
