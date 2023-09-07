@@ -1,15 +1,16 @@
 import importlib
 
-from background_task import background
+from celery import shared_task
 from django.apps import apps
 
 
-@background(schedule=1)
+@shared_task
 def send_async(
     email_module_name, email_class_name, app_label, model_name, object_pk, args, kwargs
 ):
-    mod = importlib.import_module(email_module_name)
-    cls = getattr(mod, email_class_name)
+    imported_module = importlib.import_module(email_module_name)
+    cls = getattr(imported_module, email_class_name)
     model = apps.get_model(app_label, model_name)
-    object = model.objects.get(pk=object_pk)
-    return cls().dispatch(object, *args, **kwargs)
+    obj = model.objects.get(pk=object_pk)
+
+    return cls().dispatch(obj, *args, **kwargs)
