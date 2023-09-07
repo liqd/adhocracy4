@@ -6,7 +6,7 @@ const translated = {
 }
 
 const CategoryList = (props) => (
-  <fieldset>
+  <fieldset className="mb-0 px-0">
     <legend className="sr-only">{translated.chooseCategories}</legend>
     {Object.keys(props.categoryChoices).map(objectKey => {
       const categoryCheck = props.categoryChoices[objectKey]

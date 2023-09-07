@@ -5,8 +5,6 @@ import django from 'django'
 import Modal from '../../../static/Modal'
 import { ReportModal } from '../../../reports/static/reports/react_reports'
 import { UrlModal } from '../modals/UrlModal'
-import CommentEditForm from './comment_edit_form'
-import CommentCategoryEditForm from './comment_category_edit_form'
 import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
@@ -19,7 +17,6 @@ const translated = {
   reportTitle: django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).'),
   shareLink: django.gettext('Share link'),
   categories: django.gettext('Categories: '),
-  yourReply: django.gettext('Your reply here'),
   successMessage: django.gettext('Entry successfully created'),
   readMore: django.gettext('Read more...'),
   readLess: django.gettext('Read less'),
@@ -122,12 +119,6 @@ export default class Comment extends React.Component {
     return this.props.content_type !== this.props.comment_content_type
   }
 
-  commentCategoryChoices () {
-    if (this.props.withCategories === true) {
-      return this.props.commentCategoryChoices
-    }
-  }
-
   toggleExpand (e) {
     e.preventDefault()
     const newShorten = !this.state.shorten
@@ -170,67 +161,41 @@ export default class Comment extends React.Component {
   renderComment () {
     let comment
     if (this.state.edit) {
-      if (!this.props.commentCategoryChoices) {
-        comment = (
-          <CommentEditForm
-            subjectType={this.props.content_type}
-            subjectId={this.props.object_pk}
-            comment={this.props.children}
-            commentId={this.props.id}
-            useTermsOfUse={this.props.useTermsOfUse}
-            agreedTermsOfUse={this.props.agreedTermsOfUse}
-            orgTermsUrl={this.props.orgTermsUrl}
-            error={this.props.editError}
-            errorMessage={this.props.errorMessage}
-            handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
-            rows="5"
-            handleCancel={this.toggleEdit.bind(this)}
-            parentIndex={this.props.parentIndex}
-            onCommentSubmit={newComment => {
-              this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
-                .then(() => {
-                  this.setState({
-                    edit: false
-                  })
-                  return null
-                }).catch(error => {
-                  console.warn(error)
+      comment = (
+        // Edit comment form
+        <CommentForm
+          subjectType={this.props.content_type}
+          subjectId={this.props.object_pk}
+          comment={this.props.children}
+          commentLength={this.props.children.length}
+          commentId={this.props.id}
+          commentCategoryChoices={this.props.commentCategoryChoices}
+          comment_categories={this.props.comment_categories}
+          hasCommentingPermission={this.props.hasCommentingPermission}
+          wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
+          useTermsOfUse={this.props.useTermsOfUse}
+          agreedTermsOfUse={this.props.agreedTermsOfUse}
+          orgTermsUrl={this.props.orgTermsUrl}
+          error={this.props.editError}
+          errorMessage={this.props.errorMessage}
+          handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
+          rows="5"
+          handleCancel={this.toggleEdit.bind(this)}
+          parentIndex={this.props.parentIndex}
+          showCancel
+          onCommentSubmit={newComment => {
+            this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
+              .then(() => {
+                this.setState({
+                  edit: false
                 })
-            }}
-          />
-        )
-      } else {
-        comment = (
-          <CommentCategoryEditForm
-            subjectType={this.props.content_type}
-            subjectId={this.props.object_pk}
-            comment={this.props.children}
-            commentId={this.props.id}
-            commentCategoryChoices={this.props.commentCategoryChoices}
-            comment_categories={this.props.comment_categories}
-            useTermsOfUse={this.props.useTermsOfUse}
-            agreedTermsOfUse={this.props.agreedTermsOfUse}
-            orgTermsUrl={this.props.orgTermsUrl}
-            error={this.props.editError}
-            errorMessage={this.props.errorMessage}
-            handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
-            rows="5"
-            handleCancel={this.toggleEdit.bind(this)}
-            parentIndex={this.props.parentIndex}
-            onCommentSubmit={newComment => {
-              this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
-                .then(() => {
-                  this.setState({
-                    edit: false
-                  })
-                  return null
-                }).catch(error => {
-                  console.warn(error)
-                })
-            }}
-          />
-        )
-      }
+                return null
+              }).catch(error => {
+                console.warn(error)
+              })
+          }}
+        />
+      )
     } else {
       let content
       if (this.props.children.length > 400 && this.state.shorten) {
@@ -262,8 +227,9 @@ export default class Comment extends React.Component {
   }
 
   renderCategories () {
-    if (!this.state.edit && this.displayCategories()) {
+    if (!this.state.edit && this.props.withCategories) {
       const categories = this.props.comment_categories
+      const categoryHeading = <p className="sr-only">{translated.categories}</p>
       let categoryValue = ''
       let categoryClassName = ''
 
@@ -278,7 +244,12 @@ export default class Comment extends React.Component {
         )
       })
 
-      return categoryHtml
+      return (
+        <div className="col-12">
+          {categoryHeading}
+          {categoryHtml}
+        </div>
+      )
     }
   }
 
@@ -370,10 +341,7 @@ export default class Comment extends React.Component {
                   />}
               </div>
 
-              <div className="col-12">
-                <span className="sr-only">{translated.categories}</span>
-                {this.renderCategories()}
-              </div>
+              {this.renderCategories()}
 
               <div className="col-12">
                 {this.renderComment()}
@@ -465,17 +433,17 @@ export default class Comment extends React.Component {
                 </div>
                 <div className="row">
                   <div className="col-12 ms-3">
+                    {/* Child comment form */}
                     <CommentForm
                       subjectType={this.props.comment_content_type}
                       subjectId={this.props.id}
+                      commentId={'reply' + this.props.id}
                       onCommentSubmit={this.props.onCommentSubmit}
                       parentIndex={this.props.index}
-                      placeholder={translated.yourReply}
                       error={this.props.replyError}
                       errorMessage={this.props.errorMessage}
                       handleErrorClick={() => this.props.onReplyErrorClick(this.props.index, this.props.parentIndex)}
-                      rows="1"
-                      // we need the autoFocus here
+                      // we need the autoFocus here after clicking reply
                       autoFocus // eslint-disable-line jsx-a11y/no-autofocus
                       hasCommentingPermission={this.props.hasCommentingPermission}
                       wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}

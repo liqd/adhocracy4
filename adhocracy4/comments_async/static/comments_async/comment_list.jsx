@@ -51,6 +51,7 @@ const CommentList = (props) => {
               onReplyErrorClick={props.onReplyErrorClick}
               editError={comment.editError}
               commentCategoryChoices={props.commentCategoryChoices}
+              withCategories={props.withCategories}
               onEditErrorClick={props.onEditErrorClick}
               displayNotification={comment.displayNotification}
               anchoredCommentId={props.anchoredCommentId}

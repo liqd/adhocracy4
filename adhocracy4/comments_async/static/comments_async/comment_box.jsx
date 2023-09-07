@@ -439,10 +439,12 @@ export const CommentBox = (props) => {
     <section>
       <h2 className="visually-hidden">{translated.comments}</h2>
       <div className="a4-comments__commentbox__form">
+        {/* Main comment form */}
         <CommentForm
           subjectType={props.subjectType}
           subjectId={props.subjectId}
           onCommentSubmit={handleCommentSubmit}
+          commentId={props.id}
           rows="5"
           error={error}
           errorMessage={errorMessage}
