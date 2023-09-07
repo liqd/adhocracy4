@@ -2,30 +2,32 @@ import React from 'react'
 import django from 'django'
 
 import CategoryList from './category_list'
+import Alert from '../../../static/Alert'
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
 import * as config from '../../../static/config'
-import Alert from '../../../static/Alert'
 
 const translated = {
   yourComment: django.gettext('Your comment'),
   addComment: django.gettext('Please add a comment.'),
+  errorComment: django.gettext('Something seems to have gone wrong, please try again.'),
   yourReply: django.gettext('Your reply'),
   characters: django.gettext(' characters'),
   post: django.gettext('post'),
   comment: django.gettext('Comment'),
   pleaseComment: django.gettext('Please login to comment'),
   onlyInvited: django.gettext('Only invited users can actively participate.'),
-  notAllowedComment: django.gettext('The currently active phase doesn\'t allow to comment.')
+  notAllowedComment: django.gettext('The currently active phase doesn\'t allow to comment.'),
+  cancel: django.gettext('cancel')
 }
 
 export default class CommentForm extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      comment: '',
-      commentCharCount: 0,
-      selectedCategories: [],
+      comment: this.props.comment || '',
+      commentCharCount: this.props.commentLength || 0,
+      selectedCategories: Object.keys(this.props.comment_categories || {}),
       textareaHeight: 46,
       agreedTermsOfUse: props.agreedTermsOfUse,
       showCommentError: false
@@ -101,40 +103,52 @@ export default class CommentForm extends React.Component {
         this.setState({ agreedTermsOfUse: true })
       }
       return null
-    }).catch(error => console.warn(error))
+    }).catch(error => {
+      console.warn(error)
+      this.props.setCommentError(this.props.errorMessage)
+    })
   }
 
   render () {
     const textareaStyle = { height: (this.state.textareaHeight) + 'px' }
     const hasParent = this.props.parentIndex !== undefined
+
     const actionButton = (
       <button
         type="submit"
-        className="btn a4-comments__submit-input ms-auto"
+        className="btn a4-comments__submit-input"
         disabled={this.props.useTermsOfUse && !this.state.agreedTermsOfUse && !this.state.checkedTermsOfUse}
       >
         {translated.post}
       </button>
     )
+    const cancelButton = this.props.showCancel && (
+      <button
+        type="submit" value={translated.cancel} className="btn btn--light cancel-button me-2"
+        onClick={this.props.handleCancel}
+      >
+        {translated.cancel}
+      </button>
+    )
 
     if (this.props.hasCommentingPermission) {
       return (
-        <form id="id-comment-form" className="general-form" onSubmit={this.handleSubmit.bind(this)}>
+        <form id={'id-comment-form' + this.props.commentId} className="general-form" onSubmit={this.handleSubmit.bind(this)}>
           {this.props.error &&
             <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
-          {this.props.commentCategoryChoices &&
+          {this.props.commentCategoryChoices && !hasParent &&
             <CategoryList
-              idPrefix="new"
+              idPrefix={this.props.commentId ? this.props.commentId : 'new'}
               categoriesChecked={this.state.selectedCategories}
               categoryChoices={this.props.commentCategoryChoices}
               handleControlFunc={this.handleCategorySelection.bind(this)}
             />}
-          <label className="sr-only" htmlFor="id_textarea-top">
+          <label className="sr-only" htmlFor={'id_textarea-top' + this.props.commentId}>
             {translated.yourComment}
           </label>
           <textarea
-            id="id_textarea-top"
-            aria-describedby={this.state.showCommentError ? 'alert' : 'id_char-count'}
+            id={'id_textarea-top' + this.props.commentId}
+            aria-describedby={this.state.showCommentError ? 'alert' : ('id_char-count' + this.props.commentId)}
             aria-invalid={this.state.showCommentError}
             className={this.props.commentCategoryChoices ? 'a4-comments__textarea--small form-group' : 'a4-comments__textarea--big form-group'}
             placeholder={hasParent ? translated.yourReply : translated.yourComment}
@@ -144,9 +158,9 @@ export default class CommentForm extends React.Component {
             style={textareaStyle}
           />
           <div className="row">
-            <div className="col-12 col-sm-9 col-lg-10">
+            <div className="col-12 col-sm-9">
               <p
-                id="id_char-count"
+                id={'id_char-count' + this.props.commentId}
                 className="a4-comments__char-count"
                 aria-live="polite"
               >
@@ -159,7 +173,8 @@ export default class CommentForm extends React.Component {
                   orgTermsUrl={this.props.orgTermsUrl}
                 />}
             </div>
-            <div className="d-flex col-12 col-sm-3 col-lg-2 align-items-center">
+            <div className="d-flex col-12 col-sm-3 justify-content-end">
+              {cancelButton}
               {actionButton}
             </div>
           </div>
