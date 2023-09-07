@@ -131,7 +131,7 @@ class RatingBox extends React.Component {
           disabled={this.props.isReadOnly}
           onClick={this.ratingUp.bind(this)}
         >
-          <i className="fa fa-chevron-up" aria-hidden="true" />
+          <i className="fa-solid fa-chevron-up" aria-hidden="true" />
           {this.state.positiveRatings}
         </button>
         <button
@@ -140,7 +140,7 @@ class RatingBox extends React.Component {
           disabled={this.props.isReadOnly}
           onClick={this.ratingDown.bind(this)}
         >
-          <i className="fa fa-chevron-down" aria-hidden="true" />
+          <i className="fa-solid fa-chevron-down" aria-hidden="true" />
           {this.state.negativeRatings}
         </button>
       </div>

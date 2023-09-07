@@ -6,11 +6,11 @@
             {% if has_image_set and not is_required %}
             <label for="{{ checkbox_id }}" class="btn btn-danger"
                    title="{% translate 'Remove the picture' %}">
-                <i class="fas fa-trash-alt"></i>
+                <i class="fa-solid fa-trash-can"></i>
             </label>
             {% else %}
             <label for="{{ id }}" class="btn btn-default" title="{% translate  'Upload a picture' %}">
-                <i class="fas fa-cloud-upload-alt"></i>
+                <i class="fa-solid fa-cloud-arrow-up"></i>
             </label>
             {% endif  %}
         </span>

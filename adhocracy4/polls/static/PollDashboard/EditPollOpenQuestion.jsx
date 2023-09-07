@@ -50,7 +50,7 @@ export const EditPollOpenQuestion = (props) => {
           type="button"
         >
           <i
-            className="fa fa-chevron-up"
+            className="fa-solid fa-chevron-up"
             aria-label={django.gettext('Move up')}
           />
         </button>
@@ -62,7 +62,7 @@ export const EditPollOpenQuestion = (props) => {
           type="button"
         >
           <i
-            className="fa fa-chevron-down"
+            className="fa-solid fa-chevron-down"
             aria-label={django.gettext('Move down')}
           />
         </button>
@@ -73,7 +73,7 @@ export const EditPollOpenQuestion = (props) => {
           type="button"
         >
           <i
-            className="fas fa-trash-alt"
+            className="fa-solid fa-trash-can"
             aria-label={django.gettext('Delete')}
           />
         </button>

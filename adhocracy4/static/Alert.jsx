@@ -23,7 +23,7 @@ const Alert = ({ type, alertAttribute, message, onClick, timeInMs }) => {
         <div className="container">
           {message}
           <button className="alert__close" title={closeTag} onClick={onClick}>
-            <i className="fa fa-times" aria-label={closeTag} />
+            <i className="fa-solid fa-xmark" aria-label={closeTag} />
           </button>
         </div>
 

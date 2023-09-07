@@ -7,7 +7,7 @@ export const ModeratorFeedback = ({ lastEdit, feedbackText }) => {
   return (
     <div className="row">
       <div className="a4-comments__moderator-feedback__container">
-        <i className="fas fa-share a4-comments__moderator-feedback__icon" />
+        <i className="fa-solid fa-share a4-comments__moderator-feedback__icon" />
         <div className="a4-comments__moderator-feedback__content">
           <div className="a4-comments__moderator-feedback__moderator">
             {translated.moderator}

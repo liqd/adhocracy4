@@ -104,7 +104,7 @@ export default class PollResult extends React.Component {
             const highlight = choice.count === max && max > 0
             return !this.state.question.is_open &&
               <div key={choice.id} className="poll-row__container">
-                {chosen ? <i className="poll-row__chosen fas fa-check-circle" aria-label={django.gettext('Your choice')} /> : ''}
+                {chosen ? <i className="poll-row__chosen fa-solid fa-circle-check" aria-label={django.gettext('Your choice')} /> : ''}
                 <div className="poll-row poll-row--answered">
                   <div className="poll-row__number">{percent}%</div>
                   <div className="poll-row__label">{choice.is_other_choice ? django.gettext('other') : choice.label}</div>
@@ -129,7 +129,7 @@ export default class PollResult extends React.Component {
                               key={index}
                             >
                               <div className="poll-slider__answer">
-                                {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
+                                {this.isUserAnswer(slide) && <i className="fa-solid fa-circle-check" />} {slide.answer}
                               </div>
                               <div className={this.props.question.other_choice_answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
                                 {index + 1}/{this.props.question.other_choice_answers.length}
@@ -152,7 +152,7 @@ export default class PollResult extends React.Component {
                     key={index}
                   >
                     <div className="poll-slider__answer">
-                      {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
+                      {this.isUserAnswer(slide) && <i className="fa-solid fa-circle-check" />} {slide.answer}
                     </div>
                     <div className={this.props.question.answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
                       {index + 1}/{this.props.question.answers.length}

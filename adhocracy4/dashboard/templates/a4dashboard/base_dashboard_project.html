@@ -12,7 +12,7 @@
                            class="{{ item.is_active|yesno:"is-active," }}">
                             {{ item.label }}
                             {% if not item.is_complete %}
-                                <i class="fa fa-exclamation-circle u-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
+                                <i class="fa-solid fa-circle-exclamation u-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
                             {% endif %}
                         </a>
                     </li>
@@ -30,7 +30,7 @@
                                class="{{ item.is_active|yesno:"is-active," }}">
                                 {{ item.label }}
                                 {% if not item.is_complete %}
-                                    <i class="fa fa-exclamation-circle u-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
+                                    <i class="fa-solid fa-circle-exclamation u-danger" title="{% translate 'Missing fields for publication' %}" aria-label="{% translate 'Missing fields for publication' %}"></i>
                                 {% endif %}
                             </a>
                         </li>

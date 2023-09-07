@@ -200,7 +200,7 @@ class Comment extends React.Component {
                 type="button"
                 onClick={this.replyComments.bind(this)}
               >
-                <i className="fa fa-reply" aria-hidden="true" /> {answerTag}
+                <i className="fa-solid fa-reply" aria-hidden="true" /> {answerTag}
               </button>}
             {this.context.isAuthenticated && !this.props.is_deleted &&
               <CommentManageDropdown
@@ -215,7 +215,7 @@ class Comment extends React.Component {
           <div className="action-bar">
             <div className="navbar">
               <button className="comment-reply-button" type="button" onClick={this.toggleShowComments.bind(this)}>
-                <i className={this.state.showChildComments ? 'fa fa-minus' : 'fa fa-plus'} aria-hidden="true" />
+                <i className={this.state.showChildComments ? 'fa-solid fa-minus' : 'fa-solid fa-plus'} aria-hidden="true" />
                 {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
               </button>
             </div>

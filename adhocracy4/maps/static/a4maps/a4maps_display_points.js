@@ -86,16 +86,16 @@ function init () {
 
     function getRatings (feature) {
       return '<span class="map-popup-upvotes">' +
-               feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
+               feature.properties.positive_rating_count + ' <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>' +
              '</span>' +
              '<span class="map-popup-downvotes">' +
-               feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
+               feature.properties.negative_rating_count + ' <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>' +
              '</span>'
     }
 
     function getSupport (feature) {
       return '<span class="map-popup-upvotes">' +
-               feature.properties.positive_rating_count + ' <i class="fa fa-thumbs-up" aria-hidden="true"></i>' +
+               feature.properties.positive_rating_count + ' <i class="fa-solid fa-thumbs-up" aria-hidden="true"></i>' +
                '<span class="visually-hidden">' +
                   django.ngettext(
                     'person supports this proposal.',
@@ -121,7 +121,7 @@ function init () {
 
     function getCommentCount (feature) {
       return '<span class="map-popup-comments-count">' +
-               feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
+               feature.properties.comments_count + ' <i class="fa-regular fa-comment" aria-hidden="true"></i>' +
                '<span class="visually-hidden">' +
                   django.ngettext(
                     'person commented on this proposal.',

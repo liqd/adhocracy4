@@ -31,7 +31,7 @@ const Modal = (props) => {
               data-bs-dismiss="modal"
               onClick={props.handleClose}
             >
-              <i className="fa fa-times" aria-hidden="true" />
+              <i className="fa-solid fa-xmark" aria-hidden="true" />
             </button>
           </div>
 

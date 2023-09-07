@@ -38,7 +38,7 @@ export const ReportModal = (props) => {
     partials.title = translations.reportSent
     partials.body = (
       <div className="u-spacer-bottom-triple">
-        <i className="fa fa-check" /> {translations.thankyouText}
+        <i className="fa-solid fa-check" /> {translations.thankyouText}
       </div>
     )
     partials.hideFooter = true
