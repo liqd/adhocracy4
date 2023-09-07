@@ -9,6 +9,7 @@ import Alert from '../../../static/Alert'
 
 const translated = {
   yourComment: django.gettext('Your comment'),
+  addComment: django.gettext('Please add a comment.'),
   yourReply: django.gettext('Your reply'),
   characters: django.gettext(' characters'),
   post: django.gettext('post'),
@@ -26,7 +27,8 @@ export default class CommentForm extends React.Component {
       commentCharCount: 0,
       selectedCategories: [],
       textareaHeight: 46,
-      agreedTermsOfUse: props.agreedTermsOfUse
+      agreedTermsOfUse: props.agreedTermsOfUse,
+      showCommentError: false
     }
   }
 
@@ -66,7 +68,8 @@ export default class CommentForm extends React.Component {
       comment: '',
       commentCharCount: 0,
       selectedCategories: [],
-      textareaHeight: 46
+      textareaHeight: 46,
+      showCommentError: false
     })
   }
 
@@ -88,6 +91,8 @@ export default class CommentForm extends React.Component {
     }
 
     if (!comment) {
+      this.setState({ showCommentError: true })
+      this.props.setCommentError(translated.addComment)
       return
     }
     this.props.onCommentSubmit(data, this.props.parentIndex).then(() => {
@@ -124,24 +129,29 @@ export default class CommentForm extends React.Component {
               categoryChoices={this.props.commentCategoryChoices}
               handleControlFunc={this.handleCategorySelection.bind(this)}
             />}
+          <label className="sr-only" htmlFor="id_textarea-top">
+            {translated.yourComment}
+          </label>
           <textarea
-            id="textarea-top"
+            id="id_textarea-top"
+            aria-describedby={this.state.showCommentError ? 'alert' : 'id_char-count'}
+            aria-invalid={this.state.showCommentError}
             className={this.props.commentCategoryChoices ? 'a4-comments__textarea--small form-group' : 'a4-comments__textarea--big form-group'}
             placeholder={hasParent ? translated.yourReply : translated.yourComment}
             onChange={this.handleTextChange.bind(this)}
-            required="required"
             value={this.state.comment}
             onInput={this.handleTextareaGrow.bind(this)}
             style={textareaStyle}
           />
           <div className="row">
             <div className="col-12 col-sm-9 col-lg-10">
-              <label
-                htmlFor="id-comment-form"
+              <p
+                id="id_char-count"
                 className="a4-comments__char-count"
+                aria-live="polite"
               >
                 {this.state.commentCharCount}/4000{translated.characters}
-              </label>
+              </p>
               {this.props.useTermsOfUse && !this.state.agreedTermsOfUse &&
                 <TermsOfUseCheckbox
                   id={'terms-of-use-checkbox-' + (typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm')}

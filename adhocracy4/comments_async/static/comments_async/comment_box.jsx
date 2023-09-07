@@ -455,6 +455,7 @@ export const CommentBox = (props) => {
           useTermsOfUse={useTermsOfUse}
           agreedTermsOfUse={agreedTermsOfUse}
           orgTermsUrl={orgTermsUrl}
+          setCommentError={setMainError}
         />
       </div>
 

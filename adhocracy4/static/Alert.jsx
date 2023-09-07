@@ -4,6 +4,7 @@ import django from 'django'
 const Alert = ({ type, alertAttribute, message, onClick, timeInMs }) => {
   const timer = useRef()
   const closeTag = django.gettext('Close')
+
   useEffect(() => {
     if (timeInMs) {
       timer.current = setTimeout(onClick, timeInMs)
@@ -12,6 +13,7 @@ const Alert = ({ type, alertAttribute, message, onClick, timeInMs }) => {
       }
     }
   }, [timeInMs, onClick])
+
   if (type) {
     return (
       <div
