@@ -76,20 +76,16 @@ class EmailBase:
         return None
 
     @classmethod
-    def send(cls, object, *args, **kwargs):
-        """Send email asynchronously.
-
-        NOTE: args and kwargs must be JSON serializable.
-        """
-        ct = ContentType.objects.get_for_model(object)
-        tasks.send_async(
-            cls.__module__,
-            cls.__name__,
-            ct.app_label,
-            ct.model,
-            object.pk,
-            args,
-            kwargs,
+    def send(cls, obj, *args, **kwargs):
+        content_type = ContentType.objects.get_for_model(model=obj.__class__)
+        tasks.send_async.delay(
+            email_module_name=cls.__module__,
+            email_class_name=cls.__name__,
+            app_label=content_type.app_label,
+            model_name=content_type.model,
+            object_pk=obj.pk,
+            args=args,
+            kwargs=kwargs,
         )
         return []
 
