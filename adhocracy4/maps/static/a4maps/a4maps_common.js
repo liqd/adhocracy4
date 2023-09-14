@@ -101,6 +101,8 @@ export function createMap (L, e, {
     }
     const baselayer = L.tileLayer(basemap, { accessToken })
     baselayer.addTo(map)
+  }
+  if (attribution) {
     map.attributionControl.addAttribution(attribution)
   }
   return map
