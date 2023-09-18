@@ -3,6 +3,7 @@ import collections
 from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
+from django.conf import settings
 from django.contrib.auth import forms as auth_forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -107,6 +108,8 @@ class TermsSignupForm(SignupForm):
             "Your username will appear publicly next to your posts."
         )
         self.fields["email"].widget.attrs["autofocus"] = True
+        if not (hasattr(settings, "CAPTCHA_URL") and settings.CAPTCHA_URL):
+            del self.fields["captcha"]
 
     def save(self, request):
         user = super(TermsSignupForm, self).save(request)

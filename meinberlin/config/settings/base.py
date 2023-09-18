@@ -568,4 +568,6 @@ A4_DASHBOARD = {
 
 A4_ACTIONS_PHASE_ENDS_HOURS = 48
 
+# Add a Captcheck captcha URL in the production server's local.py to use it
+# Captcha software we use: https://source.netsyms.com/Netsyms/Captcheck
 CAPTCHA_URL = ""
