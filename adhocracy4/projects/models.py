@@ -9,11 +9,11 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 from django_enumfield.enum import EnumField
 
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
-from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images import fields
 from adhocracy4.maps.fields import PointField
 from adhocracy4.models import base
@@ -194,7 +194,7 @@ class Project(
             "in max. 250 chars."
         ),
     )
-    information = RichTextCollapsibleUploadingField(
+    information = CKEditor5Field(
         blank=True,
         config_name="collapsible-image-editor",
         verbose_name=_("Description of your project"),
@@ -205,7 +205,7 @@ class Project(
             "in the „Info“ tab on your project’s page."
         ),
     )
-    result = RichTextCollapsibleUploadingField(
+    result = CKEditor5Field(
         blank=True,
         config_name="collapsible-image-editor",
         verbose_name=_("Results of your project"),
