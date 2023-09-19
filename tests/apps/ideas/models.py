@@ -1,6 +1,6 @@
-from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.comments.models import Comment
@@ -19,7 +19,7 @@ class IdeaQuerySet(RateableQuerySet, CommentableQuerySet):
 
 class Idea(Item):
     name = models.CharField(max_length=120, default="Can i haz cheezburger, pls?")
-    description = RichTextField(verbose_name="Description", blank=True)
+    description = CKEditor5Field(verbose_name="Description", blank=True)
     moderator_status = models.CharField(max_length=256, blank=True)
     moderator_feedback_text = models.OneToOneField(
         ModeratorFeedback,

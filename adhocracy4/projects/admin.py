@@ -1,7 +1,7 @@
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 from . import models
 
@@ -37,10 +37,10 @@ class ProjectAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields["information"].widget = CKEditorUploadingWidget(
+        self.fields["information"].widget = CKEditor5Widget(
             config_name="collapsible-image-editor"
         )
-        self.fields["result"].widget = CKEditorUploadingWidget(
+        self.fields["result"].widget = CKEditor5Widget(
             config_name="collapsible-image-editor"
         )
 
