@@ -1,5 +1,4 @@
 from autoslug import AutoSlugField
-from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.humanize.templatetags.humanize import intcomma
@@ -8,6 +7,7 @@ from django.db.models.functions import Concat
 from django.db.models.functions import ExtractYear
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
@@ -130,7 +130,7 @@ class AbstractIdea(module_models.Item, Moderateable, ItemBadgesPropertyMixin):
     )
     slug = AutoSlugField(populate_from="name", unique=True)
     name = models.CharField(max_length=120, verbose_name=_("Title"))
-    description = RichTextField(verbose_name=_("Description"))
+    description = CKEditor5Field(verbose_name=_("Description"))
     image = ConfiguredImageField(
         "idea_image",
         verbose_name=_("Add image"),

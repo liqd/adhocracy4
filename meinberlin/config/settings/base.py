@@ -53,8 +53,7 @@ INSTALLED_APPS = (
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "ckeditor",
-    "ckeditor_uploader",
+    "django_ckeditor_5",
     "django_filters",
     "django_celery_beat",
     "easy_thumbnails",
@@ -169,7 +168,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "meinberlin.config.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 # FIXME: use custom engine to work around a bug on m1 macbooks
@@ -183,7 +181,6 @@ DATABASES = {
         },
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -201,7 +198,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -292,64 +288,6 @@ LOGIN_REDIRECT_URL = "/"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# ckeditor
-CKEDITOR_UPLOAD_PATH = "uploads/"
-CKEDITOR_RESTRICT_BY_USER = "username"
-CKEDITOR_ALLOW_NONIMAGE_FILES = True
-CKEDITOR_EMBED_PROVIDER = ""
-
-CKEDITOR_CONFIGS = {
-    "default": {
-        "width": "100%",
-        "title": _("Rich text editor"),
-        "toolbar": "Custom",
-        "toolbar_Custom": [
-            ["Bold", "Italic", "Underline"],
-            ["NumberedList", "BulletedList"],
-            ["Link", "Unlink"],
-        ],
-        "removePlugins": "stylesheetparser",
-        "extraAllowedContent": "iframe[*]",
-        "extraPlugins": ",".join(["embed", "embedbase"]),
-    },
-    "image-editor": {
-        "width": "100%",
-        "title": _("Rich text editor"),
-        "toolbar": "Custom",
-        "toolbar_Custom": [
-            ["Bold", "Italic", "Underline"],
-            ["Image"],
-            ["NumberedList", "BulletedList"],
-            ["Link", "Unlink"],
-        ],
-    },
-    "collapsible-image-editor": {
-        "width": "100%",
-        "title": _("Rich text editor"),
-        "toolbar": "Custom",
-        "toolbar_Custom": [
-            ["Bold", "Italic", "Underline"],
-            ["Image"],
-            ["NumberedList", "BulletedList"],
-            ["Link", "Unlink"],
-            ["CollapsibleItem"],
-            ["Embed", "EmbedBase"],
-        ],
-        "removePlugins": "stylesheetparser",
-        "extraAllowedContent": "iframe[*]; div[*]",
-        "embed_provider": CKEDITOR_EMBED_PROVIDER,
-    },
-    "video-editor": {
-        "width": "100%",
-        "title": _("Rich text editor"),
-        "toolbar": "Custom",
-        "toolbar_Custom": [["Embed", "EmbedBase"]],
-        "removePlugins": "stylesheetparser",
-        "extraAllowedContent": "iframe[*]; div[*]",
-        "embed_provider": CKEDITOR_EMBED_PROVIDER,
-    },
-}
-
 BLEACH_LIST = {
     "default": {
         "tags": [
@@ -400,36 +338,38 @@ BLEACH_LIST = {
             "img",
             "div",
             "iframe",
+            "figure",
         ],
         "attributes": {
             "a": ["href", "rel", "target"],
             "img": ["src", "alt", "style"],
-            "div": ["class"],
-            "iframe": ["src", "alt", "style"],
+            "div": ["class", "data-oembed-url"],
+            "iframe": ["src", "alt"],
+            "figure": ["class", "div", "iframe"],
         },
         "styles": [
             "float",
-            "margin",
-            "padding",
             "width",
             "height",
+            "margin",
             "margin-bottom",
             "margin-top",
             "margin-left",
             "margin-right",
+            "padding",
         ],
     },
     "video-editor": {
-        "tags": ["a", "img", "div", "iframe"],
+        "tags": ["a", "img", "div", "iframe", "figure"],
         "attributes": {
             "a": ["href", "rel", "target"],
             "img": ["src", "alt", "style"],
-            "div": ["class"],
-            "iframe": ["src", "alt", "style"],
+            "div": ["class", "data-oembed-url"],
+            "iframe": ["src", "alt"],
+            "figure": ["class", "div", "iframe"],
         },
     },
 }
-
 
 # adhocracy4
 
@@ -579,3 +519,126 @@ CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_RESULT_EXTENDED = True
 CELERY_TIMEZONE = "Europe/Berlin"
+
+customColorPalette = [
+    {"color": "hsl(4, 90%, 58%)", "label": "Red"},
+    {"color": "hsl(340, 82%, 52%)", "label": "Pink"},
+    {"color": "hsl(291, 64%, 42%)", "label": "Purple"},
+    {"color": "hsl(262, 52%, 47%)", "label": "Deep Purple"},
+    {"color": "hsl(231, 48%, 48%)", "label": "Indigo"},
+    {"color": "hsl(207, 90%, 54%)", "label": "Blue"},
+]
+CKEDITOR_5_FILE_STORAGE = "adhocracy4.ckeditor.storage.CustomStorage"
+CKEDITOR_5_PATH_FROM_USERNAME = True
+CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
+CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpg", "jpeg", "png", "gif", "pdf", "docx"]
+CKEDITOR_5_CONFIGS = {
+    "default": {
+        "toolbar": [
+            "bold",
+            "italic",
+            "underline",
+            "|",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "blockQuote",
+        ],
+    },
+    "image-editor": {
+        "toolbar": [
+            "bold",
+            "italic",
+            "underline",
+            "bulletedList",
+            "numberedList",
+            "todoList",
+            "link",
+            "blockQuote",
+            "imageUpload",
+            "fileUpload",
+        ],
+        "image": {
+            "toolbar": [
+                "imageUpload",
+                "imageTextAlternative",
+                "toggleImageCaption",
+                "imageStyle:inline",
+                "imageStyle:wrapText",
+                "imageStyle:breakText",
+                "imageStyle:alignLeft",
+                "imageStyle:alignRight",
+            ]
+        },
+    },
+    "collapsible-image-editor": {
+        "toolbar": [
+            "bold",
+            "italic",
+            "underline",
+            "bulletedList",
+            "numberedList",
+            "todoList",
+            "link",
+            "blockQuote",
+            "imageUpload",
+            "fileUpload",
+            "mediaEmbed",
+            "accordionButton",
+            "fontSize",
+        ],
+        "image": {
+            "toolbar": [
+                "imageUpload",
+                "imageTextAlternative",
+                "toggleImageCaption",
+                "imageStyle:inline",
+                "imageStyle:wrapText",
+                "imageStyle:breakText",
+                "imageStyle:alignLeft",
+                "imageStyle:alignRight",
+            ]
+        },
+        "mediaEmbed": {
+            "removeProviders": [
+                "dailymotion",
+                "spotify",
+                "facebook",
+                "flickr",
+                "googleMaps",
+                "instagram",
+                "twitter",
+            ],
+            "previewsInData": True,
+        },
+        "styles": [
+            "full",
+            "side",
+            "alignLeft",
+            "alignRight",
+            "alignCenter",
+        ],
+    },
+    "list": {
+        "properties": {
+            "styles": "true",
+            "startIndex": "true",
+            "reversed": "true",
+        }
+    },
+    "video-editor": {
+        "toolbar": ["mediaEmbed"],
+        "mediaEmbed": {
+            "removeProviders": [
+                "dailymotion",
+                "spotify",
+                "facebook",
+                "flickr",
+                "googleMaps",
+                "instagram",
+                "twitter",
+            ],
+            "previewsInData": True,
+        },
+    },
+}

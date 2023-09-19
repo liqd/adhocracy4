@@ -5,9 +5,9 @@ from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
-from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
 
@@ -32,7 +32,7 @@ class OfflineEvent(UserGeneratedContentModel):
         ),
     )
     date = models.DateTimeField(verbose_name=_("Date"))
-    description = RichTextCollapsibleUploadingField(
+    description = CKEditor5Field(
         config_name="collapsible-image-editor", verbose_name=_("Description")
     )
     project = models.ForeignKey(project_models.Project, on_delete=models.CASCADE)

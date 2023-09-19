@@ -5,10 +5,10 @@ from django.db.models import Q
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
-from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.images.fields import ImageAltTextField
 from adhocracy4.images.fields import ImageCopyrightField
@@ -99,7 +99,7 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
             "of the plan in no more than 255 characters."
         ),
     )
-    description = RichTextCollapsibleUploadingField(
+    description = CKEditor5Field(
         config_name="collapsible-image-editor",
         verbose_name=_("Description of your plan"),
         help_text=_(

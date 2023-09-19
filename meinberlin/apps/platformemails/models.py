@@ -1,21 +1,20 @@
 import re
 
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.db import models
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.models.base import UserGeneratedContentModel
 
 
 class PlatformEmail(UserGeneratedContentModel):
-
     sender_name = models.CharField(max_length=254, verbose_name=_("Name"))
     sender = models.EmailField(blank=True, verbose_name=_("Sender"))
     subject = models.CharField(max_length=254, verbose_name=_("Subject"))
-    body = RichTextUploadingField(
+    body = CKEditor5Field(
         blank=True,
         config_name="image-editor",
         verbose_name=_("Email body"),

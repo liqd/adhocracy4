@@ -1,8 +1,8 @@
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.comments import models as comment_models
@@ -54,7 +54,7 @@ class Chapter(module_models.Item):
 
 class Paragraph(base.TimeStampedModel):
     name = models.CharField(max_length=120, blank=True)
-    text = RichTextUploadingField(config_name="image-editor")
+    text = CKEditor5Field(config_name="image-editor")
     weight = models.PositiveIntegerField()
     chapter = models.ForeignKey(
         Chapter, on_delete=models.CASCADE, related_name="paragraphs"

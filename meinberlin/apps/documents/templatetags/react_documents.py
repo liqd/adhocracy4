@@ -1,7 +1,7 @@
 import json
 
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import template
+from django_ckeditor_5.widgets import CKEditor5Widget
 from rest_framework.renderers import JSONRenderer
 
 from meinberlin.apps.documents.models import Chapter
@@ -16,8 +16,7 @@ def react_documents(context, module, reload_on_success=False):
     serializer = ChapterSerializer(chapters, many=True)
     chapters_json = JSONRenderer().render(serializer.data).decode("utf-8")
 
-    widget = CKEditorUploadingWidget(config_name="image-editor")
-    widget._set_config()
+    widget = CKEditor5Widget(config_name="image-editor")
     config = JSONRenderer().render(widget.config).decode("utf-8")
 
     context = {

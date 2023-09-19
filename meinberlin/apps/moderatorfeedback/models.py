@@ -1,6 +1,6 @@
-from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.models.base import UserGeneratedContentModel
@@ -16,7 +16,7 @@ DEFAULT_CHOICES = (
 
 
 class ModeratorFeedback(UserGeneratedContentModel):
-    feedback_text = RichTextField(
+    feedback_text = CKEditor5Field(
         blank=True,
         verbose_name=_("Feedback (public)"),
         help_text=_(

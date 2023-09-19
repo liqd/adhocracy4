@@ -1,7 +1,8 @@
 # A4
-git+https://github.com/liqd/adhocracy4.git@010fbcd7135fcc8531e502f6e9b8f5a4c60d04b0#egg=adhocracy4
+git+https://github.com/liqd/adhocracy4.git@jd-2023-09-ckeditor-5#egg=adhocracy4
 
 # Additional requirements
+beautifulsoup4==4.11.2
 brotli==1.0.9
 django-celery-beat==2.5.0
 django-cloudflare-push==0.2.2
@@ -18,6 +19,7 @@ zeep==4.2.1
 celery==5.3.1
 django-allauth==0.54.0
 django-ckeditor==6.6.1
+https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl
 django-filter==22.1
 django-widget-tweaks==1.4.12
 Django==3.2.20

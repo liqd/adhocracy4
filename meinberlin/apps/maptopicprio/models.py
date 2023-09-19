@@ -1,9 +1,9 @@
 from autoslug import AutoSlugField
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
@@ -30,7 +30,7 @@ class MapTopic(module_models.Item, ItemBadgesPropertyMixin):
     )
     slug = AutoSlugField(populate_from="name", unique=True)
     name = models.CharField(max_length=120, verbose_name=_("Title"))
-    description = RichTextUploadingField(
+    description = CKEditor5Field(
         config_name="image-editor", verbose_name=_("Description")
     )
     image = ConfiguredImageField(

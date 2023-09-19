@@ -1,6 +1,6 @@
-from ckeditor_uploader import fields
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
@@ -16,9 +16,11 @@ class TopicForm(
     CategoryAndLabelAliasMixin,
     forms.ModelForm,
 ):
-    description = fields.RichTextUploadingFormField(
-        config_name="image-editor", required=True, label=_("Description")
-    )
+    description = CKEditor5Field(config_name="image-editor")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["description"].label = _("Description")
 
     class Meta:
         model = models.Topic

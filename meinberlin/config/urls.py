@@ -1,12 +1,10 @@
 """meinberlin URL Configuration."""
 
-from ckeditor_uploader import views as ck_views
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
 from django.urls import re_path
-from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
 from rest_framework import routers
@@ -34,7 +32,6 @@ from meinberlin.apps.plans.api import PlansListViewSet
 from meinberlin.apps.projectcontainers.api import ProjectContainerListViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
-from meinberlin.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.votes.api import TokenVoteViewSet
 from meinberlin.apps.votes.routers import TokenVoteDefaultRouter
 
@@ -179,11 +176,8 @@ urlpatterns = [
     path("api/", include(orga_router.urls)),
     path("api/", include(tokenvote_router.urls)),
     path("api/", include(router.urls)),
-    path("upload/", user_is_project_admin(ck_views.upload), name="ckeditor_upload"),
     path(
-        "browse/",
-        never_cache(user_is_project_admin(ck_views.browse)),
-        name="ckeditor_browse",
+        "ckeditor5/", include("django_ckeditor_5.urls"), name="ck_editor_5_upload_file"
     ),
     path(
         "sitemap.xml",
