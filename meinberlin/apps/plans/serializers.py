@@ -14,11 +14,11 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     participation_string = serializers.SerializerMethodField()
     point = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
-    subtype = serializers.SerializerMethodField()
+    subtype = serializers.ReadOnlyField(default="plan")
     tile_image = serializers.SerializerMethodField()
     tile_image_alt_text = serializers.SerializerMethodField()
     tile_image_copyright = serializers.SerializerMethodField()
-    type = serializers.SerializerMethodField()
+    type = serializers.ReadOnlyField(default="plan")
     url = serializers.SerializerMethodField()
 
     class Meta:
@@ -45,57 +45,36 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
             "url",
         ]
 
-    def get_subtype(self, instance):
-        return "plan"
+    def get_url(self, plan: Plan) -> str:
+        return plan.get_absolute_url()
 
-    def _get_participation_status_plan(self, item):
-        return item.get_status_display(), not bool(item.status)
+    def get_published_projects_count(self, plan: Plan):
+        return plan.published_projects.count()
 
-    def get_type(self, instance):
-        return "plan"
+    def get_participation_string(self, plan: Plan) -> str:
+        return plan.get_status_display()
 
-    def get_url(self, instance):
-        return instance.get_absolute_url()
+    def get_participation_active(self, plan: Plan) -> bool:
+        return not bool(plan.status)
 
-    def get_published_projects_count(self, instance):
-        return instance.published_projects.count()
-
-    def get_participation_string(self, instance):
-        (
-            participation_string,
-            participation_active,
-        ) = self._get_participation_status_plan(instance)
-        return str(participation_string)
-
-    def get_participation_active(self, instance):
-        (
-            participation_string,
-            participation_active,
-        ) = self._get_participation_status_plan(instance)
-        return participation_active
-
-    def get_tile_image(self, instance):
-        image_url = ""
-        if instance.tile_image:
-            image = get_thumbnailer(instance.tile_image)["project_tile"]
-            image_url = image.url
-        elif instance.image:
-            image = get_thumbnailer(instance.image)["project_tile"]
-            image_url = image.url
-        return image_url
-
-    def get_tile_image_alt_text(self, instance):
-        if instance.tile_image:
-            return instance.tile_image_alt_text
-        elif instance.image_alt_text:
-            return instance.image_alt_text
+    def get_tile_image(self, plan: Plan) -> str:
+        if plan.tile_image:
+            return get_thumbnailer(plan.tile_image)["project_tile"].url
+        elif plan.image:
+            return get_thumbnailer(plan.image)["project_tile"].url
         else:
-            return None
+            return ""
 
-    def get_tile_image_copyright(self, instance):
-        if instance.tile_image:
-            return instance.tile_image_copyright
-        elif instance.image_copyright:
-            return instance.image_copyright
+    def get_tile_image_alt_text(self, plan: Plan) -> str:
+        if plan.tile_image:
+            return plan.tile_image_alt_text
+        elif plan.image_alt_text:
+            return plan.image_alt_text
         else:
-            return None
+            return ""
+
+    def get_tile_image_copyright(self, plan: Plan) -> str:
+        if plan.tile_image:
+            return plan.tile_image_copyright
+        elif plan.image_copyright:
+            return plan.image_copyright

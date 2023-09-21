@@ -146,7 +146,7 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     status = models.SmallIntegerField(
         choices=STATUS_CHOICES,
         verbose_name=_("Status"),
-        help_text=_("In the project overview projects " "can be filtered by status."),
+        help_text=_("In the project overview projects can be filtered by status."),
     )
     participation = models.SmallIntegerField(
         choices=PARTICIPATION_CHOICES,
