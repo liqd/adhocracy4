@@ -39,29 +39,29 @@ class CommonFields:
 
 
 class ProjectSerializer(serializers.ModelSerializer, CommonFields):
-    type = serializers.SerializerMethodField()
-    subtype = serializers.SerializerMethodField()
-    title = serializers.SerializerMethodField()
-    url = serializers.SerializerMethodField()
-    point = serializers.SerializerMethodField()
-    point_label = serializers.SerializerMethodField()
+    active_phase = serializers.SerializerMethodField()
     cost = serializers.SerializerMethodField()
+    created_or_modified = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
-    status = serializers.SerializerMethodField()
+    future_phase = serializers.SerializerMethodField()
     organisation = serializers.SerializerMethodField()
     participation = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
-    future_phase = serializers.SerializerMethodField()
-    active_phase = serializers.SerializerMethodField()
     past_phase = serializers.SerializerMethodField()
+    plan_title = serializers.SerializerMethodField()
+    plan_url = serializers.SerializerMethodField()
+    point = serializers.SerializerMethodField()
+    point_label = serializers.SerializerMethodField()
+    published_projects_count = serializers.SerializerMethodField()
+    status = serializers.SerializerMethodField()
+    subtype = serializers.SerializerMethodField()
     tile_image = serializers.SerializerMethodField()
     tile_image_alt_text = serializers.SerializerMethodField()
     tile_image_copyright = serializers.SerializerMethodField()
-    plan_url = serializers.SerializerMethodField()
-    plan_title = serializers.SerializerMethodField()
-    published_projects_count = serializers.SerializerMethodField()
-    created_or_modified = serializers.SerializerMethodField()
+    title = serializers.SerializerMethodField()
+    type = serializers.SerializerMethodField()
+    url = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
         self.now = kwargs.pop("now")
@@ -70,32 +70,32 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     class Meta:
         model = Project
         fields = [
-            "type",
-            "subtype",
-            "title",
-            "url",
+            "access",
+            "active_phase",
+            "cost",
+            "created_or_modified",
+            "description",
+            "district",
+            "future_phase",
             "organisation",
+            "participation",
+            "participation_active",
+            "participation_string",
+            "past_phase",
+            "plan_title",
+            "plan_url",
+            "point",
+            "point_label",
+            "published_projects_count",
+            "status",
+            "subtype",
             "tile_image",
             "tile_image_alt_text",
             "tile_image_copyright",
-            "point",
-            "point_label",
-            "cost",
-            "district",
+            "title",
             "topics",
-            "access",
-            "status",
-            "participation_string",
-            "participation_active",
-            "participation",
-            "description",
-            "future_phase",
-            "active_phase",
-            "past_phase",
-            "plan_url",
-            "plan_title",
-            "published_projects_count",
-            "created_or_modified",
+            "type",
+            "url",
         ]
 
     @lru_cache(maxsize=1)

@@ -7,42 +7,42 @@ from .models import Plan
 
 
 class PlanSerializer(serializers.ModelSerializer, CommonFields):
-    type = serializers.SerializerMethodField()
-    subtype = serializers.SerializerMethodField()
-    url = serializers.SerializerMethodField()
+    created_or_modified = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
-    point = serializers.SerializerMethodField()
+    organisation = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
+    point = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
-    organisation = serializers.SerializerMethodField()
-    created_or_modified = serializers.SerializerMethodField()
+    subtype = serializers.SerializerMethodField()
     tile_image = serializers.SerializerMethodField()
     tile_image_alt_text = serializers.SerializerMethodField()
     tile_image_copyright = serializers.SerializerMethodField()
+    type = serializers.SerializerMethodField()
+    url = serializers.SerializerMethodField()
 
     class Meta:
         model = Plan
         fields = [
-            "type",
-            "subtype",
-            "title",
-            "url",
+            "cost",
+            "created_or_modified",
+            "district",
             "organisation",
+            "participation",
+            "participation_active",
+            "participation_string",
             "point",
             "point_label",
-            "cost",
-            "district",
-            "topics",
-            "status",
-            "participation",
-            "participation_string",
-            "participation_active",
             "published_projects_count",
-            "created_or_modified",
+            "status",
+            "subtype",
             "tile_image",
             "tile_image_alt_text",
             "tile_image_copyright",
+            "title",
+            "topics",
+            "type",
+            "url",
         ]
 
     def get_subtype(self, instance):
