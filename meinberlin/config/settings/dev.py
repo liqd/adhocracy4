@@ -23,7 +23,10 @@ try:
 except ImportError:
     pass
 else:
-    INSTALLED_APPS += ("debug_toolbar",)
+    INSTALLED_APPS += (
+        "debug_toolbar",
+        "meinberlin.apps.dev",
+    )
     MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
     INTERNAL_IPS = ("127.0.0.1", "localhost")
     DEBUG_TOOLBAR_CONFIG = {
