@@ -12,7 +12,7 @@ class SimplePage(Page):
     body = fields.RichTextField(blank=True)
 
     content_panels = [
-        panels.FieldPanel("title"),
+        panels.TitleFieldPanel("title"),
         panels.FieldPanel("body"),
     ]
 
@@ -27,7 +27,7 @@ class StreamfieldSimplePage(Page):
     )
 
     content_panels = [
-        panels.FieldPanel("title"),
+        panels.TitleFieldPanel("title"),
         panels.FieldPanel("body"),
     ]
 
