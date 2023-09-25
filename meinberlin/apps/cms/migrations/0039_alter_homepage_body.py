@@ -6,23 +6,12 @@ import wagtail.fields
 import wagtail.images.blocks
 
 
-def empty_to_valid_json(apps, schema_editor):
-    HomePage = apps.get_model("meinberlin_cms", "HomePage")
-
-    for homepage in HomePage.objects.all():
-        if len(homepage.body) == 0:
-            homepage.body = "{}"
-            homepage.save()
-
-
 class Migration(migrations.Migration):
-
     dependencies = [
         ("meinberlin_cms", "0038_streamfield_add_use_json_field"),
     ]
 
     operations = [
-        migrations.RunPython(empty_to_valid_json),
         migrations.AlterField(
             model_name="homepage",
             name="body",

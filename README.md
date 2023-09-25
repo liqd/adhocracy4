@@ -14,7 +14,7 @@ based on [adhocracy 4](https://github.com/liqd/adhocracy4).
 *   libjpeg
 *   libpq (only if postgres should be used)
 *   gdal
-*   sqlite3 [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension)
+*   sqlite3 [with JSON1 enabled](https://code.djangoproject.com/wiki/JSON1Extension)(only if sqlite is used for local development)
 
 ## Installation (for development and testing only!)
 
