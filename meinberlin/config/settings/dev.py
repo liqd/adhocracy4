@@ -23,39 +23,9 @@ else:
         "JQUERY_URL": "",
     }
 
-try:
-    from .local import *
-except ImportError:
-    pass
-
-try:
-    from .polygons import *
-except ImportError:
-    pass
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {"class": "logging.StreamHandler"},
-        "null": {"class": "logging.NullHandler"},
-    },
-    "loggers": {"": {"handlers": ["console"], "level": "INFO"}},
-}
-
-try:
-    INSTALLED_APPS += tuple(ADDITIONAL_APPS)
-except NameError:
-    pass
-
-try:
-    CKEDITOR_CONFIGS["collapsible-image-editor"]["embed_provider"] = CKEDITOR_URL
-    CKEDITOR_CONFIGS["video-editor"]["embed_provider"] = CKEDITOR_URL
-except NameError:
-    pass
-
 CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", "data:", "blob:", "*"]
+
 if os.getenv("DATABASE") == "postgresql":
     DATABASES = {
         "default": {
@@ -68,3 +38,40 @@ if os.getenv("DATABASE") == "postgresql":
             "OPTIONS": {},
         }
     }
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {"class": "logging.StreamHandler"},
+        "null": {"class": "logging.NullHandler"},
+    },
+    "loggers": {"": {"handlers": ["console"], "level": "INFO"}},
+}
+
+# The local.py import happen at the end of this file so that it can overwrite
+# any defaults in dev.py.
+# Special cases are:
+# 1) ADDITIONAL_APPS in local.py should be appended to INSTALLED_APPS.
+# 2) CKEDITOR_URL should be inserted into CKEDITOR_CONFIGS in the correct location.
+
+try:
+    from .local import *
+except ImportError:
+    pass
+
+try:
+    from .polygons import *
+except ImportError:
+    pass
+
+try:
+    INSTALLED_APPS += tuple(ADDITIONAL_APPS)
+except NameError:
+    pass
+
+try:
+    CKEDITOR_CONFIGS["collapsible-image-editor"]["embed_provider"] = CKEDITOR_URL
+    CKEDITOR_CONFIGS["video-editor"]["embed_provider"] = CKEDITOR_URL
+except NameError:
+    pass
