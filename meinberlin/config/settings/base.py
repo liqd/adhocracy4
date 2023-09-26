@@ -571,3 +571,9 @@ A4_ACTIONS_PHASE_ENDS_HOURS = 48
 # Add a Captcheck captcha URL in the production server's local.py to use it
 # Captcha software we use: https://source.netsyms.com/Netsyms/Captcheck
 CAPTCHA_URL = ""
+
+# Celery configuration
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_RESULT_EXTENDED = True

@@ -66,6 +66,9 @@ help:
 	@echo "  make postgres-stop				-- stops the local postgres cluster"
 	@echo "  make postgres-create			-- create the local postgres cluster (only works on ubuntu 20.04)"
 	@echo "  make local-a4					-- patch to use local a4 (needs to have path ../adhocracy4)"
+	@echo "  make celery-worker-start		-- starts the celery worker in the foreground"
+	@echo "  make celery-worker-status		-- lists all registered tasks and active worker nodes"
+	@echo "  make celery-worker-dummy-task	-- calls the dummy task and prints result from redis"
 	@echo
 
 .PHONY: install
@@ -248,3 +251,15 @@ local-a4:
 		$(VIRTUAL_ENV)/bin/python manage.py migrate; \
 		npm link ../adhocracy4; \
 	fi
+
+.PHONY: celery-worker-start
+celery-worker-start:
+	$(VIRTUAL_ENV)/bin/celery --app meinberlin worker --loglevel INFO
+
+.PHONY: celery-worker-status
+celery-worker-status:
+	$(VIRTUAL_ENV)/bin/celery --app meinberlin inspect registered
+
+.PHONY: celery-worker-dummy-task
+celery-worker-dummy-task:
+	$(VIRTUAL_ENV)/bin/celery --app meinberlin call dummy_task | awk '{print "celery-task-meta-"$$0}' | xargs redis-cli get | python3 -m json.tool

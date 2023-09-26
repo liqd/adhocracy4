@@ -9,6 +9,8 @@ for template_engine in TEMPLATES:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "qid$h1o8&wh#p(j)lifis*5-rf@lbiy8%^3l4x%@b$z(tli@ab"
 
+CELERY_TASK_ALWAYS_EAGER = True
+
 try:
     import debug_toolbar
 except ImportError:

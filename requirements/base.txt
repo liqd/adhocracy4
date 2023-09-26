@@ -5,23 +5,25 @@ git+https://github.com/liqd/adhocracy4.git@mB-v2308#egg=adhocracy4
 brotli==1.0.9
 django-cloudflare-push==0.2.2
 django_csp==3.7
-sentry-sdk==1.28.1
+redis==5.0.0
 requests==2.31.0
+sentry-sdk==1.28.1
 urllib3==2.0.3
 wagtail==5.0.2
 whitenoise==6.5.0
 zeep==4.2.1
 
 # Inherited a4-core requirements
-Django==3.2.20
+celery==5.3.1
 django-allauth==0.54.0
-git+https://github.com/liqd/django-autoslug.git@liqd2212#egg=django-autoslug
 django-background-tasks==1.2.5
 django-ckeditor==6.6.1
 django-filter==22.1
 django-widget-tweaks==1.4.12
+Django==3.2.20
 djangorestframework==3.14.0
 easy-thumbnails[svg]==2.8.5
+git+https://github.com/liqd/django-autoslug.git@liqd2212#egg=django-autoslug
 python-dateutil==2.8.2
 rules==3.3
 XlsxWriter==3.1.2
