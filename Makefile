@@ -65,6 +65,7 @@ help:
 	@echo "  make start-postgres			-- start the local postgres cluster"
 	@echo "  make stop-postgres				-- stops the local postgres cluster"
 	@echo "  make create-postgres			-- create the local postgres cluster (only works on ubuntu 20.04)"
+	@echo "  make local-a4					-- patch to use local a4 (needs to have path ../adhocracy4)"
 	@echo
 
 .PHONY: install
@@ -238,4 +239,12 @@ create-postgres:
 		sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/createuser -s django; \
 		sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/createdb -O django django; \
 		sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/pg_ctl stop; \
+	fi
+
+.PHONY: local-a4
+local-a4:
+	if [ -d "../adhocracy4" ]; then \
+		$(VIRTUAL_ENV)/bin/python -m pip install --upgrade ../adhocracy4; \
+		$(VIRTUAL_ENV)/bin/python manage.py migrate; \
+		npm link ../adhocracy4; \
 	fi
