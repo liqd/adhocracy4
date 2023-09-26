@@ -92,6 +92,9 @@ module.exports = {
     init_dashboard_accordion: {
       import: './meinberlin/apps/dashboard/assets/init_dashboard_accordion.js'
     },
+    wagtail: {
+      import: './meinberlin/apps/contrib/assets/wagtail.js'
+    },
 
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: {
