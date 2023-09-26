@@ -1,5 +1,4 @@
 import pytest
-from background_task.models import Task
 from django.urls import reverse
 
 from adhocracy4.dashboard import components
@@ -48,7 +47,6 @@ def test_token_vote_view(
         assert package[1] is False
         assert package[2] == 1
 
-    print(export_url)
     response = client.get(export_url + "?package=" + str(package0.pk))
     assert response.status_code == 200
     assert (
@@ -61,11 +59,6 @@ def test_token_vote_view(
     assert response.status_code == 200
     token_packages = response.context["token_packages"]
     assert len(token_packages) == 4
-    # assert that a delete task for the first package has been created
-    assert Task.objects.all().count() == 1
-    task_1 = Task.objects.first()
-    assert task_1.task_name == "meinberlin.apps.votes.tasks.delete_plain_codes"
-    assert task_1.task_params == "[[" + str(package0.pk) + "], {}]"
 
 
 @pytest.mark.django_db
@@ -79,9 +72,5 @@ def test_export(voting_token, rf):
     request.user = initiator
     response, view = dispatch_view(TokenExportView, request, module=module)
     voting_token = VotingToken.objects.get(id=voting_token.id)
-    assert Task.objects.all().count() == 1
-    task_1 = Task.objects.first()
-    assert task_1.task_name == "meinberlin.apps.votes.tasks.delete_plain_codes"
-    assert task_1.task_params == ("[[" + str(voting_token.package.pk) + "], {}]")
     assert module.project.slug in view.get_base_filename()
     assert view.get_token_data(voting_token) == str(voting_token)

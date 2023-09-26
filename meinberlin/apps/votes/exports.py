@@ -70,7 +70,7 @@ class TokenExportView(
             yield [self.get_token_data(item)]
         package.downloaded = True
         package.save()
-        delete_plain_codes(package.pk)
+        delete_plain_codes.delay(package.pk)
 
     def get_token_data(self, item):
         """Add dashes like in string method."""

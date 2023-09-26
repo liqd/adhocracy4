@@ -13,7 +13,7 @@ def get_location(sender, instance, update_fields, **kwargs):
         not update_fields
         or ("point" not in update_fields and "is_archived" not in update_fields)
     ):
-        tasks.get_location_information(instance.pk)
+        tasks.get_location_information.delay(instance.pk)
 
 
 @receiver(post_save, sender=Statement)

@@ -2,7 +2,6 @@ import hashlib
 from unittest.mock import patch
 
 import pytest
-from background_task.models import Task
 from django.contrib.messages import get_messages
 from django.db import transaction
 from django.db.utils import IntegrityError
@@ -65,20 +64,11 @@ def test_token_generate_view(
         "12 codes will be generated in the background. This may take a " "few minutes."
     )
     assert TokenPackage.objects.all().count() == 4
-    assert Task.objects.all().count() == 2
     package1 = TokenPackage.objects.filter(module=module)[1]
     package2 = TokenPackage.objects.filter(module=module)[2]
-    task_1 = Task.objects.first()
-    task_2 = Task.objects.last()
-    assert (
-        task_1.task_name == "meinberlin.apps.votes.tasks.generate_voting_tokens_batch"
-    )
-    assert task_1.task_params == (
-        "[[" + str(module.id) + ", 10, " + str(package1.pk) + "], {}]"
-    )
-    assert task_2.task_params == (
-        "[[" + str(module.id) + ", 2, " + str(package2.pk) + "], {}]"
-    )
+    assert package1.size == 10
+    assert package2.size == 2
+    assert VotingToken.objects.all().count() == 16
 
 
 @patch("meinberlin.apps.votes.views.TOKENS_PER_MODULE", 5)
@@ -104,7 +94,8 @@ def test_token_generate_view_max_validation(
         "Please adjust your number of codes. Per module you can "
         "generate up to 5 codes."
     )
-    assert Task.objects.all().count() == 0
+    assert TokenPackage.objects.all().count() == 1
+    assert VotingToken.objects.all().count() == 2
 
 
 @pytest.mark.django_db
@@ -114,11 +105,12 @@ def test_token_batch_generation_not_unique(phase_factory, token_package_factory)
     with patch("secrets.choice", return_value="a"):
         with pytest.raises(IntegrityError):
             with transaction.atomic():
-                generate_voting_tokens_batch.now(module.id, 2, package.pk)
+                result = generate_voting_tokens_batch.delay(module.id, 2, package.pk)
+                raise result.result
     tokens = VotingToken.objects.all()
     assert tokens.count() == 0
 
-    generate_voting_tokens_batch.now(module.id, 2, package.pk)
+    generate_voting_tokens_batch.delay(module.id, 2, package.pk)
     tokens = VotingToken.objects.all()
     assert tokens.count() == 2
 
@@ -127,7 +119,7 @@ def test_token_batch_generation_not_unique(phase_factory, token_package_factory)
 def test_token_batch_generation_correct_hash(phase_factory, token_package_factory):
     phase, module, project, item = setup_phase(phase_factory, None, VotingPhase)
     package = token_package_factory(module=module, size=2)
-    generate_voting_tokens_batch.now(module.id, 2, package.pk)
+    generate_voting_tokens_batch.delay(module.id, 2, package.pk)
     tokens = VotingToken.objects.all()
     salt = TokenSalt.get_or_create_salt_for_module(module)
     assert tokens.count() == 2
@@ -151,12 +143,6 @@ def test_token_correct_amount_of_packages(
     generate_voting_tokens(module.pk, 10)
 
     assert TokenPackage.objects.all().count() == 1
-    assert Task.objects.all().count() == 1
     package = TokenPackage.objects.first()
-    task_1 = Task.objects.first()
-    assert (
-        task_1.task_name == "meinberlin.apps.votes.tasks.generate_voting_tokens_batch"
-    )
-    assert task_1.task_params == (
-        "[[" + str(module.id) + ", 10, " + str(package.pk) + "], {}]"
-    )
+    assert package.size == 10
+    assert VotingToken.objects.all().count() == 10

@@ -2,7 +2,7 @@ import json
 import logging
 import urllib
 
-from background_task import background
+from celery import shared_task
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from meinberlin.apps.bplan.models import Bplan
@@ -44,7 +44,6 @@ def get_bplan_api_pk_to_a4_admin_district_dict():
     dis_dict = {}
     if features:
         for district in features:
-
             dis_model = AdministrativeDistrict.objects.filter(
                 name=district["properties"]["name"]
             )
@@ -56,7 +55,7 @@ def get_bplan_api_pk_to_a4_admin_district_dict():
     return dis_dict
 
 
-@background(schedule=0)
+@shared_task
 def get_location_information(bplan_id):
     bplan = Bplan.objects.get(pk=bplan_id)
     point, district_pk = get_bplan_point_and_district_pk(bplan.identifier)

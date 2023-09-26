@@ -1,11 +1,11 @@
 import factory
 import pytest
+from celery import Celery
 from django.urls import reverse
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
 from adhocracy4.test import factories as a4_factories
-from adhocracy4.test import helpers
 from adhocracy4.test.factories import categories as a4_category_factories
 from adhocracy4.test.factories import labels as a4_label_factories
 from adhocracy4.test.factories.maps import AreaSettingsFactory
@@ -20,8 +20,7 @@ from meinberlin.test.factories.projectcontainers import ProjectContainerFactory
 
 
 def pytest_configure(config):
-    # Patch email background_task decorators for all tests
-    helpers.patch_background_task_decorator("adhocracy4.emails.tasks")
+    Celery(task_always_eager=True)
 
 
 register(factories.UserFactory)
