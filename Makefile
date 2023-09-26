@@ -62,9 +62,9 @@ help:
 	@echo "  make po						-- create new po files from the source"
 	@echo "  make mo						-- create new mo files from the translated po files"
 	@echo "  make release					-- build everything required for a release"
-	@echo "  make start-postgres			-- start the local postgres cluster"
-	@echo "  make stop-postgres				-- stops the local postgres cluster"
-	@echo "  make create-postgres			-- create the local postgres cluster (only works on ubuntu 20.04)"
+	@echo "  make postgres-start			-- start the local postgres cluster"
+	@echo "  make postgres-stop				-- stops the local postgres cluster"
+	@echo "  make postgres-create			-- create the local postgres cluster (only works on ubuntu 20.04)"
 	@echo "  make local-a4					-- patch to use local a4 (needs to have path ../adhocracy4)"
 	@echo
 
@@ -220,15 +220,15 @@ release:
 	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python3 manage.py collectstatic --noinput -v0
 
-.PHONY: start-postgres
+.PHONY: postgres-start
 start-postgres:
 	sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/pg_ctl start
 
-.PHONY: stop-postgres
+.PHONY: postgres-stop
 stop-postgres:
 	sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/pg_ctl stop
 
-.PHONY: create-postgres
+.PHONY: postgres-create
 create-postgres:
 	if [ -d "pgsql" ]; then \
 		echo "postgresql has already been initialized"; \

@@ -27,11 +27,11 @@ based on [adhocracy 4](https://github.com/liqd/adhocracy4).
 ### Use postgresql database for testing:
 run the following command once:
 ```
-make create-postgres
+make postgres-create
 ```
 to start the testserver with postgresql, run:
 ```
 export DATABASE=postgresql
-make start-postgres
+make postgres-start
 make watch
 ```
