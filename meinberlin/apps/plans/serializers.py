@@ -1,6 +1,7 @@
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 
+from adhocracy4.projects.enums import Access
 from meinberlin.apps.projects.serializers import CommonFields
 
 from .models import Plan
@@ -45,36 +46,52 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
             "url",
         ]
 
-    def get_url(self, plan: Plan) -> str:
-        return plan.get_absolute_url()
+    def get_url(self, instance: Plan) -> str:
+        return instance.get_absolute_url()
 
-    def get_published_projects_count(self, plan: Plan):
-        return plan.published_projects.count()
+    def get_published_projects_count(self, instance: Plan) -> int:
+        """
+        This method counts published projects of `instance`.
+        It assumes that the related field `instance.projects` has been prefetched (see `plans/api.py`)
+        and counts in Python (which is faster than hitting the db with `projects.count()`).
+        For details, see `docs/performance_of_plans_serializer.py`.
+        """
 
-    def get_participation_string(self, plan: Plan) -> str:
-        return plan.get_status_display()
+        count = 0
+        for project in instance.projects.all():
+            if project.is_draft or project.is_archived:
+                continue
+            if project.access in [Access.PUBLIC, Access.SEMIPUBLIC]:
+                count += 1
 
-    def get_participation_active(self, plan: Plan) -> bool:
-        return not bool(plan.status)
+        return count
 
-    def get_tile_image(self, plan: Plan) -> str:
-        if plan.tile_image:
-            return get_thumbnailer(plan.tile_image)["project_tile"].url
-        elif plan.image:
-            return get_thumbnailer(plan.image)["project_tile"].url
+    def get_participation_string(self, instance: Plan) -> str:
+        return instance.get_status_display()
+
+    def get_participation_active(self, instance: Plan) -> bool:
+        return not bool(instance.status)
+
+    def get_tile_image(self, instance: Plan) -> str:
+        if instance.tile_image:
+            return get_thumbnailer(instance.tile_image)["project_tile"].url
+        elif instance.image:
+            return get_thumbnailer(instance.image)["project_tile"].url
         else:
             return ""
 
-    def get_tile_image_alt_text(self, plan: Plan) -> str:
-        if plan.tile_image:
-            return plan.tile_image_alt_text
-        elif plan.image_alt_text:
-            return plan.image_alt_text
+    def get_tile_image_alt_text(self, instance: Plan) -> str:
+        if instance.tile_image:
+            return instance.tile_image_alt_text
+        elif instance.image_alt_text:
+            return instance.image_alt_text
         else:
             return ""
 
-    def get_tile_image_copyright(self, plan: Plan) -> str:
-        if plan.tile_image:
-            return plan.tile_image_copyright
-        elif plan.image_copyright:
-            return plan.image_copyright
+    def get_tile_image_copyright(self, instance: Plan) -> str:
+        if instance.tile_image:
+            return instance.tile_image_copyright
+        elif instance.image_copyright:
+            return instance.image_copyright
+        else:
+            return ""

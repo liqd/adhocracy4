@@ -8,4 +8,4 @@ class PlansListViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PlanSerializer
 
     def get_queryset(self):
-        return Plan.objects.filter(is_draft=False)
+        return Plan.objects.filter(is_draft=False).prefetch_related("projects")
