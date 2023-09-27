@@ -8,9 +8,7 @@ class ExternalProject(project_models.Project):
     url = models.URLField(
         blank=True,
         verbose_name="URL",
-        help_text=_(
-            "Please enter " "a full url which " "starts with https:// " "or http://"
-        ),
+        help_text=_("Please enter a full url which starts with https:// or http://"),
         max_length=500,
     )
 
