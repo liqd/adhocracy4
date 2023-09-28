@@ -37,6 +37,9 @@ def create_initial_data(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
+    run_before = [
+        ("wagtailcore", "0053_locale_model"),  # added for Wagtail 2.11 compatibility
+    ]
 
     dependencies = [
         ("wagtailcore", "0002_initial_data"),
