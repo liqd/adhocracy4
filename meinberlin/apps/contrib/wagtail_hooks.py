@@ -7,4 +7,4 @@ from wagtail import hooks
 # toolbar sticky
 @hooks.register("insert_global_admin_js", order=100)
 def global_admin_js():
-    return format_html('<script src="{}"></script>', static("/wagtail.js"))
+    return format_html('<script src="{}"></script>', static("wagtail.js"))
