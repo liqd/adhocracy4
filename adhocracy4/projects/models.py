@@ -62,31 +62,6 @@ class ProjectContactDetailMixin(models.Model):
     contact_url = models.URLField(blank=True, verbose_name=_("Website"))
 
 
-class ProjectLocationMixin(models.Model):
-    class Meta:
-        abstract = True
-
-    point = PointField(
-        null=True,
-        blank=True,
-        verbose_name=_("Can your project be located on the map?"),
-        help_text=_(
-            "Locate your project. "
-            "Click inside the marked area "
-            "or type in an address to set the marker. A set "
-            "marker can be dragged when pressed."
-        ),
-    )
-
-    administrative_district = models.ForeignKey(
-        AdministrativeDistrict,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-        verbose_name=_("Administrative district"),
-    )
-
-
 class ModuleClusterPropertiesMixin:
     @cached_property
     def module_clusters(self):
@@ -163,12 +138,70 @@ class TimelinePropertiesMixin:
 
 class Project(
     ProjectContactDetailMixin,
-    ProjectLocationMixin,
     base.TimeStampedModel,
     ModuleClusterPropertiesMixin,
     TimelinePropertiesMixin,
 ):
-    slug = AutoSlugField(populate_from="name", unique=True, editable=True)
+    access = EnumField(
+        Access, default=Access.PUBLIC, verbose_name=_("Access to the project")
+    )
+    administrative_district = models.ForeignKey(
+        AdministrativeDistrict,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        verbose_name=_("Administrative district"),
+    )
+    description = models.CharField(
+        max_length=250,
+        verbose_name=_("Short description of your project"),
+        help_text=_(
+            "This short description will appear on "
+            "the header of the project and in the teaser. "
+            "It should briefly state the goal of the project "
+            "in max. 250 chars."
+        ),
+    )
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, blank=True, null=True)
+
+    image = fields.ConfiguredImageField(
+        "heroimage",
+        verbose_name=_("Header image"),
+        help_prefix=_("The image will be shown as a decorative background image."),
+        upload_to="projects/backgrounds",
+        blank=True,
+        max_length=300,
+    )
+    image_alt_text = fields.ImageAltTextField(image_name=_("Header image"))
+    image_copyright = fields.ImageCopyrightField(image_name=_("Header image"))
+    information = RichTextCollapsibleUploadingField(
+        blank=True,
+        config_name="collapsible-image-editor",
+        verbose_name=_("Description of your project"),
+        help_text=_(
+            "This description should tell participants "
+            "what the goal of the project is, how the project’s "
+            "participation will look like. It will be always visible "
+            "in the „Info“ tab on your project’s page."
+        ),
+    )
+    is_app_accessible = models.BooleanField(default=False)
+
+    is_archived = models.BooleanField(
+        default=False,
+        verbose_name=_("Project is archived"),
+        help_text=_(
+            "Archived projects are not shown in the project overview. "
+            "For project initiators they are still visible in the "
+            "dashboard."
+        ),
+    )
+    is_draft = models.BooleanField(default=True)
+    moderators = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="project_moderator",
+        blank=True,
+    )
     name = models.CharField(
         max_length=120,
         verbose_name=_("Title of your project"),
@@ -182,29 +215,27 @@ class Project(
         settings.A4_ORGANISATIONS_MODEL, on_delete=models.CASCADE
     )
 
-    group = models.ForeignKey(Group, on_delete=models.SET_NULL, blank=True, null=True)
-
-    description = models.CharField(
-        max_length=250,
-        verbose_name=_("Short description of your project"),
-        help_text=_(
-            "This short description will appear on "
-            "the header of the project and in the teaser. "
-            "It should briefly state the goal of the project "
-            "in max. 250 chars."
-        ),
-    )
-    information = RichTextCollapsibleUploadingField(
+    participants = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="project_participant",
         blank=True,
-        config_name="collapsible-image-editor",
-        verbose_name=_("Description of your project"),
+    )
+    point = PointField(
+        null=True,
+        blank=True,
+        verbose_name=_("Can your project be located on the map?"),
         help_text=_(
-            "This description should tell participants "
-            "what the goal of the project is, how the project’s "
-            "participation will look like. It will be always visible "
-            "in the „Info“ tab on your project’s page."
+            "Locate your project. "
+            "Click inside the marked area "
+            "or type in an address to set the marker. A set "
+            "marker can be dragged when pressed."
         ),
     )
+
+    project_type = models.CharField(
+        blank=True, max_length=256, default="a4projects.Project"
+    )
+
     result = RichTextCollapsibleUploadingField(
         blank=True,
         config_name="collapsible-image-editor",
@@ -216,20 +247,7 @@ class Project(
             "summary of the results."
         ),
     )
-    access = EnumField(
-        Access, default=Access.PUBLIC, verbose_name=_("Access to the project")
-    )
-    is_draft = models.BooleanField(default=True)
-    image = fields.ConfiguredImageField(
-        "heroimage",
-        verbose_name=_("Header image"),
-        help_prefix=_("The image will be shown as a decorative background image."),
-        upload_to="projects/backgrounds",
-        blank=True,
-        max_length=300,
-    )
-    image_copyright = fields.ImageCopyrightField(image_name=_("Header image"))
-    image_alt_text = fields.ImageAltTextField(image_name=_("Header image"))
+    slug = AutoSlugField(populate_from="name", unique=True, editable=True)
     tile_image = fields.ConfiguredImageField(
         "tileimage",
         verbose_name=_("Tile image"),
@@ -238,35 +256,11 @@ class Project(
         blank=True,
         max_length=300,
     )
-    tile_image_copyright = fields.ImageCopyrightField(image_name=_("Tile image"))
     tile_image_alt_text = fields.ImageAltTextField(image_name=_("Tile image"))
-    participants = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name="project_participant",
-        blank=True,
-    )
-    moderators = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
-        related_name="project_moderator",
-        blank=True,
-    )
-    is_archived = models.BooleanField(
-        default=False,
-        verbose_name=_("Project is archived"),
-        help_text=_(
-            "Archived projects are not shown in the project overview. "
-            "For project initiators they are still visible in the "
-            "dashboard."
-        ),
-    )
+    tile_image_copyright = fields.ImageCopyrightField(image_name=_("Tile image"))
     topics = TopicField(
         verbose_name=_("Project topics"), help_text=_("Add topics to your project.")
     )
-    project_type = models.CharField(
-        blank=True, max_length=256, default="a4projects.Project"
-    )
-
-    is_app_accessible = models.BooleanField(default=False)
 
     objects = ProjectManager()
 

@@ -2,7 +2,7 @@
 
 On most platforms using adhocracy4, multiple modules can be added
 to a project. There are also offline events than can be added to the
-projects. To display the occurence of the module and give a good
+projects. To display the occurrence of the module and give a good
 overview over the steps of the participation of one project, we
 use the following logic:
 
@@ -41,8 +41,8 @@ use the following logic:
     -   index of own cluster in the timeline
 -   get_detail_url
     -   if there is only one module in the project, the datail view equals the project view
-    -   if the cluster has more than one modules, there is a special module view
-    -   if there is only one module, but the timeline is displayed, the project view has to be shown with the corresponsing timeline tile active
+    -   if the cluster has more than one module, there is a special module view
+    -   if there is only one module, but the timeline is displayed, the project view has to be shown with the corresponding timeline tile active
 
 
 ## Offline events
@@ -72,7 +72,7 @@ from the properties of Project:
     -   returns end date of project
     - can either be end date of last module or date of last event
 -   events
-    -   returns all offlineevents
+    -   returns all offline events
 -   has_future_events
 
 There are more module properties in the project's models.py, explained [here](./docs/phases_and_modules.md).
