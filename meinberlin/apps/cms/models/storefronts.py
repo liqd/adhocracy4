@@ -80,7 +80,7 @@ class StorefrontItem(models.Model):
         )
         active_project_count = plans.count()
         for project in projects:
-            if project.active_phase or project.future_phases:
+            if project.active_phase_ends_next or project.future_phases:
                 active_project_count += 1
         return active_project_count
 
@@ -110,7 +110,7 @@ def get_num_projects_count():
     )
     active_project_count = 0
     for project in projects:
-        if project.active_phase or project.future_phases:
+        if project.active_phase_ends_next or project.future_phases:
             active_project_count += 1
     return active_project_count
 
