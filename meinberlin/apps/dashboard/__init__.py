@@ -1,8 +1,6 @@
 from adhocracy4.dashboard import ProjectDashboard
 from adhocracy4.dashboard import components
 
-default_app_config = "meinberlin.apps.dashboard.apps.Config"
-
 
 class TypedProjectDashboard(ProjectDashboard):
     def __init__(self, project):
