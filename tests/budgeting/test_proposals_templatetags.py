@@ -1,6 +1,7 @@
 import html
 import json
 import re
+from unittest.mock import Mock
 
 import pytest
 from django.contrib.contenttypes.models import ContentType
@@ -48,7 +49,7 @@ def test_react_proposals_vote(
     )
 
     request = rf.get("/")
-    middleware = SessionMiddleware()
+    middleware = SessionMiddleware(Mock())
     middleware.process_request(request)
     request.session.save()
     request.user = user
