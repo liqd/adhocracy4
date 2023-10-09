@@ -44,16 +44,16 @@
                 </div>
                 <nav class="u-inline-flex" aria-label="{% translate 'Dashboard' %}">
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-                       class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
+                       class="tab {% if view.menu_item == 'project' %}active{% endif %}">
                         {% translate 'Projects' %}
                     </a>
                     <a href="{% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug %}"
-                       class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
+                       class="tab {% if view.menu_item == 'newsletter' %}active{% endif %}">
                         {% translate 'Newsletter' %}
                     </a>
                     {% if user_may_change %}
                     <a href="{% url 'a4dashboard:organisation-edit' organisation_slug=view.organisation.slug %}"
-                       class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
+                       class="tab {% if view.menu_item == 'organisation' %}active{% endif %}">
                         {% translate 'Organisation' %}
                     </a>
                     {% endif %}
