@@ -4,7 +4,7 @@ We want to upgrade Django from the current version to at least 4. But our curren
 
 ## Developer Notes
 
-### configuration
+### Configuration
 
 The celery configuration file is `meinberlin/config/celery.py`.
 
@@ -25,7 +25,7 @@ CELERY_TASK_ALWAYS_EAGER = False
 
 and install and run the redis server on your system.
 
-### tasks
+### Tasks
 
 Celery is set up to autodiscover tasks. To register a task import the shared task decorator from celery and apply it to your task function.
 
@@ -44,10 +44,11 @@ $ celery --app meinberlin call dummy_task
 b5351175-335d-4be0-b1fa-06278a613ccf
 ```
 
-### makefile
+### Makefile
 
 We added three makefile commands:
 
-- `celery-worker-start` to start a worker node in the foreground
-- `celery-worker-status` to inspect registered tasks and running worker nodes
-- `celery-worker-dummy-task` to call the dummy task
+- `celery-worker-start` to start a worker in the foreground
+- `celery-worker-status` to inspect registered tasks and running workers
+- `celery-worker-dummy-task` to run the dummy task
+- `celery-beat` to run the dummy task
