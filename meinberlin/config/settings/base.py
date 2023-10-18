@@ -173,10 +173,11 @@ WSGI_APPLICATION = "meinberlin.config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
+# FIXME: use custom engine to work around a bug on m1 macbooks
+# can be set back to djangos sqlite3 backend once upgrade to >=4.1 is done
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE": "sqlite_m1",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         "TEST": {
             "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),
