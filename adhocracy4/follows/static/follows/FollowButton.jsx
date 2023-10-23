@@ -1,77 +1,77 @@
+import django from 'django'
+import React, { useState, useEffect } from 'react'
+import Alert from '../../../static/Alert'
+
 const api = require('../../../static/api')
-const django = require('django')
-const React = require('react')
-const Alert = require('../../../static/Alert')
 
-class FollowButton extends React.Component {
-  constructor (props) {
-    super(props)
+const translated = {
+  followDescription: django.gettext('Click to be updated about this project via email.'),
+  followingDescription: django.gettext('Click to no longer be updated about this project via email.'),
+  followAlert: django.gettext('You will be updated via email.'),
+  followingAlert: django.gettext('You will no longer be updated via email.'),
+  follow: django.gettext('Follow'),
+  following: django.gettext('Following')
+}
 
-    this.state = {
-      followed: undefined,
-      follows: 0,
-      alert: null
-    }
-  }
+export const FollowButton = (props) => {
+  const [following, setFollowing] = useState(null)
+  const [alert, setAlert] = useState(null)
 
-  removeAlert () {
-    this.setState({
-      alert: null
-    })
-  }
+  const followBtnText = following
+    ? translated.following
+    : translated.follow
 
-  toggleFollow () {
-    let followAlertText
-    if (this.state.followed) {
-      followAlertText = django.gettext('You will no longer be updated via email.')
-    } else {
-      followAlertText = django.gettext('You will be updated via email.')
-    }
-    api.follow.change({ enabled: !this.state.followed }, this.props.project)
+  const followDescriptionText = following
+    ? translated.followingDescription
+    : translated.followDescription
+
+  const followAlertText = following
+    ? translated.followingAlert
+    : translated.followAlert
+
+  useEffect(() => {
+    api.follow.get(props.project)
       .done((follow) => {
-        this.setState({
-          followed: follow.enabled,
-          follows: follow.follows,
-          alert: {
-            type: 'success',
-            message: followAlertText
-          }
-        })
-      })
-  }
-
-  componentDidMount () {
-    api.follow.get(this.props.project)
-      .done((follow) => {
-        this.setState({
-          followed: follow.enabled,
-          follows: follow.follows,
-          alert: follow.alert
-        })
+        setFollowing(follow.enabled)
+        setAlert(follow.alert)
       })
       .fail((response) => {
         if (response.status === 404) {
-          this.setState({
-            followed: false
-          })
+          setFollowing(false)
         }
+      })
+  }, [props.project])
+
+  const removeAlert = () => {
+    setAlert(null)
+  }
+
+  const toggleFollow = () => {
+    api.follow.change({ enabled: !following }, props.project)
+      .done((follow) => {
+        setFollowing(follow.enabled)
+        setAlert({
+          type: 'success',
+          message: followAlertText
+        })
       })
   }
 
-  render () {
-    const followTag = django.gettext('Follow')
-    const followingTag = django.gettext('Following')
-    return (
-      <span className="follow">
-        <button className={this.state.followed ? 'btn btn--following' : 'btn btn--follow'} type="button" onClick={this.toggleFollow.bind(this)}>
-          <i className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? followingTag : followTag}</span>
-        </button>
-        <span className="follow__notification">
-          <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
-        </span>
+  return (
+    <span className="a4-follow">
+      <button
+        className={following ? 'a4-btn a4-btn--following' : 'a4-btn a4-btn--follow'}
+        type="button"
+        onClick={toggleFollow}
+        aria-describedby="follow-description"
+        disabled={following === null}
+      >
+        <span className="a4-follow__btn--content">{followBtnText}</span>
+        <span className="a4-sr-only" id="follow-description">{followDescriptionText}</span>
+      </button>
+      <span className="a4-follow__notification">
+        <Alert onClick={removeAlert} {...alert} />
       </span>
-    )
-  }
+    </span>
+  )
 }
-
-module.exports = FollowButton
