@@ -2,11 +2,16 @@ import django from 'django'
 import React, { useState, useEffect } from 'react'
 import Alert from '../../../static/Alert'
 
-const api = require('../../../static/api')
+import api from '../../../static/api'
+import config from '../../../static/config'
 
 const translated = {
-  followDescription: django.gettext('Click to be updated about this project via email.'),
-  followingDescription: django.gettext('Click to no longer be updated about this project via email.'),
+  followDescription: django.gettext(
+    'Click to be updated about this project via email.'
+  ),
+  followingDescription: django.gettext(
+    'Click to no longer be updated about this project via email.'
+  ),
   followAlert: django.gettext('You will be updated via email.'),
   followingAlert: django.gettext('You will no longer be updated via email.'),
   follow: django.gettext('Follow'),
@@ -17,9 +22,7 @@ export const FollowButton = (props) => {
   const [following, setFollowing] = useState(null)
   const [alert, setAlert] = useState(null)
 
-  const followBtnText = following
-    ? translated.following
-    : translated.follow
+  const followBtnText = following ? translated.following : translated.follow
 
   const followDescriptionText = following
     ? translated.followingDescription
@@ -30,44 +33,54 @@ export const FollowButton = (props) => {
     : translated.followAlert
 
   useEffect(() => {
-    api.follow.get(props.project)
-      .done((follow) => {
-        setFollowing(follow.enabled)
-        setAlert(follow.alert)
-      })
-      .fail((response) => {
-        if (response.status === 404) {
-          setFollowing(false)
-        }
-      })
-  }, [props.project])
+    if (props.authenticatedAs) {
+      api.follow
+        .get(props.project)
+        .done((follow) => {
+          setFollowing(follow.enabled)
+          setAlert(follow.alert)
+        })
+        .fail((response) => {
+          if (response.status === 404) {
+            setFollowing(false)
+          }
+        })
+    }
+  }, [props.project, props.authenticatedAs])
 
   const removeAlert = () => {
     setAlert(null)
   }
 
   const toggleFollow = () => {
-    api.follow.change({ enabled: !following }, props.project)
-      .done((follow) => {
-        setFollowing(follow.enabled)
-        setAlert({
-          type: 'success',
-          message: followAlertText
-        })
+    if (props.authenticatedAs === null) {
+      window.location.href = config.getLoginUrl()
+      return
+    }
+    api.follow.change({ enabled: !following }, props.project).done((follow) => {
+      setFollowing(follow.enabled)
+      setAlert({
+        type: 'success',
+        message: followAlertText
       })
+    })
   }
 
   return (
     <span className="a4-follow">
       <button
-        className={following ? 'a4-btn a4-btn--following' : 'a4-btn a4-btn--follow'}
+        className={
+          following ? 'a4-btn a4-btn--following' : 'a4-btn a4-btn--follow'
+        }
         type="button"
         onClick={toggleFollow}
         aria-describedby="follow-description"
-        disabled={following === null}
+        disabled={following === null && props.authenticatedAs !== null}
       >
         <span className="a4-follow__btn--content">{followBtnText}</span>
-        <span className="a4-sr-only" id="follow-description">{followDescriptionText}</span>
+        <span className="a4-sr-only" id="follow-description">
+          {followDescriptionText}
+        </span>
       </button>
       <span className="a4-follow__notification">
         <Alert onClick={removeAlert} {...alert} />
