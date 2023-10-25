@@ -5,7 +5,10 @@
     font-weight: bold;
 }
 
-.btn {
+// FIXME after redesign completed, tidy code to only include dashboard buttons
+// remove is-disabled styling and use attribute if required
+.btn,
+.a4-btn {
     @extend %button-base;
 
     &.is-disabled {
@@ -15,8 +18,7 @@
     }
 }
 
-// to be more specific then BS
-.btn.btn--light {
+.btn--light {
     @extend .btn-light;
 
     background-color: $body-bg;
@@ -35,25 +37,24 @@
     }
 }
 
-.btn.btn--primary {
+.btn--primary {
     @extend .btn-primary;
 
     border-color: $primary;
     font-size: $font-size-base;
 
-    // see above
     &:focus-within {
         box-shadow: 0 0 0 0.25rem rgb(213, 38, 111, 0.5);
     }
 }
 
-.btn.btn--secondary {
+.btn--secondary {
     @extend .btn-secondary;
 
     border: none;
 }
 
-.btn.btn--danger {
+.btn--danger {
     @extend .btn-danger;
 }
 

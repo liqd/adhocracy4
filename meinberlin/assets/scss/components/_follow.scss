@@ -1,14 +1,29 @@
-.follow__notification {
+.a4-follow__notification {
     .alert {
         margin-top: $spacer;
         font-size: inherit;
     }
 }
 
-.btn--follow {
+.a4-btn--follow:before,
+.a4-btn--following:before {
+    font-family: "Font Awesome 6 Free", sans-serif;
+    font-weight: 900;
+    margin-right: 0.3em;
+}
+
+.a4-btn--follow:before {
+    content: "\f067"; // plus
+}
+
+.a4-btn--following:before {
+    content: "\f00c"; // check
+}
+
+.a4-btn--follow {
     @extend .btn--secondary;
 }
 
-.btn--following {
+.a4-btn--following {
     @extend .btn--light;
 }

@@ -248,3 +248,7 @@
 .u-bold {
     font-weight: bold;
 }
+
+.a4-sr-only {
+    @extend .visually-hidden;
+}
