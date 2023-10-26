@@ -27,6 +27,7 @@ coverage/
 venv/
 /pyvenv.cfg
 /pip-selfcheck.json
+.pyenv-version
 
 # Node
 node_modules/
