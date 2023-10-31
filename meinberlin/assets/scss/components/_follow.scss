@@ -21,9 +21,11 @@
 }
 
 .a4-btn--follow {
+    @extend .btn;
     @extend .btn--secondary;
 }
 
 .a4-btn--following {
+    @extend .btn;
     @extend .btn--light;
 }
