@@ -13,7 +13,7 @@ def react_follows(context, project):
     authenticated_as = None
     if user.is_authenticated:
         authenticated_as = user.username
-    attributes = {"project": project.name, "authenticatedAs": authenticated_as}
+    attributes = {"project": project.slug, "authenticatedAs": authenticated_as}
     return format_html(
         '<span data-a4-widget="follows" data-attributes="{attributes}"></span>',
         attributes=json.dumps(attributes),
