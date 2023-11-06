@@ -9,6 +9,7 @@
 # virtualenv
 /venv
 /pip-selfcheck.json
+.python-version
 
 # Node
 node_modules
