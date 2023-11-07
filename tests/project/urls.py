@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth import views
+from django.contrib.auth.views import LoginView
 from django.urls import include
 from django.urls import path
 from rest_framework import routers
@@ -31,6 +31,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("projects/", include(prj_urls)),
     path("modules/", include(mod_urls)),
-    path("accounts/login", views.LoginView, name="account_login"),
+    path("accounts/login", LoginView.as_view(), name="account_login"),
     path("dashboard/", include(dashboard_urls)),
 ]
