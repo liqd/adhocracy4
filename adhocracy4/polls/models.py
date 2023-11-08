@@ -70,7 +70,7 @@ class Question(models.Model):
                         )
                     }
                 )
-            elif self.choices.count() > 0:
+            elif Choice.objects.filter(question=self.pk).count() > 0:
                 raise ValidationError(
                     {
                         "is_open": _(
@@ -227,7 +227,7 @@ class Vote(UserGeneratedContentModel):
         return super().save(*args, **kwargs)
 
     def validate_unique(self, exclude=None):
-        super(Vote, self).validate_unique(exclude)
+        super().validate_unique(exclude)
         validators.single_vote_per_user(self.creator, self.choice, self.pk)
 
     @property
