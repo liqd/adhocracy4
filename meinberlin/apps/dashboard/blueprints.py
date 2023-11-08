@@ -5,7 +5,6 @@ from adhocracy4.polls import phases as poll_phases
 from meinberlin.apps.budgeting import phases as budgeting_phases
 from meinberlin.apps.documents import phases as documents_phases
 from meinberlin.apps.ideas import phases as ideas_phases
-from meinberlin.apps.kiezkasse import phases as kiezkasse_phases
 from meinberlin.apps.livequestions import phases as livequestion_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
 from meinberlin.apps.maptopicprio import phases as maptopicprio_phases
@@ -130,24 +129,6 @@ blueprints = [
             image="images/participatory-budgeting-3.svg",
             settings_model=("a4maps", "AreaSettings"),
             type="PB3",
-        ),
-    ),
-    (
-        "kiezkasse",
-        ProjectBlueprint(
-            title=_("Kiezkasse"),
-            description=_(
-                "Participants can submit their own proposals, mark them on a "
-                "map, and add a budget. They can express their interest in "
-                "participating in the proposals’s implementation. The proposals "
-                "of others can be discussed and rated (pro/contra)."
-            ),
-            content=[
-                kiezkasse_phases.RequestFeedbackPhase(),
-            ],
-            image="images/kiezkasse.svg",
-            settings_model=("a4maps", "AreaSettings"),
-            type="KK",
         ),
     ),
     (
