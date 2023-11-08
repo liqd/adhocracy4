@@ -7,7 +7,6 @@ from adhocracy4.models.base import UserGeneratedContentModel
 
 
 class Rating(UserGeneratedContentModel):
-
     POSITIVE = 1
     NEGATIVE = -1
 
@@ -18,7 +17,7 @@ class Rating(UserGeneratedContentModel):
 
     class Meta:
         unique_together = ("content_type", "object_pk", "creator")
-        index_together = [("content_type", "object_pk")]
+        indexes = [models.Index(fields=["content_type", "object_pk"])]
 
     def __str__(self):
         return str(self.value)
@@ -46,7 +45,6 @@ class Rating(UserGeneratedContentModel):
             return number
 
     def get_meta_info(self, user):
-
         ratings = Rating.objects.filter(
             content_type=self.content_type, object_pk=self.object_pk
         )

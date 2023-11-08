@@ -168,7 +168,7 @@ class ProjectPublishView(
     def get_next(self):
         if "referrer" in self.request.POST:
             return self.request.POST["referrer"]
-        elif "HTTP_REFERER" in self.request.META:
+        elif "referer" in self.request.headers:
             return self.request.headers["Referer"]
 
         return reverse(

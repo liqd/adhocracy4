@@ -20,10 +20,12 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
-    def save(self, ignore_modified=False, *args, **kwargs):
+    def save(self, ignore_modified=False, update_fields=None, *args, **kwargs):
         if self.pk is not None and not ignore_modified:
             self.modified = timezone.now()
-        super(TimeStampedModel, self).save(*args, **kwargs)
+            if update_fields:
+                update_fields = {"modified"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
 
 class UserGeneratedContentModel(TimeStampedModel):
