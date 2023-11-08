@@ -99,7 +99,7 @@ class Action(models.Model):
 
     class Meta:
         ordering = ("-timestamp",)
-        index_together = [("obj_content_type", "obj_object_id")]
+        indexes = [models.Index(fields=["obj_content_type", "obj_object_id"])]
 
     def __str__(self):
         ctx = {

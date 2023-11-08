@@ -279,7 +279,7 @@ class Project(
     def get_absolute_url(self):
         return reverse("project-detail", kwargs=dict(slug=self.slug))
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.information = html_transforms.clean_html_field(
             self.information, "collapsible-image-editor"
         )
@@ -289,7 +289,13 @@ class Project(
         if self.pk is None:
             project_type = "{}.{}".format(self._meta.app_label, self.__class__.__name__)
             self.project_type = project_type
-        super(Project, self).save(*args, **kwargs)
+
+        if update_fields:
+            update_fields = {"information", "result"}.union(update_fields)
+            if self.pk is None:
+                update_fields = {"project_type"}.union(update_fields)
+
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     # functions needed to determine permissions
     def has_member(self, user):

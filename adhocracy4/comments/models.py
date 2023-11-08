@@ -47,7 +47,7 @@ class Comment(base.UserGeneratedContentModel):
         verbose_name = pgettext_lazy("noun", "Comment")
         verbose_name_plural = _("Comments")
         ordering = ("created",)
-        index_together = [("content_type", "object_pk")]
+        indexes = [models.Index(fields=["content_type", "object_pk"])]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -60,17 +60,24 @@ class Comment(base.UserGeneratedContentModel):
         else:
             return "{}".format(self.comment)
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         """Change comment.comment if comment was marked removed or censored."""
         self.comment = transforms.clean_html_all(self.comment)
+        update_project = False
         if not self.project:
             self.project = self.content_object.module.project
+            update_project = True
 
         if self.is_removed or self.is_censored:
             self.comment = self._former_comment = ""
             self.comment_categories = ""
 
-        super(Comment, self).save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"comment"}.union(update_fields)
+            if update_project:
+                update_fields = {"project"}.union(update_fields)
+
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     def get_absolute_url(self):
         if hasattr(self.content_object, "get_absolute_url"):
