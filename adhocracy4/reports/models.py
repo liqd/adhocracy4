@@ -6,7 +6,6 @@ from adhocracy4.models import base
 
 
 class Report(base.UserGeneratedContentModel):
-
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(ct_field="content_type", fk_field="object_pk")
@@ -16,7 +15,7 @@ class Report(base.UserGeneratedContentModel):
         return "{}_{}".format(str(self.content_type), str(self.object_pk))
 
     class Meta:
-        index_together = [("content_type", "object_pk")]
+        indexes = [models.Index(fields=["content_type", "object_pk"])]
 
     @property
     def project(self):
