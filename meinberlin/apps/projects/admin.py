@@ -5,18 +5,14 @@ from adhocracy4.projects import models
 from adhocracy4.projects.admin import ProjectAdminForm
 
 
+@admin.action(description=_("archive"))
 def set_is_archived_true(modeladmin, request, queryset):
     queryset.update(is_archived=True)
 
 
-set_is_archived_true.short_description = _("archive")
-
-
+@admin.action(description=_("dearchive"))
 def set_is_archived_false(modeladmin, request, queryset):
     queryset.update(is_archived=False)
-
-
-set_is_archived_false.short_description = _("dearchive")
 
 
 class ProjectAdmin(admin.ModelAdmin):

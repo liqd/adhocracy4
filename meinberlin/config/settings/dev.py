@@ -29,7 +29,7 @@ CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", "data:", "blob:
 if os.getenv("DATABASE") == "postgresql":
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "ENGINE": "django.db.backends.postgresql",
             "NAME": "django",
             "USER": "django",
             "PASSWORD": "",

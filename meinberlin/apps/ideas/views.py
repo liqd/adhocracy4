@@ -168,9 +168,9 @@ class AbstractIdeaDeleteView(
     def get_success_url(self):
         return reverse("project-detail", kwargs={"slug": self.project.slug})
 
-    def delete(self, request, *args, **kwargs):
+    def form_valid(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
-        return super(AbstractIdeaDeleteView, self).delete(request, *args, **kwargs)
+        return super().form_valid(request, *args, **kwargs)
 
 
 class IdeaDeleteView(AbstractIdeaDeleteView):

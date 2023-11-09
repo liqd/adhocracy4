@@ -24,6 +24,7 @@ class VotingTokenAdmin(admin.ModelAdmin):
         obj.package.save()
         super().delete_model(request, obj)
 
+    @admin.display(description="Module Name")
     def module_name(self, token):
         return token.module.name
 
@@ -34,8 +35,6 @@ class VotingTokenAdmin(admin.ModelAdmin):
         if not obj.token_hash:
             obj.token_hash = VotingToken.hash_token(obj.token, obj.module)
         super().save_model(request, obj, form, change)
-
-    module_name.short_description = "Module Name"
 
 
 @admin.register(TokenVote)
@@ -52,11 +51,10 @@ class TokenVoteAdmin(admin.ModelAdmin):
     def token_hash(self, token_vote):
         return token_vote.token.token_hash
 
+    @admin.display(description="Module")
     def token_module(self, token_vote):
         return token_vote.token.module.name
 
+    @admin.display(description="Project")
     def token_project(self, token_vote):
         return token_vote.token.project
-
-    token_module.short_description = "Module"
-    token_project.short_description = "Project"

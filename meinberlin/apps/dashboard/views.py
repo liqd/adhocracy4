@@ -204,7 +204,7 @@ class ModuleDeleteView(PermissionRequiredMixin, generic.DeleteView):
     model = module_models.Module
     success_message = _("The module has been deleted")
 
-    def delete(self, request, *args, **kwargs):
+    def form_valid(self, request, *args, **kwargs):
         if not self.get_object().is_draft:
             messages.error(
                 self.request, _("Module added to a project cannot be " "deleted.")
@@ -212,7 +212,7 @@ class ModuleDeleteView(PermissionRequiredMixin, generic.DeleteView):
             failure_url = self.get_failure_url()
             return HttpResponseRedirect(failure_url)
         messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
+        return super().form_valid(request, *args, **kwargs)
 
     def get_permission_object(self):
         return self.get_object().project

@@ -52,6 +52,7 @@ class LogEntryAdmin(admin.ModelAdmin):
     list_display = ("timestamp", "message", "actor", "action", "project", "component")
     date_hierarchy = "timestamp"
 
+    @admin.display(description=_("Component"))
     def component(self, instance):
         if not instance.component_identifier:
             return ""
@@ -64,5 +65,3 @@ class LogEntryAdmin(admin.ModelAdmin):
             return component.label
 
         return ""
-
-    component.short_description = _("Component")

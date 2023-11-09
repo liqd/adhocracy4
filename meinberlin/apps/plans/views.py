@@ -205,9 +205,9 @@ class DashboardPlanDeleteView(
     template_name = "meinberlin_plans/plan_confirm_delete.html"
     menu_item = "project"
 
-    def delete(self, request, *args, **kwargs):
+    def form_valid(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
+        return super().form_valid(request, *args, **kwargs)
 
     def get_permission_object(self):
         return self.get_object()
