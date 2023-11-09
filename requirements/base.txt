@@ -17,7 +17,6 @@ zeep==4.2.1
 # Inherited a4-core requirements
 celery==5.3.1
 django-allauth==0.54.0
-django-background-tasks==1.2.5
 django-ckeditor==6.6.1
 django-filter==22.1
 django-widget-tweaks==1.4.12

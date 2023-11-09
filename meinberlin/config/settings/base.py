@@ -53,7 +53,6 @@ INSTALLED_APPS = (
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "background_task",
     "ckeditor",
     "ckeditor_uploader",
     "django_filters",
