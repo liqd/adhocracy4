@@ -18,14 +18,23 @@ based on [adhocracy 4](https://github.com/liqd/adhocracy4).
 - redis (in production, not needed for development)
 
 ## Installation (for development and testing only!)
+Note: if you are on a mac you need to have gnu sed installed for the following
+steps to work. Install it via brew:
+```
+brew install gnu-sed
+```
+Steps to install and run a development server:
+```
+git clone https://github.com/liqd/a4-meinberlin.git
+cd a4-meinberlin
+make install
+make fixtures
+make watch
+````
 
-    git clone https://github.com/liqd/a4-meinberlin.git
-    cd a4-meinberlin
-    make install
-    make fixtures
-    make watch
-
-### Use postgresql database for testing:
+### (Optional) postgresql database for testing:
+If you need to do testing with postgresql as database (usually sqlite is
+sufficient).
 
 run the following command once:
 
@@ -41,7 +50,8 @@ make postgres-start
 make watch
 ```
 
-### Use Celery for task queues
+### (Optional) celery for task queues
+If you need to do testing with a proper celery setup.
 
 For celery to register and run tasks you need to make sure that:
 
@@ -69,7 +79,8 @@ make celery-worker-dummy-task
 
 See more info about Celery in the [docs](./docs/celery.md)
 
-### Use Celery beat for scheduled tasks in development
+### (Optional) celery beat for scheduled tasks in development
+If you need to do testing with periodical task working.
 
 For celery to run scheduled tasks you need to make sure that:
 
