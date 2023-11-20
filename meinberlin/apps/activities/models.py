@@ -25,8 +25,10 @@ class Activity(module_models.Item):
     def get_absolute_url(self):
         return self.project.get_absolute_url()
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.description = html_transforms.clean_html_field(
             self.description, "collapsible-image-editor"
         )
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"description"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)

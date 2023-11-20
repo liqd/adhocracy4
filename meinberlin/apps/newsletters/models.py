@@ -75,6 +75,8 @@ class Newsletter(UserGeneratedContentModel):
         text = re.sub(pattern, r"\1%s\2" % settings.WAGTAILADMIN_BASE_URL, text)
         return text
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.body = transforms.clean_html_field(self.body, "image-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"body"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)

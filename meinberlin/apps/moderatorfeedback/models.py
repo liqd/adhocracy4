@@ -26,9 +26,11 @@ class ModeratorFeedback(UserGeneratedContentModel):
         ),
     )
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.feedback_text = transforms.clean_html_field(self.feedback_text)
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"feedback_text"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
 
 class Moderateable(models.Model):

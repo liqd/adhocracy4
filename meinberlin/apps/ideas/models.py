@@ -165,9 +165,11 @@ class AbstractIdea(module_models.Item, Moderateable, ItemBadgesPropertyMixin):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description)
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"description"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
 
 class Idea(AbstractIdea):

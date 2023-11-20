@@ -178,7 +178,7 @@ class TokenVote(base.TimeStampedModel):
 
     class Meta:
         unique_together = ("content_type", "object_pk", "token")
-        index_together = [("content_type", "object_pk")]
+        indexes = [models.Index(fields=["content_type", "object_pk"])]
 
     def clean(self, *args, **kwargs):
         if not self.token.is_valid_for_item(self.content_object):

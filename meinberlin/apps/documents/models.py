@@ -71,9 +71,11 @@ class Paragraph(base.TimeStampedModel):
     def __str__(self):
         return "{}_paragraph_{}".format(str(self.chapter), self.weight)
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.text = transforms.clean_html_field(self.text, "image-editor")
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"text"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("meinberlin_documents:paragraph-detail", args=[str(self.pk)])

@@ -84,10 +84,12 @@ class StorefrontItem(models.Model):
                 active_project_count += 1
         return active_project_count
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         if not self.district_project_count:
             self.district_project_count = self.get_district_project_count()
-        super().save(*args, **kwargs)
+            if update_fields:
+                update_fields = {"district_project_count"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     panels = [
         FieldPanel("district"),

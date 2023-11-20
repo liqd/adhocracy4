@@ -239,11 +239,13 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
             kwargs=dict(pk="{:05d}".format(self.pk), year=self.created.year),
         )
 
-    def save(self, *args, **kwargs):
+    def save(self, update_fields=None, *args, **kwargs):
         self.description = transforms.clean_html_field(
             self.description, "collapsible-image-editor"
         )
-        super().save(*args, **kwargs)
+        if update_fields:
+            update_fields = {"description"}.union(update_fields)
+        super().save(update_fields=update_fields, *args, **kwargs)
 
     def _get_group(self, user, organisation):
         user_groups = user.groups.all()
