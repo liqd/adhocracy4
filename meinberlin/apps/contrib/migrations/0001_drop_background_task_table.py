@@ -8,7 +8,10 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunSQL(
-            "DROP TABLE IF EXISTS background_task",
-            "DROP TABLE IF EXISTS background_task_completedtask",
+            sql=[
+                "DROP TABLE IF EXISTS background_task",
+                "DROP TABLE IF EXISTS background_task_completedtask",
+            ],
+            reverse_sql=migrations.RunSQL.noop,
         )
     ]
