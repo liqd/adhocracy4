@@ -279,7 +279,7 @@ SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 SOCIALACCOUNT_FORMS = {"signup": "meinberlin.apps.users.forms.SocialTermsSignupForm"}
 SOCIALACCOUNT_QUERY_EMAIL = True
 # This is currently needed for servicekonto account connection
-SESSION_COOKIE_SAMESITE = None
+# SESSION_COOKIE_SAMESITE = None
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
