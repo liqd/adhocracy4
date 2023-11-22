@@ -22,7 +22,7 @@
     "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.8.1",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
-    "dsgvo-video-embed": "git+https://github.com/liqd/dsgvo-video-embed.git",
+    "dsgvo-video-embed": "liqd/dsgvo-video-embed#main",
     "es6-promise": "4.2.8",
     "file-saver": "2.0.5",
     "immutability-helper": "3.1.1",

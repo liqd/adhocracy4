@@ -67,7 +67,7 @@
                 <!-- Live stream -->
                 {% for phase in module.phases %}
                   {% if phase == module.active_phase and live_stream %}
-                      {{ live_stream.live_stream | richtext }}
+                      {{ live_stream.live_stream | disable_iframes | richtext }}
                       <span class="label label--active">•{% translate ' Live now' %}</span>
                   {% endif %}
                 {% endfor %}
