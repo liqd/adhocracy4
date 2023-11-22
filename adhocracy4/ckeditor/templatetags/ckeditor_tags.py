@@ -1,3 +1,4 @@
+import re
 import time
 
 from django import template
@@ -45,3 +46,9 @@ def transform_collapsibles(text):
             )
 
     return serialize(tree)
+
+
+@register.filter
+def disable_iframes(text):
+    """Disable all iframes to prevent them from loading if js is disabled"""
+    return re.sub(r"(<iframe .*?)src=(.*?>)", r"\1data-src=\2", text)

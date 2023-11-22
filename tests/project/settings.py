@@ -194,11 +194,26 @@ BLEACH_LIST = {
         ],
     },
     "collapsible-image-editor": {
-        "tags": ["p", "strong", "em", "u", "ol", "li", "ul", "a", "img", "div"],
+        "tags": [
+            "p",
+            "strong",
+            "em",
+            "u",
+            "ol",
+            "li",
+            "ul",
+            "a",
+            "img",
+            "div",
+            "iframe",
+            "figure",
+        ],
         "attributes": {
             "a": ["href", "rel"],
             "img": ["src", "alt", "style"],
-            "div": ["class"],
+            "div": ["class", "data-oembed-url"],
+            "iframe": ["src", "alt"],
+            "figure": ["class", "div", "iframe"],
         },
         "styles": [
             "float",
