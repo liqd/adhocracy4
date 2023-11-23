@@ -113,6 +113,7 @@ class ProjectInformationForm(ProjectDashboardForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["contact_address_text"].widget.attrs["rows"] = 6
+        self.fields["information"].required = False
 
 
 class ProjectResultForm(ProjectDashboardForm):
@@ -120,6 +121,10 @@ class ProjectResultForm(ProjectDashboardForm):
         model = project_models.Project
         fields = ["result"]
         required_for_project_publish = []
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["result"].required = False
 
 
 class ModuleBasicForm(ModuleDashboardForm):

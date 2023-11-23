@@ -40,9 +40,11 @@ class ProjectAdminForm(forms.ModelForm):
         self.fields["information"].widget = CKEditor5Widget(
             config_name="collapsible-image-editor"
         )
+        self.fields["information"].required = False
         self.fields["result"].widget = CKEditor5Widget(
             config_name="collapsible-image-editor"
         )
+        self.fields["result"].required = False
 
     class Meta:
         model = models.Project
