@@ -13,7 +13,7 @@
     {% endif %}
 
 
-    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    <form novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
 
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.live_stream %}

@@ -7,7 +7,7 @@
 <div class="offset-lg-2 col-lg-8">
     <h1>{% translate "Create Newsletter" %}</h1>
 
-    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    <form novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
         <div class="l-tiles-2">
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}

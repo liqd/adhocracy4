@@ -20,7 +20,7 @@
         </ul>
     {% endif %}
 
-    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    <form novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
 
         {% include view.form_template_name %}

@@ -21,7 +21,7 @@
         </nav>
 
         <h1>{% translate 'Moderate idea' %}</h1>
-        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        <form novalidate enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
             {% for form in forms.values %}
                 {{ form.media }}
