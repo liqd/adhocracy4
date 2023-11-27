@@ -46,7 +46,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(
-            replace_iframe_with_figur,
-        ),
+        migrations.RunPython(replace_iframe_with_figur, migrations.RunPython.noop),
     ]
