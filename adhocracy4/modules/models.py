@@ -11,8 +11,6 @@ from django.utils.translation import pgettext_lazy
 from adhocracy4.models import base
 from adhocracy4.projects import models as project_models
 
-from .fields import BlueprintTypeField
-
 
 class ModulesQuerySet(models.QuerySet):
     def annotate_module_start(self):
@@ -95,7 +93,7 @@ class Module(models.Model):
 
     objects = ModulesQuerySet.as_manager()
 
-    blueprint_type = BlueprintTypeField(
+    blueprint_type = models.CharField(
         max_length=255,
         blank=True,
     )
