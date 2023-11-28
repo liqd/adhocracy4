@@ -24,6 +24,7 @@ class ItemAdmin(admin.ModelAdmin):
 
 class ModuleAdmin(admin.ModelAdmin):
     inlines = [phase_admin.PhaseInline]
+    search_fields = ["name"]
     list_filter = ("project__organisation", "project")
     list_display = ("__str__", "name")
     if hasattr(settings, "A4_BLUEPRINT_TYPES"):
