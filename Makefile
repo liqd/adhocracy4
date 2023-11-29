@@ -45,11 +45,15 @@ lint:
 	$(VIRTUAL_ENV)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
 	npm run lint ||  EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
 
 .PHONY: lint-quick
 lint-quick:
 	EXIT_STATUS=0; \
 	npm run lint-staged || EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
 
 .PHONY: lint-python-files
 lint-python-files:

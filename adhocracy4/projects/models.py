@@ -19,9 +19,19 @@ from adhocracy4.maps.fields import PointField
 from adhocracy4.models import base
 
 from .enums import Access
-from .fields import TopicField
 from .utils import get_module_clusters
 from .utils import get_module_clusters_dict
+
+
+class Topic(models.Model):
+    code = models.CharField(blank=True, max_length=10)
+    name = models.CharField(
+        max_length=120,
+        verbose_name=_("Topic"),
+    )
+
+    def __str__(self):
+        return self.name
 
 
 class ProjectManager(models.Manager):
@@ -259,9 +269,8 @@ class Project(
             "dashboard."
         ),
     )
-    topics = TopicField(
-        verbose_name=_("Project topics"), help_text=_("Add topics to your project.")
-    )
+    topics = models.ManyToManyField(Topic)
+
     project_type = models.CharField(
         blank=True, max_length=256, default="a4projects.Project"
     )
