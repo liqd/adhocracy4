@@ -7,6 +7,7 @@ from adhocracy4.dashboard.components.forms import ModuleDashboardFormSet
 from adhocracy4.modules import models as module_models
 
 from . import has_icons
+from .form_fields import CategoryChoiceField
 
 
 class CategorizableFieldMixin:
@@ -50,6 +51,7 @@ class CategoryForm(forms.ModelForm):
             del self.fields["icon"]
 
     name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": _("Category")}))
+    icon = CategoryChoiceField()
 
     class Media:
         js = ("category_formset.js",)
