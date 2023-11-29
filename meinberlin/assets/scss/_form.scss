@@ -37,6 +37,10 @@ input[type="search"] {
     border-bottom-left-radius: 0.3em !important;
 }
 
+div.cke_focus {
+    border-color: $secondary;
+}
+
 .errorlist,
 .field-error {
     margin: 0 0 $spacer 0;
@@ -47,10 +51,16 @@ input[type="search"] {
     color: $text-color-inverted;
 }
 
+.django-ckeditor-widget {
+    display: block !important;
+    margin-bottom: $spacer;
+}
+
 .form-check,
 .form-group {
     margin: 0 0 $spacer;
 
+    .django-ckeditor-widget,
     input,
     textarea,
     select {
