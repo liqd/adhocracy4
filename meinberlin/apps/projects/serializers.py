@@ -1,3 +1,4 @@
+import json
 from functools import lru_cache
 
 from django.utils import timezone
@@ -62,6 +63,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     title = serializers.SerializerMethodField()
     type = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
+    topics = serializers.SerializerMethodField()
 
     def __init__(self, *args, **kwargs):
         self.now = kwargs.pop("now")
@@ -97,6 +99,9 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             "type",
             "url",
         ]
+
+    def get_topics(self, instance):
+        return [topic.code for topic in instance.topics.all()]
 
     @lru_cache(maxsize=1)
     def _get_participation_status_project(self, instance):

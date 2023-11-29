@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from adhocracy4.dashboard.forms import ProjectDashboardForm
 from adhocracy4.maps import widgets as maps_widgets
 from adhocracy4.projects.models import Project
+from adhocracy4.projects.models import Topic
 from meinberlin.apps.contrib.widgets import Select2Widget
 from meinberlin.apps.users import fields as user_fields
 
@@ -72,6 +73,10 @@ class InviteUsersFromEmailForm(forms.Form):
 
 
 class TopicForm(ProjectDashboardForm):
+    topics = forms.ModelMultipleChoiceField(
+        queryset=Topic.objects.all(), widget=forms.CheckboxSelectMultiple
+    )
+
     class Meta:
         model = Project
         fields = ["topics"]
