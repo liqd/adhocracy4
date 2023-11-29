@@ -8,6 +8,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
+from django.utils.module_loading import import_string
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from django_enumfield.enum import EnumField
@@ -19,9 +20,18 @@ from adhocracy4.maps.fields import PointField
 from adhocracy4.models import base
 
 from .enums import Access
-from .fields import TopicField
 from .utils import get_module_clusters
 from .utils import get_module_clusters_dict
+
+
+class Topic(models.Model):
+    code = models.CharField(blank=True, max_length=10, unique=True)
+
+    def __str__(self):
+        if hasattr(settings, "A4_PROJECT_TOPICS"):
+            topics_enum = import_string(settings.A4_PROJECT_TOPICS)
+            return str(topics_enum(self.code).label)
+        return self.code
 
 
 class ProjectManager(models.Manager):
@@ -259,9 +269,8 @@ class Project(
             "dashboard."
         ),
     )
-    topics = TopicField(
-        verbose_name=_("Project topics"), help_text=_("Add topics to your project.")
-    )
+    topics = models.ManyToManyField(Topic)
+
     project_type = models.CharField(
         blank=True, max_length=256, default="a4projects.Project"
     )
@@ -321,8 +330,7 @@ class Project(
     @cached_property
     def topic_names(self):
         if hasattr(settings, "A4_PROJECT_TOPICS"):
-            choices = dict(settings.A4_PROJECT_TOPICS)
-            return [choices[topic] for topic in self.topics]
+            return [str(topic) for topic in self.topics.all()]
         return []
 
     @cached_property
