@@ -228,11 +228,7 @@ BLEACH_LIST = {
     },
 }
 
-A4_PROJECT_TOPICS = (
-    ("ANT", "Anti-discrimination"),
-    ("WOR", "Work & economy"),
-    ("BUI", "Building & living"),
-)
+A4_PROJECT_TOPICS = "tests.project.enums.TopicEnum"
 
 A4_COMMENT_CATEGORIES = (
     ("QUE", "Question"),
