@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -12,15 +11,6 @@ class IconField(models.CharField):
         kwargs["default"] = ""
         kwargs["blank"] = True
         super().__init__(*args, **kwargs)
-
-    def contribute_to_class(self, cls, name, **kwargs):
-        """Initialize icon choices from the settings if they exist."""
-
-        if hasattr(settings, "A4_CATEGORY_ICONS"):
-            self.choices = settings.A4_CATEGORY_ICONS
-
-        # Call the super method at last so that choices are already initialized
-        super().contribute_to_class(cls, name, **kwargs)
 
     def formfield(self, **kwargs):
         form_class = kwargs.get("choices_form_class", IconChoiceField)
