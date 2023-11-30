@@ -23,18 +23,12 @@
     "standard-jsx",
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
-    "plugin:import/recommended",
-    "plugin:n/recommended"
+    "plugin:import/recommended"
   ],
   "rules": {
     "jsx-quotes": [2, "prefer-double"],
     "jsx-a11y/no-onchange": "off",
     "react/prop-types": "off",
-    "n/no-missing-require": "off",
-    "n/no-unsupported-features/es-syntax": "off",
-    "n/no-missing-import": "off",
-    "n/no-unpublished-import": "off",
-    "n/no-extraneous-import": "off",
     "no-restricted-syntax": ["error", "TemplateLiteral"]
   },
   "plugins": [
