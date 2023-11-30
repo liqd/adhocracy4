@@ -1,10 +1,10 @@
 import json
 
 import pytest
-from django.conf import settings
 from django.utils.translation import gettext as _
 
 from adhocracy4.exports import unescape_and_strip_html
+from adhocracy4.projects.models import Topic
 from meinberlin.apps.plans.exports import DashboardPlanExportView
 
 
@@ -51,7 +51,8 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
 
     # ExportModelFieldsMixin, set in fields
     assert str(plan.title) == export.get_field_data(plan, "title")
-    assert plan.topics == export.get_field_data(plan, "topics")
+    assert plan.topics.all().count() == 0
+    assert export.get_field_data(plan, "topics") == ""
     assert plan.cost == export.get_field_data(plan, "cost")
     duration = plan.duration
     if duration is None:
@@ -91,7 +92,6 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
     assert "" == export.get_projects_data(plan)
     assert "" == export.get_projects_links_data(plan)
 
-    choices = settings.A4_PROJECT_TOPICS
     project_1 = project_factory()
     project_2 = project_factory()
     plan = plan_factory(
@@ -101,7 +101,7 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
         contact_email="<i>me@example.com</i>",
         contact_url="https://liqd.net",
         description="this is a description<br>with a newline",
-        topics=choices[0][0],
+        topics=[Topic.objects.first()],
         status=0,
         participation=2,
         participation_explanation="this is some explanation",
@@ -123,7 +123,8 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
 
     # ExportModelFieldsMixin, set in fields
     assert str(plan.title) == export.get_field_data(plan, "title")
-    assert plan.topics == export.get_field_data(plan, "topics")
+    assert plan.topics.all().count() == 1
+    assert plan.topics.first().name == export.get_field_data(plan, "topics")
     assert plan.cost == export.get_field_data(plan, "cost")
     duration = plan.duration
     if duration is None:

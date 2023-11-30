@@ -28,7 +28,6 @@ class DashboardPlanExportView(
         "contact_email",
         "contact_url",
         "district",
-        "topics",
         "cost",
         "duration",
         "status",
@@ -68,6 +67,7 @@ class DashboardPlanExportView(
         virtual["projects_links"] = _("Project Links")
         virtual["is_draft"] = _("Draft")
         virtual["organisation_name"] = _("Organisation")
+        virtual["topics"] = _("Topics")
         return virtual
 
     def get_district_data(self, item):
@@ -76,6 +76,11 @@ class DashboardPlanExportView(
     def get_projects_data(self, item):
         if item.projects.all():
             return ", \n".join([project.name for project in item.projects.all()])
+        return ""
+
+    def get_topics_data(self, item):
+        if item.topics.all():
+            return ", \n".join([topic.name for topic in item.topics.all()])
         return ""
 
     def get_projects_links_data(self, item):

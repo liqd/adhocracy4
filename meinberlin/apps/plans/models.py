@@ -17,8 +17,8 @@ from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.enums import Access
-from adhocracy4.projects.fields import TopicField
 from adhocracy4.projects.models import ProjectContactDetailMixin
+from adhocracy4.projects.models import Topic
 
 
 class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
@@ -134,7 +134,8 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
         verbose_name=_("Tile image copyright"),
         help_text=_("The name is displayed in the tile image."),
     )
-    topics = TopicField(
+    topics = models.ManyToManyField(
+        Topic,
         verbose_name=_("Topics"),
         help_text=_(
             "Assign your plan to 1 or 2 "
@@ -196,8 +197,7 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     @property
     def topic_names(self):
         if hasattr(settings, "A4_PROJECT_TOPICS"):
-            choices = dict(settings.A4_PROJECT_TOPICS)
-            return [choices.get(topic, topic) for topic in self.topics]
+            return [topic.name for topic in self.topics.all()]
         return []
 
     @cached_property

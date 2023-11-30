@@ -1,7 +1,7 @@
 import pytest
-from django.conf import settings
 from django.urls import reverse
 
+from adhocracy4.projects.models import Topic
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.plans.models import Plan
@@ -19,7 +19,6 @@ def test_initiator_can_edit(client, plan_factory):
     response = client.get(url)
     assert_template_response(response, "meinberlin_plans/plan_update_form.html")
 
-    choices = settings.A4_PROJECT_TOPICS
     data = {
         "title": "my plan title",
         "description_image": "",
@@ -34,7 +33,7 @@ def test_initiator_can_edit(client, plan_factory):
         "district": "",
         "cost": "1.000",
         "description": "this is a description",
-        "topics": choices[0][0],
+        "topics": Topic.objects.first().pk,
         "status": plan.status,
         "participation": plan.participation,
         "participation_explanation": "Some explanation",
@@ -43,7 +42,8 @@ def test_initiator_can_edit(client, plan_factory):
     response = client.post(url, data)
     assert redirect_target(response) == "plan-update"
     plan.refresh_from_db()
-    assert plan.topics == [data.get("topics")]
+    assert plan.topics.all().count() == 1
+    assert plan.topics.first().pk == data.get("topics")
     assert plan.title == data.get("title")
     assert plan.description == data.get("description")
 
@@ -66,7 +66,6 @@ def test_group_member_can_edit(
     response = client.get(url)
     assert_template_response(response, "meinberlin_plans/plan_update_form.html")
 
-    choices = settings.A4_PROJECT_TOPICS
     data = {
         "title": "my plan title",
         "description_image": "",
@@ -77,7 +76,7 @@ def test_group_member_can_edit(
         "district": "",
         "cost": "1.000",
         "description": "this is a description",
-        "topics": choices[0][0],
+        "topics": Topic.objects.first().pk,
         "status": plan.status,
         "participation": plan.participation,
         "participation_explanation": "Some explanation",
@@ -86,7 +85,8 @@ def test_group_member_can_edit(
     response = client.post(url, data)
     assert redirect_target(response) == "plan-update"
     plan.refresh_from_db()
-    assert plan.topics == [data.get("topics")]
+    assert plan.topics.all().count() == 1
+    assert plan.topics.first().pk == data.get("topics")
     assert plan.title == data.get("title")
     assert plan.description == data.get("description")
     assert plan.duration == data.get("duration")
@@ -103,7 +103,6 @@ def test_initiator_can_create(client, organisation):
     response = client.get(url)
     assert_template_response(response, "meinberlin_plans/plan_create_dashboard.html")
 
-    choices = settings.A4_PROJECT_TOPICS
     data = {
         "title": "my plan title",
         "description_image": "",
@@ -118,7 +117,7 @@ def test_initiator_can_create(client, organisation):
         "district": "",
         "cost": "1.000",
         "description": "this is a description",
-        "topics": choices[0][0],
+        "topics": Topic.objects.first().pk,
         "status": 0,
         "participation": 2,
         "participation_explanation": "Some explanation",
@@ -127,7 +126,8 @@ def test_initiator_can_create(client, organisation):
     response = client.post(url, data)
     assert redirect_target(response) == "plan-update"
     plan = Plan.objects.all().first()
-    assert plan.topics == [data.get("topics")]
+    assert plan.topics.all().count() == 1
+    assert plan.topics.first().pk == data.get("topics")
     assert plan.title == data.get("title")
     assert plan.description == data.get("description")
     assert plan.duration == data.get("duration")
@@ -147,7 +147,6 @@ def test_group_member_can_create(client, organisation, user_factory, group_facto
     response = client.get(url)
     assert_template_response(response, "meinberlin_plans/plan_create_dashboard.html")
 
-    choices = settings.A4_PROJECT_TOPICS
     data = {
         "title": "my plan title",
         "description_image": "",
@@ -162,7 +161,7 @@ def test_group_member_can_create(client, organisation, user_factory, group_facto
         "district": "",
         "cost": "1.000",
         "description": "this is a description",
-        "topics": choices[0][0],
+        "topics": Topic.objects.first().pk,
         "status": 0,
         "participation": 2,
         "participation_explanation": "Some explanation",
@@ -171,7 +170,8 @@ def test_group_member_can_create(client, organisation, user_factory, group_facto
     response = client.post(url, data)
     assert redirect_target(response) == "plan-update"
     plan = Plan.objects.all().first()
-    assert plan.topics == [data.get("topics")]
+    assert plan.topics.all().count() == 1
+    assert plan.topics.first().pk == data.get("topics")
     assert plan.title == data.get("title")
     assert plan.description == data.get("description")
     assert plan.duration == data.get("duration")

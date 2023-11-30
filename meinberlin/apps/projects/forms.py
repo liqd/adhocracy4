@@ -2,6 +2,8 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.core.validators import MaxLengthValidator
+from django.core.validators import MinLengthValidator
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard.forms import ProjectDashboardForm
@@ -74,7 +76,18 @@ class InviteUsersFromEmailForm(forms.Form):
 
 class TopicForm(ProjectDashboardForm):
     topics = forms.ModelMultipleChoiceField(
-        queryset=Topic.objects.all(), widget=forms.CheckboxSelectMultiple
+        label=_("Project topics"),
+        help_text=_("Add topics to your project."),
+        queryset=Topic.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        validators=[
+            MinLengthValidator(
+                limit_value=1, message=_("Please select at least 1 topic")
+            ),
+            MaxLengthValidator(
+                limit_value=2, message=_("Please select at most 2 topics")
+            ),
+        ],
     )
 
     class Meta:

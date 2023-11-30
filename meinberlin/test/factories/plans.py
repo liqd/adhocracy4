@@ -23,7 +23,6 @@ class PlanFactory(factory.django.DjangoModelFactory):
         },
     }
     contact_address_text = ""
-    topics = ""
     status = Plan.STATUS_ONGOING
     participation = Plan.PARTICIPATION_INFORMATION
     is_draft = False
@@ -36,3 +35,11 @@ class PlanFactory(factory.django.DjangoModelFactory):
         if extracted:
             for project in extracted:
                 self.projects.add(project)
+
+    @factory.post_generation
+    def topics(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for topic in extracted:
+                self.topics.add(topic)

@@ -1,17 +1,40 @@
 from django import forms
 from django.conf import settings
+from django.core.validators import MaxLengthValidator
+from django.core.validators import MinLengthValidator
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.dashboard.components.forms import ProjectDashboardForm
 from adhocracy4.images.mixins import ImageMetadataMixin
 from adhocracy4.maps import widgets as maps_widgets
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.models import Topic
 from meinberlin.apps.contrib.widgets import Select2Widget
 
 from . import models
 
 
 class PlanForm(ImageMetadataMixin, forms.ModelForm):
+    topics = forms.ModelMultipleChoiceField(
+        label=_("Topics"),
+        help_text=_(
+            "Assign your plan to 1 or 2 "
+            "topics. In the project "
+            "overview projects can be "
+            "filtered according to topics."
+        ),
+        queryset=Topic.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        validators=[
+            MinLengthValidator(
+                limit_value=1, message=_("Please select at least 1 topic")
+            ),
+            MaxLengthValidator(
+                limit_value=2, message=_("Please select at most 2 topics")
+            ),
+        ],
+    )
+
     class Meta:
         model = models.Plan
         fields = [
@@ -39,7 +62,8 @@ class PlanForm(ImageMetadataMixin, forms.ModelForm):
             "tile_image_copyright",
         ]
         widgets = {
-            "point": maps_widgets.MapChoosePointWidget(polygon=settings.BERLIN_POLYGON)
+            "point": maps_widgets.MapChoosePointWidget(polygon=settings.BERLIN_POLYGON),
+            "topics": forms.CheckboxSelectMultiple,
         }
         error_messages = {
             "point": {"required": _("Please locate the plan on the map.")}
@@ -58,6 +82,7 @@ class PlanForm(ImageMetadataMixin, forms.ModelForm):
             plan.group = group
         if commit:
             plan.save()
+            self._save_m2m()
         return plan
 
 
