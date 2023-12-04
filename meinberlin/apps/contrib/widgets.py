@@ -17,10 +17,6 @@ class Select2Widget(Select2Mixin, forms.Select):
     pass
 
 
-class Select2MultipleWidget(Select2Mixin, forms.SelectMultiple):
-    pass
-
-
 class TextWithDatalistWidget(forms.TextInput):
     def render(self, name, value, attrs=None, renderer=None):
         attrs = self.build_attrs(self.attrs, attrs)
