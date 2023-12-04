@@ -118,6 +118,7 @@ INSTALLED_APPS = (
     "meinberlin.apps.kiezkasse",
     "meinberlin.apps.mapideas",
     "meinberlin.apps.maptopicprio",
+    # TODO: remove once migration was rolled out
     "meinberlin.apps.projectcontainers",
     "meinberlin.apps.topicprio",
     # Apps overwriting and adding to a4
@@ -497,7 +498,6 @@ A4_BLUEPRINT_TYPES = [
     ("IE", "interactive event"),
     ("EP", "external project"),
     ("BP", "bebauungsplan"),
-    ("PC", "project container"),
 ]
 
 A4_MAP_BOUNDING_BOX = [[52.3517, 13.8229], [52.6839, 12.9543]]

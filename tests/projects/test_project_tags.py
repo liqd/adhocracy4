@@ -5,9 +5,7 @@ from adhocracy4.test.helpers import render_template
 
 
 @pytest.mark.django_db
-def test_project_url(
-    project, external_project_factory, bplan_factory, project_container
-):
+def test_project_url(project, external_project_factory, bplan_factory):
     external_project = external_project_factory(url=factory.Faker("url"))
     bplan = bplan_factory(url=factory.Faker("url"))
     template = "{% load meinberlin_project_tags %}" "{{ project|project_url }}"
@@ -17,13 +15,10 @@ def test_project_url(
         template, {"project": external_project}
     )
     assert bplan.externalproject.url == render_template(template, {"project": bplan})
-    assert project_container.get_absolute_url() == render_template(
-        template, {"project": project_container}
-    )
 
 
 @pytest.mark.django_db
-def test_is_external(project, external_project, bplan, project_container):
+def test_is_external(project, external_project, bplan):
     template = (
         "{% load meinberlin_project_tags %}"
         "{% if project|is_external %}"
@@ -36,13 +31,10 @@ def test_is_external(project, external_project, bplan, project_container):
     assert "is not external" == render_template(template, {"project": project})
     assert "is external" == render_template(template, {"project": external_project})
     assert "is external" == render_template(template, {"project": bplan})
-    assert "is not external" == render_template(
-        template, {"project": project_container}
-    )
 
 
 @pytest.mark.django_db
-def test_is_a4_project(project, external_project, bplan, project_container):
+def test_is_a4_project(project, external_project, bplan):
     template = (
         "{% load meinberlin_project_tags %}"
         '{% if project.project_type == "a4projects.Project" %}'
@@ -57,6 +49,3 @@ def test_is_a4_project(project, external_project, bplan, project_container):
         template, {"project": external_project}
     )
     assert "is no a4 project" == render_template(template, {"project": bplan})
-    assert "is no a4 project" == render_template(
-        template, {"project": project_container}
-    )

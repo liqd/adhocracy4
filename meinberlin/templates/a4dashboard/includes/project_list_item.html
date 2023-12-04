@@ -27,15 +27,13 @@
             <div class="lr-bar__left">
                 <h2 class="list-item__title">
                     {{ project.name }}
-                    {% if not project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-                        {% if project.has_finished %}
-                            <span class="label label--primary">{% translate "Finished" %}</span>
-                        {% endif %}
-                        {% if project.is_semipublic %}
-                            <span class="label label--secondary">{% translate 'Semipublic' %}</span>
-                        {% elif project.is_private %}
-                            <span class="label label--secondary">{% translate 'Private' %}</span>
-                        {% endif %}
+                    {% if project.has_finished %}
+                        <span class="label label--primary">{% translate "Finished" %}</span>
+                    {% endif %}
+                    {% if project.is_semipublic %}
+                        <span class="label label--secondary">{% translate 'Semipublic' %}</span>
+                    {% elif project.is_private %}
+                        <span class="label label--secondary">{% translate 'Private' %}</span>
                     {% endif %}
                 </h2>
             </div>

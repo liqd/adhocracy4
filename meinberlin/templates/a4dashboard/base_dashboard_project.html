@@ -17,11 +17,6 @@
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
                         {% translate 'All linkages' %}
                     </a>
-                    {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-                    <a href="{% url 'a4dashboard:container-list' organisation_slug=view.organisation.slug %}">
-                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                        {% translate 'All containers' %}
-                    </a>
                     {% else %}
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>

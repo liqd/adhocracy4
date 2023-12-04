@@ -4,7 +4,7 @@
 {% project_tile_image_copyright project as project_image_copyright %}
 {% project_tile_image_alt_text project as project_image_alt_text %}
 
-<!-- This tile is only used in plans and containers, not in project list or projects -->
+<!-- This tile is only used in plans, not in project list or projects -->
 <li class="participation-tile__vertical">
     <a href="{{ project|project_url }}" target="{{ project|is_external|yesno:"_blank,_self" }}">
 
@@ -56,15 +56,7 @@
                   <span>{{ project.description }}</span>
                 </div>
                 <div class="maplist-item__link"></div>
-                {% if project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-                <div class="maplist-item__stats">
-                    <span class="participation-tile__proj-count">
-                        <i class="fas fa-th" aria-hidden="true"></i>
-                        {% translate 'Participation projects: ' %}
-                    </span>
-                    <span>{{ project.projectcontainer.total_project_count }}</span>
-                </div>
-                {% elif not project|is_external or project.externalproject.phase.start_date %}
+                {% if not project|is_external or project.externalproject.phase.start_date %}
                     {% if project.running_modules %}
                     <div class="status-item status__active">
                         <div class="status-bar__active">

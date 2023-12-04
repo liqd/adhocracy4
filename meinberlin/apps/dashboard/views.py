@@ -254,9 +254,7 @@ class DashboardProjectListView(
     DashboardProjectListGroupMixin, a4dashboard_views.ProjectListView
 ):
     def get_queryset(self):
-        return (
-            super().get_queryset().filter(projectcontainer=None, externalproject=None)
-        )
+        return super().get_queryset().filter(externalproject=None)
 
 
 class ProjectCreateView(

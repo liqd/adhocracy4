@@ -2,21 +2,11 @@
 
 from django.db import migrations
 
-from meinberlin.apps.projectcontainers.models import ProjectContainer
-
-
-def add_project_type(apps, schema_editor):
-    objs = ProjectContainer.objects.all()
-    for obj in objs:
-        obj.project_type = "meinberlin_projectcontainers.ProjectContainer"
-    ProjectContainer.objects.bulk_update(objs, ["project_type"])
-
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("meinberlin_projectcontainers", "0002_verbose_name"),
         ("meinberlin_projects", "0002_custom_project_types"),
     ]
 
-    operations = [migrations.RunPython(add_project_type)]
+    operations = [migrations.RunPython(migrations.RunPython.noop)]

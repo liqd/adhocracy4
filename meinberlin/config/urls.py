@@ -29,7 +29,6 @@ from meinberlin.apps.likes.routers import LikesDefaultRouter
 from meinberlin.apps.livequestions.api import LiveQuestionViewSet
 from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
 from meinberlin.apps.plans.api import PlansListViewSet
-from meinberlin.apps.projectcontainers.api import ProjectContainerListViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
 from meinberlin.apps.votes.api import TokenVoteViewSet
@@ -49,7 +48,6 @@ router.register(
 )
 router.register(r"plans", PlansListViewSet, basename="plans")
 router.register(r"extprojects", ExternalProjectListViewSet, basename="extprojects")
-router.register(r"containers", ProjectContainerListViewSet, basename="containers")
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'

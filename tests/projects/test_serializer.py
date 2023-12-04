@@ -12,7 +12,6 @@ from meinberlin.apps.projects.serializers import ProjectSerializer
 def test_project_serializer(
     client,
     project_factory,
-    project_container_factory,
     external_project_factory,
     bplan_factory,
     phase_factory,
@@ -32,7 +31,6 @@ def test_project_serializer(
         tile_image_copyright="copyright",
         tile_image_alt_text="img_alt",
     )
-    project_container_factory()
     external_project_factory()
     bplan_factory()
 
@@ -82,7 +80,7 @@ def test_project_serializer(
 
         project_serializer = ProjectSerializer(projects, many=True, now=now)
         project_data = project_serializer.data
-        assert len(project_data) == 8
+        assert len(project_data) == 6
 
         assert project_data[0]["type"] == "project"
         assert project_data[1]["type"] == "project"
@@ -90,17 +88,13 @@ def test_project_serializer(
         assert project_data[3]["type"] == "project"
         assert project_data[4]["type"] == "project"
         assert project_data[5]["type"] == "project"
-        assert project_data[6]["type"] == "project"
-        assert project_data[7]["type"] == "project"
 
         assert project_data[0]["subtype"] == "default"
         assert project_data[1]["subtype"] == "default"
         assert project_data[2]["subtype"] == "default"
         assert project_data[3]["subtype"] == "default"
-        assert project_data[4]["subtype"] == "container"
-        assert project_data[5]["subtype"] == "default"
-        assert project_data[6]["subtype"] == "external"
-        assert project_data[7]["subtype"] == "external"
+        assert project_data[4]["subtype"] == "external"
+        assert project_data[5]["subtype"] == "external"
 
         assert project_data[0]["title"] == "active"
         assert project_data[1]["title"] == "future"

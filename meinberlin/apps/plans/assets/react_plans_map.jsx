@@ -7,7 +7,6 @@ function init () {
   const plansMapBox = document.querySelectorAll('[data-map="plans"]')
   plansMapBox.forEach(el => {
     const projectApiUrl = el.getAttribute('data-projects-url')
-    const containersApiUrl = el.getAttribute('data-containers-url')
     const extprojectApiUrl = el.getAttribute('data-extprojects-url')
     const privateprojectApiUrl = el.getAttribute('data-privateprojects-url')
     const plansApiUrl = el.getAttribute('data-plans-url')
@@ -32,7 +31,6 @@ function init () {
             selectedDistrict={selectedDistrict}
             selectedTopic={selectedTopic}
             projectApiUrl={projectApiUrl}
-            containersApiUrl={containersApiUrl}
             extprojectApiUrl={extprojectApiUrl}
             privateprojectApiUrl={privateprojectApiUrl}
             plansApiUrl={plansApiUrl}

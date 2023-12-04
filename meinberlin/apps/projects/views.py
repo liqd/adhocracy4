@@ -81,7 +81,6 @@ class YearWidget(DropdownLinkWidget):
 
 
 class ProjectFilterSet(DefaultsFilterSet):
-
     defaults = {"is_archived": "false"}
 
     ordering = DistinctOrderingFilter(
@@ -92,7 +91,7 @@ class ProjectFilterSet(DefaultsFilterSet):
 
     search = FreeTextFilter(
         widget=FreeTextFilterWidget,
-        fields=["name", "description", "projectcontainer__projects__name"],
+        fields=["name", "description"],
     )
 
     organisation = django_filters.ModelChoiceFilter(
@@ -192,7 +191,6 @@ class AbstractProjectUserInviteListView(
     generic.detail.SingleObjectMixin,
     generic.edit.ProcessFormView,
 ):
-
     form_class = forms.InviteUsersFromEmailForm
     invite_model = None
 
@@ -303,7 +301,6 @@ class AbstractProjectUserInviteListView(
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "meinberlin_projects/project_moderators.html"
@@ -323,7 +320,6 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 
 
 class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
-
     model = project_models.Project
     slug_url_kwarg = "project_slug"
     template_name = "meinberlin_projects/project_participants.html"
@@ -345,7 +341,6 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 class ProjectDetailView(
     PermissionRequiredMixin, ProjectModuleDispatchMixin, DisplayProjectOrModuleMixin
 ):
-
     model = models.Project
     permission_required = "a4projects.view_project"
 
@@ -353,8 +348,6 @@ class ProjectDetailView(
         return self.project
 
     def get_template_names(self):
-        if self.project.project_type == "meinberlin_projectcontainers.ProjectContainer":
-            return ["meinberlin_projects/project_container_detail.html"]
         if self.project.project_type == "meinberlin_bplan.Bplan":
             return ["meinberlin_projects/project_bplan_detail.html"]
         return ["meinberlin_projects/project_detail.html"]
@@ -369,7 +362,6 @@ class ProjectDetailView(
 
 
 class ModuleDetailview(PermissionRequiredMixin, PhaseDispatchMixin):
-
     model = module_models.Module
     permission_required = "a4projects.view_project"
     slug_url_kwarg = "module_slug"

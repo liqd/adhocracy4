@@ -4,7 +4,6 @@ from django.db import migrations
 from adhocracy4.dashboard.blueprints import get_blueprints
 from meinberlin.apps.bplan.views import BplanProjectCreateView
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
-from meinberlin.apps.projectcontainers.views import ContainerCreateView
 
 
 def determine_and_add_blueprint_types_to_modules(apps, schema_editor):
@@ -18,7 +17,6 @@ def determine_and_add_blueprint_types_to_modules(apps, schema_editor):
         blueprints = [blueprint[1] for blueprint in get_blueprints()]
         blueprints.append(BplanProjectCreateView.blueprint)
         blueprints.append(ExternalProjectCreateView.blueprint)
-        blueprints.append(ContainerCreateView.blueprint)
 
         # create dictionary with concatenated phase identifiers as keys
         # and type as values
@@ -50,7 +48,6 @@ def remove_blueprint_types(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("meinberlin_projects", "0002_custom_project_types"),
         ("a4modules", "0006_module_blueprint_type"),

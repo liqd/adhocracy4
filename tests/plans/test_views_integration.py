@@ -15,14 +15,12 @@ def test_list_view(
     client,
     plan_factory,
     project_factory,
-    project_container_factory,
     external_project_factory,
     bplan_factory,
     phase_factory,
     user,
     apiclient,
 ):
-
     project_active = project_factory(name="active")
     project_private = project_factory(name="private", access=Access.PRIVATE)
     project_private.participants.add(user)
@@ -33,7 +31,6 @@ def test_list_view(
     project_future = project_factory(name="future")
     project_active_and_future = project_factory(name="active and future")
     project_past = project_factory(name="past")
-    project_container_factory(name="project container", projects=[project_active])
     ep = external_project_factory(name="external project active", is_draft=False)
     external_project_factory(name="external project no phase", is_draft=False)
     bplan = bplan_factory(name="bplan", is_draft=False)
@@ -101,8 +98,7 @@ def test_list_view(
     )
 
     with freeze_time(now):
-
-        assert Project.objects.all().count() == 10
+        assert Project.objects.all().count() == 9
         apiclient.force_authenticate(user=user)
 
         # query api for active projects
@@ -165,16 +161,6 @@ def test_list_view(
         assert items[1]["type"] == "project"
         assert items[0]["subtype"] == "external"
         assert items[1]["subtype"] == "external"
-
-        # query api for containers
-        url = reverse("containers-list")
-        response = apiclient.get(url)
-        items = response.data
-        assert len(items) == 1
-
-        assert items[0]["title"] == "project container"
-        assert items[0]["type"] == "project"
-        assert items[0]["subtype"] == "container"
 
         url = reverse("privateprojects-list")
         response = apiclient.get(url)

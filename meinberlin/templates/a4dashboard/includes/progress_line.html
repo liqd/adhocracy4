@@ -3,11 +3,7 @@
     <li class="progress-line__entry">
         <span class="progress-line__line--bottom"></span>
         <i class="fas fa-check-circle u-success progress-line__icon" title="{% translate 'Project type created' %}" aria-label="{% translate 'Project type created' %}"></i>
-        {% if project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-        <span>{% translate 'Create container' %}</span>
-        {% else %}
         <span>{% translate 'Create project' %}</span>
-        {% endif %}
     </li>
 
     <li class="progress-line__entry">
@@ -21,11 +17,7 @@
 
 
         <span {% if dashboard_menu.project|project_nav_is_active %}class="progress-line__entry--active"{% endif %}>
-            {% if project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-            <span>{% translate 'Fill in container details' %}</span>
-            {% else %}
             <span>{% translate 'Fill in project details' %}</span>
-            {% endif %}
         </span>
     </li>
 
@@ -79,11 +71,7 @@
         {% elif project.is_draft %}
         <i class="fas fa-circle progress-line__icon--active" title="{% translate 'Project type ready for publication' %}" aria-label="{% translate 'Project type ready for publication' %}"></i>
         {% endif %}
-        {% if project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-        <span>{% translate 'Publish container' %}</span>
-        {% else %}
         <span>{% translate 'Publish project' %}</span>
-        {% endif %}
     </li>
 
 </ul>

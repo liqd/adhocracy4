@@ -100,33 +100,25 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
     @lru_cache(maxsize=1)
     def _get_participation_status_project(self, instance):
-        if hasattr(instance, "projectcontainer") and instance.projectcontainer:
-            if instance.projectcontainer.active_project_count > 0:
-                return _("running"), True
-            elif instance.projectcontainer.future_project_count > 0:
-                return _("starts in the future"), True
-            else:
-                return _("done"), False
+        project_phases = instance.phases
+
+        if project_phases.active_phases():
+            return _("running"), True
+
+        if project_phases.future_phases():
+            try:
+                return (
+                    _("starts at {}").format(
+                        project_phases.future_phases()
+                        .first()
+                        .start_date.strftime("%d.%m.%Y")
+                    ),
+                    True,
+                )
+            except AttributeError:
+                return (_("starts in the future"), True)
         else:
-            project_phases = instance.phases
-
-            if project_phases.active_phases():
-                return _("running"), True
-
-            if project_phases.future_phases():
-                try:
-                    return (
-                        _("starts at {}").format(
-                            project_phases.future_phases()
-                            .first()
-                            .start_date.strftime("%d.%m.%Y")
-                        ),
-                        True,
-                    )
-                except AttributeError:
-                    return (_("starts in the future"), True)
-            else:
-                return _("done"), False
+            return _("done"), False
 
     def get_type(self, instance):
         return "project"
@@ -137,8 +129,6 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             "meinberlin_bplan.Bplan",
         ):
             return "external"
-        elif instance.project_type == "meinberlin_projectcontainers.ProjectContainer":
-            return "container"
         return "default"
 
     def get_title(self, instance):

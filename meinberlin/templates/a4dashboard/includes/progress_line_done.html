@@ -8,8 +8,6 @@
         <span>{% translate 'The development plan has been published.' %}</span>
         {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
         <span>{% translate 'The linkage has been published.' %}</span>
-        {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-        <span>{% translate 'The container has been published.' %}</span>
         {% else %}
         <span>{% translate 'The project has been published. You can add further modules.' %}</span>
         {% endif %}

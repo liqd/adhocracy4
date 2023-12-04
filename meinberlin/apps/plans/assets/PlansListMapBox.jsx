@@ -66,7 +66,6 @@ class PlansListMapBox extends Component {
       this.props.projectApiUrl + '?status=pastParticipation',
       this.props.plansApiUrl,
       this.props.extprojectApiUrl,
-      this.props.containersApiUrl,
       this.props.privateprojectApiUrl
     ]
 
@@ -131,17 +130,15 @@ class PlansListMapBox extends Component {
           return past
         }
       } else {
-        /* sort plans and containers by modified */
+        /* sort plans by modified */
         return (new Date(item1.created_or_modified) >= new Date(item2.created_or_modified)) ? -1 : 1
       }
     } else {
-      /* show projects first, plans second, containers third */
+      /* show projects first, plans second */
       switch (item1Type) {
         case 'project':
           return -1
         case 'plan':
-          return (item2Type === 'container') ? -1 : 1
-        case 'container':
           return 1
       }
     }

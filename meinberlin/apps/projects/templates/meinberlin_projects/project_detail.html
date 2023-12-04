@@ -38,20 +38,6 @@
     >
         <div class="container">
             <div class="offset-lg-3 col-lg-6">
-                {% with container=project.containers.first %}
-                    {% if container %}
-                        <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% translate 'breadcrumbs' %}">
-                            <ul>
-                                <li>
-                                    <a href="{{ container.get_absolute_url }}" data-embed-target="external">
-                                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                        {% blocktranslate with name=container.name %}to project collection {{ name }}{% endblocktranslate %}
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    {% endif %}
-                {% endwith %}
                 <h1 class="project-header__title">{{ project.name }}</h1>
                 <p class="project-header__description">{{ project.description }}</p>
                 <div class="project-header__follow">

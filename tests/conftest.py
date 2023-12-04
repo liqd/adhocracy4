@@ -16,7 +16,6 @@ from meinberlin.test.factories.extprojects import ExternalProjectFactory
 from meinberlin.test.factories.likes import LikeFactory
 from meinberlin.test.factories.organisations import OrganisationFactory
 from meinberlin.test.factories.plans import PlanFactory
-from meinberlin.test.factories.projectcontainers import ProjectContainerFactory
 
 
 def pytest_configure(config):
@@ -37,7 +36,6 @@ register(factories.LiveStreamFactory)
 register(a4_label_factories.LabelFactory)
 register(a4_label_factories.LabelAliasFactory)
 register(ActivityFactory)
-register(ProjectContainerFactory)
 register(PlanFactory)
 register(ExternalProjectFactory)
 register(BplanFactory)

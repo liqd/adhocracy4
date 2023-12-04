@@ -8,8 +8,6 @@ class TypedProjectDashboard(ProjectDashboard):
             project = project.externalproject.bplan
         elif project.project_type == "meinberlin_extprojects.ExternalProject":
             project = project.externalproject
-        elif project.project_type == "meinberlin_projectcontainers.ProjectContainer":
-            project = project.projectcontainer
         super().__init__(project)
 
     def get_project_components(self):
@@ -27,18 +25,6 @@ class TypedProjectDashboard(ProjectDashboard):
                 components.projects.get("plans"),
                 components.projects.get("adminlog"),
             ]
-        elif (
-            self.project.project_type == "meinberlin_projectcontainers.ProjectContainer"
-        ):
-            return [
-                components.projects.get("container-basic"),
-                components.projects.get("container-information"),
-                components.projects.get("topics"),
-                components.projects.get("point"),
-                components.projects.get("plans"),
-                components.projects.get("container-projects"),
-            ]
-
         return [
             component
             for component in components.get_project_components()
@@ -49,10 +35,6 @@ class TypedProjectDashboard(ProjectDashboard):
         if self.project.project_type == "meinberlin_bplan.Bplan":
             return []
         elif self.project.project_type == "meinberlin_extprojects.ExternalProject":
-            return []
-        elif (
-            self.project.project_type == "meinberlin_projectcontainers.ProjectContainer"
-        ):
             return []
 
         return components.get_module_components()

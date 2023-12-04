@@ -1,8 +1,0 @@
-{% extends "meinberlin_projects/project_detail.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags offlineevent_tags contrib_tags ckeditor_tags %}
-
-{% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
-
-{% block content %}
-{% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
-{% endblock %}

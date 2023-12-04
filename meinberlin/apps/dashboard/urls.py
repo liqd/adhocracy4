@@ -7,7 +7,6 @@ from meinberlin.apps.newsletters import views as newsletter_views
 from meinberlin.apps.organisations import views as organisation_views
 from meinberlin.apps.plans import views as plan_views
 from meinberlin.apps.plans.exports import DashboardPlanExportView
-from meinberlin.apps.projectcontainers import views as container_views
 
 from . import views
 
@@ -23,11 +22,6 @@ urlpatterns = [
         r"^newsletters/(?P<organisation_slug>[-\w_]+)/create/$",
         newsletter_views.DashboardNewsletterCreateView.as_view(),
         name="newsletter-create",
-    ),
-    re_path(
-        r"^organisations/(?P<organisation_slug>[-\w_]+)/containers/$",
-        container_views.ContainerListView.as_view(),
-        name="container-list",
     ),
     re_path(
         r"^organisations/(?P<organisation_slug>[-\w_]+)/bplans/$",
@@ -101,11 +95,6 @@ urlpatterns = [
         r"^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/" r"bplan/$",
         bplan_views.BplanProjectCreateView.as_view(),
         name="bplan-project-create",
-    ),
-    re_path(
-        r"^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/" r"container/$",
-        container_views.ContainerCreateView.as_view(),
-        name="container-create",
     ),
     re_path(
         r"^organisations/(?P<organisation_slug>[-\w_]+)/projects/$",
