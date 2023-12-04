@@ -31,7 +31,4 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunPython(delete_parent_projects),
-        migrations.DeleteModel(
-            name="ProjectContainer",
-        ),
     ]
