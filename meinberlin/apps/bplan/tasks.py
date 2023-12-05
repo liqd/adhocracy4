@@ -74,5 +74,5 @@ def get_location_information(bplan_id):
         )
 
     topic = Topic.objects.get(code="URB")
-    bplan.topics.set(topic)
+    bplan.topics.set([topic])
     bplan.save(update_fields=["point", "administrative_district", "topics"])
