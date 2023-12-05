@@ -330,8 +330,7 @@ class Project(
     @cached_property
     def topic_names(self):
         if hasattr(settings, "A4_PROJECT_TOPICS"):
-            choices = dict(settings.A4_PROJECT_TOPICS)
-            return [choices[topic] for topic in self.topics]
+            return [topic.name for topic in self.topics.all()]
         return []
 
     @cached_property
