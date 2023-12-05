@@ -8,12 +8,14 @@ def add_topics_to_m2m_table(apps, schema_editor):
     if hasattr(settings, "A4_PROJECT_TOPICS"):
         topicsenum = settings.A4_PROJECT_TOPICS
         project = apps.get_model("a4projects", "Project")
+        topic = apps.get_model("a4projects", "Topic")
         for project in project.objects.all():
             for topic_code in project.topics:
-                project.m2mtopics.create(
+                proj_topic, _ = topic.objects.get_or_create(
                     code=topic_code,
                     name=[item[1] for item in topicsenum if item[0] == topic_code][0],
                 )
+                project.m2mtopics.add(proj_topic)
     else:
         pass
 
