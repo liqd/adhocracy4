@@ -56,9 +56,11 @@ div.cke_focus {
     margin-bottom: $spacer;
 }
 
+
 .form-check,
 .form-group {
     margin: 0 0 $spacer;
+
 
     .django-ckeditor-widget,
     input,
@@ -71,6 +73,11 @@ div.cke_focus {
         // though (e.g. django standard forms or react components from
         // adhocracy4 core).
         margin-bottom: 0;
+    }
+
+    // hide ckeditor input field
+    .django-ckeditor-widget textarea {
+        display: none;
     }
 }
 

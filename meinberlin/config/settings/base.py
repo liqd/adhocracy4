@@ -543,20 +543,23 @@ CKEDITOR_5_CONFIGS = {
             "numberedList",
             "blockQuote",
         ],
+        "link": {"defaultProtocol": "https://"},
     },
     "image-editor": {
-        "toolbar": [
-            "bold",
-            "italic",
-            "underline",
-            "bulletedList",
-            "numberedList",
-            "todoList",
-            "link",
-            "blockQuote",
-            "imageUpload",
-            "fileUpload",
-        ],
+        "toolbar": {
+            "items": [
+                "bold",
+                "italic",
+                "underline",
+                "bulletedList",
+                "numberedList",
+                "link",
+                "blockQuote",
+                "imageUpload",
+                "fileUpload",
+            ],
+            "shouldNotGroupWhenFull": "true",
+        },
         "image": {
             "toolbar": [
                 "imageUpload",
@@ -569,6 +572,7 @@ CKEDITOR_5_CONFIGS = {
                 "imageStyle:alignRight",
             ]
         },
+        "link": {"defaultProtocol": "https://"},
     },
     "collapsible-image-editor": {
         "toolbar": [
@@ -577,7 +581,6 @@ CKEDITOR_5_CONFIGS = {
             "underline",
             "bulletedList",
             "numberedList",
-            "todoList",
             "link",
             "blockQuote",
             "imageUpload",
@@ -598,6 +601,7 @@ CKEDITOR_5_CONFIGS = {
                 "imageStyle:alignRight",
             ]
         },
+        "link": {"defaultProtocol": "https://"},
         "mediaEmbed": {
             "removeProviders": [
                 "dailymotion",

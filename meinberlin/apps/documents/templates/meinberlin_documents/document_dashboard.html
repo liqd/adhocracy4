@@ -8,7 +8,14 @@
 
 {% endblock %}
 
+{% block extra_css %}
+    {{ block.super }}
+    {# include ckeditor css from widget, comes as link tag #}
+    {{ ckeditor_media.css }}
+{% endblock extra_css %}
 {% block extra_js %}
   {{ block.super }}
+    {# include ckeditor js from widget, comes as script tag #}
+    {{ ckeditor_media.js }}
     <script type="text/javascript" src="{% static 'documents.js' %}"></script>
-{% endblock %}
+{% endblock extra_js %}

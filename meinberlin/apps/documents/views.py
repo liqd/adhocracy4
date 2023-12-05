@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.views import generic
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.exports.views import DashboardExportView
@@ -22,6 +23,12 @@ class DocumentDashboardView(
 
     def get_permission_object(self):
         return self.project
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        widget = CKEditor5Widget(config_name="image-editor")
+        context["ckeditor_media"] = widget.media
+        return context
 
 
 class ChapterDetailView(

@@ -324,6 +324,9 @@ class DocumentManagement extends React.Component {
           onParagraphMoveUp={(paragraphIndex) => { this.handleParagraphMoveUp(chapterIndex, paragraphIndex) }}
           onParagraphMoveDown={(paragraphIndex) => { this.handleParagraphMoveDown(chapterIndex, paragraphIndex) }}
           onParagraphDelete={(paragraphIndex) => { this.handleParagraphDelete(chapterIndex, paragraphIndex) }}
+          csrfCookieName={this.props.csrfCookieName}
+          uploadUrl={this.props.uploadUrl}
+          uploadFileTypes={this.props.uploadFileTypes}
           config={this.props.config}
           chapter={chapter}
           errors={chapterErrors}
