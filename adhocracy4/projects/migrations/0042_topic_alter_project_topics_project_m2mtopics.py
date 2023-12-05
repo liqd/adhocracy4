@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("code", models.CharField(blank=True, max_length=10)),
+                ("code", models.CharField(blank=True, max_length=10, unique=True)),
                 ("name", models.CharField(max_length=120, verbose_name="Topic")),
             ],
         ),
