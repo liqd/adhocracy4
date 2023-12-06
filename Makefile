@@ -57,8 +57,10 @@ help:
 	@echo "  make coverage					-- write coverage report to dir htmlcov"
 	@echo "  make lint						-- lint all project files"
 	@echo "  make lint-quick				-- lint all files staged in git"
-	@echo "  make lint-fix					-- fix linting for all js files staged in git"
-	@echo "  make lint-python-files			-- lint all python files staged in git"
+	@echo "  make lint-js-fix				-- fix linting for all js files staged in git"
+	@echo "  make lint-html-fix				-- fix linting for all html files passed as argument"
+	@echo "  make lint-html-files			-- lint for all html files with django profile rules"
+	@echo "  make lint-python-files			-- lint all python files passed as argument"
 	@echo "  make po						-- create new po files from the source"
 	@echo "  make mo						-- create new mo files from the translated po files"
 	@echo "  make release					-- build everything required for a release"
@@ -186,17 +188,30 @@ lint-quick:
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
-.PHONY: lint-fix
-lint-fix:
+.PHONY: lint-js-fix
+lint-js-fix:
 	EXIT_STATUS=0; \
-	npm run lint-fix ||  EXIT_STATUS=$$?; \
+	npm run lint-fix || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
+# Use with caution, the automatic fixing might produce bad results
+.PHONY: lint-html-fix
+lint-html-fix:
+	EXIT_STATUS=0; \
+	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --reformat --profile=django || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
+.PHONY: lint-html-files
+lint-html-files:
+	EXIT_STATUS=0; \
+	$(VIRTUAL_ENV)/bin/djlint $(ARGUMENTS) --profile=django --ignore=H030,H031 || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-python-files
 lint-python-files:
 	EXIT_STATUS=0; \
 	$(VIRTUAL_ENV)/bin/black $(ARGUMENTS) || EXIT_STATUS=$$?; \
-	$(VIRTUAL_ENV)/bin/isort --diff -c $(ARGUMENTS) --filter-files || EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/isort $(ARGUMENTS) --filter-files || EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(ARGUMENTS) || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
