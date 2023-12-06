@@ -2,63 +2,59 @@
 {% load i18n static contrib_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% block title %}{% translate 'meinBerlin' %}{% endblock %}</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}?v=2" />
-    {% block extra_css %}
-        {# Override this in templates to add extra stylesheets #}
-    {% endblock %}
-    <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
-    <script src="{% url 'javascript-catalog' %}"></script>
-    <script src="{% static 'adhocracy4.js' %}"></script>
-    <meta name="viewport" content="width=device-width" />
-    {% block header_meta %}{% endblock %}
-
-    {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
-    {% endblock %}
-    {% tracking_enabled as tracking %}
-    {% if tracking %} {% tracking_code %} {% endif %}
-</head>
-<body>
-    <a href="#main" class="visually-hidden-focusable">{% translate "Skip to content "%}</a>
-    {% block portal_header %}
-      {% include 'portal_header.html' %}
-    {% endblock %}
-    {% block header %}
-      {% include 'header.html' %}
-    {% endblock %}
-    <main id="main">
-
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li class="alert alert--{{ message.level_tag }}" aria-live="polite" aria-atomic="true" id="alert">
-                <div class="container">
-                    {{ message }}
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>
+            {% block title %}
+                {% translate "meinBerlin" %}
+            {% endblock title %}
+        </title>
+        <link rel="shortcut icon"
+              type="image/x-icon"
+              href="{% static 'images/favicon.ico' %}?v=2" />
+        {% block extra_css %}{# Override this in templates to add extra stylesheets #}{% endblock extra_css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
+        <script src="{% url 'javascript-catalog' %}"></script>
+        <script src="{% static 'adhocracy4.js' %}"></script>
+        <meta name="viewport" content="width=device-width" />
+        {% block header_meta %}{% endblock header_meta %}
+        {% block extra_js %}{# Override this in templates to add extra javascript #}{% endblock extra_js %}
+        {% tracking_enabled as tracking %}
+        {% if tracking %}
+            {% tracking_code %}
         {% endif %}
-
-        {% block extra_messages %}{% endblock %}
-
-        {% block super_content %}
-            {% block content %}{% endblock %}
-        {% endblock %}
-
-        {% wagtailuserbar %}
-
-    </main>
-    {% block footer %}
-      {% include 'footer.html' %}
-    {% endblock %}
-
-    {% block extra_js_deferred %}
-        {# Override this in templates to add extra javascript #}
-    {% endblock %}
-</body>
+    </head>
+    <body>
+        <a href="#main" class="visually-hidden-focusable">{% translate "Skip to content " %}</a>
+        {% block portal_header %}
+            {% include "portal_header.html" %}
+        {% endblock portal_header %}
+        {% block header %}
+            {% include "header.html" %}
+        {% endblock header %}
+        <main id="main">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="alert alert--{{ message.level_tag }}"
+                            aria-live="polite"
+                            aria-atomic="true"
+                            id="alert">
+                            <div class="container">{{ message }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% block extra_messages %}{% endblock extra_messages %}
+            {% block super_content %}
+                {% block content %}{% endblock content %}
+            {% endblock super_content %}
+            {% wagtailuserbar %}
+        </main>
+        {% block footer %}
+            {% include "footer.html" %}
+        {% endblock footer %}
+        {% block extra_js_deferred %}{# Override this in templates to add extra javascript #}{% endblock extra_js_deferred %}
+    </body>
 </html>
