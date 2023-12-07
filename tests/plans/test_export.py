@@ -124,7 +124,7 @@ def test_reply_to_mixin(plan_factory, project_factory, administrative_district):
     # ExportModelFieldsMixin, set in fields
     assert str(plan.title) == export.get_field_data(plan, "title")
     assert plan.topics.all().count() == 1
-    assert plan.topics.first().name == export.get_field_data(plan, "topics")
+    assert str(plan.topics.first()) == export.get_field_data(plan, "topics")
     assert plan.cost == export.get_field_data(plan, "cost")
     duration = plan.duration
     if duration is None:

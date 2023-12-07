@@ -19,6 +19,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     tile_image = serializers.SerializerMethodField()
     tile_image_alt_text = serializers.SerializerMethodField()
     tile_image_copyright = serializers.SerializerMethodField()
+    topics = serializers.SerializerMethodField()
     type = serializers.ReadOnlyField(default="plan")
     url = serializers.SerializerMethodField()
 
@@ -45,6 +46,9 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
             "type",
             "url",
         ]
+
+    def get_topics(self, instance):
+        return [topic.code for topic in instance.topics.all()]
 
     def get_url(self, instance: Plan) -> str:
         return instance.get_absolute_url()

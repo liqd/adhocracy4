@@ -465,21 +465,7 @@ A4_MAP_BASEURL = "https://basemap.berlin.de/gdz_basemapde_vektor/styles/bm_web_c
 A4_OPENMAPTILES_TOKEN = "9aVUrssbx7PKNUKo3WtXY6MqETI6Q336u5D142QS"
 A4_MAPBOX_TOKEN = ""
 
-A4_PROJECT_TOPICS = (
-    ("ANT", _("Anti-discrimination")),
-    ("WOR", _("Work & economy")),
-    ("BUI", _("Building & living")),
-    ("EDU", _("Education & research")),
-    ("CHI", _("Children, youth & family")),
-    ("FIN", _("Finances")),
-    ("HEA", _("Health & sports")),
-    ("INT", _("Integration")),
-    ("CUL", _("Culture & leisure")),
-    ("NEI", _("Neighborhood & participation")),
-    ("URB", _("Urban development")),
-    ("ENV", _("Environment & public green space")),
-    ("TRA", _("Traffic")),
-)
+A4_PROJECT_TOPICS = "meinberlin.apps.contrib.enums.TopicEnum"
 
 A4_BLUEPRINT_TYPES = [
     ("BS", "brainstorming"),

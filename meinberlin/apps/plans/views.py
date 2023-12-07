@@ -3,7 +3,6 @@ import json
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.exceptions import ImproperlyConfigured
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -19,14 +18,14 @@ from adhocracy4.filters import widgets as filter_widgets
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib.enums import TopicEnum
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.organisations.models import Organisation
+from meinberlin.apps.plans import models
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
-
-from . import models
 
 
 class FreeTextFilterWidget(filter_widgets.FreeTextFilterWidget):
@@ -87,12 +86,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin, generic.ListView):
         return json.dumps(district_names_list)
 
     def get_topics(self):
-        topics = getattr(settings, "A4_PROJECT_TOPICS", None)
-        if topics:
-            topic_dict = dict((x, str(y)) for x, y in topics)
-            return json.dumps(topic_dict)
-        else:
-            raise ImproperlyConfigured("set A4_PROJECT_TOPICS in settings")
+        return json.dumps({topic: str(topic.label) for topic in TopicEnum})
 
     def get_participation_choices(self):
         choices = [str(choice[1]) for choice in Plan.participation.field.choices]

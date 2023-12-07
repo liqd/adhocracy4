@@ -3,16 +3,14 @@
 from django.conf import settings
 from django.db import migrations
 
+from meinberlin.apps.contrib.enums import TopicEnum
+
 
 def add_topics(apps, schema_editor):
     if hasattr(settings, "A4_PROJECT_TOPICS"):
         Topic = apps.get_model("a4projects", "Topic")
-        for topic in settings.A4_PROJECT_TOPICS:
-            Topic.objects.get_or_create(code=topic[0], name=topic[1])
-
-
-def reverse_func(apps, schema_editor):
-    pass
+        for topic in TopicEnum:
+            Topic.objects.get_or_create(code=topic)
 
 
 class Migration(migrations.Migration):
@@ -21,5 +19,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(add_topics, reverse_func),
+        migrations.RunPython(add_topics, migrations.RunPython.noop),
     ]

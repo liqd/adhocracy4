@@ -196,9 +196,7 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
 
     @property
     def topic_names(self):
-        if hasattr(settings, "A4_PROJECT_TOPICS"):
-            return [topic.name for topic in self.topics.all()]
-        return []
+        return [str(topic) for topic in self.topics.all()]
 
     @cached_property
     def published_projects(self):
