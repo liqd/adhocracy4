@@ -23,7 +23,6 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("code", models.CharField(blank=True, max_length=10, unique=True)),
-                ("name", models.CharField(max_length=120, verbose_name="Topic")),
             ],
         ),
         migrations.AddField(
