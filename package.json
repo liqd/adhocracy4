@@ -14,6 +14,7 @@
   ],
   "dependencies": {
     "@popperjs/core": "2.11.8",
+    "@turf/turf": "^6.5.0",
     "file-saver": "2.0.5",
     "js-cookie": "3.0.5",
     "maplibregl-mapbox-request-transformer": "0.0.2"
@@ -24,6 +25,7 @@
     "@babel/preset-env": "7.24.0",
     "@babel/preset-react": "7.23.3",
     "@maplibre/maplibre-gl-leaflet": "0.0.20",
+    "@react-leaflet/core": "^2.1.0",
     "@testing-library/jest-dom": "6.4.2",
     "@testing-library/react": "14.2.1",
     "eslint": "8.57.0",
@@ -49,6 +51,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-flip-move": "3.0.5",
+    "react-leaflet": "^4.2.1",
     "react-markdown": "9.0.1",
     "react-slick": "0.30.2",
     "shpjs": "4.0.4"

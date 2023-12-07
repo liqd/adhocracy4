@@ -10,6 +10,7 @@ export * as commentsAsync from './adhocracy4/comments_async/static/comments_asyn
 export { default as config } from './adhocracy4/static/config'
 export { default as follows } from './adhocracy4/follows/static/follows/react_follows'
 export * as maps from './adhocracy4/maps/static/a4maps/a4maps_common'
+export * as mapsReact from './adhocracy4/maps_react/static/a4maps_react/Map'
 export { default as ratings } from './adhocracy4/ratings/static/ratings/react_ratings'
 export { default as reports } from './adhocracy4/reports/static/reports/react_reports'
 export { default as selectDropdown } from './adhocracy4/static/select_dropdown'
