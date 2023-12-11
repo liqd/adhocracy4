@@ -25,9 +25,19 @@ from .utils import get_module_clusters_dict
 
 
 class Topic(models.Model):
+    """
+    A class that provides topics to Project class through an m2m field.
+    Topic objects are created from a TopicEnum class,
+    thus the TopicEnum.name is saved as the Topic.code field.
+    """
+
     code = models.CharField(blank=True, max_length=10, unique=True)
 
     def __str__(self):
+        """
+        Returns the descriptive and translatable TopicEnum label.
+        """
+
         if hasattr(settings, "A4_PROJECT_TOPICS"):
             topics_enum = import_string(settings.A4_PROJECT_TOPICS)
             return str(topics_enum(self.code).label)

@@ -13,6 +13,8 @@ from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
+from adhocracy4.projects.models import Topic
+from tests.project.enums import TopicEnum
 
 
 class GroupFactory(factory.django.DjangoModelFactory):
@@ -85,6 +87,35 @@ class ProjectFactory(factory.django.DjangoModelFactory):
         if extracted:
             for user in extracted:
                 self.moderators.add(user)
+
+    @factory.post_generation
+    def topics(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for topic in extracted:
+                self.topics.add(topic)
+
+
+class TopicFactory(factory.django.DjangoModelFactory):
+    """Create Topics from the TopicEnum class
+
+    Note: This factory can only create len(TopicEnum) topics because of the unique
+    constraint of the Topic model
+    """
+
+    class Meta:
+        model = Topic
+
+    code = factory.Sequence(lambda n: TopicEnum.names[n])
+
+    @factory.post_generation
+    def projects(self, create, extracted, **kwargs):
+        if not create:
+            return
+        if extracted:
+            for project in extracted:
+                self.project_set.add(project)
 
 
 class ModuleFactory(factory.django.DjangoModelFactory):
