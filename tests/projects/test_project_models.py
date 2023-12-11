@@ -145,3 +145,17 @@ def test_is_archivable(project_factory, phase_factory):
         assert not project1.is_archivable
         assert not project2.is_archivable
         assert project3.is_archivable
+
+
+@pytest.mark.django_db
+def test_project_topics(project_factory, topic_factory):
+    project = project_factory()
+    assert project.topic_names == []
+    # delete to clear the cache of the cached_property
+    del project.topic_names
+    topic1 = topic_factory(projects=[project])
+    assert project.topic_names == [str(topic1)]
+    # delete to clear the cache of the cached_property
+    del project.topic_names
+    topic2 = topic_factory(projects=[project])
+    assert project.topic_names == [str(topic1), str(topic2)]
