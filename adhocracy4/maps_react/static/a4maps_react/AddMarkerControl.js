@@ -19,7 +19,7 @@ export function checkPointInsidePolygon (marker, polygons) {
 
 const markerProps = { icon: makeIcon(), draggable: true }
 
-class AddMarkerControlClass extends L.Control {
+export class AddMarkerControlClass extends L.Control {
   constructor ({ input, point }) {
     super()
     this.marker = null
@@ -36,7 +36,7 @@ class AddMarkerControlClass extends L.Control {
   }
 
   updateMarker (latlng) {
-    const isInsideConstraints = checkPointInsidePolygon(latlng, this.map.constraints)
+    const isInsideConstraints = checkPointInsidePolygon(latlng, this.map.markerConstraints)
     if (isInsideConstraints) {
       this.oldCoords = latlng
       if (this.marker) {
@@ -51,11 +51,11 @@ class AddMarkerControlClass extends L.Control {
 
   onDragend (e) {
     const targetPosition = e.target.getLatLng()
-    const isInsideConstraints = checkPointInsidePolygon(targetPosition, this.map.constraints)
+    const isInsideConstraints = checkPointInsidePolygon(targetPosition, this.map.markerConstraints)
     if (!isInsideConstraints) {
       e.target.setLatLng(this.oldCoords)
     } else {
-      this.oldCoords = targetPosition
+      this.updateMarker(targetPosition)
     }
   }
 

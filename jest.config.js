@@ -29,7 +29,13 @@ const config = {
   ],
   transform: {
     '^.+\\.[t|j]sx?$': 'babel-jest'
-  }
+  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(@?react-leaflet)/)'
+  ],
+  setupFiles: [
+    '<rootDir>/setupTests.js'
+  ]
 }
 
 module.exports = config

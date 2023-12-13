@@ -1,7 +1,6 @@
 import React, { useRef, useImperativeHandle } from 'react'
 import { MapContainer, GeoJSON } from 'react-leaflet'
 import MaplibreGlLayer from './MaplibreGlLayer'
-import ZoomControl from './ZoomControl'
 
 const polygonStyle = {
   color: '#0076ae',
@@ -10,7 +9,7 @@ const polygonStyle = {
   fillOpacity: 0.2
 }
 
-export const Map = React.forwardRef(function Map (
+const Map = React.forwardRef(function Map (
   { attribution, baseUrl, polygon, omtToken, children, ...rest }, ref
 ) {
   const map = useRef()
@@ -21,8 +20,9 @@ export const Map = React.forwardRef(function Map (
       return
     }
     map.current.fitBounds(polygon.getBounds())
-    map.current.options.minZoom = map.current.getZoom()
-    map.current.constraints = polygon
+    map.current.setMinZoom(map.current.getZoom())
+    // used in AddMarkerControl to specify where markers can be placed
+    map.current.markerConstraints = polygon
   }
 
   return (
@@ -30,14 +30,14 @@ export const Map = React.forwardRef(function Map (
       style={{ minHeight: 300 }}
       zoom={13}
       maxZoom={18}
-      zoomControl={false}
       {...rest}
       ref={map}
     >
       {polygon && <GeoJSON style={polygonStyle} data={polygon} ref={refCallback} />}
       <MaplibreGlLayer attribution={attribution} baseUrl={baseUrl} omtToken={omtToken} />
-      <ZoomControl position="topleft" />
       {children}
     </MapContainer>
   )
 })
+
+export default Map

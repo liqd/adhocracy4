@@ -1,4 +1,4 @@
 {% load react_maps_tags %}
 
-{% react_choose_point polygon=polygon point=point name=name %}
+{% react_choose_point polygon point name %}
 <input id="id_{{ name }}" type="hidden" name="{{ name }}" {% if point %}value="{{ point }}"{% endif %}>
