@@ -32,9 +32,6 @@ visually appealing and user-friendly manner.
 * **MarkerClusterLayer**:
   Layer component which groups nearby markers into
   clusters for easier visualization and understanding.
-* **ZoomControl**:
-  A react-leaflet control component for zooming in and out,
-  with buttons disabling at the max/min zoom level.
 
 For more detailed understanding, dive deeper into individual components and
 refer to official documentation
@@ -49,7 +46,7 @@ mixture of JSX and JS.
 You can read more about this method and
 examples [here](https://react-leaflet.js.org/docs/core-architecture/).
 Examples of those within a4 will be the `AddMarkerControl`, `MaplibreGlLayer`,
-`MarkerClusterLayer`, `ZoomControl`, `GeoJsonMarker`.
+`MarkerClusterLayer`, `GeoJsonMarker`.
 
 ## Map
 
@@ -203,16 +200,6 @@ into clusters. It uses the `leaflet.markercluster` plugin for Leaflet.
 </Map>
 ```
 
-## ZoomControl
-
-`ZoomControl` is a custom react-leaflet control for zooming in and out on a map.
-Specifically, this custom ZoomControl disables the zoom in/out buttons at the
-min/max zoom level.
-
-### Props
-
-* **...rest**: It takes all the props that you could also pass
-  to [L.control.zoom](https://leafletjs.com/reference.html#control-zoom).
 
 ## Examples for Maps
 
