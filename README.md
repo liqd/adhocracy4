@@ -50,6 +50,19 @@ make postgres-start
 make watch
 ```
 
+to remove python venv and npm modules, run:
+
+```
+make clean
+```
+
+Note: if your virtualenv is located outside the project, then the command above it won't remove the python packages.
+Instead remove them with:
+
+```
+pip uninstall -r requirements/dev.txt
+```
+
 ### (Optional) celery for task queues
 If you need to do testing with a proper celery setup.
 
