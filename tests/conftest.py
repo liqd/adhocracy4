@@ -94,7 +94,7 @@ def signup_url():
     return reverse("account_signup")
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="function", autouse=True)
 def cache_clear():
     yield cache
     cache.clear()

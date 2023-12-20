@@ -25,7 +25,7 @@ from meinberlin.test.factories.plans import PlanFactory
     ],
 )
 def test_calling_plans_extprojects_list_creates_cached_value(
-    client, namespace, url_name, factory, factory_kwargs
+    client, namespace, url_name, factory, factory_kwargs, django_assert_num_queries
 ):
     n_objects = 3
     cache_key = namespace
@@ -44,17 +44,18 @@ def test_calling_plans_extprojects_list_creates_cached_value(
     assert response.status_code == 200
     assert response.data == cache_value_after
 
+    # check if query cache refrains from hitting the db
+    with django_assert_num_queries(0):
+        response = client.get(url)
+        assert response.status_code == 200
+        assert len(response.data) == len(objects) == n_objects
+
     # check cache is clear when updating an object
     obj = objects[0]  # fetch the first object
     obj.config_name = "admin"
     obj.save()
     cache_value_post_saving = cache.get(cache_key)
     cache_value_post_saving is None
-
-    # check cache is set when calling the endpoint
-    response = client.get(url)
-    cache_value_after = cache.get(cache_key)
-    assert len(cache_value_after) == len(objects) == n_objects
 
     # check cache is clear when deleting an object
     obj = objects[0]  # fetch the first object
@@ -108,7 +109,13 @@ def test_calling_plans_extprojects_list_creates_cached_value(
     ],
 )
 def test_calling_list_api_creates_cached_value(
-    client, namespace, statustype, url_name, phase_factory, factory
+    client,
+    namespace,
+    statustype,
+    url_name,
+    phase_factory,
+    factory,
+    django_assert_num_queries,
 ):
     n_objects = 3
     cache_key = namespace + statustype
@@ -161,5 +168,11 @@ def test_calling_list_api_creates_cached_value(
         assert len(cache_value_after) == len(objects) == n_objects
         assert response.status_code == 200
         assert response.data == cache_value_after
+
+        with django_assert_num_queries(0):
+            url = reverse(url_name) + f"?status={statustype}"
+            response = client.get(url)
+            assert response.status_code == 200
+            assert response.data == cache_value_after
 
         cache.delete(cache_key)

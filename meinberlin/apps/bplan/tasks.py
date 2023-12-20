@@ -1,14 +1,12 @@
 import json
-import logging
 import urllib
 
 from celery import shared_task
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.projects.models import Topic
+from meinberlin.apps import logger
 from meinberlin.apps.bplan.models import Bplan
-
-logger = logging.getLogger(__name__)
 
 
 def get_features_from_bplan_api(endpoint):
