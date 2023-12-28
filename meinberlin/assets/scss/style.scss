@@ -37,7 +37,7 @@
 @import "components/component_library";
 @import "components/control-bar";
 @import "components/copyright";
-@import "components/ck_embed";
+@import "components/ck_embed_iframe";
 @import "components/dashboard_nav";
 @import "components/datepicker";
 @import "components/detail_info";
@@ -95,3 +95,4 @@
 @import "shame";
 
 @import "../extra_css/swiper";
+@import "../extra_css/ckeditor";

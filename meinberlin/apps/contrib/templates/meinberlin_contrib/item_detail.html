@@ -36,7 +36,7 @@
             {% include "meinberlin_contrib/includes/item_detail_labels.html" with object=object %}
 
             <div class="item-detail__content">
-                <div class="item-detail__basic-content">
+                <div class="item-detail__basic-content ck-content">
                     <img class="item-detail__hero-image" src="{% thumbnail object.image 'item_image' %}" alt="">
                     {{ object.description | richtext }}
                 </div>
@@ -174,7 +174,7 @@
                                 {% endif %}
                             </div>
                             {% endif %}
-                            <p class="u-spacer-top-half">
+                            <p class="u-spacer-top-half ck-content">
                                 {{ object.moderator_feedback_text.feedback_text | safe }}
                             </p>
                         </div>

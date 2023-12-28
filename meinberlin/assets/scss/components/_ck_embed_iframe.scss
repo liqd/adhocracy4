@@ -1,0 +1,14 @@
+.ck_embed_iframe__container {
+  overflow: hidden;
+  padding-top: 56.25%; // 16:9 aspect ratio
+  position: relative;
+
+  .ck_embed_iframe {
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

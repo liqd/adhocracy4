@@ -112,7 +112,7 @@
     aria-labelledby="tab-project-{{ project.pk }}-information"
     aria-expanded="false">
         <section class="container">
-            <div class="offset-lg-2 col-lg-8">
+            <div class="offset-lg-2 col-lg-8 ck-content">
                 {{ project.information | transform_collapsibles | disable_iframes | richtext }}
                 {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
                     <div class="l-tiles-2 u-top-divider">
@@ -213,7 +213,7 @@
     aria-labelledby="tab-project-{{ project.pk }}-result"
     aria-expanded="false">
         <section class="container">
-            <div class="offset-lg-2 col-lg-8">
+            <div class="offset-lg-2 col-lg-8 ck-content">
                 {% if project.result %}
                     {{ project.result | transform_collapsibles | richtext }}
                 {% else %}

@@ -118,7 +118,7 @@
                 </section>
 
                 <div class="item-detail-2__content{% if object.participation_explanation != 'Bitte Begründung einfügen' %}--borderless{% endif%}">
-                    <div class="item-detail__basic-content">
+                    <div class="item-detail__basic-content ck-content">
                         {% if object.description %}
                             {{ object.description | transform_collapsibles | richtext }}
                         {% endif %}
