@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
+from django.utils.module_loading import import_string
 
 from adhocracy4 import phases
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
@@ -14,7 +15,6 @@ from adhocracy4.phases.models import Phase
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 from adhocracy4.projects.models import Topic
-from tests.project.enums import TopicEnum
 
 
 class GroupFactory(factory.django.DjangoModelFactory):
@@ -107,7 +107,7 @@ class TopicFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Topic
 
-    code = factory.Sequence(lambda n: TopicEnum.names[n])
+    code = factory.Sequence(lambda n: TopicFactory.get_topic_from_enum(n))
 
     @factory.post_generation
     def projects(self, create, extracted, **kwargs):
@@ -116,6 +116,13 @@ class TopicFactory(factory.django.DjangoModelFactory):
         if extracted:
             for project in extracted:
                 self.project_set.add(project)
+
+    @staticmethod
+    def get_topic_from_enum(i):
+        if hasattr(settings, "A4_PROJECT_TOPICS"):
+            topics_enum = import_string(settings.A4_PROJECT_TOPICS)
+            return topics_enum.names[i]
+        return str(i)
 
 
 class ModuleFactory(factory.django.DjangoModelFactory):
