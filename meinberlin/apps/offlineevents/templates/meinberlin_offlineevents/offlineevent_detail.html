@@ -12,8 +12,10 @@
                     <strong>{{ object.date }}</strong>
                 </div>
 
-                <div class="item-detail__content ck-content">
-                    {{ object.description | transform_collapsibles | richtext }}
+                <div class="item-detail__content">
+                    <div class="ck-content">
+                        {{ object.description | transform_collapsibles | richtext }}
+                    </div>
 
                     {% block additional_content %}{% endblock %}
                 </div>

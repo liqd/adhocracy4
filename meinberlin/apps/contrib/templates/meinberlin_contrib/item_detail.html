@@ -36,9 +36,11 @@
             {% include "meinberlin_contrib/includes/item_detail_labels.html" with object=object %}
 
             <div class="item-detail__content">
-                <div class="item-detail__basic-content ck-content">
+                <div class="item-detail__basic-content">
                     <img class="item-detail__hero-image" src="{% thumbnail object.image 'item_image' %}" alt="">
-                    {{ object.description | richtext }}
+                    <div class="ck-content">
+                        {{ object.description | richtext }}
+                    </div>
                 </div>
 
                 {% block additional_content %}{% endblock %}
