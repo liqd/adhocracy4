@@ -12,7 +12,7 @@ requests==2.31.0
 sentry-sdk==1.28.1
 urllib3==2.0.3
 wagtail==5.0.2
-whitenoise==6.5.0
+whitenoise==6.6.0
 zeep==4.2.1
 
 # Inherited a4-core requirements
