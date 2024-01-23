@@ -14,7 +14,6 @@ const translated = {
   yourReply: django.gettext('Your reply'),
   characters: django.gettext(' characters'),
   post: django.gettext('post'),
-  comment: django.gettext('Comment'),
   pleaseComment: django.gettext('Please login to comment'),
   onlyInvited: django.gettext('Only invited users can actively participate.'),
   notAllowedComment: django.gettext('The currently active phase doesn\'t allow to comment.'),
