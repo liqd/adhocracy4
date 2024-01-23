@@ -36,3 +36,18 @@ class MapTopicForm(
             "point": _("Locate the place on a map"),
             "point_label": _("Place label"),
         }
+        help_texts = {
+            "description": _(
+                "If you add an image, please provide an alternate text. "
+                "It serves as a textual description of the image content "
+                "and is read out by screen readers. Describe the image "
+                "in approx. 80 characters. Example: A busy square with "
+                "people in summer."
+            ),
+            "point": _(
+                "Click inside the marked area "
+                "or type in an address to set the marker. A set "
+                "marker can be dragged when pressed."
+            ),
+            "point_label": _("This could be an address or the name of a landmark."),
+        }

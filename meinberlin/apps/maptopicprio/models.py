@@ -31,7 +31,8 @@ class MapTopic(module_models.Item, ItemBadgesPropertyMixin):
     slug = AutoSlugField(populate_from="name", unique=True)
     name = models.CharField(max_length=120, verbose_name=_("Title"))
     description = CKEditor5Field(
-        config_name="image-editor", verbose_name=_("Description")
+        config_name="image-editor",
+        verbose_name=_("Description"),
     )
     image = ConfiguredImageField(
         "idea_image",
@@ -54,11 +55,6 @@ class MapTopic(module_models.Item, ItemBadgesPropertyMixin):
     )
     point = map_fields.PointField(
         verbose_name=_("Where can your idea be located on a map?"),
-        help_text=_(
-            "Click inside the marked area "
-            "or type in an address to set the marker. A set "
-            "marker can be dragged when pressed."
-        ),
     )
 
     point_label = models.CharField(
@@ -66,7 +62,6 @@ class MapTopic(module_models.Item, ItemBadgesPropertyMixin):
         default="",
         max_length=255,
         verbose_name=_("Label of the ideas location"),
-        help_text=_("This could be an address or the name of a landmark."),
     )
 
     objects = MapTopicQuerySet.as_manager()

@@ -25,15 +25,11 @@ class OfflineEvent(UserGeneratedContentModel):
     event_type = models.CharField(
         max_length=30,
         verbose_name=_("Event type"),
-        help_text=_(
-            "The content of this field is shown in the timeline. It "
-            "should have no more than 30 characters e.g. Information "
-            "event or 3rd public workshop."
-        ),
     )
     date = models.DateTimeField(verbose_name=_("Date"))
     description = CKEditor5Field(
-        config_name="collapsible-image-editor", verbose_name=_("Description")
+        config_name="collapsible-image-editor",
+        verbose_name=_("Description"),
     )
     project = models.ForeignKey(project_models.Project, on_delete=models.CASCADE)
 

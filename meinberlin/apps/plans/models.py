@@ -41,12 +41,6 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     title = models.CharField(
         max_length=120,
         verbose_name=_("Title of your plan"),
-        help_text=_(
-            "Enter a meaningful title with a maximum "
-            "length of 120 characters. The title"
-            " will appear in the project tile and on "
-            "top of the plan detail page."
-        ),
     )
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
@@ -60,33 +54,16 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     point = map_fields.PointField(
         blank=True,
         verbose_name=_("Can your plan be located on the map?"),
-        help_text=_(
-            "If you locate your plan, it will be shown "
-            "on the map in the project overview in addition "
-            "to the list. To set a pin, click inside the "
-            "highlighted area or enter an address. Once a "
-            "pin is set you can move it by dragging it."
-        ),
     )
     point_label = models.CharField(
         blank=True,
         default="",
         max_length=255,
         verbose_name=_("Name of the site"),
-        help_text=_(
-            "The name of the site (e.g. name of street, "
-            "building or park) makes it easier to locate "
-            "the plan. The maximum length is 255 characters."
-        ),
     )
     district = models.ForeignKey(
         AdministrativeDistrict,
         verbose_name=_("District"),
-        help_text=_(
-            "Enter the district in which the plan is located or "
-            "whether it is a city-wide plan. In the project "
-            "overview projects can be filtered by district."
-        ),
         null=True,
         blank=True,
         on_delete=models.CASCADE,
@@ -94,19 +71,10 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     cost = models.CharField(
         max_length=255,
         verbose_name=_("Cost"),
-        help_text=_(
-            "Enter details of the estimated or actual costs "
-            "of the plan in no more than 255 characters."
-        ),
     )
     description = CKEditor5Field(
         config_name="collapsible-image-editor",
         verbose_name=_("Description of your plan"),
-        help_text=_(
-            "Describe the key points of your plan. You can upload "
-            "PDFs and images, embed videos and link to external "
-            "URLs, among other things."
-        ),
     )
     image = ConfiguredImageField(
         "plan_image",
@@ -120,7 +88,6 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
         verbose_name=_("Header image copyright"),
         blank=True,
         max_length=120,
-        help_text=_("The name is displayed in the header image."),
     )
     tile_image = ConfiguredImageField(
         "tileimage",
@@ -132,54 +99,29 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     tile_image_alt_text = ImageAltTextField(image_name=_("Tile image"))
     tile_image_copyright = ImageCopyrightField(
         verbose_name=_("Tile image copyright"),
-        help_text=_("The name is displayed in the tile image."),
     )
     topics = models.ManyToManyField(
         Topic,
         verbose_name=_("Topics"),
-        help_text=_(
-            "Assign your plan to 1 or 2 "
-            "topics. In the project "
-            "overview projects can be "
-            "filtered according to topics."
-        ),
     )
     status = models.SmallIntegerField(
         choices=STATUS_CHOICES,
         verbose_name=_("Status"),
-        help_text=_("In the project overview projects can be filtered by status."),
     )
     participation = models.SmallIntegerField(
         choices=PARTICIPATION_CHOICES,
         default=PARTICIPATION_INFORMATION,
         verbose_name=_("Level of participation"),
-        help_text=_(
-            "In the project overview "
-            "projects can be filtered "
-            "according to the level of "
-            "participation."
-        ),
     )
     participation_explanation = models.TextField(
         verbose_name=_("Participation explanation"),
         max_length=4000,
-        help_text=_(
-            "Justify your selection. "
-            "The justification appears "
-            "below the description of "
-            "the project."
-        ),
     )
     duration = models.CharField(
         blank=True,
         null=True,
         max_length=255,
         verbose_name=_("Duration"),
-        help_text=_(
-            "Provide information on the "
-            "expected duration of the plan in "
-            "no more than 255 characters."
-        ),
     )
     is_draft = models.BooleanField(default=True)
 

@@ -26,3 +26,12 @@ class TopicForm(
         model = models.Topic
         fields = ["name", "description", "category", "labels"]
         widgets = {"category": Select2Widget(attrs={"class": "select2__no-search"})}
+        help_texts = {
+            "description": _(
+                "If you add an image, please provide an alternate text. "
+                "It serves as a textual description of the image content "
+                "and is read out by screen readers. Describe the image "
+                "in approx. 80 characters. Example: A busy square with "
+                "people in summer."
+            ),
+        }

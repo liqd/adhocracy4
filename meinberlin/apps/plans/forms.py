@@ -68,6 +68,69 @@ class PlanForm(ImageMetadataMixin, forms.ModelForm):
         error_messages = {
             "point": {"required": _("Please locate the plan on the map.")}
         }
+        help_texts = {
+            "title": _(
+                "Enter a meaningful title with a maximum "
+                "length of 120 characters. The title"
+                " will appear in the project tile and on "
+                "top of the plan detail page."
+            ),
+            "point": _(
+                "If you locate your plan, it will be shown "
+                "on the map in the project overview in addition "
+                "to the list. To set a pin, click inside the "
+                "highlighted area or enter an address. Once a "
+                "pin is set you can move it by dragging it."
+            ),
+            "point_label": _(
+                "The name of the site (e.g. name of street, "
+                "building or park) makes it easier to locate "
+                "the plan. The maximum length is 255 characters."
+            ),
+            "district": _(
+                "Enter the district in which the plan is located or "
+                "whether it is a city-wide plan. In the project "
+                "overview projects can be filtered by district."
+            ),
+            "cost": _(
+                "Enter details of the estimated or actual costs "
+                "of the plan in no more than 255 characters."
+            ),
+            "description": _(
+                "You can upload PDFs and images, embed videos and "
+                "link to external URL. If you add an image, please "
+                "provide an alternate text. It serves as a textual "
+                "description of the image content and is read out by "
+                "screen readers. Describe the image in approx. 80 characters. "
+                "Example: A busy square with people in summer."
+            ),
+            "image_copyright": _("The name is displayed in the header image."),
+            "title_image_copyright": _("The name is displayed in the tile image."),
+            "topic": _(
+                "Assign your plan to 1 or 2 "
+                "topics. In the project "
+                "overview projects can be "
+                "filtered according to topics."
+            ),
+            "status": _("In the project overview projects can be filtered by status."),
+            "participation": _(
+                "In the project overview "
+                "projects can be filtered "
+                "according to the level of "
+                "participation."
+            ),
+            "participation_explanation": _(
+                "Justify your selection. "
+                "The justification appears "
+                "below the description of "
+                "the project."
+            ),
+            "duration": _(
+                "Provide information on the "
+                "expected duration of the plan in "
+                "no more than 255 characters."
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

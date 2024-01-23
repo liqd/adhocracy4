@@ -22,6 +22,16 @@ class NewsletterForm(forms.ModelForm):
             "subject",
             "body",
         ]
+        help_texts = {
+            "body": _(
+                "If you add an image, please ensure to set the width "
+                "no larger than 650px and to provide an alternate text "
+                "of the image. An alternate text serves as a textual "
+                "description of the image content and is read out by "
+                "screen readers. Describe the image in approx. 80 characters. "
+                "Example: A busy square with people in summer."
+            ),
+        }
 
     def __init__(self, user=None, organisation=None, *args, **kwargs):
         super().__init__(*args, **kwargs)

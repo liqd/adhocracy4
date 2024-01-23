@@ -3,11 +3,19 @@ import django from 'django'
 import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
 
 // translations
-const headlineStr = django.gettext('Headline')
-const paragraphStr = django.gettext('Paragraph')
-const moveUpStr = django.gettext('Move up')
-const moveDownStr = django.gettext('Move down')
-const deleteStr = django.gettext('Delete')
+const translations = {
+  headline: django.gettext('Headline'),
+  paragraph: django.gettext('Paragraph'),
+  moveUp: django.gettext('Move up'),
+  moveDown: django.gettext('Move down'),
+  delete: django.gettext('Delete'),
+  helpText: django.gettext(
+    'If you add an image, please provide an ' +
+      'alternate text. It serves as a textual description of the image ' +
+      'content and is read out by screen readers. Describe the image in ' +
+      'approx. 80 characters. Example: A busy square with people in summer.'
+  )
+}
 
 const ParagraphForm = (props) => {
   const editor = useRef(null)
@@ -77,7 +85,7 @@ const ParagraphForm = (props) => {
           <div className="commenting__content--border">
             <div className="form-group">
               <label htmlFor={'id_paragraphs-' + props.id + '-name'}>
-                {headlineStr}
+                {translations.headline}
                 <input
                   className="form-control"
                   id={'id_paragraphs-' + props.id + '-name'}
@@ -98,7 +106,13 @@ const ParagraphForm = (props) => {
 
             <div className="form-group">
               <label htmlFor={'id_paragraphs-' + props.id + '-text'}>
-                {paragraphStr}
+                {translations.paragraph}
+                <div
+                  id={'id_paragraph-help-text-' + props.id}
+                  className="form-hint"
+                >
+                  {translations.helpText}
+                </div>
                 <div
                   className="django-ckeditor-widget"
                   data-field-id={'id_paragraphs-' + props.id + '-text'}
@@ -107,7 +121,10 @@ const ParagraphForm = (props) => {
                   <textarea
                     id={'id_paragraphs-' + props.id + '-text'}
                     aria-invalid={props.errors ? 'true' : 'false'}
-                    aria-describedby={props.errors && 'id_error-' + props.id}
+                    aria-describedby={
+                      (props.errors ? 'id_paragraph-help-text-' : 'id_error-') +
+                      props.id
+                    }
                   />
                 </div>
                 <FormFieldError
@@ -125,27 +142,30 @@ const ParagraphForm = (props) => {
             className="btn btn--light btn--small"
             onClick={props.onMoveUp}
             disabled={!props.onMoveUp}
-            title={moveUpStr}
+            title={translations.moveUp}
             type="button"
           >
-            <i className="fa fa-chevron-up" aria-label={moveUpStr} />
+            <i className="fa fa-chevron-up" aria-label={translations.moveUp} />
           </button>
           <button
             className="btn btn--light btn--small"
             onClick={props.onMoveDown}
             disabled={!props.onMoveDown}
-            title={moveDownStr}
+            title={translations.moveDown}
             type="button"
           >
-            <i className="fa fa-chevron-down" aria-label={moveDownStr} />
+            <i
+              className="fa fa-chevron-down"
+              aria-label={translations.moveDown}
+            />
           </button>
           <button
             className="btn btn--light btn--small"
             onClick={props.onDelete}
-            title={deleteStr}
+            title={translations.delete}
             type="button"
           >
-            <i className="fas fa-trash-alt" aria-label={deleteStr} />
+            <i className="fas fa-trash-alt" aria-label={translations.delete} />
           </button>
         </div>
       </div>

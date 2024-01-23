@@ -30,7 +30,8 @@ class Topic(module_models.Item, ItemBadgesPropertyMixin):
     slug = AutoSlugField(populate_from="name", unique=True)
     name = models.CharField(max_length=120, verbose_name=_("Title"))
     description = CKEditor5Field(
-        config_name="image-editor", verbose_name=_("Description")
+        config_name="image-editor",
+        verbose_name=_("Description"),
     )
     image = ConfiguredImageField(
         "idea_image",
