@@ -16,6 +16,7 @@ from django_enumfield.enum import EnumField
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.images import fields
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.maps.fields import PointField
 from adhocracy4.models import base
 
@@ -218,23 +219,13 @@ class Project(
         blank=True,
         config_name="collapsible-image-editor",
         verbose_name=_("Description of your project"),
-        help_text=_(
-            "This description should tell participants "
-            "what the goal of the project is, how the project’s "
-            "participation will look like. It will be always visible "
-            "in the „Info“ tab on your project’s page."
-        ),
+        validators=[ImageAltTextValidator()],
     )
     result = CKEditor5Field(
         blank=True,
         config_name="collapsible-image-editor",
         verbose_name=_("Results of your project"),
-        help_text=_(
-            "Here you should explain what the expected outcome of the "
-            "project will be and how you are planning to use the "
-            "results. If the project is finished you should add a "
-            "summary of the results."
-        ),
+        validators=[ImageAltTextValidator()],
     )
     access = EnumField(
         Access, default=Access.PUBLIC, verbose_name=_("Access to the project")

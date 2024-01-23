@@ -1,7 +1,9 @@
 import math
 
 import magic
+from bs4 import BeautifulSoup
 from django.core.exceptions import ValidationError
+from django.utils.deconstruct import deconstructible
 from django.utils.translation import gettext_lazy as _
 
 image_max_mb = 5
@@ -74,3 +76,32 @@ def validate_image(
     if errors:
         raise ValidationError(errors)
     return image
+
+
+@deconstructible
+class ImageAltTextValidator:
+    """Validate that if the input contains html img tags that all have the alt
+    attribute set, otherwise raise ValidationError.
+    """
+
+    message = _("Please add an alternative text for all images.")
+    code = "invalid"
+
+    def __init__(self):
+        pass
+
+    def __call__(self, value):
+        """Parse value with BeautifulSoup and check
+        if img tags exist which don't have the alt attribute set"""
+
+        soup = BeautifulSoup(value, "html.parser")
+        img_tags = soup("img", alt=False)
+        if len(img_tags) > 0:
+            raise ValidationError(message=self.message, code=self.code)
+
+    def __eq__(self, other):
+        return (
+            isinstance(other, ImageAltTextValidator)
+            and self.message == other.message
+            and self.code == other.code
+        )
