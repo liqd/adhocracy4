@@ -107,7 +107,6 @@ export const CommentBox = (props) => {
   function handleComments (result) {
     const data = result
 
-    translated.entries = django.ngettext('entry', 'entries', data.count)
     setComments(data.results)
     setNextComments(data.next)
     setCommentCount(data.comment_count)
@@ -409,6 +408,13 @@ export const CommentBox = (props) => {
     }
   }
 
+  function translatedEntries (entries) {
+    return django.ngettext(
+      'entry',
+      'entries', entries
+    )
+  }
+
   function translatedEntriesFound (entriesFound) {
     return django.ngettext(
       'entry found for ',
@@ -472,7 +478,7 @@ export const CommentBox = (props) => {
           <div
             className={search === '' ? 'a4-comments__filters__text' : 'd-none'}
           >
-            {commentCount + ' ' + translated.entries}
+            {commentCount + ' ' + translatedEntries(commentCount)}
           </div>
 
           <div
