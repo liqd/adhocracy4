@@ -109,6 +109,15 @@ class ProjectInformationForm(ProjectDashboardForm):
             "contact_url",
         ]
         required_for_project_publish = ["information"]
+        help_texts = {
+            "information": _(
+                "The project description will be shown in the info-tab. "
+                "If you add an image, please provide an alternate text. "
+                "It serves as a textual description of the image content and is "
+                "read out by screen readers. Describe the image in approx. 80 "
+                "characters. Example: A busy square with people in summer."
+            )
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -120,6 +129,18 @@ class ProjectResultForm(ProjectDashboardForm):
         model = project_models.Project
         fields = ["result"]
         required_for_project_publish = []
+        help_texts = {
+            "result": _(
+                "The results description will be shown in the result-tab. "
+                "Please describe a participation promise beforehand "
+                "(what will happen with the outcome?) and inform afterwards "
+                "about the outcome. If you add an image, please provide "
+                "an alternate text. It serves as a textual description "
+                "of the image content and is read out by screen readers. "
+                "Describe the image in approx. 80 characters. "
+                "Example: A busy square with people in summer."
+            )
+        }
 
 
 class ModuleBasicForm(ModuleDashboardForm):
