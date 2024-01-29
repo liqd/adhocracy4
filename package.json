@@ -84,7 +84,7 @@
     "webpack": "5.88.2",
     "webpack-cli": "5.1.4",
     "webpack-merge": "5.9.0",
-    "whatwg-fetch": "3.6.16"
+    "whatwg-fetch": "3.6.20"
   },
   "scripts": {
     "build:prod": "webpack --config webpack.prod.js --mode production",
