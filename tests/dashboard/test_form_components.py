@@ -10,6 +10,9 @@ from adhocracy4.dashboard.components.forms import ModuleFormSetComponent
 from adhocracy4.dashboard.components.forms import ProjectDashboardForm
 from adhocracy4.dashboard.components.forms import ProjectFormComponent
 from adhocracy4.dashboard.forms import ProjectBasicForm
+from adhocracy4.dashboard.forms import ProjectInformationForm
+from adhocracy4.dashboard.forms import ProjectResultForm
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
@@ -270,3 +273,38 @@ def test_module_formset_component(phase_factory):
     phase.start_date = now()
     phase.save()
     assert component.get_progress(module) == (1, 2)
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "form_class, field_name",
+    [(ProjectInformationForm, "information"), (ProjectResultForm, "result")],
+)
+def test_project_form_image_missing_alt_text(form_class, field_name, project_factory):
+    project = project_factory(is_draft=False)
+    form = form_class(
+        instance=project,
+        data={
+            field_name: "my project description <img>",
+        },
+    )
+    assert field_name in form.errors
+    assert form.errors[field_name].data[0].messages[0] == ImageAltTextValidator.message
+    assert not form.is_valid()
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "form_class, field_name",
+    [(ProjectInformationForm, "information"), (ProjectResultForm, "result")],
+)
+def test_project_form_image_has_alt_text(form_class, field_name, project_factory):
+    project = project_factory(is_draft=False)
+    form = form_class(
+        instance=project,
+        data={
+            field_name: "my project description <img alt='descriptive picture'>",
+        },
+    )
+    assert field_name not in form.errors
+    assert form.is_valid()
