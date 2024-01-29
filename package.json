@@ -14,7 +14,7 @@
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.4.0",
-    "@maplibre/maplibre-gl-leaflet": "0.0.19",
+    "@maplibre/maplibre-gl-leaflet": "0.0.20",
     "acorn": "8.10.0",
     "adhocracy4": "liqd/adhocracy4#e26c42f586beae9e49ec772ce5258d17012844d0",
     "autoprefixer": "10.4.14",
