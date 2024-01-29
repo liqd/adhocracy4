@@ -20,7 +20,7 @@ celery==5.3.1
 django-allauth==0.55.0
 django-ckeditor==6.6.1
 https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl
-django-filter==22.1
+django-filter==23.5
 django-widget-tweaks==1.4.12
 Django==4.2.9
 djangorestframework==3.14.0
