@@ -1,4 +1,4 @@
-## Background
+## API Performance
 
 We have noticed that the page load of `mein.berlin.de/projekte/` is pretty slow with about 6s for 550 projects. Three API calls are particularly slow:
 
@@ -14,7 +14,7 @@ These paths correspond to the following api views:
 
 we decided to start caching the endpoints with redis.
 
-## Developer Notes
+## API Endpoints affected
 
 The cache target is the `list` method of the following views:
 
@@ -58,3 +58,14 @@ files:
 - `./meinberlin/apps/projects/api.py`
 - `./meinberlin/apps/projects/tasks.py`
 - `./meinberlin/config/settings/production.py`
+
+## Testing
+
+For simulating api performance load, we can create fake projects and plans with the management command `devtools`. The command is part of the `dev` app and can be added in the `meinberlin/config/settings/local.py` settings. It is added by default in the `dev.py` settings.
+Usage examples:
+```
+       $ ./manage.py devtools
+       $ ./manage.py devtools --projects 0
+       $ ./manage.py devtools --plans 550
+       $ ./manage.py devtools --ext-projects 100
+```
