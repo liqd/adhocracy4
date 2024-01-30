@@ -525,19 +525,15 @@ export const CommentBox = (props) => {
               translated={translated}
               onSearch={handleSearch}
             />
-            {props.withCategories
-              ? (
-                <FilterCategory
-                  translated={translated}
-                  filter={filter}
-                  filterDisplay={filterDisplay}
-                  onClickFilter={handleClickFilter}
-                  commentCategoryChoices={props.commentCategoryChoices}
-                />
-                )
-              : (
-                <div className="col-lg-3" />
-                )}
+            {props.withCategories && (
+              <FilterCategory
+                translated={translated}
+                filter={filter}
+                filterDisplay={filterDisplay}
+                onClickFilter={handleClickFilter}
+                commentCategoryChoices={props.commentCategoryChoices}
+              />
+            )}
             <FilterSort
               translated={translated}
               sort={sort}
