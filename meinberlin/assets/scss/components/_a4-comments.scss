@@ -1,10 +1,13 @@
-.a4-comments__box {
-    > .a4-comments__list > div > div {
-        border-top: solid 1px $border-color;
-    }
+.a4-comments__comment {
+    border-top: solid 1px $border-color;
 }
 
-.a4-comments__box--user {
+.a4-comments__text--highlighted {
+    border-left: solid 2px $primary;
+    padding-left: 0.5 * $spacer;
+}
+
+.a4-comments__box {
     margin-top: 0.75 * $spacer;
 }
 
@@ -43,12 +46,22 @@
     @extend .l-flex-row;
 }
 
-.a4-comments__child--list {
-    > .row {
-        padding-left: $spacer * 1.6;
-        border-left: 1px solid $primary;
-    }
+// edit form for parent comments
+.a4-comments__box .general-form .row {
+    @extend .l-flex-row;
 
+    flex-direction: row-reverse;
+
+    .cancel-button {
+        margin-right: 0.5 * $spacer;
+    }
+}
+
+.a4-comments__child--list {
+    padding-left: 2 * $spacer;
+    border-left: 1px solid $primary;
+
+    // edit form for child comments
     .general-form {
         padding-top: $spacer;
         margin-bottom: $spacer * 2;
@@ -125,10 +138,6 @@
     @extend .btn--light;
 }
 
-.a4-comments__dropdown-container {
-    padding-right: 0;
-}
-
 .a4-comments__dropdown {
     text-align: right !important;
     margin-right: -0.7 * $spacer;
@@ -143,6 +152,11 @@
             color: $text-color !important;
         }
     }
+}
+
+.a4-comments__dropdown-container .a4-comments__dropdown {
+    margin-left: auto;
+    padding-right: 0.75 * $spacer;
 }
 
 // No user images in mB
