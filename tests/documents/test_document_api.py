@@ -3,6 +3,7 @@ import pytest
 from django.urls import reverse
 from rest_framework import status
 
+from adhocracy4.images.validators import ImageAltTextValidator
 from meinberlin.apps.documents import models as document_models
 
 
@@ -690,3 +691,67 @@ def test_initiator_can_update_and_create_paragraph(apiclient, module):
 
     paragraphs_all_count = document_models.Paragraph.objects.all().count()
     assert paragraphs_all_count == 2
+
+
+@pytest.mark.django_db
+def test_initiator_cant_create_paragraph_image_without_alt_text(apiclient, module):
+    project = module.project
+    initiator = project.organisation.initiators.first()
+    apiclient.force_authenticate(user=initiator)
+    url = reverse("chapters-list", kwargs={"module_pk": module.pk})
+    data = {
+        "chapters": [
+            {
+                "name": "This is a text",
+                "paragraphs": [
+                    {
+                        "name": "paragraph 1",
+                        "text": "A beautiful image <img>",
+                        "weight": 0,
+                    },
+                ],
+            }
+        ]
+    }
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    chapters_all_count = document_models.Chapter.objects.all().count()
+    assert chapters_all_count == 0
+    paragraphs_all_count = document_models.Paragraph.objects.all().count()
+    assert paragraphs_all_count == 0
+    assert (
+        response.data["chapters"][0]["paragraphs"][0]["text"][0]
+        == ImageAltTextValidator.message
+    )
+
+
+@pytest.mark.django_db
+def test_initiator_cant_create_paragraph_image_has_alt_text(apiclient, module):
+    project = module.project
+    initiator = project.organisation.initiators.first()
+    apiclient.force_authenticate(user=initiator)
+    url = reverse("chapters-list", kwargs={"module_pk": module.pk})
+    data = {
+        "chapters": [
+            {
+                "name": "This is a text",
+                "paragraphs": [
+                    {
+                        "name": "paragraph 1",
+                        "text": 'A beautiful image <img alt="description">',
+                        "weight": 0,
+                    },
+                ],
+            }
+        ]
+    }
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    chapters_all_count = document_models.Chapter.objects.all().count()
+    assert chapters_all_count == 1
+    chapter = response.data["chapters"][0]
+    paragraphs_all_count = document_models.Paragraph.objects.all().count()
+    assert paragraphs_all_count == 1
+    paragraph_pk = chapter["paragraphs"][0]["id"]
+    paragraph_text = document_models.Paragraph.objects.get(pk=paragraph_pk).text
+    assert paragraph_text == 'A beautiful image <img alt="description">'

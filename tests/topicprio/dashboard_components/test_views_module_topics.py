@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 
 from adhocracy4.dashboard import components
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
@@ -70,3 +71,54 @@ def test_topic_delete_view(client, phase_factory, topic_factory):
     response = client.delete(url)
     assert redirect_target(response) == "topic-list"
     assert not Topic.objects.exists()
+
+
+@pytest.mark.django_db
+def test_topic_update_view_missing_alt_text(
+    client, phase_factory, topic_factory, category_factory
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, topic_factory, PrioritizePhase
+    )
+    initiator = module.project.organisation.initiators.first()
+    category = category_factory(module=module)
+    url = reverse(
+        "a4dashboard:topic-update", kwargs={"pk": item.pk, "year": item.created.year}
+    )
+    data = {
+        "name": "name",
+        "description": "desc <img>",
+        "category": category.pk,
+    }
+    client.login(username=initiator.email, password="password")
+    response = client.post(url, data)
+    assert "description" in response.context_data["form"].errors
+    assert (
+        response.context_data["form"].errors["description"][0]
+        == ImageAltTextValidator.message
+    )
+
+
+@pytest.mark.django_db
+def test_topic_update_view_with_alt_text(
+    client, phase_factory, topic_factory, category_factory
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, topic_factory, PrioritizePhase
+    )
+    initiator = module.project.organisation.initiators.first()
+    category = category_factory(module=module)
+    url = reverse(
+        "a4dashboard:topic-update", kwargs={"pk": item.pk, "year": item.created.year}
+    )
+    data = {
+        "name": "name",
+        "description": 'desc <img alt="description">',
+        "category": category.pk,
+    }
+    client.login(username=initiator.email, password="password")
+    response = client.post(url, data)
+    assert redirect_target(response) == "topic-list"
+    topic = Topic.objects.get(name=data.get("name"))
+    assert topic.description == data.get("description")
+    assert topic.category.pk == data.get("category")

@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
 from meinberlin.apps.contrib.mixins import CategoryAndLabelAliasMixin
@@ -16,7 +17,9 @@ class MapTopicForm(
     CategoryAndLabelAliasMixin,
     forms.ModelForm,
 ):
-    description = CKEditor5Field(config_name="image-editor")
+    description = CKEditor5Field(
+        config_name="image-editor", validators=[ImageAltTextValidator()]
+    )
 
     def __init__(self, *args, **kwargs):
         self.settings = kwargs.pop("settings_instance")

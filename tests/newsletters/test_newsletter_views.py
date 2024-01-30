@@ -5,6 +5,7 @@ from django.core import mail
 from django.urls import reverse
 
 from adhocracy4.follows import models as follow_models
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.newsletters import models as newsletter_models
@@ -424,3 +425,67 @@ def test_limit_initiators_organisation_projects(client, project_factory):
     response = client.post(url, data)
     assert not response.context["form"].is_valid()
     assert newsletter_models.Newsletter.objects.count() == 0
+
+
+@pytest.mark.django_db
+def test_send_organisation_missing_alt_text(admin, client, project):
+    organisation = project.organisation
+
+    data = {
+        "sender_name": "Tester",
+        "sender": "test@test.de",
+        "subject": "Testsubject",
+        "body": "Testbody <img>",
+        "receivers": newsletter_models.ORGANISATION,
+        "organisation": organisation.pk,
+        "project": "",
+        "send": "Send",
+    }
+
+    url = reverse(
+        "a4dashboard:newsletter-create", kwargs={"organisation_slug": organisation.slug}
+    )
+    client.login(username=admin.email, password="password")
+    response = client.post(url, data)
+    assert newsletter_models.Newsletter.objects.count() == 0
+    assert "body" in response.context_data["form"].errors
+    assert (
+        response.context_data["form"].errors["body"][0] == ImageAltTextValidator.message
+    )
+
+
+@pytest.mark.django_db
+def test_send_organisation_with_alt_text(
+    admin, client, project, user_factory, follow_factory, email_address_factory
+):
+    organisation = project.organisation
+    user1 = user_factory(get_newsletters=True)
+    user2 = user_factory(get_newsletters=True)
+    user_factory()
+    email_address_factory(user=user1, email=user1.email, primary=True, verified=True)
+    email_address_factory(user=user2, email=user2.email, primary=True, verified=True)
+    follow_models.Follow.objects.all().delete()
+    follow_factory(creator=user1, project=project)
+    follow_factory(creator=user2, project=project, enabled=False)
+
+    data = {
+        "sender_name": "Tester",
+        "sender": "test@test.de",
+        "subject": "Testsubject",
+        "body": 'Testbody <img alt="description">',
+        "receivers": newsletter_models.ORGANISATION,
+        "organisation": organisation.pk,
+        "project": "",
+        "send": "Send",
+    }
+
+    url = reverse(
+        "a4dashboard:newsletter-create", kwargs={"organisation_slug": organisation.slug}
+    )
+    client.login(username=admin.email, password="password")
+    response = client.post(url, data)
+    assert redirect_target(response) == "newsletter-create"
+    assert newsletter_models.Newsletter.objects.count() == 1
+    assert len(mail.outbox) == 1
+    assert mail.outbox[0].to == [user1.email]
+    assert mail.outbox[0].subject == "Testsubject"

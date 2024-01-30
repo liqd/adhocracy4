@@ -3,6 +3,7 @@ from dateutil.parser import parse
 from django.urls import reverse
 
 from adhocracy4.dashboard import components
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
 from adhocracy4.test.helpers import setup_phase
@@ -86,3 +87,54 @@ def test_offlineevent_delete_view(client, phase_factory, offline_event_factory):
     response = client.delete(url)
     assert redirect_target(response) == "offlineevent-list"
     assert not OfflineEvent.objects.exists()
+
+
+@pytest.mark.django_db
+def test_offlineevent_update_view_missing_alt_text(
+    client, phase_factory, offline_event_factory
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, None, CollectFeedbackPhase
+    )
+    initiator = module.project.organisation.initiators.first()
+    event = offline_event_factory(project=project)
+    url = reverse("a4dashboard:offlineevent-update", kwargs={"slug": event.slug})
+    data = {
+        "name": "name",
+        "event_type": "event_type",
+        "description": "desc <img>",
+        "date_0": "2013-01-01",
+        "date_1": "18:00",
+    }
+    client.login(username=initiator.email, password="password")
+    response = client.post(url, data)
+    assert "description" in response.context_data["form"].errors
+    assert (
+        response.context_data["form"].errors["description"][0]
+        == ImageAltTextValidator.message
+    )
+
+
+@pytest.mark.django_db
+def test_offlineevent_update_view_with_alt_text(
+    client, phase_factory, offline_event_factory
+):
+    phase, module, project, item = setup_phase(
+        phase_factory, None, CollectFeedbackPhase
+    )
+    initiator = module.project.organisation.initiators.first()
+    event = offline_event_factory(project=project)
+    url = reverse("a4dashboard:offlineevent-update", kwargs={"slug": event.slug})
+    data = {
+        "name": "name",
+        "event_type": "event_type",
+        "description": 'desc <img alt="Description">',
+        "date_0": "2013-01-01",
+        "date_1": "18:00",
+    }
+    client.login(username=initiator.email, password="password")
+    response = client.post(url, data)
+    assert redirect_target(response) == "offlineevent-list"
+    event.refresh_from_db()
+    assert event.description == data.get("description")
+    assert event.date == parse("2013-01-01 17:00:00 UTC")

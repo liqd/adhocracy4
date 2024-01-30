@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4 import transforms
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects.models import Project
 
@@ -31,6 +32,7 @@ class Newsletter(UserGeneratedContentModel):
         blank=True,
         config_name="image-editor",
         verbose_name=_("Email body"),
+        validators=[ImageAltTextValidator()],
     )
     sent = models.DateTimeField(blank=True, null=True, verbose_name=_("Sent"))
 

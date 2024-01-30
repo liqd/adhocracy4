@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from meinberlin.apps.contrib.mixins import CategoryAndLabelAliasMixin
 from meinberlin.apps.contrib.widgets import Select2Widget
@@ -16,7 +17,9 @@ class TopicForm(
     CategoryAndLabelAliasMixin,
     forms.ModelForm,
 ):
-    description = CKEditor5Field(config_name="image-editor")
+    description = CKEditor5Field(
+        config_name="image-editor", validators=[ImageAltTextValidator()]
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

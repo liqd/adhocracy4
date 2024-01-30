@@ -12,6 +12,7 @@ from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.images.fields import ImageAltTextField
 from adhocracy4.images.fields import ImageCopyrightField
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.phases.models import Phase
@@ -75,6 +76,7 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     description = CKEditor5Field(
         config_name="collapsible-image-editor",
         verbose_name=_("Description of your plan"),
+        validators=[ImageAltTextValidator()],
     )
     image = ConfiguredImageField(
         "plan_image",

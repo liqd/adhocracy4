@@ -9,6 +9,7 @@ from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.comments import models as comment_models
 from adhocracy4.images.fields import ConfiguredImageField
+from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.labels import models as labels_models
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models import query
@@ -33,6 +34,7 @@ class MapTopic(module_models.Item, ItemBadgesPropertyMixin):
     description = CKEditor5Field(
         config_name="image-editor",
         verbose_name=_("Description"),
+        validators=[ImageAltTextValidator()],
     )
     image = ConfiguredImageField(
         "idea_image",
