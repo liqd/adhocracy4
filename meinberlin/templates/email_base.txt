@@ -10,7 +10,7 @@
 
 {% block reason %}{% endblock %}
 
----
+-- 
 {% translate 'meinBerlin is a participation platform operated by' %}
 Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
 
