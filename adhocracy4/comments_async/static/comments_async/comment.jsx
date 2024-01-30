@@ -330,7 +330,7 @@ export default class Comment extends React.Component {
                 </time>
               </div>
 
-              <div className="col-1 col-md-1 ms-auto a4-comments__dropdown-container">
+              <div className="col-5 col-md-4 ms-auto a4-comments__dropdown-container">
                 {!this.props.is_deleted && (this.props.has_changing_permission || this.props.has_deleting_permission) &&
                   <CommentManageDropdown
                     id={this.props.id}
@@ -377,39 +377,40 @@ export default class Comment extends React.Component {
               lastEdit={this.state.moderatorFeedback.last_edit}
               feedbackText={this.state.moderatorFeedback.feedback_text}
             />}
+          <div className="a4-comments__action">
+            <div className="row">
+              <div className="col-12 a4-comments__action-bar-container">
+                {this.renderRatingBox()}
 
-          <div className="row">
-            <div className="col-12 a4-comments__action-bar-container">
-              {this.renderRatingBox()}
+                <div className="a4-comments__action-bar">
+                  {((this.allowForm() && !this.props.is_deleted) || (this.props.child_comments && this.props.child_comments.length > 0)) &&
+                    <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
+                      <a href="#child-comment-form">
+                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
+                      </a>
+                    </button>}
 
-              <div className="a4-comments__action-bar">
-                {((this.allowForm() && !this.props.is_deleted) || (this.props.child_comments && this.props.child_comments.length > 0)) &&
-                  <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
-                    <a href="#child-comment-form">
-                      <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
-                    </a>
-                  </button>}
+                  {!this.props.is_deleted &&
+                    <a
+                      className="btn btn--no-border a4-comments__action-bar__btn" href={'?comment_' + this.props.id}
+                      data-bs-toggle="modal" data-bs-target={'#share_comment_' + this.props.id}
+                    ><i className="fas fa-share" aria-hidden="true" /> {translated.share}
+                    </a>}
 
-                {!this.props.is_deleted &&
-                  <a
-                    className="btn btn--no-border a4-comments__action-bar__btn" href={'?comment_' + this.props.id}
-                    data-bs-toggle="modal" data-bs-target={'#share_comment_' + this.props.id}
-                  ><i className="fas fa-share" aria-hidden="true" /> {translated.share}
-                  </a>}
+                  {!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment &&
+                    <a
+                      className="btn btn--no-border a4-comments__action-bar__btn" href={'#report_comment_' + this.props.id}
+                      data-bs-toggle="modal"
+                    ><i className="fas fa-exclamation-triangle" aria-hidden="true" />{translated.report}
+                    </a>}
 
-                {!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment &&
-                  <a
-                    className="btn btn--no-border a4-comments__action-bar__btn" href={'#report_comment_' + this.props.id}
-                    data-bs-toggle="modal"
-                  ><i className="fas fa-exclamation-triangle" aria-hidden="true" />{translated.report}
-                  </a>}
-
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="container">
+        <>
           {this.state.showChildComments
             ? (
               <div className="a4-comments__child--list">
@@ -456,7 +457,7 @@ export default class Comment extends React.Component {
                 </div>
               </div>)
             : null}
-        </div>
+        </>
         <ReportModal
           name={'report_comment_' + this.props.id}
           description={translated.reportTitle}

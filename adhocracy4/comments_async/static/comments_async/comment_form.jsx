@@ -157,7 +157,7 @@ export default class CommentForm extends React.Component {
             style={textareaStyle}
           />
           <div className="row">
-            <div className="col-12 col-sm-9">
+            <div className="col-12 col-sm-6">
               <p
                 id={'id_char-count' + this.props.commentId}
                 className="a4-comments__char-count"
@@ -172,7 +172,7 @@ export default class CommentForm extends React.Component {
                   orgTermsUrl={this.props.orgTermsUrl}
                 />}
             </div>
-            <div className="d-flex col-12 col-sm-3 justify-content-end">
+            <div className="d-flex col-12 col-sm-6 justify-content-end">
               {cancelButton}
               {actionButton}
             </div>
