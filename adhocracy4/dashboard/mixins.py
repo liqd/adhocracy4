@@ -129,13 +129,13 @@ class DashboardComponentFormSignalMixin(edit.FormMixin):
 
 
 class DashboardComponentDeleteSignalMixin(edit.DeletionMixin):
-    def delete(self, request, *args, **kwargs):
+    def form_valid(self, request, *args, **kwargs):
         # Project and module have to be stored before delete is called as
         # they may rely on the still existing db object.
         project = self.project
         module = self.module
 
-        response = super().delete(request, *args, **kwargs)
+        response = super().form_valid(request, *args, **kwargs)
 
         component = self.component
         if component.identifier in components.projects:
