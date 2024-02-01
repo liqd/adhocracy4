@@ -217,8 +217,8 @@ lint-python-files:
 
 .PHONY: po
 po:
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d django --extension html,email,py --ignore '$(CURDIR)/node_modules/adhocracy4/adhocracy4/*'
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages --all --no-obsolete -d djangojs --ignore '$(VIRTUAL_ENV)/*' --ignore '$(CURDIR)/node_modules/dsgvo-video-embed/dist/*'
 	$(foreach file, $(wildcard locale/*/LC_MESSAGES/django*.po), \
 		$(SED) -i 's%#: .*/adhocracy4%#: adhocracy4%' $(file);)
 	$(foreach file, $(wildcard locale/*/LC_MESSAGES/django*.po), \
