@@ -124,7 +124,6 @@ def create_fake_external_projects(
     group = Group.objects.first()
     organisation = Organisation.objects.first()
 
-    projects = []
     for i in range(n):
         project = ExternalProject(
             name=f"{identifier_prefix} {i}",
@@ -135,9 +134,7 @@ def create_fake_external_projects(
             access=Access.PUBLIC,
             is_draft=False,
         )
-        projects.append(project)
-
-    ExternalProject.objects.bulk_create(projects)
+        project.save()
 
 
 def create_fake_projects(
@@ -167,18 +164,22 @@ def create_fake_plans(
     n: int,
     identifier_prefix: str,
 ):
-    admin = User.objects.filter(username="admin").first()
-    organisation = Organisation.objects.first()
-    group = Group.objects.first()
+    user = User.objects.filter(username__contains="admin").first()
+    if not user:
+        user = User.objects.first()
+    organisation = user.organisations.first()
+    if not organisation:
+        organisation = Organisation.objects.first()
+        user.organisation_set.add(organisation)
+        user.save()
     district = AdministrativeDistrict.objects.first()
 
     plans = []
     for i in range(n):
         plan = Plan(
             title=f"{identifier_prefix} {i :0>3}",
-            creator=admin,
+            creator=user,
             organisation=organisation,
-            group=group,
             district=district,
             point={
                 "type": "Feature",
