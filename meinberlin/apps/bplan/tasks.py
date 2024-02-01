@@ -55,7 +55,17 @@ def get_bplan_api_pk_to_a4_admin_district_dict():
 
 
 @shared_task
-def get_location_information(bplan_id):
+def get_location_information(bplan_id: int):
+    """Fetch and update the location information for a bplan.
+    Called via the post_save signal in signals.py. To prevent the signal
+    from retriggering after updating the location information save() needs
+    to be called with the update_fields parameter: save(update_fields=["point", "admistrative_district"])
+
+    Parameters
+        ----------
+        bplan_id
+            The primary key of the bplan
+    """
     bplan = Bplan.objects.get(pk=bplan_id)
     point, district_pk = get_bplan_point_and_district_pk(bplan.identifier)
 
@@ -72,5 +82,5 @@ def get_location_information(bplan_id):
         )
 
     topic = Topic.objects.get(code="URB")
-    bplan.topics.set([topic])
-    bplan.save(update_fields=["point", "administrative_district", "topics"])
+    bplan.topics.add(topic)
+    bplan.save(update_fields=["point", "administrative_district"])
