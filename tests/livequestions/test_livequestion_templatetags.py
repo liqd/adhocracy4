@@ -1,3 +1,5 @@
+import html
+
 import pytest
 from django.urls import reverse
 
@@ -16,7 +18,7 @@ def test_react_questions(rf, user, live_question):
     present_url = reverse(
         "meinberlin_livequestions:question-present", kwargs={"module_slug": module.slug}
     )
-    rendered = render_template(template, context)
+    rendered = html.unescape(render_template(template, context))
 
     assert rendered.startswith('<div data-ie-widget="questions"')
     assert module.description.replace("\n", "\\n") in rendered
@@ -34,7 +36,7 @@ def test_react_questions_present(rf, user, live_question):
     context = {"request": request, "module": module}
 
     questions_api_url = reverse("questions-list", kwargs={"module_pk": module.pk})
-    rendered = render_template(template, context)
+    rendered = html.unescape(render_template(template, context))
 
     assert rendered.startswith('<div data-ie-widget="present"')
     assert questions_api_url in rendered
