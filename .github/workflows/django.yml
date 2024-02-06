@@ -83,8 +83,3 @@ jobs:
       - name: Run Frontend Tests
         run: |
           npm test
-      - name: Frontend Coverage
-        uses: artiomtr/jest-coverage-report-action@v2.0-rc.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-        if: github.event_name == 'pull_request'
