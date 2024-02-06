@@ -1,4 +1,7 @@
 from django import template
+from django.db.models import Count
+from django.db.models import Q
+from django.db.models import Sum
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.polls.models import Vote as Vote
@@ -38,17 +41,28 @@ def get_num_entries(module):
         + MapIdea.objects.filter(module=module).count()
         + budget_proposal.objects.filter(module=module).count()
         + kiezkasse_proposal.objects.filter(module=module).count()
-        + Comment.objects.filter(idea__module=module).count()
-        + Comment.objects.filter(mapidea__module=module).count()
-        + Comment.objects.filter(budget_proposal__module=module).count()
-        + Comment.objects.filter(kiezkasse_proposal__module=module).count()
-        + Comment.objects.filter(topic__module=module).count()
-        + Comment.objects.filter(maptopic__module=module).count()
-        + Comment.objects.filter(paragraph__chapter__module=module).count()
-        + Comment.objects.filter(chapter__module=module).count()
-        + Comment.objects.filter(poll__module=module).count()
         + Vote.objects.filter(choice__question__poll__module=module).count()
         + LiveQuestion.objects.filter(module=module).count()
         + Like.objects.filter(question__module=module).count()
     )
-    return item_count
+    comment_filter = (
+        Q(idea__module=module)
+        | Q(mapidea__module=module)
+        | Q(budget_proposal__module=module)
+        | Q(kiezkasse_proposal__module=module)
+        | Q(topic__module=module)
+        | Q(maptopic__module=module)
+        | Q(paragraph__chapter__module=module)
+        | Q(chapter__module=module)
+        | Q(poll__module=module)
+    )
+    comment_count = (
+        Comment.objects.filter(comment_filter)
+        .annotate(child_comment_count=Count("child_comments__pk", distinct=True))
+        .aggregate(comment_count=Count("pk") + Sum("child_comment_count"))[
+            "comment_count"
+        ]
+    )
+    if comment_count is None:
+        comment_count = 0
+    return item_count + comment_count
