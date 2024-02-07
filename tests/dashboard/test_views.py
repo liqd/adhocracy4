@@ -37,7 +37,6 @@ def test_project_list(client, organisation, project_factory, user, another_user)
 
 @pytest.mark.django_db
 def test_blueprint_list(client, organisation, user, another_user):
-
     blueprint_list_url = reverse(
         "a4dashboard:blueprint-list", kwargs={"organisation_slug": organisation.slug}
     )
@@ -257,15 +256,23 @@ def test_project_publish_redirect(client, project, another_user):
 
 
 @pytest.mark.django_db
-def test_project_duplicate(client, another_user, area_settings, phase_factory):
+def test_project_duplicate(
+    client, another_user, area_settings, phase_factory, image_factory
+):
     module = area_settings.module
     project = module.project
+    test_image = image_factory((1500, 500), "JPEG")
+    test_tile_image = image_factory((300, 150), "JPEG")
     organisation = project.organisation
     organisation.initiators.add(another_user)
     phase = phase_factory(module=module)
 
     project.is_draft = False
     project.is_archived = True
+
+    project.tile_image = test_tile_image
+    project.image = test_image
+    project.save()
 
     project_list_url = reverse(
         "a4dashboard:project-list", kwargs={"organisation_slug": organisation.slug}
@@ -284,6 +291,15 @@ def test_project_duplicate(client, another_user, area_settings, phase_factory):
 
     assert project_clone.is_draft is True
     assert project_clone.is_archived is False
+
+    assert project_clone.image == project.image
+    assert project_clone.image.name == project.image.name
+    assert project_clone.image.path == project.image.path
+
+    assert project_clone.tile_image == project.tile_image
+    assert project_clone.tile_image.name == project.tile_image.name
+    assert project_clone.tile_image.path == project.tile_image.path
+
     assert project_clone.created > project.created
     for attr in ("description", "information", "result", "access"):
         assert getattr(project_clone, attr) == getattr(project, attr)
