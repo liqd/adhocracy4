@@ -167,12 +167,6 @@ class DashboardProjectDuplicateMixin:
 
             project_clone = deepcopy(project)
             project_clone.pk = None
-            if project_clone.tile_image:
-                project_clone.tile_image.save(
-                    project.tile_image.name, project.tile_image, False
-                )
-            if project_clone.image:
-                project_clone.image.save(project.image.name, project.image, False)
             project_clone.created = timezone.now()
             project_clone.is_draft = True
             project_clone.is_archived = False
