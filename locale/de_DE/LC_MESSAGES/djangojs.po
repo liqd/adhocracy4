@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-01 14:51+0100\n"
-"PO-Revision-Date: 2023-08-09 08:12+0000\n"
-"Last-Translator: Jonathan Ostertag <j.ostertag@liqd.net>\n"
+"PO-Revision-Date: 2024-02-08 08:57+0000\n"
+"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr[1] "%s Antworten einblenden"
 #: adhocracy4/comments/static/comments/Comment.jsx:29
 #: adhocracy4/comments/static/comments/Comment.jsx:29
 msgid "Answer"
-msgstr "Antworten"
+msgstr "Antwort"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:30
 #: adhocracy4/comments/static/comments/Comment.jsx:30
@@ -233,12 +233,12 @@ msgstr " Melden"
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:25
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:25
 msgid "Show moderator's feedback"
-msgstr ""
+msgstr "Feedback der Moderation anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:26
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:26
 msgid "Hide moderator's feedback"
-msgstr ""
+msgstr "Feedback der Moderation verbergen"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:28
@@ -248,7 +248,7 @@ msgstr "Kommentar löschen"
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "Blocked by moderator"
-msgstr ""
+msgstr "Von der Moderation blockiert"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:36
@@ -264,12 +264,12 @@ msgstr "Antworten"
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:38
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:38
 msgid "Click to view rest of comment text."
-msgstr ""
+msgstr "Klicken Sie, um den Rest des Kommentars zu sehen."
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:39
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:39
 msgid "Click to hide expanded text."
-msgstr ""
+msgstr "Klicken Sie, um den erweiterten Text auszublenden."
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:48
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:48
@@ -314,7 +314,7 @@ msgstr "Kommentare"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
 #: meinberlin/apps/budgeting/assets/ControlBar.jsx:11
 msgid "Show filters"
-msgstr "Filter ausblenden"
+msgstr "Filter anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
@@ -364,7 +364,7 @@ msgstr "sortiert nach: "
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:69
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:69
 msgid "Highlighted"
-msgstr ""
+msgstr "Hervorgehoben"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:413
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:413
@@ -388,12 +388,14 @@ msgstr "Ihr Kommentar"
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 msgid "Please add a comment."
-msgstr ""
+msgstr "Bitte fügen Sie einen Kommentar hinzu."
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
 msgid "Something seems to have gone wrong, please try again."
 msgstr ""
+"Es scheint ein Fehler aufgetreten zu sein, bitte versuchen Sie es noch "
+"einmal."
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
@@ -420,11 +422,14 @@ msgstr "Kopiert"
 #: adhocracy4/follows/static/follows/FollowButton.jsx:10
 msgid "Click to be updated about this project via email."
 msgstr ""
+"Klicken Sie hier, um per E-Mail über dieses Projekt informiert zu werden."
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:13
 #: adhocracy4/follows/static/follows/FollowButton.jsx:13
 msgid "Click to no longer be updated about this project via email."
 msgstr ""
+"Klicken Sie hier, um nicht mehr per E-Mail über dieses Projekt informiert zu "
+"werden."
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:15
 #: adhocracy4/follows/static/follows/FollowButton.jsx:15
@@ -556,15 +561,15 @@ msgstr[1] "Personen unterstützen diesen Vorschlag."
 #: adhocracy4/maps/static/a4maps/a4maps_display_points.js:114
 msgid "person voted for this proposal."
 msgid_plural "persons voted for this proposal."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Person hat für diesen Vorschlag gestimmt."
+msgstr[1] "Personen haben für diesen Vorschlag gestimmt."
 
 #: adhocracy4/maps/static/a4maps/a4maps_display_points.js:127
 #: adhocracy4/maps/static/a4maps/a4maps_display_points.js:127
 msgid "person commented on this proposal."
 msgid_plural "persons commented on this proposal."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Person hat sich zu diesem Vorschlag geäußert."
+msgstr[1] "Personen haben sich zu diesem Vorschlag geäußert."
 
 #: adhocracy4/polls/static/PollDashboard/EditPollChoice.jsx:9
 #: adhocracy4/polls/static/PollDashboard/EditPollQuestion.jsx:70
@@ -834,11 +839,15 @@ msgid ""
 "Yes, I have read and agree to this organisation's %(linkStart)s terms of use "
 "%(linkEnd)s."
 msgstr ""
+"Ja, ich habe die %(linkStart)s Nutzungsbedingungen %(linkEnd)s dieser "
+"Organisation gelesen und stimme ihnen zu."
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:6
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:6
 msgid "You can still manage all your preferences on User Agreements."
 msgstr ""
+"Sie können weiterhin alle Ihre Einstellungen unter Benutzervereinbarungen "
+"verwalten."
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:16
 #, javascript-format
@@ -983,11 +992,11 @@ msgstr "Meine Stimme geben"
 
 #: meinberlin/apps/captcha/assets/captcheck.js:29
 msgid "Click for image-based question"
-msgstr ""
+msgstr "Hier klicken für bildbasierte Frage"
 
 #: meinberlin/apps/captcha/assets/captcheck.js:30
 msgid "Click for text-based question"
-msgstr ""
+msgstr "Hier klicken für textbasierte Frage"
 
 #: meinberlin/apps/captcha/assets/captcheck.js:31
 msgid "Image mode"
@@ -1052,6 +1061,10 @@ msgid ""
 "Describe the image in approx. 80 characters. Example: A busy square with "
 "people in summer."
 msgstr ""
+"Wenn Sie ein Bild hinzufügen, geben Sie bitte einen alternativen Text an. Er "
+"dient als textliche Beschreibung des Bildinhaltes und wird von Screenreadern "
+"vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein "
+"belebter Platz mit Menschen im Sommer."
 
 #: meinberlin/apps/embed/assets/embed.js:123
 msgid "We couldn't find what you were looking for."
@@ -1314,11 +1327,11 @@ msgstr "Status: "
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:12
 msgid "copyright missing"
-msgstr ""
+msgstr "Copyright fehlt"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:13
 msgid "Here you can find a decorative picture."
-msgstr ""
+msgstr "Hier finden Sie ein dekoratives Bild."
 
 #: meinberlin/apps/plans/assets/PlansListMapBox.jsx:13
 msgid "ongoing"
@@ -1362,7 +1375,7 @@ msgstr "Beteiligung: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:7
 msgid "Filtered list of projects"
-msgstr ""
+msgstr "Gefilterte Liste von Projekten"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:8
 msgid " search results"
@@ -1430,7 +1443,7 @@ msgstr ""
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "Link to video: "
-msgstr ""
+msgstr "Link zum Video: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "Play video"
@@ -1438,7 +1451,7 @@ msgstr "Video abspielen"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:16
 msgid "External video"
-msgstr ""
+msgstr "Externes Video"
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 msgid ""
@@ -1446,11 +1459,16 @@ msgid ""
 "only be loaded after you give your consent. Only then will Vimeo set cookies "
 "that collect information on user behaviour."
 msgstr ""
+"Hier finden Sie ein Video von Vimeo. Um Ihre Daten zu schützen, wird der "
+"Inhalt erst geladen, wenn Sie Ihre Zustimmung gegeben haben. Erst dann setzt "
+"Vimeo Cookies, die Informationen über das Nutzerverhalten sammeln."
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
+"Weitere Informationen finden Sie in den Datenschutzbestimmungen von Vimeo "
+"unter: "
 
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "play video"
-msgstr ""
+msgstr "Video abspielen"
