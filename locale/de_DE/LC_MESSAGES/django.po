@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-01 14:51+0100\n"
-"PO-Revision-Date: 2023-08-09 08:12+0000\n"
-"Last-Translator: SandisStudi <s.uscins@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/"
-">\n"
+"PO-Revision-Date: 2024-02-08 08:57+0000\n"
+"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -519,7 +519,7 @@ msgstr "unbekannte*r Nutzer*in"
 #: adhocracy4/comments_async/api.py:148
 #: adhocracy4/polls/api.py:115
 msgid "Please agree to the organisation's terms of use."
-msgstr ""
+msgstr "Bitte stimmen Sie den Nutzungsbedingungen der Organisation zu."
 
 #: adhocracy4/comments_async/serializers.py:15
 msgid "Please choose one or more categories."
@@ -654,6 +654,11 @@ msgid ""
 "image content and is read out by screen readers. Describe the image in "
 "approx. 80 characters. Example: A busy square with people in summer."
 msgstr ""
+"Die Projektbeschreibung wird im Info-Tab angezeigt. Wenn Sie ein Bild "
+"hinzufügen, geben Sie bitte einen alternativen Text an. Er dient als "
+"textliche Beschreibung des Bildinhaltes und wird von Screenreadern "
+"vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein "
+"belebter Platz mit Menschen im Sommer."
 
 #: adhocracy4/dashboard/forms.py:134
 msgid ""
@@ -664,6 +669,13 @@ msgid ""
 "is read out by screen readers. Describe the image in approx. 80 characters. "
 "Example: A busy square with people in summer."
 msgstr ""
+"Die Ergebnisbeschreibung wird im Ergebnis-Tab angezeigt. Bitte beschreiben "
+"Sie vorab ein Teilnahmeversprechen (was wird mit dem Ergebnis passieren?) "
+"und informieren Sie anschließend über das Ergebnis. Wenn Sie ein Bild "
+"hinzufügen, geben Sie bitte einen alternativen Text an. Er dient als "
+"textliche Beschreibung des Bildinhaltes und wird von Screenreadern "
+"vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein "
+"belebter Platz mit Menschen im Sommer."
 
 #: adhocracy4/dashboard/forms.py:165
 #: adhocracy4/phases/models.py:66
@@ -904,12 +916,12 @@ msgstr "Das Bild muss mindestens {min_height} Pixel hoch sein."
 #: adhocracy4/images/validators.py:57
 #, python-brace-format
 msgid "Image must be at most {max_width} pixels wide"
-msgstr ""
+msgstr "Das Bild darf höchstens {max_width} Pixel breit sein"
 
 #: adhocracy4/images/validators.py:60
 #, python-brace-format
 msgid "Image must be at most {max_height} pixels high"
-msgstr ""
+msgstr "Das Bild darf höchstens {max_height} Pixel hoch sein"
 
 #: adhocracy4/images/validators.py:69
 #, python-brace-format
@@ -918,7 +930,7 @@ msgstr "Das Seitenverhältnis muss {aspect_width}:{aspect_height} entsprechen."
 
 #: adhocracy4/images/validators.py:87
 msgid "Please add an alternative text for all images."
-msgstr ""
+msgstr "Bitte fügen Sie jedem Bild einen Alternativtext hinzu."
 
 #: adhocracy4/images/widgets.py:28
 msgid "Select a picture from your local folder."
@@ -1070,22 +1082,22 @@ msgstr "Sekunden"
 #: adhocracy4/modules/models.py:229
 msgctxt "abbreviation for day(s)"
 msgid "D"
-msgstr ""
+msgstr "T"
 
 #: adhocracy4/modules/models.py:230
 msgctxt "abbreviation for hour(s)"
 msgid "H"
-msgstr ""
+msgstr "Std."
 
 #: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for minute(s)"
 msgid "M"
-msgstr ""
+msgstr "Min."
 
 #: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for second(s)"
 msgid "S"
-msgstr ""
+msgstr "Sek."
 
 #: adhocracy4/phases/forms.py:24
 msgid "Phases cannot run at the same time and must follow after each other."
@@ -1095,6 +1107,7 @@ msgstr ""
 #: adhocracy4/phases/forms.py:31
 msgid "Phases need to be in same order as in form."
 msgstr ""
+"Die Phasen müssen in der gleichen Reihenfolge wie im Formular angegeben sein."
 
 #: adhocracy4/phases/models.py:59
 #: meinberlin/apps/newsletters/models.py:28
@@ -1241,7 +1254,7 @@ msgstr "Beitrag des Typs %(item)s für dieses Modul existiert bereits."
 
 #: adhocracy4/polls/validators.py:28
 msgid "Question has to belong to the poll set in the url."
-msgstr ""
+msgstr "Die Frage muss zu der in der Url angegebenen Umfrage gehören."
 
 #: adhocracy4/polls/validators.py:39
 msgid "Choice has to belong to the question set in the url."
@@ -1286,7 +1299,7 @@ msgstr "öffentlich"
 
 #: adhocracy4/projects/mixins.py:173
 msgid "Final Results"
-msgstr ""
+msgstr "Finale Ergebnisse"
 
 #: adhocracy4/projects/models.py:63
 msgid ""
@@ -2011,7 +2024,7 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/models.py:73
 msgid "completed moderation tasks"
-msgstr ""
+msgstr "erledigte Moderationsaufgaben"
 
 #: meinberlin/apps/budgeting/phases.py:15
 #: meinberlin/apps/budgeting/phases.py:34
@@ -2433,6 +2446,8 @@ msgstr "Bitte geben Sie eine gültige E-Mail-Adresse an."
 #, python-brace-format
 msgid "Ensure this field has no more than {max_length} characters."
 msgstr ""
+"Stellen Sie sicher, dass dieses Feld nicht mehr als {max_length} Zeichen "
+"enthält."
 
 #: meinberlin/apps/contrib/enums.py:10
 msgid "Anti-discrimination"
@@ -2595,7 +2610,7 @@ msgstr "Moderationsaufgaben"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:217
 msgid "Done"
-msgstr ""
+msgstr "Fertig"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:227
 msgid ""
@@ -3424,6 +3439,10 @@ msgid ""
 "Describe the image in approx. 80 characters. Example: A busy square with "
 "people in summer."
 msgstr ""
+"Wenn Sie ein Bild hinzufügen, geben Sie bitte einen alternativen Text an. Er "
+"dient als textliche Beschreibung des Bildinhaltes und wird von Screenreadern "
+"vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. Beispiel: Ein "
+"belebter Platz mit Menschen im Sommer."
 
 #: meinberlin/apps/maptopicprio/phases.py:15
 msgid "What do you think about these places/suggestions?"
@@ -3600,6 +3619,11 @@ msgid ""
 "Describe the image in approx. 80 characters. Example: A busy square with "
 "people in summer."
 msgstr ""
+"Wenn Sie ein Bild hinzufügen, achten Sie bitte darauf, dass die Breite nicht "
+"größer als 650px ist und dass Sie einen alternativen Text zum Bild angeben. "
+"Ein Alternativtext dient als textliche Beschreibung des Bildinhaltes und "
+"wird von Screenreadern vorgelesen. Beschreiben Sie das Bild mit ca. 80 "
+"Zeichen. Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
 #: meinberlin/apps/newsletters/forms.py:44
 #: meinberlin/apps/newsletters/models.py:40
@@ -3817,11 +3841,11 @@ msgstr ""
 
 #: meinberlin/apps/plans/forms.py:30 meinberlin/apps/projects/forms.py:85
 msgid "Please select at least 1 topic"
-msgstr ""
+msgstr "Bitte wählen Sie mindestens 1 Thema aus."
 
 #: meinberlin/apps/plans/forms.py:33 meinberlin/apps/projects/forms.py:88
 msgid "Please select at most 2 topics"
-msgstr ""
+msgstr "Bitte wählen Sie maximal 2 Themen aus."
 
 #: meinberlin/apps/plans/forms.py:69
 msgid "Please locate the plan on the map."
@@ -3881,6 +3905,11 @@ msgid ""
 "the image in approx. 80 characters. Example: A busy square with people in "
 "summer."
 msgstr ""
+"Sie können PDFs und Bilder hochladen, Videos einbetten und auf externe URLs "
+"verlinken. Wenn Sie ein Bild hinzufügen, geben Sie bitte einen alternativen "
+"Text an. Er dient als textliche Beschreibung des Bildinhalts und wird von "
+"Screenreadern vorgelesen. Beschreiben Sie das Bild in ca. 80 Zeichen. "
+"Beispiel: Ein belebter Platz mit Menschen im Sommer."
 
 #: meinberlin/apps/plans/forms.py:107
 msgid "The name is displayed in the header image."
@@ -4091,7 +4120,7 @@ msgstr "Neues Vorhaben"
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:36
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:13
 msgid "Here you can find a decorative picture."
-msgstr "Hier befindet sich ein dekoratives Bild."
+msgstr "Hier finden Sie ein dekoratives Bild."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:39
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:113
@@ -4099,7 +4128,7 @@ msgstr "Hier befindet sich ein dekoratives Bild."
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:53
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:19
 msgid "copyright missing"
-msgstr "fehlende Copyright-Angabe"
+msgstr "Copyright fehlt"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:76
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:78
@@ -4785,7 +4814,7 @@ msgstr "Der Abstimmungscode ist zu kurz"
 
 #: meinberlin/apps/votes/forms.py:22
 msgid "The token is too long"
-msgstr ""
+msgstr "Das Token ist zu lang"
 
 #: meinberlin/apps/votes/forms.py:52
 msgid "This token is not valid"
