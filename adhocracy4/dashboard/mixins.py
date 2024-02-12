@@ -1,3 +1,4 @@
+import warnings
 from copy import deepcopy
 from pathlib import Path
 
@@ -109,21 +110,32 @@ class DashboardComponentMixin(base.ContextMixin):
 
 
 class DashboardComponentFormSignalMixin(edit.FormMixin):
+    """Mixin which sends a project_component_updated or module_component_updated signal
+    when creating, updating or deleting an object via the HTTP POST method
+    (e.g. from the dashboard).
+    """
+
     def form_valid(self, form):
+        # The call to super.form_valid() may delete self.project or self.module,
+        # to be able to still reference them below we need to store them in separate
+        # variables before they are deleted.
+        project = self.project
+        module = self.module
+
         response = super().form_valid(form)
 
         component = self.component
         if component.identifier in components.projects:
             signals.project_component_updated.send(
                 sender=component.__class__,
-                project=self.project,
+                project=project,
                 component=component,
                 user=self.request.user,
             )
         else:
             signals.module_component_updated.send(
                 sender=component.__class__,
-                module=self.module,
+                module=module,
                 component=component,
                 user=self.request.user,
             )
@@ -131,13 +143,34 @@ class DashboardComponentFormSignalMixin(edit.FormMixin):
 
 
 class DashboardComponentDeleteSignalMixin(edit.DeletionMixin):
-    def form_valid(self, request, *args, **kwargs):
+    """Deprecated, use DashboardComponentFormSignalMixin for POST requests instead.
+    This mixin will be removed in the next version.
+    """
+
+    def __init__(self):
+        warnings.warn(
+            "dashboard.mixins.DashboardComponentDeleteSignalMixin is deprecated, "
+            "use dashboard.mixins.DashboardComponentFormSignalMixin for forms / POST "
+            "requests. This mixin will be removed in the next version.",
+            DeprecationWarning,
+        )
+
+        super().__init__()
+
+    def delete(self, request, *args, **kwargs):
+        warnings.warn(
+            "dashboard.mixins.DashboardComponentDeleteSignalMixin.delete()"
+            "is deprecated, use dashboard.mixins.DashboardComponentFormSignalMixin "
+            "for forms / POST requests. This mixin will be removed in the next "
+            "version.",
+            DeprecationWarning,
+        )
         # Project and module have to be stored before delete is called as
         # they may rely on the still existing db object.
         project = self.project
         module = self.module
 
-        response = super().form_valid(request, *args, **kwargs)
+        response = super().delete(request, *args, **kwargs)
 
         component = self.component
         if component.identifier in components.projects:
