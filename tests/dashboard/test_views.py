@@ -1,4 +1,5 @@
 import importlib
+from pathlib import Path
 
 import pytest
 from django.test.utils import override_settings
@@ -257,7 +258,7 @@ def test_project_publish_redirect(client, project, another_user):
 
 @pytest.mark.django_db
 def test_project_duplicate(
-    client, another_user, area_settings, phase_factory, image_factory
+    client, another_user, area_settings, phase_factory, image_factory, topic_factory
 ):
     module = area_settings.module
     project = module.project
@@ -272,6 +273,7 @@ def test_project_duplicate(
 
     project.tile_image = test_tile_image
     project.image = test_image
+    topic_factory(projects=[project])
     project.save()
 
     project_list_url = reverse(
@@ -291,14 +293,24 @@ def test_project_duplicate(
 
     assert project_clone.is_draft is True
     assert project_clone.is_archived is False
+    assert project_clone.topics.all().exists()
+    assert len(project_clone.topics.all()) == len(project.topics.all())
 
-    assert project_clone.image == project.image
-    assert project_clone.image.name == project.image.name
-    assert project_clone.image.path == project.image.path
+    assert project_clone.image
+    # django saves a new instance of the image by extending the original name
+    assert Path(project.image.name).stem in Path(project_clone.image.name).stem
+    assert len(project_clone.image.name) > len(project.image.name)
+    assert Path(project_clone.image.path).parent == Path(project.image.path).parent
 
-    assert project_clone.tile_image == project.tile_image
-    assert project_clone.tile_image.name == project.tile_image.name
-    assert project_clone.tile_image.path == project.tile_image.path
+    assert project_clone.tile_image
+    assert (
+        Path(project.tile_image.name).stem in Path(project_clone.tile_image.name).stem
+    )
+    assert len(project_clone.tile_image.name) > len(project.tile_image.name)
+    assert (
+        Path(project_clone.tile_image.path).parent
+        == Path(project.tile_image.path).parent
+    )
 
     assert project_clone.created > project.created
     for attr in ("description", "information", "result", "access"):
@@ -319,3 +331,8 @@ def test_project_duplicate(
     area_settings_clone = module_clone.settings_instance
     assert area_settings_clone.pk != area_settings.pk
     assert area_settings_clone.polygon == area_settings.polygon
+
+    # check if original project is deleted, the copied image remains
+    project.delete()
+    project_clone.refresh_from_db()
+    assert project_clone.tile_image.path is not None

@@ -1,9 +1,11 @@
 from copy import deepcopy
+from pathlib import Path
 
 from django.apps import apps
 from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
+from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import NoReverseMatch
@@ -170,7 +172,28 @@ class DashboardProjectDuplicateMixin:
             project_clone.created = timezone.now()
             project_clone.is_draft = True
             project_clone.is_archived = False
+
+            if project.tile_image:
+                # django's image.name contains the file storage location defined in 'upload_to'
+                tile_file_name = Path(
+                    project.tile_image.name
+                ).name  # retreives only the filename
+                tile_copy = ContentFile(
+                    project.tile_image.read()
+                )  # retreives the image bytes
+                project_clone.tile_image.save(tile_file_name, tile_copy, False)
+
+            if project.image:
+                # django's image.name contains the file storage location defined in 'upload_to'
+                image_file_name = Path(project.image.name).name
+                image_copy = ContentFile(project.image.read())
+                project_clone.image.save(image_file_name, image_copy, False)
+
             project_clone.save()
+            if project.topics:
+                for topic in project.topics.all():
+                    project_clone.topics.add(topic)
+
             signals.project_created.send(
                 sender=None, project=project_clone, user=self.request.user
             )
