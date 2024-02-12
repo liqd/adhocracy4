@@ -1,9 +1,12 @@
 import json
+from unittest.mock import ANY
+from unittest.mock import MagicMock
 
 import pytest
 from django.urls import reverse
 
 from adhocracy4.dashboard import components
+from adhocracy4.dashboard.signals import module_component_updated
 from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import redirect_target
@@ -47,8 +50,17 @@ def test_maptopic_create_view(
         "point_label": "test",
     }
     client.login(username=initiator.email, password="password")
+    signal_handler = MagicMock()
+    module_component_updated.connect(signal_handler)
     response = client.post(url, data)
     assert redirect_target(response) == "maptopic-list"
+    signal_handler.assert_called_once_with(
+        signal=ANY,
+        sender=component.__class__,
+        module=module,
+        component=component,
+        user=initiator,
+    )
     topic = MapTopic.objects.get(name=data.get("name"))
     assert topic.description == data.get("description")
     assert topic.category.pk == data.get("category")
@@ -78,8 +90,17 @@ def test_maptopic_update_view(
         "point_label": "test",
     }
     client.login(username=initiator.email, password="password")
+    signal_handler = MagicMock()
+    module_component_updated.connect(signal_handler)
     response = client.post(url, data)
     assert redirect_target(response) == "maptopic-list"
+    signal_handler.assert_called_once_with(
+        signal=ANY,
+        sender=component.__class__,
+        module=module,
+        component=component,
+        user=initiator,
+    )
     item.refresh_from_db()
     assert item.description == data.get("description")
     assert item.category.pk == data.get("category")
@@ -99,8 +120,17 @@ def test_maptopic_delete_view(
     url = reverse(
         "a4dashboard:maptopic-delete", kwargs={"pk": item.pk, "year": item.created.year}
     )
+    signal_handler = MagicMock()
+    module_component_updated.connect(signal_handler)
     client.login(username=initiator.email, password="password")
-    response = client.delete(url)
+    response = client.post(url)
+    signal_handler.assert_called_once_with(
+        signal=ANY,
+        sender=component.__class__,
+        module=module,
+        component=component,
+        user=initiator,
+    )
     assert redirect_target(response) == "maptopic-list"
     assert not MapTopic.objects.exists()
 
@@ -126,8 +156,11 @@ def test_maptopic_update_view_missing_alt_text(
         '"coordinates":[ 13.0, 52.0 ] }, "properties":{}}',
         "point_label": "test",
     }
+    signal_handler = MagicMock()
+    module_component_updated.connect(signal_handler)
     client.login(username=initiator.email, password="password")
     response = client.post(url, data)
+    signal_handler.assert_not_called()
     assert "description" in response.context_data["form"].errors
     assert (
         response.context_data["form"].errors["description"][0]

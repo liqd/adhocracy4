@@ -1,12 +1,19 @@
+from unittest.mock import ANY
+from unittest.mock import MagicMock
+
 import pytest
 from django.urls import reverse
 
+from adhocracy4.dashboard import components
+from adhocracy4.dashboard.signals import module_component_updated
 from adhocracy4.test.helpers import assert_template_response
 from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import freeze_pre_phase
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.topicprio import models
 from meinberlin.apps.topicprio import phases
+
+component = components.modules.get("topic_edit")
 
 
 @pytest.mark.django_db
@@ -52,7 +59,16 @@ def test_admin_can_create_topic(client, phase_factory, category_factory, admin):
             "description": "description",
             "category": category.pk,
         }
+        signal_handler = MagicMock()
+        module_component_updated.connect(signal_handler)
         response = client.post(url, topic)
+        signal_handler.assert_called_once_with(
+            signal=ANY,
+            sender=component.__class__,
+            module=module,
+            component=component,
+            user=admin,
+        )
         assert response.status_code == 302
         assert redirect_target(response) == "topic-list"
         count = models.Topic.objects.all().count()
@@ -95,7 +111,16 @@ def test_initiator_can_create_topic_before_phase(
             "description": "description",
             "category": category.pk,
         }
+        signal_handler = MagicMock()
+        module_component_updated.connect(signal_handler)
         response = client.post(url, topic)
+        signal_handler.assert_called_once_with(
+            signal=ANY,
+            sender=component.__class__,
+            module=module,
+            component=component,
+            user=initiator,
+        )
         assert response.status_code == 302
         assert redirect_target(response) == "topic-list"
         count = models.Topic.objects.all().count()
