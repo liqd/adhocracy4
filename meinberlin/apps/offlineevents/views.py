@@ -93,6 +93,7 @@ class OfflineEventDeleteView(
     ProjectMixin,
     mixins.DashboardBaseMixin,
     mixins.DashboardComponentMixin,
+    mixins.DashboardComponentFormSignalMixin,
     mixins.DashboardComponentDeleteSignalMixin,
     generic.DeleteView,
 ):

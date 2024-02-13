@@ -147,6 +147,7 @@ class TopicUpdateView(
 class TopicDeleteView(
     mixins.DashboardBaseMixin,
     mixins.DashboardComponentMixin,
+    mixins.DashboardComponentFormSignalMixin,
     mixins.DashboardComponentDeleteSignalMixin,
     idea_views.AbstractIdeaDeleteView,
 ):
