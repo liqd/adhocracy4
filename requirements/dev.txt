@@ -1,6 +1,6 @@
 -r base.txt
 black==23.7.0
-factory-boy==3.2.1
+factory-boy==3.3.0
 Faker==19.1.0
 flake8==6.0.0
 freezegun==1.2.2
