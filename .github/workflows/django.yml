@@ -39,7 +39,7 @@ jobs:
           psql -c 'create database django;' -U postgres
           psql -c 'create database django_test;' -U postgres
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -50,7 +50,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Cache pip packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-pip-packages
         with:
