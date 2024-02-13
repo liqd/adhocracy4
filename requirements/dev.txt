@@ -1,5 +1,5 @@
 -r base.txt
-black==23.7.0
+black==23.12.1
 django-debug-toolbar==4.1.0
 djlint===1.34.0
 factory-boy==3.3.0
