@@ -1,5 +1,5 @@
 -r base.txt
-black==23.12.1
+black==24.2.0
 factory-boy==3.3.0
 Faker==23.1.0
 flake8==6.1.0
