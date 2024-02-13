@@ -21,3 +21,4 @@ class ActionFactory(factory.django.DjangoModelFactory):
     def project(obj, create, extracted, **kwargs):
         if obj.obj:
             obj.project = obj.obj.project
+            obj.save()
