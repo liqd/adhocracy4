@@ -77,7 +77,7 @@
     "lint": "eslint adhocracy4 --ext .js,.jsx",
     "lint-staged": "lint-staged",
     "lint-fix": "eslint --fix --ext .js,.jsx .",
-    "prepare": "husky install",
+    "prepare": "husky",
     "test": "jest",
     "testDebug": "jest -o --coverage=false",
     "testNoCov": "jest --coverage=false",
