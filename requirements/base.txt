@@ -7,7 +7,7 @@ https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_
 django-ckeditor==6.6.1
 django-enumfield==3.1
 django-filter==23.5
-django-widget-tweaks==1.4.12
+django-widget-tweaks==1.5.0
 djangorestframework==3.14.0
 easy-thumbnails[svg]==2.8.5
 html5lib==1.1
