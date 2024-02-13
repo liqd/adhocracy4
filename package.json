@@ -36,7 +36,7 @@
     "maplibregl-mapbox-request-transformer": "0.0.2",
     "mini-css-extract-plugin": "2.7.7",
     "path-browserify": "1.0.1",
-    "postcss-loader": "7.3.4",
+    "postcss-loader": "8.1.0",
     "react": "18.2.0",
     "react-bootstrap-typeahead": "6.2.3",
     "react-cookie": "4.1.1",
