@@ -138,6 +138,7 @@ MIDDLEWARE = (
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "meinberlin.apps.embed.middleware.AjaxPathMiddleware",
     "meinberlin.apps.votes.middleware.VotingTokenSessionMiddleware",
 )
@@ -267,8 +268,6 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_FORMS = {"signup": "meinberlin.apps.users.forms.TermsSignupForm"}
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_USERNAME_REQUIRED = True
