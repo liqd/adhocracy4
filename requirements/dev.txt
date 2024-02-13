@@ -4,7 +4,7 @@ factory-boy==3.3.0
 Faker==19.13.0
 flake8==6.0.0
 freezegun==1.4.0
-isort==5.12.0
+isort==5.13.2
 psycopg[binary]==3.1.18
 pytest==7.4.4
 pytest-cov==4.1.0
