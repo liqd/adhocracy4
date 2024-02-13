@@ -62,6 +62,8 @@ INSTALLED_APPS = (
     "rules.apps.AutodiscoverRulesConfig",
     "django.contrib.admin",
     "django.contrib.auth",
+    "allauth",
+    "allauth.account",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -77,6 +79,7 @@ MIDDLEWARE = (
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 )
 
 ROOT_URLCONF = "tests.project.urls"
