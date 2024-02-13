@@ -147,7 +147,7 @@ class DashboardComponentDeleteSignalMixin(edit.DeletionMixin):
     This mixin will be removed in the next version.
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         warnings.warn(
             "dashboard.mixins.DashboardComponentDeleteSignalMixin is deprecated, "
             "use dashboard.mixins.DashboardComponentFormSignalMixin for forms / POST "
@@ -155,7 +155,7 @@ class DashboardComponentDeleteSignalMixin(edit.DeletionMixin):
             DeprecationWarning,
         )
 
-        super().__init__()
+        super().__init__(*args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
         warnings.warn(
