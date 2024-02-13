@@ -12,7 +12,7 @@ class DateTimeField(SplitDateTimeField):
     ):
         label = kwargs.get("label", None)
         time_label = ""
-        if type(label) == tuple:
+        if isinstance(label, tuple):
             date_label, time_label = label
             kwargs["label"] = date_label
         elif label:

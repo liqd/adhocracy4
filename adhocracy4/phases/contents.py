@@ -1,5 +1,4 @@
 class PhaseContent:
-
     features = {}
 
     @property
@@ -17,7 +16,7 @@ class PhaseContents:
     _registry = {}
 
     def __getitem__(self, identifier):
-        if type(identifier) != str:
+        if not isinstance(identifier, str):
             raise TypeError("Phase identifier must be str")
         return self._registry[identifier]
 

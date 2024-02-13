@@ -20,7 +20,6 @@ class PollCommentExportView(
     export_mixins.CommentExportWithRepliesToMixin,
     export_views.BaseItemExportView,
 ):
-
     model = Comment
 
     fields = ["id", "comment", "created"]
@@ -47,7 +46,6 @@ class PollCommentExportView(
 
 
 class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
-
     permission_required = "a4polls.change_poll"
 
     def get_permission_object(self):
@@ -112,7 +110,7 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
 
         else:
             field_object, is_text_field = field
-            if type(field_object) == poll_models.Choice:
+            if isinstance(field_object, poll_models.Choice):
                 votes_qs = poll_models.Vote.objects.filter(
                     choice=field_object, creator=user
                 )
