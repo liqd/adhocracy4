@@ -7,7 +7,7 @@ brotli==1.0.9
 django-celery-beat==2.5.0
 django-cloudflare-push==0.2.2
 django_csp==3.7
-redis==5.0.0
+redis==5.0.1
 requests==2.31.0
 sentry-sdk==1.28.1
 urllib3==2.0.7
