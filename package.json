@@ -93,7 +93,7 @@
     "lint": "eslint meinberlin/apps meinberlin/assets --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss'",
     "lint-staged": "lint-staged",
     "lint-fix": "eslint meinberlin/apps meinberlin/assets --fix --ext .js,.jsx",
-    "postinstall": "husky install",
+    "postinstall": "husky",
     "test": "jest",
     "testDebug": "jest -o --coverage=false",
     "testNoCov": "jest --coverage=false",
