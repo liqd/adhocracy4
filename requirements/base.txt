@@ -1,5 +1,5 @@
 beautifulsoup4==4.12.3
-bleach[css]==6.0.0
+bleach[css]==6.1.0
 Django==4.2.10
 django-allauth==0.55.0
 git+https://github.com/liqd/django-autoslug.git@liqd2212#egg=django-autoslug
