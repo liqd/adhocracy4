@@ -28,4 +28,4 @@ easy-thumbnails[svg]==2.8.5
 git+https://github.com/liqd/django-autoslug.git@liqd2212#egg=django-autoslug
 python-dateutil==2.8.2
 rules==3.3
-XlsxWriter==3.1.2
+XlsxWriter==3.1.9
