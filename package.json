@@ -19,7 +19,7 @@
     "adhocracy4": "liqd/adhocracy4#9b326198944e546044d6b1c280eeeaae7066ef09",
     "autoprefixer": "10.4.17",
     "bootstrap": "5.2.3",
-    "copy-webpack-plugin": "11.0.0",
+    "copy-webpack-plugin": "12.0.2",
     "css-loader": "6.8.1",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "dsgvo-video-embed": "liqd/dsgvo-video-embed#main",
