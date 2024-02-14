@@ -40,7 +40,7 @@ E-Mail-Adresse<br>
 Ihre Stellungnahme
 </p>
 <p>
-{{ statement.statement }}
+{{ statement.statement| linebreaks }}
 </p>
 {% endblock %}
 

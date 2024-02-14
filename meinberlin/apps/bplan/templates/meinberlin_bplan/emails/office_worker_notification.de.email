@@ -30,7 +30,7 @@ E-Mail Adresse:<br>
 </p>
 <p>
 Stellungnahme:<br>
-{{ statement.statement }}
+{{ statement.statement| linebreaks }}
 </p>
 {% endblock %}
 
