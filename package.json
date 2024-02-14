@@ -34,7 +34,7 @@
     "leaflet.markercluster": "github:liqd/Leaflet.markercluster#liqd2212",
     "maplibre-gl": "2.4.0",
     "maplibregl-mapbox-request-transformer": "0.0.2",
-    "mini-css-extract-plugin": "2.7.7",
+    "mini-css-extract-plugin": "2.8.0",
     "path-browserify": "1.0.1",
     "postcss-loader": "8.1.0",
     "react": "18.2.0",
