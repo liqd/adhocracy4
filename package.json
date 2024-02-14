@@ -20,7 +20,7 @@
     "autoprefixer": "10.4.17",
     "bootstrap": "5.3.2",
     "copy-webpack-plugin": "12.0.2",
-    "css-loader": "6.8.1",
+    "css-loader": "6.10.0",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "dsgvo-video-embed": "liqd/dsgvo-video-embed#main",
     "es6-promise": "4.2.8",
