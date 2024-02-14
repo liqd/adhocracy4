@@ -25,7 +25,6 @@
     "scss/no-global-function-names": null,
 
     "scss/dollar-variable-pattern": "^([a-z][a-z0-9]*)((-|--|_|__)[a-z0-9]+)*$",
-    "declaration-colon-newline-after": null,
     "scss/at-extend-no-missing-placeholder": null,
     "alpha-value-notation": null,
     "color-function-notation": null,
