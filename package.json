@@ -18,7 +18,7 @@
     "acorn": "8.10.0",
     "adhocracy4": "liqd/adhocracy4#71d27d2a822c64270aa73e4044cade4da88e142d",
     "autoprefixer": "10.4.17",
-    "bootstrap": "5.2.3",
+    "bootstrap": "5.3.2",
     "copy-webpack-plugin": "12.0.2",
     "css-loader": "6.8.1",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
