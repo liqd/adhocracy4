@@ -79,7 +79,7 @@
     "lint-staged": "15.2.2",
     "postcss": "8.4.35",
     "stylelint": "16.2.1",
-    "stylelint-config-standard-scss": "9.0.0",
+    "stylelint-config-standard-scss": "13.0.0",
     "stylelint-declaration-strict-value": "1.10.4",
     "webpack": "5.90.1",
     "webpack-cli": "5.1.4",
