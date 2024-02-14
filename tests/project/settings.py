@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     "adhocracy4.comments",
     "adhocracy4.comments_async",
     "adhocracy4.maps",
+    "adhocracy4.maps_react",
     "adhocracy4.actions",
     "adhocracy4.follows",
     "adhocracy4.filters",
