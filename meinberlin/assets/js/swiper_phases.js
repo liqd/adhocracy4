@@ -1,4 +1,6 @@
-import { Swiper, Pagination, A11y } from 'swiper'
+import { Swiper } from 'swiper'
+/* eslint import/no-unresolved: [2, { ignore: ['swiper/modules'] }] */
+import { Pagination, A11y } from 'swiper/modules'
 import django from 'django'
 
 function createSwiper (params) {
