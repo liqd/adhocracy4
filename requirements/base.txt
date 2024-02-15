@@ -18,6 +18,7 @@ zeep==4.2.1
 # Inherited a4-core requirements
 celery==5.3.6
 django-allauth==0.61.1
+django-autoslug==1.9.9
 django-ckeditor==6.7.1
 https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl
 django-filter==23.5
@@ -25,7 +26,6 @@ django-widget-tweaks==1.5.0
 Django==4.2.10
 djangorestframework==3.14.0
 easy-thumbnails[svg]==2.8.5
-git+https://github.com/liqd/django-autoslug.git@liqd2212#egg=django-autoslug
 python-dateutil==2.8.2
 rules==3.3
 XlsxWriter==3.1.9
