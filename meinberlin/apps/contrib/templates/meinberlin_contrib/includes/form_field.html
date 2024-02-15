@@ -2,20 +2,20 @@
 
 <div class="form-group {% if add_class %}{{ add_class }}{% endif %}">
     <label for="{{ field.id_for_label }}" {% if tabindex %} tabindex="{{ tabindex }}"{% endif %}>
-        {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
+        {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% translate "This field is required" %}">*</span>{% endif %}
         {% block after_label %}
-        {% endblock %}
+        {% endblock after_label %}
     </label>
-    {% if field.help_text %}
+    {% if field.help_text and not field.name == "password" %}
     <div class="form-hint">
-        {{ field.help_text }}
+            {{ field.help_text }}
     </div>
     {% endif %}
     {% block field %}
         <div class="widget widget--{{ field|widget_type }}">
             {{ field|add_error_attr:"aria-invalid:true" }}
         </div>
-    {% endblock %}
+    {% endblock field %}
     {% if field.errors %}
         <ul class="errorlist" aria-live="assertive" aria-atomic="true">
         {% for error in field.errors %}
