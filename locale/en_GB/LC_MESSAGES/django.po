@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 14:51+0100\n"
+"POT-Creation-Date: 2024-02-16 17:34+0100\n"
 "PO-Revision-Date: 2024-02-08 08:57+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: English <https://weblate.liqd.net/projects/meinberlin/main/en/"
@@ -419,7 +419,7 @@ msgstr ""
 "displayed to the participants as help text when they have to assign their "
 "ideas. The character limit is max. 300 characters (with spaces)."
 
-#: adhocracy4/comments/models.py:47 adhocracy4/polls/exports.py:40
+#: adhocracy4/comments/models.py:47 adhocracy4/polls/exports.py:39
 msgctxt "noun"
 msgid "Comment"
 msgstr "Comment"
@@ -617,7 +617,7 @@ msgstr "Start date"
 msgid "Start time"
 msgstr "Start time"
 
-#: adhocracy4/dashboard/mixins.py:209
+#: adhocracy4/dashboard/mixins.py:259
 msgid "Project successfully duplicated."
 msgstr "Project successfully duplicated."
 
@@ -675,7 +675,7 @@ msgid "Creator"
 msgstr "Creator"
 
 #: adhocracy4/exports/mixins/general.py:17 adhocracy4/models/base.py:9
-#: adhocracy4/polls/exports.py:41 meinberlin/apps/budgeting/exports.py:120
+#: adhocracy4/polls/exports.py:40 meinberlin/apps/budgeting/exports.py:120
 #: meinberlin/apps/documents/exports.py:41 meinberlin/apps/ideas/exports.py:78
 #: meinberlin/apps/kiezkasse/exports.py:80
 #: meinberlin/apps/mapideas/exports.py:78
@@ -1055,7 +1055,7 @@ msgstr "Poll"
 msgid "Export Excel"
 msgstr "Export Excel"
 
-#: adhocracy4/polls/exports.py:39 meinberlin/apps/budgeting/exports.py:118
+#: adhocracy4/polls/exports.py:38 meinberlin/apps/budgeting/exports.py:118
 #: meinberlin/apps/documents/exports.py:39 meinberlin/apps/ideas/exports.py:76
 #: meinberlin/apps/kiezkasse/exports.py:78
 #: meinberlin/apps/mapideas/exports.py:76
@@ -2279,6 +2279,7 @@ msgstr ""
 "receive the verification e-mail within a few minutes."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:24
+#: meinberlin/templates/account/password_reset_done.html:17
 msgid ""
 "We have sent you an e-mail. If you have not received it please check your "
 "spam folder. Otherwise contact us if you do not receive it in a few minutes."
@@ -3328,7 +3329,7 @@ msgstr "Edit place"
 msgid "Alphabetical"
 msgstr "Alphabetical"
 
-#: meinberlin/apps/maptopicprio/views.py:150
+#: meinberlin/apps/maptopicprio/views.py:151
 msgid "The place has been deleted"
 msgstr "The place has been deleted"
 
@@ -3595,7 +3596,7 @@ msgstr ""
 msgid "Edit offline event"
 msgstr "Edit offline event"
 
-#: meinberlin/apps/offlineevents/views.py:100
+#: meinberlin/apps/offlineevents/views.py:101
 msgid "The offline event has been deleted"
 msgstr "The offline event has been deleted"
 
@@ -4493,7 +4494,7 @@ msgstr "Add Topic"
 msgid "Edit topic"
 msgstr "Edit topic"
 
-#: meinberlin/apps/topicprio/views.py:154
+#: meinberlin/apps/topicprio/views.py:155
 msgid "The topic has been deleted"
 msgstr "The topic has been deleted"
 
@@ -4752,63 +4753,63 @@ msgstr ""
 "Please adjust your number of codes. Per module you can generate up to {} "
 "codes."
 
-#: meinberlin/config/settings/base.py:470
+#: meinberlin/config/settings/base.py:469
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: meinberlin/config/settings/base.py:471
+#: meinberlin/config/settings/base.py:470
 msgid "Diamond"
 msgstr "Diamond"
 
-#: meinberlin/config/settings/base.py:472
+#: meinberlin/config/settings/base.py:471
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: meinberlin/config/settings/base.py:473
+#: meinberlin/config/settings/base.py:472
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: meinberlin/config/settings/base.py:474
+#: meinberlin/config/settings/base.py:473
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:475
+#: meinberlin/config/settings/base.py:474
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: meinberlin/config/settings/base.py:476
+#: meinberlin/config/settings/base.py:475
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: meinberlin/config/settings/base.py:477
+#: meinberlin/config/settings/base.py:476
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: meinberlin/config/settings/base.py:478
+#: meinberlin/config/settings/base.py:477
 msgid "Star"
 msgstr "Star"
 
-#: meinberlin/config/settings/base.py:479
+#: meinberlin/config/settings/base.py:478
 msgid "Square"
 msgstr "Square"
 
-#: meinberlin/config/settings/base.py:480
+#: meinberlin/config/settings/base.py:479
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: meinberlin/config/settings/base.py:481
+#: meinberlin/config/settings/base.py:480
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: meinberlin/config/settings/base.py:482
+#: meinberlin/config/settings/base.py:481
 msgid "Circle"
 msgstr "Circle"
 
-#: meinberlin/config/settings/base.py:483
+#: meinberlin/config/settings/base.py:482
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: meinberlin/config/settings/base.py:484
+#: meinberlin/config/settings/base.py:483
 msgid "Zigzag"
 msgstr "Zigzag"
 
@@ -5202,6 +5203,8 @@ msgstr "Repeat password"
 
 #: meinberlin/templates/account/password_reset.html:4
 #: meinberlin/templates/account/password_reset.html:7
+#: meinberlin/templates/account/password_reset_done.html:8
+#: meinberlin/templates/account/password_reset_done.html:12
 msgid "Password Reset"
 msgstr "Password Reset"
 
