@@ -50,7 +50,7 @@
     "react-dom": "18.2.0",
     "react-flip-move": "3.0.5",
     "react-markdown": "9.0.1",
-    "react-slick": "0.30.1",
+    "react-slick": "0.30.2",
     "shpjs": "4.0.4"
   },
   "peerDependencies": {
