@@ -2,8 +2,123 @@
 
 All notable changes to this project will be documented in this file.
 
-Since version <unreleased> the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## v2402.1
+
+### Added
+
+- celery beat for configuring scheduled tasks from django admin
+- pyenv version in gitignore
+- djlint linter for django templates to ensure code cosistency and avoid issues when using external code e.g. incorrect quotation marks
+- adds support for celery task queues with a redis message broker
+- adds makefile commands for starting and status checking of celery worker processes
+- settings: move A4_PROJECT_TOPICS to Enum class
+- apps/plans: topics as an m2m relation to plans, replacing django-multiselectfield
+- apps/projects: topics from TopicEnum, topic form and serializer for projects
+- logger in apps init file
+- management command devtools for creating fake data for testing API performance.
+- custom migration to make iframes work with ckeditor5
+- added dependency beautifulsoup4
+- add helptext to paragraph form in documents/text review
+- add helptext for maptopicprio ckeditor5 field
+- add helptext for topicprio ckeditor5 field
+- add helptext for offlinevent ckeditor5 field
+- enables caching for api endpoints `api/{plans,extprojects,projects}/`
+- caches are expired by signals and by periodic tasks, for details, see `docs/api_caching.md`
+- pyenv support for the make clean command and removing python packages in the README
+- test helper for getting emails by email address and subject
+
+### Changed
+
+- Django from 3.2.20 to 4.0
+  admin short description to admin desplay decorator
+  delete custom function moved to the method form_valid according to Delete Generic Views upgrade
+  url patterns
+  USE_L10N is by default enabled
+  ENGINE from postgresql_psycopg2 to postgresql
+  new migrations for relations
+- Django from 4.0 to 4.1
+- Django from 4.1 to 4.2
+  settings/production.py: change to STORAGES
+  apps: add update_fields for models' custom save()
+  apps/votes: change index_together to indexes (generates a migration)
+  requirements: update psycopg to v3
+- Updated pull request template for improved clarity and efficiency.
+- Introduced "Describe your changes" section.
+- Added items to "Tasks" checklist.- replace django-ckeditor with django-ckeditor5
+- disable browser-side form checks for forms which use ckeditor by adding
+  `novalidate` to them This is necessary as ckeditor form fields which are
+  required will block form submission otherwise.
+- update and move helptext for plans ckeditor5 field from model to form
+- update and move helptext for newsletter ckeditor5 field from model to form
+- update and move helptext for plattform email ckeditor5 field from model to
+  form
+- update a4 to aa44c6c7f75428cc54988762ad333001596c6019
+- add image validator which validates that all img tags have the alt attribute
+  set to all ckedito5 fields
+- made follow button always shown, not just when logged in
+- redirect to login page when clicking follow button and not logged in
+- classes and styling class ref for buttons so they work with new a4-prefix classes and follow refactor
+- apps/livequestions: remove richtext templatetag from module description in
+  question_module_detail.html
+- wagtail upgrade from 4.1.6 to to 5.0 gradually
+  - 4.2
+  - WagtailImageField extend's Django ImageField to use Willow, new migrations
+    - wagtail/images/migrations
+      - 0025_alter_image_file_alter_rendition_file
+    - wagtail/migrations
+      - 0079_rename_taskstate_page_revision
+      - 0080_generic_workflowstate
+      - 0081_populate_workflowstate_content_type
+      - 0082_alter_workflowstate_content_type_notnull
+      - 0083_workflowcontenttype
+    - meinberlin/apps/cms/migrations
+      - 0042_upgrade_wagtail_image_related
+  - .wagtail-userbar style change to web component
+    - assets/scss/print.scss line 4
+  - 5.0
+    - New field for choosing css themes
+    - wagtail/users/migrations/
+      - 0012_userprofile_theme.py
+  - 5.02
+    - Migrate FieldPanel to TitleFieldPanel for slug field sync functionality
+      - meinberlin/apps/cms/models/pages.py
+- wagtail: upgrade to 5.1.x (7634)
+- wagtail: upgrade to 5.2.x (7634)
+- django-filters: upgrade to 23.5 as required by wagtail 5.2 (7634)
+
+### Fixed
+
+- captcha becomes optional depending on project settings (from a+ issues: #2449)
+- deprecated warnings
+  - remove default_app_config in apps
+  - add a mock for session middleware get_response which cannot be none
+  - replace deprecated ifequal with if tag in templates
+  - replace active_phase with active_phase_ends_next in cms
+- add linebreaks templatetag to bplan statement email template to display
+  newlines and paragraphs properly again.
+- fix contribution count on module tiles didn't include child comments (#5220)
+- fixed non-standard plain text email signature delimiter to use the established
+  dash dash space delimiter
+- error json cannot be NULL by setting homepage empty body to {} in an earlier migration
+- add custom template for pasword reset done
+
+### Removed
+
+- background_task_completedtask and background_task tables
+- background_task app from the settings
+- background_task app from the requirements
+- removed kiezkasse from list on `apps/dashboard/blueprints.py`
+- help text about forgot password in login form (coming from allauth)
+- **BREAKING CHANGE** remove most of the project container app in preparation of
+  the full deletion. **This removes all existing project containers from the
+  database**. Make sure to export project container data or backup your database
+  if you still need them. Only project containers are deleted, the projects they
+  contain will be left untouched.
+- **BREAKING CHANGE** removed `Select2MultipleWidget` and associated styling.
+- apps/servicekonto: servicekonto provider
 
 ## v2308
 
