@@ -443,7 +443,7 @@ export const CommentBox = (props) => {
 
   return (
     <section>
-      <h2 className="visually-hidden">{translated.comments}</h2>
+      <h2 className="a4-sr-only">{translated.comments}</h2>
       <div className="a4-comments__commentbox__form">
         {/* Main comment form */}
         <CommentForm
@@ -545,7 +545,7 @@ export const CommentBox = (props) => {
 
         <div className={loadingFilter ? 'u-spinner__container' : 'd-none'}>
           <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
-          <span className="visually-hidden">Loading...</span>
+          <span className="a4-sr-only">Loading...</span>
         </div>
       </div>
 
@@ -570,7 +570,7 @@ export const CommentBox = (props) => {
       />
       <div className={loading ? 'u-spinner__container' : 'd-none'}>
         <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
-        <span className="visually-hidden">Loading...</span>
+        <span className="a4-sr-only">Loading...</span>
       </div>
     </section>
   )
