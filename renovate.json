@@ -32,7 +32,12 @@
       {
         "matchPackageNames": ["wagtail"],
         "allowedVersions": "/(^4\\.1(\\.[0-9]+)?$)|(^5\\.2(\\.[0-9]+)?$)/"
+      },
+      {
+        "matchPackageNames": ["bootstrap"],
+        "allowedVersions": "5.2.3"
       }
+
     ],
 
   "pip_requirements": {
