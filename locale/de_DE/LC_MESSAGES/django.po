@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-16 17:34+0100\n"
+"POT-Creation-Date: 2024-02-26 14:00+0100\n"
 "PO-Revision-Date: 2024-02-08 08:57+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/"
@@ -2381,6 +2381,8 @@ msgid "You have signed out."
 msgstr "Sie haben sich abgemeldet."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:7
+#: meinberlin/templates/account/verification_sent.html:5
+#: meinberlin/templates/account/verification_sent.html:8
 msgid "Verify Your E-mail Address"
 msgstr "Bestätigen Sie Ihre E-Mail-Adresse"
 
@@ -2407,6 +2409,7 @@ msgstr ""
 "diese nicht in ein paar Minuten erhalten haben."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:16
+#: meinberlin/templates/account/verification_sent.html:10
 msgid ""
 "We have sent an e-mail to you for verification. Follow the link provided to "
 "finalize the signup process. If you do not see the verification e-mail in "
