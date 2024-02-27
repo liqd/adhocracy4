@@ -8,6 +8,7 @@ import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 import * as config from '../../../static/config'
 
 const translated = {
+  formHeadingCommentsAllowed: django.gettext('Join the discussion'),
   yourComment: django.gettext('Your comment'),
   addComment: django.gettext('Please add a comment.'),
   errorComment: django.gettext('Something seems to have gone wrong, please try again.'),
@@ -27,7 +28,7 @@ export default class CommentForm extends React.Component {
       comment: this.props.comment || '',
       commentCharCount: this.props.commentLength || 0,
       selectedCategories: Object.keys(this.props.comment_categories || {}),
-      textareaHeight: 46,
+      textareaHeight: 75,
       agreedTermsOfUse: props.agreedTermsOfUse,
       showCommentError: false
     }
@@ -115,7 +116,7 @@ export default class CommentForm extends React.Component {
     const actionButton = (
       <button
         type="submit"
-        className="btn a4-comments__submit-input"
+        className="a4-comments__submit-input"
         disabled={this.props.useTermsOfUse && !this.state.agreedTermsOfUse && !this.state.checkedTermsOfUse}
       >
         {translated.post}
@@ -123,7 +124,9 @@ export default class CommentForm extends React.Component {
     )
     const cancelButton = this.props.showCancel && (
       <button
-        type="submit" value={translated.cancel} className="btn btn--light cancel-button me-2"
+        type="submit"
+        className="a4-comments__cancel-edit-input"
+        value={translated.cancel}
         onClick={this.props.handleCancel}
       >
         {translated.cancel}
@@ -132,52 +135,67 @@ export default class CommentForm extends React.Component {
 
     if (this.props.hasCommentingPermission) {
       return (
-        <form id={'id-comment-form' + this.props.commentId} className="general-form" onSubmit={this.handleSubmit.bind(this)}>
-          {this.props.error &&
-            <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
-          {this.props.commentCategoryChoices && !hasParent &&
-            <CategoryList
-              idPrefix={this.props.commentId ? this.props.commentId : 'new'}
-              categoriesChecked={this.state.selectedCategories}
-              categoryChoices={this.props.commentCategoryChoices}
-              handleControlFunc={this.handleCategorySelection.bind(this)}
-            />}
-          <label className="sr-only" htmlFor={'id_textarea-top' + this.props.commentId}>
-            {translated.yourComment}
-          </label>
-          <textarea
-            id={'id_textarea-top' + this.props.commentId}
-            aria-describedby={this.state.showCommentError ? 'alert' : ('id_char-count' + this.props.commentId)}
-            aria-invalid={this.state.showCommentError}
-            className={this.props.commentCategoryChoices ? 'a4-comments__textarea--small form-group' : 'a4-comments__textarea--big form-group'}
-            placeholder={hasParent ? translated.yourReply : translated.yourComment}
-            onChange={this.handleTextChange.bind(this)}
-            value={this.state.comment}
-            onInput={this.handleTextareaGrow.bind(this)}
-            style={textareaStyle}
-          />
-          <div className="row">
-            <div className="col-12 col-sm-6">
+        <>
+          {this.props.showHeading &&
+            <h3 className="a4-comments__comment-form__heading-comments-allowed">{translated.formHeadingCommentsAllowed}</h3>}
+          <form id={'id-comment-form' + this.props.commentId} className="a4-comments__comment-form__form" onSubmit={this.handleSubmit.bind(this)}>
+            {this.props.error &&
+              <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
+            {this.props.commentCategoryChoices && !hasParent &&
+              <div>
+                <CategoryList
+                  idPrefix={this.props.commentId ? this.props.commentId : 'new'}
+                  categoriesChecked={this.state.selectedCategories}
+                  categoryChoices={this.props.commentCategoryChoices}
+                  handleControlFunc={this.handleCategorySelection.bind(this)}
+                />
+              </div>}
+            <div className="form-group" id={'group_id_textarea-top' + this.props.commentId}>
+              <label htmlFor={'id_textarea-top' + this.props.commentId}>
+                {translated.yourComment}
+              </label>
+              <textarea
+                id={'id_textarea-top' + this.props.commentId}
+                name={'id_textarea-top' + this.props.commentId}
+                aria-describedby={this.state.showCommentError ? 'alert' : ('id_char-count' + this.props.commentId)}
+                aria-invalid={this.state.showCommentError}
+                className={'form-control ' + this.props.commentCategoryChoices ? 'a4-comments__textarea--small' : 'a4-comments__textarea--big'}
+                onChange={this.handleTextChange.bind(this)}
+                value={this.state.comment}
+                onInput={this.handleTextareaGrow.bind(this)}
+                style={textareaStyle}
+              />
               <p
                 id={'id_char-count' + this.props.commentId}
                 className="a4-comments__char-count"
                 aria-live="polite"
               >
-                {this.state.commentCharCount}/4000{translated.characters}
+                <span aria-hidden="true">{this.state.commentCharCount}/4000<span className="a4-comments__char-count-word">{translated.characters}</span></span>
+                <span className="a4-sr-only">{this.state.commentCharCount}/4000{translated.characters}</span>
               </p>
-              {this.props.useTermsOfUse && !this.state.agreedTermsOfUse &&
-                <TermsOfUseCheckbox
-                  id={'terms-of-use-checkbox-' + (typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm')}
-                  onChange={val => this.setState({ checkedTermsOfUse: val })}
-                  orgTermsUrl={this.props.orgTermsUrl}
-                />}
             </div>
-            <div className="d-flex col-12 col-sm-6 justify-content-end">
-              {cancelButton}
-              {actionButton}
+            <div className="a4-comments__comment-form__terms-and-buttons">
+              <div className="a4-comments__comment-form__terms-of-use">
+                {this.props.useTermsOfUse && !this.state.agreedTermsOfUse &&
+                  <div className="form-group" id={'group_terms-of-use-checkbox' + (typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm')}>
+                    <TermsOfUseCheckbox
+                      id={'terms-of-use-checkbox-' + (typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm')}
+                      onChange={val => this.setState({ checkedTermsOfUse: val })}
+                      orgTermsUrl={this.props.orgTermsUrl}
+                    />
+                  </div>}
+              </div>
+              <div className="a4-comments__comment-form__actions">
+                <div className="a4-comments__comment-form__actions__left">
+                  {cancelButton}
+                </div>
+                <div className="a4-comments__comment-form__actions__right">
+                  {actionButton}
+                </div>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </>
       )
     } else if (this.props.wouldHaveCommentingPermission) {
       return (
