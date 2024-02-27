@@ -447,6 +447,7 @@ export const CommentBox = (props) => {
       <div className="a4-comments__commentbox__form">
         {/* Main comment form */}
         <CommentForm
+          showHeading
           subjectType={props.subjectType}
           subjectId={props.subjectId}
           onCommentSubmit={handleCommentSubmit}
