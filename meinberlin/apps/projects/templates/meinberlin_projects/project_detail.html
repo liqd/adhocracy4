@@ -217,7 +217,7 @@
         <section class="container">
             <div class="offset-lg-2 col-lg-8 ck-content">
                 {% if project.result %}
-                    {{ project.result | transform_collapsibles | richtext }}
+                    {{ project.result | transform_collapsibles | disable_iframes | richtext }}
                 {% else %}
                     {% translate 'No results yet.' %}
                 {% endif %}
