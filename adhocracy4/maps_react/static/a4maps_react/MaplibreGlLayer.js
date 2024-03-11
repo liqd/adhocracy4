@@ -7,6 +7,7 @@ import {
 
 const createMaplibreGlLayer = (props, context) => {
   const instance = L.maplibreGL({
+    attribution: props.attribution,
     style: props.baseUrl,
     transformRequest: function (url, resourceType) {
       if (resourceType === 'Tile' && url.indexOf('https://') === 0) {
