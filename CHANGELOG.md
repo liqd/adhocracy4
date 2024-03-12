@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2402.1.2
+
+### Fixed
+
+- fix group members not being allowed to upload files via ckeditor5
+- disable iframes in the project result tab to prevent them from loading if js
+  is disabled
+
+## v2402.1.1
+
+### Changed
+
+- update translations
+
+### Fixed
+
+- add missing template for email verification page
+
 ## v2402.1
 
 ### Added
