@@ -7,6 +7,7 @@ from django.urls import path
 from django.urls import re_path
 from django.views.generic import TemplateView
 from django.views.i18n import JavaScriptCatalog
+from django_ckeditor_5 import views as ckeditor5_views
 from rest_framework import routers
 from wagtail.contrib.sitemaps import views as wagtail_sitemap_views
 from wagtail.contrib.sitemaps.sitemap_generator import Sitemap as WagtailSitemap
@@ -31,6 +32,7 @@ from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
 from meinberlin.apps.plans.api import PlansListViewSet
 from meinberlin.apps.projects.api import PrivateProjectListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
+from meinberlin.apps.users.decorators import user_is_project_admin
 from meinberlin.apps.votes.api import TokenVoteViewSet
 from meinberlin.apps.votes.routers import TokenVoteDefaultRouter
 
@@ -175,7 +177,9 @@ urlpatterns = [
     path("api/", include(tokenvote_router.urls)),
     path("api/", include(router.urls)),
     path(
-        "ckeditor5/", include("django_ckeditor_5.urls"), name="ck_editor_5_upload_file"
+        "ckeditor5/image_upload/",
+        user_is_project_admin(ckeditor5_views.upload_file),
+        name="ck_editor_5_upload_file",
     ),
     path(
         "sitemap.xml",
