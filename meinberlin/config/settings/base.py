@@ -553,7 +553,16 @@ CKEDITOR_5_CONFIGS = {
                 "reversed": "true",
             }
         },
-        "link": {"defaultProtocol": "https://"},
+        "link": {
+            "defaultProtocol": "https://",
+            "decorators": {
+                "openInNewTab": {
+                    "mode": "manual",
+                    "label": "Open in a new tab",
+                    "attributes": {"target": "_blank"},
+                }
+            },
+        },
     },
     "image-editor": {
         "language": "de",
@@ -590,7 +599,16 @@ CKEDITOR_5_CONFIGS = {
                 "reversed": "true",
             }
         },
-        "link": {"defaultProtocol": "https://"},
+        "link": {
+            "defaultProtocol": "https://",
+            "decorators": {
+                "openInNewTab": {
+                    "mode": "manual",
+                    "label": "Open in a new tab",
+                    "attributes": {"target": "_blank"},
+                }
+            },
+        },
     },
     "collapsible-image-editor": {
         "language": "de",
@@ -627,7 +645,16 @@ CKEDITOR_5_CONFIGS = {
                 "reversed": "true",
             }
         },
-        "link": {"defaultProtocol": "https://"},
+        "link": {
+            "defaultProtocol": "https://",
+            "decorators": {
+                "openInNewTab": {
+                    "mode": "manual",
+                    "label": "Open in a new tab",
+                    "attributes": {"target": "_blank"},
+                }
+            },
+        },
         "mediaEmbed": {
             "removeProviders": [
                 "dailymotion",
