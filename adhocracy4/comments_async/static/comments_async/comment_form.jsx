@@ -14,11 +14,11 @@ const translated = {
   errorComment: django.gettext('Something seems to have gone wrong, please try again.'),
   yourReply: django.gettext('Your reply'),
   characters: django.gettext(' characters'),
-  post: django.gettext('post'),
+  post: django.gettext('Post'),
   pleaseComment: django.gettext('Please login to comment'),
   onlyInvited: django.gettext('Only invited users can actively participate.'),
   notAllowedComment: django.gettext('The currently active phase doesn\'t allow to comment.'),
-  cancel: django.gettext('cancel')
+  cancel: django.gettext('Cancel')
 }
 
 export default class CommentForm extends React.Component {
