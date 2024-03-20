@@ -4,9 +4,8 @@ import update from 'immutability-helper'
 
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
-import { FilterCategory } from './filter_category'
-import { FilterSearch } from './filter_search'
-import { FilterSort } from './filter_sort'
+import { CommentControlBar } from './comment_control_bar.jsx'
+import { CommentFilters } from './comment_filters.jsx'
 import { getDocumentHeight } from '../util'
 
 const api = require('../../../static/api')
@@ -21,6 +20,7 @@ const sorts = {
 
 const translated = {
   comments: django.gettext('Comments'),
+  discussion: django.gettext('Discussion'),
   showFilters: django.gettext('Show filters'),
   filters: django.gettext('Filters'),
   hideFilters: django.gettext('Hide filters'),
@@ -63,6 +63,7 @@ export const CommentBox = (props) => {
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [anchorRendered, setAnchorRendered] = useState(false)
+  const noControlBar = props.noControlBar || false
 
   useEffect(() => {
     if (props.useModeratorMarked) {
@@ -117,7 +118,10 @@ export const CommentBox = (props) => {
     setOrgTermsUrl(data.org_terms_url)
     if (props.anchoredCommentId && data.comment_found) {
       setAnchoredCommentParentId(data.comment_parent)
-      if (findAnchoredComment(data.results, data.comment_parent) || !data.next) {
+      if (
+        findAnchoredComment(data.results, data.comment_parent) ||
+        !data.next
+      ) {
         setLoading(false)
       } else {
         fetchComments(data.next, data.results, data.comment_parent)
@@ -300,10 +304,15 @@ export const CommentBox = (props) => {
     })
   }
 
-  function handleClickSorted (e) {
+  function handleClickSortedOld (e) {
     e.preventDefault()
     const order = e.target.id
     fetchSorted(order)
+    setLoadingFilter(true)
+  }
+
+  function handleClickSorted (choice) {
+    fetchSorted(choice[0])
     setLoadingFilter(true)
   }
 
@@ -378,13 +387,17 @@ export const CommentBox = (props) => {
         setComments(newComments)
         setNextComments(data.next)
         setCommentCount(data.comment_count)
-        if (findAnchoredComment(newComments, anchoredCommentParentId) || !data.next) {
+        if (
+          findAnchoredComment(newComments, anchoredCommentParentId) ||
+          !data.next
+        ) {
           setLoading(false)
         } else {
           fetchComments(data.next, newComments, anchoredCommentParentId)
         }
         return null
-      }).catch(error => {
+      })
+      .catch((error) => {
         console.warn(error)
       })
   }
@@ -408,21 +421,6 @@ export const CommentBox = (props) => {
     }
   }
 
-  function translatedEntries (entries) {
-    return django.ngettext(
-      'entry',
-      'entries', entries
-    )
-  }
-
-  function translatedEntriesFound (entriesFound) {
-    return django.ngettext(
-      'entry found for ',
-      'entries found for ',
-      entriesFound
-    )
-  }
-
   function handleTermsOfUse () {
     if (!agreedTermsOfUse) {
       setAgreedTermsOfUse(true)
@@ -443,7 +441,9 @@ export const CommentBox = (props) => {
 
   return (
     <section>
-      <h2 className="a4-sr-only">{translated.comments}</h2>
+      <h2 className="a4-comments__commentbox__title-comments">
+        {translated.comments}
+      </h2>
       <div className="a4-comments__commentbox__form">
         {/* Main comment form */}
         <CommentForm
@@ -467,89 +467,39 @@ export const CommentBox = (props) => {
           setCommentError={setMainError}
         />
       </div>
-
-      <div
-        className={
-          comments.length === 0 && loading
-            ? 'd-none'
-            : 'a4-comments__filters__parent'
-        }
-      >
-        <div className="a4-comments__filters__parent--closed">
-          <div
-            className={search === '' ? 'a4-comments__filters__text' : 'd-none'}
-          >
-            {commentCount + ' ' + translatedEntries(commentCount)}
-          </div>
-
-          <div
-            className={search !== '' ? 'a4-comments__filters__text' : 'd-none'}
-          >
-            <span className="a4-comments__filters__span">
-              {commentCount + ' ' + translatedEntriesFound(commentCount)}
-              {search}
-            </span>
-          </div>
-
-          {!showFilters && commentCount > 0 && (
-            <button
-              className="btn a4-comments__filters__show-btn"
-              type="button"
-              onClick={handleToggleFilters}
-            >
-              <i
-                className="fas fa-sliders-h ms-2"
-                aria-hidden="true"
-              />
-              {translated.filters}
-            </button>
-          )}
-          {showFilters && commentCount > 0 && (
-            <button
-              className="btn a4-comments__filters__show-btn"
-              type="button"
-              onClick={handleToggleFilters}
-            >
-              <i
-                className="fas fa-times ms-2"
-                aria-hidden="true"
-              />
-              {translated.hideFilters}
-            </button>
-          )}
-        </div>
-
-        {showFilters && (
-          <div className="a4-comments__filters">
-            <FilterSearch
+      <div>
+        {noControlBar
+          ? (
+            <CommentFilters
+              showFilters={showFilters}
+              commentCount={commentCount}
+              commentCategoryChoices={commentCategoryChoices}
+              filterDisplay={filterDisplay}
+              handleToggleFilters={handleToggleFilters}
+              handleClickFilters={handleClickFilter}
+              handleSearch={handleSearch}
+              handleClickSorted={handleClickSortedOld}
               search={search}
-              translated={translated}
-              onSearch={handleSearch}
-            />
-            {props.withCategories && (
-              <FilterCategory
-                translated={translated}
-                filter={filter}
-                filterDisplay={filterDisplay}
-                onClickFilter={handleClickFilter}
-                commentCategoryChoices={props.commentCategoryChoices}
-              />
-            )}
-            <FilterSort
-              translated={translated}
               sort={sort}
               sorts={sorts}
-              onClickSorted={handleClickSorted}
+              loadingFilter={loadingFilter}
             />
-          </div>
-        )}
-
-        <div className={loadingFilter ? 'u-spinner__container' : 'd-none'}>
-          <i className="fa fa-spinner fa-pulse" aria-hidden="true" />
-          <span className="a4-sr-only">Loading...</span>
-        </div>
+            )
+          : (
+            <>
+              <h2 className="a4-comments__commentbox__subtitle">
+                {translated.discussion}
+              </h2>
+              <CommentControlBar
+                sort={sort}
+                sorts={sorts}
+                searh={search}
+                handleClickFilter={handleClickSorted}
+                handleSearch={handleSearch}
+              />
+            </>
+            )}
       </div>
-
       <CommentList
         comments={comments}
         anchoredCommentId={anchoredCommentId}
