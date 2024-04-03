@@ -31,6 +31,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("projects/", include(prj_urls)),
     path("modules/", include(mod_urls)),
-    path("accounts/login", views.LoginView, name="account_login"),
+    path("accounts/login", views.LoginView.as_view(), name="account_login"),
     path("dashboard/", include(dashboard_urls)),
 ]

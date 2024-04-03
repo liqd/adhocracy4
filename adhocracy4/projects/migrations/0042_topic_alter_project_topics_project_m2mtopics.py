@@ -28,6 +28,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="project",
             name="m2mtopics",
-            field=models.ManyToManyField(to="a4projects.topic"),
+            field=models.ManyToManyField(to="a4projects.Topic"),
         ),
     ]
