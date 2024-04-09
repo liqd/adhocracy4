@@ -70,17 +70,6 @@ class Question(models.Model):
                         )
                     }
                 )
-            elif Choice.objects.filter(question=self.pk).count() > 0:
-                raise ValidationError(
-                    {
-                        "is_open": _(
-                            "Question with choices cannot become "
-                            "open question. Delete choices or add new "
-                            "open question."
-                        )
-                    }
-                )
-
         super().clean(*args, **kwargs)
 
     def save(self, *args, **kwargs):
