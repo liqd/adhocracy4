@@ -48,6 +48,7 @@ def test_react_rating_anonymous(rf, question, comment):
             "anchoredCommentId": "",
             "withCategories": False,
             "useModeratorMarked": False,
+            "noControlBar": False,
         }
 
 
@@ -66,6 +67,7 @@ def test_react_rating_user(rf, user, phase_factory, question_factory, comment):
             "anchoredCommentId": "",
             "withCategories": False,
             "useModeratorMarked": False,
+            "noControlBar": False,
         }
 
 
@@ -107,6 +109,7 @@ def test_react_comment_render_anonymous_with_categories(rf, question):
             "anchoredCommentId": "",
             "withCategories": True,
             "useModeratorMarked": False,
+            "noControlBar": False,
         }
 
 
@@ -127,6 +130,7 @@ def test_react_comment_render_user_with_categories(
             "anchoredCommentId": "",
             "withCategories": True,
             "useModeratorMarked": False,
+            "noControlBar": False,
         }
 
 
@@ -149,6 +153,7 @@ def test_react_comment_render_anonymous_use_moderator_marked(
             "anchoredCommentId": "",
             "withCategories": False,
             "useModeratorMarked": True,
+            "noControlBar": False,
         }
 
 
@@ -171,4 +176,5 @@ def test_react_comment_render_user_use_moderator_marked_with_categories(
             "anchoredCommentId": "",
             "withCategories": True,
             "useModeratorMarked": True,
+            "noControlBar": False,
         }

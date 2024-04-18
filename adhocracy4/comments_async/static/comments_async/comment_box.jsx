@@ -19,16 +19,7 @@ const sorts = {
 }
 
 const translated = {
-  comments: django.gettext('Comments'),
-  discussion: django.gettext('Discussion'),
-  showFilters: django.gettext('Show filters'),
-  filters: django.gettext('Filters'),
-  hideFilters: django.gettext('Hide filters'),
-  searchContrib: django.gettext('Search contributions'),
-  clearSearch: django.gettext('Clear search'),
-  display: django.gettext('display: '),
-  all: django.gettext('all'),
-  sortedBy: django.gettext('sorted by: ')
+  discussion: django.gettext('Discussion')
 }
 
 const autoScrollThreshold = 500
@@ -441,13 +432,9 @@ export const CommentBox = (props) => {
 
   return (
     <section>
-      <h2 className="a4-comments__commentbox__title-comments">
-        {translated.comments}
-      </h2>
       <div className="a4-comments__commentbox__form">
         {/* Main comment form */}
         <CommentForm
-          showHeading
           subjectType={props.subjectType}
           subjectId={props.subjectId}
           onCommentSubmit={handleCommentSubmit}
@@ -468,6 +455,9 @@ export const CommentBox = (props) => {
         />
       </div>
       <div>
+        <h3 className="a4-comments__commentbox__subtitle">
+          {translated.discussion}
+        </h3>
         {noControlBar
           ? (
             <CommentFilters
@@ -486,18 +476,13 @@ export const CommentBox = (props) => {
             />
             )
           : (
-            <>
-              <h2 className="a4-comments__commentbox__subtitle">
-                {translated.discussion}
-              </h2>
-              <CommentControlBar
-                sort={sort}
-                sorts={sorts}
-                searh={search}
-                handleClickFilter={handleClickSorted}
-                handleSearch={handleSearch}
-              />
-            </>
+            <CommentControlBar
+              sort={sort}
+              sorts={sorts}
+              searh={search}
+              handleClickFilter={handleClickSorted}
+              handleSearch={handleSearch}
+            />
             )}
       </div>
       <CommentList

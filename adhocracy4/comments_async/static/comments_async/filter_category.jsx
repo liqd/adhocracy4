@@ -1,7 +1,12 @@
 import React from 'react'
+import django from 'django'
+
+const translated = {
+  display: django.gettext('display: '),
+  all: django.gettext('all')
+}
 
 export const FilterCategory = ({
-  translated,
   filter,
   filterDisplay,
   onClickFilter,
