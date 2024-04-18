@@ -211,7 +211,7 @@ class FilterNav extends React.Component {
             {!this.props.linkUrl &&
               <button
                 onClick={this.showSecondaryFilters.bind(this)}
-                className="u-spacer-top btn btn--small btn--light btn--full u-spacer-bottom filter-bar__btn--light"
+                className="u-spacer-top btn btn--small btn--full u-spacer-bottom filter-bar__btn--light"
                 aria-haspopup="true"
                 aria-expanded={this.state.displaySecondaryFilters}
               >
