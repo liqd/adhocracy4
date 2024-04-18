@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
+import django from 'django'
+
+const translated = {
+  searchContrib: django.gettext('Search contributions'),
+  clearSearch: django.gettext('Clear search')
+}
 
 export const FilterSearch = ({
   search,
-  translated,
   onSearch
 }) => {
   const [query, setQuery] = useState(search)

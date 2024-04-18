@@ -13,6 +13,7 @@ import { FilterSort } from './filter_sort'
 const translated = {
   showFilters: django.gettext('Show more'),
   hideFilters: django.gettext('Show less'),
+  filters: django.gettext('Filters'),
   ordering: django.gettext('Ordering')
 }
 
@@ -54,28 +55,28 @@ export const CommentFilters = (props) => {
             {props.search}
           </span>
         </div>
-      </div>
 
-      {!props.showFilters && props.commentCount > 0 && (
-        <button
-          className="btn a4-comments__filters__show-btn"
-          type="button"
-          onClick={props.handleToggleFilters}
-        >
-          <i className="fas fa-sliders-h ms-2" aria-hidden="true" />
-          {translated.filters}
-        </button>
-      )}
-      {props.showFilters && props.commentCount > 0 && (
-        <button
-          className="btn a4-comments__filters__show-btn"
-          type="button"
-          onClick={props.handleToggleFilters}
-        >
-          <i className="fas fa-times ms-2" aria-hidden="true" />
-          {translated.hideFilters}
-        </button>
-      )}
+        {!props.showFilters && props.commentCount > 0 && (
+          <button
+            className="btn a4-comments__filters__show-btn"
+            type="button"
+            onClick={props.handleToggleFilters}
+          >
+            <i className="fas fa-sliders-h ms-2" aria-hidden="true" />
+            {translated.filters}
+          </button>
+        )}
+        {props.showFilters && props.commentCount > 0 && (
+          <button
+            className="btn a4-comments__filters__show-btn"
+            type="button"
+            onClick={props.handleToggleFilters}
+          >
+            <i className="fas fa-times ms-2" aria-hidden="true" />
+            {translated.hideFilters}
+          </button>
+        )}
+      </div>
       {props.showFilters && (
         <div className="a4-comments__filters">
           <FilterSearch
@@ -83,15 +84,19 @@ export const CommentFilters = (props) => {
             translated={translated}
             onSearch={props.handleSearch}
           />
-          {props.withCategories && (
-            <FilterCategory
-              translated={translated}
-              filter={props.filter}
-              filterDisplay={props.filterDisplay}
-              onClickFilter={props.handleClickFilter}
-              commentCategoryChoices={props.commentCategoryChoices}
-            />
-          )}
+          {props.withCategories
+            ? (
+              <FilterCategory
+                translated={translated}
+                filter={props.filter}
+                filterDisplay={props.filterDisplay}
+                onClickFilter={props.handleClickFilter}
+                commentCategoryChoices={props.commentCategoryChoices}
+              />
+              )
+            : (
+              <div className="col-lg-3" />
+              )}
           <FilterSort
             translated={translated}
             sort={props.sort}

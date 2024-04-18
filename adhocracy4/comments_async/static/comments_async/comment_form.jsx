@@ -21,6 +21,8 @@ const translated = {
   cancel: django.gettext('Cancel')
 }
 
+const textareaMinHeight = 75
+
 export default class CommentForm extends React.Component {
   constructor (props) {
     super(props)
@@ -28,7 +30,7 @@ export default class CommentForm extends React.Component {
       comment: this.props.comment || '',
       commentCharCount: this.props.commentLength || 0,
       selectedCategories: Object.keys(this.props.comment_categories || {}),
-      textareaHeight: 75,
+      textareaHeight: textareaMinHeight,
       agreedTermsOfUse: props.agreedTermsOfUse,
       showCommentError: false
     }
@@ -44,7 +46,7 @@ export default class CommentForm extends React.Component {
 
   handleTextareaGrow (e) {
     const newHeight = (e.target.scrollHeight)
-    if (newHeight !== this.state.textareaHeight) {
+    if (newHeight !== this.state.textareaHeight && newHeight > textareaMinHeight) {
       this.setState({ textareaHeight: newHeight })
     }
   }
@@ -70,7 +72,7 @@ export default class CommentForm extends React.Component {
       comment: '',
       commentCharCount: 0,
       selectedCategories: [],
-      textareaHeight: 46,
+      textareaHeight: textareaMinHeight,
       showCommentError: false
     })
   }
@@ -136,8 +138,7 @@ export default class CommentForm extends React.Component {
     if (this.props.hasCommentingPermission) {
       return (
         <>
-          {this.props.showHeading &&
-            <h3 className="a4-comments__comment-form__heading-comments-allowed">{translated.formHeadingCommentsAllowed}</h3>}
+          <h3 className="a4-comments__comment-form__heading-comments-allowed">{translated.formHeadingCommentsAllowed}</h3>
           <form id={'id-comment-form' + this.props.commentId} className="a4-comments__comment-form__form" onSubmit={this.handleSubmit.bind(this)}>
             {this.props.error &&
               <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}

@@ -10,7 +10,7 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def react_comments_async(context, obj, with_categories=False):
+def react_comments_async(context, obj, with_categories=False, no_control_bar=False):
     request = context["request"]
     anchoredCommentId = request.GET.get("comment", "")
 
@@ -36,6 +36,7 @@ def react_comments_async(context, obj, with_categories=False):
         "anchoredCommentId": anchoredCommentId,
         "withCategories": with_categories,
         "useModeratorMarked": use_moderator_marked,
+        "noControlBar": no_control_bar,
     }
 
     return format_html(
