@@ -10,7 +10,7 @@ django_csp==3.7
 redis==5.0.3
 requests==2.31.0
 sentry-sdk[django]==1.40.4
-urllib3==2.2.0
+urllib3==2.2.1
 wagtail==5.2.4
 whitenoise==6.6.0
 zeep==4.2.1
