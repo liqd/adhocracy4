@@ -51,7 +51,7 @@ class CategoryForm(forms.ModelForm):
             del self.fields["icon"]
 
     name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": _("Category")}))
-    icon = CategoryChoiceField()
+    icon = CategoryChoiceField(required=False)
 
     class Media:
         js = ("category_formset.js",)

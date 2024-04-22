@@ -167,7 +167,23 @@ A4_AUTO_FOLLOWABLES = (("a4comments", "comment"),)
 A4_CATEGORIZABLE = (("a4test_questions", "question"),)
 A4_LABELS_ADDABLE = (("a4test_questions", "question"),)
 A4_DASHBOARD = {"BLUEPRINTS": "tests.project.blueprints.blueprints"}
-
+A4_CATEGORY_ICONS = (
+    ("", ("Pin without icon")),
+    ("diamant", ("Diamond")),
+    ("dreieck_oben", ("Triangle up")),
+    ("dreieck_unten", ("Triangle down")),
+    ("ellipse", ("Ellipse")),
+    ("halbkreis", ("Semi circle")),
+    ("hexagon", ("Hexagon")),
+    ("parallelogramm", ("Rhomboid")),
+    ("pentagramm", ("Star")),
+    ("quadrat", ("Square")),
+    ("raute", ("Octothorpe")),
+    ("rechtecke", ("Rectangle")),
+    ("ring", ("Circle")),
+    ("rw_dreieck", ("Right triangle")),
+    ("zickzack", ("Zigzag")),
+)
 
 # Rich text fields
 
