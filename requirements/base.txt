@@ -6,7 +6,7 @@ beautifulsoup4==4.11.2
 brotli==1.1.0
 django-celery-beat==2.7.0
 django-cloudflare-push==0.2.2
-django_csp==3.7
+django_csp==3.8
 redis==5.0.3
 requests==2.31.0
 sentry-sdk[django]==2.8.0
