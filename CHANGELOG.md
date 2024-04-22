@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2404.1.1
+
+## Added
+
+- add script to auto-generate changelog from changelog files
+
+## Changed
+
+- update dependency black to v24.3.0
+- update dependency django to v4.2.11
+- update dependency gunicorn to v22
+- update dependency postcss to v8.4.38
+- update dependency redis to v5.0.3
+- update dependency sass to v1.72.0
+- update dependency sass-loader to v14.2.0
+- update dependency wagtail to v5.2.4
+
+### Fixed
+
+- fix secondary filter button having the wrong color on small devices
+
 ## v2402.1.4
 
 ### Fixed
