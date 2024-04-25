@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-26 14:00+0100\n"
-"PO-Revision-Date: 2024-02-08 08:57+0000\n"
+"PO-Revision-Date: 2024-04-25 10:56+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/"
-">\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18.2\n"
+"X-Generator: Weblate 5.4.2\n"
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
@@ -841,7 +841,7 @@ msgstr "Nein"
 #: adhocracy4/filters/widgets.py:76
 #: meinberlin/apps/budgeting/api.py:135 meinberlin/apps/projects/views.py:40
 msgid "Ordering"
-msgstr "Sortierung"
+msgstr "Reihenfolge"
 
 #: adhocracy4/forms/fields.py:19
 #, python-format
