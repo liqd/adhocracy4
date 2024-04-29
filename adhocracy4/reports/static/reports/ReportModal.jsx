@@ -63,7 +63,7 @@ export const ReportModal = (props) => {
       handleSubmit={submitReport}
       action={translations.sendReport}
       partials={partials}
-      dismissOnSubmit={false}
+      keepOpenOnSubmit
     />
   )
 }

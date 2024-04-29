@@ -44,7 +44,7 @@ export const UrlModal = (props) => {
       abort={props.abort}
       name={props.name}
       partials={partials}
-      dismissOnSubmit={false}
+      keepOpenOnSubmit
     />
   )
 }
