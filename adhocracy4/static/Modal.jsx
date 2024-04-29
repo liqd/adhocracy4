@@ -2,6 +2,7 @@ import React from 'react'
 import django from 'django'
 
 const Modal = (props) => {
+  const dismiss = props.dismissOnSubmit ? 'modal' : 'false'
   const abortStr = props.abort || django.gettext('Abort')
   const bodyCssClass = props.partials.bodyClass || ''
 
@@ -28,6 +29,7 @@ const Modal = (props) => {
               className="close"
               aria-label={abortStr}
               data-bs-dismiss="modal"
+              onClick={props.handleClose}
             >
               <i className="fa fa-times" aria-hidden="true" />
             </button>
@@ -45,7 +47,7 @@ const Modal = (props) => {
             <div className="modal-footer">
               <button
                 className="submit-button"
-                data-bs-dismiss="modal"
+                data-bs-dismiss={dismiss}
                 onClick={props.handleSubmit}
               >
                 {props.action}
@@ -53,6 +55,7 @@ const Modal = (props) => {
               <button
                 className="cancel-button"
                 data-bs-dismiss="modal"
+                onClick={props.handleClose}
               >
                 {abortStr}
               </button>
