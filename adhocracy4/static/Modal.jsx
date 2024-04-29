@@ -2,7 +2,7 @@ import React from 'react'
 import django from 'django'
 
 const Modal = (props) => {
-  const dismiss = props.dismissOnSubmit ? 'modal' : 'false'
+  const keepOpen = props.keepOpenOnSubmit || false
   const abortStr = props.abort || django.gettext('Abort')
   const bodyCssClass = props.partials.bodyClass || ''
 
@@ -47,7 +47,7 @@ const Modal = (props) => {
             <div className="modal-footer">
               <button
                 className="submit-button"
-                data-bs-dismiss={dismiss}
+                data-bs-dismiss={keepOpen ? 'false' : 'modal'}
                 onClick={props.handleSubmit}
               >
                 {props.action}
