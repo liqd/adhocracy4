@@ -118,7 +118,7 @@ export default class CommentForm extends React.Component {
     const actionButton = (
       <button
         type="submit"
-        className="a4-comments__submit-input"
+        className="btn btn--default a4-comments__submit-input"
         disabled={this.props.useTermsOfUse && !this.state.agreedTermsOfUse && !this.state.checkedTermsOfUse}
       >
         {translated.post}
@@ -127,7 +127,7 @@ export default class CommentForm extends React.Component {
     const cancelButton = this.props.showCancel && (
       <button
         type="submit"
-        className="a4-comments__cancel-edit-input"
+        className="btn btn--light me-2 a4-comments__cancel-edit-input"
         value={translated.cancel}
         onClick={this.props.handleCancel}
       >
@@ -175,7 +175,7 @@ export default class CommentForm extends React.Component {
                 <span className="a4-sr-only">{this.state.commentCharCount}/4000{translated.characters}</span>
               </p>
             </div>
-            <div className="a4-comments__comment-form__terms-and-buttons">
+            <div className="row a4-comments__comment-form__terms-and-buttons">
               <div className="a4-comments__comment-form__terms-of-use">
                 {this.props.useTermsOfUse && !this.state.agreedTermsOfUse &&
                   <div className="form-group" id={'group_terms-of-use-checkbox' + (typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm')}>
