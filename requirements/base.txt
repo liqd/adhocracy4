@@ -14,6 +14,6 @@ html5lib==1.1
 jsonfield==3.1.0
 python-dateutil==2.9.0.post0
 python-magic==0.4.27
-rules==3.3
+rules==3.4
 XlsxWriter==3.2.0
 celery==5.4.0
