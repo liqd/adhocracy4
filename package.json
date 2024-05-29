@@ -54,7 +54,7 @@
     "react-leaflet": "^4.2.1",
     "react-markdown": "9.0.1",
     "react-slick": "0.30.2",
-    "shpjs": "4.0.4"
+    "shpjs": "5.0.1"
   },
   "peerDependencies": {
     "immutability-helper": "3.1.1",
@@ -69,7 +69,7 @@
     "react-flip-move": "3.0.5",
     "react-markdown": "9.0.1",
     "react-slick": "0.29 || 0.30",
-    "shpjs": "4.0.4",
+    "shpjs": "5.0.1",
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
   "repository": {
