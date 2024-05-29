@@ -1,14 +1,13 @@
 import datetime
 
 import pytest
-import pytz
 from django.test.utils import override_settings
 from django.utils import translation
 
 from adhocracy4.api.dates import get_date_display
 from adhocracy4.api.dates import get_datetime_display
 
-created = datetime.datetime(2022, 7, 1, 17, 0, 0, tzinfo=pytz.utc)
+created = datetime.datetime(2022, 7, 1, 17, 0, 0, tzinfo=datetime.timezone.utc)
 
 
 @pytest.mark.django_db
