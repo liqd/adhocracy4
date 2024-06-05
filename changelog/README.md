@@ -31,7 +31,6 @@ The content of the file should look like this:
 - **Fixed**: for any bug fixes.
 - **Security**: in case of vulnerabilities.
 
-
 ## Example
 
 ```
@@ -40,3 +39,9 @@ The content of the file should look like this:
 - improve userdashboard filter performance (#2449)
 ```
 
+## Create release changelog
+
+To create the changelog for a release you can either copy the content
+of all the changelog files into CHANGELOG.md manually or use the
+`parse_changelogs.py` in this folder by running it here:
+`./parse_changelogs.py`.
