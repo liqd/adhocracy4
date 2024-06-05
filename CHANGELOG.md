@@ -5,7 +5,80 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### mB-v2402.1
+
+## aplus-v2406.1.1
+
+### Added
+
+- react components for generating a leaflet map:
+  - A basic map component that renders a polygon, tilelayer and zoom controls
+  - MaplibreGL Tilelayer to implement `@maplibre/maplibre-gl-leaflet`
+  - MarkerClusterLayer to implement `leaflet.markercluster`
+  - MapPopup to provide basic html wrapping
+  - AddMarkerControl to allow users to set a marker on a map within a
+    constraining polygon
+  - GeoJsonMarker to fetch the coords from GeoJson and render a jsx Marker
+- added an utility in python to easily get all relevant map settings
+- add/move ControlBarDropdown component from meinBerlin to a4
+- add/move ControlBarSearch component from meinBerlin to a4. The placeholder
+  text is now set via the `placeholder` prop.
+- add/move Select compontent from meinBerlin to a4
+- Add a new CommentControlBar component which uses ControlBarDropdown and
+  ControlBarSearch for sorting and searching comments. There's no support for
+  category filtering yet.
+- **Breaking Change** Add a new subtitle "Discussion" above comment filters.
+- comments_async/comment_form: add a span with class
+  a4-comments_char-count-word which can be used to hide the trailing wording for the character count. The word will still be read by screenreaders.
+- comments_async/comment_form: the cancel button is now wrapped in a div with class a4-comments__comment-form__actions__left.
+- comments_async/comment_form: the action button is now wrapped in a div with class a4-comments__comment-form__actions__right.
+- **Breaking Change** Added a heading to the comment_form when commenting is
+  allowed. The heading can be controlled with the a4-comments__comment-form__heading-commenting-allowed" css class.
+
+### Changed
+
+- move the old comment search and filter into its own component
+  CommentFilters
+- **Breaking Change** Use the above mentioned CommentControlBar for sorting and
+  filtering by default. You can pass `noControlBar` as props to comment_box to
+  keep using the old filters.
+- **Breaking Change** comments_async/comment_box: rename class visually-hidden to
+  a4-sr-only as we want to move away from using bootstrap classes directly.
+- **Breaking Change** comments_async/comment_form: the default height of the
+  textarea has been increased from 46 to 75. We might have to add a way to set
+  the initial height dynamically in the future.
+- **Breaking Change** comments_async/comment_form: remove me-2 class from
+  submitButton as we want to move away from using bootstrap classes directly.
+  You can apply it to a4-comments__cancel-edit-input instead.
+- **Breaking Change** comments_async/comment_form: rename general-form to
+  a4-comments__comment-form__form to be more in line with BEM naming.
+- **Breaking Change** comments_async/comment_form: wrap form elements in a form-group class according to
+  mb styleguide. This might add an unwanted margin-bottom if used with
+  Bootstrap.
+- **Breaking Change** comments_async/comment_form: removed the placeholder from
+  textarea.
+- **Breaking Change** comments_async/comment_form: replace col with
+  a4-comments__comment-form__actions on the div wrapping the cancel and action button. You
+  can use @extend .d-flex, @extend .col-12 and @extend .col-sm-6 to retain
+  bootstrap behavior.
+- **Breaking Change** comments_async/comment_form: replace col with
+  a4-comments__comment-form_terms-of-use on the the div wrapping the terms of
+  use checkbox. You can use @extend .col-12 and @extend .col-sm-6 to retain
+  bmotstrap behavior.
+- update js and python dependencies
+
+### Removed
+
+- **Breaking Change** Removed the "Comments" headline in
+  comment_box. This is replaced by the new "Discussion" subtitle above.
+- removed peerDependencies from package.json to make updating js packages easier
+
+### Fixed
+
+- categories: make the icon form field optional, fixes category form not
+  accepting a category without icon.
+
+
+## mB-v2402.1
 
 ### Added
 - add a changelog folder and readme with guideline for new changelog system
