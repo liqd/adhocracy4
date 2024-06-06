@@ -27,7 +27,7 @@ def react_documents(module, reload_on_success=False):
         "uploadUrl": reverse("ck_editor_5_upload_file"),
         "uploadFileTypes": settings.CKEDITOR_5_UPLOAD_FILE_TYPES,
         "id": "document-" + str(module.id),
-        "reload_on_success": reload_on_success,
+        "reloadOnSuccess": reload_on_success,
     }
 
     return format_html(
