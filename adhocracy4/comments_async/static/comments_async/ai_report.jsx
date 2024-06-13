@@ -10,8 +10,8 @@ const translated = {
   ariaReadLess: django.pgettext('defakts', 'Click to hide the AI explanation for reporting this comment.'),
   readMore: django.pgettext('defakts', 'Read more'),
   showLess: django.pgettext('defakts', 'Show less'),
-  showInfoSwitch: django.pgettext('defakts', 'Show info to users'),
-  hideInfoSwitch: django.pgettext('defakts', 'Hide info from users')
+  showInfoSwitch: django.pgettext('defakts', 'Show AI info to users'),
+  hideInfoSwitch: django.pgettext('defakts', 'Hide AI info from users')
 }
 
 export const AiReport = ({ Report, notificationPk, toggleShowAiReport }) => {
