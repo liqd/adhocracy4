@@ -2,6 +2,8 @@ from datetime import timedelta
 
 import pytest
 from dateutil.parser import parse
+from django.conf import settings
+from django.test.utils import override_settings
 from freezegun import freeze_time
 
 
@@ -545,3 +547,16 @@ def test_first_phase_start_date(phase, phase_factory):
         module=module, start_date=phase.start_date - timedelta(days=1)
     )
     assert module.first_phase_start_date == first_phase.start_date
+
+
+@pytest.mark.django_db
+def test_blueprint_type_display_empty_unknown_module(phase):
+    module = phase.module
+    assert module.get_blueprint_type_display == ""
+
+
+@override_settings(A4_BLUEPRINT_TYPES=[("QS", "questions")])
+@pytest.mark.django_db
+def test_blueprint_type_display(module):
+    module.blueprint_type = settings.A4_BLUEPRINT_TYPES[0][0]
+    assert module.get_blueprint_type_display == settings.A4_BLUEPRINT_TYPES[0][1]
