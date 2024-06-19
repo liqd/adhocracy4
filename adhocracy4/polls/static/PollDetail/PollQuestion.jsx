@@ -69,7 +69,7 @@ export const PollQuestion = (props) => {
 
   return (
     <form>
-      <div className="poll">
+      <div className="poll poll--question">
         <h2>{props.question.label}</h2>
         {questionHelpText}
         {multiHelpText}

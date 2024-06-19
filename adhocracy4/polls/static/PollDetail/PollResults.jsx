@@ -41,9 +41,9 @@ export default class PollResult extends React.Component {
   getOtherAnswerText () {
     let otherAnswerText
     if (this.state.showOtherAnswers) {
-      otherAnswerText = <span>{django.gettext('Hide other answers')}</span>
+      otherAnswerText = <>{django.gettext('Hide other answers')}</>
     } else {
-      otherAnswerText = <span>{django.gettext('Show other answers')}</span>
+      otherAnswerText = <>{django.gettext('Show other answers')}</>
     }
     return (
       otherAnswerText
@@ -95,7 +95,7 @@ export default class PollResult extends React.Component {
     }
 
     return (
-      <div className="poll">
+      <div className="poll poll--result">
         <h2>{this.state.question.label}</h2>
         <div className="poll__rows">
           {this.state.question.choices.map((choice, i) => {

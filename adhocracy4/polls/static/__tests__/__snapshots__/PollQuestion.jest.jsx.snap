@@ -7,7 +7,7 @@ exports[`render <PollQuestion> with... -> multiple-choice -> non-open-asnwers 1`
     <div>
       <form>
         <div
-          class="poll"
+          class="poll poll--question"
         >
           <h2>
             My Question
@@ -62,7 +62,7 @@ exports[`render <PollQuestion> with... -> multiple-choice -> non-open-asnwers 1`
   "container": <div>
     <form>
       <div
-        class="poll"
+        class="poll poll--question"
       >
         <h2>
           My Question
@@ -174,7 +174,7 @@ exports[`render <PollQuestion> with... -> multiple-choice -> open-asnwers 1`] = 
     <div>
       <form>
         <div
-          class="poll"
+          class="poll poll--question"
         >
           <h2>
             My Question
@@ -229,7 +229,7 @@ exports[`render <PollQuestion> with... -> multiple-choice -> open-asnwers 1`] = 
   "container": <div>
     <form>
       <div
-        class="poll"
+        class="poll poll--question"
       >
         <h2>
           My Question
@@ -341,7 +341,7 @@ exports[`render <PollQuestion> with... -> single-choice -> non-open-asnwers 1`] 
     <div>
       <form>
         <div
-          class="poll"
+          class="poll poll--question"
         >
           <h2>
             My Question
@@ -391,7 +391,7 @@ exports[`render <PollQuestion> with... -> single-choice -> non-open-asnwers 1`] 
   "container": <div>
     <form>
       <div
-        class="poll"
+        class="poll poll--question"
       >
         <h2>
           My Question
@@ -498,7 +498,7 @@ exports[`render <PollQuestion> with... -> single-choice -> open-asnwers 1`] = `
     <div>
       <form>
         <div
-          class="poll"
+          class="poll poll--question"
         >
           <h2>
             My Question
@@ -548,7 +548,7 @@ exports[`render <PollQuestion> with... -> single-choice -> open-asnwers 1`] = `
   "container": <div>
     <form>
       <div
-        class="poll"
+        class="poll poll--question"
       >
         <h2>
           My Question
