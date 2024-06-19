@@ -1,6 +1,7 @@
 import warnings
 
 from autoslug import AutoSlugField
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -397,6 +398,15 @@ class Module(models.Model):
                 if "modules" in cluster and self in cluster["modules"]:
                     return count
         return 0
+
+    @cached_property
+    def get_blueprint_type_display(self) -> str:
+        """Returns the textual description of the blueprint type"""
+        if hasattr(settings, "A4_BLUEPRINT_TYPES"):
+            blueprints_dict = dict(settings.A4_BLUEPRINT_TYPES)
+            if self.blueprint_type in blueprints_dict:
+                return blueprints_dict[self.blueprint_type]
+        return ""
 
     # Deprecated properties
     @cached_property
