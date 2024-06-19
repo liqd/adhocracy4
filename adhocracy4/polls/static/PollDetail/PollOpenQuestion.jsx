@@ -25,7 +25,7 @@ export const PollOpenQuestion = (props) => {
   }
 
   return (
-    <div className="poll">
+    <div className="poll poll--question">
       <h2>{props.question.label}</h2>
       {questionHelpText}
       <div className="poll__rows">
