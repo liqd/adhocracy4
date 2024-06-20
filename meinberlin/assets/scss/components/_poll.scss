@@ -209,8 +209,8 @@ $checkbox-size: 20px;
     font-size: $font-size-xs;
     color: $gray-lighter;
     position: absolute;
-    bottom: 1.75 * $spacer; // to allign with arrows
-    left: $spacer;
+    bottom: 1rem;
+    right: 6rem;
 }
 
 .poll-slider {
@@ -220,7 +220,7 @@ $checkbox-size: 20px;
     // slick overwrites - nested for specificity
     .slick-prev {
         left: revert !important;
-        right: 5 * $spacer !important;
+        right: 3.5 * $spacer !important;
     }
 
     .slick-next {
@@ -235,8 +235,8 @@ $checkbox-size: 20px;
         top: revert;
         bottom: 0;
         text-align: center;
-        width: 40px;
-        height: 40px;
+        width: 24px;
+        height: 24px;
         border-radius: 100%;
         z-index: 1; // for when tile links overlap
 
@@ -248,12 +248,13 @@ $checkbox-size: 20px;
         }
 
         &:before {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: $body-bg;
             opacity: 1;
             font-family: "Font Awesome 6 Free", sans-serif;
-            font-weight: 900;
-            font-size: $font-size-xxl;
-            line-height: 1.6rem;
+            font-size: 18px;
         }
     }
 
@@ -284,10 +285,5 @@ $checkbox-size: 20px;
     .poll-slider__count--spaced {
         left: revert;
         right: 8.5 * $spacer;
-    }
-
-    .poll-slider__count {
-        left: revert;
-        right: 2 * $spacer;
     }
 }
