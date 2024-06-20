@@ -164,6 +164,7 @@ export default class Comment extends React.Component {
       comment = (
         // Edit comment form
         <CommentForm
+          editing
           subjectType={this.props.content_type}
           subjectId={this.props.object_pk}
           comment={this.props.children}
@@ -421,6 +422,8 @@ export default class Comment extends React.Component {
                       comments={this.props.child_comments}
                       anchoredCommentId={this.props.anchoredCommentId}
                       anchoredCommentParentId={this.props.anchoredCommentParentId}
+                      hasCommentingPermission={this.props.hasCommentingPermission}
+                      wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
                       parentIndex={this.props.index}
                       onRenderFinished={this.props.onRenderFinished}
                       onCommentDelete={this.props.onCommentDelete}
