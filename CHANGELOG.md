@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## aplus-v2406.3
+
+### Fixed
+
+- add missing get_blueprint_type_display to module model
+- comments_async: fix child comments not being editable by creator
+- comments_async: hide "Join the discussion" headline when editing
+  a comment
+
+### Changed
+
+- make wording for ai report toggle more specific
 
 ## aplus-v2406.1
 
