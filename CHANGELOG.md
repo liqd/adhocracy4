@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## aplus-v2406.4
+
 ## aplus-v2406.3
 
 ### Fixed
@@ -17,6 +19,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - make wording for ai report toggle more specific
+- added new modifier classes to `PollResults.jsx`, `PollOpenQuestion.jsx` and `PollQuestion.jsx` for customized paddings
+- replaced `<span></span>` with react fragment to keep consistency
 
 ## aplus-v2406.1
 
