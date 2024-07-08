@@ -29,7 +29,7 @@
     "react-leaflet": "^4.2.1",
     "react-markdown": "9.0.1",
     "react-slick": "0.30.2",
-    "shpjs": "5.0.1"
+    "shpjs": "5.0.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.24.7",
