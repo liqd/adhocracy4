@@ -1,35 +1,36 @@
 {% extends "base.html" %}
 {% load i18n %}
-
-{% block title %}{% translate 'Submit a development plan statement' %} &mdash; {{ block.super }}{% endblock %}
-
+{% block title %}
+    {% translate "Submit a development plan statement" %} — {{ block.super }}
+{% endblock title %}
 {% block content %}
-<div class="container">
-    <div class="offset-lg-2 col-lg-8">
-        <h2>{% translate 'Submit a development plan statement' %}</h2>
-
-        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-            {% csrf_token %}
-            {{ form.media }}
-
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
-
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.street_number %}
-
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.postal_code_city %}
-
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
-
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.statement %}
-
-            <p>
-                {% translate "The processing of personal data is carried out as part of the development plan procedure on the basis of § 3 Baugesetzbuch in conjunction with Art. 6 Buchst. e Datenschutz-Grundverordnung und Berliner Datenschutzgesetz. Detailed information on data processing rights and personal data can be found in the privacy policy at the bottom of the page." %}
-            </p>
-
-            <div class="u-spacer-bottom">
-                <input type="submit" class="btn btn--primary" value="{% translate 'Submit' %}" />
-            </div>
-        </form>
+    <div class="container">
+        <div class="offset-lg-2 col-lg-8">
+            <h2>{% translate "Submit a development plan statement" %}</h2>
+            <form enctype="multipart/form-data"
+                  action="{{ request.path }}"
+                  method="post">
+                {% csrf_token %}
+                {{ form.media }}
+                {% include "meinberlin_contrib/includes/form_field.html" with field=form.name %}
+                {% include "meinberlin_contrib/includes/form_field.html" with field=form.street_number %}
+                {% include "meinberlin_contrib/includes/form_field.html" with field=form.postal_code_city %}
+                {% include "meinberlin_contrib/includes/form_field.html" with field=form.email %}
+                {% include "meinberlin_contrib/includes/form_field.html" with field=form.statement %}
+                {% if form.captcha %}
+                    {% with tabindex="0" %}
+                        {% include "meinberlin_contrib/includes/form_field.html" with field=form.captcha %}
+                    {% endwith %}
+                {% endif %}
+                <p>
+                    {% translate "The processing of personal data is carried out as part of the development plan procedure on the basis of § 3 Baugesetzbuch in conjunction with Art. 6 Buchst. e Datenschutz-Grundverordnung und Berliner Datenschutzgesetz. Detailed information on data processing rights and personal data can be found in the privacy policy at the bottom of the page." %}
+                </p>
+                <div class="u-spacer-bottom">
+                    <input type="submit"
+                           class="btn btn--primary"
+                           value="{% translate 'Submit' %}" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-{% endblock %}
+{% endblock content %}

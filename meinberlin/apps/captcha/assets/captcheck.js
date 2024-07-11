@@ -31,7 +31,7 @@ const ariaLabelText = django.gettext('Click for text-based question')
 const textImageMode = '&gt; ' + django.gettext('Image mode')
 const textTextMode = '&gt; ' + django.gettext('Text mode')
 
-window.onload = function () {
+function initializeCaptcha () {
   function chooseAnswer (idp, ans, session, combinedAnswerId) {
     const inputField = document.getElementById(combinedAnswerId)
     inputField.value = ans + ':' + session
@@ -169,3 +169,6 @@ window.onload = function () {
     xhr.send()
   })
 }
+
+document.addEventListener('DOMContentLoaded', initializeCaptcha, false)
+document.addEventListener('a4.embed.ready', initializeCaptcha, false)

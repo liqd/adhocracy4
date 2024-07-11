@@ -26,9 +26,38 @@ def test_statement_form_view(client, phase_factory, bplan_factory, module_factor
             "street_number": "Some Street 1",
             "postal_code_city": "12345 City",
             "statement": "Something...",
+            "captcha": "testpass:0",
         }
         response = client.post(url, statement)
         assert redirect_target(response) == "statement-sent"
+
+
+@pytest.mark.django_db
+def test_statement_form_view_no_captcha(
+    client, phase_factory, bplan_factory, module_factory
+):
+    bplan = bplan_factory(is_draft=False)
+    module = module_factory(project=bplan)
+    phase = phase_factory(phase_content=phases.StatementPhase(), module=module)
+    url = bplan.get_absolute_url()
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert_template_response(
+            response, "meinberlin_bplan/statement_create_form.html"
+        )
+
+        statement = {
+            "name": "User",
+            "email": "user@foo.bar",
+            "street_number": "Some Street 1",
+            "postal_code_city": "12345 City",
+            "statement": "Something...",
+        }
+        response = client.post(url, statement)
+        assert not response.context_data["form"].is_valid()
+        assert_template_response(
+            response, "meinberlin_bplan/statement_create_form.html"
+        )
 
 
 @pytest.mark.django_db
@@ -49,6 +78,7 @@ def test_statement_emails(client, phase_factory, bplan_factory, module_factory):
             "street_number": "Some Street 1",
             "postal_code_city": "12345 City",
             "statement": "Paragraph 1" "",
+            "captcha": "testpass:0",
         }
         response = client.post(url, statement)
         assert redirect_target(response) == "statement-sent"
