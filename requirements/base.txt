@@ -1,7 +1,7 @@
 beautifulsoup4==4.12.3
 bleach[css]==6.1.0
 Django==4.2.13
-django-allauth==0.63.3
+django-allauth==0.63.6
 django-autoslug==1.9.9
 https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl
 django-ckeditor==6.7.1
