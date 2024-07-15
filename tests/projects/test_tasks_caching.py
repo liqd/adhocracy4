@@ -9,6 +9,7 @@ from freezegun import freeze_time
 from meinberlin.apps.projects.tasks import get_next_projects_end
 from meinberlin.apps.projects.tasks import get_next_projects_start
 from meinberlin.apps.projects.tasks import schedule_reset_cache_for_projects
+from meinberlin.apps.projects.tasks import set_cache_for_projects
 
 
 @pytest.mark.django_db
@@ -114,3 +115,56 @@ def test_task_schedule_reset_cache_for_projects_becoming_past(
 
         next_projects_end = cache.get("next_projects_end")
         assert next_projects_end is None
+
+
+@pytest.mark.django_db
+def test_task_reset_cache_for_projects(
+    client, phase_factory, project_factory, django_assert_num_queries
+):
+    n_objects = 6
+    objects = project_factory.create_batch(size=n_objects)
+
+    # make dates to work with phase_factory
+    now = datetime.now(tz=timezone.utc)
+    last_week = now - timedelta(days=7)
+    next_week = now + timedelta(days=7)
+
+    # make active projects
+    active_projects = objects[:2]
+    for proj in active_projects:
+        phase_factory(
+            start_date=last_week,
+            end_date=next_week,
+            module__project=proj,
+        )
+
+    # make past project
+    past_project = objects[2]
+    phase_factory(
+        start_date=last_week,
+        end_date=now - timedelta(minutes=5),
+        module__project=past_project,
+    )
+
+    # make future project
+    future_project = objects[3]
+    phase_factory(
+        start_date=next_week,
+        end_date=next_week + timedelta(days=7),
+        module__project=future_project,
+    )
+
+    # check function set_cache_for_projects
+    set_cache_for_projects()
+
+    with freeze_time(now):
+        active_projects = cache.get("projects_activeParticipation")
+        future_project = cache.get("projects_futureParticipation")
+        past_project = cache.get("projects_pastParticipation")
+        projects = cache.get("projects_")
+        assert active_projects is not None
+        print(active_projects)
+        assert len(active_projects) == 2
+        assert len(past_project) == 1
+        assert len(future_project) == 1
+        assert len(projects) == 4

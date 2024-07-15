@@ -1,12 +1,68 @@
 from datetime import datetime
 from datetime import timedelta
-from datetime import timezone
 
 from celery import shared_task
 from django.core.cache import cache
+from django.utils import timezone
 
 from adhocracy4.phases.models import Phase
 from meinberlin.apps import logger
+from meinberlin.apps.projects.api import get_public_projects
+from meinberlin.apps.projects.serializers import ActiveProjectSerializer
+from meinberlin.apps.projects.serializers import FutureProjectSerializer
+from meinberlin.apps.projects.serializers import PastProjectSerializer
+from meinberlin.apps.projects.serializers import ProjectSerializer
+
+
+@shared_task(name="set_cache_for_projects")
+def set_cache_for_projects() -> str:
+    """Sets the cache for all public projects.
+    The task is called inline from reset_cache_for_projects,
+    whenever there are new future or past projects,
+    and also it is scheduled via celery beat to run
+    every hour in settings/production.txt.
+
+    Returns:
+        A log meesage indicating if cache for
+        projects was added succesfully or an error.
+    """
+    try:
+        queryset = get_public_projects()
+        now = timezone.now()
+
+        active_projects = queryset.filter(
+            module__phase__start_date__lte=now,
+            module__phase__end_date__gt=now,
+            module__is_draft=False,
+        ).distinct()
+        data = ActiveProjectSerializer(active_projects, now=now, many=True).data
+        cache.set("projects_" + "activeParticipation", data)
+
+        future_projects = (
+            queryset.filter(module__phase__start_date__gt=now, module__is_draft=False)
+            .distinct()
+            .exclude(id__in=active_projects.values("id"))
+        )
+        data = FutureProjectSerializer(future_projects, now=now, many=True).data
+        cache.set("projects_" + "futureParticipation", data)
+
+        past_projects = (
+            queryset.filter(module__phase__end_date__lt=now, module__is_draft=False)
+            .distinct()
+            .exclude(id__in=active_projects.values("id"))
+            .exclude(id__in=future_projects.values("id"))
+        )
+        data = PastProjectSerializer(past_projects, now=now, many=True).data
+        cache.set("projects_" + "pastParticipation", data)
+
+        projects = active_projects.union(future_projects, past_projects)
+        data = ProjectSerializer(projects, now=now, many=True).data
+        cache.set("projects_", data)
+
+        return logger.info("Reset cache for public projects.")
+
+    except Exception as e:
+        logger.error("Cache for projects failed:", e)
 
 
 def get_next_projects_start() -> list:
@@ -134,62 +190,16 @@ def schedule_reset_cache_for_projects() -> bool:
 
 
 @shared_task
-def reset_cache_for_projects(starts: bool, ends: bool) -> str:
+def reset_cache_for_projects(starts: bool, ends: bool):
     """
     Task called by schedule_reset_cache_for_projects
-    and clears cache for projects.
-
-    Returns:
-        A message indicating the participation
-        status of the projects that the cache
-        succeeded or failed to clear along with
-        other relevant type of projects.
+    and resets cache for projects.
     """
-
-    msg = "Clear cache "
     if starts:
         # remove redis key next_project_start
         cache.delete("next_projects_start")
-        cache.delete_many(
-            [
-                "projects_activeParticipation",
-                "projects_futureParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        )
-        if cache.get_many(
-            [
-                "projects_activeParticipation",
-                "projects_futureParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        ):
-            msg += "failed for future projects becoming active"
-        else:
-            msg += "succeeded for future projects becoming active"
     if ends:
         # remove redis key next_projects_end
         cache.delete("next_projects_end")
-        cache.delete_many(
-            [
-                "projects_activeParticipation",
-                "projects_pastParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        )
-        if cache.get_many(
-            [
-                "projects_activeParticipation",
-                "projects_pastParticipation",
-                "private_projects",
-                "extprojects",
-            ]
-        ):
-            msg += "failed for active projects becoming past"
-        else:
-            msg += "succeeded for active projects becoming past"
-    logger.info(msg)
-    return msg
+
+    set_cache_for_projects()
