@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import django from 'django'
 import FormFieldError from 'adhocracy4/adhocracy4/static/FormFieldError'
 
@@ -18,61 +18,26 @@ const translations = {
 }
 
 const ParagraphForm = (props) => {
-  const editor = useRef(null)
-  const index = useRef(props.index)
-  const id = 'id_paragraphs-' + props.id + '-text'
+  const id = 'id_paragraphs-' + props.id
+  const ckeditorId = id + '-text'
 
   useEffect(() => {
-    // destroy if component renders multiple times to prevent
-    // multiple CKEditors
-    let destroy = false
-    const createEditor = async () => {
-      const config = props.config
-      window.ckeditorSetSpecialConfigValues(
-        config,
-        props.csrfCookieName,
-        props.uploadUrl,
-        props.uploadFileTypes
-      )
-      const ckeditor = await window.ClassicEditor.create(
-        document.querySelector('#' + id),
-        config
-      )
-      if (destroy) {
-        ckeditor.destroy()
-      } else {
-        editor.current = ckeditor
-        editor.current.model.document.on('change:data', (e) => {
-          const text = editor.current.getData()
-          props.onTextChange(text)
-        })
-        editor.current.setData(props.paragraph.text)
-      }
+    window.ckeditorRegisterCallback(ckeditorId, setDataHandler)
+    const editor = window.editors[ckeditorId]
+    if (editor) {
+      setDataHandler(editor)
     }
-    if (editor.current) {
-      if (index.current !== props.index) {
-        // recreate if index changed
-        destroyEditor()
-      }
+    return () => {
+      window.ckeditorUnregisterCallback(ckeditorId)
     }
-    index.current = props.index
-    if (!editor.current) {
-      createEditor()
-      return () => {
-        // destroy if still in process of creating
-        destroy = true
-        // destroy if already created
-        destroyEditor()
-      }
-    }
-  }, [props.index])
+  }, [props.id, props.onTextChange, props.index])
 
-  const destroyEditor = () => {
-    if (editor.current) {
-      editor.current.destroy()
-      editor.current = null
-    }
+  const setDataHandler = (editor) => {
+    editor.model.document.on('change:data', () => {
+      props.onTextChange(editor.getData())
+    })
   }
+
   const handleNameChange = (e) => {
     const name = e.target.value
     props.onNameChange(name)
@@ -113,26 +78,36 @@ const ParagraphForm = (props) => {
                 >
                   {translations.helpText}
                 </div>
-                <div
-                  className="django-ckeditor-widget"
-                  data-field-id={'id_paragraphs-' + props.id + '-text'}
-                  style={{ display: 'inline-block' }}
-                >
-                  <textarea
-                    id={'id_paragraphs-' + props.id + '-text'}
-                    aria-invalid={props.errors ? 'true' : 'false'}
-                    aria-describedby={
-                      (props.errors ? 'id_paragraph-help-text-' : 'id_error-') +
-                      props.id
-                    }
-                  />
-                </div>
-                <FormFieldError
-                  id={'id_error-' + props.id}
-                  error={props.errors}
-                  field="text"
-                />
               </label>
+              <div className="ck-editor-container">
+                <textarea
+                  id={ckeditorId}
+                  className="django_ckeditor_5"
+                  defaultValue={props.paragraph.text}
+                />
+                <div />
+                <span
+                  className="word-count"
+                  id={ckeditorId + '_script-word-count'}
+                />
+                <input
+                  type="hidden"
+                  id={ckeditorId + '_script-ck-editor-5-upload-url'}
+                  data-upload-url={props.uploadUrl}
+                  data-upload-file-types={JSON.stringify(props.uploadFileTypes)}
+                  data-csrf_cookie_name={props.csrfCookieName}
+                />
+                <span id={ckeditorId + '_script-span'}>
+                  <script id={ckeditorId + '_script'} type="application/json">
+                    {JSON.stringify(props.config)}
+                  </script>
+                </span>
+              </div>
+              <FormFieldError
+                id={'id_error-' + props.id}
+                error={props.errors}
+                field="text"
+              />
             </div>
           </div>
         </div>
