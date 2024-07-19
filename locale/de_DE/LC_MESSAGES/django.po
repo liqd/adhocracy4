@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-26 14:00+0100\n"
-"PO-Revision-Date: 2024-04-25 10:56+0000\n"
-"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
+"PO-Revision-Date: 2024-07-19 12:04+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
 "\n"
 "Language: de_DE\n"
@@ -337,7 +337,7 @@ msgstr "hier können Sie alle Kommentare exportieren"
 #: meinberlin/templates/a4maps/map_choose_point_widget.html:6
 #: meinberlin/templates/a4maps/map_choose_point_widget.html:7
 msgid "Search"
-msgstr "Suchen"
+msgstr "Suche"
 
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
 #: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
