@@ -123,7 +123,7 @@ def schedule_reset_cache_for_projects() -> bool:
             # schedule cache clear for the seconds between now and next end
             reset_cache_for_projects.apply_async([starts, ends], countdown=remain_time)
             msg = f"""
-                    {project_status} {project_phase} in {remain_time/60} minutes
+                    {project_status} {project_phase} in {remain_time / 60} minutes
                     """
         success = True
     else:
