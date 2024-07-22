@@ -162,9 +162,8 @@ def test_task_reset_cache_for_projects(
         future_project = cache.get("projects_futureParticipation")
         past_project = cache.get("projects_pastParticipation")
         projects = cache.get("projects_")
-        assert active_projects is not None
-        print(active_projects)
         assert len(active_projects) == 2
         assert len(past_project) == 1
         assert len(future_project) == 1
-        assert len(projects) == 4
+        # 2 active, 1 past, 1 future, 2 unspecified
+        assert len(projects) == 6

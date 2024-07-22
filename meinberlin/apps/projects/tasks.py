@@ -55,8 +55,7 @@ def set_cache_for_projects() -> str:
         data = PastProjectSerializer(past_projects, now=now, many=True).data
         cache.set("projects_" + "pastParticipation", data)
 
-        projects = active_projects.union(future_projects, past_projects)
-        data = ProjectSerializer(projects, now=now, many=True).data
+        data = ProjectSerializer(queryset, now=now, many=True).data
         cache.set("projects_", data)
 
         return logger.info("Reset cache for public projects.")
