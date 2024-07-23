@@ -1,5 +1,6 @@
 import pytest
 from dateutil.parser import parse
+from django.core.cache import cache
 from django.urls import reverse
 from django.utils import timezone
 from freezegun import freeze_time
@@ -96,6 +97,8 @@ def test_list_view(
         end_date=yesterday,
         module__project=project_past,
     )
+    # clear cache as it's populated on project creation
+    cache.clear()
 
     with freeze_time(now):
         assert Project.objects.all().count() == 9

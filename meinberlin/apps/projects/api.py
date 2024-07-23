@@ -35,6 +35,7 @@ def get_public_projects() -> QuerySet[Project]:
             "plans",
             "organisation__initiators",
             "module_set__phase_set",
+            "topics",
         )
     )
     return projects

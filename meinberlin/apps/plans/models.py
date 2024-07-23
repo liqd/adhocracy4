@@ -175,7 +175,7 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse(
             "meinberlin_plans:plan-detail",
             kwargs=dict(pk="{:05d}".format(self.pk), year=self.created.year),

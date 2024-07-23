@@ -1,4 +1,5 @@
 from django.core.cache import cache
+from django.db.models import QuerySet
 from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -8,14 +9,26 @@ from meinberlin.apps.extprojects.models import ExternalProject
 from meinberlin.apps.extprojects.serializers import ExternalProjectSerializer
 
 
-class ExternalProjectListViewSet(viewsets.ReadOnlyModelViewSet):
-    def get_queryset(self):
-        return ExternalProject.objects.filter(
+def get_external_projects() -> QuerySet[ExternalProject]:
+    """
+    Helper function to query the db and retrieve all
+    external projects.
+    """
+    return (
+        ExternalProject.objects.filter(
             project_type="meinberlin_extprojects.ExternalProject",
             is_draft=False,
             access=Access.PUBLIC,
             is_archived=False,
         )
+        .select_related("organisation")
+        .prefetch_related("topics")
+    )
+
+
+class ExternalProjectListViewSet(viewsets.ReadOnlyModelViewSet):
+    def get_queryset(self):
+        return get_external_projects()
 
     def get_serializer(self, *args, **kwargs):
         now = timezone.now()

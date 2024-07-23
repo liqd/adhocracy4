@@ -17,19 +17,27 @@ from meinberlin.test.factories.plans import PlanFactory
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    "namespace,url_name,factory,factory_kwargs",
+    "namespace,url_name,factory,factory_kwargs,attr_name",
     [
-        ("plans", "plans-list", PlanFactory, {}),
+        ("plans", "plans-list", PlanFactory, {}, "title"),
         (
             "extprojects",
             "extprojects-list",
             ExternalProjectFactory,
             {"access": Access.PUBLIC, "is_draft": False, "is_archived": False},
+            "name",
         ),
     ],
 )
 def test_calling_plans_extprojects_list_creates_cached_value(
-    client, namespace, url_name, factory, factory_kwargs, django_assert_num_queries
+    client,
+    namespace,
+    url_name,
+    factory,
+    factory_kwargs,
+    attr_name,
+    django_assert_num_queries,
+    django_capture_on_commit_callbacks,
 ):
     n_objects = 3
     cache_key = namespace
@@ -54,28 +62,43 @@ def test_calling_plans_extprojects_list_creates_cached_value(
         assert response.status_code == 200
         assert len(response.data) == len(objects) == n_objects
 
-    # check cache is clear when updating an object
+    # check cache is updated when updating an object
     obj = objects[0]  # fetch the first object
-    obj.config_name = "admin"
-    obj.save()
+    setattr(obj, attr_name, "working cache")
+    with django_capture_on_commit_callbacks(execute=True):
+        obj.save()
     cache_value_post_saving = cache.get(cache_key)
-    cache_value_post_saving is None
+    # assert changed obj is now in cash
+    cached_obj = [
+        e for e in cache_value_post_saving if e["title"] == getattr(obj, attr_name)
+    ][0]
+    assert cached_obj["title"] == "working cache"
 
-    # check cache is clear when deleting an object
+    # check cache is updated when deleting an object
     obj = objects[0]  # fetch the first object
-    obj.delete()
+    with django_capture_on_commit_callbacks(execute=True):
+        obj.delete()
     cache_value_post_saving = cache.get(cache_key)
-    cache_value_post_saving is None
+    assert len(cache_value_post_saving) == n_objects - 1
+    # assert obj is gone from cache
+    assert not [
+        e for e in cache_value_post_saving if e["title"] == getattr(obj, attr_name)
+    ]
 
     # check cache is set when calling the endpoint
-    response = client.get(url)
+    client.get(url)
     cache_value_after = cache.get(cache_key)
     assert len(cache_value_after) == len(objects) - 1 == n_objects - 1
 
-    # check cache is clear when creating a new object
-    factory.create(**factory_kwargs)
+    # check cache is updated when creating a new object
+    with django_capture_on_commit_callbacks(execute=True):
+        new_obj = factory.create(**factory_kwargs)
     cache_value_post_saving = cache.get(cache_key)
-    cache_value_post_saving is None
+    assert len(cache_value_post_saving) == n_objects
+    # assert cache has new object
+    assert [
+        e for e in cache_value_post_saving if e["title"] == getattr(new_obj, attr_name)
+    ][0]
 
     # check cache is set when calling the endpoint
     response = client.get(url)
@@ -159,6 +182,8 @@ def test_calling_list_api_creates_cached_value(
                 end_date=yesterday,
                 module__project=project_past,
             )
+    # clear cache as it's populated on project creation
+    cache.clear()
 
     from freezegun import freeze_time
 
@@ -180,6 +205,44 @@ def test_calling_list_api_creates_cached_value(
             assert response.data == cache_value_after
 
         cache.delete(cache_key)
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "namespace,url_name,factory,factory_kwargs",
+    [
+        ("plans", "plans-list", PlanFactory, {}),
+        (
+            "extprojects",
+            "extprojects-list",
+            ExternalProjectFactory,
+            {"access": Access.PUBLIC, "is_draft": False, "is_archived": False},
+        ),
+    ],
+)
+def test_calling_api_when_cache_for_plans_and_exprojects_is_set(
+    client, namespace, url_name, factory, factory_kwargs, django_assert_num_queries
+):
+    n_objects = 6
+    cache_key = namespace
+
+    factory.create_batch(size=n_objects, **factory_kwargs)
+
+    now = datetime.now(tz=timezone.utc)
+
+    # check function set_cache_for_projects
+    set_cache_for_projects()
+
+    from freezegun import freeze_time
+
+    with freeze_time(now):
+        with django_assert_num_queries(0):
+            # 0 number of queries means the api results are cached
+            url = reverse(url_name)
+            response = client.get(url)
+            assert response.status_code == 200
+            cache_projects = cache.get(cache_key)
+            assert response.data == cache_projects
 
 
 @pytest.mark.django_db
