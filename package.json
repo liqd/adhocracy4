@@ -26,6 +26,7 @@
     "dsgvo-video-embed": "liqd/dsgvo-video-embed#main",
     "es6-promise": "4.2.8",
     "file-saver": "2.0.5",
+    "flatpickr": "4.6.13",
     "immutability-helper": "3.1.1",
     "jquery": "3.7.1",
     "js-cookie": "3.0.5",

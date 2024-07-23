@@ -33,7 +33,7 @@ module.exports = {
     datepicker: {
       import: [
         './meinberlin/assets/js/init-picker.js',
-        'datepicker/css/datepicker.min.css'
+        './node_modules/flatpickr/dist/flatpickr.css'
       ],
       dependOn: 'adhocracy4'
     },
