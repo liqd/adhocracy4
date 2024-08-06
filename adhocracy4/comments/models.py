@@ -9,9 +9,14 @@ from django.utils.translation import pgettext_lazy
 
 from adhocracy4 import transforms
 from adhocracy4.models import base
+from adhocracy4.models.query import RateableQuerySet
 from adhocracy4.projects.models import Project
 from adhocracy4.ratings import models as rating_models
 from adhocracy4.reports import models as report_models
+
+
+class RateableCommentQuerySet(RateableQuerySet):
+    pass
 
 
 class Comment(base.UserGeneratedContentModel):
@@ -42,6 +47,8 @@ class Comment(base.UserGeneratedContentModel):
     project = models.ForeignKey(
         Project, on_delete=models.SET_NULL, blank=True, null=True
     )
+
+    objects = RateableCommentQuerySet.as_manager()
 
     class Meta:
         verbose_name = pgettext_lazy("noun", "Comment")
