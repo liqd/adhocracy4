@@ -7,12 +7,13 @@ from tests.apps.questions.models import Question
 
 
 @pytest.mark.django_db
-def test_serializer(apiclient, question, comment_factory, user):
+def test_serializer(apiclient, question, comment_factory, rating_factory, user):
     question_ct = ContentType.objects.get_for_model(Question)
     comment_ct = ContentType.objects.get_for_model(Comment)
     moderator = question.project.moderators.first()
 
-    comment_factory(pk=1, content_object=question, creator=user)
+    comment = comment_factory(pk=1, content_object=question, creator=user)
+    rating = rating_factory(content_object=comment, value=1, creator=user)
     comment_factory(
         pk=2, content_object=question, creator=user, comment_categories="QUE"
     )
@@ -61,6 +62,10 @@ def test_serializer(apiclient, question, comment_factory, user):
     assert comment_1["last_discussed"] is None
     assert comment_1["is_moderator_marked"] is False
     assert comment_1["content_type"] == question_ct.pk
+    assert comment_1["ratings"]["positive_ratings"] == 1
+    assert comment_1["ratings"]["negative_ratings"] == 0
+    assert comment_1["ratings"]["current_user_rating_value"] == 1
+    assert comment_1["ratings"]["current_user_rating_id"] == rating.pk
 
     # Testing comment with a defined category:
     comment_2 = comment_data[5]
@@ -81,6 +86,10 @@ def test_serializer(apiclient, question, comment_factory, user):
     assert comment_2["last_discussed"] is None
     assert comment_2["is_moderator_marked"] is False
     assert comment_2["content_type"] == question_ct.pk
+    assert comment_2["ratings"]["positive_ratings"] == 0
+    assert comment_2["ratings"]["negative_ratings"] == 0
+    assert comment_2["ratings"]["current_user_rating_value"] is None
+    assert comment_2["ratings"]["current_user_rating_id"] is None
 
     # Testing a comment that is set to blocked by a moderator:
     comment_3 = comment_data[4]

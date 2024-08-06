@@ -1,6 +1,7 @@
 from django.apps import apps
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Count
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
@@ -70,7 +71,7 @@ class PaginationCommentLinkMixin:
                     return Response(status=status.HTTP_400_BAD_REQUEST)
             return response
         serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response({"results": serializer.data})
 
 
 class PermissionInfoMixin:
@@ -237,5 +238,15 @@ class CommentViewSet(
                     user_has_agreed = self._user_has_agreed(user)
             response.data["user_has_agreed"] = user_has_agreed
             response.data["org_terms_url"] = org_terms_url
+        if request.GET.get("categories", "") == "true":
+            comment_category_choices = getattr(settings, "A4_COMMENT_CATEGORIES", None)
+            if comment_category_choices:
+                comment_category_choices = dict(
+                    (x, str(y)) for x, y in comment_category_choices
+                )
+                response.data["categories"] = comment_category_choices
+            else:
+                raise ImproperlyConfigured("set A4_COMMENT_CATEGORIES in settings")
+
         response.data["use_org_terms_of_use"] = use_org_terms_of_use
         return response

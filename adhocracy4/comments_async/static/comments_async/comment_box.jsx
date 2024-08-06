@@ -54,6 +54,7 @@ export const CommentBox = (props) => {
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [anchorRendered, setAnchorRendered] = useState(false)
+  const [categoryChoices, setCategoryChoices] = useState({})
   const noControlBar = props.noControlBar || false
 
   useEffect(() => {
@@ -65,6 +66,9 @@ export const CommentBox = (props) => {
     params.urlReplaces = urlReplaces
     if (props.anchoredCommentId) {
       params.commentID = props.anchoredCommentId
+    }
+    if (props.withCategories) {
+      params.categories = true
     }
     api.comments.get(params).done(handleComments).fail()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,6 +111,9 @@ export const CommentBox = (props) => {
     setUseTermsOfUse(data.use_org_terms_of_use)
     setAgreedTermsOfUse(data.user_has_agreed)
     setOrgTermsUrl(data.org_terms_url)
+    if (props.withCategories) {
+      setCategoryChoices(data.categories)
+    }
     if (props.anchoredCommentId && data.comment_found) {
       setAnchoredCommentParentId(data.comment_parent)
       if (
@@ -273,7 +280,7 @@ export const CommentBox = (props) => {
 
   function fetchFiltered (filter) {
     let commentCategory = filter
-    let displayFilter = props.commentCategoryChoices[filter]
+    let displayFilter = categoryChoices[filter]
     if (filter === 'all') {
       displayFilter = django.gettext('all')
       commentCategory = ''
@@ -408,7 +415,7 @@ export const CommentBox = (props) => {
 
   function commentCategoryChoices () {
     if (props.withCategories === true) {
-      return props.commentCategoryChoices
+      return categoryChoices
     }
   }
 
