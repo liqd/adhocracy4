@@ -140,8 +140,8 @@ class CommentSerializer(serializers.ModelSerializer):
         As well as info on the request users rating
         """
         user = self.context["request"].user
-        positive_ratings = comment.ratings.filter(value=1).count()
-        negative_ratings = comment.ratings.filter(value=-1).count()
+        positive_ratings = getattr(comment, "positive_rating_count", 0)
+        negative_ratings = getattr(comment, "negative_rating_count", 0)
 
         if user.is_authenticated:
             user_rating = comment.ratings.filter(creator=user).first()

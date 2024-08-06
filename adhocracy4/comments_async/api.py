@@ -91,9 +91,9 @@ class PermissionInfoMixin:
             has_commenting_permission = request.user.has_perm(permission, obj)
 
         response.data["has_commenting_permission"] = has_commenting_permission
-        response.data[
-            "would_have_commenting_permission"
-        ] = would_have_commenting_permission
+        response.data["would_have_commenting_permission"] = (
+            would_have_commenting_permission
+        )
         response.data["project_is_public"] = obj.project.is_public
         return response
 
@@ -161,8 +161,11 @@ class CommentViewSet(
 
     def get_queryset(self):
         child_comment_content_type_id = ContentType.objects.get_for_model(Comment)
-        comments = Comment.objects.filter(object_pk=self.object_pk).filter(
-            content_type_id=self.content_type.pk
+        comments = (
+            Comment.objects.filter(object_pk=self.object_pk)
+            .filter(content_type_id=self.content_type.pk)
+            .annotate_positive_rating_count()
+            .annotate_negative_rating_count()
         )
         if self.action == "list":
             return comments.exclude(
