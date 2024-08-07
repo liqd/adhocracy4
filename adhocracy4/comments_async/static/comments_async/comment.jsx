@@ -61,20 +61,18 @@ export default class Comment extends React.Component {
     this.state = {
       edit: false,
       showChildComments: false,
-      displayNotification: this.props.displayNotification,
       shorten: true,
       anchored: false,
       showModStatement: true,
       moderatorFeedback: this.props.moderatorFeedback
     }
 
-    setTimeout(
-      function () {
-        this.setState({ displayNotification: false })
-      }
-        .bind(this),
-      2000
-    )
+    if (this.props.displayNotification) {
+      setTimeout(
+        () => {
+          props.hideNotification(this.props.index, this.props.parentIndex)
+        }, 2000)
+    }
   }
 
   componentDidMount () {
@@ -311,7 +309,7 @@ export default class Comment extends React.Component {
 
     return (
       <li>
-        {this.state.displayNotification &&
+        {this.props.displayNotification &&
           <div className="alert alert--success a4-comments__success-notification"><i className="fas fa-check" /> {translated.successMessage}</div>}
         <div className={(this.props.is_users_own_comment ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
           <a className="a4-comments__anchor" id={'comment_' + this.props.id} href={'./?comment=' + this.props.id}>{'Comment ' + this.props.id}</a>
@@ -436,6 +434,7 @@ export default class Comment extends React.Component {
                       orgTermsUrl={this.props.orgTermsUrl}
                       setCommentError={this.props.setCommentError}
                       setCommentEditError={this.props.setCommentEditError}
+                      hideNotification={this.props.hideNotification}
                     />
                   </div>
                 </div>

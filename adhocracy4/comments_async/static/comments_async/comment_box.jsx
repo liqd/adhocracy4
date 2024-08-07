@@ -266,6 +266,10 @@ export const CommentBox = (props) => {
     setEditError(parentIndex, index, undefined)
   }
 
+  function handleHideNotification (index, parentIndex) {
+    updateStateComment(parentIndex, index, { displayNotification: false })
+  }
+
   function handleToggleFilters (e) {
     e.preventDefault()
     setShowFilters(!showFilters)
@@ -459,6 +463,7 @@ export const CommentBox = (props) => {
           agreedTermsOfUse={agreedTermsOfUse}
           orgTermsUrl={orgTermsUrl}
           setCommentError={setMainError}
+          hideNotification={handleHideNotification}
         />
       </div>
       <div>
@@ -512,6 +517,7 @@ export const CommentBox = (props) => {
         orgTermsUrl={orgTermsUrl}
         setCommentError={setMainError}
         setCommentEditError={setEditError}
+        hideNotification={handleHideNotification}
       />
       <div className={loading ? 'u-spinner__container' : 'd-none'}>
         <i className="fa fa-spinner fa-pulse" aria-hidden="true" />

@@ -66,6 +66,7 @@ const CommentList = (props) => {
               orgTermsUrl={props.orgTermsUrl}
               setCommentError={props.setCommentError}
               setCommentEditError={props.setCommentEditError}
+              hideNotification={props.hideNotification}
             >{comment.comment}
             </Comment>
           )
