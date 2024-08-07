@@ -64,6 +64,8 @@ const CommentList = (props) => {
               useTermsOfUse={props.useTermsOfUse}
               agreedTermsOfUse={props.agreedTermsOfUse}
               orgTermsUrl={props.orgTermsUrl}
+              setCommentError={props.setCommentError}
+              setCommentEditError={props.setCommentEditError}
             >{comment.comment}
             </Comment>
           )
