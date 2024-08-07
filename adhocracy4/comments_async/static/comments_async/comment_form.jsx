@@ -96,7 +96,11 @@ export default class CommentForm extends React.Component {
 
     if (!comment) {
       this.setState({ showCommentError: true })
-      this.props.setCommentError(translated.addComment)
+      if (this.props.editing) {
+        this.props.setCommentError(this.props.parentIndex, this.props.index, translated.addComment)
+      } else {
+        this.props.setCommentError(translated.addComment)
+      }
       return
     }
     this.props.onCommentSubmit(data, this.props.parentIndex).then(() => {
@@ -107,7 +111,6 @@ export default class CommentForm extends React.Component {
       return null
     }).catch(error => {
       console.warn(error)
-      this.props.setCommentError(this.props.errorMessage)
     })
   }
 

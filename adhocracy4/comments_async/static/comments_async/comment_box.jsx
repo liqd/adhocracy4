@@ -138,7 +138,7 @@ export const CommentBox = (props) => {
   // handles update of the comment state
   // called in handleCommentSubmit, handleCommentModify, handleCommentDelete,
   // handleHideReplyError, handleHideEditeError
-  function updateStateComment (index, parentIndex, updatedComment) {
+  function updateStateComment (parentIndex, index, updatedComment) {
     const diff = {}
     if (parentIndex !== undefined) {
       diff[parentIndex] = { child_comments: {} }
@@ -180,7 +180,7 @@ export const CommentBox = (props) => {
   }
 
   function updateError (parentIndex, index, message, type) {
-    if (parentIndex !== undefined) {
+    if (index !== undefined) {
       updateStateComment(parentIndex, index, {
         [type]: message !== undefined,
         errorMessage: message
@@ -213,7 +213,7 @@ export const CommentBox = (props) => {
     return api.comments
       .change(modifiedComment, comment.id)
       .done((changed) => {
-        updateStateComment(index, parentIndex, {
+        updateStateComment(parentIndex, index, {
           ...changed,
           editError: false,
           errorMessage: undefined
@@ -222,7 +222,7 @@ export const CommentBox = (props) => {
       })
       .fail((xhr, status, err) => {
         const newErrorMessage = Object.values(xhr.responseJSON)[0]
-        setEditError(index, parentIndex, newErrorMessage)
+        setEditError(parentIndex, index, newErrorMessage)
       })
   }
 
@@ -242,7 +242,7 @@ export const CommentBox = (props) => {
     return api.comments
       .delete(data, comment.id)
       .done((changed) => {
-        updateStateComment(index, parentIndex, {
+        updateStateComment(parentIndex, index, {
           ...changed,
           editError: false,
           errorMessage: undefined
@@ -250,7 +250,7 @@ export const CommentBox = (props) => {
       })
       .fail((xhr, status, err) => {
         const newErrorMessage = Object.values(xhr.responseJSON)[0]
-        setEditError(index, parentIndex, newErrorMessage)
+        setEditError(parentIndex, index, newErrorMessage)
       })
   }
 
@@ -263,7 +263,7 @@ export const CommentBox = (props) => {
   }
 
   function handleHideEditError (index, parentIndex) {
-    setEditError(index, parentIndex, undefined)
+    setEditError(parentIndex, index, undefined)
   }
 
   function handleToggleFilters (e) {
@@ -510,6 +510,8 @@ export const CommentBox = (props) => {
         useTermsOfUse={useTermsOfUse}
         agreedTermsOfUse={agreedTermsOfUse}
         orgTermsUrl={orgTermsUrl}
+        setCommentError={setMainError}
+        setCommentEditError={setEditError}
       />
       <div className={loading ? 'u-spinner__container' : 'd-none'}>
         <i className="fa fa-spinner fa-pulse" aria-hidden="true" />

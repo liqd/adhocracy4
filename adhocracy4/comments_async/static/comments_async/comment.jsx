@@ -182,10 +182,12 @@ export default class Comment extends React.Component {
           handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
           rows="5"
           handleCancel={this.toggleEdit.bind(this)}
+          index={this.props.index}
           parentIndex={this.props.parentIndex}
           showCancel
+          setCommentError={this.props.setCommentEditError}
           onCommentSubmit={newComment => {
-            this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
+            return this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
               .then(() => {
                 this.setState({
                   edit: false
@@ -428,10 +430,12 @@ export default class Comment extends React.Component {
                       onRenderFinished={this.props.onRenderFinished}
                       onCommentDelete={this.props.onCommentDelete}
                       onCommentModify={this.props.onCommentModify}
-                      onEditErrorClick={this.props.handleEditErrorClick}
+                      onEditErrorClick={this.props.onEditErrorClick}
                       useTermsOfUse={this.props.useTermsOfUse}
                       agreedTermsOfUse={this.props.agreedTermsOfUse}
                       orgTermsUrl={this.props.orgTermsUrl}
+                      setCommentError={this.props.setCommentError}
+                      setCommentEditError={this.props.setCommentEditError}
                     />
                   </div>
                 </div>
@@ -455,6 +459,7 @@ export default class Comment extends React.Component {
                       useTermsOfUse={this.props.useTermsOfUse}
                       agreedTermsOfUse={this.props.agreedTermsOfUse}
                       orgTermsUrl={this.props.orgTermsUrl}
+                      setCommentError={this.props.setCommentError}
                     />
                   </div>
                 </div>
