@@ -1,0 +1,1181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comment Component renders comment with creator and comment text 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <li>
+        <div
+          class="a4-comments__comment"
+        >
+          <a
+            class="a4-comments__anchor"
+            href="./?comment=1"
+            id="comment_1"
+          >
+            Comment 1
+          </a>
+          <div
+            class="a4-comments__box"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="col-2 col-lg-1 a4-comments__user-img"
+              />
+              <div
+                class="col-7 col-md-8 a4-comments__author-container"
+              >
+                <div
+                  class="a4-comments__author"
+                >
+                  <a>
+                    Participant 1
+                  </a>
+                </div>
+                <time
+                  class="a4-comments__submission-date"
+                >
+                  May 21, 2024, 11:44 a.m.
+                </time>
+              </div>
+              <div
+                class="col-1 ms-auto a4-comments__dropdown-container"
+              />
+              <div
+                class="col-12"
+              >
+                <div
+                  class="a4-comments__text"
+                >
+                  <p>
+                    This is a test comment.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-6 a4-comments__read-btn-container"
+              />
+            </div>
+          </div>
+          <div
+            class="a4-comments__action"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 a4-comments__action-bar-container"
+              >
+                <div
+                  class="rating"
+                >
+                  <button
+                    aria-label="Click to vote up"
+                    class="rating-button rating-up"
+                    disabled=""
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-chevron-up"
+                    />
+                    10
+                  </button>
+                  <button
+                    aria-label="Click to vote down"
+                    class="rating-button rating-down"
+                    disabled=""
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-chevron-down"
+                    />
+                    2
+                  </button>
+                </div>
+                <div
+                  class="a4-comments__action-bar"
+                >
+                  <button
+                    class="btn btn--no-border a4-comments__action-bar__btn"
+                    type="button"
+                  >
+                    <a
+                      href="#child-comment-form"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="far fa-comment"
+                      />
+                       
+                      Reply
+                    </a>
+                  </button>
+                  <a
+                    class="btn btn--no-border a4-comments__action-bar__btn"
+                    data-bs-target="#share_comment_1"
+                    data-bs-toggle="modal"
+                    href="?comment_1"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fas fa-share"
+                    />
+                     
+                    Share
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          aria-label="Send Report"
+          class="modal fade"
+          id="report_comment_1"
+          role="dialog"
+          tabindex="-1"
+        >
+          <div
+            class="modal-dialog modal-dialog-centered modal-lg"
+            role="document"
+          >
+            <div
+              class="modal-content"
+            >
+              <div
+                class="modal-header"
+              >
+                <h2
+                  class="u-no-margin-bottom u-spacer-top-one-half"
+                >
+                  Send Report
+                </h2>
+                <button
+                  aria-label="Abort"
+                  class="close"
+                  data-bs-dismiss="modal"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-times"
+                  />
+                </button>
+              </div>
+              <div
+                class="modal-body "
+              >
+                <div
+                  class="u-spacer-bottom"
+                >
+                  You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).
+                </div>
+                <div
+                  class="form-group"
+                >
+                  <textarea
+                    class="form-control report-message"
+                    placeholder="Your message"
+                    rows="5"
+                  />
+                </div>
+              </div>
+              <div
+                class="modal-footer"
+              >
+                <button
+                  class="submit-button"
+                  data-bs-dismiss="false"
+                >
+                  Send Report
+                </button>
+                <button
+                  class="cancel-button"
+                  data-bs-dismiss="modal"
+                >
+                  Abort
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          aria-label="Share link"
+          class="modal fade"
+          id="share_comment_1"
+          role="dialog"
+          tabindex="-1"
+        >
+          <div
+            class="modal-dialog modal-dialog-centered modal-lg"
+            role="document"
+          >
+            <div
+              class="modal-content"
+            >
+              <div
+                class="modal-header"
+              >
+                <h2
+                  class="u-no-margin-bottom u-spacer-top-one-half"
+                >
+                  Share link
+                </h2>
+                <button
+                  aria-label="Abort"
+                  class="close"
+                  data-bs-dismiss="modal"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-times"
+                  />
+                </button>
+              </div>
+              <div
+                class="modal-body "
+              >
+                <div
+                  class="u-spacer-bottom"
+                />
+                <div
+                  class="input-group"
+                >
+                  <input
+                    class="form-control"
+                    id="share-url-1"
+                    readonly=""
+                    type="text"
+                    value="http://localhost/?comment=1"
+                  />
+                  <button
+                    aria-pressed="false"
+                    autocomplete="off"
+                    class="btn btn--primary input-group-append"
+                    data-bs-toggle="button"
+                  >
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </div>
+  </body>,
+  "container": <div>
+    <li>
+      <div
+        class="a4-comments__comment"
+      >
+        <a
+          class="a4-comments__anchor"
+          href="./?comment=1"
+          id="comment_1"
+        >
+          Comment 1
+        </a>
+        <div
+          class="a4-comments__box"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-2 col-lg-1 a4-comments__user-img"
+            />
+            <div
+              class="col-7 col-md-8 a4-comments__author-container"
+            >
+              <div
+                class="a4-comments__author"
+              >
+                <a>
+                  Participant 1
+                </a>
+              </div>
+              <time
+                class="a4-comments__submission-date"
+              >
+                May 21, 2024, 11:44 a.m.
+              </time>
+            </div>
+            <div
+              class="col-1 ms-auto a4-comments__dropdown-container"
+            />
+            <div
+              class="col-12"
+            >
+              <div
+                class="a4-comments__text"
+              >
+                <p>
+                  This is a test comment.
+                </p>
+              </div>
+            </div>
+            <div
+              class="col-6 a4-comments__read-btn-container"
+            />
+          </div>
+        </div>
+        <div
+          class="a4-comments__action"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-12 a4-comments__action-bar-container"
+            >
+              <div
+                class="rating"
+              >
+                <button
+                  aria-label="Click to vote up"
+                  class="rating-button rating-up"
+                  disabled=""
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-chevron-up"
+                  />
+                  10
+                </button>
+                <button
+                  aria-label="Click to vote down"
+                  class="rating-button rating-down"
+                  disabled=""
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-chevron-down"
+                  />
+                  2
+                </button>
+              </div>
+              <div
+                class="a4-comments__action-bar"
+              >
+                <button
+                  class="btn btn--no-border a4-comments__action-bar__btn"
+                  type="button"
+                >
+                  <a
+                    href="#child-comment-form"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="far fa-comment"
+                    />
+                     
+                    Reply
+                  </a>
+                </button>
+                <a
+                  class="btn btn--no-border a4-comments__action-bar__btn"
+                  data-bs-target="#share_comment_1"
+                  data-bs-toggle="modal"
+                  href="?comment_1"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fas fa-share"
+                  />
+                   
+                  Share
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-label="Send Report"
+        class="modal fade"
+        id="report_comment_1"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div
+            class="modal-content"
+          >
+            <div
+              class="modal-header"
+            >
+              <h2
+                class="u-no-margin-bottom u-spacer-top-one-half"
+              >
+                Send Report
+              </h2>
+              <button
+                aria-label="Abort"
+                class="close"
+                data-bs-dismiss="modal"
+              >
+                <i
+                  aria-hidden="true"
+                  class="fa fa-times"
+                />
+              </button>
+            </div>
+            <div
+              class="modal-body "
+            >
+              <div
+                class="u-spacer-bottom"
+              >
+                You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).
+              </div>
+              <div
+                class="form-group"
+              >
+                <textarea
+                  class="form-control report-message"
+                  placeholder="Your message"
+                  rows="5"
+                />
+              </div>
+            </div>
+            <div
+              class="modal-footer"
+            >
+              <button
+                class="submit-button"
+                data-bs-dismiss="false"
+              >
+                Send Report
+              </button>
+              <button
+                class="cancel-button"
+                data-bs-dismiss="modal"
+              >
+                Abort
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-label="Share link"
+        class="modal fade"
+        id="share_comment_1"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div
+            class="modal-content"
+          >
+            <div
+              class="modal-header"
+            >
+              <h2
+                class="u-no-margin-bottom u-spacer-top-one-half"
+              >
+                Share link
+              </h2>
+              <button
+                aria-label="Abort"
+                class="close"
+                data-bs-dismiss="modal"
+              >
+                <i
+                  aria-hidden="true"
+                  class="fa fa-times"
+                />
+              </button>
+            </div>
+            <div
+              class="modal-body "
+            >
+              <div
+                class="u-spacer-bottom"
+              />
+              <div
+                class="input-group"
+              >
+                <input
+                  class="form-control"
+                  id="share-url-1"
+                  readonly=""
+                  type="text"
+                  value="http://localhost/?comment=1"
+                />
+                <button
+                  aria-pressed="false"
+                  autocomplete="off"
+                  class="btn btn--primary input-group-append"
+                  data-bs-toggle="button"
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Comment Component renders comment with moderator badge 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <li>
+        <div
+          class="a4-comments__comment"
+        >
+          <a
+            class="a4-comments__anchor"
+            href="./?comment=1"
+            id="comment_1"
+          >
+            Comment 1
+          </a>
+          <div
+            class="a4-comments__box"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="col-2 col-lg-1 a4-comments__user-img"
+              />
+              <div
+                class="col-7 col-md-8 a4-comments__author-container"
+              >
+                <div
+                  class="a4-comments__author"
+                >
+                  <a>
+                    Participant 1
+                  </a>
+                </div>
+                <span
+                  class="a4-comments__moderator"
+                >
+                  Moderator
+                </span>
+                <time
+                  class="a4-comments__submission-date"
+                >
+                  May 21, 2024, 11:44 a.m.
+                </time>
+              </div>
+              <div
+                class="col-1 ms-auto a4-comments__dropdown-container"
+              />
+              <div
+                class="col-12"
+              >
+                <div
+                  class="a4-comments__text"
+                >
+                  <p>
+                    This is a test comment.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-6 a4-comments__read-btn-container"
+              />
+            </div>
+          </div>
+          <div
+            class="a4-comments__action"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="col-12 a4-comments__action-bar-container"
+              >
+                <div
+                  class="rating"
+                >
+                  <button
+                    aria-label="Click to vote up"
+                    class="rating-button rating-up"
+                    disabled=""
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-chevron-up"
+                    />
+                    10
+                  </button>
+                  <button
+                    aria-label="Click to vote down"
+                    class="rating-button rating-down"
+                    disabled=""
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-chevron-down"
+                    />
+                    2
+                  </button>
+                </div>
+                <div
+                  class="a4-comments__action-bar"
+                >
+                  <button
+                    class="btn btn--no-border a4-comments__action-bar__btn"
+                    type="button"
+                  >
+                    <a
+                      href="#child-comment-form"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="far fa-comment"
+                      />
+                       
+                      Reply
+                    </a>
+                  </button>
+                  <a
+                    class="btn btn--no-border a4-comments__action-bar__btn"
+                    data-bs-target="#share_comment_1"
+                    data-bs-toggle="modal"
+                    href="?comment_1"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fas fa-share"
+                    />
+                     
+                    Share
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          aria-label="Send Report"
+          class="modal fade"
+          id="report_comment_1"
+          role="dialog"
+          tabindex="-1"
+        >
+          <div
+            class="modal-dialog modal-dialog-centered modal-lg"
+            role="document"
+          >
+            <div
+              class="modal-content"
+            >
+              <div
+                class="modal-header"
+              >
+                <h2
+                  class="u-no-margin-bottom u-spacer-top-one-half"
+                >
+                  Send Report
+                </h2>
+                <button
+                  aria-label="Abort"
+                  class="close"
+                  data-bs-dismiss="modal"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-times"
+                  />
+                </button>
+              </div>
+              <div
+                class="modal-body "
+              >
+                <div
+                  class="u-spacer-bottom"
+                >
+                  You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).
+                </div>
+                <div
+                  class="form-group"
+                >
+                  <textarea
+                    class="form-control report-message"
+                    placeholder="Your message"
+                    rows="5"
+                  />
+                </div>
+              </div>
+              <div
+                class="modal-footer"
+              >
+                <button
+                  class="submit-button"
+                  data-bs-dismiss="false"
+                >
+                  Send Report
+                </button>
+                <button
+                  class="cancel-button"
+                  data-bs-dismiss="modal"
+                >
+                  Abort
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          aria-label="Share link"
+          class="modal fade"
+          id="share_comment_1"
+          role="dialog"
+          tabindex="-1"
+        >
+          <div
+            class="modal-dialog modal-dialog-centered modal-lg"
+            role="document"
+          >
+            <div
+              class="modal-content"
+            >
+              <div
+                class="modal-header"
+              >
+                <h2
+                  class="u-no-margin-bottom u-spacer-top-one-half"
+                >
+                  Share link
+                </h2>
+                <button
+                  aria-label="Abort"
+                  class="close"
+                  data-bs-dismiss="modal"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-times"
+                  />
+                </button>
+              </div>
+              <div
+                class="modal-body "
+              >
+                <div
+                  class="u-spacer-bottom"
+                />
+                <div
+                  class="input-group"
+                >
+                  <input
+                    class="form-control"
+                    id="share-url-1"
+                    readonly=""
+                    type="text"
+                    value="http://localhost/?comment=1"
+                  />
+                  <button
+                    aria-pressed="false"
+                    autocomplete="off"
+                    class="btn btn--primary input-group-append"
+                    data-bs-toggle="button"
+                  >
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </div>
+  </body>,
+  "container": <div>
+    <li>
+      <div
+        class="a4-comments__comment"
+      >
+        <a
+          class="a4-comments__anchor"
+          href="./?comment=1"
+          id="comment_1"
+        >
+          Comment 1
+        </a>
+        <div
+          class="a4-comments__box"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-2 col-lg-1 a4-comments__user-img"
+            />
+            <div
+              class="col-7 col-md-8 a4-comments__author-container"
+            >
+              <div
+                class="a4-comments__author"
+              >
+                <a>
+                  Participant 1
+                </a>
+              </div>
+              <span
+                class="a4-comments__moderator"
+              >
+                Moderator
+              </span>
+              <time
+                class="a4-comments__submission-date"
+              >
+                May 21, 2024, 11:44 a.m.
+              </time>
+            </div>
+            <div
+              class="col-1 ms-auto a4-comments__dropdown-container"
+            />
+            <div
+              class="col-12"
+            >
+              <div
+                class="a4-comments__text"
+              >
+                <p>
+                  This is a test comment.
+                </p>
+              </div>
+            </div>
+            <div
+              class="col-6 a4-comments__read-btn-container"
+            />
+          </div>
+        </div>
+        <div
+          class="a4-comments__action"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-12 a4-comments__action-bar-container"
+            >
+              <div
+                class="rating"
+              >
+                <button
+                  aria-label="Click to vote up"
+                  class="rating-button rating-up"
+                  disabled=""
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-chevron-up"
+                  />
+                  10
+                </button>
+                <button
+                  aria-label="Click to vote down"
+                  class="rating-button rating-down"
+                  disabled=""
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fa fa-chevron-down"
+                  />
+                  2
+                </button>
+              </div>
+              <div
+                class="a4-comments__action-bar"
+              >
+                <button
+                  class="btn btn--no-border a4-comments__action-bar__btn"
+                  type="button"
+                >
+                  <a
+                    href="#child-comment-form"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="far fa-comment"
+                    />
+                     
+                    Reply
+                  </a>
+                </button>
+                <a
+                  class="btn btn--no-border a4-comments__action-bar__btn"
+                  data-bs-target="#share_comment_1"
+                  data-bs-toggle="modal"
+                  href="?comment_1"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="fas fa-share"
+                  />
+                   
+                  Share
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-label="Send Report"
+        class="modal fade"
+        id="report_comment_1"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div
+            class="modal-content"
+          >
+            <div
+              class="modal-header"
+            >
+              <h2
+                class="u-no-margin-bottom u-spacer-top-one-half"
+              >
+                Send Report
+              </h2>
+              <button
+                aria-label="Abort"
+                class="close"
+                data-bs-dismiss="modal"
+              >
+                <i
+                  aria-hidden="true"
+                  class="fa fa-times"
+                />
+              </button>
+            </div>
+            <div
+              class="modal-body "
+            >
+              <div
+                class="u-spacer-bottom"
+              >
+                You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).
+              </div>
+              <div
+                class="form-group"
+              >
+                <textarea
+                  class="form-control report-message"
+                  placeholder="Your message"
+                  rows="5"
+                />
+              </div>
+            </div>
+            <div
+              class="modal-footer"
+            >
+              <button
+                class="submit-button"
+                data-bs-dismiss="false"
+              >
+                Send Report
+              </button>
+              <button
+                class="cancel-button"
+                data-bs-dismiss="modal"
+              >
+                Abort
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-label="Share link"
+        class="modal fade"
+        id="share_comment_1"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div
+            class="modal-content"
+          >
+            <div
+              class="modal-header"
+            >
+              <h2
+                class="u-no-margin-bottom u-spacer-top-one-half"
+              >
+                Share link
+              </h2>
+              <button
+                aria-label="Abort"
+                class="close"
+                data-bs-dismiss="modal"
+              >
+                <i
+                  aria-hidden="true"
+                  class="fa fa-times"
+                />
+              </button>
+            </div>
+            <div
+              class="modal-body "
+            >
+              <div
+                class="u-spacer-bottom"
+              />
+              <div
+                class="input-group"
+              >
+                <input
+                  class="form-control"
+                  id="share-url-1"
+                  readonly=""
+                  type="text"
+                  value="http://localhost/?comment=1"
+                />
+                <button
+                  aria-pressed="false"
+                  autocomplete="off"
+                  class="btn btn--primary input-group-append"
+                  data-bs-toggle="button"
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

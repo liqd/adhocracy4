@@ -1,6 +1,29 @@
+let comments = null
 let following = null
 
 const api = {
+  comments: {
+    get: jest.fn(() => {
+      const instance = {
+        done: (fn) => {
+          if (comments !== null) {
+            fn(comments)
+          }
+          return instance
+        },
+        fail: (fn) => {
+          if (comments === null) {
+            fn({ status: 400 })
+          }
+          return instance
+        }
+      }
+      return instance
+    }),
+    setComments: (value) => {
+      comments = value
+    }
+  },
   follow: {
     get: jest.fn(() => {
       const instance = {
