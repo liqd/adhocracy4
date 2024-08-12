@@ -44,7 +44,7 @@ jobs:
           cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
@@ -75,11 +75,23 @@ jobs:
           isort --diff -c adhocracy4 tests
           flake8 adhocracy4 tests --exclude migrations,settings
           npm run lint
-      - name: Coveralls
-        env:
-          GITHUB_TOKEN: ${{ secrets.COV }}
-        run: |
-          coveralls
       - name: Run Frontend Tests
         run: |
           npm test
+      - name: Coveralls Python
+        uses: coverallsapp/github-action@v2
+        with:
+          flag-name: python
+          parallel: true
+          file: .coverage
+      - name: Coveralls JS
+        uses: coverallsapp/github-action@v2
+        with:
+          flag-name: js
+          parallel: true
+          file: coverage/lcov.info
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true
+          carryforward: "python,js"

@@ -33,9 +33,8 @@ const config = {
   transformIgnorePatterns: [
     'node_modules/(?!(@?react-leaflet)/)'
   ],
-  setupFiles: [
-    '<rootDir>/setupTests.js'
-  ]
+  setupFiles: ['<rootDir>/setupTests.js'],
+  coverageReporters: ['lcov']
 }
 
 module.exports = config
