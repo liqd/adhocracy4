@@ -38,7 +38,7 @@
     "@babel/preset-react": "7.24.7",
     "@maplibre/maplibre-gl-leaflet": "0.0.22",
     "@react-leaflet/core": "^2.1.0",
-    "@testing-library/jest-dom": "6.4.6",
+    "@testing-library/jest-dom": "6.4.8",
     "@testing-library/react": "15.0.7",
     "eslint": "8.57.0",
     "eslint-config-standard": "17.1.0",
