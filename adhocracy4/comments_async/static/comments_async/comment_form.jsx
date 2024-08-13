@@ -32,7 +32,8 @@ export default class CommentForm extends React.Component {
       selectedCategories: Object.keys(this.props.comment_categories || {}),
       textareaHeight: textareaMinHeight,
       agreedTermsOfUse: props.agreedTermsOfUse,
-      showCommentError: false
+      showCommentError: false,
+      submitting: false
     }
   }
 
@@ -79,6 +80,9 @@ export default class CommentForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
+    this.setState({
+      submitting: true
+    })
     const comment = this.state.comment.trim()
     const data = {
       comment,
@@ -101,6 +105,9 @@ export default class CommentForm extends React.Component {
       } else {
         this.props.setCommentError(translated.addComment)
       }
+      this.setState({
+        submitting: false
+      })
       return
     }
     this.props.onCommentSubmit(data, this.props.parentIndex).then(() => {
@@ -108,10 +115,26 @@ export default class CommentForm extends React.Component {
       if (this.props.useTermsOfUse && !this.state.agreedTermsOfUse && this.state.checkedTermsOfUse) {
         this.setState({ agreedTermsOfUse: true })
       }
+      this.setState({
+        submitting: false
+      })
       return null
     }).catch(error => {
       console.warn(error)
+      this.setState({
+        submitting: false
+      })
     })
+  }
+
+  hasAgreedToTerms () {
+    if (!this.props.useTermsOfUse) {
+      return true
+    }
+    if (this.state.agreedTermsOfUse) {
+      return true
+    }
+    return this.state.checkedTermsOfUse
   }
 
   render () {
@@ -122,7 +145,7 @@ export default class CommentForm extends React.Component {
       <button
         type="submit"
         className="btn btn--default a4-comments__submit-input"
-        disabled={this.props.useTermsOfUse && !this.state.agreedTermsOfUse && !this.state.checkedTermsOfUse}
+        disabled={!this.hasAgreedToTerms() || this.state.submitting}
       >
         {translated.post}
       </button>

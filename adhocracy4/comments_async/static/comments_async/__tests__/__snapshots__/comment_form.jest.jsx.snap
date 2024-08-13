@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentForm Component renders CommentForm 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <h3
+        class="a4-comments__comment-form__heading-comments-allowed"
+      >
+        Join the discussion
+      </h3>
+      <form
+        class="a4-comments__comment-form__form"
+        id="id-comment-formundefined"
+      >
+        <div
+          class="form-group"
+          id="group_id_textarea-topundefined"
+        >
+          <label
+            for="id_textarea-topundefined"
+          >
+            Your comment
+          </label>
+          <textarea
+            aria-describedby="id_char-countundefined"
+            aria-invalid="false"
+            class="a4-comments__textarea--small"
+            id="id_textarea-topundefined"
+            name="id_textarea-topundefined"
+            style="height: 75px;"
+          />
+          <p
+            aria-live="polite"
+            class="a4-comments__char-count"
+            id="id_char-countundefined"
+          >
+            <span
+              aria-hidden="true"
+            >
+              0
+              /4000
+              <span
+                class="a4-comments__char-count-word"
+              >
+                 characters
+              </span>
+            </span>
+            <span
+              class="a4-sr-only"
+            >
+              0
+              /4000
+               characters
+            </span>
+          </p>
+        </div>
+        <div
+          class="row a4-comments__comment-form__terms-and-buttons"
+        >
+          <div
+            class="a4-comments__comment-form__terms-of-use"
+          />
+          <div
+            class="a4-comments__comment-form__actions"
+          >
+            <div
+              class="a4-comments__comment-form__actions__left"
+            />
+            <div
+              class="a4-comments__comment-form__actions__right"
+            >
+              <button
+                class="btn btn--default a4-comments__submit-input"
+                type="submit"
+              >
+                Post
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <h3
+      class="a4-comments__comment-form__heading-comments-allowed"
+    >
+      Join the discussion
+    </h3>
+    <form
+      class="a4-comments__comment-form__form"
+      id="id-comment-formundefined"
+    >
+      <div
+        class="form-group"
+        id="group_id_textarea-topundefined"
+      >
+        <label
+          for="id_textarea-topundefined"
+        >
+          Your comment
+        </label>
+        <textarea
+          aria-describedby="id_char-countundefined"
+          aria-invalid="false"
+          class="a4-comments__textarea--small"
+          id="id_textarea-topundefined"
+          name="id_textarea-topundefined"
+          style="height: 75px;"
+        />
+        <p
+          aria-live="polite"
+          class="a4-comments__char-count"
+          id="id_char-countundefined"
+        >
+          <span
+            aria-hidden="true"
+          >
+            0
+            /4000
+            <span
+              class="a4-comments__char-count-word"
+            >
+               characters
+            </span>
+          </span>
+          <span
+            class="a4-sr-only"
+          >
+            0
+            /4000
+             characters
+          </span>
+        </p>
+      </div>
+      <div
+        class="row a4-comments__comment-form__terms-and-buttons"
+      >
+        <div
+          class="a4-comments__comment-form__terms-of-use"
+        />
+        <div
+          class="a4-comments__comment-form__actions"
+        >
+          <div
+            class="a4-comments__comment-form__actions__left"
+          />
+          <div
+            class="a4-comments__comment-form__actions__right"
+          >
+            <button
+              class="btn btn--default a4-comments__submit-input"
+              type="submit"
+            >
+              Post
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
