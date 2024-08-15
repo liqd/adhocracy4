@@ -7,7 +7,9 @@ import config from '../../../static/config'
 
 const translations = {
   upvote: django.gettext('Click to vote up'),
-  downvote: django.gettext('Click to vote down')
+  downvote: django.gettext('Click to vote down'),
+  likes: django.gettext('Likes'),
+  dislikes: django.gettext('Dislikes')
 }
 
 class RatingBox extends React.Component {
@@ -133,6 +135,7 @@ class RatingBox extends React.Component {
         >
           <i className="fa fa-chevron-up" aria-hidden="true" />
           {this.state.positiveRatings}
+          <span className="rating__label">{translations.likes}</span>
         </button>
         <button
           aria-label={translations.downvote}
@@ -142,6 +145,7 @@ class RatingBox extends React.Component {
         >
           <i className="fa fa-chevron-down" aria-hidden="true" />
           {this.state.negativeRatings}
+          <span className="rating__label">{translations.dislikes}</span>
         </button>
       </div>
     )

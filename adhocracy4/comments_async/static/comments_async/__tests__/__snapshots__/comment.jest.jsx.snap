@@ -82,6 +82,11 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                       class="fa fa-chevron-up"
                     />
                     10
+                    <span
+                      class="rating__label"
+                    >
+                      Likes
+                    </span>
                   </button>
                   <button
                     aria-label="Click to vote down"
@@ -93,6 +98,11 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                       class="fa fa-chevron-down"
                     />
                     2
+                    <span
+                      class="rating__label"
+                    >
+                      Dislikes
+                    </span>
                   </button>
                 </div>
                 <div
@@ -346,6 +356,11 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                     class="fa fa-chevron-up"
                   />
                   10
+                  <span
+                    class="rating__label"
+                  >
+                    Likes
+                  </span>
                 </button>
                 <button
                   aria-label="Click to vote down"
@@ -357,6 +372,11 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                     class="fa fa-chevron-down"
                   />
                   2
+                  <span
+                    class="rating__label"
+                  >
+                    Dislikes
+                  </span>
                 </button>
               </div>
               <div
@@ -672,6 +692,11 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                       class="fa fa-chevron-up"
                     />
                     10
+                    <span
+                      class="rating__label"
+                    >
+                      Likes
+                    </span>
                   </button>
                   <button
                     aria-label="Click to vote down"
@@ -683,6 +708,11 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                       class="fa fa-chevron-down"
                     />
                     2
+                    <span
+                      class="rating__label"
+                    >
+                      Dislikes
+                    </span>
                   </button>
                 </div>
                 <div
@@ -941,6 +971,11 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                     class="fa fa-chevron-up"
                   />
                   10
+                  <span
+                    class="rating__label"
+                  >
+                    Likes
+                  </span>
                 </button>
                 <button
                   aria-label="Click to vote down"
@@ -952,6 +987,11 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                     class="fa fa-chevron-down"
                   />
                   2
+                  <span
+                    class="rating__label"
+                  >
+                    Dislikes
+                  </span>
                 </button>
               </div>
               <div

@@ -18,16 +18,22 @@ const CommentManageDropdown = (props) => {
       >
         <i className="fas fa-ellipsis-h" aria-hidden="true" />
       </button>
-      <div className="dropdown-menu dropdown-menu-end">
-        {props.has_changing_permission && [
-          <button key="1" className="dropdown-item" type="button" onClick={props.handleToggleEdit}>{translated.edit}</button>,
-          <div className="divider" key="2" />
-        ]}
-        {props.has_deleting_permission && [
-          <a key="3" className="dropdown-item" href={'#comment_delete_' + props.id} data-bs-toggle="modal">{translated.delete}</a>,
-          <div className="divider" key="4" />
-        ]}
-      </div>
+      <ul className="dropdown-menu dropdown-menu-end">
+        {props.has_changing_permission && (
+          <li className="dropdown-item">
+            <button type="button" onClick={props.handleToggleEdit}>
+              {translated.edit}
+            </button>
+          </li>
+        )}
+        {props.has_deleting_permission && (
+          <li className="dropdown-item">
+            <a href={'#comment_delete_' + props.id} data-bs-toggle="modal">
+              {translated.delete}
+            </a>
+          </li>
+        )}
+      </ul>
     </div>
   )
 }
