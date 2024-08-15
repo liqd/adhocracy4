@@ -358,14 +358,19 @@ def test_new_phase_resets_cache(
     next_week = now + timedelta(days=7)
 
     # make active projects
-    active_projects = objects[:2]
-    for proj in active_projects:
-        phase_factory(
-            start_date=last_week,
-            end_date=next_week,
-            module__project=proj,
-        )
+    active_project = objects[0]
+    phase_factory(
+        start_date=last_week,
+        end_date=next_week,
+        module__project=active_project,
+    )
 
+    past_project = objects[1]
+    phase_factory(
+        start_date=last_week,
+        end_date=last_week + timedelta(days=6),
+        module__project=past_project,
+    )
     # make future project
     future_project = objects[2]
     phase_factory(
@@ -380,21 +385,30 @@ def test_new_phase_resets_cache(
     with freeze_time(now):
         with django_assert_num_queries(0):
             active_projects = cache.get("projects_activeParticipation")
+            past_projects = cache.get("projects_pastParticipation")
             future_projects = cache.get("projects_futureParticipation")
-            assert len(active_projects) == 2
+            assert len(active_projects) == 1
+            assert len(past_projects) == 1
             assert len(future_projects) == 1
 
-    # turn future project into active project
+    # turn past and future project into active project
     with django_capture_on_commit_callbacks(execute=True):
         phase_factory(
             start_date=last_week,
             end_date=next_week,
             module__project=future_project,
         )
+        phase_factory(
+            start_date=last_week,
+            end_date=next_week,
+            module__project=past_project,
+        )
 
     with freeze_time(now):
         with django_assert_num_queries(0):
             active_projects = cache.get("projects_activeParticipation")
+            past_projects = cache.get("projects_pastParticipation")
             future_projects = cache.get("projects_futureParticipation")
             assert len(active_projects) == 3
+            assert len(past_projects) == 0
             assert len(future_projects) == 0

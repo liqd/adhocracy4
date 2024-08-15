@@ -11,8 +11,16 @@ from meinberlin.apps.projects.tasks import set_cache_for_projects
 @receiver(a4dashboard_signals.project_created)
 @receiver(a4dashboard_signals.project_published)
 @receiver(a4dashboard_signals.project_unpublished)
+@receiver(a4dashboard_signals.project_component_updated)
 def post_dashboard_signal_delete(sender, project, user, **kwargs):
     """Refresh project, plan and extproject cache on dashboard signal"""
+    set_cache_for_projects.delay_on_commit(get_next_projects=True)
+
+
+@receiver(a4dashboard_signals.module_published)
+@receiver(a4dashboard_signals.module_unpublished)
+def post_module_publish_unpublish(sender, module, **kwargs):
+    """Refresh project, plan and extproject cache on module (un)publish"""
     set_cache_for_projects.delay_on_commit(get_next_projects=True)
 
 
@@ -23,7 +31,6 @@ def post_phase_save_delete(sender, instance, **kwargs):
     set_cache_for_projects.delay_on_commit(get_next_projects=True)
 
 
-@receiver(post_save, sender=Project)
 @receiver(post_delete, sender=Project)
 def post_save_delete(sender, instance, *args, **kwargs):
     """
