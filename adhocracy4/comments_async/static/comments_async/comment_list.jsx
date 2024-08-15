@@ -4,7 +4,7 @@ import Comment from './comment'
 
 const CommentList = (props) => {
   return (
-    <ul className="u-list-reset">
+    <ul className="u-list-reset a4-comments">
       {
         props.comments.map((comment, index) => {
           return (

@@ -9,7 +9,9 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
         <div
           class="a4-comments__commentbox__form"
         >
-          <div>
+          <div
+            class="a4-comments__alert"
+          >
             The currently active phase doesn't allow to comment.
           </div>
         </div>
@@ -133,7 +135,7 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
           </div>
         </div>
         <ul
-          class="u-list-reset"
+          class="u-list-reset a4-comments"
         />
         <div
           class="d-none"
@@ -156,7 +158,9 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
       <div
         class="a4-comments__commentbox__form"
       >
-        <div>
+        <div
+          class="a4-comments__alert"
+        >
           The currently active phase doesn't allow to comment.
         </div>
       </div>
@@ -280,7 +284,7 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
         </div>
       </div>
       <ul
-        class="u-list-reset"
+        class="u-list-reset a4-comments"
       />
       <div
         class="d-none"

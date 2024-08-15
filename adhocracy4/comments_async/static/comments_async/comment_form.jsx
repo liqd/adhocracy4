@@ -233,13 +233,13 @@ export default class CommentForm extends React.Component {
       )
     } else if (!this.props.projectIsPublic && this.state.agreedTermsOfUse) {
       return (
-        <div>
+        <div className="a4-comments__alert">
           {translated.onlyInvited}
         </div>
       )
     } else {
       return (
-        <div>
+        <div className="a4-comments__alert">
           {translated.notAllowedComment}
         </div>
       )
