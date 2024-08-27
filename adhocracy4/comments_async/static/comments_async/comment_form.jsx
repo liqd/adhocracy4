@@ -231,7 +231,7 @@ export default class CommentForm extends React.Component {
           <a href={config.getLoginUrl()}>{translated.pleaseComment}</a>
         </div>
       )
-    } else if (!this.props.projectIsPublic) {
+    } else if (!this.props.projectIsPublic && this.state.agreedTermsOfUse) {
       return (
         <div>
           {translated.onlyInvited}

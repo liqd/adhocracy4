@@ -10,7 +10,7 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
           class="a4-comments__commentbox__form"
         >
           <div>
-            Only invited users can actively participate.
+            The currently active phase doesn't allow to comment.
           </div>
         </div>
         <div>
@@ -157,7 +157,7 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
         class="a4-comments__commentbox__form"
       >
         <div>
-          Only invited users can actively participate.
+          The currently active phase doesn't allow to comment.
         </div>
       </div>
       <div>
