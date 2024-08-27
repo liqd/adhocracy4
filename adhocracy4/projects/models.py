@@ -235,7 +235,7 @@ class Project(
         "heroimage",
         verbose_name=_("Header image"),
         help_prefix=_("The image will be shown as a decorative background image."),
-        upload_to="projects/backgrounds",
+        upload_to="projects/backgrounds/%Y/%m/%d/",
         blank=True,
         max_length=300,
     )
@@ -245,7 +245,7 @@ class Project(
         "tileimage",
         verbose_name=_("Tile image"),
         help_prefix=_("The image will be shown in the project tile."),
-        upload_to="projects/tiles",
+        upload_to="projects/tiles/%Y/%m/%d/",
         blank=True,
         max_length=300,
     )
