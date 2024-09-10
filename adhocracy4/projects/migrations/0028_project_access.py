@@ -3,8 +3,6 @@
 import django_enumfield.db.fields
 from django.db import migrations
 
-import adhocracy4.projects.models
-
 
 class Migration(migrations.Migration):
 
@@ -12,14 +10,4 @@ class Migration(migrations.Migration):
         ("a4projects", "0027_use_collapsiblefield_results"),
     ]
 
-    operations = [
-        migrations.AddField(
-            model_name="project",
-            name="access",
-            field=django_enumfield.db.fields.EnumField(
-                default=1,
-                enum=adhocracy4.projects.enums.Access,
-                help_text="Please indicate whether this project should be public or restricted to invited users. Teasers for your project including title and short description will always be visible to everyone",
-            ),
-        ),
-    ]
+    operations = []

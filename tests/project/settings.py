@@ -52,11 +52,11 @@ INSTALLED_APPS = (
     "adhocracy4.ckeditor",
     "adhocracy4.images",
     # test apps
-    "tests.apps.questions",
-    "tests.apps.locations",
-    "tests.apps.ideas",
+    # "tests.apps.questions",
+    # "tests.apps.locations",
+    # "tests.apps.ideas",
     "tests.apps.organisations",
-    "tests.apps.moderatorfeedback",
+    # "tests.apps.moderatorfeedback",
     # mandatory third party apps
     "easy_thumbnails",
     "rules.apps.AutodiscoverRulesConfig",
