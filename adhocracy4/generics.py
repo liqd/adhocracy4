@@ -1,7 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
-from django.db.models.signals import post_delete
 
 """
 Helpers to use generic foreign keys.
@@ -33,6 +32,3 @@ def setup_delete_signals(model_list, generic_model):
         contenttype = ContentType.objects.get_for_model(instance)
         pk = instance.pk
         generic_model.objects.filter(content_type=contenttype, object_pk=pk).delete()
-
-    for model in model_list:
-        post_delete.connect(delete_content_object_handler, ".".join(model), weak=False)
