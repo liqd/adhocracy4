@@ -7,6 +7,11 @@ const CommentList = (props) => {
     <ul className="u-list-reset a4-comments">
       {
         props.comments.map((comment, index) => {
+          // don't show ai report if there are no labels
+          let aiReport = null
+          if (comment.ai_report && comment.ai_report.label.length > 0) {
+            aiReport = comment.ai_report
+          }
           return (
             <Comment
               comment_categories={comment.comment_categories}
@@ -60,7 +65,7 @@ const CommentList = (props) => {
               wouldHaveCommentingPermission={props.wouldHaveCommentingPermission}
               projectIsPublic={props.projectIsPublic}
               moderatorFeedback={comment.moderator_feedback ? comment.moderator_feedback : null}
-              aiReport={comment.ai_report ? comment.ai_report : null}
+              aiReport={aiReport}
               useTermsOfUse={props.useTermsOfUse}
               agreedTermsOfUse={props.agreedTermsOfUse}
               orgTermsUrl={props.orgTermsUrl}
