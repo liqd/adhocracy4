@@ -370,7 +370,7 @@ export default class Comment extends React.Component {
 
           {this.props.aiReport && this.props.aiReport.show_in_discussion &&
             <AiReport
-              Report={this.props.aiReport}
+              report={this.props.aiReport}
             />}
 
           {this.state.showModStatement && this.state.moderatorFeedback &&
