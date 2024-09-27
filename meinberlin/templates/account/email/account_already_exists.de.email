@@ -2,7 +2,7 @@
 
 {% block subject %}Konto existiert bereits{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
     Sie erhalten diese E-Mail, weil Sie oder jemand anderes versucht haben,
     sich für ein Konto mit folgender E-Mail-Adresse anzumelden:
@@ -15,6 +15,17 @@
     Falls Sie dies vergessen haben, verwenden Sie bitte das Verfahren "Passwort vergessen",
     um Ihr Konto wiederherzustellen:
 </p>
+{% endblock %}
+
 {% block cta_url %}{{ password_reset_url }}{% endblock %}
 {% block cta_label %}Passwort zurücksetzen{% endblock %}
+
+{% block content_text %}
+Sie erhalten diese E-Mail, weil Sie oder jemand anderes versucht haben,
+sich für ein Konto mit folgender E-Mail-Adresse anzumelden:
+{{ email }}
+
+Es existiert jedoch bereits ein Konto mit dieser E-Mail-Adresse.
+Falls Sie dies vergessen haben, verwenden Sie bitte das Verfahren "Passwort vergessen",
+um Ihr Konto wiederherzustellen:
 {% endblock %}

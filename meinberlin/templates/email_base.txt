@@ -4,7 +4,8 @@
 
 {% block greeting %}{% translate 'Hello' %},{% endblock %}
 {% block content %}{% endblock %}
-{% block content_left_aligned %}{% endblock %}
+{% block content_text %}{% endblock %}
+{% block newsletter_content %}{% endblock %}
 
 {% block cta %}{% block cta_label %}{% endblock %}: {% block cta_url %}{% endblock %}{% endblock %}
 

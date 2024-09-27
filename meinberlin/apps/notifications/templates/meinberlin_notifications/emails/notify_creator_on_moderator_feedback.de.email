@@ -11,7 +11,7 @@
 </div>
 {% endblock %}
 
-{% block content %}
+{% block content_html %}
 <div {% if object.moderator_feedback_text.feedback_text %}style="text-align: left;"{% endif %}>
 <p>
 {{ object.module.project.organisation.name }} hat auf Ihren Beitrag reagiert.
@@ -29,6 +29,19 @@ Der Status Ihres Beitrags hat sich geändert und steht nun auf “{{ object.get_
 Möchten Sie antworten?
 </p>
 </div>
+{% endblock %}
+
+{% block content_text %}
+{{ object.module.project.organisation.name }} hat auf Ihren Beitrag reagiert.
+
+{% if object.moderator_status %}
+Der Status Ihres Beitrags hat sich geändert und steht nun auf “{{ object.get_moderator_status_display }}”.
+{% endif %}
+
+Rückmeldung:
+{{ object.moderator_feedback_text.feedback_text | safe }}
+
+Möchten Sie antworten?
 {% endblock %}
 
 {% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}

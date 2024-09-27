@@ -6,7 +6,7 @@
 
 {% block greeting %}Hallo {{ user.username }},{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 soll diese E-Mail-Adresse Ihrem Nutzerkonto auf {{ site.name }} hinzugefügt werden?
 </p>
@@ -22,6 +22,16 @@ Wenn Sie diese E-Mail nicht angefordert haben oder Hilfe benötigen, wenden Sie 
 <p>
 Schön, dass Sie {{ site.name }} nutzen um mit uns Berlin zu gestalten!
 </p>
+{% endblock %}
+
+{% block content_text %}
+soll diese E-Mail-Adresse Ihrem Nutzerkonto auf {{ site.name }} hinzugefügt werden?
+Bitte bestätigen Sie dies durch Klick auf „E-Mail-Adresse hinzufügen“.
+
+Falls Sie Ihre Meinung geändert haben, können Sie diese E-Mail ignorieren.
+
+Wenn Sie diese E-Mail nicht angefordert haben oder Hilfe benötigen, wenden Sie sich bitte an {{ contact_email }}.
+Schön, dass Sie {{ site.name }} nutzen um mit uns Berlin zu gestalten!
 {% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}

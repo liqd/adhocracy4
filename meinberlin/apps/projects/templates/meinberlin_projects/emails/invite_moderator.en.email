@@ -6,7 +6,7 @@
 
 {% block sub-headline%}{{ moderatorinvite.project.name }}{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 You were invited by "{{moderatorinvite.project.organisation}}" to moderate the above-mentioned project on the participation platform {{ site.name }}.
 </p>
@@ -19,6 +19,16 @@ In our <a href="{{ email.get_host }}/netiquette/">Netiquette</a> you will find o
 <p>
 You have questions? Please write to {{ contact_email }}.
 </p>
+{% endblock %}
+
+{% block content_text %}
+You were invited by "{{moderatorinvite.project.organisation}}" to moderate the above-mentioned project on the participation platform {{ site.name }}.
+
+If you accept the invitation, you can edit or delete the project and all submitted contributions. In addition, you can participate in the discussion marked as moderator.
+
+In our Netiquette you will find our discussion rules: {{ email.get_host }}/netiquette/
+
+You have questions? Please write to {{ contact_email }}.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}

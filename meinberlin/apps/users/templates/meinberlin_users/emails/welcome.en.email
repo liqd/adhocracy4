@@ -6,7 +6,7 @@
 
 {% block greeting %}Hello {{ user.username }},{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 welcome to {{ site.name }}, the participation platform of the state of Berlin!
 </p>
@@ -19,6 +19,16 @@ Take your chance and help shape Berlin. Your opinion is important to us!
 <p>
 If you have any questions, please contact {{ contact_email }}.
 </p>
+{% endblock %}
+
+{% block content_text %}
+welcome to {{ site.name }}, the participation platform of the state of Berlin!
+
+Here you will find projects of the Berlin administration in which you can participate online and offline.
+
+Take your chance and help shape Berlin. Your opinion is important to us!
+
+If you have any questions, please contact {{ contact_email }}.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% url 'meinberlin_plans:plan-list' %}{% endblock %}

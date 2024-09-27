@@ -7,13 +7,19 @@
 
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 Online participation for the above project has started.
 </p>
 <p>
-<b>You can participate untill {{ action.obj.end_date }}.</b>
+<b>You can participate until {{ action.obj.end_date }}.</b>
 </p>
+{% endblock %}
+
+{% block content_text %}
+Online participation for the above project has started.
+
+You can participate until {{ action.obj.end_date }}.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_detail_url }}{% endblock %}

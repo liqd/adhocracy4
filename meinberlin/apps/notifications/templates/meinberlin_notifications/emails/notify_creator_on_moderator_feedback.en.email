@@ -11,7 +11,7 @@
 </div>
 {% endblock %}
 
-{% block content %}
+{% block content_html %}
 <div {% if object.moderator_feedback_text.feedback_text %}style="text-align: left;"{% endif %}>
 <p>
 {{ object.module.project.organisation.name }} reacted on your contribution.
@@ -30,6 +30,20 @@ Feedback: {{ object.moderator_feedback_text.feedback_text | safe }}
 Do you want to answer?
 </p>
 </div>
+{% endblock %}
+
+{% block content_text %}
+{{ object.module.project.organisation.name }} reacted on your contribution.
+
+{% if object.moderator_status %}
+The status of your contribution has been changed and is now “{{ object.get_moderator_status_display }}".
+{% endif %}
+
+{% if object.moderator_feedback_text.feedback_text %}
+Feedback: {{ object.moderator_feedback_text.feedback_text | safe }}
+{% endif %}
+
+Do you want to answer?
 {% endblock %}
 
 {% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}

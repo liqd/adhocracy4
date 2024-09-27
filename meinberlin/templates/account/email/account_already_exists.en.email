@@ -2,7 +2,7 @@
 
 {% block subject %}Account Already Exists{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
     You are receiving this e-mail because you or someone else tried to signup for an
     account using e-mail address:
@@ -15,6 +15,16 @@
     forgotten about this, please use the password forgotten procedure to recover
     your account:
 </p>
+{% endblock %}
+
 {% block cta_url %}{{ password_reset_url }}{% endblock %}
 {% block cta_label %}Reset password{% endblock %}
+
+{% block content_text %}
+You are receiving this e-mail because you or someone else tried to signup for an
+account using e-mail address:
+{{ user.email }}
+However, an account using that e-mail address already exists.  In case you have
+forgotten about this, please use the password forgotten procedure to recover
+your account:
 {% endblock %}

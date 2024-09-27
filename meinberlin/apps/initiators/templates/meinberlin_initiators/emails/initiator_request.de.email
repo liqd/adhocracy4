@@ -5,7 +5,7 @@
 
 {% block headline %}Neue Initiatorenanfrage von {{ user.username }}{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 {{ user.username }} möchte zur Initator*in gemacht werden.
 </p>
@@ -29,6 +29,21 @@ Telefonnummer<br>
 Datum der Nutzerregistrierung auf meinBerlin<br>
 {{ user.date_joined }}
 </p>
+{% endblock %}
+
+{% block content_text %}
+{{ user.username }} möchte zur Initator*in gemacht werden.
+
+Name:
+{{ user.username }}
+Name der Behörde:
+{{ organisation.name }}
+Dienstliche E-Mail-Adresse:
+{{ user.email }}
+Telefonnummer:
+{{ phone }}
+Datum der Nutzerregistrierung auf meinBerlin:
+{{ user.date_joined }}
 {% endblock %}
 
 {% block cta_label %}Zur Administration{% endblock %}

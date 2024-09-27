@@ -8,7 +8,7 @@
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 es gibt einen neuen Beitrag in dem Projekt, das Sie moderieren.
 </p>
@@ -18,7 +18,14 @@ es gibt einen neuen Beitrag in dem Projekt, das Sie moderieren.
 <p>
 <i style="color: #818181;">„{{ action.obj }}“</i>
 </p>
-{% endblock%}
+{% endblock %}
+
+{% block content_text %}
+es gibt einen neuen Beitrag in dem Projekt, das Sie moderieren.
+
+{{ action.actor.username }} schrieb am {{ action.timestamp|date:"d. F Y, H:i"}} Uhr:
+„{{ action.obj }}“
+{% endblock %}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if action.obj.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}

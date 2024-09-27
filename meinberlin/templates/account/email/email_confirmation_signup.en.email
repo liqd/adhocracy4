@@ -6,7 +6,7 @@
 
 {% block greeting %}Hello {{ user.username }},{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 please confirm your e-mail address to activate your account on {{ site.name }}.
 </p>
@@ -16,6 +16,13 @@ After confirmation you can create and rate ideas and comments and participate in
 <p>
 If you have any questions, please contact {{ contact_email }}.
 </p>
+{% endblock %}
+
+{% block content_text %}
+please confirm your e-mail address to activate your account on {{ site.name }}.
+
+After confirmation you can create and rate ideas and comments and participate in polls.
+If you have any questions, please contact {{ contact_email }}.
 {% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}

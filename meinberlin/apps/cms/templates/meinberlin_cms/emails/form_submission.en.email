@@ -5,7 +5,7 @@
 
 {% block headline %}{{ emailformpage.title }}{% endblock %}
 
-{% block content %}
+{% block content_html %}
     <p>
     {{ emailformpage.email_content }}
     </p>
@@ -16,4 +16,12 @@
         </p>
     {% endfor %}
 
+{% endblock %}
+
+{% block content_text %}
+  {{ emailformpage.email_content }}
+  {% for key, value in field_values.items %}
+    {{key}}:
+    {{value}}
+  {% endfor %}
 {% endblock %}

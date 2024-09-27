@@ -9,7 +9,7 @@
 
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 in the project you moderate, a contribution was reported as inappropriate.
 </p>
@@ -23,6 +23,17 @@ Reported by {{ report.creator.username }} for the following reason: <i style="co
 <p>
 As a moderator* you can delete the post if it does not comply with our <a href="{{ email.get_host }}/netiquette/">netiquette</a>.
 </p>
+{% endblock %}
+
+{% block content_text %}
+in the project you moderate, a contribution was reported as inappropriate.
+
+Reported contribution: "{{ report.content_object }}",
+created by {{ report.content_object.creator.username }} on {% language 'en' %}{{ report.content_object.created }}.{% endlanguage %}
+
+Reported by {{ report.creator.username }} for the following reason: „{{ report.description }}“
+
+As a moderator* you can delete the post if it does not comply with our netiquette ({{ email.get_host }}/netiquette/).
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}

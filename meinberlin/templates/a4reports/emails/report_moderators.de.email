@@ -9,7 +9,7 @@
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 in dem von Ihnen moderierten Projekt wurde ein Beitrag als unangemessen gemeldet.
 </p>
@@ -23,6 +23,17 @@ Gemeldet von {{ report.creator.username }} mit folgender Begründung: <i style="
 <p>
 Als Moderator*in können Sie den Beitrag löschen, sollte er nicht unserer <a href="{{ email.get_host }}/netiquette/">Netiquette</a> entsprechen.
 </p>
+{% endblock %}
+
+{% block content_text %}
+in dem von Ihnen moderierten Projekt wurde ein Beitrag als unangemessen gemeldet.
+
+Gemeldeter Beitrag: „{{ report.content_object }}“,
+erstellt von {{ report.content_object.creator.username }} am {% language 'de' %} {{ report.content_object.created|date:"d. F Y, H:i"}} Uhr.{% endlanguage %}
+
+Gemeldet von {{ report.creator.username }} mit folgender Begründung: „{{ report.description }}“
+
+Als Moderator*in können Sie den Beitrag löschen, sollte er nicht unserer Netiquette ({{ email.get_host }}/netiquette/) entsprechen.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}

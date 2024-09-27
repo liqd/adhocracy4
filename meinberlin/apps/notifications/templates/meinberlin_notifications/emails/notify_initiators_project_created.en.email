@@ -9,9 +9,7 @@
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
 {% block content %}
-<p>
 {{ creator.username }} created a new project for {{ project.organisation.name }}.
-</p>
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}

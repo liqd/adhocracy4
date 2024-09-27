@@ -9,9 +9,7 @@
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content %}
-<p>
 {{ creator.username }} hat ein neues Projekt für {{ project.organisation.name }} angelegt.
-</p>
 {% endblock %}
 
 

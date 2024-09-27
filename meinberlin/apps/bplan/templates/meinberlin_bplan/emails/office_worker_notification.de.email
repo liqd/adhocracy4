@@ -34,6 +34,23 @@ Stellungnahme:<br>
 </p>
 {% endblock %}
 
+{% block content_text %}
+Name:
+{{ statement.name }}
+
+Straße, Hausnummer:
+{{ statement.street_number }}
+
+PLZ, Ort:
+{{ statement.postal_code_city }}
+
+E-Mail Adresse:
+{{ statement.email }}
+
+Stellungnahme:
+{{ statement.statement| linebreaks }}
+{% endblock %}
+
 {% block cta %}{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver }} gesendet. Sie haben die E-Mail erhalten, weil Sie als Sachbearbeiter*in für eine digitale Öffentlichkeitsbeteiligung zu einem Bebauungsplan eingetragen wurden.{% endblock %}

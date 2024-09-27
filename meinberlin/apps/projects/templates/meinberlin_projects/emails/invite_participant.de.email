@@ -6,7 +6,7 @@
 
 {% block sub-headline%}{{ participantinvite.project.name }}{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 Sie wurden zur Teilnahme an einem {% if participantinvite.project.is_semipublic %}halb-öffentlichen{% else %}privaten{% endif %} Projekt auf {{ site.name }} eingeladen. {{ site.name }} ist die Beteiligungsplattform des Landes Berlin. Hier werden Sie um Ihre Meinung zu Projekten der Berliner Verwaltung gebeten. Sie wurden eingeladen von „{{ participantinvite.project.organisation }}".
 </p>
@@ -19,6 +19,16 @@ Wir freuen uns auf Ihren Beitrag!
 <p>
 Sie haben Fragen? Schreiben Sie an {{ contact_email }}.
 </p>
+{% endblock %}
+
+{% block content_text %}
+Sie wurden zur Teilnahme an einem {% if participantinvite.project.is_semipublic %}halb-öffentlichen{% else %}privaten{% endif %} Projekt auf {{ site.name }} eingeladen. {{ site.name }} ist die Beteiligungsplattform des Landes Berlin. Hier werden Sie um Ihre Meinung zu Projekten der Berliner Verwaltung gebeten. Sie wurden eingeladen von „{{ participantinvite.project.organisation }}".
+
+Klicken Sie jetzt auf „Einladung annehmen", um an dem Projekt teilzunehmen. Sollten Sie noch nicht auf {{ site.name }} registriert sein, ist dies in wenigen Schritten möglich. Bitte beachten Sie: Diese Einladung ist nur für Sie persönlich bestimmt.
+
+Wir freuen uns auf Ihren Beitrag!
+
+Sie haben Fragen? Schreiben Sie an {{ contact_email }}.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ participantinvite.get_absolute_url }}{% endblock %}

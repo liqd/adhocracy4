@@ -44,6 +44,25 @@ Ihre Stellungnahme
 </p>
 {% endblock %}
 
+{% block content_text %}
+Guten Tag,
+
+vielen Dank für Ihre Stellungnahme. Sie ist an die zuständige Stelle weitergeleitet worden und geht in die Abwägung der öffentlichen und privaten Belange ein. Wenn Sie sich an einer öffentlichen Auslegung beteiligt haben, werden Sie außerdem nach Festsetzung des Bebauungsplans von der verantwortlichen Stelle schriftlich (per E-Mail oder postalisch) über das Ergebnis informiert, sofern Sie Ihre Adresse angegeben haben.
+
+Ihre Angaben in der Übersicht:
+
+Name
+{{ statement.name }}
+Straße, Hausnummer
+{{ statement.street_number }}
+PLZ, Ort
+{{ statement.postal_code_city }}
+E-Mail-Adresse
+{{ statement.email }}
+Ihre Stellungnahme
+{{ statement.statement| linebreaks }}
+{% endblock %}
+
 {% block cta_label %}Bebauungsplan anzeigen{% endblock %}
 {% block cta_url %}{{ project.externalproject.url }}{% endblock %}
 

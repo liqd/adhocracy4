@@ -6,7 +6,7 @@
 
 {% block greeting %}Hallo,{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 Sie erhalten diese E-Mail, weil Sie oder eine andere Person
 eine Passwort-Zurücksetzung für Ihr Nutzerkonto angefordert haben.
@@ -21,6 +21,18 @@ Sollten Sie kein neues Passwort angefordert haben, können Sie diese E-Mail igno
 <p>
 Wenn Sie Hilfe benötigen, wenden Sie sich bitte an {{ contact_email }}.
 </p>
+{% endblock %}
+
+{% block content_text %}
+Sie erhalten diese E-Mail, weil Sie oder eine andere Person
+eine Passwort-Zurücksetzung für Ihr Nutzerkonto angefordert haben.
+Wir haben in unserer Datenbank jedoch kein Nutzerkonto mit der E-Mail-Adresse {{ email }} gefunden.
+
+Bitte registrieren Sie sich zunächst über den unten stehenden Link.
+
+Sollten Sie kein neues Passwort angefordert haben, können Sie diese E-Mail ignorieren.
+
+Wenn Sie Hilfe benötigen, wenden Sie sich bitte an {{ contact_email }}.
 {% endblock %}
 
 {% block cta_url %}{{ signup_url }}{% endblock %}

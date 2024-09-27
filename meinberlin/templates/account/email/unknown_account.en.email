@@ -6,7 +6,7 @@
 
 {% block greeting %}Hello,{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 you receive this email because you or someone else requested a password reset
 for your user account. However, we have not found a user account with the
@@ -21,6 +21,18 @@ If you have not requested a new password, you can ignore this email.
 <p>
 If you need help, please contact {{ contact_email }}.
 </p>
+{% endblock %}
+
+{% block content_text %}
+you receive this email because you or someone else requested a password reset
+for your user account. However, we have not found a user account with the
+email address {{ email }} in our database.
+
+Please register first using the link below.
+
+If you have not requested a new password, you can ignore this email.
+
+If you need help, please contact {{ contact_email }}.
 {% endblock %}
 
 {% block cta_url %}{{ signup_url }}{% endblock %}

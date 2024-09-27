@@ -7,7 +7,7 @@
 
 {% block greeting %}Hello  {{ receiver.username }},{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 {{ action.actor.username }} commented on your post:
 </p>
@@ -19,6 +19,16 @@
 <p>
 Would you like to answer?
 </p>
+{% endblock %}
+
+{% block content_text %}
+{{ action.actor.username }} commented on your post:
+
+{% if action.obj.comment %}
+"{{ action.obj.comment|truncatewords:75 }}"
+{% endif %}
+
+Would you like to answer?
 {% endblock %}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}

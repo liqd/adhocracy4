@@ -8,7 +8,7 @@
 
 {% block sub-headline %}{{ bplan.name }}{% endblock %}
 
-{% block content %}
+{% block content_html %}
 <p>
 der oben genannte Bebauungsplan wurde auf {{ site.name }} veröffentlicht, geändert oder als Entwurf angelegt. Alle eingehenden Stellungnahmen werden an {{ bplan.office_worker_email }} weitergeleitet.
 </p>
@@ -19,6 +19,15 @@ Beteiligungszeitraum: {{ bplan.start_date }} Uhr – {{ bplan.end_date }} Uhr
 <p>
 Falls der Bebauungsplan nicht korrekt angezeigt wird, können Sie sich an {{ contact_email }} wenden.
 </p>
+{% endblock %}
+
+{% block content_text %}
+der oben genannte Bebauungsplan wurde auf {{ site.name }} veröffentlicht, geändert oder als Entwurf angelegt. Alle eingehenden Stellungnahmen werden an {{ bplan.office_worker_email }} weitergeleitet.
+
+Bebauungsplan-Nr.: {{ bplan.identifier }}
+Beteiligungszeitraum: {{ bplan.start_date }} Uhr – {{ bplan.end_date }} Uhr
+
+Falls der Bebauungsplan nicht korrekt angezeigt wird, können Sie sich an {{ contact_email }} wenden.
 {% endblock %}
 
 {% block cta_label %}Zur Projektübersicht{% endblock %}
