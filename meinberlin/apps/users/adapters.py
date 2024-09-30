@@ -43,6 +43,7 @@ class AccountAdapter(DefaultAccountAdapter):
             return url
 
     def send_mail(self, template_prefix, email, context):
+        context.update({"email": email})
         return UserAccountEmail.send(email, template_name=template_prefix, **context)
 
     def get_email_confirmation_redirect_url(self, request):
