@@ -1,0 +1,20 @@
+.a4-forms__select__wrapper {
+    position: relative;
+}
+
+.a4-forms__select__input {
+    appearance: none;
+    background-color: transparent;
+    padding-right: 30px;
+}
+
+.a4-forms__select__wrapper:after {
+    content: "\f0d7";
+    font-family: "Font Awesome 6 Free", sans-serif;
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}

@@ -72,3 +72,7 @@
 .rating-down {
     @include rating-button($danger);
 }
+
+.rating__label {
+    display: none;
+}

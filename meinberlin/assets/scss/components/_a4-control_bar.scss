@@ -1,0 +1,22 @@
+.a4-control-bar__search__term {
+    display: flex;
+}
+
+.a4-control-bar__search__input-submit {
+    display: block;
+    width: 40px;
+    border-top-right-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    border: 1px solid $input-border-color;
+    border-left: none;
+
+    &:before {
+        font-family: "Font Awesome 6 Free", sans-serif;
+        content: "\f002";
+        font-weight: 900;
+    }
+}
+
+.a4-control-bar__search__input-submit:hover {
+    background-color: $bg-secondary;
+}

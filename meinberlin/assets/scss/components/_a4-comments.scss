@@ -1,5 +1,5 @@
 .a4-comments__comment {
-    border-top: solid 1px $border-color;
+    border-top: none;
 }
 
 .a4-comments__text--highlighted {
@@ -8,7 +8,7 @@
 }
 
 .a4-comments__box {
-    margin-top: 0.75 * $spacer;
+    margin-top: $spacer * 2;
 }
 
 .a4-comments__anchor {
@@ -36,6 +36,14 @@
         @extend .l-flex-row;
 
         flex-direction: row-reverse;
+    }
+}
+
+.a4-comments__comment-form__form {
+    .form-group {
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 0;
     }
 }
 
@@ -101,6 +109,19 @@
     @extend .label;
 }
 
+.a4-comments__comment-control-bar {
+    margin-top: $spacer * 2;
+
+    .form-group--inline {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-group {
+        margin-bottom: 0;
+    }
+}
+
 .a4-comments__filters__search {
     @extend .form-group;
     @extend .u-inline-flex;
@@ -123,11 +144,11 @@
     }
 }
 
-.a4-comments__filters__search-input {
+.a4-comments__filters__search-input,
+.a4-forms__select__input {
     @extend .input-group__input;
 
-    border-top-left-radius: 0.3em !important;
-    border-bottom-left-radius: 0.3em !important;
+    border-radius: 0.3em !important;
 }
 
 .a4-comments__filters__search-btn {
@@ -152,11 +173,10 @@
             color: $text-color !important;
         }
     }
-}
 
-.a4-comments__dropdown-container .a4-comments__dropdown {
-    margin-left: auto;
-    padding-right: 0.75 * $spacer;
+    .dropdown-item {
+        padding: 0!important;
+    }
 }
 
 // No user images in mB
@@ -197,12 +217,18 @@
 }
 
 .a4-comments__char-count {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    font-size: $font-size-sm;
+    margin-top: 0.4em;
     margin-left: auto;
-    margin-right: -$spacer;
+    margin-bottom: 0;
 }
 
-.a4-comments__char-count,
+.a4-comments__char-count-word {
+    margin-left: 0.2em;
+}
+
 .a4-comments__submission-date {
     font-size: $font-size-sm;
     display: block;
@@ -215,6 +241,15 @@
 
 .a4-comments__read-btn {
     @extend .btn--link;
+}
+
+.a4-comments__dropdown-container {
+    margin-left: auto;
+    margin-right: 8px;
+
+    @media screen and (width <= 478px) {
+        margin-right: 1.5em;
+    }
 }
 
 .a4-comments__filters__dropdown {
@@ -232,3 +267,22 @@
     background-color: $success;
     color: $text-color-inverted;
 }
+
+.a4-comments__comment-form__heading-comments-allowed,
+.a4-comments__commentbox__subtitle {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    position: absolute;
+}
+
+.a4-comments__comment-form__actions {
+    display: inline-flex;
+}
+
+.a4-comments__comment-form__actions__left {
+    > button {
+        margin-right: 0.5em;
+    }
+}
+
