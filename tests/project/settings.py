@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     "adhocracy4.rules",
     "adhocracy4.dashboard",
     "adhocracy4.polls",
+    "adhocracy4.open_poll",
     "adhocracy4.administrative_districts",
     "adhocracy4.exports",
     # adhocrayc4 generic apps
@@ -263,6 +264,9 @@ IMAGE_ALIASES = {
     "heroimage": {"min_resolution": (1300, 600)},
     "tileimage": {"min_resolution": (500, 300)},
 }
+
+CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
+CAPTCHA_TEST_ACCEPTED_ANSWER = "testpass"
 
 try:
     from .local import *  # noqa: F403, F401

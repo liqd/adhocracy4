@@ -40,7 +40,6 @@ def test_category_filter(apiclient, question, comment_factory, user):
     )
     url += "?comment_category=QUE"
     response = apiclient.get(url)
-    print(response)
 
     comment_data = response.data["results"]
     assert len(comment_data) == 3

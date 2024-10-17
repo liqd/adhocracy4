@@ -10,6 +10,7 @@ from adhocracy4.comments_async.api import CommentViewSet as CommentViewSetAsync
 from adhocracy4.dashboard import urls as dashboard_urls
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.modules import urls as mod_urls
+from adhocracy4.open_poll.api import OpenPollViewSet
 from adhocracy4.polls.api import PollViewSet
 from adhocracy4.projects import urls as prj_urls
 from adhocracy4.ratings.api import RatingViewSet
@@ -19,6 +20,7 @@ router = routers.DefaultRouter()
 router.register(r"follows", FollowViewSet, basename="follows")
 router.register(r"reports", ReportViewSet, basename="reports")
 router.register(r"polls", PollViewSet, basename="polls")
+router.register(r"open_poll", OpenPollViewSet, basename="open_poll")
 
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r"comments", CommentViewSet, basename="comments")
