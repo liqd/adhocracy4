@@ -426,6 +426,21 @@ class Module(models.Model):
 
 
 class Item(base.UserGeneratedContentModel):
+    """Item model for user generated content with a required relation to the creator.
+    Item is deleted when the creator or the module is deleted"""
+
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+
+    @cached_property
+    def project(self):
+        return self.module.project
+
+
+class OptionalUserItem(base.GeneratedContentModel):
+    """Item model for user generated content with an optional relation to the
+    creator. Item is only deleted if the module is deleted. If the associated creator
+    is deleted the relationship is set to null instead."""
+
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
 
     @cached_property

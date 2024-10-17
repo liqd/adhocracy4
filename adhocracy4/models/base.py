@@ -33,3 +33,12 @@ class UserGeneratedContentModel(TimeStampedModel):
 
     class Meta:
         abstract = True
+
+
+class GeneratedContentModel(TimeStampedModel):
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True
+    )
+
+    class Meta:
+        abstract = True

@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     "adhocracy4.rules",
     "adhocracy4.dashboard",
     "adhocracy4.polls",
+    "adhocracy4.open_poll",
     "adhocracy4.administrative_districts",
     "adhocracy4.exports",
     # adhocrayc4 generic apps

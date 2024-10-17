@@ -16,6 +16,8 @@ const api = (function () {
   const urls = {
     report: baseURL + 'reports/',
     document: baseURL + 'modules/$moduleId/documents/',
+    openPoll: baseURL + 'open_poll/',
+    openPollVote: baseURL + 'open_poll/$pollId/vote/',
     poll: baseURL + 'polls/',
     pollvote: baseURL + 'polls/$pollId/vote/',
     follow: baseURL + 'follows/',
@@ -145,6 +147,23 @@ const api = (function () {
       change: function (data, slug) {
         return _sendRequest('follow', slug, {
           type: 'PUT'
+        }, data)
+      }
+    },
+    openPoll: {
+      get: function (id) {
+        return _sendRequest('openPoll', id, {
+          type: 'GET'
+        }, {})
+      },
+      change: function (data, id) {
+        return _sendRequest('openPoll', id, {
+          type: 'PUT'
+        }, data)
+      },
+      vote: function (data) {
+        return _sendRequest('openPollVote', {
+          type: 'POST'
         }, data)
       }
     },

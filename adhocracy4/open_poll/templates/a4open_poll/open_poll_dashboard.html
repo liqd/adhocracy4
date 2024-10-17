@@ -1,0 +1,14 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n static react_open_poll %}
+
+{% block dashboard_project_content %}
+    <h1 class="u-first-heading">{% translate 'Edit poll' %}</h1>
+
+    {% react_open_poll_form poll True %}
+
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+    <script type="text/javascript" src="{% static 'open_poll_management.js' %}"></script>
+{% endblock %}
