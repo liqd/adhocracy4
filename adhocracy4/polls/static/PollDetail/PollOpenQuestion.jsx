@@ -29,9 +29,8 @@ export const PollOpenQuestion = (props) => {
       <h2>{props.question.label}</h2>
       {questionHelpText}
       <div className="poll__rows">
-        <input
+        <textarea
           className="form-control"
-          type="text"
           name="question"
           id={'id_choice-' + props.question.id + '-open'}
           value={userAnswer}
