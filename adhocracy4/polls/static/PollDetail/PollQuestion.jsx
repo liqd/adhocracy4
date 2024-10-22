@@ -136,9 +136,8 @@ export const PollQuestion = (props) => {
                     <span className="radio__text radio__text--checkbox">{choice.is_other_choice ? translated.other : choice.label}</span>
                     {choice.is_other_choice &&
                       <>
-                        <input
+                        <textarea
                           className="form-control"
-                          type="text"
                           name="question"
                           id={'id_choice-' + choice.id + '-other'}
                           value={otherChoiceAnswer}
