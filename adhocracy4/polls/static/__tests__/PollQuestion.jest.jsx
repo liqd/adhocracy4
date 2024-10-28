@@ -7,26 +7,26 @@ import { PollQuestion } from '../PollDetail/PollQuestion.jsx'
 import { QUESTION_OBJECT } from './__testdata__/QUESTION_OBJECT'
 
 describe('render <PollQuestion> with...', () => {
-  test('-> single-choice -> non-open-asnwers', () => {
+  test('-> single-choice -> non-open-answers', () => {
     const tree = render(<PollQuestion question={QUESTION_OBJECT} />)
     expect(tree).toMatchSnapshot()
   })
 
-  test('-> single-choice -> open-asnwers', () => {
+  test('-> single-choice -> open-answers', () => {
     const singleOpenQuestion = { ...QUESTION_OBJECT }
     singleOpenQuestion.is_open = true
     const tree = render(<PollQuestion question={singleOpenQuestion} />)
     expect(tree).toMatchSnapshot()
   })
 
-  test('-> multiple-choice -> non-open-asnwers', () => {
+  test('-> multiple-choice -> non-open-answers', () => {
     const multiQuestion = { ...QUESTION_OBJECT }
     multiQuestion.multiple_choice = true
     const tree = render(<PollQuestion question={multiQuestion} />)
     expect(tree).toMatchSnapshot()
   })
 
-  test('-> multiple-choice -> open-asnwers', () => {
+  test('-> multiple-choice -> open-answers', () => {
     const multiOpenQuestion = { ...QUESTION_OBJECT }
     multiOpenQuestion.multiple_choice = true
     multiOpenQuestion.is_open = true
@@ -65,12 +65,12 @@ describe('calling prop-passed functions...', () => {
         onOtherChange={otherChangedFn}
       />
     )
-    const choiceRadio = tree.container.querySelector('#id_choice-1-other')
-    const choiceTextInput = tree.container.querySelector('#id_choice-1-other')
+    const choiceRadio = tree.container.querySelector('input[type="radio"][id="id_choice-1-single"]')
+    const choiceTextArea = tree.container.querySelector('#id_choice-1-other')
     expect(choiceRadio.checked).toBe(false)
-    expect(choiceTextInput.value).toBe('')
+    expect(choiceTextArea.value).toBe('')
     fireEvent.click(choiceRadio)
-    fireEvent.change(choiceTextInput, { target: { value: 'something' } })
+    fireEvent.change(choiceTextArea, { target: { value: 'something' } })
     expect(otherChangedFn).toHaveBeenCalled()
     expect(otherChangedFn).toHaveBeenCalledWith(1, 'something')
   })
@@ -105,11 +105,11 @@ describe('calling prop-passed functions...', () => {
       />
     )
     const choiceCheckbox = tree.container.querySelector('#id_choice-1-multiple')
-    const choiceTextInput = tree.container.querySelector('#id_choice-1-other')
+    const choiceTextArea = tree.container.querySelector('#id_choice-1-other')
     expect(choiceCheckbox.checked).toBe(false)
-    expect(choiceTextInput.value).toBe('')
+    expect(choiceTextArea.value).toBe('')
     fireEvent.click(choiceCheckbox)
-    fireEvent.change(choiceTextInput, { target: { value: 'something' } })
+    fireEvent.change(choiceTextArea, { target: { value: 'something' } })
     expect(otherChangedFn).toHaveBeenCalled()
     expect(otherChangedFn).toHaveBeenCalledWith(1, 'something')
   })
@@ -125,6 +125,6 @@ test('initialize with function getUserAnswer -> with user answer', () => {
       question={userAnswerQuestion}
     />
   )
-  const choiceTextInput = tree.container.querySelector('#id_choice-1-other')
-  expect(choiceTextInput.value).toBe('antwoord')
+  const choiceTextArea = tree.container.querySelector('#id_choice-1-other')
+  expect(choiceTextArea.value).toBe('antwoord')
 })
