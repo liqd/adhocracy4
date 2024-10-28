@@ -95,9 +95,8 @@ export const PollQuestion = (props) => {
 
                     {choice.is_other_choice &&
                       <>
-                        <input
+                        <textarea
                           className="form-control"
-                          type="text"
                           name="question"
                           value={otherChoiceAnswer}
                           id={'id_choice-' + choice.id + '-other'}
