@@ -164,7 +164,7 @@ A4_COMMENTABLES = (
     ("a4comments", "comment"),
 )
 A4_ACTIONABLES = ()
-A4_AUTO_FOLLOWABLES = (("a4comments", "comment"),)
+A4_AUTO_FOLLOWABLES = (("a4comments", "comment"), ("a4polls", "vote"))
 A4_CATEGORIZABLE = (("a4test_questions", "question"),)
 A4_LABELS_ADDABLE = (("a4test_questions", "question"),)
 A4_DASHBOARD = {"BLUEPRINTS": "tests.project.blueprints.blueprints"}
@@ -263,6 +263,9 @@ IMAGE_ALIASES = {
     "heroimage": {"min_resolution": (1300, 600)},
     "tileimage": {"min_resolution": (500, 300)},
 }
+
+CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
+CAPTCHA_TEST_ACCEPTED_ANSWER = "testpass"
 
 try:
     from .local import *  # noqa: F403, F401

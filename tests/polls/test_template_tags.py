@@ -12,7 +12,7 @@ def test_react_polls(rf, user, poll):
 
     rendered = render_template(template, context)
 
-    assert rendered.startswith('<div data-a4-widget="polls" data-poll-id="')
+    assert rendered.startswith('<div data-a4-widget="polls" data-attributes="')
 
 
 @pytest.mark.django_db

@@ -145,6 +145,92 @@ def test_normal_user_can_vote_in_active_phase(
 
 
 @pytest.mark.django_db
+def test_anonymous_user_cannot_vote_in_active_phase_wrong_captcha(
+    apiclient, poll_factory, question_factory, choice_factory
+):
+
+    poll = poll_factory()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    choice_factory(question=question)
+    open_question = question_factory(poll=poll, is_open=True)
+
+    assert Vote.objects.count() == 0
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+            open_question.pk: {
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "an open answer",
+            },
+        },
+        "captcha": "",
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    data["captcha"] = "wrongcaptcha"
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_anonymous_user_can_vote_in_active_phase_which_allows_unregistered_users(
+    apiclient, poll_factory, question_factory, choice_factory
+):
+
+    poll = poll_factory()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    choice_factory(question=question)
+    open_question = question_factory(poll=poll, is_open=True)
+
+    assert Vote.objects.count() == 0
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+            open_question.pk: {
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "an open answer",
+            },
+        },
+        "captcha": "testpass:0",
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+
+    assert Vote.objects.count() == 1
+    assert Answer.objects.count() == 1
+    assert len(Vote.objects.first().content_id.hex) == 32
+    assert len(Answer.objects.first().content_id.hex) == 32
+
+
+@pytest.mark.django_db
 def test_user_cant_vote_in_private_project(
     user, apiclient, poll_factory, question_factory, choice_factory
 ):
@@ -160,6 +246,42 @@ def test_user_cant_vote_in_private_project(
     assert Vote.objects.count() == 0
 
     apiclient.force_authenticate(user=user)
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    assert Vote.objects.count() == 0
+
+
+@pytest.mark.django_db
+def test_unregistered_user_cant_vote_in_private_project_with_allow_unregistered_users(
+    apiclient, poll_factory, question_factory, choice_factory
+):
+
+    poll = poll_factory()
+    poll.allow_unregistered_users = True
+    poll.save()
+    project = poll.module.project
+    project.access = Access.PRIVATE
+    project.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    choice_factory(question=question)
+
+    assert Vote.objects.count() == 0
 
     url = reverse("polls-vote", kwargs={"pk": poll.pk})
 

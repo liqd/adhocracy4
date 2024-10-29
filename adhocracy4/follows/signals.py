@@ -6,7 +6,11 @@ from . import models
 
 
 def autofollow_hook(instance, **kwargs):
-    if hasattr(instance.project, "id"):
+    """Hook which makes a user automatically follow a project they created content
+    in. Used in cominbation with the post_save signal for all models defined in
+    settings.A4_AUTO_FOLLOWABLES. Content by unregistered users needs to be ignored,
+    hence the check for instance.creator"""
+    if hasattr(instance.project, "id") and instance.creator:
         models.Follow.objects.get_or_create(
             project=instance.project,
             creator=instance.creator,

@@ -18,6 +18,7 @@ export const PollOpenQuestion = (props) => {
   const [userAnswer, setUserAnswer] = useState(getUserOpenAnswer())
   const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
   const maxlength = 750
+  const userAllowedVote = props.question.authenticated || props.allowUnregisteredUsers
 
   const handleOpenChange = (event) => {
     setUserAnswer(event.target.value)
@@ -34,7 +35,7 @@ export const PollOpenQuestion = (props) => {
           name="question"
           id={'id_choice-' + props.question.id + '-open'}
           value={userAnswer}
-          disabled={!props.question.authenticated || props.question.isReadOnly}
+          disabled={!userAllowedVote || props.question.isReadOnly}
           onChange={(event) => { handleOpenChange(event) }}
           maxLength={maxlength}
         />

@@ -22,16 +22,17 @@ export const PollQuestion = (props) => {
         )
   }
 
-  const [userChoices, setUserChoices] = useState(props.question.userChoices)
+  const [userChoices, setUserChoices] = useState([])
   const [otherChoiceAnswer, setOtherChoiceAnswer] = useState(getUserAnswer())
   const [errors, setErrors] = useState()
   const multiHelpText = props.question.multiple_choice ? <div className="poll__help-text">{translated.multiple}</div> : null
   const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
   const maxlength = 250
+  const userAllowedVote = props.question.authenticated || props.allowUnregisteredUsers
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    setUserChoices(props.question.userChoices)
+    setUserChoices(props.question.userChoices || [])
     setErrors(props.errors)
   })
 
@@ -89,7 +90,7 @@ export const PollQuestion = (props) => {
                       value={choice.id}
                       checked={checked}
                       onChange={(event) => { handleSingleChange(event, choice.is_other_choice) }}
-                      disabled={!props.question.authenticated || props.question.isReadOnly}
+                      disabled={!userAllowedVote || props.question.isReadOnly}
                     />
                     <span className="radio__text">{choice.is_other_choice ? translated.other : choice.label}</span>
 
@@ -101,7 +102,7 @@ export const PollQuestion = (props) => {
                           value={otherChoiceAnswer}
                           id={'id_choice-' + choice.id + '-other'}
                           onChange={(event) => { handleOtherChange(event) }}
-                          disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
+                          disabled={!userAllowedVote || props.question.isReadOnly || !checked}
                           maxLength={maxlength}
                           aria-invalid={props.errors ? 'true' : 'false'}
                           aria-describedby={props.errors && 'id_error-' + props.id}
@@ -130,7 +131,7 @@ export const PollQuestion = (props) => {
                       value={choice.id}
                       checked={checked}
                       onChange={(event) => { handleMultiChange(event, choice.is_other_choice) }}
-                      disabled={!props.question.authenticated || props.question.isReadOnly}
+                      disabled={!userAllowedVote || props.question.isReadOnly}
                     />
                     <span className="radio__text radio__text--checkbox">{choice.is_other_choice ? translated.other : choice.label}</span>
                     {choice.is_other_choice &&
@@ -141,7 +142,7 @@ export const PollQuestion = (props) => {
                           id={'id_choice-' + choice.id + '-other'}
                           value={otherChoiceAnswer}
                           onChange={(event) => { handleOtherChange(event) }}
-                          disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
+                          disabled={!userAllowedVote || props.question.isReadOnly || !checked}
                           maxLength={maxlength}
                           aria-invalid={props.errors ? 'true' : 'false'}
                           aria-describedby={props.errors && 'id_error-' + props.id}

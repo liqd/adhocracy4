@@ -42,10 +42,15 @@ def choice_belongs_to_question(choice, question_pk):
         )
 
 
-def single_vote_per_user(user, choice, pk=None):
+def single_vote_per_user(user, content_id, choice, pk=None):
     from .models import Vote  # avoid circular import
 
-    qs = Vote.objects.filter(choice=choice, creator=user)
+    qs = Vote.objects.filter(choice=choice)
+
+    if content_id:
+        qs = qs.filter(content_id=content_id)
+    if user:
+        qs = qs.filter(creator=user)
 
     if pk:
         qs = qs.exclude(pk=pk)

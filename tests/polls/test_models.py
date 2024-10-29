@@ -1,3 +1,5 @@
+import uuid
+
 import pytest
 from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import ValidationError
@@ -59,15 +61,22 @@ def test_question_queryset(
 
     user1 = user_factory()
     user2 = user_factory()
+    unregistered_user1 = uuid.uuid4()
 
     vote_factory(creator=user1, choice=choice1_1)
     vote_factory(creator=user1, choice=choice2_1)
     vote = vote_factory(creator=user1, choice=choice2_3)
     other_vote_factory(vote=vote)
     answer_factory(creator=user1, answer="bla", question=question3)
+    # answer by unregistered user
+    answer_factory(
+        creator=None, content_id=unregistered_user1, answer="bla", question=question3
+    )
 
     vote_factory(creator=user2, choice=choice2_1)
     vote_factory(creator=user2, choice=choice2_2)
+    # vote by unregistered user
+    vote_factory(creator=None, content_id=unregistered_user1, choice=choice2_2)
 
     questions = Question.objects.annotate_vote_count()
     question1_annotated = questions.get(label="question1")
@@ -82,13 +91,13 @@ def test_question_queryset(
     assert question1_annotated.vote_count == 1
     assert question1_annotated.answer_count == 0
 
-    assert question2_annotated.vote_count == 2
-    assert question2_annotated.vote_count_multi == 4
+    assert question2_annotated.vote_count == 3
+    assert question2_annotated.vote_count_multi == 5
     assert question2_annotated.answer_count == 0
 
     assert question3_annotated.vote_count == 0
     assert question3_annotated.vote_count_multi == 0
-    assert question3_annotated.answer_count == 1
+    assert question3_annotated.answer_count == 2
 
 
 @pytest.mark.django_db
@@ -140,11 +149,14 @@ def test_choice_queryset(question, user_factory, vote_factory, choice_factory):
 
     vote_factory(creator=user1, choice=choice1)
     vote_factory(creator=user2, choice=choice2)
+    # unregistered user vote
+    vote_factory(creator=None, content_id=uuid.uuid4(), choice=choice2)
 
     choices = Choice.objects.annotate_vote_count()
 
     assert hasattr(choices.first(), "vote_count")
-    assert choices.first().vote_count == 1
+    assert choices[0].vote_count == 1
+    assert choices[1].vote_count == 2
 
 
 @pytest.mark.django_db
@@ -181,12 +193,15 @@ def test_multi_choice_queryset(question, user_factory, vote_factory, choice_fact
     vote_factory(creator=user1, choice=choice1)
     vote_factory(creator=user2, choice=choice1)
     vote_factory(creator=user2, choice=choice2)
+    # unregistered user vote
+    vote_factory(creator=None, content_id=uuid.uuid4(), choice=choice1)
+    vote_factory(creator=None, content_id=uuid.uuid4(), choice=choice2)
 
     choices = Choice.objects.annotate_vote_count()
 
     assert hasattr(choices.first(), "vote_count")
-    assert choices.get(id=choice1.id).vote_count == 2
-    assert choices.get(id=choice2.id).vote_count == 1
+    assert choices.get(id=choice1.id).vote_count == 3
+    assert choices.get(id=choice2.id).vote_count == 2
 
 
 @pytest.mark.django_db
@@ -196,6 +211,13 @@ def test_vote_validate_unique(user, choice, vote_factory):
 
     with pytest.raises(ValidationError) as error:
         vote_factory(creator=user, choice=choice)
+    assert error.value.messages[0] == "Only one vote per choice is allowed per user."
+
+    unregistered_user = uuid.uuid4()
+    vote_factory(creator=None, content_id=unregistered_user, choice=choice)
+
+    with pytest.raises(ValidationError) as error:
+        vote_factory(creator=None, content_id=unregistered_user, choice=choice)
     assert error.value.messages[0] == "Only one vote per choice is allowed per user."
 
 
