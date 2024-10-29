@@ -24,14 +24,16 @@ const getNextLocalKey = () => {
 
 export const EditPollManagement = (props) => {
   const [questions, setQuestions] = useState([])
+  const [allowUnregisteredUsers, setAllowUnregisteredUsers] = useState(false)
   const [errors, setErrors] = useState([])
   const [alert, setAlert] = useState(null)
 
   useEffect(() => {
-    api.poll.get(props.pollId).done(({ questions }) => {
-      questions.length > 0
-        ? setQuestions(questions)
+    api.poll.get(props.pollId).done(result => {
+      result.questions.length > 0
+        ? setQuestions(result.questions)
         : setQuestions([getNewQuestion()])
+      setAllowUnregisteredUsers(result.allow_unregistered_users)
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -167,7 +169,8 @@ export const EditPollManagement = (props) => {
     e.preventDefault()
 
     const data = {
-      questions
+      questions,
+      allow_unregistered_users: allowUnregisteredUsers
     }
 
     api.poll.change(data, props.pollId)
@@ -205,6 +208,10 @@ export const EditPollManagement = (props) => {
       onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}
       className="editpoll__questions"
     >
+      <div>
+        <label htmlFor="allowUnregisteredUsersCheckbox">Allow unregistered user to vote</label>
+        <input type="checkbox" id="allowUnregisteredUsersCheckbox" onChange={() => setAllowUnregisteredUsers((state) => !state)} checked={allowUnregisteredUsers} />
+      </div>
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
         {
           questions.map((question, index, arr) => {

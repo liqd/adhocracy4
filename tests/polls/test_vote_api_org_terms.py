@@ -98,6 +98,50 @@ def test_agreement_save_with_vote(
 @pytest.mark.django_db
 @override_settings(A4_USE_ORGANISATION_TERMS_OF_USE=True)
 @patch("adhocracy4.polls.api.reverse", return_value="/")
+def test_unregistered_user_can_vote_with_agreement(
+    mock_provider, apiclient, poll_factory, question_factory, choice_factory
+):
+
+    poll = poll_factory()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    choice_factory(question=question)
+    open_question = question_factory(poll=poll, is_open=True)
+
+    assert Vote.objects.count() == 0
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+            open_question.pk: {
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "an open answer",
+            },
+        },
+        "captcha": "testpass:0",
+        "agreed_terms_of_use": True,
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+
+    assert Vote.objects.count() == 1
+    assert Answer.objects.count() == 1
+
+
+@pytest.mark.django_db
+@override_settings(A4_USE_ORGANISATION_TERMS_OF_USE=True)
+@patch("adhocracy4.polls.api.reverse", return_value="/")
 def test_agreement_update_with_vote(
     mock_provider,
     user,
@@ -159,6 +203,38 @@ def test_voting_without_agreement_forbidden(
     choice_factory(question=question)
 
     apiclient.force_authenticate(user=user)
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+        },
+        "agreed_terms_of_use": False,
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+@override_settings(A4_USE_ORGANISATION_TERMS_OF_USE=True)
+@patch("adhocracy4.polls.api.reverse", return_value="/")
+def test_unregistered_user_voting_without_agreement_forbidden(
+    mock_provider, user, apiclient, poll_factory, question_factory, choice_factory
+):
+
+    poll = poll_factory()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    choice_factory(question=question)
 
     url = reverse("polls-vote", kwargs={"pk": poll.pk})
 

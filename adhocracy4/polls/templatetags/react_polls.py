@@ -1,16 +1,21 @@
 import json
 
 from django import template
+from django.conf import settings
 from django.utils.html import format_html
+
+from adhocracy4.polls.models import Poll
 
 register = template.Library()
 
 
 @register.simple_tag
-def react_polls(poll):
+def react_polls(poll: Poll):
+    attributes = {"pollId": poll.pk, "captchaUrl": getattr(settings, "CAPTCHA_URL", "")}
+
     return format_html(
-        '<div data-a4-widget="polls" data-poll-id="{pollId}"></div>',
-        pollId=poll.pk,
+        '<div data-a4-widget="polls" data-attributes="{attributes}"></div>',
+        attributes=json.dumps(attributes),
     )
 
 

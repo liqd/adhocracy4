@@ -32,6 +32,15 @@ def test_pre_phase(phase_factory, poll_factory, user, user_factory):
         assert rules.has_perm(perm_name, moderator, poll)
         assert rules.has_perm(perm_name, initiator, poll)
 
+    poll.allow_unregistered_users = True
+    poll.save()
+
+    with freeze_pre_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, poll)
+        assert not rules.has_perm(perm_name, user, poll)
+        assert rules.has_perm(perm_name, moderator, poll)
+        assert rules.has_perm(perm_name, initiator, poll)
+
 
 @pytest.mark.django_db
 def test_phase_active(phase_factory, poll_factory, user, user_factory):
@@ -45,6 +54,15 @@ def test_phase_active(phase_factory, poll_factory, user, user_factory):
     assert project.is_public
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, poll)
+        assert rules.has_perm(perm_name, user, poll)
+        assert rules.has_perm(perm_name, moderator, poll)
+        assert rules.has_perm(perm_name, initiator, poll)
+
+    poll.allow_unregistered_users = True
+    poll.save()
+
+    with freeze_phase(phase):
+        assert rules.has_perm(perm_name, anonymous, poll)
         assert rules.has_perm(perm_name, user, poll)
         assert rules.has_perm(perm_name, moderator, poll)
         assert rules.has_perm(perm_name, initiator, poll)
@@ -67,6 +85,16 @@ def test_phase_active_project_private(
     project.participants.add(participant)
 
     assert project.access == Access.PRIVATE
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, poll)
+        assert not rules.has_perm(perm_name, user, poll)
+        assert rules.has_perm(perm_name, participant, poll)
+        assert rules.has_perm(perm_name, moderator, poll)
+        assert rules.has_perm(perm_name, initiator, poll)
+
+    poll.allow_unregistered_users = True
+    poll.save()
+
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, poll)
         assert not rules.has_perm(perm_name, user, poll)
@@ -99,6 +127,16 @@ def test_phase_active_project_semipublic(
         assert rules.has_perm(perm_name, moderator, poll)
         assert rules.has_perm(perm_name, initiator, poll)
 
+    poll.allow_unregistered_users = True
+    poll.save()
+
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, poll)
+        assert not rules.has_perm(perm_name, user, poll)
+        assert rules.has_perm(perm_name, participant, poll)
+        assert rules.has_perm(perm_name, moderator, poll)
+        assert rules.has_perm(perm_name, initiator, poll)
+
 
 @pytest.mark.django_db
 def test_phase_active_project_draft(phase_factory, poll_factory, user, user_factory):
@@ -110,6 +148,15 @@ def test_phase_active_project_draft(phase_factory, poll_factory, user, user_fact
     project.organisation.initiators.add(initiator)
 
     assert project.is_draft
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, poll)
+        assert not rules.has_perm(perm_name, user, poll)
+        assert rules.has_perm(perm_name, moderator, poll)
+        assert rules.has_perm(perm_name, initiator, poll)
+
+    poll.allow_unregistered_users = True
+    poll.save()
+
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, poll)
         assert not rules.has_perm(perm_name, user, poll)
@@ -130,6 +177,15 @@ def test_post_phase_project_archived(phase_factory, poll_factory, user, user_fac
     project.organisation.initiators.add(initiator)
 
     assert project.is_archived
+    with freeze_post_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, poll)
+        assert not rules.has_perm(perm_name, user, poll)
+        assert rules.has_perm(perm_name, moderator, poll)
+        assert rules.has_perm(perm_name, initiator, poll)
+
+    poll.allow_unregistered_users = True
+    poll.save()
+
     with freeze_post_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, poll)
         assert not rules.has_perm(perm_name, user, poll)

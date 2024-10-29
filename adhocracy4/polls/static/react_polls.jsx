@@ -7,11 +7,10 @@ import PollQuestions from './PollDetail/PollQuestions'
 function init () {
   ReactWidgetInit('a4', 'polls',
     function (el) {
-      const pollId = el.dataset.pollId
-      const container = el
-      const root = createRoot(container)
+      const props = JSON.parse(el.dataset.attributes)
+      const root = createRoot(el)
       root.render(
-        <PollQuestions pollId={pollId} />
+        <PollQuestions {...props} />
       )
     }
   )

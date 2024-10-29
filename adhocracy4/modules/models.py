@@ -426,6 +426,7 @@ class Module(models.Model):
 
 
 class Item(base.UserGeneratedContentModel):
+
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
 
     @cached_property

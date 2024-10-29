@@ -1,3 +1,8 @@
+import json
+import re
+import uuid
+
+import requests
 from django.apps import apps
 from django.conf import settings
 from django.db import transaction
@@ -30,6 +35,9 @@ from .serializers import PollSerializer
 class PollViewSet(
     mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet
 ):
+    """ViewSet used to edit a poll from the dashboard and to display and vote on the
+    user side."""
+
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
     permission_classes = (ViewSetRulesPermission,)
@@ -40,6 +48,9 @@ class PollViewSet(
 
     @property
     def rules_method_map(self):
+        """This modifies the default rules to require the add_vote permission to POST
+        instead of the default add_poll. This works because we only allow POST for
+        votes and not for creating Polls."""
         return ViewSetRulesPermission.default_rules_method_map._replace(
             POST="a4polls.add_vote",
         )
@@ -53,6 +64,8 @@ class PollViewSet(
         return OrganisationTermsOfUse
 
     def _user_has_agreed(self, user):
+        if not user.is_authenticated:
+            return False
         OrganisationTermsOfUse = self._get_org_terms_model()
         organisation = self.get_object().project.organisation
         user_has_agreed = OrganisationTermsOfUse.objects.filter(
@@ -66,7 +79,7 @@ class PollViewSet(
             hasattr(settings, "A4_USE_ORGANISATION_TERMS_OF_USE")
             and settings.A4_USE_ORGANISATION_TERMS_OF_USE
         ):
-            user_has_agreed = None
+            user_has_agreed = False
             use_org_terms_of_use = True
             organisation = self.get_object().project.organisation
             try:
@@ -93,57 +106,108 @@ class PollViewSet(
         response.data = self.add_terms_of_use_info(request, response.data)
         return response
 
-    @action(detail=True, methods=["post"], permission_classes=[ViewSetRulesPermission])
-    def vote(self, request, pk):
-        if (
-            hasattr(settings, "A4_USE_ORGANISATION_TERMS_OF_USE")
-            and settings.A4_USE_ORGANISATION_TERMS_OF_USE
-            and not self._user_has_agreed(self.request.user)
+    def __verify_captcha(self, answer, session):
+        if hasattr(settings, "CAPTCHA_TEST_ACCEPTED_ANSWER"):
+            return answer == settings.CAPTCHA_TEST_ACCEPTED_ANSWER
+
+        if not hasattr(settings, "CAPTCHA_URL"):
+            return False
+
+        url = settings.CAPTCHA_URL
+        data = {"session_id": session, "answer_id": answer, "action": "verify"}
+        response = requests.post(url, data)
+        return json.loads(response.text)["result"]
+
+    def check_captcha(self):
+        if not self.request.data.get("captcha", False):
+            raise ValidationError(_("Your answer to the captcha was wrong."))
+
+        combined_answer = self.request.data["captcha"].split(":")
+        if len(combined_answer) != 2:
+            raise ValidationError(
+                _("Something about the answer to the captcha was wrong.")
+            )
+
+        answer, session = combined_answer
+
+        if not re.match(r"[0-9a-zA-ZäöüÄÖÜß]+", answer) or not re.match(
+            r"[0-9a-fA-F]+", session
         ):
-            if (
-                "agreed_terms_of_use" in self.request.data
-                and self.request.data["agreed_terms_of_use"]
-            ):
-                OrganisationTermsOfUse = self._get_org_terms_model()
-                OrganisationTermsOfUse.objects.update_or_create(
-                    user=self.request.user,
-                    organisation=self.get_object().project.organisation,
-                    defaults={"has_agreed": self.request.data["agreed_terms_of_use"]},
-                )
+            raise ValidationError(
+                _("Something about the answer to the captcha was wrong.")
+            )
+
+        if not self.__verify_captcha(answer, session):
+            raise ValidationError(_("Your answer to the captcha was wrong."))
+
+    def check_terms_of_use(self):
+        if getattr(
+            settings, "A4_USE_ORGANISATION_TERMS_OF_USE", False
+        ) and not self._user_has_agreed(self.request.user):
+            if self.request.data.get("agreed_terms_of_use", False):
+                if self.request.user.is_authenticated:
+                    OrganisationTermsOfUse = self._get_org_terms_model()
+                    OrganisationTermsOfUse.objects.update_or_create(
+                        user=self.request.user,
+                        organisation=self.get_object().project.organisation,
+                        defaults={
+                            "has_agreed": self.request.data["agreed_terms_of_use"]
+                        },
+                    )
             else:
                 raise ValidationError(
                     {_("Please agree to the organisation's terms of use.")}
                 )
 
+    @action(detail=True, methods=["post"], permission_classes=[ViewSetRulesPermission])
+    def vote(self, request, pk):
+        if not self.request.user.is_authenticated:
+            self.check_captcha()
+        self.check_terms_of_use()
+
+        creator = None
+        content_id = None
+        if self.request.user.is_authenticated:
+            creator = self.request.user
+        else:
+            content_id = uuid.uuid4()
         for question_id in request.data["votes"]:
             question = self.get_question(question_id)
             validators.question_belongs_to_poll(question, int(pk))
             vote_data = self.request.data["votes"][question_id]
-            self.save_vote(question, vote_data)
+            self.save_vote(question, vote_data, creator, content_id)
 
         poll = self.get_object()
         poll_serializer = self.get_serializer(poll)
         poll_data = self.add_terms_of_use_info(request, poll_serializer.data)
+        if not self.request.user.is_authenticated:
+            # set poll to read only after voting to prevent users from seeing the
+            # voting screen again
+            poll_data["questions"][0]["isReadOnly"] = True
         return Response(poll_data, status=status.HTTP_201_CREATED)
 
-    def save_vote(self, question, vote_data):
+    def save_vote(self, question, vote_data, creator, content_id):
         choices, other_choice_answer, open_answer = self.get_data(vote_data)
 
         if not question.is_open:
             self.validate_choices(question, choices)
 
         with transaction.atomic():
+
             if question.is_open:
                 self.clear_open_answer(question)
                 if open_answer:
                     Answer.objects.create(
-                        question=question, answer=open_answer, creator=self.request.user
+                        question=question,
+                        answer=open_answer,
+                        creator=creator,
+                        content_id=content_id,
                     )
             else:
                 self.clear_current_choices(question)
                 for choice in choices:
                     vote = Vote.objects.create(
-                        choice_id=choice.id, creator=self.request.user
+                        choice_id=choice.id, creator=creator, content_id=content_id
                     )
                     if choice.is_other_choice:
                         if other_choice_answer:
@@ -176,14 +240,16 @@ class PollViewSet(
         return get_object_or_404(Question, pk=id)
 
     def clear_open_answer(self, question):
-        Answer.objects.filter(
-            question_id=question.id, creator=self.request.user
-        ).delete()
+        if self.request.user.is_authenticated:
+            Answer.objects.filter(
+                question_id=question.id, creator=self.request.user
+            ).delete()
 
     def clear_current_choices(self, question):
-        Vote.objects.filter(
-            choice__question_id=question.id, creator=self.request.user
-        ).delete()
+        if self.request.user.is_authenticated:
+            Vote.objects.filter(
+                choice__question_id=question.id, creator=self.request.user
+            ).delete()
 
     def validate_choices(self, question, choices):
         if len(choices) > len(set(choices)):

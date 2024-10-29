@@ -4,17 +4,25 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.comments import models as comment_models
-from adhocracy4.models.base import UserGeneratedContentModel
+from adhocracy4.models.base import GeneratedContentModel
 from adhocracy4.modules import models as module_models
 from adhocracy4.polls import validators
 
 
 class QuestionQuerySet(models.QuerySet):
+    """Queryset which can annotate the Question model with different counts of a vote
+    vote_count: counts the number of people who have voted on the question
+    vote_count_multi: counts the total numer of votes on the question
+    answer_count: counts the number of people which answered an open question
+    """
+
     def annotate_vote_count(self):
         return self.annotate(
-            vote_count=models.Count("choices__votes__creator_id", distinct=True),
+            vote_count=models.Count("choices__votes__creator__id", distinct=True)
+            + models.Count("choices__votes__content_id", distinct=True),
             vote_count_multi=models.Count("choices__votes", distinct=True),
-            answer_count=models.Count("answers__creator_id", distinct=True),
+            answer_count=models.Count("answers__creator__id", distinct=True)
+            + models.Count("answers__content_id", distinct=True),
         ).order_by("weight")
 
 
@@ -24,6 +32,7 @@ class ChoiceQuerySet(models.QuerySet):
 
 
 class Poll(module_models.Item):
+    allow_unregistered_users = models.BooleanField(default=False)
     comments = GenericRelation(
         comment_models.Comment, related_query_name="poll", object_id_field="object_pk"
     )
@@ -93,16 +102,15 @@ class Question(models.Model):
 
         return self.choices.filter(votes__creator=user).values_list("id", flat=True)
 
-    def user_answer(self, user):
-        if not user.is_authenticated:
-            return ""
-
-        answers = self.answers.filter(creator=user)
-        if answers.exists():
-            # there can only be one answer bc of unique constraint
-            return answers.first().id
-        else:
-            return ""
+    def user_answer(self, user) -> int | str:
+        """Returns the id of the Answer the user gave to the question or an empty
+        string."""
+        if user.is_authenticated:
+            answers = self.answers.filter(creator=user)
+            if answers.exists():
+                # there can only be one answer bc of unique constraint
+                return answers.first().id
+        return ""
 
     def other_choice_answers(self):
         if self.has_other_option:
@@ -113,10 +121,9 @@ class Question(models.Model):
             return OtherVote.objects.none()
 
     def other_choice_user_answer(self, user):
-        if not user.is_authenticated:
-            return ""
-
-        elif self.has_other_option:
+        """Returns the id of the 'other' answer the user gave to the question or an empty
+        string."""
+        if user.is_authenticated and self.has_other_option:
             other_choice = self.choices.filter(is_other_choice=True).first()
             other_choice_user_answer = OtherVote.objects.filter(
                 vote__creator=user, vote__choice=other_choice
@@ -136,7 +143,7 @@ class Question(models.Model):
         ordering = ["weight"]
 
 
-class Answer(UserGeneratedContentModel):
+class Answer(GeneratedContentModel):
     answer = models.CharField(max_length=750, verbose_name=_("Answer"))
 
     question = models.ForeignKey(
@@ -164,7 +171,7 @@ class Answer(UserGeneratedContentModel):
 
     class Meta:
         ordering = ["id"]
-        unique_together = ("question", "creator")
+        unique_together = ("question", "creator", "content_id")
 
 
 class Choice(models.Model):
@@ -219,7 +226,7 @@ class Choice(models.Model):
         ordering = ["weight", "id"]
 
 
-class Vote(UserGeneratedContentModel):
+class Vote(GeneratedContentModel):
     choice = models.ForeignKey("Choice", on_delete=models.CASCADE, related_name="votes")
 
     def save(self, *args, **kwargs):
@@ -228,7 +235,9 @@ class Vote(UserGeneratedContentModel):
 
     def validate_unique(self, exclude=None):
         super().validate_unique(exclude)
-        validators.single_vote_per_user(self.creator, self.choice, self.pk)
+        validators.single_vote_per_user(
+            self.creator, self.content_id, self.choice, self.pk
+        )
 
     @property
     def is_other_vote(self):

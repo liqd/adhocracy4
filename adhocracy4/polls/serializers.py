@@ -4,18 +4,23 @@ from adhocracy4.dashboard import components
 from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.rules.discovery import NormalUser
 
-from . import models
+from .models import Answer
+from .models import Choice
+from .models import OtherVote
+from .models import Poll
+from .models import Question
+from .models import Vote
 
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Answer
+        model = Answer
         fields = ("id", "answer")
 
 
 class OtherChoiceAnswerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.OtherVote
+        model = OtherVote
         fields = ("vote_id", "answer")
 
 
@@ -24,10 +29,10 @@ class ChoiceSerializer(serializers.ModelSerializer):
     count = serializers.SerializerMethodField()
 
     class Meta:
-        model = models.Choice
+        model = Choice
         fields = ("id", "label", "count", "is_other_choice")
 
-    def get_count(self, choice):
+    def get_count(self, choice: Choice) -> int:
         if hasattr(choice, "vote_count"):
             return getattr(choice, "vote_count", -1)
         else:
@@ -53,7 +58,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     totalAnswerCount = serializers.SerializerMethodField("get_total_answer_count")
 
     class Meta:
-        model = models.Question
+        model = Question
         fields = (
             "id",
             "label",
@@ -73,13 +78,13 @@ class QuestionSerializer(serializers.ModelSerializer):
             "totalAnswerCount",
         )
 
-    def get_authenticated(self, _):
+    def get_authenticated(self, _) -> bool:
         if "request" in self.context:
             user = self.context["request"].user
             return bool(user.is_authenticated)
         return False
 
-    def get_is_read_only(self, question):
+    def get_is_read_only(self, question: Question) -> bool:
         if "request" in self.context:
             user = self.context["request"].user
             has_poll_permission = user.has_perm("a4polls.add_vote", question.poll)
@@ -87,19 +92,20 @@ class QuestionSerializer(serializers.ModelSerializer):
                 "a4polls.add_vote", question.poll
             )
             return not has_poll_permission and not would_have_poll_permission
-
         return True
 
-    def get_user_choices(self, question):
+    def get_user_choices(self, question: Question) -> [int]:
         if "request" in self.context:
             user = self.context["request"].user
-            return question.user_choices_list(user)
+            if user and user.is_authenticated:
+                return question.user_choices_list(user)
         return []
 
-    def get_user_answer(self, question):
+    def get_user_answer(self, question: Question) -> str | int:
         if "request" in self.context:
             user = self.context["request"].user
-            return question.user_answer(user)
+            if user and user.is_authenticated:
+                return question.user_answer(user)
         return ""
 
     def get_other_choice_answers(self, question):
@@ -109,10 +115,11 @@ class QuestionSerializer(serializers.ModelSerializer):
         )
         return serializer.data
 
-    def get_other_choice_user_answer(self, question):
+    def get_other_choice_user_answer(self, question: Question):
         if "request" in self.context:
             user = self.context["request"].user
-            return question.other_choice_user_answer(user)
+            if user and user.is_authenticated:
+                return question.other_choice_user_answer(user)
         return ""
 
     def get_total_vote_count(self, question):
@@ -130,24 +137,24 @@ class PollSerializer(serializers.ModelSerializer):
     has_user_vote = serializers.SerializerMethodField("get_has_user_vote")
 
     class Meta:
-        model = models.Poll
-        fields = ("id", "questions", "has_user_vote")
+        model = Poll
+        fields = ("id", "questions", "has_user_vote", "allow_unregistered_users")
 
     def get_has_user_vote(self, poll):
         if "request" in self.context:
             user = self.context["request"].user
             if user.is_authenticated:
                 return (
-                    models.Vote.objects.filter(
+                    Vote.objects.filter(
                         choice__question__poll=poll, creator=user
                     ).count()
-                    + models.Answer.objects.filter(
-                        question__poll=poll, creator=user
-                    ).count()
+                    + Answer.objects.filter(question__poll=poll, creator=user).count()
                 ) > 0
         return False
 
     def update(self, instance, data):
+        instance.allow_unregistered_users = data.get("allow_unregistered_users", False)
+        instance.save()
         # Delete removed questions from the database
         instance.questions.exclude(
             id__in=[
@@ -160,7 +167,7 @@ class PollSerializer(serializers.ModelSerializer):
         # Update (or create) the questions
         for weight, question in enumerate(data["annotated_questions"]):
             question_id = question.get("id")
-            question_instance, _ = models.Question.objects.update_or_create(
+            question_instance, _ = Question.objects.update_or_create(
                 id=question_id,
                 defaults={
                     "poll": instance,
@@ -188,7 +195,7 @@ class PollSerializer(serializers.ModelSerializer):
         # Update (or create) this questions choices
         for weight, choice in enumerate(question["choices"]):
             choice_id = choice.get("id")
-            choice_instance, _ = models.Choice.objects.update_or_create(
+            choice_instance, _ = Choice.objects.update_or_create(
                 id=choice_id,
                 defaults={
                     "question": question_instance,
