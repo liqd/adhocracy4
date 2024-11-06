@@ -30,6 +30,7 @@ from .models import Poll
 from .models import Question
 from .models import Vote
 from .serializers import PollSerializer
+from .signals import poll_voted
 
 
 class PollViewSet(
@@ -178,6 +179,9 @@ class PollViewSet(
             self.save_vote(question, vote_data, creator, content_id)
 
         poll = self.get_object()
+        poll_voted.send(
+            sender=self.__class__, poll=poll, creator=creator, content_id=content_id
+        )
         poll_serializer = self.get_serializer(poll)
         poll_data = self.add_terms_of_use_info(request, poll_serializer.data)
         if not self.request.user.is_authenticated:
