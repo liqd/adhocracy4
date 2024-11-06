@@ -1,11 +1,15 @@
+from unittest.mock import MagicMock
+
 import pytest
 from django.urls import reverse
 from rest_framework import status
 
+from adhocracy4.polls.api import PollViewSet
 from adhocracy4.polls.models import Answer
 from adhocracy4.polls.models import OtherVote
 from adhocracy4.polls.models import Vote
 from adhocracy4.polls.phases import VotingPhase
+from adhocracy4.polls.signals import poll_voted
 from adhocracy4.projects.enums import Access
 from tests.helpers import active_phase
 
@@ -700,3 +704,68 @@ def test_validate_question_belongs_to_poll(
         "Question has to belong to the poll set in the url."
         in response.content.decode()
     )
+
+
+@pytest.mark.django_db
+def test_poll_voted_signal_is_dispatched_on_vote(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
+    signal_handler = MagicMock()
+    poll_voted.connect(signal_handler)
+
+    poll = poll_factory()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    choice_factory(question=question)
+    open_question = question_factory(poll=poll, is_open=True)
+
+    assert Vote.objects.count() == 0
+
+    apiclient.force_authenticate(user=user)
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+            open_question.pk: {
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": "an open answer",
+            },
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        signal_handler.assert_called_once_with(
+            signal=poll_voted,
+            sender=PollViewSet,
+            poll=poll,
+            creator=user,
+            content_id=None,
+        )
+        assert Vote.objects.count() == 1
+
+        # test for unregistered user
+        signal_handler.reset_mock()
+        apiclient.logout()
+        data["captcha"] = "testpass:0"
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        assert Vote.objects.count() == 2
+        content_id = Vote.objects.filter(content_id__isnull=False).first().content_id
+        signal_handler.assert_called_once_with(
+            signal=poll_voted,
+            sender=PollViewSet,
+            poll=poll,
+            creator=None,
+            content_id=content_id,
+        )
