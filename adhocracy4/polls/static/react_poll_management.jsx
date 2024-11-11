@@ -7,13 +7,11 @@ import { EditPollManagement } from './PollDashboard/EditPollManagement'
 function init () {
   ReactWidgetInit('a4', 'poll-management',
     function (el) {
-      const pollId = el.dataset.pollId
+      const props = JSON.parse(el.dataset.attributes)
       const root = createRoot(el)
 
-      const reloadOnSuccess = JSON.parse(el.getAttribute('data-reloadOnSuccess'))
-
       root.render(
-        <EditPollManagement pollId={pollId} reloadOnSuccess={reloadOnSuccess} />
+        <EditPollManagement {...props} />
       )
     }
   )
