@@ -115,7 +115,7 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
               )
             : (
               <label
-                className="captcheck_question_access"
+                className="captcheck_question_access react_captcha"
                 id={'captcheck_' + captcha.id_prefix + '_question_access'}
               >
                 {captcha.question_a + ' = ?'}
@@ -134,7 +134,7 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
               isImageMode ? translated.ariaLabelText : translated.ariaLabelImage
             }
           >
-            {isImageMode ? translated.imageMode : translated.textMode}
+            {isImageMode ? translated.textMode : translated.imageMode}
           </a>
         </div>
 
@@ -179,13 +179,13 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
               )
             : (
               <div
-                className="captcheck_answer_access"
+                className="captcheck_answer_access react_captcha"
                 id={'captcheck_' + captcha.id_prefix + '_answer_access'}
               >
                 <input
                   id={
                   'captcheck_' + captcha.id_prefix + '_question_access-answer'
-                }
+                  }
                   type="text"
                   name="captcheck_selected_answer"
                   aria-label="Type your answer here."
