@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework import serializers
 
 from adhocracy4.dashboard import components
@@ -153,7 +154,12 @@ class PollSerializer(serializers.ModelSerializer):
         return False
 
     def update(self, instance, data):
-        instance.allow_unregistered_users = data.get("allow_unregistered_users", False)
+        if getattr(settings, "A4_POLL_ENABLE_UNREGISTERED_USERS", False):
+            instance.allow_unregistered_users = data.get(
+                "allow_unregistered_users", False
+            )
+        else:
+            instance.allow_unregistered_users = False
         instance.save()
         # Delete removed questions from the database
         instance.questions.exclude(

@@ -21,14 +21,16 @@ def react_polls(poll: Poll):
 
 @register.simple_tag
 def react_poll_form(poll, reload_on_success=False):
+    attributes = {
+        "pollId": poll.pk,
+        "reloadOnSuccess": reload_on_success,
+        "enableUnregisteredUsers": getattr(
+            settings, "A4_POLL_ENABLE_UNREGISTERED_USERS", False
+        ),
+    }
     reload_on_success = json.dumps(reload_on_success)
 
     return format_html(
-        (
-            '<div data-a4-widget="poll-management" data-poll-id="{pollId}" '
-            ' data-reloadOnSuccess="{reload_on_success}">'
-            "</div>"
-        ),
-        pollId=poll.pk,
-        reload_on_success=reload_on_success,
+        '<div data-a4-widget="poll-management" data-attributes="{attributes}"></div>',
+        attributes=json.dumps(attributes),
     )

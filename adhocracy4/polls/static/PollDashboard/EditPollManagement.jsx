@@ -208,10 +208,11 @@ export const EditPollManagement = (props) => {
       onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}
       className="editpoll__questions"
     >
-      <div>
-        <label htmlFor="allowUnregisteredUsersCheckbox">Allow unregistered user to vote</label>
-        <input type="checkbox" id="allowUnregisteredUsersCheckbox" onChange={() => setAllowUnregisteredUsers((state) => !state)} checked={allowUnregisteredUsers} />
-      </div>
+      {props.enableUnregisteredUsers &&
+        <div>
+          <label htmlFor="allowUnregisteredUsersCheckbox">Allow unregistered user to vote</label>
+          <input type="checkbox" id="allowUnregisteredUsersCheckbox" onChange={() => setAllowUnregisteredUsers((state) => !state)} checked={allowUnregisteredUsers} />
+        </div>}
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
         {
           questions.map((question, index, arr) => {
