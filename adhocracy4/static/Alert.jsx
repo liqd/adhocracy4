@@ -22,8 +22,10 @@ const Alert = ({ type, alertAttribute, message, onClick, timeInMs }) => {
         aria-atomic="true"
         aria-live={alertAttribute}
       >
-        <div className="container">
-          {message}
+        <div className="container a4-alert__container">
+          <div className="a4-alert__content">
+            {message}
+          </div>
           <button className="alert__close" title={closeTag} onClick={onClick}>
             <i className="fa fa-times" aria-label={closeTag} />
           </button>
