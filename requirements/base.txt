@@ -11,7 +11,7 @@ redis==5.0.3
 requests==2.31.0
 sentry-sdk[django]==1.40.4
 urllib3==2.2.1
-wagtail==6.0.6
+wagtail==6.1.3
 whitenoise==6.6.0
 zeep==4.2.1
 
@@ -24,7 +24,7 @@ https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.13-liqd/django_
 django-filter==23.5
 django-widget-tweaks==1.5.0
 Django==4.2.11
-djangorestframework==3.14.0
+djangorestframework==3.15.1
 easy-thumbnails[svg]==2.8.5
 python-dateutil==2.8.2
 rules==3.3
