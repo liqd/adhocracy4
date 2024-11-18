@@ -15,6 +15,7 @@ class BplanAdmin(admin.ModelAdmin):
         "tile_image_alt_text",
         "tile_image_copyright",
         "is_archived",
+        "point",
         "office_worker_email",
     )
     list_display = (

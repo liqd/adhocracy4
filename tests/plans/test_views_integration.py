@@ -172,6 +172,61 @@ def test_list_view(
 
 
 @pytest.mark.django_db
+def test_bplan_shows_bplan_and_diplan(
+    bplan_factory,
+    phase_factory,
+    user,
+    apiclient,
+):
+    bplan = bplan_factory(name="bplan", is_draft=False)
+    bplan_archived = bplan_factory(
+        name="bplan_archived", is_draft=False, is_archived=True
+    )
+    bplan_diplan = bplan_factory(name="bplan_diplan", is_draft=False, is_diplan=True)
+    bplan_diplan_unpublished = bplan_factory(
+        name="bplan_diplan_unpublished", is_draft=True, is_diplan=True
+    )
+
+    now = parse("2013-01-01 18:00:00 UTC")
+    last_week = now - timezone.timedelta(days=7)
+    next_week = now + timezone.timedelta(days=7)
+
+    # active phase
+    phase_factory(start_date=last_week, end_date=next_week, module__project=bplan)
+    phase_factory(
+        start_date=last_week, end_date=next_week, module__project=bplan_archived
+    )
+    phase_factory(
+        start_date=last_week, end_date=next_week, module__project=bplan_diplan
+    )
+    phase_factory(
+        start_date=last_week,
+        end_date=next_week,
+        module__project=bplan_diplan_unpublished,
+    )
+
+    # clear cache as it's populated on project creation
+    cache.clear()
+
+    with freeze_time(now):
+        assert Project.objects.all().count() == 4
+        apiclient.force_authenticate(user=user)
+
+        # query api for active projects / bplans
+        url = reverse("projects-list") + "?status=activeParticipation"
+        response = apiclient.get(url)
+        items = response.data
+        assert len(items) == 2
+
+        assert items[0]["title"] == "bplan"
+        assert items[1]["title"] == "bplan_diplan"
+        assert items[0]["type"] == "project"
+        assert items[1]["type"] == "project"
+        assert items[0]["subtype"] == "external"
+        assert items[1]["subtype"] == "external"
+
+
+@pytest.mark.django_db
 def test_list_view_no_district(client, plan_factory):
     plan_factory()
     plan_factory(district=None)

@@ -6,11 +6,12 @@ from django.utils import timezone
 from meinberlin.apps.bplan import models as bplan_models
 
 
+# TODO: this will become obsolete and can be removed once the transition to diplan is completed.
 class Command(BaseCommand):
     help = "Archive finished bplan projects and delete old statements."
 
     def handle(self, *args, **options):
-        bplans = bplan_models.Bplan.objects.filter(is_draft=False)
+        bplans = bplan_models.Bplan.objects.filter(is_draft=False, is_diplan=False)
         for bplan in bplans:
             if bplan.has_finished and not bplan.is_archived:
                 bplan.is_archived = True

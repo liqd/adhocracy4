@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 import pytest
 from dateutil.parser import parse
 from django.core import mail
@@ -19,7 +21,7 @@ def test_anonymous_cannot_add_bplan(apiclient, organisation):
 
 
 @pytest.mark.django_db
-def test_non_initiator_cannot_add_bplan(apiclient, organisation, user):
+def test_none_initiator_cannot_add_bplan(apiclient, organisation, user):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {}
     apiclient.force_authenticate(user=user)
@@ -225,7 +227,7 @@ def test_non_initiator_cannot_update_bplan(apiclient, bplan, user2):
 
 
 @pytest.mark.django_db
-def test_add_bplan_response(apiclient, organisation):
+def test_add_bplan_response(apiclient, districts, organisation):
     url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
     data = {
         "name": "bplan-1",
@@ -248,3 +250,242 @@ def test_add_bplan_response(apiclient, organisation):
     assert response.data == {"id": pytest_regex("^[0-9]*$"), "embed_code": embed_code}
     assert len(mail.outbox) == 1
     assert mail.outbox[0].to == ["test@liqd.de"]
+
+
+@pytest.mark.django_db
+def test_add_bplan_diplan_response_no_embed(apiclient, districts, organisation):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+        "identifier": "1-234",
+        "point": "[0,0]",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    assert response.data == {"id": pytest_regex("^[0-9]*$")}
+
+
+@pytest.mark.django_db
+def test_bplan_api_adds_no_district_if_identifier_is_wrong(
+    apiclient, districts, organisation
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "office_worker_email": "test@liqd.de",
+        "start_date": "2013-01-01 18:00",
+        "identifier": "A-AAAA",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.administrative_district is None
+
+
+@pytest.mark.django_db
+def test_bplan_api_adds_topic_automatically(apiclient, districts, organisation):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "office_worker_email": "test@liqd.de",
+        "start_date": "2013-01-01 18:00",
+        "identifier": "1-234",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.topics.count() == 1
+    assert bplan.topics.first().code == "URB"
+
+
+@pytest.mark.django_db
+def test_bplan_api_adds_district_from_identifier(apiclient, districts, organisation):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "office_worker_email": "test@liqd.de",
+        "start_date": "2013-01-01 18:00",
+        "identifier": "1-234",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.administrative_district.name == "Mitte"
+
+
+@pytest.mark.django_db
+def test_bplan_api_adds_district_from_identifier_with_whitespaces(
+    apiclient, districts, organisation
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "office_worker_email": "test@liqd.de",
+        "start_date": "2013-01-01 18:00",
+        "identifier": "1 - 234",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.administrative_district.name == "Mitte"
+
+
+@pytest.mark.django_db
+def test_bplan_api_doesnt_adds_is_diplan_when_no_point_is_sent(
+    apiclient, districts, organisation
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "office_worker_email": "test@liqd.de",
+        "start_date": "2013-01-01 18:00",
+        "identifier": "1-234",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.is_diplan is False
+
+
+@pytest.mark.django_db
+def test_bplan_api_adds_is_diplan_if_point_is_sent(apiclient, districts, organisation):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "identifier": "1-234",
+        "point": "[0,0]",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.is_diplan is True
+
+
+@patch("meinberlin.apps.bplan.tasks.get_bplan_point", return_value=[1, 1])
+@pytest.mark.django_db
+def test_bplan_api_location_task_called_if_no_point_included(
+    mock, apiclient, districts, organisation, django_capture_on_commit_callbacks
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "office_worker_email": "test@liqd.de",
+        "start_date": "2013-01-01 18:00",
+        "identifier": "1-234",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    with django_capture_on_commit_callbacks(execute=True):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        bplan = bplan_models.Bplan.objects.first()
+        assert bplan.is_draft is False
+        assert bplan.is_diplan is False
+        assert bplan.point == [1, 1]
+        mock.assert_called_once()
+
+
+@patch("meinberlin.apps.bplan.tasks.get_bplan_point", return_value=[1, 1])
+@pytest.mark.django_db
+def test_bplan_api_location_task_not_called_if_point_included(
+    mock, apiclient, districts, organisation, django_capture_on_commit_callbacks
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+        "identifier": "1-234",
+        "is_published": True,
+        "point": "[0,0]",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    with django_capture_on_commit_callbacks(execute=True):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        bplan = bplan_models.Bplan.objects.first()
+        assert bplan.is_draft is False
+        assert bplan.is_diplan is True
+        assert bplan.point == "[0,0]"
+        mock.assert_not_called()
+
+
+@pytest.mark.django_db
+def test_bplan_api_accepts_valid_geojson(
+    apiclient, districts, organisation, django_capture_on_commit_callbacks
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+        "identifier": "1-234",
+        "is_published": True,
+        "point": {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [13.411924777644563, 52.499598134440944],
+            },
+        },
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    with django_capture_on_commit_callbacks(execute=True):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        bplan = bplan_models.Bplan.objects.first()
+        assert bplan.is_draft is False
+        assert bplan.is_diplan is True
+        assert bplan.point == {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [13.411924777644563, 52.499598134440944],
+            },
+        }

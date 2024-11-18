@@ -62,6 +62,9 @@ class BplanSerializer(serializers.ModelSerializer):
         ),
     )
     embed_code = serializers.SerializerMethodField()
+    # overwrite the point model field so it's expecting json, the original field is validated as a string and therefore
+    # doesn't pass validation when not receiving a string
+    point = serializers.JSONField(required=False, write_only=True)
 
     class Meta:
         model = Bplan
@@ -72,6 +75,7 @@ class BplanSerializer(serializers.ModelSerializer):
             "description",
             "url",
             "office_worker_email",
+            "is_diplan",
             "is_draft",
             "start_date",
             "end_date",
@@ -79,10 +83,12 @@ class BplanSerializer(serializers.ModelSerializer):
             "image_alt_text",
             "image_copyright",
             "embed_code",
+            "point",
         )
         extra_kwargs = {
             # write_only for consistency reasons
             "is_draft": {"default": False, "write_only": True},
+            "is_diplan": {"default": False, "write_only": True},
             "name": {"write_only": True},
             "description": {"write_only": True},
             "url": {"write_only": True},
@@ -90,13 +96,24 @@ class BplanSerializer(serializers.ModelSerializer):
             "identifier": {"write_only": True},
         }
 
+    def to_representation(self, instance):
+        """Removes the `embed_code` if the bplan is coming from diplan.
+        Bit hacky but this can be removed once the transition to diplan is completed,"""
+        ret = super().to_representation(instance)
+        if instance.is_diplan:
+            ret.pop("embed_code")
+        return ret
+
     def create(self, validated_data):
-        # FIXME: remove once debugged
-        print(validated_data)
         orga_pk = self._context.get("organisation_pk", None)
         orga_model = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
         orga = orga_model.objects.get(pk=orga_pk)
         validated_data["organisation"] = orga
+
+        # mark as diplan, will make removal of old bplans easier
+        # TODO: remove this check and the is_diplan field once transition to diplan is completed
+        if "point" in validated_data:
+            validated_data["is_diplan"] = True
 
         start_date = validated_data["start_date"]
         end_date = validated_data["end_date"]
@@ -106,6 +123,7 @@ class BplanSerializer(serializers.ModelSerializer):
             validated_data["tile_image"] = self._download_image_from_url(image_url)
 
         bplan = super().create(validated_data)
+
         self._create_module_and_phase(bplan, start_date, end_date)
         self._send_project_created_signal(bplan)
         return bplan
@@ -128,14 +146,19 @@ class BplanSerializer(serializers.ModelSerializer):
         )
 
     def update(self, instance, validated_data):
-        # FIXME: remove once debugged
-        print(validated_data)
         start_date = validated_data.get("start_date", None)
         end_date = validated_data.get("end_date", None)
         if start_date or end_date:
             self._update_phase(instance, start_date, end_date)
+            # TODO: remove as we don't need to archive bplans anymore once the transition to diplan is complete as
+            #  they depublish them if they should no longer be shown
             if end_date and end_date > timezone.localtime(timezone.now()):
                 instance.is_archived = False
+
+        # mark as diplan, will make removal of old bplans easier
+        # TODO: remove this check and the is_diplan field once transition to diplan is completed
+        if "point" in validated_data:
+            validated_data["is_diplan"] = True
 
         image_url = validated_data.pop("image_url", None)
         if image_url:
@@ -156,6 +179,8 @@ class BplanSerializer(serializers.ModelSerializer):
         phase.save()
 
     def get_embed_code(self, bplan):
+        if bplan.is_diplan:
+            return None
         url = self._get_absolute_url(bplan)
         embed = BPLAN_EMBED.format(url)
         return embed
