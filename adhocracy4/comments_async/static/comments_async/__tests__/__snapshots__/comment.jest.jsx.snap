@@ -71,37 +71,54 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
               >
                 <div
                   class="rating"
+                  data-testid="rating-box"
                 >
                   <button
-                    aria-label="Click to vote up"
+                    aria-pressed="false"
                     class="rating-button rating-up"
                     disabled=""
+                    type="button"
                   >
                     <i
                       aria-hidden="true"
-                      class="fa fa-chevron-up"
+                      class="fa fa-thumbs-up"
                     />
+                     
                     10
+                     
                     <span
                       class="rating__label"
                     >
                       Likes
                     </span>
+                    <span
+                      class="aural"
+                    >
+                      Click to like
+                    </span>
                   </button>
                   <button
-                    aria-label="Click to vote down"
+                    aria-pressed="false"
                     class="rating-button rating-down"
                     disabled=""
+                    type="button"
                   >
                     <i
                       aria-hidden="true"
-                      class="fa fa-chevron-down"
+                      class="fa fa-thumbs-down"
                     />
+                     
                     2
+                     
                     <span
                       class="rating__label"
                     >
                       Dislikes
+                    </span>
+                    <span
+                      class="aural"
+                    >
+                      Click to dislike
                     </span>
                   </button>
                 </div>
@@ -345,37 +362,54 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
             >
               <div
                 class="rating"
+                data-testid="rating-box"
               >
                 <button
-                  aria-label="Click to vote up"
+                  aria-pressed="false"
                   class="rating-button rating-up"
                   disabled=""
+                  type="button"
                 >
                   <i
                     aria-hidden="true"
-                    class="fa fa-chevron-up"
+                    class="fa fa-thumbs-up"
                   />
+                   
                   10
+                   
                   <span
                     class="rating__label"
                   >
                     Likes
                   </span>
+                  <span
+                    class="aural"
+                  >
+                    Click to like
+                  </span>
                 </button>
                 <button
-                  aria-label="Click to vote down"
+                  aria-pressed="false"
                   class="rating-button rating-down"
                   disabled=""
+                  type="button"
                 >
                   <i
                     aria-hidden="true"
-                    class="fa fa-chevron-down"
+                    class="fa fa-thumbs-down"
                   />
+                   
                   2
+                   
                   <span
                     class="rating__label"
                   >
                     Dislikes
+                  </span>
+                  <span
+                    class="aural"
+                  >
+                    Click to dislike
                   </span>
                 </button>
               </div>
@@ -681,37 +715,54 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
               >
                 <div
                   class="rating"
+                  data-testid="rating-box"
                 >
                   <button
-                    aria-label="Click to vote up"
+                    aria-pressed="false"
                     class="rating-button rating-up"
                     disabled=""
+                    type="button"
                   >
                     <i
                       aria-hidden="true"
-                      class="fa fa-chevron-up"
+                      class="fa fa-thumbs-up"
                     />
+                     
                     10
+                     
                     <span
                       class="rating__label"
                     >
                       Likes
                     </span>
+                    <span
+                      class="aural"
+                    >
+                      Click to like
+                    </span>
                   </button>
                   <button
-                    aria-label="Click to vote down"
+                    aria-pressed="false"
                     class="rating-button rating-down"
                     disabled=""
+                    type="button"
                   >
                     <i
                       aria-hidden="true"
-                      class="fa fa-chevron-down"
+                      class="fa fa-thumbs-down"
                     />
+                     
                     2
+                     
                     <span
                       class="rating__label"
                     >
                       Dislikes
+                    </span>
+                    <span
+                      class="aural"
+                    >
+                      Click to dislike
                     </span>
                   </button>
                 </div>
@@ -960,37 +1011,54 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
             >
               <div
                 class="rating"
+                data-testid="rating-box"
               >
                 <button
-                  aria-label="Click to vote up"
+                  aria-pressed="false"
                   class="rating-button rating-up"
                   disabled=""
+                  type="button"
                 >
                   <i
                     aria-hidden="true"
-                    class="fa fa-chevron-up"
+                    class="fa fa-thumbs-up"
                   />
+                   
                   10
+                   
                   <span
                     class="rating__label"
                   >
                     Likes
                   </span>
+                  <span
+                    class="aural"
+                  >
+                    Click to like
+                  </span>
                 </button>
                 <button
-                  aria-label="Click to vote down"
+                  aria-pressed="false"
                   class="rating-button rating-down"
                   disabled=""
+                  type="button"
                 >
                   <i
                     aria-hidden="true"
-                    class="fa fa-chevron-down"
+                    class="fa fa-thumbs-down"
                   />
+                   
                   2
+                   
                   <span
                     class="rating__label"
                   >
                     Dislikes
+                  </span>
+                  <span
+                    class="aural"
+                  >
+                    Click to dislike
                   </span>
                 </button>
               </div>

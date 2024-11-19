@@ -54,7 +54,7 @@ const config = {
       esModules +
       ').+\\.(js|jsx|mjs|cjs|ts|tsx)$'
   ],
-  setupFiles: ['<rootDir>/setupTests.js'],
+  setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
   coverageReporters: ['lcov']
 }
 

@@ -10,8 +10,7 @@ import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
 import { ModeratorFeedback } from './moderator_feedback'
 import AiReport from './ai_report'
-
-import { RatingBox } from '../../../ratings/static/ratings/react_ratings'
+import RatingBox from '../../../ratings/static/ratings/RatingBox'
 
 const translated = {
   reportTitle: django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).'),
@@ -151,6 +150,7 @@ export default class Comment extends React.Component {
           userRating={this.props.userRating}
           userRatingId={this.props.userRatingId}
           isReadOnly={!this.props.has_rating_permission}
+          isComment
         />
       )
     }

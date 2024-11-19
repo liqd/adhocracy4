@@ -33,7 +33,7 @@ def react_ratings(context, obj):
         user_rating_id = user_rating.pk
     else:
         user_rating_value = None
-        user_rating_id = -1
+        user_rating_id = None
 
     attributes = {
         "contentType": contenttype.pk,
