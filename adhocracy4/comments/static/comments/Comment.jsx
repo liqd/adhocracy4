@@ -1,5 +1,5 @@
 const ReportModal = require('../../../reports/static/reports/react_reports').ReportModal
-const RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
+const RatingBox = require('../../../ratings/static/ratings/RatingBox')
 const Modal = require('../../../static/Modal')
 const CommentEditForm = require('./CommentEditForm')
 const CommentForm = require('./CommentForm')
@@ -86,6 +86,7 @@ class Comment extends React.Component {
           userRating={this.props.userRating}
           userRatingId={this.props.userRatingId}
           isReadOnly={this.props.isReadOnly}
+          isComment
         />
       )
     }

@@ -48,7 +48,7 @@ def test_react_rating_anonymous(rf, question):
         "positiveRatings": 0,
         "style": "ideas",
         "userRating": None,
-        "userRatingId": -1,
+        "userRatingId": None,
     }
 
 
