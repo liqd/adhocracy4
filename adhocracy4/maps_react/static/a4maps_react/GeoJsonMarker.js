@@ -29,6 +29,9 @@ const createGeoJsonMarker = ({ feature, ...props }, context) => {
 
 const updateGeoJsonMarker = (instance, { feature, ...props }, prevProps) => {
   const coords = [...feature.geometry.coordinates].reverse()
+  if (props.icon !== prevProps.icon) {
+    instance.setIcon(props.icon)
+  }
   instance.setLatLng(coords)
 }
 

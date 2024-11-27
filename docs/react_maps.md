@@ -162,6 +162,13 @@ marker with a custom icon on the map.
 * **...rest**: [Any other option](https://leafletjs.com/reference.html#marker)
   that you could pass to L.marker
 
+### Change the icon
+
+If you find yourself in a situation where you want to change the icon, for example
+when you want to highlight a marker that's currently active, you can pass `GeoJsonMarker`
+a `icon` prop. You can generate that by using the helper function mentioned below
+or call `L.icon` yourself to create an icon instance.
+
 ### makeIcon
 
 You can find this utility function in `GeoJsonMarker.js`. It creates and returns
