@@ -40,6 +40,6 @@ export const FilterCategory = ({
           })}
         </div>
       </div>
-    </div> // eslint-disable-line react/jsx-closing-tag-location
+    </div>
   )
 }
