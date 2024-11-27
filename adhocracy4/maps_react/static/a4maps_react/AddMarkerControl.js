@@ -1,6 +1,6 @@
 import L from 'leaflet'
 import { createControlComponent } from '@react-leaflet/core'
-import { point, inside } from '@turf/turf'
+import { point, booleanPointInPolygon } from '@turf/turf'
 import { makeIcon } from './GeoJsonMarker'
 
 export function checkPointInsidePolygon (marker, polygons) {
@@ -9,7 +9,7 @@ export function checkPointInsidePolygon (marker, polygons) {
 
   polygons.eachLayer((layer) => {
     const polygonGeoJSON = layer.toGeoJSON()
-    if (inside(pointGeoJSON, polygonGeoJSON)) {
+    if (booleanPointInPolygon(pointGeoJSON, polygonGeoJSON)) {
       isInPolygon = true
     }
   })
