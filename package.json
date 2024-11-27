@@ -32,10 +32,10 @@
     "shpjs": "5.0.2"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.25.1",
-    "@babel/plugin-transform-runtime": "7.24.7",
-    "@babel/preset-env": "7.25.3",
-    "@babel/preset-react": "7.24.7",
+    "@babel/eslint-parser": "7.25.9",
+    "@babel/plugin-transform-runtime": "7.25.9",
+    "@babel/preset-env": "7.26.0",
+    "@babel/preset-react": "7.25.9",
     "@maplibre/maplibre-gl-leaflet": "0.0.22",
     "@react-leaflet/core": "^2.1.0",
     "@testing-library/jest-dom": "6.4.8",
