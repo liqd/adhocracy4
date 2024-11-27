@@ -6,7 +6,7 @@ django-autoslug==1.9.9
 https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl
 django-ckeditor==6.7.1
 django-enumfield==3.1
-django-filter==24.2
+django-filter==24.3
 django-widget-tweaks==1.5.0
 djangorestframework==3.15.2
 easy-thumbnails[svg]==2.8.5
