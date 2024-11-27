@@ -39,7 +39,7 @@
     "@maplibre/maplibre-gl-leaflet": "0.0.22",
     "@react-leaflet/core": "^2.1.0",
     "@testing-library/jest-dom": "6.6.3",
-    "@testing-library/react": "15.0.7",
+    "@testing-library/react": "16.0.1",
     "eslint": "8.57.1",
     "eslint-config-standard": "17.1.0",
     "eslint-config-standard-jsx": "11.0.0",
