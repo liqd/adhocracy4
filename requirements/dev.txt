@@ -2,7 +2,7 @@
 black==24.4.2
 factory-boy==3.3.0
 Faker==25.9.2
-flake8==7.0.0
+flake8==7.1.1
 freezegun==1.5.1
 isort==5.13.2
 psycopg[binary]==3.1.19
