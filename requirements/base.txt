@@ -1,5 +1,5 @@
 beautifulsoup4==4.12.3
-bleach[css]==6.1.0
+bleach[css]==6.2.0
 Django==4.2.16
 django-allauth==0.63.6
 django-autoslug==1.9.9
