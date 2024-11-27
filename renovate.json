@@ -1,37 +1,49 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-
-  "dependencies": {
-    "updateTypes": ["patch"],
-    "automerge": true
-  },
-  "devDependencies": {
-    "updateTypes": ["minor", "patch"],
-    "automerge": true
-  },
-
+  "packageRules": [
+    {
+      "groupName": "eslint packages",
+      "matchPackageNames": [
+        "/^eslint/"
+      ]
+    },
+    {
+      "matchPackageNames": [
+        "Django"
+      ],
+      "allowedVersions": "/(^3\\.2\\.[0-9]+$)|(^4\\.2\\.[0-9]+$)|(^5\\.2\\.[0-9]+$)/"
+    },
+    {
+      "matchDepTypes": [
+        "dependencies"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "automerge": true
+    },
+    {
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true
+    }
+  ],
   "digest": {
     "enabled": false
   },
-
   "labels": [
     "renovate"
   ],
-
-  "packageRules": [
-      {
-        "packagePatterns": ["^eslint"],
-        "groupName": "eslint packages"
-      },
-      {
-        "matchPackageNames": ["Django"],
-        "allowedVersions": "/(^3\\.2\\.[0-9]+$)|(^4\\.2\\.[0-9]+$)|(^5\\.2\\.[0-9]+$)/"
-      }
-    ],
-
   "pip_requirements": {
-    "fileMatch": ["^requirements/.*\\.txt$"]
+    "fileMatch": [
+      "^requirements/.*\\.txt$"
+    ]
   }
 }
