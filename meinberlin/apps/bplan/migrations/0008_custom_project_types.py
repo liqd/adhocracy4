@@ -2,10 +2,9 @@
 
 from django.db import migrations
 
-from meinberlin.apps.bplan.models import Bplan
-
 
 def add_project_type(apps, schema_editor):
+    Bplan = apps.get_model("meinberlin_bplan", "Bplan")
     objs = Bplan.objects.all()
     for obj in objs:
         obj.project_type = "meinberlin_bplan.Bplan"
