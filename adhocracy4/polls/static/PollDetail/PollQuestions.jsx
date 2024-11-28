@@ -388,7 +388,7 @@ class PollQuestions extends React.Component {
                   <PollResults key={idx} question={question} />
                 ))}
                 <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
-                {this.state.questions.length > 0 && this.state.questions[0].authenticate &&
+                {this.state.questions.length > 0 && this.state.questions[0].authenticated &&
                   <div className="poll">
                     {this.state.hasUserVote ? this.linkChangeVote : this.linkToPoll}
                   </div>}
