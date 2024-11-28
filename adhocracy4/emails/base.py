@@ -7,6 +7,7 @@ from django.contrib.sites.models import Site
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.loader import select_template
 from django.utils import translation
+from django.utils.safestring import mark_safe
 
 from . import tasks
 
@@ -128,7 +129,7 @@ class EmailBase:
             else:
                 to_address = receiver
 
-            subject_clean = re.sub(r"[\r\n]", "", subject).strip()
+            subject_clean = mark_safe(re.sub(r"[\r\n]", "", subject).strip())
 
             mail = EmailMultiAlternatives(
                 subject=subject_clean,
