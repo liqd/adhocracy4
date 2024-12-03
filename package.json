@@ -53,7 +53,7 @@
     "sass-loader": "16.0.3",
     "select2": "4.0.13",
     "shariff": "3.3.0",
-    "shpjs": "5.0.1",
+    "shpjs": "6.1.0",
     "slick-carousel": "github:liqd/slick#pm-2019-07-overwrites",
     "swiper": "11.1.15",
     "timeago.js": "4.0.2"
