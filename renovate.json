@@ -1,46 +1,62 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-
-  "dependencies": {
-    "updateTypes": ["minor", "patch"],
-    "automerge": true
-  },
-  "devDependencies": {
-    "updateTypes": ["minor", "patch"],
-    "automerge": true
-  },
-
+  "packageRules": [
+    {
+      "groupName": "eslint packages",
+      "matchPackageNames": [
+        "/^eslint/"
+      ]
+    },
+    {
+      "matchPackageNames": [
+        "Django"
+      ],
+      "allowedVersions": "/(^4\\.2\\.[0-9]+$)|(^5\\.2\\.[0-9]+$)|(^6\\.2\\.[0-9]+$)/"
+    },
+    {
+      "matchPackageNames": [
+        "wagtail"
+      ],
+      "allowedVersions": "/(^6\\.3(\\.[0-9]+)?$)/"
+    },
+    {
+      "matchPackageNames": [
+        "bootstrap"
+      ],
+      "allowedVersions": "5.2.3"
+    },
+    {
+      "matchDepTypes": [
+        "dependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true
+    },
+    {
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true
+    }
+  ],
   "digest": {
     "enabled": false
   },
-
   "labels": [
     "renovate"
   ],
-
-  "packageRules": [
-      {
-        "packagePatterns": ["^eslint"],
-        "groupName": "eslint packages"
-      },
-      {
-        "matchPackageNames": ["Django"],
-        "allowedVersions": "/(^4\\.2\\.[0-9]+$)|(^5\\.2\\.[0-9]+$)|(^6\\.2\\.[0-9]+$)/"
-      },
-      {
-        "matchPackageNames": ["wagtail"],
-        "allowedVersions": "/(^6\\.3(\\.[0-9]+)?$)/"
-      },
-      {
-        "matchPackageNames": ["bootstrap"],
-        "allowedVersions": "5.2.3"
-      }
-
-    ],
-
   "pip_requirements": {
-    "fileMatch": ["^requirements/.*\\.txt$"]
+    "fileMatch": [
+      "^requirements/.*\\.txt$"
+    ]
   }
 }
