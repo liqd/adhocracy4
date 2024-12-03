@@ -3,7 +3,7 @@ black==24.10.0
 django-debug-toolbar==4.4.6
 djlint==1.36.3
 factory-boy==3.3.1
-Faker==23.3.0
+Faker==33.1.0
 flake8==7.1.1
 freezegun==1.5.1
 isort==5.13.2
