@@ -80,7 +80,7 @@ $circle-size: 12px;
             height: 1px;
 
             // stylelint-disable-next-line scss/operator-no-unspaced
-            inset: auto -15px (-$circle-size) -15px;
+            inset: auto -15px (-$circle-size);
         }
 
         &:first-child:before {

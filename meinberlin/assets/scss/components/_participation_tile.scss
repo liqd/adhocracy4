@@ -55,7 +55,7 @@
 
 .participation-tile__horizontal {
     width: 100%;
-    margin: 0 $spacer $spacer $spacer;
+    margin: 0 $spacer $spacer;
 
     @media screen and (min-width: $breakpoint-md) {
         margin: 0 $spacer $spacer 5 * $spacer;
