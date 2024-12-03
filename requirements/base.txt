@@ -13,7 +13,7 @@ sentry-sdk[django]==2.19.0
 urllib3==2.2.3
 wagtail==6.3.1
 whitenoise==6.8.2
-zeep==4.2.1
+zeep==4.3.1
 
 # Inherited a4-core requirements
 celery==5.4.0
