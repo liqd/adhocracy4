@@ -8,7 +8,7 @@ django-celery-beat==2.7.0
 django-cloudflare-push==0.2.2
 django_csp==3.8
 redis==5.2.0
-requests==2.32.2
+requests==2.32.3
 sentry-sdk[django]==2.19.0
 urllib3==2.2.3
 wagtail==6.3.0
