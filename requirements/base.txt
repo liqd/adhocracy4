@@ -12,7 +12,7 @@ requests==2.32.3
 sentry-sdk[django]==2.19.0
 urllib3==2.2.3
 wagtail==6.3.1
-whitenoise==6.6.0
+whitenoise==6.8.2
 zeep==4.2.1
 
 # Inherited a4-core requirements
