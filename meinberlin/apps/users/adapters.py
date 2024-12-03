@@ -46,13 +46,13 @@ class AccountAdapter(DefaultAccountAdapter):
         context.update({"email": email})
         return UserAccountEmail.send(email, template_name=template_prefix, **context)
 
-    def get_email_confirmation_redirect_url(self, request):
-        if "next" in request.GET and url_has_allowed_host_and_scheme(
-            request.GET["next"], allowed_hosts=None
+    def get_email_verification_redirect_url(self, email_address):
+        if "next" in self.request.GET and url_has_allowed_host_and_scheme(
+            self.request.GET["next"], allowed_hosts=None
         ):
-            return request.GET["next"]
+            return self.request.GET["next"]
         else:
-            return super().get_email_confirmation_redirect_url(request)
+            return super().get_email_verification_redirect_url(email_address)
 
     def clean_username(self, username):
         username = super().clean_username(username)
