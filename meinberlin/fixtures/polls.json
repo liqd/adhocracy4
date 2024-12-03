@@ -2,6 +2,7 @@
   {
     "model": "a4polls.poll",
     "pk": 8,
+     "allow_unregistered_users": false,
     "fields": {}
   },
   {
