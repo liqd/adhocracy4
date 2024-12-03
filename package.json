@@ -55,7 +55,7 @@
     "shariff": "3.3.0",
     "shpjs": "5.0.1",
     "slick-carousel": "github:liqd/slick#pm-2019-07-overwrites",
-    "swiper": "11.1.4",
+    "swiper": "11.1.15",
     "timeago.js": "4.0.2"
   },
   "devDependencies": {
