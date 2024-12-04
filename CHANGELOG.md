@@ -5,6 +5,80 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## mb-v2412.1
+
+### Fixed
+
+- prevent a new comment to be posted multiple times when repeatedly clicking
+  submit by disabling the button after it's clicked for the first time (#1428)
+- fix error alerts not showing correctly when adding/editing comments
+- fix console warning / broken code when editing comments (#1491)
+- fix child comment success alert shown again after hiding and then showing the
+  replies again. (#1532)
+- replace removed turf `inside` function with `booleanPointinPolygon`
+
+### Added
+
+- extent the api mock in adhocracy4/static/__mocks__/api.js to include some
+  comment endpoints
+- add various tests for comments
+- add option to allow unregistered users to vote in a poll:
+  - the feature is controlled via a new django setting `A4_POLL_ENABLE_UNREGISTERED_USERS` to enable or disable it
+- add a new captcha react component to integrate the captcha in the poll
+- add a poll_voted signal which is sent when a user has voted on a poll.
+- RatingBox takes an optional render function to customize rendering
+- added `jest-dom` to tests, allowing for nicer matchers like `toBeInTheDocument`
+- added a rating_api file to allow for more modular api calls
+
+### Changed
+
+- Comment model now uses the RateableQuerySet class to get ratings for a comment (#284)
+- image upload for projects organised by date
+- redesign AI report to be readable
+- only show AI report when there's a useful label (catnodecis and catneutral don't
+count as labels)
+- Modified the input type for text inputs PollOpenQuestion.jsx and PollQuestion.jsx to textarea.
+- Changed PollQuestion.jest.jsx
+- added a new div to `Alert.jsx` with the class name `a4-alert__content` to keep    semantic structure consistent with mein berlin
+- added a new class called `a4-alert__container` to `Alert.jsx`- **Breaking Change** The react_comments_async templatetag no longer returns the
+  comment categories as a data attribute. The categories are now included in the
+  data returned from the comment api endpoint if called with `categories=true`.
+  If the templatetag is called with `with_categories=True` and the react comments
+  are used they automatically fetch the categories, so no changes are necessary.
+- added new modifier classes to `PollResults.jsx`, `PollOpenQuestion.jsx` and `PollQuestion.jsx` for customized paddings
+- replaced `<span></span>` with react fragment to keep consistency- Ratings are now functional components
+- RatingBox has been split into RatingBox and RatingButton
+- redirect when logged out now goes back to specific comment if the object was a comment
+- fixed a bug where the GeoJsonMarker would not update if passing new props for `icon`
+- migrate renovate config
+- update babel monorepo
+- update dependency @maplibre/maplibre-gl-leaflet to v0.0.22
+- update dependency @testing-library/jest-dom to v6.6.3
+- update dependency @testing-library/react to v16
+- update dependency black to v24.10.0
+- update dependency bleach to v6.2.0
+- update dependency django to v4.2.16
+- update dependency django-allauth to v65
+- update dependency django-filter to v24.3
+- update dependency djangorestframework to v3.15.2
+- update dependency easy-thumbnails to v2.10
+- update dependency eslint-plugin-promise to v6.4.0
+- update dependency esquery to v1.6.0
+- update dependency factory-boy to v3.3.1
+- update dependency faker to v33.1.0
+- update dependency flake8 to v7.1.1
+- update dependency husky to v9.1.7
+- update dependency lint-staged to v15.2.10
+- update dependency psycopg to v3.2.3
+- update dependency pytest to v8.3.4
+- update dependency pytest-cov to v6
+- update dependency pytest-django to v4.9.0
+- update dependency rules to v3.5
+- update eslint packages
+- update dependency @turf/turf to v7.1.0
+- update dependency shpjs to v6
+
+
 ## aplus-v2406.3
 
 ### Fixed
