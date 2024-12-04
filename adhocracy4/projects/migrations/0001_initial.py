@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import ckeditor_uploader.fields
 import django.utils.timezone
 from django.conf import settings
 import autoslug.fields
@@ -62,14 +61,14 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "information",
-                    ckeditor_uploader.fields.RichTextUploadingField(
+                    models.TextField(
                         help_text="This description should tell participants what the goal of the project is, how the project’s participation will look like. It will be always visible in the „Info“ tab on your project’s page.",
                         verbose_name="Description of your project",
                     ),
                 ),
                 (
                     "result",
-                    ckeditor_uploader.fields.RichTextUploadingField(
+                    models.TextField(
                         help_text="Here you should explain what the expected outcome of the project will be and how you are planning to use the results. If the project is finished you should add a summary of the results.",
                         blank=True,
                     ),
