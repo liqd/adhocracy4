@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-26 13:52+0100\n"
+"POT-Creation-Date: 2024-12-04 12:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgid "Your reply here"
 msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:17
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:16
 #: adhocracy4/reports/static/reports/react_reports.jsx:22
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -52,34 +52,34 @@ msgstr ""
 "moderation. The moderation will look at the reported content. The content "
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
-#: adhocracy4/comments/static/comments/Comment.jsx:95
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
+#: adhocracy4/comments/static/comments/Comment.jsx:96
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
 msgid "Moderator"
 msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:104
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:34
+#: adhocracy4/comments/static/comments/Comment.jsx:105
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:109
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
+#: adhocracy4/comments/static/comments/Comment.jsx:110
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
 msgid "Deleted by creator on"
 msgstr "Deleted by creator on"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:111
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
+#: adhocracy4/comments/static/comments/Comment.jsx:112
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:31
 msgid "Deleted by moderator on"
 msgstr "Deleted by moderator on"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:152
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:27
+#: adhocracy4/comments/static/comments/Comment.jsx:153
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:26
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:153
+#: adhocracy4/comments/static/comments/Comment.jsx:154
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:29
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:28
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:6
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:72
 #: adhocracy4/polls/static/PollDashboard/EditPollOpenQuestion.jsx:77
@@ -90,8 +90,8 @@ msgstr "Do you really want to delete this comment?"
 msgid "Delete"
 msgstr "Delete"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:154
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:30
+#: adhocracy4/comments/static/comments/Comment.jsx:155
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:29
 #: adhocracy4/static/Modal.jsx:6
 msgid "Abort"
 msgstr "Abort"
@@ -112,27 +112,25 @@ msgid "save changes"
 msgstr "save changes"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:35
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:20
 msgid "cancel"
 msgstr "cancel"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:16
 msgid "post"
 msgstr "post"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:40
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:17
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:18
 msgid "Please login to comment"
 msgstr "Please login to comment"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:41
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:19
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:20
 msgid "The currently active phase doesn't allow to comment."
 msgstr "The currently active phase doesn't allow to comment."
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:42
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:18
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:19
 msgid "Only invited users can actively participate."
 msgstr "Only invited users can actively participate."
 
@@ -149,129 +147,101 @@ msgstr "Report"
 msgid "Choose categories for your comment"
 msgstr "Choose categories for your comment"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:18
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:17
 msgid "Share link"
 msgstr "Share link"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:19
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:18
 msgid "Categories: "
 msgstr "Categories: "
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:20
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:19
 msgid "Entry successfully created"
 msgstr "Entry successfully created"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:21
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:20
 msgid "Read more..."
 msgstr "Read more..."
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:22
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:21
 msgid "Read less"
 msgstr "Read less"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:23
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:22
 msgid "Share"
 msgstr "Share"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:24
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:23
 msgid " Report"
 msgstr " Report"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:25
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:24
 msgid "Show moderator's feedback"
 msgstr "Show moderator's feedback"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:26
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:25
 msgid "Hide moderator's feedback"
 msgstr "Hide moderator's feedback"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:28
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:27
 msgid "Delete comment"
 msgstr "Delete comment"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:33
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:32
 msgid "Blocked by moderator"
 msgstr "Blocked by moderator"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:35
 msgid "hide replies"
 msgstr "hide replies"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 msgctxt "verb"
 msgid "Reply"
 msgstr "Reply"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:37
 msgid "Click to view rest of comment text."
 msgstr "Click to view rest of comment text."
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:39
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:38
 msgid "Click to hide expanded text."
 msgstr "Click to hide expanded text."
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:48
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:47
 #, javascript-format
 msgid "1 reply"
 msgid_plural "%s replies"
 msgstr[0] "1 reply"
 msgstr[1] "%s replies"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:14
 msgid "Newest"
 msgstr "Newest"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 msgid "Most up votes"
 msgstr "Most up votes"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:16
 msgid "Most down votes"
 msgstr "Most down votes"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:17
 msgid "Most answers"
 msgstr "Most answers"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:19
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:18
 msgid "Last discussed"
 msgstr "Last discussed"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:23
-#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:10
-msgid "Comments"
-msgstr "Comments"
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
+msgid "Discussion"
+msgstr "Discussion"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:24
-#: meinberlin/apps/budgeting/assets/ControlBar.jsx:11
-msgid "Show filters"
-msgstr "Show filters"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:25
-#: meinberlin/apps/budgeting/assets/ControlBar.jsx:13
-msgid "Filters"
-msgstr "Filters"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:26
-#: meinberlin/apps/budgeting/assets/ControlBar.jsx:12
-msgid "Hide filters"
-msgstr "Hide filters"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:27
-msgid "Search contributions"
-msgstr "Search contributions"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:28
-msgid "Clear search"
-msgstr "Clear search"
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:29
-msgid "display: "
-msgstr "display: "
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:30
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:49
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:283
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
+#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:6
 #: meinberlin/apps/livequestions/assets/Filters.jsx:20
 #: meinberlin/apps/plans/assets/FilterNav.jsx:6
 #: meinberlin/apps/plans/assets/FilterOptions.jsx:3
@@ -279,46 +249,89 @@ msgstr "display: "
 msgid "all"
 msgstr "all"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:31
-msgid "sorted by: "
-msgstr "sorted by: "
-
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:69
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:62
 msgid "Highlighted"
 msgstr "Highlighted"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:413
+#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
+msgid "Show more"
+msgstr "Show more"
+
+#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
+msgid "Show less"
+msgstr "Show less"
+
+#: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
+msgid "Ordering"
+msgstr "Ordering"
+
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:16
+#: meinberlin/apps/budgeting/assets/ControlBar.jsx:13
+msgid "Filters"
+msgstr "Filters"
+
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:21
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
 msgstr[1] "entries"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:420
+#: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:25
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
 msgstr[1] "entries found for "
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
+msgid "Join the discussion"
+msgstr "Join the discussion"
+
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 msgid "Your comment"
 msgstr "Your comment"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
 msgid "Please add a comment."
 msgstr "Please add a comment."
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:13
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
 msgid "Something seems to have gone wrong, please try again."
 msgstr "Something seems to have gone wrong, please try again."
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:14
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:15
 msgid "Your reply"
 msgstr "Your reply"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:15
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:16
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:9
 msgid " characters"
 msgstr " characters"
+
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:17
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:10
+msgid "Post"
+msgstr "Post"
+
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:21
+#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
+#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:12
+msgid "Cancel"
+msgstr "Cancel"
+
+#: adhocracy4/comments_async/static/comments_async/filter_category.jsx:5
+msgid "display: "
+msgstr "display: "
+
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:5
+msgid "Search contributions"
+msgstr "Search contributions"
+
+#: adhocracy4/comments_async/static/comments_async/filter_search.jsx:6
+msgid "Clear search"
+msgstr "Clear search"
 
 #: adhocracy4/comments_async/static/modals/UrlModal.jsx:8
 msgid "Copy"
@@ -397,11 +410,6 @@ msgstr "Attention importing a file will delete the existing polygons."
 msgid "Upload"
 msgstr "Upload"
 
-#: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:110
-#: meinberlin/apps/budgeting/assets/EndSessionLink.jsx:12
-msgid "Cancel"
-msgstr "Cancel"
-
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:145
 #: adhocracy4/maps/static/a4maps/a4maps_choose_polygon_with_preset.js:148
 msgid "The uploaded file is not a valid shapefile."
@@ -466,16 +474,16 @@ msgstr "Multiple Choice question"
 msgid "Open question"
 msgstr "Open question"
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:179
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:182
 msgid "The poll has been updated."
 msgstr "The poll has been updated."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:195
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:198
 msgid "The poll could not be updated. Please check the data you entered again."
 msgstr ""
 "The poll could not be updated. Please check the data you entered again."
 
-#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:262
+#: adhocracy4/polls/static/PollDashboard/EditPollManagement.jsx:270
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:16
 msgid "Save"
 msgstr "Save"
@@ -536,46 +544,46 @@ msgstr "Multiple answers are possible."
 msgid "other"
 msgstr "other"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:16
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:17
 msgid "Your answer has been saved."
 msgstr "Your answer has been saved."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:22
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:24
 msgid ""
 "Your answer could not be saved. Please check the data you entered again."
 msgstr ""
 "Your answer could not be saved. Please check the data you entered again."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:28
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:31
 msgid "Your answer is invalid or empty. Please try again."
 msgstr "Your answer is invalid or empty. Please try again."
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:53
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:62
 msgid "To poll"
 msgstr "To poll"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:63
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:143
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:75
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:175
 msgid "Change answer"
 msgstr "Change answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:143
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:176
 msgid "Submit answer"
 msgstr "Submit answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:149
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:185
 msgid "Please login to answer"
 msgstr "Please login to answer"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:159
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:193
 msgid "Show results"
 msgstr "Show results"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:165
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:195
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:186
+#: adhocracy4/polls/static/PollDetail/PollQuestions.jsx:218
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 
@@ -621,13 +629,21 @@ msgstr "no one has answered this question"
 msgid "Your choice"
 msgstr "Your choice"
 
-#: adhocracy4/ratings/static/ratings/react_ratings.jsx:9
-msgid "Click to vote up"
-msgstr "Click to vote up"
+#: adhocracy4/ratings/static/ratings/RatingBox.jsx:9
+msgid "Likes"
+msgstr "Likes"
 
-#: adhocracy4/ratings/static/ratings/react_ratings.jsx:10
-msgid "Click to vote down"
-msgstr "Click to vote down"
+#: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
+msgid "Dislikes"
+msgstr "Dislikes"
+
+#: adhocracy4/ratings/static/ratings/RatingButton.jsx:5
+msgid "Click to like"
+msgstr "Click to like"
+
+#: adhocracy4/ratings/static/ratings/RatingButton.jsx:6
+msgid "Click to dislike"
+msgstr "Click to dislike"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
 msgid "Report sent"
@@ -645,6 +661,42 @@ msgstr "Your message"
 msgid "Send Report"
 msgstr "Send Report"
 
+#: adhocracy4/static/Captcha.jsx:5
+#: meinberlin/apps/captcha/assets/captcheck.js:29
+msgid "Click for image-based question"
+msgstr "Click for image-based question"
+
+#: adhocracy4/static/Captcha.jsx:6
+#: meinberlin/apps/captcha/assets/captcheck.js:30
+msgid "Click for text-based question"
+msgstr "Click for text-based question"
+
+#: adhocracy4/static/Captcha.jsx:7
+#: meinberlin/apps/captcha/assets/captcheck.js:31
+msgid "Image mode"
+msgstr "Image mode"
+
+#: adhocracy4/static/Captcha.jsx:8
+#: meinberlin/apps/captcha/assets/captcheck.js:32
+msgid "Text mode"
+msgstr "Text mode"
+
+#: adhocracy4/static/Captcha.jsx:9
+msgid "I am not a robot"
+msgstr "I am not a robot"
+
+#: adhocracy4/static/Captcha.jsx:11
+msgid ""
+"Solve the math problem and click on the correct result. <strong>If you are "
+"having difficulty please contact us by {}email{}.</strong>"
+msgstr ""
+"Solve the math problem and click on the correct result. <strong>If you are "
+"having difficulty please contact us by {}email{}.</strong>"
+
+#: adhocracy4/static/Captcha.jsx:13
+msgid "There was a problem loading the CAPTCHA."
+msgstr "There was a problem loading the CAPTCHA."
+
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 msgid ""
 "Yes, I have read and agree to this organisation's %(linkStart)s terms of use "
@@ -656,6 +708,15 @@ msgstr ""
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:6
 msgid "You can still manage all your preferences on User Agreements."
 msgstr "You can still manage all your preferences on User Agreements."
+
+#: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
+msgid "Search"
+msgstr "Search"
+
+#: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
+#: meinberlin/apps/budgeting/assets/ControlBarSearch.jsx:6
+msgid "Start search"
+msgstr "Start search"
 
 #: meinberlin/apps/budgeting/assets/BudgetingProposalList.jsx:16
 #, javascript-format
@@ -681,6 +742,14 @@ msgstr "updated on"
 #: meinberlin/apps/budgeting/assets/BudgetingProposalListItem.jsx:9
 msgid "created on"
 msgstr "created on"
+
+#: meinberlin/apps/budgeting/assets/ControlBar.jsx:11
+msgid "Show filters"
+msgstr "Show filters"
+
+#: meinberlin/apps/budgeting/assets/ControlBar.jsx:12
+msgid "Hide filters"
+msgstr "Hide filters"
 
 #: meinberlin/apps/budgeting/assets/ControlBar.jsx:14
 msgid "Search, filter and sort the ideas list"
@@ -710,10 +779,6 @@ msgstr "View as map"
 #: meinberlin/apps/plans/assets/Toggles.jsx:14
 msgid "Map"
 msgstr "Map"
-
-#: meinberlin/apps/budgeting/assets/ControlBarSearch.jsx:6
-msgid "Start search"
-msgstr "Start search"
 
 #: meinberlin/apps/budgeting/assets/ControlBarSearch.jsx:7
 msgid "Search for Proposals"
@@ -761,6 +826,10 @@ msgstr "Negative Ratings"
 msgid "Support"
 msgstr "Support"
 
+#: meinberlin/apps/budgeting/assets/ListItemStats.jsx:10
+msgid "Comments"
+msgstr "Comments"
+
 #: meinberlin/apps/budgeting/assets/ListItemStats.jsx:11
 msgid "Total votes"
 msgstr "Total votes"
@@ -796,22 +865,6 @@ msgstr "Voted"
 #: meinberlin/apps/budgeting/assets/VoteButton.jsx:47
 msgid "Give my vote"
 msgstr "Give my vote"
-
-#: meinberlin/apps/captcha/assets/captcheck.js:29
-msgid "Click for image-based question"
-msgstr "Click for image-based question"
-
-#: meinberlin/apps/captcha/assets/captcheck.js:30
-msgid "Click for text-based question"
-msgstr "Click for text-based question"
-
-#: meinberlin/apps/captcha/assets/captcheck.js:31
-msgid "Image mode"
-msgstr "Image mode"
-
-#: meinberlin/apps/captcha/assets/captcheck.js:32
-msgid "Text mode"
-msgstr "Text mode"
 
 #: meinberlin/apps/documents/assets/ChapterForm.jsx:8
 msgid "Chapter title"
@@ -976,10 +1029,6 @@ msgstr "Here you can ask your question"
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:8
 msgid "Your question"
 msgstr "Your question"
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:10
-msgid "Post"
-msgstr "Post"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:97
 msgid "mark as hidden"

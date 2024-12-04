@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-26 14:00+0100\n"
+"POT-Creation-Date: 2024-12-04 12:03+0100\n"
 "PO-Revision-Date: 2024-02-08 08:57+0000\n"
 "Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
 "Language-Team: English <https://weblate.liqd.net/projects/meinberlin/main/en/"
@@ -419,12 +419,12 @@ msgstr ""
 "displayed to the participants as help text when they have to assign their "
 "ideas. The character limit is max. 300 characters (with spaces)."
 
-#: adhocracy4/comments/models.py:47 adhocracy4/polls/exports.py:39
+#: adhocracy4/comments/models.py:54 adhocracy4/polls/exports.py:39
 msgctxt "noun"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments/models.py:48 adhocracy4/exports/mixins/comments.py:48
+#: adhocracy4/comments/models.py:55 adhocracy4/exports/mixins/comments.py:48
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:247
 #: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:89
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:30
@@ -443,7 +443,7 @@ msgstr "Please choose a category"
 msgid "unknown user"
 msgstr "unknown user"
 
-#: adhocracy4/comments_async/api.py:148 adhocracy4/polls/api.py:115
+#: adhocracy4/comments_async/api.py:149 adhocracy4/polls/api.py:160
 msgid "Please agree to the organisation's terms of use."
 msgstr "Please agree to the organisation's terms of use."
 
@@ -674,7 +674,7 @@ msgstr "Reply to Reference"
 msgid "Creator"
 msgstr "Creator"
 
-#: adhocracy4/exports/mixins/general.py:17 adhocracy4/models/base.py:9
+#: adhocracy4/exports/mixins/general.py:17 adhocracy4/models/base.py:12
 #: adhocracy4/polls/exports.py:40 meinberlin/apps/budgeting/exports.py:120
 #: meinberlin/apps/documents/exports.py:41 meinberlin/apps/ideas/exports.py:78
 #: meinberlin/apps/kiezkasse/exports.py:80
@@ -905,15 +905,15 @@ msgstr "Please draw a Polygon on the map"
 msgid "Please draw an area on the map."
 msgstr "Please draw an area on the map."
 
-#: adhocracy4/models/base.py:14
+#: adhocracy4/models/base.py:17
 msgid "Modified"
 msgstr "Modified"
 
-#: adhocracy4/modules/models.py:72
+#: adhocracy4/modules/models.py:73
 msgid "Title of the module"
 msgstr "Title of the module"
 
-#: adhocracy4/modules/models.py:74
+#: adhocracy4/modules/models.py:75
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -921,11 +921,11 @@ msgstr ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
 
-#: adhocracy4/modules/models.py:83
+#: adhocracy4/modules/models.py:84
 msgid "Short description of the module"
 msgstr "Short description of the module"
 
-#: adhocracy4/modules/models.py:85
+#: adhocracy4/modules/models.py:86
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -935,58 +935,58 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:222 meinberlin/apps/projects/serializers.py:254
+#: adhocracy4/modules/models.py:223 meinberlin/apps/projects/serializers.py:254
 msgid "day"
 msgstr "day"
 
-#: adhocracy4/modules/models.py:222 adhocracy4/modules/models.py:229
+#: adhocracy4/modules/models.py:223 adhocracy4/modules/models.py:230
 #: meinberlin/apps/projects/serializers.py:254
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:223 meinberlin/apps/projects/serializers.py:255
+#: adhocracy4/modules/models.py:224 meinberlin/apps/projects/serializers.py:255
 msgid "hour"
 msgstr "hour"
 
-#: adhocracy4/modules/models.py:223 adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:224 adhocracy4/modules/models.py:231
 #: meinberlin/apps/projects/serializers.py:255
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:224 meinberlin/apps/projects/serializers.py:256
+#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:256
 msgid "minute"
 msgstr "minute"
 
-#: adhocracy4/modules/models.py:224 adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
 #: meinberlin/apps/projects/serializers.py:256
 msgid "minutes"
 msgstr "minutes"
 
-#: adhocracy4/modules/models.py:225 meinberlin/apps/projects/serializers.py:257
+#: adhocracy4/modules/models.py:226 meinberlin/apps/projects/serializers.py:257
 msgid "second"
 msgstr "second"
 
-#: adhocracy4/modules/models.py:225 adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:226 adhocracy4/modules/models.py:233
 #: meinberlin/apps/projects/serializers.py:257
 msgid "seconds"
 msgstr "seconds"
 
-#: adhocracy4/modules/models.py:229
+#: adhocracy4/modules/models.py:230
 msgctxt "abbreviation for day(s)"
 msgid "D"
 msgstr "D"
 
-#: adhocracy4/modules/models.py:230
+#: adhocracy4/modules/models.py:231
 msgctxt "abbreviation for hour(s)"
 msgid "H"
 msgstr "H"
 
-#: adhocracy4/modules/models.py:231
+#: adhocracy4/modules/models.py:232
 msgctxt "abbreviation for minute(s)"
 msgid "M"
 msgstr "M"
 
-#: adhocracy4/modules/models.py:232
+#: adhocracy4/modules/models.py:233
 msgctxt "abbreviation for second(s)"
 msgid "S"
 msgstr "S"
@@ -1021,23 +1021,33 @@ msgstr "End date can not be before start date."
 msgid "Either both or no date has to be set."
 msgstr "Either both or no date has to be set."
 
-#: adhocracy4/polls/api.py:155
+#: adhocracy4/polls/api.py:124 adhocracy4/polls/api.py:142
+#: meinberlin/apps/captcha/fields.py:44
+msgid "Your answer to the captcha was wrong."
+msgstr "Your answer to the captcha was wrong."
+
+#: adhocracy4/polls/api.py:129 adhocracy4/polls/api.py:138
+#: meinberlin/apps/captcha/fields.py:33 meinberlin/apps/captcha/fields.py:40
+msgid "Something about the answer to the captcha was wrong."
+msgstr "Something about the answer to the captcha was wrong."
+
+#: adhocracy4/polls/api.py:223
 msgid "Please specify your answer."
 msgstr "Please specify your answer."
 
-#: adhocracy4/polls/api.py:169
+#: adhocracy4/polls/api.py:237
 msgid "Key error for {}"
 msgstr "Key error for {}"
 
-#: adhocracy4/polls/api.py:171
+#: adhocracy4/polls/api.py:239
 msgid "Choice not found."
 msgstr "Choice not found."
 
-#: adhocracy4/polls/api.py:190
+#: adhocracy4/polls/api.py:260
 msgid "Duplicate choices detected."
 msgstr "Duplicate choices detected."
 
-#: adhocracy4/polls/api.py:193
+#: adhocracy4/polls/api.py:263
 msgid "Multiple choice disabled for question."
 msgstr "Multiple choice disabled for question."
 
@@ -1064,15 +1074,15 @@ msgstr "Export Excel"
 msgid "ID"
 msgstr "ID"
 
-#: adhocracy4/polls/models.py:41
+#: adhocracy4/polls/models.py:50
 msgid "Explanation"
 msgstr "Explanation"
 
-#: adhocracy4/polls/models.py:68
+#: adhocracy4/polls/models.py:77
 msgid "Questions with open answers cannot have multiple choices."
 msgstr "Questions with open answers cannot have multiple choices."
 
-#: adhocracy4/polls/models.py:77
+#: adhocracy4/polls/models.py:86
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
@@ -1080,33 +1090,33 @@ msgstr ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
 
-#: adhocracy4/polls/models.py:140 adhocracy4/polls/models.py:258
+#: adhocracy4/polls/models.py:147 adhocracy4/polls/models.py:267
 msgid "Answer"
 msgstr "Answer"
 
-#: adhocracy4/polls/models.py:151
+#: adhocracy4/polls/models.py:158
 msgid "Only open questions can have answers."
 msgstr "Only open questions can have answers."
 
-#: adhocracy4/polls/models.py:187
+#: adhocracy4/polls/models.py:194
 msgid "Open questions cannot have choices."
 msgstr "Open questions cannot have choices."
 
-#: adhocracy4/polls/models.py:193
+#: adhocracy4/polls/models.py:200
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 
-#: adhocracy4/polls/models.py:204
+#: adhocracy4/polls/models.py:211
 msgid "Question already has \"other\" choice."
 msgstr "Question already has \"other\" choice."
 
-#: adhocracy4/polls/models.py:265
+#: adhocracy4/polls/models.py:274
 msgid "Other vote can only be created for vote on \"other\" choice."
 msgstr "Other vote can only be created for vote on \"other\" choice."
 
-#: adhocracy4/polls/models.py:287
+#: adhocracy4/polls/models.py:296
 msgid "other"
 msgstr "other"
 
@@ -1137,7 +1147,7 @@ msgstr "Question has to belong to the poll set in the url."
 msgid "Choice has to belong to the question set in the url."
 msgstr "Choice has to belong to the question set in the url."
 
-#: adhocracy4/polls/validators.py:57
+#: adhocracy4/polls/validators.py:62
 msgid "Only one vote per choice is allowed per user."
 msgstr "Only one vote per choice is allowed per user."
 
@@ -1576,6 +1586,12 @@ msgstr "Project Edit Log"
 msgid "Development plan settings"
 msgstr "Development plan settings"
 
+#: meinberlin/apps/bplan/forms.py:13
+#: meinberlin/apps/cms/models/email_form.py:25
+#: meinberlin/apps/users/forms.py:103
+msgid "I am not a robot"
+msgstr "I am not a robot"
+
 #: meinberlin/apps/bplan/models.py:12
 msgid "Identifier"
 msgstr "Identifier"
@@ -1716,7 +1732,7 @@ msgstr ""
 "Detailed information on data processing rights and personal data can be "
 "found in the privacy policy at the bottom of the page."
 
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:30
+#: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:31
 msgid "Submit"
 msgstr "Submit"
 
@@ -2142,14 +2158,6 @@ msgstr "list"
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
-#: meinberlin/apps/captcha/fields.py:33 meinberlin/apps/captcha/fields.py:40
-msgid "Something about the answer to the captcha was wrong."
-msgstr "Something about the answer to the captcha was wrong."
-
-#: meinberlin/apps/captcha/fields.py:44
-msgid "Your answer to the captcha was wrong."
-msgstr "Your answer to the captcha was wrong."
-
 #: meinberlin/apps/cms/emails.py:31
 msgid "Form Field"
 msgstr "Form Field"
@@ -2157,11 +2165,6 @@ msgstr "Form Field"
 #: meinberlin/apps/cms/emails.py:32
 msgid "Response"
 msgstr "Response"
-
-#: meinberlin/apps/cms/models/email_form.py:25
-#: meinberlin/apps/users/forms.py:103
-msgid "I am not a robot"
-msgstr "I am not a robot"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/blocks/projects_block.html:12
 msgid "Show all projects"
