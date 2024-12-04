@@ -5,7 +5,7 @@ import { EndSessionLink } from './EndSessionLink'
 import { Pagination } from './Pagination'
 import { CountDown } from '../../contrib/assets/CountDown'
 import { ControlBar } from './ControlBar'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router'
 
 export const BudgetingProposalList = (props) => {
   const [data, setData] = useState([])

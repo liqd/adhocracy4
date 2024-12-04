@@ -34,6 +34,9 @@ const config = {
   transformIgnorePatterns: [
   // transpile all node_modules, not great?
     '/node_modules/(?!(.*)/)'
+  ],
+  setupFiles: [
+    '<rootDir>/setupTests.js'
   ]
 }
 

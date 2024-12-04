@@ -5,7 +5,7 @@ import { ControlBarSearch } from './ControlBarSearch'
 import { ControlBarSearchTerm } from './ControlBarSearchTerm'
 import { FilterToggle } from '../../contrib/assets/FilterToggle'
 import django from 'django'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router'
 
 const translated = {
   showFilters: django.gettext('Show filters'),

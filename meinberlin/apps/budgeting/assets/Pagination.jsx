@@ -1,7 +1,7 @@
 import React from 'react'
 import django from 'django'
 import { PaginationButton } from './PaginationButton'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router'
 
 const pageNavigationStr = django.gettext('Page navigation')
 const pageNextStr = django.gettext('next page')

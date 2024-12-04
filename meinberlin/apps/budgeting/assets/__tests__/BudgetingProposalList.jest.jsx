@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, act, screen } from '@testing-library/react'
 import { BudgetingProposalList } from '../BudgetingProposalList'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router'
 
 // permissions for anonymous/logged-in user during collection phase of 1 and 2 phase (3 phase is dfferent see ListItem test)
 const permissions = {
