@@ -35,7 +35,7 @@
     "@babel/eslint-parser": "7.25.9",
     "@babel/plugin-transform-runtime": "7.25.9",
     "@babel/preset-env": "7.26.0",
-    "@babel/preset-react": "7.25.9",
+    "@babel/preset-react": "7.26.3",
     "@maplibre/maplibre-gl-leaflet": "0.0.22",
     "@react-leaflet/core": "2.1.0",
     "@testing-library/jest-dom": "6.6.3",
