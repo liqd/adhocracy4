@@ -6,6 +6,6 @@ import { render } from '@testing-library/react'
 import { CharCounter } from '../PollDetail/CharCounter'
 
 test('<CharCounter> component renders correctly', () => {
-  const tree = render(<CharCounter value="random" max={25} />)
+  const tree = render(<CharCounter value="random" max={25} id="id_char-count-2" />)
   expect(tree).toMatchSnapshot()
 })
