@@ -16,7 +16,7 @@ describe('<EditPollOpenQuestion> with...', () => {
         onLabelChange={(label) => onTextChangeFn()}
       />
     )
-    const questionTextArea = tree.container.querySelector('#id_questions-1-name')
+    const questionTextArea = tree.container.querySelector('#id_questions-6-name')
     fireEvent.change(questionTextArea, { target: { value: 'question text' } })
     expect(onTextChangeFn).toHaveBeenCalled()
   })
@@ -30,7 +30,7 @@ describe('<EditPollOpenQuestion> with...', () => {
         onLabelChange={(label) => onTextChangeFn()}
       />
     )
-    const questionTextArea = tree.container.querySelector('#id_questions-1-name')
+    const questionTextArea = tree.container.querySelector('#id_questions-6-name')
     fireEvent.change(questionTextArea, { target: { value: 'question text' } })
     expect(onTextChangeFn).toHaveBeenCalled()
   })
