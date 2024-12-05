@@ -5,18 +5,28 @@ exports[`<CharCounter> component renders correctly 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
+      <span
+        class="a4-char-counter"
+        id="id_char-count-2"
+      >
         6
         /
         25
+         
+        characters
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
+    <span
+      class="a4-char-counter"
+      id="id_char-count-2"
+    >
       6
       /
       25
+       
+      characters
     </span>
   </div>,
   "debug": [Function],
