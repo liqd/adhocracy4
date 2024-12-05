@@ -26,7 +26,7 @@ describe('<EditPollQuestion> with...', () => {
         // onAppendChoice={(hasOtherOption) => handleChoice('append', { index, hasOtherOption })}
       />
     )
-    const questionTextArea = tree.container.querySelector('#id_questions-1-name')
+    const questionTextArea = tree.container.querySelector('#id_questions-6-name')
     fireEvent.change(questionTextArea, { target: { value: 'question text' } })
     expect(onTextChangeFn).toHaveBeenCalled()
   })
@@ -40,7 +40,7 @@ describe('<EditPollQuestion> with...', () => {
         onLabelChange={() => onTextChangeFn()}
       />
     )
-    const questionTextArea = tree.container.querySelector('#id_questions-1-name')
+    const questionTextArea = tree.container.querySelector('#id_questions-6-name')
     fireEvent.change(questionTextArea, { target: { value: 'question text' } })
     expect(onTextChangeFn).toHaveBeenCalled()
   })
@@ -65,7 +65,7 @@ describe('<EditPollQuestion> with...', () => {
         onMultipleChoiceChange={() => onMultiChoiceChangeFn()}
       />
     )
-    const multiChoiceInput = tree.container.querySelector('#id_questions-1-multiple_choice')
+    const multiChoiceInput = tree.container.querySelector('#id_questions-6-multiple_choice')
     fireEvent.click(multiChoiceInput)
     expect(onMultiChoiceChangeFn).toHaveBeenCalled()
   })
@@ -79,7 +79,7 @@ describe('<EditPollQuestion> with...', () => {
         onHasOtherChoiceChange={() => onHasOtherChoiceChangeFn()}
       />
     )
-    const multiChoiceInput = tree.container.querySelector('#id_questions-1-is_other_choice')
+    const multiChoiceInput = tree.container.querySelector('#id_questions-6-is_other_choice')
     fireEvent.click(multiChoiceInput)
     expect(onHasOtherChoiceChangeFn).toHaveBeenCalled()
   })
