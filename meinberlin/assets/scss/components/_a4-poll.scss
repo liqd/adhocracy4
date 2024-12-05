@@ -1,7 +1,8 @@
 // standard size from radio.scss
 $checkbox-size: 20px;
 
-.pollquestionlist-container {
+.pollquestionlist-container,
+.poll__preliminary-results {
     border: 1px solid $border-color;
 
     .alert--success {

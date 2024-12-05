@@ -23,9 +23,12 @@
 @import "layout";
 @import "form";
 
+@import "components/a4-char_counter";
 @import "components/a4-comments";
 @import "components/a4-control_bar";
 @import "components/a4-forms";
+@import "components/a4-poll";
+@import "components/a4-textarea-with-counter";
 @import "components/action";
 @import "components/accordion";
 @import "components/alert";
@@ -70,7 +73,6 @@
 @import "components/multiform";
 @import "components/pagination";
 @import "components/timeline";
-@import "components/poll";
 @import "components/idea_remark";
 @import "components/participation_tile";
 @import "components/portal_header";

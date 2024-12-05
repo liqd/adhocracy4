@@ -1,0 +1,13 @@
+.a4-textarea-with-counter {
+    padding: 0;
+    margin-bottom: calc($spacer / 2);
+
+    &__textarea {
+        resize: vertical;
+        margin-bottom: 0.3rem;
+        width: 100%!important;
+        overflow-y: auto;
+        line-height: 1.5;
+        max-height: 500px;
+    }
+}
