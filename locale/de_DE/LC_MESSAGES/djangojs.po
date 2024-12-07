@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2024-02-08 08:57+0000\n"
-"Last-Translator: Steffen Blindow <s.blindow@liqd.net>\n"
+"PO-Revision-Date: 2024-12-07 09:04+0000\n"
+"Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
 "Language-Team: German <https://weblate.liqd.net/projects/meinberlin/js/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18.2\n"
+"X-Generator: Weblate 5.4.2\n"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:22
 #: adhocracy4/comments/static/comments/Comment.jsx:22
@@ -303,7 +303,7 @@ msgstr "Zuletzt diskutiert"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:22
 msgid "Discussion"
-msgstr ""
+msgstr "Diskussion"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:40
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:289
@@ -328,14 +328,14 @@ msgstr "Hervorgehoben"
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:7
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:14
 msgid "Show more"
-msgstr ""
+msgstr "mehr anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:8
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:15
 msgid "Show less"
-msgstr ""
+msgstr "weniger anzeigen"
 
 #: adhocracy4/comments_async/static/comments_async/comment_control_bar.jsx:9
 #: adhocracy4/comments_async/static/comments_async/comment_filters.jsx:17
@@ -367,7 +367,7 @@ msgstr[1] "Beiträge gefunden zu: "
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:11
 msgid "Join the discussion"
-msgstr ""
+msgstr "Mitdiskutieren"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:12
@@ -818,22 +818,22 @@ msgstr "Ihre Wahl"
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:9
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:9
 msgid "Likes"
-msgstr ""
+msgstr "gefällt mir"
 
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
 #: adhocracy4/ratings/static/ratings/RatingBox.jsx:10
 msgid "Dislikes"
-msgstr ""
+msgstr "gefällt mir nicht"
 
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:5
 msgid "Click to like"
-msgstr ""
+msgstr "klicken für \"gefällt mir\""
 
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:6
 #: adhocracy4/ratings/static/ratings/RatingButton.jsx:6
 msgid "Click to dislike"
-msgstr ""
+msgstr "klicken für \"gefällt mir nicht\""
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
 #: adhocracy4/reports/static/reports/ReportModal.jsx:7
@@ -882,7 +882,7 @@ msgstr "Textmodus"
 #: adhocracy4/static/Captcha.jsx:9
 #: adhocracy4/static/Captcha.jsx:9
 msgid "I am not a robot"
-msgstr ""
+msgstr "Ich bin kein Roboter"
 
 #: adhocracy4/static/Captcha.jsx:11
 #: adhocracy4/static/Captcha.jsx:11
@@ -890,11 +890,14 @@ msgid ""
 "Solve the math problem and click on the correct result. <strong>If you are "
 "having difficulty please contact us by {}email{}.</strong>"
 msgstr ""
+"Lösen Sie die Rechenaufgabe und klicken Sie auf das richtige "
+"Ergebnis.<strong> Wenn Sie Schwierigkeiten haben, kontaktieren Sie uns bitte "
+"per {}E-Mail{}.</strong>"
 
 #: adhocracy4/static/Captcha.jsx:13
 #: adhocracy4/static/Captcha.jsx:13
 msgid "There was a problem loading the CAPTCHA."
-msgstr ""
+msgstr "Es gab ein Problem, das CAPTCHA zu laden."
 
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
 #: adhocracy4/static/TermsOfUseCheckbox.jsx:5
@@ -915,7 +918,7 @@ msgstr ""
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:5
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
 #: adhocracy4/static/control_bar/ControlBarSearch.jsx:6
