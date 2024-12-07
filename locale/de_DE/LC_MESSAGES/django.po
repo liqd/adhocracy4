@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-04 12:03+0100\n"
-"PO-Revision-Date: 2024-07-19 12:04+0000\n"
+"PO-Revision-Date: 2024-12-07 09:04+0000\n"
 "Last-Translator: Carolin Klingsporn <c.klingsporn@liqd.net>\n"
-"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/"
-">\n"
+"Language-Team: German <https://weblate.liqd.net/projects/meinberlin/main/de/>"
+"\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5296,7 +5296,7 @@ msgstr "Nächste"
 
 #: meinberlin/templates/a4modules/module_detail.html:72
 msgid " Live now"
-msgstr "Jetzt live"
+msgstr " Jetzt live"
 
 #: meinberlin/templates/a4modules/module_detail.html:95
 msgid "More from this online participation:"
