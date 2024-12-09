@@ -5,6 +5,119 @@ All notable changes to this project will be documented in this file.
 Since version v2308 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2412.1
+
+### Added
+
+- add captcha to bplan statement form
+- Cache for public projects, external projects and plans duplicating the view projects-list
+- Scheduled resetting cache for public projects, external projects and plans every hour
+- add select_related to external project queryset to save a query per project
+- add select_related and prefetch_related to plans
+- add topics to prefetch_related for projects
+- add max resolution (650, 650) to organisation logo
+- add settings to restrict upload file size for django-ckeditor-5
+- added management command to create fake comments for testing
+
+### Removed
+
+- removed no longer required `use_json_field` from wagtail pages
+
+### Fixed
+
+- fix form submit for document / text commenting dashboard view not reloading on submit
+- incorrect version pin of djlint
+
+### Changed
+
+- replaced the old datepicker with flatpickr
+- make flatpickr instances aware of each other (e.g. for start and end phase of
+  a module, you can't choose an end date which is earlier than the start date)
+- add a time-only datepicker to the time field
+- make the captcha js listen to both DOMContentLoaded and a4.embed.ready
+- update celery to 5.4.0
+- make post_save and post_delete signal for external projects, plans and
+  projects reset the cache instead of deleting it.
+- use delay_on_commit() to call celery tasks to prevent race conditions, adjust
+  tests
+- update django-ckeditor-5 to v0.2.13-liqd
+- refactor ParagraphForm.jsx to work with the changed api in django-ckeditor-5
+- update wagtail to 6.0.x
+- update wagtail to 6.1.x
+- update djangorestframework to 3.15.1 as required by wagtail 6.1.x
+- update wagtail to 6.2.x
+- update wagtail to 6.3.x LTS
+- replace wagtails ImageChooserBlock with the more accessible ImageBlock
+- update django-allauth to 65.x
+- rename and adapt `get_email_confirmation_redirect_url` to `get_email_verification_redirect_url`
+- update django-allauth settings to the new style
+- update stylelint to 16.11.0
+- update stylelint-config-standard-scss to 13.1.0
+- fix new stylelint warnings
+- Translations update from LIQD Weblate
+- migrate renovate config
+- update babel monorepo
+- update dependency @testing-library/react to v16.1.0
+- update dependency babel-loader to v9.2.1
+- update dependency beautifulsoup4 to v4.12.3
+- update dependency black to v24.10.0
+- update dependency django to v4.2.16 [security]
+- update dependency django-celery-beat to v2.7.0
+- update dependency django-debug-toolbar to v4.4.6
+- update dependency django-filter to v24
+- update dependency django_csp to v3.8
+- update dependency djangorestframework to v3.15.2 [security]
+- update dependency djlint to v1.36.3
+- update dependency easy-thumbnails to v2.10
+- update dependency factory-boy to v3.3.1
+- update dependency faker to v33
+- update dependency flake8 to v7.1.1
+- update dependency freezegun to v1.5.1
+- update dependency gunicorn to v23
+- update dependency hiredis to v3
+- update dependency husky to v9.1.7
+- update dependency lint-staged to v15.2.10
+- update dependency postcss to v8.4.49
+- update dependency psycopg to v3.2.3
+- update dependency pytest to v8.3.4
+- update dependency pytest-cov to v6
+- update dependency pytest-django to v4.9.0
+- update dependency pytest-factoryboy to v2.7.0
+- update dependency python-dateutil to v2.9.0.post0
+- update dependency redis to v5.2.0
+- update dependency requests to v2.32.3
+- update dependency rules to v3.5
+- update dependency sentry-sdk to v2.19.0
+- update dependency stylelint to v16.11.0
+- update dependency stylelint-config-standard-scss to v14
+- update dependency stylelint-declaration-strict-value to v1.10.6
+- update dependency urllib3 to v2.2.3
+- update dependency wagtail to v6.3.1
+- update dependency webpack to v5.97.1
+- update dependency webpack-merge to v6
+- update dependency whitenoise to v6.8.2
+- update dependency xlsxwriter to v3.2.0
+- update dependency zeep to v4.3.1
+- update eslint packages
+- update dependency @fortawesome/fontawesome-free to v6.7.1
+- update dependency @maplibre/maplibre-gl-leaflet to v0.0.21
+- update dependency @maplibre/maplibre-gl-leaflet to v0.0.22
+- update dependency acorn to v8.14.0
+- update dependency autoprefixer to v10.4.20
+- update dependency css-loader to v7
+- update dependency mini-css-extract-plugin to v2.9.2
+- update dependency postcss-loader to v8.1.1
+- update dependency react-bootstrap-typeahead to v6.3.4
+- update dependency react-cookie to v7.2.2
+- update dependency react-router-dom to v6.28.0
+- update dependency sass to v1.82.0
+- update dependency sass-loader to v16.0.4
+- update dependency shpjs to v6
+- update dependency swiper to v11.1.15
+- update react monorepo to v18.3.1
+- update react-router to v7
+
+
 ## v2404.1.2
 
 ### Changed
