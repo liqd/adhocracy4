@@ -1,7 +1,7 @@
 import React from 'react'
 import django from 'django'
 
-import { PollQuestion } from './PollQuestion'
+import { PollChoice } from './PollChoice'
 import { PollOpenQuestion } from './PollOpenQuestion'
 import PollResults from './PollResults'
 
@@ -383,7 +383,7 @@ class PollQuestions extends React.Component {
         <>
           {this.state.showResults
             ? (
-              <div className="pollquestionlist-container">
+              <div className="poll__preliminary-results">
                 {this.state.result.map((question, idx) => (
                   <PollResults key={idx} question={question} />
                 ))}
@@ -396,32 +396,35 @@ class PollQuestions extends React.Component {
               )
             : (
               <div className="pollquestionlist-container">
-                {this.state.questions.map((question, idx) =>
-                  question.is_open
-                    ? (
-                      <PollOpenQuestion
-                        key={idx}
-                        allowUnregisteredUsers={this.state.allowUnregisteredUsers}
-                        question={question}
-                        onOpenChange={(questionId, voteData) =>
-                          this.handleVoteOpen(questionId, voteData)}
-                      />
-                      )
-                    : (
-                      <PollQuestion
-                        key={idx}
-                        question={question}
-                        allowUnregisteredUsers={this.state.allowUnregisteredUsers}
-                        onSingleChange={(questionId, voteData) =>
-                          this.handleVoteSingle(questionId, voteData)}
-                        onMultiChange={(questionId, voteData) =>
-                          this.handleVoteMulti(questionId, voteData)}
-                        onOtherChange={(questionId, voteAnswer, otherChoice) =>
-                          this.handleVoteOther(questionId, voteAnswer, otherChoice)}
-                        errors={this.state.errors}
-                      />
-                      )
-                )}
+                <form>
+                  {this.state.questions.map((question, idx) =>
+                    question.is_open
+                      ? (
+                        <PollOpenQuestion
+                          key={idx}
+                          allowUnregisteredUsers={this.state.allowUnregisteredUsers}
+                          question={question}
+                          onOpenChange={(questionId, voteData) =>
+                            this.handleVoteOpen(questionId, voteData)}
+                          errors={this.state.errors}
+                        />
+                        )
+                      : (
+                        <PollChoice
+                          key={idx}
+                          question={question}
+                          allowUnregisteredUsers={this.state.allowUnregisteredUsers}
+                          onSingleChange={(questionId, voteData) =>
+                            this.handleVoteSingle(questionId, voteData)}
+                          onMultiChange={(questionId, voteData) =>
+                            this.handleVoteMulti(questionId, voteData)}
+                          onOtherChange={(questionId, voteAnswer, otherChoice) =>
+                            this.handleVoteOther(questionId, voteAnswer, otherChoice)}
+                          errors={this.state.errors}
+                        />
+                        )
+                  )}
+                </form>
                 <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
 
                 {this.isReadOnly()
@@ -448,14 +451,12 @@ class PollQuestions extends React.Component {
                       {this.state.allowUnregisteredUsers &&
                   this.state.questions.length > 0 &&
                   !this.state.questions[0].authenticated && (
-                    <>
-                      <Captcha
-                        onChange={(val) => this.setState({ captcha: val })}
-                        apiUrl={this.props.captchaUrl}
-                        name="id_captcheck"
-                        refresh={this.state.refreshCaptcha}
-                      />
-                    </>
+                    <Captcha
+                      onChange={(val) => this.setState({ captcha: val })}
+                      apiUrl={this.props.captchaUrl}
+                      name="id_captcheck"
+                      refresh={this.state.refreshCaptcha}
+                    />
                       )}
                       <div className="poll poll__btn--wrapper">
                         {this.buttonVote}
