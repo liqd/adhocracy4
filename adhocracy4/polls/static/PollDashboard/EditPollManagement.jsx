@@ -209,9 +209,29 @@ export const EditPollManagement = (props) => {
       className="editpoll__questions"
     >
       {props.enableUnregisteredUsers &&
-        <div>
-          <label htmlFor="allowUnregisteredUsersCheckbox">Allow unregistered user to vote</label>
-          <input type="checkbox" id="allowUnregisteredUsersCheckbox" onChange={() => setAllowUnregisteredUsers((state) => !state)} checked={allowUnregisteredUsers} />
+        <div className="editpoll__questions-options">
+          <section>
+            <h2>Voting Options</h2>
+            <fieldset className="">
+              <legend>Who can vote</legend>
+              <div className="">
+                <label className="" htmlFor="allowUnregisteredUsersCheckbox">
+                  Allow unregistered users to vote
+                </label>
+                <input
+                  className=""
+                  type="checkbox"
+                  id="allowUnregisteredUsersCheckbox"
+                  onChange={() => setAllowUnregisteredUsers((state) => !state)}
+                  checked={allowUnregisteredUsers}
+                  aria-describedby="votingDescription"
+                />
+              </div>
+              <p id="votingDescription">
+                Enable this option to allow users who are not registered to participate in the voting process.
+              </p>
+            </fieldset>
+          </section>
         </div>}
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
         {
