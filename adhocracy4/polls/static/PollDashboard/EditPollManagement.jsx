@@ -13,6 +13,13 @@ import api from '../../../static/api'
 
 import Alert from '../../../static/Alert'
 
+const translated = {
+  votingOptionsSectionTitle: django.gettext('Voting Options'),
+  allowUnregisteredUsersLabel: django.gettext('Allow unregistered users to vote'),
+  allowUnregisteredUsersSR: django.gettext('Enable this option to allow users who are not registered to participate in the voting process.'),
+  addAndEditSectionTitle: django.gettext('Add and Edit Questions')
+}
+
 // | Helper method for local scoped key/identifier
 
 let maxLocalKey = 0
@@ -209,17 +216,32 @@ export const EditPollManagement = (props) => {
       className="editpoll__questions"
     >
       {props.enableUnregisteredUsers &&
-        <div>
-          <label htmlFor="allowUnregisteredUsersCheckbox">Allow unregistered user to vote</label>
-          <input type="checkbox" id="allowUnregisteredUsersCheckbox" onChange={() => setAllowUnregisteredUsers((state) => !state)} checked={allowUnregisteredUsers} />
-        </div>}
-      <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
-        {
-          questions.map((question, index, arr) => {
-            const key = question.id || question.key
-            return question.is_open
-              ? (
-                <div key={key}>
+        <section className="editpoll__questions-options">
+          <h2>{translated.votingOptionsSectionTitle}</h2>
+          <div className="editpoll__questions-options__form-check">
+            <input
+              type="checkbox"
+              id="allowUnregisteredUsersCheckbox"
+              onChange={() => setAllowUnregisteredUsers((state) => !state)}
+              checked={allowUnregisteredUsers}
+              aria-describedby="votingDescription"
+            />
+            <label htmlFor="allowUnregisteredUsersCheckbox">
+              {translated.allowUnregisteredUsersLabel}
+            </label>
+            <p id="votingDescription" className="a4-sr-only">
+              {translated.allowUnregisteredUsersSR}
+            </p>
+          </div>
+        </section>}
+      <section>
+        <h2>{translated.addAndEditSectionTitle}</h2>
+        <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
+          {
+            questions.map((question, index, arr) => {
+              const key = question.id || question.key
+              return question.is_open
+                ? (
                   <EditPollOpenQuestion
                     id={key}
                     question={question}
@@ -230,10 +252,8 @@ export const EditPollManagement = (props) => {
                     onDelete={() => handleQuestionDelete(index)}
                     errors={errors && errors[index] ? errors[index] : {}}
                   />
-                </div>
-                )
-              : (
-                <div key={key}>
+                  )
+                : (
                   <EditPollQuestion
                     id={key}
                     question={question}
@@ -249,12 +269,11 @@ export const EditPollManagement = (props) => {
                     onDeleteChoice={(choiceIndex) => handleChoiceDelete(index, choiceIndex)}
                     onAppendChoice={(hasOtherOption) => handleChoiceAppend(index, hasOtherOption)}
                   />
-                </div>
-                )
-          })
-        }
-      </FlipMove>
-
+                  )
+            })
+          }
+        </FlipMove>
+      </section>
       <Alert onClick={() => removeAlert()} {...alert} />
 
       <div className="editpoll__question-container">
