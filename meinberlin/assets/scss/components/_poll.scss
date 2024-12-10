@@ -179,6 +179,15 @@ $checkbox-size: 20px;
     flex-flow: column wrap;
 }
 
+.editpoll__questions-options__form-check {
+    display: flex;
+    align-items: center;
+
+    label {
+        margin: 0 0.5em 0 0;
+    }
+}
+
 @media (min-width: $breakpoint) {
     .editpoll__btns--question {
         flex-direction: row;
