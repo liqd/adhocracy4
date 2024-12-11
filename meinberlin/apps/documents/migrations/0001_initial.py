@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import ckeditor.fields
 import django.utils.timezone
 from django.db import migrations
 from django.db import models
@@ -58,7 +57,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(blank=True, null=True, editable=False),
                 ),
                 ("name", models.CharField(max_length=120, blank=True)),
-                ("text", ckeditor.fields.RichTextField()),
+                ("text", models.TextField()),
                 ("weight", models.PositiveIntegerField()),
                 (
                     "document",

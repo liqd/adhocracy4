@@ -20,7 +20,6 @@ zeep==4.3.1
 celery==5.4.0
 django-allauth==65.3.0
 django-autoslug==1.9.9
-django-ckeditor==6.7.1
 https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.13-liqd/django_ckeditor_5-0.2.13-py3-none-any.whl
 django-filter==24.3
 django-widget-tweaks==1.5.0

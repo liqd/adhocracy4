@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 import autoslug.fields
-import ckeditor_uploader.fields
 import django.utils.timezone
 from django.conf import settings
 from django.db import migrations
@@ -52,9 +51,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "description",
-                    ckeditor_uploader.fields.RichTextUploadingField(
-                        verbose_name="Description"
-                    ),
+                    models.TextField(verbose_name="Description"),
                 ),
                 (
                     "creator",

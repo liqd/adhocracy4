@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import ckeditor.fields
 import django.utils.timezone
 from django.conf import settings
 from django.db import migrations
@@ -39,7 +38,7 @@ class Migration(migrations.Migration):
                         on_delete=models.CASCADE,
                     ),
                 ),
-                ("statement", ckeditor.fields.RichTextField(blank=True)),
+                ("statement", models.TextField(blank=True)),
                 (
                     "creator",
                     models.ForeignKey(

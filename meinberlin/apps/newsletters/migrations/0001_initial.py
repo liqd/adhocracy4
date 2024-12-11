@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import ckeditor_uploader.fields
 import django.utils.timezone
 from django.conf import settings
 from django.db import migrations
@@ -48,9 +47,7 @@ class Migration(migrations.Migration):
                 ("subject", models.CharField(max_length=254, verbose_name="Subject")),
                 (
                     "body",
-                    ckeditor_uploader.fields.RichTextUploadingField(
-                        blank=True, verbose_name="Email body"
-                    ),
+                    models.TextField(blank=True, verbose_name="Email body"),
                 ),
                 (
                     "sent",

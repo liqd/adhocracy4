@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 import autoslug.fields
-import ckeditor.fields
 import django.db.models.deletion
 from django.db import migrations
 from django.db import models
@@ -39,7 +38,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("name", models.CharField(max_length=120)),
-                ("description", ckeditor.fields.RichTextField()),
+                ("description", models.TextField()),
                 (
                     "point",
                     adhocracy4.maps.fields.PointField(

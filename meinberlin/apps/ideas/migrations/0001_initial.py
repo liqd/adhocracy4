@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 import autoslug.fields
-import ckeditor.fields
 from django.db import migrations
 from django.db import models
 
@@ -35,7 +34,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("name", models.CharField(max_length=120)),
-                ("description", ckeditor.fields.RichTextField()),
+                ("description", models.TextField()),
             ],
             options={
                 "abstract": False,

@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 import autoslug.fields
-import ckeditor.fields
 import django.db.models.deletion
 import django.utils.timezone
 from django.conf import settings
@@ -50,7 +49,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("name", models.CharField(max_length=120)),
-                ("description", ckeditor.fields.RichTextField()),
+                ("description", models.TextField()),
                 (
                     "budget",
                     models.PositiveIntegerField(default=0, help_text="Required Budget"),
@@ -108,7 +107,7 @@ class Migration(migrations.Migration):
                         on_delete=models.CASCADE,
                     ),
                 ),
-                ("statement", ckeditor.fields.RichTextField(blank=True)),
+                ("statement", models.TextField(blank=True)),
                 (
                     "creator",
                     models.ForeignKey(

@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 import autoslug.fields
-import ckeditor_uploader.fields
 import django.db.models.deletion
 from django.db import migrations
 from django.db import models
@@ -37,7 +36,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("name", models.CharField(max_length=120)),
-                ("description", ckeditor_uploader.fields.RichTextUploadingField()),
+                ("description", models.TextField()),
                 (
                     "category",
                     models.ForeignKey(

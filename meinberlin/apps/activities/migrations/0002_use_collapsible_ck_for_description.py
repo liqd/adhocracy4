@@ -3,8 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-
-import adhocracy4.ckeditor.fields
+from django.db.models import TextField
 
 
 class Migration(migrations.Migration):
@@ -17,8 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="activity",
             name="description",
-            field=adhocracy4.ckeditor.fields.RichTextCollapsibleUploadingField(
-                verbose_name="Description"
-            ),
+            field=TextField(verbose_name="Description"),
         ),
     ]

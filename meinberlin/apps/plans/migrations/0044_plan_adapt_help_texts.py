@@ -2,7 +2,6 @@
 
 import adhocracy4.maps.fields
 import adhocracy4.projects.fields
-import ckeditor.fields
 from django.db import migrations, models
 import django.db.models.deletion
 
@@ -35,7 +34,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="plan",
             name="description",
-            field=ckeditor.fields.RichTextField(
+            field=models.TextField(
                 help_text="Describe the cornerstones of your plan. You can upload PDFs and images, embed videos and link to external URLs.",
                 verbose_name="Description of your plan",
             ),
