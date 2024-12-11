@@ -92,7 +92,7 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                       Likes
                     </span>
                     <span
-                      class="aural"
+                      class="a4-sr-only"
                     >
                       Click to like
                     </span>
@@ -116,7 +116,7 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                       Dislikes
                     </span>
                     <span
-                      class="aural"
+                      class="a4-sr-only"
                     >
                       Click to dislike
                     </span>
@@ -383,7 +383,7 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                     Likes
                   </span>
                   <span
-                    class="aural"
+                    class="a4-sr-only"
                   >
                     Click to like
                   </span>
@@ -407,7 +407,7 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                     Dislikes
                   </span>
                   <span
-                    class="aural"
+                    class="a4-sr-only"
                   >
                     Click to dislike
                   </span>
@@ -736,7 +736,7 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                       Likes
                     </span>
                     <span
-                      class="aural"
+                      class="a4-sr-only"
                     >
                       Click to like
                     </span>
@@ -760,7 +760,7 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                       Dislikes
                     </span>
                     <span
-                      class="aural"
+                      class="a4-sr-only"
                     >
                       Click to dislike
                     </span>
@@ -1032,7 +1032,7 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                     Likes
                   </span>
                   <span
-                    class="aural"
+                    class="a4-sr-only"
                   >
                     Click to like
                   </span>
@@ -1056,7 +1056,7 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                     Dislikes
                   </span>
                   <span
-                    class="aural"
+                    class="a4-sr-only"
                   >
                     Click to dislike
                   </span>
