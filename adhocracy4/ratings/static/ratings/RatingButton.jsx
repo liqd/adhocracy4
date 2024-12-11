@@ -32,7 +32,7 @@ const RatingButton = ({
       type="button"
     >
       {children}
-      <span className="aural">{type === 'up' ? translations.upvote : translations.downvote}</span>
+      <span className="a4-sr-only">{type === 'up' ? translations.upvote : translations.downvote}</span>
     </button>
   )
 }
