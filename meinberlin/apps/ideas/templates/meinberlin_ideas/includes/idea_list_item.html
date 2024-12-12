@@ -11,16 +11,16 @@
             {% spaceless %}
             {% if object|has_feature:"rate" %}
                 <span
-                    class="list-item__icon u-success"
+                    class="list-item__icon"
                     title="{% translate 'Positive Ratings' %}">
-                    <i class="fa fa-chevron-up u-icon-spacing" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-up u-icon-spacing" aria-hidden="true"></i>
                     {{ object.positive_rating_count }}
                     <span class="visually-hidden">{% translate 'Positive Ratings' %}</span>
                 </span>
                 <span
-                    class="list-item__icon u-danger"
+                    class="list-item__icon"
                     title="{% translate 'Negative Ratings' %}">
-                    <i class="fa fa-chevron-down u-icon-spacing" aria-hidden="true"></i>
+                    <i class="fa fa-thumbs-down u-icon-spacing" aria-hidden="true"></i>
                     {{ object.negative_rating_count }}
                     <span class="visually-hidden">{% translate 'Negative Ratings' %}</span>
                 </span>
@@ -37,8 +37,8 @@
     </div>
 
     <div class="list-item__labels">
-        {% for badge in object.item_badges_for_list  %}
-            <span class="label label--big {% if badge.0 == 'moderator_status' %}label--{{badge.2|classify|lower }}{% endif %}">
+        {% for badge in object.item_badges_for_list %}
+            <span class="label label--big {% if badge.0 == 'moderator_status' %}label--{{ badge.2 | classify | lower }}{% endif %}">
                 {% if badge.0 == 'point_label' %}
                     <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                 {% endif %}
@@ -63,5 +63,5 @@
         {% else %}
             {% translate 'created on ' %}{% html_date object.created class='list-item__date' %}
         {% endif %}
-    {% endblock %}
+    {% endblock creator_info %}
 </li>

@@ -21,22 +21,22 @@ export const ListItemStats = (props) => {
       {permissions.view_rate_count && (
         <>
           <span
-            className="list-item__icon u-success"
+            className="list-item__icon"
             title={positiveRatingsStr}
           >
             <i
-              className="fa fa-chevron-up u-icon-spacing"
+              className="fa fa-thumbs-up u-icon-spacing"
               aria-hidden="true"
             />
             {props.positiveCount}
             <span className="visually-hidden">{positiveRatingsStr}</span>
           </span>
           <span
-            className="list-item__icon u-danger"
+            className="list-item__icon"
             title={negativeRatingsStr}
           >
             <i
-              className="fa fa-chevron-down u-icon-spacing"
+              className="fa fa-thumbs-down u-icon-spacing"
               aria-hidden="true"
             />
             {props.negativeCount}
