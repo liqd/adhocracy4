@@ -1,3 +1,4 @@
+import importlib
 import re
 from smtplib import SMTPException
 
@@ -8,6 +9,7 @@ from django.core.mail.message import EmailMultiAlternatives
 from django.template.loader import select_template
 from django.utils import translation
 
+from . import mixins
 from . import tasks
 
 
@@ -159,3 +161,15 @@ class EmailBase:
             self.handle_report(mails, mail_exceptions)
 
         return mails
+
+
+class Email(mixins.PlatformEmailMixin, EmailBase):
+    pass
+
+
+def get_email_base():
+    if hasattr(settings, "A4_EMAIL_BASE") and isinstance(settings.A4_EMAIL_BASE, str):
+        module_path, class_name = settings.A4_EMAIL_BASE.rsplit(".", 1)
+        email_module = importlib.import_module(module_path)
+        return getattr(email_module, class_name)
+    return Email
