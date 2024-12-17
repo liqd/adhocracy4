@@ -86,10 +86,10 @@ function init () {
 
     function getRatings (feature) {
       return '<span class="map-popup-upvotes">' +
-               feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
+               feature.properties.positive_rating_count + ' <i class="fa fa-thumbs-up" aria-hidden="true"></i>' +
              '</span>' +
              '<span class="map-popup-downvotes">' +
-               feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
+               feature.properties.negative_rating_count + ' <i class="fa fa-thumbs-down" aria-hidden="true"></i>' +
              '</span>'
     }
 
