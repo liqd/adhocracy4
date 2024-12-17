@@ -437,32 +437,33 @@ class PollQuestions extends React.Component {
                     )
                   : (
                     <>
-                      {this.state.useTermsOfUse &&
-                  this.state.agreedTermsOfUse === false && (
-                    <div className="col-12">
-                      <TermsOfUseCheckbox
-                        id="terms-of-use"
-                        onChange={(val) =>
-                          this.setState({ checkedTermsOfUse: val })}
-                        orgTermsUrl={this.state.orgTermsUrl}
-                      />
-                    </div>
+                      {/* Terms of Use Section */}
+                      {this.state.useTermsOfUse && !this.state.agreedTermsOfUse && (
+                        <div className="col-12">
+                          <TermsOfUseCheckbox
+                            id="terms-of-use"
+                            onChange={(val) => this.setState({ checkedTermsOfUse: val })}
+                            orgTermsUrl={this.state.orgTermsUrl}
+                          />
+                        </div>
                       )}
+
+                      {/* Captcha Section */}
                       {this.state.allowUnregisteredUsers &&
-                  this.state.questions.length > 0 &&
-                  !this.state.questions[0].authenticated && (
-                    <Captcha
-                      onChange={(val) => this.setState({ captcha: val })}
-                      apiUrl={this.props.captchaUrl}
-                      name="id_captcheck"
-                      refresh={this.state.refreshCaptcha}
-                    />
+                        this.state.questions.length > 0 &&
+                        !this.state.questions[0].authenticated && (
+                          <Captcha
+                            onChange={(val) => this.setState({ captcha: val })}
+                            apiUrl={this.props.captchaUrl}
+                            name="id_captcheck"
+                            refresh={this.state.refreshCaptcha}
+                          />
                       )}
+
+                      {/* Button Wrapper */}
                       <div className="poll poll__btn--wrapper">
                         {this.buttonVote}
-                        {!this.state.loading
-                          ? this.linkShowResults()
-                          : this.loadingIndicator}
+                        {!this.state.loading ? this.linkShowResults() : this.loadingIndicator}
                       </div>
                     </>
                     )}
