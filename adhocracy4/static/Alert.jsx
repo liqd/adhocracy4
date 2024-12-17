@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import django from 'django'
 
-const Alert = ({ type, alertAttribute, message, onClick, timeInMs }) => {
+const Alert = ({ type = 'info', message, onClick, timeInMs }) => {
   const timer = useRef()
   const closeTag = django.gettext('Close')
 
@@ -14,28 +14,36 @@ const Alert = ({ type, alertAttribute, message, onClick, timeInMs }) => {
     }
   }, [timeInMs, onClick])
 
-  if (type) {
-    return (
-      <div
-        id="alert"
-        className={'alert alert--' + type}
-        aria-atomic="true"
-        aria-live={alertAttribute}
-      >
-        <div className="container a4-alert__container">
-          <div className="a4-alert__content">
-            {message}
-          </div>
-          <button className="alert__close" title={closeTag} onClick={onClick}>
-            <i className="fa fa-times" aria-label={closeTag} />
-          </button>
-        </div>
-
-      </div>
-    )
+  // Only check for message now since type has a default
+  if (!message) {
+    return null
   }
 
-  return <div aria-live="assertive" aria-atomic="true" id="alert" />
+  // Use alert role for danger/warning, status for others
+  const ariaRole = ['danger', 'warning'].includes(type) ? 'alert' : 'status'
+
+  return (
+    <div
+      id="alert"
+      role={ariaRole}
+      className={'alert alert--' + type}
+      aria-atomic="true"
+    >
+      <div className="alert__content">
+        {message}
+        {onClick && (
+          <button
+            type="button"
+            className="alert__close"
+            aria-label={closeTag}
+            onClick={onClick}
+          >
+            <span className="fa fa-times" aria-hidden="true" />
+          </button>
+        )}
+      </div>
+    </div>
+  )
 }
 
 module.exports = Alert

@@ -11,7 +11,7 @@ test('Alert is showing', () => {
 test('Alert is not showing', () => {
   render(<Alert type="" message="" />)
   const alert = document.querySelector('#alert')
-  expect(alert).toBeTruthy()
+  expect(alert).toBeFalsy()
 })
 
 test('Invoke callback through click', () => {

@@ -11,6 +11,7 @@ import CommentList from './comment_list'
 import { ModeratorFeedback } from './moderator_feedback'
 import AiReport from './ai_report'
 import RatingBox from '../../../ratings/static/ratings/RatingBox'
+import Alert from '../../../static/Alert'
 
 const translated = {
   reportTitle: django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).'),
@@ -309,8 +310,7 @@ export default class Comment extends React.Component {
 
     return (
       <li>
-        {this.props.displayNotification &&
-          <div className="alert alert--success a4-comments__success-notification"><i className="fas fa-check" /> {translated.successMessage}</div>}
+        {this.props.displayNotification && <Alert type="success" message={translated.successMessage} />}
         <div className={(this.props.is_users_own_comment ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
           <a className="a4-comments__anchor" id={'comment_' + this.props.id} href={'./?comment=' + this.props.id}>{'Comment ' + this.props.id}</a>
           {this.renderDeleteModal()}
