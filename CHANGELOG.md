@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## mb-v2412.2
+
+### Changed
+- change rating icons to thumbs in map
+
+### Fixed
+- hide accessible text for rating buttons to only be visible for screen readers 
+
+
 ## mb-v2412.1
 
 ### Fixed
