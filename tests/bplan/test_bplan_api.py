@@ -261,8 +261,8 @@ def test_add_bplan_diplan_response_no_embed(apiclient, districts, organisation):
         "url": "https://bplan.net",
         "start_date": "2013-01-01 18:00",
         "end_date": "2021-01-01 18:00",
-        "identifier": "1-234",
-        "point": "[0,0]",
+        "bplan_id": "1-234",
+        "point": "0,0",
     }
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -335,6 +335,29 @@ def test_bplan_api_adds_district_from_identifier(apiclient, districts, organisat
 
 
 @pytest.mark.django_db
+def test_bplan_api_diplan_adds_district_from_bplan_id(
+    apiclient, districts, organisation
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "office_worker_email": "test@liqd.de",
+        "start_date": "2013-01-01 18:00",
+        "bplan_id": "1-234",
+        "point": "0,0",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.administrative_district.name == "Mitte"
+
+
+@pytest.mark.django_db
 def test_bplan_api_adds_district_from_identifier_with_whitespaces(
     apiclient, districts, organisation
 ):
@@ -387,7 +410,7 @@ def test_bplan_api_adds_is_diplan_if_point_is_sent(apiclient, districts, organis
         "url": "https://bplan.net",
         "start_date": "2013-01-01 18:00",
         "identifier": "1-234",
-        "point": "[0,0]",
+        "point": "0,0",
         "end_date": "2021-01-01 18:00",
     }
     user = organisation.initiators.first()
@@ -439,40 +462,7 @@ def test_bplan_api_location_task_not_called_if_point_included(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": "[0,0]",
-    }
-    user = organisation.initiators.first()
-    apiclient.force_authenticate(user=user)
-    with django_capture_on_commit_callbacks(execute=True):
-        response = apiclient.post(url, data, format="json")
-        assert response.status_code == status.HTTP_201_CREATED
-        bplan = bplan_models.Bplan.objects.first()
-        assert bplan.is_draft is False
-        assert bplan.is_diplan is True
-        assert bplan.point == "[0,0]"
-        mock.assert_not_called()
-
-
-@pytest.mark.django_db
-def test_bplan_api_accepts_valid_geojson(
-    apiclient, districts, organisation, django_capture_on_commit_callbacks
-):
-    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
-    data = {
-        "name": "bplan-1",
-        "description": "desc",
-        "url": "https://bplan.net",
-        "start_date": "2013-01-01 18:00",
-        "end_date": "2021-01-01 18:00",
-        "identifier": "1-234",
-        "is_published": True,
-        "point": {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [13.411924777644563, 52.499598134440944],
-            },
-        },
+        "point": "0,0",
     }
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -486,6 +476,40 @@ def test_bplan_api_accepts_valid_geojson(
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [13.411924777644563, 52.499598134440944],
+                "coordinates": [0.0, 0.0],
+            },
+        }
+        mock.assert_not_called()
+
+
+@pytest.mark.django_db
+def test_bplan_api_accepts_string_as_point_and_converts_to_epsg4326(
+    apiclient, districts, organisation, django_capture_on_commit_callbacks
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+        "identifier": "1-234",
+        "is_published": True,
+        "point": "1492195.544958444,6895923.461738203",
+    }
+
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    with django_capture_on_commit_callbacks(execute=True):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        bplan = bplan_models.Bplan.objects.first()
+        assert bplan.is_draft is False
+        assert bplan.is_diplan is True
+        assert bplan.point == {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [13.404620649312287, 52.526688152152744],
             },
         }

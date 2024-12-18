@@ -13,6 +13,7 @@ from django.core.files.images import ImageFile
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext as _
+from pyproj import Transformer
 from rest_framework import serializers
 
 from adhocracy4.dashboard import components
@@ -62,9 +63,13 @@ class BplanSerializer(serializers.ModelSerializer):
         ),
     )
     embed_code = serializers.SerializerMethodField()
-    # overwrite the point model field so it's expecting json, the original field is validated as a string and therefore
-    # doesn't pass validation when not receiving a string
-    point = serializers.JSONField(required=False, write_only=True)
+    # # overwrite the point model field so it's expecting json, the original field is validated as a string and therefore
+    # # doesn't pass validation when not receiving a string
+    # point = serializers.JSONField(required=False, write_only=True)
+    bplan_id = serializers.CharField(
+        required=False,
+        write_only=True,
+    )
 
     class Meta:
         model = Bplan
@@ -72,6 +77,7 @@ class BplanSerializer(serializers.ModelSerializer):
             "id",
             "name",
             "identifier",
+            "bplan_id",
             "description",
             "url",
             "office_worker_email",
@@ -94,6 +100,7 @@ class BplanSerializer(serializers.ModelSerializer):
             "url": {"write_only": True},
             "office_worker_email": {"write_only": True},
             "identifier": {"write_only": True},
+            "point": {"write_only": True, "required": False},
         }
 
     def to_representation(self, instance):
@@ -112,8 +119,27 @@ class BplanSerializer(serializers.ModelSerializer):
 
         # mark as diplan, will make removal of old bplans easier
         # TODO: remove this check and the is_diplan field once transition to diplan is completed
-        if "point" in validated_data:
+        if "bplan_id" in validated_data or "point" in validated_data:
             validated_data["is_diplan"] = True
+
+        # TODO: rename identifier to bplan_id on model and remove the custom logic here
+        if "bplan_id" in validated_data:
+            bplan_id = validated_data.pop("bplan_id")
+            validated_data["identifier"] = bplan_id
+
+        # We receive the point as a string containing coordinates in epsg3875 but internally
+        # use epsg4326 so we need to convert them and save them as valid geojson
+        if "point" in validated_data:
+            point = validated_data["point"].split(",")
+            transformer = Transformer.from_crs("EPSG:3857", "EPSG:4326")
+            new_point = transformer.transform(point[0].strip(), point[1].strip())
+            validated_data["point"] = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [new_point[1], new_point[0]],
+                },
+            }
 
         start_date = validated_data["start_date"]
         end_date = validated_data["end_date"]
@@ -151,14 +177,33 @@ class BplanSerializer(serializers.ModelSerializer):
         if start_date or end_date:
             self._update_phase(instance, start_date, end_date)
             # TODO: remove as we don't need to archive bplans anymore once the transition to diplan is complete as
-            #  they depublish them if they should no longer be shown
+            #  they unpublish them if they should no longer be shown
             if end_date and end_date > timezone.localtime(timezone.now()):
                 instance.is_archived = False
 
         # mark as diplan, will make removal of old bplans easier
         # TODO: remove this check and the is_diplan field once transition to diplan is completed
-        if "point" in validated_data:
+        if "bplan_id" in validated_data or "point" in validated_data:
             validated_data["is_diplan"] = True
+
+        # TODO: rename identifier to bplan_id on model and remove the custom logic here
+        if "bplan_id" in validated_data:
+            bplan_id = validated_data.pop("bplan_id")
+            validated_data["identifier"] = bplan_id
+
+        # We receive the point as a string containing coordinates in epsg3875 but internally
+        # use epsg4326 so we need to convert them and save them as valid geojson
+        if "point" in validated_data:
+            point = validated_data["point"].split(",")
+            transformer = Transformer.from_crs("EPSG:3857", "EPSG:4326")
+            new_point = transformer.transform(point[0].strip(), point[1].strip())
+            validated_data["point"] = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [new_point[1], new_point[0]],
+                },
+            }
 
         image_url = validated_data.pop("image_url", None)
         if image_url:
