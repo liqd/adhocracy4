@@ -1,3 +1,4 @@
+import base64
 import datetime
 import imghdr
 import posixpath
@@ -43,6 +44,10 @@ class BplanSerializer(serializers.ModelSerializer):
         required=False,
         write_only=True,
     )
+    tile_image = serializers.CharField(
+        required=False,
+        write_only=True,
+    )
     # can't use a4 field as must be serilizer field
     image_alt_text = serializers.CharField(
         required=False,
@@ -63,9 +68,6 @@ class BplanSerializer(serializers.ModelSerializer):
         ),
     )
     embed_code = serializers.SerializerMethodField()
-    # # overwrite the point model field so it's expecting json, the original field is validated as a string and therefore
-    # # doesn't pass validation when not receiving a string
-    # point = serializers.JSONField(required=False, write_only=True)
     bplan_id = serializers.CharField(
         required=False,
         write_only=True,
@@ -86,6 +88,7 @@ class BplanSerializer(serializers.ModelSerializer):
             "start_date",
             "end_date",
             "image_url",
+            "tile_image",
             "image_alt_text",
             "image_copyright",
             "embed_code",
@@ -148,6 +151,10 @@ class BplanSerializer(serializers.ModelSerializer):
         if image_url:
             validated_data["tile_image"] = self._download_image_from_url(image_url)
 
+        tile_image = validated_data.pop("tile_image", None)
+        if tile_image:
+            validated_data["tile_image"] = self._create_image_from_base64(tile_image)
+
         bplan = super().create(validated_data)
 
         self._create_module_and_phase(bplan, start_date, end_date)
@@ -209,6 +216,10 @@ class BplanSerializer(serializers.ModelSerializer):
         if image_url:
             validated_data["tile_image"] = self._download_image_from_url(image_url)
 
+        tile_image = validated_data.pop("tile_image", None)
+        if tile_image:
+            validated_data["tile_image"] = self._create_image_from_base64(tile_image)
+
         instance = super().update(instance, validated_data)
 
         self._send_component_updated_signal(instance)
@@ -269,6 +280,28 @@ class BplanSerializer(serializers.ModelSerializer):
             self._image_storage.delete(file_name)
             raise serializers.ValidationError(e)
 
+        return file_name
+
+    def _create_image_from_base64(self, base64_image):
+        file_name = None
+        try:
+            image_data = base64.b64decode(base64_image)
+            with tempfile.TemporaryFile() as f:
+                if len(image_data) > DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES:
+                    raise serializers.ValidationError("Image exceeds maximum size")
+                f.write(image_data)
+                file_name = self._generate_image_filename("", f)
+                self._image_storage.save(file_name, f)
+        except Exception:
+            if file_name:
+                self._image_storage.delete(file_name)
+            raise serializers.ValidationError("Failed to save image")
+
+        try:
+            self._validate_image(file_name)
+        except ValidationError as e:
+            self._image_storage.delete(file_name)
+            raise serializers.ValidationError(e)
         return file_name
 
     def _validate_image(self, file_name):

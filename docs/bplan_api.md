@@ -105,13 +105,22 @@ The following fields need to be provided:
   - string containing coordinates separated by a comma, e.g. "1492195.544958444,6895923.461738203"
   - Location of the bplan
   - Projection: WGS84 / EPSG:3857
-- *image_url*: string
+- *(diplan only) tile_image*: string
+  - Base64 encoded image
+  - Minimal resolution 500x300 px (width x height)
+  - Maximum file size 10MB
+  - Allowed formats: png, jpeg, gif
+- *(imperia only) image_url*: string
   - URL of the image that is used in the project tile
   - Minimal resolution 500x300 px (width x height)
   - Maximum file size 10MB
+  - Allowed formats: png, jpeg, gif
 - *image_copyright*: string
   - Copyright shown for the image
   - Maximum length of 120 chars
+- *image_alt_text*: string
+  - Alt text for the tile image
+  - Maximum length of 80 chars
 
 #### Data example
 

@@ -1,8 +1,11 @@
+import base64
 import re
+from io import BytesIO
 
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.core import mail
+from PIL import Image
 
 
 class pytest_regex:
@@ -35,3 +38,11 @@ def get_emails_for_address_and_subject(email_address, subject):
         )
     )
     return emails
+
+
+def get_base64_image(width, height):
+    """Returns a base64 encoded jpeg image with the given width and height"""
+    image = Image.new("RGB", size=(width, height), color=(256, 0, 0))
+    buffered = BytesIO()
+    image.save(buffered, format="JPEG")
+    return base64.b64encode(buffered.getvalue())

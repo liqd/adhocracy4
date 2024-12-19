@@ -1,3 +1,4 @@
+import base64
 from unittest.mock import patch
 
 import pytest
@@ -9,6 +10,7 @@ from rest_framework import status
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from meinberlin.apps.bplan import models as bplan_models
+from tests.helpers import get_base64_image
 from tests.helpers import pytest_regex
 
 
@@ -513,3 +515,107 @@ def test_bplan_api_accepts_string_as_point_and_converts_to_epsg4326(
                 "coordinates": [13.404620649312287, 52.526688152152744],
             },
         }
+
+
+@pytest.mark.django_db
+def test_bplan_api_accepts_valid_base64_image(
+    apiclient, districts, organisation, django_capture_on_commit_callbacks
+):
+    image = get_base64_image(width=500, height=300)
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+        "identifier": "1-234",
+        "is_published": True,
+        "point": "1492195.544958444,6895923.461738203",
+        "tile_image": image,
+    }
+
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    with django_capture_on_commit_callbacks(execute=True):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+        bplan = bplan_models.Bplan.objects.first()
+        assert bplan.is_draft is False
+        assert bplan.is_diplan is True
+        with bplan.tile_image.file.open("r") as file:
+            img = base64.b64encode(file.read())
+            assert img == image
+
+
+@pytest.mark.django_db
+def test_bplan_api_rejects_small_base64_image(
+    apiclient, districts, organisation, django_capture_on_commit_callbacks
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+        "identifier": "1-234",
+        "is_published": True,
+        "point": "1492195.544958444,6895923.461738203",
+        "tile_image": get_base64_image(width=200, height=100),
+    }
+
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    with django_capture_on_commit_callbacks(execute=True):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@patch("meinberlin.apps.bplan.serializers.DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES", 1024)
+@pytest.mark.django_db
+def test_bplan_api_rejects_large_base64_image(
+    apiclient, districts, organisation, django_capture_on_commit_callbacks
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+        "identifier": "1-234",
+        "is_published": True,
+        "point": "1492195.544958444,6895923.461738203",
+        "tile_image": get_base64_image(width=500, height=300),
+    }
+
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    with django_capture_on_commit_callbacks(execute=True):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_bplan_api_rejects_invalid_base64_image(
+    apiclient, districts, organisation, django_capture_on_commit_callbacks
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+        "identifier": "1-234",
+        "is_published": True,
+        "point": "1492195.544958444,6895923.461738203",
+        "tile_image": base64.b64encode(b"ABCDEFG"),
+    }
+
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    with django_capture_on_commit_callbacks(execute=True):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
