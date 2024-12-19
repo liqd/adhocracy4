@@ -14,7 +14,6 @@ from django.core.files.images import ImageFile
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext as _
-from pyproj import Transformer
 from rest_framework import serializers
 
 from adhocracy4.dashboard import components
@@ -72,6 +71,9 @@ class BplanSerializer(serializers.ModelSerializer):
         required=False,
         write_only=True,
     )
+    # overwrite the point model field so it's expecting json, the original field is validated as a string and therefore
+    # doesn't pass validation when not receiving a string
+    point = serializers.JSONField(required=False, write_only=True)
 
     class Meta:
         model = Bplan
@@ -103,7 +105,6 @@ class BplanSerializer(serializers.ModelSerializer):
             "url": {"write_only": True},
             "office_worker_email": {"write_only": True},
             "identifier": {"write_only": True},
-            "point": {"write_only": True, "required": False},
         }
 
     def to_representation(self, instance):
@@ -129,20 +130,6 @@ class BplanSerializer(serializers.ModelSerializer):
         if "bplan_id" in validated_data:
             bplan_id = validated_data.pop("bplan_id")
             validated_data["identifier"] = bplan_id
-
-        # We receive the point as a string containing coordinates in epsg3875 but internally
-        # use epsg4326 so we need to convert them and save them as valid geojson
-        if "point" in validated_data:
-            point = validated_data["point"].split(",")
-            transformer = Transformer.from_crs("EPSG:3857", "EPSG:4326")
-            new_point = transformer.transform(point[0].strip(), point[1].strip())
-            validated_data["point"] = {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [new_point[1], new_point[0]],
-                },
-            }
 
         start_date = validated_data["start_date"]
         end_date = validated_data["end_date"]
@@ -197,20 +184,6 @@ class BplanSerializer(serializers.ModelSerializer):
         if "bplan_id" in validated_data:
             bplan_id = validated_data.pop("bplan_id")
             validated_data["identifier"] = bplan_id
-
-        # We receive the point as a string containing coordinates in epsg3875 but internally
-        # use epsg4326 so we need to convert them and save them as valid geojson
-        if "point" in validated_data:
-            point = validated_data["point"].split(",")
-            transformer = Transformer.from_crs("EPSG:3857", "EPSG:4326")
-            new_point = transformer.transform(point[0].strip(), point[1].strip())
-            validated_data["point"] = {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [new_point[1], new_point[0]],
-                },
-            }
 
         image_url = validated_data.pop("image_url", None)
         if image_url:

@@ -101,10 +101,9 @@ The following fields need to be provided:
   - End date of the participation in
   - [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)
     (if no time zone is defined, german time zones UTC+01 and UTC+02 are used)
-- *point*: string
-  - string containing coordinates separated by a comma, e.g. "1492195.544958444,6895923.461738203"
+- *point*: geojson
   - Location of the bplan
-  - Projection: WGS84 / EPSG:3857
+  - Projection: WGS84 / EPSG:4326
 - *(diplan only) tile_image*: string
   - Base64 encoded image
   - Minimal resolution 500x300 px (width x height)
@@ -133,7 +132,16 @@ The following fields need to be provided:
   "is_draft": false,
   "start_date": "2017-01-01T00:00",
   "end_date": "2018-01-01T00:00",
-  "point": "1492195.544958444,6895923.461738203",
+  "point": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        13.411924777644563,
+        52.499598134440944
+      ]
+    }
+  },
   "image_url": "http://berlin.de/images/.../bebauungsplan.649020.png",
   "image_copyright": "BA Marzahn-Hellersdorf"
 }
@@ -195,7 +203,7 @@ curl \
    "office_worker_email": "test@example.com",
    "start_date": "2019-01-01T00:00",
    "end_date": "2022-01-01T00:00",
-   "point": "1492195.544958444,6895923.461738203"
+   "point": {"type": "Feature","geometry": {"type": "Point", "coordinates":[13.411924777644563,52.499598134440944]}}
  }
 '
 ```
@@ -216,7 +224,7 @@ curl  -X POST http://127.0.0.1:8003/api/organisations/1/bplan/ \
    "office_worker_email": "test@example.com",
    "start_date": "2019-01-01T00:00",
    "end_date": "2022-01-01T00:00",
-   "point": "1492195.544958444,6895923.461738203"
+   "point": {"type": "Feature","geometry": {"type": "Point", "coordinates":[13.411924777644563,52.499598134440944]}}
  }
 '
 ```

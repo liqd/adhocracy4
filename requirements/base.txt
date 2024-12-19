@@ -7,7 +7,6 @@ brotli==1.1.0
 django-celery-beat==2.7.0
 django-cloudflare-push==0.2.2
 django_csp==3.8
-pyproj==3.7.0
 redis==5.2.0
 requests==2.32.3
 sentry-sdk[django]==2.19.0
