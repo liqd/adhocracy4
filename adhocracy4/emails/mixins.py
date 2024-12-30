@@ -1,5 +1,6 @@
 from email.mime.image import MIMEImage
 
+from django.conf import settings
 from django.contrib.staticfiles import finders
 from django.core.mail import mail_admins
 
@@ -12,21 +13,29 @@ class PlatformEmailMixin:
 
     def get_attachments(self):
         attachments = super().get_attachments()
-        filename = finders.find("images/email_logo.png") or finders.find(
-            "images/email_logo.svg"
+        additional_files = getattr(
+            settings,
+            "A4_EMAIL_ATTACHMENTS",
+            [
+                ("logo", "images/email_logo.svg"),
+                ("logo", "images/email_logo.png"),
+            ],
         )
-        if filename:
-            if filename.endswith(".png"):
-                imagetype = "png"
-            else:
-                imagetype = "svg+xml"
+        files = []
+        for identifier, file in additional_files:
+            filename = finders.find(file)
+            if filename:
+                if filename.endswith(".png"):
+                    imagetype = "png"
+                else:
+                    imagetype = "svg+xml"
 
-            with open(filename, "rb") as f:
-                logo = MIMEImage(f.read(), imagetype)
+                with open(filename, "rb") as f:
+                    image = MIMEImage(f.read(), imagetype)
 
-            logo.add_header("Content-ID", "<{}>".format("logo"))
-            return attachments + [logo]
-        return attachments
+                image.add_header("Content-ID", "<{}>".format(identifier))
+                files.append(image)
+        return attachments + files
 
 
 class SyncEmailMixin:
