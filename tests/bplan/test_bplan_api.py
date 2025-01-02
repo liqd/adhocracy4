@@ -618,3 +618,51 @@ def test_bplan_api_rejects_invalid_base64_image(
     with django_capture_on_commit_callbacks(execute=True):
         response = apiclient.post(url, data, format="json")
         assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_bplan_api_accepts_long_name_and_truncates_it(
+    apiclient, districts, organisation
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-" + "a" * 120,
+        "description": "desc",
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "identifier": "1-234",
+        "point": "[0,0]",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.is_diplan is True
+    assert len(bplan.name) == 120
+    assert bplan.name == "bplan-" + "a" * 114
+
+
+@pytest.mark.django_db
+def test_bplan_api_accepts_long_description_and_truncates_it(
+    apiclient, districts, organisation
+):
+    url = reverse("bplan-list", kwargs={"organisation_pk": organisation.pk})
+    data = {
+        "name": "bplan-long-desc",
+        "description": "desc" + "a" * 250,
+        "url": "https://bplan.net",
+        "start_date": "2013-01-01 18:00",
+        "identifier": "1-234",
+        "point": "[0,0]",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format="json")
+    assert response.status_code == status.HTTP_201_CREATED
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.is_diplan is True
+    assert len(bplan.description) == 250
+    assert bplan.description == "desc" + "a" * 246

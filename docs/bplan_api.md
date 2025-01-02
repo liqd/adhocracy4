@@ -76,7 +76,7 @@ The following fields need to be provided:
 
 - *name*: string
   - Name of the BPLAN (e.g. used as the title of the project tile)
-  - Maximum length of 120 chars
+  - Maximum length of 120 chars, however longer input is accepted and will be cut to 120
 - *(imperia only) identifier*: string
   - Identifier that clearly identifies the BPLAN, needs to be the same as in the FIS Broker (e.g. `VIII - 329`)
   - Maximum length of 120 chars
@@ -85,7 +85,7 @@ The following fields need to be provided:
   - Maximum length of 120 chars
 - *description*: string
   - Description of the BPLAN shown in the project tile
-  - Maximum length of 250 chars
+  - Maximum length of 250 chars, however longer input is accepted and will be cut to 250
 - *url*: string
   - URL of the external site the BPLAN is embedded on
 - *office_worker_email*: string

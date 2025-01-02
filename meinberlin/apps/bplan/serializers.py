@@ -31,10 +31,20 @@ BPLAN_EMBED = (
     'max-height: 100vh" src="{}" frameborder="0"></iframe>'
 )
 DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES = 10 * 1024 * 1024
+NAME_MAX_LENGTH = project_models.Project._meta.get_field("name").max_length
+DESCRIPTION_MAX_LENGTH = project_models.Project._meta.get_field(
+    "description"
+).max_length
 
 
 class BplanSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
+    name = serializers.CharField(
+        write_only=True,
+    )
+    description = serializers.CharField(
+        write_only=True,
+    )
 
     # make write_only for consistency  reasons
     start_date = serializers.DateTimeField(write_only=True)
@@ -47,7 +57,7 @@ class BplanSerializer(serializers.ModelSerializer):
         required=False,
         write_only=True,
     )
-    # can't use a4 field as must be serilizer field
+    # can't use a4 field as must be serializer field
     image_alt_text = serializers.CharField(
         required=False,
         write_only=True,
@@ -121,6 +131,14 @@ class BplanSerializer(serializers.ModelSerializer):
         orga = orga_model.objects.get(pk=orga_pk)
         validated_data["organisation"] = orga
 
+        # Ellipsizing/char limit is handled by us, diplan always sends full text
+        if len(validated_data["name"]) > NAME_MAX_LENGTH:
+            validated_data["name"] = validated_data["name"][:NAME_MAX_LENGTH]
+        if len(validated_data["description"]) > DESCRIPTION_MAX_LENGTH:
+            validated_data["description"] = validated_data["description"][
+                :DESCRIPTION_MAX_LENGTH
+            ]
+
         # mark as diplan, will make removal of old bplans easier
         # TODO: remove this check and the is_diplan field once transition to diplan is completed
         if "bplan_id" in validated_data or "point" in validated_data:
@@ -174,6 +192,17 @@ class BplanSerializer(serializers.ModelSerializer):
             #  they unpublish them if they should no longer be shown
             if end_date and end_date > timezone.localtime(timezone.now()):
                 instance.is_archived = False
+
+        # Ellipsizing/char limit is handled by us, diplan always sends full text
+        if "name" in validated_data and len(validated_data["name"]) > NAME_MAX_LENGTH:
+            validated_data["name"] = validated_data["name"][:NAME_MAX_LENGTH]
+        if (
+            "description" in validated_data
+            and len(validated_data["description"]) > DESCRIPTION_MAX_LENGTH
+        ):
+            validated_data["description"] = validated_data["description"][
+                :DESCRIPTION_MAX_LENGTH
+            ]
 
         # mark as diplan, will make removal of old bplans easier
         # TODO: remove this check and the is_diplan field once transition to diplan is completed
