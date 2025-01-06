@@ -27,7 +27,7 @@
     "react-dom": "18.3.1",
     "react-flip-move": "3.0.5",
     "react-leaflet": "4.2.1",
-    "react-markdown": "9.0.1",
+    "react-markdown": "9.0.3",
     "react-slick": "0.30.3",
     "shpjs": "6.1.0"
   },
