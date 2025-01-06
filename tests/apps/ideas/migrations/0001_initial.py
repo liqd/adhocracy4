@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 
 import adhocracy4.categories.fields
 import adhocracy4.maps.fields
-import ckeditor.fields
 from django.db import migrations, models
 import django.db.models.deletion
 
@@ -41,9 +40,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "description",
-                    ckeditor.fields.RichTextField(
-                        blank=True, verbose_name="Description"
-                    ),
+                    models.TextField(blank=True, verbose_name="Description"),
                 ),
                 ("point", adhocracy4.maps.fields.PointField(blank=True)),
                 (
