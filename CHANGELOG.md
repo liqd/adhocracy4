@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## aplus-v2501.1
+
+### Removed
+
+- removed the deprecated django-ckeditor fields
+
+### Added
+
+- Added PollDetail/TextareaWithCounter.jsx and PollDetail/ChoiceRow.jsx
+- `Voting Options` section to PollDashboard/EditPollManagement.jsx
+- new setting `A4_EMAIL_ATTACHMENTS` if you need more than the `email_logo.png` attachement in your emails
+  - this allows you to add custom attachments to the emails, even those set in a4
+
+### Changed
+
+- Renamed and refactored PollDetail/PollQuestion.jsx into PollDetail/PollChoice.jsx
+- Refactored PollDetail/CharCounter.jsx
+- refactored static/Alert.jsx
+
 ## mb-v2412.1
 
 ### Fixed
