@@ -348,7 +348,7 @@ def test_bplan_api_diplan_adds_district_from_bplan_id(
         "office_worker_email": "test@liqd.de",
         "start_date": "2013-01-01 18:00",
         "bplan_id": "1-234",
-        "point": "0,0",
+        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
         "end_date": "2021-01-01 18:00",
     }
     user = organisation.initiators.first()
@@ -464,7 +464,7 @@ def test_bplan_api_location_task_not_called_if_point_included(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": "[0,0]",
+        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
     }
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -474,7 +474,13 @@ def test_bplan_api_location_task_not_called_if_point_included(
         bplan = bplan_models.Bplan.objects.first()
         assert bplan.is_draft is False
         assert bplan.is_diplan is True
-        assert bplan.point == "[0,0]"
+        assert bplan.point == {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [13.397788148643649, 52.52958586909979],
+            },
+        }
         mock.assert_not_called()
 
 
@@ -491,13 +497,7 @@ def test_bplan_api_accepts_valid_geojson(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [13.411924777644563, 52.499598134440944],
-            },
-        },
+        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
     }
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -511,7 +511,7 @@ def test_bplan_api_accepts_valid_geojson(
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [13.411924777644563, 52.499598134440944],
+                "coordinates": [13.397788148643649, 52.52958586909979],
             },
         }
 
@@ -530,7 +530,7 @@ def test_bplan_api_accepts_valid_base64_image(
         "end_date": "2021-01-01 18:00",
         "identifier": "1-234",
         "is_published": True,
-        "point": "1492195.544958444,6895923.461738203",
+        "point": '{"type":"Feature", "geometry":{"type":"Point","coordinates":[13.397788148643649,52.52958586909979]}}',
         "tile_image": image,
     }
 

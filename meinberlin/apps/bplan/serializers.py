@@ -83,7 +83,7 @@ class BplanSerializer(serializers.ModelSerializer):
     )
     # overwrite the point model field so it's expecting json, the original field is validated as a string and therefore
     # doesn't pass validation when not receiving a string
-    point = serializers.JSONField(required=False, write_only=True)
+    point = serializers.JSONField(required=False, write_only=True, binary=True)
 
     class Meta:
         model = Bplan

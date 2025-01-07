@@ -101,7 +101,7 @@ The following fields need to be provided:
   - End date of the participation in
   - [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)
     (if no time zone is defined, german time zones UTC+01 and UTC+02 are used)
-- *point*: geojson
+- *point*: string containing valid geojson
   - Location of the bplan
   - Projection: WGS84 / EPSG:4326
 - *(diplan only) tile_image*: string
@@ -203,7 +203,7 @@ curl \
    "office_worker_email": "test@example.com",
    "start_date": "2019-01-01T00:00",
    "end_date": "2022-01-01T00:00",
-   "point": {"type": "Feature","geometry": {"type": "Point", "coordinates":[13.411924777644563,52.499598134440944]}}
+   "point": "{\"type\": \"Feature\",\"geometry\": {\"type\": \"Point\", \"coordinates\":[13.411924777644563,52.499598134440944]}}"
  }
 '
 ```
@@ -224,7 +224,7 @@ curl  -X POST http://127.0.0.1:8003/api/organisations/1/bplan/ \
    "office_worker_email": "test@example.com",
    "start_date": "2019-01-01T00:00",
    "end_date": "2022-01-01T00:00",
-   "point": {"type": "Feature","geometry": {"type": "Point", "coordinates":[13.411924777644563,52.499598134440944]}}
+   "point": "{\"type\": \"Feature\",\"geometry\": {\"type\": \"Point\", \"coordinates\":[13.411924777644563,52.499598134440944]}}"
  }
 '
 ```
