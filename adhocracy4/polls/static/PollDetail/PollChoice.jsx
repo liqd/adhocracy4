@@ -84,7 +84,6 @@ export const PollChoice = (props) => {
               disabled={!userAllowedVote || props.question.isReadOnly}
               otherChoiceAnswer={otherChoiceAnswer}
               onOtherChange={handleOtherChange}
-              isAuthenticated={props.question.authenticated}
               isReadOnly={props.question.isReadOnly}
               errors={errors}
             />

@@ -34,7 +34,6 @@ export const ChoiceRow = React.memo(({
   disabled,
   otherChoiceAnswer,
   onOtherChange,
-  isAuthenticated,
   isReadOnly,
   errors
 }) => {
@@ -88,7 +87,7 @@ export const ChoiceRow = React.memo(({
           id={choice.id}
           value={textareaValue} // Always use the local state value
           onChange={handleTextareaChange}
-          disabled={!isAuthenticated || isReadOnly}
+          disabled={disabled}
           error={errors}
         />
       )}
