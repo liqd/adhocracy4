@@ -190,6 +190,7 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
                   name="captcheck_selected_answer"
                   aria-label="Type your answer here."
                   autoComplete="off"
+                  onInput={(e) => chooseAnswer(e, e.target.value, false)}
                 />
               </div>
               )}
