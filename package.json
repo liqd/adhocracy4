@@ -32,7 +32,7 @@
     "shpjs": "6.1.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.25.9",
+    "@babel/eslint-parser": "7.26.5",
     "@babel/plugin-transform-runtime": "7.25.9",
     "@babel/preset-env": "7.26.0",
     "@babel/preset-react": "7.26.3",
