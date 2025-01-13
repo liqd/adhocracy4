@@ -350,6 +350,7 @@ BLEACH_LIST = {
             "em",
             "figcaption",
             "figure",
+            "i",
             "iframe",
             "img",
             "li",
