@@ -1,10 +1,11 @@
 import base64
 import datetime
-import imghdr
+import mimetypes
 import posixpath
 import tempfile
 from urllib.parse import urlparse
 
+import magic
 import requests
 from django.apps import apps
 from django.conf import settings
@@ -152,13 +153,14 @@ class BplanSerializer(serializers.ModelSerializer):
         start_date = validated_data["start_date"]
         end_date = validated_data["end_date"]
 
+        tile_image = validated_data.pop("tile_image", None)
+        if tile_image:
+            print(tile_image)
+            validated_data["tile_image"] = self._create_image_from_base64(tile_image)
+
         image_url = validated_data.pop("image_url", None)
         if image_url:
             validated_data["tile_image"] = self._download_image_from_url(image_url)
-
-        tile_image = validated_data.pop("tile_image", None)
-        if tile_image:
-            validated_data["tile_image"] = self._create_image_from_base64(tile_image)
 
         bplan = super().create(validated_data)
 
@@ -327,14 +329,13 @@ class BplanSerializer(serializers.ModelSerializer):
 
         root_path, extension = posixpath.splitext(url_path)
         if file:
-            # Workaround: imghdr expects the files position on 0
-            file.seek(0)
-            extension = imghdr.what(file) or "jpeg"
+            file_mime = magic.from_buffer(file.read(), mime=True)
+            extension = mimetypes.guess_extension(file_mime) or "jpeg"
 
         basename = "bplan_%s" % (timezone.now().strftime("%Y%m%dT%H%M%S"))
 
         dirname = datetime.datetime.now().strftime(self._image_upload_to)
-        filename = posixpath.join(dirname, basename + "." + extension)
+        filename = posixpath.join(dirname, basename + extension)
 
         return self._image_storage.get_available_name(filename)
 
