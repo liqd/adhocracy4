@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### aplus-v2501.1
+
+### Fixed
+
+- fixed other answer input field being disabled for unregistered users
+- fix Captcha text mode not reacting to input
+
+
 ## aplus-v2501.1
 
 ### Removed
