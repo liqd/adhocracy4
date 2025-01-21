@@ -20,14 +20,11 @@ const translated = {
   successMessage: django.gettext('Entry successfully created'),
   readMore: django.gettext('Read more...'),
   readLess: django.gettext('Read less'),
-  share: django.gettext('Share'),
-  report: django.gettext(' Report'),
   showModStatement: django.gettext('Show moderator\'s feedback'),
   hideModStatement: django.gettext('Hide moderator\'s feedback'),
   deleteCommentQuestion: django.gettext('Do you really want to delete this comment?'),
   deleteComment: django.gettext('Delete comment'),
   delete: django.gettext('Delete'),
-  abort: django.gettext('Abort'),
   deletedyByCreatorOn: django.gettext('Deleted by creator on'),
   deletedByModeratorOn: django.gettext('Deleted by moderator on'),
   blockedByModerator: django.gettext('Blocked by moderator'),
@@ -255,24 +252,6 @@ export default class Comment extends React.Component {
     }
   }
 
-  renderDeleteModal () {
-    if (this.props.has_deleting_permission) {
-      return (
-        <Modal
-          name={'comment_delete_' + this.props.id}
-          partials={{
-            title: translated.deleteComment,
-            description: translated.deleteCommentQuestion
-          }}
-          handleSubmit={() => this.props.onCommentDelete(this.props.index, this.props.parentIndex)}
-          action={translated.delete}
-          abort={translated.abort}
-          btnStyle="cta"
-        />
-      )
-    }
-  }
-
   getCommentUrl () {
     return window.location.href.split('?')[0].split('#')[0] + '?comment=' + this.props.id
   }
@@ -308,12 +287,39 @@ export default class Comment extends React.Component {
 
     const userProfile = this.props.user_profile_url
 
+    const modals = {
+      deleteModal: (
+        <Modal
+          partials={{
+            title: translated.deleteComment,
+            description: translated.deleteCommentQuestion
+          }}
+          handleSubmit={() => this.props.onCommentDelete(this.props.index, this.props.parentIndex)}
+          action={translated.delete}
+          toggle={translated.delete}
+        />
+      ),
+      reportModal: (
+        <ReportModal
+          description={translated.reportTitle}
+          btnStyle="cta"
+          contentType={this.props.comment_content_type}
+        />
+      ),
+      urlModal: (
+        <UrlModal
+          title={translated.shareLink}
+          btnStyle="cta"
+          url={this.getCommentUrl()}
+        />
+      )
+    }
+
     return (
       <li>
         {this.props.displayNotification && <Alert type="success" message={translated.successMessage} />}
         <div className={(this.props.is_users_own_comment ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
           <a className="a4-comments__anchor" id={'comment_' + this.props.id} href={'./?comment=' + this.props.id}>{'Comment ' + this.props.id}</a>
-          {this.renderDeleteModal()}
           <div className="a4-comments__box">
             <div className="row">
               <div className={this.props.is_deleted ? 'd-none' : 'col-2 col-lg-1 a4-comments__user-img'}>
@@ -339,6 +345,7 @@ export default class Comment extends React.Component {
                     has_changing_permission={this.props.has_changing_permission}
                     has_deleting_permission={this.props.has_deleting_permission}
                     isParentComment={this.displayCategories()}
+                    modals={modals}
                   />}
               </div>
 
@@ -391,20 +398,9 @@ export default class Comment extends React.Component {
                       </a>
                     </button>}
 
-                  {!this.props.is_deleted &&
-                    <a
-                      className="btn btn--no-border a4-comments__action-bar__btn" href={'?comment_' + this.props.id}
-                      data-bs-toggle="modal" data-bs-target={'#share_comment_' + this.props.id}
-                    ><i className="fas fa-share" aria-hidden="true" /> {translated.share}
-                    </a>}
+                  {!this.props.is_deleted && modals.urlModal}
 
-                  {!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment &&
-                    <a
-                      className="btn btn--no-border a4-comments__action-bar__btn" href={'#report_comment_' + this.props.id}
-                      data-bs-toggle="modal"
-                    ><i className="fas fa-exclamation-triangle" aria-hidden="true" />{translated.report}
-                    </a>}
-
+                  {!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment && modals.reportModal}
                 </div>
               </div>
             </div>
@@ -465,20 +461,6 @@ export default class Comment extends React.Component {
               </div>)
             : null}
         </>
-        <ReportModal
-          name={'report_comment_' + this.props.id}
-          description={translated.reportTitle}
-          btnStyle="cta"
-          objectId={this.props.id}
-          contentType={this.props.comment_content_type}
-        />
-        <UrlModal
-          name={'share_comment_' + this.props.id}
-          title={translated.shareLink}
-          btnStyle="cta"
-          objectId={this.props.id}
-          url={this.getCommentUrl()}
-        />
       </li>
     )
   }

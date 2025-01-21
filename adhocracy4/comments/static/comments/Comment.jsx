@@ -1,12 +1,12 @@
+const React = require('react')
+const django = require('django')
+
+const { default: Modal } = require('../../../static/Modal')
 const ReportModal = require('../../../reports/static/reports/react_reports').ReportModal
 const RatingBox = require('../../../ratings/static/ratings/RatingBox')
-const Modal = require('../../../static/Modal')
 const CommentEditForm = require('./CommentEditForm')
 const CommentForm = require('./CommentForm')
 const CommentManageDropdown = require('./CommentManageDropdown')
-
-const React = require('react')
-const django = require('django')
 
 const safeHtml = function (text) {
   return { __html: text }
@@ -156,7 +156,6 @@ class Comment extends React.Component {
     if (this.isOwner() || this.context.isModerator) {
       return (
         <Modal
-          name={'comment_delete_' + this.props.id}
           partials={{
             title: deleteTag,
             description: confirmDeleteText

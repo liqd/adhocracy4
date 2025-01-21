@@ -8,19 +8,12 @@ module.exports.ReportModal = ReportModal
 
 module.exports.renderReports = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
+  const root = createRoot(el)
 
-  el.setAttribute('href', '#' + props.modalName)
-  el.setAttribute('data-bs-toggle', 'modal')
-
-  const container = document.createElement('div')
-  document.body.appendChild(container)
-
-  const root = createRoot(container)
   root.render(
     <ReportModal
       name={props.modalName}
-      description={django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')}
-      btnStyle="cta"
+      description={django.gettext('Do you want to report this content? Your message will be sent to our moderation team. They will review the reported content, and if it violates our discussion rules (netiquette), it will be removed.')}
       objectId={props.objectId}
       contentType={props.contentType}
     />)

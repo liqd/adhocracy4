@@ -1,69 +1,117 @@
-import React from 'react'
+import React, { useId, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import django from 'django'
 
-const Modal = (props) => {
-  const keepOpen = props.keepOpenOnSubmit || false
-  const abortStr = props.abort || django.gettext('Abort')
-  const bodyCssClass = props.partials.bodyClass || ''
+const translated = {
+  close: django.gettext('Close'),
+  cancel: django.gettext('Cancel')
+}
+
+const Modal = ({
+  partials,
+  handleSubmit,
+  action,
+  keepOpenOnSubmit,
+  toggle,
+  onOpen,
+  onClose
+}) => {
+  const dialogRef = useRef(null)
+  const uniqueId = useId()
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (event.target === dialogRef.current) {
+        handleClose()
+      }
+    }
+
+    const dialog = dialogRef.current
+    if (dialog) {
+      dialog.addEventListener('click', handleClickOutside)
+      return () => dialog.removeEventListener('click', handleClickOutside)
+    }
+  })
+
+  const handleOpen = (e) => {
+    e.preventDefault()
+    dialogRef.current?.showModal()
+    onOpen?.()
+  }
+
+  const handleClose = () => {
+    dialogRef.current?.close()
+    onClose?.()
+  }
+
+  const onConfirm = (e) => {
+    handleSubmit?.(e)
+    if (!keepOpenOnSubmit) {
+      handleClose()
+    }
+  }
+
+  const dialogModal = (
+    <dialog
+      ref={dialogRef}
+      id={uniqueId}
+      className="a4-modal"
+    >
+      <div className="a4-modal__content">
+        <header className="a4-modal__header">
+          {partials.title && (
+            <h2 className="a4-modal__title">{partials.title}</h2>
+          )}
+          <button
+            className="a4-modal__close"
+            aria-label={translated.close}
+            onClick={handleClose}
+            type="button"
+          >
+            <i className="fa fa-times" aria-hidden="true" />
+          </button>
+        </header>
+        <div className={'a4-modal__body ' + (partials.bodyClass || '')}>
+          {partials.description && (
+            <div className="a4-modal__description">
+              {partials.description}
+            </div>
+          )}
+          {partials.body}
+        </div>
+        {!partials.hideFooter && (
+          <footer className="form-submit-flex-end">
+            <button
+              className="a4-modal__cancel link form-submit-flex-end__link"
+              onClick={handleClose}
+              type="button"
+            >
+              {translated.cancel}
+            </button>
+            <button
+              className="a4-modal__submit button"
+              onClick={onConfirm}
+              type="button"
+            >
+              {action}
+            </button>
+          </footer>
+        )}
+      </div>
+    </dialog>
+  )
 
   return (
-    <div
-      className="modal fade"
-      id={props.name}
-      tabIndex="-1"
-      role="dialog"
-      aria-label={props.partials.title || 'Modal'}
-      aria-hidden="true"
-    >
-      <div
-        className="modal-dialog modal-dialog-centered modal-lg"
-        role="document"
+    <>
+      <button
+        className="a4-modal__toggle btn-link link"
+        onClick={handleOpen}
       >
-        <div className="modal-content">
-          <div className="modal-header">
-            {props.partials.title && (
-              <h2 className="u-no-margin-bottom u-spacer-top-one-half">
-                {props.partials.title}
-              </h2>)}
-            <button
-              className="close"
-              aria-label={abortStr}
-              data-bs-dismiss="modal"
-              onClick={props.handleClose}
-            >
-              <i className="fa fa-times" aria-hidden="true" />
-            </button>
-          </div>
-
-          <div
-            className={'modal-body ' + bodyCssClass}
-          >
-            <div className="u-spacer-bottom">
-              {props.partials.description}
-            </div>
-            {props.partials.body}
-          </div>
-          {!props.partials.hideFooter &&
-            <div className="modal-footer">
-              <button
-                className="submit-button"
-                data-bs-dismiss={keepOpen ? 'false' : 'modal'}
-                onClick={props.handleSubmit}
-              >
-                {props.action}
-              </button>
-              <button
-                className="cancel-button"
-                data-bs-dismiss="modal"
-                onClick={props.handleClose}
-              >
-                {abortStr}
-              </button>
-            </div>}
-        </div>
-      </div>
-    </div>
+        {toggle}
+      </button>
+      {createPortal(dialogModal, document.body)}
+    </>
   )
 }
 
-module.exports = Modal
+export default Modal

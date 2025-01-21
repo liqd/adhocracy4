@@ -140,11 +140,8 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                       Reply
                     </a>
                   </button>
-                  <a
-                    class="btn btn--no-border a4-comments__action-bar__btn"
-                    data-bs-target="#share_comment_1"
-                    data-bs-toggle="modal"
-                    href="?comment_1"
+                  <button
+                    class="a4-modal__toggle btn-link link"
                   >
                     <i
                       aria-hidden="true"
@@ -152,140 +149,6 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                     />
                      
                     Share
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          aria-hidden="true"
-          aria-label="Send Report"
-          class="modal fade"
-          id="report_comment_1"
-          role="dialog"
-          tabindex="-1"
-        >
-          <div
-            class="modal-dialog modal-dialog-centered modal-lg"
-            role="document"
-          >
-            <div
-              class="modal-content"
-            >
-              <div
-                class="modal-header"
-              >
-                <h2
-                  class="u-no-margin-bottom u-spacer-top-one-half"
-                >
-                  Send Report
-                </h2>
-                <button
-                  aria-label="Abort"
-                  class="close"
-                  data-bs-dismiss="modal"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="fa fa-times"
-                  />
-                </button>
-              </div>
-              <div
-                class="modal-body "
-              >
-                <div
-                  class="u-spacer-bottom"
-                >
-                  You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).
-                </div>
-                <div
-                  class="form-group"
-                >
-                  <textarea
-                    class="form-control report-message"
-                    placeholder="Your message"
-                    rows="5"
-                  />
-                </div>
-              </div>
-              <div
-                class="modal-footer"
-              >
-                <button
-                  class="submit-button"
-                  data-bs-dismiss="false"
-                >
-                  Send Report
-                </button>
-                <button
-                  class="cancel-button"
-                  data-bs-dismiss="modal"
-                >
-                  Abort
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          aria-hidden="true"
-          aria-label="Share link"
-          class="modal fade"
-          id="share_comment_1"
-          role="dialog"
-          tabindex="-1"
-        >
-          <div
-            class="modal-dialog modal-dialog-centered modal-lg"
-            role="document"
-          >
-            <div
-              class="modal-content"
-            >
-              <div
-                class="modal-header"
-              >
-                <h2
-                  class="u-no-margin-bottom u-spacer-top-one-half"
-                >
-                  Share link
-                </h2>
-                <button
-                  aria-label="Abort"
-                  class="close"
-                  data-bs-dismiss="modal"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="fa fa-times"
-                  />
-                </button>
-              </div>
-              <div
-                class="modal-body "
-              >
-                <div
-                  class="u-spacer-bottom"
-                />
-                <div
-                  class="input-group"
-                >
-                  <input
-                    class="form-control"
-                    id="share-url-1"
-                    readonly=""
-                    type="text"
-                    value="http://localhost/?comment=1"
-                  />
-                  <button
-                    aria-pressed="false"
-                    autocomplete="off"
-                    class="btn btn--primary input-group-append"
-                    data-bs-toggle="button"
-                  >
-                    Copy
                   </button>
                 </div>
               </div>
@@ -294,6 +157,56 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
         </div>
       </li>
     </div>
+    <dialog
+      class="a4-modal"
+      id=":r0:"
+    >
+      <div
+        class="a4-modal__content"
+      >
+        <header
+          class="a4-modal__header"
+        >
+          <h2
+            class="a4-modal__title"
+          >
+            Share link
+          </h2>
+          <button
+            aria-label="Close"
+            class="a4-modal__close"
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              class="fa fa-times"
+            />
+          </button>
+        </header>
+        <div
+          class="a4-modal__body "
+        >
+          <div
+            class="input-group a4-url-modal__body"
+          >
+            <input
+              class="form-control"
+              id="share-url-undefined"
+              readonly=""
+              type="text"
+              value="http://localhost/?comment=1"
+            />
+            <button
+              aria-pressed="false"
+              autocomplete="off"
+              class="a4-url-modal__button"
+            >
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
   </body>,
   "container": <div>
     <li>
@@ -431,11 +344,8 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                     Reply
                   </a>
                 </button>
-                <a
-                  class="btn btn--no-border a4-comments__action-bar__btn"
-                  data-bs-target="#share_comment_1"
-                  data-bs-toggle="modal"
-                  href="?comment_1"
+                <button
+                  class="a4-modal__toggle btn-link link"
                 >
                   <i
                     aria-hidden="true"
@@ -443,140 +353,6 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                   />
                    
                   Share
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        aria-hidden="true"
-        aria-label="Send Report"
-        class="modal fade"
-        id="report_comment_1"
-        role="dialog"
-        tabindex="-1"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered modal-lg"
-          role="document"
-        >
-          <div
-            class="modal-content"
-          >
-            <div
-              class="modal-header"
-            >
-              <h2
-                class="u-no-margin-bottom u-spacer-top-one-half"
-              >
-                Send Report
-              </h2>
-              <button
-                aria-label="Abort"
-                class="close"
-                data-bs-dismiss="modal"
-              >
-                <i
-                  aria-hidden="true"
-                  class="fa fa-times"
-                />
-              </button>
-            </div>
-            <div
-              class="modal-body "
-            >
-              <div
-                class="u-spacer-bottom"
-              >
-                You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).
-              </div>
-              <div
-                class="form-group"
-              >
-                <textarea
-                  class="form-control report-message"
-                  placeholder="Your message"
-                  rows="5"
-                />
-              </div>
-            </div>
-            <div
-              class="modal-footer"
-            >
-              <button
-                class="submit-button"
-                data-bs-dismiss="false"
-              >
-                Send Report
-              </button>
-              <button
-                class="cancel-button"
-                data-bs-dismiss="modal"
-              >
-                Abort
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        aria-hidden="true"
-        aria-label="Share link"
-        class="modal fade"
-        id="share_comment_1"
-        role="dialog"
-        tabindex="-1"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered modal-lg"
-          role="document"
-        >
-          <div
-            class="modal-content"
-          >
-            <div
-              class="modal-header"
-            >
-              <h2
-                class="u-no-margin-bottom u-spacer-top-one-half"
-              >
-                Share link
-              </h2>
-              <button
-                aria-label="Abort"
-                class="close"
-                data-bs-dismiss="modal"
-              >
-                <i
-                  aria-hidden="true"
-                  class="fa fa-times"
-                />
-              </button>
-            </div>
-            <div
-              class="modal-body "
-            >
-              <div
-                class="u-spacer-bottom"
-              />
-              <div
-                class="input-group"
-              >
-                <input
-                  class="form-control"
-                  id="share-url-1"
-                  readonly=""
-                  type="text"
-                  value="http://localhost/?comment=1"
-                />
-                <button
-                  aria-pressed="false"
-                  autocomplete="off"
-                  class="btn btn--primary input-group-append"
-                  data-bs-toggle="button"
-                >
-                  Copy
                 </button>
               </div>
             </div>
@@ -784,11 +560,8 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                       Reply
                     </a>
                   </button>
-                  <a
-                    class="btn btn--no-border a4-comments__action-bar__btn"
-                    data-bs-target="#share_comment_1"
-                    data-bs-toggle="modal"
-                    href="?comment_1"
+                  <button
+                    class="a4-modal__toggle btn-link link"
                   >
                     <i
                       aria-hidden="true"
@@ -796,140 +569,6 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                     />
                      
                     Share
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          aria-hidden="true"
-          aria-label="Send Report"
-          class="modal fade"
-          id="report_comment_1"
-          role="dialog"
-          tabindex="-1"
-        >
-          <div
-            class="modal-dialog modal-dialog-centered modal-lg"
-            role="document"
-          >
-            <div
-              class="modal-content"
-            >
-              <div
-                class="modal-header"
-              >
-                <h2
-                  class="u-no-margin-bottom u-spacer-top-one-half"
-                >
-                  Send Report
-                </h2>
-                <button
-                  aria-label="Abort"
-                  class="close"
-                  data-bs-dismiss="modal"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="fa fa-times"
-                  />
-                </button>
-              </div>
-              <div
-                class="modal-body "
-              >
-                <div
-                  class="u-spacer-bottom"
-                >
-                  You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).
-                </div>
-                <div
-                  class="form-group"
-                >
-                  <textarea
-                    class="form-control report-message"
-                    placeholder="Your message"
-                    rows="5"
-                  />
-                </div>
-              </div>
-              <div
-                class="modal-footer"
-              >
-                <button
-                  class="submit-button"
-                  data-bs-dismiss="false"
-                >
-                  Send Report
-                </button>
-                <button
-                  class="cancel-button"
-                  data-bs-dismiss="modal"
-                >
-                  Abort
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          aria-hidden="true"
-          aria-label="Share link"
-          class="modal fade"
-          id="share_comment_1"
-          role="dialog"
-          tabindex="-1"
-        >
-          <div
-            class="modal-dialog modal-dialog-centered modal-lg"
-            role="document"
-          >
-            <div
-              class="modal-content"
-            >
-              <div
-                class="modal-header"
-              >
-                <h2
-                  class="u-no-margin-bottom u-spacer-top-one-half"
-                >
-                  Share link
-                </h2>
-                <button
-                  aria-label="Abort"
-                  class="close"
-                  data-bs-dismiss="modal"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="fa fa-times"
-                  />
-                </button>
-              </div>
-              <div
-                class="modal-body "
-              >
-                <div
-                  class="u-spacer-bottom"
-                />
-                <div
-                  class="input-group"
-                >
-                  <input
-                    class="form-control"
-                    id="share-url-1"
-                    readonly=""
-                    type="text"
-                    value="http://localhost/?comment=1"
-                  />
-                  <button
-                    aria-pressed="false"
-                    autocomplete="off"
-                    class="btn btn--primary input-group-append"
-                    data-bs-toggle="button"
-                  >
-                    Copy
                   </button>
                 </div>
               </div>
@@ -938,6 +577,56 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
         </div>
       </li>
     </div>
+    <dialog
+      class="a4-modal"
+      id=":r4:"
+    >
+      <div
+        class="a4-modal__content"
+      >
+        <header
+          class="a4-modal__header"
+        >
+          <h2
+            class="a4-modal__title"
+          >
+            Share link
+          </h2>
+          <button
+            aria-label="Close"
+            class="a4-modal__close"
+            type="button"
+          >
+            <i
+              aria-hidden="true"
+              class="fa fa-times"
+            />
+          </button>
+        </header>
+        <div
+          class="a4-modal__body "
+        >
+          <div
+            class="input-group a4-url-modal__body"
+          >
+            <input
+              class="form-control"
+              id="share-url-undefined"
+              readonly=""
+              type="text"
+              value="http://localhost/?comment=1"
+            />
+            <button
+              aria-pressed="false"
+              autocomplete="off"
+              class="a4-url-modal__button"
+            >
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
   </body>,
   "container": <div>
     <li>
@@ -1080,11 +769,8 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                     Reply
                   </a>
                 </button>
-                <a
-                  class="btn btn--no-border a4-comments__action-bar__btn"
-                  data-bs-target="#share_comment_1"
-                  data-bs-toggle="modal"
-                  href="?comment_1"
+                <button
+                  class="a4-modal__toggle btn-link link"
                 >
                   <i
                     aria-hidden="true"
@@ -1092,140 +778,6 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                   />
                    
                   Share
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        aria-hidden="true"
-        aria-label="Send Report"
-        class="modal fade"
-        id="report_comment_1"
-        role="dialog"
-        tabindex="-1"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered modal-lg"
-          role="document"
-        >
-          <div
-            class="modal-content"
-          >
-            <div
-              class="modal-header"
-            >
-              <h2
-                class="u-no-margin-bottom u-spacer-top-one-half"
-              >
-                Send Report
-              </h2>
-              <button
-                aria-label="Abort"
-                class="close"
-                data-bs-dismiss="modal"
-              >
-                <i
-                  aria-hidden="true"
-                  class="fa fa-times"
-                />
-              </button>
-            </div>
-            <div
-              class="modal-body "
-            >
-              <div
-                class="u-spacer-bottom"
-              >
-                You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).
-              </div>
-              <div
-                class="form-group"
-              >
-                <textarea
-                  class="form-control report-message"
-                  placeholder="Your message"
-                  rows="5"
-                />
-              </div>
-            </div>
-            <div
-              class="modal-footer"
-            >
-              <button
-                class="submit-button"
-                data-bs-dismiss="false"
-              >
-                Send Report
-              </button>
-              <button
-                class="cancel-button"
-                data-bs-dismiss="modal"
-              >
-                Abort
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        aria-hidden="true"
-        aria-label="Share link"
-        class="modal fade"
-        id="share_comment_1"
-        role="dialog"
-        tabindex="-1"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered modal-lg"
-          role="document"
-        >
-          <div
-            class="modal-content"
-          >
-            <div
-              class="modal-header"
-            >
-              <h2
-                class="u-no-margin-bottom u-spacer-top-one-half"
-              >
-                Share link
-              </h2>
-              <button
-                aria-label="Abort"
-                class="close"
-                data-bs-dismiss="modal"
-              >
-                <i
-                  aria-hidden="true"
-                  class="fa fa-times"
-                />
-              </button>
-            </div>
-            <div
-              class="modal-body "
-            >
-              <div
-                class="u-spacer-bottom"
-              />
-              <div
-                class="input-group"
-              >
-                <input
-                  class="form-control"
-                  id="share-url-1"
-                  readonly=""
-                  type="text"
-                  value="http://localhost/?comment=1"
-                />
-                <button
-                  aria-pressed="false"
-                  autocomplete="off"
-                  class="btn btn--primary input-group-append"
-                  data-bs-toggle="button"
-                >
-                  Copy
                 </button>
               </div>
             </div>
