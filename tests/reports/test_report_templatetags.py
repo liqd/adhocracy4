@@ -21,9 +21,9 @@ def react_reports_render_template(template, rf, question):
     modal_name = "{mountpoint}_modal".format(mountpoint=mountpoint)
 
     expected = (
-        r"^<a href=\"#{modal_name}\" data-a4-widget=\"reports\""
+        r"^<span id=\"{modal_name}\" data-a4-widget=\"reports\""
         r" data-attributes=\"(?P<props>{{.+}})\""
-        r" class=\"(?P<class_names>.*)\">(?P<text>.+)</a>$"
+        r" class=\"(?P<class_names>.*)\">(?P<text>.+)</span>$"
     ).format(modal_name=modal_name)
 
     match = re.match(expected, helpers.render_template(template, context))

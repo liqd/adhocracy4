@@ -32,8 +32,8 @@ def react_reports(obj, text=None, **kwargs):
 
     return format_html(
         (
-            '<a href="#{modal_name}" data-a4-widget="reports"'
-            ' data-attributes="{attributes}" class="{class_names}">{text}</a>'
+            '<span id="{modal_name}" data-a4-widget="reports"'
+            ' data-attributes="{attributes}" class="{class_names}">{text}</span>'
         ),
         attributes=json.dumps(attributes),
         modal_name=modal_name,
