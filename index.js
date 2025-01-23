@@ -5,6 +5,8 @@ import './adhocracy4/static/global_jquery'
 
 export { default as alert } from './adhocracy4/static/Alert'
 export { default as api } from './adhocracy4/static/api'
+export { default as classNames } from './adhocracy4/static/classNames'
+export { default as AddressSearch } from './adhocracy4/maps_react/static/a4maps_react/AddressSearch'
 export { default as comments } from './adhocracy4/comments/static/comments/react_comments'
 export * as commentsAsync from './adhocracy4/comments_async/static/comments_async/react_comments_async'
 export { default as config } from './adhocracy4/static/config'
