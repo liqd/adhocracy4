@@ -2,6 +2,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
+from adhocracy4.maps.mixins import PointFormMixin
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import ProjectMixin
@@ -10,6 +11,7 @@ from ... import mixins
 
 
 class ProjectComponentFormView(
+    PointFormMixin,
     ProjectMixin,
     mixins.DashboardBaseMixin,
     mixins.DashboardComponentMixin,
@@ -17,6 +19,9 @@ class ProjectComponentFormView(
     SuccessMessageMixin,
     generic.UpdateView,
 ):
+
+    class Meta:
+        geo_field = "point"
 
     permission_required = "a4projects.change_project"
     model = project_models.Project
@@ -28,6 +33,9 @@ class ProjectComponentFormView(
     title = ""
     form_class = None
     form_template_name = ""
+
+    def get_properties(self):
+        return {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
 
     def get_object(self, queryset=None):
         return self.project

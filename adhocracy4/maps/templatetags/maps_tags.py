@@ -116,6 +116,11 @@ def map_display_point(point, polygon, pin_src=None):
     omt_token = ""
     attribution = ""
 
+    if hasattr(point, "geojson"):
+        point = point.geojson
+    else:
+        point = json.dumps(point)
+
     if hasattr(settings, "A4_MAP_ATTRIBUTION"):
         attribution = settings.A4_MAP_ATTRIBUTION
 
@@ -148,7 +153,7 @@ def map_display_point(point, polygon, pin_src=None):
         mapbox_token=mapbox_token,
         omt_token=omt_token,
         attribution=attribution,
-        point=json.dumps(point),
+        point=point,
         polygon=json.dumps(polygon),
         pin_src=json.dumps(pin_src),
     )
