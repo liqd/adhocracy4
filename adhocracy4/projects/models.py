@@ -3,6 +3,7 @@ import warnings
 from autoslug import AutoSlugField
 from django.conf import settings
 from django.contrib.auth.models import Group
+from django.contrib.gis.db import models as gis_models
 from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
@@ -17,7 +18,6 @@ from adhocracy4 import transforms as html_transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.images import fields
 from adhocracy4.images.validators import ImageAltTextValidator
-from adhocracy4.maps.fields import PointField
 from adhocracy4.models import base
 
 from .enums import Access
@@ -98,7 +98,7 @@ class ProjectLocationMixin(models.Model):
     class Meta:
         abstract = True
 
-    point = PointField(
+    point = gis_models.PointField(
         null=True,
         blank=True,
         verbose_name=_("Can your project be located on the map?"),
@@ -109,6 +109,10 @@ class ProjectLocationMixin(models.Model):
             "marker can be dragged when pressed."
         ),
     )
+
+    street_name = models.CharField(null=True, blank=True, max_length=200)
+    house_number = models.CharField(null=True, blank=True, max_length=10)
+    zip_code = models.CharField(null=True, blank=True, max_length=20)
 
     administrative_district = models.ForeignKey(
         AdministrativeDistrict,
