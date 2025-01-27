@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-24.04
     services:
       postgres:
-        image: postgres:16
+        image: postgis/postgis:16-3.5
         env:
           POSTGRES_PASSWORD: postgres
         ports:
@@ -62,6 +62,9 @@ jobs:
             ${{ runner.os }}-
       - name: Install Dependencies
         run: |
+          sudo apt update
+          sudo apt install -y gdal-bin
+          sudo apt install libsqlite3-mod-spatialite
           npm install
           pip install -r requirements/dev.txt
           pip install coveralls

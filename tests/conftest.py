@@ -1,5 +1,6 @@
 import pytest
 from celery import Celery
+from django.contrib.gis.geos import Point
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
@@ -24,6 +25,23 @@ def apiclient():
 @pytest.fixture
 def image_factory():
     return img_factories.ImageFactory()
+
+
+@pytest.fixture
+def geos_point():
+    return Point(13.397788148643649, 52.52958586909979)
+
+
+@pytest.fixture
+def geojson_point():
+    return {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [13.397788148643649, 52.52958586909979],
+        },
+        "properties": {"strname": "Unknown Road"},
+    }
 
 
 register(OrganisationFactory)
