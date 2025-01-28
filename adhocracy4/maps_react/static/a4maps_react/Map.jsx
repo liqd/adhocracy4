@@ -24,8 +24,6 @@ const Map = React.forwardRef(function Map (
       }
       map.fitBounds(polygon.getBounds())
       map.setMinZoom(map.getZoom())
-      // used in AddMarkerControl to specify where markers can be placed
-      map.markerConstraints = polygon
     }
     return (
       <>

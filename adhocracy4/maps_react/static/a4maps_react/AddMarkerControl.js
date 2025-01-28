@@ -20,12 +20,18 @@ export function checkPointInsidePolygon (marker, polygons) {
 const markerProps = { icon: makeIcon(), draggable: true }
 
 export class AddMarkerControlClass extends L.Control {
-  constructor ({ input, point }) {
+  constructor ({ input, point, markerConstraints, onDragEnd }) {
     super()
     this.marker = null
     this.oldCoords = null
     this.map = null
     this.input = input
+    this.markerConstraints = null
+    this.onDragEndHandler = onDragEnd
+
+    if (markerConstraints) {
+      this.markerConstraints = L.geoJSON(markerConstraints)
+    }
 
     if (point) {
       const pointObj = JSON.parse(point)
@@ -36,7 +42,7 @@ export class AddMarkerControlClass extends L.Control {
   }
 
   updateMarker (latlng) {
-    const isInsideConstraints = checkPointInsidePolygon(latlng, this.map.markerConstraints)
+    const isInsideConstraints = checkPointInsidePolygon(latlng, this.markerConstraints)
     if (isInsideConstraints) {
       this.oldCoords = latlng
       if (this.marker) {
@@ -47,16 +53,19 @@ export class AddMarkerControlClass extends L.Control {
       }
       this.input.value = JSON.stringify(this.marker.toGeoJSON())
     }
+
+    return isInsideConstraints
   }
 
   onDragend (e) {
     const targetPosition = e.target.getLatLng()
-    const isInsideConstraints = checkPointInsidePolygon(targetPosition, this.map.markerConstraints)
+    const isInsideConstraints = checkPointInsidePolygon(targetPosition, this.markerConstraints)
     if (!isInsideConstraints) {
       e.target.setLatLng(this.oldCoords)
     } else {
       this.updateMarker(targetPosition)
     }
+    this.onDragEndHandler?.(isInsideConstraints)
   }
 
   addTo (map) {
