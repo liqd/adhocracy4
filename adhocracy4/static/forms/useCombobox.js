@@ -127,7 +127,7 @@ const useCombobox = ({
       case 'Enter':
         e.preventDefault()
 
-        if (opened && focused) {
+        if (opened && typeof focused !== 'undefined') {
           toggleOption(focused)
         } else if (!opened) {
           setFocused(targets.first.value)
