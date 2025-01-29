@@ -15,6 +15,7 @@ def react_choose_point(polygon, point, name):
     }
 
     return format_html(
-        '<div data-a4-widget="choose-point" ' 'data-attributes="{attributes}"></div>',
+        '<div data-a4-widget="react-choose-point" '
+        'data-attributes="{attributes}"></div>',
         attributes=json.dumps(attributes),
     )
