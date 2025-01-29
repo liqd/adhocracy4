@@ -10,14 +10,14 @@ class MapChoosePointWidget(Widget):
         super().__init__(attrs)
 
     class Media:
-        js = ("a4maps_choose_point.js",)
+        js = ("a4maps_react_choose_point.js",)
 
-        css = {"all": ["a4maps_choose_point.css"]}
+        css = {"all": ["a4maps_react_choose_point.css"]}
 
     def render(self, name, value, attrs, renderer=None):
-        if not finders.find("a4maps_choose_point.js"):
+        if not finders.find("a4maps_react_choose_point.js"):
             raise ImproperlyConfigured(
-                "Configure your frontend build tool to generate a4maps_choose_point.js."
+                "Configure your frontend build tool to generate a4maps_react_choose_point.js."
             )
 
         context = {

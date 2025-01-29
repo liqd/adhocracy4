@@ -39,7 +39,7 @@ def test_choose_point_widget(area_settings):
         expected = format_html(
             """
 
-<div data-a4-widget="choose-point" data-attributes="{attributes}"></div>
+<div data-a4-widget="react-choose-point" data-attributes="{attributes}"></div>
 <input id="id_test_filter" type="hidden" name="test_filter" value="test_val1">
 """,
             attributes=json.dumps(attrs),

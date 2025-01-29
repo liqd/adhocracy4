@@ -22,7 +22,7 @@ def test_react_maps_without_point(rf, area_settings):
         }
     }
     expected = format_html(
-        '<div data-a4-widget="choose-point" data-attributes="{attributes}"></div>',
+        '<div data-a4-widget="react-choose-point" data-attributes="{attributes}"></div>',
         attributes=json.dumps(attrs),
     )
 
@@ -50,7 +50,7 @@ def test_react_maps_with_point(rf, area_settings):
         }
     }
     expected = format_html(
-        '<div data-a4-widget="choose-point" data-attributes="{attributes}"></div>',
+        '<div data-a4-widget="react-choose-point" data-attributes="{attributes}"></div>',
         attributes=json.dumps(attrs),
     )
 
