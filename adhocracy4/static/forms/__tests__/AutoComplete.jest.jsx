@@ -172,7 +172,7 @@ describe('AutoComplete', () => {
       />
     )
 
-    const checkIcon = screen.getByText('English').closest('li').querySelector('.bicon-check')
+    const checkIcon = screen.getByText('English').closest('li').querySelector('.fa-check')
     expect(checkIcon).toBeInTheDocument()
   })
 
