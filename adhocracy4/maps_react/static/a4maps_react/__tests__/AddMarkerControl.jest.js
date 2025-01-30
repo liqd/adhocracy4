@@ -1,11 +1,9 @@
-import L from 'leaflet'
 import { AddMarkerControlClass } from '../AddMarkerControl'
-import { polygonData } from './Map.jest'
+import { polygonData as markerConstraints } from './Map.jest'
 import { jest } from '@jest/globals'
 
 describe('AddMarkerControlClass', () => {
-  const polygonGeoJSON = L.geoJSON(polygonData)
-  const map = { on: jest.fn(), off: jest.fn(), addLayer: jest.fn(), markerConstraints: polygonGeoJSON }
+  const map = { on: jest.fn(), off: jest.fn(), addLayer: jest.fn() }
   const point = JSON.stringify({
     type: 'Feature',
     properties: {},
@@ -17,7 +15,7 @@ describe('AddMarkerControlClass', () => {
 
   it('sets a marker', () => {
     const input = document.createElement('input')
-    const instance = new AddMarkerControlClass({ input })
+    const instance = new AddMarkerControlClass({ input, markerConstraints })
     instance.map = map
 
     const latlng = { lat: 10, lng: 5 }
@@ -32,7 +30,7 @@ describe('AddMarkerControlClass', () => {
 
   it('does not set a marker when outside', () => {
     const input = document.createElement('input')
-    const instance = new AddMarkerControlClass({ input })
+    const instance = new AddMarkerControlClass({ input, markerConstraints })
     instance.map = map
     const latlng = { lat: 15, lng: 15 }
     expect(instance.marker).toBe(null)
@@ -43,7 +41,7 @@ describe('AddMarkerControlClass', () => {
 
   it('updates on drag', () => {
     const input = document.createElement('input')
-    const instance = new AddMarkerControlClass({ input, point })
+    const instance = new AddMarkerControlClass({ input, point, markerConstraints })
     instance.map = map
     expect(instance.oldCoords).toStrictEqual([5, 5])
     const newCoords = { lat: 10, lng: 10 }
