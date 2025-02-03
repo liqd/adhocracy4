@@ -82,6 +82,22 @@ class ProjectContactDetailMixin(models.Model):
 
     contact_url = models.URLField(blank=True, verbose_name=_("Website"))
 
+    def has_contact_details(self):
+        return any(
+            [
+                self.contact_name,
+                self.contact_address_text,
+                self.contact_email,
+                self.contact_phone,
+                self.contact_url,
+            ]
+        )
+
+    def has_any_contact_info(self):
+        return self.has_contact_details() or (
+            self.organisation and (self.organisation.address or self.organisation.url)
+        )
+
 
 class ProjectLocationMixin(models.Model):
     class Meta:
