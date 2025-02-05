@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import django from 'django'
 
-const Alert = ({ type = 'info', message, onClick, timeInMs }) => {
+const Alert = ({ type = 'info', title, message, onClick, timeInMs }) => {
   const timer = useRef()
   const closeTag = django.gettext('Close')
 
@@ -30,6 +30,7 @@ const Alert = ({ type = 'info', message, onClick, timeInMs }) => {
       aria-atomic="true"
     >
       <div className="alert__content">
+        {title && <h3 className="alert__headline">{title}</h3>}
         {message}
         {onClick && (
           <button
