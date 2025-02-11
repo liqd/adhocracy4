@@ -10,7 +10,7 @@ const translated = {
 }
 
 export const UrlModal = (props) => {
-  const [clicked, setClicked] = useState(false)
+  const [copied, setCopied] = useState(false)
   const inputRef = useRef(null)
 
   const copyUrl = (e) => {
@@ -18,13 +18,17 @@ export const UrlModal = (props) => {
     if (inputRef.current) {
       navigator.clipboard.writeText(inputRef.current.value)
         .then(() => {
-          setClicked(true)
+          setCopied(true)
           return true
         })
         .catch((err) => {
           console.error('Failed to copy text: ', err)
         })
     }
+  }
+
+  const handleModalClose = () => {
+    setCopied(false)
   }
 
   const partials = {
@@ -43,11 +47,11 @@ export const UrlModal = (props) => {
         />
         <button
           className="a4-url-modal__button"
-          aria-pressed={clicked}
+          aria-pressed={copied}
           autoComplete="off"
           onClick={(e) => copyUrl(e)}
         >
-          {clicked ? translated.buttonTextCopied : translated.buttonTextCopy}
+          {copied ? translated.buttonTextCopied : translated.buttonTextCopy}
         </button>
       </div>
     )
@@ -59,6 +63,7 @@ export const UrlModal = (props) => {
       partials={partials}
       toggle={<><i className="fas fa-share" aria-hidden="true" /> {translated.share}</>}
       keepOpenOnSubmit
+      onClose={handleModalClose}
     />
   )
 }
