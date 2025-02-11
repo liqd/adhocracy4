@@ -562,6 +562,23 @@ class Project(
             and not self.has_future_events
         )
 
+    @cached_property
+    def status(self) -> int:
+        """Returns an integer indicating the status of the project.
+
+        Possible values:
+            0 (ongoing)
+            1 (future)
+            2 (done)
+        """
+
+        project_phases = self.phases
+        if project_phases.active_phases():
+            return 0
+        if project_phases.future_phases():
+            return 1
+        return 2
+
     # deprecated properties
     @cached_property
     def active_phase(self):
