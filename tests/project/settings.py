@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from .polygon import BERLIN_POLYGON  # noqa: F403, F401
+
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
 
@@ -65,8 +67,10 @@ INSTALLED_APPS = (
     "django.contrib.auth",
     "allauth",
     "allauth.account",
+    "rest_framework_gis",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
+    "django.contrib.gis",
     "django.contrib.messages",
     "django.contrib.sites",
     "django.contrib.staticfiles",
@@ -120,7 +124,7 @@ AUTHENTICATION_BACKENDS = (
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE": "django.contrib.gis.db.backends.spatialite",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         "TEST": {
             "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),
@@ -266,6 +270,7 @@ IMAGE_ALIASES = {
 
 CAPTCHA_URL = "https://captcheck.netsyms.com/api.php"
 CAPTCHA_TEST_ACCEPTED_ANSWER = "testpass"
+
 
 try:
     from .local import *  # noqa: F403, F401

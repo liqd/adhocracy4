@@ -59,6 +59,8 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
     def get_location_lon_data(self, item):
         if hasattr(item, "point"):
             point = item.point
+            if hasattr(point, "geojson"):
+                return point.x
             try:
                 if "geometry" in point:
                     return point["geometry"]["coordinates"][0]
@@ -69,6 +71,8 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
     def get_location_lat_data(self, item):
         if hasattr(item, "point"):
             point = item.point
+            if hasattr(point, "geojson"):
+                return point.y
             try:
                 if "geometry" in point:
                     return point["geometry"]["coordinates"][1]
