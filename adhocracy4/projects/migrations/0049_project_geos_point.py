@@ -2,11 +2,9 @@
 
 import json
 import logging
-import django.contrib.gis.db.models.fields
 
 from django.contrib.gis.geos import GEOSGeometry
-from django.contrib.gis.geos import Point
-from django.db import migrations, models
+from django.db import migrations
 
 logger = logging.getLogger(__name__)
 
@@ -40,13 +38,6 @@ def migrate_project_point_field(apps, schema_editor):
         project.save()
 
 
-def migrate_project_geos_point_field(apps, schema_editor):
-    project = apps.get_model("a4projects", "Project")
-    for project in project.objects.all():
-        project.point = project.geos_point
-        project.save()
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -56,27 +47,5 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RunPython(
             migrate_project_point_field, reverse_code=migrations.RunPython.noop
-        ),
-        migrations.RemoveField(
-            model_name="project",
-            name="point",
-        ),
-        migrations.AddField(
-            model_name="project",
-            name="point",
-            field=django.contrib.gis.db.models.fields.PointField(
-                blank=True,
-                help_text="Locate your project. Click inside the marked area or type in an address to set the marker. A set marker can be dragged when pressed.",
-                null=True,
-                srid=4326,
-                verbose_name="Can your project be located on the map?",
-            ),
-        ),
-        migrations.RunPython(
-            migrate_project_geos_point_field, reverse_code=migrations.RunPython.noop
-        ),
-        migrations.RemoveField(
-            model_name="project",
-            name="geos_point",
         ),
     ]
