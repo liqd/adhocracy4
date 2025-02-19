@@ -15,6 +15,8 @@ def migrate_project_point_field(apps, schema_editor):
     project = apps.get_model("a4projects", "Project")
     for project in project.objects.all():
         geojson_point = project.point
+        if not geojson_point:
+            continue
         if not "geometry" in geojson_point:
             logger.warning(
                 "error migrating point of project "
