@@ -9,6 +9,7 @@ class Verbs(enum.Enum):
     COMPLETE = "complete"
     SCHEDULE = "schedule"
     START = "start"
+    PUBLISH = "publish"
 
 
 def choices():
