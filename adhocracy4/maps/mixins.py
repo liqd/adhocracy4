@@ -41,7 +41,10 @@ class GeoJsonPointMixin:
         if self.Meta.geo_field and self.Meta.geo_field in data:
             geo_field = data[self.Meta.geo_field]
             if geo_field:
-                point = json.loads(geo_field)
+                if isinstance(geo_field, dict):
+                    point = geo_field
+                else:
+                    point = json.loads(geo_field)
                 data = data.copy()
 
                 if "geometry" in point:
