@@ -29,6 +29,17 @@ def test_valid_point_correctly_serialized_to_internal_value(geojson_point, geos_
 
 
 @pytest.mark.django_db
+def test_valid_point_as_dict_correctly_serialized_to_internal_value(
+    geojson_point, geos_point
+):
+    del geojson_point["properties"]
+    serializer = TestPointSerializer()
+    data = serializer.to_internal_value(data={"point": geojson_point})
+    assert data["point"].equals(geos_point)
+    assert "street_name" not in data
+
+
+@pytest.mark.django_db
 def test_valid_point_with_properties_to_internal_value(geojson_point, geos_point):
     serializer = TestPointSerializer()
     data = serializer.to_internal_value(data={"point": json.dumps(geojson_point)})
