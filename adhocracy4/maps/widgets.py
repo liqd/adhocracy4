@@ -1,87 +1,86 @@
 import json
+from collections import OrderedDict
 
 from django.conf import settings
+from django.contrib.gis.geos import Point
 from django.forms.widgets import Widget
 from django.template import loader
 
 
-class MapChoosePolygonWidget(Widget):
+class MapWidgetMixin:
+    """
+    Mixin to provide common map settings for map-related widgets.
+    """
+
+    def get_common_map_context(self):
+        """
+        Build a dictionary of common map settings from Django settings.
+
+        Returns:
+            dict: A dictionary containing map base URL, tokens, attribution,
+                  and vector map flag.
+        """
+        return {
+            "baseurl": getattr(settings, "A4_MAP_BASEURL", ""),
+            "usevectormap": 1 if getattr(settings, "A4_USE_VECTORMAP", False) else 0,
+            "mapbox_token": getattr(settings, "A4_MAPBOX_TOKEN", ""),
+            "omt_token": getattr(settings, "A4_OPENMAPTILES_TOKEN", ""),
+            "attribution": getattr(settings, "A4_MAP_ATTRIBUTION", ""),
+        }
+
+
+class MapChoosePolygonWidget(MapWidgetMixin, Widget):
     class Media:
         js = ("a4maps_choose_polygon.js",)
-
         css = {"all": ["a4maps_choose_polygon.css"]}
 
     def render(self, name, value, attrs, renderer=None):
-        use_vector_map = 0
-        mapbox_token = ""
-        omt_token = ""
-        attribution = ""
-
-        if hasattr(settings, "A4_MAP_ATTRIBUTION"):
-            attribution = settings.A4_MAP_ATTRIBUTION
-
-        if hasattr(settings, "A4_USE_VECTORMAP") and settings.A4_USE_VECTORMAP:
-            use_vector_map = 1
-
-        if hasattr(settings, "A4_MAPBOX_TOKEN"):
-            mapbox_token = settings.A4_MAPBOX_TOKEN
-
-        if hasattr(settings, "A4_OPENMAPTILES_TOKEN"):
-            omt_token = settings.A4_OPENMAPTILES_TOKEN
-
-        context = {
-            "baseurl": settings.A4_MAP_BASEURL,
-            "usevectormap": use_vector_map,
-            "mapbox_token": mapbox_token,
-            "omt_token": omt_token,
-            "attribution": attribution,
-            "bbox": json.dumps(settings.A4_MAP_BOUNDING_BOX),
-            "name": name,
-            "polygon": value,
-        }
-
+        # Get the common map context from settings.
+        context = self.get_common_map_context()
+        # Add polygon-specific context values.
+        context.update(
+            {
+                "bbox": json.dumps(getattr(settings, "A4_MAP_BOUNDING_BOX", [])),
+                "name": name,
+                "polygon": value,
+            }
+        )
         return loader.render_to_string("a4maps/map_choose_polygon_widget.html", context)
 
 
-class MapChoosePointWidget(Widget):
+class MapChoosePointWidget(MapWidgetMixin, Widget):
+    geo_json_properties = {}
+
     def __init__(self, polygon, attrs=None):
         self.polygon = polygon
         super().__init__(attrs)
 
     class Media:
         js = ("a4maps_choose_point.js",)
-
         css = {"all": ["a4maps_choose_point.css"]}
 
     def render(self, name, value, attrs, renderer=None):
-        use_vector_map = 0
-        mapbox_token = ""
-        omt_token = ""
-        attribution = ""
+        # Get the common map context from settings.
+        context = self.get_common_map_context()
 
-        if hasattr(settings, "A4_MAP_ATTRIBUTION"):
-            attribution = settings.A4_MAP_ATTRIBUTION
+        # Process the point value.
+        point = value
+        if isinstance(point, Point):
+            feature = OrderedDict(
+                {"type": "Feature", "geometry": json.loads(point.geojson)}
+            )
+            if self.geo_json_properties:
+                feature["properties"] = self.geo_json_properties
+            point = json.dumps(feature)
 
-        if hasattr(settings, "A4_USE_VECTORMAP") and settings.A4_USE_VECTORMAP:
-            use_vector_map = 1
-
-        if hasattr(settings, "A4_MAPBOX_TOKEN"):
-            mapbox_token = settings.A4_MAPBOX_TOKEN
-
-        if hasattr(settings, "A4_OPENMAPTILES_TOKEN"):
-            omt_token = settings.A4_OPENMAPTILES_TOKEN
-
-        context = {
-            "baseurl": settings.A4_MAP_BASEURL,
-            "usevectormap": use_vector_map,
-            "mapbox_token": mapbox_token,
-            "omt_token": omt_token,
-            "attribution": attribution,
-            "name": name,
-            "point": value,
-            # .dumps is required here because we pass it directly instead of
-            # retrieving it from the widget which calls value_from_object.
-            "polygon": json.dumps(self.polygon),
-        }
+        # Add point-specific context values.
+        context.update(
+            {
+                "name": name,
+                "point": point,
+                # Use json.dumps because polygon data is passed directly.
+                "polygon": json.dumps(self.polygon),
+            }
+        )
 
         return loader.render_to_string("a4maps/map_choose_point_widget.html", context)

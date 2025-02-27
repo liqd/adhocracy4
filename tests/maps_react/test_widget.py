@@ -46,3 +46,35 @@ def test_choose_point_widget(area_settings):
         )
         assert widget.polygon == area_settings.polygon
         assert html == expected
+
+
+@override_settings(A4_MAP_BASEURL="https://{s}.tile.openstreetmap.org/")
+@override_settings(A4_MAP_ATTRIBUTION='<a href="example.com">attribution</a>')
+@pytest.mark.django_db
+def test_choose_point_widget_with_geos_point(area_settings, geos_point, geojson_point):
+    widget = widgets.MapChoosePointWidget(area_settings.polygon)
+    widget.geo_json_properties = {"strname": "Unknown Road"}
+    with patch("django.contrib.staticfiles.finders.find") as mock_find:
+        mock_find.return_value = "path/to/a4maps_choose_point.js"
+        html = widget.render("test_filter", geos_point, attrs={"id": "test_id"})
+        attrs = {
+            "map": {
+                "attribution": '<a href="example.com">attribution</a>',
+                "useVectorMap": 0,
+                "baseUrl": "https://{s}.tile.openstreetmap.org/",
+                "polygon": area_settings.polygon,
+                "point": json.dumps(geojson_point),
+                "name": "test_filter",
+            }
+        }
+        expected = format_html(
+            """
+
+<div data-a4-widget="react-choose-point" data-attributes="{attributes}"></div>
+<input id="id_test_filter" type="hidden" name="test_filter" value="{filter_value}">
+""",
+            attributes=json.dumps(attrs),
+            filter_value=json.dumps(geojson_point),
+        )
+        assert widget.polygon == area_settings.polygon
+        assert html == expected

@@ -10,7 +10,7 @@ from adhocracy4.projects.models import Project
 
 class TestPointSerializer(PointSerializerMixin, serializers.ModelSerializer):
 
-    def get_properties(self):
+    def get_geojson_properties(self):
         return {"strname": "street_name"}
 
     class Meta:
