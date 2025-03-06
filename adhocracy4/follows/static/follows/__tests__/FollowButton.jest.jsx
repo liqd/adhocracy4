@@ -66,3 +66,29 @@ test('Test FollowButton redirect', async () => {
   expect(api.follow.change).not.toHaveBeenCalled()
   expect(api.follow.get).not.toHaveBeenCalled()
 })
+
+test('Test AlertPortal with target that does not exist', async () => {
+  api.follow.setFollowing({ enabled: false })
+  render(<FollowButton authenticatedAs project="test" alertTarget="non-existent-id" />)
+  const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
+  const followButton = await screen.findByText('Follow')
+  expect(followButton).toBeTruthy()
+  fireEvent.click(followButton)
+  expect(consoleErrorSpy).toHaveBeenCalledWith(
+    'AlertPortal: Target element with ID "non-existent-id" not found in DOM'
+  )
+  consoleErrorSpy.mockRestore()
+})
+
+test('Test AlertPortal renders correctly with existing target', async () => {
+  api.follow.setFollowing({ enabled: false })
+  const alertContainer = document.createElement('div')
+  alertContainer.id = 'alert-container'
+  document.body.appendChild(alertContainer)
+  render(<FollowButton authenticatedAs project="test" alertTarget="alert-container" />)
+  const followButton = await screen.findByText('Follow')
+  fireEvent.click(followButton)
+  const alertElement = screen.getByText('You will be updated via email.')
+  expect(alertElement).toBeInTheDocument()
+  document.body.removeChild(alertContainer)
+})
