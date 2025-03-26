@@ -10,32 +10,35 @@ logger = logging.getLogger(__name__)
 
 
 def migrate_project_point_field(apps, schema_editor):
-    project = apps.get_model("a4projects", "Project")
-    for project in project.objects.all():
-        geojson_point = project.point
-        if not geojson_point:
-            continue
-        if not "geometry" in geojson_point:
-            logger.warning(
-                "error migrating point of project "
-                + project.name
-                + ": "
-                + str(geojson_point)
-            )
-            continue
-        # Existing points have a set of properties (from the address search on the map)
-        # They are in German and are never used again. For sake of preserving the data
-        # we map them to new english fields on the model
-        project.geos_point = GEOSGeometry(json.dumps(geojson_point["geometry"]))
-        if "properties" in geojson_point:
-            properties = geojson_point["properties"]
-            if "strname" in properties:
-                project.street_name = properties["strname"]
-            if "hsnr" in properties:
-                project.house_number = properties["hsnr"]
-            if "plz" in properties:
-                project.zip_code = properties["plz"]
-        project.save()
+    Project = apps.get_model("a4projects", "Project")
+
+    for project in Project.objects.exclude(point__isnull=True):
+        try:
+            # Handle case where point is already parsed (dict) or still a string
+            point_data = project.point
+            if isinstance(point_data, str):
+                point_data = json.loads(point_data)
+                point_data = dict(point_data)
+
+            # Extract geometry and properties
+            geometry = point_data.get("geometry", {})
+            properties = point_data.get("properties", {})
+
+            # Create GEOSGeometry from coordinates
+            if geometry.get("type") == "Point" and "coordinates" in geometry:
+                geojson = {"type": "Point", "coordinates": geometry["coordinates"]}
+                point = GEOSGeometry(json.dumps(geojson), srid=4326)
+
+                # Update all fields
+                Project.objects.filter(id=project.id).update(
+                    geos_point=point,
+                    street_name=properties.get("strname", ""),
+                    house_number=properties.get("hsnr", ""),
+                    zip_code=properties.get("plz", ""),
+                )
+
+        except (ValueError, TypeError, KeyError, json.JSONDecodeError) as e:
+            logger.warning(f"Skipping {project.id} {project.name}: {str(e)}")
 
 
 class Migration(migrations.Migration):
