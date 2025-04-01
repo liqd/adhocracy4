@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import admin
+from django.contrib.gis.admin import GISModelAdmin
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.widgets import CKEditor5Widget
 
@@ -49,13 +50,18 @@ class ProjectAdminForm(forms.ModelForm):
         fields = "__all__"
 
 
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(GISModelAdmin):
     form = ProjectAdminForm
     filter_horizontal = ("moderators", "participants")
     list_display = ("__str__", "organisation", "is_draft", "is_archived", "created")
     list_filter = ("is_draft", "is_archived", "organisation")
     search_fields = ("name",)
     date_hierarchy = "created"
+    gis_widget_kwargs = {
+        "attrs": {
+            "default_zoom": 12,  # Configure zoom level
+        }
+    }
 
     fieldsets = (
         (None, {"fields": ("name", "slug", "organisation")}),
