@@ -5,6 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## mB-v2504.1
+
+### Changed
+
+- project admin model to GIS admin model to render the map for point field in django admin dashboard
+- projects migration 0049 to address different datatypes the `point` field is saved as or corrupted.
+- Refactored static/Modal.jsx
+- Replaced Bootstrap modals with native HTML `<dialog>`
+- Migrated from Bootstrap classes to custom CSS classes
+- Modified `react_reports.py` to adapt data passing pattern for new modal structure
+- FollowButton.jsx: Added ability to add custom classes customize with `customClasses` parameter
+- FollowButton.jsx: Implemented alert relocation capability with `alertTarget` parameter and 
+- FollowButton.jsx: Added warning style to unfollowing alerts for better visual feedback- tests: replace the ckeditor fields with TextField in migrations to be able to remove the django-ckeditor package
+- **BREAKING CHANGE** Migrate the point field of the `Project` /
+`ProjectLocationMixin` to GeoDjango. This requires the usage of a database with
+geospatial support (.e.g spatialite, postgresql with postgis)
+- use spatialite as database to support GeoDjango
+
+### Fixed
+
+- fixed other answer input field being disabled for unregistered users
+- fix Captcha text mode not reacting to input
+- GeoJsonPointMixin can accept also dict payload
+
+### Added
+
+- Mobile-specific modal styling with bottom sheet animation
+- New CSS classes following `a4-modal` prefix convention
+- Input validation and error handling for ReportModal.jsx
+- add new `PointSerializerMixin` which enables a serializer to correctly save geojson features as GeoDjango
+in the database and serialize it back as geojson feature.
+- new action verb `publish`, currently used for published projects
+
+### Removed
+
+- Removed Bootstrap modal dependencies- remove the no longer needed django-ckeditor package, the transition to
+django-ckeditor-5 has been done now.
+
+
 ## aplus-v2501.1
 
 ### Removed
