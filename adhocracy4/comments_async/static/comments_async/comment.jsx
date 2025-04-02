@@ -338,13 +338,13 @@ export default class Comment extends React.Component {
               </div>
 
               <div className="col-1 ms-auto a4-comments__dropdown-container">
-                {!this.props.is_deleted && (this.props.has_changing_permission || this.props.has_deleting_permission) &&
+                {!this.props.is_deleted &&
                   <CommentManageDropdown
                     id={this.props.id}
                     handleToggleEdit={this.toggleEdit.bind(this)}
                     has_changing_permission={this.props.has_changing_permission}
                     has_deleting_permission={this.props.has_deleting_permission}
-                    isParentComment={this.displayCategories()}
+                    showReport={!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment}
                     modals={modals}
                   />}
               </div>
@@ -397,10 +397,6 @@ export default class Comment extends React.Component {
                         <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
                       </a>
                     </button>}
-
-                  {!this.props.is_deleted && modals.urlModal}
-
-                  {!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment && modals.reportModal}
                 </div>
               </div>
             </div>

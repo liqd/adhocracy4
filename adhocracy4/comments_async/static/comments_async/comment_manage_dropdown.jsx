@@ -19,6 +19,14 @@ const CommentManageDropdown = (props) => {
         <i className="fas fa-ellipsis-h" aria-hidden="true" />
       </button>
       <ul className="dropdown-menu dropdown-menu-end">
+        <li className="dropdown-item a4-comments__dropdown__url">
+          {props.modals.urlModal}
+        </li>
+        {props.showReport && (
+          <li className="dropdown-item a4-comments__dropdown__report">
+            {props.modals.reportModal}
+          </li>
+        )}
         {props.has_changing_permission && (
           <li className="dropdown-item">
             <button type="button" onClick={props.handleToggleEdit}>
