@@ -304,6 +304,7 @@ export default class Comment extends React.Component {
           description={translated.reportTitle}
           btnStyle="cta"
           contentType={this.props.comment_content_type}
+          objectId={this.props.id}
         />
       ),
       urlModal: (
