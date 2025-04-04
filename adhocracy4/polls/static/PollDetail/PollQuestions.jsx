@@ -17,10 +17,22 @@ const ALERT_SUCCESS = {
   message: django.gettext('Your answer has been saved.')
 }
 
+const loginMessage = django.interpolate(
+  django.gettext('In order to participate please <a href="%(url)s">log in</a>.'),
+  { url: config.getLoginUrl() },
+  true
+)
+
 const ALERT_UNAUTHENTICATED = {
   alertAttribute: 'polite',
   type: 'warning',
-  message: <div dangerouslySetInnerHTML={{ __html: django.gettext('In order to participate please <a href="' + config.getLoginUrl() + '">log in</a>.') }} />
+  message: (
+    <div
+      dangerouslySetInnerHTML={{
+        __html: loginMessage
+      }}
+    />
+  )
 }
 
 const ALERT_ERROR = {
