@@ -96,6 +96,10 @@ const useCombobox = ({
     setOpened(false)
   }, [listboxRef])
 
+  const onMouseDown = useCallback((e) => {
+    e.preventDefault()
+  }, [])
+
   const getChoicesAttr = (choice) => ({
     active: active.includes(choice.value),
     focused: focusedItem?.value === choice.value,
@@ -192,7 +196,8 @@ const useCombobox = ({
       role: 'listbox',
       'aria-multiselectable': 'true',
       ref: listboxRef,
-      id: containerId
+      id: containerId,
+      onMouseDown
     },
     labelId,
     activeItems,
