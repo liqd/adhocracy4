@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## mB-v2504.2
+
+### Added
+
+- polls alert if not authenticated
+- allow users to use scrollbar
+
+### Changed
+
+- comments report and share in the dropdown
+
+### Fixed
+
+- 400 error due to object id missing in comments_async
+- redirect/login message for polls
+
 ## mB-v2504.1
 
 ### Changed
