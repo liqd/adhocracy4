@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import django from 'django'
 import { SwitchButton } from '../../../static/SwitchButton'
+import ConfidenceCircle, { cleanPercentage } from './confidence_circle'
 
 const translated = {
   expandableBar: django.pgettext('defakts', 'The defakt AI has found evidence of disinformation.'),
   intro: django.pgettext('defakts', 'Defakts uses artificial intelligence to check content for disinformation based on certain linguistic characteristics.'),
-  confidenceScore: django.pgettext('defakts', 'The AI considers some of the characteristics of disinformation to be fulfilled based on the following words in the comment. The probability is given in % for each characteristic.'),
+  confidenceScore: django.pgettext('defakts', 'The AI is %(percentage)s% sure that this comment contains disinformation as some of its characteristics are being fulfilled.'),
+  basedOn: django.pgettext('defakts', 'This estimation is based on the following words:'),
   cta: django.pgettext('defakts', 'If you want to know more about what the characteristics mean, please visit our [FAQs]. Here you will also find advice on how to respond constructively to disinformation.'),
   ariaReadMore: django.pgettext('defakts', 'Click to view the AI explanation for reporting this comment.'),
   ariaReadLess: django.pgettext('defakts', 'Click to hide the AI explanation for reporting this comment.'),
@@ -24,7 +26,7 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
 
   const toggleReadMore = (
     <button
-      className="btn--link text-danger"
+      className="btn--link text-danger strong"
       type="button"
       onClick={toggleExpand}
       aria-label={isExpanded ? translated.ariaReadLess : translated.ariaReadMore}
@@ -33,27 +35,16 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
     </button>
   )
 
-  const confidenceToPercent = (confidence) => {
-    const percentFormat = new Intl.NumberFormat('default', {
-      style: 'percent',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    })
-    return percentFormat.format(confidence)
-  }
-
-  const extractLabelWords = (label) => {
-    const words = report.explanation[label]
-    return words.slice(0, 3).map(word => word[0]).join(', ')
+  const extractLabelWords = (explanation) => {
+    return explanation.slice(0, 3).map(word => word[0]).join(', ')
   }
 
   const renderExplanation = (
     <ul>
-      {report.label.map(([key, description], index) => (
-        <li key={key}>
-          <span>{description.charAt(0).toUpperCase() + description.slice(1)} </span>
-          <span>({confidenceToPercent(report.confidence[index])}): </span>
-          <span>{extractLabelWords(key)}</span>
+      {report.explanation.map(({ code, label, explanation }, index) => (
+        <li key={code}>
+          <strong>{label}:&nbsp;</strong>
+          <span>{extractLabelWords(explanation)}</span>
         </li>
       ))}
     </ul>
@@ -88,8 +79,12 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
               <p>{translated.expandableBar}</p>
               <p>
                 <span>{translated.intro} </span>
-                <span>{translated.confidenceScore}</span>
               </p>
+              <div className="d-flex">
+                <ConfidenceCircle confidence={report.confidence} color="#DE4B31" defaultColor="#F6C9C2" />
+                <p className="">{django.interpolate(translated.confidenceScore, { percentage: cleanPercentage(report.confidence) }, true)}</p>
+              </div>
+              <p className="mb-1">{translated.basedOn}</p>
               {renderExplanation}
               <p>
                 {renderCTA()} {toggleReadMore}
