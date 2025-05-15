@@ -17,6 +17,28 @@ const translated = {
   hideInfoSwitch: django.pgettext('defakts', 'Hide AI info from users')
 }
 
+const LABEL_TRANSLATIONS = {
+  'inconsistent': 'widersprüchlich',
+  'uninformative': 'uninformativ/ nicht argumentativ',
+  'polarizing': 'polarisierend',
+  'emotionalized': 'emotionalisierend',
+  'sensational': 'sensationalisizisch',
+  'abasing': 'erniedrigend',
+  'topical / brand new': 'aktuell / brandaktuell',
+  'vaguely phrased': 'unbestimmt formuliert',
+  'not proven': 'nicht belegt',
+  'pseudoscientific': 'pseudowissenschaftlich',
+  'forged content': 'gefälschter Inhalt',
+  'false context': 'falscher Kontext',
+  'conspiracy theory': 'verschwörungstheoretisch',
+  'propaganda': 'propagandistisch',
+  'not fact based': 'nicht faktenbasiert'
+}
+
+const translateLabel = (label) => {
+  return LABEL_TRANSLATIONS[label.toLowerCase()] || label
+}
+
 export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
   const [isExpanded, setIsExpanded] = useState()
 
@@ -43,7 +65,7 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
     <ul>
       {report.explanation.map(({ code, label, explanation }, index) => (
         <li key={code}>
-          <strong>{label}:&nbsp;</strong>
+          <strong>{translateLabel(label)}:&nbsp;</strong>
           <span>{extractLabelWords(explanation)}</span>
         </li>
       ))}
@@ -51,9 +73,7 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
   )
 
   const renderCTA = () => {
-    // replace "[FAQs]" with anchor
     const [preText, placeholderText, postText] = translated.cta.split(/(\[.*?\])/)
-    // remove square brackets
     const anchorText = placeholderText.replace(/\[|\]/g, '')
     return (
       <>
