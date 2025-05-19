@@ -19,13 +19,13 @@ const translated = {
 
 const LABEL_TRANSLATIONS = {
   'inconsistent': 'widersprüchlich',
-  'uninformative': 'uninformativ/ nicht argumentativ',
+  'uninformative': 'uninformativ/nicht argumentativ',
   'polarizing': 'polarisierend',
   'emotionalized': 'emotionalisierend',
-  'sensational': 'sensationalisizisch',
+  'sensational': 'sensationalistisch',
   'abasing': 'erniedrigend',
-  'topical / brand new': 'aktuell / brandaktuell',
-  'vaguely phrased': 'unbestimmt formuliert',
+  'topical / brand new': 'aktuell/brandaktuell',
+  'vaguely phrased': 'vage formuliert',
   'not proven': 'nicht belegt',
   'pseudoscientific': 'pseudowissenschaftlich',
   'forged content': 'gefälschter Inhalt',
