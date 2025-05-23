@@ -17,7 +17,27 @@ To try it out yourself, best start with [a+][https://github.com/liqd/adhocracy-p
 ![Build Status](https://github.com/liqd/adhocracy4/actions/workflows/django.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/liqd/adhocracy4/badge.svg?branch=main)](https://coveralls.io/github/liqd/adhocracy4?branch=main)
 
+### Local Development
+
+## Adhocracy4 Installation
+
+    git clone https://github.com/liqd/adhocracy4.git
+    cd adhocracy4
+    make install 
+
+## Start virtual environment
+```
+source venv/bin/activate
+```
+## Check if tests work
+```
+make test
+```
+
+
+
+
+
 ### Tested With
 
 [<img src="http://www.browserstack.com/images/layout/browserstack-logo-600x315.png" alt="Browser Stack Logo" width="300">](https://www.browserstack.com/)
-
