@@ -52,18 +52,36 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         return self.module
 
     def get_queryset(self):
-        creators_vote = poll_models.Vote.objects.filter(
-            choice__question__poll=self.poll
-        ).values_list("creator", flat=True)
-        creators_answer = poll_models.Answer.objects.filter(
-            question__poll=self.poll
-        ).values_list("creator", flat=True)
-        creator_ids = list(set(creators_vote).union(set(creators_answer)))
-        return User.objects.filter(pk__in=creator_ids)
+        return poll_models.Vote.objects.filter(choice__question__poll=self.poll)
+
+    def get_answers(self):
+        return poll_models.Answer.objects.filter(question__poll=self.poll)
+
+    def get_voters(self):
+        user_vote = (
+            self.get_queryset().exclude(creator=None).values_list("creator", flat=True)
+        )
+        user_answer = (
+            self.get_answers().exclude(creator=None).values_list("creator", flat=True)
+        )
+        user_ids = list(set(user_vote).union(set(user_answer)))
+        users = list(User.objects.filter(pk__in=user_ids))  # <-- User-Objekte!
+        anon_votes = (
+            self.get_queryset()
+            .filter(creator=None)
+            .values_list("content_id", flat=True)
+        )
+        anon_answers = (
+            self.get_answers().filter(creator=None).values_list("content_id", flat=True)
+        )
+        anon_ids = list(set(anon_votes).union(set(anon_answers)))
+        return users + anon_ids
 
     def get_object_list(self):
         # index is needed for (anonymous) user id
-        return [(index, user) for index, user in enumerate(self.get_queryset().all())]
+        list = [(index, user) for index, user in enumerate(self.get_voters())]
+        print(list)
+        return list
 
     @property
     def poll(self):
@@ -106,14 +124,24 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         index, user = item
 
         if field == "user_id":
-            value = index + 1
-
+            # Für anonyme Nutzer die UUID anzeigen, für registrierte wie bisher
+            if hasattr(user, "pk"):
+                value = index + 1
+            else:
+                value = str(user)  # UUID als String
         else:
             field_object, is_text_field = field
             if isinstance(field_object, poll_models.Choice):
-                votes_qs = poll_models.Vote.objects.filter(
-                    choice=field_object, creator=user
-                )
+                if hasattr(user, "pk"):
+                    # Registrierter Nutzer
+                    votes_qs = poll_models.Vote.objects.filter(
+                        choice=field_object, creator=user
+                    )
+                else:
+                    # Anonymer Nutzer
+                    votes_qs = poll_models.Vote.objects.filter(
+                        choice=field_object, creator=None, content_id=user
+                    )
                 if not is_text_field:
                     value = int(votes_qs.exists())
                 else:
@@ -122,10 +150,15 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
                         value = poll_models.OtherVote.objects.get(vote=vote).answer
                     else:
                         value = ""
-            else:  # field_object is question
-                answers_qs = poll_models.Answer.objects.filter(
-                    question=field_object, creator=user
-                )
+            else:  # field_object ist question
+                if hasattr(user, "pk"):
+                    answers_qs = poll_models.Answer.objects.filter(
+                        question=field_object, creator=user
+                    )
+                else:
+                    answers_qs = poll_models.Answer.objects.filter(
+                        question=field_object, creator=None, content_id=user
+                    )
                 if not is_text_field:
                     value = int(answers_qs.exists())
                 else:
