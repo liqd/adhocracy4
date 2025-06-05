@@ -26,6 +26,7 @@ package-lock.json
 /.cache
 .pytest_cache
 coverage/
+localdev
 
 # SQlite DBs
 *.sqlite3*
