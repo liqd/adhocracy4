@@ -78,10 +78,7 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         return users + anon_ids
 
     def get_object_list(self):
-        # index is needed for (anonymous) user id
-        list = [(index, user) for index, user in enumerate(self.get_voters())]
-        print(list)
-        return list
+        return [(index, user) for index, user in enumerate(self.get_voters())]
 
     @property
     def poll(self):
@@ -124,11 +121,11 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         index, user = item
 
         if field == "user_id":
-            # Für anonyme Nutzer die UUID anzeigen, für registrierte wie bisher
+            # For anonymous Users Show UUID for registered show the count
             if hasattr(user, "pk"):
                 value = index + 1
             else:
-                value = str(user)  # UUID als String
+                value = str(user)
         else:
             field_object, is_text_field = field
             if isinstance(field_object, poll_models.Choice):
