@@ -121,21 +121,21 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         index, user = item
 
         if field == "user_id":
-            # For anonymous Users Show UUID for registered show the count
+            # For anonymous Users Show Anon + count for registered show the count
             if hasattr(user, "pk"):
                 value = index + 1
             else:
-                value = str(user)
+                value = "Anon" + str(index + 1)
         else:
             field_object, is_text_field = field
             if isinstance(field_object, poll_models.Choice):
                 if hasattr(user, "pk"):
-                    # Registrierter Nutzer
+                    # Registered User
                     votes_qs = poll_models.Vote.objects.filter(
                         choice=field_object, creator=user
                     )
                 else:
-                    # Anonymer Nutzer
+                    # Anonymous User
                     votes_qs = poll_models.Vote.objects.filter(
                         choice=field_object, creator=None, content_id=user
                     )
