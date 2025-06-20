@@ -147,7 +147,7 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
                         value = poll_models.OtherVote.objects.get(vote=vote).answer
                     else:
                         value = ""
-            else:  # field_object ist question
+            else:  # field_object is Question
                 if hasattr(user, "pk"):
                     answers_qs = poll_models.Answer.objects.filter(
                         question=field_object, creator=user
