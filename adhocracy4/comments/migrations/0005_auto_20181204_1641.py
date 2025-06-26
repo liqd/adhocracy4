@@ -12,8 +12,13 @@ class Migration(migrations.Migration):
         ("a4comments", "0004_comment_char_limit_increase"),
     ]
 
-    #    Dont worked with Django 5 so i had to change that manually so that the migration structure stays
-    #    Works now for news installations with Django 4 and 5 and for existing installations with older Django where this migration was already applied
+    """
+        IndexTogether has been removed in django 5.1 
+        and migrations had to be updated to reflect that. 
+        Django versions prior to 4, that have already 
+        deployed the migrations would not be affected
+    """
+    # TODO: delete commented out operations code once the upgrade 5.1 has been deployed and tested
     #    operations = [
     #        migrations.AlterIndexTogether(
     #            name="comment",
