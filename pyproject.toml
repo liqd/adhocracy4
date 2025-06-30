@@ -19,7 +19,7 @@ classifiers = [
 ]
 dependencies = [
     "bleach[css]",
-    "Django >= 3.2, < 5.1",
+    "Django >= 3.2, < 5.2",
     "django-allauth",
     "django-autoslug",
     "django-background-tasks",
