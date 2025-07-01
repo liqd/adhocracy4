@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import gettext as _
 from easy_thumbnails.files import get_thumbnailer
+from guest_user.functions import is_guest_user
 from rest_framework import serializers
 
 from adhocracy4.api.dates import get_datetime_display
@@ -79,7 +80,12 @@ class CommentSerializer(serializers.ModelSerializer):
         return ret
 
     def get_user_profile_url(self, obj):
-        if obj.is_censored or obj.is_removed or obj.is_blocked:
+        if (
+            is_guest_user(obj.creator)
+            or obj.is_censored
+            or obj.is_removed
+            or obj.is_blocked
+        ):
             return ""
         try:
             return obj.creator.get_absolute_url()
@@ -87,8 +93,15 @@ class CommentSerializer(serializers.ModelSerializer):
             return ""
 
     def get_user_name(self, obj):
-        """Don't show username if comment is marked removed or censored."""
-        if obj.is_censored or obj.is_removed or obj.is_blocked:
+        """
+        For arpas, guest users will only be created in the AR experience.
+        Therefore if a user is guest, display "AR comment" in place of username.
+
+        Don't show username if comment is marked removed or censored.
+        """
+        if is_guest_user(obj.creator):
+            return _("AR comment")
+        elif obj.is_censored or obj.is_removed or obj.is_blocked:
             return _("unknown user")
         return obj.creator.get_short_name()
 
