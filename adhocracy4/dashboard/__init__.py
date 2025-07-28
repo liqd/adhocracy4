@@ -112,6 +112,7 @@ class ProjectDashboard:
                 project_menu.append(
                     {
                         "label": component.label,
+                        "identifier": component.identifier,
                         "is_active": is_active,
                         "url": url,
                         "is_complete": is_complete,
