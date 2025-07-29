@@ -67,6 +67,7 @@ def test_menu(module, dashboard_test_component_factory):
     project_component = project_components[0]
     assert project_dashboard.get_project_menu(project_component) == [
         {
+            "identifier": project_component.identifier,
             "label": project_component.label,
             "is_active": True,
             "url": "pc1_url",
@@ -88,6 +89,7 @@ def test_menu(module, dashboard_test_component_factory):
     assert project_dashboard.get_menu(None, project_component) == {
         "project": [
             {
+                "identifier": project_component.identifier,
                 "label": project_component.label,
                 "is_active": True,
                 "url": "pc1_url",
