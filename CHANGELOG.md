@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## mB-v2507.1
+
+### Added
+
+- The non registered users are added to the Vote export. Votes and additional answers are included.  
+
+### Changed
+
+- requirements: Set Django to 5.1
+- pyproject.toml: Upper dependencies to <5.2  
+- Changed migration Files to not include index_together anymore due to crashing the migrations process  
+- Django Dependencys to > 3.2 < 5.1 in pyproject.toml
+
+### Fixed
+
+- Added identifier for dashboard project module menu so translation doesn't break conditional display of "Location"
+
 ## mB-v2504.2
 
 ### Added
