@@ -3,11 +3,11 @@ import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
 import { HelptextForm } from './HelptextForm'
 
-export const EditPollOpenQuestion = (props) => {
+export const EditPollOpenQuestion = React.forwardRef((props, ref) => {
   const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
 
   return (
-    <section className="editpoll__question-container">
+    <section ref={ref} className="editpoll__question-container">
       <div className="editpoll__question">
         <div className="editpoll__question--border">
           <div className="form-group">
@@ -80,4 +80,6 @@ export const EditPollOpenQuestion = (props) => {
       </div>
     </section>
   )
-}
+})
+
+EditPollOpenQuestion.displayName = 'EditPollOpenQuestion'

@@ -6,11 +6,11 @@ import { HelptextForm } from './HelptextForm'
 
 const FlipMove = require('react-flip-move').default
 
-export const EditPollQuestion = (props) => {
+export const EditPollQuestion = React.forwardRef((props, ref) => {
   const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
   const hasOtherOption = props.question.choices.find(c => c.is_other_choice)
   return (
-    <section className="editpoll__question-container">
+    <section ref={ref} className="editpoll__question-container">
       <div className="editpoll__question">
         <div className="form-group editpoll__question--border">
           <label
@@ -162,4 +162,6 @@ export const EditPollQuestion = (props) => {
       </div>
     </section>
   )
-}
+})
+
+EditPollQuestion.displayName = 'EditPollQuestion'
