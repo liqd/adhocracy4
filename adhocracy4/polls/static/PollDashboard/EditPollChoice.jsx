@@ -2,9 +2,9 @@ import React from 'react'
 import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
 
-export const EditPollChoice = (props) => {
+export const EditPollChoice = React.forwardRef((props, ref) => {
   return (
-    <div className="form-group">
+    <div className="form-group" ref={ref}>
       <div htmlFor={'id_choices-' + props.id + '-name'}>
         {django.pgettext('noun', 'Answer')} {props.index}
         {props.choiceId &&
@@ -43,4 +43,6 @@ export const EditPollChoice = (props) => {
       />
     </div>
   )
-}
+})
+
+EditPollChoice.displayName = 'EditPollChoice'
