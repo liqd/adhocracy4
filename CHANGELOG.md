@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## aplus-v2508.1
+
+### Fixed
+
+- Poll deletion bug fixed, added forwardRef to PollDashboard child components
+
 ## mB-v2507.1
 
 ### Added
