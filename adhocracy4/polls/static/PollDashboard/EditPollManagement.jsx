@@ -242,6 +242,7 @@ export const EditPollManagement = (props) => {
                 ? (
                   <EditPollOpenQuestion
                     id={key}
+                    key={key}
                     question={question}
                     onLabelChange={(label) => handleQuestionLabel(index, label)}
                     onHelptextChange={(helptext) => handleQuestionHelpText(index, helptext)}
@@ -254,6 +255,7 @@ export const EditPollManagement = (props) => {
                 : (
                   <EditPollQuestion
                     id={key}
+                    key={key}
                     question={question}
                     onLabelChange={(label) => handleQuestionLabel(index, label)}
                     onHelptextChange={(helptext) => handleQuestionHelpText(index, helptext)}
