@@ -7,7 +7,6 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins as export_mixins
 from adhocracy4.exports import views as export_views
 from adhocracy4.polls import models as poll_models
-from django.db.models import Prefetch
 
 User = get_user_model()
 
@@ -49,7 +48,6 @@ class PollCommentExportView(
 class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
     permission_required = "a4polls.change_poll"
 
-
     def dispatch(self, request, *args, **kwargs):
         """Preload all necessary data before processing."""
         response = super().dispatch(request, *args, **kwargs)
@@ -58,13 +56,13 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
 
     def _load_export_data(self):
         """Load all data needed for export if not already loaded."""
-        if not hasattr(self, '_all_votes'):
+        if not hasattr(self, "_all_votes"):
             # Load all votes with their related data
             self._all_votes = list(self.get_queryset())
-            
+
             # Load all answers with their questions
             self._all_answers = list(self.get_answers())
-            
+
             # Create lookup dictionaries for faster access
             self._other_votes_dict = {
                 ov.vote_id: ov.answer
@@ -77,18 +75,16 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         return self.module
 
     def get_queryset(self):
-        return poll_models.Vote.objects.filter(
-            choice__question__poll=self.poll
-        ).select_related(
-            'choice', 'choice__question'
-        ).prefetch_related(
-            'other_vote'  # Prefetch related other_vote
+        return (
+            poll_models.Vote.objects.filter(choice__question__poll=self.poll)
+            .select_related("choice", "choice__question")
+            .prefetch_related("other_vote")  # Prefetch related other_vote
         )
 
     def get_answers(self):
         return poll_models.Answer.objects.filter(
             question__poll=self.poll
-        ).select_related('question')
+        ).select_related("question")
 
     def get_voters(self):
         # Get all distinct voter IDs (registered users)
@@ -98,18 +94,18 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
             .values_list("creator_id", flat=True)
             .distinct()
         )
-        
+
         user_answer_ids = set(
             self.get_answers()
             .exclude(creator=None)
             .values_list("creator_id", flat=True)
             .distinct()
         )
-        
+
         # Combine and get all user objects in one query
         all_user_ids = user_vote_ids.union(user_answer_ids)
         users = list(User.objects.filter(pk__in=all_user_ids))
-        
+
         # Get anonymous voters
         anon_vote_ids = set(
             self.get_queryset()
@@ -117,16 +113,16 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
             .values_list("content_id", flat=True)
             .distinct()
         )
-        
+
         anon_answer_ids = set(
             self.get_answers()
             .filter(creator=None)
             .values_list("content_id", flat=True)
             .distinct()
         )
-        
+
         anon_ids = list(anon_vote_ids.union(anon_answer_ids))
-        
+
         return users + anon_ids
 
     def get_object_list(self):
@@ -136,16 +132,15 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
     @property
     def poll(self):
         """Cached poll property to avoid repeated queries."""
-        if not hasattr(self, '_poll'):
+        if not hasattr(self, "_poll"):
             self._poll = poll_models.Poll.objects.get(module=self.module)
         return self._poll
 
     @property
     def questions(self):
-        if not hasattr(self, '_questions'):
+        if not hasattr(self, "_questions"):
             self._questions = self.poll.questions.prefetch_related(
-                'choices',
-                'answers'  
+                "choices", "answers"
             ).all()
         return self._questions
 
@@ -153,7 +148,7 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         """Generate export fields for all questions."""
         virtual = super().get_virtual_fields(virtual)
         virtual["user_id"] = "user"
-        
+
         for question in self.questions:
             if question.is_open:
                 virtual = self.get_virtual_field_open_question(virtual, question)
@@ -183,28 +178,31 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
     def get_field_data(self, item, field):
         """Ensure data is loaded before field access."""
         self._load_export_data()
-        
+
         index, user = item
 
         if field == "user_id":
             # Handle user ID display
             return str(index + 1) if hasattr(user, "pk") else f"Anon{index + 1}"
-        
+
         field_object, is_text_field = field
-        
+
         if isinstance(field_object, poll_models.Choice):
             # Handle choice-based fields
             user_filter = (
-                ('creator_id', user.pk) if hasattr(user, "pk") 
-                else ('creator', None, 'content_id', user)
+                ("creator_id", user.pk)
+                if hasattr(user, "pk")
+                else ("creator", None, "content_id", user)
             )
-            
+
             # Find matching votes in preloaded data
             matching_votes = [
-                v for v in self._all_votes 
-                if v.choice_id == field_object.id and self._match_user_filter(v, user_filter)
+                v
+                for v in self._all_votes
+                if v.choice_id == field_object.id
+                and self._match_user_filter(v, user_filter)
             ]
-            
+
             if not is_text_field:
                 return int(bool(matching_votes))
             elif matching_votes:
@@ -213,16 +211,19 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         else:
             # Handle question-based fields (open answers)
             user_filter = (
-                ('creator_id', user.pk) if hasattr(user, "pk") 
-                else ('creator', None, 'content_id', user)
+                ("creator_id", user.pk)
+                if hasattr(user, "pk")
+                else ("creator", None, "content_id", user)
             )
-            
+
             # Find matching answers in preloaded data
             matching_answers = [
-                a for a in self._all_answers 
-                if a.question_id == field_object.id and self._match_user_filter(a, user_filter)
+                a
+                for a in self._all_answers
+                if a.question_id == field_object.id
+                and self._match_user_filter(a, user_filter)
             ]
-            
+
             if not is_text_field:
                 return int(bool(matching_answers))
             elif matching_answers:
@@ -236,10 +237,5 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
             return getattr(obj, attr) == value
         else:  # Anonymous user case
             return (
-                obj.creator is None and 
-                getattr(obj, user_filter[2]) == user_filter[3]
+                obj.creator is None and getattr(obj, user_filter[2]) == user_filter[3]
             )
-        # Preload all votes and answers at the start to minimise queries
-        self._all_votes = list(self.get_queryset())
-        self._all_answers = list(self.get_answers())
-        return super().dispatch(request, *args, **kwargs)
