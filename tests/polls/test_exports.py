@@ -94,4 +94,4 @@ def test_poll_export_view(
     assert export_view.get_field_data((0, user), (open_question, True)) == "open answer"
 
     rows = list(export_view.export_rows())
-    assert rows[0] == [1, 1, 0, 1, "answer other choice", 1, "open answer"]
+    assert rows[0] == ["1", 1, 0, 1, "answer other choice", 1, "open answer"]
