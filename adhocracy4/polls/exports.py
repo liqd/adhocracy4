@@ -7,6 +7,7 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins as export_mixins
 from adhocracy4.exports import views as export_views
 from adhocracy4.polls import models as poll_models
+from django.db.models import Prefetch
 
 User = get_user_model()
 
@@ -52,45 +53,83 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         return self.module
 
     def get_queryset(self):
-        return poll_models.Vote.objects.filter(choice__question__poll=self.poll)
+        return poll_models.Vote.objects.filter(
+            choice__question__poll=self.poll
+        ).select_related(
+            'choice', 'choice__question'
+        ).prefetch_related(
+            'other_vote'  # Prefetch related other_vote
+        )
 
     def get_answers(self):
-        return poll_models.Answer.objects.filter(question__poll=self.poll)
+        return poll_models.Answer.objects.filter(
+            question__poll=self.poll
+        ).select_related('question')
 
     def get_voters(self):
-        user_vote = (
-            self.get_queryset().exclude(creator=None).values_list("creator", flat=True)
+        # Get all distinct voter IDs (registered users)
+        user_vote_ids = set(
+            self.get_queryset()
+            .exclude(creator=None)
+            .values_list("creator_id", flat=True)
+            .distinct()
         )
-        user_answer = (
-            self.get_answers().exclude(creator=None).values_list("creator", flat=True)
+        
+        user_answer_ids = set(
+            self.get_answers()
+            .exclude(creator=None)
+            .values_list("creator_id", flat=True)
+            .distinct()
         )
-        user_ids = list(set(user_vote).union(set(user_answer)))
-        users = list(User.objects.filter(pk__in=user_ids))  # <-- User-Objekte!
-        anon_votes = (
+        
+        # Combine and get all user objects in one query
+        all_user_ids = user_vote_ids.union(user_answer_ids)
+        users = list(User.objects.filter(pk__in=all_user_ids))
+        
+        # Get anonymous voters
+        anon_vote_ids = set(
             self.get_queryset()
             .filter(creator=None)
             .values_list("content_id", flat=True)
+            .distinct()
         )
-        anon_answers = (
-            self.get_answers().filter(creator=None).values_list("content_id", flat=True)
+        
+        anon_answer_ids = set(
+            self.get_answers()
+            .filter(creator=None)
+            .values_list("content_id", flat=True)
+            .distinct()
         )
-        anon_ids = list(set(anon_votes).union(set(anon_answers)))
+        
+        anon_ids = list(anon_vote_ids.union(anon_answer_ids))
+        
         return users + anon_ids
 
     def get_object_list(self):
+        """Create indexed list of voters."""
         return [(index, user) for index, user in enumerate(self.get_voters())]
 
     @property
     def poll(self):
-        return poll_models.Poll.objects.get(module=self.module)
+        """Cached poll property to avoid repeated queries."""
+        if not hasattr(self, '_poll'):
+            self._poll = poll_models.Poll.objects.get(module=self.module)
+        return self._poll
 
     @property
     def questions(self):
-        return self.poll.questions.all()
+        if not hasattr(self, '_questions'):
+            self._questions = self.poll.questions.prefetch_related(
+                'choices',
+                'answers'  
+            ).all()
+        return self._questions
 
     def get_virtual_fields(self, virtual):
+        """Generate export fields for all questions."""
         virtual = super().get_virtual_fields(virtual)
         virtual["user_id"] = "user"
+        
         for question in self.questions:
             if question.is_open:
                 virtual = self.get_virtual_field_open_question(virtual, question)
@@ -100,69 +139,98 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         return virtual
 
     def get_virtual_field_choice_question(self, virtual, choice_question):
+        """Generate export fields for choice questions."""
         for choice in choice_question.choices.all():
             identifier = "Q" + str(choice_question.pk) + "_A" + str(choice.pk)
             virtual[(choice, False)] = identifier
             if choice.is_other_choice:
                 identifier_answer = identifier + "_text"
                 virtual[(choice, True)] = identifier_answer
-
         return virtual
 
     def get_virtual_field_open_question(self, virtual, open_question):
+        """Generate export fields for open questions."""
         identifier = "Q" + str(open_question.pk)
         virtual[(open_question, False)] = identifier
         identifier_answer = identifier + "_text"
         virtual[(open_question, True)] = identifier_answer
-
         return virtual
+
+    def dispatch(self, request, *args, **kwargs):
+        """Preload all necessary data before processing."""
+        # Load all votes with their related data
+        self._all_votes = list(self.get_queryset())
+        
+        # Load all answers with their questions
+        self._all_answers = list(self.get_answers())
+        
+        # Create lookup dictionaries for faster access
+        self._other_votes_dict = {
+            ov.vote_id: ov.answer
+            for ov in poll_models.OtherVote.objects.filter(
+                vote_id__in=[v.id for v in self._all_votes]
+            )
+        }
+        
+        return super().dispatch(request, *args, **kwargs)
 
     def get_field_data(self, item, field):
         index, user = item
 
         if field == "user_id":
-            # For anonymous Users Show Anon + count for registered show the count
-            if hasattr(user, "pk"):
-                value = index + 1
-            else:
-                value = "Anon" + str(index + 1)
+            # Handle user ID display
+            return str(index + 1) if hasattr(user, "pk") else f"Anon{index + 1}"
+        
+        field_object, is_text_field = field
+        
+        if isinstance(field_object, poll_models.Choice):
+            # Handle choice-based fields
+            user_filter = (
+                ('creator_id', user.pk) if hasattr(user, "pk") 
+                else ('creator', None, 'content_id', user)
+            )
+            
+            # Find matching votes in preloaded data
+            matching_votes = [
+                v for v in self._all_votes 
+                if v.choice_id == field_object.id and self._match_user_filter(v, user_filter)
+            ]
+            
+            if not is_text_field:
+                return int(bool(matching_votes))
+            elif matching_votes:
+                return self._other_votes_dict.get(matching_votes[0].id, "")
+            return ""
         else:
-            field_object, is_text_field = field
-            if isinstance(field_object, poll_models.Choice):
-                if hasattr(user, "pk"):
-                    # Registered User
-                    votes_qs = poll_models.Vote.objects.filter(
-                        choice=field_object, creator=user
-                    )
-                else:
-                    # Anonymous User
-                    votes_qs = poll_models.Vote.objects.filter(
-                        choice=field_object, creator=None, content_id=user
-                    )
-                if not is_text_field:
-                    value = int(votes_qs.exists())
-                else:
-                    vote = votes_qs.first()
-                    if vote:
-                        value = poll_models.OtherVote.objects.get(vote=vote).answer
-                    else:
-                        value = ""
-            else:  # field_object is Question
-                if hasattr(user, "pk"):
-                    answers_qs = poll_models.Answer.objects.filter(
-                        question=field_object, creator=user
-                    )
-                else:
-                    answers_qs = poll_models.Answer.objects.filter(
-                        question=field_object, creator=None, content_id=user
-                    )
-                if not is_text_field:
-                    value = int(answers_qs.exists())
-                else:
-                    answer = answers_qs.first()
-                    if answer:
-                        value = answer.answer
-                    else:
-                        value = ""
+            # Handle question-based fields (open answers)
+            user_filter = (
+                ('creator_id', user.pk) if hasattr(user, "pk") 
+                else ('creator', None, 'content_id', user)
+            )
+            
+            # Find matching answers in preloaded data
+            matching_answers = [
+                a for a in self._all_answers 
+                if a.question_id == field_object.id and self._match_user_filter(a, user_filter)
+            ]
+            
+            if not is_text_field:
+                return int(bool(matching_answers))
+            elif matching_answers:
+                return matching_answers[0].answer
+            return ""
 
-        return value
+    def _match_user_filter(self, obj, user_filter):
+        """Helper to check if object matches user filter criteria."""
+        if len(user_filter) == 2:  # Registered user case
+            attr, value = user_filter
+            return getattr(obj, attr) == value
+        else:  # Anonymous user case
+            return (
+                obj.creator is None and 
+                getattr(obj, user_filter[2]) == user_filter[3]
+            )
+        # Preload all votes and answers at the start to minimise queries
+        self._all_votes = list(self.get_queryset())
+        self._all_answers = list(self.get_answers())
+        return super().dispatch(request, *args, **kwargs)
