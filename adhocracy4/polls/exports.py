@@ -49,6 +49,30 @@ class PollCommentExportView(
 class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
     permission_required = "a4polls.change_poll"
 
+
+    def dispatch(self, request, *args, **kwargs):
+        """Preload all necessary data before processing."""
+        response = super().dispatch(request, *args, **kwargs)
+        self._load_export_data()
+        return response
+
+    def _load_export_data(self):
+        """Load all data needed for export if not already loaded."""
+        if not hasattr(self, '_all_votes'):
+            # Load all votes with their related data
+            self._all_votes = list(self.get_queryset())
+            
+            # Load all answers with their questions
+            self._all_answers = list(self.get_answers())
+            
+            # Create lookup dictionaries for faster access
+            self._other_votes_dict = {
+                ov.vote_id: ov.answer
+                for ov in poll_models.OtherVote.objects.filter(
+                    vote_id__in=[v.id for v in self._all_votes]
+                )
+            }
+
     def get_permission_object(self):
         return self.module
 
@@ -156,25 +180,10 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         virtual[(open_question, True)] = identifier_answer
         return virtual
 
-    def dispatch(self, request, *args, **kwargs):
-        """Preload all necessary data before processing."""
-        # Load all votes with their related data
-        self._all_votes = list(self.get_queryset())
-        
-        # Load all answers with their questions
-        self._all_answers = list(self.get_answers())
-        
-        # Create lookup dictionaries for faster access
-        self._other_votes_dict = {
-            ov.vote_id: ov.answer
-            for ov in poll_models.OtherVote.objects.filter(
-                vote_id__in=[v.id for v in self._all_votes]
-            )
-        }
-        
-        return super().dispatch(request, *args, **kwargs)
-
     def get_field_data(self, item, field):
+        """Ensure data is loaded before field access."""
+        self._load_export_data()
+        
         index, user = item
 
         if field == "user_id":
