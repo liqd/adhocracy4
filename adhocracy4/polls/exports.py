@@ -155,14 +155,18 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
 
         # For open questions
         for question in self.questions.filter(is_open=True):
-            virtual[(question.id, True)] = question.label
+            virtual[(question.id, True)] = f"(q{question.id}) {question.label}"
 
         # For choice questions
         for question in self.questions.filter(is_open=False):
             for choice in question.choices.all():
-                virtual[(choice.id, False)] = f"{question.label} - {choice.label}"
+                virtual[(choice.id, False)] = (
+                    f"(q{question.id}){question.label} - (c{choice.id}) {choice.label}"
+                )
                 if choice.is_other_choice:
-                    virtual[(choice.id, True)] = f"{question.label} - Other (specify)"
+                    virtual[(choice.id, True)] = (
+                        f"(q{question.id}){question.label} - Other (specify)"
+                    )
 
         return virtual
 
