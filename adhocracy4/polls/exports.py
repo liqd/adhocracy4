@@ -2,7 +2,6 @@ from collections import defaultdict
 
 from django.contrib.auth import get_user_model
 from django.db.models import Prefetch
-from django.db.models import Q
 from django.utils.translation import gettext as _
 from django.utils.translation import pgettext
 from rules.contrib.views import PermissionRequiredMixin
@@ -33,9 +32,10 @@ class PollCommentExportView(
         return self.module
 
     def get_queryset(self):
-        return Comment.objects.filter(
-            Q(poll__module=self.module) | Q(parent_comment__poll__module=self.module)
-        ).select_related("poll", "parent_comment", "poll__module")
+        comments = Comment.objects.filter(
+            poll__module=self.module
+        ) | Comment.objects.filter(parent_comment__poll__module=self.module)
+        return comments
 
     def get_virtual_fields(self, virtual):
         virtual.setdefault("id", _("ID"))
@@ -58,40 +58,31 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         return super().dispatch(request, *args, **kwargs)
 
     def _init_export_data(self):
-        """Load all required data in batches."""
-        if not hasattr(self, "_is_initialised"):
-            # Core poll data (single query)
+        """Load all required data including open answers."""
+        if not hasattr(self, "_is_initialized"):
             self.poll = (
                 poll_models.Poll.objects.filter(module=self.module)
                 .select_related("module")
-                .prefetch_related(
-                    Prefetch(
-                        "questions",
-                        queryset=poll_models.Question.objects.prefetch_related(
-                            "choices",
-                            Prefetch(
-                                "answers",
-                                queryset=poll_models.Answer.objects.select_related(
-                                    "question"
-                                ),
-                            ),
-                        ),
-                    )
-                )
                 .first()
             )
 
-            # Batch-load all votes with related data
-            vote_queryset = (
-                poll_models.Vote.objects.filter(choice__question__poll=self.poll)
-                .select_related("choice", "choice__question")
-                .prefetch_related("other_vote")
+            # Load questions with choices and answers
+            self.questions = self.poll.questions.prefetch_related(
+                "choices",
+                Prefetch(
+                    "answers",
+                    queryset=poll_models.Answer.objects.select_related("question"),
+                ),
+            ).all()
+
+            # Load votes
+            self._votes = list(
+                poll_models.Vote.objects.filter(
+                    choice__question__poll=self.poll
+                ).select_related("choice", "choice__question")
             )
 
-            # Process votes without iterator since we need all in memory
-            self._votes = list(vote_queryset)
-
-            # Batch-load other votes (single query)
+            # Load other votes
             self._other_votes_map = {
                 ov.vote_id: ov.answer
                 for ov in poll_models.OtherVote.objects.filter(
@@ -99,26 +90,31 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
                 )
             }
 
-            # Build optimised lookup structures
+            # Build lookup structures including answers
             self._build_lookup_structures()
-            self._is_initialised = True
+            self._is_initialized = True
 
     def _build_lookup_structures(self):
-        """Create memory-efficient access patterns for data."""
-        # User -> {choice_id: vote} mapping
+        """Create lookup structures for votes AND answers."""
         self._user_votes = defaultdict(dict)
-        # User -> {question_id: answer} mapping
         self._user_answers = defaultdict(dict)
 
         # Process votes
         for vote in self._votes:
-            user_key = vote.creator_id or f"anon_{vote.content_id}"
+            user_key = (
+                str(vote.creator_id) if vote.creator_id else f"anon_{vote.content_id}"
+            )
             self._user_votes[user_key][vote.choice_id] = vote
 
-        # Process answers from prefetched data
-        for question in self.poll.questions.all():
+        # Process answers (for open questions)
+        for question in self.questions.filter(is_open=True):  # Only open questions
             for answer in question.answers.all():
-                user_key = answer.creator_id or f"anon_{answer.content_id}"
+                user_key = (
+                    str(answer.creator_id)
+                    if answer.creator_id
+                    else f"anon_{answer.content_id}"
+                )
+                # Store with question.id as key
                 self._user_answers[user_key][question.id] = answer
 
     def get_voters(self):
@@ -150,24 +146,28 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         return [(idx, voter) for idx, voter in enumerate(voters)]
 
     def get_virtual_fields(self, virtual):
-        """Generate export fields dynamically."""
+        """Generate export fields with clear identifiers."""
         virtual = super().get_virtual_fields(virtual)
         virtual["voter_id"] = _("Voter ID")
 
-        for question in self.poll.questions.all():
-            if question.is_open:
-                virtual[(question.id, False)] = f"Q{question.id}"
-                virtual[(question.id, True)] = f"Q{question.id}_text"
-            else:
-                for choice in question.choices.all():
-                    virtual[(choice.id, False)] = f"Q{question.id}_A{choice.id}"
-                    if choice.is_other_choice:
-                        virtual[(choice.id, True)] = f"Q{question.id}_A{choice.id}_text"
+        if not hasattr(self, "questions"):
+            self._init_export_data()
+
+        # For open questions
+        for question in self.questions.filter(is_open=True):
+            virtual[(question.id, True)] = question.label
+
+        # For choice questions
+        for question in self.questions.filter(is_open=False):
+            for choice in question.choices.all():
+                virtual[(choice.id, False)] = f"{question.label} - {choice.label}"
+                if choice.is_other_choice:
+                    virtual[(choice.id, True)] = f"{question.label} - Other (specify)"
 
         return virtual
 
     def get_field_data(self, item, field):
-        """Ultra-optimised field data access."""
+        """Final corrected implementation that handles all cases properly."""
         index, voter = item
 
         # Handle voter ID
@@ -177,20 +177,20 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
         # Get unified user key
         user_key = str(voter.pk) if hasattr(voter, "pk") else f"anon_{voter}"
 
-        # Handle question/choice fields
         field_id, is_text = field
 
-        if isinstance(field_id, int):  # Question ID (open question)
+        # First check if this is an open question answer
+        if any(q.id == field_id and q.is_open for q in self.questions):
             answer = self._user_answers.get(user_key, {}).get(field_id)
-            if not is_text:
-                return 1 if answer else 0
-            return answer.answer if answer else ""
+            if is_text:
+                return answer.answer if answer else ""
+            return 1 if answer else 0
 
-        else:  # Choice ID
-            vote = self._user_votes.get(user_key, {}).get(field_id)
-            if not is_text:
-                return 1 if vote else 0
-            return self._other_votes_map.get(vote.id, "") if vote else ""
+        # Then handle choice questions
+        vote = self._user_votes.get(user_key, {}).get(field_id)
+        if not is_text:
+            return 1 if vote else 0
+        return self._other_votes_map.get(vote.id, "") if vote else ""
 
     def get_permission_object(self):
         return self.module
