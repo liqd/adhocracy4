@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`CommentForm Component renders CommentForm 1`] = `
+exports[`CommentForm Component > renders CommentForm 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>

@@ -1,11 +1,12 @@
 import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import RatingButton from '../RatingButton'
+import { expect, test, vi } from 'vitest'
 
 const props = {
   rating: -1,
   active: false,
-  onClick: jest.fn(),
+  onClick: vi.fn(),
   authenticatedAs: 'someone',
   isReadOnly: false,
   children: <span>Children</span>

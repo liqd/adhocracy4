@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom/vitest'
 import CommentForm from '../comment_form'
 
 describe('CommentForm Component', () => {
@@ -10,7 +10,7 @@ describe('CommentForm Component', () => {
     subjectId: 108,
     subjectType: 107,
     hasCommentingPermission: true,
-    onCommentSubmit: jest.fn().mockResolvedValue()
+    onCommentSubmit: vi.fn().mockResolvedValue()
   }
 
   test('renders CommentForm', () => {

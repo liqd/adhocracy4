@@ -1,0 +1,148 @@
+import L from 'leaflet';
+import { createControlComponent } from '@react-leaflet/core';
+import { point, booleanPointInPolygon } from '@turf/turf';
+import { Feature, Point, Polygon, GeoJSON, FeatureCollection, MultiPolygon } from 'geojson';
+import { makeIcon } from './GeoJsonMarker';
+
+interface LatLng {
+  lat: number;
+  lng: number;
+}
+
+type ValidPolygonGeoJSON = 
+  | Feature<Polygon | MultiPolygon> 
+  | FeatureCollection<Polygon | MultiPolygon>;
+  
+interface AddMarkerControlProps extends L.ControlOptions {
+  input: HTMLInputElement;
+  point?: string;
+  markerConstraints?: ValidPolygonGeoJSON;
+  onDragEnd?: (isInsideConstraints: boolean) => void;
+}
+
+function isFeatureWithPolygon(geoJson: any): geoJson is Feature<Polygon | MultiPolygon> {
+  return geoJson?.geometry?.type === 'Polygon' || geoJson?.geometry?.type === 'MultiPolygon';
+}
+
+export function checkPointInsidePolygon(marker: LatLng, polygons: L.GeoJSON): boolean {
+  const pointGeoJSON = point([marker.lng, marker.lat]);
+  let isInside = false;
+
+  polygons.eachLayer((layer: L.Layer) => {
+    if ('toGeoJSON' in layer) {
+      const layerGeoJSON = (layer as L.GeoJSON).toGeoJSON();
+      if (isFeatureWithPolygon(layerGeoJSON)) {
+        if (booleanPointInPolygon(pointGeoJSON, layerGeoJSON)) {
+          isInside = true;
+        }
+      }
+    }
+  });
+
+  return isInside;
+}
+
+const markerProps: L.MarkerOptions = { 
+  icon: makeIcon(), 
+  draggable: true 
+};
+
+export class AddMarkerControlClass extends L.Control {
+  private marker: L.Marker | null = null;
+  private oldCoords: L.LatLngExpression | null = null;
+  private map: L.Map | null = null;
+  private input: HTMLInputElement;
+  private markerConstraints: L.GeoJSON | null = null;
+  private onDragEndHandler?: (isInsideConstraints: boolean) => void;
+  private boundClickHandler?: (e: L.LeafletMouseEvent) => void;
+
+  constructor({ input, point, markerConstraints, onDragEnd }: AddMarkerControlProps) {
+    super();
+    this.input = input;
+    this.onDragEndHandler = onDragEnd;
+
+    // In the constructor:
+    if (markerConstraints) {
+      this.markerConstraints = L.geoJSON(markerConstraints);
+    }
+
+    if (point) {
+      const pointObj: Feature<Point> = JSON.parse(point);
+      const latlng = pointObj.geometry.coordinates.reverse() as [number, number];
+      this.marker = L.marker(latlng, markerProps);
+      this.oldCoords = latlng;
+    }
+  }
+
+  updateMarker(latlng: L.LatLngExpression): boolean {
+    if (!this.markerConstraints || !this.map) return false;
+
+    const latLngObj = L.latLng(latlng);
+    const isInsideConstraints = checkPointInsidePolygon(
+      { lat: latLngObj.lat, lng: latLngObj.lng },
+      this.markerConstraints
+    );
+
+    if (isInsideConstraints) {
+      this.oldCoords = latlng;
+      if (this.marker) {
+        this.marker.setLatLng(latlng);
+      } else {
+        this.marker = L.marker(latlng, markerProps).addTo(this.map);
+        this.marker.on('dragend', this.onDragend.bind(this));
+      }
+      this.input.value = JSON.stringify(this.marker.toGeoJSON());
+    }
+
+    return isInsideConstraints;
+  }
+
+  private onDragend(e: L.DragEndEvent): void {
+    if (!this.markerConstraints || !this.marker) return;
+
+    const targetPosition = e.target.getLatLng();
+    const isInsideConstraints = checkPointInsidePolygon(
+      { lat: targetPosition.lat, lng: targetPosition.lng },
+      this.markerConstraints
+    );
+
+    if (!isInsideConstraints) {
+      e.target.setLatLng(this.oldCoords!);
+    } else {
+      this.updateMarker(targetPosition);
+    }
+
+    this.onDragEndHandler?.(isInsideConstraints);
+  }
+
+  addTo(map: L.Map): this {
+    this.map = map;
+    this.boundClickHandler = (e) => this.updateMarker(e.latlng);
+    map.on('click', this.boundClickHandler);
+
+    if (this.marker) {
+      this.marker.addTo(this.map);
+      this.marker.on('dragend', this.onDragend.bind(this));
+    }
+
+    return this;
+  }
+
+  onRemove(map: L.Map): void {
+    map.off('click', this.boundClickHandler!);
+    if (this.marker) {
+      this.marker.off('dragend', this.onDragend);
+      this.marker.remove();
+      this.marker = null;
+    }
+  }
+}
+
+// Fix the createControl function to handle both ControlOptions and our custom props
+const createControl = (props: AddMarkerControlProps) => new AddMarkerControlClass(props);
+
+// Create the component with proper typing
+const AddMarkerControl = createControlComponent<
+  AddMarkerControlProps,
+  AddMarkerControlClass
+>(createControl);

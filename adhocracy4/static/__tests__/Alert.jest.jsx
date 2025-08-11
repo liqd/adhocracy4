@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react'
 import Alert from '../Alert'
+import { vi } from 'vitest'
 
 test('Alert is showing', () => {
   render(<Alert type="success" message="hello" />)
@@ -15,7 +16,7 @@ test('Alert is not showing', () => {
 })
 
 test('Invoke callback through click', () => {
-  const onClickCallback = jest.fn()
+  const onClickCallback = vi.fn()
   render(
     <Alert
       type="success"
@@ -30,7 +31,7 @@ test('Invoke callback through click', () => {
 })
 
 test('Invoke callback through timer', async () => {
-  const onClickCallback = jest.fn()
+  const onClickCallback = vi.fn()
   render(
     <Alert
       type="success"
@@ -44,7 +45,7 @@ test('Invoke callback through timer', async () => {
 })
 
 test('Invoke callback through click before timer ends', async () => {
-  const onClickCallback = jest.fn()
+  const onClickCallback = vi.fn()
   render(
     <Alert
       type="success"

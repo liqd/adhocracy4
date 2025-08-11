@@ -1,17 +1,18 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { ChoiceRow } from '../PollDetail/ChoiceRow'
+import { vi } from 'vitest'
 
 // Mock of the TextareaWithCounter component
-jest.mock('../PollDetail/TextareaWithCounter', () => ({
+vi.mock('../PollDetail/TextareaWithCounter', () => ({
   TextareaWithCounter: ({ value, onChange }) => (
     <textarea value={value} onChange={onChange} data-testid="textarea-with-counter-2" />
   )
 }))
 
 describe('ChoiceRow', () => {
-  const mockOnInputChange = jest.fn()
-  const mockOnOtherChange = jest.fn()
+  const mockOnInputChange = vi.fn()
+  const mockOnOtherChange = vi.fn()
 
   const defaultProps = {
     choice: {

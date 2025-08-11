@@ -1,7 +1,8 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom/vitest'
 import Comment from '../comment'
+import { vi } from 'vitest'
 
 describe('Comment Component', () => {
   const defaultProps = {
@@ -17,11 +18,11 @@ describe('Comment Component', () => {
     userRatng: null,
     userRatingId: null,
     child_comments: [],
-    onCommentDelete: jest.fn(),
-    onCommentSubmit: jest.fn(),
-    onCommentModify: jest.fn(),
-    onReplyErrorClick: jest.fn(),
-    onEditErrorClick: jest.fn(),
+    onCommentDelete: vi.fn(),
+    onCommentSubmit: vi.fn(),
+    onCommentModify: vi.fn(),
+    onReplyErrorClick: vi.fn(),
+    onEditErrorClick: vi.fn(),
     anchoredCommentId: null,
     anchoredCommentParentId: null,
     has_comment_commenting_permission: true,
@@ -33,8 +34,8 @@ describe('Comment Component', () => {
     useTermsOfUse: false,
     agreedTermsOfUse: false,
     orgTermsUrl: '',
-    setCommentError: jest.fn(),
-    setCommentEditError: jest.fn()
+    setCommentError: vi.fn(),
+    setCommentEditError: vi.fn()
   }
   const childComment = {
     ai_report: null,
@@ -152,8 +153,9 @@ describe('Comment Component', () => {
     ).not.toBeInTheDocument()
 
     const replyButton = screen.getByRole('button', {
-      name: '%s replies1 reply'
+      name: '1 reply'
     })
+
     fireEvent.click(replyButton)
     expect(
       screen.getByText(/This is a test child comment./)

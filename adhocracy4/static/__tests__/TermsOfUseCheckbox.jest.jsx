@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { TermsOfUseCheckbox } from '../TermsOfUseCheckbox'
+import { vi } from 'vitest'
 
 test('One TermsOfUseCheckbox is showing', () => {
   render(<TermsOfUseCheckbox id="test-checkbox" />)
@@ -9,7 +10,7 @@ test('One TermsOfUseCheckbox is showing', () => {
 })
 
 test('One TermsOfUseCheckbox is checked', () => {
-  const onChangeFn = jest.fn()
+  const onChangeFn = vi.fn()
   const tree = render(
     <TermsOfUseCheckbox
       id="test-checkbox"
