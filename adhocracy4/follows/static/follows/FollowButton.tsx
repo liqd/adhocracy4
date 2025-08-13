@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import django from 'django';
-import Alert from '../../../static/Alert';
-import api from '../../../static/api';
-import {getLoginUrl} from '../../../static/config';
+import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom'
+import django from 'django'
+import Alert from '../../../static/Alert'
+import api from '../../../static/api'
+import { getLoginUrl } from '../../../static/config'
 
 interface TranslatedTexts {
   followDescription: string;
@@ -25,7 +25,7 @@ const translated: TranslatedTexts = {
   followingAlert: django.gettext('You will no longer be updated via email.'),
   follow: django.gettext('Follow'),
   following: django.gettext('Following')
-};
+}
 
 interface FollowButtonProps {
   project: string;
@@ -49,70 +49,70 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
   customClasses = '',
   alertTarget = null
 }) => {
-  const [following, setFollowing] = useState<boolean | null>(null);
-  const [alert, setAlert] = useState<AlertState | null>(null);
+  const [following, setFollowing] = useState<boolean | null>(null)
+  const [alert, setAlert] = useState<AlertState | null>(null)
 
-  const followBtnText = following ? translated.following : translated.follow;
+  const followBtnText = following ? translated.following : translated.follow
   const followDescriptionText = following
     ? translated.followingDescription
-    : translated.followDescription;
+    : translated.followDescription
 
   useEffect(() => {
     if (authenticatedAs) {
       api.follow
         .get(project)
         .done((follow: FollowResponse) => {
-          setFollowing(follow.enabled);
+          setFollowing(follow.enabled)
         })
         .fail((response: { status: number }) => {
           if (response.status === 404) {
-            setFollowing(false);
+            setFollowing(false)
           }
-        });
+        })
     }
-  }, [project, authenticatedAs]);
+  }, [project, authenticatedAs])
 
   const removeAlert = () => {
-    setAlert(null);
-  };
+    setAlert(null)
+  }
 
   const toggleFollow = () => {
     if (authenticatedAs === null) {
-      window.location.href = getLoginUrl();
-      return;
+      window.location.href = getLoginUrl()
+      return
     }
 
     api.follow.change({ enabled: !following }, project).done((follow: FollowResponse) => {
-      setFollowing(follow.enabled);
+      setFollowing(follow.enabled)
       setAlert({
         type: follow.enabled ? 'success' : 'warning',
         message: follow.enabled ? translated.followAlert : translated.followingAlert
-      });
-    });
-  };
+      })
+    })
+  }
 
-  const buttonClasses = following ? 'a4-btn a4-btn--following' : 'a4-btn a4-btn--follow';
+  const buttonClasses = following ? 'a4-btn a4-btn--following' : 'a4-btn a4-btn--follow'
 
   const AlertPortal: React.FC = () => {
-    if (!alert) return null;
+    if (!alert) return null
 
     if (!alertTarget) {
-      console.error('AlertPortal: No alert target provided');
-      return null;
+      console.error('AlertPortal: No alert target provided')
+      return null
     }
 
     const container = document.getElementById(alertTarget)
 
     if (!container) {
-      console.error('AlertPortal: Target element with ID "' + alertTarget + '" not found in DOM');
-      return null;
+      console.error('AlertPortal: Target element with ID "' + alertTarget + '" not found in DOM')
+      return null
     }
 
     return ReactDOM.createPortal(
       <Alert onClick={removeAlert} {...alert} />,
       container
-    );
-  };
+    )
+  }
 
   return (
     <span className={'a4-follow ' + customClasses}>
@@ -137,9 +137,9 @@ export const FollowButton: React.FC<FollowButtonProps> = ({
           <span className="a4-follow__notification">
             <Alert onClick={removeAlert} {...alert} />
           </span>
-        )}
+          )}
     </span>
-  );
-};
+  )
+}
 
-export default FollowButton;
+export default FollowButton

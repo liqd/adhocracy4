@@ -3,7 +3,7 @@ import { EditPollChoice } from './EditPollChoice'
 import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
 import { HelptextForm } from './HelptextForm'
-import FlipMove from 'react-flip-move';
+import FlipMove from 'react-flip-move'
 
 interface PollChoice {
   id: number
@@ -35,7 +35,7 @@ interface EditPollQuestionProps {
   onDelete?: () => void
 }
 export const EditPollQuestion = React.forwardRef((props: EditPollQuestionProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-  const [hasHelptext, setHasHelptext] = useState(props.question?.help_text && props.question?.help_text!== "")
+  const [hasHelptext, setHasHelptext] = useState(props.question?.help_text && props.question?.help_text !== '')
   const hasOtherOption = props.question.choices.find(c => c.is_other_choice) !== undefined
   return (
     <section ref={ref} className="editpoll__question-container">
@@ -108,7 +108,7 @@ export const EditPollQuestion = React.forwardRef((props: EditPollQuestionProps, 
                         label={label}
                         choice={choice}
                         choiceId={choice.id}
-                        onLabelChange={(label) => {props.onChoiceLabelChange &&  props.onChoiceLabelChange(index, label) }}
+                        onLabelChange={(label) => { props.onChoiceLabelChange && props.onChoiceLabelChange(index, label) }}
                         onDelete={() => { props.onDeleteChoice && props.onDeleteChoice(index) }}
                         errors={errors}
                         undeletable={props.question.choices.length < 3}

@@ -1,6 +1,6 @@
-import React, { useImperativeHandle, ForwardedRef } from 'react';
-import { MapContainer, GeoJSON, useMap, MapContainerProps } from 'react-leaflet';
-import MaplibreGlLayer from './MaplibreGlLayer';
+import React, { useImperativeHandle, ForwardedRef } from 'react'
+import { MapContainer, GeoJSON, useMap, MapContainerProps } from 'react-leaflet'
+import MaplibreGlLayer from './MaplibreGlLayer'
 
 interface PolygonStyle {
   color: string;
@@ -22,33 +22,33 @@ const polygonStyle: PolygonStyle = {
   weight: 2,
   opacity: 1,
   fillOpacity: 0.2
-};
+}
 
-const Map = React.forwardRef(function Map(
+const Map = React.forwardRef(function Map (
   { attribution, baseUrl, polygon, omtToken, children, ...rest }: MapProps,
   ref: ForwardedRef<L.Map>
 ) {
   const MapLayers = () => {
-    const map = useMap();
-    
-    useImperativeHandle(ref, () => map as L.Map);
-    
+    const map = useMap()
+
+    useImperativeHandle(ref, () => map as L.Map)
+
     const refCallback = (layer: L.Layer | null) => {
       if (!map || !layer) {
-        return;
+        return
       }
-      const geoJSONLayer = layer as L.GeoJSON;
-      map.fitBounds(geoJSONLayer.getBounds());
-      map.setMinZoom(map.getZoom());
-    };
+      const geoJSONLayer = layer as L.GeoJSON
+      map.fitBounds(geoJSONLayer.getBounds())
+      map.setMinZoom(map.getZoom())
+    }
 
     return (
       <>
         {map && polygon && (
-          <GeoJSON 
-            style={polygonStyle} 
-            data={polygon} 
-            ref={refCallback} 
+          <GeoJSON
+            style={polygonStyle}
+            data={polygon}
+            ref={refCallback}
           />
         )}
         <MaplibreGlLayer
@@ -57,20 +57,20 @@ const Map = React.forwardRef(function Map(
           omtToken={omtToken}
         />
       </>
-    );
-  };
+    )
+  }
 
   return (
-    <MapContainer 
-      style={{ minHeight: 300 }} 
-      zoom={13} 
-      maxZoom={18} 
+    <MapContainer
+      style={{ minHeight: 300 }}
+      zoom={13}
+      maxZoom={18}
       {...rest}
     >
       <MapLayers />
       {children}
     </MapContainer>
-  );
-});
+  )
+})
 
-export default Map;
+export default Map

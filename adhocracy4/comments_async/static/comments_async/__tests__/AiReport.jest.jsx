@@ -20,12 +20,12 @@ describe('Test AiReport', () => {
     render(<AiReport report={testReport} />)
     const button = screen.getByRole('button')
     fireEvent.click(button)
-    const showLessButton = screen.getByText("Show less")
-    await expect(showLessButton).toHaveTextContent("Show less")
+    const showLessButton = screen.getByText('Show less')
+    await expect(showLessButton).toHaveTextContent('Show less')
   })
 
   test('shows percentage for each label', () => {
-    render(<AiReport report={{...testReport, confidence: [0.65]}} />)
+    render(<AiReport report={{ ...testReport, confidence: [0.65] }} />)
     const button = screen.getByRole('button')
     fireEvent.click(button)
     expect(screen.getByText(/65%/)).toBeInTheDocument()

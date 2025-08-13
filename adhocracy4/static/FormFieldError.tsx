@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 interface FormFieldErrorProps {
   error?: Record<string, string> | null;
@@ -12,10 +12,10 @@ const FormFieldError: React.FC<FormFieldErrorProps> = ({ error, field, id }) => 
       <p id={id} className="field-error">
         {error[field]}
       </p>
-    );
+    )
   }
 
-  return null;
-};
+  return null
+}
 
-export default FormFieldError;
+export default FormFieldError

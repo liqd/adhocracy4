@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import classNames from '../classNames';
-import useCombobox from './useCombobox';
-import Choice from '../../types/choice';
+import React, { useState } from 'react'
+import classNames from '../classNames'
+import useCombobox from './useCombobox'
+import Choice from '../../types/choice'
 
 interface AutoCompleteProps<T = any> {
   label: string;
@@ -21,10 +21,10 @@ interface AutoCompleteProps<T = any> {
   onChange?: (newValues: T[]) => void;
 }
 
-const defaultFilterFn = <T,>(choice: Choice<T>, text: string): boolean =>
-  choice.name.toLowerCase().includes(text.toLowerCase());
+const defaultFilterFn = <T, >(choice: Choice<T>, text: string): boolean =>
+  choice.name.toLowerCase().includes(text.toLowerCase())
 
-export const AutoComplete = <T,>({
+export const AutoComplete = <T, >({
   label,
   className,
   liClassName,
@@ -44,33 +44,33 @@ export const AutoComplete = <T,>({
     activeItems,
     listboxAttrs,
     comboboxAttrs,
-    getChoicesAttr,
+    getChoicesAttr
   } = useCombobox({
     choices,
     ...comboboxProps,
-    isAutoComplete: true,
-  });
+    isAutoComplete: true
+  })
 
-  const [text, setText] = useState('');
+  const [text, setText] = useState('')
 
   const classes = classNames(
     'form-control a4-combo-box__container',
     opened && 'a4-combo-box__container--opened',
     className
-  );
+  )
 
   const comboboxClasses = classNames(
     'form-control a4-combo-box__combobox',
     comboboxClassName
-  );
+  )
 
-  const actualFilterFn = filterFn || defaultFilterFn;
-  const filteredChoices = text !== '' ? choices.filter(choice => actualFilterFn(choice, text)) : choices;
+  const actualFilterFn = filterFn || defaultFilterFn
+  const filteredChoices = text !== '' ? choices.filter(choice => actualFilterFn(choice, text)) : choices
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLLIElement>) => {
-    setText(e.target.value.toString());
-    onChangeInput?.(e.target.value.toString());
-  };
+    setText(e.target.value.toString())
+    onChangeInput?.(e.target.value.toString())
+  }
 
   return (
     <div className="form-group a4-combo-box a4-combo-box--autocomplete">
@@ -97,13 +97,13 @@ export const AutoComplete = <T,>({
       {filteredChoices.length > 0 && (
         <ul className={classes} {...listboxAttrs}>
           {filteredChoices.map((choice) => {
-            const { active, focused, ...attrs } = getChoicesAttr(choice);
+            const { active, focused, ...attrs } = getChoicesAttr(choice)
             const liClasses = classNames(
               liClassName,
               'a4-combo-box__option',
               active && 'a4-combo-box__option--active',
               focused && 'a4-combo-box__option--focus'
-            );
+            )
 
             return (
               <li
@@ -114,12 +114,12 @@ export const AutoComplete = <T,>({
                 <span>{choice.name}</span>
                 {active && <i className="fa fa-check" aria-hidden="true" />}
               </li>
-            );
+            )
           })}
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default AutoComplete;
+export default AutoComplete

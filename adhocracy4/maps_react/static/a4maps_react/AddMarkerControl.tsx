@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
-import { useMap } from 'react-leaflet';
-import L from 'leaflet';
-import { point, booleanPointInPolygon } from '@turf/turf';
-import { Feature, Point, Polygon, MultiPolygon, FeatureCollection } from 'geojson';
-import { makeIcon } from './GeoJsonMarker';
+import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import { useMap } from 'react-leaflet'
+import L from 'leaflet'
+import { point, booleanPointInPolygon } from '@turf/turf'
+import { Feature, Point, Polygon, MultiPolygon, FeatureCollection } from 'geojson'
+import { makeIcon } from './GeoJsonMarker'
 
 interface LatLng {
   lat: number;
   lng: number;
 }
 
-type ValidPolygonGeoJSON = 
-  | Feature<Polygon | MultiPolygon> 
+type ValidPolygonGeoJSON =
+  | Feature<Polygon | MultiPolygon>
   | FeatureCollection<Polygon | MultiPolygon>;
 
 interface AddMarkerControlProps {
@@ -21,130 +21,130 @@ interface AddMarkerControlProps {
   onDragEnd?: (isInsideConstraints: boolean) => void;
 }
 
-const markerProps: L.MarkerOptions = { 
-  icon: makeIcon(), 
-  draggable: true 
-};
+const markerProps: L.MarkerOptions = {
+  icon: makeIcon(),
+  draggable: true
+}
 
 const AddMarkerControl = forwardRef<L.Control, AddMarkerControlProps>((props, ref) => {
-  const map = useMap();
-  const controlRef = useRef<L.Control>(null);
-  const markerRef = useRef<L.Marker | null>(null);
-  const oldCoordsRef = useRef<L.LatLngExpression | null>(null);
-  const markerConstraintsRef = useRef<L.GeoJSON | null>(null);
-  const clickHandlerRef = useRef<(e: L.LeafletMouseEvent) => void>(null);
+  const map = useMap()
+  const controlRef = useRef<L.Control>(null)
+  const markerRef = useRef<L.Marker | null>(null)
+  const oldCoordsRef = useRef<L.LatLngExpression | null>(null)
+  const markerConstraintsRef = useRef<L.GeoJSON | null>(null)
+  const clickHandlerRef = useRef<(e: L.LeafletMouseEvent) => void>(null)
 
   // Initialize marker constraints
   useEffect(() => {
     if (props.markerConstraints) {
-      markerConstraintsRef.current = L.geoJSON(props.markerConstraints);
+      markerConstraintsRef.current = L.geoJSON(props.markerConstraints)
     }
-  }, [props.markerConstraints]);
+  }, [props.markerConstraints])
 
   // Initialize marker if point is provided
   useEffect(() => {
     if (props.point) {
-      const pointObj: Feature<Point> = JSON.parse(props.point);
-      const latlng = pointObj.geometry.coordinates.reverse() as [number, number];
-      markerRef.current = L.marker(latlng, markerProps);
-      oldCoordsRef.current = latlng;
+      const pointObj: Feature<Point> = JSON.parse(props.point)
+      const latlng = pointObj.geometry.coordinates.reverse() as [number, number]
+      markerRef.current = L.marker(latlng, markerProps)
+      oldCoordsRef.current = latlng
     }
-  }, [props.point]);
+  }, [props.point])
 
-function isFeatureWithPolygon(geoJson: any): geoJson is Feature<Polygon | MultiPolygon> {
-  return geoJson?.geometry?.type === 'Polygon' || geoJson?.geometry?.type === 'MultiPolygon';
-}
+  function isFeatureWithPolygon (geoJson: any): geoJson is Feature<Polygon | MultiPolygon> {
+    return geoJson?.geometry?.type === 'Polygon' || geoJson?.geometry?.type === 'MultiPolygon'
+  }
 
-function checkPointInsidePolygon(marker: LatLng, polygons: L.GeoJSON): boolean {
-  const pointGeoJSON = point([marker.lng, marker.lat]);
-  let isInside = false;
+  function checkPointInsidePolygon (marker: LatLng, polygons: L.GeoJSON): boolean {
+    const pointGeoJSON = point([marker.lng, marker.lat])
+    let isInside = false
 
-  polygons.eachLayer((layer: L.Layer) => {
-    if ('toGeoJSON' in layer) {
-      const layerGeoJSON = (layer as L.GeoJSON).toGeoJSON();
-      if (isFeatureWithPolygon(layerGeoJSON)) {
-        if (booleanPointInPolygon(pointGeoJSON, layerGeoJSON)) {
-          isInside = true;
+    polygons.eachLayer((layer: L.Layer) => {
+      if ('toGeoJSON' in layer) {
+        const layerGeoJSON = (layer as L.GeoJSON).toGeoJSON()
+        if (isFeatureWithPolygon(layerGeoJSON)) {
+          if (booleanPointInPolygon(pointGeoJSON, layerGeoJSON)) {
+            isInside = true
+          }
         }
       }
-    }
-  });
+    })
 
-  return isInside;
-}
+    return isInside
+  }
 
   const updateMarker = (latlng: L.LatLngExpression): boolean => {
-    if (!markerConstraintsRef.current || !map) return false;
+    if (!markerConstraintsRef.current || !map) return false
 
-    const latLngObj = L.latLng(latlng);
+    const latLngObj = L.latLng(latlng)
     const isInsideConstraints = checkPointInsidePolygon(
       { lat: latLngObj.lat, lng: latLngObj.lng },
       markerConstraintsRef.current
-    );
+    )
 
     if (isInsideConstraints) {
-      oldCoordsRef.current = latlng;
+      oldCoordsRef.current = latlng
       if (markerRef.current) {
-        markerRef.current.setLatLng(latlng);
+        markerRef.current.setLatLng(latlng)
       } else {
-        markerRef.current = L.marker(latlng, markerProps).addTo(map);
-        markerRef.current.on('dragend', onDragend);
+        markerRef.current = L.marker(latlng, markerProps).addTo(map)
+        markerRef.current.on('dragend', onDragend)
       }
-      props.input.value = JSON.stringify(markerRef.current.toGeoJSON());
+      props.input.value = JSON.stringify(markerRef.current.toGeoJSON())
     }
 
-    return isInsideConstraints;
-  };
+    return isInsideConstraints
+  }
 
   const onDragend = (e: L.DragEndEvent) => {
-    if (!markerConstraintsRef.current || !markerRef.current) return;
+    if (!markerConstraintsRef.current || !markerRef.current) return
 
-    const targetPosition = e.target.getLatLng();
+    const targetPosition = e.target.getLatLng()
     const isInsideConstraints = checkPointInsidePolygon(
       { lat: targetPosition.lat, lng: targetPosition.lng },
       markerConstraintsRef.current
-    );
+    )
 
     if (!isInsideConstraints) {
-      e.target.setLatLng(oldCoordsRef.current!);
+      e.target.setLatLng(oldCoordsRef.current!)
     } else {
-      updateMarker(targetPosition);
+      updateMarker(targetPosition)
     }
 
-    props.onDragEnd?.(isInsideConstraints);
-  };
+    props.onDragEnd?.(isInsideConstraints)
+  }
 
   // Set up the control and event handlers
   useEffect(() => {
-    if (!map) return;
+    if (!map) return
 
-    const control = new L.Control();
-    controlRef.current = control;
+    const control = new L.Control()
+    controlRef.current = control
 
-    clickHandlerRef.current = (e: L.LeafletMouseEvent) => updateMarker(e.latlng);
-    map.on('click', clickHandlerRef.current);
+    clickHandlerRef.current = (e: L.LeafletMouseEvent) => updateMarker(e.latlng)
+    map.on('click', clickHandlerRef.current)
 
     if (markerRef.current) {
-      markerRef.current.addTo(map);
-      markerRef.current.on('dragend', onDragend);
+      markerRef.current.addTo(map)
+      markerRef.current.on('dragend', onDragend)
     }
 
     return () => {
       if (map && clickHandlerRef.current) {
-        map.off('click', clickHandlerRef.current);
+        map.off('click', clickHandlerRef.current)
       }
       if (markerRef.current) {
-        markerRef.current.off('dragend', onDragend);
-        markerRef.current.remove();
+        markerRef.current.off('dragend', onDragend)
+        markerRef.current.remove()
       }
-    };
-  }, [map]);
+    }
+  }, [map])
 
-  useImperativeHandle(ref, () => controlRef.current as L.Control);
+  useImperativeHandle(ref, () => controlRef.current as L.Control)
 
-  return null;
-});
+  return null
+})
 
-AddMarkerControl.displayName = 'AddMarkerControl';
+AddMarkerControl.displayName = 'AddMarkerControl'
 
-export default AddMarkerControl;
+export default AddMarkerControl

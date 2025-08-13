@@ -1,17 +1,17 @@
-import $ from 'jquery';
-import cookie from 'js-cookie';
+import $ from 'jquery'
+import cookie from 'js-cookie'
 
 // Initialize CSRF token setup
-function init() {
+function init () {
   $.ajaxSetup({
     headers: { 'X-CSRFToken': cookie.get('csrftoken') }
-  });
+  })
 }
 
-document.addEventListener('DOMContentLoaded', init, false);
-document.addEventListener('a4.embed.ready', init, false);
+document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('a4.embed.ready', init, false)
 
-const baseURL = '/api/';
+const baseURL = '/api/'
 
 interface ApiConfig {
   url: string;
@@ -46,29 +46,29 @@ class ApiClient {
     commentmoderate: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comment-moderate/',
     rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/',
     moderatorremark: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/moderatorremarks/'
-  };
+  }
 
-  private _sendRequest<T>(endpoint: string, id: string | number | object, options: any, data?: any): JQuery.jqXHR<T> {
-    const $body = $('body');
+  private _sendRequest<T> (endpoint: string, id: string | number | object, options: any, data?: any): JQuery.jqXHR<T> {
+    const $body = $('body')
 
     if (typeof id === 'object') {
       // there's no id, switch parameters
-      data = options;
-      options = id;
-      id = null as any;
+      data = options
+      options = id
+      id = null as any
     }
 
-    let url = this.urls[endpoint as keyof typeof this.urls];
+    let url = this.urls[endpoint as keyof typeof this.urls]
     if (data?.urlReplaces) {
       url = url.replace(/\$(\w+?)\b/g, (match, group) => {
-        return data.urlReplaces[group];
-      });
-      data = { ...data };
-      delete data.urlReplaces;
+        return data.urlReplaces[group]
+      })
+      data = { ...data }
+      delete data.urlReplaces
     }
 
     if (typeof id === 'number' || typeof id === 'string') {
-      url = url + id + '/';
+      url = url + id + '/'
     }
 
     const defaultParams: ApiConfig = {
@@ -77,55 +77,55 @@ class ApiClient {
       dataType: 'json',
       data,
       error: (xhr, status, err) => {
-        console.error(url, status, err.toString());
+        console.error(url, status, err.toString())
       },
       complete: () => {
-        $body.removeClass('loading');
-      }
-    };
-
-    const params = { ...defaultParams, ...options };
-
-    if (typeof params.data !== 'undefined') {
-      if (params.type === 'PUT' || params.type === 'POST' || params.type === 'PATCH') {
-        params.contentType = 'application/json; charset=utf-8';
-        params.data = JSON.stringify(params.data);
+        $body.removeClass('loading')
       }
     }
 
-    $body.addClass('loading');
-    return $.ajax(params);
+    const params = { ...defaultParams, ...options }
+
+    if (typeof params.data !== 'undefined') {
+      if (params.type === 'PUT' || params.type === 'POST' || params.type === 'PATCH') {
+        params.contentType = 'application/json; charset=utf-8'
+        params.data = JSON.stringify(params.data)
+      }
+    }
+
+    $body.addClass('loading')
+    return $.ajax(params)
   }
 
   public comments = {
     get: (data: any): JQuery.jqXHR<ApiResponse<Comment>> => {
-      return this._sendRequest('comment', { type: 'GET' }, data);
+      return this._sendRequest('comment', { type: 'GET' }, data)
     },
     add: (data: any): JQuery.jqXHR<Comment> => {
-      return this._sendRequest('comment', { type: 'POST' }, data);
+      return this._sendRequest('comment', { type: 'POST' }, data)
     },
     change: (data: any, id: number): JQuery.jqXHR<Comment> => {
-      return this._sendRequest('comment', id, { type: 'PATCH' }, data);
+      return this._sendRequest('comment', id, { type: 'PATCH' }, data)
     },
     delete: (data: any, id: number): JQuery.jqXHR<void> => {
-      return this._sendRequest('comment', id, { type: 'DELETE' }, data);
+      return this._sendRequest('comment', id, { type: 'DELETE' }, data)
     }
-  };
+  }
 
   public follow = {
     get: (project: string): JQuery.jqXHR<{ enabled: boolean }> => {
-      return this._sendRequest('follow', project, { type: 'GET' }, {});
+      return this._sendRequest('follow', project, { type: 'GET' }, {})
     },
     change: (data: { enabled: boolean }, project: string): JQuery.jqXHR<{ enabled: boolean }> => {
-      return this._sendRequest('follow', project, { type: 'PUT' }, data);
+      return this._sendRequest('follow', project, { type: 'PUT' }, data)
     },
     setFollowing: (data: { enabled: boolean }): void => {
       // Mock function for testing if needed
     }
-  };
+  }
   // Add other endpoints with proper typing as needed
   // ...
 }
 
-const api = new ApiClient();
-export default api;
+const api = new ApiClient()
+export default api

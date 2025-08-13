@@ -7,13 +7,13 @@ import { QUESTION_OBJECT } from './__testdata__/QUESTION_OBJECT.js'
 vi.mock('react-flip-move', () => {
   const MockFlipMove = ({ children }: { children: React.ReactNode }) => (
     <div data-testid="flip-move">{children}</div>
-  );
-  
+  )
+
   return {
     __esModule: true,
     default: MockFlipMove
-  };
-});
+  }
+})
 
 describe('<EditPollQuestion>', () => {
   // Test data
@@ -39,7 +39,7 @@ describe('<EditPollQuestion>', () => {
   }
 
   test('renders question textarea and handles changes', () => {
-     console.log('EditPollQuestion component:', EditPollQuestion)
+    console.log('EditPollQuestion component:', EditPollQuestion)
     renderComponent()
     const textarea = screen.getByLabelText(/question/i)
     fireEvent.change(textarea, { target: { value: 'Updated question' } })

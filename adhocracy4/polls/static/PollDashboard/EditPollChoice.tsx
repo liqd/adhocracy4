@@ -1,6 +1,6 @@
-import React from 'react';
-import FormFieldError from '../../../static/FormFieldError';
-import django from 'django';
+import React from 'react'
+import FormFieldError from '../../../static/FormFieldError'
+import django from 'django'
 
 interface Choice {
   label: string;
@@ -61,6 +61,6 @@ export const EditPollChoice = React.forwardRef<HTMLDivElement, EditPollChoicePro
       />
     </div>
   )
-});
+})
 
-EditPollChoice.displayName = 'EditPollChoice';
+EditPollChoice.displayName = 'EditPollChoice'

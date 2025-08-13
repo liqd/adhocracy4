@@ -68,7 +68,7 @@ describe('RatingBox', () => {
   afterAll(() => {
     // Restore window.location safely
     window.location = originalLocation
-    
+
     // Restore individual window properties instead of Object.assign
     Object.keys(originalWindow).forEach(key => {
       if (key in window) {
@@ -100,7 +100,7 @@ describe('RatingBox', () => {
 
     createOrModifyRating.mockResolvedValue(getData({ pos: 2, userRating: 1 }))
     fireEvent.click(button)
-    
+
     await waitFor(() => {
       expect(createOrModifyRating).toHaveBeenCalledTimes(1)
       expect(createOrModifyRating).toHaveBeenCalledWith(1, 10, 14, null)
@@ -156,7 +156,7 @@ describe('RatingBox custom render', () => {
   test('component renders with custom children', async () => {
     render(
       <RatingBox
-        {...props} 
+        {...props}
         render={({ ratings, userRatingData, isReadOnly, clickHandler }) => (
           <div data-testid="custom-rating-box">
             {JSON.stringify({ ratings, userRatingData, isReadOnly })}
@@ -174,7 +174,7 @@ describe('RatingBox custom render', () => {
     const button = screen.getByRole('button', { name: /dislike/ })
     createOrModifyRating.mockResolvedValue(getData())
     fireEvent.click(button)
-    
+
     await waitFor(() => {
       expect(createOrModifyRating).toHaveBeenCalledTimes(1)
       expect(createOrModifyRating).toHaveBeenCalledWith(-1, 10, 14, null)
