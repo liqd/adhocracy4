@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useEffect, useRef, useImperativeHandle } from 'react'
 import { useMap } from 'react-leaflet'
 import L from 'leaflet'
 import { point, booleanPointInPolygon } from '@turf/turf'
@@ -12,7 +12,7 @@ interface LatLng {
 
 type ValidPolygonGeoJSON =
   | Feature<Polygon | MultiPolygon>
-  | FeatureCollection<Polygon | MultiPolygon>;
+  | FeatureCollection<Polygon | MultiPolygon>
 
 interface AddMarkerControlProps {
   input: HTMLInputElement;
@@ -26,7 +26,7 @@ const markerProps: L.MarkerOptions = {
   draggable: true
 }
 
-const AddMarkerControl = forwardRef<L.Control, AddMarkerControlProps>((props, ref) => {
+const AddMarkerControl = React.forwardRef<L.Control, AddMarkerControlProps>((props, ref) => {
   const map = useMap()
   const controlRef = useRef<L.Control>(null)
   const markerRef = useRef<L.Marker | null>(null)

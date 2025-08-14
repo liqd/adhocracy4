@@ -42,6 +42,7 @@ const Alert: React.FC<AlertProps> = ({
     <div
       id="alert"
       role={ariaRole}
+      // eslint-disable-next-line no-restricted-syntax
       className={`alert alert--${type}`}
       aria-atomic="true"
     >

@@ -441,6 +441,7 @@ export const CommentBox: React.FC<CommentBoxProps> = (props) => {
         setNextComments(data.next || null)
         setCommentCount(data.comment_count)
 
+        // eslint-disable-next-line promise/always-return
         if (findAnchoredComment(newComments, anchoredCommentParentId) || !data.next) {
           setLoading(false)
         } else {
