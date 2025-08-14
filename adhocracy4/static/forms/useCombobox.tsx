@@ -93,8 +93,7 @@ const useCombobox = <T, >({
   defaultValue,
   onChange,
   isAutoComplete = false,
-  isMultiple = false,
-  search
+  isMultiple = false
 }: UseComboboxProps<T>): UseComboboxReturn<T> => {
   const defaultValueArray = Array.isArray(defaultValue) ? defaultValue : defaultValue !== undefined ? [defaultValue] : []
 

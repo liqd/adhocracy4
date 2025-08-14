@@ -38,9 +38,11 @@
     "n/no-extraneous-import": "off",
     "no-restricted-syntax": ["error", "TemplateLiteral"],
     "import/default": "warn",
+    "semi": "off",
     // TypeScript specific rules
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/semi": ["error", "never"],
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-this-alias": "warn",
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],

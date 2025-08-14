@@ -3,6 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react'
 import { describe, test, expect } from 'vitest' // Import from vitest
 
 import AiReport from '../ai_report'
+
 describe('Test AiReport', () => {
   const testReport = {
     label: [['cattest', 'test label']],
