@@ -4,6 +4,7 @@ import { render, fireEvent } from '@testing-library/react'
 
 // component and related data to be tested
 import { EditPollChoice } from '../PollDashboard/EditPollChoice.jsx'
+import { vi } from 'vitest'
 
 const CHOICE_OBJECT = {
   id: 1,
@@ -29,7 +30,7 @@ describe('<EditPollChoice> with...', () => {
   })
 
   test('on label change', () => {
-    const onLabelChangedFn = jest.fn()
+    const onLabelChangedFn = vi.fn()
     const tree = render(
       <EditPollChoice
         id={CHOICE_OBJECT.id}

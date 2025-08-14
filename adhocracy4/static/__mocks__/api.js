@@ -1,9 +1,11 @@
+import { vi } from 'vitest'
+
 let comments = null
 let following = null
 
 const api = {
   comments: {
-    get: jest.fn(() => {
+    get: vi.fn(() => {
       const instance = {
         done: (fn) => {
           if (comments !== null) {
@@ -25,7 +27,7 @@ const api = {
     }
   },
   follow: {
-    get: jest.fn(() => {
+    get: vi.fn(() => {
       const instance = {
         done: (fn) => {
           if (following !== null) {
@@ -42,7 +44,7 @@ const api = {
       }
       return instance
     }),
-    change: jest.fn((enabled) => {
+    change: vi.fn((enabled) => {
       following = { enabled }
       const instance = {
         done: (fn) => {

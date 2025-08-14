@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { ControlBarSearch } from '../ControlBarSearch'
+import { vi } from 'vitest'
 
 test('ControlBarSearch changing searchterm', () => {
   render(
@@ -13,7 +14,7 @@ test('ControlBarSearch changing searchterm', () => {
 })
 
 test('ControlBarSearch submit search', () => {
-  const onSearchFn = jest.fn()
+  const onSearchFn = vi.fn()
   render(<ControlBarSearch term="example" onSearch={onSearchFn} />)
   const searchForm = window.document.querySelector('form')
   fireEvent.submit(searchForm)

@@ -1,12 +1,12 @@
 {
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2020,
     "sourceType": "module",
-    "requireConfigFile": false,
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
   },
   "env": {
     "browser": true,
@@ -21,10 +21,12 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:import/recommended",
+    "plugin:import/typescript",
     "plugin:n/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:promise/recommended"
-    ],
+    "plugin:promise/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
     "jsx-quotes": [2, "prefer-double"],
     "jsx-a11y/no-onchange": "off",
@@ -34,24 +36,52 @@
     "n/no-missing-import": "off",
     "n/no-unpublished-import": "off",
     "n/no-extraneous-import": "off",
-    "no-restricted-syntax": ["error", "TemplateLiteral"]
+    "no-restricted-syntax": ["error", "TemplateLiteral"],
+    "import/default": "warn",
+    "semi": "off",
+    // TypeScript specific rules
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/semi": ["error", "never"],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-this-alias": "warn",
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/ban-ts-comment": ["error", { "ts-expect-error": "allow-with-description" }]
   },
   "plugins": [
     "jsx-a11y",
     "jest",
-    "promise"
+    "promise",
+    "@typescript-eslint"
   ],
   "ignorePatterns": [
     "node_modules/",
-    "venv/"
+    "venv/",
+    "*.d.ts"
   ],
   "settings": {
-    "import/core-modules": [ django ],
+    "import/core-modules": ["django"],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "paths": ["src"]
+      },
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
-  }
+  ]
 }
-

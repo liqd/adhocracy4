@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Comment Component renders comment with creator and comment text 1`] = `
+exports[`Comment Component > renders comment with creator and comment text 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -219,7 +219,7 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
               id="share-url-undefined"
               readonly=""
               type="text"
-              value="http://localhost/?comment=1"
+              value="http://localhost:3000/?comment=1"
             />
             <button
               aria-pressed="false"
@@ -465,7 +465,7 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
 }
 `;
 
-exports[`Comment Component renders comment with moderator badge 1`] = `
+exports[`Comment Component > renders comment with moderator badge 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
@@ -689,7 +689,7 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
               id="share-url-undefined"
               readonly=""
               type="text"
-              value="http://localhost/?comment=1"
+              value="http://localhost:3000/?comment=1"
             />
             <button
               aria-pressed="false"

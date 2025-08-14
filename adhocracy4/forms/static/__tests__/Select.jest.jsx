@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { Select } from '../Select'
+import { vi } from 'vitest'
 
 describe('Select', () => {
   test('is displaying with choices', () => {
@@ -35,7 +36,7 @@ describe('Select', () => {
   })
 
   test('calls onSelect', () => {
-    const onSelect = jest.fn()
+    const onSelect = vi.fn()
     render(
       <Select
         choices={[

@@ -34,6 +34,7 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
   )
 
   const confidenceToPercent = (confidence) => {
+    console.log('getting percentage', confidence)
     const percentFormat = new Intl.NumberFormat('default', {
       style: 'percent',
       minimumFractionDigits: 0,

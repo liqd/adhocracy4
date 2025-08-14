@@ -1,9 +1,10 @@
 import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
 import { ControlBarDropdown } from '../ControlBarDropdown'
+import { vi } from 'vitest'
 
 describe('ControlBarDropdown', () => {
-  const mockOnSelectFilter = jest.fn()
+  const mockOnSelectFilter = vi.fn()
 
   const props = {
     onSelectFilter: mockOnSelectFilter,

@@ -5,10 +5,11 @@ import { render, fireEvent } from '@testing-library/react'
 // component and related data to be tested
 import { EditPollOpenQuestion } from '../PollDashboard/EditPollOpenQuestion.jsx'
 import { QUESTION_OBJECT } from './__testdata__/QUESTION_OBJECT'
+import { vi } from 'vitest'
 
 describe('<EditPollOpenQuestion> with...', () => {
   test('question textarea', () => {
-    const onTextChangeFn = jest.fn()
+    const onTextChangeFn = vi.fn()
     const tree = render(
       <EditPollOpenQuestion
         id={QUESTION_OBJECT.id}
@@ -22,7 +23,7 @@ describe('<EditPollOpenQuestion> with...', () => {
   })
 
   test('question textarea', () => {
-    const onTextChangeFn = jest.fn()
+    const onTextChangeFn = vi.fn()
     const tree = render(
       <EditPollOpenQuestion
         id={QUESTION_OBJECT.id}
