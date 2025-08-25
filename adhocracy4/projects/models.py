@@ -595,3 +595,42 @@ class Project(
         if last_active_phase and not last_active_phase.is_over:
             return last_active_phase
         return None
+
+
+class ProjectType(models.Model):
+    PARTICIPATION_INFORMATION = 0
+    PARTICIPATION_CONSULTATION = 1
+    PARTICIPATION_COOPERATION = 2
+    PARTICIPATION_DECISION_MAKING = 3
+    PARTICIPATION_CHOICES = (
+        (PARTICIPATION_INFORMATION, _("information (no participation)")),
+        (PARTICIPATION_CONSULTATION, _("consultation")),
+        (PARTICIPATION_COOPERATION, _("cooperation")),
+        (PARTICIPATION_DECISION_MAKING, _("decision-making")),
+    )
+    participation = models.SmallIntegerField(
+        choices=PARTICIPATION_CHOICES,
+        verbose_name=_("Type"),
+    )
+
+    def __str__(self):
+        return f"participation type - {self.participation}"
+
+
+class ProjectStatus(models.Model):
+    STATUS_ONGOING = 0
+    STATUS_FUTURE = 1
+    STATUS_DONE = 2
+    STATUS_CHOICES = (
+        (STATUS_ONGOING, _("running")),
+        (STATUS_FUTURE, _("future")),
+        (STATUS_DONE, _("done")),
+    )
+
+    status = models.SmallIntegerField(
+        choices=STATUS_CHOICES,
+        verbose_name=_("Status"),
+    )
+
+    def __str__(self):
+        return f"project status - {self.status}"

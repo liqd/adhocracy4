@@ -1,9 +1,14 @@
+from django.conf import settings
+
 from . import base
 from . import mixins
 
 
 class Email(mixins.PlatformEmailMixin, base.EmailBase):
-    pass
+    fallback_language = "en"
+
+    def get_languages(self, receiver):
+        return [settings.DEFAULT_LANGUAGE, self.fallback_language]
 
 
 class ExternalNotification(Email):
