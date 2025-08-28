@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     # adhocracy4 helper apps
     "adhocracy4.ckeditor",
     "adhocracy4.images",
+    "adhocracy4.notifications",
     # test apps
     "tests.apps.questions",
     "tests.apps.locations",
