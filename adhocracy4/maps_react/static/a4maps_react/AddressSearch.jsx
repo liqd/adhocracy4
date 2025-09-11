@@ -7,12 +7,12 @@ import { AutoComplete } from '../../../static/forms/AutoComplete'
 const addressSearchCapStr = django.gettext('Address Search')
 
 function fetchSuggestions (address, apiUrl) {
-  return fetch(apiUrl + '?address=' + address)
+  return fetch(apiUrl + '?search=' + address)
     .then((response) => response.json())
 }
 
 export function getSearchResultText (feature) {
-  return feature.properties.strname + ' ' + feature.properties.hsnr + ' in ' + feature.properties.plz + ' ' + feature.properties.bezirk_name
+  return feature.properties.str_name + ' ' + feature.properties.hnr + ' in ' + feature.properties.plz + ' ' + feature.properties.bez_name
 }
 
 const AddressSearch = ({
@@ -20,12 +20,26 @@ const AddressSearch = ({
   onChangeInput,
   apiUrl
 }) => {
-  const [geoJson, setGeoJson] = useState(null)
+  const [suggestions, setSuggestions] = useState([])
+  const [rawFeatures, setRawFeatures] = useState([])
   const [searchString, setSearchString] = useState('')
 
   const debouncedOnChange = useDebounce(async () => {
-    const geoJson = await fetchSuggestions(searchString, apiUrl)
-    setGeoJson(geoJson)
+    if (!searchString.trim()) {
+      setSuggestions([])
+      setRawFeatures([])
+      return
+    }
+
+    const data = await fetchSuggestions(searchString, apiUrl)
+    const features = data.results?.features || []
+    setRawFeatures(features)
+
+    const newSuggestions = features.map((feature, index) => ({
+      name: getSearchResultText(feature),
+      value: index.toString()
+    }))
+    setSuggestions(newSuggestions)
   })
 
   useEffect(() => {
@@ -37,12 +51,7 @@ const AddressSearch = ({
       <div className="a4-address-search__search-form">
         <div className="form-group">
           <AutoComplete
-            choices={geoJson
-              ? geoJson.features.map((feature, index) => ({
-                name: getSearchResultText(feature),
-                value: index
-              }))
-              : []}
+            choices={suggestions}
             // filtering is happening on the server
             filterFn={() => true}
             hideLabel
@@ -53,7 +62,14 @@ const AddressSearch = ({
               onChangeInput?.(val)
             }}
             onChange={(val) => {
-              onSelectAddress(geoJson.features[val[0]])
+              if (val.length > 0 && rawFeatures.length > 0) {
+                const selectedIndex = parseInt(val[0])
+                const selectedAddress = rawFeatures[selectedIndex]
+                const newSearchString = getSearchResultText(selectedAddress)
+                setSearchString(newSearchString)
+                onChangeInput?.(newSearchString)
+                onSelectAddress(selectedAddress)
+              }
             }}
             inputValue={searchString}
             before={

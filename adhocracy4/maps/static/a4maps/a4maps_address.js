@@ -1,6 +1,7 @@
 /* global django */
 
-const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
+const apiUrl = '/api/geodaten/search'
+// const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 
 function pointInPolygon (point, polygon) {
   const x = point[0]
@@ -70,9 +71,9 @@ const setBusy = function ($group, busy) {
 
 const getPoints = function (address, cb) {
   $.ajax(apiUrl, {
-    data: { address },
+    data: { search: address },
     success: function (geojson) {
-      cb(geojson.features)
+      cb(geojson.results.features)
     },
     error: function () {
       const points = []
@@ -89,10 +90,10 @@ const renderPoints = function (points) {
     const $list = $('<ul class="complete__list">')
       .text(django.gettext('Did you mean:'))
     points.forEach(function (point) {
-      const text = point.properties.strname + ' ' +
-        point.properties.hsnr + ', ' +
+      const text = point.properties.str_name + ' ' +
+        point.properties.hnr + ', ' +
         point.properties.plz + ' ' +
-        point.properties.bezirk_name
+        point.properties.bez_name
       $list.append($('<li>')
         .append($('<button type="button" class="complete__item">')
           .text(text)
