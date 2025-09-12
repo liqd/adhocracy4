@@ -46,7 +46,8 @@ export const AutoComplete = ({
     ...comboboxProps,
     isAutoComplete: true
   })
-  const [text, setText] = useState('')
+  const [internalText, setInternalText] = useState('')
+  const text = comboboxProps.inputValue !== undefined ? comboboxProps.inputValue : internalText
 
   const classes = classNames(
     'form-control a4-combo-box__container',
@@ -62,8 +63,11 @@ export const AutoComplete = ({
   const filteredChoices = text !== '' ? choices.filter(choice => actualFilterFn(choice, text)) : choices
 
   const onChangeHandler = (e) => {
-    setText(e.target.value)
-    onChangeInput?.(e.target.value)
+    const newValue = e.target.value
+    if (comboboxProps.inputValue === undefined) {
+      setInternalText(newValue)
+    }
+    onChangeInput?.(newValue)
   }
 
   return (

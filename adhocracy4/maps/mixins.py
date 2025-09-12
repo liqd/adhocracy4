@@ -20,7 +20,12 @@ class GeoJsonPointMixin:
         Example:
             {"strname": "street_name", "hsnr": "house_number", "plz": "zip_code"}
         """
-        return {}
+        return {
+            "str_name": "street_name",
+            "hnr": "house_number",
+            "plz": "zip_code",
+            "bez_name": "administrative_district",
+        }
 
     def map_field_name(self, geojson_property, field_mapping, point_data=None):
         """
@@ -58,7 +63,6 @@ class GeoJsonPointMixin:
         geo_properties = self.get_geojson_properties()
         if "properties" in point_data:
             point_properties = point_data["properties"]
-
             for geo_prop, mapping in geo_properties.items():
                 # Use the helper method to get the relevant field name.
                 field_name = self.map_field_name(
@@ -82,7 +86,6 @@ class GeoJsonPointMixin:
         """
         extracted = OrderedDict()
         geo_properties = self.get_geojson_properties()
-
         for geo_prop, mapping in geo_properties.items():
             field_name = self.map_field_name(geo_prop, mapping, point_data=None)
 

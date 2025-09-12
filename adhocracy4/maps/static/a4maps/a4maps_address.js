@@ -112,7 +112,11 @@ function init () {
     const $input = $('#id_' + name)
     const $map = $('[data-map="choose_point"][data-name="' + name + '"]')
     const polygon = $map.data('polygon')
-
+    const existingPoint = $map.data('point')
+    const savedAddress = existingPoint.properties.str_name + ' ' +
+        existingPoint.properties.hnr + ', ' +
+        existingPoint.properties.plz + ' '
+    $group.find('input').val(savedAddress)
     const onSubmit = function (event) {
       event.preventDefault()
       setBusy($group, true)

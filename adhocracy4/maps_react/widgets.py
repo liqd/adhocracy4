@@ -35,11 +35,12 @@ class MapChoosePointWidget(Widget):
             point = value
             if isinstance(point, Point):
                 feature = OrderedDict(
-                    {"type": "Feature", "geometry": json.loads(point.geojson)}
+                    {"type": "Feature", "geometry": json.loads(point.geojson)},
+                    {"type": "Feature", "properties": json.loads(point.properties)},
                 )
 
-                if self.geo_json_properties:
-                    feature["properties"] = self.geo_json_properties
+                # if self.geo_json_properties:
+                #     feature["properties"] = self.geo_json_properties
 
                 point = json.dumps(feature)
 

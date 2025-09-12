@@ -67,7 +67,6 @@ const AddressSearch = ({
                 const selectedAddress = rawFeatures[selectedIndex]
                 const newSearchString = getSearchResultText(selectedAddress)
                 setSearchString(newSearchString)
-                onChangeInput?.(newSearchString)
                 onSelectAddress(selectedAddress)
               }
             }}
