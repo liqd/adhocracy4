@@ -40,7 +40,6 @@ class GeoJsonPointMixin:
         """
         if point_data is not None and "properties" in point_data:
             point_properties = point_data["properties"]
-
             if geojson_property not in point_properties:
                 return None
         return field_mapping if field_mapping else geojson_property
@@ -59,6 +58,7 @@ class GeoJsonPointMixin:
         geo_properties = self.get_geojson_properties()
         if "properties" in point_data:
             point_properties = point_data["properties"]
+            
             for geo_prop, mapping in geo_properties.items():
                 # Use the helper method to get the relevant field name.
                 field_name = self.map_field_name(
