@@ -1,6 +1,6 @@
 /* global django */
 
-const apiUrl = '/api/geodaten/search'
+const apiUrl = '/api/geodata/search'
 // const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 
 function pointInPolygon (point, polygon) {

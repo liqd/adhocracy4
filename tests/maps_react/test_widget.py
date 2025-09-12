@@ -53,7 +53,7 @@ def test_choose_point_widget(area_settings):
 @pytest.mark.django_db
 def test_choose_point_widget_with_geos_point(area_settings, geos_point, geojson_point):
     widget = widgets.MapChoosePointWidget(area_settings.polygon)
-    widget.geo_json_properties = {"strname": "Unknown Road"}
+    widget.geo_json_properties = {"str_name": "Unknown Road"}
     with patch("django.contrib.staticfiles.finders.find") as mock_find:
         mock_find.return_value = "path/to/a4maps_choose_point.js"
         html = widget.render("test_filter", geos_point, attrs={"id": "test_id"})
