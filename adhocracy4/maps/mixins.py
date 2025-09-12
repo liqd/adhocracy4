@@ -58,7 +58,7 @@ class GeoJsonPointMixin:
         geo_properties = self.get_geojson_properties()
         if "properties" in point_data:
             point_properties = point_data["properties"]
-            
+
             for geo_prop, mapping in geo_properties.items():
                 # Use the helper method to get the relevant field name.
                 field_name = self.map_field_name(
