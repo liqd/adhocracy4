@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classNames from '../../static/classNames'
 import useCombobox from './useCombobox'
 
@@ -46,8 +46,7 @@ export const AutoComplete = ({
     ...comboboxProps,
     isAutoComplete: true
   })
-  const [internalText, setInternalText] = useState('')
-  const text = comboboxProps.inputValue !== undefined ? comboboxProps.inputValue : internalText
+  const text = comboboxProps.inputValue !== undefined ? comboboxProps.inputValue : ''
 
   const classes = classNames(
     'form-control a4-combo-box__container',
@@ -64,9 +63,6 @@ export const AutoComplete = ({
 
   const onChangeHandler = (e) => {
     const newValue = e.target.value
-    if (comboboxProps.inputValue === undefined) {
-      setInternalText(newValue)
-    }
     onChangeInput?.(newValue)
   }
 
