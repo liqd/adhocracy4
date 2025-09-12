@@ -11,7 +11,7 @@ from adhocracy4.projects.models import Project
 class TestPointSerializer(PointSerializerMixin, serializers.ModelSerializer):
 
     def get_geojson_properties(self):
-        return {"strname": "street_name"}
+        return {"str_name": "street_name"}
 
     class Meta:
         geo_field = "point"
@@ -60,7 +60,7 @@ def test_invalid_point_to_internal_value_throws_error():
 @pytest.mark.django_db
 def test_valid_point_to_representation(project, geojson_point, geos_point):
     project.point = geos_point
-    project.street_name = geojson_point["properties"]["strname"]
+    project.street_name = geojson_point["properties"]["str_name"]
     project.save()
 
     data = TestPointSerializer(project).data
