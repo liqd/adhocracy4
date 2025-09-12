@@ -18,7 +18,7 @@ class GeoJsonPointMixin:
             dict: A dictionary where keys are GeoJSON property names and values are the
                   corresponding model field names. Use None if the names are identical.
         Example:
-            {"str_name": "street_name", "hnr": "house_number", "plz": "zip_code"}
+            {"strasse": "street_name", "haus": "house_number", "plz": "zip_code"}
         """
         return {}
 

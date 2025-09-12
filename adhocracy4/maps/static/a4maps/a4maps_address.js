@@ -90,10 +90,10 @@ const renderPoints = function (points) {
     const $list = $('<ul class="complete__list">')
       .text(django.gettext('Did you mean:'))
     points.forEach(function (point) {
-      const text = point.properties.str_name + ' ' +
-        point.properties.hnr + ', ' +
+      const text = point.properties.strasse + ' ' +
+        point.properties.haus + ', ' +
         point.properties.plz + ' ' +
-        point.properties.bez_name
+        point.properties.ortsteil
       $list.append($('<li>')
         .append($('<button type="button" class="complete__item">')
           .text(text)
@@ -113,9 +113,10 @@ function init () {
     const $map = $('[data-map="choose_point"][data-name="' + name + '"]')
     const polygon = $map.data('polygon')
     const existingPoint = $map.data('point')
-    const savedAddress = existingPoint.properties.str_name + ' ' +
-        existingPoint.properties.hnr + ', ' +
-        existingPoint.properties.plz + ' '
+    const savedAddress = existingPoint.properties.strasse + ' ' +
+        existingPoint.properties.haus + ', ' +
+        existingPoint.properties.plz + ' ' +
+        existingPoint.properties.ortsteil
     $group.find('input').val(savedAddress)
     const onSubmit = function (event) {
       event.preventDefault()

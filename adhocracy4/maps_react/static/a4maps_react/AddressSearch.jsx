@@ -12,7 +12,15 @@ function fetchSuggestions (address, apiUrl) {
 }
 
 export function getSearchResultText (feature) {
-  return feature.properties.str_name + ' ' + feature.properties.hnr + ' in ' + feature.properties.plz + ' ' + feature.properties.bez_name
+  const {
+    strasse = '',
+    haus = '',
+    plz = '',
+    ortsteil = ''
+  } = feature?.properties || {}
+
+  // eslint-disable-next-line no-restricted-syntax
+  return `${strasse} ${haus} in ${plz} ${ortsteil}`.trim()
 }
 
 const AddressSearch = ({
