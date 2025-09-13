@@ -1,6 +1,7 @@
 /* global django */
 
-const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
+const apiUrl = '/api/geodata/search'
+// const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 
 function pointInPolygon (point, polygon) {
   const x = point[0]
@@ -70,15 +71,27 @@ const setBusy = function ($group, busy) {
 
 const getPoints = function (address, cb) {
   $.ajax(apiUrl, {
-    data: { address },
+    data: { search: address },
     success: function (geojson) {
-      cb(geojson.features)
+      cb(geojson.results.features)
     },
     error: function () {
       const points = []
       cb(points)
     }
   })
+}
+
+function getAddressTextForPoint (point) {
+  const {
+    strasse = '',
+    haus = '',
+    plz = '',
+    ortsteil = ''
+  } = point?.properties || {}
+
+  // eslint-disable-next-line no-restricted-syntax
+  return `${strasse} ${haus} in ${plz} ${ortsteil}`.trim()
 }
 
 const renderPoints = function (points) {
@@ -89,10 +102,7 @@ const renderPoints = function (points) {
     const $list = $('<ul class="complete__list">')
       .text(django.gettext('Did you mean:'))
     points.forEach(function (point) {
-      const text = point.properties.strname + ' ' +
-        point.properties.hsnr + ', ' +
-        point.properties.plz + ' ' +
-        point.properties.bezirk_name
+      const text = getAddressTextForPoint(point)
       $list.append($('<li>')
         .append($('<button type="button" class="complete__item">')
           .text(text)
@@ -111,11 +121,19 @@ function init () {
     const $input = $('#id_' + name)
     const $map = $('[data-map="choose_point"][data-name="' + name + '"]')
     const polygon = $map.data('polygon')
-
+    const existingPoint = $map.data('point')
+    const savedAddress = getAddressTextForPoint(existingPoint)
+    $group.find('input').val(savedAddress)
     const onSubmit = function (event) {
       event.preventDefault()
       setBusy($group, true)
       const address = $group.find('input').val()
+      if (!address || address.trim().length === 0) {
+        $group.find('.complete')
+          .empty()
+        setBusy($group, false)
+        return
+      }
       getPoints(address, function (points) {
         setBusy($group, false)
         $group.find('.complete')

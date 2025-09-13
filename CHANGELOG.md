@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased (mb changes)
+
+### Changed
+
+- Update api url for address search (PR #1815)
 
 ## aplus-v2508.3
 

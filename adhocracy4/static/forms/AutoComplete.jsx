@@ -62,8 +62,9 @@ export const AutoComplete = ({
   const filteredChoices = text !== '' ? choices.filter(choice => actualFilterFn(choice, text)) : choices
 
   const onChangeHandler = (e) => {
-    setText(e.target.value)
-    onChangeInput?.(e.target.value)
+    const newValue = e.target.value
+    setText(newValue)
+    onChangeInput?.(newValue)
   }
 
   return (
