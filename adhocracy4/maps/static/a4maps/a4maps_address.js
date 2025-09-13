@@ -82,6 +82,18 @@ const getPoints = function (address, cb) {
   })
 }
 
+function getAddressTextForPoint (point) {
+  const {
+    strasse = '',
+    haus = '',
+    plz = '',
+    ortsteil = ''
+  } = point?.properties || {}
+
+  // eslint-disable-next-line no-restricted-syntax
+  return `${strasse} ${haus} in ${plz} ${ortsteil}`.trim()
+}
+
 const renderPoints = function (points) {
   if (points.length === 0) {
     return $('<span class="complete__warning">')
@@ -90,10 +102,7 @@ const renderPoints = function (points) {
     const $list = $('<ul class="complete__list">')
       .text(django.gettext('Did you mean:'))
     points.forEach(function (point) {
-      const text = point.properties.strasse + ' ' +
-        point.properties.haus + ', ' +
-        point.properties.plz + ' ' +
-        point.properties.ortsteil
+      const text = getAddressTextForPoint(point)
       $list.append($('<li>')
         .append($('<button type="button" class="complete__item">')
           .text(text)
@@ -113,15 +122,18 @@ function init () {
     const $map = $('[data-map="choose_point"][data-name="' + name + '"]')
     const polygon = $map.data('polygon')
     const existingPoint = $map.data('point')
-    const savedAddress = existingPoint.properties.strasse + ' ' +
-        existingPoint.properties.haus + ', ' +
-        existingPoint.properties.plz + ' ' +
-        existingPoint.properties.ortsteil
+    const savedAddress = getAddressTextForPoint(existingPoint)
     $group.find('input').val(savedAddress)
     const onSubmit = function (event) {
       event.preventDefault()
       setBusy($group, true)
       const address = $group.find('input').val()
+      if (!address || address.trim().length === 0) {
+        $group.find('.complete')
+          .empty()
+        setBusy($group, false)
+        return
+      }
       getPoints(address, function (points) {
         setBusy($group, false)
         $group.find('.complete')
