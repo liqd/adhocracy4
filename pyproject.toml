@@ -29,7 +29,7 @@ dependencies = [
     "django-multiselectfield",
     "django-widget-tweaks",
     "djangorestframework >= 3.5",
-    "easy-thumbnails[svg]",
+    "easy-thumbnails",
     "html5lib",
     "jsonfield",
     "python-dateutil",
