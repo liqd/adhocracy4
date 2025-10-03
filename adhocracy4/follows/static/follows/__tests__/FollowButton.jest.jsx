@@ -88,7 +88,7 @@ test('Test AlertPortal renders correctly with existing target', async () => {
   render(<FollowButton authenticatedAs project="test" alertTarget="alert-container" />)
   const followButton = await screen.findByText('Follow')
   fireEvent.click(followButton)
-  const alertElement = screen.getByText('From now on, we\'ll keep you updated on all changes. Make sure email notifications are enabled in your %(linkStart)s profile settings %(linkEnd)s.')
+  const alertElement = screen.getByText('From now on, we\'ll keep you updated on all changes. Make sure email notifications are enabled in your %(linkStart)s profile settings%(linkEnd)s')
   expect(alertElement).toBeInTheDocument()
   document.body.removeChild(alertContainer)
 })
