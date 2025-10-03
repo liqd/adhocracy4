@@ -12,7 +12,7 @@ const translated = {
   followingDescription: django.gettext(
     'Click to no longer be updated about this project via email.'
   ),
-  followAlert: django.gettext('From now on, we\'ll keep you updated on all changes. Make sure email notifications are enabled in your %(linkStart)s profile settings %(linkEnd)s.'),
+  followAlert: django.gettext('From now on, we\'ll keep you updated on all changes. Make sure email notifications are enabled in your %(linkStart)s profile settings%(linkEnd)s'),
   followingAlert: django.gettext('You will no longer be updated via email.'),
   follow: django.gettext('Follow'),
   following: django.gettext('Following')
@@ -29,7 +29,7 @@ export const FollowButton = ({
 
   const linkParts = {
     linkStart: '<a href="/account/profile" target="_blank">',
-    linkEnd: '</a>'
+    linkEnd: '<i class="fas fa-external-link-alt" role="img" aria-label="Opens in new window"></i></a>'
   }
 
   const fullFollowAlertText = django.interpolate(translated.followAlert, linkParts, true)
