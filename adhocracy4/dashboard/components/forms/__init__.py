@@ -15,6 +15,8 @@ __all__ = [
     "ModuleDashboardFormSet",
 ]
 
+HIDE_COMPONENT_REGISTRY = {}
+
 
 class ProjectFormComponent(DashboardComponent):
     """Abstract project related dashboard component based on forms.
@@ -136,6 +138,16 @@ class ModuleFormComponent(ProjectFormComponent):
         This is the form class used to render from the ModuleComponentFormView
 
     """
+
+    def is_effective(self, module):
+        if (
+            HIDE_COMPONENT_REGISTRY.get(self.identifier)
+            and hasattr(module, "blueprint_type")
+            and module.blueprint_type
+            in HIDE_COMPONENT_REGISTRY.get(self.identifier, set())
+        ):
+            return False
+        return True
 
     def get_base_url(self, project_or_module):
         name = "a4dashboard:dashboard-{identifier}-edit".format(
