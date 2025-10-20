@@ -18,3 +18,4 @@ rules==3.5
 XlsxWriter==3.2.0
 celery==5.4.0
 requests==2.32.4
+django-polymorphic==4.1.0

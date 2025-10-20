@@ -2,6 +2,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from polymorphic.query import PolymorphicQuerySet
 
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.comments.models import Comment
@@ -12,7 +13,7 @@ from adhocracy4.modules.models import Item
 from adhocracy4.ratings.models import Rating
 
 
-class QuestionQuerySet(CommentableQuerySet, RateableQuerySet):
+class QuestionQuerySet(CommentableQuerySet, RateableQuerySet, PolymorphicQuerySet):
     pass
 
 
