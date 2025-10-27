@@ -132,6 +132,7 @@ modules may overlap or run simultaneously this is called a multi module project.
 
 -   each module belongs to a project
 -   each module only has phases from one app
+-   each module must have at least one phase
 -   modules are ordered by weight per default
 -   if a project has more than one module, the modules are either clustered if they are overlapping or ordered by module start
 -   a project defines a "last active" module as
@@ -144,6 +145,14 @@ modules may overlap or run simultaneously this is called a multi module project.
 -   an initiator can select a blueprint in the dashboard
     -   blueprints define which module and phase combinations are possible
 -   an initiator can add multiple offline events
+
+### Custom Modules
+
+- Standard module components can now be hidden using:
+  `ModulePhasesComponent.hide_for("OE")`, 
+  `ModuleBasicComponent.hide_for("OE")`
+  (used in meinberlin offline-events)
+
 
 ## (Upcoming) challenges
 

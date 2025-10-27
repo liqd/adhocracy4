@@ -1,6 +1,7 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
+from polymorphic.query import PolymorphicQuerySet
 
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.comments.models import Comment
@@ -13,7 +14,7 @@ from adhocracy4.ratings.models import Rating
 from tests.apps.moderatorfeedback.models import ModeratorFeedback
 
 
-class IdeaQuerySet(RateableQuerySet, CommentableQuerySet):
+class IdeaQuerySet(RateableQuerySet, CommentableQuerySet, PolymorphicQuerySet):
     pass
 
 

@@ -43,6 +43,7 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
                 and not (field.one_to_one and field.remote_field.parent_link)
                 and field.name not in exclude
                 and field.name not in virtual
+                and field.name != "polymorphic_ctype"
             ):
                 if self.related_fields and field.name in self.related_fields:
                     for attr in self.related_fields[field.name]:

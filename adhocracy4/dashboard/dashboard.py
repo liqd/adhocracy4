@@ -5,6 +5,7 @@ from . import ModuleFormSetComponent
 from . import ProjectFormComponent
 from . import components
 from . import forms
+from .components.forms import HIDE_COMPONENT_REGISTRY
 
 
 class ProjectBasicComponent(ProjectFormComponent):
@@ -46,6 +47,10 @@ class ModuleBasicComponent(ModuleFormComponent):
     form_class = forms.ModuleBasicForm
     form_template_name = "a4dashboard/includes/module_basic_form.html"
 
+    @staticmethod
+    def hide_for(blueprint_type: str):
+        HIDE_COMPONENT_REGISTRY.setdefault("module_basic", set()).add(blueprint_type)
+
 
 class ModulePhasesComponent(ModuleFormSetComponent):
     identifier = "phases"
@@ -55,6 +60,10 @@ class ModulePhasesComponent(ModuleFormSetComponent):
     form_title = _("Edit phases information")
     form_class = forms.PhaseFormSet
     form_template_name = "a4dashboard/includes/module_phases_form.html"
+
+    @staticmethod
+    def hide_for(blueprint_type: str):
+        HIDE_COMPONENT_REGISTRY.setdefault("phases", set()).add(blueprint_type)
 
 
 class ModuleAreaSettingsComponent(ModuleFormComponent):

@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import pgettext_lazy
+from polymorphic.managers import PolymorphicManager
+from polymorphic.models import PolymorphicModel
 
 from adhocracy4.models import base
 from adhocracy4.projects import models as project_models
@@ -425,8 +427,8 @@ class Module(models.Model):
         return first_phase.start_date
 
 
-class Item(base.UserGeneratedContentModel):
-
+class Item(PolymorphicModel, base.UserGeneratedContentModel):
+    objects = PolymorphicManager()
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
 
     @cached_property
