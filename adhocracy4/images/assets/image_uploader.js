@@ -91,12 +91,12 @@ function saveImageToStorage (inputId, imageDataUrl, fileName, fileSize) {
 function loadImageFromStorage (inputId, previewImage) {
   try {
     const savedData = localStorage.getItem('image_upload_' + inputId)
-    console.log('Loading image from localStorage saved Data3:', savedData)
+    console.log('Loading image from localStorage saved Data5:', savedData)
     if (savedData) {
       const imageData = JSON.parse(savedData)
 
       // Check if data is not too old (24 hours)
-      const maxAge = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+      const maxAge = 30 * 60 * 1000 // 30 min  in milliseconds
       if (Date.now() - imageData.timestamp < maxAge) {
         // Restore preview image
         previewImage.setAttribute('src', imageData.dataUrl)
@@ -118,6 +118,9 @@ function loadImageFromStorage (inputId, previewImage) {
         // Restore file size data attribute
         previewImage.dataset.fileSize = imageData.fileSize
 
+        // Restore file to input element so it can be uploaded
+        restoreFileToInput(inputId, imageData)
+
         // Uncheck clear input if it exists
         const clearInput = document.querySelector('input[data-upload-clear="' + inputId + '"]')
         if (clearInput) {
@@ -134,10 +137,64 @@ function loadImageFromStorage (inputId, previewImage) {
   }
 }
 
-// Clear image data from localStorage
+// Restore file object from base64 data to input element
+function restoreFileToInput (inputId, imageData) {
+  try {
+    const inputElement = document.querySelector('#' + inputId)
+    if (!inputElement) {
+      console.warn('Input element not found:', inputId)
+      return
+    }
+
+    // Convert base64 data URL to File object
+    const byteCharacters = atob(imageData.dataUrl.split(',')[1])
+    const byteNumbers = new Array(byteCharacters.length)
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i)
+    }
+    const byteArray = new Uint8Array(byteNumbers)
+    const blob = new Blob([byteArray], { type: 'image/png' })
+
+    // Convert blob to File object
+    const file = new File([blob], imageData.fileName, { type: 'image/png', lastModified: Date.now() })
+
+    // Set file to input element using DataTransfer API
+    const dataTransfer = new DataTransfer()
+    dataTransfer.items.add(file)
+    inputElement.files = dataTransfer.files
+
+    console.log('File restored to input:', file.name, file.size)
+  } catch (e) {
+    console.warn('Could not restore file to input:', e)
+  }
+}
+
+// Clear image data from localStorage and reset UI
 function clearImageFromStorage (inputId) {
   try {
+    // Remove from localStorage
     localStorage.removeItem('image_upload_' + inputId)
+
+    // Clear the file input element
+    const inputElement = document.querySelector('#' + inputId)
+    if (inputElement) {
+      inputElement.value = ''
+    }
+
+    // Clear the preview image
+    const previewImage = document.querySelector('img[data-upload-preview="' + inputId + '"]')
+    if (previewImage) {
+      previewImage.setAttribute('src', '')
+    }
+
+    // Clear the text input
+    const text = document.querySelector('#text-' + inputId)
+    if (text) {
+      text.value = ''
+      text.style.color = ''
+    }
+
+    console.log('Image cleared from input:', inputId)
   } catch (e) {
     console.warn('Could not clear image from localStorage:', e)
   }
