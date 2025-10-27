@@ -90,6 +90,13 @@ function saveImageToStorage (inputId, imageDataUrl, fileName, fileSize) {
 // Load image data from localStorage
 function loadImageFromStorage (inputId, previewImage) {
   try {
+    // Check if image already has a server URL - if so, clear localStorage but keep server image
+    if (previewImage.src && !previewImage.src.startsWith('data:') && previewImage.src.length > 0) {
+      console.log('Server image exists, clearing localStorage')
+      localStorage.removeItem('image_upload_' + inputId)
+      return
+    }
+
     const savedData = localStorage.getItem('image_upload_' + inputId)
     console.log('Loading image from localStorage saved Data5:', savedData)
     if (savedData) {
