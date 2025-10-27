@@ -28,7 +28,7 @@ export const FollowButton = ({
   const [alert, setAlert] = useState(null)
 
   const linkParts = {
-    linkStart: '<a href="/account/profile" target="_blank">',
+    linkStart: '<a href="/account/notifications-settings/" target="_blank">',
     linkEnd: '<i class="fas fa-external-link-alt" role="img" aria-label="Opens in new window"></i></a>'
   }
 
