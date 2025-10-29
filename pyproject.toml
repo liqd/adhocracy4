@@ -18,7 +18,9 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
 ]
 dependencies = [
+    "beautifulsoup4",
     "bleach[css]",
+    "celery",
     "Django >= 3.2, < 5.2",
     "django-allauth",
     "django-autoslug",
@@ -27,13 +29,16 @@ dependencies = [
     "django-enumfield",
     "django-filter",
     "django-multiselectfield",
+    "django-polymorphic",
     "django-widget-tweaks",
     "djangorestframework >= 3.5",
+    "djangorestframework-gis",
     "easy-thumbnails",
     "html5lib",
     "jsonfield",
     "python-dateutil",
     "python-magic",
+    "requests",
     "rules",
     "XlsxWriter",
 ]
