@@ -34,17 +34,17 @@ const Alert = ({ type = 'info', title, message, htmlMessage, onClick, timeInMs }
         {htmlMessage
           ? (<div dangerouslySetInnerHTML={{ __html: htmlMessage }} />)
           : (message)}
-        {onClick && (
-          <button
-            type="button"
-            className="alert__close"
-            aria-label={closeTag}
-            onClick={onClick}
-          >
-            <span className="fa fa-times" aria-hidden="true" />
-          </button>
-        )}
       </div>
+      {onClick && (
+        <button
+          type="button"
+          className="alert__close"
+          aria-label={closeTag}
+          onClick={onClick}
+        >
+          <span className="fa fa-times" aria-hidden="true" />
+        </button>
+      )}
     </div>
   )
 }
