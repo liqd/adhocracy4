@@ -91,7 +91,7 @@ test('Test AlertPortal renders correctly with existing target', async () => {
   const alertElement = screen.getByText((content, element) => {
     return content.includes('From now on, we\'ll keep you updated on all changes') &&
            content.includes('Make sure email notifications are enabled in your') &&
-           content.includes('profile settings')
+           content.includes('notification settings')
   })
   expect(alertElement).toBeInTheDocument()
   document.body.removeChild(alertContainer)
