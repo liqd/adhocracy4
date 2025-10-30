@@ -9,6 +9,9 @@ function init () {
       return el.matches('[data-upload-clear="' + inputId + '"]')
     })
 
+    // Load saved image from sessionStorage on page load
+    loadImageFromStorage(inputId, previewImage)
+
     document.querySelector('#' + inputId).addEventListener('change', function (e) {
       const domInput = e.target
       if (domInput.files && domInput.files[0]) {
@@ -38,10 +41,13 @@ function init () {
           const reader = new window.FileReader()
           reader.addEventListener('load', function (e) {
             previewImage.setAttribute('src', e.target.result)
-            clearInput[0].checked = false
+            saveImageToStorage(inputId, e.target.result, name, sizeInBytes)
+            if (clearInput[0]) {
+              clearInput[0].checked = false
+            }
           })
           reader.readAsDataURL(file)
-        } else {
+        } else if (clearInput[0]) {
           clearInput[0].checked = false
         }
 
@@ -51,7 +57,128 @@ function init () {
         window.history.replaceState(null, '', currentUrl.toString())
       }
     })
+
+    // Clear sessionStorage when image is removed
+    if (clearInput[0]) {
+      clearInput[0].addEventListener('change', function (e) {
+        if (e.target.checked) {
+          clearImageFromStorage(inputId)
+        }
+      })
+    }
   })
+}
+
+// Save image data to sessionStorage
+function saveImageToStorage (inputId, imageDataUrl, fileName, fileSize) {
+  try {
+    const imageData = {
+      dataUrl: imageDataUrl,
+      fileName,
+      fileSize,
+      timestamp: Date.now()
+    }
+    sessionStorage.setItem('image_upload_' + inputId, JSON.stringify(imageData))
+  } catch (e) {
+    console.warn('Could not save image to sessionStorage:', e)
+  }
+}
+
+// Load image data from sessionStorage
+function loadImageFromStorage (inputId, previewImage) {
+  try {
+    // Check if image already has a server URL - if so, clear sessionStorage but keep server image
+    if (previewImage.src && !previewImage.src.startsWith('data:') && previewImage.src.length > 0) {
+      sessionStorage.removeItem('image_upload_' + inputId)
+      return
+    }
+
+    const savedData = sessionStorage.getItem('image_upload_' + inputId)
+    if (!savedData) return
+
+    const imageData = JSON.parse(savedData)
+    const maxAge = 30 * 60 * 1000 // 30 min in milliseconds
+    if (Date.now() - imageData.timestamp < maxAge) {
+      previewImage.setAttribute('src', imageData.dataUrl)
+      previewImage.dataset.fileSize = imageData.fileSize
+      restorePreviewText(inputId, imageData)
+      restoreFileToInput(inputId, imageData)
+    } else {
+      clearImageFromStorage(inputId)
+    }
+  } catch (e) {
+    console.warn('Could not load image from SessionStorage:', e)
+    clearImageFromStorage(inputId)
+  }
+}
+
+function restorePreviewText (inputId, imageData) {
+  const text = document.querySelector('#text-' + inputId)
+  if (text && imageData.fileName) {
+    const sizeInMB = (imageData.fileSize / (1024 * 1024)).toFixed(2)
+    text.value = imageData.fileName + ' - ' + sizeInMB + ' MB of 5MB'
+
+    // Highlight in red if the size exceeds 5MB
+    if (sizeInMB > 5) {
+      text.style.color = 'red'
+    } else {
+      text.style.color = ''
+    }
+  }
+}
+
+// Restore file object from base64 data to input element
+function restoreFileToInput (inputId, imageData) {
+  try {
+    const inputElement = document.querySelector('#' + inputId)
+    if (!inputElement) {
+      console.warn('Input element not found:', inputId)
+      return
+    }
+
+    // Convert base64 data URL to File object
+    const mimeType = imageData.dataUrl.split(',')[0].split(':')[1].split(';')[0]
+    const byteCharacters = atob(imageData.dataUrl.split(',')[1])
+    const byteNumbers = new Array(byteCharacters.length)
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i)
+    }
+    const byteArray = new Uint8Array(byteNumbers)
+    const blob = new Blob([byteArray], { type: mimeType })
+    const file = new File([blob], imageData.fileName, { type: mimeType, lastModified: Date.now() })
+
+    // Set file to input element using DataTransfer API
+    const dataTransfer = new DataTransfer()
+    dataTransfer.items.add(file)
+    inputElement.files = dataTransfer.files
+  } catch (e) {
+    console.warn('Could not restore file to input:', e)
+  }
+}
+
+// Clear image data from sessionStorage and reset UI
+function clearImageFromStorage (inputId) {
+  try {
+    sessionStorage.removeItem('image_upload_' + inputId)
+
+    const inputElement = document.querySelector('#' + inputId)
+    if (inputElement) {
+      inputElement.value = ''
+    }
+
+    const previewImage = document.querySelector('img[data-upload-preview="' + inputId + '"]')
+    if (previewImage) {
+      previewImage.setAttribute('src', '')
+    }
+
+    const text = document.querySelector('#text-' + inputId)
+    if (text) {
+      text.value = ''
+      text.style.color = ''
+    }
+  } catch (e) {
+    console.warn('Could not clear image from sessionStorage:', e)
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init, false)

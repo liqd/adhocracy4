@@ -373,3 +373,9 @@ count as labels)
 - actions: only create actions for phases and projects if the project is not
   a draft (!1437)
 - reformat CHANGELOG.md
+
+## Unreleased
+
+### Fixed
+
+- Images remain in the upload section through validation
