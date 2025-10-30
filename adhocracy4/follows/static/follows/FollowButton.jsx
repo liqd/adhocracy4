@@ -12,7 +12,7 @@ const translated = {
   followingDescription: django.gettext(
     'Click to no longer be updated about this project via email.'
   ),
-  followAlert: django.gettext('From now on, we\'ll keep you updated on all changes.<br/>Make sure email notifications are enabled in your %(linkStart)s profile settings%(linkEnd)s'),
+  followAlert: django.gettext('From now on, we\'ll keep you updated on all changes.<br/>Make sure email notifications are enabled in your %(linkStart)s notification settings%(linkEnd)s'),
   followingAlert: django.gettext('You will no longer be updated via email.'),
   follow: django.gettext('Follow'),
   following: django.gettext('Following')
