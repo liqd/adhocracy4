@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Fixed
+
+- Images remain in the upload section through validation
+
+### Changed
+
+- Using uv as python package manager now
+
 ## mB-v2509.1
 
 ### Changed
@@ -373,9 +383,3 @@ count as labels)
 - actions: only create actions for phases and projects if the project is not
   a draft (!1437)
 - reformat CHANGELOG.md
-
-## Unreleased
-
-### Fixed
-
-- Images remain in the upload section through validation
