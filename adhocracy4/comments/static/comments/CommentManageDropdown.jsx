@@ -5,12 +5,13 @@ const CommentManageDropdown = (props) => {
   const editTag = django.gettext('Edit')
   const deleteTag = django.gettext('Delete')
   const reportTag = django.gettext('Report')
+  const menuLabel = django.gettext('Kommentar-Aktionen')
   return (
     <ul className="nav navbar-nav">
       <li className="dropdown">
         <button
           type="button" className="dropdown-toggle" aria-haspopup="true"
-          aria-expanded="false" data-bs-toggle="dropdown"
+          aria-expanded="false" aria-label={menuLabel} data-bs-toggle="dropdown"
         >
           <i className="fa fa-ellipsis-h" aria-hidden="true" />
         </button>
