@@ -1,6 +1,6 @@
 all: help
 
-VIRTUAL_ENV ?= venv
+VIRTUAL_ENV ?= .venv
 SOURCE_DIRS = adhocracy4 tests
 NODE_BIN = node_modules/.bin
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
@@ -30,9 +30,12 @@ help:
 .PHONY: install
 install:
 	npm install
-	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
-	$(VIRTUAL_ENV)/bin/pip install -r requirements/dev.txt
-
+	@if [ ! -f $(VIRTUAL_ENV)/bin/pip ]; then python3 -m venv $(VIRTUAL_ENV); fi
+	@if ! command -v uv --version; then \
+	$(VIRTUAL_ENV)/bin/pip install pipx; \
+	$(VIRTUAL_ENV)/bin/pipx install uv; \
+	fi
+	uv sync --all-groups
 .PHONY: clean
 clean:
 	if [ -f package-lock.json ]; then rm package-lock.json; fi

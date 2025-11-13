@@ -55,19 +55,22 @@ jobs:
           cache-name: cache-pip-packages
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/requirements/dev.txt') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pyproject.toml') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install Dependencies
+        env:
+          UV_PROJECT_ENVIRONMENT: "/home/runner/.local"
         run: |
           sudo apt update
           sudo apt install -y gdal-bin
           sudo apt install libsqlite3-mod-spatialite
           npm install
-          pip install -r requirements/dev.txt
-          pip install coveralls
+          pip install uv
+          uv sync --all-groups
+          uv add coveralls
       - name: Run Tests
         env:
           PGPASSWORD: postgres
@@ -81,6 +84,25 @@ jobs:
       - name: Run Frontend Tests
         run: |
           npm test
+      - name: Check Coverage File
+        run: |
+          echo "Checking if .coverage file exists..."
+          if [ -f .coverage ]; then
+            echo "✓ .coverage file exists"
+            echo "File size: $(du -h .coverage | cut -f1)"
+            echo "File type: $(file .coverage)"
+            echo "First 100 bytes:"
+            head -c 100 .coverage | hexdump -C
+            echo ""
+            echo "Testing coverage data..."
+            coverage report --skip-covered --skip-empty || echo "Coverage report failed"
+          else
+            echo "✗ .coverage file NOT found!"
+            echo "Current directory: $(pwd)"
+            echo "Looking for coverage files..."
+            find . -name ".coverage*" -type f 2>/dev/null || echo "No coverage files found"
+            exit 1
+          fi
       - name: Coveralls Python
         uses: coverallsapp/github-action@v2
         with:

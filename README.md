@@ -23,16 +23,28 @@ To try it out yourself, best start with [a+][https://github.com/liqd/adhocracy-p
 
     git clone https://github.com/liqd/adhocracy4.git
     cd adhocracy4
-    make install 
+    make install
 
-## Start virtual environment
+Global setup: `make install` uses pipx to install uv system-wide
+Project isolation: It then uses uv to create a local `.venv` and installs dependencies into it.
+
+## Use Make
+    make test
+    make help
+
+## Development
+To add a new Library use uv 
 ```
-source venv/bin/activate
+uv add module
 ```
-## Check if tests work
+this automaticly updates pyproject.toml and uv.lock
+
+## Virtual Enviroment
+if you want to do something inside the venv manually use
 ```
-make test
+uv run python manage.py ...
 ```
+(which invokes .venev/bin/python manage.py ... )
 
 
 

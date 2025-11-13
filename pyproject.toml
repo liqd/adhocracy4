@@ -25,7 +25,7 @@ dependencies = [
     "django-allauth",
     "django-autoslug",
     "django-background-tasks",
-    "django-ckeditor-5",
+    "django-ckeditor-5 @ https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl",
     "django-enumfield",
     "django-filter",
     "django-multiselectfield",
@@ -44,6 +44,21 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+[dependency-groups]
+dev = [
+    "black",
+    "factory-boy",
+    "Faker",
+    "flake8",
+    "freezegun",
+    "isort",
+    "psycopg[binary]",
+    "pytest",
+    "pytest-cov",
+    "pytest-django",
+    "pytest-factoryboy",
+]
+
 [project.urls]
 "Homepage" = "https://github.com/liqd/adhocracy4"
 "Bug Tracker" = "https://github.com/liqd/adhocracy4/issues"
@@ -55,7 +70,7 @@ include = ["adhocracy4"]
 
 [tool.isort]
 profile = "black"
-skip = ["node_modules", "venv"]
+skip = ["node_modules", "venv", ".venv"]
 skip_glob = ["*/migrations/*.py"]
 known_first_party = ["adhocracy4", "tests"]
 force_single_line = true
