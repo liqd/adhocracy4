@@ -68,28 +68,33 @@ export const PollChoice = (props) => {
 
   return (
     <div className="poll poll--question">
-      <h3>{props.question.label}</h3>
-      {questionHelpText}
-      {multiHelpText}
-      <div className="poll__rows">
-        {props.question.choices.map((choice) => {
-          const checked = userChoices.indexOf(choice.id) !== -1
-          return (
-            <ChoiceRow
-              key={choice.id}
-              choice={choice}
-              checked={checked}
-              onInputChange={props.question.multiple_choice ? handleMultiChange : handleSingleChange}
-              type={props.question.multiple_choice ? 'checkbox' : 'radio'}
-              disabled={!userAllowedVote || props.question.isReadOnly}
-              otherChoiceAnswer={otherChoiceAnswer}
-              onOtherChange={handleOtherChange}
-              isReadOnly={props.question.isReadOnly}
-              errors={errors}
-            />
-          )
-        })}
-      </div>
+      <fieldset>
+        <legend className="poll__question-legend">
+          <h3>{props.question.label}</h3>
+        </legend>
+        {questionHelpText}
+        {multiHelpText}
+        <div className="poll__rows">
+          {props.question.choices.map((choice) => {
+            const checked = userChoices.indexOf(choice.id) !== -1
+            return (
+              <ChoiceRow
+                key={choice.id}
+                choice={choice}
+                checked={checked}
+                onInputChange={props.question.multiple_choice ? handleMultiChange : handleSingleChange}
+                type={props.question.multiple_choice ? 'checkbox' : 'radio'}
+                disabled={!userAllowedVote || props.question.isReadOnly}
+                otherChoiceAnswer={otherChoiceAnswer}
+                onOtherChange={handleOtherChange}
+                isReadOnly={props.question.isReadOnly}
+                errors={errors}
+                name={props.question.multiple_choice ? undefined : 'question-' + props.question.id}
+              />
+            )
+          })}
+        </div>
+      </fieldset>
     </div>
   )
 }

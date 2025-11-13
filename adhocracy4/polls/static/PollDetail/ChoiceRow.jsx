@@ -11,12 +11,14 @@ const ChoiceInput = ({
   choice,
   checked,
   onInputChange,
-  disabled
+  disabled,
+  name
 }) => (
   <input
     className="poll-row__radio"
     type={type}
     id={'id_choice-' + choice.id + '-' + (type === 'radio' ? 'single' : 'multiple')}
+    name={name}
     value={choice.id}
     checked={checked}
     onChange={(event) => onInputChange(event, choice.is_other_choice)}
@@ -35,7 +37,8 @@ export const ChoiceRow = React.memo(({
   otherChoiceAnswer,
   onOtherChange,
   isReadOnly,
-  errors
+  errors,
+  name
 }) => {
   const [textareaValue, setTextareaValue] = useState(otherChoiceAnswer)
   const [showTextarea, setShowTextarea] = useState(false)
@@ -78,6 +81,7 @@ export const ChoiceRow = React.memo(({
         checked={checked}
         onInputChange={handleChange}
         disabled={disabled}
+        name={name}
       />
       <span className={'radio__text' + (type === 'checkbox' ? ' radio__text--checkbox' : '')}>
         {choice.is_other_choice ? translated.other : choice.label}
@@ -89,6 +93,7 @@ export const ChoiceRow = React.memo(({
           onChange={handleTextareaChange}
           disabled={disabled}
           error={errors}
+          label={translated.other}
         />
       )}
     </label>
