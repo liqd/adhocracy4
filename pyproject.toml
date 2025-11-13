@@ -25,7 +25,7 @@ dependencies = [
     "django-allauth",
     "django-autoslug",
     "django-background-tasks",
-    "django-ckeditor-5 @ https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl",
+    "django-ckeditor-5",
     "django-enumfield",
     "django-filter",
     "django-multiselectfield",
