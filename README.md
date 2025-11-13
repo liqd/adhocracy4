@@ -23,9 +23,10 @@ To try it out yourself, best start with [a+][https://github.com/liqd/adhocracy-p
 
     git clone https://github.com/liqd/adhocracy4.git
     cd adhocracy4
-    make install 
-    # make install adds an installation of uv in a global virtual env via pipx
-    # Uv install the packages to .venv 
+    make install
+
+Global setup: `make install` uses pipx to install uv system-wide
+Project isolation: It then uses uv to create a local `.venv` and installs dependencies into it.
 
 ## Use Make
     make test
