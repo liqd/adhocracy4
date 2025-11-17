@@ -83,6 +83,19 @@ export default class Comment extends React.Component {
     }
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    // Focus on textarea when entering edit mode
+    if (!prevState.edit && this.state.edit) {
+      window.requestAnimationFrame(() => {
+        const textareaId = 'id_textarea-top' + this.props.id
+        const textarea = document.getElementById(textareaId)
+        if (textarea) {
+          textarea.focus()
+        }
+      })
+    }
+  }
+
   toggleEdit (e) {
     if (e) {
       e.preventDefault()
