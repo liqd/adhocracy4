@@ -36,6 +36,7 @@ export const ControlBarSearch = ({ onSearch, term, placeholder }) => {
               placeholder={placeholder || ''}
               value={value}
               id="searchterm"
+              autoComplete="on"
               onChange={handleChange}
             />
           </div>
