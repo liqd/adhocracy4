@@ -17,7 +17,14 @@ const Modal = ({
   onClose
 }) => {
   const dialogRef = useRef(null)
+  const toggleButtonRef = useRef(null)
   const uniqueId = useId()
+
+  const focusButton = (button) => {
+    if (button?.isConnected) {
+      button.focus()
+    }
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -26,22 +33,38 @@ const Modal = ({
       }
     }
 
+    const handleDialogClose = () => {
+      if (toggleButtonRef.current) {
+        focusButton(toggleButtonRef.current)
+        toggleButtonRef.current = null
+      }
+      onClose?.()
+    }
+
     const dialog = dialogRef.current
     if (dialog) {
       dialog.addEventListener('click', handleClickOutside)
-      return () => dialog.removeEventListener('click', handleClickOutside)
+      dialog.addEventListener('close', handleDialogClose)
+      return () => {
+        dialog.removeEventListener('click', handleClickOutside)
+        dialog.removeEventListener('close', handleDialogClose)
+      }
     }
   })
 
+  const findDropdownToggle = (modalButton) => {
+    return modalButton.closest('.dropdown')?.querySelector('.dropdown-toggle[data-bs-toggle="dropdown"]') || modalButton
+  }
+
   const handleOpen = (e) => {
     e.preventDefault()
+    toggleButtonRef.current = findDropdownToggle(e.currentTarget)
     dialogRef.current?.showModal()
     onOpen?.()
   }
 
   const handleClose = () => {
     dialogRef.current?.close()
-    onClose?.()
   }
 
   const onConfirm = (e) => {
@@ -104,6 +127,7 @@ const Modal = ({
   return (
     <>
       <button
+        ref={toggleButtonRef}
         className="a4-modal__toggle btn-link link"
         onClick={handleOpen}
       >

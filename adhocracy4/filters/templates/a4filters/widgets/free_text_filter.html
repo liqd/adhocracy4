@@ -11,7 +11,7 @@
                 <input type="hidden" name="{{ par_name }}" value="{{ value }}">
             {% endif %}
         {% endfor %}
-        <input class="search-filter-input" id="{{ id }}" type="search" name="{{ name }}" value="{{ value }}">
+        <input class="search-filter-input" id="{{ id }}" type="search" name="{{ name }}" value="{{ value }}" autocomplete="on">
         <button class="search-filter-btn btn" type="submit" title="{% translate 'Search' %}"><i class="fa fa-search" aria-label="{% translate 'Search' %}"></i></button>
     </form>
 </div>

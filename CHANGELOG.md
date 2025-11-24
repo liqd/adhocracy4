@@ -10,10 +10,17 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - Images remain in the upload section through validation
+- Accessibility improvements regarding alternative texts
+- Accessibility improvements regarding semantic structure and adaptability
+- Accessibility improvements regarding structured navigation and consistent focus indication
 
 ### Changed
 
 - Using uv as python package manager now
+
+
+
+
 
 ## mB-v2509.1
 
@@ -383,3 +390,4 @@ count as labels)
 - actions: only create actions for phases and projects if the project is not
   a draft (!1437)
 - reformat CHANGELOG.md
+

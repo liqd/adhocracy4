@@ -3,7 +3,8 @@ import django from 'django'
 
 const translated = {
   edit: django.gettext('Edit'),
-  delete: django.gettext('Delete')
+  delete: django.gettext('Delete'),
+  menuLabel: django.gettext('Comment Actions')
 }
 
 const CommentManageDropdown = (props) => {
@@ -14,6 +15,7 @@ const CommentManageDropdown = (props) => {
         className="dropdown-toggle btn btn--link"
         aria-haspopup="true"
         aria-expanded="false"
+        aria-label={translated.menuLabel}
         data-bs-toggle="dropdown"
       >
         <i className="fas fa-ellipsis-h" aria-hidden="true" />

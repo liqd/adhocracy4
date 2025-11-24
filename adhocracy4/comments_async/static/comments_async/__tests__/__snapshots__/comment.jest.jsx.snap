@@ -50,6 +50,7 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                   <button
                     aria-expanded="false"
                     aria-haspopup="true"
+                    aria-label="Comment Actions"
                     class="dropdown-toggle btn btn--link"
                     data-bs-toggle="dropdown"
                     type="button"
@@ -279,6 +280,7 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                 <button
                   aria-expanded="false"
                   aria-haspopup="true"
+                  aria-label="Comment Actions"
                   class="dropdown-toggle btn btn--link"
                   data-bs-toggle="dropdown"
                   type="button"
@@ -520,6 +522,7 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                   <button
                     aria-expanded="false"
                     aria-haspopup="true"
+                    aria-label="Comment Actions"
                     class="dropdown-toggle btn btn--link"
                     data-bs-toggle="dropdown"
                     type="button"
@@ -754,6 +757,7 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                 <button
                   aria-expanded="false"
                   aria-haspopup="true"
+                  aria-label="Comment Actions"
                   class="dropdown-toggle btn btn--link"
                   data-bs-toggle="dropdown"
                   type="button"

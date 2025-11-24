@@ -53,6 +53,7 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
                           class="a4-control-bar__search__logo-start"
                         />
                         <input
+                          autocomplete="on"
                           class="form-control a4-control-bar__search__input"
                           id="searchterm"
                           placeholder=""
@@ -202,6 +203,7 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
                         class="a4-control-bar__search__logo-start"
                       />
                       <input
+                        autocomplete="on"
                         class="form-control a4-control-bar__search__input"
                         id="searchterm"
                         placeholder=""
