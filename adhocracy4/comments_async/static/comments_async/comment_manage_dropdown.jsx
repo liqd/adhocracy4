@@ -4,7 +4,7 @@ import django from 'django'
 const translated = {
   edit: django.gettext('Edit'),
   delete: django.gettext('Delete'),
-  menuLabel: django.gettext('Kommentar-Aktionen')
+  menuLabel: django.gettext('Comment Actions')
 }
 
 const CommentManageDropdown = (props) => {

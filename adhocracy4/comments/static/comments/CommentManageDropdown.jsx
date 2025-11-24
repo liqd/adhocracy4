@@ -5,7 +5,7 @@ const CommentManageDropdown = (props) => {
   const editTag = django.gettext('Edit')
   const deleteTag = django.gettext('Delete')
   const reportTag = django.gettext('Report')
-  const menuLabel = django.gettext('Kommentar-Aktionen')
+  const menuLabel = django.gettext('Comment Actions')
   return (
     <ul className="nav navbar-nav">
       <li className="dropdown">
