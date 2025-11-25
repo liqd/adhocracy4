@@ -78,7 +78,7 @@ requires-dist = [
     { name = "django-allauth" },
     { name = "django-autoslug" },
     { name = "django-background-tasks" },
-    { name = "django-ckeditor-5", url = "https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl" },
+    { name = "django-ckeditor-5" },
     { name = "django-enumfield" },
     { name = "django-filter" },
     { name = "django-multiselectfield" },
@@ -967,7 +967,7 @@ wheels = [
 [[package]]
 name = "django-ckeditor-5"
 version = "0.2.11"
-source = { url = "https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl" }
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django", version = "4.2.25", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "django", version = "5.1.13", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
@@ -975,29 +975,10 @@ dependencies = [
     { name = "pillow", version = "11.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
     { name = "pillow", version = "12.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/74/01/0fcee4c722ff149dd1e7518d3ff801ffd03b90c4c6acf947e6b5a0ac3b85/django-ckeditor-5-0.2.11.tar.gz", hash = "sha256:dc1700f5ad023e3328d5194d08c29870f114468c8c8348b2cd7c608dec264342", size = 2016918, upload-time = "2024-01-06T17:39:24.703Z" }
 wheels = [
-    { url = "https://github.com/liqd/django-ckeditor-5/releases/download/v0.2.11-liqd/django_ckeditor_5-0.2.11-py3-none-any.whl", hash = "sha256:c8d4b552d5a718d83bab92ffc01ce884705e2554478a283f8719b17315527494" },
+    { url = "https://files.pythonhosted.org/packages/f7/80/9bdf93e54cfabeead7d7207a99a070173340c43f973cecd259848c8e4306/django_ckeditor_5-0.2.11-py3-none-any.whl", hash = "sha256:85946b8a94cd7a203e65bdc7dd781304293cd608b2246f32ac96509afb569e86", size = 2048301, upload-time = "2024-01-06T17:39:21.996Z" },
 ]
-
-[package.metadata]
-requires-dist = [
-    { name = "bandit", extras = ["toml"], marker = "extra == 'dev'", specifier = "==1.7.6" },
-    { name = "black", marker = "extra == 'dev'", specifier = "==22.12.0" },
-    { name = "codespell", marker = "extra == 'dev'", specifier = "==2.2.2" },
-    { name = "coverage", marker = "extra == 'dev'", specifier = "==7.4.0" },
-    { name = "django", specifier = ">=2.2" },
-    { name = "mypy", marker = "extra == 'dev'", specifier = "==1.8.0" },
-    { name = "mypy-extensions", marker = "extra == 'dev'", specifier = "==1.0.0" },
-    { name = "pillow" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = "==7.4.4" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = "==4.0.0" },
-    { name = "pytest-django", marker = "extra == 'dev'", specifier = "==4.5.2" },
-    { name = "pytest-mock", marker = "extra == 'dev'", specifier = "==3.10.0" },
-    { name = "safety", marker = "extra == 'dev'", specifier = "==2.3.5" },
-    { name = "types-setuptools", marker = "extra == 'dev'", specifier = "==65.6.0.2" },
-    { name = "typing-extensions", marker = "extra == 'dev'", specifier = "==4.9.0" },
-]
-provides-extras = ["dev"]
 
 [[package]]
 name = "django-enumfield"
