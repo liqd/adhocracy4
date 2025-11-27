@@ -17,6 +17,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - Using uv as python package manager now
+- Adding support for django 5.2
 
 
 

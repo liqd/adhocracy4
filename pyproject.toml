@@ -9,7 +9,7 @@ authors = [
 ]
 description = "Adhocracy 4 core library"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 keywords = ["digital participation"]
 license = {text = "AGPL-3"}
 classifiers = [
@@ -21,7 +21,7 @@ dependencies = [
     "beautifulsoup4",
     "bleach[css]",
     "celery",
-    "Django >= 3.2, < 5.2",
+    "Django >= 4.2, < 5.3",
     "django-allauth",
     "django-autoslug",
     "django-background-tasks",
