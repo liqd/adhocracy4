@@ -322,6 +322,7 @@ export default class Comment extends React.Component {
       ),
       urlModal: (
         <UrlModal
+          objectId={this.props.id}
           title={translated.shareLink}
           btnStyle="cta"
           url={this.getCommentUrl()}

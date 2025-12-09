@@ -1,4 +1,5 @@
-import React, { useId, useEffect, useRef } from 'react'
+/* eslint-disable no-restricted-syntax */
+import React, { useId, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import django from 'django'
 
@@ -19,6 +20,51 @@ const Modal = ({
   const dialogRef = useRef(null)
   const toggleButtonRef = useRef(null)
   const uniqueId = useId()
+  const titleId = `modal-title-${uniqueId}`
+  const descriptionId = partials.description ? `modal-desc-${uniqueId}` : undefined
+  const [isOpen, setIsOpen] = useState(false)
+
+  // Focus trap and initial focus
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        handleClose()
+      }
+      if (e.key === 'Tab') {
+        const focusableElements = dialog.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        const firstElement = focusableElements[0]
+        const lastElement = focusableElements[focusableElements.length - 1]
+
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault()
+          lastElement.focus()
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault()
+          firstElement.focus()
+        }
+      }
+    }
+
+    if (isOpen) {
+      dialog.addEventListener('keydown', handleKeyDown)
+      // Set initial focus to first focusable element
+      const focusableElements = dialog.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      if (focusableElements.length > 0) {
+        setTimeout(() => focusableElements[0].focus(), 100)
+      }
+    }
+
+    return () => {
+      dialog.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isOpen])
 
   const focusButton = (button) => {
     if (button?.isConnected) {
@@ -27,13 +73,8 @@ const Modal = ({
   }
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (event.target === dialogRef.current) {
-        handleClose()
-      }
-    }
-
     const handleDialogClose = () => {
+      setIsOpen(false)
       if (toggleButtonRef.current) {
         focusButton(toggleButtonRef.current)
         toggleButtonRef.current = null
@@ -43,10 +84,8 @@ const Modal = ({
 
     const dialog = dialogRef.current
     if (dialog) {
-      dialog.addEventListener('click', handleClickOutside)
       dialog.addEventListener('close', handleDialogClose)
       return () => {
-        dialog.removeEventListener('click', handleClickOutside)
         dialog.removeEventListener('close', handleDialogClose)
       }
     }
@@ -60,6 +99,7 @@ const Modal = ({
     e.preventDefault()
     toggleButtonRef.current = findDropdownToggle(e.currentTarget)
     dialogRef.current?.showModal()
+    setIsOpen(true)
     onOpen?.()
   }
 
@@ -79,11 +119,16 @@ const Modal = ({
       ref={dialogRef}
       id={uniqueId}
       className="a4-modal"
+      aria-modal="true"
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
     >
       <div className="a4-modal__content">
         <header className="a4-modal__header">
           {partials.title && (
-            <h2 className="a4-modal__title">{partials.title}</h2>
+            <h2 className="a4-modal__title" id={titleId}>
+              {partials.title}
+            </h2>
           )}
           <button
             className="a4-modal__close"
@@ -96,7 +141,7 @@ const Modal = ({
         </header>
         <div className={'a4-modal__body ' + (partials.bodyClass || '')}>
           {partials.description && (
-            <div className="a4-modal__description">
+            <div className="a4-modal__description" id={descriptionId}>
               {partials.description}
             </div>
           )}
@@ -130,6 +175,8 @@ const Modal = ({
         ref={toggleButtonRef}
         className="a4-modal__toggle btn-link link"
         onClick={handleOpen}
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
       >
         {toggle}
       </button>
