@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import L from 'leaflet'
 import {
   createElementObject,
@@ -31,7 +32,7 @@ const createGeoJsonMarker = ({ feature, ...props }, context) => {
     originalOnAdd.call(this, map)
     const element = this.getElement()
     if (element) {
-      // eslint-disable-next-line no-restricted-syntax
+      element.setAttribute('alt', `${a11yTag}: ${feature.properties.title}`)
       element.setAttribute('aria-label', `${a11yTag}: ${feature.properties.title}`)
       element.setAttribute('role', 'button')
     }
