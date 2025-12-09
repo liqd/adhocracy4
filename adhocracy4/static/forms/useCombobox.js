@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import { useCallback, useId, useMemo, useRef, useState } from 'react'
 import { getLoopedIndex } from './AutoComplete'
 
@@ -100,10 +101,18 @@ const useCombobox = ({
     e.preventDefault()
   }, [])
 
-  const getChoicesAttr = (choice) => ({
+  const getFocusedId = () => {
+    if (!focusedItem) return undefined
+    const index = choices.findIndex(c => c.value === focusedItem.value)
+    // Debug: console.log('focusedItem:', focusedItem, 'index:', index, 'containerId:', containerId)
+    return index !== -1 ? `${containerId}-option-${index}` : undefined
+  }
+
+  const getChoicesAttr = (choice, index) => ({
     active: active.includes(choice.value),
     focused: focusedItem?.value === choice.value,
     role: 'option',
+    id: `${containerId}-option-${index}`,
     'aria-selected': active.includes(choice.value),
     onClick: () => {
       toggleOption(choice.value)
@@ -186,7 +195,7 @@ const useCombobox = ({
       tabIndex: 0,
       'aria-haspopup': 'true',
       'aria-expanded': opened,
-      'aria-activedescendant': focusedItem?.value,
+      'aria-activedescendant': getFocusedId(),
       'aria-labelledby': labelId,
       'aria-controls': containerId,
       role: 'combobox',
@@ -197,6 +206,7 @@ const useCombobox = ({
       'aria-multiselectable': 'true',
       ref: listboxRef,
       id: containerId,
+      'aria-labelledby': labelId,
       onMouseDown
     },
     labelId,
