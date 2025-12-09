@@ -3,6 +3,7 @@ import {
   createElementObject,
   createLayerComponent, extendContext
 } from '@react-leaflet/core'
+import django from 'django'
 
 export const makeIcon = (iconUrl) =>
   L.icon({
@@ -23,6 +24,19 @@ const createGeoJsonMarker = ({ feature, ...props }, context) => {
   const coords = [...feature.geometry.coordinates].reverse()
   const propsWithIcon = { icon: makeIcon(feature.properties.category_icon), ...props }
   const instance = L.marker(coords, propsWithIcon)
+
+  const a11yTag = django.gettext('Project pin')
+  const originalOnAdd = instance.onAdd
+  instance.onAdd = function (map) {
+    originalOnAdd.call(this, map)
+    const element = this.getElement()
+    if (element) {
+      // eslint-disable-next-line no-restricted-syntax
+      element.setAttribute('aria-label', `${a11yTag}: ${feature.properties.title}`)
+      element.setAttribute('role', 'button')
+    }
+    return this
+  }
 
   return createElementObject(instance, extendContext(context, { overlayContainer: instance }))
 }
