@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import django from 'django'
@@ -142,6 +143,8 @@ export default class Comment extends React.Component {
           className="btn btn--none text-muted px-0 a4-comments__read-btn"
           type="button"
           onClick={this.toggleExpand.bind(this)}
+          aria-expanded={!this.state.shorten}
+          aria-label={this.state.shorten ? translated.ariaReadMore : translated.ariaReadLess}
         >
           {this.state.shorten ? translated.readMore : translated.readLess}
         </button>
@@ -322,6 +325,7 @@ export default class Comment extends React.Component {
       ),
       urlModal: (
         <UrlModal
+          objectId={this.props.id}
           title={translated.shareLink}
           btnStyle="cta"
           url={this.getCommentUrl()}
@@ -406,10 +410,15 @@ export default class Comment extends React.Component {
 
                 <div className="a4-comments__action-bar">
                   {((this.allowForm() && !this.props.is_deleted) || (this.props.child_comments && this.props.child_comments.length > 0)) &&
-                    <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
-                      <a href="#child-comment-form">
-                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
-                      </a>
+                    <button
+                      className="btn btn--no-border a4-comments__action-bar__btn"
+                      type="button"
+                      onClick={this.toggleShowComments.bind(this)}
+                      aria-expanded={this.state.showChildComments}
+                      aria-controls={`child-comments-${this.props.id}`}
+                    >
+                      <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" />
+                      {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
                     </button>}
                 </div>
               </div>
@@ -420,7 +429,7 @@ export default class Comment extends React.Component {
         <>
           {this.state.showChildComments
             ? (
-              <div className="a4-comments__child--list">
+              <div className="a4-comments__child--list" id={`child-comments-${this.props.id}`}>
                 <div className="row a4-comments__list">
                   <div className="col-12 ms-3">
                     <CommentList

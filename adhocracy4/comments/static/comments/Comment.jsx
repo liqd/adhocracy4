@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 const React = require('react')
 const django = require('django')
 
@@ -199,6 +200,9 @@ class Comment extends React.Component {
                 className="btn comment-answer-button"
                 type="button"
                 onClick={this.replyComments.bind(this)}
+                aria-disabled={this.state.showChildComments}
+                aria-expanded={this.state.showChildComments && this.state.replyFormHasFocus}
+                aria-controls={`reply-form-${this.props.id}`}
               >
                 <i className="fa fa-reply" aria-hidden="true" /> {answerTag}
               </button>}
@@ -214,14 +218,20 @@ class Comment extends React.Component {
         {this.props.child_comments && this.props.child_comments.length > 0 &&
           <div className="action-bar">
             <div className="navbar">
-              <button className="comment-reply-button" type="button" onClick={this.toggleShowComments.bind(this)}>
+              <button
+                className="comment-reply-button"
+                type="button"
+                onClick={this.toggleShowComments.bind(this)}
+                aria-expanded={this.state.showChildComments}
+                aria-controls={`child-comments-${this.props.id}`}
+              >
                 <i className={this.state.showChildComments ? 'fa fa-minus' : 'fa fa-plus'} aria-hidden="true" />
                 {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
               </button>
             </div>
           </div>}
 
-        <div className="comment-child-list">
+        <div className="comment-child-list" id={`child-comments-${this.props.id}`}>
           {this.state.showChildComments
             ? (
               <CommentList
@@ -237,6 +247,7 @@ class Comment extends React.Component {
           {this.state.showChildComments && !this.props.isReadOnly && this.context.isAuthenticated
             ? (
               <CommentForm
+                id={`reply-form-${this.props.id}`}
                 subjectType={this.context.comments_contenttype}
                 subjectId={this.props.id}
                 onCommentSubmit={this.props.onCommentSubmit}

@@ -2,6 +2,30 @@ import React from 'react'
 import Slider from 'react-slick'
 import django from 'django'
 
+const SliderArrow = (props) => {
+  const { className, style, onClick, currentSlide, slideCount } = props
+  const isPrev = className.includes('slick-prev')
+  const disabled = isPrev
+    ? currentSlide === 0
+    : currentSlide === slideCount - 1
+
+  const label = isPrev
+    ? django.gettext('Previous answer')
+    : django.gettext('Next answer')
+
+  return (
+    <button
+      type="button"
+      className={className}
+      style={style}
+      onClick={disabled ? null : onClick}
+      aria-label={label}
+      aria-disabled={disabled}
+      disabled={disabled}
+    />
+  )
+}
+
 export default class PollResult extends React.Component {
   constructor (props) {
     super(props)
@@ -91,7 +115,9 @@ export default class PollResult extends React.Component {
       className: 'poll-slider',
       infinite: false,
       centerMode: true,
-      centerPadding: '0px'
+      centerPadding: '0px',
+      prevArrow: <SliderArrow />,
+      nextArrow: <SliderArrow />
     }
 
     return (
@@ -121,22 +147,35 @@ export default class PollResult extends React.Component {
                       </button>}
                     {this.state.showOtherAnswers &&
                       <div className="poll-slider__container" id={this.state.question.id}>
-                        <Slider {...settings}>
-                          {this.props.question.other_choice_answers.map((slide, index) => (
-                            <div
-                              className="poll-slider__item"
-                              data-index={index}
-                              key={index}
-                            >
-                              <div className="poll-slider__answer">
-                                {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
+                        <div
+                          aria-live="polite"
+                          aria-atomic="true"
+                          role="region"
+                          aria-label={django.gettext('Other answers carousel')}
+                        >
+                          <Slider {...settings}>
+                            {this.props.question.other_choice_answers.map((slide, index) => (
+                              <div
+                                className="poll-slider__item"
+                                data-index={index}
+                                key={index}
+                                role="group"
+                                aria-label={django.interpolate(
+                                  django.gettext('Answer %(current)s of %(total)s'),
+                                  { current: index + 1, total: this.props.question.other_choice_answers.length },
+                                  true
+                                )}
+                              >
+                                <div className="poll-slider__answer">
+                                  {this.isUserAnswer(slide) && <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />} {slide.answer}
+                                </div>
+                                <div className={this.props.question.other_choice_answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
+                                  {index + 1}/{this.props.question.other_choice_answers.length}
+                                </div>
                               </div>
-                              <div className={this.props.question.other_choice_answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
-                                {index + 1}/{this.props.question.other_choice_answers.length}
-                              </div>
-                            </div>
-                          ))}
-                        </Slider>
+                            ))}
+                          </Slider>
+                        </div>
                       </div>}
                   </div>}
               </div>
@@ -144,22 +183,35 @@ export default class PollResult extends React.Component {
           )}
           {this.state.question.is_open && this.state.question.answers.length > 0 &&
             <div className="poll-slider__container">
-              <Slider {...settings}>
-                {this.props.question.answers.map((slide, index) => (
-                  <div
-                    className="poll-slider__item"
-                    data-index={index}
-                    key={index}
-                  >
-                    <div className="poll-slider__answer">
-                      {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
+              <div
+                aria-live="polite"
+                aria-atomic="true"
+                role="region"
+                aria-label={django.gettext('Open answers carousel')}
+              >
+                <Slider {...settings}>
+                  {this.props.question.answers.map((slide, index) => (
+                    <div
+                      className="poll-slider__item"
+                      data-index={index}
+                      key={index}
+                      role="group"
+                      aria-label={django.interpolate(
+                        django.gettext('Answer %(current)s of %(total)s'),
+                        { current: index + 1, total: this.props.question.answers.length },
+                        true
+                      )}
+                    >
+                      <div className="poll-slider__answer">
+                        {this.isUserAnswer(slide) && <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />} {slide.answer}
+                      </div>
+                      <div className={this.props.question.answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
+                        {index + 1}/{this.props.question.answers.length}
+                      </div>
                     </div>
-                    <div className={this.props.question.answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
-                      {index + 1}/{this.props.question.answers.length}
-                    </div>
-                  </div>
-                ))}
-              </Slider>
+                  ))}
+                </Slider>
+              </div>
             </div>}
           {this.state.question.is_open
             ? (

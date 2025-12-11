@@ -44,6 +44,7 @@ export const UrlModal = (props) => {
           className="form-control"
           value={props.url}
           readOnly
+          aria-label={django.gettext('Share URL')}
         />
         <button
           className="a4-url-modal__button"
