@@ -13,15 +13,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Accessibility improvements regarding alternative texts
 - Accessibility improvements regarding semantic structure and adaptability
 - Accessibility improvements regarding structured navigation and consistent focus indication
+- Accessibility improvements, keyboard navigation of lists and popups, aria labels
+
 
 ### Changed
 
 - Using uv as python package manager now
 - Adding support for django 5.2
-
-
-
-
 
 ## mB-v2509.1
 
