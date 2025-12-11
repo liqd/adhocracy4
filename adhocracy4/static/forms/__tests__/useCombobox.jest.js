@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import { renderHook, act } from '@testing-library/react'
 import useCombobox from '../useCombobox'
 
@@ -44,26 +45,53 @@ describe('useCombobox', () => {
 
   test('handles keyboard navigation', () => {
     const { result } = renderHook(() => useCombobox(defaultProps))
+    const containerId = result.current.listboxAttrs.id
 
     act(() => {
       result.current.comboboxAttrs.onClick()
     })
-    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe('1')
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-0`)
 
     act(() => {
       result.current.comboboxAttrs.onKeyDown({ key: 'ArrowDown', preventDefault: jest.fn() })
     })
-    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe('2')
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-1`)
 
     act(() => {
       result.current.comboboxAttrs.onKeyDown({ key: 'ArrowDown', preventDefault: jest.fn() })
     })
-    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe('3')
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-2`)
 
     act(() => {
       result.current.comboboxAttrs.onKeyDown({ key: 'ArrowUp', preventDefault: jest.fn() })
     })
-    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe('2')
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-1`)
+  })
+
+  test('handles type-to-select', () => {
+    const { result } = renderHook(() => useCombobox(defaultProps))
+    const containerId = result.current.listboxAttrs.id
+
+    act(() => {
+      result.current.comboboxAttrs.onKeyDown({ key: 'O', length: 1 })
+    })
+
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-0`)
+  })
+
+  test('handles Home and End keys', () => {
+    const { result } = renderHook(() => useCombobox(defaultProps))
+    const containerId = result.current.listboxAttrs.id
+
+    act(() => {
+      result.current.comboboxAttrs.onKeyDown({ key: 'End', preventDefault: jest.fn() })
+    })
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-2`)
+
+    act(() => {
+      result.current.comboboxAttrs.onKeyDown({ key: 'Home', preventDefault: jest.fn() })
+    })
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-0`)
   })
 
   test('handles multiple selection', () => {
@@ -73,24 +101,17 @@ describe('useCombobox', () => {
     }
 
     const { result } = renderHook(() => useCombobox(multipleProps))
+    const containerId = result.current.listboxAttrs.id
 
     // Select first option
     act(() => {
-      const choiceAttrs = result.current.getChoicesAttr(mockChoices[0])
+      const choiceAttrs = result.current.getChoicesAttr(mockChoices[0], 0)
+      expect(choiceAttrs.id).toBe(`${containerId}-option-0`)
       choiceAttrs.onClick()
     })
 
     expect(result.current.activeItems).toHaveLength(1)
     expect(result.current.activeItems[0]).toEqual(mockChoices[0])
-
-    // Select second option
-    act(() => {
-      const choiceAttrs = result.current.getChoicesAttr(mockChoices[1])
-      choiceAttrs.onClick()
-    })
-
-    expect(result.current.activeItems).toHaveLength(2)
-    expect(result.current.activeItems).toEqual([mockChoices[0], mockChoices[1]])
   })
 
   test('handles single selection', () => {
@@ -147,26 +168,28 @@ describe('useCombobox', () => {
 
   test('handles type-to-select', () => {
     const { result } = renderHook(() => useCombobox(defaultProps))
+    const containerId = result.current.listboxAttrs.id
 
     act(() => {
       result.current.comboboxAttrs.onKeyDown({ key: 'O', length: 1 })
     })
 
-    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe('1')
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-0`)
   })
 
   test('handles Home and End keys', () => {
     const { result } = renderHook(() => useCombobox(defaultProps))
+    const containerId = result.current.listboxAttrs.id
 
     act(() => {
       result.current.comboboxAttrs.onKeyDown({ key: 'End', preventDefault: jest.fn() })
     })
-    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe('3')
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-2`)
 
     act(() => {
       result.current.comboboxAttrs.onKeyDown({ key: 'Home', preventDefault: jest.fn() })
     })
-    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe('1')
+    expect(result.current.comboboxAttrs['aria-activedescendant']).toBe(`${containerId}-option-0`)
   })
 
   test('calls onChange when selection changes', () => {

@@ -67,6 +67,8 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                       class="dropdown-item a4-comments__dropdown__url"
                     >
                       <button
+                        aria-expanded="false"
+                        aria-haspopup="dialog"
                         class="a4-modal__toggle btn-link link"
                       >
                         <i
@@ -162,19 +164,16 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                   class="a4-comments__action-bar"
                 >
                   <button
+                    aria-controls="child-comments-1"
+                    aria-expanded="false"
                     class="btn btn--no-border a4-comments__action-bar__btn"
                     type="button"
                   >
-                    <a
-                      href="#child-comment-form"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="far fa-comment"
-                      />
-                       
-                      Reply
-                    </a>
+                    <i
+                      aria-hidden="true"
+                      class="far fa-comment"
+                    />
+                    Reply
                   </button>
                 </div>
               </div>
@@ -184,6 +183,8 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
       </li>
     </div>
     <dialog
+      aria-labelledby="modal-title-:r0:"
+      aria-modal="true"
       class="a4-modal"
       id=":r0:"
     >
@@ -195,6 +196,7 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
         >
           <h2
             class="a4-modal__title"
+            id="modal-title-:r0:"
           >
             Share link
           </h2>
@@ -216,8 +218,9 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
             class="input-group a4-url-modal__body"
           >
             <input
+              aria-label="Share URL"
               class="form-control"
-              id="share-url-undefined"
+              id="share-url-1"
               readonly=""
               type="text"
               value="http://localhost/?comment=1"
@@ -297,6 +300,8 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                     class="dropdown-item a4-comments__dropdown__url"
                   >
                     <button
+                      aria-expanded="false"
+                      aria-haspopup="dialog"
                       class="a4-modal__toggle btn-link link"
                     >
                       <i
@@ -392,19 +397,16 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
                 class="a4-comments__action-bar"
               >
                 <button
+                  aria-controls="child-comments-1"
+                  aria-expanded="false"
                   class="btn btn--no-border a4-comments__action-bar__btn"
                   type="button"
                 >
-                  <a
-                    href="#child-comment-form"
-                  >
-                    <i
-                      aria-hidden="true"
-                      class="far fa-comment"
-                    />
-                     
-                    Reply
-                  </a>
+                  <i
+                    aria-hidden="true"
+                    class="far fa-comment"
+                  />
+                  Reply
                 </button>
               </div>
             </div>
@@ -539,6 +541,8 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                       class="dropdown-item a4-comments__dropdown__url"
                     >
                       <button
+                        aria-expanded="false"
+                        aria-haspopup="dialog"
                         class="a4-modal__toggle btn-link link"
                       >
                         <i
@@ -634,19 +638,16 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                   class="a4-comments__action-bar"
                 >
                   <button
+                    aria-controls="child-comments-1"
+                    aria-expanded="false"
                     class="btn btn--no-border a4-comments__action-bar__btn"
                     type="button"
                   >
-                    <a
-                      href="#child-comment-form"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="far fa-comment"
-                      />
-                       
-                      Reply
-                    </a>
+                    <i
+                      aria-hidden="true"
+                      class="far fa-comment"
+                    />
+                    Reply
                   </button>
                 </div>
               </div>
@@ -656,6 +657,8 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
       </li>
     </div>
     <dialog
+      aria-labelledby="modal-title-:r4:"
+      aria-modal="true"
       class="a4-modal"
       id=":r4:"
     >
@@ -667,6 +670,7 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
         >
           <h2
             class="a4-modal__title"
+            id="modal-title-:r4:"
           >
             Share link
           </h2>
@@ -688,8 +692,9 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
             class="input-group a4-url-modal__body"
           >
             <input
+              aria-label="Share URL"
               class="form-control"
-              id="share-url-undefined"
+              id="share-url-1"
               readonly=""
               type="text"
               value="http://localhost/?comment=1"
@@ -774,6 +779,8 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                     class="dropdown-item a4-comments__dropdown__url"
                   >
                     <button
+                      aria-expanded="false"
+                      aria-haspopup="dialog"
                       class="a4-modal__toggle btn-link link"
                     >
                       <i
@@ -869,19 +876,16 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
                 class="a4-comments__action-bar"
               >
                 <button
+                  aria-controls="child-comments-1"
+                  aria-expanded="false"
                   class="btn btn--no-border a4-comments__action-bar__btn"
                   type="button"
                 >
-                  <a
-                    href="#child-comment-form"
-                  >
-                    <i
-                      aria-hidden="true"
-                      class="far fa-comment"
-                    />
-                     
-                    Reply
-                  </a>
+                  <i
+                    aria-hidden="true"
+                    class="far fa-comment"
+                  />
+                  Reply
                 </button>
               </div>
             </div>
