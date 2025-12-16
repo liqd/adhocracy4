@@ -20,6 +20,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Using uv as python package manager now
 - Adding support for django 5.2
+- Projects description, frontend limitation of 170 characters
 
 ## mB-v2509.1
 

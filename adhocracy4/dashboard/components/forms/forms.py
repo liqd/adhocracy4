@@ -36,6 +36,15 @@ class ProjectDashboardForm(ImageMetadataMixin, forms.ModelForm):
         _make_fields_required_for_publish(
             self.fields.items(), self.get_required_fields()
         )
+        self.fields['description'].widget.attrs['maxlength'] = 170
+
+    def clean_description(self):
+        description = self.cleaned_data.get('description', '')
+        if len(description) > 170:
+            raise forms.ValidationError(
+                _("Description must be at most 170 characters")
+            )
+        return description
 
     def get_project(self):
         return self.instance
