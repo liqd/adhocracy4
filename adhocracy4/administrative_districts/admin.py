@@ -2,4 +2,9 @@ from django.contrib import admin
 
 from . import models
 
-admin.site.register(models.AdministrativeDistrict, admin.ModelAdmin)
+
+@admin.register(models.AdministrativeDistrict)
+class AdministrativeDistrictAdmin(admin.ModelAdmin):
+    list_display = ["name", "short_code"]
+    fields = ["name", "short_code"]
+    ordering = ["name"]
