@@ -227,7 +227,7 @@ class Project(
             "This short description will appear on "
             "the header of the project and in the teaser. "
             "It should briefly state the goal of the project "
-            "in max. 170 chars."
+            "in max. 250 chars."
         ),
     )
     information = CKEditor5Field(
