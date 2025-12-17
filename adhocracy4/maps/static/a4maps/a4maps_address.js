@@ -83,6 +83,7 @@ const getPoints = function (address, cb) {
 }
 
 function getAddressTextForPoint (point) {
+  if (!point) return ''
   const {
     strasse = '',
     haus = '',

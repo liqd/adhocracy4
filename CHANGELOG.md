@@ -14,6 +14,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Accessibility improvements regarding semantic structure and adaptability
 - Accessibility improvements regarding structured navigation and consistent focus indication
 - Accessibility improvements, keyboard navigation of lists and popups, aria labels
+- Address Search Input field behaviour
 
 
 ### Changed
