@@ -143,6 +143,14 @@ function init () {
       } else {
         marker.setLatLng(latlng)
       }
+
+      // Clear input field
+      // eslint-disable-next-line no-restricted-syntax
+      const $addressGroup = $(`[data-map="address"][data-name="${name}"]`)
+      if ($addressGroup.length === 0) return
+
+      const $addressInput = $addressGroup.find('input')
+      $addressInput.val('')
     })
   })
 }
