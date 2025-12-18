@@ -22,12 +22,16 @@ const Alert = ({ type = 'info', title, message, htmlMessage, onClick, timeInMs }
   // Use alert role for danger/warning, status for others
   const ariaRole = ['danger', 'warning'].includes(type) ? 'alert' : 'status'
 
+  // Add aria-live attribute for screen reader announcements
+  const ariaLive = ['danger', 'warning'].includes(type) ? 'assertive' : 'polite'
+
   return (
     <div
       id="alert"
       role={ariaRole}
-      className={'alert alert--' + type}
+      aria-live={ariaLive}
       aria-atomic="true"
+      className={'alert alert--' + type}
     >
       <div className="alert__content">
         {title && <h3 className="alert__headline">{title}</h3>}
