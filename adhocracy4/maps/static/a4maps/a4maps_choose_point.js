@@ -19,6 +19,13 @@ function createMarker ($, L, newlatln, oldlatln, basePolygon, map, name) {
         markerInsidePolygon = true
         oldlatln = marker.getLatLng()
         const shape = marker.toGeoJSON()
+        // shape properties contain old address, therefore we clear them below
+        shape.properties = {
+          strasse: '',
+          haus: '',
+          plz: '',
+          ortsteil: ''
+        }
         $('#id_' + name).val(JSON.stringify(shape))
         $('#id_' + name).trigger('change')
       }
