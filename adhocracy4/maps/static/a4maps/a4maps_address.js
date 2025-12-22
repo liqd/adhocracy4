@@ -82,8 +82,10 @@ const getPoints = function (address, cb) {
   })
 }
 
-function getAddressTextForPoint (point) {
+function getAddressTextForPoint (point, isInitAddress = false) {
   if (!point) return ''
+  const isMissingProperties = (!point.properties.strasse || !point.properties.plz)
+  if (isInitAddress && isMissingProperties) return ''
   const {
     strasse = '',
     haus = '',
@@ -123,7 +125,7 @@ function init () {
     const $map = $('[data-map="choose_point"][data-name="' + name + '"]')
     const polygon = $map.data('polygon')
     const existingPoint = $map.data('point')
-    const savedAddress = getAddressTextForPoint(existingPoint)
+    const savedAddress = getAddressTextForPoint(existingPoint, true)
     $group.find('input').val(savedAddress)
     const onSubmit = function (event) {
       event.preventDefault()
@@ -156,10 +158,11 @@ function init () {
 
     $group.on('click', '[data-map-point]', function (event) {
       const data = $(event.target).attr('data-map-point')
+      const addressForPoint = getAddressTextForPoint(JSON.parse(data))
       $group.find('.complete').empty()
       // NOTE that the text may not be a valid search query
-      $group.find('input').val($(event.target).text())
-      $input.val(data).change()
+      $group.find('input').val(addressForPoint)
+      $input.val(data)
     })
 
     $(document).on('focusout', function (event) {
