@@ -16,11 +16,11 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
           </div>
         </div>
         <div>
-          <h3
-            class="a4-comments__commentbox__subtitle"
+          <h2
+            class="a4-comments__commentbox__subtitle title-3"
           >
             Discussion
-          </h3>
+          </h2>
           <div
             class="a4-comments__comment-control-bar"
           >
@@ -166,11 +166,11 @@ exports[`CommentBox Component comments are fetched and loading spinners is hidde
         </div>
       </div>
       <div>
-        <h3
-          class="a4-comments__commentbox__subtitle"
+        <h2
+          class="a4-comments__commentbox__subtitle title-3"
         >
           Discussion
-        </h3>
+        </h2>
         <div
           class="a4-comments__comment-control-bar"
         >

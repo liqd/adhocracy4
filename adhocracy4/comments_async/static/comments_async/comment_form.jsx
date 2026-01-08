@@ -165,7 +165,7 @@ export default class CommentForm extends React.Component {
       return (
         <>
           {!this.props.editing &&
-            <h3 className="a4-comments__comment-form__heading-comments-allowed">{translated.formHeadingCommentsAllowed}</h3>}
+            <h2 className="a4-comments__comment-form__heading-comments-allowed title-3">{translated.formHeadingCommentsAllowed}</h2>}
           <form id={'id-comment-form' + this.props.commentId} className="a4-comments__comment-form__form" onSubmit={this.handleSubmit.bind(this)}>
             {this.props.error &&
               <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}

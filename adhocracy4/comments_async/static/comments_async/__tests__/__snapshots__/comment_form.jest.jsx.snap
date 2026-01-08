@@ -5,11 +5,11 @@ exports[`CommentForm Component renders CommentForm 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <h3
-        class="a4-comments__comment-form__heading-comments-allowed"
+      <h2
+        class="a4-comments__comment-form__heading-comments-allowed title-3"
       >
         Join the discussion
-      </h3>
+      </h2>
       <form
         class="a4-comments__comment-form__form"
         id="id-comment-formundefined"
@@ -84,11 +84,11 @@ exports[`CommentForm Component renders CommentForm 1`] = `
     </div>
   </body>,
   "container": <div>
-    <h3
-      class="a4-comments__comment-form__heading-comments-allowed"
+    <h2
+      class="a4-comments__comment-form__heading-comments-allowed title-3"
     >
       Join the discussion
-    </h3>
+    </h2>
     <form
       class="a4-comments__comment-form__form"
       id="id-comment-formundefined"
