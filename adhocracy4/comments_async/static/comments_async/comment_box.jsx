@@ -467,9 +467,9 @@ export const CommentBox = (props) => {
         />
       </div>
       <div>
-        <h3 className="a4-comments__commentbox__subtitle">
+        <h2 className="a4-comments__commentbox__subtitle title-3">
           {translated.discussion}
-        </h3>
+        </h2>
         {noControlBar
           ? (
             <CommentFilters
