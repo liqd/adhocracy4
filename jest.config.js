@@ -2,7 +2,7 @@
 const esModules = [
   /** react-leaflet */
   '@?react-leaflet',
-  '@turf/turf',
+  '@turf',
   /** react-markdown 9.0.1 */
   'react-markdown',
   'bail',
@@ -13,7 +13,6 @@ const esModules = [
   'hast-util-.*',
   'html-url-attributes',
   'is-plain-obj',
-  'kdbush',
   'mdast-util-.*',
   'micromark.*',
   'property-information',
