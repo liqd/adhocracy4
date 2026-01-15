@@ -2,7 +2,7 @@
 const esModules = [
   /** react-leaflet */
   '@?react-leaflet',
-  '@turf',
+  '@turf/.+',
   /** react-markdown 9.0.1 */
   'react-markdown',
   'bail',
