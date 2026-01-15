@@ -84,14 +84,15 @@ const getPoints = function (address, cb) {
 
 function getAddressTextForPoint (point, isInitAddress = false) {
   if (!point) return ''
-  const isMissingProperties = (!point.properties.strasse || !point.properties.plz)
+
+  const props = point.properties || {}
+  const isMissingProperties = (!props.strasse || !props.plz)
   if (isInitAddress && isMissingProperties) return ''
-  const {
-    strasse = '',
-    haus = '',
-    plz = '',
-    ortsteil = ''
-  } = point?.properties || {}
+
+  const strasse = props.strasse ?? ''
+  const haus = props.haus ?? ''
+  const plz = props.plz ?? ''
+  const ortsteil = props.ortsteil ?? ''
 
   // eslint-disable-next-line no-restricted-syntax
   return `${strasse} ${haus} in ${plz} ${ortsteil}`.trim()
