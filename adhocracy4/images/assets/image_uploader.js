@@ -6,6 +6,9 @@ function getStorageKey (inputId) {
 }
 
 function init () {
+  // Check if form was saved before loading images
+  checkIfFormWasSaved()
+
   const clearInputs = document.querySelectorAll('input[data-upload-clear]')
   const previewImages = document.querySelectorAll('img[data-upload-preview]')
 
@@ -74,6 +77,56 @@ function init () {
       })
     }
   })
+
+  // Listen for form submit to set saved flag
+  setupFormSubmitListener()
+}
+
+// Check if form was saved on previous page load
+function checkIfFormWasSaved () {
+  try {
+    const savedFlagKey = 'image_upload_form_saved_' + window.location.pathname
+    const wasSaved = sessionStorage.getItem(savedFlagKey)
+
+    if (wasSaved !== 'true') {
+      clearAllImagesFromStorage()
+    } else {
+      sessionStorage.removeItem(savedFlagKey)
+    }
+  } catch (e) {
+    console.error('Error in checkIfFormWasSaved:', e)
+  }
+}
+
+// Mark form as saved
+function markFormAsSaved () {
+  try {
+    sessionStorage.setItem('image_upload_form_saved_' + window.location.pathname, 'true')
+  } catch (e) {
+    console.error('Error in markFormAsSaved:', e)
+  }
+}
+
+// Setup form submit listener to mark form as saved
+function setupFormSubmitListener () {
+  try {
+    const previewImages = document.querySelectorAll('img[data-upload-preview]')
+    if (previewImages.length === 0) return
+
+    const form = previewImages[0].closest('form')
+    if (!form) return
+
+    // Listen for submit button clicks
+    const submitButtons = form.querySelectorAll('input[type="submit"], button[type="submit"], button:not([type])')
+    submitButtons.forEach(function (button) {
+      button.addEventListener('click', markFormAsSaved, { capture: true })
+    })
+
+    // Also listen for form submit as backup
+    form.addEventListener('submit', markFormAsSaved, { capture: true })
+  } catch (e) {
+    console.error('Error in setupFormSubmitListener:', e)
+  }
 }
 
 // Save image data to sessionStorage
@@ -83,7 +136,8 @@ function saveImageToStorage (inputId, imageDataUrl, fileName, fileSize) {
       dataUrl: imageDataUrl,
       fileName,
       fileSize,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      pagePath: window.location.pathname
     }
     sessionStorage.setItem(getStorageKey(inputId), JSON.stringify(imageData))
   } catch (e) {
@@ -104,6 +158,13 @@ function loadImageFromStorage (inputId, previewImage) {
     if (!savedData) return
 
     const imageData = JSON.parse(savedData)
+
+    // Check if image is from a different page
+    if (imageData.pagePath && imageData.pagePath !== window.location.pathname) {
+      clearImageFromStorage(inputId)
+      return
+    }
+
     const maxAge = 30 * 60 * 1000 // 30 min in milliseconds
     if (Date.now() - imageData.timestamp < maxAge) {
       previewImage.setAttribute('src', imageData.dataUrl)
@@ -185,6 +246,22 @@ function clearImageFromStorage (inputId) {
     }
   } catch (e) {
     console.warn('Could not clear image from sessionStorage:', e)
+  }
+}
+
+// Clear all image upload data from sessionStorage
+function clearAllImagesFromStorage () {
+  try {
+    // Find all preview images and clear their storage and UI
+    const previewImages = document.querySelectorAll('img[data-upload-preview]')
+    previewImages.forEach(function (previewImage) {
+      const inputId = previewImage.dataset.uploadPreview
+      if (inputId) {
+        clearImageFromStorage(inputId)
+      }
+    })
+  } catch (e) {
+    console.error('Error in clearAllImagesFromStorage:', e)
   }
 }
 
