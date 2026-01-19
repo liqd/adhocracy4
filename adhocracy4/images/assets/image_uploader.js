@@ -1,3 +1,10 @@
+// Generate a unique storage key based on URL path and inputId
+function getStorageKey (inputId) {
+  const urlPath = window.location.pathname
+  const storageKey = 'image_upload_' + urlPath + '_' + inputId
+  return storageKey
+}
+
 function init () {
   const clearInputs = document.querySelectorAll('input[data-upload-clear]')
   const previewImages = document.querySelectorAll('img[data-upload-preview]')
@@ -78,7 +85,7 @@ function saveImageToStorage (inputId, imageDataUrl, fileName, fileSize) {
       fileSize,
       timestamp: Date.now()
     }
-    sessionStorage.setItem('image_upload_' + inputId, JSON.stringify(imageData))
+    sessionStorage.setItem(getStorageKey(inputId), JSON.stringify(imageData))
   } catch (e) {
     console.warn('Could not save image to sessionStorage:', e)
   }
@@ -89,11 +96,11 @@ function loadImageFromStorage (inputId, previewImage) {
   try {
     // Check if image already has a server URL - if so, clear sessionStorage but keep server image
     if (previewImage.src && !previewImage.src.startsWith('data:') && previewImage.src.length > 0) {
-      sessionStorage.removeItem('image_upload_' + inputId)
+      sessionStorage.removeItem(getStorageKey(inputId))
       return
     }
 
-    const savedData = sessionStorage.getItem('image_upload_' + inputId)
+    const savedData = sessionStorage.getItem(getStorageKey(inputId))
     if (!savedData) return
 
     const imageData = JSON.parse(savedData)
@@ -159,7 +166,7 @@ function restoreFileToInput (inputId, imageData) {
 // Clear image data from sessionStorage and reset UI
 function clearImageFromStorage (inputId) {
   try {
-    sessionStorage.removeItem('image_upload_' + inputId)
+    sessionStorage.removeItem(getStorageKey(inputId))
 
     const inputElement = document.querySelector('#' + inputId)
     if (inputElement) {
