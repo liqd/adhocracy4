@@ -252,7 +252,28 @@ function clearImageFromStorage (inputId) {
 // Clear all image upload data from sessionStorage
 function clearAllImagesFromStorage () {
   try {
-    // Find all preview images and clear their storage and UI
+    const urlPath = window.location.pathname
+    const storagePrefix = 'image_upload_' + urlPath + '_'
+
+    // Find all sessionStorage keys for this page path
+    const keysToRemove = []
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i)
+      if (key && key.startsWith(storagePrefix)) {
+        keysToRemove.push(key)
+      }
+    }
+
+    // Extract inputIds and clear storage and UI for each
+    keysToRemove.forEach(function (storageKey) {
+      // Extract inputId from storage key (everything after the last '_')
+      const inputId = storageKey.substring(storagePrefix.length)
+      if (inputId) {
+        clearImageFromStorage(inputId)
+      }
+    })
+
+    // Also clear UI for any preview images currently on the page (as fallback)
     const previewImages = document.querySelectorAll('img[data-upload-preview]')
     previewImages.forEach(function (previewImage) {
       const inputId = previewImage.dataset.uploadPreview
