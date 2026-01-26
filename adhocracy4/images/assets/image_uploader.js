@@ -5,7 +5,56 @@ function getStorageKey (inputId) {
   return storageKey
 }
 
+// Check if referer is from the same origin, clear images if not
+function checkRefererAndClearIfNeeded () {
+  try {
+    console.log('Checking referer')
+    const referer = document.referrer
+    const currentOrigin = window.location.origin
+    const currentPathname = window.location.pathname
+
+    // If no referer or referer is from different origin, clear all images
+    if (!referer || referer.length === 0) {
+      console.log('No referer, clearing all images')
+      clearAllImagesFromStorage()
+      return
+    }
+
+    try {
+      console.log('Referer URL is valid')
+      const refererUrl = new URL(referer)
+      const refererOrigin = refererUrl.origin
+      const refererPathname = refererUrl.pathname
+
+      console.log('Referer', referer)
+      console.log('Referer origin', refererOrigin)
+      console.log('Referer pathname', refererPathname)
+      console.log('Current origin', currentOrigin)
+      console.log('Current pathname', currentPathname)
+
+      // Check if referer is from same origin AND same page
+      if (refererOrigin !== currentOrigin || refererPathname !== currentPathname) {
+        console.log('Referer is from different origin or page, clearing all images')
+        clearAllImagesFromStorage()
+      } else {
+        console.log('Referer is from the same page, not clearing images')
+      }
+    } catch (e) {
+      console.log('Referer URL is invalid, clearing all images')
+      // If referer URL is invalid, clear images for security
+      clearAllImagesFromStorage()
+    }
+  } catch (e) {
+    console.error('Error in checkRefererAndClearIfNeeded:', e)
+    // On error, clear images for security
+    clearAllImagesFromStorage()
+  }
+}
+
 function init () {
+  console.log('init image_uploader version 2.1.8')
+  // Check referer before loading images
+  checkRefererAndClearIfNeeded()
   // Check if form was saved before loading images
   checkIfFormWasSaved()
 
@@ -84,14 +133,17 @@ function init () {
 
 // Check if form was saved on previous page load
 function checkIfFormWasSaved () {
+  console.log('Checking if form was saved')
   try {
-    const savedFlagKey = 'image_upload_form_saved_' + window.location.pathname
+    const savedFlagKey = 'flag_image_upload_form_saved_' + window.location.pathname
     const wasSaved = sessionStorage.getItem(savedFlagKey)
 
     if (wasSaved !== 'true') {
+      console.log('Form was not saved, clearing all images')
       clearAllImagesFromStorage()
     } else {
       sessionStorage.removeItem(savedFlagKey)
+      console.log('Form was saved, removing flag')
     }
   } catch (e) {
     console.error('Error in checkIfFormWasSaved:', e)
@@ -101,7 +153,7 @@ function checkIfFormWasSaved () {
 // Mark form as saved
 function markFormAsSaved () {
   try {
-    sessionStorage.setItem('image_upload_form_saved_' + window.location.pathname, 'true')
+    sessionStorage.setItem('flag_image_upload_form_saved_' + window.location.pathname, 'true')
   } catch (e) {
     console.error('Error in markFormAsSaved:', e)
   }
@@ -235,8 +287,14 @@ function clearImageFromStorage (inputId) {
     }
 
     const previewImage = document.querySelector('img[data-upload-preview="' + inputId + '"]')
+    console.log('previewImage', previewImage)
+    console.log('previewImage.src', previewImage.src)
     if (previewImage) {
-      previewImage.setAttribute('src', '')
+      // Only clear src if it's a data URL, not a server URL
+      if (previewImage.src && previewImage.src.startsWith('data:')) {
+        console.log('Clearing preview image data URL')
+        previewImage.setAttribute('src', '')
+      }
     }
 
     const text = document.querySelector('#text-' + inputId)
@@ -252,28 +310,7 @@ function clearImageFromStorage (inputId) {
 // Clear all image upload data from sessionStorage
 function clearAllImagesFromStorage () {
   try {
-    const urlPath = window.location.pathname
-    const storagePrefix = 'image_upload_' + urlPath + '_'
-
-    // Find all sessionStorage keys for this page path
-    const keysToRemove = []
-    for (let i = 0; i < sessionStorage.length; i++) {
-      const key = sessionStorage.key(i)
-      if (key && key.startsWith(storagePrefix)) {
-        keysToRemove.push(key)
-      }
-    }
-
-    // Extract inputIds and clear storage and UI for each
-    keysToRemove.forEach(function (storageKey) {
-      // Extract inputId from storage key (everything after the last '_')
-      const inputId = storageKey.substring(storagePrefix.length)
-      if (inputId) {
-        clearImageFromStorage(inputId)
-      }
-    })
-
-    // Also clear UI for any preview images currently on the page (as fallback)
+    // Find all preview images and clear their storage and UI
     const previewImages = document.querySelectorAll('img[data-upload-preview]')
     previewImages.forEach(function (previewImage) {
       const inputId = previewImage.dataset.uploadPreview
