@@ -36,7 +36,6 @@ function checkRefererAndClearIfNeeded () {
 }
 
 function init () {
-  console.log('init image_uploader version 2.1.8')
   // Check referer before loading images
   checkRefererAndClearIfNeeded()
   // Check if form was saved before loading images
@@ -105,7 +104,7 @@ function init () {
     if (clearInput[0]) {
       clearInput[0].addEventListener('change', function (e) {
         if (e.target.checked) {
-          clearImageFromStorage(inputId)
+          clearImageFromStorage(inputId, true)
         }
       })
     }
@@ -117,17 +116,14 @@ function init () {
 
 // Check if form was saved on previous page load
 function checkIfFormWasSaved () {
-  console.log('Checking if form was saved')
   try {
     const savedFlagKey = 'flag_image_upload_form_saved_' + window.location.pathname
     const wasSaved = sessionStorage.getItem(savedFlagKey)
 
     if (wasSaved !== 'true') {
-      console.log('Form was not saved, clearing all images')
       clearAllImagesFromStorage()
     } else {
       sessionStorage.removeItem(savedFlagKey)
-      console.log('Form was saved, removing flag')
     }
   } catch (e) {
     console.error('Error in checkIfFormWasSaved:', e)
@@ -261,7 +257,7 @@ function restoreFileToInput (inputId, imageData) {
 }
 
 // Clear image data from sessionStorage and reset UI
-function clearImageFromStorage (inputId) {
+function clearImageFromStorage (inputId, clearServerImage = false) {
   try {
     sessionStorage.removeItem(getStorageKey(inputId))
 
@@ -271,12 +267,9 @@ function clearImageFromStorage (inputId) {
     }
 
     const previewImage = document.querySelector('img[data-upload-preview="' + inputId + '"]')
-    console.log('previewImage', previewImage)
-    console.log('previewImage.src', previewImage.src)
     if (previewImage) {
-      // Only clear src if it's a data URL, not a server URL
-      if (previewImage.src && previewImage.src.startsWith('data:')) {
-        console.log('Clearing preview image data URL')
+      // Clear src if clearServerImage is true (user clicked delete) or if it's a data URL
+      if (clearServerImage || (previewImage.src && previewImage.src.startsWith('data:'))) {
         previewImage.setAttribute('src', '')
       }
     }
