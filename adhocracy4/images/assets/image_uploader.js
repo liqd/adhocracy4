@@ -5,42 +5,26 @@ function getStorageKey (inputId) {
   return storageKey
 }
 
-// Check if referer is from the same origin, clear images if not
+// Check if referer is from the same page, clear images if not
 function checkRefererAndClearIfNeeded () {
   try {
-    console.log('Checking referer')
     const referer = document.referrer
     const currentOrigin = window.location.origin
     const currentPathname = window.location.pathname
 
-    // If no referer or referer is from different origin, clear all images
-    if (!referer || referer.length === 0) {
-      console.log('No referer, clearing all images')
+    // If no referer, clear all images
+    if (!referer) {
       clearAllImagesFromStorage()
       return
     }
 
     try {
-      console.log('Referer URL is valid')
       const refererUrl = new URL(referer)
-      const refererOrigin = refererUrl.origin
-      const refererPathname = refererUrl.pathname
-
-      console.log('Referer', referer)
-      console.log('Referer origin', refererOrigin)
-      console.log('Referer pathname', refererPathname)
-      console.log('Current origin', currentOrigin)
-      console.log('Current pathname', currentPathname)
-
       // Check if referer is from same origin AND same page
-      if (refererOrigin !== currentOrigin || refererPathname !== currentPathname) {
-        console.log('Referer is from different origin or page, clearing all images')
+      if (refererUrl.origin !== currentOrigin || refererUrl.pathname !== currentPathname) {
         clearAllImagesFromStorage()
-      } else {
-        console.log('Referer is from the same page, not clearing images')
       }
     } catch (e) {
-      console.log('Referer URL is invalid, clearing all images')
       // If referer URL is invalid, clear images for security
       clearAllImagesFromStorage()
     }
