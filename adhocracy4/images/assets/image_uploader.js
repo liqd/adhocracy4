@@ -5,7 +5,39 @@ function getStorageKey (inputId) {
   return storageKey
 }
 
+// Check if referer is from the same page, clear images if not
+function checkRefererAndClearIfNeeded () {
+  try {
+    const referer = document.referrer
+    const currentOrigin = window.location.origin
+    const currentPathname = window.location.pathname
+
+    // If no referer, clear all images
+    if (!referer) {
+      clearAllImagesFromStorage()
+      return
+    }
+
+    try {
+      const refererUrl = new URL(referer)
+      // Check if referer is from same origin AND same page
+      if (refererUrl.origin !== currentOrigin || refererUrl.pathname !== currentPathname) {
+        clearAllImagesFromStorage()
+      }
+    } catch (e) {
+      // If referer URL is invalid, clear images for security
+      clearAllImagesFromStorage()
+    }
+  } catch (e) {
+    console.error('Error in checkRefererAndClearIfNeeded:', e)
+    // On error, clear images for security
+    clearAllImagesFromStorage()
+  }
+}
+
 function init () {
+  // Check referer before loading images
+  checkRefererAndClearIfNeeded()
   // Check if form was saved before loading images
   checkIfFormWasSaved()
 
@@ -72,7 +104,7 @@ function init () {
     if (clearInput[0]) {
       clearInput[0].addEventListener('change', function (e) {
         if (e.target.checked) {
-          clearImageFromStorage(inputId)
+          clearImageFromStorage(inputId, true)
         }
       })
     }
@@ -85,7 +117,7 @@ function init () {
 // Check if form was saved on previous page load
 function checkIfFormWasSaved () {
   try {
-    const savedFlagKey = 'image_upload_form_saved_' + window.location.pathname
+    const savedFlagKey = 'flag_image_upload_form_saved_' + window.location.pathname
     const wasSaved = sessionStorage.getItem(savedFlagKey)
 
     if (wasSaved !== 'true') {
@@ -101,7 +133,7 @@ function checkIfFormWasSaved () {
 // Mark form as saved
 function markFormAsSaved () {
   try {
-    sessionStorage.setItem('image_upload_form_saved_' + window.location.pathname, 'true')
+    sessionStorage.setItem('flag_image_upload_form_saved_' + window.location.pathname, 'true')
   } catch (e) {
     console.error('Error in markFormAsSaved:', e)
   }
@@ -225,7 +257,7 @@ function restoreFileToInput (inputId, imageData) {
 }
 
 // Clear image data from sessionStorage and reset UI
-function clearImageFromStorage (inputId) {
+function clearImageFromStorage (inputId, clearServerImage = false) {
   try {
     sessionStorage.removeItem(getStorageKey(inputId))
 
@@ -236,7 +268,10 @@ function clearImageFromStorage (inputId) {
 
     const previewImage = document.querySelector('img[data-upload-preview="' + inputId + '"]')
     if (previewImage) {
-      previewImage.setAttribute('src', '')
+      // Clear src if clearServerImage is true (user clicked delete) or if it's a data URL
+      if (clearServerImage || (previewImage.src && previewImage.src.startsWith('data:'))) {
+        previewImage.setAttribute('src', '')
+      }
     }
 
     const text = document.querySelector('#text-' + inputId)
@@ -252,28 +287,7 @@ function clearImageFromStorage (inputId) {
 // Clear all image upload data from sessionStorage
 function clearAllImagesFromStorage () {
   try {
-    const urlPath = window.location.pathname
-    const storagePrefix = 'image_upload_' + urlPath + '_'
-
-    // Find all sessionStorage keys for this page path
-    const keysToRemove = []
-    for (let i = 0; i < sessionStorage.length; i++) {
-      const key = sessionStorage.key(i)
-      if (key && key.startsWith(storagePrefix)) {
-        keysToRemove.push(key)
-      }
-    }
-
-    // Extract inputIds and clear storage and UI for each
-    keysToRemove.forEach(function (storageKey) {
-      // Extract inputId from storage key (everything after the last '_')
-      const inputId = storageKey.substring(storagePrefix.length)
-      if (inputId) {
-        clearImageFromStorage(inputId)
-      }
-    })
-
-    // Also clear UI for any preview images currently on the page (as fallback)
+    // Find all preview images and clear their storage and UI
     const previewImages = document.querySelectorAll('img[data-upload-preview]')
     previewImages.forEach(function (previewImage) {
       const inputId = previewImage.dataset.uploadPreview
