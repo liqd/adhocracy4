@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## aplus-v2601.1
 
+### Fixed
+
+- Remove: Images stay in the upload section other Forms Bug
+
 ### Added
 
 - Accessibility improvements to comments
