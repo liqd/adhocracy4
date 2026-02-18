@@ -3,6 +3,7 @@ from datetime import timedelta
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import BaseCommand
+from django.utils import timezone
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
@@ -74,20 +75,30 @@ class Command(BaseCommand):
                 existing_action.save()
 
     def _phase_ends(self):
-        """Create an action for every phase that ends soon.
-
-        The timespan in which the phases will end can be set
-        in the project with A4_ACTIONS_PHASE_ENDS_HOURS.
-        In the projects this is used to notify users if a phase will end.
-        """
+        """Create an action for every phase that ends soon OR is a one-day event starting soon."""
         phase_ct = ContentType.objects.get_for_model(Phase)
+        now = timezone.now()
 
-        phases = (
-            Phase.objects.filter(module__is_draft=False)
-            .filter(module__project__is_draft=False)
-            .finish_next(hours=self.phase_ends_hours)
+        # Get the configured hours (default 72 for offline events, 24 for regular phases)
+        offline_hours = getattr(settings, "ACTIONS_OFFLINE_EVENT_STARTING_HOURS", 72)
+        phase_hours = self.phase_ends_hours  # Regular 24h setting
+
+        # 1. Regular phases ending soon (original logic)
+        ending_soon = Phase.objects.filter(
+            module__is_draft=False, module__project__is_draft=False
+        ).finish_next(hours=phase_hours)
+
+        # 2. One-day phases (offline events) starting within offline_hours
+        starting_soon = Phase.objects.filter(
+            module__is_draft=False,
+            module__project__is_draft=False,
+            type="offline-event",  # Todo: confirm since this type is mB only, okay to leave here for a+ forks
+            start_date__gte=now,
+            start_date__lte=now + timedelta(hours=offline_hours),
         )
-        for phase in phases:
+
+        # Process regular ending phases (keep original SCHEDULE logic)
+        for phase in ending_soon:
             project = phase.module.project
             existing_action = Action.objects.filter(
                 project=project,
@@ -108,6 +119,39 @@ class Command(BaseCommand):
                     verb=Verbs.SCHEDULE.value,
                     obj=phase,
                 )
+
+        # Process offline event phases with 72-hour logic
+        for phase in starting_soon:
+            project = phase.module.project
+            existing_action = Action.objects.filter(
+                project=project,
+                verb=Verbs.SCHEDULE.value,
+                obj_content_type=phase_ct,
+                obj_object_id=phase.id,
+            ).first()
+
+            # Create if no action exists, or if the last action is too old
+            if not existing_action:
+                Action.objects.create(
+                    project=project,
+                    verb=Verbs.SCHEDULE.value,
+                    obj=phase,
+                    timestamp=phase.start_date,  # Use the event date as timestamp
+                )
+            elif (
+                existing_action.timestamp + timedelta(hours=offline_hours)
+            ) < phase.start_date:
+                # Event date was moved forward - create new action
+                Action.objects.create(
+                    project=project,
+                    verb=Verbs.SCHEDULE.value,
+                    obj=phase,
+                    timestamp=phase.start_date,
+                )
+            elif existing_action.timestamp != phase.start_date:
+                # Event date changed but still within window - update timestamp
+                existing_action.timestamp = phase.start_date
+                existing_action.save()
 
     def _project_started(self):
         """Create an action when a project has started.
