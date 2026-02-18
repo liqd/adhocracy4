@@ -92,7 +92,7 @@ class Command(BaseCommand):
         starting_soon = Phase.objects.filter(
             module__is_draft=False,
             module__project__is_draft=False,
-            type="offline-event",  # Todo: confirm since this type is mB only, okay to leave here for a+ forks
+            type__contains="offline-event",  # Todo: confirm since this type is mB only, okay to leave here for a+ forks
             start_date__gte=now,
             start_date__lte=now + timedelta(hours=offline_hours),
         )
