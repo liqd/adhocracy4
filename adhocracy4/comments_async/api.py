@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Count
+from django.db.models import Prefetch
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
 from django.utils.translation import gettext_lazy as _
@@ -167,6 +168,15 @@ class CommentViewSet(
             .filter(content_type_id=self.content_type.pk)
             .annotate_positive_rating_count()
             .annotate_negative_rating_count()
+        )
+        # Child comments (replies) need rating annotations for display.
+        # Without Prefetch they're loaded via relation and lack annotations,
+        # causing ratings to show 0 after page reload.
+        child_comments_with_ratings = (
+            Comment.objects.annotate_positive_rating_count().annotate_negative_rating_count()
+        )
+        comments = comments.prefetch_related(
+            Prefetch("child_comments", queryset=child_comments_with_ratings)
         )
         if self.action == "list":
             return comments.exclude(
