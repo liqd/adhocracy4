@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "@popperjs/core": "2.11.8",
-    "@turf/turf": "7.1.0",
+    "@turf/turf": "7.3.4",
     "file-saver": "2.0.5",
     "immutability-helper": "3.1.1",
     "jquery": "3.7.1",
