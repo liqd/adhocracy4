@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## aplus-v2603.03, roots-v2604.01
+
+### Fixed
+
+- Allow subcomments-ratings
+
+## aplus-v2602.1
+
+### Fixed
+
+- Delete Local Image after leaving Form
+
 ## aplus-v2601.1
 
 ### Fixed
