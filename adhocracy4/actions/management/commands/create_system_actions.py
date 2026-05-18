@@ -44,7 +44,6 @@ class Command(BaseCommand):
         In the projects this is used to notify users if a phase has started.
         """
         phase_ct = ContentType.objects.get_for_model(Phase)
-        print("locallllllll ------ ")
         phases = (
             Phase.objects.filter(module__is_draft=False)
             .filter(module__project__is_draft=False)
