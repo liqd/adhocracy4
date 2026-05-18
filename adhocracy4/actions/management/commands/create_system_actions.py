@@ -44,10 +44,10 @@ class Command(BaseCommand):
         In the projects this is used to notify users if a phase has started.
         """
         phase_ct = ContentType.objects.get_for_model(Phase)
-
         phases = (
             Phase.objects.filter(module__is_draft=False)
             .filter(module__project__is_draft=False)
+            .exclude(type__contains="offline-event")
             .start_last(hours=self.phase_started_hours)
         )
         for phase in phases:
@@ -92,7 +92,7 @@ class Command(BaseCommand):
         starting_soon = Phase.objects.filter(
             module__is_draft=False,
             module__project__is_draft=False,
-            type__contains="offline-event",  # Todo: confirm since this type is mB only, okay to leave here for a+ forks
+            type__contains="offline-event",
             start_date__gte=now,
             start_date__lte=now + timedelta(hours=offline_hours),
         )
