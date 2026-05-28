@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### Unreleased
+
+### Fixed
+
+- Offline events no longer trigger notification on phase start (only 72 hours before event)
 
 ## meinBerlin-v2604.1
 
