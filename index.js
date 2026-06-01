@@ -12,6 +12,11 @@ export { default as comments } from './adhocracy4/comments/static/comments/react
 export * as commentsAsync from './adhocracy4/comments_async/static/comments_async/react_comments_async'
 export { default as config } from './adhocracy4/static/config'
 export { default as follows } from './adhocracy4/follows/static/follows/react_follows'
+export {
+  FollowButton,
+  followStrings,
+  buildFollowSuccessAlert
+} from './adhocracy4/follows/static/follows/FollowButton'
 export * as maps from './adhocracy4/maps/static/a4maps/a4maps_common'
 export * as mapsReact from './adhocracy4/maps_react/static/a4maps_react/Map'
 export { default as ratings } from './adhocracy4/ratings/static/ratings/react_ratings'
