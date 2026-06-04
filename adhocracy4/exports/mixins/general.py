@@ -2,6 +2,7 @@ from django.utils.translation import gettext as _
 
 from .base import VirtualFieldMixin
 
+
 class CreatorContactExportMixin:
     """Add creator contact fields to exports."""
 
