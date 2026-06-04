@@ -1,3 +1,4 @@
+from django import forms
 from django.forms.fields import SplitDateTimeField
 from django.utils.translation import gettext_lazy as _
 
@@ -52,3 +53,52 @@ class DateTimeField(SplitDateTimeField):
             ):
                 value[1] = self.widget.get_default_time()
         return value
+
+
+class CreatorContactFieldMixin(forms.ModelForm):
+    creator_email = forms.EmailField(
+        required=False,
+        label=_("Your email address"),
+        help_text=_("We will use this to contact you about your submission"),
+    )
+    creator_phone = forms.CharField(
+        required=False,
+        label=_("Phone number (optional)"),
+        help_text=_("Optional contact number for follow-up questions"),
+    )
+    creator_contact_consent = forms.BooleanField(
+        required=False,
+        label=_("Contact consent"),
+        help_text=_(
+            "I expressly consent to the storage of the contact information I have provided. This information may only be used by the responsible authority to get in touch with me in connection with this project. I can withdraw this consent at any time. I have read and accept the Privacy Policy."
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.get("user", None)
+        super().__init__(*args, **kwargs)
+
+        # Set default creator_email to user's email
+        if self.user and self.user.email:
+            self.fields["creator_email"].initial = self.user.email
+
+        self.fields["creator_email"].widget.attrs.update({"placeholder": _("Optional")})
+        self.fields["creator_phone"].widget.attrs.update({"placeholder": _("Optional")})
+
+    def clean_creator_email(self):
+        """Ensure creator_email is either blank or a valid email."""
+        email = self.cleaned_data.get("creator_email", "")
+        return email if email else ""
+
+    def save(self, commit=True):
+        instance = super().save(commit=commit)
+        if commit:
+            if hasattr(instance, "creator_contact_consent"):
+                instance.creator_contact_consent = self.cleaned_data.get("creator_contact_consent", False)
+                if hasattr(instance, "creator_email"):
+                    instance.creator_email = self.cleaned_data.get("creator_email", "")
+                if hasattr(instance, "creator_phone"):
+                    instance.creator_phone = self.cleaned_data.get("creator_phone", "")
+                if commit and hasattr(instance, "save"):
+                    instance.save()
+        return instance
