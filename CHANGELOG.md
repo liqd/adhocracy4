@@ -7,6 +7,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Unreleased
 
+### Added
+
+- CreatorContactExportMixin for Contact information fields for submission of ideas/proposals
+
 ### Fixed
 
 - Offline events no longer trigger notification on phase start (only 72 hours before event)
