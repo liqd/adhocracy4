@@ -12,19 +12,20 @@ class CreatorContactExportMixin:
         virtual["creator_email"] = str(_("Creator email"))
         virtual["creator_phone"] = str(_("Creator phone"))
         return virtual
-    
+
     def get_field_data(self, item, name):
         """Handle contact fields."""
         if name == "creator_contact_consent":
             value = getattr(item, name, False)
             return "yes" if value else "no"
-        
+
         if name in ["creator_email", "creator_phone"]:
             value = getattr(item, name, "")
             return str(value) if value else ""
-        
+
         # Fall back to parent
         return super().get_field_data(item, name)
+
 
 class UserGeneratedContentExportMixin(VirtualFieldMixin):
     """
