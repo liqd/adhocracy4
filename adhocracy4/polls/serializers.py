@@ -34,10 +34,11 @@ class ChoiceSerializer(serializers.ModelSerializer):
         fields = ("id", "label", "count", "is_other_choice")
 
     def get_count(self, choice: Choice) -> int:
+        if choice.question.is_confidential:
+            return 0
         if hasattr(choice, "vote_count"):
             return getattr(choice, "vote_count", -1)
-        else:
-            return choice.votes.all().count()
+        return choice.votes.all().count()
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -46,7 +47,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     authenticated = serializers.SerializerMethodField()
     choices = ChoiceSerializer(many=True)
     userChoices = serializers.SerializerMethodField("get_user_choices")
-    answers = AnswerSerializer(many=True)
+    answers = serializers.SerializerMethodField("get_answers")
     userAnswer = serializers.SerializerMethodField("get_user_answer")
     other_choice_answers = serializers.SerializerMethodField("get_other_choice_answers")
     other_choice_user_answer = serializers.SerializerMethodField(
@@ -66,6 +67,7 @@ class QuestionSerializer(serializers.ModelSerializer):
             "help_text",
             "multiple_choice",
             "is_open",
+            "is_confidential",
             "isReadOnly",
             "authenticated",
             "choices",
@@ -102,6 +104,20 @@ class QuestionSerializer(serializers.ModelSerializer):
                 return question.user_choices_list(user)
         return []
 
+    def get_answers(self, question: Question):
+        answers = question.answers.all()
+        if question.is_confidential:
+            answers = self._filter_to_own_answers(answers)
+        return AnswerSerializer(instance=answers, many=True).data
+
+    def _filter_to_own_answers(self, answers):
+        if "request" not in self.context:
+            return answers.none()
+        user = self.context["request"].user
+        if user.is_authenticated:
+            return answers.filter(creator=user)
+        return answers.none()
+
     def get_user_answer(self, question: Question) -> str | int:
         if "request" in self.context:
             user = self.context["request"].user
@@ -111,6 +127,17 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     def get_other_choice_answers(self, question):
         other_choice_answers = question.other_choice_answers()
+        if question.is_confidential:
+            if "request" in self.context:
+                user = self.context["request"].user
+                if user.is_authenticated:
+                    other_choice_answers = other_choice_answers.filter(
+                        vote__creator=user
+                    )
+                else:
+                    other_choice_answers = other_choice_answers.none()
+            else:
+                other_choice_answers = other_choice_answers.none()
         serializer = OtherChoiceAnswerSerializer(
             instance=other_choice_answers, many=True
         )
@@ -181,6 +208,7 @@ class PollSerializer(serializers.ModelSerializer):
                     "help_text": question["help_text"],
                     "multiple_choice": question["multiple_choice"],
                     "is_open": question["is_open"],
+                    "is_confidential": question.get("is_confidential", False),
                     "weight": weight,
                 },
             )

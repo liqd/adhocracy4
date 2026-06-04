@@ -54,6 +54,14 @@ class Question(models.Model):
 
     multiple_choice = models.BooleanField(default=False)
     is_open = models.BooleanField(default=False)
+    is_confidential = models.BooleanField(
+        default=False,
+        verbose_name=_("Confidential answers"),
+        help_text=_(
+            "Individual responses are not shown publicly; only the number of "
+            "submissions is visible."
+        ),
+    )
 
     poll = models.ForeignKey("Poll", on_delete=models.CASCADE, related_name="questions")
 

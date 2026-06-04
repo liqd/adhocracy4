@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { ChoiceRow } from './ChoiceRow'
+import { ConfidentialNotice } from './ConfidentialNotice'
 
 const translated = {
   multiple: django.gettext('Multiple answers are possible.')
@@ -74,6 +75,7 @@ export const PollChoice = (props) => {
         </legend>
         {questionHelpText}
         {multiHelpText}
+        {props.question.is_confidential && <ConfidentialNotice />}
         <div className="poll__rows">
           {props.question.choices.map((choice) => {
             const checked = userChoices.indexOf(choice.id) !== -1

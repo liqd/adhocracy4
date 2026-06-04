@@ -103,7 +103,28 @@ export default class PollResult extends React.Component {
     return django.interpolate(helpTextOpenAnswer, [total])
   }
 
+  getConfidentialHelpText () {
+    const total = this.state.question.is_open
+      ? this.state.question.totalAnswerCount
+      : this.state.question.totalVoteCount
+    const helpText = django.ngettext(
+      '%s response submitted',
+      '%s responses submitted',
+      total
+    )
+    return django.interpolate(helpText, [total])
+  }
+
   render () {
+    if (this.state.question.is_confidential) {
+      return (
+        <div className="poll poll--result poll--confidential">
+          <h2>{this.state.question.label}</h2>
+          <div className="a4-muted">{this.getConfidentialHelpText()}</div>
+        </div>
+      )
+    }
+
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
     const total = this.state.question.totalVoteCount
 

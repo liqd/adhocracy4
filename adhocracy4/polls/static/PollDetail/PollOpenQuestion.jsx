@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ConfidentialNotice } from './ConfidentialNotice'
 import { TextareaWithCounter } from './TextareaWithCounter'
 
 export const PollOpenQuestion = ({
@@ -34,6 +35,7 @@ export const PollOpenQuestion = ({
     <div className="poll poll--question">
       <h3>{question.label}</h3>
       {questionHelpText}
+      {question.is_confidential && <ConfidentialNotice />}
       <TextareaWithCounter
         value={userAnswer}
         onChange={handleOpenChange}

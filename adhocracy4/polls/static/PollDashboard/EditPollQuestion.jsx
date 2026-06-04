@@ -35,6 +35,20 @@ export const EditPollQuestion = React.forwardRef((props, ref) => {
             : null}
 
           <div className="form-check">
+            <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-is_confidential'}>
+              <input
+                type="checkbox"
+                id={'id_questions-' + props.id + '-is_confidential'}
+                name={'questions-' + props.id + '-is_confidential'}
+                checked={props.question.is_confidential || false}
+                onChange={(e) => { props.onConfidentialChange(e.target.checked) }}
+              />
+              &nbsp;
+              {django.gettext('Do not display answers publicly')}
+            </label>
+          </div>
+
+          <div className="form-check">
             <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-multiple_choice'}>
               <input
                 type="checkbox"

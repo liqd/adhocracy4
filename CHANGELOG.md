@@ -10,6 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - CreatorContactExportMixin for Contact information fields for submission of ideas/proposals
+- Polls: optional confidential questions 
 
 ### Fixed
 
