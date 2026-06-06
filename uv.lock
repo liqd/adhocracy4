@@ -51,7 +51,7 @@ requires-dist = [
     { name = "beautifulsoup4" },
     { name = "bleach", extras = ["css"] },
     { name = "celery" },
-    { name = "django", specifier = ">=4.2,<5.3" },
+    { name = "django", specifier = ">=4.2,!=5.0,<5.3" },
     { name = "django-allauth" },
     { name = "django-autoslug" },
     { name = "django-background-tasks" },
@@ -59,7 +59,7 @@ requires-dist = [
     { name = "django-enumfield" },
     { name = "django-filter" },
     { name = "django-multiselectfield" },
-    { name = "django-polymorphic" },
+    { name = "django-polymorphic", specifier = ">=4.9" },
     { name = "django-widget-tweaks" },
     { name = "djangorestframework", specifier = ">=3.5" },
     { name = "djangorestframework-gis" },
@@ -559,14 +559,14 @@ wheels = [
 
 [[package]]
 name = "django-polymorphic"
-version = "4.1.0"
+version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7a/4c/b8dc06147602b4c990e1094a1f230771fd65b2f9c1107f28afe1461ee249/django_polymorphic-4.1.0.tar.gz", hash = "sha256:4438d95a0aef6c4307cd6c83ead387e1142ce80b65188a931ec2f0dbdd9bfc51", size = 49696, upload-time = "2025-05-20T16:32:24.424Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e0/24/b815fe0b7fd2764af92a3b01f3d3e37ea126d7baad312f2730fa022ca8a0/django_polymorphic-4.9.0.tar.gz", hash = "sha256:9baaba6b4db67f148c073406dc65a52f3c693d7a60f1b62153f7cd00374f48e7", size = 53614, upload-time = "2026-01-09T23:33:45.257Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/30/66/00e6fc8ca9cf10ca41aa5d3d7746214fa7690138174c6716e9a08259bff2/django_polymorphic-4.1.0-py3-none-any.whl", hash = "sha256:0ce3984999e103a0d1a434a5c5617f2c7f990dc3d5fb3585ce0fadadf9ff90ea", size = 62845, upload-time = "2025-05-20T16:32:20.322Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/fc/22136359cadd339c2ce06b659dd656538222d349c6017c26d52ac41bda74/django_polymorphic-4.9.0-py3-none-any.whl", hash = "sha256:ac13eb365d65ea5275f901011e80386c4147994f6879fa5138f7b92337ef8655", size = 68265, upload-time = "2026-01-09T23:33:44.037Z" },
 ]
 
 [[package]]
