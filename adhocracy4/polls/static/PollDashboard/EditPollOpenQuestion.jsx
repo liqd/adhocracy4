@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
+import { EditPollCheckbox } from './EditPollCheckbox'
 import { HelptextForm } from './HelptextForm'
 
 export const EditPollOpenQuestion = React.forwardRef((props, ref) => {
@@ -32,19 +33,13 @@ export const EditPollOpenQuestion = React.forwardRef((props, ref) => {
             ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
             : null}
 
-          <div className="form-check">
-            <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-is_confidential'}>
-              <input
-                type="checkbox"
-                id={'id_questions-' + props.id + '-is_confidential'}
-                name={'questions-' + props.id + '-is_confidential'}
-                checked={props.question.is_confidential || false}
-                onChange={(e) => { props.onConfidentialChange(e.target.checked) }}
-              />
-              &nbsp;
-              {django.gettext('Do not display answers publicly')}
-            </label>
-          </div>
+          <EditPollCheckbox
+            id={props.id}
+            field="is_confidential"
+            label={django.gettext('Do not display answers publicly')}
+            checked={props.question.is_confidential}
+            onChange={props.onConfidentialChange}
+          />
 
           <button
             className={'btn ' + (hasHelptext ? 'editpoll__btn--dark' : 'editpoll__btn--question')}

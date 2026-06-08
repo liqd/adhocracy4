@@ -106,8 +106,9 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     def get_answers(self, question: Question):
         answers = question.answers.all()
-        if question.is_confidential:
-            answers = self._filter_to_own_answers(answers)
+        if not question.is_confidential:
+            return AnswerSerializer(instance=answers, many=True).data
+        answers = self._filter_to_own_answers(answers)
         return AnswerSerializer(instance=answers, many=True).data
 
     def _filter_to_own_answers(self, answers):
@@ -127,21 +128,23 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     def get_other_choice_answers(self, question):
         other_choice_answers = question.other_choice_answers()
-        if question.is_confidential:
-            if "request" in self.context:
-                user = self.context["request"].user
-                if user.is_authenticated:
-                    other_choice_answers = other_choice_answers.filter(
-                        vote__creator=user
-                    )
-                else:
-                    other_choice_answers = other_choice_answers.none()
-            else:
-                other_choice_answers = other_choice_answers.none()
-        serializer = OtherChoiceAnswerSerializer(
+        if not question.is_confidential:
+            return OtherChoiceAnswerSerializer(
+                instance=other_choice_answers, many=True
+            ).data
+
+        if "request" not in self.context:
+            other_choice_answers = other_choice_answers.none()
+        elif self.context["request"].user.is_authenticated:
+            other_choice_answers = other_choice_answers.filter(
+                vote__creator=self.context["request"].user
+            )
+        else:
+            other_choice_answers = other_choice_answers.none()
+
+        return OtherChoiceAnswerSerializer(
             instance=other_choice_answers, many=True
-        )
-        return serializer.data
+        ).data
 
     def get_other_choice_user_answer(self, question: Question):
         if "request" in self.context:
