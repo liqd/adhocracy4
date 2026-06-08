@@ -55,3 +55,26 @@ class GeneratedContentModel(TimeStampedModel):
 
     class Meta:
         abstract = True
+
+
+class CreatorContactInfoModelMixin(models.Model):
+    """Add creator contact fields to a model."""
+
+    creator_email = models.EmailField(
+        blank=True,
+        default="",
+        verbose_name=_("Creator email address"),
+    )
+    creator_phone = models.CharField(
+        blank=True,
+        default="",
+        max_length=50,
+        verbose_name=_("Creator phone number"),
+    )
+    creator_contact_consent = models.BooleanField(
+        default=False,
+        verbose_name=_("Creator contact consent"),
+    )
+
+    class Meta:
+        abstract = True
