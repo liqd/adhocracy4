@@ -26,6 +26,7 @@ package-lock.json
 /.cache
 .pytest_cache
 coverage/
+.playwright-mcp
 
 # SQlite DBs
 *.sqlite3*

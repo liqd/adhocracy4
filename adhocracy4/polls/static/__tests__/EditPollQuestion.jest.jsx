@@ -70,6 +70,20 @@ describe('<EditPollQuestion> with...', () => {
     expect(onMultiChoiceChangeFn).toHaveBeenCalled()
   })
 
+  test('on confidential change', () => {
+    const onConfidentialChangeFn = jest.fn()
+    const tree = render(
+      <EditPollQuestion
+        id={QUESTION_OBJECT.id}
+        question={QUESTION_OBJECT}
+        onConfidentialChange={() => onConfidentialChangeFn()}
+      />
+    )
+    const confidentialInput = tree.container.querySelector('#id_questions-6-is_confidential')
+    fireEvent.click(confidentialInput)
+    expect(onConfidentialChangeFn).toHaveBeenCalled()
+  })
+
   test('on multiple other choice change', () => {
     const onHasOtherChoiceChangeFn = jest.fn()
     const tree = render(

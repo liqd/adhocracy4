@@ -16,6 +16,7 @@ class ProjectFilter(ProjectAdminFilter):
 @admin.register(models.Question)
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
+    list_display = ("label", "poll", "is_open", "is_confidential")
     list_filter = (
         "poll__module__project__organisation",
         "poll__module__project__is_archived",

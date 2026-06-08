@@ -50,6 +50,7 @@ export const EditPollManagement = (props) => {
       label,
       help_text: helptext,
       multiple_choice: false,
+      is_confidential: false,
       key: getNextLocalKey(),
       is_open: false,
       choices: [
@@ -84,6 +85,12 @@ export const EditPollManagement = (props) => {
   const handleQuestionMultiChoice = (index, multipleChoice) => {
     const diff = {}
     diff[index] = { $merge: { multiple_choice: multipleChoice } }
+    setQuestions(update(questions, diff))
+  }
+
+  const handleQuestionConfidential = (index, isConfidential) => {
+    const diff = {}
+    diff[index] = { $merge: { is_confidential: isConfidential } }
     setQuestions(update(questions, diff))
   }
 
@@ -246,6 +253,7 @@ export const EditPollManagement = (props) => {
                     question={question}
                     onLabelChange={(label) => handleQuestionLabel(index, label)}
                     onHelptextChange={(helptext) => handleQuestionHelpText(index, helptext)}
+                    onConfidentialChange={(isConfidential) => handleQuestionConfidential(index, isConfidential)}
                     onMoveUp={index !== 0 ? () => handleQuestionMoveUp(index) : null}
                     onMoveDown={index < arr.length - 1 ? () => handleQuestionMoveDown(index) : null}
                     onDelete={() => handleQuestionDelete(index)}
@@ -260,6 +268,7 @@ export const EditPollManagement = (props) => {
                     onLabelChange={(label) => handleQuestionLabel(index, label)}
                     onHelptextChange={(helptext) => handleQuestionHelpText(index, helptext)}
                     onMultipleChoiceChange={(multipleChoice) => handleQuestionMultiChoice(index, multipleChoice)}
+                    onConfidentialChange={(isConfidential) => handleQuestionConfidential(index, isConfidential)}
                     onMoveUp={index !== 0 ? () => handleQuestionMoveUp(index) : null}
                     onMoveDown={index < arr.length - 1 ? () => handleQuestionMoveDown(index) : null}
                     onDelete={() => handleQuestionDelete(index)}

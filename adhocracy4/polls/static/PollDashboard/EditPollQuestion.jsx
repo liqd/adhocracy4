@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { EditPollChoice } from './EditPollChoice'
+import { EditPollCheckbox } from './EditPollCheckbox'
 import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
 import { HelptextForm } from './HelptextForm'
@@ -34,34 +35,32 @@ export const EditPollQuestion = React.forwardRef((props, ref) => {
             ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
             : null}
 
-          <div className="form-check">
-            <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-multiple_choice'}>
-              <input
-                type="checkbox"
-                id={'id_questions-' + props.id + '-multiple_choice'}
-                name={'questions-' + props.id + '-multiple_choice'}
-                checked={props.question.multiple_choice}
-                onChange={(e) => { props.onMultipleChoiceChange(e.target.checked) }}
-              />
-              &nbsp;
-              {django.gettext('Participants can vote for more than one option (multiple choice)')}
-            </label>
-          </div>
+          <EditPollCheckbox
+            id={props.id}
+            field="is_confidential"
+            label={django.gettext('Do not display answers publicly')}
+            checked={props.question.is_confidential}
+            onChange={props.onConfidentialChange}
+          />
 
-          <div className="form-check">
-            <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-is_other_choice'}>
-              <input
-                type="checkbox"
-                id={'id_questions-' + props.id + '-is_other_choice'}
-                name={'questions-' + props.id + '-is_other_choice'}
-                checked={hasOtherOption || false}
-                onChange={(e) => { props.onHasOtherChoiceChange(e.target.checked) }}
-                disabled={props.question.choices.length < 3 && hasOtherOption}
-              />
-              &nbsp;
-              {django.gettext('Participants can add their own answer')}
-            </label>
-          </div>
+          <EditPollCheckbox
+            id={props.id}
+            field="multiple_choice"
+            label={django.gettext(
+              'Participants can vote for more than one option (multiple choice)'
+            )}
+            checked={props.question.multiple_choice}
+            onChange={props.onMultipleChoiceChange}
+          />
+
+          <EditPollCheckbox
+            id={props.id}
+            field="is_other_choice"
+            label={django.gettext('Participants can add their own answer')}
+            checked={hasOtherOption}
+            disabled={props.question.choices.length < 3 && hasOtherOption}
+            onChange={props.onHasOtherChoiceChange}
+          />
 
           <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
             {
