@@ -63,6 +63,11 @@ class DefaultsFilterSet(PagedFilterSet):
                 data[key] = value
         super().__init__(data, *args, **kwargs)
 
+        # if filter has invalid value, set it to default value
+        for field in self.form.errors:
+            if field in self.data and field in self.defaults:
+                self.data[field] = self.defaults[field]
+
 
 class DistinctOrderingFilter(django_filters.OrderingFilter):
     """Makes sure, that every queryset gets a distinct ordering.
