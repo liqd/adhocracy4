@@ -94,7 +94,11 @@ class CreatorContactFieldMixin(forms.ModelForm):
         instance = super().save(commit=commit)
         if commit:
             if hasattr(instance, "creator_contact_consent"):
-                instance.creator_contact_consent = self.cleaned_data.get("creator_contact_consent", False)
+                instance.creator_contact_consent = self.cleaned_data.get(
+                    "creator_contact_consent", False
+                )
+                if not instance.creator_contact_consent:
+                    return instance
                 if hasattr(instance, "creator_email"):
                     instance.creator_email = self.cleaned_data.get("creator_email", "")
                 if hasattr(instance, "creator_phone"):
