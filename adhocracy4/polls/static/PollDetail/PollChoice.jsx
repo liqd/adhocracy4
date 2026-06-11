@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { ChoiceRow } from './ChoiceRow'
 import { ConfidentialNotice } from './ConfidentialNotice'
-
+import QuestionImage from './QuestionImage'
 const translated = {
   multiple: django.gettext('Multiple answers are possible.')
 }
@@ -73,6 +73,10 @@ export const PollChoice = (props) => {
         <legend className="poll__question-legend">
           <h3>{props.question.label}</h3>
         </legend>
+        <QuestionImage
+          imageUrl={props.question.image_url}
+          alt={props.question.label}
+        />
         {questionHelpText}
         {multiHelpText}
         {props.question.is_confidential && <ConfidentialNotice />}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ConfidentialNotice } from './ConfidentialNotice'
 import { TextareaWithCounter } from './TextareaWithCounter'
+import QuestionImage from './QuestionImage'
 
 export const PollOpenQuestion = ({
   question,
@@ -35,6 +36,10 @@ export const PollOpenQuestion = ({
     <div className="poll poll--question">
       <h3>{question.label}</h3>
       {questionHelpText}
+      <QuestionImage
+        imageUrl={question.image_url}
+        alt={question.label}
+      />
       {question.is_confidential && <ConfidentialNotice />}
       <TextareaWithCounter
         value={userAnswer}

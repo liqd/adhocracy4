@@ -11,6 +11,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - CreatorContactExportMixin for Contact information fields for submission of ideas/proposals
 - Polls: optional confidential questions 
+- Polls: Initiators can add images to questions
 
 ### Fixed
 

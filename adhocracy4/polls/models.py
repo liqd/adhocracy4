@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.comments import models as comment_models
+from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.models.base import GeneratedContentModel
 from adhocracy4.modules import models as module_models
 from adhocracy4.polls import validators
@@ -66,6 +67,15 @@ class Question(models.Model):
     poll = models.ForeignKey("Poll", on_delete=models.CASCADE, related_name="questions")
 
     objects = QuestionQuerySet.as_manager()
+
+    image = ConfiguredImageField(
+        "heroimage",
+        verbose_name=_("Image for Question"),
+        help_prefix=_("The image will be shown with the question"),
+        upload_to="projects/polls/",
+        blank=True,
+        max_length=300,
+    )
 
     @property
     def has_other_option(self):
