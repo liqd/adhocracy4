@@ -136,7 +136,11 @@ class QuestionSerializer(serializers.ModelSerializer):
     def get_other_choice_answers(self, question):
         answers = question.other_choice_answers()
         if question.is_confidential:
-            answers = self._filter_own(answers)
+            user = self.context.get("request", {}).user
+            if user and user.is_authenticated:
+                answers = answers.filter(vote__creator=user)
+            else:
+                answers = answers.none()
         return OtherChoiceAnswerSerializer(answers, many=True).data
 
     def get_other_choice_user_answer(self, question: Question):
