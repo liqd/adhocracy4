@@ -137,7 +137,13 @@ export const EditPollManagement = (props) => {
     const payload = {
       questions: questions.map(q => {
         const { key, answers, imageUrl, image_base64, ...clean } = q
-        clean.image_base64 = image_base64 === '' ? '' : (image_base64 || '')
+
+        // Only add image field if it was explicitly set
+        if (image_base64 !== undefined) {
+          clean.image = image_base64 === '' ? '' : image_base64
+        }
+        // Otherwise, omit the field entirely - server will keep existing image
+
         return clean
       }),
       allow_unregistered_users: allowUnregisteredUsers
