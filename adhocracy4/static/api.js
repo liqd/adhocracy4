@@ -61,11 +61,14 @@ const api = (function () {
     const params = $.extend(defaultParams, options)
 
     if (typeof params.data !== 'undefined') {
-      if (params.type === 'PUT' || params.type === 'POST' ||
-          params.type === 'PATCH'
-      ) {
-        params.contentType = 'application/json; charset=utf-8'
-        params.data = JSON.stringify(params.data)
+      if (params.type === 'PUT' || params.type === 'POST' || params.type === 'PATCH') {
+        if (params.data instanceof FormData) {
+          params.processData = false
+          params.contentType = false
+        } else {
+          params.contentType = 'application/json; charset=utf-8'
+          params.data = JSON.stringify(params.data)
+        }
       }
     }
 

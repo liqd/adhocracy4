@@ -1,10 +1,11 @@
+/* eslint-disable no-restricted-syntax */
 import React, { useState } from 'react'
 import { EditPollChoice } from './EditPollChoice'
 import { EditPollCheckbox } from './EditPollCheckbox'
 import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
 import { HelptextForm } from './HelptextForm'
-
+import QuestionImageUploadButton from './QuestionImageUploadButton'
 const FlipMove = require('react-flip-move').default
 
 export const EditPollQuestion = React.forwardRef((props, ref) => {
@@ -34,6 +35,12 @@ export const EditPollQuestion = React.forwardRef((props, ref) => {
           {hasHelptext
             ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
             : null}
+          <QuestionImageUploadButton
+            id={props.id}
+            question={props.question}
+            onImageChange={props.onImageChange}
+            error={props.errors?.image_base64}
+          />
 
           <EditPollCheckbox
             id={props.id}

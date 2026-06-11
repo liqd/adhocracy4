@@ -3,6 +3,7 @@ import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
 import { EditPollCheckbox } from './EditPollCheckbox'
 import { HelptextForm } from './HelptextForm'
+import QuestionImageUploadButton from './QuestionImageUploadButton'
 
 export const EditPollOpenQuestion = React.forwardRef((props, ref) => {
   const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
@@ -32,7 +33,11 @@ export const EditPollOpenQuestion = React.forwardRef((props, ref) => {
           {hasHelptext
             ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
             : null}
-
+          <QuestionImageUploadButton
+            id={props.id}
+            question={props.question}
+            onImageChange={props.onImageChange}
+          />
           <EditPollCheckbox
             id={props.id}
             field="is_confidential"
