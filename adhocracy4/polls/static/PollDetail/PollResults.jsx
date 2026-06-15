@@ -1,6 +1,7 @@
 import React from 'react'
 import Slider from 'react-slick'
 import django from 'django'
+import QuestionImage from './QuestionImage'
 
 const SliderArrow = (props) => {
   const { className, style, onClick, currentSlide, slideCount } = props
@@ -120,6 +121,10 @@ export default class PollResult extends React.Component {
       return (
         <div className="poll poll--result poll--confidential">
           <h2>{this.state.question.label}</h2>
+          <QuestionImage
+            imageUrl={this.state.question.image_url}
+            alt={this.state.question.label}
+          />
           <div className="a4-muted">{this.getConfidentialHelpText()}</div>
         </div>
       )
@@ -144,6 +149,11 @@ export default class PollResult extends React.Component {
     return (
       <div className="poll poll--result">
         <h2>{this.state.question.label}</h2>
+        <QuestionImage
+          imageUrl={this.state.question.image_url}
+          alt={this.state.question.label}
+        />
+
         <div className="poll__rows">
           {this.state.question.choices.map((choice, i) => {
             const percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
