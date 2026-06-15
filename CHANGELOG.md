@@ -7,6 +7,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Unreleased
 
+## meinBerlin-v2606.1
+
 ### Added
 
 - CreatorContactExportMixin for Contact information fields for submission of ideas/proposals
@@ -19,7 +21,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ## meinBerlin-v2604.1
 
-### Fixed 
+### Fixed
 
 - Update offline events notifications actions
 
