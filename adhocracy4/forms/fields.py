@@ -92,17 +92,31 @@ class CreatorContactFieldMixin(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super().save(commit=commit)
-        if commit:
-            if hasattr(instance, "creator_contact_consent"):
-                instance.creator_contact_consent = self.cleaned_data.get(
-                    "creator_contact_consent", False
-                )
-                if not instance.creator_contact_consent:
-                    return instance
-                if hasattr(instance, "creator_email"):
-                    instance.creator_email = self.cleaned_data.get("creator_email", "")
-                if hasattr(instance, "creator_phone"):
-                    instance.creator_phone = self.cleaned_data.get("creator_phone", "")
-                if commit and hasattr(instance, "save"):
-                    instance.save()
+
+        if commit and hasattr(instance, "save"):
+            posted_fields = set(self.data.keys()) if hasattr(self, "data") else set()
+
+            # Only update contact fields if they were actually in the form submission
+            if "creator_contact_consent" in posted_fields:
+                consent = self.cleaned_data.get("creator_contact_consent", False)
+
+                if not consent:
+                    # Consent unchecked - clear email and phone
+                    instance.creator_email = ""
+                    instance.creator_phone = ""
+                else:
+                    # Consent checked - update only if submitted
+                    if "creator_email" in posted_fields:
+                        instance.creator_email = self.cleaned_data.get(
+                            "creator_email", ""
+                        )
+                    if "creator_phone" in posted_fields:
+                        instance.creator_phone = self.cleaned_data.get(
+                            "creator_phone", ""
+                        )
+
+                instance.creator_contact_consent = consent
+
+            instance.save()
+
         return instance
