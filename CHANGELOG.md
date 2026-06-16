@@ -7,6 +7,16 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Unreleased
 
+## meinBerlin-v2606.3
+
+### Added
+
+- Images on polls questions now behind feature flag
+
+### Fixed
+
+- Images on polls questions UI
+
 ## meinBerlin-v2606.1
 
 ### Added
