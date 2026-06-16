@@ -38,7 +38,7 @@ export const PollOpenQuestion = ({
       {questionHelpText}
       <QuestionImage
         imageUrl={question.image_url}
-        alt={question.label}
+        alt={question.image_alt_text || question.label}
       />
       {question.is_confidential && <ConfidentialNotice />}
       <TextareaWithCounter

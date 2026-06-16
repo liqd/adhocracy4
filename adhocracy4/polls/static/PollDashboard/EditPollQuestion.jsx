@@ -40,6 +40,9 @@ export const EditPollQuestion = React.forwardRef((props, ref) => {
             question={props.question}
             onImageChange={props.onImageChange}
             error={props.errors?.image_base64}
+            helpText={props.question.image_help_text}
+            altText={props.question.image_alt_text}
+            onAltTextChange={props.onAltTextChange}
           />
 
           <EditPollCheckbox

@@ -72,6 +72,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         required=False, allow_blank=True, allow_null=True, write_only=True
     )
     image_url = serializers.SerializerMethodField(method_name="get_image_url")
+    image_help_text = serializers.SerializerMethodField()
 
     class Meta:
         model = Question
@@ -81,6 +82,8 @@ class QuestionSerializer(serializers.ModelSerializer):
             "help_text",
             "image_base64",
             "image_url",
+            "image_alt_text",
+            "image_help_text",
             "multiple_choice",
             "is_open",
             "is_confidential",
@@ -99,6 +102,9 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     def get_image_url(self, question):
         return question.image.url if question.image else None
+
+    def get_image_help_text(self, question):
+        return str(question._meta.get_field("image").help_text)
 
     def _base64_to_image(self, base64_str):
         if "base64," in base64_str:
@@ -357,6 +363,7 @@ class PollSerializer(serializers.ModelSerializer):
                     "poll": instance,
                     "label": q_data.get("label", ""),
                     "help_text": q_data.get("help_text", ""),
+                    "image_alt_text": q_data.get("image_alt_text", ""),
                     "multiple_choice": q_data.get("multiple_choice", False),
                     "is_open": q_data.get("is_open", False),
                     "is_confidential": q_data.get("is_confidential", False),

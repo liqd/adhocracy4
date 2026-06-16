@@ -20,6 +20,7 @@ const QuestionImage = ({ imageUrl, alt }) => {
           setIsExpanded(!isExpanded)
         }
       }}
+      style={{ cursor: isExpanded ? 'zoom-out' : 'zoom-in' }}
     >
       <img
         src={imageUrl}

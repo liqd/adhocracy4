@@ -38,7 +38,8 @@ const createEmptyQuestion = (label = '', helpText = '', isOpen = false) => ({
   choices: isOpen ? [] : [createEmptyChoice(), createEmptyChoice()],
   answers: [],
   image_base64: null,
-  image_url: null
+  image_url: null,
+  image_alt_text: ''
 })
 
 export const EditPollManagement = (props) => {
@@ -75,6 +76,8 @@ export const EditPollManagement = (props) => {
     image_base64: imageBase64 || '',
     image_url: imageBase64 || null
   })
+
+  const handleQuestionAltText = (index, altText) => updateQuestion(index, { image_alt_text: altText })
 
   const handleQuestionAppend = (isOpen = false) => {
     setQuestions([...questions, createEmptyQuestion('', '', isOpen)])
@@ -218,7 +221,11 @@ export const EditPollManagement = (props) => {
             }
 
             return question.is_open
-              ? <EditPollOpenQuestion {...commonProps} onImageChange={(image) => handleQuestionImage(index, image)} />
+              ? <EditPollOpenQuestion
+                  {...commonProps}
+                  onImageChange={(image) => handleQuestionImage(index, image)}
+                  onAltTextChange={(text) => handleQuestionAltText(index, text)}
+                />
               : <EditPollQuestion
                   {...commonProps}
                   onMultipleChoiceChange={(val) => handleQuestionMultiChoice(index, val)}
@@ -227,6 +234,7 @@ export const EditPollManagement = (props) => {
                   onDeleteChoice={(cIndex) => handleChoiceDelete(index, cIndex)}
                   onAppendChoice={(hasOther) => handleChoiceAppend(index, hasOther)}
                   onImageChange={(image) => handleQuestionImage(index, image)}
+                  onAltTextChange={(text) => handleQuestionAltText(index, text)}
                 />
           })}
         </FlipMove>

@@ -6,6 +6,9 @@ export const QUESTION_OBJECT = {
   is_open: false,
   isReadOnly: false,
   authenticated: true,
+  image_url: null,
+  image_alt_text: '',
+  image_help_text: 'The image will be shown with the question. It must be min. 1500 pixel wide and 500 pixel tall. Allowed file formats are jpeg, png, webp. The file size should be max. 10 MB.',
   choices: [
     {
       id: 1,

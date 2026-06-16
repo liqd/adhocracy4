@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.images.fields import ConfiguredImageField
+from adhocracy4.images.fields import ImageAltTextField
 from adhocracy4.models.base import GeneratedContentModel
 from adhocracy4.modules import models as module_models
 from adhocracy4.polls import validators
@@ -76,6 +77,8 @@ class Question(models.Model):
         blank=True,
         max_length=300,
     )
+
+    image_alt_text = ImageAltTextField(image_name=_("Question image"))
 
     @property
     def has_other_option(self):

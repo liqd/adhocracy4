@@ -75,7 +75,7 @@ export const PollChoice = (props) => {
         </legend>
         <QuestionImage
           imageUrl={props.question.image_url}
-          alt={props.question.label}
+          alt={props.question.image_alt_text || props.question.label}
         />
         {questionHelpText}
         {multiHelpText}
