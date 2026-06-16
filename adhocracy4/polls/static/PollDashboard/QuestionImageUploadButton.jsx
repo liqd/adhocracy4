@@ -2,7 +2,7 @@
 import React, { useRef } from 'react'
 import django from 'django'
 
-const QuestionImageUploadButton = ({ id, question, onImageChange, error }) => {
+const QuestionImageUploadButton = ({ id, question, onImageChange, error, helpText, altText, onAltTextChange }) => {
   const fileInputRef = useRef(null)
 
   const handleFileChange = (e) => {
@@ -30,6 +30,8 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, error }) => {
       <label id={`image-upload-label-${id}`}>
         {django.gettext('Question image')}
       </label>
+
+      {helpText && <div className="form-hint">{helpText}</div>}
 
       <div className={`image-upload-container ${error ? 'is-invalid' : ''}`}>
         <span className="image-upload-text">
@@ -81,6 +83,22 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, error }) => {
               return <div key={i}>{message}</div>
             })
             : (typeof error === 'object' && error.string ? error.string : error)}
+        </div>
+      )}
+
+      {question.image_url && (
+        <div className="form-group">
+          <label htmlFor={`id_questions-${id}-image_alt_text`}>
+            {django.gettext('Alt text')}
+          </label>
+          <input
+            type="text"
+            id={`id_questions-${id}-image_alt_text`}
+            className="form-control"
+            value={altText || ''}
+            onChange={(e) => onAltTextChange(e.target.value)}
+            maxLength={80}
+          />
         </div>
       )}
 

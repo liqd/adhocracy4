@@ -11,7 +11,11 @@ register = template.Library()
 
 @register.simple_tag
 def react_polls(poll: Poll):
-    attributes = {"pollId": poll.pk, "captchaUrl": getattr(settings, "CAPTCHA_URL", "")}
+    attributes = {
+        "pollId": poll.pk,
+        "captchaUrl": getattr(settings, "CAPTCHA_URL", ""),
+        "questionImagesEnabled": getattr(settings, "A4_POLL_QUESTION_IMAGES", True),
+    }
 
     return format_html(
         '<div data-a4-widget="polls" data-attributes="{attributes}"></div>',
@@ -27,6 +31,7 @@ def react_poll_form(poll, reload_on_success=False):
         "enableUnregisteredUsers": getattr(
             settings, "A4_POLL_ENABLE_UNREGISTERED_USERS", False
         ),
+        "questionImagesEnabled": getattr(settings, "A4_POLL_QUESTION_IMAGES", True),
     }
     reload_on_success = json.dumps(reload_on_success)
 

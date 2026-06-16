@@ -7,7 +7,8 @@ export const PollOpenQuestion = ({
   question,
   allowUnregisteredUsers,
   onOpenChange,
-  errors
+  errors,
+  questionImagesEnabled
 }) => {
   const getUserOpenAnswer = () => {
     const userAnswerId = question.userAnswer
@@ -36,10 +37,12 @@ export const PollOpenQuestion = ({
     <div className="poll poll--question">
       <h3>{question.label}</h3>
       {questionHelpText}
-      <QuestionImage
-        imageUrl={question.image_url}
-        alt={question.label}
-      />
+      {questionImagesEnabled && (
+        <QuestionImage
+          imageUrl={question.image_url}
+          alt={question.image_alt_text || question.label}
+        />
+      )}
       {question.is_confidential && <ConfidentialNotice />}
       <TextareaWithCounter
         value={userAnswer}

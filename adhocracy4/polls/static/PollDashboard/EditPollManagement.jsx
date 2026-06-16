@@ -38,7 +38,8 @@ const createEmptyQuestion = (label = '', helpText = '', isOpen = false) => ({
   choices: isOpen ? [] : [createEmptyChoice(), createEmptyChoice()],
   answers: [],
   image_base64: null,
-  image_url: null
+  image_url: null,
+  image_alt_text: ''
 })
 
 export const EditPollManagement = (props) => {
@@ -75,6 +76,8 @@ export const EditPollManagement = (props) => {
     image_base64: imageBase64 || '',
     image_url: imageBase64 || null
   })
+
+  const handleQuestionAltText = (index, altText) => updateQuestion(index, { image_alt_text: altText })
 
   const handleQuestionAppend = (isOpen = false) => {
     setQuestions([...questions, createEmptyQuestion('', '', isOpen)])
@@ -136,13 +139,14 @@ export const EditPollManagement = (props) => {
 
     const payload = {
       questions: questions.map(q => {
-        const { key, answers, imageUrl, image_base64, ...clean } = q
+        const { key, answers, imageUrl, image_base64, image_alt_text, ...clean } = q
 
-        // Only add image field if it was explicitly set
-        if (image_base64 !== undefined) {
-          clean.image = image_base64 === '' ? '' : image_base64
+        if (props.questionImagesEnabled) {
+          if (image_base64 !== undefined) {
+            clean.image = image_base64 === '' ? '' : image_base64
+          }
+          clean.image_alt_text = image_alt_text || ''
         }
-        // Otherwise, omit the field entirely - server will keep existing image
 
         return clean
       }),
@@ -218,7 +222,12 @@ export const EditPollManagement = (props) => {
             }
 
             return question.is_open
-              ? <EditPollOpenQuestion {...commonProps} onImageChange={(image) => handleQuestionImage(index, image)} />
+              ? <EditPollOpenQuestion
+                  {...commonProps}
+                  onImageChange={(image) => handleQuestionImage(index, image)}
+                  onAltTextChange={(text) => handleQuestionAltText(index, text)}
+                  questionImagesEnabled={props.questionImagesEnabled}
+                />
               : <EditPollQuestion
                   {...commonProps}
                   onMultipleChoiceChange={(val) => handleQuestionMultiChoice(index, val)}
@@ -227,6 +236,8 @@ export const EditPollManagement = (props) => {
                   onDeleteChoice={(cIndex) => handleChoiceDelete(index, cIndex)}
                   onAppendChoice={(hasOther) => handleChoiceAppend(index, hasOther)}
                   onImageChange={(image) => handleQuestionImage(index, image)}
+                  onAltTextChange={(text) => handleQuestionAltText(index, text)}
+                  questionImagesEnabled={props.questionImagesEnabled}
                 />
           })}
         </FlipMove>
