@@ -47,6 +47,18 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not getattr(settings, "A4_POLL_QUESTION_IMAGES", True):
+            for field in [
+                "image_base64",
+                "image_url",
+                "image_alt_text",
+                "image_help_text",
+            ]:
+                self.fields.pop(field, None)
+
     isReadOnly = serializers.SerializerMethodField(method_name="get_is_read_only")
     authenticated = serializers.SerializerMethodField()
     choices = ChoiceSerializer(many=True)
@@ -355,24 +367,30 @@ class PollSerializer(serializers.ModelSerializer):
         for q_id in set(instance.questions.values_list("id", flat=True)) - keep_ids:
             self._delete_question_with_image(q_id, instance)
 
+        question_images_enabled = getattr(settings, "A4_POLL_QUESTION_IMAGES", True)
+
         # Update or create questions
         for weight, q_data in enumerate(questions_data):
+            defaults = {
+                "poll": instance,
+                "label": q_data.get("label", ""),
+                "help_text": q_data.get("help_text", ""),
+                "multiple_choice": q_data.get("multiple_choice", False),
+                "is_open": q_data.get("is_open", False),
+                "is_confidential": q_data.get("is_confidential", False),
+                "weight": weight,
+            }
+            if question_images_enabled:
+                defaults["image_alt_text"] = q_data.get("image_alt_text", "")
+
             question, _ = Question.objects.update_or_create(
                 id=q_data.get("id"),
-                defaults={
-                    "poll": instance,
-                    "label": q_data.get("label", ""),
-                    "help_text": q_data.get("help_text", ""),
-                    "image_alt_text": q_data.get("image_alt_text", ""),
-                    "multiple_choice": q_data.get("multiple_choice", False),
-                    "is_open": q_data.get("is_open", False),
-                    "is_confidential": q_data.get("is_confidential", False),
-                    "weight": weight,
-                },
+                defaults=defaults,
             )
 
-            image_data = q_data.get("image") or q_data.get("image_base64")
-            self._handle_question_image(question, image_data)
+            if question_images_enabled:
+                image_data = q_data.get("image") or q_data.get("image_base64")
+                self._handle_question_image(question, image_data)
             if not question.is_open and "choices" in q_data:
                 self._update_choices(q_data["choices"], question)
 

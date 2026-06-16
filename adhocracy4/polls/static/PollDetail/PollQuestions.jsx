@@ -430,6 +430,7 @@ class PollQuestions extends React.Component {
                           onOpenChange={(questionId, voteData) =>
                             this.handleVoteOpen(questionId, voteData)}
                           errors={this.state.errors}
+                          questionImagesEnabled={this.props.questionImagesEnabled}
                         />
                         )
                       : (
@@ -444,6 +445,7 @@ class PollQuestions extends React.Component {
                           onOtherChange={(questionId, voteAnswer, otherChoice) =>
                             this.handleVoteOther(questionId, voteAnswer, otherChoice)}
                           errors={this.state.errors}
+                          questionImagesEnabled={this.props.questionImagesEnabled}
                         />
                         )
                   )}

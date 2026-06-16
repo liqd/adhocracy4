@@ -139,13 +139,14 @@ export const EditPollManagement = (props) => {
 
     const payload = {
       questions: questions.map(q => {
-        const { key, answers, imageUrl, image_base64, ...clean } = q
+        const { key, answers, imageUrl, image_base64, image_alt_text, ...clean } = q
 
-        // Only add image field if it was explicitly set
-        if (image_base64 !== undefined) {
-          clean.image = image_base64 === '' ? '' : image_base64
+        if (props.questionImagesEnabled) {
+          if (image_base64 !== undefined) {
+            clean.image = image_base64 === '' ? '' : image_base64
+          }
+          clean.image_alt_text = image_alt_text || ''
         }
-        // Otherwise, omit the field entirely - server will keep existing image
 
         return clean
       }),
@@ -225,6 +226,7 @@ export const EditPollManagement = (props) => {
                   {...commonProps}
                   onImageChange={(image) => handleQuestionImage(index, image)}
                   onAltTextChange={(text) => handleQuestionAltText(index, text)}
+                  questionImagesEnabled={props.questionImagesEnabled}
                 />
               : <EditPollQuestion
                   {...commonProps}
@@ -235,6 +237,7 @@ export const EditPollManagement = (props) => {
                   onAppendChoice={(hasOther) => handleChoiceAppend(index, hasOther)}
                   onImageChange={(image) => handleQuestionImage(index, image)}
                   onAltTextChange={(text) => handleQuestionAltText(index, text)}
+                  questionImagesEnabled={props.questionImagesEnabled}
                 />
           })}
         </FlipMove>

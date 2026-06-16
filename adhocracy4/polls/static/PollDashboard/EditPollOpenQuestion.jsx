@@ -33,14 +33,16 @@ export const EditPollOpenQuestion = React.forwardRef((props, ref) => {
           {hasHelptext
             ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
             : null}
-          <QuestionImageUploadButton
-            id={props.id}
-            question={props.question}
-            onImageChange={props.onImageChange}
-            helpText={props.question.image_help_text}
-            altText={props.question.image_alt_text}
-            onAltTextChange={props.onAltTextChange}
-          />
+          {props.questionImagesEnabled && (
+            <QuestionImageUploadButton
+              id={props.id}
+              question={props.question}
+              onImageChange={props.onImageChange}
+              helpText={props.question.image_help_text}
+              altText={props.question.image_alt_text}
+              onAltTextChange={props.onAltTextChange}
+            />
+          )}
           <EditPollCheckbox
             id={props.id}
             field="is_confidential"
