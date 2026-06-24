@@ -5,6 +5,7 @@ from adhocracy4.organisations.predicates import is_initiator
 from adhocracy4.organisations.predicates import is_org_group_member
 from adhocracy4.organisations.predicates import is_org_member
 
+from .predicates import guest_may_participate
 from .predicates import is_live
 from .predicates import is_moderator
 from .predicates import is_prj_group_member
@@ -38,7 +39,11 @@ rules.add_perm(
     | is_initiator
     | is_prj_group_member
     | is_moderator
-    | ((is_public | is_org_member | is_project_member) & is_live),
+    | (
+        (is_public | is_org_member | is_project_member)
+        & is_live
+        & guest_may_participate
+    ),
 )
 
 rules.add_perm("a4projects.delete_project", is_superuser | is_initiator)

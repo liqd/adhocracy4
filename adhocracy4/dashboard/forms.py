@@ -1,6 +1,7 @@
 import datetime
 
 from django import forms
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.forms import RadioSelect
 from django.forms import inlineformset_factory
@@ -71,9 +72,10 @@ class ProjectBasicForm(ProjectDashboardForm):
             "tile_image_alt_text",
             "tile_image_copyright",
             "is_archived",
+            "allow_guest_users",
             "access",
         ]
-        required_for_project_publish = ["name", "description"]
+        required_for_project_publish = ["name", "description", "allow_guest_users"]
         widgets = {
             "access": RadioSelect(
                 choices=[
@@ -85,6 +87,32 @@ class ProjectBasicForm(ProjectDashboardForm):
                 ]
             ),
         }
+
+    @classmethod
+    def get_required_fields(cls):
+        required = super().get_required_fields()
+        if not getattr(settings, "A4_ENABLE_GUEST_USERS", False):
+            return [field for field in required if field != "allow_guest_users"]
+        return required
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not getattr(settings, "A4_ENABLE_GUEST_USERS", False):
+            self.fields.pop("allow_guest_users", None)
+        else:
+            self.fields["allow_guest_users"].label = _("Participants")
+            self.fields["allow_guest_users"].widget = RadioSelect(
+                choices=[
+                    (
+                        False,
+                        _("Only registered users can participate"),
+                    ),
+                    (
+                        True,
+                        _("Registered and guest users can participate"),
+                    ),
+                ]
+            )
 
 
 class ProjectInformationForm(ProjectDashboardForm):

@@ -21,6 +21,7 @@ from adhocracy4.images.validators import ImageAltTextValidator
 from adhocracy4.models import base
 
 from .enums import Access
+from .guest_users import is_guest_user
 from .utils import get_module_clusters
 from .utils import get_module_clusters_dict
 
@@ -293,6 +294,15 @@ class Project(
 
     is_app_accessible = models.BooleanField(default=False)
 
+    allow_guest_users = models.BooleanField(
+        default=True,
+        verbose_name=_("Allow guest users to participate"),
+        help_text=_(
+            "Whether guest users may participate in this project. "
+            "Only applies when guest users are enabled for the platform."
+        ),
+    )
+
     objects = ProjectManager()
 
     class Meta:
@@ -328,11 +338,14 @@ class Project(
         Everybody is member of all public projects and private projects can
         be joined as moderator or participant.
         """
-        return (
+        is_member = (
             (user.is_authenticated and self.is_public)
             or (user in self.participants.all())
             or (user in self.moderators.all())
         )
+        if is_member and is_guest_user(user) and not self.allow_guest_users:
+            return False
+        return is_member
 
     def is_group_member(self, user):
         if self.group:
