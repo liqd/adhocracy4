@@ -1,8 +1,12 @@
 {% extends "a4forms/includes/form_field.html" %}
-{% load i18n %}
+{% load i18n a4dashboard_tags %}
+
+{% block required_indicator %}
+    {% if field.field.required or field.field.required_for_publish %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
+{% endblock %}
 
 {% block after_label %}
-    {% if field.field.required_for_publish and not field.value %}
+    {% if field.field.required_for_publish and field|publish_value_missing %}
         <i class="fa fa-exclamation-circle u-danger" title="{% translate 'Missing field for publication' %}" aria-label="{% translate 'Missing field for publication' %}"></i>
     {% endif %}
 {% endblock %}

@@ -1,6 +1,7 @@
 import pytest
 from django import forms
 from django.forms import inlineformset_factory
+from django.test import override_settings
 from django.utils.timezone import now
 
 from adhocracy4.dashboard.components.forms import ModuleDashboardForm
@@ -85,6 +86,42 @@ def test_project_form_component(project_factory):
 
     project.information = "some information"
     assert component.get_progress(project) == (1, 1)
+
+
+@pytest.mark.django_db
+@override_settings(A4_ENABLE_GUEST_USERS=True)
+def test_project_basic_form_allow_guest_users_false(project_factory):
+    project = project_factory(is_draft=False)
+    form = ProjectBasicForm(
+        instance=project,
+        data={
+            "name": project.name,
+            "description": project.description,
+            "access": Access.PUBLIC.value,
+            "allow_guest_users": "False",
+        },
+    )
+    assert form.is_valid(), form.errors
+    project = form.save()
+    assert project.allow_guest_users is False
+
+
+@pytest.mark.django_db
+@override_settings(A4_ENABLE_GUEST_USERS=True)
+def test_project_basic_form_allow_guest_users_true(project_factory):
+    project = project_factory(is_draft=False, allow_guest_users=False)
+    form = ProjectBasicForm(
+        instance=project,
+        data={
+            "name": project.name,
+            "description": project.description,
+            "access": Access.PUBLIC.value,
+            "allow_guest_users": "True",
+        },
+    )
+    assert form.is_valid(), form.errors
+    project = form.save()
+    assert project.allow_guest_users is True
 
 
 @pytest.mark.django_db

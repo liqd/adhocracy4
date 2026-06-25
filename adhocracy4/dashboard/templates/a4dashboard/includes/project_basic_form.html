@@ -10,7 +10,6 @@
 
 {% if form.allow_guest_users %}
 <section class="u-bottom-divider">
-    <h2 class="form__section-title">{% translate 'Participants' %}</h2>
     {% include 'a4dashboard/includes/form_field.html' with field=form.allow_guest_users %}
 </section>
 {% endif %}

@@ -23,6 +23,28 @@ from .components.forms import ProjectDashboardForm
 User = get_user_model()
 
 
+def _coerce_bool_choice(value):
+    if isinstance(value, bool):
+        return value
+    if value in ("True", "true", "1", 1):
+        return True
+    if value in ("False", "false", "0", 0):
+        return False
+    raise ValueError(f"Invalid boolean choice: {value!r}")
+
+
+ALLOW_GUEST_USERS_CHOICES = (
+    (
+        False,
+        _("Only registered users can participate"),
+    ),
+    (
+        True,
+        _("Registered and guest users can participate"),
+    ),
+)
+
+
 class ProjectCreateForm(forms.ModelForm):
     class Meta:
         model = project_models.Project
@@ -100,18 +122,11 @@ class ProjectBasicForm(ProjectDashboardForm):
         if not getattr(settings, "A4_ENABLE_GUEST_USERS", False):
             self.fields.pop("allow_guest_users", None)
         else:
-            self.fields["allow_guest_users"].label = _("Participants")
-            self.fields["allow_guest_users"].widget = RadioSelect(
-                choices=[
-                    (
-                        False,
-                        _("Only registered users can participate"),
-                    ),
-                    (
-                        True,
-                        _("Registered and guest users can participate"),
-                    ),
-                ]
+            self.fields["allow_guest_users"] = forms.TypedChoiceField(
+                label=_("Participants"),
+                choices=ALLOW_GUEST_USERS_CHOICES,
+                coerce=_coerce_bool_choice,
+                widget=RadioSelect(),
             )
 
 
