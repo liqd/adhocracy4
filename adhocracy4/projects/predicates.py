@@ -72,3 +72,14 @@ def has_context_started(user, item):
     if item:
         return has_started(user, item.project)
     return False
+
+
+@rules.predicate
+def guest_may_participate(user, project):
+    if not project:
+        return True
+    from .guest_users import is_guest_user
+
+    if not is_guest_user(user):
+        return True
+    return project.allow_guest_users

@@ -1,6 +1,7 @@
 import datetime
 
 from django import forms
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.forms import RadioSelect
 from django.forms import inlineformset_factory
@@ -20,6 +21,28 @@ from .components.forms import ModuleDashboardFormSet
 from .components.forms import ProjectDashboardForm
 
 User = get_user_model()
+
+
+def _coerce_bool_choice(value):
+    if isinstance(value, bool):
+        return value
+    if value in ("True", "true", "1", 1):
+        return True
+    if value in ("False", "false", "0", 0):
+        return False
+    raise ValueError(f"Invalid boolean choice: {value!r}")
+
+
+ALLOW_GUEST_USERS_CHOICES = (
+    (
+        False,
+        _("Only registered users can participate"),
+    ),
+    (
+        True,
+        _("Registered and guest users can participate"),
+    ),
+)
 
 
 class ProjectCreateForm(forms.ModelForm):
@@ -71,9 +94,10 @@ class ProjectBasicForm(ProjectDashboardForm):
             "tile_image_alt_text",
             "tile_image_copyright",
             "is_archived",
+            "allow_guest_users",
             "access",
         ]
-        required_for_project_publish = ["name", "description"]
+        required_for_project_publish = ["name", "description", "allow_guest_users"]
         widgets = {
             "access": RadioSelect(
                 choices=[
@@ -85,6 +109,25 @@ class ProjectBasicForm(ProjectDashboardForm):
                 ]
             ),
         }
+
+    @classmethod
+    def get_required_fields(cls):
+        required = super().get_required_fields()
+        if not getattr(settings, "A4_ENABLE_GUEST_USERS", False):
+            return [field for field in required if field != "allow_guest_users"]
+        return required
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not getattr(settings, "A4_ENABLE_GUEST_USERS", False):
+            self.fields.pop("allow_guest_users", None)
+        else:
+            self.fields["allow_guest_users"] = forms.TypedChoiceField(
+                label=_("Participants"),
+                choices=ALLOW_GUEST_USERS_CHOICES,
+                coerce=_coerce_bool_choice,
+                widget=RadioSelect(),
+            )
 
 
 class ProjectInformationForm(ProjectDashboardForm):
