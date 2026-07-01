@@ -1,10 +1,22 @@
+import base64
+from io import BytesIO
+
 import pytest
+from django.core.files.base import ContentFile
 from django.urls import reverse
+from PIL import Image
 from rest_framework import status
 
 from adhocracy4.polls.models import Question
 from adhocracy4.polls.phases import VotingPhase
 from tests.helpers import active_phase
+
+
+def _base64_image():
+    img = Image.new("RGB", (1500, 600), color="red")
+    buf = BytesIO()
+    img.save(buf, format="JPEG")
+    return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
 
 
 @pytest.mark.django_db
@@ -248,3 +260,169 @@ def test_user_answers_included_in_response(
     response = apiclient.get(url, format="json")
     assert response.status_code == status.HTTP_200_OK
     assert response.data["questions"][0]["userAnswer"] == answer.id
+
+
+@pytest.mark.django_db
+def test_question_image_requires_alt_text(
+    apiclient, admin, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll)
+    choice_factory(question=question)
+    choice_factory(question=question)
+
+    url = reverse("polls-detail", kwargs={"pk": poll.pk})
+    apiclient.force_authenticate(user=admin)
+
+    b64_image = _base64_image()
+
+    data = {
+        "questions": [
+            {
+                "id": question.id,
+                "label": "question with image",
+                "help_text": "",
+                "multiple_choice": False,
+                "is_open": False,
+                "choices": [
+                    {"label": "a", "is_other_choice": False, "count": 0},
+                    {"label": "b", "is_other_choice": False, "count": 0},
+                ],
+                "answers": [],
+                "image_base64": b64_image,
+                "image_alt_text": "",
+            }
+        ]
+    }
+
+    response = apiclient.put(url, data, format="json")
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert "image_alt_text" in str(response.content)
+
+
+@pytest.mark.django_db
+def test_question_image_with_alt_text_succeeds(
+    apiclient, admin, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll)
+    choice_factory(question=question)
+    choice_factory(question=question)
+
+    url = reverse("polls-detail", kwargs={"pk": poll.pk})
+    apiclient.force_authenticate(user=admin)
+
+    b64_image = _base64_image()
+
+    data = {
+        "questions": [
+            {
+                "id": question.id,
+                "label": "question with image and alt text",
+                "help_text": "",
+                "multiple_choice": False,
+                "is_open": False,
+                "choices": [
+                    {"label": "a", "is_other_choice": False, "count": 0},
+                    {"label": "b", "is_other_choice": False, "count": 0},
+                ],
+                "answers": [],
+                "image_base64": b64_image,
+                "image_alt_text": "A red rectangle",
+            }
+        ]
+    }
+
+    response = apiclient.put(url, data, format="json")
+    assert response.status_code == status.HTTP_200_OK
+    question.refresh_from_db()
+    assert question.image
+    assert question.image_alt_text == "A red rectangle"
+
+
+@pytest.mark.django_db
+def test_question_existing_image_requires_alt_text(
+    apiclient, admin, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll)
+    choice_factory(question=question)
+    choice_factory(question=question)
+
+    b64_image = _base64_image()
+
+    question.image.save(
+        "test.jpg",
+        ContentFile(base64.b64decode(b64_image.split(";base64,")[1])),
+    )
+    question.image_alt_text = ""
+    question.save()
+
+    url = reverse("polls-detail", kwargs={"pk": poll.pk})
+    apiclient.force_authenticate(user=admin)
+
+    data = {
+        "questions": [
+            {
+                "id": question.id,
+                "label": "updated label",
+                "help_text": "",
+                "multiple_choice": False,
+                "is_open": False,
+                "choices": [
+                    {"label": "a", "is_other_choice": False, "count": 0},
+                    {"label": "b", "is_other_choice": False, "count": 0},
+                ],
+                "answers": [],
+                "image_alt_text": "",
+            }
+        ]
+    }
+
+    response = apiclient.put(url, data, format="json")
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_question_existing_image_with_alt_text_succeeds(
+    apiclient, admin, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll)
+    choice_factory(question=question)
+    choice_factory(question=question)
+
+    b64_image = _base64_image()
+
+    question.image.save(
+        "test.jpg",
+        ContentFile(base64.b64decode(b64_image.split(";base64,")[1])),
+    )
+    question.image_alt_text = ""
+    question.save()
+
+    url = reverse("polls-detail", kwargs={"pk": poll.pk})
+    apiclient.force_authenticate(user=admin)
+
+    data = {
+        "questions": [
+            {
+                "id": question.id,
+                "label": "updated label with alt text",
+                "help_text": "",
+                "multiple_choice": False,
+                "is_open": False,
+                "choices": [
+                    {"label": "a", "is_other_choice": False, "count": 0},
+                    {"label": "b", "is_other_choice": False, "count": 0},
+                ],
+                "answers": [],
+                "image_alt_text": "A red rectangle with description",
+            }
+        ]
+    }
+
+    response = apiclient.put(url, data, format="json")
+    assert response.status_code == status.HTTP_200_OK
+    question.refresh_from_db()
+    assert question.image_alt_text == "A red rectangle with description"

@@ -1,9 +1,12 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useRef } from 'react'
 import django from 'django'
+import FormFieldError from '../../../static/FormFieldError'
 
-const QuestionImageUploadButton = ({ id, question, onImageChange, error, helpText, altText, onAltTextChange }) => {
+const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpText, altText, onAltTextChange }) => {
   const fileInputRef = useRef(null)
+  const imageError = errors?.image_base64 || errors?.image
+  const altTextError = errors?.image_alt_text
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
@@ -33,7 +36,7 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, error, helpTex
 
       {helpText && <div className="form-hint">{helpText}</div>}
 
-      <div className={`image-upload-container ${error ? 'is-invalid' : ''}`}>
+      <div className={`image-upload-container ${imageError ? 'is-invalid' : ''}`}>
         <span className="image-upload-text">
           {question.image_url
             ? django.gettext('Image uploaded')
@@ -74,31 +77,24 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, error, helpTex
         </div>
       </div>
 
-      {error && (
-        <div className="invalid-feedback" role="alert">
-          {Array.isArray(error)
-            ? error.map((err, i) => {
-              // Handle ErrorDetail objects from Django
-              const message = typeof err === 'object' && err.string ? err.string : err
-              return <div key={i}>{message}</div>
-            })
-            : (typeof error === 'object' && error.string ? error.string : error)}
-        </div>
-      )}
+      <FormFieldError id={`image-error-${id}`} error={errors} field="image_base64" />
 
-      {question.image_url && (
-        <div className="form-group">
+      {(question.image_url || altTextError) && (
+        <div className={`form-group ${altTextError ? 'has-error' : ''}`}>
           <label htmlFor={`id_questions-${id}-image_alt_text`}>
             {django.gettext('Alt text')}
           </label>
           <input
             type="text"
             id={`id_questions-${id}-image_alt_text`}
-            className="form-control"
+            className={`form-control ${altTextError ? 'is-invalid' : ''}`}
             value={altText || ''}
             onChange={(e) => onAltTextChange(e.target.value)}
             maxLength={80}
+            aria-invalid={!!altTextError}
+            aria-describedby={altTextError ? `alt-text-error-${id}` : undefined}
           />
+          <FormFieldError id={`alt-text-error-${id}`} error={errors} field="image_alt_text" />
         </div>
       )}
 
@@ -109,8 +105,8 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, error, helpTex
         accept="image/jpeg,image/png,image/webp"
         onChange={handleFileChange}
         className="image-upload-hidden-input"
-        aria-invalid={!!error}
-        aria-describedby={error ? `image-error-${id}` : undefined}
+        aria-invalid={!!imageError}
+        aria-describedby={imageError ? `image-error-${id}` : undefined}
       />
     </div>
   )

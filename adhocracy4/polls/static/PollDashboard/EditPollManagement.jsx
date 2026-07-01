@@ -72,10 +72,13 @@ export const EditPollManagement = (props) => {
   const handleQuestionHelpText = (index, helpText) => updateQuestion(index, { help_text: helpText })
   const handleQuestionMultiChoice = (index, multipleChoice) => updateQuestion(index, { multiple_choice: multipleChoice })
   const handleQuestionConfidential = (index, isConfidential) => updateQuestion(index, { is_confidential: isConfidential })
-  const handleQuestionImage = (index, imageBase64) => updateQuestion(index, {
-    image_base64: imageBase64 || '',
-    image_url: imageBase64 || null
-  })
+  const handleQuestionImage = (index, imageBase64) => {
+    updateQuestion(index, {
+      image_base64: imageBase64 || '',
+      image_url: imageBase64 || null
+    })
+    if (!imageBase64) setErrors([])
+  }
 
   const handleQuestionAltText = (index, altText) => updateQuestion(index, { image_alt_text: altText })
 
@@ -132,7 +135,10 @@ export const EditPollManagement = (props) => {
     }
   }
 
-  const clearAlert = () => setAlert(null)
+  const clearAlert = () => {
+    setAlert(null)
+    setErrors([])
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -143,7 +149,7 @@ export const EditPollManagement = (props) => {
 
         if (props.questionImagesEnabled) {
           if (image_base64 !== undefined) {
-            clean.image = image_base64 === '' ? '' : image_base64
+            clean.image_base64 = image_base64 === '' ? '' : image_base64
           }
           clean.image_alt_text = image_alt_text || ''
         }

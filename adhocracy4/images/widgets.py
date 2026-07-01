@@ -7,7 +7,6 @@ from django.utils.translation import gettext
 
 
 class ImageInputWidget(widgets.ClearableFileInput):
-
     """
     A project-specific improved version of the clearable file upload.
 
@@ -25,7 +24,7 @@ class ImageInputWidget(widgets.ClearableFileInput):
         has_image_set = self.is_initial(value)
         is_required = self.is_required
 
-        file_placeholder = gettext("Select a picture from your local folder.")
+        file_placeholder = gettext("Select a picture from a local folder.")
         file_input = super().render(
             name, None, {"id": html_id, "class": "form-control form-control-file"}
         )
