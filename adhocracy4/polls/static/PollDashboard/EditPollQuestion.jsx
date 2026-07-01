@@ -40,7 +40,7 @@ export const EditPollQuestion = React.forwardRef((props, ref) => {
               id={props.id}
               question={props.question}
               onImageChange={props.onImageChange}
-              error={props.errors?.image_base64}
+              errors={props.errors}
               helpText={props.question.image_help_text}
               altText={props.question.image_alt_text}
               onAltTextChange={props.onAltTextChange}
