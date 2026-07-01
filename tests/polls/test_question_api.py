@@ -13,7 +13,7 @@ from tests.helpers import active_phase
 
 
 def _base64_image():
-    img = Image.new("RGB", (1500, 500), color="red")
+    img = Image.new("RGB", (1500, 600), color="red")
     buf = BytesIO()
     img.save(buf, format="JPEG")
     return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
