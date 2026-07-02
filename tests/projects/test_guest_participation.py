@@ -5,6 +5,12 @@ import rules
 
 
 @pytest.mark.django_db
+def test_allow_guest_users_defaults_to_false(project_factory):
+    project = project_factory(is_draft=False)
+    assert project.allow_guest_users is False
+
+
+@pytest.mark.django_db
 def test_has_member_blocks_guest_when_disabled(project_factory, user_factory):
     project = project_factory(is_draft=False)
     project.allow_guest_users = False
