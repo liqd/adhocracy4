@@ -7,6 +7,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Unreleased
 
+- projects: `allow_guest_users` defaults to `False` ("Only registered users can
+  participate"); existing projects are updated on migrate.
 - projects: add per-project `allow_guest_users` setting to control guest user
   participation (requires `A4_ENABLE_GUEST_USERS` and django-guest-user).
 

@@ -295,7 +295,7 @@ class Project(
     is_app_accessible = models.BooleanField(default=False)
 
     allow_guest_users = models.BooleanField(
-        default=True,
+        default=False,
         verbose_name=_("Allow guest users to participate"),
         help_text=_(
             "Whether guest users may participate in this project. "
