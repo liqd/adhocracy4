@@ -335,6 +335,7 @@ class PollSerializer(serializers.ModelSerializer):
             if question_instance.image:
                 question_instance.image.delete(save=False)
             question_instance.image = None
+            question_instance.image_alt_text = ""
             question_instance.save()
         elif image_data and "base64," in image_data:
             format, imgstr = image_data.split(";base64,")

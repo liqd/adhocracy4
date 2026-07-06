@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { ConfidentialNotice } from './ConfidentialNotice'
 import { TextareaWithCounter } from './TextareaWithCounter'
-import QuestionImage from './QuestionImage'
+import { PollQuestionLayout } from './PollQuestionLayout'
 
 export const PollOpenQuestion = ({
   question,
@@ -21,11 +20,6 @@ export const PollOpenQuestion = ({
   }
 
   const [userAnswer, setUserAnswer] = useState(getUserOpenAnswer())
-  const questionHelpText = question.help_text
-    ? (
-      <div className="poll__help-text">{question.help_text}</div>
-      )
-    : null
   const userAllowedVote = question.authenticated || allowUnregisteredUsers
 
   const handleOpenChange = (event) => {
@@ -34,16 +28,7 @@ export const PollOpenQuestion = ({
   }
 
   return (
-    <div className="poll poll--question">
-      <h3>{question.label}</h3>
-      {questionHelpText}
-      {questionImagesEnabled && (
-        <QuestionImage
-          imageUrl={question.image_url}
-          alt={question.image_alt_text || question.label}
-        />
-      )}
-      {question.is_confidential && <ConfidentialNotice />}
+    <PollQuestionLayout question={question} questionImagesEnabled={questionImagesEnabled}>
       <TextareaWithCounter
         value={userAnswer}
         onChange={handleOpenChange}
@@ -52,6 +37,6 @@ export const PollOpenQuestion = ({
         id={question.id}
         questionType="open"
       />
-    </div>
+    </PollQuestionLayout>
   )
 }

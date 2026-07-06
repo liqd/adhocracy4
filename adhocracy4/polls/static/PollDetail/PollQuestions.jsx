@@ -11,6 +11,16 @@ import Captcha from '../../../static/Captcha'
 import config from '../../../static/config'
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
+
+const captchaWidgets = {
+  captcheck: Captcha,
+}
+
+
+function getCaptchaWidget (type) {
+  return captchaWidgets[type] || Captcha
+}
+
 const ALERT_SUCCESS = {
   alertAttribute: 'polite',
   type: 'success',
@@ -397,6 +407,8 @@ class PollQuestions extends React.Component {
       (this.state.questions[0].authenticated ||
         this.state.allowUnregisteredUsers)
 
+    const CaptchaWidget = getCaptchaWidget(this.props.captchaType)
+
     return this.state.loadingPage
       ? (
           this.loadingIndicator
@@ -477,7 +489,7 @@ class PollQuestions extends React.Component {
                       {this.state.allowUnregisteredUsers &&
                         this.state.questions.length > 0 &&
                         !this.state.questions[0].authenticated && (
-                          <Captcha
+                          <CaptchaWidget
                             onChange={(val) => this.setState({ captcha: val })}
                             apiUrl={this.props.captchaUrl}
                             name="id_captcheck"

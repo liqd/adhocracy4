@@ -99,15 +99,46 @@ class PollViewSet(
         data["use_org_terms_of_use"] = use_org_terms_of_use
         return data
 
+    def _get_total_participants(self, poll):
+        auth_voters = set(
+            Vote.objects.filter(choice__question__poll=poll)
+            .exclude(creator=None)
+            .values_list("creator_id", flat=True)
+            .distinct()
+        )
+        auth_answerers = set(
+            Answer.objects.filter(question__poll=poll)
+            .exclude(creator=None)
+            .values_list("creator_id", flat=True)
+            .distinct()
+        )
+        anon_voters = set(
+            Vote.objects.filter(choice__question__poll=poll)
+            .exclude(content_id=None)
+            .values_list("content_id", flat=True)
+            .distinct()
+        )
+        anon_answerers = set(
+            Answer.objects.filter(question__poll=poll)
+            .exclude(content_id=None)
+            .values_list("content_id", flat=True)
+            .distinct()
+        )
+        return len(auth_voters | auth_answerers) + len(anon_voters | anon_answerers)
+
     def retrieve(self, request, *args, **kwargs):
-        """Add organisation terms of use info to response.data."""
+        """Add organisation terms of use and module info to response.data."""
         response = super().retrieve(request, args, kwargs)
         if response.status_code == 400:
             return response
+        poll = self.get_object()
         response.data = self.add_terms_of_use_info(request, response.data)
+        response.data["total_participants"] = self._get_total_participants(poll)
+        response.data["module_name"] = poll.module.name
+        response.data["module_description"] = poll.module.description or ""
         return response
 
-    def __verify_captcha(self, answer, session):
+    def _verify_captcha(self, answer, session):
         if hasattr(settings, "CAPTCHA_TEST_ACCEPTED_ANSWER"):
             return answer == settings.CAPTCHA_TEST_ACCEPTED_ANSWER
 
@@ -120,6 +151,13 @@ class PollViewSet(
         return json.loads(response.text)["result"]
 
     def check_captcha(self):
+        backend_path = getattr(settings, "A4_CAPTCHA_BACKEND", None)
+        if backend_path:
+            from django.utils.module_loading import import_string
+            backend = import_string(backend_path)
+            backend(self.request, self.get_object())
+            return
+
         if not self.request.data.get("captcha", False):
             raise ValidationError(_("Your answer to the captcha was wrong."))
 
@@ -138,7 +176,7 @@ class PollViewSet(
                 _("Something about the answer to the captcha was wrong.")
             )
 
-        if not self.__verify_captcha(answer, session):
+        if not self._verify_captcha(answer, session):
             raise ValidationError(_("Your answer to the captcha was wrong."))
 
     def check_terms_of_use(self):
@@ -184,6 +222,7 @@ class PollViewSet(
         )
         poll_serializer = self.get_serializer(poll)
         poll_data = self.add_terms_of_use_info(request, poll_serializer.data)
+        poll_data["total_participants"] = self._get_total_participants(poll)
         if not self.request.user.is_authenticated:
             # set poll to read only after voting to prevent users from seeing the
             # voting screen again
