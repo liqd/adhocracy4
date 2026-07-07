@@ -100,6 +100,14 @@ class DashboardComponent:
         """
         return []
 
+    def get_base_url_kwargs(self, project_or_module):
+        """Return the kwargs dict for ``get_base_url``'s ``reverse()`` call.
+
+        Override this to add extra kwargs (e.g. ``organisation_slug``)
+        without having to re-implement ``get_base_url`` entirely.
+        """
+        return {"module_slug": project_or_module.slug}
+
     def get_base_url(self, project_or_module):
         """Return the url that acts as the base entry point for the component.
 
