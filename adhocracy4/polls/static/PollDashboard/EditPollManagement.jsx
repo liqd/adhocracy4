@@ -75,7 +75,8 @@ export const EditPollManagement = (props) => {
   const handleQuestionImage = (index, imageBase64) => {
     updateQuestion(index, {
       image_base64: imageBase64 || '',
-      image_url: imageBase64 || null
+      image_url: imageBase64 || null,
+      image_alt_text: ''
     })
     if (!imageBase64) setErrors([])
   }
@@ -175,9 +176,11 @@ export const EditPollManagement = (props) => {
           const parsed = JSON.parse(xhr.responseText)
           if (parsed?.questions) {
             setErrors(parsed.questions)
+          } else {
+            console.error('Poll save error (unexpected JSON shape):', parsed)
           }
         } catch (e) {
-          // console.log('Not JSON, raw HTML:', xhr.responseText.substring(0, 500))
+          console.error('Poll save error (non-JSON response):', xhr.responseText.substring(0, 1000))
         }
         setAlert({
           type: 'danger',

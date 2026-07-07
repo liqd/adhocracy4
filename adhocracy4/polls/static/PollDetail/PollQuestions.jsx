@@ -11,11 +11,9 @@ import Captcha from '../../../static/Captcha'
 import config from '../../../static/config'
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
-
 const captchaWidgets = {
-  captcheck: Captcha,
+  captcheck: Captcha
 }
-
 
 function getCaptchaWidget (type) {
   return captchaWidgets[type] || Captcha
@@ -414,7 +412,7 @@ class PollQuestions extends React.Component {
           this.loadingIndicator
         )
       : (
-        <>
+        <div className="poll-questions-container">
           {!isAuthenticated && <Alert {...ALERT_UNAUTHENTICATED} />}
           {this.state.showResults
             ? (
@@ -506,7 +504,7 @@ class PollQuestions extends React.Component {
                     )}
               </div>
               )}
-        </>
+        </div>
         )
   }
 }

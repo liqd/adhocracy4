@@ -4,7 +4,7 @@ import FormFieldError from '../../../static/FormFieldError'
 
 export const HelptextForm = (props) => {
   return (
-    <div className="form-group">
+    <div className="helptext-form form-group">
       <label
         htmlFor={'id_helptext-' + props.id + '-name'}
       >

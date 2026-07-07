@@ -129,6 +129,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         if image_base64:
             return self._base64_to_image(image_base64)
         elif image_base64 == "":
+            validated_data["image_alt_text"] = ""
             return None
         return None
 

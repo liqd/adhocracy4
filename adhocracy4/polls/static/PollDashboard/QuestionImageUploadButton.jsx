@@ -29,7 +29,7 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpTe
   }
 
   return (
-    <div className="form-group">
+    <div className="question-image-upload form-group">
       <label id={`image-upload-label-${id}`}>
         {django.gettext('Question image')}
       </label>
