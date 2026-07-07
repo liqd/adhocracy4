@@ -25,24 +25,6 @@ const ALERT_SUCCESS = {
   message: django.gettext('Your answer has been saved.')
 }
 
-const loginMessage = django.interpolate(
-  django.gettext('In order to participate please <a href="%(url)s">log in</a>.'),
-  { url: config.getLoginUrl() },
-  true
-)
-
-const ALERT_UNAUTHENTICATED = {
-  alertAttribute: 'polite',
-  type: 'warning',
-  message: (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: loginMessage
-      }}
-    />
-  )
-}
-
 const ALERT_ERROR = {
   alertAttribute: 'assertive',
   type: 'danger',
@@ -401,9 +383,6 @@ class PollQuestions extends React.Component {
 
   render () {
     this.buttonVote = this.getVoteButton()
-    const isAuthenticated = this.state.questions.length > 0 &&
-      (this.state.questions[0].authenticated ||
-        this.state.allowUnregisteredUsers)
 
     const CaptchaWidget = getCaptchaWidget(this.props.captchaType)
 
@@ -413,7 +392,6 @@ class PollQuestions extends React.Component {
         )
       : (
         <div className="poll-questions-container">
-          {!isAuthenticated && <Alert {...ALERT_UNAUTHENTICATED} />}
           {this.state.showResults
             ? (
               <div className="poll__preliminary-results">
