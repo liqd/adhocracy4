@@ -132,6 +132,10 @@ DATABASES = {
     }
 }
 
+GDAL_LIBRARY_PATH = os.environ.get("GDAL_LIBRARY_PATH")
+GEOS_LIBRARY_PATH = os.environ.get("GEOS_LIBRARY_PATH")
+SPATIALITE_LIBRARY_PATH = os.environ.get("SPATIALITE_LIBRARY_PATH")
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
