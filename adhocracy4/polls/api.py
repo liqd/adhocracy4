@@ -145,10 +145,15 @@ class PollViewSet(
         if not hasattr(settings, "CAPTCHA_URL"):
             return False
 
+        timeout = getattr(settings, "A4_CAPTCHA_TIMEOUT", 5)
         url = settings.CAPTCHA_URL
         data = {"session_id": session, "answer_id": answer, "action": "verify"}
-        response = requests.post(url, data)
-        return json.loads(response.text)["result"]
+        try:
+            response = requests.post(url, data, timeout=timeout)
+            response.raise_for_status()
+            return response.json().get("result", False)
+        except (requests.RequestException, ValueError, KeyError):
+            return False
 
     def check_captcha(self):
         backend_path = getattr(settings, "A4_CAPTCHA_BACKEND", None)

@@ -251,11 +251,11 @@ class Vote(GeneratedContentModel):
     choice = models.ForeignKey("Choice", on_delete=models.CASCADE, related_name="votes")
 
     def save(self, *args, **kwargs):
-        self.validate_unique()
+        self.full_clean()
         return super().save(*args, **kwargs)
 
-    def validate_unique(self, exclude=None):
-        super().validate_unique(exclude)
+    def clean(self, *args, **kwargs):
+        super().clean(*args, **kwargs)
         validators.single_vote_per_user(
             self.creator, self.content_id, self.choice, self.pk
         )
