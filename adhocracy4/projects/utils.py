@@ -34,6 +34,18 @@ def get_module_clusters(modules):
 
 
 def get_module_clusters_dict(module_clusters):
+    """Build timeline metadata dicts for overlapping module clusters.
+
+    Consumed via ``Project.module_cluster_dict`` and ``participation_dates``.
+    Cluster titles are not rendered in adhocracy+ UI (the project-detail
+    carousel and module prev/next cluster navigation were removed). The dict
+    still backs module URL routing (``get_detail_url`` may append
+    ``?initialSlide=``, but project detail no longer reads that param),
+    sibling-module sections on module detail, offline-event timeline indices,
+    and legacy ``DisplayProjectOrModuleMixin`` context. The visible
+    project-detail grid/timeline uses a separate status-based helper in
+    adhocracy-plus (``apps.projects.timeline``).
+    """
 
     clusters = []
 
@@ -43,7 +55,7 @@ def get_module_clusters_dict(module_clusters):
         end_date = sorted(end_dates)[-1]
         clusters.append(
             {
-                "title": _("{}. Online Participation").format(str(index + 1)),
+                "title": _("{}. Participation").format(str(index + 1)),
                 "type": "module",
                 "count": index + 1,
                 "date": start_date,
@@ -52,5 +64,5 @@ def get_module_clusters_dict(module_clusters):
             }
         )
     if len(clusters) == 1:
-        clusters[0]["title"] = _("Online Participation")
+        clusters[0]["title"] = _("Participation")
     return clusters

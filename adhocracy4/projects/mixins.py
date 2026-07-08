@@ -127,14 +127,12 @@ class ProjectMixin(generic.base.ContextMixin):
 
 
 class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
-    """Use the appropriate project or module view with timeline/cluster logic.
+    """Pick project vs module layout and expose legacy timeline/cluster context.
 
-    On platforms with multiple module projects, this should be used
-    with the phase view to display the module instead of the project
-    detail where appropriate. To do that, the template should extend
-    'extends' instead of a specific base template.
-    This mixin also makes sure the project view is shown with the
-    appropriate timeline tile activated.
+    Module list views extend ``extends`` (project or module detail template).
+    Also sets ``initial_slide``, ``event``, and ``modules`` from cluster/timeline
+    state for platforms that still use the carousel; adhocracy+ overrides or
+    ignores these on the new project detail page.
     """
 
     @cached_property
