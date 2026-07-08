@@ -6,6 +6,7 @@ from django.core.files.base import ContentFile
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
+from adhocracy4.projects.enums import Access
 from adhocracy4.rules.discovery import NormalUser
 
 from .models import Answer
@@ -241,10 +242,17 @@ class QuestionSerializer(serializers.ModelSerializer):
 class PollSerializer(serializers.ModelSerializer):
     questions = QuestionSerializer(many=True, source="annotated_questions")
     has_user_vote = serializers.SerializerMethodField()
+    guest_can_vote = serializers.SerializerMethodField()
 
     class Meta:
         model = Poll
-        fields = ("id", "questions", "has_user_vote", "allow_unregistered_users")
+        fields = (
+            "id",
+            "questions",
+            "has_user_vote",
+            "allow_unregistered_users",
+            "guest_can_vote",
+        )
 
     def get_has_user_vote(self, poll):
         user = self.context.get("request", {}).user
@@ -254,6 +262,16 @@ class PollSerializer(serializers.ModelSerializer):
                 or Answer.objects.filter(question__poll=poll, creator=user).exists()
             )
         return False
+
+    def get_guest_can_vote(self, poll):
+        module = poll.module
+        return (
+            module.project.access == Access.PUBLIC
+            and not module.project.is_draft
+            and poll.allow_unregistered_users
+            and module.active_phase is not None
+            and module.active_phase.has_feature("crud", Vote)
+        )
 
     def update(self, instance, validated_data):
         from .services import PollUpdateService
