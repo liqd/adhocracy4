@@ -11,7 +11,7 @@ export const PollQuestionLayout = ({ question, questionImagesEnabled, children }
     <div className="poll poll--question">
       <fieldset>
         <legend className="poll__question-legend">
-          <h3>{question.label}</h3>
+          <span className="poll__question-label">{question.label}</span>
         </legend>
         {questionHelpText}
         {questionImagesEnabled && (
