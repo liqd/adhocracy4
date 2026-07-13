@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import django from 'django'
 import { CharCounter } from './CharCounter'
 import FormFieldError from '../../../static/FormFieldError'
@@ -11,12 +11,17 @@ export const TextareaWithCounter = ({ value, onChange, disabled, error, id, ques
   // textarea rows and character length based on question type
   const rowSize = questionType === 'open' ? 6 : 3
   const maxLength = questionType === 'open' ? 750 : 250
+  const textareaRef = useRef(null)
 
   const handleDynamicHeight = (textarea) => {
     if (!textarea) return
-    textarea.style.height = 'auto' // Reset height
-    textarea.style.height = textarea.scrollHeight + 'px' // Adjust height based on content
+    textarea.style.height = 'auto'
+    textarea.style.height = textarea.scrollHeight + 'px'
   }
+
+  useEffect(() => {
+    handleDynamicHeight(textareaRef.current)
+  }, [value])
 
   const handleInputChange = (e) => {
     onChange(e)
@@ -32,6 +37,7 @@ export const TextareaWithCounter = ({ value, onChange, disabled, error, id, ques
         {translated.specify}
       </label>
       <textarea
+        ref={textareaRef}
         className="a4-textarea-with-counter__textarea"
         name="question"
         id={'id_choice-' + id + '-' + questionType}

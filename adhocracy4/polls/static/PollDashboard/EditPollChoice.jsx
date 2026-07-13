@@ -4,7 +4,7 @@ import FormFieldError from '../../../static/FormFieldError'
 
 export const EditPollChoice = React.forwardRef((props, ref) => {
   return (
-    <div className="form-group" ref={ref}>
+    <div className="editpoll__choice form-group" ref={ref}>
       <div htmlFor={'id_choices-' + props.id + '-name'}>
         {django.pgettext('noun', 'Answer')} {props.index}
         {props.choiceId &&

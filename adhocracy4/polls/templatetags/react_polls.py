@@ -14,8 +14,17 @@ def react_polls(poll: Poll):
     attributes = {
         "pollId": poll.pk,
         "captchaUrl": getattr(settings, "CAPTCHA_URL", ""),
+        "captchaType": "captcheck",
         "questionImagesEnabled": getattr(settings, "A4_POLL_QUESTION_IMAGES", True),
     }
+
+    extra = getattr(settings, "A4_POLL_TEMPLATE_TAG_EXTRA_ATTRIBUTES", {})
+    if isinstance(extra, str):
+        from django.utils.module_loading import import_string
+        extra = import_string(extra)
+    if callable(extra):
+        extra = extra(poll)
+    attributes.update(extra)
 
     return format_html(
         '<div data-a4-widget="polls" data-attributes="{attributes}"></div>',

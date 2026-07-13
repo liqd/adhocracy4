@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import django from 'django'
 import { ChoiceRow } from './ChoiceRow'
-import { ConfidentialNotice } from './ConfidentialNotice'
-import QuestionImage from './QuestionImage'
+import { PollQuestionLayout } from './PollQuestionLayout'
 const translated = {
   multiple: django.gettext('Multiple answers are possible.')
 }
 
-export const PollChoice = (props) => {
+export const PollChoice = ({
+  question,
+  allowUnregisteredUsers,
+  onSingleChange,
+  onMultiChange,
+  onOtherChange,
+  errors,
+  questionImagesEnabled
+}) => {
   const getUserAnswer = () => {
-    const userAnswerId = props.question.other_choice_user_answer
-    const userAnswer = props.question.other_choice_answers.find(oc => oc.vote_id === userAnswerId)
-    return props.question.other_choice_answer
-      ? props.question.other_choice_answer
+    const userAnswerId = question.other_choice_user_answer
+    const userAnswer = question.other_choice_answers.find(oc => oc.vote_id === userAnswerId)
+    return question.other_choice_answer
+      ? question.other_choice_answer
       : ((userAnswerId && userAnswer)
           ? userAnswer.answer
           : ''
@@ -21,28 +28,25 @@ export const PollChoice = (props) => {
 
   const [userChoices, setUserChoices] = useState([])
   const [otherChoiceAnswer, setOtherChoiceAnswer] = useState(getUserAnswer())
-  const [errors, setErrors] = useState()
 
-  const multiHelpText = props.question.multiple_choice ? <div className="poll__help-text">{translated.multiple}</div> : null
-  const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
-  const userAllowedVote = props.question.authenticated || props.allowUnregisteredUsers
+  const multiHelpText = question.multiple_choice ? <div className="poll__help-text">{translated.multiple}</div> : null
+  const userAllowedVote = question.authenticated || allowUnregisteredUsers
 
   useEffect(() => {
-    setUserChoices(props.question.userChoices || [])
-    setErrors(props.errors)
-  }, [props.question.userChoices, props.errors])
+    setUserChoices(question.userChoices || [])
+  }, [question.userChoices])
 
   const findOtherChoice = () => {
-    return props.question.choices.find(c => c.is_other_choice)
+    return question.choices.find(c => c.is_other_choice)
   }
 
   const handleSingleChange = (event, isOther) => {
     const choiceId = parseInt(event.target.value)
     setUserChoices([choiceId])
-    props.onSingleChange(props.question.id, choiceId)
+    onSingleChange(question.id, choiceId)
     if (!isOther) {
       setOtherChoiceAnswer('')
-      props.onOtherChange(props.question.id, '', findOtherChoice())
+      onOtherChange(question.id, '', findOtherChoice())
     }
   }
 
@@ -53,56 +57,43 @@ export const PollChoice = (props) => {
       : [...userChoices, choiceId]
 
     setUserChoices(newChoices)
-    props.onMultiChange(props.question.id, choiceId)
+    onMultiChange(question.id, choiceId)
 
     if (!newChoices.includes(findOtherChoice()?.id)) {
       setOtherChoiceAnswer('')
-      props.onOtherChange(props.question.id, '', findOtherChoice())
+      onOtherChange(question.id, '', findOtherChoice())
     }
   }
 
   const handleOtherChange = (event) => {
     const otherAnswer = event.target.value
     setOtherChoiceAnswer(otherAnswer)
-    props.onOtherChange(props.question.id, otherAnswer)
+    onOtherChange(question.id, otherAnswer)
   }
 
   return (
-    <div className="poll poll--question">
-      <fieldset>
-        <legend className="poll__question-legend">
-          <h3>{props.question.label}</h3>
-        </legend>
-        {props.questionImagesEnabled && (
-          <QuestionImage
-            imageUrl={props.question.image_url}
-            alt={props.question.image_alt_text || props.question.label}
-          />
-        )}
-        {questionHelpText}
-        {multiHelpText}
-        {props.question.is_confidential && <ConfidentialNotice />}
-        <div className="poll__rows">
-          {props.question.choices.map((choice) => {
-            const checked = userChoices.indexOf(choice.id) !== -1
-            return (
-              <ChoiceRow
-                key={choice.id}
-                choice={choice}
-                checked={checked}
-                onInputChange={props.question.multiple_choice ? handleMultiChange : handleSingleChange}
-                type={props.question.multiple_choice ? 'checkbox' : 'radio'}
-                disabled={!userAllowedVote || props.question.isReadOnly}
-                otherChoiceAnswer={otherChoiceAnswer}
-                onOtherChange={handleOtherChange}
-                isReadOnly={props.question.isReadOnly}
-                errors={errors}
-                name={props.question.multiple_choice ? undefined : 'question-' + props.question.id}
-              />
-            )
-          })}
-        </div>
-      </fieldset>
-    </div>
+    <PollQuestionLayout question={question} questionImagesEnabled={questionImagesEnabled}>
+      {multiHelpText}
+      <div className="poll__rows">
+        {question.choices.map((choice) => {
+          const checked = userChoices.indexOf(choice.id) !== -1
+          return (
+            <ChoiceRow
+              key={choice.id}
+              choice={choice}
+              checked={checked}
+              onInputChange={question.multiple_choice ? handleMultiChange : handleSingleChange}
+              type={question.multiple_choice ? 'checkbox' : 'radio'}
+              disabled={!userAllowedVote || question.isReadOnly}
+              otherChoiceAnswer={otherChoiceAnswer}
+              onOtherChange={handleOtherChange}
+              isReadOnly={question.isReadOnly}
+              errors={errors}
+              name={question.multiple_choice ? undefined : 'question-' + question.id}
+            />
+          )
+        })}
+      </div>
+    </PollQuestionLayout>
   )
 }

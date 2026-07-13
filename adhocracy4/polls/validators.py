@@ -1,6 +1,48 @@
+import base64
+import uuid
+from io import BytesIO
+
 from django.core import exceptions as django_exceptions
+from django.core.files.base import ContentFile
 from django.utils.translation import gettext as _
+from PIL import Image
 from rest_framework import exceptions as rest_exceptions
+
+MIN_IMAGE_WIDTH = 1500
+MIN_IMAGE_HEIGHT = 500
+
+
+def validate_poll_question_image(base64_str):
+    """Validate a base64-encoded poll question image meets minimum dimensions.
+
+    Returns a ContentFile decoded from the base64 data.
+    Returns None if the input is empty/null.
+    Raises rest_framework.exceptions.ValidationError if dimensions are too small.
+    """
+    if not base64_str or base64_str == "":
+        return None
+
+    if "base64," not in base64_str:
+        return None
+
+    format, imgstr = base64_str.split(";base64,")
+    ext = format.split("/")[-1]
+    image_data = base64.b64decode(imgstr)
+    img = Image.open(BytesIO(image_data))
+
+    errors = {}
+    if img.width < MIN_IMAGE_WIDTH:
+        errors["image_base64"] = _(
+            "Image must be at least %(width)s pixels wide."
+        ) % {"width": MIN_IMAGE_WIDTH}
+    if img.height < MIN_IMAGE_HEIGHT:
+        errors["image_base64"] = _(
+            "Image must be at least %(height)s pixels high."
+        ) % {"height": MIN_IMAGE_HEIGHT}
+    if errors:
+        raise rest_exceptions.ValidationError(errors)
+
+    return ContentFile(image_data, name=f"{uuid.uuid4()}.{ext}")
 
 
 def single_item_per_module(module, model, pk=None):

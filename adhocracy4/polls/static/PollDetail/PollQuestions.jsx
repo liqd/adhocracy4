@@ -11,28 +11,18 @@ import Captcha from '../../../static/Captcha'
 import config from '../../../static/config'
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 
+const captchaWidgets = {
+  captcheck: Captcha
+}
+
+function getCaptchaWidget (type) {
+  return captchaWidgets[type] || Captcha
+}
+
 const ALERT_SUCCESS = {
   alertAttribute: 'polite',
   type: 'success',
   message: django.gettext('Your answer has been saved.')
-}
-
-const loginMessage = django.interpolate(
-  django.gettext('In order to participate please <a href="%(url)s">log in</a>.'),
-  { url: config.getLoginUrl() },
-  true
-)
-
-const ALERT_UNAUTHENTICATED = {
-  alertAttribute: 'polite',
-  type: 'warning',
-  message: (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: loginMessage
-      }}
-    />
-  )
 }
 
 const ALERT_ERROR = {
@@ -393,17 +383,15 @@ class PollQuestions extends React.Component {
 
   render () {
     this.buttonVote = this.getVoteButton()
-    const isAuthenticated = this.state.questions.length > 0 &&
-      (this.state.questions[0].authenticated ||
-        this.state.allowUnregisteredUsers)
+
+    const CaptchaWidget = getCaptchaWidget(this.props.captchaType)
 
     return this.state.loadingPage
       ? (
           this.loadingIndicator
         )
       : (
-        <>
-          {!isAuthenticated && <Alert {...ALERT_UNAUTHENTICATED} />}
+        <div className="poll-questions-container">
           {this.state.showResults
             ? (
               <div className="poll__preliminary-results">
@@ -477,7 +465,7 @@ class PollQuestions extends React.Component {
                       {this.state.allowUnregisteredUsers &&
                         this.state.questions.length > 0 &&
                         !this.state.questions[0].authenticated && (
-                          <Captcha
+                          <CaptchaWidget
                             onChange={(val) => this.setState({ captcha: val })}
                             apiUrl={this.props.captchaUrl}
                             name="id_captcheck"
@@ -494,7 +482,7 @@ class PollQuestions extends React.Component {
                     )}
               </div>
               )}
-        </>
+        </div>
         )
   }
 }
