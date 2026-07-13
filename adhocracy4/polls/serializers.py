@@ -3,6 +3,7 @@ import uuid
 
 from django.conf import settings
 from django.core.files.base import ContentFile
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
@@ -243,6 +244,7 @@ class PollSerializer(serializers.ModelSerializer):
     questions = QuestionSerializer(many=True, source="annotated_questions")
     has_user_vote = serializers.SerializerMethodField()
     guest_can_vote = serializers.SerializerMethodField()
+    voting_ended = serializers.SerializerMethodField()
 
     class Meta:
         model = Poll
@@ -252,6 +254,7 @@ class PollSerializer(serializers.ModelSerializer):
             "has_user_vote",
             "allow_unregistered_users",
             "guest_can_vote",
+            "voting_ended",
         )
 
     def get_has_user_vote(self, poll):
@@ -272,6 +275,9 @@ class PollSerializer(serializers.ModelSerializer):
             and module.active_phase is not None
             and module.active_phase.has_feature("crud", Vote)
         )
+
+    def get_voting_ended(self, poll):
+        return poll.module.phase_set.filter(end_date__lt=timezone.now()).exists()
 
     def update(self, instance, validated_data):
         from .services import PollUpdateService
