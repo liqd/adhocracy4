@@ -1,4 +1,3 @@
-import json
 import re
 import uuid
 
@@ -159,6 +158,7 @@ class PollViewSet(
         backend_path = getattr(settings, "A4_CAPTCHA_BACKEND", None)
         if backend_path:
             from django.utils.module_loading import import_string
+
             backend = import_string(backend_path)
             backend(self.request, self.get_object())
             return
