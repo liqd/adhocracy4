@@ -104,18 +104,21 @@ jobs:
             exit 1
           fi
       - name: Coveralls Python
+        continue-on-error: true
         uses: coverallsapp/github-action@v2
         with:
           flag-name: python
           parallel: true
           file: .coverage
       - name: Coveralls JS
+        continue-on-error: true
         uses: coverallsapp/github-action@v2
         with:
           flag-name: js
           parallel: true
           file: coverage/lcov.info
       - name: Coveralls Finished
+        continue-on-error: true
         uses: coverallsapp/github-action@v2
         with:
           parallel-finished: true
