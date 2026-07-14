@@ -263,6 +263,7 @@ IMAGE_ALIASES = {
         "max_size": 5 * 10**6,
         "fileformats": ("image/png", "image/jpeg", "image/gif"),
     },
+    "questionimage": {"min_resolution": (1500, 500)},
     "heroimage": {"min_resolution": (1300, 600)},
     "tileimage": {"min_resolution": (500, 300)},
 }

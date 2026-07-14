@@ -70,7 +70,7 @@ class Question(models.Model):
     objects = QuestionQuerySet.as_manager()
 
     image = ConfiguredImageField(
-        "heroimage",
+        "questionimage",
         verbose_name=_("Image for Question"),
         help_prefix=_("The image will be shown with the question"),
         upload_to="projects/polls/",
