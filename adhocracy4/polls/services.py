@@ -87,7 +87,10 @@ class PollUpdateService:
             try:
                 validate_poll_question_image(image_data)
             except serializers.ValidationError as e:
-                q_error["image_base64"] = e.detail.get("image_base64", [])
+                detail = e.detail.get("image_base64", [])
+                if isinstance(detail, str):
+                    detail = [detail]
+                q_error["image_base64"] = detail
 
             if not q_error.get("image_base64"):
                 image_alt_text = q_data.get("image_alt_text", "")

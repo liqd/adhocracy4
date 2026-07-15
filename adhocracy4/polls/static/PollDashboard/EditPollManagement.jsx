@@ -146,7 +146,7 @@ export const EditPollManagement = (props) => {
 
     const payload = {
       questions: questions.map(q => {
-        const { key, answers, imageUrl, image_base64, image_alt_text, ...clean } = q
+        const { key, answers, image_url, image_base64, image_alt_text, ...clean } = q
 
         if (props.questionImagesEnabled) {
           if (image_base64 !== undefined) {
@@ -173,14 +173,20 @@ export const EditPollManagement = (props) => {
       })
       .fail(xhr => {
         try {
-          const parsed = JSON.parse(xhr.responseText)
-          if (parsed?.questions) {
-            setErrors(parsed.questions)
+          const text = xhr.responseText
+          if (text) {
+            const parsed = JSON.parse(text)
+            if (parsed?.questions) {
+              setErrors(parsed.questions)
+            } else {
+              console.error('Poll save error (unexpected JSON shape):', parsed)
+            }
           } else {
-            console.error('Poll save error (unexpected JSON shape):', parsed)
+            console.error('Poll save error (no response body)')
           }
         } catch (e) {
-          console.error('Poll save error (non-JSON response):', xhr.responseText.substring(0, 1000))
+          const text = xhr.responseText
+          console.error('Poll save error (non-JSON response):', text ? text.substring(0, 1000) : 'no response body')
         }
         setAlert({
           type: 'danger',

@@ -1,4 +1,5 @@
 import base64
+import binascii
 import uuid
 from io import BytesIO
 
@@ -6,6 +7,7 @@ from django.core import exceptions as django_exceptions
 from django.core.files.base import ContentFile
 from django.utils.translation import gettext as _
 from PIL import Image
+from PIL import UnidentifiedImageError
 from rest_framework import exceptions as rest_exceptions
 
 MIN_IMAGE_WIDTH = 1500
@@ -25,20 +27,27 @@ def validate_poll_question_image(base64_str):
     if "base64," not in base64_str:
         return None
 
-    format, imgstr = base64_str.split(";base64,")
-    ext = format.split("/")[-1]
-    image_data = base64.b64decode(imgstr)
-    img = Image.open(BytesIO(image_data))
+    try:
+        format, imgstr = base64_str.split(";base64,")
+        ext = format.split("/")[-1]
+        image_data = base64.b64decode(imgstr)
+        img = Image.open(BytesIO(image_data))
+    except (binascii.Error, UnidentifiedImageError, OSError, ValueError):
+        raise rest_exceptions.ValidationError(
+            {"image_base64": [_("The uploaded file is not a valid image.")]}
+        )
 
     errors = {}
     if img.width < MIN_IMAGE_WIDTH:
-        errors["image_base64"] = _(
-            "Image must be at least %(width)s pixels wide."
-        ) % {"width": MIN_IMAGE_WIDTH}
+        errors["image_base64"] = [
+            _("Image must be at least %(width)s pixels wide.")
+            % {"width": MIN_IMAGE_WIDTH}
+        ]
     if img.height < MIN_IMAGE_HEIGHT:
-        errors["image_base64"] = _(
-            "Image must be at least %(height)s pixels high."
-        ) % {"height": MIN_IMAGE_HEIGHT}
+        errors["image_base64"] = [
+            _("Image must be at least %(height)s pixels high.")
+            % {"height": MIN_IMAGE_HEIGHT}
+        ]
     if errors:
         raise rest_exceptions.ValidationError(errors)
 
