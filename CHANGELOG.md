@@ -5,8 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### Unreleased
+## Unreleased
 
+### Added
+
+### Fixed
+
+### Changed
+
+
+## aplus-v2607.1
+
+### Added
 - projects: `allow_guest_users` defaults to `False` ("Only registered users can
   participate"); existing projects are updated on migrate.
 - projects: add per-project `allow_guest_users` setting to control guest user
