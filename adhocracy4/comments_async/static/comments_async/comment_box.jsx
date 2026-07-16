@@ -70,7 +70,11 @@ export const CommentBox = (props) => {
     if (props.withCategories) {
       params.categories = true
     }
-    api.comments.get(params).done(handleComments).fail()
+    api.comments.get(params).done(handleComments).fail(() => {
+      setLoading(false)
+      setError(true)
+      setErrorMessage(django.gettext('Failed to load comments. Please try again.'))
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
