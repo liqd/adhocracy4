@@ -75,6 +75,11 @@ class EmailBase:
     def get_reply_to(self):
         return None
 
+    # Override in project email subclasses to customise the From header.
+    # Defaults to Django's DEFAULT_FROM_EMAIL setting (address only).
+    def get_from_email(self):
+        return settings.DEFAULT_FROM_EMAIL
+
     @classmethod
     def send(cls, obj, *args, **kwargs):
         content_type = ContentType.objects.get_for_model(model=obj.__class__)
@@ -133,7 +138,7 @@ class EmailBase:
             mail = EmailMultiAlternatives(
                 subject=subject_clean,
                 body=text,
-                from_email=settings.DEFAULT_FROM_EMAIL,
+                from_email=self.get_from_email(),
                 to=[to_address],
                 reply_to=self.get_reply_to(),
             )
