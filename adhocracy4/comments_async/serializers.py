@@ -122,7 +122,7 @@ class CommentSerializer(serializers.ModelSerializer):
             if obj.creator.avatar:
                 avatar = get_thumbnailer(obj.creator.avatar)["avatar"]
                 return self._build_absolute_image_uri(avatar.url)
-        except AttributeError:
+        except (AttributeError, ValueError):
             pass
         return None
 
