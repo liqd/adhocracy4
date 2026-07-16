@@ -236,7 +236,10 @@ class QuestionSerializer(serializers.ModelSerializer):
     def validate_image_base64(self, value):
         from .validators import validate_poll_question_image
 
-        validate_poll_question_image(value)
+        try:
+            validate_poll_question_image(value)
+        except serializers.ValidationError as e:
+            raise serializers.ValidationError(e.detail.get("image_base64", e.detail))
         return value
 
 
