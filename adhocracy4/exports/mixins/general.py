@@ -1,3 +1,5 @@
+import re
+
 from django.utils.translation import gettext as _
 
 from .base import VirtualFieldMixin
@@ -106,3 +108,26 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
 
     def get_location_label_data(self, item):
         return getattr(item, "point_label", "")
+
+
+class ItemExportWithImageMixin(VirtualFieldMixin):
+    """Adds image links to item export."""
+
+    def get_virtual_fields(self, virtual):
+        if "images" not in virtual:
+            virtual["images"] = _("Images")
+        return super().get_virtual_fields(virtual)
+
+    def get_images_data(self, item):
+        images = []
+
+        if item.image:
+            images.append(self.request.build_absolute_uri(item.image.url))
+
+        description = str(getattr(item, "description", ""))
+        if description:
+            pattern = r'(?:src|href)="([^"]*?/uploads/[^"]*?)"'
+            for url in re.findall(pattern, description):
+                images.append(self.request.build_absolute_uri(url))
+
+        return ", ".join(images) if images else ""
