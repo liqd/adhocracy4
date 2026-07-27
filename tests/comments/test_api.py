@@ -8,9 +8,8 @@ from tests.apps.questions.phases import AskPhase
 from tests.helpers import active_phase
 
 
-@pytest.mark.django_db
 @pytest.fixture
-def question_ct():
+def question_ct(db):
     return ContentType.objects.get_for_model(Question)
 
 

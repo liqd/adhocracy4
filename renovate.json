@@ -43,7 +43,10 @@
   ],
   "pip_requirements": {
     "fileMatch": [
-      "^requirements/.*\\.txt$"
+      "pyproject\\.toml$"
     ]
+  },
+  "uv": {
+    "enabled": true
   }
 }
