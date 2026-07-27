@@ -53,7 +53,10 @@ const config = {
     '^.+\\.[t|j]sx?$': 'babel-jest'
   },
   transformIgnorePatterns: [
-    '[/\\\\]node_modules[/\\\\](?!' +
+    '[/\\\\]node_modules[/\\\\]\\.pnpm[/\\\\].+[/\\\\]node_modules[/\\\\](?!' +
+      esModules +
+      ').+\\.(js|jsx|mjs|cjs|ts|tsx)$',
+    '[/\\\\]node_modules[/\\\\](?!\\.pnpm[/\\\\])(?!' +
       esModules +
       ').+\\.(js|jsx|mjs|cjs|ts|tsx)$'
   ],

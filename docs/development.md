@@ -26,22 +26,33 @@ Activate the virtualenv in both project and adhocracy4.
 
     source venv/bin/activate
 
-Ensure that
-your `~/.npmrc` contains as `prefix` some location you can write.
-
-    echo "prefix = $HOME/.npmprefix" > ~/.npmrc
-
 Start development mode:
 
     cd ../$PROJECT
     pip install -e ../adhocracy4/
-    npm link ../adhocracy4
+
+If your project uses pnpm:
+
+    pnpm link ../adhocracy4
+
+If your project still uses npm:
+
+    npm install ../adhocracy4
 
 Leave development mode:
 
     cd $PROJECT
+
+If your project uses pnpm:
+
+    pnpm unlink adhocracy4
+    pnpm install
+
+If your project uses npm:
+
     npm unlink adhocracy4
     npm install
+
     pip install -r requirements.txt
 
 Local installation
@@ -53,5 +64,5 @@ automatically update if you change somehting on the adhocracy4 code
 
     cd $PROJECT
     vim package.json # remove adhocracy requirement
-    npm install ../adhocracy4
+    pnpm add ../adhocracy4
     pip install ../adhocracy4

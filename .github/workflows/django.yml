@@ -27,10 +27,15 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.8.0
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+          cache: 'pnpm'
       - name: Setup Postgres
         env:
           PGPASSWORD: postgres
@@ -38,17 +43,6 @@ jobs:
         run: |
           psql -c 'create database django;' -U postgres
           psql -c 'create database django_test;' -U postgres
-      - name: Cache node modules
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
       - name: Cache pip packages
         uses: actions/cache@v4
         env:
@@ -67,7 +61,7 @@ jobs:
           sudo apt update
           sudo apt install -y gdal-bin
           sudo apt install libsqlite3-mod-spatialite
-          npm install
+          pnpm install --frozen-lockfile
           pip install uv
           uv sync --all-groups
           uv add coveralls
@@ -80,10 +74,10 @@ jobs:
           python manage.py makemigrations --dry-run --check --noinput
           isort --diff -c adhocracy4 tests
           flake8 adhocracy4 tests --exclude migrations,settings
-          npm run lint
+          pnpm run lint
       - name: Run Frontend Tests
         run: |
-          npm test
+          pnpm test
       - name: Check Coverage File
         run: |
           echo "Checking if .coverage file exists..."

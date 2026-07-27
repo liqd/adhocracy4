@@ -34,6 +34,7 @@
     "n/no-missing-import": "off",
     "n/no-unpublished-import": "off",
     "n/no-extraneous-import": "off",
+    "import/named": "off",
     "no-restricted-syntax": ["error", "TemplateLiteral"]
   },
   "plugins": [
@@ -49,7 +50,8 @@
     "import/core-modules": [ django ],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx"],
+        "moduleDirectory": ["node_modules", "node_modules/.pnpm"]
       }
     }
   }

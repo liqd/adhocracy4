@@ -1,6 +1,7 @@
 {
   "name": "adhocracy4",
   "version": "1.0.0",
+  "packageManager": "pnpm@11.8.0",
   "license": "AGPL-3.0+",
   "description": "Frontend for Adhocracy4",
   "author": {
@@ -22,6 +23,7 @@
     "leaflet": "1.9.4",
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "git+https://github.com/liqd/Leaflet.markercluster#liqd2212",
+    "lodash.debounce": "4.0.8",
     "maplibregl-mapbox-request-transformer": "0.0.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -36,6 +38,7 @@
     "@babel/plugin-transform-runtime": "7.29.0",
     "@babel/preset-env": "7.29.2",
     "@babel/preset-react": "7.28.5",
+    "@jest/globals": "30.4.1",
     "@maplibre/maplibre-gl-leaflet": "0.0.22",
     "@react-leaflet/core": "2.1.0",
     "@testing-library/jest-dom": "6.6.3",
