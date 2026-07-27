@@ -55,8 +55,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install Dependencies
-        env:
-          UV_PROJECT_ENVIRONMENT: "/home/runner/.local"
         run: |
           sudo apt update
           sudo apt install -y gdal-bin
@@ -70,10 +68,10 @@ jobs:
           PGPASSWORD: postgres
           PGHOSTADDR: 127.0.0.1
         run: |
-          DJANGO_SETTINGS_MODULE='tests.project.travis' py.test --cov
-          python manage.py makemigrations --dry-run --check --noinput
-          isort --diff -c adhocracy4 tests
-          flake8 adhocracy4 tests --exclude migrations,settings
+          DJANGO_SETTINGS_MODULE='tests.project.travis' uv run py.test --cov
+          uv run python manage.py makemigrations --dry-run --check --noinput
+          uv run isort --diff -c adhocracy4 tests
+          uv run flake8 adhocracy4 tests --exclude migrations,settings
           pnpm run lint
       - name: Run Frontend Tests
         run: |
