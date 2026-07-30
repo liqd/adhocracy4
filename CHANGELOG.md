@@ -16,6 +16,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- Dependencies: use pnpm for more secure package management
 
 ## aplus-v2607.1
 

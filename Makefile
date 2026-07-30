@@ -29,7 +29,7 @@ help:
 
 .PHONY: install
 install:
-	npm install
+	pnpm install
 	@if [ ! -f $(VIRTUAL_ENV)/bin/pip ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	@if ! command -v uv --version; then \
 	$(VIRTUAL_ENV)/bin/pip install pipx; \
@@ -38,7 +38,7 @@ install:
 	uv sync --all-groups
 .PHONY: clean
 clean:
-	if [ -f package-lock.json ]; then rm package-lock.json; fi
+	if [ -f pnpm-lock.yaml ]; then rm pnpm-lock.yaml; fi
 	if [ -d node_modules ]; then rm -rf node_modules; fi
 	if [ -d venv ]; then rm -rf venv; fi
 
@@ -47,14 +47,14 @@ lint:
 	EXIT_STATUS=0; \
 	$(VIRTUAL_ENV)/bin/isort --diff -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
-	npm run lint ||  EXIT_STATUS=$$?; \
+	pnpm run lint ||  EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: lint-quick
 lint-quick:
 	EXIT_STATUS=0; \
-	npm run lint-staged || EXIT_STATUS=$$?; \
+	pnpm run lint-staged || EXIT_STATUS=$$?; \
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
@@ -69,13 +69,13 @@ lint-python-files:
 .PHONY: lint-fix
 lint-fix:
 	EXIT_STATUS=0; \
-	npm run lint-fix ||  EXIT_STATUS=$$?; \
+	pnpm run lint-fix ||  EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
 .PHONY: test
 test:
 	$(VIRTUAL_ENV)/bin/pytest --reuse-db
-	npm run testNoCov
+	pnpm run testNoCov
 
 .PHONY: pytest
 pytest:
@@ -92,16 +92,16 @@ pytest-clean:
 
 .PHONY: jstest
 jstest:
-	npm run test
+	pnpm run test
 
 .PHONY: jstest-nocov
 jstest-nocov:
-	npm run testNoCov
+	pnpm run testNoCov
 
 .PHONY: jstest-debug
 jstest-debug:
-	npm run testDebug
+	pnpm run testDebug
 
 .PHONY: jstest-updateSnapshots
 jstest-updateSnapshots:
-	npm run updateSnapshots
+	pnpm run updateSnapshots
