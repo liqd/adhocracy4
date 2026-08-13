@@ -32,6 +32,12 @@ class PollUpdateService:
         )
         self.poll.save()
 
+    def update_hide_results(self, validated_data):
+        self.poll.hide_results_until_finished = validated_data.get(
+            "hide_results_until_finished", self.poll.hide_results_until_finished
+        )
+        self.poll.save()
+
     def parse_questions(self):
         if not hasattr(self.request, "data") or not self.request.data:
             return []
@@ -54,9 +60,10 @@ class PollUpdateService:
                     if field.startswith("choices"):
                         choice_match = re.search(r"choices\[(\d+)\]\.(.+)", field)
                         if choice_match:
-                            c_idx, c_field = int(
-                                choice_match.group(1)
-                            ), choice_match.group(2)
+                            c_idx, c_field = (
+                                int(choice_match.group(1)),
+                                choice_match.group(2),
+                            )
                             questions_dict[idx].setdefault("choices", []).append({})
                             while len(questions_dict[idx]["choices"]) <= c_idx:
                                 questions_dict[idx]["choices"].append({})

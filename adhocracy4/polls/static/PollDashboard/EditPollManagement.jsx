@@ -13,9 +13,11 @@ import api from '../../../static/api'
 import Alert from '../../../static/Alert'
 
 const TRANSLATED = {
-  votingOptionsSectionTitle: django.gettext('Voting Options'),
+  votingOptionsSectionTitle: django.gettext('Options'),
   allowUnregisteredUsersLabel: django.gettext('Allow unregistered users to vote'),
   allowUnregisteredUsersSR: django.gettext('Enable this option to allow users who are not registered to participate in the voting process.'),
+  hideResultsUntilFinishedLabel: django.gettext('Hide results until participation is over'),
+  hideResultsUntilFinishedSR: django.gettext('Enable this option to hide the poll results from participants until the participation phase has ended.'),
   addAndEditSectionTitle: django.gettext('Add and Edit Questions')
 }
 
@@ -45,6 +47,7 @@ const createEmptyQuestion = (label = '', helpText = '', isOpen = false) => ({
 export const EditPollManagement = (props) => {
   const [questions, setQuestions] = useState([])
   const [allowUnregisteredUsers, setAllowUnregisteredUsers] = useState(false)
+  const [hideResultsUntilFinished, setHideResultsUntilFinished] = useState(false)
   const [errors, setErrors] = useState([])
   const [alert, setAlert] = useState(null)
 
@@ -55,6 +58,7 @@ export const EditPollManagement = (props) => {
         : [createEmptyQuestion()]
       setQuestions(initialQuestions)
       setAllowUnregisteredUsers(result.allow_unregistered_users)
+      setHideResultsUntilFinished(result.hide_results_until_finished)
     })
   }, [props.pollId])
 
@@ -157,7 +161,8 @@ export const EditPollManagement = (props) => {
 
         return clean
       }),
-      allow_unregistered_users: allowUnregisteredUsers
+      allow_unregistered_users: allowUnregisteredUsers,
+      hide_results_until_finished: hideResultsUntilFinished
     }
 
     api.poll.change(payload, props.pollId)
@@ -197,9 +202,9 @@ export const EditPollManagement = (props) => {
 
   return (
     <form onSubmit={handleSubmit} onChange={clearAlert} className="editpoll__questions">
-      {props.enableUnregisteredUsers && (
-        <section className="editpoll__questions-options">
-          <h2>{TRANSLATED.votingOptionsSectionTitle}</h2>
+      <section className="editpoll__questions-options">
+        <h2>{TRANSLATED.votingOptionsSectionTitle}</h2>
+        {props.enableUnregisteredUsers && (
           <div className="editpoll__questions-options__form-check">
             <input
               type="checkbox"
@@ -215,8 +220,23 @@ export const EditPollManagement = (props) => {
               {TRANSLATED.allowUnregisteredUsersSR}
             </p>
           </div>
-        </section>
-      )}
+        )}
+        <div className="editpoll__questions-options__form-check">
+          <input
+            type="checkbox"
+            id="hideResultsUntilFinishedCheckbox"
+            onChange={() => setHideResultsUntilFinished(v => !v)}
+            checked={hideResultsUntilFinished}
+            aria-describedby="hideResultsDescription"
+          />
+          <label htmlFor="hideResultsUntilFinishedCheckbox">
+            {TRANSLATED.hideResultsUntilFinishedLabel}
+          </label>
+          <p id="hideResultsDescription" className="a4-sr-only">
+            {TRANSLATED.hideResultsUntilFinishedSR}
+          </p>
+        </div>
+      </section>
 
       <section>
         <h2>{TRANSLATED.addAndEditSectionTitle}</h2>

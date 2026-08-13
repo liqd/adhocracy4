@@ -39,7 +39,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
         fields = ("id", "label", "count", "is_other_choice")
 
     def get_count(self, choice: Choice) -> int:
-        if choice.question.is_confidential:
+        if choice.question.is_confidential or choice.question.poll.results_hidden:
             return 0
         return getattr(choice, "vote_count", choice.votes.all().count())
 
@@ -180,7 +180,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     def get_answers(self, question: Question):
         answers = question.answers.all()
-        if question.is_confidential:
+        if question.is_confidential or question.poll.results_hidden:
             answers = self._filter_own(answers)
         return AnswerSerializer(answers, many=True).data
 
@@ -192,7 +192,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     def get_other_choice_answers(self, question):
         answers = question.other_choice_answers()
-        if question.is_confidential:
+        if question.is_confidential or question.poll.results_hidden:
             user = self.context.get("request", {}).user
             if user and user.is_authenticated:
                 answers = answers.filter(vote__creator=user)
@@ -207,12 +207,18 @@ class QuestionSerializer(serializers.ModelSerializer):
         return ""
 
     def get_total_vote_count(self, question):
+        if question.poll.results_hidden:
+            return 0
         return getattr(question, "vote_count", -1)
 
     def get_total_vote_count_multi(self, question):
+        if question.poll.results_hidden:
+            return 0
         return getattr(question, "vote_count_multi", -1)
 
     def get_total_answer_count(self, question):
+        if question.poll.results_hidden:
+            return 0
         return getattr(question, "answer_count", -1)
 
     def validate(self, data):
@@ -258,6 +264,7 @@ class PollSerializer(serializers.ModelSerializer):
             "allow_unregistered_users",
             "guest_can_vote",
             "voting_ended",
+            "hide_results_until_finished",
         )
 
     def get_has_user_vote(self, poll):
@@ -291,6 +298,7 @@ class PollSerializer(serializers.ModelSerializer):
 
         service = PollUpdateService(instance, request)
         service.update_allow_unregistered(validated_data)
+        service.update_hide_results(validated_data)
 
         questions_data = service.parse_questions()
         if not questions_data:

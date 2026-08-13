@@ -9,6 +9,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- polls: add option to hide preliminary results until phase end
 - emails: add `get_from_email()` hook on `EmailBase` so projects can customize
   the sender address without overriding `dispatch()`.
 - exports: add ItemExportWithImageMixin to include images in exports
@@ -42,7 +43,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - CreatorContactExportMixin for Contact information fields for submission of ideas/proposals
-- Polls: optional confidential questions 
+- Polls: optional confidential questions
 - Polls: Initiators can add images to questions
 
 ### Fixed
@@ -118,13 +119,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
-- The non registered users are added to the Vote export. Votes and additional answers are included.  
+- The non registered users are added to the Vote export. Votes and additional answers are included.
 
 ### Changed
 
 - requirements: Set Django to 5.1
-- pyproject.toml: Upper dependencies to <5.2  
-- Changed migration Files to not include index_together anymore due to crashing the migrations process  
+- pyproject.toml: Upper dependencies to <5.2
+- Changed migration Files to not include index_together anymore due to crashing the migrations process
 - Django Dependencys to > 3.2 < 5.1 in pyproject.toml
 
 ### Fixed
@@ -158,7 +159,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - Migrated from Bootstrap classes to custom CSS classes
 - Modified `react_reports.py` to adapt data passing pattern for new modal structure
 - FollowButton.jsx: Added ability to add custom classes customize with `customClasses` parameter
-- FollowButton.jsx: Implemented alert relocation capability with `alertTarget` parameter and 
+- FollowButton.jsx: Implemented alert relocation capability with `alertTarget` parameter and
 - FollowButton.jsx: Added warning style to unfollowing alerts for better visual feedback- tests: replace the ckeditor fields with TextField in migrations to be able to remove the django-ckeditor package
 - **BREAKING CHANGE** Migrate the point field of the `Project` /
 `ProjectLocationMixin` to GeoDjango. This requires the usage of a database with
