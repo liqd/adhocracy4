@@ -1,6 +1,7 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.comments import models as comment_models
@@ -35,6 +36,10 @@ class ChoiceQuerySet(models.QuerySet):
 
 class Poll(module_models.Item):
     allow_unregistered_users = models.BooleanField(default=False)
+    hide_results_until_finished = models.BooleanField(
+        default=False,
+        verbose_name=_("Hide results until participation is over"),
+    )
     comments = GenericRelation(
         comment_models.Comment, related_query_name="poll", object_id_field="object_pk"
     )
@@ -44,6 +49,13 @@ class Poll(module_models.Item):
 
     def annotated_questions(self):
         return self.questions.annotate_vote_count()
+
+    @property
+    def results_hidden(self):
+        """Return True while results must not be shown to participants."""
+        if not self.hide_results_until_finished:
+            return False
+        return not self.module.phase_set.filter(end_date__lt=timezone.now()).exists()
 
 
 class Question(models.Model):
@@ -95,8 +107,7 @@ class Question(models.Model):
                 raise ValidationError(
                     {
                         "is_open": _(
-                            "Questions with open answers cannot "
-                            "have multiple choices."
+                            "Questions with open answers cannot have multiple choices."
                         )
                     }
                 )
@@ -229,7 +240,7 @@ class Choice(models.Model):
                 and self.id != self.question.get_other_option().id
             ):
                 raise ValidationError(
-                    {"is_other_choice": _('Question already has "other" ' "choice.")}
+                    {"is_other_choice": _('Question already has "other" choice.')}
                 )
         super().clean(*args, **kwargs)
 
@@ -292,7 +303,7 @@ class OtherVote(models.Model):
             raise ValidationError(
                 {
                     "vote": _(
-                        "Other vote can only be created for vote on " '"other" choice.'
+                        'Other vote can only be created for vote on "other" choice.'
                     )
                 }
             )
