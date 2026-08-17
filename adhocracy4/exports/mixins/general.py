@@ -130,4 +130,4 @@ class ItemExportWithImageMixin(VirtualFieldMixin):
             for url in re.findall(pattern, description):
                 images.append(self.request.build_absolute_uri(url))
 
-        return ", ".join(images) if images else ""
+        return "; ".join(images) if images else ""
