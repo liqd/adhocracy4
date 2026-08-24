@@ -5,6 +5,9 @@ class VirtualFieldMixin:
     def get_virtual_fields(self, virtual):
         return virtual
 
+    def get_extra_rows(self, item, names):
+        return []
+
 
 class ExportModelFieldsMixin(VirtualFieldMixin):
     """

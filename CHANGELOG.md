@@ -13,6 +13,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 - emails: add `get_from_email()` hook on `EmailBase` so projects can customize
   the sender address without overriding `dispatch()`.
 - exports: add ItemExportWithImageMixin to include images in exports
+- exports: export each image on its own row to keep image links clickable
 
 ### Fixed
 

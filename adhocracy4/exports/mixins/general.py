@@ -118,7 +118,7 @@ class ItemExportWithImageMixin(VirtualFieldMixin):
             virtual["images"] = _("Images")
         return super().get_virtual_fields(virtual)
 
-    def get_images_data(self, item):
+    def get_images(self, item):
         images = []
 
         if item.image:
@@ -130,4 +130,28 @@ class ItemExportWithImageMixin(VirtualFieldMixin):
             for url in re.findall(pattern, description):
                 images.append(self.request.build_absolute_uri(url))
 
-        return "; ".join(images) if images else ""
+        return images
+
+    def get_images_data(self, item):
+        images = self.get_images(item)
+        return images[0] if images else ""
+
+    def get_extra_rows(self, item, names):
+        images = self.get_images(item)
+        if len(images) <= 1:
+            return []
+
+        images_index = names.index("images")
+        reference_number_index = (
+            names.index("reference_number") if "reference_number" in names else None
+        )
+        extra_rows = []
+        for url in images[1:]:
+            extra_row = [""] * len(names)
+            extra_row[images_index] = url
+            if reference_number_index is not None:
+                extra_row[reference_number_index] = self.get_field_data(
+                    item, "reference_number"
+                )
+            extra_rows.append(extra_row)
+        return extra_rows

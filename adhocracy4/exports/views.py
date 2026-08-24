@@ -72,7 +72,10 @@ class BaseExport(VirtualFieldMixin):
         names, _ = self.get_fields()
 
         for item in self.get_object_list():
-            yield [self.get_field_data(item, name) for name in names]
+            row = [self.get_field_data(item, name) for name in names]
+            yield row
+            for extra_row in self.get_extra_rows(item, names):
+                yield extra_row
 
     def get_field_data(self, item, name):
         # Use custom getters if they are defined
