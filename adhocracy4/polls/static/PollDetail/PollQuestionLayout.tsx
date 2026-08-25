@@ -1,8 +1,15 @@
 import React from 'react'
 import { ConfidentialNotice } from './ConfidentialNotice'
 import QuestionImage from './QuestionImage'
+import type { PollQuestion } from '../../../static/api/types'
 
-export const PollQuestionLayout = ({ question, questionImagesEnabled, children }) => {
+interface PollQuestionLayoutProps {
+  question: PollQuestion
+  questionImagesEnabled?: boolean
+  children: React.ReactNode
+}
+
+export const PollQuestionLayout = ({ question, questionImagesEnabled, children }: PollQuestionLayoutProps) => {
   const questionHelpText = question.help_text
     ? <div className="poll__help-text">{question.help_text}</div>
     : null

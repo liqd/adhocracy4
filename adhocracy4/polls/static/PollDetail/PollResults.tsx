@@ -2,13 +2,22 @@ import React from 'react'
 import Slider from 'react-slick'
 import django from 'django'
 import QuestionImage from './QuestionImage'
+import type { PollQuestion, PollAnswer } from '../../../static/api/types'
 
-const SliderArrow = (props) => {
+interface SliderArrowProps {
+  className?: string
+  style?: React.CSSProperties
+  onClick?: () => void
+  currentSlide?: number
+  slideCount?: number
+}
+
+const SliderArrow = (props: SliderArrowProps) => {
   const { className, style, onClick, currentSlide, slideCount } = props
-  const isPrev = className.includes('slick-prev')
+  const isPrev = className?.includes('slick-prev')
   const disabled = isPrev
     ? currentSlide === 0
-    : currentSlide === slideCount - 1
+    : currentSlide === slideCount! - 1
 
   const label = isPrev
     ? django.gettext('Previous answer')
@@ -19,7 +28,7 @@ const SliderArrow = (props) => {
       type="button"
       className={className}
       style={style}
-      onClick={disabled ? null : onClick}
+      onClick={disabled ? undefined : onClick}
       aria-label={label}
       aria-disabled={disabled}
       disabled={disabled}
@@ -27,8 +36,21 @@ const SliderArrow = (props) => {
   )
 }
 
-export default class PollResult extends React.Component {
-  constructor (props) {
+interface PollResultsProps {
+  question: PollQuestion
+}
+
+interface PollResultsState {
+  question: PollQuestion
+  selectedChoices: any
+  showResult: boolean
+  alert: any
+  showOtherAnswers: boolean
+  userAnswerId: string | number | null
+}
+
+export default class PollResult extends React.Component<PollResultsProps, PollResultsState> {
+  constructor (props: PollResultsProps) {
     super(props)
 
     const question = this.props.question
@@ -46,13 +68,13 @@ export default class PollResult extends React.Component {
     }
   }
 
-  doBarTransition (node, style) {
+  doBarTransition (node: HTMLElement | null, style: Record<string, string>) {
     if (node && node.style) {
       window.requestAnimationFrame(() => Object.assign(node.style, style))
     }
   }
 
-  isUserAnswer (slide) {
+  isUserAnswer (slide: PollAnswer) {
     const matchedId = this.state.question.is_open
       ? slide.id === this.state.userAnswerId
       : slide.vote_id === this.state.userAnswerId
@@ -64,7 +86,7 @@ export default class PollResult extends React.Component {
   }
 
   getOtherAnswerText () {
-    let otherAnswerText
+    let otherAnswerText: React.ReactNode
     if (this.state.showOtherAnswers) {
       otherAnswerText = <>{django.gettext('Hide other answers')}</>
     } else {
@@ -130,7 +152,7 @@ export default class PollResult extends React.Component {
       )
     }
 
-    const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
+    const max = Math.max.apply(null, this.state.question.choices.map((c: any) => c.count))
     const total = this.state.question.totalVoteCount
 
     const settings = {
@@ -155,7 +177,7 @@ export default class PollResult extends React.Component {
         />
 
         <div className="poll__rows">
-          {this.state.question.choices.map((choice, i) => {
+          {this.state.question.choices.map((choice: any, _i: number) => {
             const percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
             const chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
             const highlight = choice.count === max && max > 0
@@ -177,7 +199,7 @@ export default class PollResult extends React.Component {
                         {this.getOtherAnswerText()}
                       </button>}
                     {this.state.showOtherAnswers &&
-                      <div className="poll-slider__container" id={this.state.question.id}>
+                      <div className="poll-slider__container" id={String(this.state.question.id)}>
                         <div
                           aria-live="polite"
                           aria-atomic="true"
@@ -185,7 +207,7 @@ export default class PollResult extends React.Component {
                           aria-label={django.gettext('Other answers carousel')}
                         >
                           <Slider {...settings}>
-                            {this.props.question.other_choice_answers.map((slide, index) => (
+                            {this.props.question.other_choice_answers.map((slide: PollAnswer, index: number) => (
                               <div
                                 className="poll-slider__item"
                                 data-index={index}
@@ -221,7 +243,7 @@ export default class PollResult extends React.Component {
                 aria-label={django.gettext('Open answers carousel')}
               >
                 <Slider {...settings}>
-                  {this.props.question.answers.map((slide, index) => (
+                  {this.props.question.answers.map((slide: PollAnswer, index: number) => (
                     <div
                       className="poll-slider__item"
                       data-index={index}

@@ -3,7 +3,7 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
 // component and related data to be tested
-import { EditPollQuestion } from '../PollDashboard/EditPollQuestion.jsx'
+import { EditPollQuestion } from '../PollDashboard/EditPollQuestion'
 import { QUESTION_OBJECT } from './__testdata__/QUESTION_OBJECT'
 
 describe('<EditPollQuestion> with...', () => {
@@ -11,7 +11,7 @@ describe('<EditPollQuestion> with...', () => {
     const onTextChangeFn = jest.fn()
     const tree = render(
       <EditPollQuestion
-        id={QUESTION_OBJECT.id}
+        id={QUESTION_OBJECT.id!}
         question={QUESTION_OBJECT}
         onLabelChange={() => onTextChangeFn()}
         // onHelptextChange={(helptext) => handleQuestion('helptext', { index, helptext })}
@@ -26,7 +26,7 @@ describe('<EditPollQuestion> with...', () => {
         // onAppendChoice={(hasOtherOption) => handleChoice('append', { index, hasOtherOption })}
       />
     )
-    const questionTextArea = tree.container.querySelector('#id_questions-6-name')
+    const questionTextArea = tree.container.querySelector('#id_questions-6-name') as HTMLTextAreaElement
     fireEvent.change(questionTextArea, { target: { value: 'question text' } })
     expect(onTextChangeFn).toHaveBeenCalled()
   })
@@ -35,12 +35,12 @@ describe('<EditPollQuestion> with...', () => {
     const onTextChangeFn = jest.fn()
     const tree = render(
       <EditPollQuestion
-        id={QUESTION_OBJECT.id}
+        id={QUESTION_OBJECT.id!}
         question={QUESTION_OBJECT}
         onLabelChange={() => onTextChangeFn()}
       />
     )
-    const questionTextArea = tree.container.querySelector('#id_questions-6-name')
+    const questionTextArea = tree.container.querySelector('#id_questions-6-name') as HTMLTextAreaElement
     fireEvent.change(questionTextArea, { target: { value: 'question text' } })
     expect(onTextChangeFn).toHaveBeenCalled()
   })
@@ -48,11 +48,11 @@ describe('<EditPollQuestion> with...', () => {
   test('helptext button', () => {
     const tree = render(
       <EditPollQuestion
-        id={QUESTION_OBJECT.id}
+        id={QUESTION_OBJECT.id!}
         question={QUESTION_OBJECT}
       />
     )
-    const helptextButton = tree.container.querySelector('.poll__btn--light')
+    const helptextButton = tree.container.querySelector('.poll__btn--light') as HTMLElement
     fireEvent.click(helptextButton)
   })
 
@@ -60,12 +60,12 @@ describe('<EditPollQuestion> with...', () => {
     const onMultiChoiceChangeFn = jest.fn()
     const tree = render(
       <EditPollQuestion
-        id={QUESTION_OBJECT.id}
+        id={QUESTION_OBJECT.id!}
         question={QUESTION_OBJECT}
         onMultipleChoiceChange={() => onMultiChoiceChangeFn()}
       />
     )
-    const multiChoiceInput = tree.container.querySelector('#id_questions-6-multiple_choice')
+    const multiChoiceInput = tree.container.querySelector('#id_questions-6-multiple_choice') as HTMLInputElement
     fireEvent.click(multiChoiceInput)
     expect(onMultiChoiceChangeFn).toHaveBeenCalled()
   })
@@ -74,12 +74,12 @@ describe('<EditPollQuestion> with...', () => {
     const onConfidentialChangeFn = jest.fn()
     const tree = render(
       <EditPollQuestion
-        id={QUESTION_OBJECT.id}
+        id={QUESTION_OBJECT.id!}
         question={QUESTION_OBJECT}
         onConfidentialChange={() => onConfidentialChangeFn()}
       />
     )
-    const confidentialInput = tree.container.querySelector('#id_questions-6-is_confidential')
+    const confidentialInput = tree.container.querySelector('#id_questions-6-is_confidential') as HTMLInputElement
     fireEvent.click(confidentialInput)
     expect(onConfidentialChangeFn).toHaveBeenCalled()
   })
@@ -88,12 +88,12 @@ describe('<EditPollQuestion> with...', () => {
     const onHasOtherChoiceChangeFn = jest.fn()
     const tree = render(
       <EditPollQuestion
-        id={QUESTION_OBJECT.id}
+        id={QUESTION_OBJECT.id!}
         question={QUESTION_OBJECT}
         onHasOtherChoiceChange={() => onHasOtherChoiceChangeFn()}
       />
     )
-    const multiChoiceInput = tree.container.querySelector('#id_questions-6-is_other_choice')
+    const multiChoiceInput = tree.container.querySelector('#id_questions-6-is_other_choice') as HTMLInputElement
     fireEvent.click(multiChoiceInput)
     expect(onHasOtherChoiceChangeFn).toHaveBeenCalled()
   })
@@ -102,7 +102,7 @@ describe('<EditPollQuestion> with...', () => {
   //   const onChoiceLabelChangeFn = jest.fn()
   //   const tree = render(
   //     <EditPollQuestion
-  //       id={QUESTION_OBJECT.id}
+  //       id={QUESTION_OBJECT.id!}
   //       question={QUESTION_OBJECT}
   //       onChoiceLabelChange={() => onChoiceLabelChangeFn()}
   //     />
@@ -116,7 +116,7 @@ describe('<EditPollQuestion> with...', () => {
   //   const onHasOtherChoiceChangeFn = jest.fn()
   //   const tree = render(
   //     <EditPollQuestion
-  //       id={QUESTION_OBJECT.id}
+  //       id={QUESTION_OBJECT.id!}
   //       question={QUESTION_OBJECT}
   //       onHasOtherChoiceChange={() => onHasOtherChoiceChangeFn()}
   //     />

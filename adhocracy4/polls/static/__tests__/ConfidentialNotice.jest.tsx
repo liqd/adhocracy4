@@ -1,10 +1,11 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { PollOpenQuestion } from '../PollDetail/PollOpenQuestion.jsx'
+import { PollOpenQuestion } from '../PollDetail/PollOpenQuestion'
+import type { PollQuestion } from '../../../static/api/types'
 
 describe('confidential notice when answering', () => {
   test('shown for confidential open question', () => {
-    const question = {
+    const question: PollQuestion = {
       id: 1,
       label: 'Email',
       help_text: '',
@@ -12,7 +13,19 @@ describe('confidential notice when answering', () => {
       isReadOnly: false,
       authenticated: true,
       userAnswer: '',
-      answers: []
+      answers: [],
+      multiple_choice: false,
+      is_open: true,
+      image_url: null,
+      image_alt_text: '',
+      image_help_text: '',
+      choices: [],
+      userChoices: [],
+      other_choice_answers: [],
+      other_choice_user_answer: '',
+      totalVoteCount: 0,
+      totalVoteCountMulti: 0,
+      totalAnswerCount: 0
     }
 
     render(

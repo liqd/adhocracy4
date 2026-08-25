@@ -1,7 +1,12 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useState } from 'react'
 
-const QuestionImage = ({ imageUrl, alt }) => {
+interface QuestionImageProps {
+  imageUrl?: string | null
+  alt?: string
+}
+
+const QuestionImage = ({ imageUrl, alt }: QuestionImageProps) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const handleClick = () => {
@@ -23,7 +28,7 @@ const QuestionImage = ({ imageUrl, alt }) => {
       style={{ cursor: isExpanded ? 'zoom-out' : 'zoom-in' }}
     >
       <img
-        src={imageUrl}
+        src={imageUrl as string | undefined}
         alt={alt}
         className="poll__question-image-img"
       />

@@ -6,8 +6,8 @@ import { EditPollManagement } from './PollDashboard/EditPollManagement'
 
 function init () {
   ReactWidgetInit('a4', 'poll-management',
-    function (el) {
-      const props = JSON.parse(el.dataset.attributes)
+    function (el: HTMLElement) {
+      const props = JSON.parse(el.dataset.attributes as string)
       const root = createRoot(el)
 
       root.render(

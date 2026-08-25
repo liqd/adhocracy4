@@ -5,7 +5,13 @@ const translated = {
   characters: django.gettext('characters')
 }
 
-export const CharCounter = ({ value, max, id }) => {
+interface CharCounterProps {
+  value: string
+  max: number
+  id?: string
+}
+
+export const CharCounter = ({ value, max, id }: CharCounterProps) => {
   const current = value.length
 
   return (

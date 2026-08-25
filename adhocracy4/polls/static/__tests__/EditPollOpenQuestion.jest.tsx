@@ -3,7 +3,7 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
 // component and related data to be tested
-import { EditPollOpenQuestion } from '../PollDashboard/EditPollOpenQuestion.jsx'
+import { EditPollOpenQuestion } from '../PollDashboard/EditPollOpenQuestion'
 import { QUESTION_OBJECT } from './__testdata__/QUESTION_OBJECT'
 
 describe('<EditPollOpenQuestion> with...', () => {
@@ -11,12 +11,12 @@ describe('<EditPollOpenQuestion> with...', () => {
     const onTextChangeFn = jest.fn()
     const tree = render(
       <EditPollOpenQuestion
-        id={QUESTION_OBJECT.id}
+        id={QUESTION_OBJECT.id!}
         question={QUESTION_OBJECT}
-        onLabelChange={(label) => onTextChangeFn()}
+        onLabelChange={(_label) => onTextChangeFn()}
       />
     )
-    const questionTextArea = tree.container.querySelector('#id_questions-6-name')
+    const questionTextArea = tree.container.querySelector('#id_questions-6-name') as HTMLTextAreaElement
     fireEvent.change(questionTextArea, { target: { value: 'question text' } })
     expect(onTextChangeFn).toHaveBeenCalled()
   })
@@ -25,12 +25,12 @@ describe('<EditPollOpenQuestion> with...', () => {
     const onTextChangeFn = jest.fn()
     const tree = render(
       <EditPollOpenQuestion
-        id={QUESTION_OBJECT.id}
+        id={QUESTION_OBJECT.id!}
         question={QUESTION_OBJECT}
-        onLabelChange={(label) => onTextChangeFn()}
+        onLabelChange={(_label) => onTextChangeFn()}
       />
     )
-    const questionTextArea = tree.container.querySelector('#id_questions-6-name')
+    const questionTextArea = tree.container.querySelector('#id_questions-6-name') as HTMLTextAreaElement
     fireEvent.change(questionTextArea, { target: { value: 'question text' } })
     expect(onTextChangeFn).toHaveBeenCalled()
   })
@@ -38,11 +38,11 @@ describe('<EditPollOpenQuestion> with...', () => {
   test('helptext button', () => {
     const tree = render(
       <EditPollOpenQuestion
-        id={QUESTION_OBJECT.id}
+        id={QUESTION_OBJECT.id!}
         question={QUESTION_OBJECT}
       />
     )
-    const helptextButton = tree.container.querySelector('.poll__btn--light')
+    const helptextButton = tree.container.querySelector('.poll__btn--light') as HTMLElement
     fireEvent.click(helptextButton)
   })
 })

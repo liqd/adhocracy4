@@ -1,9 +1,12 @@
-export const QUESTION_OBJECT = {
+import type { PollQuestionEdit } from '../../../../static/api/types'
+
+export const QUESTION_OBJECT: PollQuestionEdit = {
   id: 6,
   label: 'Pick multiple options',
   help_text: '',
   multiple_choice: true,
   is_open: false,
+  is_confidential: false,
   isReadOnly: false,
   authenticated: true,
   image_url: null,

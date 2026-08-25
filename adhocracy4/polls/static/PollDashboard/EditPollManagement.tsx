@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 /* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react'
 import django from 'django'
@@ -11,6 +10,7 @@ import EditPollDropdown from './EditPollDropdown'
 import { updateDashboard } from '../../../../adhocracy4/dashboard/assets/dashboard'
 import api from '../../../static/api'
 import Alert from '../../../static/Alert'
+import type { PollChoiceEdit, PollEditPayload, PollQuestion, PollQuestionEdit } from '../../../static/api/types'
 
 const TRANSLATED = {
   votingOptionsSectionTitle: django.gettext('Options'),
@@ -19,6 +19,13 @@ const TRANSLATED = {
   hideResultsUntilFinishedLabel: django.gettext('Hide results until participation is over'),
   hideResultsUntilFinishedSR: django.gettext('Enable this option to hide the poll results from participants until the participation phase has ended.'),
   addAndEditSectionTitle: django.gettext('Add and Edit Questions')
+}
+
+interface EditPollManagementProps {
+  pollId: number
+  enableUnregisteredUsers: boolean
+  reloadOnSuccess: boolean
+  questionImagesEnabled: boolean
 }
 
 let maxLocalKey = 0
@@ -44,12 +51,12 @@ const createEmptyQuestion = (label = '', helpText = '', isOpen = false) => ({
   image_alt_text: ''
 })
 
-export const EditPollManagement = (props) => {
-  const [questions, setQuestions] = useState([])
+export const EditPollManagement = (props: EditPollManagementProps) => {
+  const [questions, setQuestions] = useState<PollQuestionEdit[]>([])
   const [allowUnregisteredUsers, setAllowUnregisteredUsers] = useState(false)
   const [hideResultsUntilFinished, setHideResultsUntilFinished] = useState(false)
-  const [errors, setErrors] = useState([])
-  const [alert, setAlert] = useState(null)
+  const [errors, setErrors] = useState<Record<string, string[]>[]>([])
+  const [alert, setAlert] = useState<{ type: string; message: string } | null>(null)
 
   useEffect(() => {
     api.poll.get(props.pollId).done(result => {
@@ -62,21 +69,21 @@ export const EditPollManagement = (props) => {
     })
   }, [props.pollId])
 
-  const updateQuestion = (index, updates) => {
+  const updateQuestion = (index: number, updates: Partial<PollQuestionEdit>) => {
     setQuestions(update(questions, { [index]: { $merge: updates } }))
   }
 
-  const updateChoice = (qIndex, cIndex, updates) => {
+  const updateChoice = (qIndex: number, cIndex: number, updates: Partial<PollChoiceEdit>) => {
     setQuestions(update(questions, {
       [qIndex]: { choices: { [cIndex]: { $merge: updates } } }
     }))
   }
 
-  const handleQuestionLabel = (index, label) => updateQuestion(index, { label })
-  const handleQuestionHelpText = (index, helpText) => updateQuestion(index, { help_text: helpText })
-  const handleQuestionMultiChoice = (index, multipleChoice) => updateQuestion(index, { multiple_choice: multipleChoice })
-  const handleQuestionConfidential = (index, isConfidential) => updateQuestion(index, { is_confidential: isConfidential })
-  const handleQuestionImage = (index, imageBase64) => {
+  const handleQuestionLabel = (index: number, label: string) => updateQuestion(index, { label })
+  const handleQuestionHelpText = (index: number, helpText: string) => updateQuestion(index, { help_text: helpText })
+  const handleQuestionMultiChoice = (index: number, multipleChoice: boolean) => updateQuestion(index, { multiple_choice: multipleChoice })
+  const handleQuestionConfidential = (index: number, isConfidential: boolean) => updateQuestion(index, { is_confidential: isConfidential })
+  const handleQuestionImage = (index: number, imageBase64: string | null) => {
     updateQuestion(index, {
       image_base64: imageBase64 || '',
       image_url: imageBase64 || null,
@@ -85,17 +92,17 @@ export const EditPollManagement = (props) => {
     if (!imageBase64) setErrors([])
   }
 
-  const handleQuestionAltText = (index, altText) => updateQuestion(index, { image_alt_text: altText })
+  const handleQuestionAltText = (index: number, altText: string) => updateQuestion(index, { image_alt_text: altText })
 
   const handleQuestionAppend = (isOpen = false) => {
     setQuestions([...questions, createEmptyQuestion('', '', isOpen)])
   }
 
-  const handleQuestionDelete = (index) => {
+  const handleQuestionDelete = (index: number) => {
     setQuestions(questions.filter((_, i) => i !== index))
   }
 
-  const handleQuestionMove = (index, direction) => {
+  const handleQuestionMove = (index: number, direction: number) => {
     const newIndex = index + direction
     if (newIndex < 0 || newIndex >= questions.length) return
 
@@ -107,13 +114,13 @@ export const EditPollManagement = (props) => {
     setQuestions(reordered)
   }
 
-  const handleChoiceLabel = (qIndex, cIndex, label) => updateChoice(qIndex, cIndex, { label })
-  const handleChoiceDelete = (qIndex, cIndex) => {
-    const newChoices = questions[qIndex].choices.filter((_, i) => i !== cIndex)
+  const handleChoiceLabel = (qIndex: number, cIndex: number, label: string) => updateChoice(qIndex, cIndex, { label })
+  const handleChoiceDelete = (qIndex: number, cIndex: number) => {
+    const newChoices = questions[qIndex].choices.filter((_: PollChoiceEdit, i: number) => i !== cIndex)
     updateQuestion(qIndex, { choices: newChoices })
   }
 
-  const handleChoiceAppend = (qIndex, hasOtherOption) => {
+  const handleChoiceAppend = (qIndex: number, hasOtherOption: boolean) => {
     const question = questions[qIndex]
     const position = question.choices.length - 1
     const newChoice = createEmptyChoice()
@@ -125,16 +132,16 @@ export const EditPollManagement = (props) => {
     }))
   }
 
-  const handleChoiceIsOtherChoice = (qIndex, isOtherChoice) => {
+  const handleChoiceIsOtherChoice = (qIndex: number, isOtherChoice: boolean) => {
     const question = questions[qIndex]
     if (isOtherChoice) {
       setQuestions(update(questions, {
         [qIndex]: { choices: { $push: [createEmptyChoice(true)] } }
       }))
     } else {
-      const otherIndex = question.choices.findIndex(c => c.key === 'other-choice')
+      const otherIndex = question.choices.findIndex((c: PollChoiceEdit) => c.key === 'other-choice')
       if (otherIndex !== -1) {
-        const newChoices = question.choices.filter((_, i) => i !== otherIndex)
+        const newChoices = question.choices.filter((_: PollChoiceEdit, i: number) => i !== otherIndex)
         updateQuestion(qIndex, { choices: newChoices })
       }
     }
@@ -145,21 +152,22 @@ export const EditPollManagement = (props) => {
     setErrors([])
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const payload = {
       questions: questions.map(q => {
-        const { key, answers, image_url, image_base64, image_alt_text, ...clean } = q
+        const { key: _key, answers: _answers, image_url: _image_url, image_base64, image_alt_text, ...clean } = q
+        const cleanPayload: PollEditPayload['questions'][number] = clean
 
         if (props.questionImagesEnabled) {
-          if (image_base64 !== undefined) {
-            clean.image_base64 = image_base64 === '' ? '' : image_base64
+          if (image_base64 !== undefined && image_base64 !== null) {
+            cleanPayload.image_base64 = image_base64 === '' ? '' : image_base64
           }
-          clean.image_alt_text = image_alt_text || ''
+          cleanPayload.image_alt_text = image_alt_text || ''
         }
 
-        return clean
+        return cleanPayload
       }),
       allow_unregistered_users: allowUnregisteredUsers,
       hide_results_until_finished: hideResultsUntilFinished
@@ -167,7 +175,7 @@ export const EditPollManagement = (props) => {
 
     api.poll.change(payload, props.pollId)
       .done(response => {
-        setQuestions(response.questions.map(q => ({
+        setQuestions(response.questions.map((q: PollQuestion) => ({
           ...q,
           image_base64: null,
           key: q.id || getNextLocalKey()
@@ -178,7 +186,7 @@ export const EditPollManagement = (props) => {
       })
       .fail(xhr => {
         try {
-          const text = xhr.responseText
+          const text: string = xhr.responseText
           if (text) {
             const parsed = JSON.parse(text)
             if (parsed?.questions) {
@@ -189,8 +197,8 @@ export const EditPollManagement = (props) => {
           } else {
             console.error('Poll save error (no response body)')
           }
-        } catch (e) {
-          const text = xhr.responseText
+        } catch {
+          const text: string = xhr.responseText
           console.error('Poll save error (non-JSON response):', text ? text.substring(0, 1000) : 'no response body')
         }
         setAlert({
@@ -241,16 +249,16 @@ export const EditPollManagement = (props) => {
       <section>
         <h2>{TRANSLATED.addAndEditSectionTitle}</h2>
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
-          {questions.map((question, index, arr) => {
-            const key = question.id || question.key
+          {questions.map((question: PollQuestionEdit, index: number, arr: PollQuestionEdit[]) => {
+            const key = question.id || question.key || getNextLocalKey()
             const commonProps = {
               id: key,
               key,
               question,
               errors: errors?.[index] || {},
-              onLabelChange: (label) => handleQuestionLabel(index, label),
-              onHelptextChange: (text) => handleQuestionHelpText(index, text),
-              onConfidentialChange: (val) => handleQuestionConfidential(index, val),
+              onLabelChange: (label: string) => handleQuestionLabel(index, label),
+              onHelptextChange: (text: string) => handleQuestionHelpText(index, text),
+              onConfidentialChange: (val: boolean) => handleQuestionConfidential(index, val),
               onMoveUp: index > 0 ? () => handleQuestionMove(index, -1) : null,
               onMoveDown: index < arr.length - 1 ? () => handleQuestionMove(index, 1) : null,
               onDelete: () => handleQuestionDelete(index)
@@ -259,19 +267,19 @@ export const EditPollManagement = (props) => {
             return question.is_open
               ? <EditPollOpenQuestion
                   {...commonProps}
-                  onImageChange={(image) => handleQuestionImage(index, image)}
-                  onAltTextChange={(text) => handleQuestionAltText(index, text)}
+                  onImageChange={(image: string | null) => handleQuestionImage(index, image)}
+                  onAltTextChange={(text: string) => handleQuestionAltText(index, text)}
                   questionImagesEnabled={props.questionImagesEnabled}
                 />
               : <EditPollQuestion
                   {...commonProps}
-                  onMultipleChoiceChange={(val) => handleQuestionMultiChoice(index, val)}
-                  onHasOtherChoiceChange={(val) => handleChoiceIsOtherChoice(index, val)}
-                  onChoiceLabelChange={(cIndex, label) => handleChoiceLabel(index, cIndex, label)}
-                  onDeleteChoice={(cIndex) => handleChoiceDelete(index, cIndex)}
-                  onAppendChoice={(hasOther) => handleChoiceAppend(index, hasOther)}
-                  onImageChange={(image) => handleQuestionImage(index, image)}
-                  onAltTextChange={(text) => handleQuestionAltText(index, text)}
+                  onMultipleChoiceChange={(val: boolean) => handleQuestionMultiChoice(index, val)}
+                  onHasOtherChoiceChange={(val: boolean) => handleChoiceIsOtherChoice(index, val)}
+                  onChoiceLabelChange={(cIndex: number, label: string) => handleChoiceLabel(index, cIndex, label)}
+                  onDeleteChoice={(cIndex: number) => handleChoiceDelete(index, cIndex)}
+                  onAppendChoice={(hasOther: boolean) => handleChoiceAppend(index, hasOther)}
+                  onImageChange={(image: string | null) => handleQuestionImage(index, image)}
+                  onAltTextChange={(text: string) => handleQuestionAltText(index, text)}
                   questionImagesEnabled={props.questionImagesEnabled}
                 />
           })}

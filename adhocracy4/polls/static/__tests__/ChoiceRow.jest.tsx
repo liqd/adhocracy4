@@ -4,7 +4,7 @@ import { ChoiceRow } from '../PollDetail/ChoiceRow'
 
 // Mock of the TextareaWithCounter component
 jest.mock('../PollDetail/TextareaWithCounter', () => ({
-  TextareaWithCounter: ({ value, onChange }) => (
+  TextareaWithCounter: ({ value, onChange }: { value: string; onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void }) => (
     <textarea value={value} onChange={onChange} data-testid="textarea-with-counter-2" />
   )
 }))
@@ -17,17 +17,18 @@ describe('ChoiceRow', () => {
     choice: {
       id: 1,
       label: 'Option 1',
-      is_other_choice: false
+      is_other_choice: false,
+      count: 0
     },
     checked: false,
     onInputChange: mockOnInputChange,
-    type: 'radio',
+    type: 'radio' as const,
     disabled: false,
     otherChoiceAnswer: '',
     onOtherChange: mockOnOtherChange,
     isAuthenticated: true,
     isReadOnly: false,
-    errors: null
+    errors: undefined
   }
 
   it('should render the ChoiceRow correctly', () => {
@@ -44,7 +45,8 @@ describe('ChoiceRow', () => {
       choice: {
         id: 2,
         label: 'Other',
-        is_other_choice: true
+        is_other_choice: true,
+        count: 0
       }
     }
 
@@ -66,7 +68,8 @@ describe('ChoiceRow', () => {
       choice: {
         id: 2,
         label: 'Other',
-        is_other_choice: true
+        is_other_choice: true,
+        count: 0
       }
     }
 
@@ -75,7 +78,7 @@ describe('ChoiceRow', () => {
     fireEvent.click(screen.getByRole('radio')) // Selecting the "Other" option
 
     // Get the textarea and simulate typing
-    const textarea = screen.getByTestId('textarea-with-counter-2')
+    const textarea = screen.getByTestId('textarea-with-counter-2') as HTMLTextAreaElement
     fireEvent.change(textarea, { target: { value: 'New answer' } })
 
     // Check that the textarea value was updated

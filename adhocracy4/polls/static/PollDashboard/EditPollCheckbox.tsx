@@ -1,5 +1,14 @@
 import React from 'react'
 
+interface EditPollCheckboxProps {
+  id: number | string
+  field: string
+  label: string
+  checked?: boolean
+  onChange?: (checked: boolean) => void
+  disabled?: boolean
+}
+
 export const EditPollCheckbox = ({
   id,
   field,
@@ -7,7 +16,7 @@ export const EditPollCheckbox = ({
   checked,
   onChange,
   disabled = false
-}) => (
+}: EditPollCheckboxProps) => (
   <div className="form-check">
     <label
       className="form-check__label"
@@ -19,7 +28,7 @@ export const EditPollCheckbox = ({
         name={'questions-' + id + '-' + field}
         checked={checked || false}
         disabled={disabled}
-        onChange={(e) => onChange(e.target.checked)}
+        onChange={(e) => onChange?.(e.target.checked)}
       />
       &nbsp;
       {label}

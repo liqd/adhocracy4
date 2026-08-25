@@ -7,13 +7,23 @@ const translated = {
   specify: django.gettext('Please specify:')
 }
 
-export const TextareaWithCounter = ({ value, onChange, disabled, error, id, questionType = 'other' }) => {
+interface TextareaWithCounterProps {
+  value: string
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  disabled: boolean
+  error?: any
+  id: number | string
+  questionType?: string
+  label?: string
+}
+
+export const TextareaWithCounter = ({ value, onChange, disabled, error, id, questionType = 'other' }: TextareaWithCounterProps) => {
   // textarea rows and character length based on question type
   const rowSize = questionType === 'open' ? 6 : 3
   const maxLength = questionType === 'open' ? 750 : 250
-  const textareaRef = useRef(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  const handleDynamicHeight = (textarea) => {
+  const handleDynamicHeight = (textarea: HTMLTextAreaElement | null) => {
     if (!textarea) return
     textarea.style.height = 'auto'
     textarea.style.height = textarea.scrollHeight + 'px'
@@ -23,7 +33,7 @@ export const TextareaWithCounter = ({ value, onChange, disabled, error, id, ques
     handleDynamicHeight(textareaRef.current)
   }, [value])
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange(e)
     handleDynamicHeight(e.target)
   }
@@ -50,7 +60,7 @@ export const TextareaWithCounter = ({ value, onChange, disabled, error, id, ques
         rows={rowSize}
       />
       <CharCounter value={value} max={maxLength} id={'id_char-count-' + id} />
-      {error && <FormFieldError id={'id_error-' + id} error={error} field={id} />}
+      {error && <FormFieldError id={'id_error-' + id} error={error} field={String(id)} />}
     </div>
   )
 }

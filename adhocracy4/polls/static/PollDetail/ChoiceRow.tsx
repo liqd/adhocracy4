@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import django from 'django'
 import { TextareaWithCounter } from './TextareaWithCounter'
+import type { PollChoice } from '../../../static/api/types'
 
 const translated = {
   other: django.gettext('other')
+}
+
+interface ChoiceInputProps {
+  type: 'radio' | 'checkbox'
+  choice: PollChoice
+  checked: boolean
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>, isOtherChoice: boolean) => void
+  disabled: boolean
+  name?: string
 }
 
 const ChoiceInput = ({
@@ -13,7 +23,7 @@ const ChoiceInput = ({
   onInputChange,
   disabled,
   name
-}) => (
+}: ChoiceInputProps) => (
   <input
     className="poll-row__radio"
     type={type}
@@ -27,6 +37,19 @@ const ChoiceInput = ({
   />
 )
 
+interface ChoiceRowProps {
+  choice: PollChoice
+  checked: boolean
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>, isOtherChoice: boolean) => void
+  type: 'radio' | 'checkbox'
+  disabled: boolean
+  otherChoiceAnswer: string
+  onOtherChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  isReadOnly: boolean
+  errors: Record<string, string[]> | undefined
+  name?: string
+}
+
 // eslint-disable-next-line react/display-name
 export const ChoiceRow = React.memo(({
   choice,
@@ -36,14 +59,15 @@ export const ChoiceRow = React.memo(({
   disabled,
   otherChoiceAnswer,
   onOtherChange,
-  isReadOnly,
+  isReadOnly: _isReadOnly,
   errors,
   name
-}) => {
+}: ChoiceRowProps) => {
   const [textareaValue, setTextareaValue] = useState(otherChoiceAnswer)
   const [showTextarea, setShowTextarea] = useState(false)
 
   // When the choice is selected or changed, update the textarea visibility
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (checked && choice.is_other_choice) {
       setShowTextarea(true)
@@ -51,8 +75,9 @@ export const ChoiceRow = React.memo(({
       setShowTextarea(false)
     }
   }, [checked, choice.is_other_choice])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
-  const handleChange = (event, isOtherChoice) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, isOtherChoice: boolean) => {
     // Update the checkbox/radio button state
     onInputChange(event, isOtherChoice)
 
@@ -64,7 +89,7 @@ export const ChoiceRow = React.memo(({
     }
   }
 
-  const handleTextareaChange = (event) => {
+  const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     // Preserve the value of the textarea even if options are changed
     setTextareaValue(event.target.value)
     onOtherChange(event)

@@ -1,28 +1,46 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import PollResults from '../PollDetail/PollResults.jsx'
+import PollResults from '../PollDetail/PollResults'
+import type { PollQuestion } from '../../../static/api/types'
 
 jest.mock('react-slick', () => {
-  return function MockSlider ({ children }) {
+  return function MockSlider ({ children }: { children: React.ReactNode }) {
     return <div data-testid="mock-slider">{children}</div>
   }
 })
 
 describe('<PollResults> confidential', () => {
+  const baseQuestion: PollQuestion = {
+    id: 0,
+    label: '',
+    help_text: '',
+    is_open: false,
+    is_confidential: false,
+    multiple_choice: false,
+    isReadOnly: false,
+    authenticated: false,
+    image_url: null,
+    image_alt_text: '',
+    image_help_text: '',
+    choices: [],
+    userChoices: [],
+    answers: [],
+    other_choice_answers: [],
+    other_choice_user_answer: '',
+    userAnswer: '',
+    totalVoteCount: 0,
+    totalVoteCountMulti: 0,
+    totalAnswerCount: 0
+  }
+
   test('shows only response count for confidential open question', () => {
-    const question = {
+    const question: PollQuestion = {
+      ...baseQuestion,
       id: 1,
       label: 'Contact details',
       is_open: true,
       is_confidential: true,
-      multiple_choice: false,
-      choices: [],
-      userChoices: [],
-      answers: [],
-      totalAnswerCount: 15,
-      totalVoteCount: 0,
-      totalVoteCountMulti: 0,
-      other_choice_answers: []
+      totalAnswerCount: 15
     }
 
     const { container } = render(<PollResults question={question} />)
@@ -34,19 +52,15 @@ describe('<PollResults> confidential', () => {
   })
 
   test('shows only response count for confidential choice question', () => {
-    const question = {
+    const question: PollQuestion = {
+      ...baseQuestion,
       id: 2,
       label: 'Sensitive choice',
-      is_open: false,
       is_confidential: true,
-      multiple_choice: false,
       choices: [{ id: 1, label: 'A', count: 0, is_other_choice: false }],
       userChoices: [1],
-      answers: [],
-      totalAnswerCount: 0,
       totalVoteCount: 8,
-      totalVoteCountMulti: 8,
-      other_choice_answers: []
+      totalVoteCountMulti: 8
     }
 
     const { container } = render(<PollResults question={question} />)

@@ -3,7 +3,7 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
 // component and related data to be tested
-import { EditPollChoice } from '../PollDashboard/EditPollChoice.jsx'
+import { EditPollChoice } from '../PollDashboard/EditPollChoice'
 
 const CHOICE_OBJECT = {
   id: 1,
@@ -24,7 +24,7 @@ describe('<EditPollChoice> with...', () => {
         undeletable
       />
     )
-    const choiceTextInput = tree.container.querySelector('#id_choices-1-name')
+    const choiceTextInput = tree.container.querySelector('#id_choices-1-name') as HTMLInputElement
     expect(choiceTextInput.value).toBe(CHOICE_OBJECT.label)
   })
 
@@ -37,11 +37,11 @@ describe('<EditPollChoice> with...', () => {
         label={CHOICE_OBJECT.label}
         choice={CHOICE_OBJECT}
         choiceId={CHOICE_OBJECT.id}
-        onLabelChange={(label) => { onLabelChangedFn() }}
+        onLabelChange={(_label) => { onLabelChangedFn() }}
         undeletable
       />
     )
-    const choiceTextInput = tree.container.querySelector('#id_choices-1-name')
+    const choiceTextInput = tree.container.querySelector('#id_choices-1-name') as HTMLInputElement
     fireEvent.change(choiceTextInput, { target: { value: 'change text' } })
     expect(onLabelChangedFn).toHaveBeenCalled()
   })

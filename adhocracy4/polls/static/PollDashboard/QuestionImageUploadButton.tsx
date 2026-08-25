@@ -2,30 +2,41 @@
 import React, { useRef } from 'react'
 import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
+import type { PollQuestionEdit } from '../../../static/api/types'
 
-const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpText, altText, onAltTextChange }) => {
-  const fileInputRef = useRef(null)
+interface QuestionImageUploadButtonProps {
+  id: number | string
+  question: PollQuestionEdit
+  onImageChange?: (imageBase64: string | null) => void
+  errors?: Record<string, string[]>
+  helpText?: string
+  altText?: string
+  onAltTextChange?: (text: string) => void
+}
+
+const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpText, altText, onAltTextChange }: QuestionImageUploadButtonProps) => {
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const imageError = errors?.image_base64 || errors?.image
   const altTextError = errors?.image_alt_text
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0]
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
     if (file) {
       const reader = new FileReader()
-      reader.onloadend = () => onImageChange(reader.result)
+      reader.onloadend = () => onImageChange?.(reader.result as string)
       reader.readAsDataURL(file)
     }
   }
 
   const handleRemove = () => {
-    onImageChange('')
+    onImageChange?.('')
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
     }
   }
 
   const handleUploadClick = () => {
-    fileInputRef.current.click()
+    fileInputRef.current?.click()
   }
 
   return (
@@ -89,7 +100,7 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpTe
             id={`id_questions-${id}-image_alt_text`}
             className={`form-control ${altTextError ? 'is-invalid' : ''}`}
             value={altText || ''}
-            onChange={(e) => onAltTextChange(e.target.value)}
+            onChange={(e) => onAltTextChange?.(e.target.value)}
             maxLength={80}
             aria-invalid={!!altTextError}
             aria-describedby={altTextError ? `alt-text-error-${id}` : undefined}

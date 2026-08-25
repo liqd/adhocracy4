@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React from 'react'
 import django from 'django'
 
@@ -10,12 +11,13 @@ import api from '../../../static/api'
 import Captcha from '../../../static/Captcha'
 import config from '../../../static/config'
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
+import type { Poll, PollQuestion, PollVotePayload } from '../../../static/api/types'
 
-const captchaWidgets = {
+const captchaWidgets: Record<string, any> = {
   captcheck: Captcha
 }
 
-function getCaptchaWidget (type) {
+function getCaptchaWidget (type: string) {
   return captchaWidgets[type] || Captcha
 }
 
@@ -39,8 +41,39 @@ const ALERT_INVALID = {
   message: django.gettext('Your answer is invalid or empty. Please try again.')
 }
 
-class PollQuestions extends React.Component {
-  constructor (props) {
+interface PollQuestionsProps {
+  pollId: number
+  captchaUrl?: string
+  captchaType?: string
+  questionImagesEnabled?: boolean
+}
+
+interface PollQuestionsState {
+  questions: PollQuestion[]
+  captcha: string
+  showResults: boolean
+  allowUnregisteredUsers: boolean
+  alert: any
+  hasVotes: boolean
+  errors: Record<string, any>
+  loading: boolean
+  loadingPage: boolean
+  refreshCaptcha: boolean
+  result: PollQuestion[]
+  hasUserVote: boolean
+  useTermsOfUse: boolean
+  agreedTermsOfUse: boolean
+  checkedTermsOfUse: boolean
+  orgTermsUrl: string
+}
+
+export default class PollQuestions extends React.Component<PollQuestionsProps, PollQuestionsState> {
+  linkToPoll: React.ReactElement
+  linkChangeVote: React.ReactElement
+  loadingIndicator: React.ReactElement
+  buttonVote: React.ReactElement | undefined
+
+  constructor (props: PollQuestionsProps) {
     super(props)
 
     this.state = {
@@ -53,7 +86,13 @@ class PollQuestions extends React.Component {
       errors: {},
       loading: false,
       loadingPage: true,
-      refreshCaptcha: true
+      refreshCaptcha: true,
+      result: [],
+      hasUserVote: false,
+      useTermsOfUse: false,
+      agreedTermsOfUse: false,
+      checkedTermsOfUse: false,
+      orgTermsUrl: ''
     }
 
     this.handleTermsOfUse = this.handleTermsOfUse.bind(this)
@@ -92,55 +131,69 @@ class PollQuestions extends React.Component {
     )
   }
 
-  setModified (questionId, value) {
+  setModified (questionId: number | string, value: boolean) {
     const currentQuestion = this.state.questions.find(
       (question) => question.id === questionId
     )
     this.setState({ hasVotes: value })
-    currentQuestion.modified = value
+    if (currentQuestion) {
+      currentQuestion.modified = value
+    }
   }
 
-  handleVoteSingle (questionId, choiceId) {
-    this.setState((prevState) => {
+  handleVoteSingle (questionId: number | string, choiceId: number) {
+    this.setState((prevState: PollQuestionsState) => {
       const currentQuestion = prevState.questions.find(
         (question) => question.id === questionId
       )
-      currentQuestion.userChoices = [choiceId]
+      if (currentQuestion) {
+        currentQuestion.userChoices = [choiceId]
+      }
+      return prevState
     })
     this.setModified(questionId, true)
   }
 
-  handleVoteMulti (questionId, choiceId) {
-    this.setState((prevState) => {
+  handleVoteMulti (questionId: number | string, choiceId: number) {
+    this.setState((prevState: PollQuestionsState) => {
       const currentQuestion = prevState.questions.find(
         (question) => question.id === questionId
       )
-      const toRemove = currentQuestion.userChoices.findIndex(
-        (userChoice) => userChoice === choiceId
-      )
-      toRemove !== -1 && currentQuestion.userChoices.splice(toRemove, 1)
-      toRemove !== -1 || currentQuestion.userChoices.push(choiceId)
+      if (currentQuestion) {
+        const toRemove = currentQuestion.userChoices.findIndex(
+          (userChoice: number) => userChoice === choiceId
+        )
+        toRemove !== -1 && currentQuestion.userChoices.splice(toRemove, 1)
+        toRemove !== -1 || currentQuestion.userChoices.push(choiceId)
+      }
+      return prevState
     })
     this.setModified(questionId, true)
   }
 
-  handleVoteOther (questionId, otherAnswer, otherChoice) {
-    this.setState((prevState) => {
+  handleVoteOther (questionId: number | string, otherAnswer: string, otherChoice: any) {
+    this.setState((prevState: PollQuestionsState) => {
       const currentQuestion = prevState.questions.find(
         (question) => question.id === questionId
       )
       otherChoice && delete this.state.errors[otherChoice.id]
-      currentQuestion.other_choice_answer = otherAnswer
+      if (currentQuestion) {
+        currentQuestion.other_choice_answer = otherAnswer
+      }
+      return prevState
     })
     this.setModified(questionId, true)
   }
 
-  handleVoteOpen (questionId, openAnswer) {
-    this.setState((prevState) => {
+  handleVoteOpen (questionId: number | string, openAnswer: string) {
+    this.setState((prevState: PollQuestionsState) => {
       const currentQuestion = prevState.questions.find(
         (question) => question.id === questionId
       )
-      currentQuestion.open_answer = openAnswer
+      if (currentQuestion) {
+        currentQuestion.open_answer = openAnswer
+      }
+      return prevState
     })
     this.setModified(questionId, true)
   }
@@ -219,7 +272,7 @@ class PollQuestions extends React.Component {
     )
   }
 
-  addValidationError (choiceId) {
+  addValidationError (choiceId: number) {
     this.setState((prevState) => {
       const newErrors = { ...prevState.errors }
       newErrors[choiceId] = [
@@ -232,7 +285,7 @@ class PollQuestions extends React.Component {
     })
   }
 
-  removeValidationError (choiceId) {
+  removeValidationError (choiceId: number) {
     this.setState((prevState) => {
       const newErrors = { ...prevState.errors }
       newErrors[choiceId] && delete newErrors[choiceId]
@@ -257,11 +310,11 @@ class PollQuestions extends React.Component {
     }
   }
 
-  sendRequest (data) {
+  sendRequest (data: PollVotePayload) {
     api.poll
       .vote(data)
-      .then((poll) => {
-        this.setState((prevState) => {
+      .then((poll: Poll) => {
+        this.setState(() => {
           return {
             result: JSON.parse(JSON.stringify(poll.questions)),
             questions: poll.questions,
@@ -291,7 +344,7 @@ class PollQuestions extends React.Component {
       })
   }
 
-  handleSubmit (e) {
+  handleSubmit (e: React.SyntheticEvent) {
     e.preventDefault()
 
     this.setState({
@@ -303,15 +356,15 @@ class PollQuestions extends React.Component {
       (question) => question.modified
     )
 
-    const validatedQuestions = modifiedAnswers.filter((question) => {
+    const validatedQuestions = modifiedAnswers.filter((question: any) => {
       if (!question.is_open) {
         const otherChoice = question.choices.find(
-          (choice) => choice.is_other_choice
+          (choice: any) => choice.is_other_choice
         )
         const otherChoiceSelected =
           otherChoice &&
           question.userChoices.filter(
-            (userChoice) => userChoice === otherChoice.id
+            (userChoice: number) => userChoice === otherChoice.id
           ).length > 0
         if (otherChoiceSelected) {
           if (!question.other_choice_answer) {
@@ -325,7 +378,7 @@ class PollQuestions extends React.Component {
       return question
     })
 
-    const voteData = {}
+    const voteData: Record<number, PollVotePayload['votes'][number]> = {}
     for (const question of validatedQuestions) {
       voteData[question.id] = {
         choices: question.userChoices,
@@ -333,7 +386,7 @@ class PollQuestions extends React.Component {
         open_answer: question.open_answer || ''
       }
     }
-    const data = {
+    const data: PollVotePayload = {
       urlReplaces: { pollId: this.props.pollId },
       votes: voteData,
       captcha: this.state.captcha
@@ -354,7 +407,7 @@ class PollQuestions extends React.Component {
   }
 
   getPollData () {
-    api.poll.get(this.props.pollId).done((poll) => {
+    api.poll.get(this.props.pollId).done((poll: Poll) => {
       this.setState({
         result: JSON.parse(JSON.stringify(poll.questions)),
         questions: poll.questions,
@@ -384,7 +437,7 @@ class PollQuestions extends React.Component {
   render () {
     this.buttonVote = this.getVoteButton()
 
-    const CaptchaWidget = getCaptchaWidget(this.props.captchaType)
+    const CaptchaWidget = getCaptchaWidget(this.props.captchaType || '')
 
     return this.state.loadingPage
       ? (
@@ -455,7 +508,7 @@ class PollQuestions extends React.Component {
                         <div className="col-12">
                           <TermsOfUseCheckbox
                             id="terms-of-use"
-                            onChange={(val) => this.setState({ checkedTermsOfUse: val })}
+                            onChange={(val: boolean) => this.setState({ checkedTermsOfUse: val })}
                             orgTermsUrl={this.state.orgTermsUrl}
                           />
                         </div>
@@ -466,7 +519,7 @@ class PollQuestions extends React.Component {
                         this.state.questions.length > 0 &&
                         !this.state.questions[0].authenticated && (
                           <CaptchaWidget
-                            onChange={(val) => this.setState({ captcha: val })}
+                            onChange={(val: string) => this.setState({ captcha: val })}
                             apiUrl={this.props.captchaUrl}
                             name="id_captcheck"
                             refresh={this.state.refreshCaptcha}
@@ -486,5 +539,3 @@ class PollQuestions extends React.Component {
         )
   }
 }
-
-export default PollQuestions

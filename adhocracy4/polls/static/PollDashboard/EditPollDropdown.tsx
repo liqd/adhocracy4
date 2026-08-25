@@ -7,7 +7,12 @@ const translated = {
   open: django.gettext('Open question')
 }
 
-const EditPollDropdown = (props) => {
+interface EditPollDropdownProps {
+  handleToggleMulti: () => void
+  handleToggleOpen: () => void
+}
+
+const EditPollDropdown = (props: EditPollDropdownProps) => {
   return (
     <div className="dropdown editpoll__dropdown">
       <button

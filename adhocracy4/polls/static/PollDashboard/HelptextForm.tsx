@@ -1,8 +1,16 @@
 import React from 'react'
 import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
+import type { PollQuestionEdit } from '../../../static/api/types'
 
-export const HelptextForm = (props) => {
+interface HelptextFormProps {
+  id: number | string
+  question: PollQuestionEdit
+  onHelptextChange?: (text: string) => void
+  errors?: Record<string, string[]>
+}
+
+export const HelptextForm = (props: HelptextFormProps) => {
   return (
     <div className="helptext-form form-group">
       <label
@@ -13,9 +21,9 @@ export const HelptextForm = (props) => {
           id={'id_helptext-' + props.id + '-name'}
           name={'helptext-' + props.id + '-name'}
           value={props.question.help_text}
-          onChange={(e) => { props.onHelptextChange(e.target.value) }}
+          onChange={(e) => { props.onHelptextChange?.(e.target.value) }}
           aria-invalid={props.errors ? 'true' : 'false'}
-          aria-describedby={props.errors && 'id_error-' + props.id}
+          aria-describedby={props.errors ? 'id_error-' + props.id : undefined}
         />
         <FormFieldError id={'id_error-' + props.id} error={props.errors} field="help_text" />
       </label>
