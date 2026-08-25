@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 
-export const SwitchButton = (props) => {
+interface SwitchButtonProps {
+  id?: string
+  isChecked?: boolean
+  onClickCallback?: (isChecked: boolean) => void
+  switchLabelOn?: string
+  switchLabelOff?: string
+}
+
+export const SwitchButton = (props: SwitchButtonProps) => {
   const [isChecked, setIsChecked] = useState(props.isChecked || false)
 
   const handleButtonClick = () => {

@@ -1,17 +1,17 @@
-let comments = null
-let following = null
+let comments: any = null
+let following: { enabled: boolean } | null = null
 
 const api = {
   comments: {
     get: jest.fn(() => {
       const instance = {
-        done: (fn) => {
+        done: (fn: (data: any) => void) => {
           if (comments !== null) {
             fn(comments)
           }
           return instance
         },
-        fail: (fn) => {
+        fail: (fn: (err: { status: number }) => void) => {
           if (comments === null) {
             fn({ status: 400 })
           }
@@ -20,20 +20,20 @@ const api = {
       }
       return instance
     }),
-    setComments: (value) => {
+    setComments: (value: any) => {
       comments = value
     }
   },
   follow: {
     get: jest.fn(() => {
       const instance = {
-        done: (fn) => {
+        done: (fn: (data: { enabled: boolean }) => void) => {
           if (following !== null) {
             fn(following)
           }
           return instance
         },
-        fail: (fn) => {
+        fail: (fn: (err: { status: number }) => void) => {
           if (following === null) {
             fn({ status: 400 })
           }
@@ -42,16 +42,16 @@ const api = {
       }
       return instance
     }),
-    change: jest.fn((enabled) => {
+    change: jest.fn((enabled: boolean) => {
       following = { enabled }
       const instance = {
-        done: (fn) => {
+        done: (fn: (data: { enabled: boolean }) => void) => {
           if (following !== null) {
             fn(following)
           }
           return instance
         },
-        fail: (fn) => {
+        fail: (fn: (err: { status: number }) => void) => {
           if (following === null) {
             fn({ status: 400 })
           }
@@ -60,10 +60,10 @@ const api = {
       }
       return instance
     }),
-    setFollowing: (value) => {
+    setFollowing: (value: { enabled: boolean } | null) => {
       following = value
     }
   }
 }
 
-module.exports = api
+export default api

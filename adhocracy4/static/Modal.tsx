@@ -8,6 +8,24 @@ const translated = {
   cancel: django.gettext('Cancel')
 }
 
+interface ModalPartials {
+  title?: string
+  body?: React.ReactNode
+  description?: string
+  hideFooter?: boolean
+  bodyClass?: string
+}
+
+interface ModalProps {
+  partials: ModalPartials
+  handleSubmit?: (e?: React.MouseEvent) => void
+  action?: string
+  keepOpenOnSubmit?: boolean
+  toggle: React.ReactNode
+  onOpen?: () => void
+  onClose?: () => void
+}
+
 const Modal = ({
   partials,
   handleSubmit,
@@ -16,25 +34,29 @@ const Modal = ({
   toggle,
   onOpen,
   onClose
-}) => {
-  const dialogRef = useRef(null)
-  const toggleButtonRef = useRef(null)
+}: ModalProps) => {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const toggleButtonRef = useRef<HTMLButtonElement | null>(null)
   const uniqueId = useId()
   const titleId = `modal-title-${uniqueId}`
   const descriptionId = partials.description ? `modal-desc-${uniqueId}` : undefined
   const [isOpen, setIsOpen] = useState(false)
+
+  const handleClose = () => {
+    dialogRef.current?.close()
+  }
 
   // Focus trap and initial focus
   useEffect(() => {
     const dialog = dialogRef.current
     if (!dialog) return
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         handleClose()
       }
       if (e.key === 'Tab') {
-        const focusableElements = dialog.querySelectorAll(
+        const focusableElements = dialog.querySelectorAll<HTMLElement>(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         )
         const firstElement = focusableElements[0]
@@ -53,7 +75,7 @@ const Modal = ({
     if (isOpen) {
       dialog.addEventListener('keydown', handleKeyDown)
       // Set initial focus to first focusable element
-      const focusableElements = dialog.querySelectorAll(
+      const focusableElements = dialog.querySelectorAll<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       )
       if (focusableElements.length > 0) {
@@ -66,7 +88,7 @@ const Modal = ({
     }
   }, [isOpen])
 
-  const focusButton = (button) => {
+  const focusButton = (button: HTMLButtonElement | null | undefined) => {
     if (button?.isConnected) {
       button.focus()
     }
@@ -89,13 +111,14 @@ const Modal = ({
         dialog.removeEventListener('close', handleDialogClose)
       }
     }
-  })
+    return undefined
+  }, [onClose])
 
-  const findDropdownToggle = (modalButton) => {
-    return modalButton.closest('.dropdown')?.querySelector('.dropdown-toggle[data-bs-toggle="dropdown"]') || modalButton
+  const findDropdownToggle = (modalButton: HTMLElement): HTMLButtonElement => {
+    return modalButton.closest('.dropdown')?.querySelector<HTMLButtonElement>('.dropdown-toggle[data-bs-toggle="dropdown"]') || modalButton as HTMLButtonElement
   }
 
-  const handleOpen = (e) => {
+  const handleOpen = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
     toggleButtonRef.current = findDropdownToggle(e.currentTarget)
     dialogRef.current?.showModal()
@@ -103,11 +126,7 @@ const Modal = ({
     onOpen?.()
   }
 
-  const handleClose = () => {
-    dialogRef.current?.close()
-  }
-
-  const onConfirm = (e) => {
+  const onConfirm = (e: React.MouseEvent<HTMLElement>) => {
     handleSubmit?.(e)
     if (!keepOpenOnSubmit) {
       handleClose()

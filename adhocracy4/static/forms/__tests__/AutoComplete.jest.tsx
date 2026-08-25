@@ -5,6 +5,8 @@ import useCombobox from '../useCombobox'
 
 jest.mock('../useCombobox')
 
+const mockedUseCombobox = useCombobox as jest.Mock
+
 describe('AutoComplete', () => {
   const choices = [
     { name: 'Swedish', value: 'sv' },
@@ -26,7 +28,7 @@ describe('AutoComplete', () => {
       'aria-expanded': false,
       'aria-labelledby': 'test-label-id'
     },
-    getChoicesAttr: (choice) => ({
+    getChoicesAttr: (_choice: { value: any }) => ({
       role: 'option',
       'aria-selected': false,
       active: false,
@@ -35,7 +37,7 @@ describe('AutoComplete', () => {
   }
 
   beforeEach(() => {
-    useCombobox.mockImplementation(() => defaultMockHookReturn)
+    mockedUseCombobox.mockImplementation(() => defaultMockHookReturn)
   })
 
   afterEach(() => {
@@ -68,19 +70,19 @@ describe('AutoComplete', () => {
     const input = screen.getByRole('combobox')
     fireEvent.change(input, { target: { value: 'en' } })
 
-    expect(input.value).toBe('en')
+    expect((input as HTMLInputElement).value).toBe('en')
     expect(onChangeInput).toHaveBeenCalledWith('en')
     expect(screen.getByText('English')).toBeInTheDocument()
     expect(screen.queryByText('Swedish')).not.toBeInTheDocument()
   })
 
   test('applies custom filter function', () => {
-    const customFilter = jest.fn((choice, text) => choice.value.includes(text))
+    const customFilter = jest.fn((choice: { value: string }, text: string) => choice.value.includes(text))
     render(
       <AutoComplete
         label="Search Languages"
         choices={choices}
-        filterFn={customFilter}
+        filterFn={customFilter as any}
       />
     )
 
@@ -118,7 +120,7 @@ describe('AutoComplete', () => {
   })
 
   test('displays multiple selected items', () => {
-    useCombobox.mockImplementation(() => ({
+    mockedUseCombobox.mockImplementation(() => ({
       ...defaultMockHookReturn,
       activeItems: [
         { name: 'English', value: 'en' },
@@ -157,9 +159,9 @@ describe('AutoComplete', () => {
   })
 
   test('shows check icon for active items', () => {
-    useCombobox.mockImplementation(() => ({
+    mockedUseCombobox.mockImplementation(() => ({
       ...defaultMockHookReturn,
-      getChoicesAttr: (choice) => ({
+getChoicesAttr: (choice: { value: any }) => ({
         ...defaultMockHookReturn.getChoicesAttr(choice),
         active: choice.value === 'en'
       })
@@ -172,7 +174,7 @@ describe('AutoComplete', () => {
       />
     )
 
-    const checkIcon = screen.getByText('English').closest('li').querySelector('.fa-check')
+    const checkIcon = screen.getByText('English').closest('li')!.querySelector('.fa-check')
     expect(checkIcon).toBeInTheDocument()
   })
 

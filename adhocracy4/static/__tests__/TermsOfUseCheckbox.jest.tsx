@@ -16,6 +16,6 @@ test('One TermsOfUseCheckbox is checked', () => {
       onChange={onChangeFn}
     />)
   const checkbox = tree.container.querySelector('input')
-  fireEvent.click(checkbox)
+  fireEvent.click(checkbox as HTMLInputElement)
   expect(onChangeFn).toHaveBeenCalledTimes(1)
 })

@@ -1,6 +1,11 @@
 import React from 'react'
 
-const ErrorList = ({ errors, field }) => {
+interface ErrorListProps {
+  errors?: Record<string, string[]>
+  field: string
+}
+
+const ErrorList = ({ errors, field }: ErrorListProps) => {
   if (errors && errors[field]) {
     return (
       <div className="errorlist" role="alert" aria-atomic="true">
@@ -16,4 +21,4 @@ const ErrorList = ({ errors, field }) => {
   return <div role="alert" aria-atomic="true" id="error-list" />
 }
 
-module.exports = ErrorList
+export default ErrorList

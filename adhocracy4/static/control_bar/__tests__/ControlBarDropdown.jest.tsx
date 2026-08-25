@@ -9,7 +9,7 @@ describe('ControlBarDropdown', () => {
     onSelectFilter: mockOnSelectFilter,
     filter: {
       label: 'Test Filter',
-      choices: [['choice1', 'Choice 1'], ['choice2', 'Choice 2']],
+      choices: [['choice1', 'Choice 1'], ['choice2', 'Choice 2']] as [string, string][],
       default: 'choice1'
     },
     filterId: 'testFilter',
@@ -18,7 +18,7 @@ describe('ControlBarDropdown', () => {
 
   test('renders the correct default value', () => {
     render(<ControlBarDropdown {...props} />)
-    expect(screen.getByLabelText('Test Filter').value).toBe('choice1')
+    expect(screen.getByLabelText('Test Filter')).toHaveValue('choice1')
   })
 
   test('calls onSelectFilter when a new option is selected', () => {
@@ -34,11 +34,11 @@ describe('ControlBarDropdown', () => {
       ...props,
       filter: {
         ...props.filter,
-        choices: [['', 'None'], ['choice1', 'Choice 1'], ['choice2', 'Choice 2']]
+        choices: [['', 'None'], ['choice1', 'Choice 1'], ['choice2', 'Choice 2']] as [string, string][]
       },
       current: ''
     }
     render(<ControlBarDropdown {...newProps} />)
-    expect(screen.getByLabelText('Test Filter').value).toBe('')
+    expect(screen.getByLabelText('Test Filter')).toHaveValue('')
   })
 })

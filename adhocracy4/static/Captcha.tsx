@@ -13,9 +13,24 @@ const translated = {
   error: django.gettext('There was a problem loading the CAPTCHA.')
 }
 
-const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
+interface CaptchaData {
+  session: string
+  id_prefix: string
+  question_i: string
+  question_a: string
+  answers: string[]
+}
+
+interface CaptCheckProps {
+  apiUrl: string
+  name: string
+  onChange: (value: string) => void
+  refresh?: boolean
+}
+
+const CaptCheck = ({ apiUrl, name, onChange, refresh }: CaptCheckProps) => {
   const [answer, setAnswer] = useState('')
-  const [captcha, setCaptcha] = useState(null)
+  const [captcha, setCaptcha] = useState<CaptchaData | null>(null)
   const [error, setError] = useState('')
   const [isImageMode, setIsImageMode] = useState(true)
   const [loading, setLoading] = useState(true)
@@ -28,20 +43,22 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
         const data = await response.json()
         setCaptcha(data)
         setLoading(false)
-      } catch (error) {
+      } catch {
         setError('Error loading captcha')
       }
     }
+    /* eslint-disable react-hooks/set-state-in-effect */
     setLoading(true)
+    /* eslint-enable react-hooks/set-state-in-effect */
     fetchCaptcha()
   }, [apiUrl, refresh])
 
   function createHelptext () {
-    const [, pre, email, post] = translated.helpText.match(/(.*){}(.*){}(.*)/)
+    const [, pre, email, post] = translated.helpText.match(/(.*){}(.*){}(.*)/) as RegExpMatchArray
     return pre + '<a href="mailto:help@adhocracy.plus">' + email + '</a>' + post
   }
 
-  const isSelectKey = (e) => {
+  const isSelectKey = (e: React.KeyboardEvent | any) => {
     return e.key === 'Enter' ||
         e.which === 13 ||
         e.keyCode === 13 ||
@@ -50,17 +67,17 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
         e.keyCode === 32
   }
 
-  const chooseAnswer = (e, ans, keyPress = false) => {
+  const chooseAnswer = (e: any, ans: string, keyPress = false) => {
     if (keyPress && !isSelectKey(e)) {
       return
     }
     e.preventDefault()
-    const combinedAnswer = ans + ':' + captcha.session
+    const combinedAnswer = ans + ':' + captcha?.session
     setAnswer(ans)
     onChange(combinedAnswer)
   }
 
-  const switchMode = (e, keyPress = false) => {
+  const switchMode = (e: any, keyPress = false) => {
     if (keyPress && !isSelectKey(e)) {
       return
     }
@@ -95,30 +112,30 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
           id={name}
           type="hidden"
           name={name}
-          value={answer + ':' + captcha.session}
+          value={answer + ':' + captcha?.session}
         />
       </div>
 
       <div className="captcheck_box">
         <div
-          id={'captcheck' + captcha.id_prefix + '_label_message'}
+          id={'captcheck' + captcha?.id_prefix + '_label_message'}
           className="captcheck_label_message"
         >
           {isImageMode
             ? (
               <label
                 className="captcheck_question_image"
-                id={'captcheck_' + captcha.id_prefix + '_question_image'}
+                id={'captcheck_' + captcha?.id_prefix + '_question_image'}
               >
-                {captcha.question_i + ' = ?'}
+                {captcha?.question_i + ' = ?'}
               </label>
               )
             : (
               <label
                 className="captcheck_question_access react_captcha"
-                id={'captcheck_' + captcha.id_prefix + '_question_access'}
+                id={'captcheck_' + captcha?.id_prefix + '_question_access'}
               >
-                {captcha.question_a + ' = ?'}
+                {captcha?.question_a + ' = ?'}
               </label>
               )}
           {/* eslint-disable-next-line */}
@@ -127,9 +144,9 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
             onKeyPress={(e) => (switchMode(e, true))}
             href=""
             className="captcheck_alt_question_button"
-            id={'captcheck_' + captcha.id_prefix + '_alt_question_button'}
+            id={'captcheck_' + captcha?.id_prefix + '_alt_question_button'}
             role="button"
-            tabIndex="0"
+            tabIndex={0}
             aria-label={
               isImageMode ? translated.ariaLabelText : translated.ariaLabelImage
             }
@@ -143,9 +160,9 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
             ? (
               <div
                 className="captcheck_answer_images"
-                id={'captcheck_' + captcha.id_prefix + '_answer_images'}
+                id={'captcheck_' + captcha?.id_prefix + '_answer_images'}
               >
-                {captcha.answers.map((ans, index) => (
+                {captcha?.answers.map((ans, index) => (
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     key={index}
@@ -153,13 +170,13 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
                     onClick={(e) => chooseAnswer(e, ans)}
                     onKeyPress={(e) => chooseAnswer(e, ans, true)}
                     href=""
-                    tabIndex="0"
+                    tabIndex={0}
                     role="button"
                   >
                     <input
-                      id={'captcheck_' + captcha.id_prefix + '_answer_'}
+                      id={'captcheck_' + captcha?.id_prefix + '_answer_'}
                       aria-labelledby={
-                      'captcheck_' + captcha.id_prefix + '_question_image'
+                      'captcheck_' + captcha?.id_prefix + '_question_image'
                     }
                       type="radio"
                       name="captcheck_selected_answer"
@@ -170,7 +187,7 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
                     {/* eslint-disable-next-line */}
                   <img
                     src={
-                      apiUrl + '?action=img&s=' + captcha.session + '&c=' + ans
+                      apiUrl + '?action=img&s=' + captcha?.session + '&c=' + ans
                     }
                   />
                   </a>
@@ -180,17 +197,17 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
             : (
               <div
                 className="captcheck_answer_access react_captcha"
-                id={'captcheck_' + captcha.id_prefix + '_answer_access'}
+                id={'captcheck_' + captcha?.id_prefix + '_answer_access'}
               >
                 <input
                   id={
-                  'captcheck_' + captcha.id_prefix + '_question_access-answer'
+                  'captcheck_' + captcha?.id_prefix + '_question_access-answer'
                   }
                   type="text"
                   name="captcheck_selected_answer"
-                  aria-labelledby={'captcheck_' + captcha.id_prefix + '_question_access'}
+                  aria-labelledby={'captcheck_' + captcha?.id_prefix + '_question_access'}
                   autoComplete="off"
-                  onInput={(e) => chooseAnswer(e, e.target.value, false)}
+                  onInput={(e) => chooseAnswer(e, (e.target as HTMLInputElement).value, false)}
                 />
               </div>
               )}
@@ -200,7 +217,7 @@ const CaptCheck = ({ apiUrl, name, onChange, refresh }) => {
           <input
             type="hidden"
             name="captcheck_session_code"
-            value={captcha.session}
+            value={captcha?.session}
           />
         </span>
       </div>

@@ -24,7 +24,7 @@ test('Invoke callback through click', () => {
       onClick={onClickCallback}
     />
   )
-  const clickButton = document.querySelector('.alert__close')
+  const clickButton = document.querySelector('.alert__close')!
   fireEvent.click(clickButton)
   expect(onClickCallback).toHaveBeenCalled()
 })
@@ -53,7 +53,7 @@ test('Invoke callback through click before timer ends', async () => {
       timeInMs={1000}
     />
   )
-  const clickButton = document.querySelector('.alert__close')
+  const clickButton = document.querySelector('.alert__close')!
   fireEvent.click(clickButton)
   expect(onClickCallback).toHaveBeenCalledTimes(1)
   await waitFor(() => expect(onClickCallback).not.toHaveBeenCalledTimes(2))

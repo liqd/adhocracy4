@@ -7,12 +7,12 @@ import debounce from 'lodash.debounce'
  * original function. So it will make sure that for certain events like typing
  * in an input field, the function is not executed too often.
  *
- * @param {function} callback - The callback function to be debounced.
- * @param {number} delay - The delay in milliseconds.
- * @returns {function} - The debounced callback function.
+ * @param callback - The callback function to be debounced.
+ * @param delay - The delay in milliseconds.
+ * @returns The debounced callback function.
  */
-const useDebounce = (callback, delay = 1000) => {
-  const ref = useRef()
+const useDebounce = (callback: () => void, delay = 1000) => {
+  const ref = useRef<() => void>()
 
   useEffect(() => {
     ref.current = callback

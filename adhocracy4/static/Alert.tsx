@@ -1,17 +1,29 @@
 import React, { useRef, useEffect } from 'react'
 import django from 'django'
 
-const Alert = ({ type = 'info', title, message, htmlMessage, onClick, timeInMs }) => {
-  const timer = useRef()
+interface AlertProps extends React.AriaAttributes {
+  type?: string
+  title?: string
+  message?: string
+  htmlMessage?: string
+  onClick?: () => void
+  timeInMs?: number
+}
+
+const Alert = ({ type = 'info', title, message, htmlMessage, onClick, timeInMs }: AlertProps) => {
+  const timer = useRef<number | undefined>()
   const closeTag = django.gettext('Close')
 
   useEffect(() => {
     if (timeInMs) {
-      timer.current = setTimeout(onClick, timeInMs)
+      timer.current = window.setTimeout(() => {
+        if (onClick) onClick()
+      }, timeInMs)
       return () => {
-        clearTimeout(timer.current)
+        window.clearTimeout(timer.current)
       }
     }
+    return undefined
   }, [timeInMs, onClick])
 
   // Only check for message or htmlMessage now since type has a default
@@ -53,4 +65,4 @@ const Alert = ({ type = 'info', title, message, htmlMessage, onClick, timeInMs }
   )
 }
 
-module.exports = Alert
+export default Alert

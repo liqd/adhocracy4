@@ -6,11 +6,17 @@ const translated = {
   termsOfUseHelpText: django.gettext('You can still manage all your preferences on User Agreements.')
 }
 
-export const TermsOfUseCheckbox = (props) => {
+interface TermsOfUseCheckboxProps {
+  id?: string
+  orgTermsUrl?: string
+  onChange?: (checked: boolean) => void
+}
+
+export const TermsOfUseCheckbox = (props: TermsOfUseCheckboxProps) => {
   const [checked, setChecked] = useState(false)
-  const handleOnChange = (e) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked)
-    props.onChange(e.target.checked)
+    if (props.onChange) props.onChange(e.target.checked)
   }
   const linkParts = {
     linkStart: '<a href="' + props.orgTermsUrl + '" target="_blank">',

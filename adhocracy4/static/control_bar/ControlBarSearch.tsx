@@ -6,19 +6,27 @@ const translated = {
   startSearch: django.gettext('Start search')
 }
 
-export const ControlBarSearch = ({ onSearch, term, placeholder }) => {
+interface ControlBarSearchProps {
+  onSearch?: (term: string) => void
+  term?: string
+  placeholder?: string
+}
+
+export const ControlBarSearch = ({ onSearch, term, placeholder }: ControlBarSearchProps) => {
   const [value, setValue] = useState(term)
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    onSearch(value)
+    if (onSearch) onSearch(value as string)
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
   }
 
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     setValue(term)
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [term])
 
   return (

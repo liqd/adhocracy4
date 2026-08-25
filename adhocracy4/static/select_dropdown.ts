@@ -25,8 +25,8 @@ The following classes are available:
       - select-dropdown__item__label
  */
 
-(function ($) {
-  const SelectDropdown = function (element, settings) {
+(function ($: any) {
+  const SelectDropdown: any = function (this: any, element: any, settings: any) {
     this.$element = $(element)
     this.settings = settings
 
@@ -37,7 +37,7 @@ The following classes are available:
   }
 
   SelectDropdown.prototype = {
-    createDropdown: function () {
+    createDropdown: function (this: any) {
       const $dropdown = $('<div class="dropdown select-dropdown ' + this.settings.styleDropdown + '">')
 
       const btnClasses = 'btn select-dropdown__btn ' + this.settings.style
@@ -50,7 +50,7 @@ The following classes are available:
       this.$dropdown = $dropdown
       this.$buttonLabel = $buttonLabel
 
-      $.each(this.getSelectOptions(), function (i, option) {
+      $.each(this.getSelectOptions(), function (this: any, i: number, option: any) {
         const $item = $('<a class="dropdown-item select-dropdown__item" href="#">')
         this.appendOptionLabel($item, option, 'select-dropdown__item')
 
@@ -63,7 +63,7 @@ The following classes are available:
       }.bind(this))
     },
 
-    appendOptionLabel ($element, option, classNameBase) {
+    appendOptionLabel ($element: any, option: any, classNameBase: string) {
       classNameBase = classNameBase || 'select-dropdown__item'
 
       if (option.iconSrc) {
@@ -72,7 +72,7 @@ The following classes are available:
       $('<span class="' + classNameBase + '__label">').html(option.label).appendTo($element)
     },
 
-    onSelect (event) {
+    onSelect (this: any, event: any) {
       event.preventDefault()
       // event.stopPropagation()
       const $item = $(event.target)
@@ -80,7 +80,7 @@ The following classes are available:
       this.selectItem($item, option)
     },
 
-    selectItem ($item, option) {
+    selectItem (this: any, $item: any, option: any) {
       this.$buttonLabel.empty()
       this.appendOptionLabel(this.$buttonLabel, option, 'select-dropdown__btn__label')
 
@@ -89,8 +89,8 @@ The following classes are available:
       this.$element.val(option.value)
     },
 
-    getSelectOptions: function () {
-      return this.$element.find('option').map(function (i, option) {
+    getSelectOptions: function (this: any) {
+      return this.$element.find('option').map(function (i: number, option: any) {
         const $option = $(option)
 
         let data = $.extend({
@@ -112,14 +112,14 @@ The following classes are available:
     }
   }
 
-  $.fn.selectdropdown = function (settings) {
+  $.fn.selectdropdown = function (this: any, settings: any) {
     // Establish our default settings
     settings = $.extend({
       style: '',
       styleDropdown: ''
     }, settings)
 
-    return this.each(function () {
+    return this.each(function (this: any) {
       const $this = $(this)
       if ($this.is('select')) {
         let selectdropdown = $this.data('selectdropdown')

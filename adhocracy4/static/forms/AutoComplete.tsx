@@ -6,13 +6,13 @@ import useCombobox from './useCombobox'
  * Returns the item at the given index in an array, wrapping around
  * if index is out of bounds.
  */
-export const getLoopedIndex = (array, index) => {
+export const getLoopedIndex = <T,>(array: T[], index: number): T => {
   const length = array.length
   const wrappedIndex = ((index % length) + length) % length
   return array[wrappedIndex]
 }
 
-const defaultFilterFn = (choice, text) => choice.name.toLowerCase().includes(text.toLowerCase())
+const defaultFilterFn = (choice: { name: string }, text: string) => choice.name.toLowerCase().includes(text.toLowerCase())
 
 /*
   Choice formatting looks like:
@@ -20,7 +20,25 @@ const defaultFilterFn = (choice, text) => choice.name.toLowerCase().includes(tex
   { name: 'English', value: 'en' }
   Values need to be unique!
  */
-export const AutoComplete = ({
+interface AutoCompleteProps<T = string> {
+  label: string
+  className?: string
+  liClassName?: string
+  comboboxClassName?: string
+  choices: Array<{ name: string; value: T }>
+  hideLabel?: boolean
+  onChangeInput?: (value: string) => void
+  filterFn?: (choice: { name: string }, text: string) => boolean
+  placeholder?: string
+  before?: React.ReactNode
+  after?: React.ReactNode
+  onChange?: (value: T[]) => void
+  inputValue?: string
+  isMultiple?: boolean
+  [key: string]: any
+}
+
+export const AutoComplete = <T = string> ({
   label,
   className,
   liClassName,
@@ -33,7 +51,7 @@ export const AutoComplete = ({
   before,
   after,
   ...comboboxProps
-}) => {
+}: AutoCompleteProps<T>) => {
   const {
     opened,
     labelId,
@@ -61,10 +79,10 @@ export const AutoComplete = ({
   const actualFilterFn = filterFn || defaultFilterFn
   const filteredChoices = text !== '' ? choices.filter(choice => actualFilterFn(choice, text)) : choices
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value
     setText(newValue)
-    onChangeInput?.(newValue)
+    if (onChangeInput) onChangeInput(newValue)
   }
 
   return (
@@ -105,7 +123,6 @@ export const AutoComplete = ({
               // No keyboard event is needed here. Keyboard management happens
               // in the combobox element, where the focus is kept at all times.
               // see https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
-              // eslint-disable-next-line jsx-a11y/click-events-have-key-events
               <li
                 key={choice.value}
                 className={liClasses}
