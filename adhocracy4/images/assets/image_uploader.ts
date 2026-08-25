@@ -1,5 +1,5 @@
 // Generate a unique storage key based on URL path and inputId
-function getStorageKey (inputId) {
+function getStorageKey (inputId: string) {
   const urlPath = window.location.pathname
   const storageKey = 'image_upload_' + urlPath + '_' + inputId
   return storageKey
@@ -24,7 +24,7 @@ function checkRefererAndClearIfNeeded () {
       if (refererUrl.origin !== currentOrigin || refererUrl.pathname !== currentPathname) {
         clearAllImagesFromStorage()
       }
-    } catch (e) {
+    } catch {
       // If referer URL is invalid, clear images for security
       clearAllImagesFromStorage()
     }
@@ -41,12 +41,12 @@ function init () {
   // Check if form was saved before loading images
   checkIfFormWasSaved()
 
-  const clearInputs = document.querySelectorAll('input[data-upload-clear]')
-  const previewImages = document.querySelectorAll('img[data-upload-preview]')
+  const clearInputs = document.querySelectorAll<HTMLInputElement>('input[data-upload-clear]')
+  const previewImages = document.querySelectorAll<HTMLImageElement>('img[data-upload-preview]')
 
   previewImages.forEach(function (previewImage) {
-    previewImage = document.getElementById(previewImage.id)
-    const inputId = previewImage.dataset.uploadPreview
+    previewImage = document.getElementById(previewImage.id) as HTMLImageElement
+    const inputId: string = previewImage.dataset.uploadPreview!
     const clearInput = Array.from(clearInputs).filter(function (el) {
       return el.matches('[data-upload-clear="' + inputId + '"]')
     })
@@ -54,14 +54,14 @@ function init () {
     // Load saved image from sessionStorage on page load
     loadImageFromStorage(inputId, previewImage)
 
-    document.querySelector('#' + inputId).addEventListener('change', function (e) {
-      const domInput = e.target
+    document.querySelector('#' + inputId)!.addEventListener('change', function (e: Event) {
+      const domInput = e.target as HTMLInputElement
       if (domInput.files && domInput.files[0]) {
         const file = domInput.files[0]
         const name = file.name
         const sizeInBytes = file.size
-        const sizeInMB = (sizeInBytes / (1024 * 1024)).toFixed(2) // Convert bytes to MB and round to 2 decimal places
-        const text = document.querySelector('#text-' + inputId)
+        const sizeInMB: number = parseFloat((sizeInBytes / (1024 * 1024)).toFixed(2)) // Convert bytes to MB and round to 2 decimal places
+        const text = document.querySelector('#text-' + inputId) as HTMLInputElement | null
 
         // Update the file name and size in the associated text input
         if (text != null) {
@@ -76,14 +76,14 @@ function init () {
         }
 
         // Add the file size to a custom data attribute on the preview image
-        previewImage.dataset.fileSize = sizeInBytes
+        previewImage.dataset.fileSize = String(sizeInBytes)
 
         // If supported, read the file as a URL for preview purposes
         if (window.FileReader) {
           const reader = new window.FileReader()
           reader.addEventListener('load', function (e) {
-            previewImage.setAttribute('src', e.target.result)
-            saveImageToStorage(inputId, e.target.result, name, sizeInBytes)
+            previewImage.setAttribute('src', (e.target as FileReader).result as string)
+            saveImageToStorage(inputId, (e.target as FileReader).result as string, name, sizeInBytes)
             if (clearInput[0]) {
               clearInput[0].checked = false
             }
@@ -95,7 +95,7 @@ function init () {
 
         // Add the file size to the URL (if required for backend processing)
         const currentUrl = new URL(window.location.href)
-        currentUrl.searchParams.set('file_size', sizeInBytes) // Add file_size as a query parameter
+        currentUrl.searchParams.set('file_size', sizeInBytes.toString()) // Add file_size as a query parameter
         window.history.replaceState(null, '', currentUrl.toString())
       }
     })
@@ -103,7 +103,7 @@ function init () {
     // Clear sessionStorage when image is removed
     if (clearInput[0]) {
       clearInput[0].addEventListener('change', function (e) {
-        if (e.target.checked) {
+        if ((e.target as HTMLInputElement).checked) {
           clearImageFromStorage(inputId, true)
         }
       })
@@ -162,9 +162,17 @@ function setupFormSubmitListener () {
 }
 
 // Save image data to sessionStorage
-function saveImageToStorage (inputId, imageDataUrl, fileName, fileSize) {
+interface StoredImageData {
+  dataUrl: string
+  fileName: string
+  fileSize: number
+  timestamp: number
+  pagePath: string
+}
+
+function saveImageToStorage (inputId: string, imageDataUrl: string, fileName: string, fileSize: number) {
   try {
-    const imageData = {
+    const imageData: StoredImageData = {
       dataUrl: imageDataUrl,
       fileName,
       fileSize,
@@ -178,7 +186,7 @@ function saveImageToStorage (inputId, imageDataUrl, fileName, fileSize) {
 }
 
 // Load image data from sessionStorage
-function loadImageFromStorage (inputId, previewImage) {
+function loadImageFromStorage (inputId: string, previewImage: HTMLImageElement) {
   try {
     // Check if image already has a server URL - if so, clear sessionStorage but keep server image
     if (previewImage.src && !previewImage.src.startsWith('data:') && previewImage.src.length > 0) {
@@ -189,7 +197,7 @@ function loadImageFromStorage (inputId, previewImage) {
     const savedData = sessionStorage.getItem(getStorageKey(inputId))
     if (!savedData) return
 
-    const imageData = JSON.parse(savedData)
+    const imageData: StoredImageData = JSON.parse(savedData)
 
     // Check if image is from a different page
     if (imageData.pagePath && imageData.pagePath !== window.location.pathname) {
@@ -200,7 +208,7 @@ function loadImageFromStorage (inputId, previewImage) {
     const maxAge = 30 * 60 * 1000 // 30 min in milliseconds
     if (Date.now() - imageData.timestamp < maxAge) {
       previewImage.setAttribute('src', imageData.dataUrl)
-      previewImage.dataset.fileSize = imageData.fileSize
+      previewImage.dataset.fileSize = String(imageData.fileSize)
       restorePreviewText(inputId, imageData)
       restoreFileToInput(inputId, imageData)
     } else {
@@ -212,10 +220,10 @@ function loadImageFromStorage (inputId, previewImage) {
   }
 }
 
-function restorePreviewText (inputId, imageData) {
-  const text = document.querySelector('#text-' + inputId)
+function restorePreviewText (inputId: string, imageData: StoredImageData) {
+  const text = document.querySelector('#text-' + inputId) as HTMLInputElement | null
   if (text && imageData.fileName) {
-    const sizeInMB = (imageData.fileSize / (1024 * 1024)).toFixed(2)
+    const sizeInMB: number = parseFloat((imageData.fileSize / (1024 * 1024)).toFixed(2))
     text.value = imageData.fileName + ' - ' + sizeInMB + ' MB of 5MB'
 
     // Highlight in red if the size exceeds 5MB
@@ -228,9 +236,9 @@ function restorePreviewText (inputId, imageData) {
 }
 
 // Restore file object from base64 data to input element
-function restoreFileToInput (inputId, imageData) {
+function restoreFileToInput (inputId: string, imageData: StoredImageData) {
   try {
-    const inputElement = document.querySelector('#' + inputId)
+    const inputElement = document.querySelector('#' + inputId) as HTMLInputElement | null
     if (!inputElement) {
       console.warn('Input element not found:', inputId)
       return
@@ -257,16 +265,16 @@ function restoreFileToInput (inputId, imageData) {
 }
 
 // Clear image data from sessionStorage and reset UI
-function clearImageFromStorage (inputId, clearServerImage = false) {
+function clearImageFromStorage (inputId: string, clearServerImage = false) {
   try {
     sessionStorage.removeItem(getStorageKey(inputId))
 
-    const inputElement = document.querySelector('#' + inputId)
+    const inputElement = document.querySelector('#' + inputId) as HTMLInputElement | null
     if (inputElement) {
       inputElement.value = ''
     }
 
-    const previewImage = document.querySelector('img[data-upload-preview="' + inputId + '"]')
+    const previewImage = document.querySelector('img[data-upload-preview="' + inputId + '"]') as HTMLImageElement | null
     if (previewImage) {
       // Clear src if clearServerImage is true (user clicked delete) or if it's a data URL
       if (clearServerImage || (previewImage.src && previewImage.src.startsWith('data:'))) {
@@ -274,7 +282,7 @@ function clearImageFromStorage (inputId, clearServerImage = false) {
       }
     }
 
-    const text = document.querySelector('#text-' + inputId)
+    const text = document.querySelector('#text-' + inputId) as HTMLInputElement | null
     if (text) {
       text.value = ''
       text.style.color = ''
@@ -288,7 +296,7 @@ function clearImageFromStorage (inputId, clearServerImage = false) {
 function clearAllImagesFromStorage () {
   try {
     // Find all preview images and clear their storage and UI
-    const previewImages = document.querySelectorAll('img[data-upload-preview]')
+    const previewImages = document.querySelectorAll<HTMLImageElement>('img[data-upload-preview]')
     previewImages.forEach(function (previewImage) {
       const inputId = previewImage.dataset.uploadPreview
       if (inputId) {

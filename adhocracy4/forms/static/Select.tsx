@@ -1,9 +1,18 @@
 import React from 'react'
 
-export const Select = ({ onSelect, choices, label, placeholder, id, ...rest }) => {
-  const onSelectWrapper = (e) => {
+type Choice = [string, string]
+
+interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'onSelect'> {
+  onSelect?: (choice: Choice | undefined) => void
+  choices: Choice[]
+  label: React.ReactNode
+  placeholder?: string
+}
+
+export const Select = ({ onSelect, choices, label, placeholder, id, ...rest }: SelectProps) => {
+  const onSelectWrapper = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const choice = choices.find(choice => choice[0] === e.target.value)
-    onSelect(choice)
+    if (onSelect) onSelect(choice)
   }
 
   return (
