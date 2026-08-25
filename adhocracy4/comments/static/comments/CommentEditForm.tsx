@@ -1,20 +1,35 @@
-const Alert = require('../../../static/Alert')
+import React from 'react'
+import django from 'django'
+import Alert from '../../../static/Alert'
 
-const React = require('react')
-const django = require('django')
+interface CommentEditFormProps {
+  comment: string
+  error?: any
+  errorMessage?: string
+  handleErrorClick: () => void
+  onCommentSubmit: (comment: any) => void
+  subjectId: number
+  subjectType: number
+  rows: number
+  handleCancel: () => void
+}
 
-class CommentEditForm extends React.Component {
-  constructor (props) {
+interface CommentEditFormState {
+  comment: string
+}
+
+class CommentEditForm extends React.Component<CommentEditFormProps, CommentEditFormState> {
+  constructor (props: CommentEditFormProps) {
     super(props)
 
     this.state = { comment: this.props.comment }
   }
 
-  handleTextChange (e) {
+  handleTextChange (e: React.ChangeEvent<HTMLTextAreaElement>) {
     this.setState({ comment: e.target.value })
   }
 
-  handleSubmit (e) {
+  handleSubmit (e: React.FormEvent) {
     e.preventDefault()
     const comment = this.state.comment.trim()
     if (!comment) {
@@ -41,7 +56,7 @@ class CommentEditForm extends React.Component {
           <textarea
             rows={this.props.rows} className="form-control"
             placeholder={yourCommentText}
-            onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment}
+            onChange={this.handleTextChange.bind(this)} required defaultValue={this.state.comment}
           />
         </div>
         <input type="submit" value={saveChangesTag} className="submit-button" />
@@ -55,4 +70,4 @@ class CommentEditForm extends React.Component {
   }
 }
 
-module.exports = CommentEditForm
+export default CommentEditForm

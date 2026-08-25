@@ -1,11 +1,18 @@
 import React from 'react'
 
+interface FilterSortProps {
+  translated: any
+  sort: string
+  sorts: Record<string, string>
+  onClickSorted: (e: React.MouseEvent) => void
+}
+
 export const FilterSort = ({
   translated,
   sort,
   sorts,
   onClickSorted
-}) => {
+}: FilterSortProps) => {
   return (
     <div className="a4-comments__filters__dropdown">
       <div className="dropdown">
@@ -27,7 +34,7 @@ export const FilterSort = ({
             return (objectKey !== sort) &&
               <button
                 className="dropdown-item" onClick={onClickSorted} id={objectKey}
-                key={objectKey} href="#"
+                key={objectKey} {...({ href: '#' } as any)}
               >{name}
               </button>
           })}

@@ -5,7 +5,14 @@ const translated = {
   chooseCategories: django.gettext('Choose categories for your comment')
 }
 
-const CategoryList = (props) => (
+interface CategoryListProps {
+  idPrefix: string | number
+  categoryChoices: Record<string, string>
+  categoriesChecked: string[]
+  handleControlFunc: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const CategoryList = (props: CategoryListProps) => (
   <fieldset className="mb-0 px-0">
     <legend className="sr-only">{translated.chooseCategories}</legend>
     {Object.keys(props.categoryChoices).map(objectKey => {

@@ -4,7 +4,7 @@ import '@testing-library/jest-dom'
 import Comment from '../comment'
 
 describe('Comment Component', () => {
-  const defaultProps = {
+  const defaultProps: any = {
     user_name: 'Participant 1',
     created: 'May 21, 2024, 11:44 a.m.',
     modified: null,
@@ -36,7 +36,7 @@ describe('Comment Component', () => {
     setCommentError: jest.fn(),
     setCommentEditError: jest.fn()
   }
-  const childComment = {
+  const childComment: any = {
     ai_report: null,
     authorIsModerator: false,
     child_comments: [],

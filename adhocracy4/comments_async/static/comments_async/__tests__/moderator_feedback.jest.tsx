@@ -3,7 +3,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 
 // component to be tested
-import { ModeratorFeedback } from '../moderator_feedback.jsx'
+import { ModeratorFeedback } from '../moderator_feedback'
 
 test('render <ModeratorFeedback> properly', () => {
   const feedback = {

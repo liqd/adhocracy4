@@ -7,7 +7,20 @@ const translated = {
   menuLabel: django.gettext('Comment Actions')
 }
 
-const CommentManageDropdown = (props) => {
+interface CommentManageDropdownProps {
+  id?: any
+  modals: {
+    urlModal: React.ReactNode
+    reportModal?: React.ReactNode
+    deleteModal?: React.ReactNode
+  }
+  showReport: boolean
+  has_changing_permission: boolean
+  has_deleting_permission: boolean
+  handleToggleEdit: (e: React.MouseEvent) => void
+}
+
+const CommentManageDropdown = (props: CommentManageDropdownProps) => {
   return (
     <div className="dropdown a4-comments__dropdown">
       <button

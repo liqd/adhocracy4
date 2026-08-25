@@ -6,12 +6,20 @@ const translated = {
   all: django.gettext('all')
 }
 
+interface FilterCategoryProps {
+  filter: string
+  filterDisplay: string
+  onClickFilter: (e: React.MouseEvent) => void
+  commentCategoryChoices: Record<string, string>
+  translated?: any
+}
+
 export const FilterCategory = ({
   filter,
   filterDisplay,
   onClickFilter,
   commentCategoryChoices
-}) => {
+}: FilterCategoryProps) => {
   return (
     <div className="a4-comments__filters__dropdown me-sm-2">
       <div className="dropdown">
@@ -30,16 +38,16 @@ export const FilterCategory = ({
         </button>
         <div className="dropdown-menu dropend" aria-labelledby="categoryDropdownBtn">
           {filter !== 'all' &&
-            <button className="dropdown-item" onClick={onClickFilter} id="all" key="all" href="#">
+            <button className="dropdown-item" onClick={onClickFilter} id="all" key="all" {...({ href: '#' } as any)}>
               {translated.all}
             </button>}
           {Object.keys(commentCategoryChoices).map(objectKey => {
             const name = commentCategoryChoices[objectKey]
             return (objectKey !== filter) &&
-              <button className="dropdown-item" onClick={onClickFilter} id={objectKey} key={objectKey} href="#">{name}</button>
+              <button className="dropdown-item" onClick={onClickFilter} id={objectKey} key={objectKey} {...({ href: '#' } as any)}>{name}</button>
           })}
         </div>
       </div>
-    </div> // eslint-disable-line react/jsx-closing-tag-location
+    </div>
   )
 }

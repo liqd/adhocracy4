@@ -9,11 +9,19 @@ const translated = {
   buttonTextCopied: django.gettext('Copied')
 }
 
-export const UrlModal = (props) => {
-  const [copied, setCopied] = useState(false)
-  const inputRef = useRef(null)
+interface UrlModalProps {
+  title: string
+  objectId: number | string
+  url: string
+  abort?: () => void
+  btnStyle?: string
+}
 
-  const copyUrl = (e) => {
+export const UrlModal = (props: UrlModalProps) => {
+  const [copied, setCopied] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const copyUrl = (e: React.MouseEvent) => {
     e.preventDefault()
     if (inputRef.current) {
       navigator.clipboard.writeText(inputRef.current.value)
@@ -49,7 +57,7 @@ export const UrlModal = (props) => {
         <button
           className="a4-url-modal__button"
           aria-pressed={copied}
-          autoComplete="off"
+          {...({ autoComplete: 'off' } as any)}
           onClick={(e) => copyUrl(e)}
         >
           {copied ? translated.buttonTextCopied : translated.buttonTextCopy}
@@ -60,7 +68,7 @@ export const UrlModal = (props) => {
 
   return (
     <Modal
-      abort={props.abort}
+      {...({ abort: props.abort } as any)}
       partials={partials}
       toggle={<><i className="fas fa-share" aria-hidden="true" /> {translated.share}</>}
       keepOpenOnSubmit

@@ -13,6 +13,7 @@ import { ModeratorFeedback } from './moderator_feedback'
 import AiReport from './ai_report'
 import RatingBox from '../../../ratings/static/ratings/RatingBox'
 import Alert from '../../../static/Alert'
+import type { Comment as CommentType, CommentPayload, AiReport as AiReportType, ModeratorFeedback as ModeratorFeedbackType } from '../../../static/api/types'
 
 const translated = {
   reportTitle: django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).'),
@@ -37,7 +38,7 @@ const translated = {
   ariaReadLess: django.gettext('Click to hide expanded text.')
 }
 
-function getAnswerForm (hide, number) {
+function getAnswerForm (hide: boolean, number: number) {
   let result
   if (hide) {
     result = translated.hideReplies
@@ -52,8 +53,77 @@ function getAnswerForm (hide, number) {
   return result
 }
 
-export default class Comment extends React.Component {
-  constructor (props) {
+interface CommentState {
+  edit: boolean
+  showChildComments: boolean
+  shorten: boolean
+  anchored: boolean
+  showModStatement: boolean
+  moderatorFeedback: ModeratorFeedbackType | null
+}
+
+interface CommentProps {
+  id: number
+  index: number
+  parentIndex?: number
+  children: string
+  created: string
+  modified: string | null
+user_name: string
+  user_image: string | null
+  user_profile_url: string
+  child_comments: CommentType[]
+  content_type: number
+  comment_content_type: number
+  object_pk: number
+  is_deleted: boolean
+  is_removed: boolean
+  is_censored: boolean
+  is_blocked: boolean
+  is_moderator_marked: boolean
+  is_users_own_comment: boolean
+  authorIsModerator: boolean
+  authenticated_user_pk: number | null
+  has_changing_permission: boolean
+  has_deleting_permission: boolean
+  has_rating_permission: boolean
+  has_comment_commenting_permission: boolean
+  has_viewing_permission: boolean
+  has_moderating_permission: boolean
+  positiveRatings: number
+  negativeRatings: number
+  userRating: number | null
+  userRatingId: number | null
+  replyError?: boolean
+  editError?: boolean
+  errorMessage?: string | undefined
+  displayNotification?: boolean
+  moderatorFeedback: ModeratorFeedbackType | null
+  comment_categories: Record<string, string>
+  commentCategoryChoices?: Record<string, string>
+  withCategories?: boolean
+  aiReport: AiReportType | null
+  anchoredCommentId: number | null
+  anchoredCommentParentId: number
+  hasCommentingPermission: boolean
+  wouldHaveCommentingPermission: boolean
+  projectIsPublic?: boolean
+  useTermsOfUse: boolean
+  agreedTermsOfUse: boolean
+  orgTermsUrl: string
+  onCommentDelete: (index: number, parentIndex?: number) => void
+  onCommentSubmit: (comment: CommentPayload, parentIndex?: number) => any
+  onCommentModify: (modifiedComment: CommentPayload, index: number, parentIndex?: number) => any
+  onReplyErrorClick: (index: number, parentIndex?: number) => void
+  onEditErrorClick: (index: number, parentIndex?: number) => void
+  onRenderFinished: () => void
+  setCommentError: (...args: any[]) => any
+  setCommentEditError: (...args: any[]) => any
+  hideNotification: (index: number, parentIndex?: number) => void
+}
+
+export default class Comment extends React.Component<CommentProps, CommentState> {
+  constructor (props: CommentProps) {
     super(props)
 
     this.state = {
@@ -84,7 +154,7 @@ export default class Comment extends React.Component {
     }
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate (prevProps: any, prevState: CommentState) {
     // Focus on textarea when entering edit mode
     if (!prevState.edit && this.state.edit) {
       window.requestAnimationFrame(() => {
@@ -97,7 +167,7 @@ export default class Comment extends React.Component {
     }
   }
 
-  toggleEdit (e) {
+  toggleEdit (e?: any) {
     if (e) {
       e.preventDefault()
     }
@@ -105,7 +175,7 @@ export default class Comment extends React.Component {
     this.setState({ edit: newEdit })
   }
 
-  toggleShowComments (e) {
+  toggleShowComments (e: any) {
     e.preventDefault()
     const newShowChildComment = !this.state.showChildComments
     this.setState({
@@ -113,7 +183,7 @@ export default class Comment extends React.Component {
     })
   }
 
-  replyComments (e) {
+  replyComments (e: any) {
     e.preventDefault()
     this.setState({
       showChildComments: true
@@ -128,7 +198,7 @@ export default class Comment extends React.Component {
     return this.props.content_type !== this.props.comment_content_type
   }
 
-  toggleExpand (e) {
+  toggleExpand (e: any) {
     e.preventDefault()
     const newShorten = !this.state.shorten
     this.setState({
@@ -205,7 +275,7 @@ export default class Comment extends React.Component {
                   edit: false
                 })
                 return null
-              }).catch(error => {
+              }).catch((error: any) => {
                 console.warn(error)
               })
           }}
@@ -228,13 +298,13 @@ export default class Comment extends React.Component {
               >
                 {content}
               </ReactMarkdown>
-            </mark>// eslint-disable-line react/jsx-closing-tag-location
+            </mark>
             : <ReactMarkdown
                 disallowedElements={['h1', 'h2', 'h3', 'h4', 'input', 'table', 'thead', 'tr', 'th']}
                 unwrapDisallowed
               >
               {content}
-            </ReactMarkdown>/* eslint-disable-line react/jsx-closing-tag-location */}
+            </ReactMarkdown>}
         </div>
       )
     }
@@ -248,7 +318,7 @@ export default class Comment extends React.Component {
       let categoryValue = ''
       let categoryClassName = ''
 
-      const categoryHtml = Object.keys(categories).map(function (objectKey, index) {
+      const categoryHtml = Object.keys(categories).map(function (objectKey, _index) {
         categoryValue = categories[objectKey]
         categoryClassName = 'badge a4-comments__badge a4-comments__badge--' + objectKey
 
@@ -362,7 +432,7 @@ export default class Comment extends React.Component {
                     handleToggleEdit={this.toggleEdit.bind(this)}
                     has_changing_permission={this.props.has_changing_permission}
                     has_deleting_permission={this.props.has_deleting_permission}
-                    showReport={!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment}
+                    showReport={!!(!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment)}
                     modals={modals}
                   />}
               </div>
@@ -442,7 +512,9 @@ export default class Comment extends React.Component {
                       parentIndex={this.props.index}
                       onRenderFinished={this.props.onRenderFinished}
                       onCommentDelete={this.props.onCommentDelete}
+                      onCommentSubmit={this.props.onCommentSubmit}
                       onCommentModify={this.props.onCommentModify}
+                      onReplyErrorClick={this.props.onReplyErrorClick}
                       onEditErrorClick={this.props.onEditErrorClick}
                       useTermsOfUse={this.props.useTermsOfUse}
                       agreedTermsOfUse={this.props.agreedTermsOfUse}

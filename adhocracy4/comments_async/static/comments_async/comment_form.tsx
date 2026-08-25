@@ -23,8 +23,49 @@ const translated = {
 
 const textareaMinHeight = 75
 
-export default class CommentForm extends React.Component {
-  constructor (props) {
+interface CommentFormProps {
+  comment?: string
+  commentLength?: number
+  comment_categories?: any
+  commentCategoryChoices?: Record<string, string>
+  commentId?: number | string
+  subjectType: number
+  subjectId: number
+  parentIndex?: number
+  index?: number
+  editing?: boolean
+  showCancel?: boolean
+  useTermsOfUse?: boolean
+  agreedTermsOfUse?: boolean
+  orgTermsUrl?: string
+  error?: boolean
+  errorMessage?: string
+  handleErrorClick?: () => void
+  hasCommentingPermission?: boolean
+  wouldHaveCommentingPermission?: boolean
+  projectIsPublic?: boolean
+  handleCancel?: (e?: any) => void
+  rows?: string
+  setCommentError: (...args: any[]) => any
+  onCommentSubmit: (comment: any, parentIndex?: number) => any
+  withCategories?: boolean
+  hideNotification?: (index: number, parentIndex?: number) => void
+  autoFocus?: boolean
+}
+
+interface CommentFormState {
+  comment: string
+  commentCharCount: number
+  selectedCategories: string[]
+  textareaHeight: number
+  agreedTermsOfUse?: boolean
+  showCommentError: boolean
+  submitting: boolean
+  checkedTermsOfUse?: boolean
+}
+
+export default class CommentForm extends React.Component<CommentFormProps, CommentFormState> {
+  constructor (props: CommentFormProps) {
     super(props)
     this.state = {
       comment: this.props.comment || '',
@@ -37,7 +78,7 @@ export default class CommentForm extends React.Component {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prevProps: CommentFormProps) {
     if (this.props.agreedTermsOfUse !== prevProps.agreedTermsOfUse) {
       this.setState({
         agreedTermsOfUse: this.props.agreedTermsOfUse
@@ -45,18 +86,18 @@ export default class CommentForm extends React.Component {
     }
   }
 
-  handleTextareaGrow (e) {
-    const newHeight = (e.target.scrollHeight)
+  handleTextareaGrow (e: React.FormEvent<HTMLTextAreaElement>) {
+    const newHeight = (e.target as HTMLTextAreaElement).scrollHeight
     if (newHeight !== this.state.textareaHeight && newHeight > textareaMinHeight) {
       this.setState({ textareaHeight: newHeight })
     }
   }
 
-  handleTextChange (e) {
+  handleTextChange (e: React.ChangeEvent<HTMLTextAreaElement>) {
     this.setState({ comment: e.target.value, commentCharCount: e.target.value.length })
   }
 
-  handleCategorySelection (e) {
+  handleCategorySelection (e: React.ChangeEvent<HTMLInputElement>) {
     const newSelection = e.target.id.split('_')[1]
     const newSelectionArray = this.state.selectedCategories
     const index = this.state.selectedCategories.indexOf(newSelection)
@@ -78,13 +119,13 @@ export default class CommentForm extends React.Component {
     })
   }
 
-  handleSubmit (e) {
+  handleSubmit (e: React.FormEvent) {
     e.preventDefault()
     this.setState({
       submitting: true
     })
     const comment = this.state.comment.trim()
-    const data = {
+    const data: any = {
       comment,
       urlReplaces: {
         objectPk: this.props.subjectId,
@@ -119,7 +160,7 @@ export default class CommentForm extends React.Component {
         submitting: false
       })
       return null
-    }).catch(error => {
+    }).catch((error: any) => {
       console.warn(error)
       this.setState({
         submitting: false
@@ -208,7 +249,7 @@ export default class CommentForm extends React.Component {
                   <div className="form-group" id={'group_terms-of-use-checkbox' + (typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm')}>
                     <TermsOfUseCheckbox
                       id={'terms-of-use-checkbox-' + (typeof this.props.parentIndex === 'number' ? this.props.parentIndex : 'rootForm')}
-                      onChange={val => this.setState({ checkedTermsOfUse: val })}
+                      onChange={(val: boolean) => this.setState({ checkedTermsOfUse: val })}
                       orgTermsUrl={this.props.orgTermsUrl}
                     />
                   </div>}

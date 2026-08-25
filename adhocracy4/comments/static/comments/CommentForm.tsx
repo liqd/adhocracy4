@@ -1,21 +1,51 @@
-const config = require('../../../static/config')
-const Alert = require('../../../static/Alert')
+import React from 'react'
+import config from '../../../static/config'
+import Alert from '../../../static/Alert'
+import django from 'django'
 
-const React = require('react')
-const django = require('django')
+interface CommentFormProps {
+  id?: string
+  onCommentSubmit: (comment: any, parentIndex?: number) => any
+  placeholder: string
+  rows: number
+  isReadOnly: boolean
+  error?: any
+  errorMessage?: string
+  handleErrorClick: () => void
+  isContextMember?: boolean
+  grabFocus?: boolean
+  parentIndex?: number
+  subjectId?: number
+  subjectType?: number
+}
 
-class CommentForm extends React.Component {
-  constructor (props) {
+interface CommentFormState {
+  comment: string
+}
+
+interface CommentFormContext {
+  isAuthenticated: boolean
+  isModerator: boolean
+  comments_contenttype: number
+  user_name: string
+}
+
+class CommentForm extends React.Component<CommentFormProps, CommentFormState> {
+  static contextType = React.createContext<CommentFormContext>({} as CommentFormContext)
+
+  declare context: CommentFormContext
+
+  constructor (props: CommentFormProps) {
     super(props)
 
     this.state = { comment: '' }
   }
 
-  handleTextChange (e) {
+  handleTextChange (e: React.ChangeEvent<HTMLTextAreaElement>) {
     this.setState({ comment: e.target.value })
   }
 
-  handleSubmit (e) {
+  handleSubmit (e: React.FormEvent) {
     e.preventDefault()
     const comment = this.state.comment.trim()
     if (!comment) {
@@ -32,7 +62,7 @@ class CommentForm extends React.Component {
         this.setState({ comment: '' })
         return null
       })
-      .catch(error => console.warn(error))
+      .catch((error: Error) => console.warn(error))
   }
 
   render () {
@@ -52,7 +82,7 @@ class CommentForm extends React.Component {
               rows={this.props.rows}
               className="form-control"
               placeholder={this.props.placeholder}
-              onChange={this.handleTextChange.bind(this)} required="required" value={this.state.comment}
+              onChange={this.handleTextChange.bind(this)} required value={this.state.comment}
             />
           </div>
           <input type="submit" value={postTag} className="submit-button" />
@@ -80,4 +110,4 @@ class CommentForm extends React.Component {
   }
 }
 
-module.exports = CommentForm
+export default CommentForm

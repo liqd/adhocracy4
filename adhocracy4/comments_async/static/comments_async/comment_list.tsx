@@ -1,8 +1,34 @@
 import React from 'react'
 
 import Comment from './comment'
+import type { Comment as CommentType, CommentPayload } from '../../../static/api/types'
 
-const CommentList = (props) => {
+interface CommentListProps {
+  comments: CommentType[]
+  filter?: string
+  parentIndex?: number
+  anchoredCommentId: number | null
+  anchoredCommentParentId: number
+  commentCategoryChoices?: Record<string, string>
+  withCategories?: boolean
+  projectIsPublic?: boolean
+  hasCommentingPermission: boolean
+  wouldHaveCommentingPermission: boolean
+  useTermsOfUse: boolean
+  agreedTermsOfUse: boolean
+  orgTermsUrl: string
+  onRenderFinished: () => void
+  onCommentDelete: (index: number, parentIndex?: number) => void
+  onCommentSubmit: (comment: CommentPayload, parentIndex?: number) => any
+  onCommentModify: (modifiedComment: CommentPayload, index: number, parentIndex?: number) => any
+  onReplyErrorClick: (index: number, parentIndex?: number) => void
+  onEditErrorClick: (index: number, parentIndex?: number) => void
+  setCommentError: (...args: any[]) => any
+  setCommentEditError: (...args: any[]) => any
+  hideNotification: (index: number, parentIndex?: number) => void
+}
+
+const CommentList = (props: CommentListProps) => {
   return (
     <ul className="u-list-reset a4-comments">
       {
@@ -18,7 +44,6 @@ const CommentList = (props) => {
               onRenderFinished={props.onRenderFinished}
               key={comment.id}
               user_name={comment.user_name}
-              user_pk={comment.user_pk}
               user_profile_url={comment.user_profile_url}
               user_image={comment.user_image ? comment.user_image : comment.user_image_fallback}
               child_comments={comment.child_comments}

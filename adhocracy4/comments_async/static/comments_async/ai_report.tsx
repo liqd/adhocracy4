@@ -15,8 +15,20 @@ const translated = {
   hideInfoSwitch: django.pgettext('defakts', 'Hide AI info from users')
 }
 
-export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
-  const [isExpanded, setIsExpanded] = useState()
+interface AiReportProps {
+  report: {
+    explanation: Record<string, any>
+    label: any[]
+    confidence: any[]
+    faq_url?: string
+    show_in_discussion?: boolean
+  }
+  notificationPk?: any
+  toggleShowAiReport?: any
+}
+
+export const AiReport = ({ report, notificationPk, toggleShowAiReport }: AiReportProps) => {
+  const [isExpanded, setIsExpanded] = useState<boolean | undefined>()
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded)
@@ -33,7 +45,7 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
     </button>
   )
 
-  const confidenceToPercent = (confidence) => {
+  const confidenceToPercent = (confidence: number) => {
     const percentFormat = new Intl.NumberFormat('default', {
       style: 'percent',
       minimumFractionDigits: 0,
@@ -42,14 +54,14 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
     return percentFormat.format(confidence)
   }
 
-  const extractLabelWords = (label) => {
+  const extractLabelWords = (label: string) => {
     const words = report.explanation[label]
-    return words.slice(0, 3).map(word => word[0]).join(', ')
+    return words.slice(0, 3).map((word: any) => word[0]).join(', ')
   }
 
   const renderExplanation = (
     <ul>
-      {report.label.map(([key, description], index) => (
+      {report.label.map(([key, description]: [string, string], index: number) => (
         <li key={key}>
           <span>{description.charAt(0).toUpperCase() + description.slice(1)} </span>
           <span>({confidenceToPercent(report.confidence[index])}): </span>
@@ -76,7 +88,7 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
       <div className="d-flex text-start">
         <i
           className="fas fa-exclamation-circle text-danger pt-1 pe-2"
-          aria-hidden="True"
+          aria-hidden={"True" as any}
         />
 
         {!isExpanded
@@ -111,4 +123,4 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }) => {
   )
 }
 
-module.exports = AiReport
+export default AiReport

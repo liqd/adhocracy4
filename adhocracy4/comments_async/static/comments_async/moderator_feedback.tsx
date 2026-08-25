@@ -1,6 +1,11 @@
 import React from 'react'
 
-export const ModeratorFeedback = ({ lastEdit, feedbackText }) => {
+interface ModeratorFeedbackProps {
+  lastEdit: string
+  feedbackText: string
+}
+
+export const ModeratorFeedback = ({ lastEdit, feedbackText }: ModeratorFeedbackProps) => {
   const translated = {
     moderator: 'Moderator'
   }

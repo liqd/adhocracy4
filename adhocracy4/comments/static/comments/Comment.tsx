@@ -1,23 +1,21 @@
 /* eslint-disable no-restricted-syntax */
-const React = require('react')
-const django = require('django')
+import React from 'react'
+import django from 'django'
 
-const { default: Modal } = require('../../../static/Modal')
-const ReportModal = require('../../../reports/static/reports/react_reports').ReportModal
-const RatingBox = require('../../../ratings/static/ratings/RatingBox')
-const CommentEditForm = require('./CommentEditForm')
-const CommentForm = require('./CommentForm')
-const CommentManageDropdown = require('./CommentManageDropdown')
+import Modal from '../../../static/Modal'
+import { ReportModal } from '../../../reports/static/reports/react_reports'
+import RatingBox from '../../../ratings/static/ratings/RatingBox'
+import CommentEditForm from './CommentEditForm'
+import CommentForm from './CommentForm'
+import CommentList from './CommentList'
+import CommentManageDropdown from './CommentManageDropdown'
+import type { Comment as CommentType, CommentPayload } from '../../../static/api/types'
 
-const safeHtml = function (text) {
-  return { __html: text }
-}
-
-const localeDate = function (dateStr) {
+const localeDate = function (dateStr: string) {
   return new Date(dateStr).toLocaleString(document.documentElement.lang)
 }
 
-const getViewRepliesText = function (number, hide) {
+const getViewRepliesText = function (number: number, hide: boolean) {
   let fmts
   if (hide) {
     fmts = django.ngettext('hide one reply', 'hide %s replies', number)
@@ -31,8 +29,56 @@ const answerTag = django.gettext('Answer')
 const answerPlaceholderText = django.gettext('Your reply here')
 const reportText = django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')
 
-class Comment extends React.Component {
-  constructor (props) {
+interface CommentProps {
+  user_name: string
+  user_profile_url: string
+  child_comments: CommentType[]
+  created: string
+  modified: string | null
+  authorIsModerator: boolean
+  id: number
+  content_type: number
+  object_pk: number
+  is_deleted: boolean
+  is_removed: boolean
+  is_censored: boolean
+  index: number
+  parentIndex?: number
+  onCommentDelete: (index: number, parentIndex?: number) => void
+  onCommentSubmit: (comment: CommentPayload, parentIndex?: number) => any
+  onCommentModify: (comment: CommentPayload, index: number, parentIndex?: number) => any
+  positiveRatings: number
+  negativeRatings: number
+  userRating: number | null
+  userRatingId: number | null
+  isReadOnly: boolean
+  replyError?: boolean
+  errorMessage?: string
+  onReplyErrorClick: (index: number, parentIndex?: number) => void
+  editError?: boolean
+  onEditErrorClick: (index: number, parentIndex?: number) => void
+  children: string
+}
+
+interface CommentContext {
+  isAuthenticated: boolean
+  isModerator: boolean
+  comments_contenttype: number
+  user_name: string
+}
+
+interface CommentState {
+  edit: boolean
+  showChildComments: boolean
+  replyFormHasFocus: boolean
+}
+
+class Comment extends React.Component<CommentProps, CommentState> {
+  static contextType = React.createContext<CommentContext>({} as CommentContext)
+
+  declare context: CommentContext
+
+  constructor (props: CommentProps) {
     super(props)
 
     this.state = {
@@ -42,7 +88,7 @@ class Comment extends React.Component {
     }
   }
 
-  toggleEdit (e) {
+  toggleEdit (e?: React.MouseEvent) {
     if (e) {
       e.preventDefault()
     }
@@ -50,7 +96,7 @@ class Comment extends React.Component {
     this.setState({ edit: newEdit })
   }
 
-  toggleShowComments (e) {
+  toggleShowComments (e: React.MouseEvent) {
     e.preventDefault()
     const newShowChildComment = !this.state.showChildComments
     this.setState({
@@ -59,7 +105,7 @@ class Comment extends React.Component {
     })
   }
 
-  replyComments (e) {
+  replyComments (e: React.MouseEvent) {
     e.preventDefault()
     this.setState({
       showChildComments: true,
@@ -91,6 +137,7 @@ class Comment extends React.Component {
         />
       )
     }
+    return null
   }
 
   renderModeratorLabel () {
@@ -100,6 +147,7 @@ class Comment extends React.Component {
         <span className="label label-subtle">{moderatorTag}</span>
       )
     }
+    return null
   }
 
   renderLastDate () {
@@ -120,7 +168,7 @@ class Comment extends React.Component {
   }
 
   renderComment () {
-    let comment
+    let comment: React.ReactNode
     if (this.state.edit) {
       comment = (
         <CommentEditForm
@@ -130,7 +178,7 @@ class Comment extends React.Component {
           error={this.props.editError}
           errorMessage={this.props.errorMessage}
           handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
-          rows="5"
+          rows={5}
           handleCancel={this.toggleEdit.bind(this)}
           onCommentSubmit={newComment => {
             this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
@@ -140,12 +188,12 @@ class Comment extends React.Component {
                 })
                 return null
               })
-              .catch(error => console.warn(error))
+              .catch((error: Error) => console.warn(error))
           }}
         />
       )
     } else {
-      comment = <div className="comment-text" dangerouslySetInnerHTML={safeHtml(this.props.children)} />
+      comment = <div className="comment-text" dangerouslySetInnerHTML={{ __html: this.props.children }} />
     }
     return comment
   }
@@ -163,22 +211,19 @@ class Comment extends React.Component {
           }}
           handleSubmit={() => this.props.onCommentDelete(this.props.index, this.props.parentIndex)}
           action={deleteTag}
-          abort={abortTag}
-          btnStyle="cta"
+          toggle={<span>{abortTag}</span>}
         />
       )
     }
+    return null
   }
 
   render () {
-    const CommentList = require('./CommentList')
-
     return (
       <div className="comment">
         <ReportModal
           name={'report_comment_' + this.props.id}
           description={reportText}
-          btnStyle="cta"
           objectId={this.props.id}
           contentType={this.context.comments_contenttype}
         />
@@ -238,8 +283,10 @@ class Comment extends React.Component {
                 comments={this.props.child_comments}
                 parentIndex={this.props.index}
                 onCommentDelete={this.props.onCommentDelete}
+                onCommentSubmit={this.props.onCommentSubmit}
                 onCommentModify={this.props.onCommentModify}
                 isReadOnly={this.props.isReadOnly}
+                onReplyErrorClick={this.props.onReplyErrorClick}
                 onEditErrorClick={this.props.onEditErrorClick}
               />)
             : null}
@@ -256,7 +303,8 @@ class Comment extends React.Component {
                 error={this.props.replyError}
                 errorMessage={this.props.errorMessage}
                 handleErrorClick={() => this.props.onReplyErrorClick(this.props.index, this.props.parentIndex)}
-                rows="3"
+                rows={3}
+                isReadOnly={this.props.isReadOnly}
                 grabFocus={this.state.replyFormHasFocus}
               />)
             : null}
@@ -266,4 +314,4 @@ class Comment extends React.Component {
   }
 }
 
-module.exports = Comment
+export default Comment

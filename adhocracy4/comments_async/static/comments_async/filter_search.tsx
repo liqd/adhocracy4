@@ -6,23 +6,29 @@ const translated = {
   clearSearch: django.gettext('Clear search')
 }
 
+interface FilterSearchProps {
+  search: string
+  onSearch: (query: string) => void
+  translated?: any
+}
+
 export const FilterSearch = ({
   search,
   onSearch
-}) => {
+}: FilterSearchProps) => {
   const [query, setQuery] = useState(search)
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       onSearch(query)
     }
   }
 
-  const handleClearQuery = (e) => {
+  const handleClearQuery = (_e: React.MouseEvent) => {
     setQuery('')
     onSearch('')
   }

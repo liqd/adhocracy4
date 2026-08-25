@@ -6,12 +6,14 @@ import api from '../../../../static/api'
 
 jest.mock('../../../../static/api')
 
+const mockedApi = api as any
+
 afterEach(() => {
   jest.clearAllMocks()
 })
 
 describe('CommentBox Component', () => {
-  const defaultProps = {
+  const defaultProps: any = {
     anchoredCommentId: null,
     id: 0,
     noControlBar: false,
@@ -22,40 +24,41 @@ describe('CommentBox Component', () => {
   }
 
   test('renders CommentBox', () => {
-    api.comments.setComments({
+    mockedApi.comments.setComments({
       results: []
     })
     render(<CommentBox {...defaultProps} />)
   })
 
   test('comments are fetched and loading spinners is hidden', () => {
-    api.comments.setComments({ results: [] })
+    mockedApi.comments.setComments({ results: [] })
     const tree = render(<CommentBox {...defaultProps} />)
     expect(tree).toMatchSnapshot()
 
-    expect(api.comments.get).toHaveBeenCalledTimes(1)
+    expect(mockedApi.comments.get).toHaveBeenCalledTimes(1)
     const loading = screen.getByText(/Loading.../)
     expect(loading.closest('div')).toHaveClass('d-none')
   })
 
   test('more comments are fetched on scroll', async () => {
-    global.fetch = jest.fn().mockResolvedValue({
+    const mockFetch = jest.fn().mockResolvedValue({
       json: () => {
         return { results: [] }
       }
     })
-    api.comments.setComments({
+    ;(globalThis as any).fetch = mockFetch
+    mockedApi.comments.setComments({
       results: [],
       next: 'https://liqd.net/next_comments'
     })
     render(<CommentBox {...defaultProps} />)
-    expect(api.comments.get).toHaveBeenCalledTimes(1)
+    expect(mockedApi.comments.get).toHaveBeenCalledTimes(1)
     const loading = screen.getByText(/Loading.../)
     expect(loading.closest('div')).toHaveClass('d-none')
     fireEvent.scroll(window, { y: 500 })
     await waitFor(() => {
-      expect(fetch).toHaveBeenCalledTimes(1)
-      expect(fetch).toHaveBeenCalledWith('https://liqd.net/next_comments')
+      expect(mockFetch).toHaveBeenCalledTimes(1)
+      expect(mockFetch).toHaveBeenCalledWith('https://liqd.net/next_comments')
     })
   })
 })

@@ -1,4 +1,4 @@
-function getDocumentHeight () {
+function getDocumentHeight (): number {
   const D = document
   return Math.max(
     D.body.scrollHeight, D.documentElement.scrollHeight,

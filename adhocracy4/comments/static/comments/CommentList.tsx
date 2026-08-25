@@ -1,8 +1,19 @@
-const Comment = require('./Comment')
+import React from 'react'
+import Comment from './Comment'
+import type { Comment as CommentType, CommentPayload } from '../../../static/api/types'
 
-const React = require('react')
+interface CommentListProps {
+  comments: CommentType[]
+  parentIndex?: number
+  onCommentDelete: (index: number, parentIndex?: number) => void
+  onCommentSubmit: (comment: CommentPayload, parentIndex?: number) => any
+  onCommentModify: (comment: CommentPayload, index: number, parentIndex?: number) => any
+  isReadOnly: boolean
+  onReplyErrorClick: (index: number, parentIndex?: number) => void
+  onEditErrorClick: (index: number, parentIndex?: number) => void
+}
 
-const CommentList = (props) => {
+const CommentList = (props: CommentListProps) => {
   return (
     <div>
       {
@@ -15,7 +26,7 @@ const CommentList = (props) => {
               child_comments={comment.child_comments}
               created={comment.created}
               modified={comment.modified}
-              authorIsModerator={comment.is_moderator}
+              authorIsModerator={!!comment.is_moderator}
               id={comment.id}
               content_type={comment.content_type}
               object_pk={comment.object_pk}
@@ -46,4 +57,4 @@ const CommentList = (props) => {
   )
 }
 
-module.exports = CommentList
+export default CommentList

@@ -1,40 +1,67 @@
-const CommentList = require('./CommentList')
-const CommentForm = require('./CommentForm')
-const api = require('../../../static/api')
+import React from 'react'
+import update, { type Spec } from 'immutability-helper'
+import django from 'django'
+import api from '../../../static/api'
+import type { Comment, CommentPayload } from '../../../static/api/types'
+import CommentList from './CommentList'
+import CommentForm from './CommentForm'
 
-const React = require('react')
-const update = require('immutability-helper')
-const django = require('django')
+interface CommentBoxProps {
+  comments: Comment[]
+  isAuthenticated: boolean
+  isModerator: boolean
+  comments_contenttype: number
+  user_name: string
+  subjectType: number
+  subjectId: number
+  isReadOnly: boolean
+  isContextMember: boolean
+}
 
-class CommentBox extends React.Component {
-  constructor (props) {
+interface CommentBoxState {
+  comments: Comment[]
+  error: boolean
+  errorMessage: string
+}
+
+class CommentBox extends React.Component<CommentBoxProps, CommentBoxState> {
+  constructor (props: CommentBoxProps) {
     super(props)
 
     this.state = {
-      comments: this.props.comments
+      comments: this.props.comments,
+      error: false,
+      errorMessage: ''
     }
   }
 
-  updateStateComment (index, parentIndex, updatedComment) {
+  updateStateComment (index: number, parentIndex: number | undefined, updatedComment: Partial<Comment>) {
     let comments = this.state.comments
-    const diff = {}
+    let diff: Spec<Comment[]>
     if (typeof parentIndex !== 'undefined') {
-      diff[parentIndex] = { child_comments: {} }
-      diff[parentIndex].child_comments[index] = { $merge: updatedComment }
+      diff = {
+        [parentIndex]: {
+          child_comments: {
+            [index]: { $merge: updatedComment }
+          }
+        }
+      }
     } else {
-      diff[index] = { $merge: updatedComment }
+      diff = {
+        [index]: { $merge: updatedComment }
+      }
     }
     comments = update(comments, diff)
     this.setState({ comments })
   }
 
-  handleCommentSubmit (comment, parentIndex) {
+  handleCommentSubmit (comment: CommentPayload, parentIndex?: number) {
     return api.comments.add(comment)
-      .done(comment => {
+      .done((comment: Comment) => {
         const comments = this.state.comments
-        let diff = {}
+        let diff: Spec<Comment[]>
         if (typeof parentIndex !== 'undefined') {
-          diff[parentIndex] = { child_comments: { $push: [comment] } }
+          diff = { [parentIndex]: { child_comments: { $push: [comment] } } }
         } else {
           diff = { $unshift: [comment] }
         }
@@ -53,12 +80,12 @@ class CommentBox extends React.Component {
         } else {
           this.setState({
             error: false,
-            errorMessage: undefined
+            errorMessage: ''
           })
         }
       })
-      .fail((xhr, status, err) => {
-        const errorMessage = xhr.responseJSON.comment[0]
+      .fail((xhr: JQuery.jqXHR<Comment>, _status: any, _err: any) => {
+        const errorMessage = String(xhr.responseJSON?.comment?.[0] ?? '')
         if (typeof parentIndex !== 'undefined') {
           this.updateStateComment(
             parentIndex,
@@ -75,7 +102,7 @@ class CommentBox extends React.Component {
       })
   }
 
-  handleCommentModify (modifiedComment, index, parentIndex) {
+  handleCommentModify (modifiedComment: CommentPayload, index: number, parentIndex?: number) {
     const comments = this.state.comments
     let comment = comments[index]
     if (typeof parentIndex !== 'undefined') {
@@ -83,18 +110,18 @@ class CommentBox extends React.Component {
     }
 
     return api.comments.change(modifiedComment, comment.id)
-      .done(changed => {
+      .done((changed: Comment) => {
         this.updateStateComment(index, parentIndex, changed)
         this.updateStateComment(
           index,
           parentIndex, {
             editError: false,
-            errorMessage: undefined
+            errorMessage: ''
           }
         )
       })
-      .fail((xhr, status, err) => {
-        const errorMessage = xhr.responseJSON.comment[0]
+      .fail((xhr: JQuery.jqXHR<Comment>, _status: any, _err: any) => {
+        const errorMessage = String(xhr.responseJSON?.comment?.[0] ?? '')
         this.updateStateComment(
           index,
           parentIndex,
@@ -105,7 +132,7 @@ class CommentBox extends React.Component {
       })
   }
 
-  handleCommentDelete (index, parentIndex) {
+  handleCommentDelete (index: number, parentIndex?: number) {
     const comments = this.state.comments
     let comment = comments[index]
     if (typeof parentIndex !== 'undefined') {
@@ -125,28 +152,28 @@ class CommentBox extends React.Component {
   hideNewError () {
     this.setState({
       error: false,
-      errorMessage: undefined
+      errorMessage: ''
     })
   }
 
-  hideReplyError (index, parentIndex) {
+  hideReplyError (index: number, parentIndex?: number) {
     this.updateStateComment(
       index,
       parentIndex,
       {
         replyError: false,
-        errorMessage: undefined
+        errorMessage: ''
       }
     )
   }
 
-  hideEditError (index, parentIndex) {
+  hideEditError (index: number, parentIndex?: number) {
     this.updateStateComment(
       index,
       parentIndex,
       {
         editError: false,
-        errorMessage: undefined
+        errorMessage: ''
       }
     )
   }
@@ -171,7 +198,7 @@ class CommentBox extends React.Component {
             subjectId={this.props.subjectId}
             onCommentSubmit={this.handleCommentSubmit.bind(this)}
             placeholder={yourCommentText}
-            rows="5"
+            rows={5}
             isReadOnly={this.props.isReadOnly}
             error={this.state.error}
             errorMessage={this.state.errorMessage}
@@ -195,4 +222,4 @@ class CommentBox extends React.Component {
   }
 }
 
-module.exports = CommentBox
+export default CommentBox

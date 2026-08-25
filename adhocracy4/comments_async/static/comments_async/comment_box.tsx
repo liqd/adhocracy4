@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import django from 'django'
-import update from 'immutability-helper'
+import update, { type Spec } from 'immutability-helper'
 
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
-import { CommentControlBar } from './comment_control_bar.jsx'
-import { CommentFilters } from './comment_filters.jsx'
+import { CommentControlBar } from './comment_control_bar'
+import { CommentFilters } from './comment_filters'
 import { getDocumentHeight } from '../util'
 
-const api = require('../../../static/api')
+import api from '../../../static/api'
+import type { Comment, CommentListResponse, CommentPayload, CommentQueryParams } from '../../../static/api/types'
 
-const sorts = {
+const sorts: Record<string, string> = {
   new: django.gettext('Newest'),
   pos: django.gettext('Most up votes'),
   neg: django.gettext('Most down votes'),
@@ -24,7 +25,17 @@ const translated = {
 
 const autoScrollThreshold = 500
 
-export const CommentBox = (props) => {
+interface CommentBoxProps {
+  subjectId: number
+  subjectType: number
+  id?: number | string
+  anchoredCommentId?: string
+  useModeratorMarked?: boolean
+  withCategories?: boolean
+  noControlBar?: boolean
+}
+
+export const CommentBox = (props: CommentBoxProps) => {
   const urlReplaces = {
     objectPk: props.subjectId,
     contentTypeId: props.subjectType
@@ -32,11 +43,11 @@ export const CommentBox = (props) => {
   const anchoredCommentId = props.anchoredCommentId
     ? parseInt(props.anchoredCommentId)
     : null
-  const [comments, setComments] = useState([])
-  const [nextComments, setNextComments] = useState(null)
+  const [comments, setComments] = useState<Comment[]>([])
+  const [nextComments, setNextComments] = useState<string | null>(null)
   const [commentCount, setCommentCount] = useState(0)
   const [showFilters, setShowFilters] = useState(false)
-  const [filter, setFilter] = useState([])
+  const [filter, setFilter] = useState('')
   const [filterDisplay, setFilterDisplay] = useState(django.gettext('all'))
   const [sort, setSort] = useState(props.useModeratorMarked ? 'mom' : 'new')
   const [loading, setLoading] = useState(true)
@@ -52,16 +63,16 @@ export const CommentBox = (props) => {
   const [agreedTermsOfUse, setAgreedTermsOfUse] = useState(false)
   const [orgTermsUrl, setOrgTermsUrl] = useState('')
   const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState(undefined)
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
   const [anchorRendered, setAnchorRendered] = useState(false)
-  const [categoryChoices, setCategoryChoices] = useState({})
+  const [categoryChoices, setCategoryChoices] = useState<Record<string, string>>({})
   const noControlBar = props.noControlBar || false
 
   useEffect(() => {
     if (props.useModeratorMarked) {
       sorts.mom = django.gettext('Highlighted')
     }
-    const params = {}
+    const params: CommentQueryParams = {}
     params.ordering = sort
     params.urlReplaces = urlReplaces
     if (props.anchoredCommentId) {
@@ -104,7 +115,7 @@ export const CommentBox = (props) => {
     }
   }, [anchorRendered, anchoredCommentId])
 
-  function handleComments (result) {
+  function handleComments (result: CommentListResponse) {
     const data = result
 
     setComments(data.results)
@@ -142,25 +153,34 @@ export const CommentBox = (props) => {
   // handles update of the comment state
   // called in handleCommentSubmit, handleCommentModify, handleCommentDelete,
   // handleHideReplyError, handleHideEditeError
-  function updateStateComment (parentIndex, index, updatedComment) {
-    const diff = {}
+  function updateStateComment (parentIndex: number | undefined, index: number | undefined, updatedComment: Partial<Comment>) {
+    let diff: Spec<Comment[]>
     if (parentIndex !== undefined) {
-      diff[parentIndex] = { child_comments: {} }
-      diff[parentIndex].child_comments[index] = { $merge: updatedComment }
+      diff = {
+        [parentIndex]: {
+          child_comments: {
+            [index as number]: { $merge: updatedComment }
+          }
+        }
+      }
     } else {
-      diff[index] = { $merge: updatedComment }
+      diff = {
+        [index as number]: { $merge: updatedComment }
+      }
     }
     setComments(update(comments, diff))
   }
 
-  function addComment (parentIndex, comment) {
-    let diff = {}
+  function addComment (parentIndex: number | undefined, comment: Comment) {
+    let diff: Spec<Comment[]>
     if (parentIndex !== undefined) {
-      diff[parentIndex] = {
-        child_comments: { $push: [comment] },
-        $merge: {
-          replyError: false,
-          errorMessage: undefined
+      diff = {
+        [parentIndex]: {
+          child_comments: { $push: [comment] },
+          $merge: {
+            replyError: false,
+            errorMessage: undefined
+          }
         }
       }
     } else {
@@ -171,52 +191,54 @@ export const CommentBox = (props) => {
     setCommentCount(commentCount + 1)
   }
 
-  function setReplyError (parentIndex, index, message) {
+  function setReplyError (parentIndex: number | undefined, index: number | undefined, message?: string) {
     updateError(parentIndex, index, message, 'replyError')
   }
 
-  function setEditError (parentIndex, index, message) {
+  function setEditError (parentIndex: number | undefined, index: number | undefined, message?: string) {
     updateError(parentIndex, index, message, 'editError')
   }
 
-  function setMainError (message) {
+  function setMainError (message?: string) {
     updateError(undefined, undefined, message, undefined)
   }
 
-  function updateError (parentIndex, index, message, type) {
-    if (index !== undefined) {
+  function updateError (parentIndex: number | undefined, index: number | undefined, message: string | undefined, type: 'replyError' | 'editError' | undefined) {
+    if (index !== undefined && type) {
       updateStateComment(parentIndex, index, {
         [type]: message !== undefined,
         errorMessage: message
       })
+    } else if (index !== undefined) {
+      updateStateComment(parentIndex, index, { errorMessage: message })
     } else {
       setError(message !== undefined)
       setErrorMessage(message)
     }
   }
 
-  function handleCommentSubmit (comment, parentIndex) {
+  function handleCommentSubmit (comment: CommentPayload, parentIndex?: number) {
     return api.comments
       .add(comment)
-      .done((comment) => {
+      .done((comment: Comment) => {
         comment.displayNotification = true
         addComment(parentIndex, comment)
         updateAgreedTOS()
       })
-      .fail((xhr, status, err) => {
-        const newErrorMessage = Object.values(xhr.responseJSON)[0]
-        setReplyError(parentIndex, undefined, newErrorMessage)
+      .fail((xhr: JQuery.jqXHR<Comment>, _status: any, _err: any) => {
+        const newErrorMessage = Object.values(xhr.responseJSON as Record<string, unknown>)[0]
+        setReplyError(parentIndex, undefined, String(newErrorMessage))
       })
   }
 
-  function handleCommentModify (modifiedComment, index, parentIndex) {
-    let comment = comments[index]
+  function handleCommentModify (modifiedComment: CommentPayload, index: number, parentIndex?: number) {
+    let comment: Comment = comments[index]
     if (parentIndex !== undefined) {
       comment = comments[parentIndex].child_comments[index]
     }
     return api.comments
       .change(modifiedComment, comment.id)
-      .done((changed) => {
+      .done((changed: Comment) => {
         updateStateComment(parentIndex, index, {
           ...changed,
           editError: false,
@@ -224,15 +246,15 @@ export const CommentBox = (props) => {
         })
         updateAgreedTOS()
       })
-      .fail((xhr, status, err) => {
-        const newErrorMessage = Object.values(xhr.responseJSON)[0]
-        setEditError(parentIndex, index, newErrorMessage)
+      .fail((xhr: JQuery.jqXHR<Comment>, _status: any, _err: any) => {
+        const newErrorMessage = Object.values(xhr.responseJSON as Record<string, unknown>)[0]
+        setEditError(parentIndex, index, String(newErrorMessage))
       })
   }
 
-  function handleCommentDelete (index, parentIndex) {
+  function handleCommentDelete (index: number, parentIndex?: number) {
     const newComments = comments
-    let comment = newComments[index]
+    let comment: Comment = newComments[index]
     if (parentIndex !== undefined) {
       comment = newComments[parentIndex].child_comments[index]
     }
@@ -245,16 +267,16 @@ export const CommentBox = (props) => {
     }
     return api.comments
       .delete(data, comment.id)
-      .done((changed) => {
+      .done((changed: Comment) => {
         updateStateComment(parentIndex, index, {
           ...changed,
           editError: false,
           errorMessage: undefined
         })
       })
-      .fail((xhr, status, err) => {
-        const newErrorMessage = Object.values(xhr.responseJSON)[0]
-        setEditError(parentIndex, index, newErrorMessage)
+      .fail((xhr: JQuery.jqXHR<Comment>, _status: any, _err: any) => {
+        const newErrorMessage = Object.values(xhr.responseJSON as Record<string, unknown>)[0]
+        setEditError(parentIndex, index, String(newErrorMessage))
       })
   }
 
@@ -262,44 +284,44 @@ export const CommentBox = (props) => {
     setMainError(undefined)
   }
 
-  function handleHideReplyError (index, parentIndex) {
+  function handleHideReplyError (index: number, parentIndex?: number) {
     setReplyError(index, parentIndex, undefined)
   }
 
-  function handleHideEditError (index, parentIndex) {
+  function handleHideEditError (index: number, parentIndex?: number) {
     setEditError(parentIndex, index, undefined)
   }
 
-  function handleHideNotification (index, parentIndex) {
+  function handleHideNotification (index: number, parentIndex?: number) {
     updateStateComment(parentIndex, index, { displayNotification: false })
   }
 
-  function handleToggleFilters (e) {
+  function handleToggleFilters (e: any) {
     e.preventDefault()
     setShowFilters(!showFilters)
   }
 
-  function handleClickFilter (e) {
+  function handleClickFilter (e: any) {
     e.preventDefault()
     const filter = e.target.id
     fetchFiltered(filter)
     setLoadingFilter(true)
   }
 
-  function fetchFiltered (filter) {
+  function fetchFiltered (filter: string) {
     let commentCategory = filter
     let displayFilter = categoryChoices[filter]
     if (filter === 'all') {
       displayFilter = django.gettext('all')
       commentCategory = ''
     }
-    const params = {
+    const params: CommentQueryParams = {
       comment_category: commentCategory,
       ordering: sort,
       search,
       urlReplaces
     }
-    api.comments.get(params).done((result) => {
+    api.comments.get(params).done((result: CommentListResponse) => {
       const data = result
       setComments(data.results)
       setNextComments(data.next)
@@ -310,30 +332,30 @@ export const CommentBox = (props) => {
     })
   }
 
-  function handleClickSortedOld (e) {
+  function handleClickSortedOld (e: any) {
     e.preventDefault()
     const order = e.target.id
     fetchSorted(order)
     setLoadingFilter(true)
   }
 
-  function handleClickSorted (choice) {
+  function handleClickSorted (choice: string[]) {
     fetchSorted(choice[0])
     setLoadingFilter(true)
   }
 
-  function fetchSorted (order) {
+  function fetchSorted (order: string) {
     let commentCategory = filter
     if (commentCategory === 'all') {
       commentCategory = ''
     }
-    const params = {
+    const params: CommentQueryParams = {
       ordering: order,
       comment_category: commentCategory,
       search,
       urlReplaces
     }
-    api.comments.get(params).done((result) => {
+    api.comments.get(params).done((result: CommentListResponse) => {
       const data = result
       setComments(data.results)
       setNextComments(data.next)
@@ -343,23 +365,23 @@ export const CommentBox = (props) => {
     })
   }
 
-  function handleSearch (search) {
+  function handleSearch (search: string) {
     fetchSearch(search)
     setLoadingFilter(true)
   }
 
-  function fetchSearch (search) {
+  function fetchSearch (search: string) {
     let commentCategory = filter
     if (commentCategory === 'all') {
       commentCategory = ''
     }
-    const params = {
+    const params: CommentQueryParams = {
       search,
       ordering: sort,
       comment_category: commentCategory,
       urlReplaces
     }
-    api.comments.get(params).done((result) => {
+    api.comments.get(params).done((result: CommentListResponse) => {
       const data = result
       setComments(data.results)
       setNextComments(data.next)
@@ -369,7 +391,7 @@ export const CommentBox = (props) => {
     })
   }
 
-  function findAnchoredComment (newComments, parentId) {
+  function findAnchoredComment (newComments: Comment[], parentId: number) {
     if (props.anchoredCommentId && !anchoredCommentFound) {
       let found = false
 
@@ -385,8 +407,8 @@ export const CommentBox = (props) => {
     return true
   }
 
-  function fetchComments (nextComments, comments, anchoredCommentParentId) {
-    fetch(nextComments)
+  function fetchComments (nextCommentsUrl: string, comments: Comment[], anchoredCommentParentId: number) {
+    fetch(nextCommentsUrl)
       .then((response) => response.json())
       .then((data) => {
         const newComments = comments.concat(data.results)
@@ -421,10 +443,11 @@ export const CommentBox = (props) => {
     }
   }
 
-  function commentCategoryChoices () {
+  function commentCategoryChoices (): Record<string, string> | undefined {
     if (props.withCategories === true) {
       return categoryChoices
     }
+    return undefined
   }
 
   function handleTermsOfUse () {
@@ -495,7 +518,7 @@ export const CommentBox = (props) => {
             <CommentControlBar
               sort={sort}
               sorts={sorts}
-              searh={search}
+              search={search}
               handleClickFilter={handleClickSorted}
               handleSearch={handleSearch}
             />

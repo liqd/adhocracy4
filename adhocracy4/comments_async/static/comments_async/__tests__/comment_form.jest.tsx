@@ -4,13 +4,13 @@ import '@testing-library/jest-dom'
 import CommentForm from '../comment_form'
 
 describe('CommentForm Component', () => {
-  const defaultProps = {
+  const defaultProps: any = {
     agreedTermsOfUse: false,
     useTermsOfUse: false,
     subjectId: 108,
     subjectType: 107,
     hasCommentingPermission: true,
-    onCommentSubmit: jest.fn().mockResolvedValue()
+    onCommentSubmit: jest.fn().mockResolvedValue(undefined)
   }
 
   test('renders CommentForm', () => {

@@ -17,15 +17,34 @@ const translated = {
   ordering: django.gettext('Ordering')
 }
 
-function translatedEntries (entries) {
+function translatedEntries (entries: number) {
   return django.ngettext('entry', 'entries', entries)
 }
 
-function translatedEntriesFound (entriesFound) {
+function translatedEntriesFound (entriesFound: number) {
   return django.ngettext('entry found for ', 'entries found for ', entriesFound)
 }
 
-export const CommentFilters = (props) => {
+interface CommentFiltersProps {
+  commentCount: number
+  loading?: boolean
+  showFilters: boolean
+  search: string
+  filter?: string
+  filterDisplay: string
+  withCategories?: boolean
+  sort: string
+  sorts: Record<string, string>
+  loadingFilter: boolean
+  commentCategoryChoices: any
+  handleToggleFilters: (e: React.MouseEvent) => void
+  handleSearch: (search: string) => void
+  handleClickFilter?: any
+  handleClickFilters?: any
+  handleClickSorted: (e: React.MouseEvent) => void
+}
+
+export const CommentFilters = (props: CommentFiltersProps) => {
   return (
     <div
       className={
@@ -88,9 +107,9 @@ export const CommentFilters = (props) => {
             ? (
               <FilterCategory
                 translated={translated}
-                filter={props.filter}
+                filter={props.filter as string}
                 filterDisplay={props.filterDisplay}
-                onClickFilter={props.handleClickFilter}
+                onClickFilter={props.handleClickFilter as (e: React.MouseEvent) => void}
                 commentCategoryChoices={props.commentCategoryChoices}
               />
               )

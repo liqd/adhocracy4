@@ -9,7 +9,15 @@ const translated = {
   ordering: django.gettext('Ordering')
 }
 
-export const CommentControlBar = (props) => {
+interface CommentControlBarProps {
+  sorts: Record<string, string>
+  search?: string
+  sort: string
+  handleClickFilter: (choice: string[]) => void
+  handleSearch: (search: string) => void
+}
+
+export const CommentControlBar = (props: CommentControlBarProps) => {
   const filterArray = Object.keys(props.sorts).map((key) => [key, props.sorts[key]])
   const filter = { choices: filterArray, label: translated.ordering }
 
@@ -18,8 +26,9 @@ export const CommentControlBar = (props) => {
       <div className="form-group form-group--inline">
         <div className="form-group">
           <ControlBarSearch
-            onSearch={(value) => props.handleSearch(value)}
+            onSearch={(value: string) => props.handleSearch(value)}
             term={props.search}
+            placeholder={undefined}
           />
         </div>
         <div className="form-group">

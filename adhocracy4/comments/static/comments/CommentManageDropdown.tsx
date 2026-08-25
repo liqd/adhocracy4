@@ -1,7 +1,13 @@
-const React = require('react')
-const django = require('django')
+import React from 'react'
+import django from 'django'
 
-const CommentManageDropdown = (props) => {
+interface CommentManageDropdownProps {
+  id: number
+  handleToggleEdit: () => void
+  renderModeratorOptions: boolean
+}
+
+const CommentManageDropdown = (props: CommentManageDropdownProps) => {
   const editTag = django.gettext('Edit')
   const deleteTag = django.gettext('Delete')
   const reportTag = django.gettext('Report')
@@ -32,4 +38,4 @@ const CommentManageDropdown = (props) => {
   )
 }
 
-module.exports = CommentManageDropdown
+export default CommentManageDropdown
