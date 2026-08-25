@@ -73,6 +73,7 @@ jobs:
           uv run isort --diff -c adhocracy4 tests
           uv run flake8 adhocracy4 tests --exclude migrations,settings
           pnpm run lint
+          pnpm run typecheck
       - name: Run Frontend Tests
         run: |
           pnpm test

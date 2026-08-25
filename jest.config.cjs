@@ -38,11 +38,12 @@ const config = {
     '(django)': '<rootDir>/__mocks__/djangoMock.js',
     'react-flip-move': '<rootDir>/__mocks__/flipmoveMock.js'
   },
-  testMatch: ['**/*.jest.js', '**/*.jest.jsx'],
+  testMatch: ['**/*.jest.js', '**/*.jest.jsx', '**/*.jest.ts', '**/*.jest.tsx'],
   testPathIgnorePatterns: ['venv/', 'node_modules/', 'build/'],
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.jsx',
+    '**/*.tsx',
     '!**/coverage/**',
     '!**/node_modules/**',
     '!**/babel.config.js',
