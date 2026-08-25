@@ -6,6 +6,15 @@ const translations = {
   downvote: django.gettext('Click to dislike')
 }
 
+interface RatingButtonProps {
+  rating: number
+  active: boolean
+  onClick: (value: number) => void
+  authenticatedAs: string | number | null | undefined
+  isReadOnly: boolean
+  children: React.ReactNode
+}
+
 const RatingButton = ({
   rating,
   active,
@@ -13,7 +22,7 @@ const RatingButton = ({
   authenticatedAs,
   isReadOnly,
   children
-}) => {
+}: RatingButtonProps) => {
   const onClickWrapper = () => {
     onClick(active ? 0 : rating)
   }

@@ -13,15 +13,29 @@ const translations = {
   validationError: django.gettext('Please enter a message before submitting.')
 }
 
-export const ReportModal = (props) => {
+interface ReportModalProps {
+  contentType: number | string
+  objectId: number | string
+  description?: string
+  name?: string
+  btnStyle?: string
+}
+
+export const ReportModal = (props: ReportModalProps) => {
   const [report, setReport] = useState('')
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [showReportForm, setShowReportForm] = useState(true)
   const [validationError, setValidationError] = useState(false)
 
-  const partials = {}
+  const partials: {
+    title?: string
+    body?: React.ReactNode
+    description?: string
+    hideFooter?: boolean
+    bodyClass?: string
+  } = {}
 
-  const handleTextChange = (e) => {
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReport(e.target.value)
     // Clear validation error when user starts typing
     if (validationError) {
@@ -64,7 +78,7 @@ export const ReportModal = (props) => {
     partials.body = (
       <div className="form-group">
         <textarea
-          rows="5"
+          rows={5}
           className={'form-control report-message' + (validationError ? ' is-invalid' : '')}
           value={report}
           placeholder={translations.placeholderText}

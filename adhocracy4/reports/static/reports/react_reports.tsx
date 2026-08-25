@@ -4,10 +4,8 @@ import { createRoot } from 'react-dom/client'
 
 import { ReportModal } from './ReportModal'
 
-module.exports.ReportModal = ReportModal
-
-module.exports.renderReports = function (el) {
-  const props = JSON.parse(el.getAttribute('data-attributes'))
+export const renderReports = function (el: HTMLElement) {
+  const props = JSON.parse(el.getAttribute('data-attributes') as string)
   const root = createRoot(el)
 
   root.render(
@@ -17,4 +15,11 @@ module.exports.renderReports = function (el) {
       objectId={props.objectId}
       contentType={props.contentType}
     />)
+}
+
+export { ReportModal }
+
+export default {
+  ReportModal,
+  renderReports
 }

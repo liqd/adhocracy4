@@ -34,6 +34,23 @@ export function buildFollowSuccessAlert () {
   )
 }
 
+interface AlertData {
+  type: string
+  htmlMessage: string
+}
+
+interface FollowButtonProps {
+  project: string
+  authenticatedAs?: boolean | string | null
+  customClasses?: string
+  alertTarget?: string | null
+  buttonTarget?: string | null
+  buttonClassName?: string
+  descriptionId?: string
+  onFollowChange?: ((isFollowing: boolean) => void) | null
+  onFollowStateChange?: ((state: { following: boolean | null, toggleFollow: () => void }) => void) | null
+}
+
 export const FollowButton = ({
   project,
   authenticatedAs,
@@ -44,9 +61,9 @@ export const FollowButton = ({
   descriptionId = 'follow-description',
   onFollowChange = null,
   onFollowStateChange = null
-}) => {
-  const [following, setFollowing] = useState(null)
-  const [alert, setAlert] = useState(null)
+}: FollowButtonProps) => {
+  const [following, setFollowing] = useState<boolean | null>(null)
+  const [alert, setAlert] = useState<AlertData | null>(null)
 
   useEffect(() => {
     if (!authenticatedAs) {
@@ -114,7 +131,7 @@ export const FollowButton = ({
         type="button"
         onClick={toggleFollow}
         aria-describedby={descriptionId}
-        aria-pressed={following}
+        aria-pressed={following as unknown as boolean}
         disabled={following === null && authenticatedAs !== null}
       >
         <span className="a4-follow__btn--content">{followBtnText}</span>
@@ -150,6 +167,7 @@ export const FollowButton = ({
 
   const alertContent = alertTarget
     ? (
+      // eslint-disable-next-line react-hooks/static-components
       <AlertPortal />
       )
     : (

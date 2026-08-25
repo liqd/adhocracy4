@@ -3,6 +3,8 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import RatingBox from '../RatingBox'
 import { createOrModifyRating } from '../rating_api'
 
+const mockedCreateOrModifyRating = createOrModifyRating as jest.Mock
+
 jest.mock('../../../../static/config', () => {
   return {
     getLoginUrl: jest.fn().mockReturnValue('/login')
@@ -11,7 +13,12 @@ jest.mock('../../../../static/config', () => {
 
 jest.mock('../rating_api')
 
-const getData = ({ pos = 1, neg = 0, id = 2, userRating = null } = {}) => {
+const getData = ({ pos = 1, neg = 0, id = 2, userRating = null }: {
+  pos?: number
+  neg?: number
+  id?: number
+  userRating?: number | null
+} = {}) => {
   const mockData = {
     meta_info: {
       positive_ratings_on_same_object: pos,
@@ -48,17 +55,20 @@ describe('RatingBox', () => {
   const originalLocation = window.location
 
   beforeAll(() => {
+    // @ts-expect-error jsdom's window.location is not configurable
     delete window.location
+    // @ts-expect-error override location with a plain object for the redirect tests
     window.location = { href: '' }
   })
 
   beforeEach(() => {
-    createOrModifyRating.mockClear()
+    mockedCreateOrModifyRating.mockClear()
     window.adhocracy4 = { getCurrentPath: jest.fn(() => '') }
     window.location.href = ''
   })
 
   afterAll(() => {
+    // @ts-expect-error restore location
     window.location = originalLocation
     Object.assign(window, originalWindow)
   })
@@ -78,7 +88,7 @@ describe('RatingBox', () => {
     const button = screen.getByRole('button', { name: /1 like/i })
     expect(screen.getByRole('button', { name: /0 dislike/i })).toBeInTheDocument()
 
-    createOrModifyRating.mockReturnValue(getData({ pos: 2, userRating: 1 }))
+    mockedCreateOrModifyRating.mockReturnValue(getData({ pos: 2, userRating: 1 }))
     fireEvent.click(button)
     await waitFor(() => expect(createOrModifyRating).toHaveBeenCalledTimes(1))
     expect(createOrModifyRating).toHaveBeenCalledWith(1, 10, 14, null)
@@ -126,7 +136,7 @@ describe('RatingBox', () => {
 
 describe('RatingBox custom render', () => {
   beforeEach(() => {
-    createOrModifyRating.mockClear()
+    mockedCreateOrModifyRating.mockClear()
   })
   test('component renders with custom children', async () => {
     render(
@@ -153,7 +163,7 @@ describe('RatingBox custom render', () => {
     expect(ratings).toMatchSnapshot()
 
     const button = screen.getByRole('button', { name: /dislike/ })
-    createOrModifyRating.mockReturnValue(getData())
+    mockedCreateOrModifyRating.mockReturnValue(getData())
     fireEvent.click(button)
     await waitFor(() => expect(createOrModifyRating).toHaveBeenCalledTimes(1))
     expect(createOrModifyRating).toHaveBeenCalledWith(-1, 10, 14, null)

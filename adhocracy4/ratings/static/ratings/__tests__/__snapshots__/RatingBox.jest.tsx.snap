@@ -4,7 +4,7 @@ exports[`RatingBox custom render component renders with custom children 1`] = `
 <div
   data-testid="custom-rating-box"
 >
-  {"ratings":{"negative":0,"positive":1},"userRatingData":{"userHasRating":false,"userRating":null,"userRatingId":null}}
+  {"ratings":{"negative":0,"positive":1},"userRatingData":{"userHasRating":false,"userRating":null,"userRatingId":null},"isReadOnly":false}
   <button>
     dislike
   </button>
