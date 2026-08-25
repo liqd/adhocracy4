@@ -34,3 +34,6 @@ coverage/
 /tests/project/local.py
 
 build/
+
+# flox local environment
+.flox/
