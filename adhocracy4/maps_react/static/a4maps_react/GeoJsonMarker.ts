@@ -6,7 +6,7 @@ import {
 } from '@react-leaflet/core'
 import django from 'django'
 
-export const makeIcon = (iconUrl) =>
+export const makeIcon = (iconUrl?: string) =>
   L.icon({
     iconUrl: iconUrl || '/static/images/map_pin_default.svg',
     shadowUrl: '/static/images/map_shadow_01.svg',
@@ -21,14 +21,14 @@ export const makeIcon = (iconUrl) =>
  * Creates a Leaflet marker from a GeoJSON. This is needed to
  * be able to add any Tooltip or Popup to the Markers using JSX.
  */
-const createGeoJsonMarker = ({ feature, ...props }, context) => {
-  const coords = [...feature.geometry.coordinates].reverse()
+const createGeoJsonMarker = ({ feature, ...props }: any, context: any): any => {
+  const coords = [...feature.geometry.coordinates].reverse() as L.LatLngExpression
   const propsWithIcon = { icon: makeIcon(feature.properties.category_icon), ...props }
   const instance = L.marker(coords, propsWithIcon)
 
   const a11yTag = django.gettext('Project pin')
   const originalOnAdd = instance.onAdd
-  instance.onAdd = function (map) {
+  instance.onAdd = function (map: L.Map) {
     originalOnAdd.call(this, map)
     const element = this.getElement()
     if (element) {
@@ -39,11 +39,11 @@ const createGeoJsonMarker = ({ feature, ...props }, context) => {
     return this
   }
 
-  return createElementObject(instance, extendContext(context, { overlayContainer: instance }))
+  return createElementObject(instance, extendContext(context, { overlayContainer: instance as any }))
 }
 
-const updateGeoJsonMarker = (instance, { feature, ...props }, prevProps) => {
-  const coords = [...feature.geometry.coordinates].reverse()
+const updateGeoJsonMarker = (instance: any, { feature, ...props }: any, prevProps: any): void => {
+  const coords = [...feature.geometry.coordinates].reverse() as L.LatLngExpression
   if (props.icon !== prevProps.icon) {
     instance.setIcon(props.icon)
   }

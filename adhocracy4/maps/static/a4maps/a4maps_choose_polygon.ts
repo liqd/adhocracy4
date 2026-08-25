@@ -1,7 +1,9 @@
 import { createMap } from './a4maps_common'
 import 'leaflet-draw'
 
-function getBaseBounds (L, polygon, bbox) {
+const $: any = window.jQuery
+
+function getBaseBounds (L: any, polygon: any, bbox: any) {
   if (polygon) {
     if (polygon.type === 'FeatureCollection' && polygon.features.length === 0) {
       return bbox
@@ -13,9 +15,9 @@ function getBaseBounds (L, polygon, bbox) {
 }
 
 function init () {
-  const L = window.L
+  const L: any = (window as any).L
 
-  $('[data-map="choose_polygon"]').each(function (i, e) {
+  $('[data-map="choose_polygon"]').each(function (i: number, e: any) {
     const name = e.getAttribute('data-name')
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const bbox = JSON.parse(e.getAttribute('data-bbox'))
@@ -40,7 +42,7 @@ function init () {
       fillOpacity: 0.2
     }
 
-    let drawnItems
+    let drawnItems: any
     if (polygon) {
       drawnItems = L.geoJson(polygon, {
         style: polygonStyle
@@ -79,7 +81,7 @@ function init () {
       }
     }))
 
-    map.on(L.Draw.Event.CREATED, function (event) {
+    map.on(L.Draw.Event.CREATED, function (event: any) {
       const layer = event.layer
       drawnItems.addLayer(layer)
       const shape = drawnItems.toGeoJSON()
@@ -87,19 +89,19 @@ function init () {
       $('#id_' + name).trigger('change')
     })
 
-    map.on(L.Draw.Event.EDITED, function (event) {
+    map.on(L.Draw.Event.EDITED, function (_event: any) {
       const shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
       $('#id_' + name).trigger('change')
     })
 
-    map.on(L.Draw.Event.DELETED, function (event) {
+    map.on(L.Draw.Event.DELETED, function (_event: any) {
       const shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
       $('#id_' + name).trigger('change')
     })
 
-    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (_e: any) {
       map.invalidateSize().fitBounds(getBaseBounds(L, polygon, bbox))
     })
   })

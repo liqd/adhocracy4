@@ -1,11 +1,20 @@
 import L from 'leaflet'
+import React from 'react'
 import { createControlComponent } from '@react-leaflet/core'
 import { point, booleanPointInPolygon } from '@turf/turf'
 import { makeIcon } from './GeoJsonMarker'
 
-export function checkPointInsidePolygon (marker, polygons) {
+interface PolygonLayer {
+  eachLayer: (fn: (layer: any) => void) => void
+}
+
+export function checkPointInsidePolygon (marker: { lat: number; lng: number }, polygons: PolygonLayer | null) {
   const pointGeoJSON = point([marker.lng, marker.lat])
   let isInPolygon = false
+
+  if (!polygons) {
+    return isInPolygon
+  }
 
   polygons.eachLayer((layer) => {
     const polygonGeoJSON = layer.toGeoJSON()
@@ -19,8 +28,23 @@ export function checkPointInsidePolygon (marker, polygons) {
 
 const markerProps = { icon: makeIcon(), draggable: true }
 
+interface AddMarkerControlOptions {
+  input: HTMLInputElement
+  point?: string
+  markerConstraints?: any
+  onDragEnd?: (isInside: boolean) => void
+}
+
 export class AddMarkerControlClass extends L.Control {
-  constructor ({ input, point, markerConstraints, onDragEnd }) {
+  marker: any
+  oldCoords: any
+  map: any
+  input: HTMLInputElement
+  markerConstraints: any
+  onDragEndHandler?: (isInside: boolean) => void
+  boundClickHandler: ((e: any) => void) | undefined
+
+  constructor ({ input, point, markerConstraints, onDragEnd }: AddMarkerControlOptions) {
     super()
     this.marker = null
     this.oldCoords = null
@@ -41,7 +65,7 @@ export class AddMarkerControlClass extends L.Control {
     }
   }
 
-  updateMarker (latlng) {
+  updateMarker (latlng: { lat: number; lng: number }) {
     const isInsideConstraints = checkPointInsidePolygon(latlng, this.markerConstraints)
     if (isInsideConstraints) {
       this.oldCoords = latlng
@@ -57,7 +81,7 @@ export class AddMarkerControlClass extends L.Control {
     return isInsideConstraints
   }
 
-  onDragend (e) {
+  onDragend (e: any) {
     const targetPosition = e.target.getLatLng()
     const isInsideConstraints = checkPointInsidePolygon(targetPosition, this.markerConstraints)
     if (!isInsideConstraints) {
@@ -68,7 +92,7 @@ export class AddMarkerControlClass extends L.Control {
     this.onDragEndHandler?.(isInsideConstraints)
   }
 
-  addTo (map) {
+  addTo (map: any): this {
     this.map = map
     this.boundClickHandler = (e) => this.updateMarker(e.latlng)
     map.on('click', this.boundClickHandler)
@@ -77,18 +101,21 @@ export class AddMarkerControlClass extends L.Control {
       this.marker.addTo(this.map)
       this.marker.on('dragend', this.onDragend.bind(this))
     }
+    return this
   }
 
-  onRemove (map) {
+  onRemove (map: any): this {
     map.off('click', this.boundClickHandler)
     if (this.marker) {
       this.marker.off('dragend', this.onDragend)
       this.marker.remove()
       this.marker = null
     }
+    return this
   }
 }
-const createControl = (props) => new AddMarkerControlClass(props)
 
-const AddMarkerControl = createControlComponent(createControl)
+const createControl = (props: any): L.Control => new AddMarkerControlClass(props)
+
+const AddMarkerControl = createControlComponent(createControl as any) as React.ComponentType<any>
 export default AddMarkerControl

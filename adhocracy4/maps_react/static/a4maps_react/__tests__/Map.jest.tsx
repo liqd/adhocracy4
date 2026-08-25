@@ -20,16 +20,16 @@ export const polygonData = {
 
 jest.mock('react-leaflet', () => {
   const ActualReactLeaflet = jest.requireActual('react-leaflet')
-  const React = require('react')
+  const React = jest.requireActual('react')
 
-  const MapContainer = React.forwardRef((props, ref) => (
+  const MapContainer = React.forwardRef((props: any, ref: any) => (
     <div data-testid="map">
       <ActualReactLeaflet.MapContainer ref={ref} {...props} />
     </div>
   ))
   MapContainer.displayName = 'MapContainer'
 
-  const GeoJSON = React.forwardRef((props, ref) => (
+  const GeoJSON = React.forwardRef((_props: any, _ref: any) => (
     <div data-testid="geojson" />
   ))
   GeoJSON.displayName = 'GeoJSON'

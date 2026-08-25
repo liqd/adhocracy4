@@ -1,9 +1,11 @@
-/* global django */
+import django from 'django'
+
+const $: any = window.jQuery
 
 const apiUrl = '/api/geodata/search'
 // const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 
-function pointInPolygon (point, polygon) {
+function pointInPolygon (point: number[], polygon: any) {
   const x = point[0]
   const y = point[1]
 
@@ -36,9 +38,9 @@ function pointInPolygon (point, polygon) {
   return inside
 }
 
-const pointInObject = function (point, geojson, failByDefault) {
+const pointInObject = function (point: number[], geojson: any, failByDefault = false) {
   if (geojson.type === 'MultiPolygon') {
-    return geojson.coordinates.some(function (polygon) {
+    return geojson.coordinates.some(function (polygon: any) {
       return pointInPolygon(point, polygon)
     })
   } else if (geojson.type === 'Polygon') {
@@ -46,7 +48,7 @@ const pointInObject = function (point, geojson, failByDefault) {
   } else if (geojson.type === 'Feature') {
     return pointInObject(point, geojson.geometry, failByDefault)
   } else if (geojson.type === 'FeatureCollection') {
-    return geojson.features.some(function (feature) {
+    return geojson.features.some(function (feature: any) {
       return pointInObject(point, feature, true)
     })
   } else {
@@ -54,7 +56,7 @@ const pointInObject = function (point, geojson, failByDefault) {
   }
 }
 
-const setBusy = function ($group, busy) {
+const setBusy = function ($group: any, busy: boolean) {
   $group.attr('aria-busy', busy)
   $group.find('input').attr('disabled', busy)
   $group.find('button').attr('disabled', busy)
@@ -69,20 +71,20 @@ const setBusy = function ($group, busy) {
   }
 }
 
-const getPoints = function (address, cb) {
+const getPoints = function (address: string, cb: any) {
   $.ajax(apiUrl, {
     data: { search: address },
-    success: function (geojson) {
+    success: function (geojson: any) {
       cb(geojson.results.features)
     },
     error: function () {
-      const points = []
+      const points: any[] = []
       cb(points)
     }
   })
 }
 
-function getAddressTextForPoint (point, isInitAddress = false) {
+function getAddressTextForPoint (point: any, isInitAddress = false) {
   if (!point) return ''
 
   const props = point.properties || {}
@@ -98,7 +100,7 @@ function getAddressTextForPoint (point, isInitAddress = false) {
   return `${strasse} ${haus} in ${plz} ${ortsteil}`.trim()
 }
 
-const renderPoints = function (points) {
+const renderPoints = function (points: any[]) {
   if (points.length === 0) {
     return $('<span class="complete__warning">')
       .text(django.gettext('No matches found within the project area'))
@@ -119,7 +121,7 @@ const renderPoints = function (points) {
 }
 
 function init () {
-  $('[data-map="address"]').each(function (i, e) {
+  $('[data-map="address"]').each(function (i: number, e: any) {
     const $group = $(e)
     const name = $group.data('name')
     const $input = $('#id_' + name)
@@ -128,7 +130,7 @@ function init () {
     const existingPoint = $map.data('point')
     const savedAddress = getAddressTextForPoint(existingPoint, true)
     $group.find('input').val(savedAddress)
-    const onSubmit = function (event) {
+    const onSubmit = function (event: any) {
       event.preventDefault()
       setBusy($group, true)
       const address = $group.find('input').val()
@@ -138,7 +140,7 @@ function init () {
         setBusy($group, false)
         return
       }
-      getPoints(address, function (points) {
+      getPoints(address, function (points: any[]) {
         setBusy($group, false)
         $group.find('.complete')
           .empty()
@@ -151,13 +153,13 @@ function init () {
     // simulate a nested form
     $group.find('button').click(onSubmit)
     $group.find('input').on('change', onSubmit)
-    $group.find('input').on('keydown', function (event) {
+    $group.find('input').on('keydown', function (event: any) {
       if (event.keyCode === 13) {
         onSubmit(event)
       }
     })
 
-    $group.on('click', '[data-map-point]', function (event) {
+    $group.on('click', '[data-map-point]', function (event: any) {
       const data = $(event.target).attr('data-map-point')
       const addressForPoint = getAddressTextForPoint(JSON.parse(data))
       $group.find('.complete').empty()
@@ -166,7 +168,7 @@ function init () {
       $input.val(data)
     })
 
-    $(document).on('focusout', function (event) {
+    $(document).on('focusout', function (event: any) {
       if (!$.contains($group.get(0), event.relatedTarget)) {
         $group.find('.complete').empty()
       }

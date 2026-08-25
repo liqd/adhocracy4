@@ -1,9 +1,11 @@
 import { createMap } from './a4maps_common'
 
-function init () {
-  const L = window.L
+const $: any = window.jQuery
 
-  $('[data-map="display_point"]').each(function (i, e) {
+function init () {
+  const L: any = (window as any).L
+
+  $('[data-map="display_point"]').each(function (i: number, e: any) {
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const point = JSON.parse(e.getAttribute('data-point'))
     const pinSrc = JSON.parse(e.getAttribute('data-pin-src'))
@@ -44,7 +46,7 @@ function init () {
     }).addTo(map)
 
     L.geoJson(point, {
-      pointToLayer: function (feature, latlng) {
+      pointToLayer: function (feature: any, latlng: any) {
         let icon = defaultIcon
         if (pinSrc) {
           icon = L.icon({

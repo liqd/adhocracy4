@@ -1,4 +1,4 @@
-window.L.drawLocal = {
+(window as any).L.drawLocal = {
   draw: {
     toolbar: {
       actions: {

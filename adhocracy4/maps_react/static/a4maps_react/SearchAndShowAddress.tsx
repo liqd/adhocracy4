@@ -1,15 +1,19 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useMap } from 'react-leaflet'
 import AddressSearch, { getSearchResultText } from './AddressSearch'
 import GeoJsonMarker, { makeIcon } from './GeoJsonMarker'
 import ControlWrapper from './ControlWrapper'
 
+interface SearchAndShowAddressProps {
+  apiUrl: string
+}
+
 const SearchAndShowAddress = ({
   apiUrl
-}) => {
+}: SearchAndShowAddressProps) => {
   const map = useMap()
-  const markerRef = useRef(null)
-  const [activeFeature, setActiveFeature] = React.useState(null)
+  const markerRef = useRef<any>(null)
+  const [activeFeature, setActiveFeature] = useState<any>(null)
 
   useEffect(() => {
     if (markerRef.current && map) {
@@ -26,7 +30,7 @@ const SearchAndShowAddress = ({
       <ControlWrapper position="topleft" className="projects-map__search">
         <AddressSearch
           apiUrl={apiUrl}
-          onSelectAddress={setActiveFeature} onChangeInput={(val) => {
+          onSelectAddress={setActiveFeature} onChangeInput={(val: string) => {
             if (val === '' && activeFeature) {
               setActiveFeature(null)
             }

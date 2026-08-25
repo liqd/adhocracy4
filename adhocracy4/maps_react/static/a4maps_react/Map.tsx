@@ -9,8 +9,17 @@ const polygonStyle = {
   fillOpacity: 0.2
 }
 
+interface MapProps {
+  attribution?: string
+  baseUrl?: string
+  polygon?: any
+  omtToken?: string
+  children?: React.ReactNode
+  [key: string]: any
+}
+
 const Map = React.forwardRef(function Map (
-  { attribution, baseUrl, polygon, omtToken, children, ...rest },
+  { attribution, baseUrl, polygon, omtToken, children, ...rest }: MapProps,
   ref
 ) {
   const MapLayers = () => {
@@ -18,7 +27,7 @@ const Map = React.forwardRef(function Map (
     // forwarding our map ref
     // FIXME: do we need the ref?
     useImperativeHandle(ref, () => map)
-    const refCallback = (polygon) => {
+    const refCallback = (polygon: any) => {
       if (!map || !polygon) {
         return
       }

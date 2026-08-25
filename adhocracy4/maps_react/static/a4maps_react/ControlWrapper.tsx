@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { createElementHook, createControlHook } from '@react-leaflet/core'
 import { Control, DomUtil, DomEvent } from 'leaflet'
 
-const ControlWrapper = Control.extend({
+const ControlWrapper: any = Control.extend({
   options: {
     className: '',
     onOff: '',
@@ -17,7 +17,7 @@ const ControlWrapper = Control.extend({
     return _controlDiv
   },
 
-  onRemove (map) {
+  onRemove (map: any) {
     if (this.options.onOff) {
       map.off(this.options.onOff, this.options.handleOff, this)
     }
@@ -26,22 +26,21 @@ const ControlWrapper = Control.extend({
   }
 })
 
-const createControl = (props, context) => {
+const createControl = (props: any, context: any): any => {
   const instance = new ControlWrapper(props)
   return { instance, context: { ...context, overlayContainer: instance } }
 }
 
 const useControlElement = createElementHook(createControl)
-const useControl = createControlHook(useControlElement)
+const useControl = createControlHook(useControlElement as any)
 
 const useForceUpdate = () => {
-  // eslint-disable-next-line no-unused-vars
   const [_, setValue] = useState(0) // integer state
   return useCallback(() => setValue((value) => value + 1), []) // update the state to force render
 }
 
-const createLeafletControl = (useElement) => {
-  const Component = (props, _ref) => {
+const createLeafletControl = (useElement: any) => {
+  const Component = (props: any, _ref: any) => {
     const forceUpdate = useForceUpdate()
     const { instance } = useElement(props).current
 
@@ -55,7 +54,6 @@ const createLeafletControl = (useElement) => {
     }, [forceUpdate])
 
     const contentNode = instance.getContainer()
-    // eslint-disable-next-line react/prop-types
     return contentNode ? createPortal(props.children, contentNode) : null
   }
   return forwardRef(Component)

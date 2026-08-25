@@ -2,7 +2,7 @@ import 'leaflet'
 import '@maplibre/maplibre-gl-leaflet'
 import { isMapboxURL, transformMapboxUrl } from 'maplibregl-mapbox-request-transformer'
 
-export function createMap (L, e, {
+export function createMap (L: any, e: any, {
   dragging = undefined,
   scrollWheelZoom = undefined,
   zoomControl = undefined,
@@ -13,7 +13,7 @@ export function createMap (L, e, {
   attribution = '',
   mapboxToken = '',
   omtToken = ''
-} = {}) {
+}: any = {}) {
   const map = new L.Map(e, {
     dragging,
     scrollWheelZoom,
@@ -25,14 +25,14 @@ export function createMap (L, e, {
 
   // Transform urls with the mapbox:// scheme as maplibre-gl dropped support
   // for it in v2.
-  const transformRequest = (url, resourceType) => {
+  const transformRequest = (url: string, resourceType: any) => {
     if (isMapboxURL(url)) {
       return transformMapboxUrl(url, resourceType, mapboxToken)
     }
     return { url }
   }
   if (useVectorMap === '1') {
-    let maplibreMap
+    let maplibreMap: any
     if (mapboxToken !== '') {
       maplibreMap = L.maplibreGL({
         accessToken: mapboxToken,
@@ -43,7 +43,7 @@ export function createMap (L, e, {
       if (omtToken !== '') {
         maplibreMap = L.maplibreGL({
           style: baseUrl,
-          transformRequest: function (url, resourceType) {
+          transformRequest: function (url: string, resourceType: string) {
             if (resourceType === 'Tile' && url.indexOf('https://') === 0) {
               return {
                 url: url + '?token=' + omtToken
@@ -69,7 +69,7 @@ export function createMap (L, e, {
         const loadAttribution = () => {
           const sources = mm.getStyle().sources
           const keys = Object.keys(sources)
-          const noAttribution = keys.every((key, index) => {
+          const noAttribution = keys.every((key: string) => {
             if ('attribution' in sources[key]) {
               map.attributionControl.addAttribution(sources[key].attribution)
               return false

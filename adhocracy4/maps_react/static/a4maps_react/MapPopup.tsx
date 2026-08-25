@@ -1,7 +1,14 @@
 import React from 'react'
 import { Popup } from 'react-leaflet'
 
-export const MapPopup = ({ feature, className, children, ...rest }) => {
+interface MapPopupProps {
+  feature: any
+  className?: string
+  children?: React.ReactNode
+  [key: string]: any
+}
+
+export const MapPopup = ({ feature, className, children, ...rest }: MapPopupProps) => {
   const _className = 'maps-popups ' + (className ?? '')
   return (
     <Popup {...rest} className={_className} closeButton={false}>

@@ -1,16 +1,16 @@
 /* Adds extra select dropdown to choose predefined polygon instead of drawing one */
 
-/* global django */
 import { createMap } from './a4maps_common'
 import 'leaflet-draw'
 import './i18n-leaflet-draw'
 import FileSaver from 'file-saver'
 import shp from 'shpjs'
+import django from 'django'
 
 // leaflet requires shp to be global
-window.shp = shp
+(window as any).shp = shp
 
-function getBaseBounds (L, polygon, bbox) {
+function getBaseBounds (L: any, polygon: any, bbox: any) {
   if (polygon) {
     if (polygon.type === 'FeatureCollection' && polygon.features.length === 0) {
       return bbox
@@ -23,8 +23,8 @@ function getBaseBounds (L, polygon, bbox) {
 
 function init () {
   // select2 needs stateful jQuery
-  const $ = window.jQuery
-  const L = window.L
+  const $: any = window.jQuery
+  const L: any = (window as any).L
 
   const ImportControl = L.Control.extend({
     // Options
@@ -33,28 +33,28 @@ function init () {
       polygonStyle: {}
     },
 
-    initialize: function (layer, options) {
+    initialize: function (layer: any, options: any) {
       L.Util.setOptions(this, options)
       this._layer = layer
     },
 
-    onAdd: function (map) {
+    onAdd: function (map: any) {
       const container = this._createControls()
       document.body.appendChild(this._createModal())
 
-      $(document).on('click', '#map-export-link', (e) => {
+      $(document).on('click', '#map-export-link', (e: any) => {
         e.preventDefault()
         this._export(map)
       })
 
-      $(document).on('submit', '#map-import-form', (e) => {
+      $(document).on('submit', '#map-import-form', (e: any) => {
         e.preventDefault()
 
-        const fileInput = $('#map-import-file-input')[0]
-        if (fileInput.files.length < 1) {
+        const fileInput = $('#map-import-file-input')[0] as HTMLInputElement
+        if (fileInput.files!.length < 1) {
           return
         }
-        const file = fileInput.files[0]
+        const file = fileInput.files![0]
 
         this._removeUploadError()
         fileInput.value = ''
@@ -119,48 +119,48 @@ function init () {
       $('#id_error-map-import-form').removeAttr('class').empty()
     },
 
-    _showUploadError: function (msg) {
+    _showUploadError: function (msg: string) {
       $('#id_error-map-import-form').attr('class', 'field-error').text(msg)
       $('#map-import-file-input').attr('aria-invalid', 'true').attr('aria-describedby', 'id_error-map-import-form')
     },
 
-    _export: function (map) {
+    _export: function (_map: any) {
       const geoJson = this._layer.toGeoJSON()
       const blob = new window.Blob([JSON.stringify(geoJson)], { type: 'application/json' })
       FileSaver.saveAs(blob, 'export.geojson')
     },
 
-    _import: function (map, file) {
+    _import: function (map: any, file: File) {
       if (file.name.slice(-3) === 'zip') {
         const reader = new window.FileReader()
-        reader.onload = (e) => {
+        reader.onload = (e: any) => {
           const buffer = e.target.result
-          shp(buffer).then((geoJson) => {
+          shp(buffer).then((geoJson: any) => {
             try {
               const shape = L.geoJson(geoJson, {
                 style: this.options.polygonStyle
               })
               this._addToMap(map, shape)
-            } catch (e) {
+            } catch {
               this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
             }
             return null
-          }, (e) => this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
-          ).catch((e) => {
+          }, (_e: any) => this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
+          ).catch(() => {
             this._showUploadError(django.gettext('The uploaded file could not be imported.'))
           })
         }
         reader.readAsArrayBuffer(file)
       } else if (file.name.slice(-4) === 'json') {
         const reader = new window.FileReader()
-        reader.onload = (e) => {
+        reader.onload = (e: any) => {
           try {
             const geoJson = JSON.parse(e.target.result)
             const shape = L.geoJson(geoJson, {
               style: this.options.polygonStyle
             })
             this._addToMap(map, shape)
-          } catch (e) {
+          } catch {
             this._showUploadError(django.gettext('The uploaded file is not a valid geojson file.'))
           }
         }
@@ -170,11 +170,11 @@ function init () {
       }
     },
 
-    _addToMap: function (map, shape) {
+    _addToMap: function (map: any, shape: any) {
       $('#map-import-modal').modal('hide')
 
       this._layer.clearLayers()
-      shape.eachLayer((layer) => {
+      shape.eachLayer((layer: any) => {
         this._layer.addLayer(layer)
       })
       map.fitBounds(this._layer.getBounds())
@@ -182,7 +182,7 @@ function init () {
     }
   })
 
-  $('[data-map="choose_polygon"]').each(function (i, e) {
+  $('[data-map="choose_polygon"]').each(function (i: number, e: any) {
     const name = e.getAttribute('data-name')
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const bbox = JSON.parse(e.getAttribute('data-bbox'))
@@ -206,7 +206,7 @@ function init () {
       fillOpacity: 0.2
     }
 
-    let drawnItems
+    let drawnItems: any
     if (polygon) {
       drawnItems = L.geoJson(polygon, {
         style: polygonStyle
@@ -251,7 +251,7 @@ function init () {
       }
     ))
 
-    map.on(L.Draw.Event.CREATED, function (event) {
+    map.on(L.Draw.Event.CREATED, function (event: any) {
       const layer = event.layer
       drawnItems.addLayer(layer)
       const geoJson = drawnItems.toGeoJSON()
@@ -259,23 +259,23 @@ function init () {
       $('#id_' + name).trigger('change')
     })
 
-    map.on(L.Draw.Event.EDITED, function (event) {
+    map.on(L.Draw.Event.EDITED, function (_event: any) {
       const geoJson = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(geoJson))
       $('#id_' + name).trigger('change')
     })
 
-    map.on(L.Draw.Event.DELETED, function (event) {
+    map.on(L.Draw.Event.DELETED, function (_event: any) {
       const geoJson = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(geoJson))
       $('#id_' + name).trigger('change')
     })
 
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (_e: any) {
       map.invalidateSize().fitBounds(getBaseBounds(L, polygon, bbox))
     })
 
-    $('#select_' + name).on('change', function (event) {
+    $('#select_' + name).on('change', function (event: any) {
       const geoJson = event.target.value
       if (geoJson) {
         const shape = L.geoJson(JSON.parse(geoJson), {
@@ -286,7 +286,7 @@ function init () {
         const msg = django.gettext('Do you want to load this preset and delete all the existing polygons?')
         if (isEmpty || window.confirm(msg)) {
           drawnItems.clearLayers()
-          shape.eachLayer(function (layer) {
+          shape.eachLayer(function (layer: any) {
             drawnItems.addLayer(layer)
           })
           map.fitBounds(drawnItems.getBounds())

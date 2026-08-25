@@ -7,12 +7,19 @@ import Alert from '../../../static/Alert'
 
 const error = django.gettext('The chosen address is outside this map\'s bounds. Please choose another one.')
 
-const ChoosePointMap = ({ BaseMap = Map, apiUrl, input, ...mapProps }) => {
-  const mapRef = useRef(null)
-  const controlRef = useRef(null)
+interface ChoosePointMapProps {
+  BaseMap?: any
+  apiUrl: string
+  input: any
+  [key: string]: any
+}
+
+const ChoosePointMap = ({ BaseMap = Map, apiUrl, input, ...mapProps }: ChoosePointMapProps) => {
+  const mapRef = useRef<any>(null)
+  const controlRef = useRef<any>(null)
   const [showOutsideBoundsError, setShowOutsideBoundsError] = useState(false)
 
-  const flyToCoordinates = (coordinates) => {
+  const flyToCoordinates = (coordinates: any) => {
     const map = mapRef.current
     if (map) {
       map.getContainer().scrollIntoView({ behavior: 'smooth', block: 'center' })
@@ -24,7 +31,7 @@ const ChoosePointMap = ({ BaseMap = Map, apiUrl, input, ...mapProps }) => {
     <div className="a4-choose-point-map">
       <AddressSearch
         apiUrl={apiUrl}
-        onSelectAddress={(feature) => {
+        onSelectAddress={(feature: any) => {
           if (controlRef.current && controlRef.current.updateMarker({
             lat: feature.geometry.coordinates[1],
             lng: feature.geometry.coordinates[0]

@@ -5,11 +5,11 @@ import {
   createTileLayerComponent, updateGridLayer
 } from '@react-leaflet/core'
 
-const createMaplibreGlLayer = (props, context) => {
-  const instance = L.maplibreGL({
+const createMaplibreGlLayer = (props: any, context: any): any => {
+  const instance: any = (L.maplibreGL as any)({
     attribution: props.attribution,
     style: props.baseUrl,
-    transformRequest: function (url, resourceType) {
+    transformRequest: function (url: string, resourceType: any) {
       if (resourceType === 'Tile' && url.indexOf('https://') === 0) {
         return {
           url: url + '?token=' + props.omtToken
@@ -21,7 +21,7 @@ const createMaplibreGlLayer = (props, context) => {
   return createElementObject(instance, context)
 }
 
-const updateMaplibreGlLayer = (instance, props, prevProps) => {
+const updateMaplibreGlLayer = (instance: any, props: any, prevProps: any): void => {
   updateGridLayer(instance, props, prevProps)
 
   const { baseUrl, attribution } = props

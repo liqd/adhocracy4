@@ -1,15 +1,19 @@
 import { createMap } from './a4maps_common'
 import django from 'django'
 
+declare function require (module: string): any
+
+const $: any = window.jQuery
+
 function loadMarkerCluster () {
   require('leaflet.markercluster')
 }
 
 function init () {
   loadMarkerCluster()
-  const L = window.L
+  const L: any = (window as any).L
 
-  const escapeHtml = function (unsafe) {
+  const escapeHtml = function (unsafe: string) {
     // jQuery.text() escapes special chars as is documented at http://api.jquery.com/text/#text-function
     // Alternatively a custom unsafe.replace(/&/g, '&amp;')... solution as described
     // at https://stackoverflow.com/a/6234804 may be used. for example underscore.js uses a regexp based unescape.
@@ -17,7 +21,7 @@ function init () {
     return $('<div>').text(unsafe).html()
   }
 
-  $('[data-map="display_points"]').each(function (i, e) {
+  $('[data-map="display_points"]').each(function (i: number, e: any) {
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const points = JSON.parse(e.getAttribute('data-points'))
     const hideRatings = e.getAttribute('data-hide-ratings')
@@ -60,10 +64,10 @@ function init () {
     }
 
     const basePolygon = L.geoJson(polygon, { style: polygonStyle }).addTo(map)
-    basePolygon.on('dblclick', function (event) {
+    basePolygon.on('dblclick', function (_event: any) {
       map.zoomIn()
     })
-    basePolygon.on('click', function (event) {
+    basePolygon.on('click', function (_event: any) {
       map.closePopup()
     })
 
@@ -77,14 +81,14 @@ function init () {
         closeButton: false
       }
 
-    function getImage (feature) {
+    function getImage (feature: any) {
       if (feature.properties.image) {
         return '<div class="maps-popups-popup-image" style="background-image:url(' + feature.properties.image + ');"></div>'
       }
       return '<div class="maps-popups-popup-image maps-popups-popup-no-image"></div>'
     }
 
-    function getRatings (feature) {
+    function getRatings (feature: any) {
       return '<span class="map-popup-upvotes">' +
                feature.properties.positive_rating_count + ' <i class="fa fa-thumbs-up" aria-hidden="true"></i>' +
              '</span>' +
@@ -93,7 +97,7 @@ function init () {
              '</span>'
     }
 
-    function getSupport (feature) {
+    function getSupport (feature: any) {
       return '<span class="map-popup-upvotes">' +
                feature.properties.positive_rating_count + ' <i class="fa fa-thumbs-up" aria-hidden="true"></i>' +
                '<span class="visually-hidden">' +
@@ -106,7 +110,7 @@ function init () {
              '</span>'
     }
 
-    function getVoteCount (feature) {
+    function getVoteCount (feature: any) {
       return '<span class="map-popup-vote-count">' +
                feature.properties.vote_count + ' <i class="fa-regular fa-square-check" aria-hidden="true"></i>' +
                '<span class="visually-hidden">' +
@@ -119,7 +123,7 @@ function init () {
              '</span>'
     }
 
-    function getCommentCount (feature) {
+    function getCommentCount (feature: any) {
       return '<span class="map-popup-comments-count">' +
                feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
                '<span class="visually-hidden">' +
@@ -132,7 +136,7 @@ function init () {
              '</span>'
     }
 
-    function getPopUpContent (feature) {
+    function getPopUpContent (feature: any) {
       let popupContent = getImage(feature) +
                          '<div class="maps-popups-popup-text-content">' +
                          '<div class="maps-popups-popup-meta">'
@@ -168,7 +172,7 @@ function init () {
     })
 
     L.geoJson(points, {
-      pointToLayer: function (feature, latlng) {
+      pointToLayer: function (feature: any, latlng: any) {
         let icon = defaultIcon
         if (feature.properties.category_icon) {
           icon = L.icon({
