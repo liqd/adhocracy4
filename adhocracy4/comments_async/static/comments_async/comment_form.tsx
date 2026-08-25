@@ -4,6 +4,7 @@ import django from 'django'
 import CategoryList from './category_list'
 import Alert from '../../../static/Alert'
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
+import type { CommentPayload } from '../../../static/api/types'
 
 import * as config from '../../../static/config'
 
@@ -47,7 +48,7 @@ interface CommentFormProps {
   handleCancel?: (e?: any) => void
   rows?: string
   setCommentError: (...args: any[]) => any
-  onCommentSubmit: (comment: any, parentIndex?: number) => any
+  onCommentSubmit: (comment: CommentPayload, parentIndex?: number) => any
   withCategories?: boolean
   hideNotification?: (index: number, parentIndex?: number) => void
   autoFocus?: boolean
@@ -125,7 +126,7 @@ export default class CommentForm extends React.Component<CommentFormProps, Comme
       submitting: true
     })
     const comment = this.state.comment.trim()
-    const data: any = {
+    const data: CommentPayload = {
       comment,
       urlReplaces: {
         objectPk: this.props.subjectId,

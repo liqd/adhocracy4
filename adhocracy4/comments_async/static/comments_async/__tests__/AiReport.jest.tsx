@@ -7,7 +7,7 @@ describe('Test AiReport', () => {
   test('renders with Read More button', () => {
     render(
       <AiReport
-        report={{ label: [['cattest', 'test label']], confidence: [['cattest', 0.65]], explanation: { cattest: [['word', 0.61]] }, show_in_discussion: true }}
+        report={{ label: [['cattest', 'test label']], confidence: [0.65], explanation: { cattest: [['word', 0.61]] }, show_in_discussion: true }}
       />
     )
     const comment = screen.getByText('Read more')
@@ -17,7 +17,7 @@ describe('Test AiReport', () => {
   test('functionality of Read More button', () => {
     render(
       <AiReport
-        report={{ label: [['cattest', 'test label']], confidence: [['cattest', 0.65]], explanation: { cattest: [['word', 0.61]] }, show_in_discussion: true }}
+        report={{ label: [['cattest', 'test label']], confidence: [0.65], explanation: { cattest: [['word', 0.61]] }, show_in_discussion: true }}
       />
     )
     const readMore = screen.getByText('Read more')

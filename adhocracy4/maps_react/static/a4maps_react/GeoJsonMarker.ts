@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import L from 'leaflet'
 import {
   createElementObject,

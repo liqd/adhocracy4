@@ -22,7 +22,6 @@ export default [
   },
 
   n.configs['flat/recommended'],
-  n.configs['flat/recommended'],
   promise.configs['flat/recommended'],
   react.configs.flat.recommended,
   reactHooks.configs.flat.recommended,
@@ -30,26 +29,6 @@ export default [
   {
     files: ['**/*.jest.js', '**/*.jest.jsx'],
     ...jest.configs['flat/recommended'],
-  },
-
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
-    },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-    },
-    rules: {
-      ...tsPlugin.configs.recommended.rules,
-      '@typescript-eslint/no-unused-vars': 'warn',
-      'no-unused-vars': 'off',
-      'no-undef': 'off',
-    },
   },
 
   {
@@ -91,13 +70,30 @@ export default [
       'jest/no-identical-title': 'off',
       'jest/no-export': 'off',
       'react-hooks/refs': 'off',
-      'no-restricted-syntax': [
-        'error',
-        {
-          selector: 'TemplateLiteral[expressions.length>0]',
-          message: 'Template literals with expressions are not allowed.',
-        },
-      ],
+    },
+  },
+
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    rules: {
+      ...tsPlugin.configs.recommended.rules,
+      'no-unused-vars': 'off',
+      'no-undef': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      }],
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 
@@ -107,19 +103,6 @@ export default [
       globals: {
         ...globals.jest,
       },
-    },
-  },
-
-  {
-    files: ['**/*.ts', '**/*.tsx'],
-    rules: {
-      'no-unused-vars': 'off',
-      'no-undef': 'off',
-      '@typescript-eslint/no-unused-vars': ['warn', {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      }],
-      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 

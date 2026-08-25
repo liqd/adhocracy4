@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import React, { useId, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import django from 'django'

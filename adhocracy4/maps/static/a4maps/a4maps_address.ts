@@ -96,7 +96,6 @@ function getAddressTextForPoint (point: any, isInitAddress = false) {
   const plz = props.plz ?? ''
   const ortsteil = props.ortsteil ?? ''
 
-  // eslint-disable-next-line no-restricted-syntax
   return `${strasse} ${haus} in ${plz} ${ortsteil}`.trim()
 }
 

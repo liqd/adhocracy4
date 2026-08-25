@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react'
 import django from 'django'
 import FlipMove from 'react-flip-move'

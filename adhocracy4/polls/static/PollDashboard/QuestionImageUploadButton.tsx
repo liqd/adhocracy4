@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import React, { useRef } from 'react'
 import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'

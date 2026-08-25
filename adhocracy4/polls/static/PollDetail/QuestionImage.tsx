@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import React, { useState } from 'react'
 
 interface QuestionImageProps {

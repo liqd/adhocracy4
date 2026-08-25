@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import django from 'django'
@@ -167,7 +166,7 @@ export default class Comment extends React.Component<CommentProps, CommentState>
     }
   }
 
-  toggleEdit (e?: any) {
+  toggleEdit (e?: React.MouseEvent) {
     if (e) {
       e.preventDefault()
     }
@@ -175,7 +174,7 @@ export default class Comment extends React.Component<CommentProps, CommentState>
     this.setState({ edit: newEdit })
   }
 
-  toggleShowComments (e: any) {
+  toggleShowComments (e: React.MouseEvent) {
     e.preventDefault()
     const newShowChildComment = !this.state.showChildComments
     this.setState({
@@ -183,7 +182,7 @@ export default class Comment extends React.Component<CommentProps, CommentState>
     })
   }
 
-  replyComments (e: any) {
+  replyComments (e: React.MouseEvent) {
     e.preventDefault()
     this.setState({
       showChildComments: true
@@ -198,7 +197,7 @@ export default class Comment extends React.Component<CommentProps, CommentState>
     return this.props.content_type !== this.props.comment_content_type
   }
 
-  toggleExpand (e: any) {
+  toggleExpand (e: React.MouseEvent) {
     e.preventDefault()
     const newShorten = !this.state.shorten
     this.setState({

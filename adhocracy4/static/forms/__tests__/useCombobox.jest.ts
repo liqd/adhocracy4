@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import { renderHook, act } from '@testing-library/react'
 import useCombobox from '../useCombobox'
 

@@ -28,7 +28,6 @@ export function getSearchResultText (feature: GeoJsonFeature | undefined) {
     ortsteil = ''
   } = feature?.properties || {}
 
-  // eslint-disable-next-line no-restricted-syntax
   return `${strasse} ${haus} in ${plz} ${ortsteil}`.trim()
 }
 

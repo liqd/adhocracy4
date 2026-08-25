@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import django from 'django'
 import { SwitchButton } from '../../../static/SwitchButton'
+import type { AiReport as AiReportType } from '../../../static/api/types'
 
 const translated = {
   expandableBar: django.pgettext('defakts', 'The defakt AI has found evidence of disinformation.'),
@@ -16,15 +17,9 @@ const translated = {
 }
 
 interface AiReportProps {
-  report: {
-    explanation: Record<string, any>
-    label: any[]
-    confidence: any[]
-    faq_url?: string
-    show_in_discussion?: boolean
-  }
-  notificationPk?: any
-  toggleShowAiReport?: any
+  report: AiReportType
+  notificationPk?: string
+  toggleShowAiReport?: (isChecked: boolean) => void
 }
 
 export const AiReport = ({ report, notificationPk, toggleShowAiReport }: AiReportProps) => {
@@ -56,7 +51,7 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }: AiRepor
 
   const extractLabelWords = (label: string) => {
     const words = report.explanation[label]
-    return words.slice(0, 3).map((word: any) => word[0]).join(', ')
+    return words.slice(0, 3).map((word) => word[0]).join(', ')
   }
 
   const renderExplanation = (
@@ -88,7 +83,7 @@ export const AiReport = ({ report, notificationPk, toggleShowAiReport }: AiRepor
       <div className="d-flex text-start">
         <i
           className="fas fa-exclamation-circle text-danger pt-1 pe-2"
-          aria-hidden={"True" as any}
+          aria-hidden={true}
         />
 
         {!isExpanded

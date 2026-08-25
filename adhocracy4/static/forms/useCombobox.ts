@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import { useCallback, useId, useMemo, useRef, useState } from 'react'
 import type { FocusEvent, KeyboardEvent, MouseEvent as ReactMouseEvent } from 'react'
 import { getLoopedIndex } from './AutoComplete'

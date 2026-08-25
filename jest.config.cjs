@@ -43,6 +43,7 @@ const config = {
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.jsx',
+    '**/*.ts',
     '**/*.tsx',
     '!**/coverage/**',
     '!**/node_modules/**',

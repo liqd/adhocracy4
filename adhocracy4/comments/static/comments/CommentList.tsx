@@ -1,3 +1,6 @@
+// DEPRECATED: this component tree is superseded by
+// comments_async/static/comments_async. Kept for backwards compatibility
+// with consumers still importing the legacy comments module.
 import React from 'react'
 import Comment from './Comment'
 import type { Comment as CommentType, CommentPayload } from '../../../static/api/types'

@@ -1,3 +1,6 @@
+// DEPRECATED: this component tree is superseded by
+// comments_async/static/comments_async. Kept for backwards compatibility
+// with consumers still importing the legacy comments module.
 import React from 'react'
 import update, { type Spec } from 'immutability-helper'
 import django from 'django'
