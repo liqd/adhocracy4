@@ -19,10 +19,10 @@ classifiers = [
 ]
 dependencies = [
     "beautifulsoup4",
-    "bleach[css]",
+    "bleach[css] >= 6.4.0",
     "celery",
-    "Django >= 4.2, < 5.3",
-    "django-allauth",
+    "Django >= 5.2.16, < 5.3",
+    "django-allauth >= 65.14.1",
     "django-autoslug",
     "django-background-tasks",
     "django-ckeditor-5",
@@ -38,7 +38,7 @@ dependencies = [
     "jsonfield",
     "python-dateutil",
     "python-magic",
-    "requests",
+    "requests >= 2.33.0",
     "rules",
     "XlsxWriter",
 ]
@@ -46,14 +46,14 @@ dynamic = ["version"]
 
 [dependency-groups]
 dev = [
-    "black",
+    "black >= 26.3.1",
     "factory-boy",
     "Faker",
     "flake8",
     "freezegun",
     "isort",
     "psycopg[binary]",
-    "pytest",
+    "pytest >= 9.0.3",
     "pytest-cov",
     "pytest-django",
     "pytest-factoryboy",

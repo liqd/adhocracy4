@@ -16,6 +16,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+### Security
+
+- Dependencies: update Python packages to fix security vulnerabilities:
+  Django 5.2.14 → 5.2.16, bleach 6.3.0 → 6.4.0,
+  django-allauth 65.12.1 → 65.18.0, requests 2.32.5 → 2.34.2,
+  black 25.9.0 → 26.5.1, pytest 8.4.2 → 9.1.1
+
 ### Changed
 
 - Dependencies: use pnpm for more secure package management
