@@ -85,8 +85,8 @@ importers:
         specifier: 30.4.1
         version: 30.4.1
       '@maplibre/maplibre-gl-leaflet':
-        specifier: 0.0.22
-        version: 0.0.22(@types/leaflet@1.9.21)(leaflet@1.9.4)(maplibre-gl@4.7.1)
+        specifier: 0.1.4
+        version: 0.1.4(@types/leaflet@1.9.21)(leaflet@1.9.4)(maplibre-gl@4.7.1)
       '@react-leaflet/core':
         specifier: 2.1.0
         version: 2.1.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1005,12 +1005,12 @@ packages:
     resolution: {integrity: sha512-Es6WcD0nO5l+2BOQS4uLfNPYQaNDfbot3X1XUoloz+x0mPDS3eeORZJl06HXjwBG1fOGwCRnzK88LMdxKRrd6Q==}
     engines: {node: '>=6.0.0'}
 
-  '@maplibre/maplibre-gl-leaflet@0.0.22':
-    resolution: {integrity: sha512-9p4DSPLUE5t0StXH/IcZw37/UL7Ekea4jcVdkSsb2jWI+sM3K7mYHLOnti/2wn+HqxG4jMVUHah7Xun3bs00AQ==}
+  '@maplibre/maplibre-gl-leaflet@0.1.4':
+    resolution: {integrity: sha512-k57wcndZIvq3m08g2je4pjUPGr43ffNW3j+gXbymt8Vi2l1lUERUi1UmdTZcTPN8LuDDYOMWRNBaSLwpAu02ew==}
     peerDependencies:
       '@types/leaflet': ^1.9.0
       leaflet: ^1.9.3
-      maplibre-gl: ^2.4.0 || ^3.3.1 || ^4.3.2
+      maplibre-gl: ^2.4.0 || ^3.3.1 || ^4.3.2 || ^5.0.0 || ^6.0.0
 
   '@maplibre/maplibre-gl-style-spec@20.4.0':
     resolution: {integrity: sha512-AzBy3095fTFPjDjmWpR2w6HVRAZJ6hQZUCwk5Plz6EyfnfuQW1odeW5i2Ai47Y6TBA2hQnC+azscjBSALpaWgw==}
@@ -2491,6 +2491,7 @@ packages:
   eslint@9.39.5:
     resolution: {integrity: sha512-DgZS62aPLXKlnxILS/AYCoRvHaZeXceIzlXPkkGGzJWSow1aEk0lbTlxUSlyjC8jcaKxAdOnTDz+o1JFSBsyjw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -5597,7 +5598,7 @@ snapshots:
 
   '@mapbox/whoots-js@3.1.0': {}
 
-  '@maplibre/maplibre-gl-leaflet@0.0.22(@types/leaflet@1.9.21)(leaflet@1.9.4)(maplibre-gl@4.7.1)':
+  '@maplibre/maplibre-gl-leaflet@0.1.4(@types/leaflet@1.9.21)(leaflet@1.9.4)(maplibre-gl@4.7.1)':
     dependencies:
       '@types/leaflet': 1.9.21
       leaflet: 1.9.4
