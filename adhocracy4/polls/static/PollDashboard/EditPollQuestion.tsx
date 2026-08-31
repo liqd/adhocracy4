@@ -1,0 +1,202 @@
+declare function require (module: string): any
+
+import React, { useState } from 'react'
+import { EditPollChoice } from './EditPollChoice'
+import { EditPollCheckbox } from './EditPollCheckbox'
+import django from 'django'
+import FormFieldError from '../../../static/FormFieldError'
+import { HelptextForm } from './HelptextForm'
+import QuestionImageUploadButton from './QuestionImageUploadButton'
+import type { PollChoiceEdit, PollQuestionEdit } from '../../../static/api/types'
+const FlipMove = require('react-flip-move').default
+
+interface EditPollQuestionProps {
+  id: number | string
+  question: PollQuestionEdit
+  errors?: Record<string, string[]>
+  onLabelChange?: (label: string) => void
+  onHelptextChange?: (text: string) => void
+  onConfidentialChange?: (val: boolean) => void
+  onMultipleChoiceChange?: (val: boolean) => void
+  onHasOtherChoiceChange?: (val: boolean) => void
+  onChoiceLabelChange?: (choiceIndex: number, label: string) => void
+  onDeleteChoice?: (choiceIndex: number) => void
+  onAppendChoice?: (hasOtherOption: boolean) => void
+  onImageChange?: (imageBase64: string | null) => void
+  onAltTextChange?: (text: string) => void
+  onMoveUp?: (() => void) | null
+  onMoveDown?: (() => void) | null
+  onDelete?: () => void
+  questionImagesEnabled?: boolean
+}
+
+export const EditPollQuestion = React.forwardRef<HTMLElement, EditPollQuestionProps>(
+  (props, ref) => {
+    const [hasHelptext, setHasHelptext] = useState(Boolean(props.question.help_text))
+    const hasOtherOption = props.question.choices.find((c: PollChoiceEdit) => c.is_other_choice)
+    return (
+      <section ref={ref} className="editpoll__question-container">
+        <div className="editpoll__question">
+          <div className="form-group editpoll__question--border">
+            <label
+              htmlFor={'id_questions-' + props.id + '-name'}
+            >
+              {django.gettext('Question')}
+              {props.question.id &&
+                <span className="editpoll__help-text"> Id: Q{props.question.id}</span>}
+              <textarea
+                id={'id_questions-' + props.id + '-name'}
+                name={'questions-' + props.id + '-name'}
+                value={props.question.label}
+                onChange={(e) => { props.onLabelChange?.(e.target.value) }}
+                aria-invalid={props.errors ? 'true' : 'false'}
+                aria-describedby={props.errors ? 'id_error-' + props.id : undefined}
+              />
+              <FormFieldError id={'id_error-' + props.id} error={props.errors} field="label" />
+            </label>
+
+            {hasHelptext
+              ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
+              : null}
+            {props.questionImagesEnabled && (
+              <QuestionImageUploadButton
+                id={props.id}
+                question={props.question}
+                onImageChange={props.onImageChange}
+                errors={props.errors}
+                helpText={props.question.image_help_text}
+                altText={props.question.image_alt_text}
+                onAltTextChange={props.onAltTextChange}
+              />
+            )}
+
+            <EditPollCheckbox
+              id={props.id}
+              field="is_confidential"
+              label={django.gettext('Do not display answers publicly')}
+              checked={props.question.is_confidential}
+              onChange={props.onConfidentialChange}
+            />
+
+            <EditPollCheckbox
+              id={props.id}
+              field="multiple_choice"
+              label={django.gettext(
+                'Participants can vote for more than one option (multiple choice)'
+              )}
+              checked={props.question.multiple_choice}
+              onChange={props.onMultipleChoiceChange}
+            />
+
+            <EditPollCheckbox
+              id={props.id}
+              field="is_other_choice"
+              label={django.gettext('Participants can add their own answer')}
+              checked={!!hasOtherOption}
+              disabled={props.question.choices.length < 3 && !!hasOtherOption}
+              onChange={props.onHasOtherChoiceChange}
+            />
+
+            <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
+              {
+                props.question.choices.map((choice: PollChoiceEdit, index: number) => {
+                  const key = choice.id || choice.key
+                  const label = django.pgettext('noun', 'Answer') + ' #' + (index + 1)
+                  const errors = props.errors && props.errors.choices
+                    ? props.errors.choices[index]
+                    : {}
+                  return !choice.is_other_choice
+                    ? (
+                      <div key={key}>
+                        <EditPollChoice
+                          id={'id_questions-poll' + props.id + '-multiple_choice'}
+                          index={index + 1}
+                          label={label}
+                          choice={choice}
+                          choiceId={choice.id}
+                          onLabelChange={(label) => { props.onChoiceLabelChange?.(index, label) }}
+                          onDelete={() => { props.onDeleteChoice?.(index) }}
+                          errors={errors}
+                          undeletable={props.question.choices.length < 3}
+                        />
+                      </div>
+                      )
+                    : (
+                      <div key={key}>
+                        <EditPollChoice
+                          id={'id_questions-poll' + props.id + '-is_other_choice'}
+                          index={index + 1}
+                          label={django.gettext('Other')}
+                          choice={{ label: django.gettext('Other'), is_other_choice: true }}
+                          choiceId={choice.id}
+                          onDelete={() => props.onHasOtherChoiceChange?.(false)}
+                          undeletable={props.question.choices.length < 3}
+                          isOther
+                        />
+                      </div>
+                      )
+                })
+              }
+            </FlipMove>
+            <div className="editpoll__btns--question">
+              <button
+                className="btn editpoll__btn--question"
+                onClick={() => props.onAppendChoice?.(!!hasOtherOption)}
+                type="button"
+              >
+                <i className="fa fa-plus" /> {django.gettext('New answer')}
+              </button>
+              <button
+                className={'btn ' + (hasHelptext ? 'editpoll__btn--dark' : 'editpoll__btn--question')}
+                onClick={() => setHasHelptext(!hasHelptext)}
+                type="button"
+              >
+                <i className={'fa ' + (hasHelptext ? 'fa-check' : 'fa-plus')} /> {django.gettext('Explanation')}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="editpoll__question-actions btn-group" role="group">
+          <button
+            className="btn poll__btn--light"
+            onClick={props.onMoveUp || undefined}
+            disabled={!props.onMoveUp}
+            title={django.gettext('Move up')}
+            type="button"
+          >
+            <i
+              className="fa fa-chevron-up"
+              aria-label={django.gettext('Move up')}
+            />
+          </button>
+          <button
+            className="btn poll__btn--light"
+            onClick={props.onMoveDown || undefined}
+            disabled={!props.onMoveDown}
+            title={django.gettext('Move down')}
+            type="button"
+          >
+            <i
+              className="fa fa-chevron-down"
+              aria-label={django.gettext('Move down')}
+            />
+          </button>
+          <button
+            className="btn poll__btn--light"
+            onClick={props.onDelete || undefined}
+            title={django.gettext('Delete')}
+            type="button"
+          >
+            <i
+              className="fas fa-trash-alt"
+              aria-label={django.gettext('Delete')}
+            />
+          </button>
+        </div>
+      </section>
+    )
+  }
+)
+
+EditPollQuestion.displayName = 'EditPollQuestion'

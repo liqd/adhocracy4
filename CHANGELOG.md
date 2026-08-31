@@ -20,6 +20,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - Dependencies: use pnpm for more secure package management
+- Frontend: migrate JavaScript sources from JS/JSX to TypeScript (TS/TSX),
+  including a typed api layer, strict tsconfig and typechecking in lint/CI
 
 ## aplus-v2607.1
 

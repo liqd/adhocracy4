@@ -1,0 +1,280 @@
+import React from 'react'
+import Slider from 'react-slick'
+import django from 'django'
+import QuestionImage from './QuestionImage'
+import type { PollQuestion, PollAnswer } from '../../../static/api/types'
+
+interface SliderArrowProps {
+  className?: string
+  style?: React.CSSProperties
+  onClick?: () => void
+  currentSlide?: number
+  slideCount?: number
+}
+
+const SliderArrow = (props: SliderArrowProps) => {
+  const { className, style, onClick, currentSlide, slideCount } = props
+  const isPrev = className?.includes('slick-prev')
+  const disabled = isPrev
+    ? currentSlide === 0
+    : currentSlide === slideCount! - 1
+
+  const label = isPrev
+    ? django.gettext('Previous answer')
+    : django.gettext('Next answer')
+
+  return (
+    <button
+      type="button"
+      className={className}
+      style={style}
+      onClick={disabled ? undefined : onClick}
+      aria-label={label}
+      aria-disabled={disabled}
+      disabled={disabled}
+    />
+  )
+}
+
+interface PollResultsProps {
+  question: PollQuestion
+}
+
+interface PollResultsState {
+  question: PollQuestion
+  selectedChoices: any
+  showResult: boolean
+  alert: any
+  showOtherAnswers: boolean
+  userAnswerId: string | number | null
+}
+
+export default class PollResult extends React.Component<PollResultsProps, PollResultsState> {
+  constructor (props: PollResultsProps) {
+    super(props)
+
+    const question = this.props.question
+    const openOrOtherAnswerId = question.is_open
+      ? question.userAnswer
+      : question.other_choice_user_answer
+
+    this.state = {
+      question,
+      selectedChoices: question.userChoices,
+      showResult: (question.userChoices.length !== 0) || question.isReadOnly,
+      alert: null,
+      showOtherAnswers: false,
+      userAnswerId: openOrOtherAnswerId
+    }
+  }
+
+  doBarTransition (node: HTMLElement | null, style: Record<string, string>) {
+    if (node && node.style) {
+      window.requestAnimationFrame(() => Object.assign(node.style, style))
+    }
+  }
+
+  isUserAnswer (slide: PollAnswer) {
+    const matchedId = this.state.question.is_open
+      ? slide.id === this.state.userAnswerId
+      : slide.vote_id === this.state.userAnswerId
+    return !!matchedId
+  }
+
+  toggleOtherAnswers () {
+    this.setState(prevState => ({ showOtherAnswers: !prevState.showOtherAnswers }))
+  }
+
+  getOtherAnswerText () {
+    let otherAnswerText: React.ReactNode
+    if (this.state.showOtherAnswers) {
+      otherAnswerText = <>{django.gettext('Hide other answers')}</>
+    } else {
+      otherAnswerText = <>{django.gettext('Show other answers')}</>
+    }
+    return (
+      otherAnswerText
+    )
+  }
+
+  getHelpTextAnswer () {
+    const total = this.state.question.totalVoteCount
+    const totalMulti = this.state.question.totalVoteCountMulti
+    let helpTextAnswer
+    let helpTextAnswerPlural
+    if (this.state.question.multiple_choice) {
+      if (total === 1 && totalMulti === 1) {
+        helpTextAnswerPlural = django.gettext('%s participant gave 1 answer.')
+      } else {
+        helpTextAnswerPlural = django.ngettext('%s participant gave %s answers.', '%s participants gave %s answers.', total)
+      }
+      helpTextAnswer = helpTextAnswerPlural + django.gettext(' For multiple choice questions the percentages may add up to more than 100%.')
+    } else {
+      helpTextAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
+    }
+    return django.interpolate(helpTextAnswer, [total, totalMulti])
+  }
+
+  getHelpTextOpenAnswer () {
+    const total = this.state.question.totalAnswerCount
+    let helpTextOpenAnswer
+    if (total >= 1) {
+      helpTextOpenAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
+    } else {
+      helpTextOpenAnswer = django.gettext('no one has answered this question')
+    }
+    return django.interpolate(helpTextOpenAnswer, [total])
+  }
+
+  getConfidentialHelpText () {
+    const total = this.state.question.is_open
+      ? this.state.question.totalAnswerCount
+      : this.state.question.totalVoteCount
+    const helpText = django.ngettext(
+      '%s response submitted',
+      '%s responses submitted',
+      total
+    )
+    return django.interpolate(helpText, [total])
+  }
+
+  render () {
+    if (this.state.question.is_confidential) {
+      return (
+        <div className="poll poll--result poll--confidential">
+          <h2>{this.state.question.label}</h2>
+          <QuestionImage
+            imageUrl={this.state.question.image_url}
+            alt={this.state.question.label}
+          />
+          <div className="a4-muted">{this.getConfidentialHelpText()}</div>
+        </div>
+      )
+    }
+
+    const max = Math.max.apply(null, this.state.question.choices.map((c: any) => c.count))
+    const total = this.state.question.totalVoteCount
+
+    const settings = {
+      arrows: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      className: 'poll-slider',
+      infinite: false,
+      centerMode: true,
+      centerPadding: '0px',
+      prevArrow: <SliderArrow />,
+      nextArrow: <SliderArrow />
+    }
+
+    return (
+      <div className="poll poll--result">
+        <h2>{this.state.question.label}</h2>
+        <QuestionImage
+          imageUrl={this.state.question.image_url}
+          alt={this.state.question.label}
+        />
+
+        <div className="poll__rows">
+          {this.state.question.choices.map((choice: any, _i: number) => {
+            const percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
+            const chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
+            const highlight = choice.count === max && max > 0
+            return !this.state.question.is_open &&
+              <div key={choice.id} className="poll-row__container">
+                {chosen ? <i className="poll-row__chosen fas fa-check-circle" aria-label={django.gettext('Your choice')} /> : ''}
+                <div className="poll-row poll-row--answered">
+                  <div className="poll-row__number">{percent}%</div>
+                  <div className="poll-row__label">{choice.is_other_choice ? django.gettext('other') : choice.label}</div>
+                  <div
+                    className={'poll-row__bar' + (highlight ? ' poll__highlight' : '')}
+                    ref={node => this.doBarTransition(node, { width: percent + '%' })}
+                  />
+                </div>
+                {choice.is_other_choice &&
+                  <div>
+                    {this.props.question.other_choice_answers.length > 0 &&
+                      <button type="button" className="btn poll__btn--link" onClick={() => this.toggleOtherAnswers()}>
+                        {this.getOtherAnswerText()}
+                      </button>}
+                    {this.state.showOtherAnswers &&
+                      <div className="poll-slider__container" id={String(this.state.question.id)}>
+                        <div
+                          aria-live="polite"
+                          aria-atomic="true"
+                          role="region"
+                          aria-label={django.gettext('Other answers carousel')}
+                        >
+                          <Slider {...settings}>
+                            {this.props.question.other_choice_answers.map((slide: PollAnswer, index: number) => (
+                              <div
+                                className="poll-slider__item"
+                                data-index={index}
+                                key={index}
+                                role="group"
+                                aria-label={django.interpolate(
+                                  django.gettext('Answer %(current)s of %(total)s'),
+                                  { current: index + 1, total: this.props.question.other_choice_answers.length },
+                                  true
+                                )}
+                              >
+                                <div className="poll-slider__answer">
+                                  {this.isUserAnswer(slide) && <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />} {slide.answer}
+                                </div>
+                                <div className={this.props.question.other_choice_answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
+                                  {index + 1}/{this.props.question.other_choice_answers.length}
+                                </div>
+                              </div>
+                            ))}
+                          </Slider>
+                        </div>
+                      </div>}
+                  </div>}
+              </div>
+          }
+          )}
+          {this.state.question.is_open && this.state.question.answers.length > 0 &&
+            <div className="poll-slider__container">
+              <div
+                aria-live="polite"
+                aria-atomic="true"
+                role="region"
+                aria-label={django.gettext('Open answers carousel')}
+              >
+                <Slider {...settings}>
+                  {this.props.question.answers.map((slide: PollAnswer, index: number) => (
+                    <div
+                      className="poll-slider__item"
+                      data-index={index}
+                      key={index}
+                      role="group"
+                      aria-label={django.interpolate(
+                        django.gettext('Answer %(current)s of %(total)s'),
+                        { current: index + 1, total: this.props.question.answers.length },
+                        true
+                      )}
+                    >
+                      <div className="poll-slider__answer">
+                        {this.isUserAnswer(slide) && <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />} {slide.answer}
+                      </div>
+                      <div className={this.props.question.answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
+                        {index + 1}/{this.props.question.answers.length}
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+            </div>}
+          {this.state.question.is_open
+            ? (
+              <div className="a4-muted">{this.getHelpTextOpenAnswer()}</div>
+              )
+            : (
+              <div className="a4-muted">{this.getHelpTextAnswer()}</div>
+              )}
+        </div>
+      </div>
+    )
+  }
+}

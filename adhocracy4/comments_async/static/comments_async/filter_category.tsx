@@ -1,0 +1,53 @@
+import React from 'react'
+import django from 'django'
+
+const translated = {
+  display: django.gettext('display: '),
+  all: django.gettext('all')
+}
+
+interface FilterCategoryProps {
+  filter: string
+  filterDisplay: string
+  onClickFilter: (e: React.MouseEvent) => void
+  commentCategoryChoices: Record<string, string>
+  translated?: any
+}
+
+export const FilterCategory = ({
+  filter,
+  filterDisplay,
+  onClickFilter,
+  commentCategoryChoices
+}: FilterCategoryProps) => {
+  return (
+    <div className="a4-comments__filters__dropdown me-sm-2">
+      <div className="dropdown">
+        <button
+          className="btn btn--select dropdown-toggle a4-comments__filters__btn"
+          type="button"
+          id="categoryDropdownBtn"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span className={filter === 'all' ? 'a4-comments__filters__btn-text' : 'd-none'}>{translated.display}{filterDisplay}</span>
+          <span className={filter !== 'all' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{filterDisplay}</span>
+
+          <i className={filter === 'all' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
+        </button>
+        <div className="dropdown-menu dropend" aria-labelledby="categoryDropdownBtn">
+          {filter !== 'all' &&
+            <button className="dropdown-item" onClick={onClickFilter} id="all" key="all" {...({ href: '#' } as any)}>
+              {translated.all}
+            </button>}
+          {Object.keys(commentCategoryChoices).map(objectKey => {
+            const name = commentCategoryChoices[objectKey]
+            return (objectKey !== filter) &&
+              <button className="dropdown-item" onClick={onClickFilter} id={objectKey} key={objectKey} {...({ href: '#' } as any)}>{name}</button>
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}

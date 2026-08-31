@@ -1,0 +1,62 @@
+import React from 'react'
+import django from 'django'
+
+const translated = {
+  edit: django.gettext('Edit'),
+  delete: django.gettext('Delete'),
+  menuLabel: django.gettext('Comment Actions')
+}
+
+interface CommentManageDropdownProps {
+  id?: any
+  modals: {
+    urlModal: React.ReactNode
+    reportModal?: React.ReactNode
+    deleteModal?: React.ReactNode
+  }
+  showReport: boolean
+  has_changing_permission: boolean
+  has_deleting_permission: boolean
+  handleToggleEdit: (e: React.MouseEvent) => void
+}
+
+const CommentManageDropdown = (props: CommentManageDropdownProps) => {
+  return (
+    <div className="dropdown a4-comments__dropdown">
+      <button
+        type="button"
+        className="dropdown-toggle btn btn--link"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-label={translated.menuLabel}
+        data-bs-toggle="dropdown"
+      >
+        <i className="fas fa-ellipsis-h" aria-hidden="true" />
+      </button>
+      <ul className="dropdown-menu dropdown-menu-end">
+        <li className="dropdown-item a4-comments__dropdown__url">
+          {props.modals.urlModal}
+        </li>
+        {props.showReport && (
+          <li className="dropdown-item a4-comments__dropdown__report">
+            {props.modals.reportModal}
+          </li>
+        )}
+        {props.has_changing_permission && (
+          <li className="dropdown-item">
+            <button type="button" onClick={props.handleToggleEdit}>
+              {translated.edit}
+            </button>
+          </li>
+        )}
+        {props.has_deleting_permission && (
+          <li className="dropdown-item">
+            {props.modals.deleteModal}
+          </li>
+        )}
+      </ul>
+    </div>
+  )
+}
+
+export default CommentManageDropdown

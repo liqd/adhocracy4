@@ -1,0 +1,63 @@
+// DEPRECATED: this component tree is superseded by
+// comments_async/static/comments_async. Kept for backwards compatibility
+// with consumers still importing the legacy comments module.
+import React from 'react'
+import Comment from './Comment'
+import type { Comment as CommentType, CommentPayload } from '../../../static/api/types'
+
+interface CommentListProps {
+  comments: CommentType[]
+  parentIndex?: number
+  onCommentDelete: (index: number, parentIndex?: number) => void
+  onCommentSubmit: (comment: CommentPayload, parentIndex?: number) => any
+  onCommentModify: (comment: CommentPayload, index: number, parentIndex?: number) => any
+  isReadOnly: boolean
+  onReplyErrorClick: (index: number, parentIndex?: number) => void
+  onEditErrorClick: (index: number, parentIndex?: number) => void
+}
+
+const CommentList = (props: CommentListProps) => {
+  return (
+    <div>
+      {
+        props.comments.map((comment, index) => {
+          return (
+            <Comment
+              key={comment.id}
+              user_name={comment.user_name}
+              user_profile_url={comment.user_profile_url}
+              child_comments={comment.child_comments}
+              created={comment.created}
+              modified={comment.modified}
+              authorIsModerator={!!comment.is_moderator}
+              id={comment.id}
+              content_type={comment.content_type}
+              object_pk={comment.object_pk}
+              is_deleted={comment.is_deleted}
+              is_removed={comment.is_removed}
+              is_censored={comment.is_censored}
+              index={index}
+              parentIndex={props.parentIndex}
+              onCommentDelete={props.onCommentDelete}
+              onCommentSubmit={props.onCommentSubmit}
+              onCommentModify={props.onCommentModify}
+              positiveRatings={comment.ratings.positive_ratings}
+              negativeRatings={comment.ratings.negative_ratings}
+              userRating={comment.ratings.current_user_rating_value}
+              userRatingId={comment.ratings.current_user_rating_id}
+              isReadOnly={props.isReadOnly}
+              replyError={comment.replyError}
+              errorMessage={comment.errorMessage}
+              onReplyErrorClick={props.onReplyErrorClick}
+              editError={comment.editError}
+              onEditErrorClick={props.onEditErrorClick}
+            >{comment.comment}
+            </Comment>
+          )
+        })
+      }
+    </div>
+  )
+}
+
+export default CommentList

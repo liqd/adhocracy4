@@ -5,4 +5,4 @@ minimumReleaseAgeExclude:
 onlyBuiltDependencies:
   - husky
 overrides:
-  brace-expansion: ">=5.0.8"
+  brace-expansion: ">=5.0.9"
