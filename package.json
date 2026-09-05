@@ -41,7 +41,7 @@
     "@eslint/compat": "^2.1.0",
     "@eslint/js": "9.39.5",
     "@jest/globals": "30.4.1",
-    "@maplibre/maplibre-gl-leaflet": "0.0.22",
+    "@maplibre/maplibre-gl-leaflet": "0.1.4",
     "@react-leaflet/core": "2.1.0",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.2.0",
