@@ -32,11 +32,16 @@ function init () {
       mapboxToken: e.getAttribute('data-mapbox-token'),
       omtToken: e.getAttribute('data-omt-token'),
       dragging: true,
-      scrollWheelZoom: false,
+      scrollWheelZoom: true,
       zoomControl: false,
       maxZoom: 18,
       tap: false
     })
+
+    L.control.scale({
+      position: 'bottomright',
+      imperial: false
+    }).addTo(map)
 
     map.on('zoomend', function () {
       const currentZoom = map.getZoom()
