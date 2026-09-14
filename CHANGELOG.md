@@ -20,6 +20,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - Dependencies: use pnpm for more secure package management
+- dashboard forms: make coerce_bool_choice public so a+ can use for project create guests setting
 
 ## aplus-v2607.1
 

@@ -23,7 +23,8 @@ from .components.forms import ProjectDashboardForm
 User = get_user_model()
 
 
-def _coerce_bool_choice(value):
+def coerce_bool_choice(value):
+    """Coerce a radio choice value to a boolean."""
     if isinstance(value, bool):
         return value
     if value in ("True", "true", "1", 1):
@@ -125,7 +126,7 @@ class ProjectBasicForm(ProjectDashboardForm):
             self.fields["allow_guest_users"] = forms.TypedChoiceField(
                 label=_("Participants"),
                 choices=ALLOW_GUEST_USERS_CHOICES,
-                coerce=_coerce_bool_choice,
+                coerce=coerce_bool_choice,
                 widget=RadioSelect(),
             )
 
