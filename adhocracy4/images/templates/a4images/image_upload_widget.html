@@ -2,14 +2,14 @@
 <div class="row">
     <div class="upload-wrapper form-control-upload col-sm-9 col-md-8">
         {{ text_input }}
-        <span class="input-group-btn">
+        <span class="input-group-btn upload-wrapper__action-parent">
             {% if has_image_set and not is_required %}
-            <label for="{{ checkbox_id }}" class="btn btn-danger"
+            <label for="{{ checkbox_id }}" class="btn btn-danger upload-wrapper__action"
                    title="{% translate 'Remove the picture' %}">
                 <i class="fas fa-trash-alt"></i>
             </label>
             {% else %}
-            <label for="{{ id }}" class="btn btn-default" title="{% translate  'Upload a picture' %}">
+            <label for="{{ id }}" class="btn btn-default upload-wrapper__action" title="{% translate  'Upload a picture' %}">
                 <i class="fas fa-cloud-upload-alt"></i>
             </label>
             {% endif  %}
