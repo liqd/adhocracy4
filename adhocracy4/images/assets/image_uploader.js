@@ -267,17 +267,25 @@ function clearImageFromStorage (inputId, clearServerImage = false) {
     }
 
     const previewImage = document.querySelector('img[data-upload-preview="' + inputId + '"]')
-    if (previewImage) {
-      // Clear src if clearServerImage is true (user clicked delete) or if it's a data URL
-      if (clearServerImage || (previewImage.src && previewImage.src.startsWith('data:'))) {
-        previewImage.setAttribute('src', '')
-      }
+    const previewSrc = previewImage ? previewImage.getAttribute('src') : ''
+    // An already saved server-side image is rendered by the widget and must
+    // survive plain page loads; only session-only (data URL) images or an
+    // explicit delete are cleared.
+    const keepServerImage = Boolean(
+      previewImage && !clearServerImage && previewSrc && !previewSrc.startsWith('data:')
+    )
+
+    if (previewImage && !keepServerImage) {
+      previewImage.setAttribute('src', '')
     }
 
-    const text = document.querySelector('#text-' + inputId)
-    if (text) {
-      text.value = ''
-      text.style.color = ''
+    // Keep the file name of a saved server image, it is part of the form UI.
+    if (!keepServerImage) {
+      const text = document.querySelector('#text-' + inputId)
+      if (text) {
+        text.value = ''
+        text.style.color = ''
+      }
     }
   } catch (e) {
     console.warn('Could not clear image from sessionStorage:', e)

@@ -1,0 +1,46 @@
+{% load i18n %}
+
+{% comment %}
+Generic Uppy upload wrapper for image fields.
+
+Usage (form template):
+    {% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='...' aspect_ratio='1.5' output_width=600 output_height=400 %}
+    {% include 'a4images/uppy_image_upload_assets.html' %}
+
+Optional context:
+- form_field_template: template used to render the underlying field (required).
+- aspect_ratio: crop aspect ratio (float/string, e.g. '1.5').
+- output_width / output_height: desired output resolution in pixels. Either,
+  both or neither may be given; when only one is passed the other dimension
+  is derived from the crop aspect ratio.
+- max_width / max_height: upper bounds applied during compression when no
+  output resolution is given.
+- trigger_class: css classes for the trigger button (defaults to 'btn').
+{% endcomment %}
+
+<div class="uppy-image-upload-field">
+    {% if form_field_template %}
+        {% include form_field_template with field=field %}
+    {% else %}
+        {{ field }}
+    {% endif %}
+    <button
+        type="button"
+        class="{{ trigger_class|default:'btn' }} upload-wrapper__action uppy-image-upload-field__trigger"
+        data-uppy-trigger
+    >
+        <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+        <span class="visually-hidden">{% translate "Upload a picture" %}</span>
+    </button>
+    <div
+        data-uppy-image-upload
+        data-input-id="{{ field.id_for_label }}"
+        data-note="{% translate 'Images are resized and compressed automatically before you save the form.' %}"
+        {% if aspect_ratio %}data-aspect-ratio="{{ aspect_ratio }}"{% endif %}
+        {% if output_width %}data-output-width="{{ output_width }}"{% endif %}
+        {% if output_height %}data-output-height="{{ output_height }}"{% endif %}
+        {% if max_width %}data-max-width="{{ max_width }}"{% endif %}
+        {% if max_height %}data-max-height="{{ max_height }}"{% endif %}
+        hidden
+    ></div>
+</div>

@@ -43,6 +43,7 @@ class ImageInputWidget(widgets.ClearableFileInput):
                 "class": "form-control form-control-file-dummy",
                 "placeholder": file_placeholder,
                 "tabindex": "-1",
+                "readonly": "readonly",
                 "id": "text-{}".format(html_id),
             },
         )
