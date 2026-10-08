@@ -3,6 +3,7 @@ import binascii
 import uuid
 from io import BytesIO
 
+from django.conf import settings
 from django.core import exceptions as django_exceptions
 from django.core.files.base import ContentFile
 from django.utils.translation import gettext as _
@@ -10,8 +11,20 @@ from PIL import Image
 from PIL import UnidentifiedImageError
 from rest_framework import exceptions as rest_exceptions
 
+from adhocracy4.images.validators import MIN_RESOLUTION_TOLERANCE
+
 MIN_IMAGE_WIDTH = 1500
 MIN_IMAGE_HEIGHT = 500
+
+
+def _get_min_resolution():
+    """Return the configured minimum resolution for poll question images.
+
+    Falls back to the historic defaults when the project does not configure
+    the ``questionimage`` alias.
+    """
+    config = getattr(settings, "IMAGE_ALIASES", {}).get("questionimage", {})
+    return config.get("min_resolution", (MIN_IMAGE_WIDTH, MIN_IMAGE_HEIGHT))
 
 
 def validate_poll_question_image(base64_str):
@@ -37,16 +50,18 @@ def validate_poll_question_image(base64_str):
             {"image_base64": [_("The uploaded file is not a valid image.")]}
         )
 
+    min_width, min_height = _get_min_resolution()
+    check_width = max(0, min_width - MIN_RESOLUTION_TOLERANCE)
+    check_height = max(0, min_height - MIN_RESOLUTION_TOLERANCE)
+
     errors = {}
-    if img.width < MIN_IMAGE_WIDTH:
+    if img.width < check_width:
         errors["image_base64"] = [
-            _("Image must be at least %(width)s pixels wide.")
-            % {"width": MIN_IMAGE_WIDTH}
+            _("Image must be at least %(width)s pixels wide.") % {"width": min_width}
         ]
-    if img.height < MIN_IMAGE_HEIGHT:
+    if img.height < check_height:
         errors["image_base64"] = [
-            _("Image must be at least %(height)s pixels high.")
-            % {"height": MIN_IMAGE_HEIGHT}
+            _("Image must be at least %(height)s pixels high.") % {"height": min_height}
         ]
     if errors:
         raise rest_exceptions.ValidationError(errors)
