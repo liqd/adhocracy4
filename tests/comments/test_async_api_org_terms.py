@@ -256,13 +256,13 @@ def test_agreement_info(
     # user has agreed
     apiclient.force_authenticate(user=user)
     response = apiclient.get(url)
-    assert len(response.data) == 11
+    assert len(response.data) == 13
     assert response.data["user_has_agreed"]
 
     # another_user has not agreed
     apiclient.force_authenticate(user=another_user)
     response = apiclient.get(url)
-    assert len(response.data) == 11
+    assert len(response.data) == 13
     assert not response.data["user_has_agreed"]
 
 

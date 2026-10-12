@@ -5,20 +5,100 @@ exports[`CommentForm Component renders CommentForm 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <h2
-        class="a4-comments__comment-form__heading-comments-allowed title-3"
-      >
-        Join the discussion
-      </h2>
       <form
         class="a4-comments__comment-form__form"
         id="id-comment-formundefined"
       >
         <div
-          class="form-group"
+          class="a4-comments__comment-form__input"
+        >
+          <div
+            class="form-group a4-comments__comment-form__textarea-container"
+            id="group_id_textarea-topundefined"
+          >
+            <label
+              class="a4-sr-only"
+              for="id_textarea-topundefined"
+            >
+              Your comment
+            </label>
+            <textarea
+              aria-describedby="id_char-countundefined"
+              aria-invalid="false"
+              class="a4-comments__textarea--small"
+              id="id_textarea-topundefined"
+              maxlength="4000"
+              name="id_textarea-topundefined"
+              placeholder="Share your thoughts"
+              style="height: 75px;"
+            />
+            <p
+              aria-live="polite"
+              class="a4-comments__char-count"
+              id="id_char-countundefined"
+            >
+              <span
+                aria-hidden="true"
+              >
+                0
+                /4000
+                <span
+                  class="a4-comments__char-count-word"
+                >
+                   characters
+                </span>
+              </span>
+              <span
+                class="a4-sr-only"
+              >
+                0
+                /4000
+                 characters
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          class="row a4-comments__comment-form__terms-and-buttons"
+        >
+          <div
+            class="a4-comments__comment-form__terms-of-use"
+          />
+          <div
+            class="a4-comments__comment-form__actions"
+          >
+            <div
+              class="a4-comments__comment-form__actions__left"
+            />
+            <div
+              class="a4-comments__comment-form__actions__right"
+            >
+              <button
+                class="btn btn--transparent-bordered a4-comments__submit-input"
+                type="submit"
+              >
+                Post
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <form
+      class="a4-comments__comment-form__form"
+      id="id-comment-formundefined"
+    >
+      <div
+        class="a4-comments__comment-form__input"
+      >
+        <div
+          class="form-group a4-comments__comment-form__textarea-container"
           id="group_id_textarea-topundefined"
         >
           <label
+            class="a4-sr-only"
             for="id_textarea-topundefined"
           >
             Your comment
@@ -28,7 +108,9 @@ exports[`CommentForm Component renders CommentForm 1`] = `
             aria-invalid="false"
             class="a4-comments__textarea--small"
             id="id_textarea-topundefined"
+            maxlength="4000"
             name="id_textarea-topundefined"
+            placeholder="Share your thoughts"
             style="height: 75px;"
           />
           <p
@@ -56,84 +138,6 @@ exports[`CommentForm Component renders CommentForm 1`] = `
             </span>
           </p>
         </div>
-        <div
-          class="row a4-comments__comment-form__terms-and-buttons"
-        >
-          <div
-            class="a4-comments__comment-form__terms-of-use"
-          />
-          <div
-            class="a4-comments__comment-form__actions"
-          >
-            <div
-              class="a4-comments__comment-form__actions__left"
-            />
-            <div
-              class="a4-comments__comment-form__actions__right"
-            >
-              <button
-                class="btn btn--default a4-comments__submit-input"
-                type="submit"
-              >
-                Post
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </body>,
-  "container": <div>
-    <h2
-      class="a4-comments__comment-form__heading-comments-allowed title-3"
-    >
-      Join the discussion
-    </h2>
-    <form
-      class="a4-comments__comment-form__form"
-      id="id-comment-formundefined"
-    >
-      <div
-        class="form-group"
-        id="group_id_textarea-topundefined"
-      >
-        <label
-          for="id_textarea-topundefined"
-        >
-          Your comment
-        </label>
-        <textarea
-          aria-describedby="id_char-countundefined"
-          aria-invalid="false"
-          class="a4-comments__textarea--small"
-          id="id_textarea-topundefined"
-          name="id_textarea-topundefined"
-          style="height: 75px;"
-        />
-        <p
-          aria-live="polite"
-          class="a4-comments__char-count"
-          id="id_char-countundefined"
-        >
-          <span
-            aria-hidden="true"
-          >
-            0
-            /4000
-            <span
-              class="a4-comments__char-count-word"
-            >
-               characters
-            </span>
-          </span>
-          <span
-            class="a4-sr-only"
-          >
-            0
-            /4000
-             characters
-          </span>
-        </p>
       </div>
       <div
         class="row a4-comments__comment-form__terms-and-buttons"
@@ -151,7 +155,7 @@ exports[`CommentForm Component renders CommentForm 1`] = `
             class="a4-comments__comment-form__actions__right"
           >
             <button
-              class="btn btn--default a4-comments__submit-input"
+              class="btn btn--transparent-bordered a4-comments__submit-input"
               type="submit"
             >
               Post

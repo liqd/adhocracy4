@@ -18,6 +18,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   the sender address without overriding `dispatch()`.
 - exports: add ItemExportWithImageMixin to include images in exports
 - exports: export each image on its own row to keep image links clickable
+- comments_async: expose the current user's avatar in the comment list response
 
 ### Fixed
 
@@ -25,6 +26,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - Dependencies: use pnpm for more secure package management
 - dashboard forms: make coerce_bool_choice public so a+ can use for project create guests setting
+- comments_async: compact comment section with connected replies
 
 ## aplus-v2607.1
 
