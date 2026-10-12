@@ -31,34 +31,33 @@ const translated = {
   blockedByModerator: django.gettext('Blocked by moderator'),
   lastEditOn: django.gettext('Latest edit on'),
   moderator: django.gettext('Moderator'),
-  hideReplies: django.gettext('hide replies'),
   reply: django.pgettext('verb', 'Reply'),
   ariaReadMore: django.gettext('Click to view rest of comment text.'),
   ariaReadLess: django.gettext('Click to hide expanded text.')
 }
 
-function getAnswerForm (hide, number) {
-  let result
-  if (hide) {
-    result = translated.hideReplies
-  } else {
-    if (number > 0) {
-      const tmp = django.ngettext('1 reply', '%s replies', number)
-      result = django.interpolate(tmp, [number])
-    } else {
-      result = translated.reply
-    }
+function getRepliesToggleLabel (showChildComments, number) {
+  if (number === 1) {
+    return showChildComments
+      ? django.gettext('Hide 1 reply')
+      : django.gettext('Show 1 reply')
   }
-  return result
+  const template = showChildComments
+    ? django.gettext('Hide %s replies')
+    : django.gettext('Show %s replies')
+  return django.interpolate(template, [number])
 }
 
 export default class Comment extends React.Component {
   constructor (props) {
     super(props)
 
+    this.replyButtonRef = React.createRef()
+
     this.state = {
       edit: false,
       showChildComments: false,
+      showReplyForm: false,
       shorten: true,
       anchored: false,
       showModStatement: true,
@@ -107,17 +106,37 @@ export default class Comment extends React.Component {
 
   toggleShowComments (e) {
     e.preventDefault()
-    const newShowChildComment = !this.state.showChildComments
+    const newShowChildComments = !this.state.showChildComments
     this.setState({
-      showChildComments: newShowChildComment
+      showChildComments: newShowChildComments,
+      // the reply form is part of the same region, so hide it when collapsing
+      showReplyForm: newShowChildComments ? this.state.showReplyForm : false
     })
   }
 
-  replyComments (e) {
+  toggleReplyForm (e) {
     e.preventDefault()
+    const showReplyForm = !this.state.showReplyForm
     this.setState({
-      showChildComments: true
+      showChildComments: showReplyForm ? true : this.state.showChildComments,
+      showReplyForm
     })
+    if (!showReplyForm) {
+      this.focusReplyButton()
+    }
+  }
+
+  hideReplyForm () {
+    this.setState({
+      showReplyForm: false
+    })
+    this.focusReplyButton()
+  }
+
+  focusReplyButton () {
+    if (this.replyButtonRef.current) {
+      this.replyButtonRef.current.focus()
+    }
   }
 
   allowForm () {
@@ -260,7 +279,7 @@ export default class Comment extends React.Component {
       })
 
       return (
-        <div className="col-12">
+        <div className="a4-comments__categories">
           {categoryHeading}
           {categoryHtml}
         </div>
@@ -339,46 +358,46 @@ export default class Comment extends React.Component {
         <div className={(this.props.is_users_own_comment ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
           <a className="a4-comments__anchor" id={'comment_' + this.props.id} href={'./?comment=' + this.props.id}>{'Comment ' + this.props.id}</a>
           <div className="a4-comments__box">
-            <div className="row">
-              <div className={this.props.is_deleted ? 'd-none' : 'col-2 col-lg-1 a4-comments__user-img'}>
+            {!this.props.is_deleted &&
+              <div className="a4-comments__user-img">
                 {userImage}
-              </div>
-              <div className="col-7 col-md-8 a4-comments__author-container">
-                <div className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
-                  {userProfile === ''
-                    ? this.props.user_name
-                    : <a href={userProfile}>{this.props.user_name}</a>}
+              </div>}
+            <div className="a4-comments__content">
+              <div className="a4-comments__meta">
+                <div className="a4-comments__author-container">
+                  <div className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
+                    {userProfile === ''
+                      ? this.props.user_name
+                      : <a href={userProfile}>{this.props.user_name}</a>}
+                  </div>
+                  {moderatorLabel}
+                  <time className="a4-comments__submission-date">
+                    {lastDate}
+                  </time>
                 </div>
-                {moderatorLabel}
-                <time className="a4-comments__submission-date">
-                  {lastDate}
-                </time>
-              </div>
 
-              <div className="col-1 ms-auto a4-comments__dropdown-container">
-                {!this.props.is_deleted &&
-                  <CommentManageDropdown
-                    id={this.props.id}
-                    handleToggleEdit={this.toggleEdit.bind(this)}
-                    has_changing_permission={this.props.has_changing_permission}
-                    has_deleting_permission={this.props.has_deleting_permission}
-                    showReport={!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment}
-                    modals={modals}
-                  />}
+                <div className="a4-comments__dropdown-container">
+                  {!this.props.is_deleted &&
+                    <CommentManageDropdown
+                      id={this.props.id}
+                      handleToggleEdit={this.toggleEdit.bind(this)}
+                      has_changing_permission={this.props.has_changing_permission}
+                      has_deleting_permission={this.props.has_deleting_permission}
+                      showReport={!this.props.is_deleted && this.props.authenticated_user_pk && !this.props.is_users_own_comment}
+                      modals={modals}
+                    />}
+                </div>
               </div>
 
               {this.renderCategories()}
 
-              <div className="col-12">
-                {this.renderComment()}
-              </div>
-              <div className="col-6 a4-comments__read-btn-container">
+              {this.renderComment()}
+
+              <div className="a4-comments__read-btn-container">
                 {this.renderReadMore()}
-              </div>
-              {this.state.moderatorFeedback &&
-                <div className="col-6 text-end">
+                {this.state.moderatorFeedback &&
                   <button
-                    className="btn btn--none text-muted px-0 a4-comments__read-btn"
+                    className="btn btn--none text-muted px-0 ms-auto a4-comments__read-btn"
                     onClick={
                       () => this.setState(
                         { showModStatement: !this.state.showModStatement }
@@ -388,98 +407,109 @@ export default class Comment extends React.Component {
                     {this.state.showModStatement
                       ? translated.hideModStatement
                       : translated.showModStatement}
-                  </button>
-                </div>}
-            </div>
-          </div>
+                  </button>}
+              </div>
 
-          {this.props.aiReport && this.props.aiReport.show_in_discussion &&
-            <AiReport
-              report={this.props.aiReport}
-            />}
+              {this.props.aiReport && this.props.aiReport.show_in_discussion &&
+                <AiReport
+                  report={this.props.aiReport}
+                />}
 
-          {this.state.showModStatement && this.state.moderatorFeedback &&
-            <ModeratorFeedback
-              lastEdit={this.state.moderatorFeedback.last_edit}
-              feedbackText={this.state.moderatorFeedback.feedback_text}
-            />}
-          <div className="a4-comments__action">
-            <div className="row">
-              <div className="col-12 a4-comments__action-bar-container">
-                {this.renderRatingBox()}
+              {this.state.showModStatement && this.state.moderatorFeedback &&
+                <ModeratorFeedback
+                  lastEdit={this.state.moderatorFeedback.last_edit}
+                  feedbackText={this.state.moderatorFeedback.feedback_text}
+                />}
 
-                <div className="a4-comments__action-bar">
-                  {((this.allowForm() && !this.props.is_deleted) || (this.props.child_comments && this.props.child_comments.length > 0)) &&
-                    <button
-                      className="btn btn--no-border a4-comments__action-bar__btn"
-                      type="button"
-                      onClick={this.toggleShowComments.bind(this)}
-                      aria-expanded={this.state.showChildComments}
-                      aria-controls={`child-comments-${this.props.id}`}
-                    >
-                      <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" />
-                      {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
-                    </button>}
+              <div className="a4-comments__action">
+                <div className="a4-comments__action-bar-container">
+                  {this.renderRatingBox()}
+
+                  <div className="a4-comments__action-bar">
+                    {this.allowForm() && !this.props.is_deleted &&
+                      <button
+                        ref={this.replyButtonRef}
+                        className="btn btn--no-border a4-comments__action-bar__btn a4-comments__reply-btn"
+                        type="button"
+                        onClick={this.toggleReplyForm.bind(this)}
+                        aria-expanded={this.state.showReplyForm}
+                        aria-controls={`reply-form-${this.props.id}`}
+                      >
+                        <i className="far fa-comment" aria-hidden="true" />
+                        {translated.reply}
+                      </button>}
+                  </div>
                 </div>
+                {this.props.child_comments && this.props.child_comments.length > 0 &&
+                  <button
+                    className="btn btn--none px-0 a4-comments__replies-toggle"
+                    type="button"
+                    onClick={this.toggleShowComments.bind(this)}
+                    aria-expanded={this.state.showChildComments}
+                    aria-controls={`child-comments-${this.props.id}`}
+                  >
+                    <i className={this.state.showChildComments ? 'fa fa-caret-up' : 'fa fa-caret-down'} aria-hidden="true" />
+                    {getRepliesToggleLabel(this.state.showChildComments, this.props.child_comments.length)}
+                  </button>}
               </div>
             </div>
           </div>
         </div>
 
-        <>
-          {this.state.showChildComments
-            ? (
-              <div className="a4-comments__child--list" id={`child-comments-${this.props.id}`}>
-                <div className="row a4-comments__list">
-                  <div className="col-12 ms-3">
-                    <CommentList
-                      filter="all"
-                      comments={this.props.child_comments}
-                      anchoredCommentId={this.props.anchoredCommentId}
-                      anchoredCommentParentId={this.props.anchoredCommentParentId}
-                      hasCommentingPermission={this.props.hasCommentingPermission}
-                      wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
-                      parentIndex={this.props.index}
-                      onRenderFinished={this.props.onRenderFinished}
-                      onCommentDelete={this.props.onCommentDelete}
-                      onCommentModify={this.props.onCommentModify}
-                      onEditErrorClick={this.props.onEditErrorClick}
-                      useTermsOfUse={this.props.useTermsOfUse}
-                      agreedTermsOfUse={this.props.agreedTermsOfUse}
-                      orgTermsUrl={this.props.orgTermsUrl}
-                      setCommentError={this.props.setCommentError}
-                      setCommentEditError={this.props.setCommentEditError}
-                      hideNotification={this.props.hideNotification}
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-12 ms-3">
-                    {/* Child comment form */}
-                    <CommentForm
-                      subjectType={this.props.comment_content_type}
-                      subjectId={this.props.id}
-                      commentId={'reply' + this.props.id}
-                      onCommentSubmit={this.props.onCommentSubmit}
-                      parentIndex={this.props.index}
-                      error={this.props.replyError}
-                      errorMessage={this.props.errorMessage}
-                      handleErrorClick={() => this.props.onReplyErrorClick(this.props.index, this.props.parentIndex)}
-                      // we need the autoFocus here after clicking reply
-                      autoFocus // eslint-disable-line jsx-a11y/no-autofocus
-                      hasCommentingPermission={this.props.hasCommentingPermission}
-                      wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
-                      projectIsPublic={this.props.projectIsPublic}
-                      useTermsOfUse={this.props.useTermsOfUse}
-                      agreedTermsOfUse={this.props.agreedTermsOfUse}
-                      orgTermsUrl={this.props.orgTermsUrl}
-                      setCommentError={this.props.setCommentError}
-                    />
-                  </div>
-                </div>
-              </div>)
-            : null}
-        </>
+        {((this.state.showChildComments && this.props.child_comments && this.props.child_comments.length > 0) || this.state.showReplyForm) &&
+          <div className="a4-comments__child--list" id={`child-comments-${this.props.id}`}>
+            {this.state.showChildComments && this.props.child_comments && this.props.child_comments.length > 0 &&
+              <CommentList
+                filter="all"
+                comments={this.props.child_comments}
+                anchoredCommentId={this.props.anchoredCommentId}
+                anchoredCommentParentId={this.props.anchoredCommentParentId}
+                hasCommentingPermission={this.props.hasCommentingPermission}
+                wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
+                parentIndex={this.props.index}
+                onRenderFinished={this.props.onRenderFinished}
+                onCommentDelete={this.props.onCommentDelete}
+                onCommentModify={this.props.onCommentModify}
+                onEditErrorClick={this.props.onEditErrorClick}
+                useTermsOfUse={this.props.useTermsOfUse}
+                agreedTermsOfUse={this.props.agreedTermsOfUse}
+                orgTermsUrl={this.props.orgTermsUrl}
+                setCommentError={this.props.setCommentError}
+                setCommentEditError={this.props.setCommentEditError}
+                hideNotification={this.props.hideNotification}
+                userImage={this.props.userImage}
+              />}
+
+            {this.state.showReplyForm &&
+              <div className="a4-comments__reply-form" id={`reply-form-${this.props.id}`}>
+                {/* Child comment form */}
+                <CommentForm
+                  subjectType={this.props.comment_content_type}
+                  subjectId={this.props.id}
+                  commentId={'reply' + this.props.id}
+                  onCommentSubmit={(data) => this.props.onCommentSubmit(data, this.props.index).then(() => {
+                    this.setState({ showReplyForm: false })
+                    return null
+                  })}
+                  parentIndex={this.props.index}
+                  error={this.props.replyError}
+                  errorMessage={this.props.errorMessage}
+                  handleErrorClick={() => this.props.onReplyErrorClick(this.props.index, this.props.parentIndex)}
+                  // we need the autoFocus here after clicking reply
+                  autoFocus // eslint-disable-line jsx-a11y/no-autofocus
+                  userImage={this.props.userImage}
+                  hasCommentingPermission={this.props.hasCommentingPermission}
+                  wouldHaveCommentingPermission={this.props.wouldHaveCommentingPermission}
+                  projectIsPublic={this.props.projectIsPublic}
+                  useTermsOfUse={this.props.useTermsOfUse}
+                  agreedTermsOfUse={this.props.agreedTermsOfUse}
+                  orgTermsUrl={this.props.orgTermsUrl}
+                  setCommentError={this.props.setCommentError}
+                  showCancel
+                  handleCancel={this.hideReplyForm.bind(this)}
+                />
+              </div>}
+          </div>}
       </li>
     )
   }

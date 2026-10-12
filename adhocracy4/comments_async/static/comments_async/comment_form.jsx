@@ -8,17 +8,19 @@ import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 import * as config from '../../../static/config'
 
 const translated = {
-  formHeadingCommentsAllowed: django.gettext('Join the discussion'),
   yourComment: django.gettext('Your comment'),
   addComment: django.gettext('Please add a comment.'),
   errorComment: django.gettext('Something seems to have gone wrong, please try again.'),
   yourReply: django.gettext('Your reply'),
   characters: django.gettext(' characters'),
   post: django.gettext('Post'),
+  reply: django.pgettext('verb', 'Reply'),
   pleaseComment: django.gettext('Please login to comment'),
   onlyInvited: django.gettext('Only invited users can actively participate.'),
   notAllowedComment: django.gettext('The currently active phase doesn\'t allow to comment.'),
-  cancel: django.gettext('Cancel')
+  cancel: django.gettext('Cancel'),
+  placeholder: django.gettext('Share your thoughts'),
+  replyPlaceholder: django.gettext('Reply to the comment')
 }
 
 const textareaMinHeight = 75
@@ -26,6 +28,7 @@ const textareaMinHeight = 75
 export default class CommentForm extends React.Component {
   constructor (props) {
     super(props)
+    this.textareaRef = React.createRef()
     this.state = {
       comment: this.props.comment || '',
       commentCharCount: this.props.commentLength || 0,
@@ -42,6 +45,12 @@ export default class CommentForm extends React.Component {
       this.setState({
         agreedTermsOfUse: this.props.agreedTermsOfUse
       })
+    }
+  }
+
+  componentDidMount () {
+    if (this.props.autoFocus && this.textareaRef.current) {
+      this.textareaRef.current.focus()
     }
   }
 
@@ -141,19 +150,37 @@ export default class CommentForm extends React.Component {
     const textareaStyle = { height: (this.state.textareaHeight) + 'px' }
     const hasParent = this.props.parentIndex !== undefined
 
+    let userImage
+    if (this.props.userImage) {
+      const sectionStyle = {
+        backgroundImage: 'url(' + this.props.userImage + ')'
+      }
+      userImage = (
+        <div className="a4-comments__comment-form__avatar">
+          <div className="user-avatar user-avatar--small user-avatar--shadow userindicator__btn-img" style={sectionStyle} />
+        </div>
+      )
+    }
+
+    const placeholder = this.props.editing
+      ? undefined
+      : (hasParent ? translated.replyPlaceholder : translated.placeholder)
+
+    const submitLabel = hasParent ? translated.reply : translated.post
+
     const actionButton = (
       <button
         type="submit"
-        className="btn btn--default a4-comments__submit-input"
+        className="btn btn--transparent-bordered a4-comments__submit-input"
         disabled={!this.hasAgreedToTerms() || this.state.submitting}
       >
-        {translated.post}
+        {submitLabel}
       </button>
     )
     const cancelButton = this.props.showCancel && (
       <button
-        type="submit"
-        className="btn btn--light me-2 a4-comments__cancel-edit-input"
+        type="button"
+        className="btn btn--none a4-comments__cancel-edit-input"
         value={translated.cancel}
         onClick={this.props.handleCancel}
       >
@@ -164,8 +191,6 @@ export default class CommentForm extends React.Component {
     if (this.props.hasCommentingPermission) {
       return (
         <>
-          {!this.props.editing &&
-            <h2 className="a4-comments__comment-form__heading-comments-allowed title-3">{translated.formHeadingCommentsAllowed}</h2>}
           <form id={'id-comment-form' + this.props.commentId} className="a4-comments__comment-form__form" onSubmit={this.handleSubmit.bind(this)}>
             {this.props.error &&
               <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
@@ -178,29 +203,35 @@ export default class CommentForm extends React.Component {
                   handleControlFunc={this.handleCategorySelection.bind(this)}
                 />
               </div>}
-            <div className="form-group" id={'group_id_textarea-top' + this.props.commentId}>
-              <label htmlFor={'id_textarea-top' + this.props.commentId}>
-                {translated.yourComment}
-              </label>
-              <textarea
-                id={'id_textarea-top' + this.props.commentId}
-                name={'id_textarea-top' + this.props.commentId}
-                aria-describedby={this.state.showCommentError ? 'alert' : ('id_char-count' + this.props.commentId)}
-                aria-invalid={this.state.showCommentError}
-                className={'form-control ' + this.props.commentCategoryChoices ? 'a4-comments__textarea--small' : 'a4-comments__textarea--big'}
-                onChange={this.handleTextChange.bind(this)}
-                value={this.state.comment}
-                onInput={this.handleTextareaGrow.bind(this)}
-                style={textareaStyle}
-              />
-              <p
-                id={'id_char-count' + this.props.commentId}
-                className="a4-comments__char-count"
-                aria-live="polite"
-              >
-                <span aria-hidden="true">{this.state.commentCharCount}/4000<span className="a4-comments__char-count-word">{translated.characters}</span></span>
-                <span className="a4-sr-only">{this.state.commentCharCount}/4000{translated.characters}</span>
-              </p>
+            <div className="a4-comments__comment-form__input">
+              {userImage}
+              <div className="form-group a4-comments__comment-form__textarea-container" id={'group_id_textarea-top' + this.props.commentId}>
+                <label className="a4-sr-only" htmlFor={'id_textarea-top' + this.props.commentId}>
+                  {hasParent ? translated.yourReply : translated.yourComment}
+                </label>
+                <textarea
+                  id={'id_textarea-top' + this.props.commentId}
+                  name={'id_textarea-top' + this.props.commentId}
+                  ref={this.textareaRef}
+                  aria-describedby={this.state.showCommentError ? 'alert' : ('id_char-count' + this.props.commentId)}
+                  aria-invalid={this.state.showCommentError}
+                  className={'form-control ' + this.props.commentCategoryChoices ? 'a4-comments__textarea--small' : 'a4-comments__textarea--big'}
+                  onChange={this.handleTextChange.bind(this)}
+                  value={this.state.comment}
+                  onInput={this.handleTextareaGrow.bind(this)}
+                  style={textareaStyle}
+                  maxLength="4000"
+                  placeholder={placeholder}
+                />
+                <p
+                  id={'id_char-count' + this.props.commentId}
+                  className="a4-comments__char-count"
+                  aria-live="polite"
+                >
+                  <span aria-hidden="true">{this.state.commentCharCount}/4000<span className="a4-comments__char-count-word">{translated.characters}</span></span>
+                  <span className="a4-sr-only">{this.state.commentCharCount}/4000{translated.characters}</span>
+                </p>
+              </div>
             </div>
             <div className="row a4-comments__comment-form__terms-and-buttons">
               <div className="a4-comments__comment-form__terms-of-use">
