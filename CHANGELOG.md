@@ -11,8 +11,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - polls: add option to hide preliminary results until phase end
 - polls: add `HumanReadablePollExportView` which exports one readable column
-  per question (selected labels instead of binary choice columns, consolidated
-  "other" answers, question text as header, labelled respondent rows)
+  per question (selected labels instead of binary choice columns, pipe
+  separated multiple choice values, consolidated "other" answers, question
+  text as header and respondents ordered by participation with labelled rows)
 - emails: add `get_from_email()` hook on `EmailBase` so projects can customize
   the sender address without overriding `dispatch()`.
 - exports: add ItemExportWithImageMixin to include images in exports

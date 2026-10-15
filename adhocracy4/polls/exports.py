@@ -2,6 +2,7 @@ from collections import defaultdict
 
 from django.contrib.auth import get_user_model
 from django.db.models import Prefetch
+from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.utils.translation import pgettext
 from rules.contrib.views import PermissionRequiredMixin
@@ -212,12 +213,13 @@ class HumanReadablePollExportView(PollExportView):
     ids, this export consolidates each question into a single column:
 
     * single choice questions show the selected answer label,
-    * multiple choice questions show a comma separated list of labels,
+    * multiple choice questions show a pipe separated list of labels,
     * "other" answers are combined with the free text ("Other: ..."),
     * open questions show the given free text.
 
     Questions without an answer stay empty and partial submissions are kept,
-    so moderators can still review incomplete participation.
+    so moderators can still review incomplete participation. Respondents are
+    listed and numbered in the order in which they took part.
     """
 
     @property
@@ -225,6 +227,24 @@ class HumanReadablePollExportView(PollExportView):
         if not hasattr(self, "_questions_by_id"):
             self._questions_by_id = {q.id: q for q in self.questions}
         return self._questions_by_id
+
+    def get_object_list(self):
+        participants = []
+        for voter in self.get_voters():
+            user_key = str(voter.pk) if hasattr(voter, "pk") else f"anon_{voter}"
+            participants.append((self._first_participation(user_key), user_key, voter))
+
+        participants.sort(key=lambda participant: (participant[0], participant[1]))
+        return [(index, voter) for index, (_, _, voter) in enumerate(participants)]
+
+    def _first_participation(self, user_key):
+        timestamps = [
+            vote.created for vote in self._user_votes.get(user_key, {}).values()
+        ]
+        timestamps += [
+            answer.created for answer in self._user_answers.get(user_key, {}).values()
+        ]
+        return min(timestamps, default=timezone.now())
 
     def get_virtual_fields(self, virtual):
         if not hasattr(self, "questions"):
@@ -275,4 +295,4 @@ class HumanReadablePollExportView(PollExportView):
             else:
                 selected.append(choice.label)
 
-        return ", ".join(selected)
+        return " | ".join(selected)

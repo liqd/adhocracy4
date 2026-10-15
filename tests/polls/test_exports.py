@@ -1,6 +1,8 @@
 import uuid
+from datetime import timedelta
 
 import pytest
+from django.utils import timezone
 
 from adhocracy4.polls.exports import HumanReadablePollExportView
 from adhocracy4.polls.exports import PollCommentExportView
@@ -137,7 +139,7 @@ def test_human_readable_poll_export(
         [
             "Respondent 1",
             "Wiese",
-            "Spielplatz, Skatepark, Other: Käsetheke",
+            "Spielplatz | Skatepark | Other: Käsetheke",
             "Danke für die Umfrage",
         ],
         [
@@ -146,4 +148,42 @@ def test_human_readable_poll_export(
             "",
             "",
         ],
+    ]
+
+
+@pytest.mark.django_db
+def test_human_readable_poll_export_orders_by_participation(
+    poll_factory,
+    question_factory,
+    choice_factory,
+    vote_factory,
+    user,
+    another_user,
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll, label="Welche Farbe?")
+    choice = choice_factory(question=question, label="Blau")
+
+    base = timezone.now()
+    # The registered user takes part first, the anonymous one second and the
+    # second registered user last, independent of the database order.
+    vote_factory(choice=choice, creator=user, created=base - timedelta(minutes=30))
+    vote_factory(
+        choice=choice,
+        creator=None,
+        content_id=uuid.uuid4(),
+        created=base - timedelta(minutes=20),
+    )
+    vote_factory(
+        choice=choice, creator=another_user, created=base - timedelta(minutes=10)
+    )
+
+    export_view = HumanReadablePollExportView(kwargs={"module": poll.module})
+    export_view._init_export_data()
+
+    rows = list(export_view.export_rows())
+    assert [row[0] for row in rows] == [
+        "Respondent 1",
+        "Anonymous 2",
+        "Respondent 3",
     ]
