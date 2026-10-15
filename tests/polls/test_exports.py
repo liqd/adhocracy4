@@ -1,5 +1,10 @@
-import pytest
+import uuid
+from datetime import timedelta
 
+import pytest
+from django.utils import timezone
+
+from adhocracy4.polls.exports import HumanReadablePollExportView
 from adhocracy4.polls.exports import PollCommentExportView
 from adhocracy4.polls.exports import PollExportView
 from adhocracy4.ratings.models import Rating
@@ -67,4 +72,118 @@ def test_poll_export_with_data(
         "1",  # Voter ID
         "Nice poll!",  # Open answer
         1,  # "Good" selected (1)
+    ]
+
+
+@pytest.mark.django_db
+def test_human_readable_poll_export(
+    poll_factory,
+    question_factory,
+    open_question_factory,
+    choice_factory,
+    other_choice_factory,
+    vote_factory,
+    other_vote_factory,
+    answer_factory,
+    user,
+):
+    poll = poll_factory()
+    single_question = question_factory(
+        poll=poll, label="Was gefällt ihnen im Park am besten?", weight=1
+    )
+    multi_question = question_factory(
+        poll=poll,
+        label="Was sollen wir noch zusätzlich zum Park hinzufügen?",
+        multiple_choice=True,
+        weight=2,
+    )
+    open_question = open_question_factory(
+        poll=poll, label="Was möchten sie uns noch sagen?", weight=3
+    )
+
+    wiese = choice_factory(question=single_question, label="Wiese", weight=1)
+    single_other = other_choice_factory(
+        question=single_question, label="other", weight=2
+    )
+
+    spielplatz = choice_factory(question=multi_question, label="Spielplatz", weight=1)
+    skatepark = choice_factory(question=multi_question, label="Skatepark", weight=2)
+    multi_other = other_choice_factory(question=multi_question, label="other", weight=3)
+
+    # A registered respondent with a single, multiple (incl. other) and open answer
+    vote_factory(choice=wiese, creator=user)
+    vote_factory(choice=spielplatz, creator=user)
+    vote_factory(choice=skatepark, creator=user)
+    multi_other_vote = vote_factory(choice=multi_other, creator=user)
+    other_vote_factory(vote=multi_other_vote, answer="Käsetheke")
+    answer_factory(question=open_question, creator=user, answer="Danke für die Umfrage")
+
+    # An anonymous respondent with only a single "other" answer
+    anon_single_other_vote = vote_factory(
+        choice=single_other, creator=None, content_id=uuid.uuid4()
+    )
+    other_vote_factory(vote=anon_single_other_vote, answer="das wetter")
+
+    export_view = HumanReadablePollExportView(kwargs={"module": poll.module})
+    export_view._init_export_data()
+
+    assert export_view.get_header() == [
+        "Respondent",
+        single_question.label,
+        multi_question.label,
+        open_question.label,
+    ]
+
+    rows = list(export_view.export_rows())
+    assert rows == [
+        [
+            "Respondent 1",
+            "Wiese",
+            "Spielplatz | Skatepark | Other: Käsetheke",
+            "Danke für die Umfrage",
+        ],
+        [
+            "Anonymous 2",
+            "Other: das wetter",
+            "",
+            "",
+        ],
+    ]
+
+
+@pytest.mark.django_db
+def test_human_readable_poll_export_orders_by_participation(
+    poll_factory,
+    question_factory,
+    choice_factory,
+    vote_factory,
+    user,
+    another_user,
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll, label="Welche Farbe?")
+    choice = choice_factory(question=question, label="Blau")
+
+    base = timezone.now()
+    # The registered user takes part first, the anonymous one second and the
+    # second registered user last, independent of the database order.
+    vote_factory(choice=choice, creator=user, created=base - timedelta(minutes=30))
+    vote_factory(
+        choice=choice,
+        creator=None,
+        content_id=uuid.uuid4(),
+        created=base - timedelta(minutes=20),
+    )
+    vote_factory(
+        choice=choice, creator=another_user, created=base - timedelta(minutes=10)
+    )
+
+    export_view = HumanReadablePollExportView(kwargs={"module": poll.module})
+    export_view._init_export_data()
+
+    rows = list(export_view.export_rows())
+    assert [row[0] for row in rows] == [
+        "Respondent 1",
+        "Anonymous 2",
+        "Respondent 3",
     ]

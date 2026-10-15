@@ -2,6 +2,7 @@ from collections import defaultdict
 
 from django.contrib.auth import get_user_model
 from django.db.models import Prefetch
+from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.utils.translation import pgettext
 from rules.contrib.views import PermissionRequiredMixin
@@ -202,3 +203,96 @@ class PollExportView(PermissionRequiredMixin, export_views.BaseItemExportView):
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
+
+
+class HumanReadablePollExportView(PollExportView):
+    """Export poll answers as one readable column per question.
+
+    In contrast to :class:`PollExportView`, which adds one binary column per
+    answer option and prefixes every header with internal question and choice
+    ids, this export consolidates each question into a single column:
+
+    * single choice questions show the selected answer label,
+    * multiple choice questions show a pipe separated list of labels,
+    * "other" answers are combined with the free text ("Other: ..."),
+    * open questions show the given free text.
+
+    Questions without an answer stay empty and partial submissions are kept,
+    so moderators can still review incomplete participation. Respondents are
+    listed and numbered in the order in which they took part.
+    """
+
+    @property
+    def _question_map(self):
+        if not hasattr(self, "_questions_by_id"):
+            self._questions_by_id = {q.id: q for q in self.questions}
+        return self._questions_by_id
+
+    def get_object_list(self):
+        participants = []
+        for voter in self.get_voters():
+            user_key = str(voter.pk) if hasattr(voter, "pk") else f"anon_{voter}"
+            participants.append((self._first_participation(user_key), user_key, voter))
+
+        participants.sort(key=lambda participant: (participant[0], participant[1]))
+        return [(index, voter) for index, (_, _, voter) in enumerate(participants)]
+
+    def _first_participation(self, user_key):
+        timestamps = [
+            vote.created for vote in self._user_votes.get(user_key, {}).values()
+        ]
+        timestamps += [
+            answer.created for answer in self._user_answers.get(user_key, {}).values()
+        ]
+        return min(timestamps, default=timezone.now())
+
+    def get_virtual_fields(self, virtual):
+        if not hasattr(self, "questions"):
+            self._init_export_data()
+
+        virtual["respondent"] = _("Respondent")
+        for question in self.questions:
+            virtual[question.id] = question.label
+
+        return virtual
+
+    def get_field_data(self, item, field):
+        index, voter = item
+
+        if field == "respondent":
+            return self._respondent_label(index, voter)
+
+        user_key = str(voter.pk) if hasattr(voter, "pk") else f"anon_{voter}"
+        question = self._question_map.get(field)
+        if question is None:
+            return ""
+
+        if question.is_open:
+            answer = self._user_answers.get(user_key, {}).get(question.id)
+            return answer.answer if answer else ""
+
+        return self._choice_answer(user_key, question)
+
+    def _respondent_label(self, index, voter):
+        number = index + 1
+        if hasattr(voter, "pk"):
+            return _("Respondent %(number)s") % {"number": number}
+        return _("Anonymous %(number)s") % {"number": number}
+
+    def _choice_answer(self, user_key, question):
+        selected = []
+        for choice in question.choices.all():
+            vote = self._user_votes.get(user_key, {}).get(choice.id)
+            if not vote:
+                continue
+
+            if choice.is_other_choice:
+                other_text = self._other_votes_map.get(vote.id, "")
+                if other_text:
+                    selected.append(_("Other: %(answer)s") % {"answer": other_text})
+                else:
+                    selected.append(_("Other"))
+            else:
+                selected.append(choice.label)
+
+        return " | ".join(selected)
