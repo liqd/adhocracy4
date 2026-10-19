@@ -1,6 +1,7 @@
 import base64
 import json
 import re
+import uuid
 
 from django.conf import settings
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -192,8 +193,12 @@ class PollUpdateService:
             if question_instance.image:
                 question_instance.image.delete(save=False)
             try:
+                # Use a unique file name so that replacing an image changes its
+                # URL. Reusing the name keeps the old file in browser caches and
+                # the new image does not show up until a hard reload.
+                file_name = f"question_{question_instance.id}_{uuid.uuid4().hex}.{ext}"
                 question_instance.image.save(
-                    f"question_{question_instance.id}.{ext}",
+                    file_name,
                     ContentFile(base64.b64decode(imgstr)),
                     save=True,
                 )
