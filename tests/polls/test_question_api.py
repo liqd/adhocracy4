@@ -426,3 +426,49 @@ def test_question_existing_image_with_alt_text_succeeds(
     assert response.status_code == status.HTTP_200_OK
     question.refresh_from_db()
     assert question.image_alt_text == "A red rectangle with description"
+
+
+@pytest.mark.django_db
+def test_replacing_question_image_uses_new_file_name(
+    apiclient, admin, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll)
+    choice_factory(question=question)
+    choice_factory(question=question)
+
+    b64_image = _base64_image()
+    question.image.save(
+        "question_old.jpg",
+        ContentFile(base64.b64decode(b64_image.split(";base64,")[1])),
+    )
+    old_name = question.image.name
+
+    url = reverse("polls-detail", kwargs={"pk": poll.pk})
+    apiclient.force_authenticate(user=admin)
+
+    data = {
+        "questions": [
+            {
+                "id": question.id,
+                "label": "question with replaced image",
+                "help_text": "",
+                "multiple_choice": False,
+                "is_open": False,
+                "choices": [
+                    {"label": "a", "is_other_choice": False, "count": 0},
+                    {"label": "b", "is_other_choice": False, "count": 0},
+                ],
+                "answers": [],
+                "image_base64": b64_image,
+                "image_alt_text": "A red rectangle",
+            }
+        ]
+    }
+
+    response = apiclient.put(url, data, format="json")
+    assert response.status_code == status.HTTP_200_OK
+    question.refresh_from_db()
+    # a new URL is required so browsers do not keep serving the cached old image
+    assert question.image.name != old_name
+    assert question.image.storage.exists(question.image.name)

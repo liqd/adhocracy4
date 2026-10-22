@@ -8,6 +8,12 @@ from django.utils.translation import gettext_lazy as _
 
 image_max_mb = 5
 
+# Image processing (e.g. browser-side resizing/compression) can shave off a
+# pixel or two, so a nominally valid image may end up slightly below the stated
+# minimum resolution. Accept images within this tolerance; the error message
+# still reports the stated (configured) minimum.
+MIN_RESOLUTION_TOLERANCE = 2
+
 
 def validate_image(
     image,
@@ -20,6 +26,8 @@ def validate_image(
 ):
     errors = []
     min_width, min_height = min_resolution
+    check_width = max(0, min_width - MIN_RESOLUTION_TOLERANCE)
+    check_height = max(0, min_height - MIN_RESOLUTION_TOLERANCE)
 
     imagetype = magic.from_buffer(image.read(), mime=True)
 
@@ -39,7 +47,7 @@ def validate_image(
         image_width = image.width
     else:
         image_width = image.image.width
-    if image_width < min_width:
+    if image_width < check_width:
         msg = _("Image must be at least {min_width} pixels wide")
         errors.append(ValidationError(msg.format(min_width=min_width)))
 
@@ -47,7 +55,7 @@ def validate_image(
         image_height = image.height
     else:
         image_height = image.image.height
-    if image_height < min_height:
+    if image_height < check_height:
         msg = _("Image must be at least {min_height} pixels high")
         errors.append(ValidationError(msg.format(min_height=min_height)))
 

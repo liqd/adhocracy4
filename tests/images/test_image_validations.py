@@ -7,14 +7,18 @@ from adhocracy4.images.validators import validate_image
 def test_min_size_validation(image_factory):
     with pytest.raises(ValidationError):
         image = image_factory((100, 100), "JPEG")
-        validate_image(image, (50, 101))
+        validate_image(image, (50, 103))
 
     with pytest.raises(ValidationError):
         image = image_factory((100, 100), "JPEG")
-        validate_image(image, (101, 50))
+        validate_image(image, (103, 50))
 
     image = image_factory((100, 100), "JPEG")
     validate_image(image, (100, 100))
+
+    # a couple of pixels below the stated minimum are tolerated (rounding)
+    image = image_factory((100, 100), "JPEG")
+    validate_image(image, (102, 102))
 
 
 def test_max_size_validation(image_factory):
