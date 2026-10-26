@@ -303,20 +303,43 @@ class PollViewSet(
     def validate_mandatory_questions(self, votes_data, poll_pk):
         """Reject the vote if a mandatory question of the poll is not answered.
 
-        Questions missing from the payload count as unanswered, so a client
-        cannot circumvent the check by omitting questions.
+        Only the questions contained in the payload are replaced by a vote, so
+        an existing answer stays valid if its question is not part of the
+        payload. This allows participants to change a single answer later on
+        without having to resend all the other answers.
         """
         votes_by_id = {str(key): value for key, value in votes_data.items()}
         errors = {}
         for question in Question.objects.filter(poll_id=poll_pk, is_mandatory=True):
-            vote_data = votes_by_id.get(str(question.pk))
-            if not self.is_question_answered(question, vote_data):
-                errors[str(question.pk)] = [
-                    _("Please answer this question to continue.")
-                ]
+            key = str(question.pk)
+            if key in votes_by_id:
+                answered = self.is_question_answered(question, votes_by_id[key])
+            else:
+                answered = self.has_stored_answer(question)
+            if not answered:
+                errors[key] = [_("Please answer this question to continue.")]
 
         if errors:
             raise ValidationError(errors)
+
+    def has_stored_answer(self, question):
+        """Check whether the user already answered the question before.
+
+        Guests cannot change their vote afterwards and submit a new content id
+        for every request, so only authenticated users can have a stored
+        answer that is still valid.
+        """
+        if not self.request.user.is_authenticated:
+            return False
+
+        if question.is_open:
+            return Answer.objects.filter(
+                question=question, creator=self.request.user
+            ).exists()
+
+        return Vote.objects.filter(
+            choice__question=question, creator=self.request.user
+        ).exists()
 
     def is_question_answered(self, question, vote_data):
         if not isinstance(vote_data, dict):

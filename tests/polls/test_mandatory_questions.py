@@ -308,3 +308,92 @@ def test_optional_question_can_stay_unanswered(
         response = apiclient.post(vote_url(poll), data, format="json")
 
     assert response.status_code == status.HTTP_201_CREATED
+
+
+@pytest.mark.django_db
+def test_existing_answer_of_mandatory_question_stays_valid_when_changing_another_answer(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
+    """The a4 client only submits the questions that were changed."""
+    poll = poll_factory()
+    mandatory_question = question_factory(poll=poll, is_mandatory=True)
+    mandatory_choice = choice_factory(question=mandatory_question)
+    optional_question = question_factory(poll=poll)
+    optional_choice = choice_factory(question=optional_question)
+    new_optional_choice = choice_factory(question=optional_question)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            mandatory_question.pk: {
+                "choices": [mandatory_choice.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+            optional_question.pk: {
+                "choices": [optional_choice.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+
+        # only the optional question is part of the second request
+        data = {
+            "votes": {
+                optional_question.pk: {
+                    "choices": [new_optional_choice.pk],
+                    "other_choice_answer": "",
+                    "open_answer": "",
+                }
+            }
+        }
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_201_CREATED
+    assert Vote.objects.filter(choice=mandatory_choice, creator=user).exists()
+    assert Vote.objects.filter(choice=new_optional_choice, creator=user).exists()
+
+
+@pytest.mark.django_db
+def test_removing_the_answer_of_a_mandatory_question_is_rejected(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    mandatory_question = question_factory(poll=poll, is_mandatory=True)
+    mandatory_choice = choice_factory(question=mandatory_question)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            mandatory_question.pk: {
+                "choices": [mandatory_choice.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+
+        data = {
+            "votes": {
+                mandatory_question.pk: {
+                    "choices": [],
+                    "other_choice_answer": "",
+                    "open_answer": "",
+                }
+            }
+        }
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert Vote.objects.filter(choice=mandatory_choice, creator=user).exists()
