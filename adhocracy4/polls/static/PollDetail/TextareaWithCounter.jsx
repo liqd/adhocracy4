@@ -51,7 +51,7 @@ export const TextareaWithCounter = ({ value, onChange, disabled, error, id, ques
         rows={rowSize}
       />
       <CharCounter value={value} max={maxLength} id={'id_char-count-' + id} />
-      {error && <FormFieldError id={'id_error-' + id} error={error} field={id} />}
+      {error && <FormFieldError id={'id_error-' + id} error={error} field={id} role="alert" />}
     </div>
   )
 }
