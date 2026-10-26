@@ -7,7 +7,7 @@ const translated = {
   specify: django.gettext('Please specify:')
 }
 
-export const TextareaWithCounter = ({ value, onChange, disabled, error, id, questionType = 'other' }) => {
+export const TextareaWithCounter = ({ value, onChange, disabled, error, id, questionType = 'other', required = false }) => {
   // textarea rows and character length based on question type
   const rowSize = questionType === 'open' ? 6 : 3
   const maxLength = questionType === 'open' ? 750 : 250
@@ -46,6 +46,7 @@ export const TextareaWithCounter = ({ value, onChange, disabled, error, id, ques
         onChange={handleInputChange}
         disabled={disabled}
         aria-invalid={ariaInvalid}
+        aria-required={required ? 'true' : undefined}
         aria-describedby={'id_error-' + id + ' id_char-count-' + id}
         rows={rowSize}
       />
