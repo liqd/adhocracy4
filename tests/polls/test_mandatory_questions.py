@@ -397,3 +397,39 @@ def test_removing_the_answer_of_a_mandatory_question_is_rejected(
 
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert Vote.objects.filter(choice=mandatory_choice, creator=user).exists()
+
+
+@pytest.mark.django_db
+def test_admin_update_without_is_mandatory_keeps_the_value(
+    apiclient, admin, poll_factory, question_factory, choice_factory
+):
+    """Older clients do not send the new field and must not reset it."""
+    poll = poll_factory()
+    question = question_factory(poll=poll, is_mandatory=True)
+    choice = choice_factory(question=question)
+    choice_factory(question=question)
+
+    apiclient.force_authenticate(user=admin)
+    data = {
+        "questions": [
+            {
+                "id": question.pk,
+                "label": question.label,
+                "help_text": "",
+                "multiple_choice": False,
+                "is_open": False,
+                "choices": [
+                    {"id": choice.pk, "label": choice.label, "is_other_choice": False},
+                    {"label": "another choice", "is_other_choice": False},
+                ],
+            }
+        ]
+    }
+
+    response = apiclient.put(
+        reverse("polls-detail", kwargs={"pk": poll.pk}), data, format="json"
+    )
+
+    assert response.status_code == status.HTTP_200_OK
+    question.refresh_from_db()
+    assert question.is_mandatory is True
