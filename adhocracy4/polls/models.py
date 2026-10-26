@@ -76,6 +76,11 @@ class Question(models.Model):
             "submissions is visible."
         ),
     )
+    is_mandatory = models.BooleanField(
+        default=False,
+        verbose_name=_("Mandatory question"),
+        help_text=_("Participants have to answer this question before submitting."),
+    )
 
     poll = models.ForeignKey("Poll", on_delete=models.CASCADE, related_name="questions")
 

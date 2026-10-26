@@ -98,6 +98,7 @@ class QuestionSerializer(serializers.ModelSerializer):
             "multiple_choice",
             "is_open",
             "is_confidential",
+            "is_mandatory",
             "isReadOnly",
             "authenticated",
             "choices",

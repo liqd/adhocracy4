@@ -208,6 +208,7 @@ class PollViewSet(
         if not self.request.user.is_authenticated:
             self.check_captcha()
         self.check_terms_of_use()
+        self.validate_mandatory_questions(request.data["votes"], int(pk))
 
         creator = None
         content_id = None
@@ -298,6 +299,42 @@ class PollViewSet(
             Vote.objects.filter(
                 choice__question_id=question.id, creator=self.request.user
             ).delete()
+
+    def validate_mandatory_questions(self, votes_data, poll_pk):
+        """Reject the vote if a mandatory question of the poll is not answered.
+
+        Questions missing from the payload count as unanswered, so a client
+        cannot circumvent the check by omitting questions.
+        """
+        votes_by_id = {str(key): value for key, value in votes_data.items()}
+        errors = {}
+        for question in Question.objects.filter(poll_id=poll_pk, is_mandatory=True):
+            vote_data = votes_by_id.get(str(question.pk))
+            if not self.is_question_answered(question, vote_data):
+                errors[str(question.pk)] = [
+                    _("Please answer this question to continue.")
+                ]
+
+        if errors:
+            raise ValidationError(errors)
+
+    def is_question_answered(self, question, vote_data):
+        if not isinstance(vote_data, dict):
+            return False
+
+        if question.is_open:
+            return bool((vote_data.get("open_answer") or "").strip())
+
+        choices = vote_data.get("choices") or []
+        if not choices:
+            return False
+
+        other_choice = question.get_other_option()
+        if other_choice and str(other_choice.pk) in {str(c) for c in choices}:
+            # an "other" answer without text does not count as an answer
+            return bool((vote_data.get("other_choice_answer") or "").strip())
+
+        return True
 
     def validate_choices(self, question, choices):
         if len(choices) > len(set(choices)):

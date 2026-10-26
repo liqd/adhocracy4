@@ -143,6 +143,7 @@ class PollUpdateService:
                 "multiple_choice": q_data.get("multiple_choice", False),
                 "is_open": q_data.get("is_open", False),
                 "is_confidential": q_data.get("is_confidential", False),
+                "is_mandatory": q_data.get("is_mandatory", False),
                 "weight": weight,
             }
             if question_images_enabled:

@@ -16,6 +16,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - polls: add option to hide preliminary results until phase end
+- polls: add mandatory questions that have to be answered before voting
+- polls: mark mandatory questions in the poll detail view
 - polls: add `HumanReadablePollExportView` which exports one readable column
   per question (selected labels instead of binary choice columns, pipe
   separated multiple choice values, consolidated "other" answers, question
