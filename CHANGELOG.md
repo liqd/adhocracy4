@@ -8,6 +8,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+### Fixed
+### Changed
+
+## aplus-v2610.1
+
+### Added
 
 - polls: add option to hide preliminary results until phase end
 - polls: add `HumanReadablePollExportView` which exports one readable column
@@ -18,8 +24,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   the sender address without overriding `dispatch()`.
 - exports: add ItemExportWithImageMixin to include images in exports
 - exports: export each image on its own row to keep image links clickable
-
-### Fixed
 
 ### Changed
 
