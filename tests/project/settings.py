@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     "adhocracy4.maps_react",
     "adhocracy4.actions",
     "adhocracy4.follows",
+    "adhocracy4.moderation",
     "adhocracy4.filters",
     "adhocracy4.forms",
     "adhocracy4.rules",
@@ -167,6 +168,7 @@ A4_COMMENTABLES = (
     ("a4comments", "comment"),
 )
 A4_ACTIONABLES = ()
+A4_MODERATION_ITEMABLES = (("a4test_ideas", "idea"),)
 A4_AUTO_FOLLOWABLES = (("a4comments", "comment"), ("a4polls", "vote"))
 A4_CATEGORIZABLE = (("a4test_questions", "question"),)
 A4_LABELS_ADDABLE = (("a4test_questions", "question"),)

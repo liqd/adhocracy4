@@ -1,0 +1,53 @@
+{% load i18n %}
+<div class="moderation-feedback-form">
+    <h2 class="mt-0">{% translate "Official feedback" %}</h2>
+    <form method="post"
+          class="general-form"
+          action="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}"
+          hx-post="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}"
+          hx-target="#moderation-feedback-dialog-body"
+          hx-swap="innerHTML">
+        {% csrf_token %}
+        <input type="hidden" name="state" value="{{ state }}">
+        <input type="hidden" name="content_type" value="{{ content_type }}">
+        <input type="hidden" name="ordering" value="{{ ordering }}">
+
+        {% if form.non_field_errors %}
+            <div class="form-errors">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        {% for field in form %}
+            <div class="form-group mb-2">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <p class="form-hint">{{ field.help_text }}</p>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p class="form-error">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="col-6">
+                {% if is_dialog %}
+                    <button type="button"
+                            class="btn btn--none"
+                            data-moderation-dialog-close>
+                        {% translate "Cancel" %}
+                    </button>
+                {% else %}
+                    <a class="btn btn--none" href="{{ item.detail_url }}">
+                        {% translate "Cancel" %}
+                    </a>
+                {% endif %}
+            </div>
+            <div class="col-6 d-flex">
+                <button class="btn btn--default a4-comments__submit-input ms-auto" type="submit">
+                    {% translate "Save" %}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

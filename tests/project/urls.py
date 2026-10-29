@@ -9,6 +9,7 @@ from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.comments_async.api import CommentViewSet as CommentViewSetAsync
 from adhocracy4.dashboard import urls as dashboard_urls
 from adhocracy4.follows.api import FollowViewSet
+from adhocracy4.moderation import urls as moderation_urls
 from adhocracy4.modules import urls as mod_urls
 from adhocracy4.polls.api import PollViewSet
 from adhocracy4.projects import urls as prj_urls
@@ -31,6 +32,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("projects/", include(prj_urls)),
     path("modules/", include(mod_urls)),
+    path("moderation/", include(moderation_urls)),
     path("accounts/login", LoginView.as_view(), name="account_login"),
     path("dashboard/", include(dashboard_urls)),
 ]
