@@ -1,0 +1,154 @@
+{% load i18n easy_thumbnails_tags %}
+{% if item.status or item.feedback %}
+    {% translate "Edit feedback" as feedback_label %}
+{% else %}
+    {% translate "Add feedback" as feedback_label %}
+{% endif %}
+<li class="moderation-item{% if not item.is_reviewed %} moderation-item--unread{% endif %}"
+    id="moderation-item-{{ item.key }}">
+    <div class="u-border p-4 mb-3">
+        <div class="d-flex flex-wrap">
+            <div class="col-12 col-md-10">
+                <p class="mb-1">
+                    {% if item.is_comment %}
+                        {{ item.author }}
+                        {% translate "posted a" %}
+                        <a href="{{ item.detail_url }}">{% translate "comment" %}</a>
+                    {% else %}
+                        <i class="fas fa-lightbulb me-1" aria-hidden="true"></i>
+                        {{ item.author }}
+                        {% translate "submitted" %}
+                        <a href="{{ item.detail_url }}">{{ item.title }}</a>
+                    {% endif %}
+                </p>
+                <p class="mb-1">
+                    {% if item.modified %}
+                        {% translate "Last edited on" %} {{ item.modified|date:"d.m.Y, H:i" }}
+                    {% else %}
+                        {% translate "Created on" %} {{ item.created|date:"d.m.Y, H:i" }}
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-auto ms-auto">
+                <div class="dropdown">
+                    <button type="button"
+                            class="dropdown-toggle btn btn--none"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            aria-label="{% translate 'Notification menu' %}">
+                        <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <form method="post"
+                                  action="{% url 'a4moderation:item-read' project.pk item.type item.pk %}"
+                                  hx-post="{% url 'a4moderation:item-read' project.pk item.type item.pk %}"
+                                  hx-target="closest .moderation-item"
+                                  hx-swap="outerHTML">
+                                {% csrf_token %}
+                                <input type="hidden" name="state" value="{{ state }}">
+                                <input type="hidden" name="content_type" value="{{ content_type }}">
+                                <input type="hidden" name="ordering" value="{{ ordering }}">
+                                {% if item.is_reviewed %}
+                                    <input type="hidden" name="read" value="0">
+                                    <button class="dropdown-item" type="submit">{% translate "Mark as unread" %}</button>
+                                {% else %}
+                                    <input type="hidden" name="read" value="1">
+                                    <button class="dropdown-item" type="submit">{% translate "Mark as read" %}</button>
+                                {% endif %}
+                            </form>
+                        </li>
+                        {% if item.can_edit_feedback %}
+                            <li>
+                                <a class="dropdown-item"
+                                   href="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                                   hx-get="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                                   hx-target="#moderation-feedback-dialog-body"
+                                   hx-swap="innerHTML">
+                                    {{ feedback_label }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <span class="userdashboard-mod-item__label userdashboard-mod-item__label--{% if item.is_comment %}comment{% else %}idea{% endif %}">
+            {{ item.label }}
+        </span>
+        {% if item.status %}
+            <span class="userdashboard-mod-item__label userdashboard-mod-item__status userdashboard-mod-item__status--{{ item.status_value }}">
+                {{ item.status }}
+            </span>
+        {% endif %}
+        {% if not item.is_reviewed %}
+            <span class="userdashboard-mod-item__label">{% translate "Unread" %}</span>
+        {% endif %}
+
+        {% if item.image %}
+            <p>
+                <a href="{{ item.image.url }}"
+                   data-moderation-image="{{ item.image.url }}"
+                   aria-label="{% translate 'Open image in full size' %}">
+                    <img class="img-fluid"
+                         src="{% thumbnail item.image '330x0' crop='scale' %}"
+                         width="{{ item.image_thumb_width }}"
+                         height="{{ item.image_thumb_height }}"
+                         loading="lazy"
+                         alt="">
+                </a>
+            </p>
+        {% endif %}
+
+        <div class="moderation-item__text">
+            {% if item.is_truncated %}
+                <div class="moderation-item__text-short">{{ item.short_text|safe }}</div>
+                <details class="moderation-item__details">
+                    <summary class="btn btn--none p-0">
+                        <span class="moderation-item__toggle-more">{% translate "Show full text" %}</span>
+                        <span class="moderation-item__toggle-less">{% translate "Show less" %}</span>
+                    </summary>
+                    <div class="moderation-item__text-full">{{ item.text|safe }}</div>
+                </details>
+            {% else %}
+                {{ item.text|safe }}
+            {% endif %}
+        </div>
+
+        {% if item.feedback %}
+            <div class="userdashboard-mod-item__feedback">
+                <span class="userdashboard-mod-item__feedback-title">{% translate "Official feedback" %}</span>
+                <div class="mb-0">{{ item.feedback|safe }}</div>
+            </div>
+        {% endif %}
+
+        {% if item.can_edit_feedback %}
+            <div class="d-flex flex-wrap justify-content-between">
+                <a class="btn px-0 userdashboard-mod-notification__btn"
+                   href="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                   hx-get="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}&content_type={{ content_type }}&ordering={{ ordering }}"
+                   hx-target="#moderation-feedback-dialog-body"
+                   hx-swap="innerHTML">
+                    <i class="fas fa-reply" aria-hidden="true"></i>
+                    <span class="ms-2">
+                        {{ feedback_label }}
+                    </span>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if item.image %}
+        <dialog class="moderation-item__dialog" aria-label="{% translate 'Image in full size' %}">
+            <img src=""
+                 width="{{ item.image_width }}"
+                 height="{{ item.image_height }}"
+                 alt="">
+            <form method="dialog">
+                <button class="btn btn--light" type="submit">{% translate "Close" %}</button>
+            </form>
+        </dialog>
+    {% endif %}
+</li>
