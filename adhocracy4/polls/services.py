@@ -136,6 +136,11 @@ class PollUpdateService:
         question_images_enabled = getattr(settings, "A4_POLL_QUESTION_IMAGES", True)
 
         for weight, q_data in enumerate(questions_data):
+            existing_question = (
+                Question.objects.filter(id=q_data.get("id")).first()
+                if q_data.get("id")
+                else None
+            )
             defaults = {
                 "poll": self.poll,
                 "label": q_data.get("label", ""),
@@ -143,6 +148,11 @@ class PollUpdateService:
                 "multiple_choice": q_data.get("multiple_choice", False),
                 "is_open": q_data.get("is_open", False),
                 "is_confidential": q_data.get("is_confidential", False),
+                # clients that do not know the field yet must not reset it
+                "is_mandatory": q_data.get(
+                    "is_mandatory",
+                    existing_question.is_mandatory if existing_question else False,
+                ),
                 "weight": weight,
             }
             if question_images_enabled:

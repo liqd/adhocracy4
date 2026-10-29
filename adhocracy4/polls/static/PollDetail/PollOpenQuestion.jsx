@@ -36,6 +36,7 @@ export const PollOpenQuestion = ({
         error={errors}
         id={question.id}
         questionType="open"
+        required={!!question.is_mandatory}
       />
     </PollQuestionLayout>
   )
