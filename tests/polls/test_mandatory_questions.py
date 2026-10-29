@@ -433,3 +433,28 @@ def test_admin_update_without_is_mandatory_keeps_the_value(
     assert response.status_code == status.HTTP_200_OK
     question.refresh_from_db()
     assert question.is_mandatory is True
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("votes", [None, [], "invalid"])
+def test_vote_with_invalid_votes_payload_returns_400(
+    user, apiclient, poll_factory, votes
+):
+    poll = poll_factory()
+    apiclient.force_authenticate(user=user)
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), {"votes": votes}, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_vote_without_votes_payload_returns_400(user, apiclient, poll_factory):
+    poll = poll_factory()
+    apiclient.force_authenticate(user=user)
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), {}, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
