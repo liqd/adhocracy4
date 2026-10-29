@@ -208,7 +208,10 @@ class PollViewSet(
         if not self.request.user.is_authenticated:
             self.check_captcha()
         self.check_terms_of_use()
-        self.validate_mandatory_questions(request.data["votes"], int(pk))
+        votes_data = request.data.get("votes")
+        if not isinstance(votes_data, dict):
+            raise ParseError(_("Please provide your votes."))
+        self.validate_mandatory_questions(votes_data, int(pk))
 
         creator = None
         content_id = None
@@ -216,10 +219,10 @@ class PollViewSet(
             creator = self.request.user
         else:
             content_id = uuid.uuid4()
-        for question_id in request.data["votes"]:
+        for question_id in votes_data:
             question = self.get_question(question_id)
             validators.question_belongs_to_poll(question, int(pk))
-            vote_data = self.request.data["votes"][question_id]
+            vote_data = votes_data[question_id]
             self.save_vote(question, vote_data, creator, content_id)
 
         poll = self.get_object()
@@ -308,7 +311,12 @@ class PollViewSet(
         payload. This allows participants to change a single answer later on
         without having to resend all the other answers.
         """
-        votes_by_id = {str(key): value for key, value in votes_data.items()}
+        votes_by_id = {}
+        for key, value in votes_data.items():
+            try:
+                votes_by_id[str(int(key))] = value
+            except (TypeError, ValueError):
+                votes_by_id[str(key)] = value
         errors = {}
         for question in Question.objects.filter(poll_id=poll_pk, is_mandatory=True):
             key = str(question.pk)
