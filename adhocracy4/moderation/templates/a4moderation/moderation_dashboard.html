@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Moderation" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+<div id="layout-grid__area--maincontent" class="moderation-dashboard">
+    <h1>{% translate "Moderation" %}</h1>
+    <p>
+        {% translate "Review incoming contributions, set their processing status and give official feedback." %}
+    </p>
+
+    {% if moderated_projects %}
+        <ul class="actionable-list moderation-dashboard__projects">
+            {% for project in moderated_projects %}
+                <li class="actionable-list__item">
+                    <div class="actionable-list__item__wrapper">
+                        <div class="actionable-list__item__body">
+                            <div>
+                                <h2 class="moderation-dashboard__project-title">
+                                    <a href="{% url 'a4moderation:project' project.pk %}">{{ project.name }}</a>
+                                </h2>
+                                <p class="moderation-dashboard__organisation">{{ project.organisation.name }}</p>
+                            </div>
+                        </div>
+                        <div class="actionable-list__item__actions">
+                            <a class="button" href="{% url 'a4moderation:project' project.pk %}">
+                                {% translate "Open moderation" %}
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="moderation-empty">{% translate "You are not moderating any projects yet." %}</p>
+    {% endif %}
+</div>
+{% endblock %}

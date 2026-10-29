@@ -51,6 +51,7 @@ class Idea(Item):
         Label, related_name=("%(app_label)s_" "%(class)s_label")
     )
     is_bool_test = models.BooleanField(default=True)
+    is_reviewed = models.BooleanField(default=False)
 
     objects = IdeaQuerySet.as_manager()
 
