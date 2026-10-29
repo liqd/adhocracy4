@@ -1,0 +1,44 @@
+{% load i18n %}
+<div class="moderation-feedback-form">
+    <h2 class="moderation-feedback-form__title">{% translate "Official feedback" %}</h2>
+    <form method="post"
+          action="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}"
+          hx-post="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}"
+          hx-target="#moderation-feedback-dialog-body"
+          hx-swap="innerHTML">
+        {% csrf_token %}
+        <input type="hidden" name="state" value="{{ state }}">
+
+        {% if form.non_field_errors %}
+            <div class="moderation-feedback-form__errors">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        {% for field in form %}
+            <div class="moderation-feedback-form__field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <p class="moderation-feedback-form__hint">{{ field.help_text }}</p>
+                {% endif %}
+                {% for error in field.errors %}
+                    <p class="moderation-feedback-form__error">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="moderation-feedback-form__actions">
+            {% if is_dialog %}
+                <button type="button"
+                        class="button button--ghost"
+                        data-moderation-dialog-close>
+                    {% translate "Cancel" %}
+                </button>
+            {% else %}
+                <a class="button button--ghost" href="{{ item.detail_url }}">
+                    {% translate "Cancel" %}
+                </a>
+            {% endif %}
+            <button class="button" type="submit">{% translate "Save" %}</button>
+        </div>
+    </form>
+</div>

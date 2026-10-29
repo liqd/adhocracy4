@@ -1,0 +1,132 @@
+{% load i18n easy_thumbnails_tags %}
+<li class="actionable-list__item moderation-item{% if not item.is_reviewed %} moderation-item--unread{% endif %}"
+    id="moderation-item-{{ item.key }}">
+    <div class="actionable-list__item__wrapper">
+        <div class="actionable-list__item__body moderation-item__body">
+            {% if item.image %}
+                <a class="moderation-item__thumbnail"
+                   href="{{ item.image.url }}"
+                   data-moderation-image="{{ item.image.url }}"
+                   aria-label="{% translate 'Open image in full size' %}">
+                    <img src="{% thumbnail item.image 'item_image' %}"
+                         loading="lazy"
+                         alt="">
+                </a>
+            {% endif %}
+
+            <div class="moderation-item__content">
+                <p class="moderation-item__meta">
+                    <span class="moderation-item__type">{{ item.label }}</span>
+                    <span class="moderation-item__author">{{ item.author }}</span>
+                    <time datetime="{{ item.created|date:'c' }}">{{ item.created|date:"d.m.Y, H:i" }}</time>
+                    {% if not item.is_reviewed %}
+                        <span class="moderation-item__badge">{% translate "Unread" %}</span>
+                    {% endif %}
+                    {% if item.is_blocked %}
+                        <span class="moderation-item__badge moderation-item__badge--warning">{% translate "Blocked" %}</span>
+                    {% endif %}
+                    {% if item.is_highlighted %}
+                        <span class="moderation-item__badge">{% translate "Highlighted" %}</span>
+                    {% endif %}
+                </p>
+
+                <h2 class="moderation-item__title">
+                    {% if item.title %}
+                        <a href="{{ item.detail_url }}">{{ item.title }}</a>
+                    {% else %}
+                        <a href="{{ item.detail_url }}">{{ item.label }}</a>
+                    {% endif %}
+                </h2>
+
+                <div class="moderation-item__text">
+                    {% if item.is_truncated %}
+                        <div class="moderation-item__text-short">{{ item.short_text|safe }}</div>
+                        <details class="moderation-item__details">
+                            <summary class="moderation-item__toggle">
+                                <span class="moderation-item__toggle-more">{% translate "Show full text" %}</span>
+                                <span class="moderation-item__toggle-less">{% translate "Show less" %}</span>
+                            </summary>
+                            <div class="moderation-item__text-full">{{ item.text|safe }}</div>
+                        </details>
+                    {% else %}
+                        {{ item.text|safe }}
+                    {% endif %}
+                </div>
+
+                {% if item.status or item.feedback %}
+                    <div class="moderation-item__feedback">
+                        {% if item.status %}
+                            <p>
+                                <strong>{% translate "Status" %}:</strong>
+                                {{ item.status }}
+                            </p>
+                        {% endif %}
+                        {% if item.feedback %}
+                            <div class="ck-content">{{ item.feedback|safe }}</div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="actionable-list__item__actions">
+            <details class="moderation-item__menu">
+                <summary class="moderation-item__menu-button" aria-label="{% translate 'More actions' %}">
+                    <i class="fa fa-ellipsis" aria-hidden="true"></i>
+                </summary>
+                <ul class="moderation-item__menu-list">
+                    <li>
+                        <form method="post"
+                              action="{% url 'a4moderation:item-read' project.pk item.type item.pk %}"
+                              hx-post="{% url 'a4moderation:item-read' project.pk item.type item.pk %}"
+                              hx-target="closest .moderation-item"
+                              hx-swap="outerHTML">
+                            {% csrf_token %}
+                            <input type="hidden" name="state" value="{{ state }}">
+                            {% if item.is_reviewed %}
+                                <input type="hidden" name="read" value="0">
+                                <button type="submit" class="moderation-item__menu-action">
+                                    {% translate "Mark as unread" %}
+                                </button>
+                            {% else %}
+                                <input type="hidden" name="read" value="1">
+                                <button type="submit" class="moderation-item__menu-action">
+                                    {% translate "Mark as read" %}
+                                </button>
+                            {% endif %}
+                        </form>
+                    </li>
+                    {% if item.can_edit_feedback %}
+                        <li>
+                            <a class="moderation-item__menu-action"
+                               href="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}"
+                               hx-get="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}"
+                               hx-target="#moderation-feedback-dialog-body"
+                               hx-swap="innerHTML">
+                                {% if item.status or item.feedback %}
+                                    {% translate "Edit feedback" %}
+                                {% else %}
+                                    {% translate "Add feedback" %}
+                                {% endif %}
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a class="moderation-item__menu-action" href="{{ item.detail_url }}">
+                            {% translate "Open contribution" %}
+                        </a>
+                    </li>
+                </ul>
+            </details>
+        </div>
+    </div>
+
+    {% if item.image %}
+        <dialog class="moderation-item__dialog" aria-label="{% translate 'Image in full size' %}">
+            <img src="" alt="">
+            <form method="dialog">
+                <button class="button" type="submit">{% translate "Close" %}</button>
+            </form>
+        </dialog>
+    {% endif %}
+</li>

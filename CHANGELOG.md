@@ -8,6 +8,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+
+- moderation: add a moderation dashboard listing a project's comments and
+  items, with read state, filtering, sorting and inline official feedback
 ### Fixed
 ### Changed
 

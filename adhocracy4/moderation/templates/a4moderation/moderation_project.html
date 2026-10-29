@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% translate "Moderation" %}: {{ project.name }} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+<div id="layout-grid__area--maincontent" class="moderation-project">
+    <p>
+        <a class="moderation-project__back" href="{{ moderation_dashboard_url }}">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            {% translate "Back to moderation" %}
+        </a>
+    </p>
+
+    <h1>{% translate "Moderation" %}: {{ project.name }}</h1>
+    <p class="moderation-project__organisation">{{ project.organisation.name }}</p>
+
+    <form class="control-bar moderation-filters"
+          method="get"
+          action="{{ request.path }}"
+          hx-get="{{ request.path }}"
+          hx-target="#moderation-items"
+          hx-swap="innerHTML"
+          hx-push-url="true"
+          hx-trigger="change">
+        <div class="moderation-filters__field">
+            <label for="moderation-state">{% translate "Read status" %}</label>
+            <select id="moderation-state" name="state">
+                <option value="unread"{% if state == "unread" %} selected{% endif %}>{% translate "Unread" %}</option>
+                <option value="all"{% if state == "all" %} selected{% endif %}>{% translate "All" %}</option>
+                <option value="read"{% if state == "read" %} selected{% endif %}>{% translate "Read" %}</option>
+            </select>
+        </div>
+        <div class="moderation-filters__field">
+            <label for="moderation-content-type">{% translate "Content type" %}</label>
+            <select id="moderation-content-type" name="content_type">
+                <option value="all"{% if content_type == "all" %} selected{% endif %}>{% translate "All" %}</option>
+                <option value="comments"{% if content_type == "comments" %} selected{% endif %}>{% translate "Comments" %}</option>
+                <option value="items"{% if content_type == "items" %} selected{% endif %}>{% translate "Ideas" %}</option>
+            </select>
+        </div>
+        <div class="moderation-filters__field moderation-filters__field--right">
+            <label for="moderation-ordering">{% translate "Sort by" %}</label>
+            <select id="moderation-ordering" name="ordering">
+                <option value="newest"{% if ordering == "newest" %} selected{% endif %}>{% translate "Most recent" %}</option>
+                <option value="oldest"{% if ordering == "oldest" %} selected{% endif %}>{% translate "Oldest" %}</option>
+            </select>
+        </div>
+        <noscript>
+            <button class="button" type="submit">{% translate "Apply" %}</button>
+        </noscript>
+    </form>
+
+    <div id="moderation-items">
+        {% include "a4moderation/includes/moderation_items.html" %}
+    </div>
+
+    <div id="moderation-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+    <dialog id="moderation-feedback-dialog"
+            class="moderation-feedback-dialog"
+            aria-label="{% translate 'Official feedback' %}">
+        <div id="moderation-feedback-dialog-body"></div>
+    </dialog>
+</div>
+{% endblock %}
+
+{% block extra_js_deferred %}
+    <script src="{% static 'moderation.js' %}"></script>
+{% endblock %}

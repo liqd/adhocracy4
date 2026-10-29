@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Official feedback" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+<div id="layout-grid__area--maincontent" class="moderation-feedback">
+    <p>
+        <a class="moderation-project__back" href="{% url 'a4moderation:project' project.pk %}?state={{ state }}">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            {% translate "Back to moderation" %}
+        </a>
+    </p>
+    <p class="moderation-project__organisation">{{ project.name }}</p>
+    {% include "a4moderation/includes/feedback_form.html" %}
+</div>
+{% endblock %}
