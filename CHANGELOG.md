@@ -14,6 +14,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 
 - polls: replace the poll editor with the question list editor from adhocracy-plus
+- polls: allow open answers up to 4000 characters
 
 ### Fixed
 

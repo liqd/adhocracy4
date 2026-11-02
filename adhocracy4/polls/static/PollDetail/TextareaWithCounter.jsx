@@ -10,7 +10,7 @@ const translated = {
 export const TextareaWithCounter = ({ value, onChange, disabled, error, id, questionType = 'other' }) => {
   // textarea rows and character length based on question type
   const rowSize = questionType === 'open' ? 6 : 3
-  const maxLength = questionType === 'open' ? 750 : 250
+  const maxLength = questionType === 'open' ? 4000 : 250
   const textareaRef = useRef(null)
 
   const handleDynamicHeight = (textarea) => {
