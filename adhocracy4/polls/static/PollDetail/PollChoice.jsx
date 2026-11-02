@@ -6,7 +6,8 @@ import { ConfidentialNotice } from './ConfidentialNotice'
 import QuestionImage from './QuestionImage'
 
 const translated = {
-  multiple: django.gettext('Multiple answers are possible.')
+  multiple: django.gettext('Multiple answers are possible.'),
+  single: django.gettext('Please select only one answer')
 }
 
 export const PollChoice = ({
@@ -66,6 +67,10 @@ export const PollChoice = ({
 
         {question.multiple_choice && (
           <div className="poll__help-text">{translated.multiple}</div>
+        )}
+
+        {!question.multiple_choice && (
+          <div className="poll__help-text">{translated.single}</div>
         )}
 
         {question.is_confidential && <ConfidentialNotice />}

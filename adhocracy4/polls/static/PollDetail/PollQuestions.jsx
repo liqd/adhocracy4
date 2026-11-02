@@ -49,6 +49,32 @@ const PollQuestions = ({
     }
   }, [state.state])
 
+  useEffect(() => {
+    const cta = document.querySelector('[data-poll-cta]')
+    if (!cta) return undefined
+
+    const canParticipate = state.isAuthenticated || state.allowUnregisteredUsers
+    const isStart = state.state === STATES.START_SCREEN
+    const isResults = state.state === STATES.RESULTS
+
+    cta.hidden = !canParticipate || !(isStart || isResults)
+    if (isStart) cta.textContent = django.gettext('Start poll')
+    if (isResults) {
+      cta.textContent = state.hasUserVote
+        ? django.gettext('Change answer')
+        : django.gettext('Start poll')
+    }
+
+    const handler = () => {
+      if (isStart) actions.handleStartPoll()
+      if (isResults) actions.handleChangeAnswer()
+    }
+    cta.addEventListener('click', handler)
+    return () => cta.removeEventListener('click', handler)
+  }, [state.state, state.isAuthenticated, state.allowUnregisteredUsers, state.hasUserVote, actions])
+
+  const hasPhaseCta = typeof document !== 'undefined' && !!document.querySelector('[data-poll-cta]')
+
   const renderStateContent = () => {
     switch (state.state) {
       case STATES.LOADING:
@@ -72,6 +98,7 @@ const PollQuestions = ({
               alert={state.alert}
               onBackToPoll={actions.handleBackToPoll}
               onChangeAnswer={actions.handleChangeAnswer}
+              hideChangeButton={hasPhaseCta}
             />
           )
         }
@@ -80,6 +107,7 @@ const PollQuestions = ({
           <PollAnswerReview
             questions={state.questions}
             onChangeAnswer={actions.handleChangeAnswer}
+            hideChangeButton={hasPhaseCta}
           />
         )
 
@@ -94,6 +122,7 @@ const PollQuestions = ({
             manualLink={manualLink}
             onStart={actions.handleStartPoll}
             onShowResults={actions.handleShowResults}
+            hideStartButton={hasPhaseCta}
           />
         )
 

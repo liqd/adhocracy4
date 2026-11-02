@@ -6,7 +6,7 @@ import { ChoiceRow } from './ChoiceRow'
 import { ConfidentialNotice } from './ConfidentialNotice'
 import QuestionImage from './QuestionImage'
 
-const PollAnswerReview = ({ questions, onChangeAnswer }) => {
+const PollAnswerReview = ({ questions, onChangeAnswer, hideChangeButton }) => {
   const [bannerDismissed, setBannerDismissed] = useState(false)
 
   return (
@@ -84,15 +84,17 @@ const PollAnswerReview = ({ questions, onChangeAnswer }) => {
         </div>
       ))}
 
-      <div className="poll-answer-review__buttons">
-        <button
-          type="button"
-          className="btn btn--transparent-bordered"
-          onClick={onChangeAnswer}
-        >
-          {django.gettext('Change my answers')}
-        </button>
-      </div>
+      {!hideChangeButton && (
+        <div className="poll-answer-review__buttons">
+          <button
+            type="button"
+            className="btn btn--transparent-bordered"
+            onClick={onChangeAnswer}
+          >
+            {django.gettext('Change my answers')}
+          </button>
+        </div>
+      )}
     </div>
   )
 }
