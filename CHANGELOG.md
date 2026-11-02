@@ -9,6 +9,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- polls: new participation flow with start screen, question funnel, progress bar and results view
+
 ### Changed
 
 - polls: replace the poll editor with the question list editor from adhocracy-plus
