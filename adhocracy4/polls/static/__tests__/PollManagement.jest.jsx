@@ -100,8 +100,8 @@ describe('PollManagement', () => {
     renderManagement()
     expect(await screen.findByText('First question')).toBeInTheDocument()
     expect(screen.getByText('Second question')).toBeInTheDocument()
-    expect(screen.getByText('1')).toBeInTheDocument()
-    expect(screen.getByText('2')).toBeInTheDocument()
+    expect(screen.getByText('01')).toBeInTheDocument()
+    expect(screen.getByText('02')).toBeInTheDocument()
     // collapsed: no editor fields visible
     expect(screen.queryByLabelText('Move question up')).not.toBeInTheDocument()
   })
@@ -203,7 +203,7 @@ describe('PollManagement', () => {
     fireEvent.click(screen.getByLabelText('Confirm delete'))
 
     expect(screen.queryByText('First question')).not.toBeInTheDocument()
-    expect(screen.getByText('1')).toBeInTheDocument()
+    expect(screen.getByText('01')).toBeInTheDocument()
     expect(screen.getByText('Second question')).toBeInTheDocument()
   })
 
@@ -297,7 +297,7 @@ describe('PollManagement', () => {
     fireEvent.drop(items[1])
     fireEvent.dragEnd(items[0])
 
-    expect(screen.getByText('1')).toBeInTheDocument()
+    expect(screen.getByText('01')).toBeInTheDocument()
     // after the drop the second question is first in the list
     const labels = Array.from(container.querySelectorAll('.poll-management__label')).map((el) => el.textContent)
     expect(labels[0]).toBe('Second question')

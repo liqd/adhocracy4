@@ -32,7 +32,7 @@ export const TextareaWithCounter = ({ value, onChange, disabled, error, id, ques
   const ariaInvalid = error && error[id] && error[id].length > 0 ? 'true' : 'false'
 
   return (
-    <div id={'textarea-with-counter-' + id} className="a4-textarea-with-counter" role="region">
+    <div id={'textarea-with-counter-' + id} className="a4-textarea-with-counter" role="region" data-testid="textarea-with-counter">
       <label className="a4-sr-only" htmlFor={'id_choice-' + id + '-' + questionType}>
         {translated.specify}
       </label>

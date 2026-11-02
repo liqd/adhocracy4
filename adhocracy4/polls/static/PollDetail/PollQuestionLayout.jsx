@@ -8,7 +8,7 @@ export const PollQuestionLayout = ({ question, questionImagesEnabled, children }
     : null
 
   return (
-    <div className="poll poll--question">
+    <div className="poll poll--question" data-testid="poll-open-question">
       <fieldset>
         <legend className="poll__question-legend">
           <span className="poll__question-label">{question.label}</span>

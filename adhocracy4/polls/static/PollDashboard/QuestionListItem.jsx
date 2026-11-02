@@ -72,7 +72,7 @@ export const QuestionListItem = ({
       onDragEnd={onDragEnd}
     >
       <span className="poll-management__drag-handle" aria-hidden="true">
-        <i className="fa fa-grip-vertical" />
+        <i className="fa fa-bars" />
       </span>
 
       {/* not a native button: Firefox does not start the parent drag from
@@ -91,7 +91,7 @@ export const QuestionListItem = ({
         }}
       >
         <span className="poll-management__number">
-          {index + 1}
+          {String(index + 1).padStart(2, '0')}
         </span>
         <span className={'poll-management__label' + (question.label ? '' : ' poll-management__label--empty')}>
           {question.label || TRANSLATED.untitled}
