@@ -74,7 +74,9 @@ describe('QuestionFunnel', () => {
 
   it('renders the progress bar', () => {
     render(<QuestionFunnel {...baseProps} currentNumber={3} totalQuestions={5} />)
-    expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '50')
+    const bar = screen.getByRole('progressbar')
+    expect(bar).toHaveAttribute('aria-valuenow', '60')
+    expect(bar).toHaveStyle({ width: '60%' })
   })
 
   it('renders PollChoice for non-open questions', () => {
