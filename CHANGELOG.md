@@ -11,6 +11,8 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Changed
 
+- polls: replace the poll editor with the question list editor from adhocracy-plus
+
 ### Fixed
 
 ## aplus-v2611.4, aplus-v2611.3, aplus-v2611.2, mB-v2611.1
@@ -19,7 +21,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - maps: gracefully skip map thumbnails for invalid or missing images instead of
   failing the whole page.
-
 
 ## aplus-v2610.1
 
