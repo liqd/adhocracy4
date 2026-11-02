@@ -11,7 +11,8 @@ const StartScreen = ({
   totalParticipants,
   manualLink,
   onStart,
-  onShowResults
+  onShowResults,
+  hideStartButton
 }) => {
   return (
     <div className="poll-start-screen">
@@ -57,13 +58,15 @@ const StartScreen = ({
       <div className="poll-start-screen__buttons">
         {isAuthenticated || allowUnregisteredUsers
           ? (
-            <button
-              type="button"
-              className="btn poll__btn--dark"
-              onClick={onStart}
-            >
-              {django.gettext('Start')}
-            </button>
+            !hideStartButton && (
+              <button
+                type="button"
+                className="btn poll__btn--dark"
+                onClick={onStart}
+              >
+                {django.gettext('Start')}
+              </button>
+            )
             )
           : (
             <a

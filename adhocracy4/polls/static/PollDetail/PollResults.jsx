@@ -11,6 +11,7 @@ const PollQuestionSlider = ({ answers, isUserAnswer }) => {
 
   return (
     <div className="poll-slider">
+      <div className="poll-slider__label">{django.gettext('Complete answer')}</div>
       <div
         className="poll-slider__item"
         role="group"

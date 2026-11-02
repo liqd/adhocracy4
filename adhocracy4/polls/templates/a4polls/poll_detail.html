@@ -1,5 +1,11 @@
 {% extends extends %}
-{% load static react_polls react_comments_async %}
+{% load i18n static react_polls react_comments_async %}
+
+{% block project_action %}
+    <button type="button" class="button" data-poll-cta>
+        {% translate 'Start poll' %}
+    </button>
+{% endblock %}
 
 
 {% block phase_content %}

@@ -11,7 +11,8 @@ const ResultsView = ({
   votingEnded,
   alert,
   onBackToPoll,
-  onChangeAnswer
+  onChangeAnswer,
+  hideChangeButton
 }) => {
   const [resultsCollapsed, setResultsCollapsed] = useState(false)
 
@@ -58,31 +59,33 @@ const ResultsView = ({
 
         {alert && <Alert {...alert} />}
 
-        <div className="poll poll__preliminary-results-buttons">
-          {hasUserVote
-            ? (
-              <div className="text-end">
-                {!votingEnded && (
-                  <button
-                    type="button"
-                    className="btn btn--transparent-bordered"
-                    onClick={onChangeAnswer}
-                  >
-                    {django.gettext('Change my answers')}
-                  </button>
-                )}
-              </div>
-              )
-            : !votingEnded && (
-              <button
-                type="button"
-                className="btn poll__btn--link"
-                onClick={onBackToPoll}
-              >
-                {django.gettext('To poll')}
-              </button>
-            )}
-        </div>
+        {!hideChangeButton && (
+          <div className="poll poll__preliminary-results-buttons">
+            {hasUserVote
+              ? (
+                <div className="text-end">
+                  {!votingEnded && (
+                    <button
+                      type="button"
+                      className="btn btn--transparent-bordered"
+                      onClick={onChangeAnswer}
+                    >
+                      {django.gettext('Change my answers')}
+                    </button>
+                  )}
+                </div>
+                )
+              : !votingEnded && (
+                <button
+                  type="button"
+                  className="btn poll__btn--link"
+                  onClick={onBackToPoll}
+                >
+                  {django.gettext('To poll')}
+                </button>
+              )}
+          </div>
+        )}
       </div>
     </div>
   )
