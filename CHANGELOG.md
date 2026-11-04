@@ -9,6 +9,10 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 ### Fixed
+
+- maps: gracefully skip map thumbnails for invalid or missing images instead of
+  failing the whole page.
+
 ### Changed
 
 ## aplus-v2610.1

@@ -1,11 +1,16 @@
 import json
+import logging
 import re
 from html import unescape
+from types import SimpleNamespace
+from unittest import mock
 
 import pytest
 from django.conf import settings
 from django.test.utils import override_settings
 from django.utils.html import escape
+from easy_thumbnails.exceptions import EasyThumbnailsError
+from easy_thumbnails.exceptions import InvalidImageFormatError
 
 from adhocracy4.maps.templatetags import maps_tags
 from adhocracy4.test import helpers
@@ -88,6 +93,27 @@ def test_get_points_with_properties(location_factory):
             }
         ],
     }
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "exception_cls",
+    [InvalidImageFormatError, EasyThumbnailsError, OSError],
+)
+def test_get_points_invalid_image(location_factory, caplog, exception_cls):
+    item = location_factory()
+    item.image = SimpleNamespace(name="broken.jpg")
+
+    with mock.patch.object(
+        maps_tags, "get_thumbnailer", side_effect=exception_cls("broken image")
+    ):
+        with caplog.at_level(
+            logging.WARNING, logger="adhocracy4.maps.templatetags.maps_tags"
+        ):
+            result = json.loads(maps_tags.get_points([item]))
+
+    assert result["features"][0]["properties"]["image"] == ""
+    assert "broken.jpg" in caplog.text
 
 
 @override_settings(A4_MAP_BASEURL="https://{s}.tile.openstreetmap.org/")

@@ -1,13 +1,29 @@
 import json
+import logging
 
 from django import template
 from django.conf import settings
 from django.utils.html import format_html
+from easy_thumbnails.exceptions import EasyThumbnailsError
 from easy_thumbnails.files import get_thumbnailer
 
 from adhocracy4.categories import get_category_pin_url
 
 register = template.Library()
+
+logger = logging.getLogger(__name__)
+
+
+def _get_map_thumbnail_url(image):
+    try:
+        return get_thumbnailer(image)["map_thumbnail"].url
+    except (EasyThumbnailsError, OSError) as e:
+        logger.warning(
+            "Could not generate map thumbnail for image %s: %s",
+            getattr(image, "name", image),
+            e,
+        )
+        return ""
 
 
 def get_points(items):
@@ -23,8 +39,7 @@ def get_points(items):
         vote_count = ""
 
         if hasattr(item, "image") and item.image:
-            image = get_thumbnailer(item.image)["map_thumbnail"]
-            image_url = image.url
+            image_url = _get_map_thumbnail_url(item.image)
         if hasattr(item, "comment_count"):
             comment_count = item.comment_count
         if hasattr(item, "positive_rating_count"):
