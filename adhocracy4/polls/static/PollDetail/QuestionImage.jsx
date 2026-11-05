@@ -4,6 +4,10 @@ import React, { useState } from 'react'
 const QuestionImage = ({ imageUrl, alt }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
+  if (!imageUrl) {
+    return null
+  }
+
   const handleClick = () => {
     setIsExpanded(!isExpanded)
   }
