@@ -52,6 +52,8 @@ class Idea(Item):
     )
     is_bool_test = models.BooleanField(default=True)
     is_reviewed = models.BooleanField(default=False)
+    is_resolved = models.BooleanField(default=False)
+    resolved_at = models.DateTimeField(blank=True, null=True)
 
     objects = IdeaQuerySet.as_manager()
 

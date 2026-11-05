@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const item = trigger.closest('.moderation-item')
-    const dialog = item && item.querySelector('dialog')
+    const dialog =
+      (item && item.querySelector('dialog')) ||
+      document.getElementById('moderation-image-dialog')
     if (!dialog || typeof dialog.showModal !== 'function') {
       return
     }

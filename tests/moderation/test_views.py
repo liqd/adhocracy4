@@ -418,3 +418,98 @@ def test_saved_feedback_leaves_unread_filter(
     assert response.status_code == 200
     assert response.content == b""
     assert response["HX-Retarget"]
+
+
+@pytest.mark.django_db
+def test_mark_item_as_resolved_and_reopen(
+    client, user, moderated_project, module_factory
+):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    client.login(username=user.username, password="password")
+    url = reverse(
+        "a4moderation:item-resolve",
+        kwargs={
+            "project_pk": moderated_project.pk,
+            "item_type": "a4test_ideas.idea",
+            "pk": idea.pk,
+        },
+    )
+
+    response = client.post(url, {"resolved": "1"}, HTTP_HX_REQUEST="true")
+    idea.refresh_from_db()
+    assert response.status_code == 200
+    assert idea.is_resolved is True
+    assert idea.resolved_at is not None
+
+    response = client.post(url, {"resolved": "0"}, HTTP_HX_REQUEST="true")
+    idea.refresh_from_db()
+    assert response.status_code == 200
+    assert idea.is_resolved is False
+    assert idea.resolved_at is None
+
+
+@pytest.mark.django_db
+def test_resolved_items_are_listed_in_resolved_state(
+    client, user, moderated_project, module_factory
+):
+    module = module_factory(project=moderated_project)
+    resolved = IdeaFactory(module=module, is_resolved=True)
+    IdeaFactory(module=module, is_resolved=False)
+    client.login(username=user.username, password="password")
+
+    response = client.get(
+        reverse("a4moderation:project", kwargs={"project_pk": moderated_project.pk}),
+        {"state": "resolved"},
+    )
+
+    assert [item["pk"] for item in response.context["items"]] == [resolved.pk]
+
+
+@pytest.mark.django_db
+def test_hide_and_reopen_comment(client, user, moderated_project, module_factory):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    comment = CommentFactory(content_object=idea)
+    client.login(username=user.username, password="password")
+    url = reverse(
+        "a4moderation:item-hide",
+        kwargs={
+            "project_pk": moderated_project.pk,
+            "item_type": "a4comments.comment",
+            "pk": comment.pk,
+        },
+    )
+
+    response = client.post(url, {"hidden": "1"}, HTTP_HX_REQUEST="true")
+    comment.refresh_from_db()
+    assert response.status_code == 200
+    assert comment.is_blocked is True
+
+    response = client.post(url, {"hidden": "0"}, HTTP_HX_REQUEST="true")
+    comment.refresh_from_db()
+    assert response.status_code == 200
+    assert comment.is_blocked is False
+
+
+@pytest.mark.django_db
+def test_edit_comment(client, user, moderated_project, module_factory):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    comment = CommentFactory(content_object=idea, comment="Old text")
+    client.login(username=user.username, password="password")
+    url = reverse(
+        "a4moderation:item-edit",
+        kwargs={
+            "project_pk": moderated_project.pk,
+            "item_type": "a4comments.comment",
+            "pk": comment.pk,
+        },
+    )
+
+    response = client.post(url, {"comment": "New text"}, HTTP_HX_REQUEST="true")
+
+    comment.refresh_from_db()
+    assert response.status_code == 200
+    assert comment.comment == "New text"
+    assert comment.is_reviewed is True

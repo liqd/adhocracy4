@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.http import urlencode
 from django.utils.translation import gettext as _
 from django.views import View
@@ -25,6 +26,19 @@ from . import utils
 def get_moderation_state(request):
     state = request.GET.get("state") or request.POST.get("state", utils.STATE_ALL)
     return state if state in utils.STATES else utils.STATE_ALL
+
+
+def get_moderation_counts(project, content_type, ordering):
+    return {
+        filter_state: utils.get_moderation_queryset(
+            project, content_type, filter_state, ordering
+        ).count()
+        for filter_state in (
+            utils.STATE_ALL,
+            utils.STATE_UNREAD,
+            utils.STATE_RESOLVED,
+        )
+    }
 
 
 class ModerationProjectMixin(LoginRequiredMixin):
@@ -58,13 +72,69 @@ class ModerationProjectMixin(LoginRequiredMixin):
             return "{}?{}".format(url, urlencode(params))
         return url
 
+    def render_item(self, request, item):
+        state = get_moderation_state(request)
+        content_type = request.POST.get(
+            "content_type",
+            request.GET.get("content_type", utils.CONTENT_TYPE_ALL),
+        )
+        ordering = request.POST.get(
+            "ordering", request.GET.get("ordering", utils.ORDERING_NEWEST)
+        )
+        return render(
+            request,
+            "a4moderation/includes/moderation_item.html",
+            {
+                "item": utils.build_moderation_item(item),
+                "state": state,
+                "project": self.project,
+                "content_type": content_type,
+                "ordering": ordering,
+            },
+        )
+
 
 class ModerationDashboardView(LoginRequiredMixin, generic.TemplateView):
     template_name = "a4moderation/moderation_dashboard.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["moderated_projects"] = utils.get_moderated_projects(self.request.user)
+        query = self.request.GET.get("q", "").strip()
+        sort = self.request.GET.get("sort", "recent")
+        projects = list(utils.get_moderated_projects(self.request.user))
+
+        if query:
+            projects = [
+                project
+                for project in projects
+                if query.lower() in project.name.lower()
+                or query.lower() in project.organisation.name.lower()
+            ]
+        if sort == "name":
+            projects.sort(key=lambda project: project.name.lower())
+        elif sort == "recent":
+            projects.sort(key=lambda project: project.created, reverse=True)
+
+        now = timezone.now()
+        for project in projects:
+            project.unread_count = utils.get_moderation_queryset(
+                project, utils.CONTENT_TYPE_ALL, utils.STATE_UNREAD
+            ).count()
+            project.total_count = utils.get_moderation_queryset(
+                project, utils.CONTENT_TYPE_ALL, utils.STATE_ALL
+            ).count()
+            phase = project.active_phase_ends_next
+            project.remaining_days = (
+                max((phase.end_date - now).days, 0) if phase else None
+            )
+
+        context.update(
+            {
+                "moderated_projects": projects,
+                "query": query,
+                "sort": sort,
+            }
+        )
         return context
 
 
@@ -81,7 +151,7 @@ class ModerationProjectView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        state = self._get_choice("state", utils.STATES, utils.STATE_UNREAD)
+        state = self._get_choice("state", utils.STATES, utils.STATE_ALL)
         content_type = self._get_choice(
             "content_type", utils.CONTENT_TYPES, utils.CONTENT_TYPE_ALL
         )
@@ -93,6 +163,8 @@ class ModerationProjectView(
         paginator = Paginator(queryset, self.paginate_by)
         page_obj = paginator.get_page(self.request.GET.get("page"))
 
+        counts = get_moderation_counts(self.project, content_type, ordering)
+
         context.update(
             {
                 "state": state,
@@ -100,6 +172,7 @@ class ModerationProjectView(
                 "ordering": ordering,
                 "page_obj": page_obj,
                 "is_paginated": page_obj.has_other_pages(),
+                "counts": counts,
                 "items": [
                     utils.build_moderation_item(item)
                     for item in utils.resolve_moderation_items(page_obj.object_list)
@@ -156,7 +229,10 @@ class ModerationItemMarkReadView(
             response = HttpResponseRedirect(self.project_redirect_url(request))
 
         response["HX-Trigger"] = json.dumps(
-            {"moderationItemUpdated": {"message": str(message)}}
+            {
+                "moderationItemUpdated": {"message": str(message)},
+                "moderationCountsChanged": {},
+            }
         )
         return response
 
@@ -257,9 +333,163 @@ class ModerationItemFeedbackView(
                     "moderationFeedbackSaved": {
                         "message": str(_("Feedback saved")),
                         "itemId": item_id,
-                    }
+                    },
+                    "moderationCountsChanged": {},
                 }
             )
             return response
 
         return self._render_form(request, item, form, state, is_htmx)
+
+
+class ModerationItemResolveView(
+    ModerationProjectMixin, rules_mixins.PermissionRequiredMixin, View
+):
+    permission_required = "a4moderation.moderate_project"
+    http_method_names = ["post"]
+
+    def post(self, request, *args, **kwargs):
+        item = utils.get_moderation_item(
+            self.project, kwargs["item_type"], kwargs["pk"]
+        )
+        resolved = request.POST.get("resolved", "1") != "0"
+        item.is_resolved = resolved
+        item.resolved_at = timezone.now() if resolved else None
+        item.is_reviewed = True
+        item.save(
+            ignore_modified=True,
+            update_fields=["is_resolved", "resolved_at", "is_reviewed"],
+        )
+        response = self.render_item(request, item)
+        response["HX-Trigger"] = json.dumps(
+            {
+                "moderationItemUpdated": {
+                    "message": str(
+                        _("Marked as resolved") if resolved else _("Reopened")
+                    )
+                },
+                "moderationCountsChanged": {},
+            }
+        )
+        return response
+
+
+class ModerationItemHideView(
+    ModerationProjectMixin, rules_mixins.PermissionRequiredMixin, View
+):
+    permission_required = "a4moderation.moderate_project"
+    http_method_names = ["post"]
+
+    def post(self, request, *args, **kwargs):
+        item = utils.get_moderation_item(
+            self.project, kwargs["item_type"], kwargs["pk"]
+        )
+        if not utils.supports_hiding(item):
+            raise Http404
+        hidden = request.POST.get("hidden", "1") != "0"
+        item.is_blocked = hidden
+        item.is_reviewed = True
+        item.save()
+        response = self.render_item(request, item)
+        response["HX-Trigger"] = json.dumps(
+            {
+                "moderationItemUpdated": {
+                    "message": str(
+                        _("Hidden from discussion")
+                        if hidden
+                        else _("Shown in discussion")
+                    )
+                },
+                "moderationCountsChanged": {},
+            }
+        )
+        return response
+
+
+class ModerationItemEditView(
+    ModerationProjectMixin, rules_mixins.PermissionRequiredMixin, View
+):
+    permission_required = "a4moderation.moderate_project"
+
+    def _get_item(self, kwargs):
+        return utils.get_moderation_item(
+            self.project, kwargs["item_type"], kwargs["pk"]
+        )
+
+    def _get_form(self, item, data=None):
+        if utils.supports_hiding(item):
+            return forms.ModerationCommentEditForm(data=data, item=item)
+        return forms.ModerationItemFeedbackForm(data=data, item=item)
+
+    def get(self, request, *args, **kwargs):
+        item = self._get_item(kwargs)
+        form = self._get_form(item)
+        state = get_moderation_state(request)
+        return render(
+            request,
+            "a4moderation/includes/moderation_item.html",
+            {
+                "item": utils.build_moderation_item(item),
+                "form": form,
+                "edit_mode": True,
+                "state": state,
+                "project": self.project,
+                "content_type": request.GET.get("content_type", utils.CONTENT_TYPE_ALL),
+                "ordering": request.GET.get("ordering", utils.ORDERING_NEWEST),
+            },
+        )
+
+    def post(self, request, *args, **kwargs):
+        item = self._get_item(kwargs)
+        form = self._get_form(item, data=request.POST)
+        if form.is_valid():
+            form.save(request.user) if not utils.supports_hiding(item) else form.save()
+            if not utils.supports_hiding(item) and form.changed:
+                signals.moderation_item_feedback_saved.send(
+                    sender=self.__class__, item=item, user=request.user
+                )
+            response = self.render_item(request, item)
+            response["HX-Trigger"] = json.dumps(
+                {
+                    "moderationItemUpdated": {"message": str(_("Saved"))},
+                    "moderationCountsChanged": {},
+                }
+            )
+            return response
+        return render(
+            request,
+            "a4moderation/includes/moderation_item.html",
+            {
+                "item": utils.build_moderation_item(item),
+                "form": form,
+                "edit_mode": True,
+                "state": get_moderation_state(request),
+                "project": self.project,
+                "content_type": request.POST.get(
+                    "content_type", utils.CONTENT_TYPE_ALL
+                ),
+                "ordering": request.POST.get("ordering", utils.ORDERING_NEWEST),
+            },
+        )
+
+
+class ModerationCountsView(
+    ModerationProjectMixin, rules_mixins.PermissionRequiredMixin, generic.TemplateView
+):
+    template_name = "a4moderation/includes/moderation_tabs.html"
+    permission_required = "a4moderation.moderate_project"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        state = get_moderation_state(self.request)
+        content_type = self.request.GET.get("content_type", utils.CONTENT_TYPE_ALL)
+        ordering = self.request.GET.get("ordering", utils.ORDERING_NEWEST)
+        context.update(
+            {
+                "state": state,
+                "content_type": content_type,
+                "ordering": ordering,
+                "counts": get_moderation_counts(self.project, content_type, ordering),
+            }
+        )
+        return context
