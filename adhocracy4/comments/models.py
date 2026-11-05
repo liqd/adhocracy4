@@ -44,6 +44,8 @@ class Comment(base.UserGeneratedContentModel):
     is_moderator_marked = models.BooleanField(default=False)
     # used in moderation dashboard, indicates if comment is marked as read by moderator
     is_reviewed = models.BooleanField(default=False)
+    is_resolved = models.BooleanField(default=False)
+    resolved_at = models.DateTimeField(blank=True, null=True)
     project = models.ForeignKey(
         Project, on_delete=models.SET_NULL, blank=True, null=True
     )

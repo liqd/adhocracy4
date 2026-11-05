@@ -17,8 +17,9 @@ TRUNCATE_LENGTH = 500
 
 STATE_ALL = "all"
 STATE_READ = "read"
+STATE_RESOLVED = "resolved"
 STATE_UNREAD = "unread"
-STATES = (STATE_UNREAD, STATE_ALL, STATE_READ)
+STATES = (STATE_ALL, STATE_UNREAD, STATE_RESOLVED, STATE_READ)
 
 CONTENT_TYPE_ALL = "all"
 CONTENT_TYPE_COMMENTS = "comments"
@@ -67,6 +68,11 @@ def user_moderates_any_project(user):
     return get_moderated_projects(user).exists()
 
 
+def supports_hiding(item):
+    """Return if the item can be hidden from the discussion."""
+    return isinstance(item, Comment)
+
+
 def supports_feedback(item):
     """Return if the item has a moderation status or official feedback."""
     if isinstance(item, Comment):
@@ -75,17 +81,19 @@ def supports_feedback(item):
     return "moderator_status" in field_names or "moderator_feedback_text" in field_names
 
 
-def _filter_reviewed(queryset, state):
+def _filter_state(queryset, state):
+    if state == STATE_RESOLVED:
+        return queryset.filter(is_resolved=True)
     if state == STATE_READ:
-        return queryset.filter(is_reviewed=True)
+        return queryset.filter(is_reviewed=True, is_resolved=False)
     if state == STATE_UNREAD:
-        return queryset.filter(is_reviewed=False)
+        return queryset.filter(is_reviewed=False, is_resolved=False)
     return queryset
 
 
 def _comment_rows(project, state):
     comments = Comment.objects.filter(project=project)
-    comments = _filter_reviewed(comments, state)
+    comments = _filter_state(comments, state)
     return (
         comments.annotate(
             item_type=Value(Comment._meta.label_lower, output_field=CharField())
@@ -97,7 +105,7 @@ def _comment_rows(project, state):
 
 def _item_rows(model, project, state):
     items = model.objects.filter(module__project=project)
-    items = _filter_reviewed(items, state)
+    items = _filter_state(items, state)
     return (
         items.annotate(
             item_type=Value(model._meta.label_lower, output_field=CharField())
@@ -110,7 +118,7 @@ def _item_rows(model, project, state):
 def get_moderation_queryset(
     project,
     content_type=CONTENT_TYPE_ALL,
-    state=STATE_UNREAD,
+    state=STATE_ALL,
     ordering=ORDERING_NEWEST,
 ):
     """Return a union of comments and items for a project.
@@ -268,9 +276,14 @@ def build_moderation_item(item):
         "is_comment": is_comment,
         "feedback": feedback,
         "is_reviewed": bool(getattr(item, "is_reviewed", False)),
+        "is_resolved": bool(getattr(item, "is_resolved", False)),
+        "resolved_at": getattr(item, "resolved_at", None),
         "is_blocked": is_blocked,
+        "is_hidden": is_blocked,
         "is_highlighted": is_highlighted,
         "detail_url": detail_url,
+        "can_edit": True,
+        "can_hide": is_comment,
         "can_edit_feedback": supports_feedback(item),
     }
 

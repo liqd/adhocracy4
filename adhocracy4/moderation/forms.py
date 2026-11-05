@@ -95,3 +95,22 @@ class ModerationItemFeedbackForm(forms.Form):
         self.item.is_reviewed = True
         self.item.save()
         return self.item
+
+
+class ModerationCommentEditForm(forms.Form):
+    comment = forms.CharField(
+        label=_("Comment"),
+        max_length=1000,
+        widget=forms.Textarea(attrs={"rows": 4}),
+    )
+
+    def __init__(self, *args, item, **kwargs):
+        self.item = item
+        kwargs.setdefault("initial", {"comment": item.comment})
+        super().__init__(*args, **kwargs)
+
+    def save(self):
+        self.item.comment = self.cleaned_data["comment"]
+        self.item.is_reviewed = True
+        self.item.save()
+        return self.item
