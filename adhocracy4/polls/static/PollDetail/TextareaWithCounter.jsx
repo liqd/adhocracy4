@@ -9,7 +9,11 @@ const translated = {
 
 export const TextareaWithCounter = ({ value, onChange, disabled, error, id, questionType = 'other' }) => {
   // textarea rows and character length based on question type
-  const rowSize = questionType === 'open' ? 2 : 3
+  const rowSize = questionType === 'open' ? 6 : 3
+  const textareaModifier = {
+    open: ' a4-textarea-with-counter__textarea--open',
+    other: ' a4-textarea-with-counter__textarea--other'
+  }[questionType] || ''
   const maxLength = questionType === 'open' ? 4000 : 250
   const textareaRef = useRef(null)
 
@@ -38,10 +42,7 @@ export const TextareaWithCounter = ({ value, onChange, disabled, error, id, ques
       </label>
       <textarea
         ref={textareaRef}
-        className={
-          'a4-textarea-with-counter__textarea' +
-          (questionType === 'other' ? ' a4-textarea-with-counter__textarea--other' : '')
-        }
+        className={'a4-textarea-with-counter__textarea' + textareaModifier}
         name="question"
         id={'id_choice-' + id + '-' + questionType}
         value={value}
