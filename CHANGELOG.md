@@ -8,12 +8,18 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## aplus-v2611.2
+
 ### Fixed
 
 - maps: gracefully skip map thumbnails for invalid or missing images instead of
   failing the whole page.
 
-### Changed
 
 ## aplus-v2610.1
 
