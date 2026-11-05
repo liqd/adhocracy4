@@ -9,7 +9,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- polls: new participation flow with start screen, question funnel, progress bar and results view
+
 ### Changed
+
+- polls: replace the poll editor with the question list editor from adhocracy-plus
+- polls: allow open answers up to 4000 characters
 
 ### Fixed
 
@@ -19,7 +24,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - maps: gracefully skip map thumbnails for invalid or missing images instead of
   failing the whole page.
-
 
 ## aplus-v2610.1
 

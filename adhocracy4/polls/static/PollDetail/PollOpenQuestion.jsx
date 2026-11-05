@@ -10,13 +10,8 @@ export const PollOpenQuestion = ({
   questionImagesEnabled
 }) => {
   const getUserOpenAnswer = () => {
-    const userAnswerId = question.userAnswer
-    const userAnswer = question.answers.find((oa) => oa.id === userAnswerId)
-    return question.open_answer
-      ? question.open_answer
-      : userAnswerId && userAnswer
-        ? userAnswer.answer
-        : ''
+    const answer = question.answers.find((item) => item.id === question.userAnswer)
+    return question.open_answer || answer?.answer || ''
   }
 
   const [userAnswer, setUserAnswer] = useState(getUserOpenAnswer())

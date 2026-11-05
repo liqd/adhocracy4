@@ -176,7 +176,7 @@ class Question(models.Model):
 
 
 class Answer(GeneratedContentModel):
-    answer = models.CharField(max_length=750, verbose_name=_("Answer"))
+    answer = models.CharField(max_length=4000, verbose_name=_("Answer"))
 
     question = models.ForeignKey(
         "Question",
