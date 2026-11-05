@@ -50,6 +50,12 @@ const PollQuestions = ({
   }, [state.state])
 
   useEffect(() => {
+    if (state.state === STATES.RESULTS) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [state.state])
+
+  useEffect(() => {
     const cta = document.querySelector('[data-poll-cta]')
     if (!cta) return undefined
 
@@ -98,7 +104,6 @@ const PollQuestions = ({
               alert={state.alert}
               onBackToPoll={actions.handleBackToPoll}
               onChangeAnswer={actions.handleChangeAnswer}
-              hideChangeButton={hasPhaseCta}
             />
           )
         }
@@ -107,7 +112,6 @@ const PollQuestions = ({
           <PollAnswerReview
             questions={state.questions}
             onChangeAnswer={actions.handleChangeAnswer}
-            hideChangeButton={hasPhaseCta}
           />
         )
 
