@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Moderation" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+<section class="row">
+    <div class="col-12">
+        <h1 class="visually-hidden">{% translate "Moderation" %}</h1>
+        <p>
+            {% translate "Review incoming contributions, set their processing status and give official feedback." %}
+        </p>
+
+        {% if moderated_projects %}
+            <ul class="ps-0">
+                {% for project in moderated_projects %}
+                    <li class="tile tile--horizontal">
+                        <div class="tile__body">
+                            <span class="u-text--gray">
+                                {% translate "By " %}{{ project.organisation.name }}
+                            </span>
+                            <h3 class="tile__title mb-2">
+                                <a href="{% url 'a4moderation:project' project.pk %}">
+                                    {{ project.name }}
+                                </a>
+                            </h3>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{% translate "You are not moderating any projects yet." %}</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

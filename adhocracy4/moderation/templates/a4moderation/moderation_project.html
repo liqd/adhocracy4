@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% translate "Moderation" %}: {{ project.name }} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+<a class="btn btn--none px-0" href="{{ moderation_dashboard_url }}">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    <span>{% translate "Back" %}</span>
+</a>
+<div class="row mb-2">
+    <div class="col-12">
+        <h1 class="visually-hidden">{% translate "Moderation project" %}</h1>
+        <h2 class="mt-2">
+            <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
+        </h2>
+        <span class="u-text--gray">
+            {% translate "By " %}{{ project.organisation.name }}
+        </span>
+    </div>
+</div>
+
+<nav aria-label="{% translate 'Notification filters and sorting' %}">
+    <form class="row moderation-filters"
+          method="get"
+          action="{{ request.path }}"
+          hx-get="{{ request.path }}"
+          hx-target="#moderation-items"
+          hx-swap="innerHTML"
+          hx-push-url="true"
+          hx-trigger="change">
+        <div class="col-md moderation-filters__field">
+            <label for="moderation-state">{% translate "Filter" %}: {% translate "Read status" %}</label>
+            <select class="form-select" id="moderation-state" name="state">
+                <option value="unread"{% if state == "unread" %} selected{% endif %}>{% translate "Unread" %}</option>
+                <option value="all"{% if state == "all" %} selected{% endif %}>{% translate "View all" %}</option>
+                <option value="read"{% if state == "read" %} selected{% endif %}>{% translate "Read" %}</option>
+            </select>
+        </div>
+        <div class="col-md moderation-filters__field">
+            <label for="moderation-content-type">{% translate "Filter" %}: {% translate "Content type" %}</label>
+            <select class="form-select" id="moderation-content-type" name="content_type">
+                <option value="all"{% if content_type == "all" %} selected{% endif %}>{% translate "All" %}</option>
+                <option value="comments"{% if content_type == "comments" %} selected{% endif %}>{% translate "All comments" %}</option>
+                <option value="items"{% if content_type == "items" %} selected{% endif %}>{% translate "All items" %}</option>
+            </select>
+        </div>
+        <div class="col-md moderation-filters__field">
+            <label for="moderation-ordering">{% translate "Sorting" %}</label>
+            <select class="form-select" id="moderation-ordering" name="ordering">
+                <option value="newest"{% if ordering == "newest" %} selected{% endif %}>{% translate "Most recent" %}</option>
+                <option value="oldest"{% if ordering == "oldest" %} selected{% endif %}>{% translate "Oldest" %}</option>
+            </select>
+        </div>
+        <noscript>
+            <button class="btn btn--light" type="submit">{% translate "Apply" %}</button>
+        </noscript>
+    </form>
+</nav>
+
+<section class="row" aria-labelledby="moderation-list-header">
+    <div class="col-12">
+        <h3 id="moderation-list-header" class="visually-hidden">
+            {% translate "Notifications of comments and ideas from project" %}
+        </h3>
+        <div id="moderation-items">
+            {% include "a4moderation/includes/moderation_items.html" %}
+        </div>
+    </div>
+</section>
+
+<div id="moderation-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+<dialog id="moderation-feedback-dialog"
+        class="moderation-feedback-dialog p-4"
+        aria-label="{% translate 'Official feedback' %}">
+    <div id="moderation-feedback-dialog-body"></div>
+</dialog>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'moderation.js' %}"></script>
+{% endblock %}
