@@ -33,7 +33,7 @@ const QuestionImage = ({ imageUrl, alt }) => {
       />
       {!isExpanded && (
         <div className="poll__question-image-zoom-indicator">
-          <i className="fa fa-search-plus" aria-hidden="true" />
+          <i className="fa-solid fa-magnifying-glass-plus" aria-hidden="true" />
         </div>
       )}
     </div>

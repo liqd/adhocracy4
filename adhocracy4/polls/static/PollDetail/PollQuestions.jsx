@@ -10,8 +10,7 @@ import PollAnswerReview from './PollAnswerReview'
 import { LoadingSpinner } from './LoadingSpinner'
 import { usePollData } from './hooks/usePollData'
 import { usePollActions } from './hooks/usePollActions'
-import { pollReducer } from './reducers/pollReducer'
-import { initialState } from './reducers/pollReducer'
+import { pollReducer, initialState } from './reducers/pollReducer'
 import { STATES } from './utils/stateMachine'
 
 const PollQuestions = ({

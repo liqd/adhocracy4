@@ -3,17 +3,15 @@ import { ConfidentialNotice } from './ConfidentialNotice'
 import QuestionImage from './QuestionImage'
 
 export const PollQuestionLayout = ({ question, questionImagesEnabled, children }) => {
-  const questionHelpText = question.help_text
-    ? <div className="poll__help-text">{question.help_text}</div>
-    : null
-
   return (
     <div className="poll poll--question" data-testid="poll-open-question">
       <fieldset>
         <legend className="poll__question-legend">
           <span className="poll__question-label">{question.label}</span>
         </legend>
-        {questionHelpText}
+        {question.help_text && (
+          <div className="poll__help-text">{question.help_text}</div>
+        )}
         {questionImagesEnabled && question.image_url && (
           <QuestionImage
             imageUrl={question.image_url}

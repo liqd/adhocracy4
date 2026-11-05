@@ -29,10 +29,9 @@ const normalizePollData = (poll, captchaEnabled) => {
     }
   })
 
-  const isAuthenticated = poll.questions.length > 0 &&
-    !!poll.questions[0]?.authenticated
-
-  const isReadOnly = poll.questions.length > 0 && !!poll.questions[0]?.isReadOnly
+  const firstQuestion = poll.questions[0]
+  const isAuthenticated = !!firstQuestion?.authenticated
+  const isReadOnly = !!firstQuestion?.isReadOnly
 
   return {
     questions: poll.questions,

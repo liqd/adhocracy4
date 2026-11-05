@@ -59,6 +59,14 @@ const READ_ONLY_QUESTION_FIELDS = [
 
 const READ_ONLY_CHOICE_FIELDS = ['key', 'count']
 
+const omit = (object, fields) =>
+  Object.keys(object).reduce((result, field) => {
+    if (!fields.includes(field)) {
+      result[field] = object[field]
+    }
+    return result
+  }, {})
+
 /**
  * Build the questions payload for the poll update API.
  * Read-only fields coming from the API are stripped so the request body
@@ -66,23 +74,11 @@ const READ_ONLY_CHOICE_FIELDS = ['key', 'count']
  */
 export const buildQuestionsPayload = (questions) =>
   questions.map((question) => {
-    const payload = {}
+    const payload = omit(question, READ_ONLY_QUESTION_FIELDS)
 
-    Object.keys(question).forEach((field) => {
-      if (!READ_ONLY_QUESTION_FIELDS.includes(field)) {
-        payload[field] = question[field]
-      }
-    })
-
-    payload.choices = (question.choices || []).map((choice) => {
-      const cleanChoice = {}
-      Object.keys(choice).forEach((field) => {
-        if (!READ_ONLY_CHOICE_FIELDS.includes(field)) {
-          cleanChoice[field] = choice[field]
-        }
-      })
-      return cleanChoice
-    })
+    payload.choices = (question.choices || []).map((choice) =>
+      omit(choice, READ_ONLY_CHOICE_FIELDS)
+    )
 
     if (question.image_base64 !== undefined) {
       payload.image_base64 = question.image_base64

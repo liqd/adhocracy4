@@ -8,8 +8,8 @@ import ProgressBar from './ProgressBar'
 import NavigationButtons from './NavigationButtons'
 
 const ANSWER_HANDLERS = {
-  single: (questionId, value) => ({ choices: [Number(value)] }),
-  multi: (questionId, value, currentChoices = []) => {
+  single: (value) => ({ choices: [Number(value)] }),
+  multi: (value, currentChoices = []) => {
     const val = Number(value)
     return {
       choices: currentChoices.includes(val)
@@ -17,8 +17,8 @@ const ANSWER_HANDLERS = {
         : [...currentChoices, val]
     }
   },
-  open: (questionId, value) => ({ open_answer: String(value) }),
-  other: (questionId, value) => ({ other_choice_answer: String(value) })
+  open: (value) => ({ open_answer: String(value) }),
+  other: (value) => ({ other_choice_answer: String(value) })
 }
 
 const QuestionFunnel = ({
@@ -100,7 +100,36 @@ const QuestionFunnel = ({
     if (!handler) return
 
     const currentChoices = currentAnswer?.choices || []
-    onAnswerChange(questionId, handler(questionId, value, currentChoices))
+    onAnswerChange(questionId, handler(value, currentChoices))
+  }
+
+  const renderQuestion = (question, answer, interactive = true) => {
+    const questionProps = {
+      allowUnregisteredUsers,
+      question: enrichQuestion(question, answer),
+      errors,
+      questionImagesEnabled
+    }
+
+    if (question.is_open) {
+      return (
+        <PollOpenQuestion
+          key={question.id}
+          {...questionProps}
+          onOpenChange={interactive
+            ? (questionId, value) => handleAnswerUpdate(questionId, value, 'open')
+            : () => {}}
+        />
+      )
+    }
+
+    return (
+      <PollChoice
+        key={question.id}
+        {...questionProps}
+        onAnswerChange={interactive ? handleAnswerUpdate : () => {}}
+      />
+    )
   }
 
   return (
@@ -122,27 +151,7 @@ const QuestionFunnel = ({
               className={'poll-question-content poll-question-content--exit-' + direction}
               onAnimationEnd={handleExitEnd}
             >
-              {exitingQuestion.is_open
-                ? (
-                  <PollOpenQuestion
-                    key={exitingQuestion.id}
-                    allowUnregisteredUsers={allowUnregisteredUsers}
-                    question={enrichQuestion(exitingQuestion, exitingAnswer)}
-                    onOpenChange={() => {}}
-                    errors={errors}
-                    questionImagesEnabled={questionImagesEnabled}
-                  />
-                  )
-                : (
-                  <PollChoice
-                    key={exitingQuestion.id}
-                    question={enrichQuestion(exitingQuestion, exitingAnswer)}
-                    allowUnregisteredUsers={allowUnregisteredUsers}
-                    onAnswerChange={() => {}}
-                    errors={errors}
-                    questionImagesEnabled={questionImagesEnabled}
-                  />
-                  )}
+              {renderQuestion(exitingQuestion, exitingAnswer, false)}
             </div>
             )
           : (
@@ -150,28 +159,7 @@ const QuestionFunnel = ({
               className={'poll-question-content poll-question-content--enter-' + direction}
               onAnimationEnd={phase === 'entering' ? handleEnterEnd : undefined}
             >
-              {currentQuestion.is_open
-                ? (
-                  <PollOpenQuestion
-                    key={currentQuestion.id}
-                    allowUnregisteredUsers={allowUnregisteredUsers}
-                    question={enrichQuestion(currentQuestion, currentAnswer)}
-                    onOpenChange={(questionId, value) =>
-                      handleAnswerUpdate(questionId, value, 'open')}
-                    errors={errors}
-                    questionImagesEnabled={questionImagesEnabled}
-                  />
-                  )
-                : (
-                  <PollChoice
-                    key={currentQuestion.id}
-                    question={enrichQuestion(currentQuestion, currentAnswer)}
-                    allowUnregisteredUsers={allowUnregisteredUsers}
-                    onAnswerChange={handleAnswerUpdate}
-                    errors={errors}
-                    questionImagesEnabled={questionImagesEnabled}
-                  />
-                  )}
+              {renderQuestion(currentQuestion, currentAnswer)}
             </div>
             )}
       </div>
