@@ -172,6 +172,13 @@ export const QuestionEditor = (props) => {
                 <div key={choice.key} className="poll-management__choice form-group">
                   <div>
                     {TRANSLATED.other}
+                    <span
+                      role="presentation"
+                      title={TRANSLATED.required}
+                      className="poll-management__required"
+                    >
+                      *
+                    </span>
                     {choice.id && (
                       <span className="editpoll__help-text"> Id: A{choice.id}</span>
                     )}
@@ -202,6 +209,13 @@ export const QuestionEditor = (props) => {
               <div key={choice.key} className="poll-management__choice form-group">
                 <label htmlFor={'id_choices-' + choice.key + '-name'}>
                   {TRANSLATED.answer + ' #' + (regularChoices.findIndex((regular) => regular.key === choice.key) + 1)}
+                  <span
+                    role="presentation"
+                    title={TRANSLATED.required}
+                    className="poll-management__required"
+                  >
+                    *
+                  </span>
                   {choice.id && (
                     <span className="editpoll__help-text"> Id: A{choice.id}</span>
                   )}
@@ -290,6 +304,13 @@ export const QuestionEditor = (props) => {
         <div className="form-group poll-management__explanation">
           <label htmlFor={'id_helptext-' + question.key + '-name'}>
             {TRANSLATED.explanation}
+            <span
+              role="presentation"
+              title={TRANSLATED.required}
+              className="poll-management__required"
+            >
+              *
+            </span>
             <textarea
               id={'id_helptext-' + question.key + '-name'}
               name={'helptext-' + question.key + '-name'}

@@ -260,7 +260,7 @@ describe('PollManagement', () => {
 
     // reveal and edit the explanation field only
     fireEvent.click(screen.getByText('Explanation'))
-    fireEvent.change(screen.getByRole('textbox', { name: 'Explanation' }), {
+    fireEvent.change(screen.getByRole('textbox', { name: /Explanation/ }), {
       target: { value: 'Because' }
     })
 

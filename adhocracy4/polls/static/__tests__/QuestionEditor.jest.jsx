@@ -158,16 +158,16 @@ describe('QuestionEditor', () => {
 
   it('toggles the explanation field', () => {
     render(<QuestionEditor question={question} {...defaults} />)
-    expect(screen.queryByRole('textbox', { name: 'Explanation' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('textbox', { name: /Explanation/ })).not.toBeInTheDocument()
     fireEvent.click(screen.getByText('Explanation'))
-    expect(screen.getByRole('textbox', { name: 'Explanation' })).toBeInTheDocument()
+    expect(screen.getByRole('textbox', { name: /Explanation/ })).toBeInTheDocument()
   })
 
   it('shows explanation when the question already has one', () => {
     render(
       <QuestionEditor question={{ ...question, help_text: 'because' }} {...defaults} />
     )
-    expect(screen.getByRole('textbox', { name: 'Explanation' })).toHaveValue('because')
+    expect(screen.getByRole('textbox', { name: /Explanation/ })).toHaveValue('because')
   })
 
   it('hides answer options but keeps the answer type for open questions', () => {

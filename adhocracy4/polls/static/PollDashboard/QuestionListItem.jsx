@@ -72,7 +72,7 @@ export const QuestionListItem = ({
       onDragEnd={onDragEnd}
     >
       <span className="poll-management__drag-handle" aria-hidden="true">
-        <i className="fa fa-bars" />
+        <i className="fa fa-grip-lines" />
       </span>
 
       {/* not a native button: Firefox does not start the parent drag from
