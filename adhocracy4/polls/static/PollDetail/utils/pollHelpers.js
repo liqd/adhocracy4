@@ -30,12 +30,5 @@ export const buildVoteData = (userAnswers) => {
   return voteData
 }
 
-export const getAnsweredCount = (questions, userAnswers) => {
-  let count = 0
-  questions.forEach((question) => {
-    if (hasValidAnswer(question, userAnswers[question.id])) {
-      count++
-    }
-  })
-  return count
-}
+export const getAnsweredCount = (questions, userAnswers) =>
+  questions.filter((question) => hasValidAnswer(question, userAnswers[question.id])).length

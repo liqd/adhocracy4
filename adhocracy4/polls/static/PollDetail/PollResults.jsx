@@ -11,7 +11,6 @@ const PollQuestionSlider = ({ answers, isUserAnswer }) => {
 
   return (
     <div className="poll-slider">
-      <div className="poll-slider__label">{django.gettext('Complete answer')}</div>
       <div
         className="poll-slider__item"
         role="group"
@@ -23,7 +22,13 @@ const PollQuestionSlider = ({ answers, isUserAnswer }) => {
       >
         <div className="poll-slider__answer">
           {isUserAnswer(current) && (
-            <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />
+            <span
+              className="poll-slider__answer-icon"
+              role="img"
+              aria-label={django.gettext('Your answer')}
+            >
+              <i className="fas fa-check" aria-hidden="true" />
+            </span>
           )}
           <span>{current.answer}</span>
         </div>
