@@ -14,7 +14,7 @@ export const PollQuestionLayout = ({ question, questionImagesEnabled, children }
           <span className="poll__question-label">{question.label}</span>
         </legend>
         {questionHelpText}
-        {questionImagesEnabled && (
+        {questionImagesEnabled && question.image_url && (
           <QuestionImage
             imageUrl={question.image_url}
             alt={question.image_alt_text || question.label}
