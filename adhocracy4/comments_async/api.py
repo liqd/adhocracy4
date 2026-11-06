@@ -26,6 +26,8 @@ from .filters import CommentOrderingFilterBackend
 from .filters import CustomSearchFilter
 from .serializers import ThreadListSerializer
 from .serializers import ThreadSerializer
+from .serializers import get_user_image_fallback_url
+from .serializers import get_user_image_url
 
 
 class CommentSetPagination(PageNumberPagination):
@@ -97,6 +99,20 @@ class PermissionInfoMixin:
             would_have_commenting_permission
         )
         response.data["project_is_public"] = obj.project.is_public
+
+        # Expose the current user's avatar so the frontend can show it next to
+        # the comment input field.
+        if hasattr(request, "user") and request.user.is_authenticated:
+            user_image = get_user_image_url(request.user, obj.project)
+            user_image_fallback = get_user_image_fallback_url(request.user, obj.project)
+            response.data["user_image"] = (
+                request.build_absolute_uri(user_image) if user_image else None
+            )
+            response.data["user_image_fallback"] = (
+                request.build_absolute_uri(user_image_fallback)
+                if user_image_fallback
+                else None
+            )
         return response
 
 

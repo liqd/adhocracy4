@@ -8,6 +8,30 @@ from adhocracy4.api.dates import get_datetime_display
 from adhocracy4.comments.models import Comment
 
 
+def get_user_image_url(user, project):
+    """Load small thumbnail url for a user's uploaded image."""
+    try:
+        if user.avatar:
+            avatar = get_thumbnailer(user.avatar)["avatar"]
+            return avatar.url
+    except (AttributeError, ValueError):
+        pass
+    return None
+
+
+def get_user_image_fallback_url(user, project):
+    """Load small thumbnail url for a user's default image."""
+    try:
+        if project.is_app_accessible:
+            if user.avatar_fallback_png:
+                return user.avatar_fallback_png
+        elif user.avatar_fallback:
+            return user.avatar_fallback
+    except AttributeError:
+        pass
+    return None
+
+
 class CommentCategoriesField(serializers.Field):
     def to_internal_value(self, categories_string):
         if categories_string == "" or categories_string == "[]":
@@ -102,28 +126,18 @@ class CommentSerializer(serializers.ModelSerializer):
         """Load small thumbnail images for default user images."""
         if obj.is_censored or obj.is_removed or obj.is_blocked:
             return None
-        try:
-            if obj.project.is_app_accessible:
-                if obj.creator.avatar_fallback_png:
-                    url = obj.creator.avatar_fallback_png
-                    return self._build_absolute_image_uri(url)
-            elif obj.creator.avatar_fallback:
-                url = obj.creator.avatar_fallback
-                return self._build_absolute_image_uri(url)
-        except AttributeError:
-            pass
+        url = get_user_image_fallback_url(obj.creator, obj.project)
+        if url:
+            return self._build_absolute_image_uri(url)
         return None
 
     def get_user_image(self, obj):
         """Load small thumbnail images for user images."""
         if obj.is_censored or obj.is_removed or obj.is_blocked:
             return None
-        try:
-            if obj.creator.avatar:
-                avatar = get_thumbnailer(obj.creator.avatar)["avatar"]
-                return self._build_absolute_image_uri(avatar.url)
-        except (AttributeError, ValueError):
-            pass
+        url = get_user_image_url(obj.creator, obj.project)
+        if url:
+            return self._build_absolute_image_uri(url)
         return None
 
     def get_author_is_moderator(self, obj):

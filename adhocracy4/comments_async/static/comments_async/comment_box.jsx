@@ -55,6 +55,7 @@ export const CommentBox = (props) => {
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [anchorRendered, setAnchorRendered] = useState(false)
   const [categoryChoices, setCategoryChoices] = useState({})
+  const [userImage, setUserImage] = useState(null)
   const noControlBar = props.noControlBar || false
 
   useEffect(() => {
@@ -115,6 +116,7 @@ export const CommentBox = (props) => {
     setUseTermsOfUse(data.use_org_terms_of_use)
     setAgreedTermsOfUse(data.user_has_agreed)
     setOrgTermsUrl(data.org_terms_url)
+    setUserImage(data.user_image || data.user_image_fallback || null)
     if (props.withCategories) {
       setCategoryChoices(data.categories)
     }
@@ -447,29 +449,6 @@ export const CommentBox = (props) => {
 
   return (
     <section>
-      <div className="a4-comments__commentbox__form">
-        {/* Main comment form */}
-        <CommentForm
-          subjectType={props.subjectType}
-          subjectId={props.subjectId}
-          onCommentSubmit={handleCommentSubmit}
-          commentId={props.id}
-          rows="5"
-          error={error}
-          errorMessage={errorMessage}
-          handleErrorClick={hideNewError}
-          commentCategoryChoices={commentCategoryChoices()}
-          withCategories={props.withCategories}
-          hasCommentingPermission={hasCommentingPermission}
-          wouldHaveCommentingPermission={wouldHaveCommentingPermission}
-          projectIsPublic={projectIsPublic}
-          useTermsOfUse={useTermsOfUse}
-          agreedTermsOfUse={agreedTermsOfUse}
-          orgTermsUrl={orgTermsUrl}
-          setCommentError={setMainError}
-          hideNotification={handleHideNotification}
-        />
-      </div>
       <div>
         <h2 className="a4-comments__commentbox__subtitle title-3">
           {translated.discussion}
@@ -501,6 +480,30 @@ export const CommentBox = (props) => {
             />
             )}
       </div>
+      <div className="a4-comments__commentbox__form">
+        {/* Main comment form */}
+        <CommentForm
+          subjectType={props.subjectType}
+          subjectId={props.subjectId}
+          onCommentSubmit={handleCommentSubmit}
+          commentId={props.id}
+          rows="5"
+          error={error}
+          errorMessage={errorMessage}
+          handleErrorClick={hideNewError}
+          commentCategoryChoices={commentCategoryChoices()}
+          withCategories={props.withCategories}
+          hasCommentingPermission={hasCommentingPermission}
+          wouldHaveCommentingPermission={wouldHaveCommentingPermission}
+          projectIsPublic={projectIsPublic}
+          useTermsOfUse={useTermsOfUse}
+          agreedTermsOfUse={agreedTermsOfUse}
+          orgTermsUrl={orgTermsUrl}
+          setCommentError={setMainError}
+          hideNotification={handleHideNotification}
+          userImage={userImage}
+        />
+      </div>
       <CommentList
         comments={comments}
         anchoredCommentId={anchoredCommentId}
@@ -522,6 +525,7 @@ export const CommentBox = (props) => {
         setCommentError={setMainError}
         setCommentEditError={setEditError}
         hideNotification={handleHideNotification}
+        userImage={userImage}
       />
       <div className={loading ? 'u-spinner__container' : 'd-none'}>
         <i className="fa fa-spinner fa-pulse" aria-hidden="true" />

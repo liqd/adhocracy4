@@ -20,161 +20,163 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
             class="a4-comments__box"
           >
             <div
-              class="row"
-            >
-              <div
-                class="col-2 col-lg-1 a4-comments__user-img"
-              />
-              <div
-                class="col-7 col-md-8 a4-comments__author-container"
-              >
-                <div
-                  class="a4-comments__author"
-                >
-                  <a>
-                    Participant 1
-                  </a>
-                </div>
-                <time
-                  class="a4-comments__submission-date"
-                >
-                  May 21, 2024, 11:44 a.m.
-                </time>
-              </div>
-              <div
-                class="col-1 ms-auto a4-comments__dropdown-container"
-              >
-                <div
-                  class="dropdown a4-comments__dropdown"
-                >
-                  <button
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-label="Comment Actions"
-                    class="dropdown-toggle btn btn--link"
-                    data-bs-toggle="dropdown"
-                    type="button"
-                  >
-                    <i
-                      aria-hidden="true"
-                      class="fas fa-ellipsis-h"
-                    />
-                  </button>
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                  >
-                    <li
-                      class="dropdown-item a4-comments__dropdown__url"
-                    >
-                      <button
-                        aria-expanded="false"
-                        aria-haspopup="dialog"
-                        class="a4-modal__toggle btn-link link"
-                      >
-                        <i
-                          aria-hidden="true"
-                          class="fas fa-share"
-                        />
-                         
-                        Share
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div
-                class="col-12"
-              >
-                <div
-                  class="a4-comments__text"
-                >
-                  <p>
-                    This is a test comment.
-                  </p>
-                </div>
-              </div>
-              <div
-                class="col-6 a4-comments__read-btn-container"
-              />
-            </div>
-          </div>
-          <div
-            class="a4-comments__action"
-          >
+              class="a4-comments__user-img"
+            />
             <div
-              class="row"
+              class="a4-comments__content"
             >
               <div
-                class="col-12 a4-comments__action-bar-container"
+                class="a4-comments__meta"
               >
                 <div
-                  class="rating"
-                  data-testid="rating-box"
+                  class="a4-comments__author-container"
                 >
-                  <button
-                    aria-pressed="false"
-                    class="rating-button rating-up"
-                    disabled=""
-                    type="button"
+                  <div
+                    class="a4-comments__author"
                   >
-                    <i
-                      aria-hidden="true"
-                      class="fa fa-thumbs-up"
-                    />
-                     
-                    10
-                     
-                    <span
-                      class="rating__label"
-                    >
-                      Likes
-                    </span>
-                    <span
-                      class="a4-sr-only"
-                    >
-                      Click to like
-                    </span>
-                  </button>
-                  <button
-                    aria-pressed="false"
-                    class="rating-button rating-down"
-                    disabled=""
-                    type="button"
+                    <a>
+                      Participant 1
+                    </a>
+                  </div>
+                  <time
+                    class="a4-comments__submission-date"
                   >
-                    <i
-                      aria-hidden="true"
-                      class="fa fa-thumbs-down"
-                    />
-                     
-                    2
-                     
-                    <span
-                      class="rating__label"
-                    >
-                      Dislikes
-                    </span>
-                    <span
-                      class="a4-sr-only"
-                    >
-                      Click to dislike
-                    </span>
-                  </button>
+                    May 21, 2024, 11:44 a.m.
+                  </time>
                 </div>
                 <div
-                  class="a4-comments__action-bar"
+                  class="a4-comments__dropdown-container"
                 >
-                  <button
-                    aria-controls="child-comments-1"
-                    aria-expanded="false"
-                    class="btn btn--no-border a4-comments__action-bar__btn"
-                    type="button"
+                  <div
+                    class="dropdown a4-comments__dropdown"
                   >
-                    <i
-                      aria-hidden="true"
-                      class="far fa-comment"
-                    />
-                    Reply
-                  </button>
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      aria-label="Comment Actions"
+                      class="dropdown-toggle btn btn--link"
+                      data-bs-toggle="dropdown"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="fas fa-ellipsis-h"
+                      />
+                    </button>
+                    <ul
+                      class="dropdown-menu dropdown-menu-end"
+                    >
+                      <li
+                        class="dropdown-item a4-comments__dropdown__url"
+                      >
+                        <button
+                          aria-expanded="false"
+                          aria-haspopup="dialog"
+                          class="a4-modal__toggle btn-link link"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="fas fa-share"
+                          />
+                           
+                          Share
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="a4-comments__text"
+              >
+                <p>
+                  This is a test comment.
+                </p>
+              </div>
+              <div
+                class="a4-comments__read-btn-container"
+              />
+              <div
+                class="a4-comments__action"
+              >
+                <div
+                  class="a4-comments__action-bar-container"
+                >
+                  <div
+                    class="rating"
+                    data-testid="rating-box"
+                  >
+                    <button
+                      aria-pressed="false"
+                      class="rating-button rating-up"
+                      disabled=""
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="fa fa-thumbs-up"
+                      />
+                       
+                      10
+                       
+                      <span
+                        class="rating__label"
+                      >
+                        Likes
+                      </span>
+                      <span
+                        class="a4-sr-only"
+                      >
+                        Click to like
+                      </span>
+                    </button>
+                    <button
+                      aria-pressed="false"
+                      class="rating-button rating-down"
+                      disabled=""
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="fa fa-thumbs-down"
+                      />
+                       
+                      2
+                       
+                      <span
+                        class="rating__label"
+                      >
+                        Dislikes
+                      </span>
+                      <span
+                        class="a4-sr-only"
+                      >
+                        Click to dislike
+                      </span>
+                    </button>
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    class="a4-comments__action-separator"
+                  >
+                    ·
+                  </span>
+                  <div
+                    class="a4-comments__action-bar"
+                  >
+                    <button
+                      aria-controls="reply-form-1"
+                      aria-expanded="false"
+                      class="btn btn--no-border a4-comments__action-bar__btn a4-comments__reply-btn"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="far fa-comment"
+                      />
+                      Reply
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -253,161 +255,163 @@ exports[`Comment Component renders comment with creator and comment text 1`] = `
           class="a4-comments__box"
         >
           <div
-            class="row"
-          >
-            <div
-              class="col-2 col-lg-1 a4-comments__user-img"
-            />
-            <div
-              class="col-7 col-md-8 a4-comments__author-container"
-            >
-              <div
-                class="a4-comments__author"
-              >
-                <a>
-                  Participant 1
-                </a>
-              </div>
-              <time
-                class="a4-comments__submission-date"
-              >
-                May 21, 2024, 11:44 a.m.
-              </time>
-            </div>
-            <div
-              class="col-1 ms-auto a4-comments__dropdown-container"
-            >
-              <div
-                class="dropdown a4-comments__dropdown"
-              >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                  aria-label="Comment Actions"
-                  class="dropdown-toggle btn btn--link"
-                  data-bs-toggle="dropdown"
-                  type="button"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="fas fa-ellipsis-h"
-                  />
-                </button>
-                <ul
-                  class="dropdown-menu dropdown-menu-end"
-                >
-                  <li
-                    class="dropdown-item a4-comments__dropdown__url"
-                  >
-                    <button
-                      aria-expanded="false"
-                      aria-haspopup="dialog"
-                      class="a4-modal__toggle btn-link link"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="fas fa-share"
-                      />
-                       
-                      Share
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div
-              class="col-12"
-            >
-              <div
-                class="a4-comments__text"
-              >
-                <p>
-                  This is a test comment.
-                </p>
-              </div>
-            </div>
-            <div
-              class="col-6 a4-comments__read-btn-container"
-            />
-          </div>
-        </div>
-        <div
-          class="a4-comments__action"
-        >
+            class="a4-comments__user-img"
+          />
           <div
-            class="row"
+            class="a4-comments__content"
           >
             <div
-              class="col-12 a4-comments__action-bar-container"
+              class="a4-comments__meta"
             >
               <div
-                class="rating"
-                data-testid="rating-box"
+                class="a4-comments__author-container"
               >
-                <button
-                  aria-pressed="false"
-                  class="rating-button rating-up"
-                  disabled=""
-                  type="button"
+                <div
+                  class="a4-comments__author"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="fa fa-thumbs-up"
-                  />
-                   
-                  10
-                   
-                  <span
-                    class="rating__label"
-                  >
-                    Likes
-                  </span>
-                  <span
-                    class="a4-sr-only"
-                  >
-                    Click to like
-                  </span>
-                </button>
-                <button
-                  aria-pressed="false"
-                  class="rating-button rating-down"
-                  disabled=""
-                  type="button"
+                  <a>
+                    Participant 1
+                  </a>
+                </div>
+                <time
+                  class="a4-comments__submission-date"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="fa fa-thumbs-down"
-                  />
-                   
-                  2
-                   
-                  <span
-                    class="rating__label"
-                  >
-                    Dislikes
-                  </span>
-                  <span
-                    class="a4-sr-only"
-                  >
-                    Click to dislike
-                  </span>
-                </button>
+                  May 21, 2024, 11:44 a.m.
+                </time>
               </div>
               <div
-                class="a4-comments__action-bar"
+                class="a4-comments__dropdown-container"
               >
-                <button
-                  aria-controls="child-comments-1"
-                  aria-expanded="false"
-                  class="btn btn--no-border a4-comments__action-bar__btn"
-                  type="button"
+                <div
+                  class="dropdown a4-comments__dropdown"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="far fa-comment"
-                  />
-                  Reply
-                </button>
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    aria-label="Comment Actions"
+                    class="dropdown-toggle btn btn--link"
+                    data-bs-toggle="dropdown"
+                    type="button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fas fa-ellipsis-h"
+                    />
+                  </button>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                  >
+                    <li
+                      class="dropdown-item a4-comments__dropdown__url"
+                    >
+                      <button
+                        aria-expanded="false"
+                        aria-haspopup="dialog"
+                        class="a4-modal__toggle btn-link link"
+                      >
+                        <i
+                          aria-hidden="true"
+                          class="fas fa-share"
+                        />
+                         
+                        Share
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div
+              class="a4-comments__text"
+            >
+              <p>
+                This is a test comment.
+              </p>
+            </div>
+            <div
+              class="a4-comments__read-btn-container"
+            />
+            <div
+              class="a4-comments__action"
+            >
+              <div
+                class="a4-comments__action-bar-container"
+              >
+                <div
+                  class="rating"
+                  data-testid="rating-box"
+                >
+                  <button
+                    aria-pressed="false"
+                    class="rating-button rating-up"
+                    disabled=""
+                    type="button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-thumbs-up"
+                    />
+                     
+                    10
+                     
+                    <span
+                      class="rating__label"
+                    >
+                      Likes
+                    </span>
+                    <span
+                      class="a4-sr-only"
+                    >
+                      Click to like
+                    </span>
+                  </button>
+                  <button
+                    aria-pressed="false"
+                    class="rating-button rating-down"
+                    disabled=""
+                    type="button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-thumbs-down"
+                    />
+                     
+                    2
+                     
+                    <span
+                      class="rating__label"
+                    >
+                      Dislikes
+                    </span>
+                    <span
+                      class="a4-sr-only"
+                    >
+                      Click to dislike
+                    </span>
+                  </button>
+                </div>
+                <span
+                  aria-hidden="true"
+                  class="a4-comments__action-separator"
+                >
+                  ·
+                </span>
+                <div
+                  class="a4-comments__action-bar"
+                >
+                  <button
+                    aria-controls="reply-form-1"
+                    aria-expanded="false"
+                    class="btn btn--no-border a4-comments__action-bar__btn a4-comments__reply-btn"
+                    type="button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="far fa-comment"
+                    />
+                    Reply
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -489,166 +493,168 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
             class="a4-comments__box"
           >
             <div
-              class="row"
-            >
-              <div
-                class="col-2 col-lg-1 a4-comments__user-img"
-              />
-              <div
-                class="col-7 col-md-8 a4-comments__author-container"
-              >
-                <div
-                  class="a4-comments__author"
-                >
-                  <a>
-                    Participant 1
-                  </a>
-                </div>
-                <span
-                  class="a4-comments__moderator"
-                >
-                  Moderator
-                </span>
-                <time
-                  class="a4-comments__submission-date"
-                >
-                  May 21, 2024, 11:44 a.m.
-                </time>
-              </div>
-              <div
-                class="col-1 ms-auto a4-comments__dropdown-container"
-              >
-                <div
-                  class="dropdown a4-comments__dropdown"
-                >
-                  <button
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    aria-label="Comment Actions"
-                    class="dropdown-toggle btn btn--link"
-                    data-bs-toggle="dropdown"
-                    type="button"
-                  >
-                    <i
-                      aria-hidden="true"
-                      class="fas fa-ellipsis-h"
-                    />
-                  </button>
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                  >
-                    <li
-                      class="dropdown-item a4-comments__dropdown__url"
-                    >
-                      <button
-                        aria-expanded="false"
-                        aria-haspopup="dialog"
-                        class="a4-modal__toggle btn-link link"
-                      >
-                        <i
-                          aria-hidden="true"
-                          class="fas fa-share"
-                        />
-                         
-                        Share
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div
-                class="col-12"
-              >
-                <div
-                  class="a4-comments__text"
-                >
-                  <p>
-                    This is a test comment.
-                  </p>
-                </div>
-              </div>
-              <div
-                class="col-6 a4-comments__read-btn-container"
-              />
-            </div>
-          </div>
-          <div
-            class="a4-comments__action"
-          >
+              class="a4-comments__user-img"
+            />
             <div
-              class="row"
+              class="a4-comments__content"
             >
               <div
-                class="col-12 a4-comments__action-bar-container"
+                class="a4-comments__meta"
               >
                 <div
-                  class="rating"
-                  data-testid="rating-box"
+                  class="a4-comments__author-container"
                 >
-                  <button
-                    aria-pressed="false"
-                    class="rating-button rating-up"
-                    disabled=""
-                    type="button"
+                  <div
+                    class="a4-comments__author"
                   >
-                    <i
-                      aria-hidden="true"
-                      class="fa fa-thumbs-up"
-                    />
-                     
-                    10
-                     
-                    <span
-                      class="rating__label"
-                    >
-                      Likes
-                    </span>
-                    <span
-                      class="a4-sr-only"
-                    >
-                      Click to like
-                    </span>
-                  </button>
-                  <button
-                    aria-pressed="false"
-                    class="rating-button rating-down"
-                    disabled=""
-                    type="button"
+                    <a>
+                      Participant 1
+                    </a>
+                  </div>
+                  <span
+                    class="a4-comments__moderator"
                   >
-                    <i
-                      aria-hidden="true"
-                      class="fa fa-thumbs-down"
-                    />
-                     
-                    2
-                     
-                    <span
-                      class="rating__label"
-                    >
-                      Dislikes
-                    </span>
-                    <span
-                      class="a4-sr-only"
-                    >
-                      Click to dislike
-                    </span>
-                  </button>
+                    Moderator
+                  </span>
+                  <time
+                    class="a4-comments__submission-date"
+                  >
+                    May 21, 2024, 11:44 a.m.
+                  </time>
                 </div>
                 <div
-                  class="a4-comments__action-bar"
+                  class="a4-comments__dropdown-container"
                 >
-                  <button
-                    aria-controls="child-comments-1"
-                    aria-expanded="false"
-                    class="btn btn--no-border a4-comments__action-bar__btn"
-                    type="button"
+                  <div
+                    class="dropdown a4-comments__dropdown"
                   >
-                    <i
-                      aria-hidden="true"
-                      class="far fa-comment"
-                    />
-                    Reply
-                  </button>
+                    <button
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      aria-label="Comment Actions"
+                      class="dropdown-toggle btn btn--link"
+                      data-bs-toggle="dropdown"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="fas fa-ellipsis-h"
+                      />
+                    </button>
+                    <ul
+                      class="dropdown-menu dropdown-menu-end"
+                    >
+                      <li
+                        class="dropdown-item a4-comments__dropdown__url"
+                      >
+                        <button
+                          aria-expanded="false"
+                          aria-haspopup="dialog"
+                          class="a4-modal__toggle btn-link link"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="fas fa-share"
+                          />
+                           
+                          Share
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="a4-comments__text"
+              >
+                <p>
+                  This is a test comment.
+                </p>
+              </div>
+              <div
+                class="a4-comments__read-btn-container"
+              />
+              <div
+                class="a4-comments__action"
+              >
+                <div
+                  class="a4-comments__action-bar-container"
+                >
+                  <div
+                    class="rating"
+                    data-testid="rating-box"
+                  >
+                    <button
+                      aria-pressed="false"
+                      class="rating-button rating-up"
+                      disabled=""
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="fa fa-thumbs-up"
+                      />
+                       
+                      10
+                       
+                      <span
+                        class="rating__label"
+                      >
+                        Likes
+                      </span>
+                      <span
+                        class="a4-sr-only"
+                      >
+                        Click to like
+                      </span>
+                    </button>
+                    <button
+                      aria-pressed="false"
+                      class="rating-button rating-down"
+                      disabled=""
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="fa fa-thumbs-down"
+                      />
+                       
+                      2
+                       
+                      <span
+                        class="rating__label"
+                      >
+                        Dislikes
+                      </span>
+                      <span
+                        class="a4-sr-only"
+                      >
+                        Click to dislike
+                      </span>
+                    </button>
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    class="a4-comments__action-separator"
+                  >
+                    ·
+                  </span>
+                  <div
+                    class="a4-comments__action-bar"
+                  >
+                    <button
+                      aria-controls="reply-form-1"
+                      aria-expanded="false"
+                      class="btn btn--no-border a4-comments__action-bar__btn a4-comments__reply-btn"
+                      type="button"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="far fa-comment"
+                      />
+                      Reply
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -727,166 +733,168 @@ exports[`Comment Component renders comment with moderator badge 1`] = `
           class="a4-comments__box"
         >
           <div
-            class="row"
-          >
-            <div
-              class="col-2 col-lg-1 a4-comments__user-img"
-            />
-            <div
-              class="col-7 col-md-8 a4-comments__author-container"
-            >
-              <div
-                class="a4-comments__author"
-              >
-                <a>
-                  Participant 1
-                </a>
-              </div>
-              <span
-                class="a4-comments__moderator"
-              >
-                Moderator
-              </span>
-              <time
-                class="a4-comments__submission-date"
-              >
-                May 21, 2024, 11:44 a.m.
-              </time>
-            </div>
-            <div
-              class="col-1 ms-auto a4-comments__dropdown-container"
-            >
-              <div
-                class="dropdown a4-comments__dropdown"
-              >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                  aria-label="Comment Actions"
-                  class="dropdown-toggle btn btn--link"
-                  data-bs-toggle="dropdown"
-                  type="button"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="fas fa-ellipsis-h"
-                  />
-                </button>
-                <ul
-                  class="dropdown-menu dropdown-menu-end"
-                >
-                  <li
-                    class="dropdown-item a4-comments__dropdown__url"
-                  >
-                    <button
-                      aria-expanded="false"
-                      aria-haspopup="dialog"
-                      class="a4-modal__toggle btn-link link"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="fas fa-share"
-                      />
-                       
-                      Share
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div
-              class="col-12"
-            >
-              <div
-                class="a4-comments__text"
-              >
-                <p>
-                  This is a test comment.
-                </p>
-              </div>
-            </div>
-            <div
-              class="col-6 a4-comments__read-btn-container"
-            />
-          </div>
-        </div>
-        <div
-          class="a4-comments__action"
-        >
+            class="a4-comments__user-img"
+          />
           <div
-            class="row"
+            class="a4-comments__content"
           >
             <div
-              class="col-12 a4-comments__action-bar-container"
+              class="a4-comments__meta"
             >
               <div
-                class="rating"
-                data-testid="rating-box"
+                class="a4-comments__author-container"
               >
-                <button
-                  aria-pressed="false"
-                  class="rating-button rating-up"
-                  disabled=""
-                  type="button"
+                <div
+                  class="a4-comments__author"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="fa fa-thumbs-up"
-                  />
-                   
-                  10
-                   
-                  <span
-                    class="rating__label"
-                  >
-                    Likes
-                  </span>
-                  <span
-                    class="a4-sr-only"
-                  >
-                    Click to like
-                  </span>
-                </button>
-                <button
-                  aria-pressed="false"
-                  class="rating-button rating-down"
-                  disabled=""
-                  type="button"
+                  <a>
+                    Participant 1
+                  </a>
+                </div>
+                <span
+                  class="a4-comments__moderator"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="fa fa-thumbs-down"
-                  />
-                   
-                  2
-                   
-                  <span
-                    class="rating__label"
-                  >
-                    Dislikes
-                  </span>
-                  <span
-                    class="a4-sr-only"
-                  >
-                    Click to dislike
-                  </span>
-                </button>
+                  Moderator
+                </span>
+                <time
+                  class="a4-comments__submission-date"
+                >
+                  May 21, 2024, 11:44 a.m.
+                </time>
               </div>
               <div
-                class="a4-comments__action-bar"
+                class="a4-comments__dropdown-container"
               >
-                <button
-                  aria-controls="child-comments-1"
-                  aria-expanded="false"
-                  class="btn btn--no-border a4-comments__action-bar__btn"
-                  type="button"
+                <div
+                  class="dropdown a4-comments__dropdown"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="far fa-comment"
-                  />
-                  Reply
-                </button>
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    aria-label="Comment Actions"
+                    class="dropdown-toggle btn btn--link"
+                    data-bs-toggle="dropdown"
+                    type="button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fas fa-ellipsis-h"
+                    />
+                  </button>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                  >
+                    <li
+                      class="dropdown-item a4-comments__dropdown__url"
+                    >
+                      <button
+                        aria-expanded="false"
+                        aria-haspopup="dialog"
+                        class="a4-modal__toggle btn-link link"
+                      >
+                        <i
+                          aria-hidden="true"
+                          class="fas fa-share"
+                        />
+                         
+                        Share
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div
+              class="a4-comments__text"
+            >
+              <p>
+                This is a test comment.
+              </p>
+            </div>
+            <div
+              class="a4-comments__read-btn-container"
+            />
+            <div
+              class="a4-comments__action"
+            >
+              <div
+                class="a4-comments__action-bar-container"
+              >
+                <div
+                  class="rating"
+                  data-testid="rating-box"
+                >
+                  <button
+                    aria-pressed="false"
+                    class="rating-button rating-up"
+                    disabled=""
+                    type="button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-thumbs-up"
+                    />
+                     
+                    10
+                     
+                    <span
+                      class="rating__label"
+                    >
+                      Likes
+                    </span>
+                    <span
+                      class="a4-sr-only"
+                    >
+                      Click to like
+                    </span>
+                  </button>
+                  <button
+                    aria-pressed="false"
+                    class="rating-button rating-down"
+                    disabled=""
+                    type="button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="fa fa-thumbs-down"
+                    />
+                     
+                    2
+                     
+                    <span
+                      class="rating__label"
+                    >
+                      Dislikes
+                    </span>
+                    <span
+                      class="a4-sr-only"
+                    >
+                      Click to dislike
+                    </span>
+                  </button>
+                </div>
+                <span
+                  aria-hidden="true"
+                  class="a4-comments__action-separator"
+                >
+                  ·
+                </span>
+                <div
+                  class="a4-comments__action-bar"
+                >
+                  <button
+                    aria-controls="reply-form-1"
+                    aria-expanded="false"
+                    class="btn btn--no-border a4-comments__action-bar__btn a4-comments__reply-btn"
+                    type="button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="far fa-comment"
+                    />
+                    Reply
+                  </button>
+                </div>
               </div>
             </div>
           </div>

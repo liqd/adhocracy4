@@ -417,7 +417,7 @@ def test_fields(user, apiclient, question_ct, question):
 
     response = apiclient.get(url)
 
-    assert len(response.data) == 9
+    assert len(response.data) == 11
     assert "count" in response.data
     assert "next" in response.data
     assert "previous" in response.data
@@ -425,6 +425,8 @@ def test_fields(user, apiclient, question_ct, question):
     assert "has_commenting_permission" in response.data
     assert "would_have_commenting_permission" in response.data
     assert "project_is_public" in response.data
+    assert "user_image" in response.data
+    assert "user_image_fallback" in response.data
     assert "categories" not in response.data
     assert response.data["count"] == 1
     assert "use_org_terms_of_use" in response.data
@@ -467,7 +469,7 @@ def test_fields_with_categories(user, apiclient, question_ct, question):
 
     response = apiclient.get(url + "?categories=true")
 
-    assert len(response.data) == 10
+    assert len(response.data) == 12
     assert "count" in response.data
     assert "next" in response.data
     assert "previous" in response.data
@@ -475,6 +477,8 @@ def test_fields_with_categories(user, apiclient, question_ct, question):
     assert "has_commenting_permission" in response.data
     assert "would_have_commenting_permission" in response.data
     assert "project_is_public" in response.data
+    assert "user_image" in response.data
+    assert "user_image_fallback" in response.data
     assert "categories" in response.data
     assert len(response.data["categories"]) == 2
     assert response.data["count"] == 1

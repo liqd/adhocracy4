@@ -143,25 +143,39 @@ describe('Comment Component', () => {
     expect(screen.queryByText(/Reply./)).not.toBeInTheDocument()
   })
 
-  test('toggling reply button toggles child comment', () => {
+  test('toggling replies toggle shows and hides child comment', () => {
     render(<Comment {...defaultProps} child_comments={[childComment]} />)
 
-    expect(screen.getByText(/1 reply/)).toBeInTheDocument()
+    expect(screen.getByText(/Show 1 reply/)).toBeInTheDocument()
     expect(
       screen.queryByText(/This is a test child comment./)
     ).not.toBeInTheDocument()
 
-    const replyButton = screen.getByRole('button', {
-      name: '%s replies1 reply'
-    })
-    fireEvent.click(replyButton)
+    fireEvent.click(screen.getByRole('button', { name: 'Show 1 reply' }))
     expect(
       screen.getByText(/This is a test child comment./)
     ).toBeInTheDocument()
-    fireEvent.click(replyButton)
+    fireEvent.click(screen.getByRole('button', { name: 'Hide 1 reply' }))
     expect(
       screen.queryByText(/This is a test child comment./)
     ).not.toBeInTheDocument()
+  })
+
+  test('reply button opens the reply form', () => {
+    render(<Comment {...defaultProps} />)
+
+    expect(
+      screen.queryByText(/Reply to the comment/)
+    ).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reply' }))
+
+    expect(
+      screen.getByPlaceholderText(/Reply to the comment/)
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: 'Cancel' })
+    ).toBeInTheDocument()
   })
 
   test('displays ratings correctly', () => {

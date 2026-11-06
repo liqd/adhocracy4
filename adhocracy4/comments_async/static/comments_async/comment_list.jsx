@@ -72,6 +72,7 @@ const CommentList = (props) => {
               setCommentError={props.setCommentError}
               setCommentEditError={props.setCommentEditError}
               hideNotification={props.hideNotification}
+              userImage={props.userImage}
             >{comment.comment}
             </Comment>
           )
