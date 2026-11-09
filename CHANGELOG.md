@@ -10,7 +10,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - moderation: add a moderation dashboard for comments and items with
-  read/resolved tabs, filtering, sorting, inline editing and hide actions
+  read/resolved tabs, filtering, sorting, inline editing and comment deletion
 
 ### Changed
 

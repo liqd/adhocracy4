@@ -37,8 +37,8 @@ urlpatterns = [
         name="item-resolve",
     ),
     path(
-        "<int:project_pk>/items/<str:item_type>/<int:pk>/hide/",
-        views.ModerationItemHideView.as_view(),
-        name="item-hide",
+        "<int:project_pk>/items/<str:item_type>/<int:pk>/delete/",
+        views.ModerationItemDeleteView.as_view(),
+        name="item-delete",
     ),
 ]
