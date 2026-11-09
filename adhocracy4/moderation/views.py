@@ -375,7 +375,7 @@ class ModerationItemResolveView(
         return response
 
 
-class ModerationItemHideView(
+class ModerationItemDeleteView(
     ModerationProjectMixin, rules_mixins.PermissionRequiredMixin, View
 ):
     permission_required = "a4moderation.moderate_project"
@@ -385,22 +385,15 @@ class ModerationItemHideView(
         item = utils.get_moderation_item(
             self.project, kwargs["item_type"], kwargs["pk"]
         )
-        if not utils.supports_hiding(item):
+        if not utils.is_comment_item(item):
             raise Http404
-        hidden = request.POST.get("hidden", "1") != "0"
-        item.is_blocked = hidden
+        item.is_censored = True
         item.is_reviewed = True
         item.save()
         response = self.render_item(request, item)
         response["HX-Trigger"] = json.dumps(
             {
-                "moderationItemUpdated": {
-                    "message": str(
-                        _("Hidden from discussion")
-                        if hidden
-                        else _("Shown in discussion")
-                    )
-                },
+                "moderationItemUpdated": {"message": str(_("Deleted"))},
                 "moderationCountsChanged": {},
             }
         )
@@ -418,7 +411,7 @@ class ModerationItemEditView(
         )
 
     def _get_form(self, item, data=None):
-        if utils.supports_hiding(item):
+        if utils.is_comment_item(item):
             return forms.ModerationCommentEditForm(data=data, item=item)
         return forms.ModerationItemFeedbackForm(data=data, item=item)
 
@@ -444,8 +437,8 @@ class ModerationItemEditView(
         item = self._get_item(kwargs)
         form = self._get_form(item, data=request.POST)
         if form.is_valid():
-            form.save(request.user) if not utils.supports_hiding(item) else form.save()
-            if not utils.supports_hiding(item) and form.changed:
+            form.save(request.user) if not utils.is_comment_item(item) else form.save()
+            if not utils.is_comment_item(item) and form.changed:
                 signals.moderation_item_feedback_saved.send(
                     sender=self.__class__, item=item, user=request.user
                 )

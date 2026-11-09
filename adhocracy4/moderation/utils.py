@@ -71,8 +71,8 @@ def user_moderates_any_project(user):
     return get_moderated_projects(user).exists()
 
 
-def supports_hiding(item):
-    """Return if the item can be hidden from the discussion."""
+def is_comment_item(item):
+    """Return if the item is a comment."""
     return isinstance(item, Comment)
 
 
@@ -284,11 +284,11 @@ def build_moderation_item(item):
         "is_resolved": bool(getattr(item, "is_resolved", False)),
         "resolved_at": getattr(item, "resolved_at", None),
         "is_blocked": is_blocked,
-        "is_hidden": is_blocked,
+        "is_deleted": getattr(item, "is_censored", False),
         "is_highlighted": is_highlighted,
         "detail_url": detail_url,
         "can_edit": True,
-        "can_hide": is_comment,
+        "can_delete": is_comment,
         "can_edit_feedback": supports_feedback(item),
     }
 

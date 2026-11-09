@@ -11,7 +11,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - captcha: add reusable Cap captcha field, widget and poll component
 - moderation: add a moderation dashboard for comments and items with
-  read/resolved tabs, filtering, sorting, inline editing and hide actions
+  read/resolved tabs, filtering, sorting, inline editing and comment deletion
 
 ### Changed
 ### Fixed

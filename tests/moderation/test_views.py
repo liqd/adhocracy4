@@ -467,13 +467,13 @@ def test_resolved_items_are_listed_in_resolved_state(
 
 
 @pytest.mark.django_db
-def test_hide_and_reopen_comment(client, user, moderated_project, module_factory):
+def test_delete_comment(client, user, moderated_project, module_factory):
     module = module_factory(project=moderated_project)
     idea = IdeaFactory(module=module)
-    comment = CommentFactory(content_object=idea)
+    comment = CommentFactory(content_object=idea, comment="To be deleted")
     client.login(username=user.username, password="password")
     url = reverse(
-        "a4moderation:item-hide",
+        "a4moderation:item-delete",
         kwargs={
             "project_pk": moderated_project.pk,
             "item_type": "a4comments.comment",
@@ -481,15 +481,12 @@ def test_hide_and_reopen_comment(client, user, moderated_project, module_factory
         },
     )
 
-    response = client.post(url, {"hidden": "1"}, HTTP_HX_REQUEST="true")
-    comment.refresh_from_db()
-    assert response.status_code == 200
-    assert comment.is_blocked is True
+    response = client.post(url, {}, HTTP_HX_REQUEST="true")
 
-    response = client.post(url, {"hidden": "0"}, HTTP_HX_REQUEST="true")
     comment.refresh_from_db()
     assert response.status_code == 200
-    assert comment.is_blocked is False
+    assert comment.is_censored is True
+    assert comment.comment == ""
 
 
 @pytest.mark.django_db
