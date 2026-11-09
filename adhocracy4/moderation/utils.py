@@ -3,7 +3,9 @@ from collections import defaultdict
 
 from django.apps import apps
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from django.db.models import CharField
+from django.db.models import Count
 from django.db.models import Q
 from django.db.models import Value
 from django.utils.text import Truncator
@@ -12,6 +14,7 @@ from django.utils.translation import gettext as _
 from adhocracy4 import transforms
 from adhocracy4.comments.models import Comment
 from adhocracy4.projects.models import Project
+from adhocracy4.reports.models import Report
 
 TRUNCATE_LENGTH = 500
 
@@ -177,11 +180,12 @@ def resolve_moderation_items(rows):
         for item in items:
             objects[(label, item.pk)] = item
 
-    return [
+    items = [
         objects[(row["item_type"], row["pk"])]
         for row in rows
         if (row["item_type"], row["pk"]) in objects
     ]
+    return attach_report_counts(items)
 
 
 def _item_label(item):
@@ -275,6 +279,7 @@ def build_moderation_item(item):
         "status_value": (getattr(item, "moderator_status", "") or "").lower(),
         "is_comment": is_comment,
         "feedback": feedback,
+        "num_reports": getattr(item, "_report_count", 0),
         "is_reviewed": bool(getattr(item, "is_reviewed", False)),
         "is_resolved": bool(getattr(item, "is_resolved", False)),
         "resolved_at": getattr(item, "resolved_at", None),
@@ -286,6 +291,47 @@ def build_moderation_item(item):
         "can_hide": is_comment,
         "can_edit_feedback": supports_feedback(item),
     }
+
+
+def get_report_count(project):
+    """Return the number of reports for comments and items of a project."""
+    total = 0
+    comment_ct = ContentType.objects.get_for_model(Comment)
+    total += Report.objects.filter(
+        content_type=comment_ct,
+        object_pk__in=Comment.objects.filter(project=project).values("pk"),
+    ).count()
+    for model in get_item_models():
+        content_type = ContentType.objects.get_for_model(model)
+        total += Report.objects.filter(
+            content_type=content_type,
+            object_pk__in=model.objects.filter(module__project=project).values("pk"),
+        ).count()
+    return total
+
+
+def attach_report_counts(objects):
+    """Attach the number of reports to each object as ``_report_count``."""
+    objects = list(objects)
+    by_model = defaultdict(list)
+    for obj in objects:
+        obj._report_count = 0
+        by_model[type(obj)].append(obj)
+
+    for model, model_objects in by_model.items():
+        content_type = ContentType.objects.get_for_model(model)
+        counts = dict(
+            Report.objects.filter(
+                content_type=content_type,
+                object_pk__in=[obj.pk for obj in model_objects],
+            )
+            .values_list("object_pk")
+            .annotate(report_count=Count("pk"))
+        )
+        for obj in model_objects:
+            obj._report_count = counts.get(obj.pk, 0)
+
+    return objects
 
 
 def get_moderation_item(project, item_type, pk):
