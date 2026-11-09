@@ -15,6 +15,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - polls: replace the poll editor with the question list editor from adhocracy-plus
 - polls: allow open answers up to 4000 characters
+- polls: crop question images to 3:1 in the Uppy image editor
 
 ### Fixed
 
