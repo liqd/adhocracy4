@@ -58,7 +58,7 @@ const PollQuestions = ({
     const cta = document.querySelector('[data-poll-cta]')
     if (!cta) return undefined
 
-    const canParticipate = state.isAuthenticated || state.allowUnregisteredUsers
+    const canParticipate = state.canVote
     const isStart = state.state === STATES.START_SCREEN
     const isResults = state.state === STATES.RESULTS
 
@@ -76,7 +76,7 @@ const PollQuestions = ({
     }
     cta.addEventListener('click', handler)
     return () => cta.removeEventListener('click', handler)
-  }, [state.state, state.isAuthenticated, state.allowUnregisteredUsers, state.hasUserVote, actions])
+  }, [state.state, state.canVote, state.hasUserVote, actions])
 
   const hasPhaseCta = typeof document !== 'undefined' && !!document.querySelector('[data-poll-cta]')
 
@@ -121,6 +121,7 @@ const PollQuestions = ({
             totalParticipants={state.totalParticipants}
             isAuthenticated={state.isAuthenticated}
             allowUnregisteredUsers={state.allowUnregisteredUsers}
+            canVote={state.canVote}
             hideResultsUntilFinished={state.hideResultsUntilFinished}
             manualLink={manualLink}
             onStart={actions.handleStartPoll}

@@ -7,6 +7,7 @@ const StartScreen = ({
   totalQuestions,
   isAuthenticated,
   allowUnregisteredUsers,
+  canVote,
   hideResultsUntilFinished,
   totalParticipants,
   manualLink,
@@ -56,7 +57,7 @@ const StartScreen = ({
       />
 
       <div className="poll-start-screen__buttons">
-        {isAuthenticated || allowUnregisteredUsers
+        {canVote
           ? !hideStartButton && (
             <button
               type="button"
@@ -66,7 +67,7 @@ const StartScreen = ({
               {django.gettext('Start')}
             </button>
             )
-          : (
+          : !isAuthenticated && (
             <a
               href={config.getLoginUrl()}
               className="btn poll__btn--dark"

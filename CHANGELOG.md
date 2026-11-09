@@ -19,6 +19,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Fixed
 
 - polls: resize and compress question images before upload to avoid HTTP 413 errors
+- polls: do not offer participation to guests when the project disallows it
 
 ## aplus-v2611.4, aplus-v2611.3, aplus-v2611.2, mB-v2611.1
 

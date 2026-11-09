@@ -25,6 +25,7 @@ describe('StartScreen', () => {
     totalParticipants: 5,
     isAuthenticated: true,
     allowUnregisteredUsers: false,
+    canVote: true,
     hideResultsUntilFinished: false,
     manualLink: '',
     onStart: jest.fn(),
@@ -49,7 +50,18 @@ describe('StartScreen', () => {
   })
 
   it('shows the login link when participation is not possible', () => {
-    render(<StartScreen {...baseProps} isAuthenticated={false} allowUnregisteredUsers={false} />)
+    render(<StartScreen {...baseProps} isAuthenticated={false} allowUnregisteredUsers={false} canVote={false} />)
     expect(screen.getByText('Log in to participate')).toBeInTheDocument()
+  })
+
+  it('lets anonymous users start when unregistered voting is allowed', () => {
+    render(<StartScreen {...baseProps} isAuthenticated={false} allowUnregisteredUsers canVote />)
+    expect(screen.getByText('Start')).toBeInTheDocument()
+  })
+
+  it('does not offer start or login to authenticated users without permission', () => {
+    render(<StartScreen {...baseProps} isAuthenticated canVote={false} />)
+    expect(screen.queryByText('Start')).not.toBeInTheDocument()
+    expect(screen.queryByText('Log in to participate')).not.toBeInTheDocument()
   })
 })

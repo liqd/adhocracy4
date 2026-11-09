@@ -253,6 +253,7 @@ class PollSerializer(serializers.ModelSerializer):
     questions = QuestionSerializer(many=True, source="annotated_questions")
     has_user_vote = serializers.SerializerMethodField()
     guest_can_vote = serializers.SerializerMethodField()
+    can_vote = serializers.SerializerMethodField()
     voting_ended = serializers.SerializerMethodField()
 
     class Meta:
@@ -263,9 +264,21 @@ class PollSerializer(serializers.ModelSerializer):
             "has_user_vote",
             "allow_unregistered_users",
             "guest_can_vote",
+            "can_vote",
             "voting_ended",
             "hide_results_until_finished",
         )
+
+    def get_can_vote(self, poll):
+        """Return whether the current user may vote on this poll.
+
+        This mirrors the API permission, so guests on projects without guest
+        participation are told not to vote instead of failing after answering.
+        """
+        request = self.context.get("request")
+        if not request:
+            return False
+        return request.user.has_perm("a4polls.add_vote", poll)
 
     def get_has_user_vote(self, poll):
         user = self.context.get("request", {}).user

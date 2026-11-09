@@ -14,8 +14,9 @@ export const usePollActions = (state, dispatch, pollId) => {
   const { submitVotes } = usePollSubmission(pollId)
 
   const handleStartPoll = useCallback(() => {
+    if (!state.canVote) return
     dispatch({ type: ACTIONS.START_POLL })
-  }, [dispatch])
+  }, [state.canVote, dispatch])
 
   const handleBackToPoll = useCallback(() => {
     dispatch({ type: ACTIONS.BACK_TO_POLL })
@@ -50,6 +51,11 @@ export const usePollActions = (state, dispatch, pollId) => {
   }, [dispatch])
 
   const handleSubmitAll = useCallback(async () => {
+    if (!state.canVote) {
+      dispatch({ type: ACTIONS.SET_ALERT, payload: ALERT_ERROR })
+      return
+    }
+
     const showCaptcha = state.captchaEnabled && state.allowUnregisteredUsers && !state.isAuthenticated
     if (showCaptcha && !state.captcha) {
       dispatch({ type: ACTIONS.SET_ALERT, payload: ALERT_CAPTCHA_INCOMPLETE })

@@ -39,6 +39,7 @@ const normalizePollData = (poll, captchaEnabled) => {
     results: JSON.parse(JSON.stringify(poll.questions)),
     allowUnregisteredUsers: poll.allow_unregistered_users,
     guestCanVote: poll.guest_can_vote,
+    canVote: !!poll.can_vote,
     isAuthenticated,
     hasUserVote: poll.has_user_vote,
     isReadOnly,
