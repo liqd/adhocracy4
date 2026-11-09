@@ -123,6 +123,7 @@ class ModerationDashboardView(LoginRequiredMixin, generic.TemplateView):
             project.total_count = utils.get_moderation_queryset(
                 project, utils.CONTENT_TYPE_ALL, utils.STATE_ALL
             ).count()
+            project.report_count = utils.get_report_count(project)
             phase = project.active_phase_ends_next
             project.remaining_days = (
                 max((phase.end_date - now).days, 0) if phase else None

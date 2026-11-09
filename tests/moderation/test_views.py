@@ -513,3 +513,24 @@ def test_edit_comment(client, user, moderated_project, module_factory):
     assert response.status_code == 200
     assert comment.comment == "New text"
     assert comment.is_reviewed is True
+
+
+@pytest.mark.django_db
+def test_report_count(client, user, moderated_project, module_factory):
+    from tests.reports.factories import ReportFactory
+
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    comment = CommentFactory(content_object=idea)
+    ReportFactory(content_object=idea)
+    ReportFactory(content_object=comment)
+    client.login(username=user.username, password="password")
+
+    response = client.get(
+        reverse("a4moderation:project", kwargs={"project_pk": moderated_project.pk}),
+        {"state": "all"},
+    )
+
+    counts = {item["type"]: item["num_reports"] for item in response.context["items"]}
+    assert counts["a4test_ideas.idea"] == 1
+    assert counts["a4comments.comment"] == 1
