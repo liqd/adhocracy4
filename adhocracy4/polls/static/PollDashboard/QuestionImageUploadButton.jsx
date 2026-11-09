@@ -2,15 +2,24 @@
 import React, { useRef } from 'react'
 import django from 'django'
 import FormFieldError from '../../../static/FormFieldError'
+import { fileToQuestionImageDataUrl } from './utils'
 
 const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpText, altText, onAltTextChange }) => {
   const fileInputRef = useRef(null)
   const imageError = errors?.image_base64 || errors?.image
   const altTextError = errors?.image_alt_text
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0]
-    if (file) {
+    if (!file) {
+      return
+    }
+
+    try {
+      const dataUrl = await fileToQuestionImageDataUrl(file)
+      onImageChange(dataUrl)
+    } catch (error) {
+      console.error('Could not prepare question image', error)
       const reader = new FileReader()
       reader.onloadend = () => onImageChange(reader.result)
       reader.readAsDataURL(file)
