@@ -24,9 +24,9 @@ function getUppyLocale () {
   return UPPY_LOCALES[languageCode] || enUS
 }
 
-const OUTPUT_WIDTH = 1500
-const OUTPUT_HEIGHT = 500
-const MAX_DATA_URL_LENGTH = 100 * 1024
+const OUTPUT_WIDTH = 2100
+const OUTPUT_HEIGHT = 700
+const MAX_DATA_URL_LENGTH = 800 * 1024
 const JPEG_QUALITY_STEPS = [0.85, 0.75, 0.65, 0.55, 0.45, 0.35]
 
 const readBlobAsDataUrl = (blob) => new Promise((resolve, reject) => {
@@ -37,7 +37,7 @@ const readBlobAsDataUrl = (blob) => new Promise((resolve, reject) => {
 })
 
 /**
- * The editor crops to 3:1 and 1500x500. Re-encode the result so the base64
+ * The editor crops to 3:1 and 2100x700. Re-encode the result so the base64
  * payload stays below reverse proxy body limits. Opaque images become JPEG,
  * images with transparency stay PNG as long as the result fits.
  */
