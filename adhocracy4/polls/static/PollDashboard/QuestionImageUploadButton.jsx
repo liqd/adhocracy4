@@ -1,6 +1,9 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useEffect, useRef } from 'react'
 import django from 'django'
+import '@uppy/core/css/style.min.css'
+import '@uppy/dashboard/css/style.min.css'
+import '@uppy/image-editor/css/style.min.css'
 import Uppy from '@uppy/core'
 import Dashboard from '@uppy/dashboard'
 import ImageEditor from '@uppy/image-editor'
