@@ -3,15 +3,15 @@ let maxLocalKey = 0
 export const getNextLocalKey = () => 'local_' + (maxLocalKey++)
 
 // Question images are posted as base64 inside the poll JSON payload. Keep the
-// encoded image small enough that the request stays well below common reverse
-// proxy body limits (nginx defaults to 1 MB), while never scaling below the
-// backend's minimum resolution.
+// encoded image small enough that the request stays below reverse proxy body
+// limits (the preview proxy currently allows about 128 KB), while never
+// scaling below the backend's minimum resolution.
 const QUESTION_IMAGE_MIN_WIDTH = 1500
 const QUESTION_IMAGE_MIN_HEIGHT = 500
-const QUESTION_IMAGE_MAX_SIDE = 1600
-const QUESTION_IMAGE_MAX_DATA_URL_LENGTH = 600 * 1024
-const QUESTION_IMAGE_DIRECT_READ_MAX_BYTES = 500 * 1024
-const QUESTION_IMAGE_QUALITY_STEPS = [0.85, 0.75, 0.65, 0.55, 0.45, 0.35]
+const QUESTION_IMAGE_MAX_SIDE = 1500
+const QUESTION_IMAGE_MAX_DATA_URL_LENGTH = 100 * 1024
+const QUESTION_IMAGE_DIRECT_READ_MAX_BYTES = 60 * 1024
+const QUESTION_IMAGE_QUALITY_STEPS = [0.85, 0.75, 0.65, 0.55, 0.45, 0.35, 0.25]
 
 export const getQuestionImageTargetSize = (width, height) => {
   if (!width || !height) {

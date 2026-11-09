@@ -10,7 +10,8 @@ describe('getQuestionImageTargetSize', () => {
   })
 
   it('scales large landscape images down to the maximum side', () => {
-    expect(getQuestionImageTargetSize(4000, 3000)).toEqual({ width: 1600, height: 1200 })
+    expect(getQuestionImageTargetSize(4000, 3000)).toEqual({ width: 1500, height: 1125 })
+    expect(getQuestionImageTargetSize(1500, 500)).toEqual({ width: 1500, height: 500 })
   })
 
   it('does not scale below the minimum resolution', () => {
