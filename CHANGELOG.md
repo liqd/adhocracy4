@@ -13,7 +13,7 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
-## aplus-v2611.3, aplus-v2611.2, mB-v2611.1
+## aplus-v2611.4, aplus-v2611.3, aplus-v2611.2, mB-v2611.1
 
 ### Fixed
 
