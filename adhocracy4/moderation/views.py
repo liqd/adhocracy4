@@ -100,7 +100,7 @@ class ModerationDashboardView(LoginRequiredMixin, generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         query = self.request.GET.get("q", "").strip()
-        sort = self.request.GET.get("sort", "recent")
+        sort = self.request.GET.get("sort", "reports")
         projects = list(utils.get_moderated_projects(self.request.user))
 
         if query:
@@ -123,10 +123,25 @@ class ModerationDashboardView(LoginRequiredMixin, generic.TemplateView):
             project.total_count = utils.get_moderation_queryset(
                 project, utils.CONTENT_TYPE_ALL, utils.STATE_ALL
             ).count()
-            project.report_count = utils.get_report_count(project)
+            project.resolved_count = utils.get_moderation_queryset(
+                project, utils.CONTENT_TYPE_ALL, utils.STATE_RESOLVED
+            ).count()
+            project.open_count = project.total_count - project.resolved_count
+            project.report_count, project.last_report_at = utils.get_report_stats(
+                project
+            )
             phase = project.active_phase_ends_next
             project.remaining_days = (
                 max((phase.end_date - now).days, 0) if phase else None
+            )
+
+        if sort == "reports":
+            projects.sort(
+                key=lambda project: (
+                    project.last_report_at is not None,
+                    project.last_report_at,
+                ),
+                reverse=True,
             )
 
         context.update(

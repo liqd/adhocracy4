@@ -293,21 +293,27 @@ def build_moderation_item(item):
     }
 
 
-def get_report_count(project):
-    """Return the number of reports for comments and items of a project."""
-    total = 0
+def get_report_stats(project):
+    """Return report count and timestamp of the most recent report."""
+    reports = Report.objects.none()
     comment_ct = ContentType.objects.get_for_model(Comment)
-    total += Report.objects.filter(
+    reports = reports | Report.objects.filter(
         content_type=comment_ct,
         object_pk__in=Comment.objects.filter(project=project).values("pk"),
-    ).count()
+    )
     for model in get_item_models():
         content_type = ContentType.objects.get_for_model(model)
-        total += Report.objects.filter(
+        reports = reports | Report.objects.filter(
             content_type=content_type,
             object_pk__in=model.objects.filter(module__project=project).values("pk"),
-        ).count()
-    return total
+        )
+    latest = reports.order_by("-created").values_list("created", flat=True).first()
+    return reports.count(), latest
+
+
+def get_report_count(project):
+    """Return the number of reports for comments and items of a project."""
+    return get_report_stats(project)[0]
 
 
 def attach_report_counts(objects):
