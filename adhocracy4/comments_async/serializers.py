@@ -63,7 +63,7 @@ class CommentSerializer(serializers.ModelSerializer):
             "comment_content_type",
             "user_info",
         )
-        exclude = ("creator",)
+        exclude = ("creator", "is_resolved", "resolved_at")
 
     def to_representation(self, instance):
         """
