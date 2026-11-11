@@ -4,34 +4,37 @@
 Generic Uppy upload wrapper for image fields.
 
 Usage (form template):
-    {% include 'a4images/uppy_image_upload_field.html' with field=form.image form_field_template='...' aspect_ratio='1.5' output_width=600 output_height=400 %}
+    {% include 'a4images/uppy_image_upload_field.html' with field=form.image aspect_ratio='1.5' output_width=600 output_height=400 %}
     {% include 'a4images/uppy_image_upload_assets.html' %}
 
 Optional context:
-- form_field_template: template used to render the underlying field (required).
 - aspect_ratio: crop aspect ratio (float/string, e.g. '1.5').
 - output_width / output_height: desired output resolution in pixels. Either,
   both or neither may be given; when only one is passed the other dimension
   is derived from the crop aspect ratio.
 - max_width / max_height: upper bounds applied during compression when no
   output resolution is given.
-- trigger_class: css classes for the trigger button (defaults to 'btn').
 {% endcomment %}
 
-<div class="uppy-image-upload-field">
-    {% if form_field_template %}
-        {% include form_field_template with field=field %}
-    {% else %}
-        {{ field }}
-    {% endif %}
+<div class="uppy-image-upload-field uppy-image-upload-field--dropzone">
+    <span class="form-label" id="{{ field.id_for_label }}-label">
+        {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
+    </span>
+    {{ field }}
     <button
         type="button"
-        class="{{ trigger_class|default:'btn' }} upload-wrapper__action uppy-image-upload-field__trigger"
+        class="uppy-image-upload-field__trigger"
         data-uppy-trigger
+        aria-labelledby="{{ field.id_for_label }}-label"
     >
-        <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-        <span class="visually-hidden">{% translate "Upload a picture" %}</span>
+        <i class="fas fa-arrow-up-from-bracket" aria-hidden="true"></i>
+        <span class="uppy-image-upload-field__text">{% translate "Drop files here or" %} <span class="uppy-image-upload-field__browse">{% translate "browse files" %}</span></span>
+        <span class="uppy-image-upload-field__note">{% translate "Images are resized and compressed automatically before you save the form." %}</span>
+        <span class="uppy-image-upload-field__change">{% translate "Change image" %}</span>
     </button>
+    {% if field.errors %}
+        <div class="errorlist" role="alert">{{ field.errors }}</div>
+    {% endif %}
     <div
         data-uppy-image-upload
         data-input-id="{{ field.id_for_label }}"

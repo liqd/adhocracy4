@@ -28,3 +28,5 @@ export { default as aiReport } from './adhocracy4/comments_async/static/comments
 export * as widget from './adhocracy4/static/widget'
 export { ControlBarSearch } from './adhocracy4/static/control_bar/ControlBarSearch'
 export { ControlBarDropdown } from './adhocracy4/static/control_bar/ControlBarDropdown.jsx'
+
+export * as stepWizard from './adhocracy4/static/step_wizard'

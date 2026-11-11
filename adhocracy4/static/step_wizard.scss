@@ -1,0 +1,272 @@
+// Multi step form wizard (e.g. the idea submission form). The steps are always
+// present in the DOM; JavaScript hides all but the active one. Without
+// JavaScript every step stays visible and the form works as a single page.
+.step-wizard {
+    margin-top: $spacer;
+}
+
+.step-wizard__progress {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 0.5 * $spacer;
+}
+
+.step-wizard__segment {
+    flex: 1 1 0;
+    height: 4px;
+    background-color: $gray-lightest;
+}
+
+.step-wizard__segment.is-active {
+    background-color: $brand-primary;
+}
+
+.step-wizard-page-title {
+    font-family: $font-family-serif;
+    font-size: 2rem;
+    font-weight: normal;
+    line-height: 1.25;
+}
+
+.step-wizard__status {
+    margin-bottom: 1.5 * $spacer;
+    color: $text-muted;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.step-wizard__step {
+    padding: 0;
+    margin: 0 0 1.5 * $spacer;
+    border: 0;
+}
+
+.step-wizard__title {
+    margin-bottom: 0.5 * $spacer;
+    font-size: 1.375rem;
+    font-weight: 600;
+    line-height: 1.27;
+}
+
+.step-wizard__hint {
+    margin-bottom: $spacer;
+    color: $text-color;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.step-wizard__summary {
+    margin-bottom: 1.5 * $spacer;
+    border: 1px solid $border-color;
+}
+
+.step-wizard__summary-image {
+    display: block;
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+    border-bottom: 1px solid $border-color;
+}
+
+.step-wizard__summary-list {
+    margin: 0;
+}
+
+.step-wizard__summary-row {
+    display: flex;
+    gap: $spacer;
+    align-items: baseline;
+    padding: 0.75 * $spacer 1 * $spacer;
+    border-bottom: 1px solid $border-color;
+}
+
+.step-wizard__summary-row:last-child {
+    border-bottom: 0;
+}
+
+.step-wizard__summary-row dt {
+    flex: 0 0 25%;
+    color: $text-muted;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25;
+}
+
+.step-wizard__summary-row dd {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    gap: $spacer;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.25;
+}
+
+.step-wizard__summary-edit {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $brand-primary;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.25;
+}
+
+.step-wizard__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+// Dropzone style image upload used inside the wizard.
+.uppy-image-upload-field--dropzone {
+    .form-label {
+        display: block;
+        margin-bottom: 0.5 * $spacer;
+    }
+
+    .upload-wrapper {
+        position: relative;
+        border: 1px solid $border-color;
+        background-color: $body-bg;
+    }
+
+    .upload-wrapper__fields {
+        display: block;
+        width: 100%;
+    }
+
+    .upload-wrapper__alert {
+        display: none;
+    }
+
+    .upload-wrapper__action-parent {
+        display: block;
+    }
+
+    .upload-wrapper__preview {
+        position: absolute;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0.5rem;
+        pointer-events: none;
+    }
+
+    .upload-wrapper__preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .uppy-image-upload-field__trigger {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        min-height: 9rem;
+        padding: 1.5 * $spacer;
+        border: 0;
+        background-color: transparent;
+        color: $text-color;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .upload-wrapper:hover,
+    .upload-wrapper:focus-within {
+        border-color: $brand-primary;
+    }
+
+    .uppy-image-upload-field__trigger .fa-arrow-up-from-bracket {
+        font-size: 1.5rem;
+    }
+
+    .uppy-image-upload-field__browse {
+        color: $brand-primary;
+        text-decoration: underline;
+    }
+
+    .uppy-image-upload-field__note {
+        color: $text-muted;
+        font-size: 0.875rem;
+    }
+
+    .uppy-image-upload-field__change {
+        display: none;
+    }
+
+    &.has-preview {
+        .upload-wrapper__preview {
+            display: flex;
+        }
+
+        .uppy-image-upload-field__trigger > i,
+        .uppy-image-upload-field__trigger .uppy-image-upload-field__text,
+        .uppy-image-upload-field__trigger .uppy-image-upload-field__note {
+            display: none;
+        }
+
+        .uppy-image-upload-field__change {
+            position: absolute;
+            right: 0.75rem;
+            bottom: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid $text-color;
+            background-color: $body-bg;
+            color: $text-color;
+        }
+    }
+}
+
+@media (width < $breakpoint) {
+    .step-wizard__actions {
+        width: 100%;
+    }
+
+    .step-wizard__actions .btn {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .step-wizard__actions [data-step-wizard-back] {
+        display: none !important;
+    }
+
+    .step-wizard__summary-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 0.25rem 0;
+    }
+
+    .step-wizard__summary-row dt {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .step-wizard__summary-row dd {
+        display: contents;
+    }
+
+    .step-wizard__summary-value {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .step-wizard__summary-edit {
+        grid-column: 2;
+        grid-row: 1;
+    }
+}

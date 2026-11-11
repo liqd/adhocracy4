@@ -40,9 +40,23 @@ function getStorageKey (inputId) {
   return 'image_upload_' + window.location.pathname + '_' + inputId
 }
 
+function setPreviewImages (inputId, src) {
+  const hasPreview = Boolean(src) && src !== PLACEHOLDER_SRC
+  document
+    .querySelectorAll('img[data-upload-preview="' + inputId + '"]')
+    .forEach((img) => {
+      img.setAttribute('src', src)
+      const field = img.closest('.uppy-image-upload-field--dropzone')
+      if (field) {
+        field.classList.toggle('has-preview', hasPreview)
+      }
+    })
+}
+
 function saveToSessionStorage (inputId, file) {
   const reader = new FileReader()
   reader.addEventListener('load', (e) => {
+    setPreviewImages(inputId, e.target.result)
     try {
       sessionStorage.setItem(
         getStorageKey(inputId),
@@ -157,12 +171,7 @@ function initContainer (container) {
     clearSessionStorage(config.inputId)
     input.value = ''
 
-    const previewImage = document.querySelector(
-      'img[data-upload-preview="' + config.inputId + '"]'
-    )
-    if (previewImage) {
-      previewImage.setAttribute('src', PLACEHOLDER_SRC)
-    }
+    setPreviewImages(config.inputId, PLACEHOLDER_SRC)
 
     const text = document.querySelector('#text-' + config.inputId)
     if (text) {
