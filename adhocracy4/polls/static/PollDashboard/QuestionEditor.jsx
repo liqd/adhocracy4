@@ -40,6 +40,16 @@ export const QuestionEditor = (props) => {
   const regularChoices = question.choices.filter((choice) => !choice.is_other_choice)
   const visibleChoices = question.choices
 
+  // Turning the explanation off also clears it, otherwise the hidden text
+  // would still be saved and would reappear when the editor is reopened.
+  const toggleHelptext = () => {
+    const next = !hasHelptext
+    setHasHelptext(next)
+    if (!next) {
+      props.onHelpTextChange('')
+    }
+  }
+
   return (
     <section className="poll-management__editor">
       <header className="poll-management__editor-header">
@@ -100,7 +110,7 @@ export const QuestionEditor = (props) => {
         <QuestionImageUploadButton
           id={question.key}
           question={question}
-          onImageChange={props.onImageChange}
+          onImageChange={(base64) => props.onImageChange(question.key, base64)}
           errors={errors}
           helpText={question.image_help_text}
           altText={question.image_alt_text}
@@ -274,7 +284,7 @@ export const QuestionEditor = (props) => {
             <button
               type="button"
               className={'btn poll-management__btn' + (hasHelptext ? ' poll-management__btn--active' : '')}
-              onClick={() => setHasHelptext(!hasHelptext)}
+              onClick={toggleHelptext}
               aria-pressed={hasHelptext}
             >
               <i className={'fa ' + (hasHelptext ? 'fa-check' : 'fa-plus')} aria-hidden="true" />
@@ -290,7 +300,7 @@ export const QuestionEditor = (props) => {
           <button
             type="button"
             className={'btn poll-management__btn' + (hasHelptext ? ' poll-management__btn--active' : '')}
-            onClick={() => setHasHelptext(!hasHelptext)}
+            onClick={toggleHelptext}
             aria-pressed={hasHelptext}
           >
             <i className={'fa ' + (hasHelptext ? 'fa-check' : 'fa-plus')} aria-hidden="true" />

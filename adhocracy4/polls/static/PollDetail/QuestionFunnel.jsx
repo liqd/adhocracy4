@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useLayoutEffect, useRef } from 'react'
+import React, { useState, useCallback, useEffect, useLayoutEffect, useRef } from 'react'
 import django from 'django'
 
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
@@ -84,11 +84,19 @@ const QuestionFunnel = ({
     setPhase('idle')
   }, [])
 
+  useEffect(() => {
+    if (phase !== 'exiting') return undefined
+    // Fallback in case the animation is missing or disabled (e.g. reduced
+    // motion): without it the funnel would stay on the previous question.
+    const timeout = window.setTimeout(handleExitEnd, 400)
+    return () => window.clearTimeout(timeout)
+  }, [phase, handleExitEnd])
+
   const enrichQuestion = useCallback((question, answer) => ({
     ...question,
     userChoices: answer?.choices || [],
-    open_answer: answer?.open_answer || '',
-    other_choice_answer: answer?.other_choice_answer || ''
+    open_answer: answer?.open_answer ?? question.open_answer,
+    other_choice_answer: answer?.other_choice_answer ?? question.other_choice_answer
   }), [])
 
   const isLastQuestion = currentNumber === totalQuestions
@@ -106,7 +114,11 @@ const QuestionFunnel = ({
   const renderQuestion = (question, answer, interactive = true) => {
     const questionProps = {
       allowUnregisteredUsers,
-      question: enrichQuestion(question, answer),
+      question: {
+        ...enrichQuestion(question, answer),
+        // Also keep the question read-only while the submission is pending.
+        isReadOnly: Boolean(question.isReadOnly || !interactive)
+      },
       errors,
       questionImagesEnabled
     }
@@ -159,7 +171,7 @@ const QuestionFunnel = ({
               className={'poll-question-content poll-question-content--enter-' + direction}
               onAnimationEnd={phase === 'entering' ? handleEnterEnd : undefined}
             >
-              {renderQuestion(currentQuestion, currentAnswer)}
+              {renderQuestion(currentQuestion, currentAnswer, !isLoading)}
             </div>
             )}
       </div>
@@ -168,6 +180,7 @@ const QuestionFunnel = ({
         <div className="col-12 mt-4">
           <TermsOfUseCheckbox
             id="terms-of-use"
+            checked={checkedTermsOfUse}
             onChange={onSetCheckedTerms}
             orgTermsUrl={orgTermsUrl}
           />

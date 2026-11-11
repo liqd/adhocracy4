@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import django from 'django'
 import '@uppy/core/css/style.min.css'
 import '@uppy/dashboard/css/style.min.css'
@@ -29,8 +29,13 @@ function getUppyLocale () {
 
 const OUTPUT_WIDTH = 2100
 const OUTPUT_HEIGHT = 700
+const MIN_OUTPUT_WIDTH = 300
 const MAX_DATA_URL_LENGTH = 800 * 1024
 const JPEG_QUALITY_STEPS = [0.85, 0.75, 0.65, 0.55, 0.45, 0.35]
+
+const TRANSLATED = {
+  imageTooLarge: django.gettext('The image could not be compressed enough. Please choose a smaller image.')
+}
 
 const readBlobAsDataUrl = (blob) => new Promise((resolve, reject) => {
   const reader = new FileReader()
@@ -39,58 +44,87 @@ const readBlobAsDataUrl = (blob) => new Promise((resolve, reject) => {
   reader.readAsDataURL(blob)
 })
 
+const encodeCanvas = (canvas, hasTransparency) => {
+  if (hasTransparency) {
+    const png = canvas.toDataURL('image/png')
+    if (png.length <= MAX_DATA_URL_LENGTH) {
+      return png
+    }
+    // JPEG has no alpha channel. Put a white background behind the image
+    // before falling back to a compressed JPEG.
+    const context = canvas.getContext('2d')
+    if (context) {
+      context.globalCompositeOperation = 'destination-over'
+      context.fillStyle = '#fff'
+      context.fillRect(0, 0, canvas.width, canvas.height)
+      context.globalCompositeOperation = 'source-over'
+    }
+  }
+
+  let compressed = ''
+  for (const quality of JPEG_QUALITY_STEPS) {
+    compressed = canvas.toDataURL('image/jpeg', quality)
+    if (compressed.length <= MAX_DATA_URL_LENGTH) {
+      break
+    }
+  }
+  return compressed
+}
+
 /**
  * The editor crops to 3:1 and 2100x700. Re-encode the result so the base64
  * payload stays below reverse proxy body limits. Opaque images become JPEG,
- * images with transparency stay PNG as long as the result fits.
+ * images with transparency stay PNG as long as the result fits. If even the
+ * lowest quality is too large, the output dimensions are reduced step by step.
+ * Rejects when no encoding fits so the caller can show an actionable error.
  */
-const compressImageDataUrl = (dataUrl) => new Promise((resolve) => {
+const compressImageDataUrl = (dataUrl) => new Promise((resolve, reject) => {
   const image = new Image()
   image.onload = () => {
-    const canvas = document.createElement('canvas')
-    canvas.width = OUTPUT_WIDTH
-    canvas.height = OUTPUT_HEIGHT
-    const context = canvas.getContext('2d')
-    if (!context) {
-      resolve(dataUrl)
-      return
-    }
-    context.drawImage(image, 0, 0, OUTPUT_WIDTH, OUTPUT_HEIGHT)
-
+    let width = OUTPUT_WIDTH
+    let height = OUTPUT_HEIGHT
     let hasTransparency = false
-    try {
-      const pixels = context.getImageData(0, 0, OUTPUT_WIDTH, OUTPUT_HEIGHT).data
-      for (let i = 3; i < pixels.length; i += 4) {
-        if (pixels[i] < 255) {
-          hasTransparency = true
-          break
-        }
-      }
-    } catch {
-      hasTransparency = true
-    }
+    let transparencyChecked = false
+    let compressed = ''
 
-    if (hasTransparency) {
-      const png = canvas.toDataURL('image/png')
-      if (png.length <= MAX_DATA_URL_LENGTH) {
-        resolve(png)
+    while (true) {
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      const context = canvas.getContext('2d')
+      if (!context) {
+        resolve(dataUrl)
         return
       }
-      // JPEG has no alpha channel. Put a white background behind the image
-      // before falling back to a compressed JPEG.
-      context.globalCompositeOperation = 'destination-over'
-      context.fillStyle = '#fff'
-      context.fillRect(0, 0, OUTPUT_WIDTH, OUTPUT_HEIGHT)
-      context.globalCompositeOperation = 'source-over'
-    }
+      context.drawImage(image, 0, 0, width, height)
 
-    let compressed = ''
-    for (const quality of JPEG_QUALITY_STEPS) {
-      compressed = canvas.toDataURL('image/jpeg', quality)
+      if (!transparencyChecked) {
+        try {
+          const pixels = context.getImageData(0, 0, width, height).data
+          for (let i = 3; i < pixels.length; i += 4) {
+            if (pixels[i] < 255) {
+              hasTransparency = true
+              break
+            }
+          }
+        } catch {
+          hasTransparency = true
+        }
+        transparencyChecked = true
+      }
+
+      compressed = encodeCanvas(canvas, hasTransparency)
       if (compressed.length <= MAX_DATA_URL_LENGTH) {
         break
       }
+      if (width <= MIN_OUTPUT_WIDTH) {
+        reject(new Error('Image data URL exceeds the size limit.'))
+        return
+      }
+      width = Math.max(MIN_OUTPUT_WIDTH, Math.round(width * 0.75))
+      height = Math.max(1, Math.round(width * OUTPUT_HEIGHT / OUTPUT_WIDTH))
     }
+
     resolve(compressed)
   }
   image.onerror = () => resolve(dataUrl)
@@ -100,7 +134,7 @@ const compressImageDataUrl = (dataUrl) => new Promise((resolve) => {
 const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpText, altText, onAltTextChange }) => {
   const uppyRef = useRef(null)
   const onImageChangeRef = useRef(onImageChange)
-  const suppressFileRemovedHandler = useRef(false)
+  const [processingError, setProcessingError] = useState('')
 
   onImageChangeRef.current = onImageChange
 
@@ -109,6 +143,7 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpTe
 
   useEffect(() => {
     let uppy
+    let active = true
 
     try {
       uppy = new Uppy({
@@ -116,7 +151,7 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpTe
         locale: getUppyLocale(),
         restrictions: {
           maxNumberOfFiles: 1,
-          allowedFileTypes: ['image/*']
+          allowedFileTypes: ['image/jpeg', 'image/png', 'image/webp']
         }
       })
 
@@ -177,25 +212,22 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpTe
         if (file) {
           readBlobAsDataUrl(file.data)
             .then(compressImageDataUrl)
-            .then((compressed) => onImageChangeRef.current(compressed))
-            .catch(() => {})
+            .then((compressed) => {
+              // The editor may have been switched to another question or
+              // unmounted while the image was processed.
+              if (!active) return
+              setProcessingError('')
+              onImageChangeRef.current(compressed)
+            })
+            .catch(() => {
+              if (active) setProcessingError(TRANSLATED.imageTooLarge)
+            })
         }
         uppy.getPlugin('Dashboard')?.closeModal()
 
-        suppressFileRemovedHandler.current = true
         uppy.getFiles().forEach((uppyFile) => {
           uppy.removeFile(uppyFile.id)
         })
-        suppressFileRemovedHandler.current = false
-      })
-
-      uppy.on('file-removed', () => {
-        if (suppressFileRemovedHandler.current) {
-          return
-        }
-        if (uppy.getFiles().length === 0) {
-          onImageChangeRef.current('')
-        }
       })
 
       uppyRef.current = uppy
@@ -204,12 +236,24 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpTe
     }
 
     return () => {
+      active = false
       if (uppy) {
         uppy.destroy()
       }
       uppyRef.current = null
     }
   }, [])
+
+  const handleOpenModal = () => {
+    const uppy = uppyRef.current
+    if (!uppy) return
+    setProcessingError('')
+    // Uppy's maxNumberOfFiles restriction rejects a second file before
+    // file-added fires, so clear the previously queued file before replacing
+    // it with a new one.
+    uppy.getFiles().forEach((file) => uppy.removeFile(file.id))
+    uppy.getPlugin('Dashboard')?.openModal()
+  }
 
   const handleRemove = () => {
     onImageChange('')
@@ -243,9 +287,7 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpTe
           <button
             type="button"
             className="image-upload-upload-btn"
-            onClick={() => {
-              uppyRef.current?.getPlugin('Dashboard')?.openModal()
-            }}
+            onClick={handleOpenModal}
             aria-label={django.gettext('Upload image')}
             title={django.gettext('Upload image')}
           >
@@ -265,6 +307,10 @@ const QuestionImageUploadButton = ({ id, question, onImageChange, errors, helpTe
           )}
         </div>
       </div>
+
+      {processingError && (
+        <div className="form-hint" role="alert">{processingError}</div>
+      )}
 
       <FormFieldError id={`image-error-${id}`} error={errors} field="image_base64" />
 

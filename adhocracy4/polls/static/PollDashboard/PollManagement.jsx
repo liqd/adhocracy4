@@ -29,7 +29,8 @@ const TRANSLATED = {
   updateFailed: django.gettext('The poll could not be updated. Please check the data you entered again.'),
   updateFailedStatus: django.gettext('The poll could not be updated (HTTP %(status)s). Please try again.'),
   unsavedChanges: django.gettext('If you leave this page changes you made will not be saved.'),
-  loadFailed: django.gettext('The poll could not be loaded. Please try again.')
+  loadFailed: django.gettext('The poll could not be loaded. Please try again.'),
+  retry: django.gettext('Retry')
 }
 
 const hasQuestionErrors = (errors) => {
@@ -82,11 +83,18 @@ export const PollManagement = (props) => {
   const [dragIndex, setDragIndex] = useState(null)
   const [overIndex, setOverIndex] = useState(null)
   const [dirty, setDirty] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+  const [loadFailed, setLoadFailed] = useState(false)
+  const [loadAttempt, setLoadAttempt] = useState(0)
   const focusErrorRef = useRef(false)
   const scrollToEditorRef = useRef(false)
   const touchDragIndexRef = useRef(null)
+  // Bumped on every edit so a late save response cannot overwrite newer edits.
+  const editRevisionRef = useRef(0)
 
   useEffect(() => {
+    setLoaded(false)
+    setLoadFailed(false)
     api.poll.get(props.pollId).done((result) => {
       const initialQuestions = result.questions.length
         ? result.questions.map(normalizeQuestion)
@@ -94,10 +102,13 @@ export const PollManagement = (props) => {
       setQuestions(initialQuestions)
       setAllowUnregisteredUsers(result.allow_unregistered_users)
       setHideResultsUntilFinished(result.hide_results_until_finished)
+      setLoaded(true)
+      setAlert(null)
     }).fail(() => {
+      setLoadFailed(true)
       setAlert({ type: 'danger', message: TRANSLATED.loadFailed })
     })
-  }, [props.pollId])
+  }, [props.pollId, loadAttempt])
 
   const expandedIndex = questions.findIndex((question) => question.key === expandedKey)
 
@@ -134,7 +145,10 @@ export const PollManagement = (props) => {
     scrollToEditorRef.current = false
   }, [expandedKey, questions])
 
-  const markDirty = () => setDirty(true)
+  const markDirty = () => {
+    editRevisionRef.current += 1
+    setDirty(true)
+  }
 
   const updateQuestion = (index, updates) => {
     setQuestions((prev) => prev.map((question, i) => (
@@ -219,6 +233,9 @@ export const PollManagement = (props) => {
   }
 
   const handleQuestionDelete = (index) => {
+    // The update endpoint ignores an empty question list, so the editor always
+    // keeps at least one question to avoid a save that silently does nothing.
+    if (questions.length <= 1) return
     if (questions[index].key === expandedKey) {
       setExpandedKey(null)
     }
@@ -320,6 +337,21 @@ export const PollManagement = (props) => {
     handleDrop()
   }
 
+  // A canceled gesture must not move a question, so release the capture and
+  // reset the drag state without calling handleDrop.
+  const handleListPointerCancel = (e) => {
+    if (touchDragIndexRef.current === null) return
+    try {
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId)
+      }
+    } catch {
+      // ignore missing capture
+    }
+    touchDragIndexRef.current = null
+    handleDragEnd()
+  }
+
   const handleChoiceLabelChange = (choiceIndex, label) => {
     updateChoice(expandedIndex, choiceIndex, { label })
   }
@@ -362,8 +394,10 @@ export const PollManagement = (props) => {
     markDirty()
   }
 
-  const handleImageChange = (base64) => {
-    updateQuestion(expandedIndex, {
+  const handleImageChange = (questionKey, base64) => {
+    const index = questions.findIndex((question) => question.key === questionKey)
+    if (index === -1) return
+    updateQuestion(index, {
       image_base64: base64 || '',
       image_url: base64 || null,
       image_alt_text: ''
@@ -383,9 +417,15 @@ export const PollManagement = (props) => {
       hide_results_until_finished: hideResultsUntilFinished
     }
     const submitExpandedIndex = expandedIndex
+    const submittedRevision = editRevisionRef.current
 
     api.poll.change(payload, props.pollId)
       .done((response) => {
+        setAlert({ type: 'success', message: TRANSLATED.updated })
+        if (props.reloadOnSuccess) updateDashboard()
+        // Ignore a response that arrives after further edits: the local state
+        // is newer than the saved poll, so it must stay untouched and dirty.
+        if (editRevisionRef.current !== submittedRevision) return
         const normalized = response.questions.map((question) => ({
           ...normalizeQuestion(question),
           image_base64: null
@@ -402,8 +442,6 @@ export const PollManagement = (props) => {
           setExpandedKey(null)
         }
         setDirty(false)
-        setAlert({ type: 'success', message: TRANSLATED.updated })
-        if (props.reloadOnSuccess) updateDashboard()
       })
       .fail((xhr) => {
         let questionErrors = []
@@ -437,6 +475,25 @@ export const PollManagement = (props) => {
       })
   }
 
+  if (loadFailed) {
+    return (
+      <div className="poll-management">
+        <Alert type="danger" message={TRANSLATED.loadFailed} />
+        <button
+          type="button"
+          className="btn btn--primary"
+          onClick={() => setLoadAttempt((attempt) => attempt + 1)}
+        >
+          {TRANSLATED.retry}
+        </button>
+      </div>
+    )
+  }
+
+  // Do not offer the editor before the questions were loaded: an empty editor
+  // would submit an empty question list.
+  if (!loaded) return null
+
   return (
     <form className="poll-management" onSubmit={handleSubmit}>
       <section className="poll-management__questions">
@@ -453,7 +510,7 @@ export const PollManagement = (props) => {
           onPointerDown={handleListPointerDown}
           onPointerMove={handleListPointerMove}
           onPointerUp={handleListPointerUp}
-          onPointerCancel={handleListPointerUp}
+          onPointerCancel={handleListPointerCancel}
         >
           {questions.map((question, index) => (
             <li key={question.key} className="poll-management__list-item">
@@ -515,7 +572,10 @@ export const PollManagement = (props) => {
               <input
                 type="checkbox"
                 id="allowUnregisteredUsersCheckbox"
-                onChange={() => setAllowUnregisteredUsers((value) => !value)}
+                onChange={() => {
+                  setAllowUnregisteredUsers((value) => !value)
+                  markDirty()
+                }}
                 checked={allowUnregisteredUsers}
                 aria-describedby="votingDescription"
               />
@@ -531,7 +591,10 @@ export const PollManagement = (props) => {
             <input
               type="checkbox"
               id="hideResultsUntilFinishedCheckbox"
-              onChange={() => setHideResultsUntilFinished((value) => !value)}
+              onChange={() => {
+                setHideResultsUntilFinished((value) => !value)
+                markDirty()
+              }}
               checked={hideResultsUntilFinished}
               aria-describedby="hideResultsDescription"
             />

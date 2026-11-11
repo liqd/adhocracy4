@@ -18,6 +18,19 @@ export const hasValidAnswer = (question, answer) => {
   return hasChoice || hasOtherAnswer
 }
 
+/**
+ * An answer object without any content means the participant cleared a
+ * previously saved answer. It counts as skipped rather than invalid.
+ */
+export const isEmptyAnswer = (answer) => {
+  if (!answer) return true
+  const hasChoices = Array.isArray(answer.choices) && answer.choices.length > 0
+  const hasOpenAnswer = typeof answer.open_answer === 'string' && answer.open_answer.trim() !== ''
+  const hasOtherAnswer = typeof answer.other_choice_answer === 'string' &&
+    answer.other_choice_answer.trim() !== ''
+  return !hasChoices && !hasOpenAnswer && !hasOtherAnswer
+}
+
 export const buildVoteData = (userAnswers) => {
   const voteData = {}
   Object.entries(userAnswers).forEach(([questionId, answer]) => {

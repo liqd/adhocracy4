@@ -4,7 +4,8 @@ import django from 'django'
 import { TextareaWithCounter } from './TextareaWithCounter'
 
 const translated = {
-  other: django.gettext('other')
+  other: django.gettext('other'),
+  selected: django.gettext('Selected')
 }
 
 const ChoiceInput = ({
@@ -35,7 +36,10 @@ const ChoiceInput = ({
         <div className="poll-choice__result-icon">
           {checked
             ? (
-              <i className="fas fa-check-circle poll-choice__check-icon" />
+              <>
+                <i className="fas fa-check-circle poll-choice__check-icon" aria-hidden="true" />
+                <span className="visually-hidden">{translated.selected}</span>
+              </>
               )
             : (
               <div className="poll-choice__empty-circle" />

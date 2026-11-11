@@ -1,32 +1,50 @@
 import React from 'react'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
 
 let mockPollData = null
 let mockSavedData = null
 let mockChangeResponse = { questions: [] }
 let mockChangeFails = false
+let mockChangePending = false
+let mockLastChangeDeferred = null
 
-const mockMakeDeferred = (result, fails, failArg) => ({
-  done (cb) {
-    if (!fails) cb(result)
-    return this
-  },
-  fail (cb) {
-    if (fails) cb(failArg)
-    return this
+const mockMakeDeferred = (result, fails, failArg, pending = false) => {
+  let doneCallback = null
+  let failCallback = null
+  return {
+    done (cb) {
+      doneCallback = cb
+      if (!pending && !fails) cb(result)
+      return this
+    },
+    fail (cb) {
+      failCallback = cb
+      if (!pending && fails) cb(failArg)
+      return this
+    },
+    resolve (data) {
+      if (doneCallback) doneCallback(data)
+    },
+    reject (arg) {
+      if (failCallback) failCallback(arg)
+    }
   }
-})
+}
 
 jest.mock('../../../static/api', () => ({
   __esModule: true,
   default: {
     poll: {
       get: jest.fn(() => mockMakeDeferred(mockPollData, false)),
-      change: jest.fn(() => (
-        mockChangeFails
-          ? mockMakeDeferred(null, true, { responseText: JSON.stringify(mockChangeResponse) })
-          : mockMakeDeferred(mockSavedData, false)
-      ))
+      change: jest.fn(() => {
+        mockLastChangeDeferred = mockMakeDeferred(
+          mockSavedData,
+          mockChangeFails,
+          { responseText: JSON.stringify(mockChangeResponse) },
+          mockChangePending
+        )
+        return mockLastChangeDeferred
+      })
     }
   }
 }))
@@ -74,6 +92,8 @@ describe('PollManagement', () => {
     jest.clearAllMocks()
     resetLocalKeys()
     mockChangeFails = false
+    mockChangePending = false
+    mockLastChangeDeferred = null
     mockPollData = {
       allow_unregistered_users: false,
       hide_results_until_finished: false,
@@ -339,5 +359,91 @@ describe('PollManagement', () => {
     const labels = Array.from(container.querySelectorAll('.poll-management__label')).map((el) => el.textContent)
     expect(labels[0]).toBe('Second question')
     expect(labels[1]).toBe('First question')
+  })
+
+  it('does not reorder when the touch gesture is canceled', async () => {
+    class PointerEventPolyfill extends MouseEvent {
+      constructor (type, params = {}) {
+        super(type, params)
+        this.pointerType = params.pointerType || ''
+        this.pointerId = params.pointerId ?? 0
+      }
+    }
+    window.PointerEvent = PointerEventPolyfill
+
+    const { container } = renderManagement()
+    await screen.findByText('First question')
+
+    const listItems = container.querySelectorAll('.poll-management__list-item')
+    const first = listItems[0]
+    const second = listItems[1]
+    const handle = first.querySelector('.poll-management__drag-handle')
+    const list = container.querySelector('.poll-management__list')
+
+    Element.prototype.setPointerCapture = jest.fn()
+    Element.prototype.releasePointerCapture = jest.fn()
+    Element.prototype.hasPointerCapture = jest.fn(() => true)
+    document.elementFromPoint = jest.fn((_x, y) => (
+      y < 50 ? first : second
+    ))
+
+    fireEvent.pointerDown(handle, { pointerType: 'touch', clientX: 10, clientY: 10 })
+    fireEvent.pointerMove(list, { pointerId: 1, clientX: 10, clientY: 60 })
+    fireEvent.pointerCancel(list, { pointerId: 1, clientX: 10, clientY: 60 })
+
+    const labels = Array.from(container.querySelectorAll('.poll-management__label')).map((el) => el.textContent)
+    expect(labels[0]).toBe('First question')
+    expect(labels[1]).toBe('Second question')
+  })
+
+  it('does not delete the last remaining question', async () => {
+    mockPollData = {
+      allow_unregistered_users: false,
+      hide_results_until_finished: false,
+      questions: [choiceQuestion]
+    }
+    const { container } = renderManagement()
+    await screen.findByText('First question')
+
+    fireEvent.click(screen.getByLabelText('Delete question'))
+    fireEvent.click(screen.getByLabelText('Confirm delete'))
+
+    expect(container.querySelectorAll('.poll-management__list-item')).toHaveLength(1)
+    expect(screen.getByText('First question')).toBeInTheDocument()
+  })
+
+  it('hides the editor and offers a retry when loading fails', async () => {
+    api.poll.get.mockImplementationOnce(() => mockMakeDeferred(null, true, null))
+    renderManagement()
+
+    expect(await screen.findByText('The poll could not be loaded. Please try again.')).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Save' })).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }))
+
+    expect(await screen.findByText('First question')).toBeInTheDocument()
+    expect(api.poll.get).toHaveBeenCalledTimes(2)
+  })
+
+  it('keeps edits made while a save is pending', async () => {
+    mockChangePending = true
+    renderManagement()
+    fireEvent.click(await screen.findByText('First question'))
+
+    const textarea = screen.getByRole('textbox', { name: /Question/ })
+    fireEvent.change(textarea, { target: { value: 'Before save' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }))
+    expect(api.poll.change).toHaveBeenCalledTimes(1)
+
+    fireEvent.change(textarea, { target: { value: 'Edited while saving' } })
+    await act(async () => {
+      mockLastChangeDeferred.resolve(mockSavedData)
+    })
+
+    expect(screen.getByRole('textbox', { name: /Question/ })).toHaveValue('Edited while saving')
+
+    const unload = new Event('beforeunload', { cancelable: true })
+    window.dispatchEvent(unload)
+    expect(unload.defaultPrevented).toBe(true)
   })
 })

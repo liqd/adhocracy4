@@ -40,6 +40,8 @@ const PollQuestions = ({
     state.allowUnregisteredUsers &&
     !state.isAuthenticated
 
+  const canChangeAnswer = state.isAuthenticated && !state.isReadOnly && state.canVote
+
   useEffect(() => {
     if (state.state === STATES.ANSWERING || state.state === STATES.SUBMITTING) {
       document.body.classList.add('poll-answering')
@@ -62,7 +64,8 @@ const PollQuestions = ({
     const isStart = state.state === STATES.START_SCREEN
     const isResults = state.state === STATES.RESULTS
 
-    cta.hidden = !canParticipate || !(isStart || isResults)
+    cta.hidden = !canParticipate ||
+      !(isStart || (isResults && (!state.hasUserVote || canChangeAnswer)))
     if (isStart) cta.textContent = django.gettext('Start poll')
     if (isResults) {
       cta.textContent = state.hasUserVote
@@ -76,7 +79,7 @@ const PollQuestions = ({
     }
     cta.addEventListener('click', handler)
     return () => cta.removeEventListener('click', handler)
-  }, [state.state, state.canVote, state.hasUserVote, actions])
+  }, [state.state, state.canVote, state.hasUserVote, state.isAuthenticated, state.isReadOnly, actions])
 
   const hasPhaseCta = typeof document !== 'undefined' && !!document.querySelector('[data-poll-cta]')
 
@@ -100,6 +103,7 @@ const PollQuestions = ({
               totalParticipants={state.totalParticipants}
               hasUserVote={state.hasUserVote}
               votingEnded={state.votingEnded}
+              canChangeAnswer={canChangeAnswer}
               alert={state.alert}
               onBackToPoll={actions.handleBackToPoll}
               onChangeAnswer={actions.handleChangeAnswer}
@@ -110,6 +114,7 @@ const PollQuestions = ({
         return (
           <PollAnswerReview
             questions={state.questions}
+            canChangeAnswer={canChangeAnswer}
             onChangeAnswer={actions.handleChangeAnswer}
           />
         )

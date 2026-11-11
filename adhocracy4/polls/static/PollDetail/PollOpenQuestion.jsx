@@ -10,8 +10,10 @@ export const PollOpenQuestion = ({
   questionImagesEnabled
 }) => {
   const getUserOpenAnswer = () => {
-    const answer = question.answers.find((item) => item.id === question.userAnswer)
-    return question.open_answer || answer?.answer || ''
+    const answer = question.answers?.find((item) => item.id === question.userAnswer)
+    // Use a nullish fallback so a draft that was explicitly cleared ('')
+    // stays empty instead of being replaced by the saved API answer.
+    return question.open_answer ?? answer?.answer ?? ''
   }
 
   const [userAnswer, setUserAnswer] = useState(getUserOpenAnswer())

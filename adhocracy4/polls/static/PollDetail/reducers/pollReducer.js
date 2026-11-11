@@ -47,6 +47,20 @@ export const initialState = {
   captchaEnabled: false
 }
 
+// The API returns no user answer for anonymous guests, so keep the locally
+// given answers for the review screen shown after submitting.
+const mergeUserAnswers = (questions, userAnswers) =>
+  (questions || []).map((question) => {
+    const answer = userAnswers?.[question.id]
+    if (!answer) return question
+    return {
+      ...question,
+      userChoices: answer.choices?.length ? answer.choices : (question.userChoices || []),
+      open_answer: answer.open_answer || question.open_answer || '',
+      other_choice_answer: answer.other_choice_answer || question.other_choice_answer || ''
+    }
+  })
+
 const reducers = {
   [ACTIONS.DATA_LOADED]: (state, payload) => ({
     ...state,
@@ -107,8 +121,12 @@ const reducers = {
   [ACTIONS.SKIP_QUESTION]: (state) => {
     if (state.currentQuestionIndex >= state.questions.length - 1) return state
     const currentQuestionId = state.questions[state.currentQuestionIndex].id
-    const updatedAnswers = { ...state.userAnswers }
-    delete updatedAnswers[currentQuestionId]
+    // Send an explicit empty vote so skipping also clears an already saved
+    // answer; otherwise the draft and the persisted vote would disagree.
+    const updatedAnswers = {
+      ...state.userAnswers,
+      [currentQuestionId]: { choices: [], open_answer: '', other_choice_answer: '' }
+    }
     return {
       ...state,
       currentQuestionIndex: state.currentQuestionIndex + 1,
@@ -131,15 +149,14 @@ const reducers = {
   [ACTIONS.SUBMIT_START]: (state) => ({
     ...state,
     state: STATES.SUBMITTING,
-    isSubmitting: true,
-    checkedTermsOfUse: false
+    isSubmitting: true
   }),
 
   [ACTIONS.SUBMIT_SUCCESS]: (state, payload) => ({
     ...state,
     state: STATES.RESULTS,
     results: payload.results,
-    questions: payload.questions,
+    questions: mergeUserAnswers(payload.questions, state.userAnswers),
     hasUserVote: true,
     isReadOnly: payload.questions?.length > 0 && !!payload.questions[0]?.isReadOnly,
     votingEnded: !!payload.votingEnded,
@@ -157,6 +174,7 @@ const reducers = {
     state: STATES.ANSWERING,
     isSubmitting: false,
     alert: payload,
+    captcha: '',
     refreshCaptcha: state.refreshCaptcha + 1
   }),
 

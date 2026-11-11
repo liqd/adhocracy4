@@ -5,25 +5,10 @@ jest.mock('django', () => ({
   gettext: (text) => text
 }))
 
-const mockOpenModal = jest.fn()
-const mockUppy = {
-  use: jest.fn(),
-  on: jest.fn(),
-  getPlugin: jest.fn(() => ({ openModal: mockOpenModal })),
-  getFiles: jest.fn(() => []),
-  removeFile: jest.fn(),
-  upload: jest.fn(() => Promise.resolve()),
-  destroy: jest.fn()
-}
-
-jest.mock('@uppy/core', () => ({
-  __esModule: true,
-  default: jest.fn(() => mockUppy)
-}))
-jest.mock('@uppy/dashboard', () => ({ __esModule: true, default: jest.fn() }))
-jest.mock('@uppy/image-editor', () => ({ __esModule: true, default: jest.fn() }))
-
+import Uppy from '@uppy/core'
 import QuestionImageUploadButton from '../PollDashboard/QuestionImageUploadButton'
+
+const getUppy = () => Uppy.mock.results[Uppy.mock.results.length - 1].value
 
 describe('QuestionImageUploadButton', () => {
   const defaults = {
@@ -33,6 +18,10 @@ describe('QuestionImageUploadButton', () => {
     altText: '',
     onAltTextChange: jest.fn()
   }
+
+  beforeEach(() => {
+    Uppy.mockClear()
+  })
 
   it('hides the alt text field when no image is uploaded', () => {
     render(<QuestionImageUploadButton {...defaults} question={{ image_url: null }} />)
@@ -53,6 +42,25 @@ describe('QuestionImageUploadButton', () => {
   it('opens the Uppy image editor', () => {
     render(<QuestionImageUploadButton {...defaults} question={{ image_url: null }} />)
     fireEvent.click(screen.getByLabelText('Upload image'))
-    expect(mockOpenModal).toHaveBeenCalled()
+    expect(getUppy().getPlugin('Dashboard').openModal).toHaveBeenCalled()
+  })
+
+  it('starts the upload when the image editor completes', () => {
+    render(<QuestionImageUploadButton {...defaults} question={{ image_url: null }} />)
+    const uppy = getUppy()
+    const upload = jest.spyOn(uppy, 'upload')
+
+    uppy.emit('file-editor:complete')
+
+    expect(upload).toHaveBeenCalled()
+  })
+
+  it('stops the image editor when the upload is canceled', () => {
+    render(<QuestionImageUploadButton {...defaults} question={{ image_url: null }} />)
+    const uppy = getUppy()
+
+    uppy.emit('file-editor:cancel')
+
+    expect(uppy.getPlugin('ImageEditor').stop).toHaveBeenCalled()
   })
 })

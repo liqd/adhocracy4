@@ -9,6 +9,7 @@ const ResultsView = ({
   totalParticipants,
   hasUserVote,
   votingEnded,
+  canChangeAnswer,
   alert,
   onBackToPoll,
   onChangeAnswer,
@@ -64,7 +65,7 @@ const ResultsView = ({
             {hasUserVote
               ? (
                 <div className="text-end">
-                  {!votingEnded && (
+                  {!votingEnded && canChangeAnswer && (
                     <button
                       type="button"
                       className="btn btn--transparent-bordered"

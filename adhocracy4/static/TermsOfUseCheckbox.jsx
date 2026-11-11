@@ -7,7 +7,10 @@ const translated = {
 }
 
 export const TermsOfUseCheckbox = (props) => {
-  const [checked, setChecked] = useState(false)
+  // Initialize from the parent so remounting (e.g. after going back in the
+  // poll funnel) does not show an unchecked box while the parent still treats
+  // the terms as accepted.
+  const [checked, setChecked] = useState(Boolean(props.checked))
   const handleOnChange = (e) => {
     setChecked(e.target.checked)
     props.onChange(e.target.checked)

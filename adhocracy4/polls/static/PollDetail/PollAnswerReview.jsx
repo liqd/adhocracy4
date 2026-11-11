@@ -6,7 +6,7 @@ import { ChoiceRow } from './ChoiceRow'
 import { ConfidentialNotice } from './ConfidentialNotice'
 import QuestionImage from './QuestionImage'
 
-const PollAnswerReview = ({ questions, onChangeAnswer, hideChangeButton }) => {
+const PollAnswerReview = ({ questions, canChangeAnswer, onChangeAnswer, hideChangeButton }) => {
   const [bannerDismissed, setBannerDismissed] = useState(false)
 
   return (
@@ -47,12 +47,14 @@ const PollAnswerReview = ({ questions, onChangeAnswer, hideChangeButton }) => {
               {!question.is_open &&
                 question.choices.map((choice) => {
                   const isChosen = (question.userChoices || []).includes(choice.id)
-                  const ownOtherAnswer =
-                    choice.is_other_choice && question.other_choice_user_answer
-                      ? question.other_choice_answers?.find(
-                        (answer) => answer.vote_id === question.other_choice_user_answer
-                      )?.answer
-                      : null
+                  const ownOtherAnswer = choice.is_other_choice
+                    ? (question.other_choice_answer ||
+                      (question.other_choice_user_answer
+                        ? question.other_choice_answers?.find(
+                          (answer) => answer.vote_id === question.other_choice_user_answer
+                        )?.answer
+                        : null))
+                    : null
 
                   return (
                     <div key={choice.id}>
@@ -75,7 +77,8 @@ const PollAnswerReview = ({ questions, onChangeAnswer, hideChangeButton }) => {
 
               {question.is_open && (
                 <div className="poll-answer-review__open-answer">
-                  {question.answers?.find((answer) => answer.id === question.userAnswer)?.answer ||
+                  {question.open_answer ||
+                    question.answers?.find((answer) => answer.id === question.userAnswer)?.answer ||
                     django.gettext('No answer given.')}
                 </div>
               )}
@@ -84,7 +87,7 @@ const PollAnswerReview = ({ questions, onChangeAnswer, hideChangeButton }) => {
         </div>
       ))}
 
-      {!hideChangeButton && (
+      {!hideChangeButton && canChangeAnswer && (
         <div className="poll-answer-review__buttons">
           <button
             type="button"

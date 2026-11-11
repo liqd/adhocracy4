@@ -170,6 +170,20 @@ describe('QuestionEditor', () => {
     expect(screen.getByRole('textbox', { name: /Explanation/ })).toHaveValue('because')
   })
 
+  it('clears the explanation when the field is removed', () => {
+    const onHelpTextChange = jest.fn()
+    render(
+      <QuestionEditor
+        question={{ ...question, help_text: 'because' }}
+        {...defaults}
+        onHelpTextChange={onHelpTextChange}
+      />
+    )
+
+    fireEvent.click(screen.getByRole('button', { name: 'Explanation' }))
+    expect(onHelpTextChange).toHaveBeenCalledWith('')
+  })
+
   it('hides answer options but keeps the answer type for open questions', () => {
     render(
       <QuestionEditor question={{ ...question, is_open: true, choices: [] }} {...defaults} />

@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { ACTIONS } from '../utils/stateMachine'
-import { hasValidAnswer, buildVoteData } from '../utils/pollHelpers'
+import { hasValidAnswer, isEmptyAnswer, buildVoteData } from '../utils/pollHelpers'
 import {
   ALERT_INVALID,
   ALERT_SUCCESS,
@@ -64,7 +64,9 @@ export const usePollActions = (state, dispatch, pollId) => {
 
     const allValid = state.questions.every((question) => {
       const answer = state.userAnswers[question.id]
-      return !answer || hasValidAnswer(question, answer)
+      // Cleared or skipped answers are allowed, but a selected "other" choice
+      // still needs its text.
+      return !answer || isEmptyAnswer(answer) || hasValidAnswer(question, answer)
     })
     if (!allValid) {
       dispatch({ type: ACTIONS.SET_ALERT, payload: ALERT_INCOMPLETE })

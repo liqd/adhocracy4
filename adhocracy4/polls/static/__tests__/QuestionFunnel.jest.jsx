@@ -126,6 +126,12 @@ describe('QuestionFunnel', () => {
     expect(screen.getByText('Submitting...')).toBeDisabled()
   })
 
+  it('renders the current question read-only while submitting', () => {
+    render(<QuestionFunnel {...baseProps} currentNumber={3} totalQuestions={3} isLoading />)
+    const input = screen.getByText('Red').closest('label').querySelector('input')
+    expect(input).toBeDisabled()
+  })
+
   it('enriches the question with the current answer and forwards changes', () => {
     const onAnswerChange = jest.fn()
     render(
