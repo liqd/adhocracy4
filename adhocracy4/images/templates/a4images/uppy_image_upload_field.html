@@ -16,7 +16,7 @@ Optional context:
   output resolution is given.
 {% endcomment %}
 
-<div class="uppy-image-upload-field uppy-image-upload-field--dropzone">
+<div class="uppy-image-upload-field uppy-image-upload-field--dropzone{% if field.value %} has-preview{% endif %}">
     <span class="form-label" id="{{ field.id_for_label }}-label">
         {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% translate 'This field is required' %}">*</span>{% endif %}
     </span>

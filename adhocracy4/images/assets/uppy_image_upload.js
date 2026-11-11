@@ -159,6 +159,18 @@ function initContainer (container) {
     return
   }
 
+  // Show the preview of an existing image (edit forms) even before the user
+  // interacts with the field.
+  const previewImage = uploadField.querySelector(
+    'img[data-upload-preview="' + config.inputId + '"]'
+  )
+  if (previewImage) {
+    const previewSrc = previewImage.getAttribute('src')
+    if (previewSrc && previewSrc !== PLACEHOLDER_SRC) {
+      uploadField.classList.add('has-preview')
+    }
+  }
+
   actionParent.insertBefore(trigger, actionParent.firstChild)
 
   container.dataset.uppyInitialized = 'true'
