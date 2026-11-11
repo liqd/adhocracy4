@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.addEventListener('click', function (event) {
     document
-      .querySelectorAll('details.moderation-item__menu[open]')
+      .querySelectorAll('details.moderation-item__menu[open], details.moderation-card__menu[open]')
       .forEach(function (menu) {
         if (!menu.contains(event.target)) {
           menu.open = false
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return
     }
     document
-      .querySelectorAll('details.moderation-item__menu[open]')
+      .querySelectorAll('details.moderation-item__menu[open], details.moderation-card__menu[open]')
       .forEach(function (menu) {
         menu.open = false
       })
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
       window.setTimeout(function () {
         const item = document.getElementById(event.detail.itemId)
         const button =
-          item && item.querySelector('.moderation-item__menu-button')
+          item && (item.querySelector('.moderation-item__menu-button') || item.querySelector('.moderation-card__menu-button'))
         if (button) {
           button.focus()
         } else if (item) {
