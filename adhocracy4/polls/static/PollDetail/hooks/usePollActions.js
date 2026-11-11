@@ -15,6 +15,10 @@ export const usePollActions = (state, dispatch, pollId) => {
 
   const handleStartPoll = useCallback(() => {
     if (!state.canVote) return
+    // Hide the phase info before the funnel mounts: the funnel scrolls itself
+    // into view while measuring its position, so removing content above it
+    // afterwards would push the progress bar out of the viewport.
+    document.body.classList.add('poll-answering')
     dispatch({ type: ACTIONS.START_POLL })
   }, [state.canVote, dispatch])
 
@@ -23,6 +27,8 @@ export const usePollActions = (state, dispatch, pollId) => {
   }, [dispatch])
 
   const handleChangeAnswer = useCallback(() => {
+    // See handleStartPoll: apply the layout change before the funnel measures.
+    document.body.classList.add('poll-answering')
     dispatch({ type: ACTIONS.CHANGE_ANSWER })
   }, [dispatch])
 

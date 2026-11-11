@@ -97,11 +97,13 @@ describe('PollManagement', () => {
     mockPollData = {
       allow_unregistered_users: false,
       hide_results_until_finished: false,
+      presentation_mode: 'multistep',
       questions: [choiceQuestion, openQuestion]
     }
     mockSavedData = {
       allow_unregistered_users: false,
       hide_results_until_finished: false,
+      presentation_mode: 'multistep',
       questions: [choiceQuestion, openQuestion]
     }
     mockChangeResponse = { questions: [{ label: ['Please provide a question.'] }, {}] }
@@ -187,7 +189,8 @@ describe('PollManagement', () => {
     expect(screen.getAllByText(/^Answer #/)).toHaveLength(2)
 
     // switching to multiple choice keeps the answers
-    fireEvent.click(screen.getByRole('button', { name: 'Multiple choice' }))
+    fireEvent.click(screen.getAllByRole('button', { name: 'Multiple choice' })
+      .find((button) => button.classList.contains('poll-management__answer-type-btn')))
     expect(screen.getByText('Answer option')).toBeInTheDocument()
     expect(screen.getAllByText(/^Answer #/)).toHaveLength(2)
   })
@@ -207,7 +210,7 @@ describe('PollManagement', () => {
     const { container } = renderManagement()
     await screen.findByText('First question')
     fireEvent.click(screen.getAllByText('New question')[0])
-    fireEvent.click(screen.getAllByText('Multiple choice question')[0])
+    fireEvent.click(screen.getAllByRole('button', { name: 'Multiple choice' })[0])
 
     const types = Array.from(container.querySelectorAll('.poll-management__type')).map((el) => el.textContent)
     expect(types[types.length - 1]).toBe('Multiple choice')
@@ -237,6 +240,7 @@ describe('PollManagement', () => {
     expect(pollId).toBe(1)
     expect(payload.allow_unregistered_users).toBe(false)
     expect(payload.hide_results_until_finished).toBe(false)
+    expect(payload.presentation_mode).toBe('multistep')
     expect(payload.questions).toHaveLength(2)
     expect(payload.questions[0]).toEqual({
       id: 1,
@@ -293,6 +297,21 @@ describe('PollManagement', () => {
     const checkbox = await screen.findByLabelText('Allow unregistered users to vote')
     fireEvent.click(checkbox)
     expect(checkbox).toBeChecked()
+  })
+
+  it('saves the chosen presentation mode', async () => {
+    renderManagement()
+    await screen.findByText('First question')
+
+    const multistep = screen.getByLabelText('Answer in multiple steps')
+    expect(multistep).toBeChecked()
+
+    fireEvent.click(multistep)
+    expect(multistep).not.toBeChecked()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Save' }))
+    const [payload] = api.poll.change.mock.calls[0]
+    expect(payload.presentation_mode).toBe('longform')
   })
 
   it('collapses an expanded question when its row is clicked again', async () => {

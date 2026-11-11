@@ -5,6 +5,7 @@ import Alert from '../../../static/Alert'
 import Captcha from '../../../static/Captcha'
 import StartScreen from './StartScreen'
 import QuestionFunnel from './QuestionFunnel'
+import PollLongform from './PollLongform'
 import ResultsView from './ResultsView'
 import PollAnswerReview from './PollAnswerReview'
 import { LoadingSpinner } from './LoadingSpinner'
@@ -136,42 +137,68 @@ const PollQuestions = ({
         )
 
       case STATES.SUBMITTING:
-      case STATES.ANSWERING:
+      case STATES.ANSWERING: {
+        const captcha = showCaptcha && (
+          <Captcha
+            key={state.refreshCaptcha}
+            onChange={actions.handleSetCaptcha}
+            apiUrl={captchaUrl}
+            name="id_captcheck"
+            refresh={state.refreshCaptcha}
+          />
+        )
+
         return (
           <div className="pollquestionlist-container">
             <form onSubmit={(e) => e.preventDefault()}>
-              <QuestionFunnel
-                currentQuestion={currentQuestion}
-                currentAnswer={currentAnswer}
-                currentNumber={state.currentQuestionIndex + 1}
-                totalQuestions={state.questions.length}
-                allowUnregisteredUsers={state.allowUnregisteredUsers}
-                errors={state.errors}
-                onAnswerChange={actions.handleAnswerChange}
-                onBack={actions.handleBack}
-                onSkip={actions.handleSkip}
-                onNext={actions.handleNext}
-                onSubmit={actions.handleSubmitAll}
-                isLoading={state.isSubmitting}
-                useTermsOfUse={state.useTermsOfUse}
-                agreedTermsOfUse={state.agreedTermsOfUse}
-                orgTermsUrl={state.orgTermsUrl}
-                checkedTermsOfUse={state.checkedTermsOfUse}
-                onSetCheckedTerms={actions.handleSetCheckedTerms}
-                showCaptcha={showCaptcha}
-                captcha={state.captcha}
-                questionImagesEnabled={questionImagesEnabled}
-              >
-                {showCaptcha && (
-                  <Captcha
-                    key={state.refreshCaptcha}
-                    onChange={actions.handleSetCaptcha}
-                    apiUrl={captchaUrl}
-                    name="id_captcheck"
-                    refresh={state.refreshCaptcha}
-                  />
-                )}
-              </QuestionFunnel>
+              {state.presentationMode === 'longform'
+                ? (
+                  <PollLongform
+                    questions={state.questions}
+                    answers={state.userAnswers}
+                    allowUnregisteredUsers={state.allowUnregisteredUsers}
+                    questionImagesEnabled={questionImagesEnabled}
+                    errors={state.errors}
+                    useTermsOfUse={state.useTermsOfUse}
+                    agreedTermsOfUse={state.agreedTermsOfUse}
+                    orgTermsUrl={state.orgTermsUrl}
+                    checkedTermsOfUse={state.checkedTermsOfUse}
+                    onSetCheckedTerms={actions.handleSetCheckedTerms}
+                    showCaptcha={showCaptcha}
+                    captcha={state.captcha}
+                    onAnswerChange={actions.handleAnswerChange}
+                    onSubmit={actions.handleSubmitAll}
+                    isLoading={state.isSubmitting}
+                  >
+                    {captcha}
+                  </PollLongform>
+                  )
+                : (
+                  <QuestionFunnel
+                    currentQuestion={currentQuestion}
+                    currentAnswer={currentAnswer}
+                    currentNumber={state.currentQuestionIndex + 1}
+                    totalQuestions={state.questions.length}
+                    allowUnregisteredUsers={state.allowUnregisteredUsers}
+                    errors={state.errors}
+                    onAnswerChange={actions.handleAnswerChange}
+                    onBack={actions.handleBack}
+                    onSkip={actions.handleSkip}
+                    onNext={actions.handleNext}
+                    onSubmit={actions.handleSubmitAll}
+                    isLoading={state.isSubmitting}
+                    useTermsOfUse={state.useTermsOfUse}
+                    agreedTermsOfUse={state.agreedTermsOfUse}
+                    orgTermsUrl={state.orgTermsUrl}
+                    checkedTermsOfUse={state.checkedTermsOfUse}
+                    onSetCheckedTerms={actions.handleSetCheckedTerms}
+                    showCaptcha={showCaptcha}
+                    captcha={state.captcha}
+                    questionImagesEnabled={questionImagesEnabled}
+                  >
+                    {captcha}
+                  </QuestionFunnel>
+                  )}
             </form>
 
             {state.alert && (
@@ -179,9 +206,7 @@ const PollQuestions = ({
             )}
           </div>
         )
-
-      default:
-        return null
+      }
     }
   }
 

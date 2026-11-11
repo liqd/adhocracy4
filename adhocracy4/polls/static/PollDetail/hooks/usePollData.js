@@ -38,6 +38,7 @@ const normalizePollData = (poll, captchaEnabled) => {
     userAnswers,
     results: JSON.parse(JSON.stringify(poll.questions)),
     allowUnregisteredUsers: poll.allow_unregistered_users,
+    presentationMode: poll.presentation_mode || 'multistep',
     guestCanVote: poll.guest_can_vote,
     canVote: !!poll.can_vote,
     isAuthenticated,

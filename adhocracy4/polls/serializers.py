@@ -263,6 +263,7 @@ class PollSerializer(serializers.ModelSerializer):
             "questions",
             "has_user_vote",
             "allow_unregistered_users",
+            "presentation_mode",
             "guest_can_vote",
             "can_vote",
             "voting_ended",
@@ -312,6 +313,7 @@ class PollSerializer(serializers.ModelSerializer):
         service = PollUpdateService(instance, request)
         service.update_allow_unregistered(validated_data)
         service.update_hide_results(validated_data)
+        service.update_presentation_mode(validated_data)
 
         questions_data = service.parse_questions()
         if not questions_data:

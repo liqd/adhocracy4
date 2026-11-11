@@ -22,6 +22,8 @@ const TRANSLATED = {
   allowUnregisteredUsersSR: django.gettext('Enable this option to allow users who are not registered to participate in the voting process.'),
   hideResultsUntilFinishedLabel: django.gettext('Hide results until participation is over'),
   hideResultsUntilFinishedSR: django.gettext('Enable this option to hide the poll results from participants until the participation phase has ended.'),
+  presentationMultistepLabel: django.gettext('Answer in multiple steps'),
+  presentationMultistepSR: django.gettext('Disable this option to answer all questions on one page.'),
   questionsTitle: django.gettext('Questions'),
   addQuestion: django.gettext('New question'),
   save: django.gettext('Save'),
@@ -77,6 +79,7 @@ export const PollManagement = (props) => {
   const [questions, setQuestions] = useState([])
   const [allowUnregisteredUsers, setAllowUnregisteredUsers] = useState(false)
   const [hideResultsUntilFinished, setHideResultsUntilFinished] = useState(false)
+  const [multistep, setMultistep] = useState(true)
   const [errors, setErrors] = useState([])
   const [alert, setAlert] = useState(null)
   const [expandedKey, setExpandedKey] = useState(null)
@@ -102,6 +105,7 @@ export const PollManagement = (props) => {
       setQuestions(initialQuestions)
       setAllowUnregisteredUsers(result.allow_unregistered_users)
       setHideResultsUntilFinished(result.hide_results_until_finished)
+      setMultistep(result.presentation_mode !== 'longform')
       setLoaded(true)
       setAlert(null)
     }).fail(() => {
@@ -414,7 +418,8 @@ export const PollManagement = (props) => {
     const payload = {
       questions: buildQuestionsPayload(questions),
       allow_unregistered_users: allowUnregisteredUsers,
-      hide_results_until_finished: hideResultsUntilFinished
+      hide_results_until_finished: hideResultsUntilFinished,
+      presentation_mode: multistep ? 'multistep' : 'longform'
     }
     const submitExpandedIndex = expandedIndex
     const submittedRevision = editRevisionRef.current
@@ -567,6 +572,24 @@ export const PollManagement = (props) => {
 
         <section className="poll-management__options">
           <h2 className="poll-management__section-title">{TRANSLATED.optionsTitle}</h2>
+          <div className="poll-management__option form-check">
+            <input
+              type="checkbox"
+              id="presentationMultistepCheckbox"
+              checked={multistep}
+              onChange={() => {
+                setMultistep((value) => !value)
+                markDirty()
+              }}
+              aria-describedby="presentationDescription"
+            />
+            <label htmlFor="presentationMultistepCheckbox">
+              {TRANSLATED.presentationMultistepLabel}
+            </label>
+            <p id="presentationDescription" className="visually-hidden">
+              {TRANSLATED.presentationMultistepSR}
+            </p>
+          </div>
           {props.enableUnregisteredUsers && (
             <div className="poll-management__option form-check">
               <input

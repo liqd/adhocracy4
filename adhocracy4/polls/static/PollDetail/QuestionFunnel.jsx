@@ -2,24 +2,9 @@ import React, { useState, useCallback, useEffect, useLayoutEffect, useRef } from
 import django from 'django'
 
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
-import { PollChoice } from './PollChoice'
-import { PollOpenQuestion } from './PollOpenQuestion'
+import { PollQuestion } from './PollQuestion'
 import ProgressBar from './ProgressBar'
 import NavigationButtons from './NavigationButtons'
-
-const ANSWER_HANDLERS = {
-  single: (value) => ({ choices: [Number(value)] }),
-  multi: (value, currentChoices = []) => {
-    const val = Number(value)
-    return {
-      choices: currentChoices.includes(val)
-        ? currentChoices.filter((choice) => choice !== val)
-        : [...currentChoices, val]
-    }
-  },
-  open: (value) => ({ open_answer: String(value) }),
-  other: (value) => ({ other_choice_answer: String(value) })
-}
 
 const QuestionFunnel = ({
   currentQuestion,
@@ -56,9 +41,37 @@ const QuestionFunnel = ({
   const [exitingAnswer, setExitingAnswer] = useState(null)
 
   useLayoutEffect(() => {
-    const top = (funnelRef.current?.getBoundingClientRect().top || 0) + window.scrollY - 100
-    window.scrollTo({ top, behavior: 'smooth' })
-    headerRef.current?.focus({ preventScroll: true })
+    // Measure after the browser settled the new layout (e.g. content above the
+    // funnel hiding), otherwise the progress bar ends up outside the viewport.
+    let frame
+    let timeout
+    const scrollToFunnel = (behavior) => {
+      if (!funnelRef.current) return
+      const top = funnelRef.current.getBoundingClientRect().top + window.scrollY - 100
+      window.scrollTo({ top: Math.max(top, 0), behavior })
+    }
+
+    frame = window.requestAnimationFrame(() => {
+      frame = window.requestAnimationFrame(() => {
+        scrollToFunnel('smooth')
+        headerRef.current?.focus({ preventScroll: true })
+        // Sticky headers may collapse while scrolling and shift the content.
+        // Correct small offsets once the smooth scroll has settled, but never
+        // fight a user who already scrolled away.
+        timeout = window.setTimeout(() => {
+          if (!funnelRef.current) return
+          const offset = funnelRef.current.getBoundingClientRect().top - 100
+          if (Math.abs(offset) > 2 && Math.abs(offset) < 80) {
+            scrollToFunnel('smooth')
+          }
+        }, 450)
+      })
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.clearTimeout(timeout)
+    }
   }, [currentQuestion.id])
 
   useLayoutEffect(() => {
@@ -92,57 +105,9 @@ const QuestionFunnel = ({
     return () => window.clearTimeout(timeout)
   }, [phase, handleExitEnd])
 
-  const enrichQuestion = useCallback((question, answer) => ({
-    ...question,
-    userChoices: answer?.choices || [],
-    open_answer: answer?.open_answer ?? question.open_answer,
-    other_choice_answer: answer?.other_choice_answer ?? question.other_choice_answer
-  }), [])
-
   const isLastQuestion = currentNumber === totalQuestions
   const isSubmitDisabled = (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
     (isLastQuestion && showCaptcha && !captcha)
-
-  const handleAnswerUpdate = (questionId, value, type) => {
-    const handler = ANSWER_HANDLERS[type]
-    if (!handler) return
-
-    const currentChoices = currentAnswer?.choices || []
-    onAnswerChange(questionId, handler(value, currentChoices))
-  }
-
-  const renderQuestion = (question, answer, interactive = true) => {
-    const questionProps = {
-      allowUnregisteredUsers,
-      question: {
-        ...enrichQuestion(question, answer),
-        // Also keep the question read-only while the submission is pending.
-        isReadOnly: Boolean(question.isReadOnly || !interactive)
-      },
-      errors,
-      questionImagesEnabled
-    }
-
-    if (question.is_open) {
-      return (
-        <PollOpenQuestion
-          key={question.id}
-          {...questionProps}
-          onOpenChange={interactive
-            ? (questionId, value) => handleAnswerUpdate(questionId, value, 'open')
-            : () => {}}
-        />
-      )
-    }
-
-    return (
-      <PollChoice
-        key={question.id}
-        {...questionProps}
-        onAnswerChange={interactive ? handleAnswerUpdate : () => {}}
-      />
-    )
-  }
 
   return (
     <div className="poll-question-funnel" ref={funnelRef}>
@@ -163,7 +128,14 @@ const QuestionFunnel = ({
               className={'poll-question-content poll-question-content--exit-' + direction}
               onAnimationEnd={handleExitEnd}
             >
-              {renderQuestion(exitingQuestion, exitingAnswer, false)}
+              <PollQuestion
+                question={exitingQuestion}
+                answer={exitingAnswer}
+                allowUnregisteredUsers={allowUnregisteredUsers}
+                questionImagesEnabled={questionImagesEnabled}
+                errors={errors}
+                disabled
+              />
             </div>
             )
           : (
@@ -171,7 +143,15 @@ const QuestionFunnel = ({
               className={'poll-question-content poll-question-content--enter-' + direction}
               onAnimationEnd={phase === 'entering' ? handleEnterEnd : undefined}
             >
-              {renderQuestion(currentQuestion, currentAnswer, !isLoading)}
+              <PollQuestion
+                question={currentQuestion}
+                answer={currentAnswer}
+                allowUnregisteredUsers={allowUnregisteredUsers}
+                questionImagesEnabled={questionImagesEnabled}
+                errors={errors}
+                disabled={isLoading}
+                onAnswerChange={onAnswerChange}
+              />
             </div>
             )}
       </div>

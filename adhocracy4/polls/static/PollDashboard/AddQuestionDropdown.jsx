@@ -3,7 +3,7 @@ import django from 'django'
 
 const TRANSLATED = {
   newQuestion: django.gettext('New question'),
-  multipleChoice: django.gettext('Multiple choice question'),
+  multipleChoice: django.gettext('Multiple choice'),
   open: django.gettext('Open question')
 }
 
