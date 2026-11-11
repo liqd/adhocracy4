@@ -513,6 +513,31 @@ def test_edit_comment(client, user, moderated_project, module_factory):
 
 
 @pytest.mark.django_db
+def test_edit_comment_cancel_returns_item(
+    client, user, moderated_project, module_factory
+):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    comment = CommentFactory(content_object=idea, comment="Old text")
+    client.login(username=user.username, password="password")
+    url = reverse(
+        "a4moderation:item-edit",
+        kwargs={
+            "project_pk": moderated_project.pk,
+            "item_type": "a4comments.comment",
+            "pk": comment.pk,
+        },
+    )
+
+    response = client.get(url, {"cancel": "1"}, HTTP_HX_REQUEST="true")
+
+    assert response.status_code == 200
+    assert b'id="moderation-item-a4comments_comment-' in response.content
+    assert not response.context.get("edit_mode")
+    assert "form" not in response.context
+
+
+@pytest.mark.django_db
 def test_report_count(client, user, moderated_project, module_factory):
     from tests.reports.factories import ReportFactory
 
