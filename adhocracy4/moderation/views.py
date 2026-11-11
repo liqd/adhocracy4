@@ -432,6 +432,8 @@ class ModerationItemEditView(
 
     def get(self, request, *args, **kwargs):
         item = self._get_item(kwargs)
+        if request.GET.get("cancel") == "1":
+            return self.render_item(request, item)
         form = self._get_form(item)
         state = get_moderation_state(request)
         return render(
