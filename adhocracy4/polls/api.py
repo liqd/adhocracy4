@@ -215,6 +215,7 @@ class PollViewSet(
             creator = self.request.user
         else:
             content_id = uuid.uuid4()
+        self.validate_answer_lengths(request.data["votes"])
         for question_id in request.data["votes"]:
             question = self.get_question(question_id)
             validators.question_belongs_to_poll(question, int(pk))
@@ -233,6 +234,38 @@ class PollViewSet(
             # voting screen again
             poll_data["questions"][0]["isReadOnly"] = True
         return Response(poll_data, status=status.HTTP_201_CREATED)
+
+    def validate_answer_lengths(self, votes):
+        """Reject open and other answers that exceed the model field limits."""
+        open_max_length = Answer._meta.get_field("answer").max_length
+        other_max_length = OtherVote._meta.get_field("answer").max_length
+
+        for vote_data in votes.values():
+            if not isinstance(vote_data, dict):
+                continue
+            open_answer = vote_data.get("open_answer") or ""
+            other_choice_answer = vote_data.get("other_choice_answer") or ""
+            if isinstance(open_answer, str) and len(open_answer) > open_max_length:
+                raise ValidationError(
+                    {
+                        "open_answer": _(
+                            "Answer must be at most %(max_length)d characters long."
+                        )
+                        % {"max_length": open_max_length}
+                    }
+                )
+            if (
+                isinstance(other_choice_answer, str)
+                and len(other_choice_answer) > other_max_length
+            ):
+                raise ValidationError(
+                    {
+                        "other_choice_answer": _(
+                            "Answer must be at most %(max_length)d characters long."
+                        )
+                        % {"max_length": other_max_length}
+                    }
+                )
 
     def save_vote(self, question, vote_data, creator, content_id):
         choices, other_choice_answer, open_answer = self.get_data(vote_data)

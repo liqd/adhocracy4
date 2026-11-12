@@ -39,6 +39,12 @@ class PollUpdateService:
         )
         self.poll.save()
 
+    def update_presentation_mode(self, validated_data):
+        self.poll.presentation_mode = validated_data.get(
+            "presentation_mode", self.poll.presentation_mode
+        )
+        self.poll.save()
+
     def parse_questions(self):
         if not hasattr(self.request, "data") or not self.request.data:
             return []

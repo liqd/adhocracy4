@@ -36,7 +36,11 @@ const config = {
     '\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
     '\\.(gif|ttf|eot|svg)$': '<rootDir>/__mocks__/fileMock.js',
     '(django)': '<rootDir>/__mocks__/djangoMock.js',
-    'react-flip-move': '<rootDir>/__mocks__/flipmoveMock.js'
+    'react-flip-move': '<rootDir>/__mocks__/flipmoveMock.js',
+    '^@uppy/core$': '<rootDir>/__mocks__/uppyCoreMock.js',
+    '^@uppy/dashboard$': '<rootDir>/__mocks__/uppyPluginMock.js',
+    '^@uppy/image-editor$': '<rootDir>/__mocks__/uppyPluginMock.js',
+    '^@uppy/locales/.*$': '<rootDir>/__mocks__/uppyLocaleMock.js'
   },
   testMatch: ['**/*.jest.js', '**/*.jest.jsx'],
   testPathIgnorePatterns: ['venv/', 'node_modules/', 'build/'],

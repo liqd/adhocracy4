@@ -10,7 +10,11 @@ const translated = {
 export const TextareaWithCounter = ({ value, onChange, disabled, error, id, questionType = 'other' }) => {
   // textarea rows and character length based on question type
   const rowSize = questionType === 'open' ? 6 : 3
-  const maxLength = questionType === 'open' ? 750 : 250
+  const textareaModifier = {
+    open: ' a4-textarea-with-counter__textarea--open',
+    other: ' a4-textarea-with-counter__textarea--other'
+  }[questionType] || ''
+  const maxLength = questionType === 'open' ? 4000 : 250
   const textareaRef = useRef(null)
 
   const handleDynamicHeight = (textarea) => {
@@ -32,13 +36,13 @@ export const TextareaWithCounter = ({ value, onChange, disabled, error, id, ques
   const ariaInvalid = error && error[id] && error[id].length > 0 ? 'true' : 'false'
 
   return (
-    <div id={'textarea-with-counter-' + id} className="a4-textarea-with-counter" role="region">
+    <div id={'textarea-with-counter-' + id} className="a4-textarea-with-counter" role="region" data-testid="textarea-with-counter">
       <label className="a4-sr-only" htmlFor={'id_choice-' + id + '-' + questionType}>
         {translated.specify}
       </label>
       <textarea
         ref={textareaRef}
-        className="a4-textarea-with-counter__textarea"
+        className={'a4-textarea-with-counter__textarea' + textareaModifier}
         name="question"
         id={'id_choice-' + id + '-' + questionType}
         value={value}

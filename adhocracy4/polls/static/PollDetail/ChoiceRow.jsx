@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import django from 'django'
+
 import { TextareaWithCounter } from './TextareaWithCounter'
 
 const translated = {
-  other: django.gettext('other')
+  other: django.gettext('other'),
+  selected: django.gettext('Selected')
 }
 
 const ChoiceInput = ({
@@ -12,22 +14,41 @@ const ChoiceInput = ({
   checked,
   onInputChange,
   disabled,
-  name
+  name,
+  isResult = false
 }) => (
-  <input
-    className="poll-row__radio"
-    type={type}
-    id={'id_choice-' + choice.id + '-' + (type === 'radio' ? 'single' : 'multiple')}
-    name={name}
-    value={choice.id}
-    checked={checked}
-    onChange={(event) => onInputChange(event, choice.is_other_choice)}
-    disabled={disabled}
-    aria-describedby={'textarea-with-counter-' + choice.id}
-  />
+  <div className="poll-choice__input-wrapper">
+    {!isResult
+      ? (
+        <input
+          className="poll-choice__input"
+          type={type}
+          id={'id_choice-' + choice.id + '-' + (type === 'radio' ? 'single' : 'multiple')}
+          name={name}
+          value={choice.id}
+          checked={checked}
+          onChange={(event) => onInputChange(event, choice.is_other_choice)}
+          disabled={disabled}
+          aria-describedby={'textarea-with-counter-' + choice.id}
+        />
+        )
+      : (
+        <div className="poll-choice__result-icon">
+          {checked
+            ? (
+              <>
+                <i className="fas fa-check-circle poll-choice__check-icon" aria-hidden="true" />
+                <span className="visually-hidden">{translated.selected}</span>
+              </>
+              )
+            : (
+              <div className="poll-choice__empty-circle" />
+              )}
+        </div>
+        )}
+  </div>
 )
 
-// eslint-disable-next-line react/display-name
 export const ChoiceRow = React.memo(({
   choice,
   checked,
@@ -36,66 +57,72 @@ export const ChoiceRow = React.memo(({
   disabled,
   otherChoiceAnswer,
   onOtherChange,
-  isReadOnly,
   errors,
-  name
+  name,
+  isResult = false,
+  review = false,
+  percent = null
 }) => {
-  const [textareaValue, setTextareaValue] = useState(otherChoiceAnswer)
-  const [showTextarea, setShowTextarea] = useState(false)
-
-  // When the choice is selected or changed, update the textarea visibility
-  useEffect(() => {
-    if (checked && choice.is_other_choice) {
-      setShowTextarea(true)
-    } else {
-      setShowTextarea(false)
-    }
-  }, [checked, choice.is_other_choice])
+  const textareaValue = otherChoiceAnswer || ''
+  const showTextarea = checked && choice.is_other_choice
 
   const handleChange = (event, isOtherChoice) => {
-    // Update the checkbox/radio button state
-    onInputChange(event, isOtherChoice)
-
-    // If the "Other" option is selected, show the textarea
-    if (isOtherChoice && event.target.checked) {
-      setShowTextarea(true)
-    } else {
-      setShowTextarea(false)
-    }
+    if (isResult) return
+    onInputChange?.(event, isOtherChoice)
   }
 
-  const handleTextareaChange = (event) => {
-    // Preserve the value of the textarea even if options are changed
-    setTextareaValue(event.target.value)
-    onOtherChange(event)
-  }
+  const classes = [
+    'poll-choice',
+    checked ? 'poll-choice--checked' : '',
+    choice.is_other_choice ? 'poll-choice--other' : '',
+    isResult ? 'poll-choice--result' : '',
+    review ? 'poll-choice--review' : ''
+  ].filter(Boolean).join(' ')
 
   return (
     <label
-      className={(choice.is_other_choice ? 'poll__choice--other' : 'poll-row radio')}
-      htmlFor={'id_choice-' + choice.id + '-' + (type === 'radio' ? 'single' : 'multiple')}
+      className={classes}
+      htmlFor={!isResult ? ('id_choice-' + choice.id + '-' + (type === 'radio' ? 'single' : 'multiple')) : undefined}
     >
-      <ChoiceInput
-        type={type}
-        choice={choice}
-        checked={checked}
-        onInputChange={handleChange}
-        disabled={disabled}
-        name={name}
-      />
-      <span className={'radio__text' + (type === 'checkbox' ? ' radio__text--checkbox' : '')}>
-        {choice.is_other_choice ? translated.other : choice.label}
-      </span>
-      {showTextarea && (
-        <TextareaWithCounter
-          id={choice.id}
-          value={textareaValue} // Always use the local state value
-          onChange={handleTextareaChange}
-          disabled={disabled}
-          error={errors}
-          label={translated.other}
+      {isResult && percent !== null && (
+        <div
+          className="poll-choice__fill"
+          style={{ width: percent + '%' }}
         />
+      )}
+
+      <div className="poll-choice__container">
+        <ChoiceInput
+          type={type}
+          choice={choice}
+          checked={checked}
+          onInputChange={handleChange}
+          disabled={disabled || isResult}
+          name={name}
+          isResult={isResult}
+        />
+        <span className="poll-choice__label">
+          {choice.is_other_choice ? translated.other : choice.label}
+        </span>
+        {isResult && percent !== null && (
+          <span className="poll-choice__percentage">{percent}%</span>
+        )}
+      </div>
+
+      {showTextarea && !isResult && (
+        <div className="poll-choice__textarea-container">
+          <TextareaWithCounter
+            id={choice.id}
+            value={textareaValue}
+            onChange={onOtherChange}
+            disabled={disabled}
+            error={errors}
+            label={translated.other}
+          />
+        </div>
       )}
     </label>
   )
 })
+
+ChoiceRow.displayName = 'ChoiceRow'

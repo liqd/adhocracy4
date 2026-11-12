@@ -4,6 +4,10 @@ import React, { useState } from 'react'
 const QuestionImage = ({ imageUrl, alt }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
+  if (!imageUrl) {
+    return null
+  }
+
   const handleClick = () => {
     setIsExpanded(!isExpanded)
   }
@@ -29,7 +33,7 @@ const QuestionImage = ({ imageUrl, alt }) => {
       />
       {!isExpanded && (
         <div className="poll__question-image-zoom-indicator">
-          <i className="fa fa-search-plus" aria-hidden="true" />
+          <i className="fa-solid fa-magnifying-glass-plus" aria-hidden="true" />
         </div>
       )}
     </div>

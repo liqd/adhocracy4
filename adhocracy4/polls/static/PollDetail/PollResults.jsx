@@ -1,258 +1,208 @@
-import React from 'react'
-import Slider from 'react-slick'
+import React, { useState, useCallback, useMemo } from 'react'
 import django from 'django'
+
+import { ChoiceRow } from './ChoiceRow'
 import QuestionImage from './QuestionImage'
 
-const SliderArrow = (props) => {
-  const { className, style, onClick, currentSlide, slideCount } = props
-  const isPrev = className.includes('slick-prev')
-  const disabled = isPrev
-    ? currentSlide === 0
-    : currentSlide === slideCount - 1
-
-  const label = isPrev
-    ? django.gettext('Previous answer')
-    : django.gettext('Next answer')
+const PollQuestionSlider = ({ answers, isUserAnswer }) => {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const total = answers.length
+  const current = answers[currentSlide]
 
   return (
-    <button
-      type="button"
-      className={className}
-      style={style}
-      onClick={disabled ? null : onClick}
-      aria-label={label}
-      aria-disabled={disabled}
-      disabled={disabled}
-    />
+    <div className="poll-slider">
+      <div
+        className="poll-slider__item"
+        role="group"
+        aria-label={django.interpolate(
+          django.gettext('Answer %(current)s of %(total)s'),
+          { current: currentSlide + 1, total },
+          true
+        )}
+      >
+        <div className="poll-slider__answer">
+          {isUserAnswer(current) && (
+            <span
+              className="poll-slider__answer-icon"
+              role="img"
+              aria-label={django.gettext('Your answer')}
+            >
+              <i className="fas fa-check" aria-hidden="true" />
+            </span>
+          )}
+          <span>{current.answer}</span>
+        </div>
+      </div>
+      <div className="poll-slider__footer">
+        <span className="poll-slider__count">{(currentSlide + 1) + '/' + total}</span>
+        <div className="poll-slider__nav">
+          <button
+            type="button"
+            onClick={() => setCurrentSlide((slide) => Math.max(0, slide - 1))}
+            disabled={currentSlide === 0}
+            aria-label={django.gettext('Previous answer')}
+          >
+            <i className="fa-solid fa-chevron-left" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={() => setCurrentSlide((slide) => Math.min(total - 1, slide + 1))}
+            disabled={currentSlide === total - 1}
+            aria-label={django.gettext('Next answer')}
+          >
+            <i className="fa-solid fa-chevron-right" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }
 
-export default class PollResult extends React.Component {
-  constructor (props) {
-    super(props)
+const OtherAnswersSection = ({
+  otherAnswers,
+  isUserAnswer,
+  showOtherAnswers,
+  onToggle
+}) => {
+  if (!otherAnswers?.length) return null
 
-    const question = this.props.question
-    const openOrOtherAnswerId = question.is_open
+  return (
+    <div className="poll-result-other-section">
+      <button
+        type="button"
+        className="btn poll__btn--link"
+        onClick={onToggle}
+      >
+        {showOtherAnswers ? django.gettext('Hide other answers') : django.gettext('Show other answers')}
+      </button>
+
+      {showOtherAnswers && (
+        <div className="poll-result-other-section__slider">
+          <PollQuestionSlider answers={otherAnswers} isUserAnswer={isUserAnswer} />
+        </div>
+      )}
+    </div>
+  )
+}
+
+const PollResult = ({ question }) => {
+  const [showOtherAnswers, setShowOtherAnswers] = useState(false)
+
+  const userAnswerId = useMemo(() => {
+    return question.is_open
       ? question.userAnswer
       : question.other_choice_user_answer
+  }, [question])
 
-    this.state = {
-      question,
-      selectedChoices: question.userChoices,
-      showResult: (question.userChoices.length !== 0) || question.isReadOnly,
-      alert: null,
-      showOtherAnswers: false,
-      userAnswerId: openOrOtherAnswerId
-    }
-  }
-
-  doBarTransition (node, style) {
-    if (node && node.style) {
-      window.requestAnimationFrame(() => Object.assign(node.style, style))
-    }
-  }
-
-  isUserAnswer (slide) {
-    const matchedId = this.state.question.is_open
-      ? slide.id === this.state.userAnswerId
-      : slide.vote_id === this.state.userAnswerId
+  const isUserAnswer = useCallback((slide) => {
+    const matchedId = question.is_open
+      ? slide.id === userAnswerId
+      : slide.vote_id === userAnswerId
     return !!matchedId
-  }
+  }, [question.is_open, userAnswerId])
 
-  toggleOtherAnswers () {
-    this.setState(prevState => ({ showOtherAnswers: !prevState.showOtherAnswers }))
-  }
+  const handleToggleOtherAnswers = useCallback(() => {
+    setShowOtherAnswers((prev) => !prev)
+  }, [])
 
-  getOtherAnswerText () {
-    let otherAnswerText
-    if (this.state.showOtherAnswers) {
-      otherAnswerText = <>{django.gettext('Hide other answers')}</>
-    } else {
-      otherAnswerText = <>{django.gettext('Show other answers')}</>
-    }
-    return (
-      otherAnswerText
-    )
-  }
-
-  getHelpTextAnswer () {
-    const total = this.state.question.totalVoteCount
-    const totalMulti = this.state.question.totalVoteCountMulti
-    let helpTextAnswer
-    let helpTextAnswerPlural
-    if (this.state.question.multiple_choice) {
-      if (total === 1 && totalMulti === 1) {
-        helpTextAnswerPlural = django.gettext('%s participant gave 1 answer.')
-      } else {
-        helpTextAnswerPlural = django.ngettext('%s participant gave %s answers.', '%s participants gave %s answers.', total)
-      }
-      helpTextAnswer = helpTextAnswerPlural + django.gettext(' For multiple choice questions the percentages may add up to more than 100%.')
-    } else {
-      helpTextAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
-    }
-    return django.interpolate(helpTextAnswer, [total, totalMulti])
-  }
-
-  getHelpTextOpenAnswer () {
-    const total = this.state.question.totalAnswerCount
-    let helpTextOpenAnswer
-    if (total >= 1) {
-      helpTextOpenAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
-    } else {
-      helpTextOpenAnswer = django.gettext('no one has answered this question')
-    }
-    return django.interpolate(helpTextOpenAnswer, [total])
-  }
-
-  getConfidentialHelpText () {
-    const total = this.state.question.is_open
-      ? this.state.question.totalAnswerCount
-      : this.state.question.totalVoteCount
-    const helpText = django.ngettext(
-      '%s response submitted',
-      '%s responses submitted',
-      total
-    )
-    return django.interpolate(helpText, [total])
-  }
-
-  render () {
-    if (this.state.question.is_confidential) {
-      return (
-        <div className="poll poll--result poll--confidential">
-          <h2>{this.state.question.label}</h2>
-          <QuestionImage
-            imageUrl={this.state.question.image_url}
-            alt={this.state.question.label}
-          />
-          <div className="a4-muted">{this.getConfidentialHelpText()}</div>
-        </div>
+  const getHelpText = useMemo(() => {
+    if (question.is_confidential) {
+      const total = question.is_open ? question.totalAnswerCount : question.totalVoteCount
+      return django.interpolate(
+        django.ngettext('%s response submitted', '%s responses submitted', total ?? 0),
+        [total ?? 0]
       )
     }
 
-    const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
-    const total = this.state.question.totalVoteCount
-
-    const settings = {
-      arrows: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      className: 'poll-slider',
-      infinite: false,
-      centerMode: true,
-      centerPadding: '0px',
-      prevArrow: <SliderArrow />,
-      nextArrow: <SliderArrow />
+    if (question.is_open) {
+      const total = question.totalAnswerCount ?? 0
+      return total >= 1
+        ? django.interpolate(django.ngettext('1 person has answered.', '%s people have answered.', total), [total])
+        : django.gettext('no one has answered this question')
     }
 
-    return (
-      <div className="poll poll--result">
-        <h2>{this.state.question.label}</h2>
-        <QuestionImage
-          imageUrl={this.state.question.image_url}
-          alt={this.state.question.label}
-        />
+    const total = question.totalVoteCount ?? 0
+    const totalMulti = question.totalVoteCountMulti ?? 0
 
-        <div className="poll__rows">
-          {this.state.question.choices.map((choice, i) => {
-            const percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
-            const chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
-            const highlight = choice.count === max && max > 0
-            return !this.state.question.is_open &&
-              <div key={choice.id} className="poll-row__container">
-                {chosen ? <i className="poll-row__chosen fas fa-check-circle" aria-label={django.gettext('Your choice')} /> : ''}
-                <div className="poll-row poll-row--answered">
-                  <div className="poll-row__number">{percent}%</div>
-                  <div className="poll-row__label">{choice.is_other_choice ? django.gettext('other') : choice.label}</div>
-                  <div
-                    className={'poll-row__bar' + (highlight ? ' poll__highlight' : '')}
-                    ref={node => this.doBarTransition(node, { width: percent + '%' })}
-                  />
-                </div>
-                {choice.is_other_choice &&
-                  <div>
-                    {this.props.question.other_choice_answers.length > 0 &&
-                      <button type="button" className="btn poll__btn--link" onClick={() => this.toggleOtherAnswers()}>
-                        {this.getOtherAnswerText()}
-                      </button>}
-                    {this.state.showOtherAnswers &&
-                      <div className="poll-slider__container" id={this.state.question.id}>
-                        <div
-                          aria-live="polite"
-                          aria-atomic="true"
-                          role="region"
-                          aria-label={django.gettext('Other answers carousel')}
-                        >
-                          <Slider {...settings}>
-                            {this.props.question.other_choice_answers.map((slide, index) => (
-                              <div
-                                className="poll-slider__item"
-                                data-index={index}
-                                key={index}
-                                role="group"
-                                aria-label={django.interpolate(
-                                  django.gettext('Answer %(current)s of %(total)s'),
-                                  { current: index + 1, total: this.props.question.other_choice_answers.length },
-                                  true
-                                )}
-                              >
-                                <div className="poll-slider__answer">
-                                  {this.isUserAnswer(slide) && <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />} {slide.answer}
-                                </div>
-                                <div className={this.props.question.other_choice_answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
-                                  {index + 1}/{this.props.question.other_choice_answers.length}
-                                </div>
-                              </div>
-                            ))}
-                          </Slider>
-                        </div>
-                      </div>}
-                  </div>}
-              </div>
-          }
-          )}
-          {this.state.question.is_open && this.state.question.answers.length > 0 &&
-            <div className="poll-slider__container">
-              <div
-                aria-live="polite"
-                aria-atomic="true"
-                role="region"
-                aria-label={django.gettext('Open answers carousel')}
-              >
-                <Slider {...settings}>
-                  {this.props.question.answers.map((slide, index) => (
-                    <div
-                      className="poll-slider__item"
-                      data-index={index}
-                      key={index}
-                      role="group"
-                      aria-label={django.interpolate(
-                        django.gettext('Answer %(current)s of %(total)s'),
-                        { current: index + 1, total: this.props.question.answers.length },
-                        true
-                      )}
-                    >
-                      <div className="poll-slider__answer">
-                        {this.isUserAnswer(slide) && <i className="fas fa-check-circle" aria-label={django.gettext('Your answer')} />} {slide.answer}
-                      </div>
-                      <div className={this.props.question.answers.length > 1 ? 'poll-slider__count--spaced' : 'poll-slider__count'}>
-                        {index + 1}/{this.props.question.answers.length}
-                      </div>
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-            </div>}
-          {this.state.question.is_open
-            ? (
-              <div className="a4-muted">{this.getHelpTextOpenAnswer()}</div>
-              )
-            : (
-              <div className="a4-muted">{this.getHelpTextAnswer()}</div>
-              )}
-        </div>
+    if (question.multiple_choice) {
+      const participantText = total === 1 && totalMulti === 1
+        ? django.gettext('%s participant gave 1 answer.')
+        : django.ngettext('%s participant gave %s answers.', '%s participants gave %s answers.', total)
+
+      return django.interpolate(
+        participantText + django.gettext(' For multiple choice questions the percentages may add up to more than 100%.'),
+        [total, totalMulti]
+      )
+    }
+
+    return django.interpolate(
+      django.ngettext('1 person has answered.', '%s people have answered.', total),
+      [total]
+    )
+  }, [question])
+
+  // Confidential question view
+  if (question.is_confidential) {
+    return (
+      <div className="poll poll--result poll--confidential">
+        <h2>{question.label}</h2>
+        {question.image_url && <QuestionImage imageUrl={question.image_url} alt={question.image_alt_text || question.label} />}
+        <div className="a4-muted">{getHelpText}</div>
+        <p className="poll__confidential-notice">
+          <i className="fa fa-lock" aria-hidden="true" />{' '}
+          {django.gettext('Answers to this question will be visible only to the initiators of this project.')}
+        </p>
       </div>
     )
   }
+
+  const totalVotes = question.totalVoteCount ?? 0
+
+  return (
+    <div className="poll poll--result">
+      <h2>{question.label}</h2>
+      {question.image_url && <QuestionImage imageUrl={question.image_url} alt={question.image_alt_text || question.label} />}
+
+      <div className="poll__rows">
+        {/* Non-open questions - reuse ChoiceRow */}
+        {!question.is_open && question.choices.map((choice) => {
+          const isChosen = (question.userChoices || []).includes(choice.id)
+          const percent = totalVotes === 0 ? 0 : Math.round(((choice.count ?? 0) / totalVotes) * 100)
+
+          return (
+            <div key={choice.id}>
+              <ChoiceRow
+                choice={choice}
+                checked={isChosen}
+                type={question.multiple_choice ? 'checkbox' : 'radio'}
+                isResult
+                percent={percent}
+                disabled
+              />
+
+              {/* Other answers section */}
+              {choice.is_other_choice && (
+                <OtherAnswersSection
+                  otherAnswers={question.other_choice_answers}
+                  isUserAnswer={isUserAnswer}
+                  showOtherAnswers={showOtherAnswers}
+                  onToggle={handleToggleOtherAnswers}
+                />
+              )}
+            </div>
+          )
+        })}
+
+        {/* Open questions */}
+        {question.is_open && (question.answers?.length ?? 0) > 0 && (
+          <PollQuestionSlider answers={question.answers} isUserAnswer={isUserAnswer} />
+        )}
+
+        {/* Help text */}
+        <div className="a4-muted">{getHelpText}</div>
+      </div>
+    </div>
+  )
 }
+
+export default PollResult

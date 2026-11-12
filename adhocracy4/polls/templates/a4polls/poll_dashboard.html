@@ -1,6 +1,11 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n static react_polls %}
 
+{% block extra_css %}
+  {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'poll_management.css' %}">
+{% endblock %}
+
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{% translate 'Edit poll' %}</h1>
 

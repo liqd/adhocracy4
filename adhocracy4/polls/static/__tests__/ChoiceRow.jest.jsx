@@ -1,92 +1,71 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
+
 import { ChoiceRow } from '../PollDetail/ChoiceRow'
 
-// Mock of the TextareaWithCounter component
-jest.mock('../PollDetail/TextareaWithCounter', () => ({
-  TextareaWithCounter: ({ value, onChange }) => (
-    <textarea value={value} onChange={onChange} data-testid="textarea-with-counter-2" />
-  )
-}))
-
 describe('ChoiceRow', () => {
-  const mockOnInputChange = jest.fn()
-  const mockOnOtherChange = jest.fn()
+  const baseChoice = { id: 1, label: 'Option A', is_other_choice: false }
+  const otherChoice = { id: 2, label: 'other', is_other_choice: true }
 
-  const defaultProps = {
-    choice: {
-      id: 1,
-      label: 'Option 1',
-      is_other_choice: false
-    },
-    checked: false,
-    onInputChange: mockOnInputChange,
-    type: 'radio',
-    disabled: false,
-    otherChoiceAnswer: '',
-    onOtherChange: mockOnOtherChange,
-    isAuthenticated: true,
-    isReadOnly: false,
-    errors: null
-  }
-
-  it('should render the ChoiceRow correctly', () => {
-    render(<ChoiceRow {...defaultProps} />)
-
-    // Check if the label and input are rendered
-    expect(screen.getByText('Option 1')).toBeInTheDocument()
-    expect(screen.getByRole('radio')).toBeInTheDocument()
+  it('renders the label', () => {
+    render(
+      <ChoiceRow
+        choice={baseChoice} checked={false} type="radio"
+        onInputChange={jest.fn()} onOtherChange={jest.fn()}
+      />
+    )
+    expect(screen.getByText('Option A')).toBeInTheDocument()
   })
 
-  it('should show textarea when "Other" option is selected', () => {
-    const otherChoiceProps = {
-      ...defaultProps,
-      choice: {
-        id: 2,
-        label: 'Other',
-        is_other_choice: true
-      }
-    }
-
-    render(<ChoiceRow {...otherChoiceProps} />)
-
-    // Initially, textarea should not be visible
-    expect(screen.queryByTestId('textarea-with-counter-2')).toBeNull()
-
-    // Simulate selecting the "Other" radio button
-    fireEvent.click(screen.getByRole('radio'))
-
-    // Textarea should now be visible
-    expect(screen.getByTestId('textarea-with-counter-2')).toBeInTheDocument()
+  it('shows the checked state', () => {
+    const { container } = render(
+      <ChoiceRow
+        choice={baseChoice} checked type="radio"
+        onInputChange={jest.fn()} onOtherChange={jest.fn()}
+      />
+    )
+    expect(container.querySelector('input[type="radio"]')).toBeChecked()
   })
 
-  it('should update textarea value on change', () => {
-    const otherChoiceProps = {
-      ...defaultProps,
-      choice: {
-        id: 2,
-        label: 'Other',
-        is_other_choice: true
-      }
-    }
-
-    render(<ChoiceRow {...otherChoiceProps} />)
-
-    fireEvent.click(screen.getByRole('radio')) // Selecting the "Other" option
-
-    // Get the textarea and simulate typing
-    const textarea = screen.getByTestId('textarea-with-counter-2')
-    fireEvent.change(textarea, { target: { value: 'New answer' } })
-
-    // Check that the textarea value was updated
-    expect(textarea.value).toBe('New answer')
-    expect(mockOnOtherChange).toHaveBeenCalledWith(expect.anything()) // Check if the onOtherChange function was called
+  it('shows a textarea for the other choice when checked', () => {
+    render(
+      <ChoiceRow
+        choice={otherChoice} checked type="radio"
+        onInputChange={jest.fn()} onOtherChange={jest.fn()} otherChoiceAnswer=""
+      />
+    )
+    expect(screen.getByRole('textbox')).toBeInTheDocument()
   })
 
-  it('should not show textarea when "Other" option is not selected', () => {
-    render(<ChoiceRow {...defaultProps} />)
+  it('hides the textarea for the other choice when unchecked', () => {
+    render(
+      <ChoiceRow
+        choice={otherChoice} checked={false} type="radio"
+        onInputChange={jest.fn()} onOtherChange={jest.fn()}
+      />
+    )
+    expect(screen.queryByRole('textbox')).not.toBeInTheDocument()
+  })
 
-    // Check if the textarea is not shown when the "Other" option is not selected
-    expect(screen.queryByTestId('textarea')).toBeNull()
+  it('adds the review modifier class', () => {
+    const { container } = render(
+      <ChoiceRow
+        choice={baseChoice} checked={false} type="radio" isResult review
+        onInputChange={jest.fn()} onOtherChange={jest.fn()}
+      />
+    )
+    expect(container.querySelector('label')).toHaveClass('poll-choice--review')
+  })
+
+  it('calls onOtherChange on textarea input', () => {
+    const onOtherChange = jest.fn()
+    render(
+      <ChoiceRow
+        choice={otherChoice} checked type="radio"
+        onInputChange={jest.fn()} onOtherChange={onOtherChange} otherChoiceAnswer=""
+      />
+    )
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'x' } })
+    expect(onOtherChange).toHaveBeenCalledTimes(1)
   })
 })

@@ -35,10 +35,20 @@ class ChoiceQuerySet(models.QuerySet):
 
 
 class Poll(module_models.Item):
+    class PresentationMode(models.TextChoices):
+        MULTISTEP = "multistep", _("One question per step")
+        LONG_FORM = "longform", _("All questions on one page")
+
     allow_unregistered_users = models.BooleanField(default=False)
     hide_results_until_finished = models.BooleanField(
         default=False,
         verbose_name=_("Hide results until participation is over"),
+    )
+    presentation_mode = models.CharField(
+        max_length=20,
+        choices=PresentationMode.choices,
+        default=PresentationMode.MULTISTEP,
+        verbose_name=_("Presentation"),
     )
     comments = GenericRelation(
         comment_models.Comment, related_query_name="poll", object_id_field="object_pk"
@@ -176,7 +186,7 @@ class Question(models.Model):
 
 
 class Answer(GeneratedContentModel):
-    answer = models.CharField(max_length=750, verbose_name=_("Answer"))
+    answer = models.CharField(max_length=4000, verbose_name=_("Answer"))
 
     question = models.ForeignKey(
         "Question",

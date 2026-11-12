@@ -9,9 +9,19 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Added
 
+- polls: new participation flow with start screen, question funnel, progress bar and results view
+
 ### Changed
 
+- polls: replace the poll editor with the question list editor from adhocracy-plus
+- polls: allow open answers up to 4000 characters
+- polls: crop question images to 3:1 at 2100x700 in the Uppy image editor
+
 ### Fixed
+
+- polls: resize and compress question images before upload to avoid HTTP 413 errors
+- polls: do not offer participation to guests when the project disallows it
+- polls: load the Uppy styles on the poll dashboard page
 
 ## aplus-v2611.4, aplus-v2611.3, aplus-v2611.2, mB-v2611.1
 
@@ -19,7 +29,6 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 - maps: gracefully skip map thumbnails for invalid or missing images instead of
   failing the whole page.
-
 
 ## aplus-v2610.1
 
