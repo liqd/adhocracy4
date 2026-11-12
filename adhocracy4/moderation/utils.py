@@ -77,9 +77,13 @@ def is_comment_item(item):
 
 
 def supports_feedback(item):
-    """Return if the item has a moderation status or official feedback."""
+    """Return if feedback can be given for the item.
+
+    Comments do not have official feedback fields. Feedback for a comment is
+    stored as a child comment instead.
+    """
     if isinstance(item, Comment):
-        return False
+        return True
     field_names = {field.name for field in item._meta.get_fields()}
     return "moderator_status" in field_names or "moderator_feedback_text" in field_names
 
@@ -95,7 +99,8 @@ def _filter_state(queryset, state):
 
 
 def _comment_rows(project, state):
-    comments = Comment.objects.filter(project=project)
+    comment_ct = ContentType.objects.get_for_model(Comment)
+    comments = Comment.objects.filter(project=project).exclude(content_type=comment_ct)
     comments = _filter_state(comments, state)
     return (
         comments.annotate(
@@ -225,6 +230,23 @@ def _shorten(text):
     return short_text, short_text != text
 
 
+def _comment_feedback(item):
+    """Return child comments that act as feedback for a comment."""
+    children = (
+        item.child_comments.exclude(is_censored=True)
+        .exclude(is_removed=True)
+        .order_by("created")
+    )
+    return [
+        {
+            "author": _creator_name(comment),
+            "created": comment.created,
+            "text": transforms.clean_html_all(comment.comment),
+        }
+        for comment in children
+    ]
+
+
 def build_moderation_item(item):
     """Create the template representation of a comment or item."""
     is_comment = isinstance(item, Comment)
@@ -233,7 +255,8 @@ def build_moderation_item(item):
         text = transforms.clean_html_all(item.comment)
         detail_url = item.get_absolute_url()
         status = ""
-        feedback = ""
+        feedback_items = _comment_feedback(item)
+        feedback = "\n".join(feedback["text"] for feedback in feedback_items)
         is_blocked = item.is_blocked
         is_highlighted = item.is_moderator_marked
         image = None
@@ -243,6 +266,7 @@ def build_moderation_item(item):
         detail_url = item.get_absolute_url()
         status = _moderator_status(item)
         feedback = transforms.clean_html_field(_moderator_feedback(item))
+        feedback_items = []
         is_blocked = False
         is_highlighted = False
         image = getattr(item, "image", None)
@@ -279,6 +303,7 @@ def build_moderation_item(item):
         "status_value": (getattr(item, "moderator_status", "") or "").lower(),
         "is_comment": is_comment,
         "feedback": feedback,
+        "feedback_items": feedback_items,
         "num_reports": getattr(item, "_report_count", 0),
         "is_reviewed": bool(getattr(item, "is_reviewed", False)),
         "is_resolved": bool(getattr(item, "is_resolved", False)),
@@ -288,7 +313,7 @@ def build_moderation_item(item):
         "is_highlighted": is_highlighted,
         "detail_url": detail_url,
         "can_edit": True,
-        "can_delete": is_comment,
+        "can_delete": True,
         "can_edit_feedback": supports_feedback(item),
     }
 
