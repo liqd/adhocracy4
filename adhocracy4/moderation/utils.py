@@ -173,7 +173,10 @@ def resolve_moderation_items(rows):
     if pks_by_type.get(comment_label):
         comments = Comment.objects.filter(pk__in=pks_by_type[comment_label])
         related = ["creator", "content_type"]
-        for comment in comments.select_related(*related):
+        comments = comments.select_related(*related).prefetch_related(
+            "child_comments__creator"
+        )
+        for comment in comments:
             objects[(comment_label, comment.pk)] = comment
 
     for model in get_item_models():
@@ -232,18 +235,14 @@ def _shorten(text):
 
 def _comment_feedback(item):
     """Return child comments that act as feedback for a comment."""
-    children = (
-        item.child_comments.exclude(is_censored=True)
-        .exclude(is_removed=True)
-        .order_by("created")
-    )
     return [
         {
             "author": _creator_name(comment),
             "created": comment.created,
             "text": transforms.clean_html_all(comment.comment),
         }
-        for comment in children
+        for comment in item.child_comments.all()
+        if not comment.is_censored and not comment.is_removed
     ]
 
 
