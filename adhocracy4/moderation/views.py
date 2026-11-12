@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.http import HttpResponse
@@ -16,6 +17,7 @@ from django.views import View
 from django.views import generic
 
 from adhocracy4.projects.models import Project
+from adhocracy4.reports.models import Report
 from adhocracy4.rules import mixins as rules_mixins
 
 from . import forms
@@ -269,6 +271,8 @@ class ModerationItemFeedbackView(
         return item
 
     def _get_form(self, item, data=None):
+        if utils.is_comment_item(item):
+            return forms.ModerationCommentFeedbackForm(data=data, item=item)
         return forms.ModerationItemFeedbackForm(data=data, item=item)
 
     def _context(self, item, form, is_dialog, state=utils.STATE_ALL):
@@ -400,12 +404,18 @@ class ModerationItemDeleteView(
         item = utils.get_moderation_item(
             self.project, kwargs["item_type"], kwargs["pk"]
         )
-        if not utils.is_comment_item(item):
-            raise Http404
-        item.is_censored = True
-        item.is_reviewed = True
-        item.save()
-        response = self.render_item(request, item)
+        if utils.is_comment_item(item):
+            item.is_censored = True
+            item.is_reviewed = True
+            item.save()
+            response = self.render_item(request, item)
+        else:
+            content_type = ContentType.objects.get_for_model(item)
+            Report.objects.filter(content_type=content_type, object_pk=item.pk).delete()
+            item.delete()
+            if not request.headers.get("HX-Request"):
+                return redirect(self.project_redirect_url(request))
+            response = HttpResponse(status=200)
         response["HX-Trigger"] = json.dumps(
             {
                 "moderationItemUpdated": {"message": str(_("Deleted"))},
@@ -425,8 +435,14 @@ class ModerationItemEditView(
             self.project, kwargs["item_type"], kwargs["pk"]
         )
 
+    def _is_feedback(self, data=None):
+        source = self.request.GET if data is None else data
+        return source.get("feedback") == "1"
+
     def _get_form(self, item, data=None):
         if utils.is_comment_item(item):
+            if self._is_feedback(data):
+                return forms.ModerationCommentFeedbackForm(data=data, item=item)
             return forms.ModerationCommentEditForm(data=data, item=item)
         return forms.ModerationItemFeedbackForm(data=data, item=item)
 
@@ -443,6 +459,7 @@ class ModerationItemEditView(
                 "item": utils.build_moderation_item(item),
                 "form": form,
                 "edit_mode": True,
+                "feedback_mode": self._is_feedback(),
                 "state": state,
                 "project": self.project,
                 "content_type": request.GET.get("content_type", utils.CONTENT_TYPE_ALL),
@@ -454,7 +471,7 @@ class ModerationItemEditView(
         item = self._get_item(kwargs)
         form = self._get_form(item, data=request.POST)
         if form.is_valid():
-            form.save(request.user) if not utils.is_comment_item(item) else form.save()
+            form.save(request.user)
             if not utils.is_comment_item(item) and form.changed:
                 signals.moderation_item_feedback_saved.send(
                     sender=self.__class__, item=item, user=request.user
@@ -474,6 +491,7 @@ class ModerationItemEditView(
                 "item": utils.build_moderation_item(item),
                 "form": form,
                 "edit_mode": True,
+                "feedback_mode": self._is_feedback(request.POST),
                 "state": get_moderation_state(request),
                 "project": self.project,
                 "content_type": request.POST.get(

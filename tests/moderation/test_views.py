@@ -1,6 +1,7 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.moderation import utils
 from tests.apps.ideas.factories import IdeaFactory
 from tests.comments.factories import CommentFactory
 
@@ -343,7 +344,7 @@ def test_save_feedback_updates_item_and_marks_it_read(
 
 
 @pytest.mark.django_db
-def test_feedback_is_not_available_for_comments(
+def test_feedback_for_comments_is_stored_as_child_comment(
     client, user, moderated_project, module_factory
 ):
     module = module_factory(project=moderated_project)
@@ -351,7 +352,7 @@ def test_feedback_is_not_available_for_comments(
     comment = CommentFactory(content_object=idea)
     client.login(username=user.username, password="password")
 
-    response = client.get(
+    response = client.post(
         reverse(
             "a4moderation:item-feedback",
             kwargs={
@@ -359,10 +360,22 @@ def test_feedback_is_not_available_for_comments(
                 "item_type": "a4comments.comment",
                 "pk": comment.pk,
             },
-        )
+        ),
+        {"feedback_text": "Antwort auf den Kommentar"},
+        HTTP_HX_REQUEST="true",
     )
 
-    assert response.status_code == 404
+    comment.refresh_from_db()
+    child = comment.child_comments.get()
+    assert response.status_code == 200
+    assert child.comment == "Antwort auf den Kommentar"
+    assert child.creator == user
+    assert comment.is_reviewed is True
+    assert utils.build_moderation_item(comment)["feedback"] == child.comment
+
+    rows = utils.get_moderation_queryset(moderated_project)
+    comment_rows = [row for row in rows if row["item_type"] == "a4comments.comment"]
+    assert child.pk not in [row["pk"] for row in comment_rows]
 
 
 @pytest.mark.django_db
@@ -487,6 +500,33 @@ def test_delete_comment(client, user, moderated_project, module_factory):
     assert response.status_code == 200
     assert comment.is_censored is True
     assert comment.comment == ""
+
+
+@pytest.mark.django_db
+def test_delete_idea(client, user, moderated_project, module_factory):
+    from adhocracy4.reports.models import Report
+    from tests.reports.factories import ReportFactory
+
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    report = ReportFactory(content_object=idea)
+    client.login(username=user.username, password="password")
+    url = reverse(
+        "a4moderation:item-delete",
+        kwargs={
+            "project_pk": moderated_project.pk,
+            "item_type": "a4test_ideas.idea",
+            "pk": idea.pk,
+        },
+    )
+
+    response = client.post(url, {}, HTTP_HX_REQUEST="true")
+
+    assert response.status_code == 200
+    assert response.content == b""
+    assert not idea.__class__.objects.filter(pk=idea.pk).exists()
+    assert not Report.objects.filter(pk=report.pk).exists()
+    assert response["HX-Trigger"]
 
 
 @pytest.mark.django_db

@@ -5,6 +5,8 @@ from django.utils.html import linebreaks
 from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
 
+from adhocracy4.comments.models import Comment
+
 
 class ModerationItemFeedbackForm(forms.Form):
     """Edit the moderation status and official feedback of an item.
@@ -109,8 +111,44 @@ class ModerationCommentEditForm(forms.Form):
         kwargs.setdefault("initial", {"comment": item.comment})
         super().__init__(*args, **kwargs)
 
-    def save(self):
+    def save(self, user=None):
         self.item.comment = self.cleaned_data["comment"]
         self.item.is_reviewed = True
         self.item.save()
         return self.item
+
+
+class ModerationCommentFeedbackForm(forms.Form):
+    """Store feedback for a comment as a child comment.
+
+    Comments do not have official moderator feedback fields. What would be
+    feedback on an item is a reply in the discussion for a comment.
+    """
+
+    feedback_text = forms.CharField(
+        label=_("Feedback (public)"),
+        widget=forms.Textarea(
+            attrs={
+                "rows": 4,
+                "class": "a4-comments__textarea--small form-group",
+            }
+        ),
+    )
+
+    def __init__(self, *args, item, **kwargs):
+        self.item = item
+        self.changed = False
+        super().__init__(*args, **kwargs)
+
+    def save(self, user):
+        comment = Comment(
+            content_object=self.item,
+            creator=user,
+            comment=self.cleaned_data["feedback_text"],
+            is_reviewed=True,
+        )
+        comment.save()
+        self.item.is_reviewed = True
+        self.item.save()
+        self.changed = True
+        return comment
