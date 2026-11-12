@@ -476,7 +476,15 @@ class ModerationItemEditView(
                 signals.moderation_item_feedback_saved.send(
                     sender=self.__class__, item=item, user=request.user
                 )
-            response = self.render_item(request, item)
+            state = get_moderation_state(request)
+            if state == utils.STATE_UNREAD:
+                response = HttpResponse(status=200)
+                response["HX-Retarget"] = "#moderation-item-{}".format(
+                    utils.build_moderation_item(item)["key"]
+                )
+                response["HX-Reswap"] = "outerHTML"
+            else:
+                response = self.render_item(request, item)
             response["HX-Trigger"] = json.dumps(
                 {
                     "moderationItemUpdated": {"message": str(_("Saved"))},

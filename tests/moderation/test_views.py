@@ -379,6 +379,35 @@ def test_feedback_for_comments_is_stored_as_child_comment(
 
 
 @pytest.mark.django_db
+def test_comment_feedback_leaves_unread_filter(
+    client, user, moderated_project, module_factory
+):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    comment = CommentFactory(content_object=idea, is_reviewed=False)
+    client.login(username=user.username, password="password")
+
+    response = client.post(
+        reverse(
+            "a4moderation:item-feedback",
+            kwargs={
+                "project_pk": moderated_project.pk,
+                "item_type": "a4comments.comment",
+                "pk": comment.pk,
+            },
+        ),
+        {"feedback_text": "Neu", "state": "unread"},
+        HTTP_HX_REQUEST="true",
+    )
+
+    assert response.status_code == 200
+    assert response.content == b""
+    assert response["HX-Retarget"] == "#moderation-item-a4comments_comment-{}".format(
+        comment.pk
+    )
+
+
+@pytest.mark.django_db
 def test_feedback_edit_keeps_unchanged_html(
     client, user, moderated_project, module_factory
 ):
