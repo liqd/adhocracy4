@@ -1,9 +1,5 @@
 {% load i18n easy_thumbnails_tags %}
-{% if item.status or item.feedback %}
-    {% translate "Edit feedback" as feedback_label %}
-{% else %}
-    {% translate "Add feedback" as feedback_label %}
-{% endif %}
+{% translate "Add feedback" as feedback_label %}
 <li class="moderation-item{% if not item.is_reviewed %} moderation-item--unread{% endif %}"
     id="moderation-item-{{ item.key }}">
     <div class="u-border p-4 mb-3">
