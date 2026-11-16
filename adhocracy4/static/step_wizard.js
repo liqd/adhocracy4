@@ -153,6 +153,7 @@ function reportMessage (element, message) {
   }
   error.textContent = message
   element.setAttribute('aria-errormessage', error.id)
+  element.setAttribute('aria-describedby', error.id)
 }
 
 function reportField (field) {
@@ -167,9 +168,12 @@ function reportField (field) {
     : null
   if (editable) {
     field.setAttribute('aria-invalid', 'true')
-    editable.setAttribute('aria-invalid', 'true')
-    reportMessage(editable, field.validationMessage)
     editable.focus()
+    // CKEditor replaces the editable element when it gains focus, so mark the
+    // element that is focused afterwards.
+    const current = container.querySelector('.ck-editor__editable') || editable
+    current.setAttribute('aria-invalid', 'true')
+    reportMessage(current, field.validationMessage)
     return
   }
   // Widgets such as select2 hide the native control, so reporting validity may
@@ -183,13 +187,17 @@ function reportField (field) {
 }
 
 function clearInvalid (step) {
+  const errors = Array.from(step.querySelectorAll('.step-wizard__field-error'))
   step.querySelectorAll('[aria-invalid="true"]').forEach(function (field) {
     field.removeAttribute('aria-invalid')
   })
-  step.querySelectorAll('[aria-errormessage]').forEach(function (field) {
-    field.removeAttribute('aria-errormessage')
-  })
-  step.querySelectorAll('.step-wizard__field-error').forEach(function (error) {
+  errors.forEach(function (error) {
+    step.querySelectorAll('[aria-errormessage="' + error.id + '"]').forEach(
+      function (field) {
+        field.removeAttribute('aria-errormessage')
+        field.removeAttribute('aria-describedby')
+      }
+    )
     error.remove()
   })
 }
