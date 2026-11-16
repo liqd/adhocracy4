@@ -11,8 +11,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Changed
 ### Fixed
 
+## mB-v2611.2
 
-## mB-v2611
+### Fixed
+
+- deps: pin maplibre to 5.24.0.
+
+## mB-v2611.2
 
 ### Added
 
