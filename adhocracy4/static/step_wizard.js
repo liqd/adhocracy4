@@ -86,7 +86,7 @@ function fillScrollRoom (form, target) {
 // The step indicator (progress bar) or, when the page provides one, the
 // organisation logo at the top right of the page.
 function stepTopTarget (step) {
-  const anchor = document.querySelector('[data-step-wizard-anchor]')
+  const anchor = document.querySelector('[data-wizard-anchor]')
   if (anchor) {
     return anchor
   }
