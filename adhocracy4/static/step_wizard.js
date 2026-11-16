@@ -43,19 +43,27 @@ function syncRichTextEditors (container) {
 }
 
 function focusStep (step) {
-  const title = step.querySelector('legend')
-  if (title) {
-    title.setAttribute('tabindex', '-1')
-    title.focus({ preventScroll: true })
-    return
-  }
   const field = step.querySelector(
     'input:not([type="hidden"]):not([type="file"]):not([disabled]), ' +
     'select:not([disabled]), textarea:not([disabled])'
   )
   if (field) {
-    field.focus({ preventScroll: true })
+    field.focus()
   }
+}
+
+// The last step starts with the review summary, so its first field is far
+// below the step heading. Focus and scroll to the heading instead, so the
+// step starts at the same position as the previous steps.
+function focusStepTop (step) {
+  const title = step.querySelector('legend')
+  if (!title) {
+    focusStep(step)
+    return
+  }
+  title.setAttribute('tabindex', '-1')
+  title.focus({ preventScroll: true })
+  title.scrollIntoView({ block: 'start' })
 }
 
 function reportField (field) {
@@ -315,8 +323,11 @@ function initStepWizard (form) {
       renderSummary()
     }
     if (moveFocus) {
-      focusStep(steps[current])
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      if (current === total - 1) {
+        focusStepTop(steps[current])
+      } else {
+        focusStep(steps[current])
+      }
       // Let layout dependent widgets (e.g. the map) recalculate their size now
       // that the step is visible.
       window.requestAnimationFrame(function () {
