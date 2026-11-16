@@ -52,8 +52,17 @@ function focusStep (step) {
   }
 }
 
-// Start every step at the step indicator (progress bar), not at the page
-// header. The step heading is focused for screen readers without scrolling.
+// Scroll the step indicator (progress bar) to the top of the viewport, so every
+// step starts flush with the browser top instead of at the page header.
+function scrollToStepTop (step) {
+  const form = step.closest('form')
+  const progress = form?.querySelector('[data-step-wizard-progress]')
+  const target = progress || form || step
+  target.scrollIntoView({ block: 'start' })
+}
+
+// The step heading is focused for screen readers without scrolling, then the
+// progress bar is aligned with the browser top.
 function focusStepTop (step) {
   const title = step.querySelector('legend')
   if (title) {
@@ -62,10 +71,12 @@ function focusStepTop (step) {
   } else {
     focusStep(step)
   }
-  const form = step.closest('form')
-  const progress = form?.querySelector('[data-step-wizard-progress]')
-  const target = progress || form || step
-  target.scrollIntoView({ block: 'start' })
+  scrollToStepTop(step)
+  // The clicked navigation button keeps focus, so the browser may scroll it
+  // back into view during the next frame. Align once layout has settled.
+  window.requestAnimationFrame(function () {
+    scrollToStepTop(step)
+  })
 }
 
 function reportField (field) {
