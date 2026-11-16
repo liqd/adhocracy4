@@ -52,18 +52,20 @@ function focusStep (step) {
   }
 }
 
-// The last step starts with the review summary, so its first field is far
-// below the step heading. Focus and scroll to the heading instead, so the
-// step starts at the same position as the previous steps.
+// Start every step at the step indicator (progress bar), not at the page
+// header. The step heading is focused for screen readers without scrolling.
 function focusStepTop (step) {
   const title = step.querySelector('legend')
-  if (!title) {
+  if (title) {
+    title.setAttribute('tabindex', '-1')
+    title.focus({ preventScroll: true })
+  } else {
     focusStep(step)
-    return
   }
-  title.setAttribute('tabindex', '-1')
-  title.focus({ preventScroll: true })
-  title.scrollIntoView({ block: 'start' })
+  const form = step.closest('form')
+  const progress = form?.querySelector('[data-step-wizard-progress]')
+  const target = progress || form || step
+  target.scrollIntoView({ block: 'start' })
 }
 
 function reportField (field) {
@@ -323,11 +325,7 @@ function initStepWizard (form) {
       renderSummary()
     }
     if (moveFocus) {
-      if (current === total - 1) {
-        focusStepTop(steps[current])
-      } else {
-        focusStep(steps[current])
-      }
+      focusStepTop(steps[current])
       // Let layout dependent widgets (e.g. the map) recalculate their size now
       // that the step is visible.
       window.requestAnimationFrame(function () {
