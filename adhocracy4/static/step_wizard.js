@@ -55,7 +55,7 @@ function focusStep (step) {
 // Short steps (for example the review step on a tall screen) do not provide
 // enough page height to scroll the step indicator to the browser top. Add just
 // as much room below the form as is missing.
-function ensureScrollRoom (form, target) {
+function fillScrollRoom (form, target) {
   if (!form) {
     return
   }
@@ -68,19 +68,32 @@ function ensureScrollRoom (form, target) {
   }
   room.style.height = '0px'
   const offsetTop = target.getBoundingClientRect().top + window.scrollY
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-  const missing = Math.ceil(offsetTop - maxScroll)
-  room.style.height = (missing > 0 ? missing : 0) + 'px'
+  // Some layouts have a minimum height, so the first pixels of the room do not
+  // extend the page yet. Grow the room until the page is tall enough.
+  let height = 0
+  for (let i = 0; i < 5; i++) {
+    const missing = Math.ceil(
+      offsetTop + window.innerHeight - document.documentElement.scrollHeight
+    )
+    if (missing <= 0) {
+      break
+    }
+    height += missing
+    room.style.height = height + 'px'
+  }
 }
 
 // Scroll the step indicator (progress bar) to the top of the viewport, so every
 // step starts flush with the browser top instead of at the page header.
-function scrollToStepTop (step) {
+function alignStepTop (step, force) {
   const form = step.closest('form')
   const progress = form?.querySelector('[data-step-wizard-progress]')
   const target = progress || form || step
-  ensureScrollRoom(form, target)
-  target.scrollIntoView({ block: 'start' })
+  fillScrollRoom(form, target)
+  // Do not pull the view back up when the user already scrolled down.
+  if (force || target.getBoundingClientRect().top > -8) {
+    target.scrollIntoView({ block: 'start' })
+  }
 }
 
 // The step heading is focused for screen readers without scrolling, then the
@@ -93,12 +106,18 @@ function focusStepTop (step) {
   } else {
     focusStep(step)
   }
-  scrollToStepTop(step)
-  // The clicked navigation button keeps focus, so the browser may scroll it
-  // back into view during the next frame. Align once layout has settled.
+  alignStepTop(step, true)
+  // Widgets such as the image upload or the rich text editor change the step
+  // height after the step became visible. Align again once layout settled.
   window.requestAnimationFrame(function () {
-    scrollToStepTop(step)
+    alignStepTop(step)
   })
+  window.setTimeout(function () {
+    alignStepTop(step)
+  }, 150)
+  window.setTimeout(function () {
+    alignStepTop(step)
+  }, 400)
 }
 
 function reportField (field) {
