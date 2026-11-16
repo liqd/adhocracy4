@@ -8,6 +8,13 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+### Changed
+### Fixed
+
+
+## mB-v2611
+
+### Added
 
 - polls: new participation flow with start screen, question funnel, progress bar and results view
 
