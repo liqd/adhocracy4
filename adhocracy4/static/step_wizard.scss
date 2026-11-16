@@ -55,6 +55,13 @@
     line-height: 1.5;
 }
 
+.step-wizard__field-error {
+    margin-top: 0.25 * $spacer;
+    color: $brand-danger;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
 .step-wizard__summary {
     margin-bottom: 1.5 * $spacer;
     border: 1px solid $border-color;

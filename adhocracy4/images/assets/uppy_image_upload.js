@@ -53,9 +53,17 @@ function setPreviewImages (inputId, src) {
     })
 }
 
+const readGenerations = new Map()
+
 function saveToSessionStorage (inputId, file) {
+  const generation = (readGenerations.get(inputId) || 0) + 1
+  readGenerations.set(inputId, generation)
   const reader = new FileReader()
   reader.addEventListener('load', (e) => {
+    // A newer image or a cleared input superseded this read.
+    if (readGenerations.get(inputId) !== generation) {
+      return
+    }
     setPreviewImages(inputId, e.target.result)
     try {
       sessionStorage.setItem(
@@ -76,6 +84,8 @@ function saveToSessionStorage (inputId, file) {
 }
 
 function clearSessionStorage (inputId) {
+  // Invalidate pending reads so a late load cannot restore the old preview.
+  readGenerations.set(inputId, (readGenerations.get(inputId) || 0) + 1)
   sessionStorage.removeItem(getStorageKey(inputId))
 }
 

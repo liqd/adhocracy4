@@ -131,6 +131,30 @@ function focusStepTop (step) {
   }, 400)
 }
 
+let fieldErrorCount = 0
+
+// Show the native validation message next to a visible widget control and link
+// it for screen readers.
+function reportMessage (element, message) {
+  if (!message) {
+    return
+  }
+  const host = element.closest('.ck-editor-container') || element
+  const parent = host.parentElement
+  if (!parent) {
+    return
+  }
+  let error = parent.querySelector(':scope > .step-wizard__field-error')
+  if (!error) {
+    error = document.createElement('div')
+    error.className = 'step-wizard__field-error'
+    error.id = 'step-wizard-field-error-' + ++fieldErrorCount
+    host.insertAdjacentElement('afterend', error)
+  }
+  error.textContent = message
+  element.setAttribute('aria-errormessage', error.id)
+}
+
 function reportField (field) {
   if (!field) {
     return
@@ -144,6 +168,7 @@ function reportField (field) {
   if (editable) {
     field.setAttribute('aria-invalid', 'true')
     editable.setAttribute('aria-invalid', 'true')
+    reportMessage(editable, field.validationMessage)
     editable.focus()
     return
   }
@@ -160,6 +185,12 @@ function reportField (field) {
 function clearInvalid (step) {
   step.querySelectorAll('[aria-invalid="true"]').forEach(function (field) {
     field.removeAttribute('aria-invalid')
+  })
+  step.querySelectorAll('[aria-errormessage]').forEach(function (field) {
+    field.removeAttribute('aria-errormessage')
+  })
+  step.querySelectorAll('.step-wizard__field-error').forEach(function (error) {
+    error.remove()
   })
 }
 
@@ -205,8 +236,9 @@ function initStepWizard (form) {
 
   function initialStep () {
     // After a server side validation error, jump to the first affected step.
+    // Informational alerts (for example the image upload hint) are not errors.
     const errorIndex = steps.findIndex(function (step) {
-      return step.querySelector('[role="alert"], .errorlist, [aria-invalid="true"]')
+      return step.querySelector('.errorlist, [aria-invalid="true"]')
     })
     if (errorIndex > -1) {
       return errorIndex
