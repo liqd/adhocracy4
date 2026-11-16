@@ -53,8 +53,8 @@ function focusStep (step) {
 }
 
 // Short steps (for example the review step on a tall screen) do not provide
-// enough page height to scroll the step indicator to the browser top. Add just
-// as much room below the form as is missing.
+// enough page height to scroll the page top to the browser top. Add just as
+// much room below the form as is missing.
 function fillScrollRoom (form, target) {
   if (!form) {
     return
@@ -83,12 +83,23 @@ function fillScrollRoom (form, target) {
   }
 }
 
-// Scroll the step indicator (progress bar) to the top of the viewport, so every
-// step starts flush with the browser top instead of at the page header.
-function alignStepTop (step, force) {
+// The step indicator (progress bar) or, when the page provides one, the
+// organisation logo at the top right of the page.
+function stepTopTarget (step) {
+  const anchor = document.querySelector('[data-step-wizard-anchor]')
+  if (anchor) {
+    return anchor
+  }
   const form = step.closest('form')
   const progress = form?.querySelector('[data-step-wizard-progress]')
-  const target = progress || form || step
+  return progress || form || step
+}
+
+// Scroll the page so every step starts flush with the browser top: the
+// organisation logo (or the step indicator when there is no logo).
+function alignStepTop (step, force) {
+  const form = step.closest('form')
+  const target = stepTopTarget(step)
   fillScrollRoom(form, target)
   // Do not pull the view back up when the user already scrolled down.
   if (force || target.getBoundingClientRect().top > -8) {
@@ -97,7 +108,7 @@ function alignStepTop (step, force) {
 }
 
 // The step heading is focused for screen readers without scrolling, then the
-// progress bar is aligned with the browser top.
+// page is aligned with the browser top.
 function focusStepTop (step) {
   const title = step.querySelector('legend')
   if (title) {
