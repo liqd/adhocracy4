@@ -52,12 +52,34 @@ function focusStep (step) {
   }
 }
 
+// Short steps (for example the review step on a tall screen) do not provide
+// enough page height to scroll the step indicator to the browser top. Add just
+// as much room below the form as is missing.
+function ensureScrollRoom (form, target) {
+  if (!form) {
+    return
+  }
+  let room = form.parentElement?.querySelector(':scope > .step-wizard__scroll-room')
+  if (!room) {
+    room = document.createElement('div')
+    room.className = 'step-wizard__scroll-room'
+    room.setAttribute('aria-hidden', 'true')
+    form.insertAdjacentElement('afterend', room)
+  }
+  room.style.height = '0px'
+  const offsetTop = target.getBoundingClientRect().top + window.scrollY
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+  const missing = Math.ceil(offsetTop - maxScroll)
+  room.style.height = (missing > 0 ? missing : 0) + 'px'
+}
+
 // Scroll the step indicator (progress bar) to the top of the viewport, so every
 // step starts flush with the browser top instead of at the page header.
 function scrollToStepTop (step) {
   const form = step.closest('form')
   const progress = form?.querySelector('[data-step-wizard-progress]')
   const target = progress || form || step
+  ensureScrollRoom(form, target)
   target.scrollIntoView({ block: 'start' })
 }
 
