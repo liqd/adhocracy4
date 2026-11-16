@@ -233,15 +233,12 @@
 @media (width < $breakpoint) {
     .step-wizard__actions {
         width: 100%;
+        flex-wrap: wrap;
     }
 
     .step-wizard__actions .btn {
-        flex: 1 1 0;
+        flex: 1 1 auto;
         min-width: 0;
-    }
-
-    .step-wizard__actions [data-step-wizard-back] {
-        display: none !important;
     }
 
     .step-wizard__summary-row {
