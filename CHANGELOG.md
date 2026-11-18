@@ -8,6 +8,9 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ## Unreleased
 
 ### Added
+
+- captcha: add reusable Cap captcha field, widget and poll component
+
 ### Changed
 ### Fixed
 
