@@ -6,7 +6,8 @@
           action="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}"
           hx-post="{% url 'a4moderation:item-feedback' project.pk item.type item.pk %}?state={{ state }}"
           hx-target="#moderation-feedback-dialog-body"
-          hx-swap="innerHTML">
+          hx-swap="innerHTML"
+          hx-disabled-elt="find button[type='submit']">
         {% csrf_token %}
         <input type="hidden" name="state" value="{{ state }}">
         <input type="hidden" name="content_type" value="{{ content_type }}">

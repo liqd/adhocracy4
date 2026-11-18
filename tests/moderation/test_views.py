@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from adhocracy4.moderation import utils
 from tests.apps.ideas.factories import IdeaFactory
+from tests.comments.factories import ChildCommentFactory
 from tests.comments.factories import CommentFactory
 
 
@@ -506,6 +507,44 @@ def test_resolved_items_are_listed_in_resolved_state(
     )
 
     assert [item["pk"] for item in response.context["items"]] == [resolved.pk]
+
+
+@pytest.mark.django_db
+def test_deleted_comments_are_not_listed(client, user, moderated_project, module_factory):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    visible = CommentFactory(content_object=idea, comment="Still here")
+    removed = CommentFactory(content_object=idea, comment="Removed", is_removed=True)
+    censored = CommentFactory(content_object=idea, comment="Censored", is_censored=True)
+    client.login(username=user.username, password="password")
+
+    response = client.get(
+        reverse("a4moderation:project", kwargs={"project_pk": moderated_project.pk}),
+        {"state": "all"},
+    )
+
+    pks = [item["pk"] for item in response.context["items"]]
+    assert visible.pk in pks
+    assert removed.pk not in pks
+    assert censored.pk not in pks
+
+
+@pytest.mark.django_db
+def test_comment_feedback_only_contains_moderator_feedback(
+    moderated_project, module_factory
+):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module)
+    comment = CommentFactory(content_object=idea)
+    ChildCommentFactory(
+        content_object=comment, comment="Official feedback", is_reviewed=True
+    )
+    ChildCommentFactory(content_object=comment, comment="A normal reply")
+
+    item = utils.build_moderation_item(comment)
+
+    assert "Official feedback" in item["feedback"]
+    assert "A normal reply" not in item["feedback"]
 
 
 @pytest.mark.django_db
