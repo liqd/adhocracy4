@@ -220,11 +220,12 @@ class PollViewSet(
         else:
             content_id = uuid.uuid4()
         self.validate_answer_lengths(votes_data)
-        for question_id in votes_data:
-            question = self.get_question(question_id)
-            validators.question_belongs_to_poll(question, int(pk))
-            vote_data = votes_data[question_id]
-            self.save_vote(question, vote_data, creator, content_id)
+        with transaction.atomic():
+            for question_id in votes_data:
+                question = self.get_question(question_id)
+                validators.question_belongs_to_poll(question, int(pk))
+                vote_data = votes_data[question_id]
+                self.save_vote(question, vote_data, creator, content_id)
 
         poll = self.get_object()
         poll_voted.send(
@@ -374,29 +375,56 @@ class PollViewSet(
             return False
 
         if question.is_open:
-            return Answer.objects.filter(
+            answers = Answer.objects.filter(
                 question=question, creator=self.request.user
-            ).exists()
+            ).values_list("answer", flat=True)
+            return any(answer.strip() for answer in answers)
 
-        return Vote.objects.filter(
+        votes = Vote.objects.filter(
             choice__question=question, creator=self.request.user
-        ).exists()
+        )
+        if not votes.exists():
+            return False
+
+        other_choice = question.get_other_option()
+        if not other_choice:
+            return True
+        if votes.exclude(choice=other_choice).exists():
+            return True
+        other_answers = votes.filter(choice=other_choice).values_list(
+            "other_vote__answer", flat=True
+        )
+        return any((answer or "").strip() for answer in other_answers)
 
     def is_question_answered(self, question, vote_data):
         if not isinstance(vote_data, dict):
             return False
 
         if question.is_open:
-            return bool((vote_data.get("open_answer") or "").strip())
+            open_answer = vote_data.get("open_answer")
+            return isinstance(open_answer, str) and bool(open_answer.strip())
 
-        choices = vote_data.get("choices") or []
-        if not choices:
+        other_choice_answer = vote_data.get("other_choice_answer")
+        if other_choice_answer is not None and not isinstance(
+            other_choice_answer, str
+        ):
             return False
 
+        choices = vote_data.get("choices")
+        if not isinstance(choices, list) or not choices:
+            return False
+
+        choice_ids = set()
+        for choice in choices:
+            try:
+                choice_ids.add(int(choice))
+            except (TypeError, ValueError):
+                return False
+
         other_choice = question.get_other_option()
-        if other_choice and str(other_choice.pk) in {str(c) for c in choices}:
+        if other_choice and other_choice.pk in choice_ids:
             # an "other" answer without text does not count as an answer
-            return bool((vote_data.get("other_choice_answer") or "").strip())
+            return bool((other_choice_answer or "").strip())
 
         return True
 

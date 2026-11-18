@@ -3,6 +3,7 @@ from django.urls import reverse
 from rest_framework import status
 
 from adhocracy4.polls.models import Answer
+from adhocracy4.polls.models import OtherVote
 from adhocracy4.polls.models import Question
 from adhocracy4.polls.models import Vote
 from adhocracy4.polls.phases import VotingPhase
@@ -458,3 +459,334 @@ def test_vote_without_votes_payload_returns_400(user, apiclient, poll_factory):
         response = apiclient.post(vote_url(poll), {}, format="json")
 
     assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_stored_whitespace_open_answer_does_not_count(
+    user, apiclient, poll_factory, question_factory, open_question_factory, choice_factory
+):
+    poll = poll_factory()
+    mandatory_question = open_question_factory(poll=poll, is_mandatory=True)
+    optional_question = question_factory(poll=poll)
+    optional_choice = choice_factory(question=optional_question)
+    Answer.objects.create(question=mandatory_question, answer="   ", creator=user)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            optional_question.pk: {
+                "choices": [optional_choice.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert str(mandatory_question.pk) in response.data
+
+
+@pytest.mark.django_db
+def test_stored_open_answer_counts_when_question_is_omitted(
+    user, apiclient, poll_factory, question_factory, open_question_factory, choice_factory
+):
+    poll = poll_factory()
+    mandatory_question = open_question_factory(poll=poll, is_mandatory=True)
+    optional_question = question_factory(poll=poll)
+    optional_choice = choice_factory(question=optional_question)
+    Answer.objects.create(
+        question=mandatory_question, answer="my answer", creator=user
+    )
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            optional_question.pk: {
+                "choices": [optional_choice.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_201_CREATED
+
+
+@pytest.mark.django_db
+def test_stored_other_answer_without_text_does_not_count(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    mandatory_question = question_factory(poll=poll, is_mandatory=True)
+    choice_factory(question=mandatory_question)
+    other_choice = choice_factory(question=mandatory_question, is_other_choice=True)
+    vote = Vote.objects.create(choice=other_choice, creator=user)
+    OtherVote.objects.create(vote=vote, answer="   ")
+
+    optional_question = question_factory(poll=poll)
+    optional_choice = choice_factory(question=optional_question)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            optional_question.pk: {
+                "choices": [optional_choice.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert str(mandatory_question.pk) in response.data
+
+
+@pytest.mark.django_db
+def test_mandatory_other_choice_with_padded_id_and_blank_text_is_rejected(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll, is_mandatory=True)
+    choice_factory(question=question)
+    other_choice = choice_factory(question=question, is_other_choice=True)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": ["0" + str(other_choice.pk)],
+                "other_choice_answer": " ",
+                "open_answer": "",
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_numeric_open_answer_is_rejected(
+    user, apiclient, poll_factory, open_question_factory
+):
+    poll = poll_factory()
+    question = open_question_factory(poll=poll, is_mandatory=True)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [],
+                "other_choice_answer": "",
+                "open_answer": 123,
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_numeric_choices_are_rejected(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll, is_mandatory=True)
+    choice_factory(question=question)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": 1,
+                "other_choice_answer": "",
+                "open_answer": "",
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_numeric_other_answer_is_rejected(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll, is_mandatory=True)
+    choice = choice_factory(question=question)
+    choice_factory(question=question, is_other_choice=True)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice.pk],
+                "other_choice_answer": 42,
+                "open_answer": "",
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_failed_vote_rolls_back_all_answers(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    mandatory_question = question_factory(poll=poll, is_mandatory=True)
+    mandatory_choice = choice_factory(question=mandatory_question)
+    broken_question = question_factory(poll=poll)
+    choice_factory(question=broken_question)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            mandatory_question.pk: {
+                "choices": [mandatory_choice.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+            broken_question.pk: {
+                "choices": [999999],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_404_NOT_FOUND
+    assert Vote.objects.count() == 0
+
+
+@pytest.mark.django_db
+def test_admin_update_with_string_id_keeps_question_and_votes(
+    apiclient, admin, user, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll, is_mandatory=True)
+    choice = choice_factory(question=question)
+    choice_factory(question=question)
+    vote = Vote.objects.create(choice=choice, creator=user)
+
+    apiclient.force_authenticate(user=admin)
+    data = {
+        "questions": [
+            {
+                "id": str(question.pk),
+                "label": question.label,
+                "help_text": "",
+                "multiple_choice": False,
+                "is_open": False,
+                "is_mandatory": True,
+                "choices": [
+                    {"id": choice.pk, "label": choice.label, "is_other_choice": False},
+                    {"label": "another choice", "is_other_choice": False},
+                ],
+            }
+        ]
+    }
+
+    response = apiclient.put(
+        reverse("polls-detail", kwargs={"pk": poll.pk}), data, format="json"
+    )
+
+    assert response.status_code == status.HTTP_200_OK
+    assert Question.objects.filter(pk=question.pk).exists()
+    assert Vote.objects.filter(pk=vote.pk).exists()
+    question.refresh_from_db()
+    assert question.is_mandatory is True
+
+
+@pytest.mark.django_db
+def test_admin_cannot_make_question_without_choices_mandatory(
+    apiclient, admin, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll)
+    choice_factory(question=question)
+
+    apiclient.force_authenticate(user=admin)
+    data = {
+        "questions": [
+            {
+                "id": question.pk,
+                "label": question.label,
+                "help_text": "",
+                "multiple_choice": False,
+                "is_open": False,
+                "is_mandatory": True,
+                "choices": [],
+            }
+        ]
+    }
+
+    response = apiclient.put(
+        reverse("polls-detail", kwargs={"pk": poll.pk}), data, format="json"
+    )
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    question.refresh_from_db()
+    assert question.is_mandatory is False
+
+
+@pytest.mark.django_db
+def test_other_answer_text_is_saved(
+    user, apiclient, poll_factory, question_factory, choice_factory
+):
+    poll = poll_factory()
+    question = question_factory(poll=poll, multiple_choice=True, is_mandatory=True)
+    choice = choice_factory(question=question)
+    other_choice = choice_factory(question=question, is_other_choice=True)
+
+    apiclient.force_authenticate(user=user)
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice.pk, other_choice.pk],
+                "other_choice_answer": "my other answer",
+                "open_answer": "",
+            }
+        }
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(vote_url(poll), data, format="json")
+
+    assert response.status_code == status.HTTP_201_CREATED
+    other_vote = OtherVote.objects.get(vote__choice=other_choice)
+    assert other_vote.answer == "my other answer"
