@@ -100,7 +100,12 @@ def _filter_state(queryset, state):
 
 def _comment_rows(project, state):
     comment_ct = ContentType.objects.get_for_model(Comment)
-    comments = Comment.objects.filter(project=project).exclude(content_type=comment_ct)
+    comments = (
+        Comment.objects.filter(project=project)
+        .exclude(content_type=comment_ct)
+        .exclude(is_removed=True)
+        .exclude(is_censored=True)
+    )
     comments = _filter_state(comments, state)
     return (
         comments.annotate(
@@ -234,7 +239,12 @@ def _shorten(text):
 
 
 def _comment_feedback(item):
-    """Return child comments that act as feedback for a comment."""
+    """Return child comments that act as feedback for a comment.
+
+    Feedback on comments is stored as a child comment that is created as
+    already reviewed. Replies are not reviewed and must not be shown as
+    moderation feedback.
+    """
     return [
         {
             "author": _creator_name(comment),
@@ -242,7 +252,9 @@ def _comment_feedback(item):
             "text": transforms.clean_html_all(comment.comment),
         }
         for comment in item.child_comments.all()
-        if not comment.is_censored and not comment.is_removed
+        if comment.is_reviewed
+        and not comment.is_censored
+        and not comment.is_removed
     ]
 
 

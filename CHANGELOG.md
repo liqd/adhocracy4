@@ -16,6 +16,11 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 
 ### Fixed
 
+- moderation: hide deleted comments and only show moderator feedback for
+  comments.
+- moderation: close the feedback dialog after saving and prevent duplicate
+  submissions.
+
 ## aplus-v2611.2, mB-v2611.1
 
 ### Fixed

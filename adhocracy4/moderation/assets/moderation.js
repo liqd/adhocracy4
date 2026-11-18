@@ -87,6 +87,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   })
 
+  document.body.addEventListener('htmx:beforeRequest', function (event) {
+    const form = getFeedbackForm(event.detail && event.detail.elt)
+    if (!form) {
+      return
+    }
+    const button = form.querySelector('[type="submit"]')
+    if (button) {
+      button.disabled = true
+      button.setAttribute('aria-disabled', 'true')
+    }
+  })
+
+  document.body.addEventListener('htmx:afterRequest', function (event) {
+    const form = getFeedbackForm(event.detail && event.detail.elt)
+    if (!form) {
+      return
+    }
+    const button = form.querySelector('[type="submit"]')
+    if (button) {
+      button.disabled = false
+      button.removeAttribute('aria-disabled')
+    }
+    const changed = event.detail && event.detail.xhr &&
+      event.detail.xhr.getResponseHeader('HX-Retarget')
+    if (changed && feedbackDialog && feedbackDialog.open) {
+      feedbackDialog.close()
+    }
+  })
+
   document.body.addEventListener('moderationItemUpdated', function (event) {
     announce(event.detail && event.detail.message)
   })
@@ -111,6 +140,13 @@ document.addEventListener('DOMContentLoaded', function () {
     announce(event.detail && event.detail.message)
   })
 })
+
+function getFeedbackForm (element) {
+  if (!element || typeof element.closest !== 'function') {
+    return null
+  }
+  return element.closest('.moderation-feedback-form')
+}
 
 function announce (message) {
   const status = document.getElementById('moderation-status')

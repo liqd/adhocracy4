@@ -348,7 +348,7 @@ class ModerationItemFeedbackView(
                 )
             response["HX-Retarget"] = "#{}".format(item_id)
             response["HX-Reswap"] = "outerHTML"
-            response["HX-Trigger"] = json.dumps(
+            response["HX-Trigger-After-Swap"] = json.dumps(
                 {
                     "moderationFeedbackSaved": {
                         "message": str(_("Feedback saved")),
