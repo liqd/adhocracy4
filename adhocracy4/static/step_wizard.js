@@ -462,6 +462,20 @@ function initStepWizard (form) {
     })
   }
 
+  // The page breadcrumb behaves like the Back button: it goes one step back
+  // while a later step is active, and only leaves the form on the first step.
+  document
+    .querySelectorAll('[data-step-wizard-back-link]')
+    .forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        if (current === 0) {
+          return
+        }
+        event.preventDefault()
+        goTo(current - 1)
+      })
+    })
+
   // The form is rendered with `novalidate`, so validate all steps before
   // submitting and surface the first invalid one.
   form.addEventListener('submit', function (event) {
