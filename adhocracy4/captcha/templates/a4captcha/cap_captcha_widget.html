@@ -1,0 +1,16 @@
+{% load i18n %}
+<div class="a4-cap-captcha">
+    <cap-widget
+        {% if widget.attrs.id %}id="{{ widget.attrs.id }}"{% endif %}
+        data-cap-api-endpoint="{{ endpoint }}"
+        data-cap-hidden-field-name="{{ widget.name }}"
+        data-cap-lang="{{ language_code }}"
+        {% if wasm_url %}data-a4-cap-wasm-url="{{ wasm_url }}"{% endif %}
+        {% if hashwx_url %}data-a4-cap-hashwx-url="{{ hashwx_url }}"{% endif %}
+    ></cap-widget>
+    <noscript>
+        <p class="form-hint">
+            {% translate "Please enable JavaScript to complete the captcha." %}
+        </p>
+    </noscript>
+</div>

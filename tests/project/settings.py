@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     "adhocracy4.maps",
     "adhocracy4.maps_react",
     "adhocracy4.actions",
+    "adhocracy4.captcha",
     "adhocracy4.follows",
     "adhocracy4.filters",
     "adhocracy4.forms",
