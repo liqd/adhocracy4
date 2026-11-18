@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Comment from '../comment'
 
@@ -143,25 +143,67 @@ describe('Comment Component', () => {
     expect(screen.queryByText(/Reply./)).not.toBeInTheDocument()
   })
 
-  test('toggling reply button toggles child comment', () => {
+  test('toggling replies toggle shows and hides child comment', () => {
     render(<Comment {...defaultProps} child_comments={[childComment]} />)
 
-    expect(screen.getByText(/1 reply/)).toBeInTheDocument()
+    expect(screen.getByText(/Show 1 reply/)).toBeInTheDocument()
     expect(
       screen.queryByText(/This is a test child comment./)
     ).not.toBeInTheDocument()
 
-    const replyButton = screen.getByRole('button', {
-      name: '%s replies1 reply'
-    })
-    fireEvent.click(replyButton)
+    fireEvent.click(screen.getByRole('button', { name: 'Show 1 reply' }))
     expect(
       screen.getByText(/This is a test child comment./)
     ).toBeInTheDocument()
-    fireEvent.click(replyButton)
+    fireEvent.click(screen.getByRole('button', { name: 'Hide 1 reply' }))
     expect(
       screen.queryByText(/This is a test child comment./)
     ).not.toBeInTheDocument()
+  })
+
+  test('reply button opens the reply form', () => {
+    render(<Comment {...defaultProps} />)
+
+    expect(
+      screen.queryByText(/Reply to the comment/)
+    ).not.toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reply' }))
+
+    expect(
+      screen.getByPlaceholderText(/Reply to the comment/)
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: 'Cancel' })
+    ).toBeInTheDocument()
+  })
+
+  test('keeps a newer reply form open when an earlier submission completes', async () => {
+    let resolveSubmit
+    const onCommentSubmit = jest.fn(() => new Promise((resolve) => {
+      resolveSubmit = resolve
+    }))
+    render(<Comment {...defaultProps} onCommentSubmit={onCommentSubmit} />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reply' }))
+    const textarea = screen.getByPlaceholderText(/Reply to the comment/)
+    fireEvent.change(textarea, { target: { value: 'first draft' } })
+    fireEvent.submit(textarea.closest('form'))
+
+    // close and reopen the form while the first submission is still pending
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Reply' }))
+    expect(
+      screen.getByPlaceholderText(/Reply to the comment/)
+    ).toBeInTheDocument()
+
+    await act(async () => {
+      resolveSubmit()
+    })
+
+    expect(
+      screen.getByPlaceholderText(/Reply to the comment/)
+    ).toBeInTheDocument()
   })
 
   test('displays ratings correctly', () => {
