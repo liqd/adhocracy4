@@ -40,9 +40,31 @@ function getStorageKey (inputId) {
   return 'image_upload_' + window.location.pathname + '_' + inputId
 }
 
+function setPreviewImages (inputId, src) {
+  const hasPreview = Boolean(src) && src !== PLACEHOLDER_SRC
+  document
+    .querySelectorAll('img[data-upload-preview="' + inputId + '"]')
+    .forEach((img) => {
+      img.setAttribute('src', src)
+      const field = img.closest('.uppy-image-upload-field--dropzone')
+      if (field) {
+        field.classList.toggle('has-preview', hasPreview)
+      }
+    })
+}
+
+const readGenerations = new Map()
+
 function saveToSessionStorage (inputId, file) {
+  const generation = (readGenerations.get(inputId) || 0) + 1
+  readGenerations.set(inputId, generation)
   const reader = new FileReader()
   reader.addEventListener('load', (e) => {
+    // A newer image or a cleared input superseded this read.
+    if (readGenerations.get(inputId) !== generation) {
+      return
+    }
+    setPreviewImages(inputId, e.target.result)
     try {
       sessionStorage.setItem(
         getStorageKey(inputId),
@@ -62,6 +84,8 @@ function saveToSessionStorage (inputId, file) {
 }
 
 function clearSessionStorage (inputId) {
+  // Invalidate pending reads so a late load cannot restore the old preview.
+  readGenerations.set(inputId, (readGenerations.get(inputId) || 0) + 1)
   sessionStorage.removeItem(getStorageKey(inputId))
 }
 
@@ -145,6 +169,18 @@ function initContainer (container) {
     return
   }
 
+  // Show the preview of an existing image (edit forms) even before the user
+  // interacts with the field.
+  const previewImage = uploadField.querySelector(
+    'img[data-upload-preview="' + config.inputId + '"]'
+  )
+  if (previewImage) {
+    const previewSrc = previewImage.getAttribute('src')
+    if (previewSrc && previewSrc !== PLACEHOLDER_SRC) {
+      uploadField.classList.add('has-preview')
+    }
+  }
+
   actionParent.insertBefore(trigger, actionParent.firstChild)
 
   container.dataset.uppyInitialized = 'true'
@@ -157,12 +193,7 @@ function initContainer (container) {
     clearSessionStorage(config.inputId)
     input.value = ''
 
-    const previewImage = document.querySelector(
-      'img[data-upload-preview="' + config.inputId + '"]'
-    )
-    if (previewImage) {
-      previewImage.setAttribute('src', PLACEHOLDER_SRC)
-    }
+    setPreviewImages(config.inputId, PLACEHOLDER_SRC)
 
     const text = document.querySelector('#text-' + config.inputId)
     if (text) {
