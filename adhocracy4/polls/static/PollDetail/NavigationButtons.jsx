@@ -6,6 +6,8 @@ const NavigationButtons = ({
   isLastQuestion,
   isLoading,
   isSubmitDisabled,
+  isNextDisabled = false,
+  isMandatory = false,
   onBack,
   onSkip,
   onNext,
@@ -27,17 +29,20 @@ const NavigationButtons = ({
         {!isLastQuestion
           ? (
             <>
-              <button
-                type="button"
-                className="btn btn--transparent"
-                onClick={onSkip}
-              >
-                {django.gettext('Skip')}
-              </button>
+              {!isMandatory && (
+                <button
+                  type="button"
+                  className="btn btn--transparent"
+                  onClick={onSkip}
+                >
+                  {django.gettext('Skip')}
+                </button>
+              )}
               <button
                 type="button"
                 className="btn poll__btn--dark"
                 onClick={onNext}
+                disabled={isNextDisabled}
               >
                 {django.gettext('Next')}
               </button>

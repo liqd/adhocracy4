@@ -126,6 +126,15 @@ class PollUpdateService:
                             )
                         ]
 
+            if q_data.get("is_mandatory") and not q_data.get("is_open", False):
+                choices = q_data.get("choices")
+                if choices is None and not q_data.get("id"):
+                    choices = []
+                if choices is not None and not choices:
+                    q_error["is_mandatory"] = [
+                        _("A mandatory question needs at least one answer option.")
+                    ]
+
             question_errors.append(q_error)
             if q_error:
                 has_errors = True
@@ -134,7 +143,7 @@ class PollUpdateService:
             raise serializers.ValidationError({"questions": question_errors})
 
     def delete_removed_questions(self, questions_data):
-        keep_ids = {q["id"] for q in questions_data if q.get("id")}
+        keep_ids = {int(q["id"]) for q in questions_data if q.get("id")}
         for q_id in set(self.poll.questions.values_list("id", flat=True)) - keep_ids:
             self._delete_question_with_image(q_id)
 
@@ -142,6 +151,11 @@ class PollUpdateService:
         question_images_enabled = getattr(settings, "A4_POLL_QUESTION_IMAGES", True)
 
         for weight, q_data in enumerate(questions_data):
+            existing_question = (
+                Question.objects.filter(id=q_data.get("id")).first()
+                if q_data.get("id")
+                else None
+            )
             defaults = {
                 "poll": self.poll,
                 "label": q_data.get("label", ""),
@@ -149,6 +163,11 @@ class PollUpdateService:
                 "multiple_choice": q_data.get("multiple_choice", False),
                 "is_open": q_data.get("is_open", False),
                 "is_confidential": q_data.get("is_confidential", False),
+                # clients that do not know the field yet must not reset it
+                "is_mandatory": q_data.get(
+                    "is_mandatory",
+                    existing_question.is_mandatory if existing_question else False,
+                ),
                 "weight": weight,
             }
             if question_images_enabled:

@@ -1,14 +1,35 @@
 import { useCallback } from 'react'
 import { ACTIONS } from '../utils/stateMachine'
-import { hasValidAnswer, isEmptyAnswer, buildVoteData } from '../utils/pollHelpers'
+import { hasValidAnswer, isEmptyAnswer, buildVoteData, getUnansweredMandatoryQuestions } from '../utils/pollHelpers'
 import {
   ALERT_INVALID,
   ALERT_SUCCESS,
   ALERT_ERROR,
   ALERT_INCOMPLETE,
-  ALERT_CAPTCHA_INCOMPLETE
+  ALERT_CAPTCHA_INCOMPLETE,
+  MANDATORY_QUESTION_ERROR
 } from '../utils/alerts'
 import { usePollSubmission } from './usePollSubmission'
+
+const getQuestionErrors = (error) => {
+  let data = error?.responseJSON
+  if (!data) {
+    try {
+      data = JSON.parse(error?.responseText || '{}')
+    } catch {
+      data = {}
+    }
+  }
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return {}
+
+  const errors = {}
+  Object.entries(data).forEach(([key, value]) => {
+    if (/^\d+$/.test(key) && Array.isArray(value) && value.length) {
+      errors[key] = value
+    }
+  })
+  return errors
+}
 
 export const usePollActions = (state, dispatch, pollId) => {
   const { submitVotes } = usePollSubmission(pollId)
@@ -36,6 +57,14 @@ export const usePollActions = (state, dispatch, pollId) => {
     const question = state.questions[state.currentQuestionIndex]
     const answer = state.userAnswers[question?.id]
 
+    if (question?.is_mandatory && !hasValidAnswer(question, answer)) {
+      dispatch({
+        type: ACTIONS.SET_QUESTION_ERRORS,
+        payload: { [question.id]: [MANDATORY_QUESTION_ERROR] }
+      })
+      return
+    }
+
     if (!hasValidAnswer(question, answer)) {
       dispatch({ type: ACTIONS.SET_ALERT, payload: ALERT_INVALID })
       return
@@ -49,8 +78,18 @@ export const usePollActions = (state, dispatch, pollId) => {
   }, [dispatch])
 
   const handleSkip = useCallback(() => {
+    const question = state.questions[state.currentQuestionIndex]
+
+    if (question?.is_mandatory) {
+      dispatch({
+        type: ACTIONS.SET_QUESTION_ERRORS,
+        payload: { [question.id]: [MANDATORY_QUESTION_ERROR] }
+      })
+      return
+    }
+
     dispatch({ type: ACTIONS.SKIP_QUESTION })
-  }, [dispatch])
+  }, [state.questions, state.currentQuestionIndex, dispatch])
 
   const handleShowResults = useCallback(() => {
     dispatch({ type: ACTIONS.SHOW_RESULTS })
@@ -65,6 +104,26 @@ export const usePollActions = (state, dispatch, pollId) => {
     const showCaptcha = state.captchaEnabled && state.allowUnregisteredUsers && !state.isAuthenticated
     if (showCaptcha && !state.captcha) {
       dispatch({ type: ACTIONS.SET_ALERT, payload: ALERT_CAPTCHA_INCOMPLETE })
+      return
+    }
+
+    const unanswered = getUnansweredMandatoryQuestions(
+      state.questions,
+      state.userAnswers
+    )
+    if (unanswered.length > 0) {
+      dispatch({
+        type: ACTIONS.SET_QUESTION_ERRORS,
+        payload: Object.fromEntries(
+          unanswered.map((question) => [question.id, [MANDATORY_QUESTION_ERROR]])
+        )
+      })
+      const firstUnansweredIndex = state.questions.findIndex(
+        (question) => question.id === unanswered[0].id
+      )
+      if (firstUnansweredIndex >= 0) {
+        dispatch({ type: ACTIONS.GO_TO_QUESTION, payload: firstUnansweredIndex })
+      }
       return
     }
 
@@ -99,7 +158,20 @@ export const usePollActions = (state, dispatch, pollId) => {
         }
       })
     } else {
-      dispatch({ type: ACTIONS.SUBMIT_ERROR, payload: ALERT_ERROR })
+      const questionErrors = getQuestionErrors(result.error)
+      if (Object.keys(questionErrors).length > 0) {
+        dispatch({ type: ACTIONS.SUBMIT_ERROR, payload: null })
+        dispatch({ type: ACTIONS.SET_QUESTION_ERRORS, payload: questionErrors })
+        const firstQuestionId = Number(Object.keys(questionErrors)[0])
+        const firstIndex = state.questions.findIndex(
+          (question) => question.id === firstQuestionId
+        )
+        if (firstIndex >= 0) {
+          dispatch({ type: ACTIONS.GO_TO_QUESTION, payload: firstIndex })
+        }
+      } else {
+        dispatch({ type: ACTIONS.SUBMIT_ERROR, payload: ALERT_ERROR })
+      }
     }
   }, [state, dispatch, submitVotes])
 

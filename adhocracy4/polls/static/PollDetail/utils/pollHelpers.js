@@ -15,8 +15,17 @@ export const hasValidAnswer = (question, answer) => {
     }
   }
 
-  return hasChoice || hasOtherAnswer
+  return hasChoice
 }
+
+/**
+ * Mandatory questions that still have no valid answer. Used to block the
+ * navigation and the submission of the poll.
+ */
+export const getUnansweredMandatoryQuestions = (questions, userAnswers) =>
+  questions.filter(
+    (question) => question.is_mandatory && !hasValidAnswer(question, userAnswers[question.id])
+  )
 
 /**
  * An answer object without any content means the participant cleared a

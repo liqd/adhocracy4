@@ -5,6 +5,7 @@ import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 import { PollQuestion } from './PollQuestion'
 import ProgressBar from './ProgressBar'
 import NavigationButtons from './NavigationButtons'
+import { hasValidAnswer } from './utils/pollHelpers'
 
 const QuestionFunnel = ({
   currentQuestion,
@@ -106,7 +107,10 @@ const QuestionFunnel = ({
   }, [phase, handleExitEnd])
 
   const isLastQuestion = currentNumber === totalQuestions
-  const isSubmitDisabled = (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
+  const isMandatoryUnanswered = !!currentQuestion.is_mandatory &&
+    !hasValidAnswer(currentQuestion, currentAnswer)
+  const isSubmitDisabled = (isLastQuestion && isMandatoryUnanswered) ||
+    (isLastQuestion && useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
     (isLastQuestion && showCaptcha && !captcha)
 
   return (
@@ -177,6 +181,8 @@ const QuestionFunnel = ({
         isLoading={isLoading}
         isLastQuestion={isLastQuestion}
         isSubmitDisabled={isSubmitDisabled}
+        isNextDisabled={isMandatoryUnanswered}
+        isMandatory={!!currentQuestion.is_mandatory}
         currentIndex={currentNumber - 1}
       />
     </div>

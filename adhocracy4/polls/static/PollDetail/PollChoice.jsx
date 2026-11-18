@@ -1,13 +1,15 @@
 import React from 'react'
 import django from 'django'
 
+import FormFieldError from '../../../static/FormFieldError'
 import { ChoiceRow } from './ChoiceRow'
 import { ConfidentialNotice } from './ConfidentialNotice'
 import QuestionImage from './QuestionImage'
 
 const translated = {
   multiple: django.gettext('Multiple answers are possible.'),
-  single: django.gettext('Please select only one answer')
+  single: django.gettext('Please select only one answer'),
+  mandatory: django.gettext('Mandatory question')
 }
 
 export const PollChoice = ({
@@ -22,6 +24,8 @@ export const PollChoice = ({
 
   const otherChoice = question.choices.find((choice) => choice.is_other_choice)
   const canVote = (question.authenticated || allowUnregisteredUsers) && !question.isReadOnly
+  const errorRecord = errors || {}
+  const errorId = errorRecord[question.id] ? 'id_error-' + question.id : undefined
 
   const handleChoiceChange = (choiceId) => {
     if (question.multiple_choice) {
@@ -49,9 +53,15 @@ export const PollChoice = ({
 
   return (
     <div className="poll poll--question">
-      <fieldset>
+      <fieldset aria-describedby={errorId}>
         <legend className="poll__question-legend">
-          <span className="poll__question-label">{question.label}</span>
+          <span className="poll__question-label">
+            {question.label}
+            {question.is_mandatory && (
+              <span className="poll__question-required" aria-hidden="true">*</span>
+            )}
+          </span>
+          {question.is_mandatory && <span className="a4-sr-only">{translated.mandatory}</span>}
         </legend>
 
         {questionImagesEnabled && question.image_url && (
@@ -86,11 +96,18 @@ export const PollChoice = ({
               disabled={!canVote}
               otherChoiceAnswer={otherChoiceAnswer}
               onOtherChange={handleOtherChange}
-              errors={errors}
+              required={!!question.is_mandatory}
+              errorId={errorId}
               name={question.multiple_choice ? undefined : 'question-' + question.id}
             />
           ))}
         </div>
+        <FormFieldError
+          id={errorId}
+          error={errors}
+          field={question.id}
+          role="alert"
+        />
       </fieldset>
     </div>
   )

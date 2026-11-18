@@ -208,6 +208,10 @@ class PollViewSet(
         if not self.request.user.is_authenticated:
             self.check_captcha()
         self.check_terms_of_use()
+        votes_data = request.data.get("votes")
+        if not isinstance(votes_data, dict):
+            raise ParseError(_("Please provide your votes."))
+        self.validate_mandatory_questions(votes_data, int(pk))
 
         creator = None
         content_id = None
@@ -215,12 +219,13 @@ class PollViewSet(
             creator = self.request.user
         else:
             content_id = uuid.uuid4()
-        self.validate_answer_lengths(request.data["votes"])
-        for question_id in request.data["votes"]:
-            question = self.get_question(question_id)
-            validators.question_belongs_to_poll(question, int(pk))
-            vote_data = self.request.data["votes"][question_id]
-            self.save_vote(question, vote_data, creator, content_id)
+        self.validate_answer_lengths(votes_data)
+        with transaction.atomic():
+            for question_id in votes_data:
+                question = self.get_question(question_id)
+                validators.question_belongs_to_poll(question, int(pk))
+                vote_data = votes_data[question_id]
+                self.save_vote(question, vote_data, creator, content_id)
 
         poll = self.get_object()
         poll_voted.send(
@@ -331,6 +336,97 @@ class PollViewSet(
             Vote.objects.filter(
                 choice__question_id=question.id, creator=self.request.user
             ).delete()
+
+    def validate_mandatory_questions(self, votes_data, poll_pk):
+        """Reject the vote if a mandatory question of the poll is not answered.
+
+        Only the questions contained in the payload are replaced by a vote, so
+        an existing answer stays valid if its question is not part of the
+        payload. This allows participants to change a single answer later on
+        without having to resend all the other answers.
+        """
+        votes_by_id = {}
+        for key, value in votes_data.items():
+            try:
+                votes_by_id[str(int(key))] = value
+            except (TypeError, ValueError):
+                votes_by_id[str(key)] = value
+        errors = {}
+        for question in Question.objects.filter(poll_id=poll_pk, is_mandatory=True):
+            key = str(question.pk)
+            if key in votes_by_id:
+                answered = self.is_question_answered(question, votes_by_id[key])
+            else:
+                answered = self.has_stored_answer(question)
+            if not answered:
+                errors[key] = [_("Please answer this question to continue.")]
+
+        if errors:
+            raise ValidationError(errors)
+
+    def has_stored_answer(self, question):
+        """Check whether the user already answered the question before.
+
+        Guests cannot change their vote afterwards and submit a new content id
+        for every request, so only authenticated users can have a stored
+        answer that is still valid.
+        """
+        if not self.request.user.is_authenticated:
+            return False
+
+        if question.is_open:
+            answers = Answer.objects.filter(
+                question=question, creator=self.request.user
+            ).values_list("answer", flat=True)
+            return any(answer.strip() for answer in answers)
+
+        votes = Vote.objects.filter(
+            choice__question=question, creator=self.request.user
+        )
+        if not votes.exists():
+            return False
+
+        other_choice = question.get_other_option()
+        if not other_choice:
+            return True
+        if votes.exclude(choice=other_choice).exists():
+            return True
+        other_answers = votes.filter(choice=other_choice).values_list(
+            "other_vote__answer", flat=True
+        )
+        return any((answer or "").strip() for answer in other_answers)
+
+    def is_question_answered(self, question, vote_data):
+        if not isinstance(vote_data, dict):
+            return False
+
+        if question.is_open:
+            open_answer = vote_data.get("open_answer")
+            return isinstance(open_answer, str) and bool(open_answer.strip())
+
+        other_choice_answer = vote_data.get("other_choice_answer")
+        if other_choice_answer is not None and not isinstance(
+            other_choice_answer, str
+        ):
+            return False
+
+        choices = vote_data.get("choices")
+        if not isinstance(choices, list) or not choices:
+            return False
+
+        choice_ids = set()
+        for choice in choices:
+            try:
+                choice_ids.add(int(choice))
+            except (TypeError, ValueError):
+                return False
+
+        other_choice = question.get_other_option()
+        if other_choice and other_choice.pk in choice_ids:
+            # an "other" answer without text does not count as an answer
+            return bool((other_choice_answer or "").strip())
+
+        return True
 
     def validate_choices(self, question, choices):
         if len(choices) > len(set(choices)):
