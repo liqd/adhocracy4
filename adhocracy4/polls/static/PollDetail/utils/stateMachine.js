@@ -23,6 +23,10 @@ export const ACTIONS = {
   // Answer management
   UPDATE_ANSWER: 'UPDATE_ANSWER',
 
+  // Validation
+  SET_QUESTION_ERRORS: 'SET_QUESTION_ERRORS',
+  GO_TO_QUESTION: 'GO_TO_QUESTION',
+
   // Submission
   SUBMIT_START: 'SUBMIT_START',
   SUBMIT_SUCCESS: 'SUBMIT_SUCCESS',
@@ -49,6 +53,8 @@ export const isValidTransition = (currentState, actionType) => {
       ACTIONS.NEXT_QUESTION,
       ACTIONS.PREV_QUESTION,
       ACTIONS.SKIP_QUESTION,
+      ACTIONS.GO_TO_QUESTION,
+      ACTIONS.SET_QUESTION_ERRORS,
       ACTIONS.SUBMIT_START,
       ACTIONS.SET_ALERT,
       ACTIONS.CLEAR_ALERT,

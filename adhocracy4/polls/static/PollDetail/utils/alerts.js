@@ -20,6 +20,8 @@ export const ALERT_INCOMPLETE = {
   message: django.gettext('Please answer all questions before submitting.')
 }
 
+export const MANDATORY_QUESTION_ERROR = django.gettext('Please answer this question to continue.')
+
 export const ALERT_CAPTCHA_INCOMPLETE = {
   type: 'danger',
   message: django.gettext('Please complete the captcha before submitting.')

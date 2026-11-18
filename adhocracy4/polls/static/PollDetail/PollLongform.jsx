@@ -3,6 +3,7 @@ import django from 'django'
 
 import { TermsOfUseCheckbox } from '../../../static/TermsOfUseCheckbox'
 import { PollQuestion } from './PollQuestion'
+import { getUnansweredMandatoryQuestions } from './utils/pollHelpers'
 
 /**
  * Longform presentation: all questions on one page, a single submit at the
@@ -26,7 +27,8 @@ const PollLongform = ({
   isLoading,
   children
 }) => {
-  const isSubmitDisabled = (useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
+  const isSubmitDisabled = getUnansweredMandatoryQuestions(questions, answers).length > 0 ||
+    (useTermsOfUse && !agreedTermsOfUse && !checkedTermsOfUse) ||
     (showCaptcha && !captcha)
 
   return (
@@ -39,7 +41,7 @@ const PollLongform = ({
               answer={answers[question.id]}
               allowUnregisteredUsers={allowUnregisteredUsers}
               questionImagesEnabled={questionImagesEnabled}
-              errors={errors?.[question.id] || errors}
+              errors={errors}
               disabled={isLoading}
               onAnswerChange={onAnswerChange}
             />

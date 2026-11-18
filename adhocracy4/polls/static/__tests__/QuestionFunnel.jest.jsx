@@ -158,4 +158,40 @@ describe('QuestionFunnel', () => {
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'My answer' } })
     expect(onAnswerChange).toHaveBeenCalledWith(2, { open_answer: 'My answer' })
   })
+
+  it('disables Next and hides Skip for an unanswered mandatory question', () => {
+    render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+        currentAnswer={null}
+      />
+    )
+    expect(screen.getByText('Next')).toBeDisabled()
+    expect(screen.queryByText('Skip')).not.toBeInTheDocument()
+  })
+
+  it('enables Next once the mandatory question is answered', () => {
+    render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+        currentAnswer={{ choices: [10], open_answer: '', other_choice_answer: '' }}
+      />
+    )
+    expect(screen.getByText('Next')).not.toBeDisabled()
+  })
+
+  it('disables Submit All while the last mandatory question is unanswered', () => {
+    render(
+      <QuestionFunnel
+        {...baseProps}
+        currentQuestion={{ ...choiceQuestion, is_mandatory: true }}
+        currentNumber={3}
+        totalQuestions={3}
+        currentAnswer={null}
+      />
+    )
+    expect(screen.getByText('Submit All')).toBeDisabled()
+  })
 })

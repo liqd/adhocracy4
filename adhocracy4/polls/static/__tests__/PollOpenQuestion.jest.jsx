@@ -51,3 +51,23 @@ describe('mandatory questions when answering', () => {
     expect(container.querySelector('textarea')).not.toHaveAttribute('aria-required')
   })
 })
+
+describe('open question errors', () => {
+  test('shows and links the error next to the field', () => {
+    const { container } = render(
+      <PollOpenQuestion
+        question={{ ...question, is_mandatory: true }}
+        allowUnregisteredUsers={false}
+        onOpenChange={() => {}}
+        errors={{ 1: ['Please answer this question to continue.'] }}
+      />
+    )
+
+    const error = screen.getByRole('alert')
+    expect(error).toHaveTextContent('Please answer this question to continue.')
+
+    const textarea = container.querySelector('textarea')
+    expect(textarea).toHaveAttribute('aria-invalid', 'true')
+    expect(textarea.getAttribute('aria-describedby')).toContain('id_error-1')
+  })
+})

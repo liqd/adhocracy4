@@ -111,3 +111,58 @@ describe('PollChoice', () => {
     expect(container.querySelector('.poll__question-image')).not.toBeInTheDocument()
   })
 })
+
+describe('mandatory choice questions', () => {
+  const mandatoryQuestion = {
+    id: 1,
+    label: 'Pick one',
+    multiple_choice: false,
+    is_open: false,
+    is_confidential: false,
+    authenticated: true,
+    is_mandatory: true,
+    choices: [
+      { id: 10, label: 'Red', is_other_choice: false },
+      { id: 11, label: 'Blue', is_other_choice: false }
+    ],
+    userChoices: []
+  }
+
+  it('marks a mandatory question with an asterisk and required inputs', () => {
+    const { container } = render(
+      <PollChoice
+        question={mandatoryQuestion}
+        allowUnregisteredUsers={false}
+        onAnswerChange={jest.fn()}
+      />
+    )
+
+    const marker = container.querySelector('.poll__question-required')
+    expect(marker).toHaveTextContent('*')
+    expect(marker).toHaveAttribute('aria-hidden', 'true')
+    expect(screen.getByText('Mandatory question')).toBeInTheDocument()
+
+    const inputs = container.querySelectorAll('input[type="radio"]')
+    inputs.forEach((input) => {
+      expect(input).toHaveAttribute('aria-required', 'true')
+    })
+  })
+
+  it('shows the question error and links it to the inputs', () => {
+    const { container } = render(
+      <PollChoice
+        question={mandatoryQuestion}
+        allowUnregisteredUsers={false}
+        onAnswerChange={jest.fn()}
+        errors={{ 1: ['Please answer this question to continue.'] }}
+      />
+    )
+
+    const error = screen.getByRole('alert')
+    expect(error).toHaveTextContent('Please answer this question to continue.')
+
+    const input = container.querySelector('input[type="radio"]')
+    expect(input).toHaveAttribute('aria-invalid', 'true')
+    expect(input.getAttribute('aria-describedby')).toContain('id_error-1')
+  })
+})
