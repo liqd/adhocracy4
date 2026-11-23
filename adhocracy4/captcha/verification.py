@@ -47,6 +47,7 @@ def verify_cap_token(token):
             url,
             json={"secret": secret, "response": token},
             timeout=timeout,
+            allow_redirects=False,
         )
         response.raise_for_status()
         payload = response.json()

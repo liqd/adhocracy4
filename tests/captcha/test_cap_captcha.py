@@ -58,6 +58,7 @@ def test_verify_valid_token(mock_post):
         "https://cap.example.com/sitekey/siteverify",
         json={"secret": "secret", "response": "token"},
         timeout=3,
+        allow_redirects=False,
     )
 
 
