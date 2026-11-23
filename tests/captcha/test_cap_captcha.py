@@ -51,6 +51,7 @@ def test_field_rejects_wrong_test_answer():
 )
 @patch("adhocracy4.captcha.verification.requests.post")
 def test_verify_valid_token(mock_post):
+    mock_post.return_value.status_code = 200
     mock_post.return_value.json.return_value = {"success": True}
 
     assert verify_cap_token("token") is True
@@ -69,6 +70,7 @@ def test_verify_valid_token(mock_post):
 )
 @patch("adhocracy4.captcha.verification.requests.post")
 def test_verify_rejected_token(mock_post):
+    mock_post.return_value.status_code = 200
     mock_post.return_value.json.return_value = {"success": False}
 
     assert verify_cap_token("token") is False
@@ -81,6 +83,7 @@ def test_verify_rejected_token(mock_post):
 )
 @patch("adhocracy4.captcha.verification.requests.post")
 def test_verify_rejects_non_boolean_success(mock_post):
+    mock_post.return_value.status_code = 200
     mock_post.return_value.json.return_value = {"success": "true"}
 
     assert verify_cap_token("token") is False
@@ -93,6 +96,7 @@ def test_verify_rejects_non_boolean_success(mock_post):
 )
 @patch("adhocracy4.captcha.verification.requests.post")
 def test_verify_rejects_malformed_response(mock_post):
+    mock_post.return_value.status_code = 200
     mock_post.return_value.json.return_value = None
 
     assert verify_cap_token("token") is False
@@ -108,4 +112,17 @@ def test_verify_rejects_malformed_response(mock_post):
     side_effect=requests.RequestException,
 )
 def test_verify_fails_closed_when_service_is_unreachable(mock_post):
+    assert verify_cap_token("token") is False
+
+
+@override_settings(
+    A4_CAP_CAPTCHA_ENDPOINT="https://cap.example.com/sitekey/",
+    A4_CAP_CAPTCHA_SECRET="secret",
+    CAPTCHA_TEST_ACCEPTED_ANSWER=None,
+)
+@patch("adhocracy4.captcha.verification.requests.post")
+def test_verify_rejects_redirect_response(mock_post):
+    mock_post.return_value.status_code = 302
+    mock_post.return_value.json.return_value = {"success": True}
+
     assert verify_cap_token("token") is False

@@ -50,6 +50,11 @@ def verify_cap_token(token):
             allow_redirects=False,
         )
         response.raise_for_status()
+        if not 200 <= response.status_code < 300:
+            logger.warning(
+                "Cap captcha verification returned HTTP %s.", response.status_code
+            )
+            return False
         payload = response.json()
         success = isinstance(payload, dict) and payload.get("success") is True
     except (requests.RequestException, ValueError, TypeError) as error:
