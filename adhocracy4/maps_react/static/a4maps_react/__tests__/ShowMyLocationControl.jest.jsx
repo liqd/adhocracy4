@@ -79,7 +79,8 @@ describe('ShowMyLocationControl', () => {
   })
 
   test('shows a loading state and centres the map on success', () => {
-    render(<ShowMyLocationControl />)
+    const onLocate = jest.fn()
+    render(<ShowMyLocationControl onLocate={onLocate} />)
     clickButton()
 
     expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalledTimes(1)
@@ -93,6 +94,9 @@ describe('ShowMyLocationControl', () => {
     expect(mockMap.flyTo).toHaveBeenCalledWith(
       expect.objectContaining({ lat: 52.52, lng: 13.405 }),
       14
+    )
+    expect(onLocate).toHaveBeenCalledWith(
+      expect.objectContaining({ lat: 52.52, lng: 13.405 })
     )
     expect(screen.getByRole('status')).toHaveTextContent('Location found.')
 

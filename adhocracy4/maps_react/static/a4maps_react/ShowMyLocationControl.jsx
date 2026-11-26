@@ -45,11 +45,14 @@ const defaultIcon = L.divIcon({
  *   bounds every position is accepted.
  * @param {object} [props.icon] - Leaflet icon used for the position marker.
  * @param {number} [props.zoom] - Zoom level to use when the position is found.
+ * @param {Function} [props.onLocate] - Called with the Leaflet LatLng after a
+ *   position was found.
  */
 export const ShowMyLocationControl = ({
   areaBounds = null,
   icon = defaultIcon,
-  zoom = LOCATION_ZOOM
+  zoom = LOCATION_ZOOM,
+  onLocate
 }) => {
   const map = useMap()
   const markerRef = useRef(null)
@@ -114,6 +117,7 @@ export const ShowMyLocationControl = ({
         setPosition(latlng)
         setStatus('success')
         setMessage(translations.locationFound)
+        onLocate?.(latlng)
         map.flyTo(latlng, zoom)
       },
       (error) => {
