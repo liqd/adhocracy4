@@ -94,7 +94,7 @@ def _filter_state(queryset, state):
     if state == STATE_READ:
         return queryset.filter(is_reviewed=True, is_resolved=False)
     if state == STATE_UNREAD:
-        return queryset.filter(is_reviewed=False, is_resolved=False)
+        return queryset.filter(is_resolved=False)
     return queryset
 
 
@@ -252,9 +252,7 @@ def _comment_feedback(item):
             "text": transforms.clean_html_all(comment.comment),
         }
         for comment in item.child_comments.all()
-        if comment.is_reviewed
-        and not comment.is_censored
-        and not comment.is_removed
+        if comment.is_reviewed and not comment.is_censored and not comment.is_removed
     ]
 
 

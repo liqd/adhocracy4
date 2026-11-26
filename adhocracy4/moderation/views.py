@@ -43,6 +43,18 @@ def get_moderation_counts(project, content_type, ordering):
     }
 
 
+def is_item_visible(state, item):
+    """Return if the item belongs to the current filter state."""
+    is_resolved = bool(getattr(item, "is_resolved", False))
+    is_reviewed = bool(getattr(item, "is_reviewed", False))
+    return (
+        state == utils.STATE_ALL
+        or (state == utils.STATE_UNREAD and not is_resolved)
+        or (state == utils.STATE_RESOLVED and is_resolved)
+        or (state == utils.STATE_READ and is_reviewed)
+    )
+
+
 class ModerationProjectMixin(LoginRequiredMixin):
     project_url_kwarg = "project_pk"
 
@@ -190,7 +202,9 @@ class ModerationProjectView(
                 "ordering": ordering,
                 "page_obj": page_obj,
                 "is_paginated": page_obj.has_other_pages(),
+                "is_htmx": self.request.headers.get("HX-Request") == "true",
                 "counts": counts,
+                "oob_tabs": self.request.headers.get("HX-Request") == "true",
                 "items": [
                     utils.build_moderation_item(item)
                     for item in utils.resolve_moderation_items(page_obj.object_list)
@@ -222,12 +236,7 @@ class ModerationItemMarkReadView(
         message = _("Marked as read") if is_read else _("Marked as unread")
         state = get_moderation_state(request)
         if request.headers.get("HX-Request") == "true":
-            is_visible = (
-                state == utils.STATE_ALL
-                or (state == utils.STATE_UNREAD and not is_read)
-                or (state == utils.STATE_READ and is_read)
-            )
-            if is_visible:
+            if is_item_visible(state, item):
                 response = render(
                     request,
                     "a4moderation/includes/moderation_item.html",
@@ -328,7 +337,7 @@ class ModerationItemFeedbackView(
 
             item_context = utils.build_moderation_item(item)
             item_id = "moderation-item-{}".format(item_context["key"])
-            if state == utils.STATE_UNREAD:
+            if not is_item_visible(state, item):
                 response = HttpResponse(status=200)
             else:
                 response = render(
@@ -375,12 +384,22 @@ class ModerationItemResolveView(
         resolved = request.POST.get("resolved", "1") != "0"
         item.is_resolved = resolved
         item.resolved_at = timezone.now() if resolved else None
-        item.is_reviewed = True
+        item.is_reviewed = resolved
         item.save(
             ignore_modified=True,
             update_fields=["is_resolved", "resolved_at", "is_reviewed"],
         )
-        response = self.render_item(request, item)
+        state = get_moderation_state(request)
+        if request.headers.get("HX-Request") == "true" and not is_item_visible(
+            state, item
+        ):
+            response = HttpResponse(status=200)
+            response["HX-Retarget"] = "#moderation-item-{}".format(
+                utils.build_moderation_item(item)["key"]
+            )
+            response["HX-Reswap"] = "outerHTML"
+        else:
+            response = self.render_item(request, item)
         response["HX-Trigger"] = json.dumps(
             {
                 "moderationItemUpdated": {
@@ -477,7 +496,7 @@ class ModerationItemEditView(
                     sender=self.__class__, item=item, user=request.user
                 )
             state = get_moderation_state(request)
-            if state == utils.STATE_UNREAD:
+            if not is_item_visible(state, item):
                 response = HttpResponse(status=200)
                 response["HX-Retarget"] = "#moderation-item-{}".format(
                     utils.build_moderation_item(item)["key"]

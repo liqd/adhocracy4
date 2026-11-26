@@ -83,12 +83,13 @@ def test_project_view_lists_comments_and_ideas(
 
 
 @pytest.mark.django_db
-def test_project_view_filters_unread_items(
+def test_project_view_unread_contains_all_open_items(
     client, user, moderated_project, module_factory
 ):
     module = module_factory(project=moderated_project)
     read_idea = IdeaFactory(module=module, is_reviewed=True)
     unread_idea = IdeaFactory(module=module, is_reviewed=False)
+    resolved_idea = IdeaFactory(module=module, is_resolved=True)
     client.login(username=user.username, password="password")
 
     response = client.get(
@@ -98,7 +99,8 @@ def test_project_view_filters_unread_items(
 
     item_pks = {item["pk"] for item in response.context["items"]}
     assert unread_idea.pk in item_pks
-    assert read_idea.pk not in item_pks
+    assert read_idea.pk in item_pks
+    assert resolved_idea.pk not in item_pks
 
 
 @pytest.mark.django_db
@@ -145,7 +147,7 @@ def test_mark_item_as_read(client, user, moderated_project, module_factory):
 
 
 @pytest.mark.django_db
-def test_mark_item_as_read_removes_item_from_unread_filter(
+def test_mark_item_as_read_keeps_item_in_unread_filter(
     client, user, moderated_project, module_factory
 ):
     module = module_factory(project=moderated_project)
@@ -166,7 +168,10 @@ def test_mark_item_as_read_removes_item_from_unread_filter(
     )
 
     assert response.status_code == 200
-    assert response.content == b""
+    assert 'id="moderation-item-a4test_ideas_idea-{}"'.format(idea.pk) in (
+        response.content.decode()
+    )
+    assert "moderation-item--unread" not in response.content.decode()
 
 
 @pytest.mark.django_db
@@ -380,7 +385,7 @@ def test_feedback_for_comments_is_stored_as_child_comment(
 
 
 @pytest.mark.django_db
-def test_comment_feedback_leaves_unread_filter(
+def test_comment_feedback_stays_in_unread_filter(
     client, user, moderated_project, module_factory
 ):
     module = module_factory(project=moderated_project)
@@ -402,9 +407,8 @@ def test_comment_feedback_leaves_unread_filter(
     )
 
     assert response.status_code == 200
-    assert response.content == b""
-    assert response["HX-Retarget"] == "#moderation-item-a4comments_comment-{}".format(
-        comment.pk
+    assert "moderation-item-a4comments_comment-{}".format(comment.pk) in (
+        response.content.decode()
     )
 
 
@@ -438,7 +442,7 @@ def test_feedback_edit_keeps_unchanged_html(
 
 
 @pytest.mark.django_db
-def test_saved_feedback_leaves_unread_filter(
+def test_saved_feedback_stays_in_unread_filter(
     client, user, moderated_project, module_factory
 ):
     module = module_factory(project=moderated_project)
@@ -459,8 +463,9 @@ def test_saved_feedback_leaves_unread_filter(
     )
 
     assert response.status_code == 200
-    assert response.content == b""
-    assert response["HX-Retarget"]
+    assert "moderation-item-a4test_ideas_idea-{}".format(idea.pk) in (
+        response.content.decode()
+    )
 
 
 @pytest.mark.django_db
@@ -510,7 +515,40 @@ def test_resolved_items_are_listed_in_resolved_state(
 
 
 @pytest.mark.django_db
-def test_deleted_comments_are_not_listed(client, user, moderated_project, module_factory):
+def test_reopened_item_leaves_resolved_state(
+    client, user, moderated_project, module_factory
+):
+    module = module_factory(project=moderated_project)
+    idea = IdeaFactory(module=module, is_resolved=True, is_reviewed=True)
+    client.login(username=user.username, password="password")
+
+    response = client.post(
+        reverse(
+            "a4moderation:item-resolve",
+            kwargs={
+                "project_pk": moderated_project.pk,
+                "item_type": "a4test_ideas.idea",
+                "pk": idea.pk,
+            },
+        ),
+        {"resolved": "0", "state": "resolved"},
+        HTTP_HX_REQUEST="true",
+    )
+
+    idea.refresh_from_db()
+    assert response.status_code == 200
+    assert response.content == b""
+    assert response["HX-Retarget"] == "#moderation-item-a4test_ideas_idea-{}".format(
+        idea.pk
+    )
+    assert idea.is_resolved is False
+    assert idea.is_reviewed is False
+
+
+@pytest.mark.django_db
+def test_deleted_comments_are_not_listed(
+    client, user, moderated_project, module_factory
+):
     module = module_factory(project=moderated_project)
     idea = IdeaFactory(module=module)
     visible = CommentFactory(content_object=idea, comment="Still here")

@@ -69,6 +69,50 @@ document.addEventListener('DOMContentLoaded', function () {
       })
   })
 
+  document.addEventListener('change', function (event) {
+    const form = event.target.closest('form[data-moderation-auto-submit]')
+    if (!form || event.target.tagName !== 'SELECT') {
+      return
+    }
+    if (typeof form.requestSubmit === 'function') {
+      form.requestSubmit()
+    } else {
+      form.submit()
+    }
+  })
+
+  document.body.addEventListener('click', function (event) {
+    const toggle = event.target.closest('[data-moderation-text-toggle]')
+    if (!toggle) {
+      return
+    }
+    const card = toggle.closest('.moderation-card')
+    const shortText = card && card.querySelector('.moderation-card__text-short')
+    const fullText = card && card.querySelector('.moderation-card__text-full')
+    if (!shortText || !fullText) {
+      return
+    }
+    const expanded = toggle.getAttribute('aria-expanded') === 'true'
+    toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true')
+    shortText.hidden = !expanded
+    fullText.hidden = expanded
+  })
+
+  document.addEventListener('click', function (event) {
+    const tab = event.target.closest('.moderation-tabs .moderation-tab')
+    if (!tab) {
+      return
+    }
+    activateTab(tab.closest('.moderation-tabs'), tabState(tab))
+  })
+
+  window.addEventListener('popstate', function () {
+    const params = new URLSearchParams(window.location.search)
+    document.querySelectorAll('.moderation-tabs').forEach(function (tabs) {
+      activateTab(tabs, params.get('state') || 'all')
+    })
+  })
+
   document.body.addEventListener('htmx:afterSwap', function (event) {
     const target = event.detail.target
     if (!target) {
@@ -140,6 +184,23 @@ document.addEventListener('DOMContentLoaded', function () {
     announce(event.detail && event.detail.message)
   })
 })
+
+function tabState (tab) {
+  const url = new URL(tab.getAttribute('href'), window.location.origin)
+  return url.searchParams.get('state') || 'all'
+}
+
+function activateTab (tabs, state) {
+  tabs.querySelectorAll('.moderation-tab').forEach(function (tab) {
+    const active = tabState(tab) === state
+    tab.classList.toggle('moderation-tab--active', active)
+    if (active) {
+      tab.setAttribute('aria-current', 'page')
+    } else {
+      tab.removeAttribute('aria-current')
+    }
+  })
+}
 
 function getFeedbackForm (element) {
   if (!element || typeof element.closest !== 'function') {

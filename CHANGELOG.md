@@ -20,6 +20,12 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
   comments.
 - moderation: close the feedback dialog after saving and prevent duplicate
   submissions.
+- moderation: update filter counts and tab links when filtering by content
+  type, and submit the project overview sorting on change.
+- moderation: make "unread" contain all open items and update counts when
+  resolving or reopening items.
+- moderation: crop long item texts and place the collapse action below the full
+  text.
 
 ## mB-v2611.2
 
