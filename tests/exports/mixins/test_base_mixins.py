@@ -34,6 +34,9 @@ def test_model_fields_mixin_exclude(idea):
             "point",
             "point_label",
             "is_bool_test",
+            "is_reviewed",
+            "is_resolved",
+            "resolved_at",
         ]
 
     mixin = Mixin()

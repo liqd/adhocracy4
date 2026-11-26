@@ -10,9 +10,22 @@ This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/
 ### Added
 
 - captcha: add reusable Cap captcha field, widget and poll component
+- moderation: add a moderation dashboard for comments and items with
+  read/resolved tabs, filtering, sorting, inline editing and comment deletion
 
 ### Changed
 ### Fixed
+
+- moderation: hide deleted comments and only show moderator feedback for
+  comments.
+- moderation: close the feedback dialog after saving and prevent duplicate
+  submissions.
+- moderation: update filter counts and tab links when filtering by content
+  type, and submit the project overview sorting on change.
+- moderation: make "unread" contain all open items and update counts when
+  resolving or reopening items.
+- moderation: crop long item texts and place the collapse action below the full
+  text.
 
 ## mB-v2611.2
 
