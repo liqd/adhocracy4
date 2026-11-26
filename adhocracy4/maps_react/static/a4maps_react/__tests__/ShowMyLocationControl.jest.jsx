@@ -105,6 +105,21 @@ describe('ShowMyLocationControl', () => {
     expect(marker).toHaveAttribute('aria-label', 'Your location')
   })
 
+  test('uses the latest onLocate callback after the request resolves', () => {
+    const first = jest.fn()
+    const second = jest.fn()
+    const { rerender } = render(<ShowMyLocationControl onLocate={first} />)
+    clickButton()
+    rerender(<ShowMyLocationControl onLocate={second} />)
+
+    act(() => {
+      successCallback({ coords: { latitude: 52.52, longitude: 13.405 } })
+    })
+
+    expect(second).toHaveBeenCalledTimes(1)
+    expect(first).not.toHaveBeenCalled()
+  })
+
   test('informs about denied permission without moving the map', () => {
     render(<ShowMyLocationControl />)
     clickButton()

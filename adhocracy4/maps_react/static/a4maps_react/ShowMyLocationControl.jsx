@@ -57,6 +57,8 @@ export const ShowMyLocationControl = ({
   const map = useMap()
   const markerRef = useRef(null)
   const mountedRef = useRef(true)
+  const onLocateRef = useRef(onLocate)
+  onLocateRef.current = onLocate
   const [position, setPosition] = useState(null)
   const [status, setStatus] = useState('idle')
   const [message, setMessage] = useState('')
@@ -80,7 +82,7 @@ export const ShowMyLocationControl = ({
     element.setAttribute('role', 'img')
     element.setAttribute('aria-label', translations.yourLocation)
     element.setAttribute('title', translations.yourLocation)
-  }, [position])
+  }, [position, icon])
 
   const showError = (errorMessage) => {
     setStatus('error')
@@ -117,7 +119,7 @@ export const ShowMyLocationControl = ({
         setPosition(latlng)
         setStatus('success')
         setMessage(translations.locationFound)
-        onLocate?.(latlng)
+        onLocateRef.current?.(latlng)
         map.flyTo(latlng, zoom)
       },
       (error) => {
