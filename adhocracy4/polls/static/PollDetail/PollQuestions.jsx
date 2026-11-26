@@ -3,6 +3,7 @@ import django from 'django'
 
 import Alert from '../../../static/Alert'
 import Captcha from '../../../static/Captcha'
+import CapCaptcha from '../../../captcha/static/CapCaptcha'
 import StartScreen from './StartScreen'
 import QuestionFunnel from './QuestionFunnel'
 import PollLongform from './PollLongform'
@@ -17,11 +18,20 @@ import { STATES } from './utils/stateMachine'
 const PollQuestions = ({
   pollId,
   captchaUrl,
+  captchaType,
+  capCaptchaEndpoint,
+  capCaptchaWidgetUrl,
+  capCaptchaWasmUrl,
+  capCaptchaHashwxUrl,
+  captchaLanguage,
   questionImagesEnabled,
   manualLink
 }) => {
   const [state, dispatch] = useReducer(pollReducer, initialState)
-  const captchaEnabled = Boolean(captchaUrl)
+  const CaptchaWidget = captchaType === 'cap' ? CapCaptcha : Captcha
+  const captchaEnabled = captchaType === 'cap'
+    ? Boolean(capCaptchaEndpoint && capCaptchaWidgetUrl)
+    : Boolean(captchaUrl)
 
   usePollData(pollId, dispatch, captchaEnabled)
 
@@ -139,10 +149,15 @@ const PollQuestions = ({
       case STATES.SUBMITTING:
       case STATES.ANSWERING: {
         const captcha = showCaptcha && (
-          <Captcha
+          <CaptchaWidget
             key={state.refreshCaptcha}
             onChange={actions.handleSetCaptcha}
             apiUrl={captchaUrl}
+            endpoint={capCaptchaEndpoint}
+            widgetUrl={capCaptchaWidgetUrl}
+            wasmUrl={capCaptchaWasmUrl}
+            hashwxUrl={capCaptchaHashwxUrl}
+            lang={captchaLanguage}
             name="id_captcheck"
             refresh={state.refreshCaptcha}
           />

@@ -1,6 +1,7 @@
 from unittest.mock import MagicMock
 
 import pytest
+from django.test import override_settings
 from django.urls import reverse
 from rest_framework import status
 
@@ -232,6 +233,71 @@ def test_anonymous_user_can_vote_in_active_phase_which_allows_unregistered_users
     assert Answer.objects.count() == 1
     assert len(Vote.objects.first().content_id.hex) == 32
     assert len(Answer.objects.first().content_id.hex) == 32
+
+
+@override_settings(A4_CAPTCHA_TYPE="cap")
+@pytest.mark.django_db
+def test_anonymous_user_can_vote_with_cap_captcha(
+    apiclient, poll_factory, question_factory, choice_factory
+):
+
+    poll = poll_factory()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+    choice_factory(question=question)
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+        },
+        "captcha": "testpass",
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_201_CREATED
+
+    assert Vote.objects.count() == 1
+
+
+@override_settings(A4_CAPTCHA_TYPE="cap")
+@pytest.mark.django_db
+def test_anonymous_user_cannot_vote_with_wrong_cap_captcha(
+    apiclient, poll_factory, question_factory, choice_factory
+):
+
+    poll = poll_factory()
+    poll.allow_unregistered_users = True
+    poll.save()
+    question = question_factory(poll=poll)
+    choice1 = choice_factory(question=question)
+
+    url = reverse("polls-vote", kwargs={"pk": poll.pk})
+
+    data = {
+        "votes": {
+            question.pk: {
+                "choices": [choice1.pk],
+                "other_choice_answer": "",
+                "open_answer": "",
+            },
+        },
+        "captcha": "wrong-token",
+    }
+
+    with active_phase(poll.module, VotingPhase):
+        response = apiclient.post(url, data, format="json")
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    assert Vote.objects.count() == 0
 
 
 @pytest.mark.django_db

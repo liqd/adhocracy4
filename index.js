@@ -5,6 +5,7 @@ import './adhocracy4/static/global_jquery'
 
 export { default as alert } from './adhocracy4/static/Alert'
 export { default as api } from './adhocracy4/static/api'
+export { default as CapCaptcha } from './adhocracy4/captcha/static/CapCaptcha'
 export { default as classNames } from './adhocracy4/static/classNames'
 export { default as AddressSearch } from './adhocracy4/maps_react/static/a4maps_react/AddressSearch'
 export { default as SearchAndShowAddress } from './adhocracy4/maps_react/static/a4maps_react/SearchAndShowAddress'

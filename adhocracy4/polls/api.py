@@ -20,6 +20,8 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
+from adhocracy4.captcha.verification import get_captcha_type
+from adhocracy4.captcha.verification import verify_cap_token
 
 from . import validators
 from .models import Answer
@@ -161,6 +163,11 @@ class PollViewSet(
 
             backend = import_string(backend_path)
             backend(self.request, self.get_object())
+            return
+
+        if get_captcha_type() == "cap":
+            if not verify_cap_token(self.request.data.get("captcha", "")):
+                raise ValidationError(_("Your answer to the captcha was wrong."))
             return
 
         if not self.request.data.get("captcha", False):
